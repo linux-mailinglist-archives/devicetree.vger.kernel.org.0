@@ -2,210 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A065E6BCEB6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6516BCD78
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:05:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbjCPLsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 07:48:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47880 "EHLO
+        id S229987AbjCPLFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 07:05:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbjCPLsT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:48:19 -0400
-X-Greylist: delayed 1776 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Mar 2023 04:48:17 PDT
-Received: from egress-ip33b.ess.de.barracuda.com (egress-ip33b.ess.de.barracuda.com [18.185.115.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818AABD4C8
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:48:16 -0700 (PDT)
-Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com [209.85.219.197]) by mx-outbound19-80.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 16 Mar 2023 11:48:14 +0000
-Received: by mail-yb1-f197.google.com with SMTP id m6-20020a056902118600b00aeb1e3dbd1bso1547267ybu.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:48:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1678967293;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/+5R+OJ4prEWqV9IKGkQwmZCSFuZA1dGQAlASE9lZbk=;
-        b=kT5vj0vjw3F+hWSoXzBZiZjXRKITrqoHWTBqLGTc6ppgTHUjwUxzHOS/sNrficI+Iq
-         bcpvWF5OC1AT0XQpFzzBDuGbfrhpXCQgfUHAXBakp8sT5wBj83X+hMekMQQ02JOVYKm6
-         xUKpk7Y9ns5ZpOay5P1zkhtMZsr3ns2OWFaF0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678967293;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/+5R+OJ4prEWqV9IKGkQwmZCSFuZA1dGQAlASE9lZbk=;
-        b=O9i33ZgB6hlckFiZMUs5MoTuja/Y1iWXW5CQJdEWpDTG9pKL7APsijxUEsIyP9E6jG
-         ZkXckbKXWhtfIPOpozMX9VpvAx7OuV0H9rOX993e44tZgwQzG2ESgmCHIlScPBYO5ubh
-         c78Mk80hgIxn0iY7W6p+10V3c3zN0x0iz1VpYWVDapbiVZCn6Q9kNnLC1MW3KuwqiCQD
-         pRpe29qTmkf9Eoa6iciqtzEw3eEHmJpirxpihmNLm3tGqdabQmV8hJ4EpB5cHrUowwy0
-         lUz38v7/rFzJpgzrM+NPpKs53kCTMfh+IUHMCzvmPJIv25z1U7/nwjMEqHwabTjBAMSY
-         twEw==
-X-Gm-Message-State: AO0yUKU1bP19btgW1djQ4i2s1OIPea8Oha+EHiaMhej5xTyS0DNIP50U
-        diqo1r04hPwxulpzAGrFFG9Hrr6GPmmUW/ywFOOtPyK66zYnbULWy9BTs9nKig+fdGqJYX/Kmbe
-        RtNmOBJr5n2nOME5eEhCaa1mY8cub+ucY8RIOaK2KaIpkAnnJFEKHNzXxdg==
-X-Received: by 2002:a05:6a20:1445:b0:cd:c79:50e8 with SMTP id a5-20020a056a20144500b000cd0c7950e8mr3997427pzi.62.1678963682751;
-        Thu, 16 Mar 2023 03:48:02 -0700 (PDT)
-X-Google-Smtp-Source: AK7set/Xdjsa1n12qCmL60R8PvrCj48h0U4xuoqmiszCDYfValN1OdKRBxMfJRhoA4q6rNbjLG++mw==
-X-Received: by 2002:a05:6a20:1445:b0:cd:c79:50e8 with SMTP id a5-20020a056a20144500b000cd0c7950e8mr3997402pzi.62.1678963682425;
-        Thu, 16 Mar 2023 03:48:02 -0700 (PDT)
-Received: from localhost.localdomain ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id f26-20020aa78b1a000000b005a8c92f7c27sm5108744pfd.212.2023.03.16.03.47.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 03:48:02 -0700 (PDT)
-From:   sabiya.d@mistralsolutions.com
-X-Google-Original-From: sabiya.d@ti.com
-To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, sabiya.d@mistralsolutions.com,
-        Dasnavis Sabiya <sabiya.d@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am69-sk: Add pinmux for RPi Header
-Date:   Thu, 16 Mar 2023 16:17:43 +0530
-Message-Id: <20230316104743.482972-3-sabiya.d@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230316104743.482972-1-sabiya.d@ti.com>
-References: <20230316104743.482972-1-sabiya.d@ti.com>
+        with ESMTP id S229850AbjCPLFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:05:22 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0BF067018;
+        Thu, 16 Mar 2023 04:05:20 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32GB5A7f074665;
+        Thu, 16 Mar 2023 06:05:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678964710;
+        bh=43sI3V+5HkuG7ytp0+OIAoI/zPXPFa+f93/6FFpSTe0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=myhLnEkk/AWjv9GNZBW6nJ791OGkoliA1JIlU79RT2nKz9YxEpBUJtd2WbUj9g3fd
+         8PaejyukVDjZ/97XcPaSI7yS/QMDexKTUmyoEPlhOvJd7cW9BYSixzcx5Y/PaTmkIx
+         KYDcURV3Wk/wCvNFFkQCygDSOZ7oYRESdQNHOSbU=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32GB5A1a057792
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 Mar 2023 06:05:10 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 16
+ Mar 2023 06:05:09 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 16 Mar 2023 06:05:09 -0500
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32GB54Ll085799;
+        Thu, 16 Mar 2023 06:05:05 -0500
+Message-ID: <b1409f34-86b5-14e8-f352-5032aa57ca46@ti.com>
+Date:   Thu, 16 Mar 2023 16:35:04 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1678967294-304944-5517-18594-1
-X-BESS-VER: 2019.1_20230310.1716
-X-BESS-Apparent-Source-IP: 209.85.219.197
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIytrQ0ALIygIIWxgaJhmmmyc
-        aGhonGSSaWRmYWKWmWFilGhsaWSUlm5kq1sQARdgiIQQAAAA==
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.246833 [from 
-        cloudscan20-212.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-        0.00 NO_REAL_NAME           HEADER: From: does not include a real name 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_RULE7568M, NO_REAL_NAME, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [EXTERNAL] Re: [PATCH v4 4/5] soc: ti: pruss: Add helper
+ functions to set GPI mode, MII_RT_event and XFR
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <20230313111127.1229187-1-danishanwar@ti.com>
+ <20230313111127.1229187-5-danishanwar@ti.com>
+ <d168e7dd-42a0-b728-5c4c-e97209c13871@kernel.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <d168e7dd-42a0-b728-5c4c-e97209c13871@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dasnavis Sabiya <sabiya.d@ti.com>
+Hi Roger,
 
-Add pinmux required to bring out the i2c and gpios on 40 pin RPi
-expansion header on AM69 SK board.
+On 15/03/23 17:52, Roger Quadros wrote:
+> 
+> 
+> On 13/03/2023 13:11, MD Danish Anwar wrote:
+>> From: Suman Anna <s-anna@ti.com>
+>>
+>> The PRUSS CFG module is represented as a syscon node and is currently
+>> managed by the PRUSS platform driver. Add easy accessor functions to set
+>> GPI mode, MII_RT event enable/disable and XFR (XIN XOUT) enable/disable
+>> to enable the PRUSS Ethernet usecase. These functions reuse the generic
+>> pruss_cfg_update() API function.
+>>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  drivers/soc/ti/pruss.c           | 60 ++++++++++++++++++++++++++++++++
+>>  include/linux/remoteproc/pruss.h | 22 ++++++++++++
+>>  2 files changed, 82 insertions(+)
+>>
+>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+>> index 26d8129b515c..2f04b7922ddb 100644
+>> --- a/drivers/soc/ti/pruss.c
+>> +++ b/drivers/soc/ti/pruss.c
+>> @@ -203,6 +203,66 @@ static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
+>>  	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
+>>  }
+>>  
+>> +/**
+>> + * pruss_cfg_gpimode() - set the GPI mode of the PRU
+>> + * @pruss: the pruss instance handle
+>> + * @pru_id: id of the PRU core within the PRUSS
+>> + * @mode: GPI mode to set
+>> + *
+>> + * Sets the GPI mode for a given PRU by programming the
+>> + * corresponding PRUSS_CFG_GPCFGx register
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
+>> +		      enum pruss_gpi_mode mode)
+>> +{
+>> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
+>> +		return -EINVAL;
+>> +
+>> +	if (mode < 0 || mode > PRUSS_GPI_MODE_MAX)
+>> +		return -EINVAL;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
+>> +				PRUSS_GPCFG_PRU_GPI_MODE_MASK,
+>> +				mode << PRUSS_GPCFG_PRU_GPI_MODE_SHIFT);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pruss_cfg_gpimode);
+>> +
+>> +/**
+>> + * pruss_cfg_miirt_enable() - Enable/disable MII RT Events
+>> + * @pruss: the pruss instance
+>> + * @enable: enable/disable
+>> + *
+>> + * Enable/disable the MII RT Events for the PRUSS.
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
+>> +{
+>> +	u32 set = enable ? PRUSS_MII_RT_EVENT_EN : 0;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_MII_RT,
+>> +				PRUSS_MII_RT_EVENT_EN, set);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pruss_cfg_miirt_enable);
+>> +
+>> +/**
+>> + * pruss_cfg_xfr_enable() - Enable/disable XIN XOUT shift functionality
+>> + * @pruss: the pruss instance
+>> + * @enable: enable/disable
+>> + * @mask: Mask for PRU / RTU
+> 
+> You should not expect the user to provide the mask but only
+> the core type e.g. 
+> 
+> enum pru_type {
+>         PRU_TYPE_PRU = 0,
+>         PRU_TYPE_RTU,
+>         PRU_TYPE_TX_PRU,
+>         PRU_TYPE_MAX,
+> };
+> 
+> Then you figure out the mask in the function.
+> Also check for invalid pru_type and return error if so.
+> 
 
-Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 72 +++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+Sure Roger, I will create a enum and take it as parameter in API. Based on
+these enum I will calculate mask and do XFR shifting inside the API
+pruss_cfg_xfr_enable().
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index bc49ba534790..5d2d96a50921 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -104,6 +104,37 @@ vdd_sd_dv: regulator-tlv71033 {
- 	};
- };
- 
-+&wkup_pmx0 {
-+	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x108, PIN_INPUT_PULLUP, 0) /* (M35) MCU_I2C0_SCL */
-+			J784S4_WKUP_IOPAD(0x10C, PIN_INPUT_PULLUP, 0) /* (G34) MCU_I2C0_SDA */
-+		>;
-+	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x100, PIN_INPUT, 0) /* (N33) WKUP_I2C0_SCL */
-+			J784S4_WKUP_IOPAD(0x104, PIN_INPUT, 0) /* (N35) WKUP_I2C0_SDA */
-+		>;
-+	};
-+
-+	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x190, PIN_INPUT, 7) /* (M33) WKUP_GPIO0_49 */
-+			J784S4_WKUP_IOPAD(0x180, PIN_INPUT, 7) /* (N34) WKUP_GPIO0_66 */
-+			J784S4_WKUP_IOPAD(0x0C4, PIN_INPUT, 7) /* (J34) WKUP_GPIO0_1 */
-+			J784S4_WKUP_IOPAD(0x0C8, PIN_INPUT, 7) /* (J35) WKUP_GPIO0_2 */
-+			J784S4_WKUP_IOPAD(0x0C0, PIN_INPUT, 7) /* (H38) WKUP_GPIO0_0 */
-+			J784S4_WKUP_IOPAD(0x120, PIN_INPUT, 7) /* (M37) WKUP_GPIO0_56 */
-+			J784S4_WKUP_IOPAD(0x17C, PIN_INPUT, 7) /* (M36) WKUP_GPIO0_57 */
-+			J784S4_WKUP_IOPAD(0x0FC, PIN_INPUT, 7) /* (K37) WKUP_GPIO0_15 */
-+			J784S4_WKUP_IOPAD(0x0CC, PIN_INPUT, 7) /* (J36) WKUP_GPIO0_3 */
-+			J784S4_WKUP_IOPAD(0x184, PIN_INPUT, 7) /* (M34) WKUP_GPIO0_67 */
-+		>;
-+	};
-+};
-+
- &main_pmx0 {
- 	main_uart8_pins_default: main-uart8-pins-default {
- 		pinctrl-single,pins = <
-@@ -137,6 +168,25 @@ vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
- 			J784S4_IOPAD(0x0C4, PIN_INPUT, 7) /* (AD36) ECAP0_IN_APWM_OUT.GPIO0_49 */
- 		>;
- 	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0BC, PIN_INPUT, 7) /* (AD33) MCASP1_AFSX.GPIO0_47 */
-+			J784S4_IOPAD(0x06C, PIN_INPUT, 7) /* (AJ37) MCASP4_AFSX.GPIO0_27 */
-+			J784S4_IOPAD(0x0B4, PIN_INPUT, 7) /* (AL34) MCASP1_AXR4.GPIO0_45 */
-+			J784S4_IOPAD(0x0C0, PIN_INPUT, 7) /* (AD38) MCASP1_AXR0.GPIO0_48 */
-+			J784S4_IOPAD(0x00C, PIN_INPUT, 7) /* (AF33) MCAN13_TX.GPIO0_3 */
-+			J784S4_IOPAD(0x0B8, PIN_INPUT, 7) /* (AC34) MCASP1_ACLKX.GPIO0_46 */
-+			J784S4_IOPAD(0x090, PIN_INPUT, 7) /* (AC35) MCASP0_AXR8.GPIO0_36 */
-+			J784S4_IOPAD(0x0A8, PIN_INPUT, 7) /* (AF34) MCASP0_AXR14.GPIO0_42 */
-+			J784S4_IOPAD(0x0A4, PIN_INPUT, 7) /* (AJ36) MCASP0_AXR13.GPIO0_41 */
-+			J784S4_IOPAD(0x034, PIN_INPUT, 7) /* (AJ34) PMIC_WAKE0n.GPIO0_13 */
-+			J784S4_IOPAD(0x0CC, PIN_INPUT, 7) /* (AM37) SPI0_CS0.GPIO0_51 */
-+			J784S4_IOPAD(0x08C, PIN_INPUT, 7) /* (AE35) MCASP0_AXR7.GPIO0_35 */
-+			J784S4_IOPAD(0x008, PIN_INPUT, 7) /* (AJ33) MCAN12_RX.GPIO0_2 */
-+			J784S4_IOPAD(0x004, PIN_INPUT, 7) /* (AG36) MCAN12_TX.GPIO0_1 */
-+		>;
-+	};
- };
- 
- &main_uart8 {
-@@ -145,6 +195,20 @@ &main_uart8 {
- 	pinctrl-0 = <&main_uart8_pins_default>;
- };
- 
-+&mcu_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&wkup_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -175,6 +239,14 @@ &main_sdhci1 {
- 	vqmmc-supply = <&vdd_sd_dv>;
- };
- 
-+&wkup_gpio0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
-+};
-+
- &main_gpio0 {
- 	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
- };
+There are two registers for XFR shift.
+
+#define PRUSS_SPP_XFER_SHIFT_EN                 BIT(1)
+#define PRUSS_SPP_RTU_XFR_SHIFT_EN              BIT(3)
+
+For PRU XFR shifting, the mask should be PRUSS_SPP_XFER_SHIFT_EN,
+for RTU shifting mask should be PRUSS_SPP_RTU_XFR_SHIFT_EN and for PRU and RTU
+shifting mask should be (PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN)
+
+So the enum would be something like this.
+
+/**
+ * enum xfr_shift_type - XFR shift type
+ * @XFR_SHIFT_PRU: Enables XFR shift for PRU
+ * @XFR_SHIFT_RTU: Enables XFR shift for RTU
+ * @XFR_SHIFT_PRU_RTU: Enables XFR shift for both PRU and RTU
+ * @XFR_SHIFT_MAX: Total number of XFR shift types available.
+ *
+ */
+
+enum xfr_shift_type {
+        XFR_SHIFT_PRU = 0,
+        XFR_SHIFT_RTU,
+        XFR_SHIFT_PRU_RTU,
+        XFR_SHIFT_MAX,
+};
+
+In pruss_cfg_xfr_enable() API, I will use switch case, and for first three
+enums, I will calculate the mask.
+
+If input is anything other than first three, I will retun -EINVAL. This will
+serve as check for valid xfr_shift_type.
+
+The API will look like this.
+
+int pruss_cfg_xfr_enable(struct pruss *pruss, enum xfr_shift_type xfr_type,
+			 bool enable);
+{
+	u32 mask;
+
+	switch (xfr_type) {
+	case XFR_SHIFT_PRU:
+		mask = PRUSS_SPP_XFER_SHIFT_EN;
+		break;
+	case XFR_SHIFT_RTU:
+		mask = PRUSS_SPP_RTU_XFR_SHIFT_EN;
+		break;
+	case XFR_SHIFT_PRU_RTU:
+		mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
+		break;
+	default:
+		return -EINVAL;
+	}
+
+	u32 set = enable ? mask : 0;
+
+	return pruss_cfg_update(pruss, PRUSS_CFG_SPP, mask, set);
+}
+
+This entire change I will keep as part of this patch only.
+
+Please let me know if this looks OK to you.
+
+
+>> + *
+>> + * Return: 0 on success, or an error code otherwise
+>> + */
+>> +int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable, u32 mask)
+> 
+> re-arrange so it is (struct pruss, enum pru_type, bool enable)
+> 
+>> +{
+>> +	u32 set = enable ? mask : 0;
+>> +
+>> +	return pruss_cfg_update(pruss, PRUSS_CFG_SPP, mask, set);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pruss_cfg_xfr_enable);
+>> +
+>>  static void pruss_of_free_clk_provider(void *data)
+>>  {
+>>  	struct device_node *clk_mux_np = data;
+>> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+>> index 12ef10b9fe9a..51a3eedd2be6 100644
+>> --- a/include/linux/remoteproc/pruss.h
+>> +++ b/include/linux/remoteproc/pruss.h
+>> @@ -101,6 +101,7 @@ enum pruss_gpi_mode {
+>>  	PRUSS_GPI_MODE_PARALLEL,
+>>  	PRUSS_GPI_MODE_28BIT_SHIFT,
+>>  	PRUSS_GPI_MODE_MII,
+>> +	PRUSS_GPI_MODE_MAX,
+> 
+> This could have come as part of patch 3.
+> 
+>>  };
+>>  
+>>  /**
+>> @@ -165,6 +166,10 @@ int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
+>>  			     struct pruss_mem_region *region);
+>>  int pruss_release_mem_region(struct pruss *pruss,
+>>  			     struct pruss_mem_region *region);
+>> +int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
+>> +		      enum pruss_gpi_mode mode);
+>> +int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable);
+>> +int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable, u32 mask);
+>>  
+>>  #else
+>>  
+>> @@ -188,6 +193,23 @@ static inline int pruss_release_mem_region(struct pruss *pruss,
+>>  	return -EOPNOTSUPP;
+>>  }
+>>  
+>> +static inline int pruss_cfg_gpimode(struct pruss *pruss,
+>> +				    enum pruss_pru_id pru_id,
+>> +				    enum pruss_gpi_mode mode)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>> +static inline int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>> +static inline int pruss_cfg_xfr_enable(struct pruss *pruss, bool enable, u32 mask)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>>  #endif /* CONFIG_TI_PRUSS */
+>>  
+>>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+> 
+> cheers,
+> -roger
+
 -- 
-2.25.1
-
+Thanks and Regards,
+Danish.
