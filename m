@@ -2,379 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB5CB6BDA92
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 22:07:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 332086BDAB2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 22:16:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjCPVHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 17:07:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51252 "EHLO
+        id S229692AbjCPVQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 17:16:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjCPVHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 17:07:43 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 211E9B328D
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 14:07:41 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id j13so2982123pjd.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 14:07:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679000860;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1rv/0vFeqO+WM3FB2+Xg0vo1owyWk3WXOVffunsdpWY=;
-        b=S79hVXRjjm0FjIHbeVjOcF1LYDfYW1lLvbJcQum3olyNU0JXkcNgLB0RvF6oz3dO3j
-         ixDzzQp3r4ED7pGmKVBc08073+HUtGiyo8xnnKSh4k66tSBz40tK+sZmfOvvMDlY6A1k
-         h2bCv4Y95J37BALnbLsKkUidKj82/50ex/VJs88wAaq+fMtNfFEES1hdHh4+s1tSZlF7
-         p6Zh6GJBIHc8XRCkXHltkbWZZnuOBw2MoFmjta0Ri4wNtJHIzMj2IHEldQfVi6+E+Q32
-         Jsy133AntJtxVZl2PtwhTJnS+Ty3fBaiLFLvJAL87/97ZP82bGskGsWlg5u+Gh4kRPFY
-         fgbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679000860;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1rv/0vFeqO+WM3FB2+Xg0vo1owyWk3WXOVffunsdpWY=;
-        b=FxG9kTwOLAYp25iGxLOw3CP+CDEcJsA06fsbF7tZv1Cb9RfxhkMfS013lYiD13aaly
-         4qL43IM+yzKM4c7mhvsRcyOLAM+fChKU4UyAljvG+wEudLNqODQHEuvjQb5KL4/ZoK+s
-         s2Op2oEtoywsphnBvbXr+1JWMIRkMRkg59NJrheipffTrh3coEey1ivCp97p73kp2Ntc
-         SgiLdSNg2fHFkM43s42dlSp//jyORXE6uVrbNCXpKVrKS1tnEAP2XvUoYNPTcLl7eHpS
-         HFG9065fvjc0BzvNkRv9NnWznz/3+LFY5DKZ6chwt0TAOFk7HXMd8IjY2VWq8Uzf186i
-         IU+g==
-X-Gm-Message-State: AO0yUKUAy2XJOwynHP0xcqXkyb5ZHlAS6e6UgJC73EM7FwjMJZs3VIbG
-        aP+4TYrtIFtTfFSfpZ1sf4uMag==
-X-Google-Smtp-Source: AK7set+iNK/k9w9PkilPKa0Z/I9W1xZiD+fEjA7oHYkL4Y5Db47Gcw+1ny+9e/XRcQz418ZlT3Fmpg==
-X-Received: by 2002:a17:90b:164f:b0:23f:1210:cea4 with SMTP id il15-20020a17090b164f00b0023f1210cea4mr5369606pjb.18.1679000860495;
-        Thu, 16 Mar 2023 14:07:40 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:5997:2b9a:5757:d5f4])
-        by smtp.gmail.com with ESMTPSA id j36-20020a635524000000b00502f1540c4asm77061pgb.81.2023.03.16.14.07.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 14:07:39 -0700 (PDT)
-Date:   Thu, 16 Mar 2023 15:07:37 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v8 06/11] remoteproc: mediatek: Probe multi-core SCP
-Message-ID: <20230316210737.GA2428370@p14s>
-References: <20230303083355.3378-1-tinghan.shen@mediatek.com>
- <20230303083355.3378-7-tinghan.shen@mediatek.com>
+        with ESMTP id S229543AbjCPVQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 17:16:16 -0400
+Received: from out-54.mta0.migadu.com (out-54.mta0.migadu.com [IPv6:2001:41d0:1004:224b::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4336BCB077
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 14:16:13 -0700 (PDT)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+        t=1679001371;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=v+zHbSGmRfs2ThNPQvpaczg/D7f0u+ssXZGE4jrt+LQ=;
+        b=kcwb2UHIK0yMluFgLREHfuWvlpPNkwMl3KTjNs1WIDOkVtMHHy6x66ZN399UI8ty8COx7v
+        VgxQsWQ7fXxaHEqkmqzER9gYEu9wqaYR1WnJRwWcnilN7VF4LgbQh07qGjdyYVBcKWNW2K
+        5+L+KdFlu5lgxT4UTbtoazOD2gCUliw=
+From:   Henrik Grimler <henrik@grimler.se>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alim.akhtar@samsung.com, m.szyprowski@samsung.com,
+        jenneron@protonmail.com, markuss.broks@gmail.com,
+        martin.juecker@gmail.com, virag.david003@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Henrik Grimler <henrik@grimler.se>
+Subject: [PATCH v5 0/2]  ARM: dts: add mmc aliases for Exynos devices
+Date:   Thu, 16 Mar 2023 22:15:56 +0100
+Message-Id: <20230316211558.8526-1-henrik@grimler.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230303083355.3378-7-tinghan.shen@mediatek.com>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 03, 2023 at 04:33:50PM +0800, Tinghan Shen wrote:
-> The difference of single-core SCP and multi-core SCP device tree is
-> the presence of child device nodes described SCP cores. The SCP
-> driver populates the platform device and checks the child nodes
-> to identify whether it's a single-core SCP or a multi-core SCP.
-> 
-> The resource structure of the multi-core SCP is a list of remoteproc
-> instances which is different to the single-core SCP. The corresponding
-> resource releasing action is based on the type of SCP.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  drivers/remoteproc/mtk_common.h |   4 +
->  drivers/remoteproc/mtk_scp.c    | 177 +++++++++++++++++++++++++++++---
->  2 files changed, 166 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index c0905aec3b4b..c088149e3dcc 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -128,6 +128,10 @@ struct mtk_scp {
->  	size_t dram_size;
->  
->  	struct rproc_subdev *rpmsg_subdev;
-> +
-> +	struct list_head elem;
-> +	struct list_head cluster_cores;
-> +	struct list_head *cluster;
->  };
->  
->  /**
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index bdb5d87eeaa3..84103a70f426 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -863,7 +863,9 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
->  }
->  
->  static int scp_rproc_init(struct platform_device *pdev,
-> -			  struct mtk_scp_of_regs *of_regs)
-> +			  struct mtk_scp_of_regs *of_regs,
-> +			  const struct mtk_scp_of_data *of_data,
-> +			  bool is_multi_core)
+It is convenient to have fixed mmcblk numbering of the eMMC and sdcard
+so that assigned numbers will not change from boot-to-boot or
+depending on if storage devices are actually attached or not.
 
-The @is_multi_core variable is a hack and needs to be removed.
+Anton Bambura has done the work for the chromebooks while I have
+looked at the other devices.  On the chromebooks, mmc0 is used for
+eMMC and mmc1 for sdcard, while mmc0 is used for eMMC and mmc2 for
+sdcard on the other boards, simply because Anton and I had different
+preferences.
 
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
-> @@ -884,7 +886,7 @@ static int scp_rproc_init(struct platform_device *pdev,
->  	scp = (struct mtk_scp *)rproc->priv;
->  	scp->rproc = rproc;
->  	scp->dev = dev;
-> -	scp->data = of_device_get_match_data(dev);
-> +	scp->data = of_data;
->  	platform_set_drvdata(pdev, scp);
->  
->  	scp->reg_base = of_regs->reg_base;
-> @@ -933,9 +935,11 @@ static int scp_rproc_init(struct platform_device *pdev,
->  		goto remove_subdev;
->  	}
->  
-> -	ret = rproc_add(rproc);
-> -	if (ret)
-> -		goto remove_subdev;
-> +	if (!is_multi_core) {
-> +		ret = rproc_add(rproc);
-> +		if (ret)
-> +			goto remove_subdev;
-> +	}
+Also drop mshc aliases while we are at it and instead add mmc
+capabilities to the individual device trees (right now they are added
+depending on alias index).  I have tested the changes on
+exynos4412-odroid-u2 and exynos5422-odroid-xu4: the MMC_CAP_1_8V_DDR
+and MMC_CAP_8_BIT_DATA caps are set correctly (meaning they are set
+for mshc_0/mmc_0 but not mshc_2/mmc_2) both before and after this
+patchset.
 
-This is also a hack.  The same code should be used to do the initialization of a
-remotre processor, whether it is unique or part of a cluster.
+---
 
->  
->  	return 0;
->  
-> @@ -951,9 +955,123 @@ static int scp_rproc_init(struct platform_device *pdev,
->  	return ret;
->  }
->  
-> +static void scp_rproc_free(struct mtk_scp *scp)
-> +{
-> +	int i;
-> +
-> +	scp_remove_rpmsg_subdev(scp);
-> +	scp_ipi_unregister(scp, SCP_IPI_INIT);
-> +	scp_unmap_memory_region(scp);
-> +	for (i = 0; i < SCP_IPI_MAX; i++)
-> +		mutex_destroy(&scp->ipi_desc[i].lock);
-> +	mutex_destroy(&scp->send_lock);
-> +}
-> +
-> +static void scp_rproc_exit(struct platform_device *pdev)
-> +{
-> +	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> +
-> +	rproc_del(scp->rproc);
-> +	scp_rproc_free(scp);
-> +}
-> +
-> +static int scp_cluster_init(struct platform_device *pdev,
-> +			    struct mtk_scp_of_regs *of_regs)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev_of_node(dev);
-> +	struct platform_device *cpdev;
-> +	struct device_node *child;
-> +	const struct mtk_scp_of_data **cluster_of_data;
-> +	struct list_head *cluster = NULL;
-> +	struct mtk_scp *scp, *temp;
-> +	int core_id = 0, num_cores;
-> +	int ret;
-> +
-> +	cluster_of_data = (const struct mtk_scp_of_data **)of_device_get_match_data(dev);
-> +
-> +	for (num_cores = 0; cluster_of_data[num_cores]; num_cores++)
-> +		;
+Changes since v4:
+* Do not set mmc-ddr-1_8v for sdhci_0 on Exynos 4210,
+  following Marek's tests
+* Collect tags
 
-Definitely remove.  Either use ARRAY_SIZE() or of_get_available_child_count().
+Changes since v3:
+* Skip sorting of nodes, to not make reviewing impossible (and I need
+  to read up on preferred style)
+* Move two mmc alias additions from patch 1 to patch 2
 
-> +
-> +	for_each_available_child_of_node(np, child) {
-> +		if (core_id >= num_cores) {
-> +			ret = -EINVAL;
-> +			dev_err(dev, "Not support core %d\n", core_id);
-> +			of_node_put(child);
-> +			goto init_fail;
-> +		}
-> +
-> +		cpdev = of_find_device_by_node(child);
-> +		if (!cpdev) {
-> +			ret = -ENODEV;
-> +			dev_err(dev, "Not found platform device for core %d\n", core_id);
-> +			of_node_put(child);
-> +			goto init_fail;
-> +		}
-> +
-> +		ret = scp_rproc_init(cpdev, of_regs, cluster_of_data[core_id], true);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to initialize core %d rproc\n", core_id);
-> +			put_device(&cpdev->dev);
-> +			of_node_put(child);
-> +			goto init_fail;
-> +		}
-> +
-> +		scp = platform_get_drvdata(cpdev);
-> +		put_device(&cpdev->dev);
-> +		if (core_id == 0) {
-> +			INIT_LIST_HEAD(&scp->cluster_cores);
-> +			cluster = &scp->cluster_cores;
-> +			platform_set_drvdata(pdev, cluster);
-> +		}
+Changes since v2:
+* Set mmc-ddr-1_8v in device trees so that MMC_CAP_1_8V_DDR is set
+  also after removal of mshc0 alias.  Issue was pointed out by Krzysztof
+  and David.
+* Fix whitespace issue in patch 2 which was pointed out by Krzysztof
+* Reword commit message of patch 2 after Rob's comment
 
-This should go in scp_probe().
+Changes since v1:
+* Move mshc alias cleanup to a separate commit
+* Use mmc0 and mmc1 (instead of mmc0 and mmc2) for eMMC and sdcard on
+  chromebooks
+* Address Krzysztof's review comments:
+ - Make changes per device rather than in soc dtsi
 
-> +
-> +		list_add_tail(&scp->elem, cluster);
-> +		scp->cluster = cluster;
-> +
-> +		of_node_put(child);
+Henrik Grimler (2):
+  ARM: dts: exynos: replace mshc0 alias with mmc-ddr-1_8v property
+  ARM: dts: exynos: add mmc aliases
 
-Is this needed?
+ arch/arm/boot/dts/exynos3250-artik5-eval.dts        | 5 +++++
+ arch/arm/boot/dts/exynos3250-artik5.dtsi            | 6 ++++++
+ arch/arm/boot/dts/exynos3250-monk.dts               | 2 ++
+ arch/arm/boot/dts/exynos3250-rinato.dts             | 3 +++
+ arch/arm/boot/dts/exynos4210-i9100.dts              | 6 ++++++
+ arch/arm/boot/dts/exynos4210-origen.dts             | 5 +++++
+ arch/arm/boot/dts/exynos4210-smdkv310.dts           | 4 ++++
+ arch/arm/boot/dts/exynos4210-trats.dts              | 6 ++++++
+ arch/arm/boot/dts/exynos4210-universal_c210.dts     | 6 ++++++
+ arch/arm/boot/dts/exynos4412-itop-elite.dts         | 4 ++++
+ arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi     | 5 +++++
+ arch/arm/boot/dts/exynos4412-midas.dtsi             | 4 ++++
+ arch/arm/boot/dts/exynos4412-odroid-common.dtsi     | 6 ++++++
+ arch/arm/boot/dts/exynos4412-origen.dts             | 6 ++++++
+ arch/arm/boot/dts/exynos4412-p4note.dtsi            | 7 +++++++
+ arch/arm/boot/dts/exynos4412-smdk4412.dts           | 4 ++++
+ arch/arm/boot/dts/exynos4412-tiny4412.dts           | 4 ++++
+ arch/arm/boot/dts/exynos4412.dtsi                   | 1 -
+ arch/arm/boot/dts/exynos5250-arndale.dts            | 6 ++++++
+ arch/arm/boot/dts/exynos5250-smdk5250.dts           | 3 +++
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi       | 4 ++++
+ arch/arm/boot/dts/exynos5250-spring.dts             | 6 ++++++
+ arch/arm/boot/dts/exynos5250.dtsi                   | 4 ----
+ arch/arm/boot/dts/exynos5260-xyref5260.dts          | 6 ++++++
+ arch/arm/boot/dts/exynos5410-odroidxu.dts           | 3 +++
+ arch/arm/boot/dts/exynos5410-smdk5410.dts           | 6 ++++++
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts       | 6 ++++++
+ arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi | 6 ++++++
+ arch/arm/boot/dts/exynos5420-peach-pit.dts          | 4 ++++
+ arch/arm/boot/dts/exynos5420-smdk5420.dts           | 6 ++++++
+ arch/arm/boot/dts/exynos5420.dtsi                   | 3 ---
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi       | 4 ++++
+ arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi  | 5 +++++
+ arch/arm/boot/dts/exynos5422-samsung-k3g.dts        | 1 +
+ arch/arm/boot/dts/exynos5800-peach-pi.dts           | 4 ++++
+ 35 files changed, 153 insertions(+), 8 deletions(-)
 
-> +		core_id++;
-> +	}
-> +
-> +	list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
-> +		ret = rproc_add(scp->rproc);
 
-This code is complex and hard to read because rproc_add() is called in two
-different context.  From a code perspective single core remote processors should
-be treated as a one core cluster.
+base-commit: 0e84f3493a37d50f2f629dbea670135b8a8ee391
+-- 
+2.30.2
 
-I am done reviewing this patchset.
-
-Thanks,
-Mathieu
-
-> +		if (ret)
-> +			goto add_fail;
-> +	}
-> +
-> +	return 0;
-> +
-> +add_fail:
-> +	list_for_each_entry_continue(scp, cluster, elem) {
-> +		rproc_del(scp->rproc);
-> +	}
-> +init_fail:
-> +	if (cluster) {
-> +		list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
-> +			list_del(&scp->elem);
-> +			scp_rproc_free(scp);
-> +		}
-> +	}
-> +	return ret;
-> +}
-> +
-> +static void scp_cluster_exit(struct platform_device *pdev)
-> +{
-> +	struct list_head *cluster = platform_get_drvdata(pdev);
-> +	struct platform_device *cpdev;
-> +	struct mtk_scp *scp, *temp;
-> +
-> +	list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
-> +		list_del(&scp->elem);
-> +		cpdev = to_platform_device(scp->dev);
-> +		scp_rproc_exit(cpdev);
-> +	}
-> +}
-> +
->  static int scp_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *core_node;
->  	struct resource *res;
->  	struct mtk_scp_of_regs scp_regs;
->  	int ret;
-> @@ -976,21 +1094,43 @@ static int scp_probe(struct platform_device *pdev)
->  		scp_regs.l1tcm_phys = res->start;
->  	}
->  
-> -	return scp_rproc_init(pdev, &scp_regs);
-> +	ret = devm_of_platform_populate(dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to populate platform devices\n");
-> +
-> +	core_node = of_get_child_by_name(np, "scp");
-> +	of_node_put(core_node);
-
-Please use of_get_available_child_count()
-
-> +
-> +	if (!core_node) {
-> +		dev_info(dev, "single-core scp\n");
-> +
-> +		ret = scp_rproc_init(pdev, &scp_regs, of_device_get_match_data(dev), false);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to initialize single-core scp\n");
-> +	} else {
-> +		dev_info(dev, "multi-core scp\n");
-> +
-> +		ret = scp_cluster_init(pdev, &scp_regs);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to initialize scp cluster\n");
-> +	}
-> +
-> +	return 0;
->  }
->  
->  static int scp_remove(struct platform_device *pdev)
->  {
-> -	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> -	int i;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *core_node;
->  
-> -	rproc_del(scp->rproc);
-> -	scp_remove_rpmsg_subdev(scp);
-> -	scp_ipi_unregister(scp, SCP_IPI_INIT);
-> -	scp_unmap_memory_region(scp);
-> -	for (i = 0; i < SCP_IPI_MAX; i++)
-> -		mutex_destroy(&scp->ipi_desc[i].lock);
-> -	mutex_destroy(&scp->send_lock);
-> +	core_node = of_get_child_by_name(np, "scp");
-> +	of_node_put(core_node);
-> +
-> +	if (!core_node)
-> +		scp_rproc_exit(pdev);
-> +	else
-> +		scp_cluster_exit(pdev);
->  
->  	return 0;
->  }
-> @@ -1069,12 +1209,19 @@ static const struct mtk_scp_of_data mt8195_of_data_c1 = {
->  	.host_to_scp_int_bit = MT8195_CORE1_HOST_IPC_INT_BIT,
->  };
->  
-> +static const struct mtk_scp_of_data *mt8195_of_data_cores[] = {
-> +	&mt8195_of_data,
-> +	&mt8195_of_data_c1,
-> +	NULL
-> +};
-> +
->  static const struct of_device_id mtk_scp_of_match[] = {
->  	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
->  	{ .compatible = "mediatek,mt8186-scp", .data = &mt8186_of_data },
->  	{ .compatible = "mediatek,mt8188-scp", .data = &mt8188_of_data },
->  	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
->  	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
-> +	{ .compatible = "mediatek,mt8195-scp-dual", .data = &mt8195_of_data_cores },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
-> -- 
-> 2.18.0
-> 
