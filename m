@@ -2,58 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1DF76BC2E7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 01:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5EF6BC2EF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 01:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbjCPAl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Mar 2023 20:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50080 "EHLO
+        id S229540AbjCPAom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Mar 2023 20:44:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjCPAl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 20:41:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F95A22010;
-        Wed, 15 Mar 2023 17:41:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC3B761EDB;
-        Thu, 16 Mar 2023 00:41:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8A0EC433EF;
-        Thu, 16 Mar 2023 00:41:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1678927285;
-        bh=2baqaQl7HjA1FPCOxMOKYpBnNpjxEa9fl+66c+f4WIU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YF77QI8/4ZHYEioAo73OtRr8jkZg+Hq0tS7XJDKUa7h4j7vAOEspREzPSrT80FHDP
-         RwGa+2Utd5hdOKxheYCp2qet9VxnB/ZEjBPymk77qgkXjC3xGiZa98pOrrkHSnQzdm
-         zSjEcVRvHJsnCVRdU0TGGdgLR3Y4a8gxXOA7nDTNnuLsGDnCz4IZBqf+agS/t1C/A+
-         /Nw4pPXGaZt63mCxH5VT5C2UC6j/++wceCwhf+DSDLiPaN294UH8QPCnW71qL+yJAv
-         gRPxn39njV4VckBvVhYAbkyPAUm3ZXLrAwUqYYA/7dCPNklxP3/x+A39NVyNKJPc2W
-         OjvmeSdbGJUcA==
-Received: by mercury (Postfix, from userid 1000)
-        id BC00010609DC; Thu, 16 Mar 2023 01:41:21 +0100 (CET)
-Date:   Thu, 16 Mar 2023 01:41:21 +0100
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCHv2 02/12] power: supply: core: auto-exposure of
- simple-battery data
-Message-ID: <20230316004121.rwieru4aj7d6mwgb@mercury.elektranox.org>
-References: <20230314225535.1321736-1-sre@kernel.org>
- <20230314225535.1321736-3-sre@kernel.org>
- <baffa307-173c-6ba1-0289-e7287049c0f5@gmail.com>
+        with ESMTP id S229436AbjCPAok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Mar 2023 20:44:40 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC0253D0B8
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 17:44:37 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id x17so313499lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Mar 2023 17:44:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1678927476;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OdHTO7r/qWwc37NG0KfD//nV1f0Fmimh5IOse5pWXK4=;
+        b=anqrjvcHRO2REMCEyQGrabPAJZqSVGYWfgKG1db9qduO6iQ7lLe/059twBJhcgOZZS
+         3UZIbz5/EQDTu43xcmjd16na1X3x2YC5rcTK3vsPlLzn08yLGf2/wfFpcmS9XnCVBrIu
+         WmWVblowCFMCx1lH943DX/6qJilgY0yhqMYLkK++Fb1b7oYIRBFE7+EAXLAini9MdkSE
+         PCnIJ7Ruh3eNy1lDQnZfo9RH7+AmqVEfQQ6qcuV81uD6ONFd90uFD650t+jPEN8l59gk
+         fH8v/W9gkxPTzhwRaZknBKuytJB4G4UtDom2E7hSgF8QIwc3XRTE3Zu4HMnrh1ujlHfQ
+         ZnnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678927476;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OdHTO7r/qWwc37NG0KfD//nV1f0Fmimh5IOse5pWXK4=;
+        b=ueCwa0qwgncdN4lpr7RaOiae7uE08AKvbgE26CRhf/1dPUMSbkD/nsvtT5FXqdA4J8
+         El+kDCaNzx+i3TxD0USupuDmOdl3zGbV19BfD0gtWzqs65cFyX26gqKtslZTFSg7rApw
+         g3/Cy4/Nde7YWkH242eTedB5NGGH5sORFChH502BdWnPfPSBtOTyqhS3zRxRVnoyzjwB
+         XEJr7wZjOBY/lA84bM+J6bTgTj/Wio8baG6rH4UoSQUBRHfn62nVhSlGdwZt0ZihA4no
+         n6hk3ILkKBWrLvjnB1tX0MI78pYCImrlQ01X7SPP0m/ewrnflj3FoGKL6fj9Y55HprEE
+         l6og==
+X-Gm-Message-State: AO0yUKVViP2MG8qD9fVYuCU9NLWxsnUzJuKuXNuGgsn+Z7rknGeuOhO7
+        9QzsWG+oci3YjJFrCS//ivb80g==
+X-Google-Smtp-Source: AK7set+zuznVSzozkhNOwTFpILN2nC7k2EOJ81hKG8EJr1QUVhV300YfCExMPAk3hSCFdXwgZtcG0g==
+X-Received: by 2002:ac2:597c:0:b0:4a4:68b9:19da with SMTP id h28-20020ac2597c000000b004a468b919damr2488893lfp.2.1678927475910;
+        Wed, 15 Mar 2023 17:44:35 -0700 (PDT)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id q19-20020ac25293000000b004dc4b00a1f3sm1001254lfm.253.2023.03.15.17.44.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Mar 2023 17:44:35 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Vinod Polimera <quic_vpolimer@quicinc.com>
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
+Subject: Re: [PATCH v14 00/14] Add PSR support for eDP
+Date:   Thu, 16 Mar 2023 02:44:34 +0200
+Message-Id: <167892745598.2525998.13449367044508002295.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <1677774797-31063-1-git-send-email-quic_vpolimer@quicinc.com>
+References: <1677774797-31063-1-git-send-email-quic_vpolimer@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pxerrciqwgwovktl"
-Content-Disposition: inline
-In-Reply-To: <baffa307-173c-6ba1-0289-e7287049c0f5@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,190 +77,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pxerrciqwgwovktl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Mar 15, 2023 at 09:01:50AM +0200, Matti Vaittinen wrote:
-> On 3/15/23 00:55, Sebastian Reichel wrote:
-> [...]
-> >   #ifdef CONFIG_THERMAL
-> >   static int power_supply_read_temp(struct thermal_zone_device *tzd,
-> >   		int *temp)
-> > @@ -1255,6 +1387,11 @@ __power_supply_register(struct device *parent,
-> >   		goto check_supplies_failed;
-> >   	}
-> > +	/* psy->battery_info is optional */
-
-I forgot to add a POWER_SUPPLY_TYPE_BATTERY limitation when removing
-the opt-in method. Will be added in the next revision.
-
-> > +	rc =3D power_supply_get_battery_info(psy, &psy->battery_info);
-> > +	if (rc && rc !=3D -ENODEV)
-> > +		goto check_supplies_failed;
-> > +
->=20
-> This is what rubs me in a slightly wrong way - but again, you probably kn=
-ow
-> better than I what's the direction things are heading so please ignore me=
- if
-> I am talking nonsense :)
->=20
-> Anyways, I think the battery information may be relevant to the driver wh=
-ich
-> is registering the power-supply. It may be there is a fuel-gauge which ne=
-eds
-> to know the capacity and OCV tables etc. Or some other thingy. And - I may
-> be wrong - but I have a feeling it might be something that should be known
-> prior registering the power-supply.
-
-You can still do that, just like before. It's a bit inefficient,
-since the battery data is allocated twice, but the driver probe
-routine is not a hot path.
-
-> So, in my head it should be the driver which is getting the information
-> about the battery (whether it is in the DT node or coded in some tables a=
-nd
-> fetched by battery type) - using helpers provided by core.
->=20
-> I further think it should be the driver who can pass the battery informat=
-ion
-> to core at registration - core may 'fall-back' finding information itself=
- if
-> driver did not provide it.
-
-This implements the fallback route.
-
-> So, I think the core should not unconditionally populate the battery-info
-> here but it should first check if the driver had it already filled.
-
-Not until there is a user (i.e. a driver using that feature). FWIW
-it's quite easy to implement once it is needed. Just adding a field
-in power_supply_config and taking it over here is enough, no other
-code changes are required.
-
-The alternative is adding some kind of probe/remove callback for the
-power_supply device itself to properly initialize the device. That
-would also be useful to have a sensible place for e.g. shutting of
-chargers when the device is removed. Anyways it's a bit out of scope
-for this patchset :)
-
-> Well, as I said, I recognize I may not (do not) know all the dirty details
-> and I do trust you to evaluate if what I wrote here makes any sense :) All
-> in all, I think this auto-exposure is great.
->=20
-> Please, bear with me if what I wrote above does not make sense to you and
-> just assume I don't see the big picture :)
-
-Right now the following battery drivers use power_supply_get_battery_info():
-
- * cw2015_battery
- * bq27xxx_battery
- * axp20x_battery
- * ug3105_battery
- * ingenic-battery
- * sc27xx_fuel_gauge
- * (generic-adc-battery)
-
-All of them call it after the power-supply device has been
-registered. Thus the way to go for them is removing the second call
-to power_supply_get_battery_info() and instead use the battery-info
-acquired by the core. I think that work deserves its own series.
-
-For chargers the situation is different (they usually want the data
-before registration), but they should not expose the battery data
-anyways. Also ideally chargers get the information from the battery
-power-supply device, which might supply the data from fuel-gauge
-registers (or fallback to battery-info after this series).
-
-> >   	spin_lock_init(&psy->changed_lock);
-> >   	rc =3D device_add(dev);
-> >   	if (rc)
-> > diff --git a/drivers/power/supply/power_supply_sysfs.c b/drivers/power/=
-supply/power_supply_sysfs.c
-> > index c228205e0953..5842dfe5dfb7 100644
-> > --- a/drivers/power/supply/power_supply_sysfs.c
-> > +++ b/drivers/power/supply/power_supply_sysfs.c
-> > @@ -380,6 +380,9 @@ static umode_t power_supply_attr_is_visible(struct =
-kobject *kobj,
-> >   		}
-> >   	}
-> > +	if (power_supply_battery_info_has_prop(psy->battery_info, attrno))
-> > +		return mode;
-> > +
-> >   	return 0;
-> >   }
-> > @@ -461,6 +464,8 @@ static int add_prop_uevent(const struct device *dev=
-, struct kobj_uevent_env *env
-> >   int power_supply_uevent(const struct device *dev, struct kobj_uevent_=
-env *env)
-> >   {
-> >   	const struct power_supply *psy =3D dev_get_drvdata(dev);
-> > +	const enum power_supply_property *battery_props =3D
-> > +		power_supply_battery_info_properties;
-> >   	int ret =3D 0, j;
-> >   	char *prop_buf;
-> > @@ -488,6 +493,16 @@ int power_supply_uevent(const struct device *dev, =
-struct kobj_uevent_env *env)
-> >   			goto out;
-> >   	}
-> > +	for (j =3D 0; j < power_supply_battery_info_properties_size; j++) {
-> > +		if (!power_supply_battery_info_has_prop(psy->battery_info,
-> > +				battery_props[j]))
-> > +			continue;
->=20
-> Hmm. I just noticed that there can probably be same properties in the
-> psy->desc->properties and in the battery-info.
-
-That's intended, so that battery drivers can implement their own
-behaviour for the properties.
-
-> I didn't cascade deep into the code so I can't say if it is a
-> problem to add duplicates?
-
-It does not break anything (we used to have this for the TYPE
-property in a driver), but confuses userspace. I will fix the
-duplication in uevents and send a new version.
-
-> So, if this is safe, and if what I wrote above is not something
-> you want to consider:
->
-> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
-Due to the changes I will not take this over in v3. Just to make
-sure - is it correct, that you do not want your R-b tag for the
-following two patches?
-
-[05/12] power: supply: generic-adc-battery: drop jitter delay support
-[08/12] power: supply: generic-adc-battery: use simple-battery API
-
+On Thu, 02 Mar 2023 22:03:03 +0530, Vinod Polimera wrote:
+> Changes in v2:
+>   - Use dp bridge to set psr entry/exit instead of dpu_enocder.
+>   - Don't modify whitespaces.
+>   - Set self refresh aware from atomic_check.
+>   - Set self refresh aware only if psr is supported.
+>   - Provide a stub for msm_dp_display_set_psr.
+>   - Move dp functions to bridge code.
+> 
 > [...]
 
-Thanks for your reviews,
+Applied, thanks!
 
--- Sebastian
+[01/14] drm: add helper functions to retrieve old and new crtc
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/ef708af6054c
+[02/14] drm/bridge: use atomic enable/disable callbacks for panel bridge
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/49291dbf1cd8
+[03/14] drm/bridge: add psr support for panel bridge callbacks
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/26966d5bc7dd
+[04/14] drm/msm/disp/dpu: check for crtc enable rather than crtc active to release shared resources
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/c235a0d4a185
+[05/14] drm/msm/disp/dpu: get timing engine status from intf status register
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/15b04e280119
+[06/14] drm/msm/disp/dpu: wait for extra vsync till timing engine status is disabled
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/b2afc29853c3
+[07/14] drm/msm/disp/dpu: reset the datapath after timing engine disable
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/392a21678a7f
+[08/14] drm/msm/dp: use atomic callbacks for DP bridge ops
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/20536d1c512b
+[09/14] drm/msm/dp: Add basic PSR support for eDP
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/c0b993bbfe9e
+[10/14] drm/msm/dp: use the eDP bridge ops to validate eDP modes
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/de9512e23adc
+[11/14] drm/msm/disp/dpu: use atomic enable/disable callbacks for encoder functions
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/f62087459d8a
+[12/14] drm/msm/disp/dpu: add PSR support for eDP interface in dpu driver
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/1bd583580cba
+[13/14] drm/msm/disp/dpu: update dpu_enc crtc state on crtc enable/disable during self refresh
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/0f2a8f000c21
+[14/14] drm/msm/dp: set self refresh aware based on PSR support
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/0c3f3cfd8ef2
 
---pxerrciqwgwovktl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQSZa4ACgkQ2O7X88g7
-+poUCBAAgA+XVXm0Dr5yUfScp9DlyfZAJQ6TDO3XGQo3y0+4pYmILHaDL0g+aceA
-ddUlz73hCvGDrAZ2FlraF+Sc4yatFiblaOWLMaKDQmFMVLSroPwYztwuooU8nXL/
-ZHVVFFXeYkcfcihk2rJbrHKAco9L+gsyBlqq+ZziG8RIj6mMmNVoQwGNefcrWCT/
-WMLxpPt8p6/I0wJhMhL2/ZmGTd/+bAQ8HWXEM8Abqe3IHqCFgzxg+06sOYLrNqlG
-ZZwQPsvtjmQTZ4DRqBPtTUvpTaXcJ8S0KY23LoWP01AbUDfp8eqXthdgh19DbTQw
-VwGdmZ3o12Lhjck1umAbBO2z0smjbnFGhr0l2t+40Je5AzRxd1WcEjiuXpOIgG3o
-8cceXAiOSl1qTd5c7P4OV27XtMoiKw3awdZ3qI62qP/WL7RiUB+lCfD5zH/aNy6f
-INf7qxRTsrTnk4ODhiB+Z+OlhDb0nLIUJndlLuqCVw1Qb0mp9uamWlWe/TPIqWaN
-FzVilmfXszl5kJbjdrD9nZoxg4glkUc4+AzXuyp3bjyAsjI9ttxCedSto29OqLpP
-cDcM8Ai+LABfFeR6SYLxYDXy7IOvi9FuloF/NqcrEXbF4OeZwOrDak2dZiGPFtar
-I9/08os29w93hQwVEaE4qWVevWA97p+gjOrsgzq5iSOfnahWBd8=
-=OUow
------END PGP SIGNATURE-----
-
---pxerrciqwgwovktl--
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
