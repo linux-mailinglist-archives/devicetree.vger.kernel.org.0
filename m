@@ -2,66 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8992A6BCDEA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA536BCE2D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:30:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbjCPLS3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Mar 2023 07:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56184 "EHLO
+        id S229892AbjCPLaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 07:30:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229961AbjCPLS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:18:29 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7C4B5B5C;
-        Thu, 16 Mar 2023 04:17:59 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E1AD424E490;
-        Thu, 16 Mar 2023 19:17:36 +0800 (CST)
-Received: from EXMBX071.cuchost.com (172.16.6.81) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
- 2023 19:17:36 +0800
-Received: from [192.168.125.108] (113.72.145.194) by EXMBX071.cuchost.com
- (172.16.6.81) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 16 Mar
- 2023 19:17:35 +0800
-Message-ID: <86039fa4-838d-511a-2915-92f5f2057c56@starfivetech.com>
-Date:   Thu, 16 Mar 2023 19:17:35 +0800
+        with ESMTP id S230239AbjCPLaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:30:09 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E277B9506;
+        Thu, 16 Mar 2023 04:30:03 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32GBTsUk079250;
+        Thu, 16 Mar 2023 06:29:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1678966194;
+        bh=vsLT/SA0q3vJadiP5dGVnj0Uw+vIHx49mLDPRkaN43M=;
+        h=Date:Subject:From:To:CC:References:In-Reply-To;
+        b=t/jaOZ2DVJs/LE79ksyHKct4jTZVDDK6kIzZoUS0ShiRP/MXjBmkCBe3kLTm4Sxj8
+         nN/qfjTS2aG3iGlac8Iq+e43wMyxIcIuTA5mCRu9zdE+x0jC+HC3HlOyjDwm8Pbv8U
+         MwYqSAHqSw/+UB2hoH45aR6JvjMpCAqSg9OmAHrk=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32GBTsAC077054
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 Mar 2023 06:29:54 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 16
+ Mar 2023 06:29:54 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 16 Mar 2023 06:29:54 -0500
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32GBTnSO028548;
+        Thu, 16 Mar 2023 06:29:50 -0500
+Message-ID: <a3e26ef1-b7e7-f6da-94ff-4a8bf80649f6@ti.com>
+Date:   Thu, 16 Mar 2023 16:59:49 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v3 4/5] usb: cdns3: add StarFive JH7110 USB driver.
+Subject: Re: [EXTERNAL] Re: [PATCH v4 3/5] soc: ti: pruss: Add
+ pruss_cfg_read()/update() API
 Content-Language: en-US
-To:     Dongliang Mu <mudongliangabcd@gmail.com>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
- <20230315104411.73614-5-minda.chen@starfivetech.com>
- <CAD-N9QX92GXMUG_RRAinna1tcrMFVWQo_Xxz0rOjAJ5Nitte7g@mail.gmail.com>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <CAD-N9QX92GXMUG_RRAinna1tcrMFVWQo_Xxz0rOjAJ5Nitte7g@mail.gmail.com>
+From:   Md Danish Anwar <a0501179@ti.com>
+To:     Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <20230313111127.1229187-1-danishanwar@ti.com>
+ <20230313111127.1229187-4-danishanwar@ti.com>
+ <91481d4f-2005-7b33-d3be-df09b7d27ef6@kernel.org>
+ <c52ae883-b0c9-8f92-98ae-fb9e9ad30420@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <c52ae883-b0c9-8f92-98ae-fb9e9ad30420@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [113.72.145.194]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX071.cuchost.com
- (172.16.6.81)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,394 +80,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Roger,
 
+On 16/03/23 16:38, Md Danish Anwar wrote:
+> 
+> On 15/03/23 17:37, Roger Quadros wrote:
+>> Danish,
+>>
+>> On 13/03/2023 13:11, MD Danish Anwar wrote:
+>>> From: Suman Anna <s-anna@ti.com>
+>>>
+>>> Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
+>>> the PRUSS platform driver to read and program respectively a register
+>>> within the PRUSS CFG sub-module represented by a syscon driver.
+>>>
+>>> These APIs are internal to PRUSS driver. Various useful registers
+>>> and macros for certain register bit-fields and their values have also
+>>> been added.
+>>>
+>>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>  drivers/soc/ti/pruss.c           | 39 ++++++++++++++
+>>>  include/linux/remoteproc/pruss.h | 87 ++++++++++++++++++++++++++++++++
+>>>  2 files changed, 126 insertions(+)
+>>>
+>>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+>>> index c8053c0d735f..26d8129b515c 100644
+>>> --- a/drivers/soc/ti/pruss.c
+>>> +++ b/drivers/soc/ti/pruss.c
+>>> @@ -164,6 +164,45 @@ int pruss_release_mem_region(struct pruss *pruss,
+>>>  }
+>>>  EXPORT_SYMBOL_GPL(pruss_release_mem_region);
+>>>  
+>>> +/**
+>>> + * pruss_cfg_read() - read a PRUSS CFG sub-module register
+>>> + * @pruss: the pruss instance handle
+>>> + * @reg: register offset within the CFG sub-module
+>>> + * @val: pointer to return the value in
+>>> + *
+>>> + * Reads a given register within the PRUSS CFG sub-module and
+>>> + * returns it through the passed-in @val pointer
+>>> + *
+>>> + * Return: 0 on success, or an error code otherwise
+>>> + */
+>>> +static int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val)
+>>> +{
+>>> +	if (IS_ERR_OR_NULL(pruss))
+>>> +		return -EINVAL;
+>>> +
+>>> +	return regmap_read(pruss->cfg_regmap, reg, val);
+>>> +}
+>>> +
+>>> +/**
+>>> + * pruss_cfg_update() - configure a PRUSS CFG sub-module register
+>>> + * @pruss: the pruss instance handle
+>>> + * @reg: register offset within the CFG sub-module
+>>> + * @mask: bit mask to use for programming the @val
+>>> + * @val: value to write
+>>> + *
+>>> + * Programs a given register within the PRUSS CFG sub-module
+>>> + *
+>>> + * Return: 0 on success, or an error code otherwise
+>>> + */
+>>> +static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
+>>> +			    unsigned int mask, unsigned int val)
+>>> +{
+>>> +	if (IS_ERR_OR_NULL(pruss))
+>>> +		return -EINVAL;
+>>> +
+>>> +	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
+>>> +}
+>>> +
+>>>  static void pruss_of_free_clk_provider(void *data)
+>>>  {
+>>>  	struct device_node *clk_mux_np = data;
+>>> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+>>> index 33f930e0a0ce..12ef10b9fe9a 100644
+>>> --- a/include/linux/remoteproc/pruss.h
+>>> +++ b/include/linux/remoteproc/pruss.h
+>>> @@ -10,12 +10,99 @@
+>>>  #ifndef __LINUX_PRUSS_H
+>>>  #define __LINUX_PRUSS_H
+>>>  
+>>> +#include <linux/bits.h>
+>>>  #include <linux/device.h>
+>>>  #include <linux/err.h>
+>>>  #include <linux/types.h>
+>>>  
+>>>  #define PRU_RPROC_DRVNAME "pru-rproc"
+>>>  
+>>> +/*
+>>> + * PRU_ICSS_CFG registers
+>>> + * SYSCFG, ISRP, ISP, IESP, IECP, SCRP applicable on AMxxxx devices only
+>>> + */
+>>> +#define PRUSS_CFG_REVID		0x00
+>>> +#define PRUSS_CFG_SYSCFG	0x04
+>>> +#define PRUSS_CFG_GPCFG(x)	(0x08 + (x) * 4)
+>>> +#define PRUSS_CFG_CGR		0x10
+>>> +#define PRUSS_CFG_ISRP		0x14
+>>> +#define PRUSS_CFG_ISP		0x18
+>>> +#define PRUSS_CFG_IESP		0x1C
+>>> +#define PRUSS_CFG_IECP		0x20
+>>> +#define PRUSS_CFG_SCRP		0x24
+>>> +#define PRUSS_CFG_PMAO		0x28
+>>> +#define PRUSS_CFG_MII_RT	0x2C
+>>> +#define PRUSS_CFG_IEPCLK	0x30
+>>> +#define PRUSS_CFG_SPP		0x34
+>>> +#define PRUSS_CFG_PIN_MX	0x40
+>>> +
+>>> +/* PRUSS_GPCFG register bits */
+>>> +#define PRUSS_GPCFG_PRU_GPO_SH_SEL		BIT(25)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_DIV1_SHIFT		20
+>>> +#define PRUSS_GPCFG_PRU_DIV1_MASK		GENMASK(24, 20)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_DIV0_SHIFT		15
+>>> +#define PRUSS_GPCFG_PRU_DIV0_MASK		GENMASK(15, 19)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_GPO_MODE		BIT(14)
+>>> +#define PRUSS_GPCFG_PRU_GPO_MODE_DIRECT		0
+>>> +#define PRUSS_GPCFG_PRU_GPO_MODE_SERIAL		BIT(14)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_GPI_SB			BIT(13)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_GPI_DIV1_SHIFT		8
+>>> +#define PRUSS_GPCFG_PRU_GPI_DIV1_MASK		GENMASK(12, 8)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_GPI_DIV0_SHIFT		3
+>>> +#define PRUSS_GPCFG_PRU_GPI_DIV0_MASK		GENMASK(7, 3)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE_POSITIVE	0
+>>> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE_NEGATIVE	BIT(2)
+>>> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE		BIT(2)
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_GPI_MODE_MASK		GENMASK(1, 0)
+>>> +#define PRUSS_GPCFG_PRU_GPI_MODE_SHIFT		0
+>>> +
+>>> +#define PRUSS_GPCFG_PRU_MUX_SEL_SHIFT		26
+>>> +#define PRUSS_GPCFG_PRU_MUX_SEL_MASK		GENMASK(29, 26)
+>>> +
+>>> +/* PRUSS_MII_RT register bits */
+>>> +#define PRUSS_MII_RT_EVENT_EN			BIT(0)
+>>> +
+>>> +/* PRUSS_SPP register bits */
+>>> +#define PRUSS_SPP_XFER_SHIFT_EN			BIT(1)
+>>> +#define PRUSS_SPP_PRU1_PAD_HP_EN		BIT(0)
+>>
+>> Can we please move all the above definitions to private driver/soc/ti/pruss.h?
+>> You can also add pruss_cfg_read and pruss_cfg_update there.
+>>
 
-On 2023/3/15 21:32, Dongliang Mu wrote:
-> .
+There is no driver/soc/ti/pruss.h. The pruss.h file is located in
+include/linux/remoteproc/pruss.h and there is one pruss_driver.h file which is
+located in include/linux/pruss_driver.h
+
+Do you want me to create another header file at driver/soc/ti/pruss.h and place
+all these definitions inside that?
+
+Please let me know.
+
 > 
-> On Wed, Mar 15, 2023 at 6:48 PM Minda Chen <minda.chen@starfivetech.com> wrote:
->>
->> There is a Cadence USB3 core for JH7110 SoCs, the cdns
->> core is the child of this USB wrapper module device.
->>
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> ---
->>  MAINTAINERS                        |   7 +
->>  drivers/usb/cdns3/Kconfig          |  11 ++
->>  drivers/usb/cdns3/Makefile         |   1 +
->>  drivers/usb/cdns3/cdns3-starfive.c | 305 +++++++++++++++++++++++++++++
->>  4 files changed, 324 insertions(+)
->>  create mode 100644 drivers/usb/cdns3/cdns3-starfive.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4263c005e45c..c530c966ab26 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19985,6 +19985,13 @@ F:     Documentation/devicetree/bindings/phy/starfive,jh7110-usb-pcie-phy.yaml
->>  F:     drivers/phy/starfive/phy-jh7110-pcie.c
->>  F:     drivers/phy/starfive/phy-jh7110-usb.c
->>
->> +STARFIVE JH71X0 USB DRIVERS
->> +M:     Emil Renner Berthing <kernel@esmil.dk>
->> +M:     Minda Chen <minda.chen@starfivetech.com>
->> +S:     Maintained
->> +F:     Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
->> +F:     drivers/usb/cdns3/cdns3-starfive.c
->> +
->>  STATIC BRANCH/CALL
->>  M:     Peter Zijlstra <peterz@infradead.org>
->>  M:     Josh Poimboeuf <jpoimboe@kernel.org>
->> diff --git a/drivers/usb/cdns3/Kconfig b/drivers/usb/cdns3/Kconfig
->> index b98ca0a1352a..0a514b591527 100644
->> --- a/drivers/usb/cdns3/Kconfig
->> +++ b/drivers/usb/cdns3/Kconfig
->> @@ -78,6 +78,17 @@ config USB_CDNS3_IMX
->>
->>           For example, imx8qm and imx8qxp.
->>
->> +config USB_CDNS3_STARFIVE
->> +       tristate "Cadence USB3 support on StarFive SoC platforms"
->> +       depends on ARCH_STARFIVE || COMPILE_TEST
->> +       help
->> +         Say 'Y' or 'M' here if you are building for StarFive SoCs
->> +         platforms that contain Cadence USB3 controller core.
->> +
->> +         e.g. JH7110.
->> +
->> +         If you choose to build this driver as module it will
->> +         be dynamically linked and module will be called cdns3-starfive.ko
->>  endif
->>
->>  if USB_CDNS_SUPPORT
->> diff --git a/drivers/usb/cdns3/Makefile b/drivers/usb/cdns3/Makefile
->> index 61edb2f89276..48dfae75b5aa 100644
->> --- a/drivers/usb/cdns3/Makefile
->> +++ b/drivers/usb/cdns3/Makefile
->> @@ -24,6 +24,7 @@ endif
->>  obj-$(CONFIG_USB_CDNS3_PCI_WRAP)               += cdns3-pci-wrap.o
->>  obj-$(CONFIG_USB_CDNS3_TI)                     += cdns3-ti.o
->>  obj-$(CONFIG_USB_CDNS3_IMX)                    += cdns3-imx.o
->> +obj-$(CONFIG_USB_CDNS3_STARFIVE)               += cdns3-starfive.o
->>
->>  cdnsp-udc-pci-y                                        := cdnsp-pci.o
->>
->> diff --git a/drivers/usb/cdns3/cdns3-starfive.c b/drivers/usb/cdns3/cdns3-starfive.c
->> new file mode 100644
->> index 000000000000..a99f98f85235
->> --- /dev/null
->> +++ b/drivers/usb/cdns3/cdns3-starfive.c
->> @@ -0,0 +1,305 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/**
->> + * cdns3-starfive.c - StarFive specific Glue layer for Cadence USB Controller
->> + *
->> + * Copyright (C) 2022 Starfive, Inc.
->> + * Author:     Yanhong Wang <yanhong.wang@starfivetech.com>
->> + * Author:     Mason Huo <mason.huo@starfivetech.com>
->> + * Author:     Minda Chen <minda.chen@starfivetech.com>
->> + */
->> +
->> +#include <linux/bits.h>
->> +#include <linux/clk.h>
->> +#include <linux/module.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/kernel.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/io.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset.h>
->> +#include <linux/usb/otg.h>
->> +#include "core.h"
->> +
->> +#define USB_STRAP_HOST                 BIT(17)
->> +#define USB_STRAP_DEVICE               BIT(18)
->> +#define USB_STRAP_MASK                 GENMASK(18, 16)
->> +
->> +#define USB_SUSPENDM_HOST              BIT(19)
->> +#define USB_SUSPENDM_MASK              BIT(19)
->> +
->> +#define USB_SUSPENDM_BYPS              BIT(20)
->> +#define USB_REFCLK_MODE                        BIT(23)
->> +#define USB_PLL_EN                     BIT(22)
->> +#define USB_PDRSTN_SPLIT               BIT(17)
->> +
->> +#define PCIE_CKREF_SRC_MASK            GENMASK(19, 18)
->> +#define PCIE_CLK_SEL_MASK              GENMASK(21, 20)
->> +#define PCIE_PHY_MODE                  BIT(20)
->> +#define PCIE_PHY_MODE_MASK             GENMASK(21, 20)
->> +#define PCIE_USB3_BUS_WIDTH_MASK       GENMASK(3, 2)
->> +#define PCIE_USB3_RATE_MASK            GENMASK(6, 5)
->> +#define PCIE_USB3_RX_STANDBY_MASK      BIT(7)
->> +#define PCIE_USB3_PHY_ENABLE           BIT(4)
->> +
->> +struct cdns_starfive {
->> +       struct device *dev;
->> +       struct regmap *stg_syscon;
->> +       struct regmap *sys_syscon;
->> +       struct reset_control *resets;
->> +       struct clk_bulk_data *clks;
->> +       int num_clks;
->> +       u32 sys_offset;
->> +       u32 stg_offset_4;
->> +       u32 stg_offset_196;
->> +       u32 stg_offset_328;
->> +       u32 stg_offset_500;
->> +       bool usb2_only;
->> +};
->> +
->> +static int cdns_mode_init(struct platform_device *pdev,
->> +                               struct cdns_starfive *data, const char **out_mode)
->> +{
->> +       struct device_node *child;
->> +       const char *dr_mode = NULL;
->> +
->> +       child = of_get_compatible_child(pdev->dev.of_node, "cdns,usb3");
->> +       if (!child) {
->> +               return dev_err_probe(&pdev->dev, -ENODEV,
->> +                       "Failed to find child node\n");
->> +       }
->> +
->> +       /* Init usb 2.0 utmi phy */
->> +       regmap_update_bits(data->stg_syscon, data->stg_offset_4,
->> +               USB_SUSPENDM_BYPS, USB_SUSPENDM_BYPS);
->> +       regmap_update_bits(data->stg_syscon, data->stg_offset_4,
->> +               USB_PLL_EN, USB_PLL_EN);
->> +       regmap_update_bits(data->stg_syscon, data->stg_offset_4,
->> +               USB_REFCLK_MODE, USB_REFCLK_MODE);
->> +
->> +       if (!of_find_property(child, "cdns3,usb3-phy", NULL)) {
->> +               /* Disconnect usb 3.0 phy mode */
->> +               regmap_update_bits(data->sys_syscon, data->sys_offset,
->> +                       USB_PDRSTN_SPLIT, USB_PDRSTN_SPLIT);
->> +               data->usb2_only = 1;
->> +       } else {
->> +               /* Config usb 3.0 pipe phy */
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_196,
->> +                       PCIE_CKREF_SRC_MASK, 0);
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_196,
->> +                       PCIE_CLK_SEL_MASK, 0);
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_328,
->> +                       PCIE_PHY_MODE_MASK, PCIE_PHY_MODE);
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_500,
->> +                       PCIE_USB3_BUS_WIDTH_MASK, 0);
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_500,
->> +                       PCIE_USB3_RATE_MASK, 0);
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_500,
->> +                       PCIE_USB3_RX_STANDBY_MASK, 0);
->> +               regmap_update_bits(data->stg_syscon, data->stg_offset_500,
->> +                       PCIE_USB3_PHY_ENABLE, PCIE_USB3_PHY_ENABLE);
->> +
->> +               /* Connect usb 3.0 phy mode */
->> +               regmap_update_bits(data->sys_syscon, data->sys_offset,
->> +                       USB_PDRSTN_SPLIT, 0);
->> +       }
->> +
->> +       if (!of_property_read_string(child, "dr_mode", &dr_mode)) {
->> +               if (!strcmp(dr_mode, "host")) {
->> +                       regmap_update_bits(data->stg_syscon,
->> +                               data->stg_offset_4,
->> +                               USB_STRAP_MASK,
->> +                               USB_STRAP_HOST);
->> +                       regmap_update_bits(data->stg_syscon,
->> +                               data->stg_offset_4,
->> +                               USB_SUSPENDM_MASK,
->> +                               USB_SUSPENDM_HOST);
->> +               } else if (!strcmp(dr_mode, "peripheral")) {
->> +                       regmap_update_bits(data->stg_syscon, data->stg_offset_4,
->> +                               USB_STRAP_MASK, USB_STRAP_DEVICE);
->> +                       regmap_update_bits(data->stg_syscon, data->stg_offset_4,
->> +                               USB_SUSPENDM_MASK, 0);
->> +               }
->> +       }
->> +
->> +       if (out_mode)
->> +               *out_mode = dr_mode;
->> +
->> +       return 0;
->> +}
->> +
->> +static int cdns_clk_rst_init(struct cdns_starfive *data)
->> +{
->> +       int ret;
->> +
->> +       data->num_clks = devm_clk_bulk_get_all(data->dev, &data->clks);
->> +       if (data->num_clks < 0)
->> +               return dev_err_probe(data->dev, -ENODEV,
->> +                       "Failed to get clocks\n");
->> +
->> +       ret = clk_bulk_prepare_enable(data->num_clks, data->clks);
->> +       if (ret)
->> +               return dev_err_probe(data->dev, ret,
->> +                       "failed to enable clocks\n");
->> +
->> +       data->resets = devm_reset_control_array_get_exclusive(data->dev);
->> +       if (IS_ERR(data->resets)) {
->> +               ret = dev_err_probe(data->dev, PTR_ERR(data->resets),
->> +                       "Failed to get resets");
->> +               goto err_clk_init;
->> +       }
->> +
->> +       ret = reset_control_deassert(data->resets);
->> +       if (ret) {
->> +               ret = dev_err_probe(data->dev, ret,
->> +                       "failed to reset clocks\n");
->> +               goto err_clk_init;
->> +       }
->> +
->> +       return ret;
->> +
->> +err_clk_init:
->> +       clk_bulk_disable_unprepare(data->num_clks, data->clks);
->> +       return ret;
->> +}
->> +
->> +static int cdns_starfive_probe(struct platform_device *pdev)
->> +{
->> +       struct device *dev = &pdev->dev;
->> +       struct device_node *node = pdev->dev.of_node;
->> +       struct cdns_starfive *data;
->> +       unsigned int args[4];
->> +       const char *dr_mode;
->> +       int ret;
->> +
->> +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
->> +       if (!data)
->> +               return -ENOMEM;
->> +
->> +       platform_set_drvdata(pdev, data);
->> +
->> +       data->dev = dev;
->> +
->> +       data->stg_syscon = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
->> +               "starfive,stg-syscon", 4, args);
->> +
->> +       if (IS_ERR(data->stg_syscon))
->> +               return dev_err_probe(dev, PTR_ERR(data->stg_syscon),
->> +                       "Failed to parse starfive,stg-syscon\n");
->> +
->> +       data->stg_offset_4 = args[0];
->> +       data->stg_offset_196 = args[1];
->> +       data->stg_offset_328 = args[2];
->> +       data->stg_offset_500 = args[3];
->> +
->> +       data->sys_syscon = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
->> +               "starfive,sys-syscon", 1, args);
->> +       if (IS_ERR(data->sys_syscon))
->> +               return dev_err_probe(dev, PTR_ERR(data->sys_syscon),
->> +                       "Failed to parse starfive,sys-syscon\n");
->> +
->> +       data->sys_offset = args[0];
->> +
->> +       ret = cdns_mode_init(pdev, data, &dr_mode);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = cdns_clk_rst_init(data);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = of_platform_populate(node, NULL, NULL, dev);
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "Failed to create children\n");
+> Sure Roger, I'll move all these definitions to pruss.h
 > 
-> For this error handling, you need to add some paired undo operations
-> for cdns_clk_rst_init, i.e., reset_control_assert and
-> clk_bulk_disable_unprepare.
-> 
-ok, I will change. Thanks
->> +
->> +       device_set_wakeup_capable(dev, true);
->> +       pm_runtime_set_active(dev);
->> +       pm_runtime_enable(dev);
->> +
->> +       dev_info(dev, "usb mode %s %s probe success\n",
->> +               dr_mode ? dr_mode : "unknown", data->usb2_only ? "2.0" : "3.0");
->> +
->> +       return 0;
->> +}
->> +
->> +static int cdns_starfive_remove_core(struct device *dev, void *c)
->> +{
->> +       struct platform_device *pdev = to_platform_device(dev);
->> +
->> +       platform_device_unregister(pdev);
->> +
->> +       return 0;
->> +}
->> +
->> +static int cdns_starfive_remove(struct platform_device *pdev)
->> +{
->> +       struct device *dev = &pdev->dev;
->> +       struct cdns_starfive *data = dev_get_drvdata(dev);
->> +
->> +       pm_runtime_get_sync(dev);
->> +       device_for_each_child(dev, NULL, cdns_starfive_remove_core);
->> +
->> +       reset_control_assert(data->resets);
->> +       clk_bulk_disable_unprepare(data->num_clks, data->clks);
->> +       pm_runtime_disable(dev);
->> +       pm_runtime_put_noidle(dev);
->> +       platform_set_drvdata(pdev, NULL);
->> +
->> +       return 0;
->> +}
->> +
->> +#ifdef CONFIG_PM
->> +static int cdns_starfive_resume(struct device *dev)
->> +{
->> +       struct cdns_starfive *data = dev_get_drvdata(dev);
->> +       int ret;
->> +
->> +       ret = clk_bulk_prepare_enable(data->num_clks, data->clks);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = reset_control_deassert(data->resets);
->> +       if (ret)
->> +               return ret;
->> +
->> +       return 0;
->> +}
->> +
->> +static int cdns_starfive_suspend(struct device *dev)
->> +{
->> +       struct cdns_starfive *data = dev_get_drvdata(dev);
->> +
->> +       clk_bulk_disable_unprepare(data->num_clks, data->clks);
->> +       reset_control_assert(data->resets);
->> +
->> +       return 0;
->> +}
->> +#endif
->> +
->> +static const struct dev_pm_ops cdns_starfive_pm_ops = {
->> +       SET_RUNTIME_PM_OPS(cdns_starfive_suspend, cdns_starfive_resume, NULL)
->> +       SET_SYSTEM_SLEEP_PM_OPS(cdns_starfive_suspend, cdns_starfive_resume)
->> +};
->> +
->> +static const struct of_device_id cdns_starfive_of_match[] = {
->> +       { .compatible = "starfive,jh7110-usb", },
->> +       { /* sentinel */ }
->> +};
->> +MODULE_DEVICE_TABLE(of, cdns_starfive_of_match);
->> +
->> +static struct platform_driver cdns_starfive_driver = {
->> +       .probe          = cdns_starfive_probe,
->> +       .remove         = cdns_starfive_remove,
->> +       .driver         = {
->> +               .name   = "cdns3-starfive",
->> +               .of_match_table = cdns_starfive_of_match,
->> +               .pm     = &cdns_starfive_pm_ops,
->> +       },
->> +};
->> +module_platform_driver(cdns_starfive_driver);
->> +
->> +MODULE_ALIAS("platform:cdns3-starfive");
->> +MODULE_AUTHOR("YanHong Wang <yanhong.wang@starfivetech.com>");
->> +MODULE_AUTHOR("Mason Huo <mason.huo@starfivetech.com>");
->> +MODULE_LICENSE("GPL v2");
->> +MODULE_DESCRIPTION("Cadence USB3 StarFive Glue Layer");
->> --
->> 2.17.1
+>>> +
+>>> +/*
+>>> + * enum pruss_gp_mux_sel - PRUSS GPI/O Mux modes for the
+>>> + * PRUSS_GPCFG0/1 registers
+>>> + *
+>>> + * NOTE: The below defines are the most common values, but there
+>>> + * are some exceptions like on 66AK2G, where the RESERVED and MII2
+>>> + * values are interchanged. Also, this bit-field does not exist on
+>>> + * AM335x SoCs
+>>> + */
+>>> +enum pruss_gp_mux_sel {
+>>> +	PRUSS_GP_MUX_SEL_GP = 0,
+>>> +	PRUSS_GP_MUX_SEL_ENDAT,
+>>> +	PRUSS_GP_MUX_SEL_RESERVED,
+>>> +	PRUSS_GP_MUX_SEL_SD,
+>>> +	PRUSS_GP_MUX_SEL_MII2,
+>>> +	PRUSS_GP_MUX_SEL_MAX,
+>>> +};
+>>> +
+>>> +/*
+>>> + * enum pruss_gpi_mode - PRUSS GPI configuration modes, used
+>>> + *			 to program the PRUSS_GPCFG0/1 registers
+>>> + */
+>>> +enum pruss_gpi_mode {
+>>> +	PRUSS_GPI_MODE_DIRECT = 0,
+>>> +	PRUSS_GPI_MODE_PARALLEL,
+>>> +	PRUSS_GPI_MODE_28BIT_SHIFT,
+>>> +	PRUSS_GPI_MODE_MII,
+>>> +};
+>>> +
+>>>  /**
+>>>   * enum pruss_pru_id - PRU core identifiers
+>>>   * @PRUSS_PRU0: PRU Core 0.
 >>
+>> cheers,
+>> -roger
+> 
+
+-- 
+Thanks and Regards,
+Danish.
