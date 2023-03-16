@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E8726BCDE0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 560176BCDE7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 12:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbjCPLRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 07:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54270 "EHLO
+        id S230293AbjCPLRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 07:17:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230298AbjCPLR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:17:28 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11456C4E83
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:17:15 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id f18so1867510lfa.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:17:15 -0700 (PDT)
+        with ESMTP id S229626AbjCPLRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 07:17:33 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1548C0824
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:17:18 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id j11so1816193lfg.13
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 04:17:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678965433;
+        d=linaro.org; s=google; t=1678965435;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sgn5Rzo7pAc2gmOTsd/K9TH2CYoJoK0uHcYeDBOw4do=;
-        b=rmh7PhiWwPJhfqlDzSXGbBnQMpSei6zWTF2DB0dQ6hUtQPkLziXDOktHmurImgqwJe
-         f4h0g+V/1c07sHP/5Xtwc1Hze2w1r7voS4chW1k4uU5ksXmlZWdyskPEB5pj/nxSlr6i
-         bOf4iePdeXhOdbUtRhdKM78u8PEHsxNUy5D5u6RQzgugD+RlY2oTxxV/JRfxQi8xP5vg
-         6OAHjM/BEw6M5mu2MPxiWal2GlN9vM4cAqla/XFdg1ORw/7dqXzcTNxdOOJMuFt17D7k
-         VGJ8fTCG54lFtUmKV5U+jMXFeJ+qvmENtQiUBXKhpMobvEAnPjeTXY3u0XJ/bG+K3EKs
-         PgTQ==
+        bh=Q8t94EnhxhC2ZUF1cUhDWiKKp0aSTni9kWKdYuzKvts=;
+        b=IchcS0EtnIS80/0CPEtftBm5AMOXu+vBHvkqypfrzBNATsHTxDtbHOSEywHtq+b7b5
+         hqZ25VewO4d2Hk7zKbUjYg4+SiVqnqFeIiMFyzfplVsACIVTDj43qK+rc6HRHax7+rHs
+         vZlKyxXR0qP6AtTpcDz+3b7UdwylqG4ij1XhtYl5ZWbUvHfDf5ieAcl1YZcI8oxCyWad
+         iRDGrpY4HQwjzX/e6rHtWXh3+p2Ls24Cb0Tj9CAQKKQFvqzUMd0HOGJ09QMChZRCyvuJ
+         uXyBBVwm1l96CCDGX+/YTg4lH5SRo9//6eoREyw1FmL3DfaxPCMu5q8yn50h2rtKjXza
+         NOzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678965433;
+        d=1e100.net; s=20210112; t=1678965435;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sgn5Rzo7pAc2gmOTsd/K9TH2CYoJoK0uHcYeDBOw4do=;
-        b=EK8CiOHjxLKkd2qb23IVragt3u0cN5kyuHvqmvh864/DesqvgpAjFmOd/SgW5b2rff
-         GnWW1HLa/yTByk9aMFnnI8b5+IbFVeowFWsTLdy2zNxvOCF1ya01GeGue/Y8ypg6psma
-         oW+LnaRUbf8tkbe6Mdk3BD5dhERmOMEl17NnWTOgbdmVwdMFWR3PufIswRagTLU9GyfF
-         DrIytsenL4K2CLgg+bBThrY0tZhB/9oAX22ypS79MSA0wX7sCp7OvlG38iifb22Ty3dr
-         K2hlcsSnh8oF04DZrjmPm5LCXBlkFrwR3PzJJ+wm3DKJlUz3ohl93LuXAu1TyKg5Ksin
-         PXxA==
-X-Gm-Message-State: AO0yUKWpUB395wKlt8SqqPgXSg9uWWrRZelL2CyXoqF3BcmvWkVkNiRJ
-        fHHSU+pEhtT9g9gDks6+3q3RdQ==
-X-Google-Smtp-Source: AK7set/y8ewUjgD5CuRTQ5fFoBnEEX0Mgw0Zot/b/iaPMaUSbomGi8Z1HyaEl4xOAt02T5enLabc6g==
-X-Received: by 2002:ac2:4202:0:b0:4cc:a107:82f4 with SMTP id y2-20020ac24202000000b004cca10782f4mr2489622lfh.64.1678965433697;
-        Thu, 16 Mar 2023 04:17:13 -0700 (PDT)
+        bh=Q8t94EnhxhC2ZUF1cUhDWiKKp0aSTni9kWKdYuzKvts=;
+        b=lhAoZ2pZG23IrIVkGKrM0lgm7ahrwecrlDdiF0J1whbx5IBBDJGejjWpAiKUt0AEdC
+         S3dFVWgJKczTb3oet91rDezGcg1z2c0n22YNqyJyoimSRDImw845IZ71gGILSJqafiIz
+         vJCS6BhT2mWNWVEbyRVSCrOeMc7xo/tnopxzwe4CPQkP1RmAKZPCn9xslofAYZj/+w05
+         A+i85LcP/jYZV0njFYTfttRwf4nblrMmeAVZOt3MKMcwK3J4/1qt/5JLyUNEaMICmb0u
+         AgCWK3u8ArgfidRZMetUmOd2jkwE79YsqdJg8MYi/zhx2x6yZBEEU8M32rdSyrcQii/K
+         PRCg==
+X-Gm-Message-State: AO0yUKXOUqrrLCDgxml8Zvud4yB4RPondX54lWHzRMkCt/Jv3R7r0cPE
+        S+ss0TJX6Z+5M7rTESjW0br8EA==
+X-Google-Smtp-Source: AK7set/qFPkxuRPBsm5LRIYo/fXXQH+HYhJ1WWGzq4ye+vGaMkMiAjRxJHriNfNVA7SPOIVSpgNCgg==
+X-Received: by 2002:a05:6512:11e1:b0:4db:2cdf:4c12 with SMTP id p1-20020a05651211e100b004db2cdf4c12mr2620875lfs.43.1678965435065;
+        Thu, 16 Mar 2023 04:17:15 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id u28-20020ac243dc000000b004db2978e330sm1194222lfl.258.2023.03.16.04.17.12
+        by smtp.gmail.com with ESMTPSA id u28-20020ac243dc000000b004db2978e330sm1194222lfl.258.2023.03.16.04.17.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 04:17:13 -0700 (PDT)
+        Thu, 16 Mar 2023 04:17:14 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 16 Mar 2023 12:16:59 +0100
-Subject: [PATCH 4/5] arm64: dts: qcom: sm6350: Add GPU nodes
+Date:   Thu, 16 Mar 2023 12:17:00 +0100
+Subject: [PATCH 5/5] arm64: dts: qcom: sm6350: Fix ZAP region
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230315-topic-lagoon_gpu-v1-4-a74cbec4ecfc@linaro.org>
+Message-Id: <20230315-topic-lagoon_gpu-v1-5-a74cbec4ecfc@linaro.org>
 References: <20230315-topic-lagoon_gpu-v1-0-a74cbec4ecfc@linaro.org>
 In-Reply-To: <20230315-topic-lagoon_gpu-v1-0-a74cbec4ecfc@linaro.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
@@ -71,14 +71,13 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Luca Weiss <luca.weiss@fairphone.com>
+        Konrad Dybcio <konrad.dybcio@somainline.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678965426; l=4819;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678965426; l=1198;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=JbPANomzx98OqH3bbW/ckEJ9GniS0ZAyl4OszIK8VjY=;
- b=q8EnwRUIAkOg07OqiaMV5aWHa2/9a8PcMNld4DFAi0BHSrjIzEd6WbwKJgD5CMTCoakRkM4ZGN0/
- cmA9feRhCVYh9+CM1lEy8L+8C1qxytmNUAaqDtUr+2ufKQB4/Fu9
+ bh=U/Bw3E38fEF8jRRzaXOryssKT6fka2DSqTWTV4ocpSA=;
+ b=FZq6+bZWyPDPG79SPJXQgWMUALXc7JoCk5eDIYdobDAZMVCQOw9q8wZUWV8Udto2y4Yyubxykc6P
+ 3HZ83basBb+Ua3BceNy+jApWcW2cEL/Tux1dLECNslyXJL3tGFGU
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,174 +92,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Add Adreno, GPU SMMU and GMU nodes to hook up everything that
-the A619 needs to function properly.
+The previous ZAP region definition was wrong. Fix it.
+Note this is not a device-specific fixup, but a fixup to the generic
+PIL load address.
 
-Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
+Fixes: 5f82b9cda61e ("arm64: dts: qcom: Add SM6350 device tree")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 140 +++++++++++++++++++++++++++++++++++
- 1 file changed, 140 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 60b68d305e53..e967d06b0ad4 100644
+index e967d06b0ad4..3fe4a5fa3021 100644
 --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1138,6 +1138,74 @@ compute-cb@5 {
- 			};
+@@ -466,11 +466,6 @@ pil_ipa_gsi_mem: memory@8b710000 {
+ 			no-map;
  		};
  
-+		gpu: gpu@3d00000 {
-+			compatible = "qcom,adreno-619.0", "qcom,adreno";
-+			reg = <0 0x03d00000 0 0x40000>,
-+			      <0 0x03d9e000 0 0x1000>;
-+			reg-names = "kgsl_3d0_reg_memory",
-+				    "cx_mem";
-+			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			iommus = <&adreno_smmu 0>;
-+			operating-points-v2 = <&gpu_opp_table>;
-+			qcom,gmu = <&gmu>;
-+			nvmem-cells = <&gpu_speed_bin>;
-+			nvmem-cell-names = "speed_bin";
-+
-+			status = "disabled";
-+
-+			zap-shader {
-+				memory-region = <&pil_gpu_mem>;
-+			};
-+
-+			gpu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-850000000 {
-+					opp-hz = /bits/ 64 <850000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+					opp-supported-hw = <0x02>;
-+				};
-+
-+				opp-800000000 {
-+					opp-hz = /bits/ 64 <800000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-+					opp-supported-hw = <0x04>;
-+				};
-+
-+				opp-650000000 {
-+					opp-hz = /bits/ 64 <650000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+					opp-supported-hw = <0x08>;
-+				};
-+
-+				opp-565000000 {
-+					opp-hz = /bits/ 64 <565000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+					opp-supported-hw = <0x10>;
-+				};
-+
-+				opp-430000000 {
-+					opp-hz = /bits/ 64 <430000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					opp-supported-hw = <0xff>;
-+				};
-+
-+				opp-355000000 {
-+					opp-hz = /bits/ 64 <355000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+					opp-supported-hw = <0xff>;
-+				};
-+
-+				opp-253000000 {
-+					opp-hz = /bits/ 64 <253000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+					opp-supported-hw = <0xff>;
-+				};
-+			};
-+		};
-+
-+
- 		gpucc: clock-controller@3d90000 {
- 			compatible = "qcom,sm6350-gpucc";
- 			reg = <0 0x03d90000 0 0x9000>;
-@@ -1152,6 +1220,78 @@ gpucc: clock-controller@3d90000 {
- 			#power-domain-cells = <1>;
+-		pil_gpu_mem: memory@8b715400 {
+-			reg = <0 0x8b715400 0 0x2000>;
+-			no-map;
+-		};
+-
+ 		pil_modem_mem: memory@8b800000 {
+ 			reg = <0 0x8b800000 0 0xf800000>;
+ 			no-map;
+@@ -491,6 +486,11 @@ removed_region: memory@c0000000 {
+ 			no-map;
  		};
  
-+		adreno_smmu: iommu@3d40000 {
-+			compatible = "qcom,sm6350-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
-+			reg = <0 0x03d40000 0 0x10000>;
-+			#iommu-cells = <1>;
-+			#global-interrupts = <2>;
-+			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
-+			clock-names = "ahb",
-+				      "bus",
-+				      "iface";
-+
-+			power-domains = <&gpucc GPU_CX_GDSC>;
++		pil_gpu_mem: memory@f0d00000 {
++			reg = <0 0xf0d00000 0 0x1000>;
++			no-map;
 +		};
 +
-+		gmu: gmu@3d6a000 {
-+			compatible = "qcom,adreno-gmu-619.0", "qcom,adreno-gmu";
-+			reg = <0 0x03d6a000 0 0x31000>,
-+			      <0 0x0b290000 0 0x10000>,
-+			      <0 0x0b490000 0 0x10000>;
-+			reg-names = "gmu",
-+				    "gmu_pdc",
-+				    "gmu_pdc_seq";
-+
-+			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hfi",
-+					  "gmu";
-+
-+			clocks = <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gpucc GPU_CC_CX_GMU_CLK>,
-+				 <&gpucc GPU_CC_CXO_CLK>,
-+				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-+				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>;
-+			clock-names = "ahb",
-+				      "gmu",
-+				      "cxo",
-+				      "axi",
-+				      "memnoc";
-+
-+			power-domains = <&gpucc GPU_CX_GDSC>,
-+					<&gpucc GPU_GX_GDSC>;
-+			power-domain-names = "cx",
-+					     "gx";
-+
-+			iommus = <&adreno_smmu 5>;
-+
-+			operating-points-v2 = <&gmu_opp_table>;
-+
-+			status = "disabled";
-+
-+			gmu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+				};
-+			};
-+		};
-+
- 		mpss: remoteproc@4080000 {
- 			compatible = "qcom,sm6350-mpss-pas";
- 			reg = <0x0 0x04080000 0x0 0x4040>;
+ 		debug_region: memory@ffb00000 {
+ 			reg = <0 0xffb00000 0 0xc0000>;
+ 			no-map;
 
 -- 
 2.39.2
