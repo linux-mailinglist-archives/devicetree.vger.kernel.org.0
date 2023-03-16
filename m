@@ -2,115 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 450AA6BCA7B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 10:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B7F6BCAEF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 10:33:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbjCPJNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 05:13:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52974 "EHLO
+        id S231150AbjCPJdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 05:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjCPJM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 05:12:56 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBA841B49
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 02:12:52 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id i9so830899wrp.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 02:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678957970;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4i/+IbvCXFdjz4/Efw9W5WipElhYaJU8p9Z3d1lAFC4=;
-        b=E0+h3yXwq5fvWGNhV8VYhU38LOM9BchpTo9sZX+1Iuk+GRUdIBSDcswSrjXKgIoSYu
-         zCE/Y0S1RE6d55RUxTPve2n/dbd1BtK3gMidj6WB4FqobDGXRUpCFik3BU0wf1BhdBoF
-         TcZYncP1u2G2xmQA8PViKF9VngzzIreFVQ7BmkuIHAgRGniPtChAIEmjnaQzrGUSL+ZS
-         YAaXCkT0dM3oLR9SiwBYlcAl0gl1Io5cA2fszdkKKUkjlLw2eMrkXG4n8/okb09QcL3V
-         s7p3INwrwAB8SK7CkXCD0FeyHBwS8JalWojsX+g/SYvQBxtH4nJitSxSF9bTMEoTSMIe
-         BaFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678957970;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4i/+IbvCXFdjz4/Efw9W5WipElhYaJU8p9Z3d1lAFC4=;
-        b=jFI14OiwYfQ/uNqX+2tT/239ksoL1w6yP8wACdvQCZXGiKFPY/uvv8XsMB/b6n1uJi
-         FkbwnhrppmkqquHns+0eIwo033i++WWIYxSTpS+3IirEHHuUEY60N90Ee8k/1FC3DwOj
-         7KQWjf3WDTiJFa0YiptHcR6K3LD2XI5RnSkjod8iXyNIZJF4k3MUce0dSil8QLKrsbSI
-         yG3OLQkhkwbuv8bFZyPtZfJIih0PeniKU14Q2lK9LhDGausFinujzMLuzf0t7i9uZsOx
-         yedCA/QSMuFeMhutG+hCTd7nwFhsq4GojDrZB321EHQQg8FTdXEHXNc9zuh6sO2Jf29m
-         Nb6w==
-X-Gm-Message-State: AO0yUKUFdAxmFBhuEEp2kXCAteHmqzGPxNxWd9+RjyW6XxrUdEJzJCNy
-        ylmWDMyFW0Xlmho2OmM5b3trPo1ZbqlTaW7JBXAQ5Q==
-X-Google-Smtp-Source: AK7set8jZaolZMq/mj8iZgCzDU5vopOEcP9e972h+2SL64Qr19+KS2HhPt/PZAi+SVgjykT7KAaHyA==
-X-Received: by 2002:adf:e48c:0:b0:2c3:dd60:d749 with SMTP id i12-20020adfe48c000000b002c3dd60d749mr4559291wrm.47.1678957970566;
-        Thu, 16 Mar 2023 02:12:50 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:d33b:7c79:2a99:1fd4? ([2a01:e0a:982:cbb0:d33b:7c79:2a99:1fd4])
-        by smtp.gmail.com with ESMTPSA id t4-20020a0560001a4400b002be5bdbe40csm6717165wry.27.2023.03.16.02.12.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 02:12:50 -0700 (PDT)
-Message-ID: <3e2932d4-89ea-39e1-da46-e9fd2d889fdf@linaro.org>
-Date:   Thu, 16 Mar 2023 10:12:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 7/7] arm64: dts: qcom: sm8550: Use the correct BWMON
- fallback compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S231138AbjCPJde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 05:33:34 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 541E89EF56;
+        Thu, 16 Mar 2023 02:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1678959213; x=1710495213;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vviP9jkscFvbPc1PciingGxOCazB42N7+7fnQuehKsk=;
+  b=U1WWYTDFSKZNFKEm0ibP9Jx8UjsTLQMpmVqrKzB7Gi8a89A/l6yzgewl
+   P52kbkNzmEgc2fiSU4k6PXibmDy+hkSjMRJVL6cp8ROElccutfN1PkGvs
+   JTda8GAmdsBt2TaX80Xvpwwz24U4JqtdK3eqBYLYORWh/IrB1FAVOpg+4
+   MoDtAZ/bc+WyoCHWlQB+DIHFLwUkFTTLxdcKHg9nhibY80VSYAtwLdqcG
+   d/6krdMtZTlmu1m/TjthFpFvQ+Ht46qtd80XxmsChxiXV3ny7GJimzdQL
+   Lgsk/ePssRsJaqP54+EvAlTZPflJp6dc69SaHeAx3bUyvhIDPminnKB+f
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="339466441"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; 
+   d="scan'208";a="339466441"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2023 02:33:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="710026419"
+X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; 
+   d="scan'208";a="710026419"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 16 Mar 2023 02:33:26 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pcjzC-0008RS-0S;
+        Thu, 16 Mar 2023 09:33:26 +0000
+Date:   Thu, 16 Mar 2023 17:32:42 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Hao Zhang <quic_hazha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230304-topic-ddr_bwmon-v3-0-77a050c2fbda@linaro.org>
- <20230304-topic-ddr_bwmon-v3-7-77a050c2fbda@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230304-topic-ddr_bwmon-v3-7-77a050c2fbda@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     oe-kbuild-all@lists.linux.dev, Hao Zhang <quic_hazha@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] Coresight: Add coresight dummy driver
+Message-ID: <202303161702.oIkvUip5-lkp@intel.com>
+References: <20230316032005.6509-2-quic_hazha@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230316032005.6509-2-quic_hazha@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 15:11, Konrad Dybcio wrote:
-> Use the correct fallback compatible for the BWMONv4 with merged global and
-> monitor register spaces.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 25f51245fe9b..b5488c6822bd 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -3391,7 +3391,7 @@ opp-8 {
->   		};
->   
->   		pmu@240b6400 {
-> -			compatible = "qcom,sm8550-cpu-bwmon", "qcom,msm8998-bwmon";
-> +			compatible = "qcom,sm8550-cpu-bwmon", "qcom,sdm845-bwmon";
->   			reg = <0 0x240b6400 0 0x600>;
->   			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &gem_noc SLAVE_LLCC 3>;
-> 
+Hi Hao,
 
-I can't test right now, but:
+Thank you for the patch! Perhaps something to improve:
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.3-rc2 next-20230316]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Hao-Zhang/Coresight-Add-coresight-dummy-driver/20230316-112827
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230316032005.6509-2-quic_hazha%40quicinc.com
+patch subject: [PATCH v1 1/3] Coresight: Add coresight dummy driver
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20230316/202303161702.oIkvUip5-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/140cd28ed9031020826cfb5e62e80e28f7504895
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Hao-Zhang/Coresight-Add-coresight-dummy-driver/20230316-112827
+        git checkout 140cd28ed9031020826cfb5e62e80e28f7504895
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/hwtracing/coresight/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303161702.oIkvUip5-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwtracing/coresight/coresight-dummy.c:163:12: warning: no previous prototype for 'dummy_init' [-Wmissing-prototypes]
+     163 | int __init dummy_init(void)
+         |            ^~~~~~~~~~
+>> drivers/hwtracing/coresight/coresight-dummy.c:169:13: warning: no previous prototype for 'dummy_exit' [-Wmissing-prototypes]
+     169 | void __exit dummy_exit(void)
+         |             ^~~~~~~~~~
+
+
+vim +/dummy_init +163 drivers/hwtracing/coresight/coresight-dummy.c
+
+   162	
+ > 163	int __init dummy_init(void)
+   164	{
+   165		return platform_driver_register(&dummy_driver);
+   166	}
+   167	module_init(dummy_init);
+   168	
+ > 169	void __exit dummy_exit(void)
+   170	{
+   171		platform_driver_unregister(&dummy_driver);
+   172	}
+   173	module_exit(dummy_exit);
+   174	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
