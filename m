@@ -2,108 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D749D6BD1D1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:10:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B29D66BD1DF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:13:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230525AbjCPOKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57414 "EHLO
+        id S231146AbjCPONF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:13:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231134AbjCPOKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:10:15 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F764FABB
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:09:56 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id cn21so8406405edb.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:09:56 -0700 (PDT)
+        with ESMTP id S230283AbjCPONE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:13:04 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E6D74DE31
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:01 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id g18so1846138ljl.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678975794;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qSYTF1gzbLXc9mIXUhT70b2BxBvwCOTXpLGkfOxxmec=;
-        b=cM9RxICbPcmQVtqktPjzYGl3wLcA0d85RKIFxu5WIB1G56o138Z0qHPLPAVC1XHruZ
-         iXb3ZTIONF92viWgBDIOHftD0wR9nFVXzvH38ZH8fSHonstccxExM8A9d4KtRATZ4jds
-         JL3LUxYNtIWgjRRKDSagN2kSnv3uHsfks3szO+w/etoxhOjRNQMt9/NB7V8xIxnnvmA1
-         P6uX2gdN0x9faCQpQ3uPXOQyU7uJT4mr8RKgaUbD3gC1vMaOdesfNIu33lrF7xfCHIXb
-         I1KYXTQq1fLjJFSrgpLjJODCSTlmeFEk++eFjWKU2fONeUKe+Bc251xEcTyfPm+ym8xq
-         aPcA==
+        d=linaro.org; s=google; t=1678975980;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AkFEog4APZRdHeT2q4GaSqDGIc5SgyK33RTmMqwtReY=;
+        b=kFMBNcVnPi6z72HcIvse712jYOKaSucHb0BKbGJfosXlFmHctGwtfcwg+7AnMcdk/S
+         eOaMg1ccm4YROtE89oJsvhbm+5ZALTcfjY6u0No94VX/HGzHIv5XknXvZ/OBKDjBWkii
+         Xy76YkaBWke139YAK4y/ZCZCZTZ+5YcEFEgX4vYpTEJIlq4T3V5FwAN+IPdXtcsJaj9R
+         P4ED9TzLkci6fiFRzFZCLxZPGs2m26fbIl7w4nYyVgNAVqyE+4Nsq8hrZEUAeaawyDU9
+         5NyssS6Wsg2rA1TnJAzr88XFkh9nLDJOG/kxEWgsL4OXYt+AK7SqScnwZAUZ6iD32kz1
+         +84A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678975794;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qSYTF1gzbLXc9mIXUhT70b2BxBvwCOTXpLGkfOxxmec=;
-        b=RCWTLSKvzk/VkMEUEIISciikckMHBRs1fNYs5uCqaGQ5F0kpgi5XJyhf8ZCRkZ5UJA
-         fwqjY1hDrop7lrcbF2iqescSdU4XSIzhSauZyRBi38Vo185GNkXLrEe9OFeWdbgqBvwg
-         zrgfEY59aSNP/wPiV1Ajp7/hxY/t3TcIvos6HQJBdRUuUeE9mOgZkPNqVoyDDLwLe94X
-         rzrvhJE0nOF0RCxcg/oTrZvr+H1p1wpLl8O0q8AlAFPUdqsGDJQm0QK6fvsCJxIYoKsr
-         oecAPm9hVvr85yDzcSKOG6B8Qw3yUwc9/wpweL3EPdy1yFcwJpVOw3K8CcR6N9ijho+P
-         T/bw==
-X-Gm-Message-State: AO0yUKV4p+Ki3r+SeZB/8L3y4mhwXLGiNxRSYsCe4kos3vt/pOkz8IJh
-        7oaWmi3zTX57nbIOEhxcUp5tzQ==
-X-Google-Smtp-Source: AK7set/lq61jyQAMsfgKe5eGKonfgJx8sh6sYalKy1N1OZp2WLwyjzWvUd/2MxH1VCw2f7GRuoFwHA==
-X-Received: by 2002:a17:907:8d1b:b0:889:1eb1:7517 with SMTP id tc27-20020a1709078d1b00b008891eb17517mr11048600ejc.30.1678975794656;
-        Thu, 16 Mar 2023 07:09:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id si16-20020a170906ced000b008e1509dde19sm3866687ejb.205.2023.03.16.07.09.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 07:09:54 -0700 (PDT)
-Message-ID: <ac27570c-73ab-ff58-d8f8-c6c5d0fa751b@linaro.org>
-Date:   Thu, 16 Mar 2023 15:09:52 +0100
+        d=1e100.net; s=20210112; t=1678975980;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AkFEog4APZRdHeT2q4GaSqDGIc5SgyK33RTmMqwtReY=;
+        b=lOybXGSz+R/walKG73W9/bvJzXLpPTBqjOgu9evlcK5vbt1xOf/061dLGe2Ke3/zNl
+         F4C1izCwtXYyJsDY6RO1sR8gATFvK5P0D6rYgrosyVmZrMeiFzWl0XE9IpbT6aJjmWCY
+         qGt+zlMr9viV71dCzfxlDJGrPyoElvtQA94Vq4lyj7WZkBkhP372Dl4brQwkgh0m88I9
+         s7efIbF1lFnlG4Jwv96phXAnrU8S3RSkBbGbLK5gSNa9TqGjqa62R6Nvx1JQhijjKVAr
+         Ny8jx34ePeBZWi4A7XO8r5t4OziwJ09TCvTlERDZRq4qTlCW3XHJx2mQx8hUOgnORhMg
+         mIrw==
+X-Gm-Message-State: AO0yUKULApVFpBjpenBrX5+Yy3usnRipSB7KbtZ/bqhqKaYXyBD+rtj8
+        IlztemvdYwgsUm7O9Fd5eeTyZg==
+X-Google-Smtp-Source: AK7set+EQ7JhP/5dKR8j1Cl9Eas3CNLuBDSy5ysOErliFuBvLjMMtZcOUp7SKZatRaQkZWKc1Ga+JA==
+X-Received: by 2002:a2e:9402:0:b0:298:97d7:8fc3 with SMTP id i2-20020a2e9402000000b0029897d78fc3mr2205383ljh.4.1678975979734;
+        Thu, 16 Mar 2023 07:12:59 -0700 (PDT)
+Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
+        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b00295735991edsm1261639ljn.38.2023.03.16.07.12.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 07:12:59 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 00/14] SM6375 feature enablement (round one)
+Date:   Thu, 16 Mar 2023 15:12:49 +0100
+Message-Id: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 04/15] dt-bindings: clock: nuvoton: add binding for ma35d1
- clock controller
-Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-5-ychuang570808@gmail.com>
- <a64bbd77-cd5c-8149-51e6-262122fe954e@linaro.org>
- <fd60a5af-8831-3d58-41b0-b220130c9e05@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fd60a5af-8831-3d58-41b0-b220130c9e05@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOIjE2QC/42OTQ6CMBCFr2K6tqb8iMWV9zCElHYKk2BLZoBoC
+ He3cgLzVt9bfO9tgoEQWNxPmyBYkTGGBPn5JOxgQg8SXWKRq7xQKXKOE1rJr6q4XVsPZl4IWLV
+ uZqkrVavSF5l2WiRBZxhkRybYISnCMo6pnAg8vo/FZ5N4QJ4jfY4Da/Zr/9paM6mkttrVpe9M5
+ dVjxGAoXiL1otn3/QujVWdE2gAAAA==
+To:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678975978; l=2737;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=RARjhqs3QRBTIsfJeubTjOqbRYf1ouM92C7DgsRRzD8=;
+ b=yKm4H5uqTeUJhy5/okAPw6qEwM4lVp6yo4kzkK3Z5im1UmNWPD5bAqgfeFLSGDhOxCY7xFCvQly0
+ aRbUzcZXANLqEShRIRatVISSA9vks4PEWnXREpxOHfiMjYtcb9HK
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 14:35, Jacky Huang wrote:
-> 
-> Dear Krzysztof,
-> 
-> 
-> 
-> On 2023/3/16 下午 03:31, Krzysztof Kozlowski wrote:
->> On 15/03/2023 08:28, Jacky Huang wrote:
->>> From: Jacky Huang <ychuang3@nuvoton.com>
->>>
->>> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
->>> between the clock controller and clock references in the dts.
->> I don't see the device binding. They come together.
-> 
-> I should move 
-> Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
-> into this patch, right?
+v1 -> v2:
+- Reword CPUCP L3 commits to indicate that CPUCP != the L3 scaler within
+- Pick up tags
+- Drop the MPM introduction as we work on resolving RPM MSG RAM bindings
 
-Yes.
+v1: https://lore.kernel.org/r/20230303-topic-sm6375_features0_dts-v1-0-8c8d94fba6f0@linaro.org
 
+Hello
 
+This series brings support for a couple of nice things on SM6375, namely:
+
+* 2 TSENS controllers & associated thermal-zones
+* RPM sleep stats
+* IMEM
+* WCN3990 Wi-Fi (Bluetooth doesn't wanna play ball yet)
+* MPSS & RMTFS
+* L3 scaling interconnect (not yet hooked up in this series, but it works,
+  still assessing the best scaling configuration)
+* MPM (big!; also implicitly fixes some interrupt lanes due to my earlier
+  misunderstanding of the downstream MPM<->GIC mapping)
+* Additional CPU sleep state (gated clock, power rail still on)
+* V- key on the Xperia
+
+It does *not* bring support for GPU, MDSS, icc and various other scaling
+parts which are still in progress of being upstreamed.
+
+More PDX225-specific patches, along with Wi-Fi enablement will come after
+that. But hey, we already know it works great ;)
+
+Tested on the only sm6375 device we support, the Xperia 10 IV (PDX225).
+
+Depends on:
+https://lore.kernel.org/lkml/20230109135647.339224-5-konrad.dybcio@linaro.org/
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (14):
+      dt-bindings: thermal: qcom-tsens: Add compatible for SM6375
+      dt-bindings: interconnect: OSM L3: Add SM6375 CPUCP compatible
+      dt-bindings: sram: qcom,imem: document SM6375 IMEM
+      arm64: dts: qcom: sm6375: Add RPM sleep stats
+      arm64: dts: qcom: sm6375: Add IMEM
+      arm64: dts: qcom: sm6375: Add RMTFS
+      arm64: dts: qcom: sm6375: Add wifi node
+      arm64: dts: qcom: sm6375: Add modem nodes
+      arm64: dts: qcom: sm6375: Add CPUCP L3 node
+      arm64: dts: qcom: sm6375: Add TSENS
+      arm64: dts: qcom: sm6375: Configure TSENS thermal zones
+      arm64: dts: qcom: sm6375: Bump CPU rail power collapse index
+      arm64: dts: qcom: sm6375: Introduce C3 power state for both ARM clusters
+      arm64: dts: qcom: sm6375-pdx225: Add volume down GPIO key
+
+ .../bindings/interconnect/qcom,osm-l3.yaml         |   1 +
+ .../devicetree/bindings/sram/qcom,imem.yaml        |   1 +
+ .../devicetree/bindings/thermal/qcom-tsens.yaml    |   1 +
+ .../dts/qcom/sm6375-sony-xperia-murray-pdx225.dts  |  27 +
+ arch/arm64/boot/dts/qcom/sm6375.dtsi               | 904 ++++++++++++++++++++-
+ 5 files changed, 926 insertions(+), 8 deletions(-)
+---
+base-commit: 1acf39ef8f1425cd105f630dc2c7c1d8fff27ed1
+change-id: 20230303-topic-sm6375_features0_dts-860904f318d8
 
 Best regards,
-Krzysztof
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
