@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29C536BD0A5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:20:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B346BD0A8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 14:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbjCPNUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 09:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35998 "EHLO
+        id S229804AbjCPNUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 09:20:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbjCPNUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:20:03 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0EEFC97DD
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 06:19:23 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id j2so1510811wrh.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 06:19:23 -0700 (PDT)
+        with ESMTP id S230075AbjCPNUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 09:20:47 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD6023D8D
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 06:20:24 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id o7so1520594wrg.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 06:20:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112; t=1678972760;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112; t=1678972822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yXNicKwHPUURyALO36PEegj/jGCRXjX7/YBezTaryXs=;
-        b=67doldxYgYKlU/XZ0kZu3+NOAqQ/2WbnP4mwdaTGI0McuaMhRPDAE/s74Wq3t6tF/V
-         J0nRxluNtH5jyXjG6gwranylrEnecoP/DUWgaO9JZ4gg6xFffDGE08IwIc2KOUXaspal
-         HHuTUIg4II4i6Oa5sRMFXG0qwnNOZQwEH5YClaHtl1ekxMRL+d17IM5dSSKvN8etH4o4
-         Gryhf8z+9DXYE61ol4wGcZdxrAPW2qatjZ5Q8iOQkHFCUmxFt43/+ApFfD1rBG+HZP3t
-         j+M2PnF2oTfQycLOuf/WXwZevaBF66GgvGXiPTY9lyNMUBSV3fX9CsUSbPa1JK7AlIvp
-         vKjg==
+        bh=cNtcjIvt7Jcu6BbJu0k6G/sx5AHflabOU3bxX5prrUE=;
+        b=L6eAT+smuQGoJO4DezL+IdwC0T7yTp/6MdgBgpSYGnzsE3GMtH0OsHZCA5KvkK/jsL
+         SCQbzTNJRG+h5gG55AwIc3rp3qvPJ5HvHBpBdMMvum+UhNDX3K0d4mevTt2us+FFR9fP
+         /SkYJ3PFgwjlEeZJ4QPID/NaQDyD2lSqhEWFJsMLe0iYwjDfErv7L30D/hLJYYVSFfx7
+         jrT7h87/rKRPpMs9Aij8oJj9DBxmwR0E5LN3DULWfc0aFVYbJwTggaKYwjOlxm9f5rbi
+         T0csEj0sYOg1wDUvvVEpshdAj9QA/fAZ/IJurP8+1WuNoMR3+2zSN2/cqzpGfR2FuvNh
+         EyZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678972760;
+        d=1e100.net; s=20210112; t=1678972822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yXNicKwHPUURyALO36PEegj/jGCRXjX7/YBezTaryXs=;
-        b=GDckWumeAhUQop8WPFxRbY89rBeTDIB76IfbtUbI4afS4eoek4u0DA0Ag462vGzm8h
-         3GvZWdBbJ20cnGWgl+oDJ6K5hFxS7aQyMmBWlbsNCZ8HHN0q4mkjrmqSj+TgAzLPwM21
-         lb9G4Pn0GZ8lbLZ0z71wJyfjjMp7DVlzfw45FWNnQ3SzZ/u7uh5YqvkfMNayIFmAPFQr
-         N6fiI/lQQL7QtxdNBf2KEZtx1rn70Ndn69u/3P/nsf4WAnYSZAvCM98wcQmaOJsdd9yx
-         9NvRLql9qz2dvlqn7K7db3eMqreyMxbIUYdXeZ/p3CeDSKNf6m5c9d6Q3aM6qArW7zh2
-         CZnA==
-X-Gm-Message-State: AO0yUKUXUR2SWDVd4CCfXG/GmAOBMW7rarjrPNusAeCFDaeBBk6SnM0C
-        /JnQBKrtsPbTN0+OzFLvyob4vg==
-X-Google-Smtp-Source: AK7set9ckwc+gnRj+k56d+SvgcefBu0ajEjl4o1f/HxCl/7FMrq5djA9ftFJ5OFMO4WJD/IRBsDEKA==
-X-Received: by 2002:a5d:49cc:0:b0:2c7:57e:633e with SMTP id t12-20020a5d49cc000000b002c7057e633emr4666191wrs.49.1678972760162;
-        Thu, 16 Mar 2023 06:19:20 -0700 (PDT)
+        bh=cNtcjIvt7Jcu6BbJu0k6G/sx5AHflabOU3bxX5prrUE=;
+        b=ksAZY2L5a5MYqVRBGXL2Ys2xpvAXmhll5eQ41LWzXEl14XPlXR8yw5Twa8RSu8oCfi
+         QvB46m8xXeBNf64JhspmqCXIhEuiCFsVgcntBEMdbETrpTLddqolorgD6BbiWLYpMgzN
+         AnrbEvDd8rOdttCM+8/FNlYhi1UFFGnqiKfw0cO5KuqnHSrGYl30Onf5QcTU1I2EuzQR
+         ChQmd9NmJ+bFoBm16kaJ05R3c7gd8EnloL2Q8xKWnd3FJtJBSBrgayuLYZiKEPcnpPNy
+         aZCVS+2VYlyPWEhxFiJzjVnBq+qHlqYBJGIU10+n86EXN6KLYg52ZCJD7UWnfwzqshpF
+         Nx9w==
+X-Gm-Message-State: AO0yUKV3UBArESue2A3KBAcU5dL4//jYslHTTsU7RN//kF4oTHxz/NIj
+        dB6Egj6wwhOljPkXqbOEdUWNwg==
+X-Google-Smtp-Source: AK7set98CBvIraFbTCbJWdo8CgRP1gvKzH5/GyoF0yuADO0rA+pPToO5CbtwnI+LruqnMYg8TXy3Ww==
+X-Received: by 2002:adf:ce11:0:b0:2cf:e3d0:2a43 with SMTP id p17-20020adfce11000000b002cfe3d02a43mr4536359wrn.4.1678972821966;
+        Thu, 16 Mar 2023 06:20:21 -0700 (PDT)
 Received: from alex-rivos.ba.rivosinc.com (238.174.185.81.rev.sfr.net. [81.185.174.238])
-        by smtp.gmail.com with ESMTPSA id h5-20020a5d5485000000b002c5a1bd5280sm7210070wrv.95.2023.03.16.06.19.18
+        by smtp.gmail.com with ESMTPSA id z4-20020a5d6544000000b002c56013c07fsm7218162wrv.109.2023.03.16.06.20.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 06:19:20 -0700 (PDT)
+        Thu, 16 Mar 2023 06:20:21 -0700 (PDT)
 From:   Alexandre Ghiti <alexghiti@rivosinc.com>
 To:     Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>,
@@ -64,9 +64,9 @@ To:     Catalin Marinas <catalin.marinas@arm.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-mm@kvack.org
 Cc:     Alexandre Ghiti <alexghiti@rivosinc.com>
-Subject: [PATCH v8 2/4] mm: Introduce memblock_isolate_memory
-Date:   Thu, 16 Mar 2023 14:17:09 +0100
-Message-Id: <20230316131711.1284451-3-alexghiti@rivosinc.com>
+Subject: [PATCH v8 3/4] arm64: Make use of memblock_isolate_memory for the linear mapping
+Date:   Thu, 16 Mar 2023 14:17:10 +0100
+Message-Id: <20230316131711.1284451-4-alexghiti@rivosinc.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230316131711.1284451-1-alexghiti@rivosinc.com>
 References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
@@ -81,62 +81,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This function allows to split a region in memblock.memory and will be
-useful when setting up the linear mapping with STRICT_KERNEL_RWX: it
-allows to isolate the kernel text/rodata and then avoid to map those
-regions with a PUD/P4D/PGD.
+In order to isolate the kernel text mapping and the crash kernel
+region, we used some sort of hack to isolate thoses ranges which consisted
+in marking them as not mappable with memblock_mark_nomap.
+
+Simply use the newly introduced memblock_isolate_memory function which does
+exactly the same but does not uselessly mark the region as not mappable.
 
 Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
-Tested-by: Anup Patel <anup@brainfault.org>
 ---
- include/linux/memblock.h |  1 +
- mm/memblock.c            | 20 ++++++++++++++++++++
- 2 files changed, 21 insertions(+)
+ arch/arm64/mm/mmu.c | 25 ++++++++++++++++---------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
-diff --git a/include/linux/memblock.h b/include/linux/memblock.h
-index 50ad19662a32..2f7ef97c0da7 100644
---- a/include/linux/memblock.h
-+++ b/include/linux/memblock.h
-@@ -125,6 +125,7 @@ int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
- int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
- int memblock_mark_nomap(phys_addr_t base, phys_addr_t size);
- int memblock_clear_nomap(phys_addr_t base, phys_addr_t size);
-+int memblock_isolate_memory(phys_addr_t base, phys_addr_t size);
+diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+index 6f9d8898a025..387c2a065a09 100644
+--- a/arch/arm64/mm/mmu.c
++++ b/arch/arm64/mm/mmu.c
+@@ -548,19 +548,18 @@ static void __init map_mem(pgd_t *pgdp)
  
- void memblock_free_all(void);
- void memblock_free(void *ptr, size_t size);
-diff --git a/mm/memblock.c b/mm/memblock.c
-index 25fd0626a9e7..e8c651a37012 100644
---- a/mm/memblock.c
-+++ b/mm/memblock.c
-@@ -805,6 +805,26 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
- 	return 0;
- }
+ 	/*
+ 	 * Take care not to create a writable alias for the
+-	 * read-only text and rodata sections of the kernel image.
+-	 * So temporarily mark them as NOMAP to skip mappings in
+-	 * the following for-loop
++	 * read-only text and rodata sections of the kernel image so isolate
++	 * those regions and map them after the for loop.
+ 	 */
+-	memblock_mark_nomap(kernel_start, kernel_end - kernel_start);
++	memblock_isolate_memory(kernel_start, kernel_end - kernel_start);
  
-+/**
-+ * memblock_isolate_memory - isolate given range in memblock.memory
-+ * @base: base of range to isolate
-+ * @size: size of range to isolate
-+ *
-+ * Isolates the given range in memblock.memory so that it does not share any
-+ * region with other ranges.
-+ *
-+ * Return:
-+ * 0 on success, -errno on failure.
-+ */
+ #ifdef CONFIG_KEXEC_CORE
+ 	if (crash_mem_map) {
+ 		if (defer_reserve_crashkernel())
+ 			flags |= NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS;
+ 		else if (crashk_res.end)
+-			memblock_mark_nomap(crashk_res.start,
+-			    resource_size(&crashk_res));
++			memblock_isolate_memory(crashk_res.start,
++						resource_size(&crashk_res));
+ 	}
+ #endif
+ 
+@@ -568,6 +567,17 @@ static void __init map_mem(pgd_t *pgdp)
+ 	for_each_mem_range(i, &start, &end) {
+ 		if (start >= end)
+ 			break;
 +
-+int __init_memblock memblock_isolate_memory(phys_addr_t base, phys_addr_t size)
-+{
-+	int start_rgn, end_rgn;
++		if (start == kernel_start)
++			continue;
 +
-+	return memblock_isolate_range(&memblock.memory, base, size,
-+				      &start_rgn, &end_rgn);
-+}
++#ifdef CONFIG_KEXEC_CORE
++		if (start == crashk_res.start &&
++		    crash_mem_map && !defer_reserve_crashkernel() &&
++		    crashk_res.end)
++			continue;
++#endif
 +
- static int __init_memblock memblock_remove_range(struct memblock_type *type,
- 					  phys_addr_t base, phys_addr_t size)
- {
+ 		/*
+ 		 * The linear map must allow allocation tags reading/writing
+ 		 * if MTE is present. Otherwise, it has the same attributes as
+@@ -589,7 +599,6 @@ static void __init map_mem(pgd_t *pgdp)
+ 	 */
+ 	__map_memblock(pgdp, kernel_start, kernel_end,
+ 		       PAGE_KERNEL, NO_CONT_MAPPINGS);
+-	memblock_clear_nomap(kernel_start, kernel_end - kernel_start);
+ 
+ 	/*
+ 	 * Use page-level mappings here so that we can shrink the region
+@@ -603,8 +612,6 @@ static void __init map_mem(pgd_t *pgdp)
+ 				       crashk_res.end + 1,
+ 				       PAGE_KERNEL,
+ 				       NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS);
+-			memblock_clear_nomap(crashk_res.start,
+-					     resource_size(&crashk_res));
+ 		}
+ 	}
+ #endif
 -- 
 2.37.2
 
