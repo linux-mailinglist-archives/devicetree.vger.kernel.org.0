@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAFF6BC73C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 08:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1988D6BC741
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 08:32:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbjCPHc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 03:32:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43004 "EHLO
+        id S229874AbjCPHcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 03:32:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbjCPHcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 03:32:25 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A869FE5D
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 00:31:39 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id x3so3800601edb.10
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 00:31:39 -0700 (PDT)
+        with ESMTP id S230273AbjCPHci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 03:32:38 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 880A687D87
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 00:32:02 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id cy23so3775264edb.12
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 00:32:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678951898;
+        d=linaro.org; s=google; t=1678951918;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/93mrEeY6xwjN+aW9i3HMgTYVgvZthXEVo0SwOP9yz0=;
-        b=pWvQL6UWdEsVn0ulz6eZaGaz45ZgR3UZxbpVFYQtqM8Of9CXK9uH/zzYubSBBfEqnD
-         /+4oC1aSo7oxbFOSQouGKCez+2L20FDMGEKJEy7ZyoNL8oJAIG4KzEEEVtIQTBt4Az5c
-         JiyMWYQPQNgoBVmO/vc2RoKN5gN+vPgiUsHXGwtrrLKsk4uv5GZJQjDxmlggd9rsU9Ms
-         4B5K0+EI+UbcN9ZmaLzpM1CZNFcWW9pRA78YiglcmPzGEWI+DOZTuMzCwIIqpR/J5PwU
-         g8w1SUtKE+p0BM64OIsrE7i+15Kf61qzYDSYOE/CReEw2dbmn3c6moDH7k2OmxMmDTnd
-         spdA==
+        bh=GnScg0d+XUCiCIAUOYj6NtmRf8jyxKbyqx95uNvhbUU=;
+        b=C8NY87SkEYUArxDsUsCL2+2x4wbKNGgk8J2KjTCHYJX2tGfBfGyaUaA+yR6G2k3GPi
+         ntQR5iRQGJQJfNsTxPCPAHzxCOtgDpw1XlvSZMw5b5E6Cyc1SIi93jWsNH1WurMlxH+Q
+         nQBRV4QfNn+BvvLym+/qM0BxHCCkGxr0brEb2kKGGskrMaa3cqZQsbAwiUE57zCaMf5G
+         j2yim5dDqLzLK7NtLzPPLsxP3AI+jCIvtOb4xliA9ywIgPtQT4CU4/vMGydtzFFto0kd
+         dZ3RkmGd9VQWxJWeTZBciOQ+T+N6c9IPvmOqI6vD9SGpEx2ZhUWpT4kxwC1tzAj2wROa
+         XoAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678951898;
+        d=1e100.net; s=20210112; t=1678951918;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/93mrEeY6xwjN+aW9i3HMgTYVgvZthXEVo0SwOP9yz0=;
-        b=T3UWpdoSDveqKwq/qs8l4P43DJPM9ejR0SyEB9ZfeevvI8NfH5pWVhWZ1CfVXpBtu5
-         WJFCf//kKOQPeaajLzHd+cqEptapE6KUaVwD9Uivl0HaPDR6NmLqGkUSvsZh7eodkV4W
-         Zr9JJ4cZfelUwsrRKN4lhzPcOJqKBTBgO8XEOdkxjs5y+sCIpRk0W25QFVGIMbi5vAEP
-         ZMbgsGotmmz9fvcriyw411l+463PGWeicLCyqiKS6eo69cBMouqYEfNdOTC4Za2cqRP/
-         Z3I7O76+YGGGojNcF13TzeeUdZ2ZSNWsoh0VuSF5NDoFNjLCjh6VHFHIyWqThQcEF06k
-         4h7w==
-X-Gm-Message-State: AO0yUKWwHc01gIWlcuSQMofXDcI29XxybW1+NqTRRDn0DsjKzPxyLzuG
-        wPeLp6nFnC8FyczCKNkvw8J9mA==
-X-Google-Smtp-Source: AK7set9Iw+FrqSDZZYHWOE0H7eBOAaW6XE7mWlnsadc2iqDDt4LlsPdRqsCuh/d+SOt0X7wDW8xm8Q==
-X-Received: by 2002:aa7:c7cc:0:b0:4fd:298d:2f95 with SMTP id o12-20020aa7c7cc000000b004fd298d2f95mr5455545eds.26.1678951897931;
-        Thu, 16 Mar 2023 00:31:37 -0700 (PDT)
+        bh=GnScg0d+XUCiCIAUOYj6NtmRf8jyxKbyqx95uNvhbUU=;
+        b=J8PktsvZTyEuK8jMXtcWfTnSQpBu9vLKCIgYBqGfmKPi5FNYQ4h40fJ1Rm0oFmWv8o
+         IEOthhIsK220JUbqtL6gEt5Ndob3JfRFQ4jpZ8H+0dnDdI+QXWxP5n/3ogxQ7eAQPE8Q
+         OaXiOVEIVRSLjN54MhLsAHp5qn7/cgkTe9i8wPAauyDlUmJsP0BvE02No9tBpde2YnEH
+         4gcD6go7yxaYNj1HsJGvmsrhdLSxCi0SyuOv6BDk7cDXfYkA3Nx3d+blY6w/K0cYwx/R
+         KMpjHtqM2iBvOj7FECg49N8Zhu6S//zrK+8I5jdv4O0nUA429umhCESzEyr0xn4JiTHo
+         zmDQ==
+X-Gm-Message-State: AO0yUKXTJSPnxsq5uveYidIw5FXxZviA9sqStPIJej8EVC3Hl5A2Eaae
+        zpi0w7W9x+BA/80pIYCx8DIAXw==
+X-Google-Smtp-Source: AK7set+7hxtHDmQV+OKIM/3ytJUsWaADhOhEP6f9Q7wl66uIR0rSLRCYBTN7JKldf1W6259Si4MQPg==
+X-Received: by 2002:a17:907:6297:b0:930:7324:2766 with SMTP id nd23-20020a170907629700b0093073242766mr1186457ejc.35.1678951918362;
+        Thu, 16 Mar 2023 00:31:58 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9827:5f65:8269:a95f? ([2a02:810d:15c0:828:9827:5f65:8269:a95f])
-        by smtp.gmail.com with ESMTPSA id v18-20020a509552000000b004fe924d16cfsm2938042eda.31.2023.03.16.00.31.37
+        by smtp.gmail.com with ESMTPSA id jz26-20020a17090775fa00b008e309da3253sm3462074ejc.202.2023.03.16.00.31.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 00:31:37 -0700 (PDT)
-Message-ID: <542d683b-0ad9-ec76-cf26-a817e3cb2e33@linaro.org>
-Date:   Thu, 16 Mar 2023 08:31:36 +0100
+        Thu, 16 Mar 2023 00:31:58 -0700 (PDT)
+Message-ID: <84805483-b20a-8dd7-6efe-904f59e063dc@linaro.org>
+Date:   Thu, 16 Mar 2023 08:31:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 05/15] dt-bindings: reset: nuvoton: add binding for ma35d1
- IP reset control
+Subject: Re: [PATCH 06/15] dt-bindings: mfd: syscon: Add nuvoton,ma35d1-sys
+ compatible
 Content-Language: en-US
 To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
@@ -65,14 +65,15 @@ Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
         schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
 References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-6-ychuang570808@gmail.com>
+ <20230315072902.9298-7-ychuang570808@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315072902.9298-6-ychuang570808@gmail.com>
+In-Reply-To: <20230315072902.9298-7-ychuang570808@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,12 +83,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 15/03/2023 08:28, Jacky Huang wrote:
 > From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
-> between the reset controller and reset references in the dts.
+> Add Nuvoton ma35d1 system registers compatible
+
+Missing full stop.
+
 > 
 > Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index c828c4f5e4a7..e7a3c6e1e77f 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -57,6 +57,7 @@ properties:
+>                - microchip,sparx5-cpu-syscon
+>                - mstar,msc313-pmsleep
+>                - nuvoton,wpcm450-shm
+> +              - nuvoton,ma35d1-sys
 
-Same problems as previous patch.
+Wrong order
 
 Best regards,
 Krzysztof
