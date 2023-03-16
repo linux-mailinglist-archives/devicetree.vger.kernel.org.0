@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04FF76BD1E3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:13:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E626F6BD1E9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Mar 2023 15:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbjCPONG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 10:13:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33678 "EHLO
+        id S231195AbjCPONK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 10:13:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbjCPONE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:13:04 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98745BD8A
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:02 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id l22so1822726ljc.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:02 -0700 (PDT)
+        with ESMTP id S229890AbjCPONI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 10:13:08 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AB65DC80
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:04 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id x36so1834734ljq.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 07:13:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1678975981;
+        d=linaro.org; s=google; t=1678975983;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9BpBLhF7aJ8XDaNEo3pgNtZLZiLgPvI+GpJaOKLbCqg=;
-        b=YltE/VzWOhFVV9rC/25tW+AT2zTFZ/y6DSwBqhXQyEBAE/Y6OMFKBZZ5Q33bBe6qcP
-         PE8YvHVXCTku0Kmz187ciG7Czwtj1HWxZ0TMMc3fG35wKA9FseDL2r3gXvwALVcF7vB3
-         /GiqH6S6u/pqAj6H4CWgxJDCxuYQ8kVqHQAo18hON1uvyICjFmOcZ/qIawArKHJHvBCg
-         0MZfJ5JJGtJYRGU6S4CzuOKW0acEtxKvY2bR4iEo4GLkr28qiFFVpGbhorzfnU48nC5p
-         MUb/cBZDeC9QJ3KYUI73YoBgTDXzEOGdPcyC0ZQJPuqqDTnICnPLUIJiCU90vUbsyqoi
-         wNKA==
+        bh=LOCr/dp56x8yfPg236tQnpLOuN8kndNbHP2o7x5RuGY=;
+        b=Lc5KcKlhDqHl1KpuuZ5W/BnHDClDtmGbyEhuFN4hZOfZ9bBf7AybyTkPQP6acCDk0R
+         xzM+c6wqXxJEobg0Doo9IL43MP54R23YEd4gcmN98ufUr65okpYDbxZhaxEcgEeAbztC
+         52xVsAbOE8CHnWzLYFc7D8LFa1iIJ67q3080VG8pH5UR/05IvRt7lB18tin793Ao5AzS
+         E+JAL6rFweGo8cKtN3n1pa2Y3QKbuZIEpmzbvm8fmv0NZtLT5VJJAowjNQC7PJE4pxWl
+         PtXb7ViNNvLLQzMhkaLGwHk5isGRJibcHQ105pe+StMNpF2HninSAWfNu5r2FLWOxxPZ
+         jbkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1678975981;
+        d=1e100.net; s=20210112; t=1678975983;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9BpBLhF7aJ8XDaNEo3pgNtZLZiLgPvI+GpJaOKLbCqg=;
-        b=3c2sZVje6ry7V8tm/BNIGqXLIJ2GKzfSyHukvB7lcrcPkORjJnpgn1HScCD94DciFJ
-         lyu66JG73fASZPebme9wBO1R+wZnHOvO/iJfjB6FdDl4V8DXa8LGOC8HoGyWjsE9PocT
-         BTbF3xKKqcr0ijCYHxoeE+N9mB/7jxL1pgoUuGlSaiPWMk1Z3wSlmRVkZ56Q3OUtNpUS
-         Qh/eKERqZJK8An4pArcvTWyW5rmh/22nq3RavCOyarhWetv3y4NPaguKwUE3JKQYYG15
-         Epi6nGwMILxpFiPJmUm58YB4V0UcSuAX7xssV7QtmZ/ZbN8b0vguygnvnxDXt9CH2i5g
-         FB7w==
-X-Gm-Message-State: AO0yUKWE2FzL38M3EgqUz7bkyx4Rwo2HL4tlNVmB585U8aq1g+t3Ic+b
-        ASQ54QFwKakgQN3qSXGoRZRdOQ==
-X-Google-Smtp-Source: AK7set+B56+wMoBVdhJEio81s8i+HfKpgPcCBQPkW7htmyvgIRoRIWpgCi017xTSXgxRXJMBy4LaUA==
-X-Received: by 2002:a2e:9281:0:b0:294:669a:6adc with SMTP id d1-20020a2e9281000000b00294669a6adcmr2024061ljh.3.1678975981240;
-        Thu, 16 Mar 2023 07:13:01 -0700 (PDT)
+        bh=LOCr/dp56x8yfPg236tQnpLOuN8kndNbHP2o7x5RuGY=;
+        b=7lrjlmC61i2hDi0c/1AxCMpjdQqsr9ViUs8bF4iNfAJIpfHxDt+ttKxhSe/mVzXPkv
+         +EsVd7ARg3wlKIJWiMMGpcrpawLO8FZXV06UaFJdvPg+e8T1/jZeybJWU/pkthR9J/ei
+         2Fy/9z+S9gx3vPa+2cXcrAmtPKHtMRhPl544GnKhaKC5xffcXMcOp4c7dmkJgAg0kDff
+         8WMSaf/0bFzsKG4Yul663lpX9JCOLNILQSaiEqeZsyROETjmrTVZXMCEijJotDo015+A
+         wtciVflmMKyXJ/wztRMEDI1xsBGjNEmlQMsBMBvWdsTv50tUgQUcZCdyUfHwGGzmnSf1
+         lhJQ==
+X-Gm-Message-State: AO0yUKWSft31yJ8CMBy5P1M8Jxkw98bKrZ28t579psCQ3HAbuJBPu4gp
+        0GBdK2xbOxsCrhi6hbjYNxpOhA==
+X-Google-Smtp-Source: AK7set83wVWsxOA+7q+2KuVzmbpaqw5DKO4c5CtIJKIJi3/iEalYzjMBNHw0lq5cNzgNDxd96vigHQ==
+X-Received: by 2002:a05:651c:1993:b0:293:5f35:d68f with SMTP id bx19-20020a05651c199300b002935f35d68fmr3014299ljb.31.1678975983034;
+        Thu, 16 Mar 2023 07:13:03 -0700 (PDT)
 Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b00295735991edsm1261639ljn.38.2023.03.16.07.12.59
+        by smtp.gmail.com with ESMTPSA id a9-20020a2eb549000000b00295735991edsm1261639ljn.38.2023.03.16.07.13.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 07:13:00 -0700 (PDT)
+        Thu, 16 Mar 2023 07:13:02 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 16 Mar 2023 15:12:50 +0100
-Subject: [PATCH v2 01/14] dt-bindings: thermal: qcom-tsens: Add compatible
- for SM6375
+Date:   Thu, 16 Mar 2023 15:12:51 +0100
+Subject: [PATCH v2 02/14] dt-bindings: interconnect: OSM L3: Add SM6375
+ CPUCP compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230303-topic-sm6375_features0_dts-v2-1-708b8191f7eb@linaro.org>
+Message-Id: <20230303-topic-sm6375_features0_dts-v2-2-708b8191f7eb@linaro.org>
 References: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
 In-Reply-To: <20230303-topic-sm6375_features0_dts-v2-0-708b8191f7eb@linaro.org>
 To:     Amit Kucheria <amitk@kernel.org>,
@@ -76,11 +76,11 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1678975978; l=944;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1678975978; l=1087;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=7yZwhGENX7kryEzh3vUpHmBmqtqu0DXIXAX7kaP5Nx0=;
- b=oemx7n8vVMQxmhebPZ66HcpC4qxeCouJUTM+2mDAsIFu7O+gMMlMiJ8qxeOr6iriomV1T9AVlMgR
- IrHeimFhCem38YQhwOHlNgM5ACQ1S+oDyKrnon/rpDdafYPuVwvi
+ bh=T2UOT192UwWYD42jhZA6LPQhbEe5pwQ77s6b/5s/QFI=;
+ b=dZYzKfGZGus6e9MJbhUWopp854ldx9ddjnWZSnzdTnqz5qI1VR7IgwTWMT8ycCzFTlctd6pn0S4u
+ oS5Uv1p4BxViuyMsoJvaQKwRm80YQXR1ZmH+qAPqtkcxBIktbFfM
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,27 +93,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SM6375 platform has two instances of the tsens v2.8.0 block,
-add a compatible for these instances.
+SM6375 includes a CPUCP block responsible for managing different APSS-
+related tasks, such as scaling the voltage and frequency of the
+components within the ARM DSU cluster. Add a compatible for the L3 cache
+DVFS scaler within.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+ Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index 926e9c51c93c..d73b72dafcbc 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -56,6 +56,7 @@ properties:
-               - qcom,sdm845-tsens
-               - qcom,sm6115-tsens
-               - qcom,sm6350-tsens
-+              - qcom,sm6375-tsens
-               - qcom,sm8150-tsens
-               - qcom,sm8250-tsens
-               - qcom,sm8350-tsens
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+index 576992a6dc5a..9d0a98d77ae9 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+@@ -29,6 +29,7 @@ properties:
+           - enum:
+               - qcom,sc7280-epss-l3
+               - qcom,sc8280xp-epss-l3
++              - qcom,sm6375-cpucp-l3
+               - qcom,sm8250-epss-l3
+               - qcom,sm8350-epss-l3
+           - const: qcom,epss-l3
 
 -- 
 2.39.2
