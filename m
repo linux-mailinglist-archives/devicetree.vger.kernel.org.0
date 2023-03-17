@@ -2,197 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA03B6BE2F0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3339C6BE2E2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbjCQIUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52204 "EHLO
+        id S229974AbjCQIRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbjCQIUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:20:04 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3067D589B;
-        Fri, 17 Mar 2023 01:19:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AF2D8B824DB;
-        Fri, 17 Mar 2023 08:14:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFEF8C433D2;
-        Fri, 17 Mar 2023 08:14:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679040858;
-        bh=2xB2mT32ve+cPvMoyMEWr/WHQwF5/3cn9Vw7Tloef3k=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SM2WNcTX+Rs0C+RBJFKAXcjcNUwolzWRbaV6P3ifOl1TAClp2q2pDaMk2P0jyWFrb
-         kBHAylp4KeAxfb3eOjDClEqVou+aTHIR2sOV9xGP4GwaEpPZjAARTybeGLndxE/N/n
-         IJD/rB+oBPynsPFTMBHmJ9tlNb1UASJpYvRn7yAkc0imKG1MJqWqqTE2vcJ9NDDc1i
-         1m8RIvFr4jxgif8GxEms8P5zyNCy1RzGIFyUY8gGB2rwp41nYAWdwL1hjIfuzNfgT5
-         755D4mxxp1q60JmnfAqFfK8EfaTiWiBZN4YqC7un9S2oV8kOKUpZWKyHam49n4NURw
-         9IoF0RumcFk+w==
-Date:   Fri, 17 Mar 2023 09:14:10 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org, pavel@ucw.cz
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [net-next PATCH v4 10/14] dt-bindings: net: dsa: qca8k: add
- LEDs definition example
-Message-ID: <20230317091410.58787646@dellmb>
-In-Reply-To: <20230317023125.486-11-ansuelsmth@gmail.com>
-References: <20230317023125.486-1-ansuelsmth@gmail.com>
-        <20230317023125.486-11-ansuelsmth@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.35; x86_64-pc-linux-gnu)
+        with ESMTP id S229997AbjCQIRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:17:10 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7186CD7C2D;
+        Fri, 17 Mar 2023 01:16:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ShZIhxx3b2bmUH3tJxhB9VV6YIbZXgi+PEoctj65VYM=; b=GE+l9AJr8Pmkch8WJvie9/zXcZ
+        jjCT+KodhsSroPp40/tD/SpE+zSy6aYbRYuuFMyquYX8AAWAGTCH4RER3zlg06ZROvJeVQSD8FU5m
+        w92i34++XmimYl7jAK0kSyWprMhz6NGovgCXSU/HdE3uKQqLghJAUVDch9E0WF7s6GBIILytkDX0m
+        8RwoyljsDIeqfDhQLSk2/7PM4HbC3+6Oi3VO4QUOp29tCnV3jfztzCcKgt0AvJFkNJKhSeFBjxpjl
+        DVJCGZwSaeC8x388DsZ7t7ADv7mMmaAHMahZxpSJnbhPG1pogTJTHhGoKKu2/1EI0ECbkMDIPHlmn
+        T7tIcuBQ==;
+Received: from p200300ccff1235001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff12:3500:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pd5GA-00073H-3k; Fri, 17 Mar 2023 09:16:22 +0100
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pd5G9-00A15O-C6; Fri, 17 Mar 2023 09:16:21 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, marex@denx.de, max.krummenacher@toradex.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2 0/2] ARM: dts: Add Tolino Vision
+Date:   Fri, 17 Mar 2023 09:16:16 +0100
+Message-Id: <20230317081618.2387407-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Christian, also Rob Herring, Andrew Lunn and Pavel Machek,
+Add a basic device tree for the Tolino Vision Ebook reader.
+It is equipped with an i.MX6SL SoC.
 
-On Fri, 17 Mar 2023 03:31:21 +0100
-Christian Marangi <ansuelsmth@gmail.com> wrote:
+Andreas Kemnade (2):
+  dt-bindings: arm: fsl: add compatible string for Tolino Vision
+  ARM: dts: imx: Add devicetree for Tolino Vison
 
-> Add LEDs definition example for qca8k Switch Family to describe how they
-> should be defined for a correct usage.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/net/dsa/qca8k.yaml    | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> index 389892592aac..2e9c14af0223 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> @@ -18,6 +18,8 @@ description:
->    PHY it is connected to. In this config, an internal mdio-bus is registered and
->    the MDIO master is used for communication. Mixed external and internal
->    mdio-bus configurations are not supported by the hardware.
-> +  Each phy has at least 3 LEDs connected and can be declared
-> +  using the standard LEDs structure.
->  
->  properties:
->    compatible:
-> @@ -117,6 +119,7 @@ unevaluatedProperties: false
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/leds/common.h>
->  
->      mdio {
->          #address-cells = <1>;
-> @@ -226,6 +229,27 @@ examples:
->                      label = "lan1";
->                      phy-mode = "internal";
->                      phy-handle = <&internal_phy_port1>;
-> +
-> +                    leds {
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +
-> +                        led@0 {
-> +                            reg = <0>;
-> +                            color = <LED_COLOR_ID_WHITE>;
-> +                            function = LED_FUNCTION_LAN;
-> +                            function-enumerator = <1>;
-> +                            default-state = "keep";
-> +                        };
-> +
-> +                        led@1 {
-> +                            reg = <1>;
-> +                            color = <LED_COLOR_ID_AMBER>;
-> +                            function = LED_FUNCTION_LAN;
-> +                            function-enumerator = <1>;
-> +                            default-state = "keep";
-> +                        };
-> +                    };
->                  };
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/imx6sl-tolino-vision.dts    | 490 ++++++++++++++++++
+ 3 files changed, 492 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6sl-tolino-vision.dts
 
-I have nothing against this, but I would like to point out the
-existence of the trigger-sources DT property, and I would like to
-discuss how this property should be used by the LED subsystem to choose
-default behaviour of a LED.
+-- 
+2.30.2
 
-Consider that we want to specify in device-tree that a PHY LED (or any
-other LED) should blink on network activity of the network device
-connected to this PHY (let's say the attached network device is eth0).
-(Why would we want to specify this in devicetree? Because currently the
- drivers either keep the behaviour from boot or change it to something
- specific that is not configurable.)
-
-We could specify in DT something like:
-  eth0: ethernet-controller {
-    ...
-  }
-
-  ethernet-phy {
-    leds {
-      led@0 {
-        reg = <0>;
-        color = <LED_COLOR_ID_GREEN>;
-        trigger-sources = <&eth0>;
-        function = LED_FUNCTION_ ?????? ;
-      }
-    }
-  }
-
-The above example specifies that the LED has a trigger source (eth0),
-but we still need to specify the trigger itself (for example that
-the LED should blink on activity, or the different kinds of link). In my
-opinion, this should be specified by the function property, but this
-property is currently used in other way: it is filled in with something
-like "wan" or "lan" or "wlan", an information which, IMO,
-should instead come from the devicename part of the LED, not the
-function part.
-
-Recall that the LED names are of the form
-  devicename:color:function
-where the devicename part is supposed to be something like mmc0 or
-sda1. With LEDs that are associated with network devices I think the
-corresponding name should be the name of the network device (like eth0),
-but there is the problem of network namespaces and also that network
-devices can be renamed :(.
-
-So one option how to specify the behaviour of the LED to blink on
-activity would be to set
-  function = LED_FUNCTION_ACTIVITY;
-but this would conflict with how currently some devicetrees use "lan",
-"wlan" or "wan" as the function (which is IMO incorrect, as I said
-above).
-
-Another option would be to ignore the function and instead use
-additional argument in the trigger-source property, something like
-  trigger-sources = <&eth0 TRIGGER_SOURCE_ACTIVITY>;
-
-I would like to start a discussion on this and hear about your opinions,
-because I think that the trigger-sources and function properties were
-proposed in good faith, but currently the implementation and usage is a
-mess.
-
-Marek
