@@ -2,157 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C4536BEBBC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 255646BEBE7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:56:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbjCQOwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 10:52:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59652 "EHLO
+        id S229924AbjCQO4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 10:56:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjCQOwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:52:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4030664F9;
-        Fri, 17 Mar 2023 07:52:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 521EF60301;
-        Fri, 17 Mar 2023 14:52:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B129FC433A1;
-        Fri, 17 Mar 2023 14:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679064750;
-        bh=RemW7D3ij2yOrB+ogcaXKniVsacHQNaAVK4rBDGYz4Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IozllazTbZyyaYXT3amI+U3cYXoYTfyN3j05jbPfb654yzF7uucPlpYjfhbDPDf0m
-         e7lFNEzhyCEqImHAHTCTZl/9dHd+wNW2o69FXwJ+CFXOfAbHSee1DddG1SHVePFmik
-         6pS1mB99n4NHNlZUDWO0GWqfFL/EdpHe+9wDPUGNUT7p4EuXZkLJ9wP0KpNhn2WwWK
-         w4G1JRm8BSxTPNyIyZnjzF9zS6laNb0am5V1Zj772puADvXYqqxQHQihKBVuqUWiQr
-         hf/+ahZ8xfsqLK3aUhebsboArCF7Anp0EBw9cRjNhvmFtNyCaShvHoQxB5niawtwqi
-         ZjTpF54428zrg==
-Received: by mail-ua1-f50.google.com with SMTP id g23so3501215uak.7;
-        Fri, 17 Mar 2023 07:52:30 -0700 (PDT)
-X-Gm-Message-State: AO0yUKWFQxBIDxTdYi/pfBQsf3a7duv4t1LlzvjhuPK2Q4nncP5b36a7
-        6omOzUrQpv1QTt/Ayo1remBb8hLWeu1456gwCg==
-X-Google-Smtp-Source: AK7set9DTA37RQ8MLUsuBcTMmfhuaSeaXAnHDyapP11GtUcP5QrFKPElA5Ajcksn57LAkYRXZ1Q3oo+iw0evcfnULlQ=
-X-Received: by 2002:ab0:4a1a:0:b0:68b:8665:a73b with SMTP id
- q26-20020ab04a1a000000b0068b8665a73bmr29789667uae.1.1679064749554; Fri, 17
- Mar 2023 07:52:29 -0700 (PDT)
+        with ESMTP id S230163AbjCQO4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:56:17 -0400
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C1D3524E;
+        Fri, 17 Mar 2023 07:55:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References;
+        bh=N8AQvUD4CkJRTp9l4/aTKO2hzAyj5DrZ3kdV7fLxNxU=; b=Aj5FldAmifl1mnpVGpPCDwuFRa
+        anpISlwySB74lEODIJG7A5DJW8RUNoWrutqOXvG5JvnZFDHXeOZ0qwUNzT5Np9gt2LDUWkbsY9AWj
+        icogAE5MWHO0Knav31rtjqYAzs+6GZB7n63CY3JlJCspUP3Q0L2rSrNjPNKP1ehWLOCxVph/agfMd
+        tGGkiz2fOZ9rC5W2bnyS5u+Ua+2kc1J/XxkkgFyPFVocAkcYhF2/JstTI9DK+EOgv9VW0OdnI3IQH
+        M0ZIGT4EukgYNUBT8Hp07WTWZqqmQEQisXpaiaU3OCgMbPwl8wpr36bY+D/+Gx4fJDQhPjM+P5y1O
+        6YlEPfpQ==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pdBUX-000LQ7-P0; Fri, 17 Mar 2023 15:55:37 +0100
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b] (helo=lars-desktop.lan)
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pdBUX-000E4A-7C; Fri, 17 Mar 2023 15:55:37 +0100
+From:   Lars-Peter Clausen <lars@metafoo.de>
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: [PATCH v2 1/3] dt-bindings: i2c: cadence: Document `fifo-depth` property
+Date:   Fri, 17 Mar 2023 07:54:39 -0700
+Message-Id: <20230317145441.156880-1-lars@metafoo.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20230317030501.1811905-1-anshuman.khandual@arm.com> <20230317030501.1811905-7-anshuman.khandual@arm.com>
-In-Reply-To: <20230317030501.1811905-7-anshuman.khandual@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 17 Mar 2023 09:52:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
-Message-ID: <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
-Subject: Re: [PATCH 6/7] of/platform: Skip coresight etm4x devices from AMBA bus
-To:     Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        suzuki.poulose@arm.com, scclevenger@os.amperecomputing.com,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26846/Fri Mar 17 08:22:57 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 16, 2023 at 10:06=E2=80=AFPM Anshuman Khandual
-<anshuman.khandual@arm.com> wrote:
->
-> Allow other drivers to claim a device, disregarding the "priority" of
-> "arm,primecell". e.g., CoreSight ETM4x devices could be accessed via MMIO
-> (AMBA Bus) or via CPU system instructions.
+The depth of the FIFO of the Cadence I2C controller IP is a synthesis
+configuration parameter. Different instances of the IP can have different
+values. For correct operation software needs to be aware of the size of the
+FIFO.
 
-The OS can pick which one, use both, or this is a system integration
-time decision?
+Add the documentation for the devicetree property that describes the FIFO
+depth of the IP core.
 
-> The CoreSight ETM4x platform
-> driver can now handle both types of devices. In order to make sure the
-> driver gets to handle the "MMIO based" devices, which always had the
-> "arm,primecell" compatible, we have two options :
->
-> 1) Remove the "arm,primecell" from the DTS. But this may be problematic
->  for an older kernel without the support.
->
-> 2) The other option is to allow OF code to "ignore" the arm,primecell
-> priority for a selected list of compatibles. This would make sure that
-> both older kernels and the new kernels work fine without breaking
-> the functionality. The new DTS could always have the "arm,primecell"
-> removed.
+The default value of 16 is for backwards compatibility reasons with
+existing hardware descriptions where this property is not specified and
+software has assumed that the FIFO depth is 16.
 
-3) Drop patches 6 and 7 and just register as both AMBA and platform
-drivers. It's just some extra boilerplate. I would also do different
-compatible strings for CPU system instruction version (assuming this
-is an integration time decision).
+Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
+---
+Changes since v1:
+ * Remove quotes around "/schemas/types.yaml#/definitions/uint32"
+ * Add `enum` describing valid values
+ * Use `fifo-depth` instead of `cdns,fifo-depth`
+ * Use `bytes` instead of `words` for the property unit
+---
+ Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
->
-> This patch implements Option (2).
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Russell King (Oracle) <linux@armlinux.org.uk>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Co-developed-by: Suzuki Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Suzuki Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> ---
->  drivers/of/platform.c | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index b2bd2e783445..59ff1a38ccaa 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -325,6 +325,13 @@ static const struct of_dev_auxdata *of_dev_lookup(co=
-nst struct of_dev_auxdata *l
->         return NULL;
->  }
->
-> +static const struct of_device_id of_ignore_amba_table[] =3D {
-> +#ifdef CONFIG_CORESIGHT_SOURCE_ETM4X
-> +       { .compatible =3D "arm,coresight-etm4x" },
-> +#endif
-> +       {}    /* NULL terminated */
-> +};
-> +
->  /**
->   * of_platform_bus_create() - Create a device for a node and its childre=
-n.
->   * @bus: device node of the bus to instantiate
-> @@ -373,7 +380,8 @@ static int of_platform_bus_create(struct device_node =
-*bus,
->                 platform_data =3D auxdata->platform_data;
->         }
->
-> -       if (of_device_is_compatible(bus, "arm,primecell")) {
-> +       if (of_device_is_compatible(bus, "arm,primecell") &&
-> +           unlikely(!of_match_node(of_ignore_amba_table, bus))) {
+diff --git a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+index 2e95cda7262a..2401d1e19916 100644
+--- a/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
++++ b/Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml
+@@ -38,6 +38,13 @@ properties:
+     description: |
+       Input clock name.
+ 
++  fifo-depth:
++    description:
++      Size of the data FIFO in bytes.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 16
++    enum: [2, 4, 8, 16, 32, 64, 128, 256]
++
+ required:
+   - compatible
+   - reg
+@@ -57,4 +64,5 @@ examples:
+         clock-frequency = <400000>;
+         #address-cells = <1>;
+         #size-cells = <0>;
++        fifo-depth = <8>;
+     };
+-- 
+2.30.2
 
-of_match_node is going to take orders of magnitude longer than any
-difference unlikely() would make. Drop it.
-
->                 /*
->                  * Don't return an error here to keep compatibility with =
-older
->                  * device tree files.
-> --
-> 2.25.1
->
