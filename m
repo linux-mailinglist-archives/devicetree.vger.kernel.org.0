@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74CED6BE7FE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 12:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC23C6BE843
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 12:36:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjCQLZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 07:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39170 "EHLO
+        id S229823AbjCQLga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 07:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjCQLZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 07:25:51 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DCF620D35;
-        Fri, 17 Mar 2023 04:25:50 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id bh21-20020a05600c3d1500b003ed1ff06fb0so3075112wmb.3;
-        Fri, 17 Mar 2023 04:25:50 -0700 (PDT)
+        with ESMTP id S229760AbjCQLga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 07:36:30 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFD1A8E97;
+        Fri, 17 Mar 2023 04:35:43 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id r18so4136590wrx.1;
+        Fri, 17 Mar 2023 04:35:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679052349;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hNO4YTYPu+vesxBB7tlPYGkKhGJaH/b9VuXd4UUCCuk=;
-        b=i9Wj5Wz2CcBxCaIXIP8h3Bj0dRq3ztoYJf2yINByDJ38A2uO4OqKGsTcbXGQKpKZIq
-         c4qDeBStYgUnByThXiiETA5g8D5tZpmTeFEWS9hxkkkpxN0mt9l8UYLBWabTR331kzCe
-         lFWjaAmeEkwSY+8F6L3LwP5vjZcA3i7icV2F7U/feh1Xv6TAjf/Kwt6SB5gd+ojaVWDD
-         EO+mKlFhyl5Op8DXtQS6/PqFrJBzrCBF1CM7mmv2YXDhI7SVoWzCYVsFA+Zs43BvFXrY
-         RIyjpCgEtOZa8zp1GO0hUMW9pBwpnwnT0fiRHOkQqQvlBYiY9AwCBtXx0BP0m98pjEQl
-         jUYg==
+        d=gmail.com; s=20210112; t=1679052904;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7+WArVlrOZPWJhbqeKS4okYM7u1jSMClFvsx3vbO9bE=;
+        b=ErmwZ3Q7haGH+EoQxqn9NAbJgdp6CdDWQ3uMpQJRYNWBxX1VZH3i+gwFYwLVm8w/cO
+         27iEIROMyUeCrQsk0RV89MEG649dBhSaThI/7jXUujan8T4sufr9+r4GwbP3cYBUI7at
+         NO/Cd/a9mr2AdpSgteyEixZpXC8F4AEguUeBctwEZEZjPOsTaCAHP6ItCsulQJzFCIFi
+         kykLdqEuCF+RnS3oUFK6QQgiUGIqGNlhOasPy9Nf5H1FzE8Wk+GWfw7BFwHbKVjO8WhB
+         sH5pWz8078MaktpxrQOYFQkpH1qlgVToIL+iiJ61oymfSTuymlLDas1e3q2dUMJRmdFV
+         NdXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679052349;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hNO4YTYPu+vesxBB7tlPYGkKhGJaH/b9VuXd4UUCCuk=;
-        b=k6FXhyp7/+yBrZEldbyCd5oHGSCKR9TFicUDKuP5MHlCPIVjWBQ3bFyxeflQkFa9U6
-         dn5bJIoXaZoj5L1AEc4RuIDSJntUVGadAuV91CiE3okVTgrOyys6FlOaQ/ItW32Dh6q8
-         EmeZ37DD9KDskzDru1vQlJyF3YD1CpsqriTDvyPEo+M4iLglhuzIHVtBuu+j1rcp4gUt
-         iqY7EG1N+itRUCaVZrNUOyyx+nznQqjCBDCLo0nlGLhKzUYSYHOomFWexuhpMwpw6ECG
-         Q4TBgZfKCuVo+yM1732d2N9iodgrV7QJoqGbxvo3IO0qN3+QSFIH/eqrohPpcx1TO0la
-         6JJw==
-X-Gm-Message-State: AO0yUKWMZXvY+T6Kgtqu03fiiT34Muqvl0ZHX3z3HvdMRQWQ2rPpjHjA
-        HtH3RDmN3PrsiAMtQ/vjeVg=
-X-Google-Smtp-Source: AK7set9AZgBwQRetpG5pAKvdSStKHWZZDn5pX8FDFHrAZcHx7URK0Whqyt8RNBG4wx0hW18wu9zHkw==
-X-Received: by 2002:a05:600c:540a:b0:3ea:e582:48dd with SMTP id he10-20020a05600c540a00b003eae58248ddmr24674303wmb.34.1679052348654;
-        Fri, 17 Mar 2023 04:25:48 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m25-20020a7bca59000000b003ed341d2d68sm1717773wml.16.2023.03.17.04.25.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 04:25:48 -0700 (PDT)
-Message-ID: <008996c3-074c-b443-73f2-c14f0fdf8e4e@gmail.com>
-Date:   Fri, 17 Mar 2023 12:25:46 +0100
+        d=1e100.net; s=20210112; t=1679052904;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7+WArVlrOZPWJhbqeKS4okYM7u1jSMClFvsx3vbO9bE=;
+        b=mZGiIzpNdGZagu96aJQcFUyCWLI8Kj3DTdU5qKETrT2JT7T9ozjB9fU32bUfVyOzUP
+         yihqjF5vJdzSy8yVOhBKPVV4N1e9yKmel9dI4azIKFOV6eyFFikYP7XwO1ORtwo4TxxO
+         vYQkmQWY/DAouVULsaebNqmlq76lhqW7i6imToiYEVsN+4x2g2+9Dt4p/YMk2hRmF1PX
+         wWoPp4MOMkztvKm1SC1R5ZnNuA4Yq6zSaTvUBQuwtIJgtYs9+FtTaoGm7Ad/0WS1IIix
+         dlzgMHoN589y3xXlwnf52R1JSQUywxJ6U0rfauGfcp5GDuTVMgcc6M+YEnRQcwLm+ZH6
+         pDcA==
+X-Gm-Message-State: AO0yUKUm8AN6OInAl/GXsAGCUogM4/jc5yQO8D2ktBqy3oy5niMuQE2v
+        hwRUXx9H+LulY9JrcU4aQEE=
+X-Google-Smtp-Source: AK7set8r6yNQQkYT4XEGSlpTbfB7lvfocMNbnaBNzb1dUpAM/wbtnRB2XNEMnjne354V0Ymmlc3nyg==
+X-Received: by 2002:a5d:5511:0:b0:2cf:e759:58a3 with SMTP id b17-20020a5d5511000000b002cfe75958a3mr6640621wrv.13.1679052904080;
+        Fri, 17 Mar 2023 04:35:04 -0700 (PDT)
+Received: from atlantis.lan (255.red-79-146-124.dynamicip.rima-tde.net. [79.146.124.255])
+        by smtp.gmail.com with ESMTPSA id p17-20020adfcc91000000b002c71dd1109fsm1763505wrj.47.2023.03.17.04.35.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 04:35:03 -0700 (PDT)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
+        jonas.gorski@gmail.com, andrew@lunn.ch, olteanv@gmail.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+Subject: [PATCH 0/3] net: dsa: b53: mmap: add MDIO Mux bus controller
+Date:   Fri, 17 Mar 2023 12:34:24 +0100
+Message-Id: <20230317113427.302162-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2] dt-bindings: display: mediatek: Fix the duplicated
- fallback
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20230306-ccorr-binding-fix-v2-0-4822939a837d@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230306-ccorr-binding-fix-v2-0-4822939a837d@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,74 +76,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+B53 MMAP devices have a MDIO Mux bus controller that must be registered after
+properly initializing the switch.
+If the MDIO Mux controller is registered from a separate driver and the device
+has an external switch present, it will cause a race condition which will hang
+the device.
 
+Álvaro Fernández Rojas (3):
+  dt-bindings: net: move bcm6368-mdio-mux bindings to b53
+  net: dsa: b53: mmap: register MDIO Mux bus controller
+  net: mdio: remove BCM6368 MDIO mux bus driver
 
-On 06/03/2023 17:15, Alexandre Mergnat wrote:
-> The item which have the mediatek,mt8192-disp-ccorr const compatible already
-> exist above. Remove duplicated fallback.
-> 
-> Fixes: 137272ef1b0f ("dt-bindings: display: mediatek: Fix the fallback for mediatek,mt8186-disp-ccorr")
+ .../bindings/net/brcm,bcm6368-mdio-mux.yaml   |  52 -----
+ .../devicetree/bindings/net/dsa/brcm,b53.yaml | 131 +++++++++++++
+ drivers/net/dsa/b53/Kconfig                   |   1 +
+ drivers/net/dsa/b53/b53_mmap.c                | 127 +++++++++++-
+ drivers/net/mdio/Kconfig                      |  11 --
+ drivers/net/mdio/Makefile                     |   1 -
+ drivers/net/mdio/mdio-mux-bcm6368.c           | 184 ------------------
+ 7 files changed, 258 insertions(+), 249 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/brcm,bcm6368-mdio-mux.yaml
+ delete mode 100644 drivers/net/mdio/mdio-mux-bcm6368.c
 
-We can argue if dt-binding patches should have a fixes tag at all. Given the 
-fact that there are so many warnings still around, I don't see any value add to 
-backport these to stable kernel.
+-- 
+2.30.2
 
-That said, this is defenitely no fix, as it's only a code clean-up. No warning, 
-no bug, no functional error fixed here :)
-
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
-> Fix MTK color correction binding
-> 
-> The fallback compatible has been duplicated in the 137272ef1b0f commit.
-> 
-> To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> To: Philipp Zabel <p.zabel@pengutronix.de>
-> To: David Airlie <airlied@gmail.com>
-> To: Daniel Vetter <daniel@ffwll.ch>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Matthias Brugger <matthias.bgg@gmail.com>
-> To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> To: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-mediatek@lists.infradead.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> Changes in v2:
-> - Fix commit title.
-> - Link to v1: https://lore.kernel.org/r/20230306-ccorr-binding-fix-v1-0-177d81d60c69@baylibre.com
-> ---
->   Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml | 3 ---
->   1 file changed, 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-> index b04820c95b22..3aaf44719786 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
-> @@ -29,9 +29,6 @@ properties:
->             - enum:
->                 - mediatek,mt8188-disp-ccorr
->                 - mediatek,mt8195-disp-ccorr
-> -          - const: mediatek,mt8192-disp-ccorr
-> -      - items:
-> -          - enum:
->                 - mediatek,mt8186-disp-ccorr
-
-Please sort compatibles, that will allow for easier reading once we add more to 
-the file.
-
-Regards,
-Matthias
-
->             - const: mediatek,mt8192-disp-ccorr
->   
-> 
-> ---
-> base-commit: add072536971d7ce891fde3cdbf68c55e7cfa95a
-> change-id: 20230306-ccorr-binding-fix-718c6d725088
-> 
-> Best regards,
