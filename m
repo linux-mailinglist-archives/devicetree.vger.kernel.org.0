@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DFD16BEC1F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF496BEC24
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:04:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231393AbjCQPEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 11:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
+        id S231405AbjCQPEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 11:04:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231375AbjCQPEc (ORCPT
+        with ESMTP id S230346AbjCQPEc (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:04:32 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFEDB10EAA6
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:04:28 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id q16so4735844wrw.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:04:28 -0700 (PDT)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F98010DE7C
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:04:29 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id h17so4714300wrt.8
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:04:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1679065467;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=N8+H5EEAbdvf52NcUpG/q5u48K7jDEZDyAtoMXnmBJw=;
-        b=jHGCSiXevtNjxOVGInmryEA0cMxUdotBKyr94ROrASFDjwy5qXgtX5VUmbzeD4M6eN
-         yMnRzvZZn3QOv+HvQArfIRC4oRGVNzT130NdtAhDH6RCQiqvMVz11WF0lA8vkxXi+CSo
-         C5N51luDn1GqmZxFvbCPnbRM0jkuYp46suEXI9Qd2hc1PL33Tu5pxi6jUytLMz3pmBee
-         HkIaipaXCtArPpAAxfDcbZvqz175ekyrbM2PqVoLmObjLqjelmL3IQ6/mfAlDt+mcB4f
-         Z2nhWA9+VTycG+9luVDC5/S6LeUn1gEuKcguZVXC/FiSJcUjX83t/WqU2W7U0PGqADs2
-         YpcA==
+        bh=ehh+IB7mATn8qRRIIxxLIJvaBEzJ12on/Ve9T/GbUQs=;
+        b=zL6tjSZZwavSiV7nxL7ZYOD2UA1MeMtf6V0z+SSQkFO+5sVFOJqjmkp5pNzsfNxq9z
+         8DsS12/o/oTlUSo9JgGcaStM6ZMF24ZqeyNRKGgjzSjuyjfZpbV+kw5dJU3VWwAfm491
+         Q+mk8Dft8YNodNASDf/pYB/dsN5pw7kVbvj/uf4VZIxUXBXuX4wPNmTcwYJ0LhC302i8
+         4osxPabCp7v5HEwDxM/46ic/BcwVfaNjMPhKmqDsxyHJUag1G8A6pAdY5OtDJkJ7L+Dz
+         V3EHFnsUzyvncvkyhwcidLerAWh2XK7P+ELgP7RD1M9eGmcB/hBJxZPulHPF/bd2Tv8C
+         tKUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1679065467;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N8+H5EEAbdvf52NcUpG/q5u48K7jDEZDyAtoMXnmBJw=;
-        b=HRnI5D3loZ91JWscDa4QSdPLm3PpeTIu0+W3br+uc+QITytc5GPnQldnwJaUkxBnam
-         5Il0/1MIp/m7VxvIUxxnpX+1rYGptZTtHja+2Ua8kd8UhCV4aB9sgtV+yrEG1Ygjs6E7
-         ZFNgZgTV2IpKpOi0WaGeCHLE7gElf3P6DO87iwNJHPJ8uz7dw7fFmMz96/KFoBbMk4ru
-         BG6aKyAq94yqu/w3PWes0tHxdU/lMjse2ZQvgbqSi/BjBqjzRZYLV4SSj2BSH1kgIGQ+
-         oYaYlzzAywtHUTgROCdFDSYelKNOEBAtBfalIV0gnaSEFa9QsrRP9vioG0APLYaDlqWR
-         LXhQ==
-X-Gm-Message-State: AO0yUKUTibwvLg47qiS7GkrMtxoQspR7YGKhGC0W9sCKV74Vb/oho0TH
-        2Yok7PHVLEJvD/TdT7GygBI3+g==
-X-Google-Smtp-Source: AK7set81ak7mUMjYlTz5RGLLeMqFxklgoARBhu+7vkLku+YL8l7zvmRB8APlHJRa1BrJkd1uFIabFw==
-X-Received: by 2002:adf:d083:0:b0:2ca:c865:51c4 with SMTP id y3-20020adfd083000000b002cac86551c4mr6914500wrh.0.1679065466776;
-        Fri, 17 Mar 2023 08:04:26 -0700 (PDT)
+        bh=ehh+IB7mATn8qRRIIxxLIJvaBEzJ12on/Ve9T/GbUQs=;
+        b=5l/Ej67fHqTHV0nFrbncUu1oixvgfB5+WFTbNCL0Qc+7F6oJpl0/3SdI3TtNA5er+1
+         arLpIV48mOBMxC0ARyhdgFJ+BXxHBtBshTkK6Zu45XUoG0aDCYxIHYzP27c9Y85SxkMr
+         OmiG047AtoaYdiRo69HJ2NsyKZG9ONmcx2D91R2c65Lc0RoSLRYGNYUANFxD2ep0j7yn
+         gbJVu5L4NikRigcHA5EmqO/09XuDKLxnr6BBubzO39BKuaPe6esL465tCZYkeGYTh/3K
+         vPNMa6xZNG4Qy105ZHx4F/YaQugCPK1TgDBQgfcKHyW+Lez/toX2yLuuRd5LIqrFFnG2
+         +KyA==
+X-Gm-Message-State: AO0yUKUChktbIBvZDEDFWSv0FCEr39nH2UFVr9XPB7SZCPUBkwxkhS2m
+        kwbRQYqOYbLJ5z56Nk6uv4tr4w==
+X-Google-Smtp-Source: AK7set/NqW4Kbk9eVF0j0q7FtpPi/wkWEO5WCtNVYF74PINBGAkZzS7igmPg/Hiy70mF7QHxJVt1wQ==
+X-Received: by 2002:adf:e3c2:0:b0:2d1:46eb:3f97 with SMTP id k2-20020adfe3c2000000b002d146eb3f97mr6063265wrm.68.1679065467674;
+        Fri, 17 Mar 2023 08:04:27 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id q14-20020a05600000ce00b002be505ab59asm2133773wrx.97.2023.03.17.08.04.25
+        by smtp.gmail.com with ESMTPSA id q14-20020a05600000ce00b002be505ab59asm2133773wrx.97.2023.03.17.08.04.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 08:04:26 -0700 (PDT)
+        Fri, 17 Mar 2023 08:04:27 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 17 Mar 2023 16:04:18 +0100
-Subject: [PATCH v4 02/12] dt-bindings: soc: qcom: qcom,pmic-glink: document
- SM8450 compatible
+Date:   Fri, 17 Mar 2023 16:04:19 +0100
+Subject: [PATCH v4 03/12] dt-bindings: soc: qcom: qcom,pmic-glink: document
+ SM8550 compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v4-2-38bf0f5d07bd@linaro.org>
+Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v4-3-38bf0f5d07bd@linaro.org>
 References: <20230130-topic-sm8450-upstream-pmic-glink-v4-0-38bf0f5d07bd@linaro.org>
 In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v4-0-38bf0f5d07bd@linaro.org>
 To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
@@ -76,15 +76,15 @@ Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
 X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the SM8450 compatible used to describe the pmic glink
+Document the SM8550 compatible used to describe the pmic glink
 on this platform.
 
 Acked-by: Rob Herring <robh@kernel.org>
@@ -94,14 +94,14 @@ Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-index cf863683c21a..a85bc14de065 100644
+index a85bc14de065..6440dc801387 100644
 --- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
 +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-@@ -25,6 +25,7 @@ properties:
-           - qcom,sc8180x-pmic-glink
+@@ -26,6 +26,7 @@ properties:
            - qcom,sc8280xp-pmic-glink
            - qcom,sm8350-pmic-glink
-+          - qcom,sm8450-pmic-glink
+           - qcom,sm8450-pmic-glink
++          - qcom,sm8550-pmic-glink
        - const: qcom,pmic-glink
  
    '#address-cells':
