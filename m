@@ -2,72 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D0D6BEFCB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 18:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A9986BEFCE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 18:37:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjCQRhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 13:37:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38416 "EHLO
+        id S230180AbjCQRhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 13:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjCQRha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 13:37:30 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82341C1BD3;
-        Fri, 17 Mar 2023 10:37:09 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id bl39so1989129qkb.10;
-        Fri, 17 Mar 2023 10:37:09 -0700 (PDT)
+        with ESMTP id S230197AbjCQRhj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 13:37:39 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60403C1BF5
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 10:37:21 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id by8so4693399ljb.12
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 10:37:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679074628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nkw7xFKCGQ8y3ihDSwQaifjRjfGYpBRwz6O/9EShW4w=;
-        b=pUhvf+kdQ2fX9RNLZ9hiJXhimJItMrtY20tl+OKvdUEpAtCU1mmzPAXVlCGRz9Rv6i
-         tMhVIkUMpgTlTRDoVaOrHpFDTiISiRWAfjcs9g0rSWK/PNKlWNbzIQQq5FQ/WskZXmdi
-         8aAZpWNXa3XAPWmaSV5dqBAppsRm5iqddobUsIZGMAKTUmlH7mu/+4IVHgSd2ryEq/A9
-         3eaP/FbiN//2vViinJTQ8BI2KGQkxPp+c2J87kZ+sQfgerGVLsdRn9ADkcNjqthEygeV
-         FS8Qedt896kUQphTKiEN2Jt+T/NW6CULmYux+TuIUGACOt4hQ+mXGRoXL2q7gIkUZT8B
-         M1gA==
+        d=linaro.org; s=google; t=1679074639;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RTPkw06mclz1qDKURG8hZknAWGe9n19Feii2ENMQnOQ=;
+        b=LLh7zF+Yta/6S1YIBhazjDn1OxMJYWjTnMEdMZGz96mwtdtpHXh0ws+zfXwdqJOJNM
+         ZP797GvnlnAZdxJXWf2zpkWTeSxjm6cXXO+JTExArHFDUQjVQ7ALgJJfhBx98v8anUqr
+         PpYuaWApgB8sawqS1Zv4evr+69rvQ/dDwemiyYVAGAVeJQqjaxsGhZ8VV++jiu7XxzT/
+         tD4rjLH6FyrJJvcPDf8/fMqbrhiMNB2VeIb/7trg8/gX1QQzzmvRT1jhTXLQ8mMNIz+8
+         O4dyza+hEC/HoWUmazA3djbZeGe8GEjT0fBUr+ZiGy10OzCx5SQwoPcZzcafwK4358RU
+         7GOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679074628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nkw7xFKCGQ8y3ihDSwQaifjRjfGYpBRwz6O/9EShW4w=;
-        b=e0+ucX/qnpws3LEPiAB1ytHvvOugxlwQn50WDTUyVZEIWXHs0YTxgtFqPdcPDB5sj3
-         MHMeYmOA/aixZGHXL84oEIVoOQJ/nPwhpNDTY5/zc5s0c9bQQ65L0VIuHozYsCJd1i+D
-         /Ci5951d4eefdmZMdcwt3XlfrXkO4y+dkT3sFZXBhcVA5q89TozBPDCBcMUJiiAxvCHH
-         F/UWcabRh/uGIFTFiDlfpXhYbVVhwx5b7M40HbCNzb4+qsDn8CqABvy2cNWA6eBHIl70
-         q9RstgHaeWhAilhRdUsF8KQmFuIW4pk63huVrv7iKVbstYnd3wLfBH6crLqjBZQ3U9Bb
-         0n8g==
-X-Gm-Message-State: AO0yUKW0yXoNt+1zTYCQrkohSkYLu4j7+FnztmvtPsjIqa1TNzNHj6aL
-        d7/0QXo74tOl+n4MnOOV3eGKSI9/y65BngFBIME=
-X-Google-Smtp-Source: AK7set8hC6XZO9a9uhHE+dJ/fifDkD8AmIT3Wmrg0k48frLIgXxh+o4TnKjKmLQZ2jxVu9L8hIXrW037ynmF6qIV5gk=
-X-Received: by 2002:a05:620a:22d5:b0:745:bd3d:51df with SMTP id
- o21-20020a05620a22d500b00745bd3d51dfmr833838qki.3.1679074628076; Fri, 17 Mar
- 2023 10:37:08 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679074639;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RTPkw06mclz1qDKURG8hZknAWGe9n19Feii2ENMQnOQ=;
+        b=brap1f42ZUVYi3CkZosTra2Cos1bz7YkuGOYXwCQUXAI6b/y+LWvHIAd1k0K/nPzkO
+         g3KBC6bgUN5zZN8NXWnngrujFhVclFCTKeWLt6Tf1aFIosDeDiyJ+o1kJfSlN2U3P3Zu
+         Rf+lGAylNTFoIvJC97jSx25lndcSMLXmI735jL+pWz97MGwENshdtCd5lq2OdHX7O7RM
+         aVgWe2dWV9/bgNnUIA56lOaSzAeA0cg/gH9UK9z5JdGbjgYCHRopuq6q33lj4px/IRTP
+         9oLCXhJwtIBtHgWhnvzmctOJPtDt2nio8hz1boly+ERctVwb+BvY8Ta+ronlJE7M2YEy
+         Yjug==
+X-Gm-Message-State: AO0yUKV1nE3caLhzF+DybKcyILxJxdd0mn40ZWOnwwzzYvAH/qDVfegs
+        sHqsZamL7TRIu9j8yJLV3gkQrQ==
+X-Google-Smtp-Source: AK7set9Yk/gSyIC5R3b34gUS8lBFWmGcYzdoH7jpUXJuvzCEU+jk56wZCu3B/z7xqx9xyRaNMlWwUQ==
+X-Received: by 2002:a05:651c:54e:b0:293:5cce:56eb with SMTP id q14-20020a05651c054e00b002935cce56ebmr4575084ljp.43.1679074639630;
+        Fri, 17 Mar 2023 10:37:19 -0700 (PDT)
+Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
+        by smtp.gmail.com with ESMTPSA id y1-20020a2eb001000000b002986854f27dsm510277ljk.23.2023.03.17.10.37.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 10:37:19 -0700 (PDT)
+Message-ID: <2fd76707-9cf5-dbac-3514-89395a4225c2@linaro.org>
+Date:   Fri, 17 Mar 2023 18:37:16 +0100
 MIME-Version: 1.0
-References: <20221205085351.27566-1-tmaimon77@gmail.com> <20221205085351.27566-3-tmaimon77@gmail.com>
- <f28c7c34-077c-4c7e-afd8-c4180718d403@roeck-us.net>
-In-Reply-To: <f28c7c34-077c-4c7e-afd8-c4180718d403@roeck-us.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 17 Mar 2023 19:36:31 +0200
-Message-ID: <CAHp75Vegm=jmuJ6q5qofuLKm_LggKmtQZWcVgQN=MG3kMMCTRA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Tomer Maimon <tmaimon77@gmail.com>, ulf.hansson@linaro.org,
-        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        adrian.hunter@intel.com, skhan@linuxfoundation.org,
-        davidgow@google.com, pbrobinson@gmail.com, gsomlo@gmail.com,
-        briannorris@chromium.org, arnd@arndb.de, krakoczy@antmicro.com,
-        openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
+ values
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230315103950.2679317-1-stephan.gerhold@kernkonzept.com>
+ <20230315103950.2679317-3-stephan.gerhold@kernkonzept.com>
+ <ad64143c-13c0-63e3-561a-620c44f26b9d@linaro.org>
+ <ZBSCN0f8yC/nkGll@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZBSCN0f8yC/nkGll@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,27 +89,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 4:16=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
-wrote:
->
-> On Mon, Dec 05, 2022 at 10:53:51AM +0200, Tomer Maimon wrote:
-> > Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->
-> I still don't see this driver in the upstream kernel, or in linux-next.
->
-> Couple of comments:
->
-> - devm ordering does not really matter here. The devm resource
->   is the clock, it does not depend on local data, and it will be
->   released last, so that is ok.
 
-Not sure. Strictly speaking this is the problem. If you leave a clock
-going on in a wrong period of time it (theoretically) might break your
-hardware once and forever. Similar discussion about power, clock and
-reset signals has been held for camera sensors.
 
---=20
-With Best Regards,
-Andy Shevchenko
+On 17.03.2023 16:07, Stephan Gerhold wrote:
+> On Fri, Mar 17, 2023 at 01:39:25AM +0100, Konrad Dybcio wrote:
+>> On 15.03.2023 11:39, Stephan Gerhold wrote:
+>>> According to the msm-3.18 vendor kernel from Qualcomm [1], mdm9607 uses
+>>> a non-standard slope value of 3000 (instead of 3200) for all sensors.
+>>> Fill it properly similar to the 8939 code added recently.
+>>>
+>>> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi#L875
+>>>
+>> FWIW there's a 4.9 release for 9607
+>>
+>> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.2.3.6.c5-03900-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi
+> 
+> You seem to have linked 3.18 too?
+> 
+> I don't see tsens support for mdm9607 in msm-4.9, although maybe I'm
+> looking at the wrong branch. :D
+Yeah wrong link
+
+and wrong kernel, it's actually 4.14
+
+https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/637e99f66c270385149d1f0041758c24c4f84aaf/arch/arm64/boot/dts/qcom/mdm9607.dtsi
+
+Konrad
+> 
+> Thanks,
+> Stephan
