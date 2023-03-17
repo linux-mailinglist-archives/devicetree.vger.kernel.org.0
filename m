@@ -2,246 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CACE56BEABB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:09:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8CF86BEAD4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:15:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230297AbjCQOJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 10:09:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48798 "EHLO
+        id S230342AbjCQOPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 10:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbjCQOJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:09:16 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73839AF68D;
-        Fri, 17 Mar 2023 07:09:14 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id v16so4575337wrn.0;
-        Fri, 17 Mar 2023 07:09:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679062153;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4cUCHnqI0AfBz7a3GUqT80VORgI3VfkloynuB2ZGZu0=;
-        b=EN1Ss5BBviaWKyN2iiPCA1G5rxgzBrkndGVa31XHU6NkfbITRgv0arw/VjyDahrvGS
-         s236GuMvfBLK+DaP0g01LgyUbrtAULb8C6ddbBwwdzbM70Ei98BQh7abhu3rVCzW0TpB
-         YiG0/X2b0hROkMyc8C5e8eMP/2wDpm8bEGVMKlOI2y/BAz4VRQldd5onU8KhXKD9aZal
-         7PMWnT6rTjJsSjIIM9+OKf6HVa8RrDkP/SVRyTiIv3IDiSSgcA08e+z9FRQesdEoswzu
-         mgLEtNPdhNEzkw4vpbk4BJUOVqa+GnjrGNyu47owdc1ucgu3QN+D/eMeAIy4Opj347eF
-         UjKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679062153;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cUCHnqI0AfBz7a3GUqT80VORgI3VfkloynuB2ZGZu0=;
-        b=lyqeyeyng45a3RRRl6yHZN+uOVq+VCmBTyRo9zogl3qLoyq/u/pE4p9IDaqWLb1IrJ
-         q4ta1g0kg8ez8LhlWy7CgE6qeHj8Sr7cOsSMHv+lCjCFUwNEedAkdD9tm6mwzxQ25o/v
-         y16g+iWeXcMTl9//vm2mTM3c97oar0+Dr+/LKQsd0z5j4AkH/1pqVk2YJt7mAsc6Uq4p
-         GoB+H60kXx+ZlZkVMQqftVnAMWAmqdAG2fgs47LFXzaQdQ4oZGZlci7zDhe3iUxPl4FY
-         ZQWf1kSTc5bcukHRiTQhbzTPSyIgUOpQshHRHZIdwPHW23IL1NeY6Dfa+F5Y0edJ157t
-         TGVw==
-X-Gm-Message-State: AO0yUKW8cHj0Z9Nyd9XbdxJUyxp+VMPhyGfF9UWg5mlYhIjs2V9b+23w
-        7pZJAZar9KAlMm8SUHCnh2k=
-X-Google-Smtp-Source: AK7set8ZSvwh8C861MbmcI8zrheicg6wTcJWJ3VwxxFhvYzCdZUnVxz3BSHRZNrwiFZ2hxPOhXIojw==
-X-Received: by 2002:adf:fb0d:0:b0:2ce:a758:d6fb with SMTP id c13-20020adffb0d000000b002cea758d6fbmr2601899wrr.1.1679062152605;
-        Fri, 17 Mar 2023 07:09:12 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
-        by smtp.gmail.com with ESMTPSA id h6-20020adfe986000000b002d09cba6beasm2064775wrm.72.2023.03.17.07.09.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 07:09:12 -0700 (PDT)
-Message-ID: <64147488.df0a0220.5d091.cce2@mx.google.com>
-X-Google-Original-Message-ID: <ZBR0hQ/AH2M8A9t9@Ansuel-xps.>
-Date:   Fri, 17 Mar 2023 15:09:09 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org, pavel@ucw.cz,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [net-next PATCH v4 10/14] dt-bindings: net: dsa: qca8k: add LEDs
- definition example
-References: <20230317023125.486-1-ansuelsmth@gmail.com>
- <20230317023125.486-11-ansuelsmth@gmail.com>
- <20230317091410.58787646@dellmb>
+        with ESMTP id S230494AbjCQOPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:15:19 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ADE41ADFC;
+        Fri, 17 Mar 2023 07:15:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R2XmRMLYzS0Nmu06PRwQbkBkSQ5MFSF8/0qOMD62bkvNIqi94ntHHaIzJEgDfNqCocrt/o8EQI4kA9LLfILuEnDTu2WTx9x2CMNpd4zsLWauj/bsOGNvfKfNzAGlMWKA0FVSuo7RU9/sDoeL88Qevobl7XH/Jf/6DeoyP75LKCSTpBRI9hdjFxeTr5vEEfTlghbdKAfOjyBWRROFn8yDQq7duHWT7gvNLUW0cUoUBCqKjoKcypb1JRN3tf+XXG8AImMrq0ri0d1D75FOuzha8qJ99pCRvfp6RFqRjIc9H3/RY/4y4nE30uOt5Y0uXFMDfDFbUXEH6j1nW5617Ixrsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YYojKO5+nEy/LT8yaqFlx2nTh8QECSIpqP6sbZLF8w8=;
+ b=Juq+jpgm8ieJF5tQ8+a+lpA3W98MTr7nt7L0SsrovUrVixdSX2z2ylQfI2Pe7lh5vY0asuUJW884HfLAE3Ln0ubst9KbarVU1K/6ebon8jUhIGb50dsGrMTLRM/Y/kaZ6uJ11/1WKJAIU1iaLpJc/YQrISfV9a3ffQKYN44Usnyn8GZRxN0vk3fq1Sttv6a8c0OHteLfqF0GecnMyATjH1CnkQZBbY/Gy6gJS8f+ShML/3tdIa3J5om8e5vGxkXbm0/6LvxAlJQmHOeSgiUCxLcL3x1TWePG9K+6M2SneKZOLYgLWiv5a/cXrR9BSEZvKa93aZpfsW2q22bTto5h2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YYojKO5+nEy/LT8yaqFlx2nTh8QECSIpqP6sbZLF8w8=;
+ b=xCA71Q5nHIgjxt8M+8nIi8t5FV+J/u6aROQ8EMXwkeryTw7FWShKSvLz9bEWup5TVvzTabgSOh+YYYTyYdKSxaSJxzwQKc5P7D30E0W8iSJ8kIdM2/q9eZpg0NKw3uJtBrRoLH/+jZXZeCWmSWw6nsoqh2GwHqmPOKm2cfWm6uo=
+Received: from CY8PR10CA0019.namprd10.prod.outlook.com (2603:10b6:930:4f::15)
+ by MW6PR12MB7069.namprd12.prod.outlook.com (2603:10b6:303:238::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.35; Fri, 17 Mar
+ 2023 14:15:15 +0000
+Received: from CY4PEPF0000C979.namprd02.prod.outlook.com
+ (2603:10b6:930:4f:cafe::a) by CY8PR10CA0019.outlook.office365.com
+ (2603:10b6:930:4f::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.35 via Frontend
+ Transport; Fri, 17 Mar 2023 14:15:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000C979.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6178.30 via Frontend Transport; Fri, 17 Mar 2023 14:15:15 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 17 Mar
+ 2023 09:15:13 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 17 Mar
+ 2023 09:15:12 -0500
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Fri, 17 Mar 2023 09:15:10 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <linux-edac@vger.kernel.org>
+CC:     <git@amd.com>, <devicetree@vger.kernel.org>, <bp@alien8.de>,
+        <krzysztof.kozlowski@linaro.org>, <mchehab@kernel.org>,
+        <tony.luck@intel.com>, <james.morse@arm.com>, <rric@kernel.org>,
+        <michal.simek@xilinx.com>
+Subject: [PATCH v5 0/2] edac: xilinx: Added EDAC support for Xilinx DDR controller
+Date:   Fri, 17 Mar 2023 19:45:07 +0530
+Message-ID: <20230317141509.17534-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230317091410.58787646@dellmb>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000C979:EE_|MW6PR12MB7069:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae124814-f87f-4589-2626-08db26f207af
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mhRs+NFoLLxyAklSMSUP10skbUPHvoi4wPDdaGWe6zC3zT8pEckWk7tOZb5j+uIhvvs2zhkwGwpe6fYd0mOxzs+gWM+lFbCqJ1zaTFCl8IDM7JypBJMaM/RLip2U6qZyrIoujE9L/4y48O2w2p8Z4/JBRz9BZBvHOfsKQfzlDv+nT3SSB0u4tpN4Rtjl//aTa2ve0l80i17sHY8MbyexPXMYgdXxjO+nHhCntqtA7aVUVLaIaveRl8GE3AvG74Du7dmHE7/sTv5rbzpKw7XWuxJJY2J2ov10JVsUfCi+Gx3IFKwzFJ5NMCOjFFjhUJMCgMKKfW+/U5BeHTfpuX2CcydXg8nRFvNuK6rOuMZQ1oQcQ/8bI3EVxdZ23Ywaym6AU7Dzi37PhCxRhCVXUr4WuniyeUcXESN6+LFPa3yquodaT+hbw4A90iCN5ovkziBUVoaDKYseM67TT3dSW82/oH4fU+N00YZIXVUtHKxtYDYr0aqPqrLbD8DN+h9chGP3W8/rvi/2DVR56/h5pIFo1k2bm+/SYQgyo0Lfi9KrG1WTVxFck8LK9e1MVa4BVtGpWLJS8W5qPdmykx0JZZH+yAXmiamxQC3HrRXYG7cSVpDw/CflxWIG3kga+5BX/lpndUK7VF9IYFe3XPwYJwlotJqEYwNrhABY1i+YNyS22ebbzXZwvNbbMTdELBrJkfDTtQcpXX45gdAhplvb4c4VgATqFgbwArEpAGJA1lcQQ+Q=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(376002)(136003)(396003)(39860400002)(346002)(451199018)(36840700001)(40470700004)(46966006)(41300700001)(8936002)(36860700001)(8676002)(70586007)(70206006)(4326008)(6916009)(40480700001)(356005)(36756003)(86362001)(82310400005)(81166007)(40460700003)(44832011)(5660300002)(82740400003)(2906002)(83380400001)(6666004)(2616005)(186003)(426003)(336012)(47076005)(26005)(1076003)(316002)(54906003)(478600001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2023 14:15:15.4667
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae124814-f87f-4589-2626-08db26f207af
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C979.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7069
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 09:14:10AM +0100, Marek Behún wrote:
-> Hello Christian, also Rob Herring, Andrew Lunn and Pavel Machek,
-> 
-> On Fri, 17 Mar 2023 03:31:21 +0100
-> Christian Marangi <ansuelsmth@gmail.com> wrote:
-> 
-> > Add LEDs definition example for qca8k Switch Family to describe how they
-> > should be defined for a correct usage.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/dsa/qca8k.yaml    | 24 +++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> > index 389892592aac..2e9c14af0223 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> > @@ -18,6 +18,8 @@ description:
-> >    PHY it is connected to. In this config, an internal mdio-bus is registered and
-> >    the MDIO master is used for communication. Mixed external and internal
-> >    mdio-bus configurations are not supported by the hardware.
-> > +  Each phy has at least 3 LEDs connected and can be declared
-> > +  using the standard LEDs structure.
-> >  
-> >  properties:
-> >    compatible:
-> > @@ -117,6 +119,7 @@ unevaluatedProperties: false
-> >  examples:
-> >    - |
-> >      #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/leds/common.h>
-> >  
-> >      mdio {
-> >          #address-cells = <1>;
-> > @@ -226,6 +229,27 @@ examples:
-> >                      label = "lan1";
-> >                      phy-mode = "internal";
-> >                      phy-handle = <&internal_phy_port1>;
-> > +
-> > +                    leds {
-> > +                        #address-cells = <1>;
-> > +                        #size-cells = <0>;
-> > +
-> > +                        led@0 {
-> > +                            reg = <0>;
-> > +                            color = <LED_COLOR_ID_WHITE>;
-> > +                            function = LED_FUNCTION_LAN;
-> > +                            function-enumerator = <1>;
-> > +                            default-state = "keep";
-> > +                        };
-> > +
-> > +                        led@1 {
-> > +                            reg = <1>;
-> > +                            color = <LED_COLOR_ID_AMBER>;
-> > +                            function = LED_FUNCTION_LAN;
-> > +                            function-enumerator = <1>;
-> > +                            default-state = "keep";
-> > +                        };
-> > +                    };
-> >                  };
-> 
-> I have nothing against this, but I would like to point out the
-> existence of the trigger-sources DT property, and I would like to
-> discuss how this property should be used by the LED subsystem to choose
-> default behaviour of a LED.
-> 
-> Consider that we want to specify in device-tree that a PHY LED (or any
-> other LED) should blink on network activity of the network device
-> connected to this PHY (let's say the attached network device is eth0).
-> (Why would we want to specify this in devicetree? Because currently the
->  drivers either keep the behaviour from boot or change it to something
->  specific that is not configurable.)
-> 
-> We could specify in DT something like:
->   eth0: ethernet-controller {
->     ...
->   }
-> 
->   ethernet-phy {
->     leds {
->       led@0 {
->         reg = <0>;
->         color = <LED_COLOR_ID_GREEN>;
->         trigger-sources = <&eth0>;
->         function = LED_FUNCTION_ ?????? ;
->       }
->     }
->   }
-> 
-> The above example specifies that the LED has a trigger source (eth0),
-> but we still need to specify the trigger itself (for example that
-> the LED should blink on activity, or the different kinds of link). In my
-> opinion, this should be specified by the function property, but this
-> property is currently used in other way: it is filled in with something
-> like "wan" or "lan" or "wlan", an information which, IMO,
-> should instead come from the devicename part of the LED, not the
-> function part.
-> 
-> Recall that the LED names are of the form
->   devicename:color:function
-> where the devicename part is supposed to be something like mmc0 or
-> sda1. With LEDs that are associated with network devices I think the
-> corresponding name should be the name of the network device (like eth0),
-> but there is the problem of network namespaces and also that network
-> devices can be renamed :(.
-> 
-> So one option how to specify the behaviour of the LED to blink on
-> activity would be to set
->   function = LED_FUNCTION_ACTIVITY;
-> but this would conflict with how currently some devicetrees use "lan",
-> "wlan" or "wan" as the function (which is IMO incorrect, as I said
-> above).
-> 
-> Another option would be to ignore the function and instead use
-> additional argument in the trigger-source property, something like
->   trigger-sources = <&eth0 TRIGGER_SOURCE_ACTIVITY>;
-> 
-> I would like to start a discussion on this and hear about your opinions,
-> because I think that the trigger-sources and function properties were
-> proposed in good faith, but currently the implementation and usage is a
-> mess.
-> 
 
-I think we should continue and make this discussion when we start
-implementing the hw contro for these LEDs to configure them in DT.
+The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and
+LPDDR4/4X memory interfaces. It has four programmable NoC interface
+ports and is designed to handle multiple streams of traffic.
 
-Currently we are implementing very basic support so everything will be
-in sw.
+Optional external interface reliability include ECC error
+detection/correction and command address parity.
 
-Anyway just to give some ideas. Yes it sound a good idea to use the
-trigger-sources binding. My idea would be that trigger needs to have
-specific support for them. 
-If this in mind netdev can be configured in DT and setup hw control to
-offload blink with the required interface passed.
+Adding edac support for DDR Memory controller.
 
-The current implementation still didn't include a way to configure the
-blink in DT as the series are already a bit big... (currently we have 3:
-- This series that already grow from 10 patch to 14
-- A cleanup series for netdev trigger that is already 7 patch
-- hw control that is another big boy with 12 patch
-)
 
-So our idea was to first implement the minor things and then polish and
-improve it. (to make it easier to review)
+Changes in v5:
+Update subject
 
-But agree with you that it would be a nice idea to have a correct and
-good implementation for trigger-sources.
+Changes in v4:
+Update the subject
+rename the driver file.
+fix the debugfs file.
+fix unneeded capitalisation.
+refactor code
+
+Changes in v3:
+Rebased and resent.
+
+Changes in v2:
+remove edac from compatible
+Update the description
+update the ddrmc_base and ddrmc_noc_base names
+Update a missed out file
+remove edac from compatible name
+rename ddrmc_noc_base and ddrmc_base
+
+Shubhrajyoti Datta (2):
+  dt-bindings: edac: Add bindings for Xilinx Versal EDAC for DDRMC
+  EDAC/versal: Add a Xilinx Versal memory controller driver
+
+ .../xlnx,versal-ddrmc-edac.yaml               |   57 +
+ MAINTAINERS                                   |    7 +
+ drivers/edac/Kconfig                          |   11 +
+ drivers/edac/Makefile                         |    1 +
+ drivers/edac/versal_edac.c                    | 1076 +++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |   10 +
+ 6 files changed, 1162 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
+ create mode 100644 drivers/edac/versal_edac.c
 
 -- 
-	Ansuel
+2.17.1
+
