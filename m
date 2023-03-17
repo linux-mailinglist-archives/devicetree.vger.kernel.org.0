@@ -2,136 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F2CE6BF26E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0336BF2C7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:39:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjCQU2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 16:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58538 "EHLO
+        id S229480AbjCQUi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 16:38:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbjCQU2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:28:01 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EC4AB8B4;
-        Fri, 17 Mar 2023 13:27:54 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 539265FD4F;
-        Fri, 17 Mar 2023 23:27:52 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1679084872;
-        bh=9klZq5XNmdsCI8Jf4BIs+c2sADGKOJ1gBsYtYIHMRbs=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=XZLGSNSDmTYCZb7s7O8f3ZHMIYyHbCaPHo56b39hLpJh8r2PPMyPdt6JZf/f58gS6
-         348VQBGsQwgKna4KcBjfocVat4Lqe47Se+jPzZVU/R2rBfpLoY1XV5J9SdDnY/MhuD
-         nEQmoM7C4NtEflIqujh+NYYR6c0/dYiZ2pSZIDpWO/wkYg9ssjJ8UCokIFIKbMHW4O
-         wrMnu9VEuqIb6kJwYg6uDZFbq4+xVLkxvqCB/1BdyNc2QmNUJgg2jzPqIkAyQSsUIV
-         4ehY8/Xe9OvmJIHSZFZWjeQXbTyfcDZK5fT93/oA8Zjv4VhwxaKfF9gR7OjPIoDThE
-         zH5yyfYc2Jekg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 17 Mar 2023 23:27:49 +0300 (MSK)
-Date:   Fri, 17 Mar 2023 23:27:48 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v10 3/5] dt-bindings: clock: meson: add A1 PLL and
- Peripherals clkcs bindings
-Message-ID: <20230317202748.7ctqhswettiemwi7@CAB-WSD-L081021>
-References: <20230313201259.19998-1-ddrokosov@sberdevices.ru>
- <20230313201259.19998-4-ddrokosov@sberdevices.ru>
- <ffebef1d-8447-181b-1890-3e638d399c62@linaro.org>
- <20230314114825.yiv4vcszr6b7m45w@CAB-WSD-L081021>
- <20230317185317.GA2608140-robh@kernel.org>
+        with ESMTP id S230146AbjCQUi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:38:58 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C9F2D6D;
+        Fri, 17 Mar 2023 13:38:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1679085506; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=Xw/JmgIpXeWcbao/wk4KwQ4Jquj/5Ho6qfNyIdO4Ur9aMayyP5TrN4EJzDccCEWYKoi4giSEwrW8C7YmlUOx5lLKRARF5SvcfAOUPlUqOtzkuvyJxE0ICjHeIj6/XOEN0YueD64oXSDgmxlcsfdP12Ve3Tut9SiH7UwHypfT2tI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1679085506; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=WjIwrwxKeq5Ld9Ij9H2Gbwf8PRvgEpDh113K4y969wE=; 
+        b=LMni3nsGFnG2FVnh6j6xH22hvSZ6yIBCrpnLHfsA/dr1HxdNGBW3iVIQHTXhOVPzKYUuycLznExUjo8h5UKKTL/SF/44yWFqQpXVvYb5NDnuILezptc2szB91vBW92Xc0Q/ToflYp23Z/AovR6QALoXUAsa/VJTtN1VCOY34Cnc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679085506;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=WjIwrwxKeq5Ld9Ij9H2Gbwf8PRvgEpDh113K4y969wE=;
+        b=h2jZZs7IRiH7FdUfBugzOWe/DM0kpKGcr02Mcdb8/PX8HJ9rm3kNyMUqKb9N9t/b
+        oYooBgEjewh5KXrq5ufHqBSB8F1msv9f8aEqaMtg8Eu518AB6iU0gnkQrohkv1nRhQp
+        8vPyCEZaBehcCPGd5eKq36itLWJWYLFZ757aLLkI=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1679085504453905.0224911165027; Fri, 17 Mar 2023 13:38:24 -0700 (PDT)
+Message-ID: <022c66f3-75d4-5ab4-4a4d-e8260fd70904@arinc9.com>
+Date:   Fri, 17 Mar 2023 23:38:16 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230317185317.GA2608140-robh@kernel.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/17 17:26:00 #20964929
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 20/21] dt-bindings: pinctrl: mediatek: mt7620: split
+ binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Dean <williamsukatube@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Del Regno <angelogioacchino.delregno@collabora.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20230313205921.35342-1-arinc.unal@arinc9.com>
+ <20230313205921.35342-21-arinc.unal@arinc9.com>
+ <20230317190331.GA2628708-robh@kernel.org>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20230317190331.GA2628708-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 01:53:17PM -0500, Rob Herring wrote:
-> On Tue, Mar 14, 2023 at 02:48:25PM +0300, Dmitry Rokosov wrote:
-> > On Tue, Mar 14, 2023 at 12:28:40PM +0100, Krzysztof Kozlowski wrote:
-> > > On 13/03/2023 21:12, Dmitry Rokosov wrote:
-> > 
-> > [...]
-> > 
-> > > > +#define CLKID_SPIFC		84
-> > > > +#define CLKID_USB_BUS		85
-> > > > +#define CLKID_SD_EMMC		86
-> > > > +#define CLKID_PSRAM		87
-> > > > +#define CLKID_DMC		88
-> > > 
-> > > And what is here? Between 88 and 121?
-> > > 
-> > 
-> > Explained below.
-> > 
-> > > > +#define CLKID_GEN_SEL		121
-> > > > +
-> > > > +#endif /* __A1_CLKC_H */
-> > > > diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > > > new file mode 100644
-> > > > index 000000000000..8e97d3fb9d30
-> > > > --- /dev/null
-> > > > +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> > > > @@ -0,0 +1,20 @@
-> > > > +/* SPDX-License-Identifier: GPL-2.0+ */
-> > > 
-> > > I found in changelog:
-> > > "fix license issue, it's GPL-2.0+ only in the current version"
-> > > and I do not understand.
-> > > 
-> > > The license is wrong, so what did you fix?
-> > > 
-> > 
-> > Sorry don't get you. Why is it wrong?
-> > I've changed all new source files to GPL-2.0+ except yaml, because yaml
-> > dt bindings schemas require the following license:
+On 17.03.2023 22:03, Rob Herring wrote:
+> On Mon, Mar 13, 2023 at 11:59:20PM +0300, arinc9.unal@gmail.com wrote:
+>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>
+>> The MT7628 and MT7688 SoCs contain different pin muxing information,
+>> therefore, should be split. This can be done now that there are compatible
+>> strings to distinguish them from other SoCs.
+>>
+>> Split the schema out to mediatek,mt76x8-pinctrl.yaml.
+>>
+>> Remove mediatek,mt76x8-pinctrl from mt7620.
+>>
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> ---
+>>   .../pinctrl/mediatek,mt7620-pinctrl.yaml      | 379 +--------------
+>>   .../pinctrl/mediatek,mt76x8-pinctrl.yaml      | 450 ++++++++++++++++++
+>>   2 files changed, 459 insertions(+), 370 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt76x8-pinctrl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
+>> index 808dd8bd276f..591bc0664ec6 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7620-pinctrl.yaml
+>> @@ -11,15 +11,13 @@ maintainers:
+>>     - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>>   
+>>   description: |
+>> -  MediaTek MT7620 pin controller for MT7620, MT7628 and MT7688 SoCs.
+>> +  MediaTek MT7620 pin controller for MT7620 SoC.
 > 
-> Why 2.0+? The kernel's default license is 2.0-only. Are you (and 
-> your lawyer) okay with GPL v4?
+> Saying MT7620 twice is redundant. Otherwise,
 > 
-> But this is still part of the DT binding and has the same license 
-> preference:
->  
-> >     # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> 
-> However, the header licenses are complicated due to .dts licenses which 
-> are all over the place. The requirement is dual licensed and matching 
-> what includes it.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Agree with you. As we discussed with Krzysztof, checkpatch must verify
-such wrong license tags. I've introduced the patchset for that, please
-take a look:
+It's not always a one to one relation so I'd rather explicitly point the 
+SoC out like on other schemas like MT7621. Thanks for reviewing!
 
-https://lore.kernel.org/all/20230317201621.15518-1-ddrokosov@sberdevices.ru/
-
--- 
-Thank you,
-Dmitry
+Arınç
