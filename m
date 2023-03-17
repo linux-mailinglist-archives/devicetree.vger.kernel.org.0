@@ -2,106 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C356BE97F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C5FD6BE98F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:45:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230270AbjCQMlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 08:41:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43540 "EHLO
+        id S229480AbjCQMpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 08:45:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbjCQMlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:41:00 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED03B3FBA1
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:40:50 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id r11so19849868edd.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:40:50 -0700 (PDT)
+        with ESMTP id S230300AbjCQMpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:45:41 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760C8A6760
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:45:40 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id ek18so19866290edb.6
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:45:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679056849;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PdfsyAZ8ebq/tYreK/csP/pvOMbudUDFDkVltciv0uI=;
-        b=DmKCuYf57JxQkvV+oLSMw/3rwVLdO7+tezGzmiFu2UkO2yOD68Ip/2c9FyYX9hPkq4
-         abXeKYtJpIvWFgpswGgMf9ZnwEVuQnQiWTixr93uOH6IxffVVcB+QNRTMUzQJCdzYR6D
-         6XbgMKVqfsWHyrMD7wVr3ue8C5CYVc8UYEZYq0Jxt0lUQROxIiQnX4pv/imU4sKvsf28
-         bYyM+OUB3ohBoEkciJF4M9EmmfxDNwILJyx5OdTtpPuAlJz/gZZolC/Et+eTLB2Bdvv7
-         q3y+VSM9UBngg6C/6aEriqfHuVG9zZbBnl2rRmiKzTUd1HpAs2e62MP+NX7TTniyNI4u
-         8dxg==
+        d=linaro.org; s=google; t=1679057139;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YNUx6NmU9vZIk5t3kL2stMiQn94hJ9T4laNaCYrljdo=;
+        b=kyyRtRuugrOqI7ZhjjbW6di3tEIIXiBeqgJp/mWjLdjjJ8UVVwX648TTtEUGaV79F1
+         Zg5sntrHeWjoKkmHt1TjLRgtoTp2CPQgx6q9xwlEQOCPujX19EvjwxGPlRjDNeMTZESS
+         95bmTuhrS1/Sk9sPwmm0QMycsPXP2pL6by6Vm4Pf61NLdGIFRIDxy4txivsNxHYzr7yq
+         ttxldATMRmZxZQJ3Q9fMEoz57auvcnYy5x+344SpYcdow8Yv3LzjCWhZ8nwyA5rf2ToF
+         mw6zDIjCa+hB06qzbt3+VXLsrortorbrR3qSzqoAyVoATTaCwZJ/Dx/AiYNBpQJeSMwv
+         zH1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679056849;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PdfsyAZ8ebq/tYreK/csP/pvOMbudUDFDkVltciv0uI=;
-        b=VdFBZyUvLdy3CeBXkF96Jw0hn+hjvhfQk/iNAcMyBzVf4q320Ntc/TfYJjnk5vGrwV
-         XezJCkaXGLIGt6sP6VW2Bkbjn9aEtHCPuG5rEi2Un6boTIqZDSLfnLr6qeYL3ypDkWhr
-         YZz83lLnSg3cJHmqH4s7mdLrrcIsHkDe3QHXrzlRCSJ0cnpNRQx7XYjEmgyMg1V9ulmk
-         LiNRlh9pucAS+fvQoUbTikMiRBM9X8jMXXg5l9oe97X4e1sm/G+/diCwuQQHpr27YyHd
-         n9U4o0d/uTPHOWUYTM5k3BCmm5CphsLSzs63BV3xagqPoxDUQkzf9znowlsA3NSgKLyv
-         fudA==
-X-Gm-Message-State: AO0yUKUBCrh/U4lO7g9HzO4mt2u5GwTQ6gRL6GgsWVcZOvZeymV9gT1S
-        JTi3+d0+RVAiCaZXfcGLMB61sA==
-X-Google-Smtp-Source: AK7set+V3e2JzutohwFlOeDNYQueNhcUfJCbnZtB2g+Wl5NQZpHl9n0X9hbbpdxrXm05AQ+lCva1XQ==
-X-Received: by 2002:a17:906:3986:b0:91f:32f9:82f0 with SMTP id h6-20020a170906398600b0091f32f982f0mr13762286eje.29.1679056849465;
-        Fri, 17 Mar 2023 05:40:49 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id yj8-20020a170907708800b00930170bc292sm941591ejb.22.2023.03.17.05.40.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 05:40:49 -0700 (PDT)
-Message-ID: <cce4f28e-075d-137d-3f64-6bfd4074be72@linaro.org>
-Date:   Fri, 17 Mar 2023 13:40:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] arm64: dts: cavium: Fix GICv3 ITS nodes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Richter <rric@kernel.org>, SoC Team <soc@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230208185506.2305349-1-robh@kernel.org>
- <CAL_JsqLz9mtsOr1sTB+eAxGOsZFthrLV-LbFBW7o7RdwgLCBZQ@mail.gmail.com>
+        d=1e100.net; s=20210112; t=1679057139;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YNUx6NmU9vZIk5t3kL2stMiQn94hJ9T4laNaCYrljdo=;
+        b=JtV/2jlEmJJxYLzz/VJXLuwXXYEjh2iTiWrTpj16lF3fhcPSz8BFHjPjSJw8G6bM26
+         Ref1i0GtEzOW4qpV8JuxJz4zinolKMma7Lav82MmsaFgPb3Et+W3S+2FsFxSUStRSv6Z
+         4WkIg1eYEc9QkotKrp1FzbfxkqRqSqdPyFdTsmNJlMcN2z6tz/AvAmuUcdnAga4f19OU
+         eWkzA2kBQefRJ/SC5V0olbm4mp+fKLZj6ECoHOrgLIk4EUnaf7n3mI1uUwMEhhPW0d7k
+         afcdSpQxdeLptaQVzQkbkEhWi2qoaP0xpYmf+HaSY3vZaTAGGc+BGQWB7OXHgR4HhpmL
+         tQUw==
+X-Gm-Message-State: AO0yUKX95VB+2lxKmvPsadAKe1irEDpkmuveq9nD0+Rg5r1h/X3eS0xd
+        ItC/ZkGUFSxz+la1MAYErCbI4Q==
+X-Google-Smtp-Source: AK7set+8e4GUEhfFVhELM/7UtvIZCcHDuzN/lx9ayum4pr2NWqS4HYwQbH6HZE+jdKxUdvpzJ1pY2g==
+X-Received: by 2002:a17:906:71d8:b0:878:7a0e:5730 with SMTP id i24-20020a17090671d800b008787a0e5730mr13994270ejk.56.1679057138958;
+        Fri, 17 Mar 2023 05:45:38 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
+        by smtp.gmail.com with ESMTPSA id lt11-20020a170906fa8b00b008e54ac90de1sm938522ejb.74.2023.03.17.05.45.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 05:45:38 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_JsqLz9mtsOr1sTB+eAxGOsZFthrLV-LbFBW7o7RdwgLCBZQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     virag.david003@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        phone-devel@vger.kernel.org, robh+dt@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, m.szyprowski@samsung.com,
+        Henrik Grimler <henrik@grimler.se>, alim.akhtar@samsung.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/2] arm64: dts: add mmc aliases for Exynos devices
+Date:   Fri, 17 Mar 2023 13:45:36 +0100
+Message-Id: <167905713176.29125.2783264582338805395.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230315212814.15908-1-henrik@grimler.se>
+References: <20230315212814.15908-1-henrik@grimler.se>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 20:51, Rob Herring wrote:
-> On Wed, Feb 8, 2023 at 12:55 PM Rob Herring <robh@kernel.org> wrote:
->>
->> The GICv3 ITS is an MSI controller, therefore its node name should be
->> 'msi-controller'. The ITS node is also expected to have '#msi-cells'.
->> Add it on Thunder as there are no users. Thunder2 uses 'msi-parent', but
->> Robin says that should be 'msi-map' instead and I'm not sure what's
->> correct for it.
->>
->> The unit-addresses of both the ITS and main GIC node on thunder2 are also
->> wrong, so fix them while we're here.
->>
->> Cc: Robin Murphy <robin.murphy@arm.com>
->> Signed-off-by: Rob Herring <robh@kernel.org>
->> ---
->>  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi  | 3 ++-
->>  arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi | 4 ++--
->>  2 files changed, 4 insertions(+), 3 deletions(-)
+On Wed, 15 Mar 2023 22:28:12 +0100, Henrik Grimler wrote:
+> It is convenient to have fixed mmcblk numbering of the eMMC and sdcard
+> so that assigned numbers will not change from boot-to-boot or
+> depending on if storage devices are actually attached or not.
 > 
-> Ping!
+> Also drop mshc aliases while we are at it and instead add mmc
+> capabilities to the individual device trees (right now they are added
+> depending on alias index).
 > 
-> Should we remove these platforms instead if they aren't maintained?
+> [...]
 
-5 weeks should be enough... Applied with my other cleanups.
+Applied, thanks!
+
+[1/2] arm64: dts: exynos: drop mshc aliases
+      https://git.kernel.org/krzk/linux/c/c04d7b263d3ff036ca124494c57011c1c274dbe6
+[2/2] arm64: dts: exynos: add mmc aliases
+      https://git.kernel.org/krzk/linux/c/5f67124757464d632f0e5288e0ba48e3ff5531a9
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
