@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38D9A6BF332
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C05836BF33C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbjCQU4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 16:56:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46086 "EHLO
+        id S229697AbjCQU5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 16:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbjCQU4N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:56:13 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96AA5DEDD;
-        Fri, 17 Mar 2023 13:56:07 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id v10so2854714iol.9;
-        Fri, 17 Mar 2023 13:56:07 -0700 (PDT)
+        with ESMTP id S229499AbjCQU5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:57:14 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B1060435;
+        Fri, 17 Mar 2023 13:57:04 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id v10so2855950iol.9;
+        Fri, 17 Mar 2023 13:57:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679086567;
+        d=1e100.net; s=20210112; t=1679086623;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BsmT8NNfgtZ1PRYiAmAwLcJbWZcQsKoINOi+pi4N8hw=;
-        b=FMCL6CC7KnVgF6n47ppyLDq8GgigpeAZh/4pYzGkBESGO7xCC4+zvzb2m5WKR07SI3
-         NacMCpZtzykQgri5jj6RFihZC5AqzqxzSY51gRfo8iQlYjuchqkVgeUDKD+sPp4N0kDb
-         idTCrIEZ2eNuouR4FDUbsd7s2oO3AkbN4EjmOCiMEl4k1O+DeEYt6jSuZSOX6VAcjHTG
-         knvPGKugfnW3G6nK6wrUEzaYvoLqkYENeRx4/G/pb3LTokJrpmIM9B/SETSI1He/UEYL
-         L8Q/BziRuLc+t5KdJQ5+b3PRqukn0MhmkdSkCo0mv3F3gnQih0FHGZM5+jUp+HbmO7w9
-         61Wg==
-X-Gm-Message-State: AO0yUKVxmIK5q2uTDB6059rSBvGSNhVpVq7MjXZGCSJHKjJDnpKLi3xo
-        h7Ev3UaucricBo0W5PkJtA==
-X-Google-Smtp-Source: AK7set+ToKO0PixBlYFJyzo1fXru242mTxE/nxzBaShob3BSkATM7RWthimVc23v51gN8LFcASQXtw==
-X-Received: by 2002:a5e:950b:0:b0:74c:91c3:3837 with SMTP id r11-20020a5e950b000000b0074c91c33837mr505432ioj.18.1679086566973;
-        Fri, 17 Mar 2023 13:56:06 -0700 (PDT)
+        bh=uLFg5SJlhums3IhrKCKFmTnC2PnKge+4XwzniRuOanQ=;
+        b=yEn7k7fFrpuKCdYONc7AwpuurbC7Qhxr2qWuGC1Z2OnAES8hJK4wv986cCQ/NDrjZE
+         XMd1iQpo3Bwa2uXRdfpFfZ0JZKk/WkAo27r24zNc8+RoOaaeymgSxeAc6k3EpiEYc2zh
+         PNwWAmPg76vowijWvHXYrTYDSf5hDaoWC1qMBOqYVL1X0hHBqfiuNQTcmj12DfCVnfm0
+         NFebcNTj1fLizzhwnZTMkW6SAao+QaZlGeSt047obIPixUDjsNA0lKDSB4CaVStUmUkv
+         +F87TJ6EFbEWlYcVlyUocSQ53KQcODfseGv4qCy5MgQdRanek++WDbMLh5OGPZ491D1C
+         uRDw==
+X-Gm-Message-State: AO0yUKVMlHRxRYfAj/gGPrVBnnNWMJKox7bqKwYXRD9XPvvfKj/HZuWS
+        4eD0gn98kA3O8DyJNygCBA==
+X-Google-Smtp-Source: AK7set/Rej6w9mB2VDRi5FHjVEC3hMKbesjJ9soHth3jWZgIRADTjBlxR2RmJUvd0fxae8dMdcK3qw==
+X-Received: by 2002:a5e:a918:0:b0:753:568:358e with SMTP id c24-20020a5ea918000000b007530568358emr472070iod.20.1679086623499;
+        Fri, 17 Mar 2023 13:57:03 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id d65-20020a026244000000b004062d749099sm1011915jac.51.2023.03.17.13.56.05
+        by smtp.gmail.com with ESMTPSA id n17-20020a02a191000000b003a958069dbfsm1009918jah.8.2023.03.17.13.57.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 13:56:06 -0700 (PDT)
-Received: (nullmailer pid 2787143 invoked by uid 1000);
-        Fri, 17 Mar 2023 20:56:04 -0000
-Date:   Fri, 17 Mar 2023 15:56:04 -0500
+        Fri, 17 Mar 2023 13:57:02 -0700 (PDT)
+Received: (nullmailer pid 2788499 invoked by uid 1000);
+        Fri, 17 Mar 2023 20:57:00 -0000
+Date:   Fri, 17 Mar 2023 15:57:00 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        linux-arm-kernel@lists.infradead.org,
         Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
         Christian Marangi <ansuelsmth@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
         Richard Cochran <richardcochran@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
         Yang Yingliang <yangyingliang@huawei.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 15/16] dt-bindings: net: dwmac: Simplify MTL
- queue props dependencies
-Message-ID: <20230317205604.GA2723387-robh@kernel.org>
+        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 16/16] dt-bindings: net: dwmac: Add MTL Tx queue
+ CBS-algo props dependencies
+Message-ID: <167908661916.2788441.13598395924571888568.robh@kernel.org>
 References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-16-Sergey.Semin@baikalelectronics.ru>
+ <20230313225103.30512-17-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230313225103.30512-16-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20230313225103.30512-17-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -80,40 +81,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 01:51:02AM +0300, Serge Semin wrote:
-> Currently the Tx/Rx queues properties interdependencies are described by
-> means of the pattern: "if: required: X, then: properties: Y: false, Z:
-> false, etc". Due to very unfortunate MTL Tx/Rx queue DT-node design the
-> resultant sub-nodes schemas look very bulky and thus hard to read. The
-> situation can be improved by using the "allOf:/oneOf: required: X,
-> required: Y, etc" pattern instead thus getting shorter and a bit easier to
-> comprehend constructions.
+
+On Tue, 14 Mar 2023 01:51:03 +0300, Serge Semin wrote:
+> Currently the CBS algorithm specific properties could be used
+> unconditionally in the MTL Tx queue sub-nodes. It's definitely wrong from
+> the correct Tx queue description point of view. Let's fix that in a way so
+> the "snps,send_slope", "snps,idle_slope", "snps,high_credit" and
+> "snps,low_credit" properties would be allowed only if the CBS TC algorithm
+> is enabled for the MTL Tx queue.
 > 
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
 > ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
 
-> 
-> Note the solution can be shortened out a bit further by replacing the
-> single-entry allOf statements with just the "not: required: etc" pattern.
-> But in order to do that the DT-schema validation tool must be fixed like
-> this:
-> 
-> --- a/meta-schemas/nodes.yaml	2021-02-08 14:20:56.732447780 +0300
-> +++ b/meta-schemas/nodes.yaml	2021-02-08 14:21:00.736492245 +0300
-> @@ -22,6 +22,7 @@
->      - unevaluatedProperties
->      - deprecated
->      - required
-> +    - not
->      - allOf
->      - anyOf
->      - oneOf
-
-This should be added regardless. Can you send a patch to devicetree-spec 
-or a GH PR. But I'd skip using that here for now because then we require 
-a new version of dtschema.
-
-Rob
