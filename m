@@ -2,91 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D89726BEDAB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 17:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DF06BEDF6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 17:21:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231680AbjCQQFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 12:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34392 "EHLO
+        id S229780AbjCQQVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 12:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbjCQQEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 12:04:52 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6547E2B9F0
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 09:04:31 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id eh3so22255772edb.11
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 09:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679069069;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HpWjR5T4YPszgsa8wQLgertPLMMve2br5t22Fl+0sm0=;
-        b=fABPtOSoDjo+xUs0qGbJ6koDH9yRh+sZRztQ3HdN5mBO7q6r8Z8fXEBBSR5oU0S7AO
-         8hUKsRzjSfjBUtctsHhzp/RuIUofvNIAz4om6450JdyTQ1u91Zis3xJrhCtlAUbVIB3d
-         fjfjYtcbSCRWJN8USxSKVUIELrxPPhWqHE4Zh03uOWHRIGdF4M20Rn31+OjVgQKXoYd8
-         loTgDYoKyWVCGDk0PDbxJO2a1j0RSO6BONToemOoNYllgidbGs393yWImbZPF+wTJVaF
-         Ub7YS813GbDEqeqE3LuV0m7rJ6X8+c2InR2yo1ODlFp93o5pFAeLX3yi70/p865blmfA
-         N8Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679069069;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HpWjR5T4YPszgsa8wQLgertPLMMve2br5t22Fl+0sm0=;
-        b=STAEkgOvvUUiA4YgEJdaFKHFILN0vYLtGf9L9H0UjXI47Rs9xFppZtb33L2Yitzk4U
-         Q17iDIYNEPNz9hKhbN0Ym9cncyeWfMk8KK+obVUfBsrGVXNHt7uTKrJiT6UrzvvQb3kF
-         y/DDqgUQsWq3B3rAOhgFiy21FBNMXeGrz/6bGJcFSxeiwYKMxqNY7YAPhf8k7TZeMgye
-         cXIg+3eaykbXBvpx37qIJFkIo/GVfek5VT6PN00jvhCvNbrBgubG/JKTKTxm9SLxVLVn
-         Qq9jGLxm9at2JyMnnMIi6AX/iPA9xZ2Qw9O1xwPAMRbVsnDPddDUwX8aH/Ph/rD2/+6s
-         Pdew==
-X-Gm-Message-State: AO0yUKXmsMHuT4RXs0iHKlQ31+U894u6Lpk5gCoZC8Y9ktA6zOiZy+VC
-        cqB8RrB794Y1+voAWEG8b9GiIg==
-X-Google-Smtp-Source: AK7set9fWadRk/uHtrqamdv4bgtUn+xpY3M0II6ndB52uLrpGaqcJxaaCg2fL8tlEZdFcWfa3ATinA==
-X-Received: by 2002:aa7:d4c7:0:b0:4af:7bdc:188e with SMTP id t7-20020aa7d4c7000000b004af7bdc188emr4375490edr.16.1679069069724;
-        Fri, 17 Mar 2023 09:04:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id w16-20020a17090649d000b00924ffcb65e7sm1130427ejv.49.2023.03.17.09.04.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 09:04:29 -0700 (PDT)
-Message-ID: <48afb383-f0b3-53ad-b20a-9b1fc93f59ba@linaro.org>
-Date:   Fri, 17 Mar 2023 17:04:28 +0100
+        with ESMTP id S229480AbjCQQV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 12:21:29 -0400
+X-Greylist: delayed 982 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 17 Mar 2023 09:21:19 PDT
+Received: from 15.mo561.mail-out.ovh.net (15.mo561.mail-out.ovh.net [87.98.150.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ADB31ADF0
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 09:21:19 -0700 (PDT)
+Received: from director8.ghost.mail-out.ovh.net (unknown [10.108.1.161])
+        by mo561.mail-out.ovh.net (Postfix) with ESMTP id C132B265A0
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 16:04:53 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-ljxbb (unknown [10.110.171.111])
+        by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 0C01B1FDF2;
+        Fri, 17 Mar 2023 16:04:51 +0000 (UTC)
+Received: from milecki.pl ([37.59.142.102])
+        by ghost-submission-6684bf9d7b-ljxbb with ESMTPSA
+        id pQNhOaOPFGR9LCYAwsBWZw
+        (envelope-from <rafal@milecki.pl>); Fri, 17 Mar 2023 16:04:51 +0000
+Authentication-Results: garm.ovh; auth=pass (GARM-102R004ac1e6109-3b86-4a94-b551-02a4c2f0f22c,
+                    EED6CEFD7F1E654E27D1F960EB8ACCFF2FD7B002) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <d7b026ea-036a-fd47-648f-b5b10ca58cea@milecki.pl>
+Date:   Fri, 17 Mar 2023 17:04:50 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] dt-bindings: leds-qcom-lpg: Add qcom,pmk8550-pwm
- compatible string
-Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_c_skakit@quicinc.com
-References: <20230316192134.26436-1-quic_amelende@quicinc.com>
- <20230316192134.26436-2-quic_amelende@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316192134.26436-2-quic_amelende@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V4 4/4] nvmem: layouts: add fixed cells layout
+To:     kernel test robot <lkp@intel.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230317132620.31142-5-zajec5@gmail.com>
+ <202303172348.sb4rePWl-lkp@intel.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <202303172348.sb4rePWl-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Ovh-Tracer-Id: 10350679321734130651
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvdefvddgkedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpefggefgjeefffekfeejffejhfektddvhfefleevgedvlefhtdeihfefudeijeeitdenucffohhmrghinhepghhithdqshgtmhdrtghomhdpghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdrohhrghdptddurdhorhhgpdhgihhthhhusghushgvrhgtohhnthgvnhhtrdgtohhmnecukfhppeduvdejrddtrddtrddupdefjedrheelrddugedvrddutddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeiuddpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 20:21, Anjelique Melendez wrote:
-> Add qcom,pmk8550-pwm compatible string for the Qualcomm Technologies, Inc.
-> PMK8550 PMIC which has two high resolution PWM channels.
+On 17.03.2023 16:54, kernel test robot wrote:
+> I love your patch! Perhaps something to improve:
 > 
+> [auto build test WARNING on next-20230317]
+> [cannot apply to robh/for-next krzk-dt/for-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.3-rc2 v6.3-rc1 v6.2 v6.3-rc2]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Rafa-Mi-ecki/dt-bindings-nvmem-layouts-add-fixed-layout/20230317-212948
+> patch link:    https://lore.kernel.org/r/20230317132620.31142-5-zajec5%40gmail.com
+> patch subject: [PATCH V4 4/4] nvmem: layouts: add fixed cells layout
+> config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230317/202303172348.sb4rePWl-lkp@intel.com/config)
+> compiler: sparc64-linux-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>          chmod +x ~/bin/make.cross
+>          # https://github.com/intel-lab-lkp/linux/commit/7ffae9ad6cdb83ae60e3eacf96ab779e0b69a65b
+>          git remote add linux-review https://github.com/intel-lab-lkp/linux
+>          git fetch --no-tags linux-review Rafa-Mi-ecki/dt-bindings-nvmem-layouts-add-fixed-layout/20230317-212948
+>          git checkout 7ffae9ad6cdb83ae60e3eacf96ab779e0b69a65b
+>          # save the config file
+>          mkdir build_dir && cp config build_dir/.config
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/nvmem/
+> 
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Link: https://lore.kernel.org/oe-kbuild-all/202303172348.sb4rePWl-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>>> drivers/nvmem/layouts/fixed.c:37:1: warning: data definition has no type or storage class
+>        37 | module_nvmem_layout_driver(fixed_nvmem_layout);
+>           | ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>     drivers/nvmem/layouts/fixed.c:37:1: error: type defaults to 'int' in declaration of 'module_nvmem_layout_driver' [-Werror=implicit-int]
+>>> drivers/nvmem/layouts/fixed.c:37:1: warning: parameter names (without types) in function declaration
+>     cc1: some warnings being treated as errors
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I reported that to Miquel already, he's going to improve his patch:
+https://lore.kernel.org/lkml/20230316173741.4f572068@xps-13/
 
-Your driver code has build warnings, so anyway new version is expected...
 
-Best regards,
-Krzysztof
-
+> vim +37 drivers/nvmem/layouts/fixed.c
+> 
+>      36	
+>    > 37	module_nvmem_layout_driver(fixed_nvmem_layout);
+>      38	
+> 
