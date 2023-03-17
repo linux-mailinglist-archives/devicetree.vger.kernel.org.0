@@ -2,124 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 111906BDDE3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 02:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E36A6BDEA2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 03:33:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbjCQBDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 21:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55232 "EHLO
+        id S229534AbjCQCdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 22:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjCQBDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 21:03:06 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD2B53A87F;
-        Thu, 16 Mar 2023 18:03:05 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id l9-20020a17090a3f0900b0023d32684e7fso6912012pjc.1;
-        Thu, 16 Mar 2023 18:03:05 -0700 (PDT)
+        with ESMTP id S229488AbjCQCdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 22:33:24 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12EEA2E82F;
+        Thu, 16 Mar 2023 19:33:22 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id r18so3199700wrx.1;
+        Thu, 16 Mar 2023 19:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679014985;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U8KNhZxtIwwnFgPoB9cKshvnNQ6ZSPfMANNSxGtCt/E=;
-        b=JkrFFCsyfZ5ctVkc1+n+HgBbo6I8Bt5EUUw6DlqoHj7oE2rPzaVj1pAv3GrL6tJC+d
-         MVTM/8KN01m4LymcM/E0iwkIMWryo75g1XecCEkrEPKbN6nuQe8RLvNtXPizT6Nko1GX
-         lyAz46AaF+Q1hPmuLVtlzDroP10ZZnN+HnEcUzWuQ3Cty++/FhkXW9YAuhAC2YBAaxwF
-         ZDnxZRu4/MJU+VnT2RHRVU99KbbeILSzrYPqOXzmpqEOrT1WP6b5uodevoFWK9zA20in
-         UW9nRGrNUkz8K0Mxh1f35nhIRZE/n6vCPTKq/mgQqFNF6SHD5VosOWaM1xLfJ9ISNejI
-         I3vA==
+        d=gmail.com; s=20210112; t=1679020400;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SBufsd7TJN3UMnpjEy1Egh/dFft22er/s7/ID3KVYPo=;
+        b=byEmfTSENjKFFC9uwnfGZlTY9UFaKr3FJKtC5xKcc5WTV1N+/bVfSR13w5C7JxsUDW
+         EHbHd0lpuBuQwl6w9eepnG1RJVIoTqM6jJqjX/TMKYvdITSh9aagGX1pAc0QdCosSwpD
+         Cr4FtyjPSKgnjSZVAIznm8DAehWqDUaRlVBTAY3BoPbKrTxVNs1rYFVBPXHEkbX7H/a1
+         mP9kSAJ+GYk5UbBTDP2AMe5/8fTvmyaYQnYEqLm4ocUK7GNpYVZzk2dv4mf6ToRNpmey
+         witomqFivJFN2wmfc8j8PCq5PAKFZaSW2R51gcWVoBz9UCsa6FtcQLH9oUUA8B5t8O5k
+         sOPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679014985;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U8KNhZxtIwwnFgPoB9cKshvnNQ6ZSPfMANNSxGtCt/E=;
-        b=7ep8jgEWFl623BIBlJ+bTzhYnQJmX1iCLy67R01FmcBY1+xhi2rS/dafcFes8P7c00
-         0zUkLtdjdKK6mZbIuhDs9ymvMU05/GBzsUS9kez/nQ2sg6ghTFc5uotpaDWFO4BHRhkT
-         ERUYidS2bkAFumNbjIxDe76cercPjilEp2aG1tCCLHrsdRE2dF6GT6/PFazYjZpJH0qu
-         nOn6sZjfytL/W9MMNZD2untDsbD4UQm+JhUG9bStqK/en5AoPY4jmvHcsgeG8smNIz1Z
-         MQksl+p0VEdlu7j6WXCslDEK/DBv+ReCQOjzmVEmAFOImtbkX+IbYRx2jjaTUEx2srvj
-         OGtQ==
-X-Gm-Message-State: AO0yUKUQv+7XmNZN2fl7S44fgXN/BHOshHYRYLeIz9osl1fIVpEIAofL
-        /7VXQUMDdyEyn5Er+RVWMrA=
-X-Google-Smtp-Source: AK7set/v4wjGRC3TH9FG8GJbcppkm0YTmHnGNZoOn/RAmXHcWRSAiWlitjQW0cpvhX7DSXTeY20cnA==
-X-Received: by 2002:a05:6a20:a61b:b0:d4:979a:e31c with SMTP id bb27-20020a056a20a61b00b000d4979ae31cmr4612994pzb.62.1679014985073;
-        Thu, 16 Mar 2023 18:03:05 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id j24-20020aa79298000000b005897f5436c0sm290391pfa.118.2023.03.16.18.03.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 18:03:04 -0700 (PDT)
-Message-ID: <2f7d87dd-75dc-afa0-e11e-ffd1afc8de3b@gmail.com>
-Date:   Fri, 17 Mar 2023 09:03:00 +0800
+        d=1e100.net; s=20210112; t=1679020400;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SBufsd7TJN3UMnpjEy1Egh/dFft22er/s7/ID3KVYPo=;
+        b=yCHdGvJSxZJnzlWe7NOsq533VbHClHIUw4gGT3Chsxp2QZfIVpv63w7H0EHLvq/uui
+         mSkfZyhFFRIsoiOWRb3F3azgsVzGHUkIKYIxlRU7dJYUxFb7xAN/BTboxf3GQR5Zy38N
+         ZMdpwbpWL5htMAxZyuE3ZM/C6QFUq8X/DPJn4XnMhZyPlNqrqXAvHcf+0qbgb9M0tL1l
+         igmcKQ0lTOhRDc3bRM0KWaRNdqGS7uiQPCVPxFYuin3cQm23Toy9crwHaXNTdBs6P9XS
+         6yoFIO1PkqVMqqZwVcroVM/6v0Id1j5j3/TWRM20By0c7GCZeGEmJgBlpKz/cmNoFKT8
+         ThsQ==
+X-Gm-Message-State: AO0yUKXzsY3PpGqTTH+/9wqZ35DWm8j5hG1YhEVuD75Pk9qaPVMKg/By
+        ZQyKbKhzLuS2iqNYy+Mmw7ePD3HmSf8=
+X-Google-Smtp-Source: AK7set81mRaNdHd1iJzkewnqPyIV7y8Tk9nfpEIfIQFfGbqJ1l6OMKIsl55+jYbv3tdZS4Sz3a4Bwg==
+X-Received: by 2002:adf:f0d0:0:b0:2cf:ea5d:f60a with SMTP id x16-20020adff0d0000000b002cfea5df60amr6634361wro.3.1679020399948;
+        Thu, 16 Mar 2023 19:33:19 -0700 (PDT)
+Received: from localhost.localdomain (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
+        by smtp.googlemail.com with ESMTPSA id z15-20020a5d44cf000000b002ce9f0e4a8fsm782313wrr.84.2023.03.16.19.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Mar 2023 19:33:19 -0700 (PDT)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: [net-next PATCH v4 00/14] net: Add basic LED support for switch/phy
+Date:   Fri, 17 Mar 2023 03:31:11 +0100
+Message-Id: <20230317023125.486-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 06/15] dt-bindings: mfd: syscon: Add nuvoton,ma35d1-sys
- compatible
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-7-ychuang570808@gmail.com>
- <84805483-b20a-8dd7-6efe-904f59e063dc@linaro.org>
-Content-Language: en-US
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <84805483-b20a-8dd7-6efe-904f59e063dc@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof ,
+This is a continue of [1]. It was decided to take a more gradual
+approach to implement LEDs support for switch and phy starting with
+basic support and then implementing the hw control part when we have all
+the prereq done.
 
-Thank you for review.
+This series implements only the brightness_set() and blink_set() ops.
+An example of switch implementation is done with qca8k.
 
+For PHY a more generic approach is used with implementing the LED
+support in PHY core and with the user (in this case marvell) adding all
+the required functions.
 
-On 2023/3/16 下午 03:31, Krzysztof Kozlowski wrote:
-> On 15/03/2023 08:28, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> Add Nuvoton ma35d1 system registers compatible
-> Missing full stop.
+Currently we set the default-state as "keep" to not change the default
+configuration of the declared LEDs since almost every switch have a
+default configuration.
 
-I will fix it.
+[1] https://lore.kernel.org/lkml/20230216013230.22978-1-ansuelsmth@gmail.com/
 
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> index c828c4f5e4a7..e7a3c6e1e77f 100644
->> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
->> @@ -57,6 +57,7 @@ properties:
->>                 - microchip,sparx5-cpu-syscon
->>                 - mstar,msc313-pmsleep
->>                 - nuvoton,wpcm450-shm
->> +              - nuvoton,ma35d1-sys
-> Wrong order
+Changes in new series v4:
+- Changes in Andrew patch:
+  - net: phy: Add a binding for PHY LEDs:
+    - Rename phy_led: led_list to list
+    - Rename phy_device: led_list to leds
+    - Remove phy_leds_remove() since devm_ should do what is needed
+    - Fixup documentation for struct phy_led
+    - Fail probe on LED errors
+  - net: phy: phy_device: Call into the PHY driver to set LED brightness
+    - Moved phy_led::phydev from previous patch to here since it is first
+      used here.
+  - net: phy: marvell: Implement led_blink_set() 
+    - Use int instead of unsigned
+  - net: phy: marvell: Add software control of the LEDs
+    - Use int instead of unsigned
+- Add depends on LED_CLASS for qca8k Kconfig
+- Fix Makefile for qca8k as suggested
+- Move qca8k_setup_led_ctrl to separate header
+- Move Documentation from dsa-port to ethernet-controller
+- Drop trailing . from Andrew patch fro consistency
+Changes in new series v3:
+- Move QCA8K_LEDS Kconfig option from tristate to bool
+- Use new helper led_init_default_state_get for default-state in qca8k
+- Drop cled_qca8k_brightness_get() as there isn't a good way to describe
+  the mode the led is currently in
+- Rework qca8k_led_brightness_get() to return true only when LED is set
+  to always ON
+Changes in new series v2:
+- Add LEDs node for rb3011
+- Fix rb3011 switch node unevaluated properties while running 
+  make dtbs_check
+- Fix a copypaste error in qca8k-leds.c for port 4 required shift
+- Drop phy-handle usage for qca8k and use qca8k_port_to_phy()
+- Add review tag from Andrew
+- Add Christian Marangi SOB in each Andrew patch
+- Add extra description for dsa-port stressing that PHY have no access
+  and LED are controlled by the related MAC
+- Add missing additionalProperties for dsa-port.yaml and ethernet-phy.yaml
 
-I will fix the order.
+Changes from the old v8 series:
+- Drop linux,default-trigger set to netdev.
+- Dropped every hw control related patch and implement only
+  blink_set and brightness_set
+- Add default-state to "keep" for each LED node example
 
->
-> Best regards,
-> Krzysztof
->
+Andrew Lunn (6):
+  net: phy: Add a binding for PHY LEDs
+  net: phy: phy_device: Call into the PHY driver to set LED brightness
+  net: phy: marvell: Add software control of the LEDs
+  net: phy: phy_device: Call into the PHY driver to set LED blinking
+  net: phy: marvell: Implement led_blink_set()
+  arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
 
-Best regards,
+Christian Marangi (8):
+  net: dsa: qca8k: move qca8k_port_to_phy() to header
+  net: dsa: qca8k: add LEDs basic support
+  net: dsa: qca8k: add LEDs blink_set() support
+  dt-bindings: net: ethernet-controller: Document support for LEDs node
+  dt-bindings: net: dsa: qca8k: add LEDs definition example
+  arm: qcom: dt: Drop unevaluated properties in switch nodes for rb3011
+  arm: qcom: dt: Add Switch LED for each port for rb3011
+  dt-bindings: net: phy: Document support for LEDs node
 
-Jacky Huang
+ .../devicetree/bindings/net/dsa/qca8k.yaml    |  24 ++
+ .../bindings/net/ethernet-controller.yaml     |  21 ++
+ .../devicetree/bindings/net/ethernet-phy.yaml |  31 +++
+ arch/arm/boot/dts/armada-370-rd.dts           |  14 ++
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts     | 124 +++++++++-
+ drivers/net/dsa/qca/Kconfig                   |   8 +
+ drivers/net/dsa/qca/Makefile                  |   3 +
+ drivers/net/dsa/qca/qca8k-8xxx.c              |  20 +-
+ drivers/net/dsa/qca/qca8k-leds.c              | 230 ++++++++++++++++++
+ drivers/net/dsa/qca/qca8k.h                   |  73 ++++++
+ drivers/net/dsa/qca/qca8k_leds.h              |  16 ++
+ drivers/net/phy/Kconfig                       |   1 +
+ drivers/net/phy/marvell.c                     |  81 +++++-
+ drivers/net/phy/phy_device.c                  | 102 ++++++++
+ include/linux/phy.h                           |  35 +++
+ 15 files changed, 759 insertions(+), 24 deletions(-)
+ create mode 100644 drivers/net/dsa/qca/qca8k-leds.c
+ create mode 100644 drivers/net/dsa/qca/qca8k_leds.h
+
+-- 
+2.39.2
 
