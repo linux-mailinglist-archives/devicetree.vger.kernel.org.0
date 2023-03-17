@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4CC6BF2F1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:44:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5B36BF306
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:48:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230270AbjCQUoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 16:44:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59578 "EHLO
+        id S229489AbjCQUsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 16:48:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbjCQUoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:44:16 -0400
-Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15F60AF1D;
-        Fri, 17 Mar 2023 13:44:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1679085824; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=Y582FsUn/rvAl46zKQ+vg4iZzkvmjmgeLYIeb6p6N+RCtmnykIySNbxgvrY3+keXPRSCUvjQUT9gnZu36OP3HktHEexvoRisyL318F1H6GZbOF/Pr+6Cr+r6WBMwl6FPkuU2QPQTXppwxx74rO1530KPDA52+5ZQklU5zH0gO1o=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1679085824; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=JO6TDZk1gNuJY9zhmyYqZtSQKRJFrNsjLtQ8d66Q7jI=; 
-        b=astSoG+O232junYv52KbuDV3+OERfLYkkFL3VzhfERG4UhxYbBhgG/gBVNXhyKEsZ/i6RpRh1pAfSr7auQ9y9y0JJkucK+boniqrR1cfuUSoHficKFaagGLXBIxic20Aw1n+qZO/s0iHDVe0ts/zBsETtk57BOl0apylvZCD16E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679085824;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=JO6TDZk1gNuJY9zhmyYqZtSQKRJFrNsjLtQ8d66Q7jI=;
-        b=DkOoJ1RNcWXF0uQERlD1A2iMK2YQxgwdrzUfevcgasCEU6QgVAXqk29bIC6dT94v
-        p6woSXG3i/DgvBxuEQADeby3gGhRk2PtPwWw9RXN3JDD+euf+I9Tydgz82LHI9dL6Ya
-        Uagm474kthEqGGrrCh8hUtXYHwi5h9yx7kkeLWOk=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1679085823481812.3752234065518; Fri, 17 Mar 2023 13:43:43 -0700 (PDT)
-Message-ID: <d7cc6264-48e1-4aab-ef6a-a106ffaee87e@arinc9.com>
-Date:   Fri, 17 Mar 2023 23:43:36 +0300
+        with ESMTP id S230308AbjCQUsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:48:18 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CC2EC7B;
+        Fri, 17 Mar 2023 13:48:16 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id v27so5599086vsa.7;
+        Fri, 17 Mar 2023 13:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679086095;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ee6J0WOIDLoOleb4NPcisF64humPRCG8+jx5pR9784s=;
+        b=FiA1BFSKJ1Zm32K8S3NjXmdJiDWVf6tWvWC8aIi8359dhX+d4u2poBgZwvY+0+OaCJ
+         FUQyVv9bYORuNG47yNR/wvwAOqjd3SQ6JTEX0ObUo4tOyhV1SYLbiTrAPFDyTFbfC0DO
+         XJMZx8EzuQkzzof5S7HFmnifwXcIsHMSr5gp870QVWzODgt++aArVy0kM4rUSaaW3lkM
+         nbCCDRO5bQBeC35xDFgxwAzADm/WXN2HLyHBIi7QrzNx06TQRTFXpDCEWNGWAeCf/p8s
+         8mZdI4skZUxD1uyGaHFYweJUcMYJAtGC+K31nB6Za230mkz4ILjJWpeb/PyVBUhSlcSQ
+         i6jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679086095;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ee6J0WOIDLoOleb4NPcisF64humPRCG8+jx5pR9784s=;
+        b=iqMwi9/bSo3F3dzr83rAHrxwyJcEdi1erfc3eReMsYWalVKN4ijowNiapU2yLxHBsx
+         W6jtLuYsZDbd9nTslwgJgUSfTnDeFsYXxI8RsAwokvwdSfc1bSinyS2aAQRmSXqh1nxP
+         26oajOYUpCePSS2HQyBup+MMsYOLnqv8l+OkWRPhaQ75vFG087N7efrFp3yxDu/i3QEO
+         8P8p9s7HF0Ife4un3s/wXF1ux2Wu3cHcXEeZx2n63zxSQiTrHXE6t/b7cJgUul/FrpEB
+         /PWjuxz1wBAl6NbceQ/zLaVqto6/dHoicJfF5kmYF7UPeOAveHn1bY+Q2Lxq57YA5t9P
+         t3GA==
+X-Gm-Message-State: AO0yUKUMBu3mKm7+AunJ7NSyqujG8hHLCyDQWbMSXDYbsCTGBmVBuKKW
+        U2MJ07xoUMCnD31az+D/6/mYemCevBV2IwQr3eQ=
+X-Google-Smtp-Source: AK7set/fdXhElNWqm+48s4YpD/+UsAFBGmgv8ebcZ6jVSE6b0PSV+9CZppp1FztOGDz/GVR3njU+whT3LpuVbBYoJek=
+X-Received: by 2002:a67:c811:0:b0:423:d4af:dfda with SMTP id
+ u17-20020a67c811000000b00423d4afdfdamr23149vsk.2.1679086095600; Fri, 17 Mar
+ 2023 13:48:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 09/21] dt-bindings: pinctrl: ralink: {mt7620,mt7621}:
- rename to mediatek
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Del Regno <angelogioacchino.delregno@collabora.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Hui Liu <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
-References: <20230313205921.35342-1-arinc.unal@arinc9.com>
- <20230313205921.35342-10-arinc.unal@arinc9.com>
- <20230317185810.GA2619692-robh@kernel.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230317185810.GA2619692-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+References: <20230316172214.3899786-1-neeraj.sanjaykale@nxp.com>
+ <CABBYNZ+DM+DKYVb-EqRX+WwW2hCrcVeMh29PVjqTM0WW2+HBuw@mail.gmail.com> <ZBTQu4RXHHbVRJTA@corigine.com>
+In-Reply-To: <ZBTQu4RXHHbVRJTA@corigine.com>
+From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Date:   Fri, 17 Mar 2023 13:48:03 -0700
+Message-ID: <CABBYNZJG3T+v=RdQBuW-zvDDCQpqdkn3K=fP3NkPECJQdLbo9A@mail.gmail.com>
+Subject: Re: [PATCH v13 0/4] Add support for NXP bluetooth chipsets
+To:     Simon Horman <simon.horman@corigine.com>
+Cc:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, alok.a.tiwari@oracle.com, hdanton@sina.com,
+        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
+        rohit.fule@nxp.com, sherry.sun@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,25 +78,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17.03.2023 21:58, Rob Herring wrote:
-> On Mon, Mar 13, 2023 at 11:59:09PM +0300, arinc9.unal@gmail.com wrote:
->> From: Arınç ÜNAL <arinc.unal@arinc9.com>
->>
->> Rename schemas of pin controllers for MediaTek MT7620 and MT7621 SoCs to be
->> on par with other pin controllers for MediaTek SoCs.
->>
->> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->> ---
->>
->> I'm not changing the compatible string. I asked if it's accepted to do this
->> whilst keeping the compatible string but haven't received a response.
-> 
-> It's fine with me though I'd somewhat rather keep the filename matching
-> the compatible. Either way:
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Hi Simon,
 
-I prefer to do this so I'm going to keep it as is. Thanks for being OK 
-with either way.
+On Fri, Mar 17, 2023 at 1:42=E2=80=AFPM Simon Horman <simon.horman@corigine=
+.com> wrote:
+>
+> On Fri, Mar 17, 2023 at 01:00:11PM -0700, Luiz Augusto von Dentz wrote:
+> > Hi Neeraj,
+> >
+> > On Thu, Mar 16, 2023 at 10:22=E2=80=AFAM Neeraj Sanjay Kale
+> > <neeraj.sanjaykale@nxp.com> wrote:
+> > >
+> > > This patch adds a driver for NXP bluetooth chipsets.
+> > >
+> > > The driver is based on H4 protocol, and uses serdev APIs. It supports=
+ host
+> > > to chip power save feature, which is signalled by the host by asserti=
+ng
+> > > break over UART TX lines, to put the chip into sleep state.
+> > >
+> > > To support this feature, break_ctl has also been added to serdev-tty =
+along
+> > > with a new serdev API serdev_device_break_ctl().
+> > >
+> > > This driver is capable of downloading firmware into the chip over UAR=
+T.
+> > >
+> > > The document specifying device tree bindings for this driver is also
+> > > included in this patch series.
+> > >
+> > > Neeraj Sanjay Kale (4):
+> > >   serdev: Replace all instances of ENOTSUPP with EOPNOTSUPP
+> > >   serdev: Add method to assert break signal over tty UART port
+> > >   dt-bindings: net: bluetooth: Add NXP bluetooth support
+> > >   Bluetooth: NXP: Add protocol support for NXP Bluetooth chipsets
+> > >
+> > >  .../net/bluetooth/nxp,88w8987-bt.yaml         |   45 +
+> > >  MAINTAINERS                                   |    7 +
+> > >  drivers/bluetooth/Kconfig                     |   12 +
+> > >  drivers/bluetooth/Makefile                    |    1 +
+> > >  drivers/bluetooth/btnxpuart.c                 | 1297 +++++++++++++++=
+++
+> > >  drivers/tty/serdev/core.c                     |   17 +-
+> > >  drivers/tty/serdev/serdev-ttyport.c           |   16 +-
+> > >  include/linux/serdev.h                        |   10 +-
+> > >  8 files changed, 1398 insertions(+), 7 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/n=
+xp,88w8987-bt.yaml
+> > >  create mode 100644 drivers/bluetooth/btnxpuart.c
+> > >
+> > > --
+> > > 2.34.1
+> >
+> > If there are no new comments to be addressed by the end of the day I'm
+> > planning to merge this into bluetooth-next.
+>
+> FWIIW, as someone involved in the review of this series, I am fine with t=
+hat.
+> Even though I have only supplied tags for some of the patches;
+> those for which I feel that it is appropriate.
 
-Arınç
+Thanks for the feedback and the review as well.
+
+
+--=20
+Luiz Augusto von Dentz
