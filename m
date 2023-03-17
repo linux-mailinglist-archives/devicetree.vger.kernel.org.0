@@ -2,144 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A5B36BF306
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D9A6BF332
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 21:56:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjCQUsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 16:48:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38070 "EHLO
+        id S229621AbjCQU4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 16:56:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbjCQUsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:48:18 -0400
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CC2EC7B;
-        Fri, 17 Mar 2023 13:48:16 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id v27so5599086vsa.7;
-        Fri, 17 Mar 2023 13:48:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679086095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ee6J0WOIDLoOleb4NPcisF64humPRCG8+jx5pR9784s=;
-        b=FiA1BFSKJ1Zm32K8S3NjXmdJiDWVf6tWvWC8aIi8359dhX+d4u2poBgZwvY+0+OaCJ
-         FUQyVv9bYORuNG47yNR/wvwAOqjd3SQ6JTEX0ObUo4tOyhV1SYLbiTrAPFDyTFbfC0DO
-         XJMZx8EzuQkzzof5S7HFmnifwXcIsHMSr5gp870QVWzODgt++aArVy0kM4rUSaaW3lkM
-         nbCCDRO5bQBeC35xDFgxwAzADm/WXN2HLyHBIi7QrzNx06TQRTFXpDCEWNGWAeCf/p8s
-         8mZdI4skZUxD1uyGaHFYweJUcMYJAtGC+K31nB6Za230mkz4ILjJWpeb/PyVBUhSlcSQ
-         i6jw==
+        with ESMTP id S229987AbjCQU4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 16:56:13 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96AA5DEDD;
+        Fri, 17 Mar 2023 13:56:07 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id v10so2854714iol.9;
+        Fri, 17 Mar 2023 13:56:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679086095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ee6J0WOIDLoOleb4NPcisF64humPRCG8+jx5pR9784s=;
-        b=iqMwi9/bSo3F3dzr83rAHrxwyJcEdi1erfc3eReMsYWalVKN4ijowNiapU2yLxHBsx
-         W6jtLuYsZDbd9nTslwgJgUSfTnDeFsYXxI8RsAwokvwdSfc1bSinyS2aAQRmSXqh1nxP
-         26oajOYUpCePSS2HQyBup+MMsYOLnqv8l+OkWRPhaQ75vFG087N7efrFp3yxDu/i3QEO
-         8P8p9s7HF0Ife4un3s/wXF1ux2Wu3cHcXEeZx2n63zxSQiTrHXE6t/b7cJgUul/FrpEB
-         /PWjuxz1wBAl6NbceQ/zLaVqto6/dHoicJfF5kmYF7UPeOAveHn1bY+Q2Lxq57YA5t9P
-         t3GA==
-X-Gm-Message-State: AO0yUKUMBu3mKm7+AunJ7NSyqujG8hHLCyDQWbMSXDYbsCTGBmVBuKKW
-        U2MJ07xoUMCnD31az+D/6/mYemCevBV2IwQr3eQ=
-X-Google-Smtp-Source: AK7set/fdXhElNWqm+48s4YpD/+UsAFBGmgv8ebcZ6jVSE6b0PSV+9CZppp1FztOGDz/GVR3njU+whT3LpuVbBYoJek=
-X-Received: by 2002:a67:c811:0:b0:423:d4af:dfda with SMTP id
- u17-20020a67c811000000b00423d4afdfdamr23149vsk.2.1679086095600; Fri, 17 Mar
- 2023 13:48:15 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679086567;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BsmT8NNfgtZ1PRYiAmAwLcJbWZcQsKoINOi+pi4N8hw=;
+        b=FMCL6CC7KnVgF6n47ppyLDq8GgigpeAZh/4pYzGkBESGO7xCC4+zvzb2m5WKR07SI3
+         NacMCpZtzykQgri5jj6RFihZC5AqzqxzSY51gRfo8iQlYjuchqkVgeUDKD+sPp4N0kDb
+         idTCrIEZ2eNuouR4FDUbsd7s2oO3AkbN4EjmOCiMEl4k1O+DeEYt6jSuZSOX6VAcjHTG
+         knvPGKugfnW3G6nK6wrUEzaYvoLqkYENeRx4/G/pb3LTokJrpmIM9B/SETSI1He/UEYL
+         L8Q/BziRuLc+t5KdJQ5+b3PRqukn0MhmkdSkCo0mv3F3gnQih0FHGZM5+jUp+HbmO7w9
+         61Wg==
+X-Gm-Message-State: AO0yUKVxmIK5q2uTDB6059rSBvGSNhVpVq7MjXZGCSJHKjJDnpKLi3xo
+        h7Ev3UaucricBo0W5PkJtA==
+X-Google-Smtp-Source: AK7set+ToKO0PixBlYFJyzo1fXru242mTxE/nxzBaShob3BSkATM7RWthimVc23v51gN8LFcASQXtw==
+X-Received: by 2002:a5e:950b:0:b0:74c:91c3:3837 with SMTP id r11-20020a5e950b000000b0074c91c33837mr505432ioj.18.1679086566973;
+        Fri, 17 Mar 2023 13:56:06 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.249])
+        by smtp.gmail.com with ESMTPSA id d65-20020a026244000000b004062d749099sm1011915jac.51.2023.03.17.13.56.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 13:56:06 -0700 (PDT)
+Received: (nullmailer pid 2787143 invoked by uid 1000);
+        Fri, 17 Mar 2023 20:56:04 -0000
+Date:   Fri, 17 Mar 2023 15:56:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Yang Yingliang <yangyingliang@huawei.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 15/16] dt-bindings: net: dwmac: Simplify MTL
+ queue props dependencies
+Message-ID: <20230317205604.GA2723387-robh@kernel.org>
+References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
+ <20230313225103.30512-16-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <20230316172214.3899786-1-neeraj.sanjaykale@nxp.com>
- <CABBYNZ+DM+DKYVb-EqRX+WwW2hCrcVeMh29PVjqTM0WW2+HBuw@mail.gmail.com> <ZBTQu4RXHHbVRJTA@corigine.com>
-In-Reply-To: <ZBTQu4RXHHbVRJTA@corigine.com>
-From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date:   Fri, 17 Mar 2023 13:48:03 -0700
-Message-ID: <CABBYNZJG3T+v=RdQBuW-zvDDCQpqdkn3K=fP3NkPECJQdLbo9A@mail.gmail.com>
-Subject: Re: [PATCH v13 0/4] Add support for NXP bluetooth chipsets
-To:     Simon Horman <simon.horman@corigine.com>
-Cc:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, alok.a.tiwari@oracle.com, hdanton@sina.com,
-        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-serial@vger.kernel.org, amitkumar.karwar@nxp.com,
-        rohit.fule@nxp.com, sherry.sun@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230313225103.30512-16-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+On Tue, Mar 14, 2023 at 01:51:02AM +0300, Serge Semin wrote:
+> Currently the Tx/Rx queues properties interdependencies are described by
+> means of the pattern: "if: required: X, then: properties: Y: false, Z:
+> false, etc". Due to very unfortunate MTL Tx/Rx queue DT-node design the
+> resultant sub-nodes schemas look very bulky and thus hard to read. The
+> situation can be improved by using the "allOf:/oneOf: required: X,
+> required: Y, etc" pattern instead thus getting shorter and a bit easier to
+> comprehend constructions.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
 
-On Fri, Mar 17, 2023 at 1:42=E2=80=AFPM Simon Horman <simon.horman@corigine=
-.com> wrote:
->
-> On Fri, Mar 17, 2023 at 01:00:11PM -0700, Luiz Augusto von Dentz wrote:
-> > Hi Neeraj,
-> >
-> > On Thu, Mar 16, 2023 at 10:22=E2=80=AFAM Neeraj Sanjay Kale
-> > <neeraj.sanjaykale@nxp.com> wrote:
-> > >
-> > > This patch adds a driver for NXP bluetooth chipsets.
-> > >
-> > > The driver is based on H4 protocol, and uses serdev APIs. It supports=
- host
-> > > to chip power save feature, which is signalled by the host by asserti=
-ng
-> > > break over UART TX lines, to put the chip into sleep state.
-> > >
-> > > To support this feature, break_ctl has also been added to serdev-tty =
-along
-> > > with a new serdev API serdev_device_break_ctl().
-> > >
-> > > This driver is capable of downloading firmware into the chip over UAR=
-T.
-> > >
-> > > The document specifying device tree bindings for this driver is also
-> > > included in this patch series.
-> > >
-> > > Neeraj Sanjay Kale (4):
-> > >   serdev: Replace all instances of ENOTSUPP with EOPNOTSUPP
-> > >   serdev: Add method to assert break signal over tty UART port
-> > >   dt-bindings: net: bluetooth: Add NXP bluetooth support
-> > >   Bluetooth: NXP: Add protocol support for NXP Bluetooth chipsets
-> > >
-> > >  .../net/bluetooth/nxp,88w8987-bt.yaml         |   45 +
-> > >  MAINTAINERS                                   |    7 +
-> > >  drivers/bluetooth/Kconfig                     |   12 +
-> > >  drivers/bluetooth/Makefile                    |    1 +
-> > >  drivers/bluetooth/btnxpuart.c                 | 1297 +++++++++++++++=
-++
-> > >  drivers/tty/serdev/core.c                     |   17 +-
-> > >  drivers/tty/serdev/serdev-ttyport.c           |   16 +-
-> > >  include/linux/serdev.h                        |   10 +-
-> > >  8 files changed, 1398 insertions(+), 7 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/n=
-xp,88w8987-bt.yaml
-> > >  create mode 100644 drivers/bluetooth/btnxpuart.c
-> > >
-> > > --
-> > > 2.34.1
-> >
-> > If there are no new comments to be addressed by the end of the day I'm
-> > planning to merge this into bluetooth-next.
->
-> FWIIW, as someone involved in the review of this series, I am fine with t=
-hat.
-> Even though I have only supplied tags for some of the patches;
-> those for which I feel that it is appropriate.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Thanks for the feedback and the review as well.
+> 
+> Note the solution can be shortened out a bit further by replacing the
+> single-entry allOf statements with just the "not: required: etc" pattern.
+> But in order to do that the DT-schema validation tool must be fixed like
+> this:
+> 
+> --- a/meta-schemas/nodes.yaml	2021-02-08 14:20:56.732447780 +0300
+> +++ b/meta-schemas/nodes.yaml	2021-02-08 14:21:00.736492245 +0300
+> @@ -22,6 +22,7 @@
+>      - unevaluatedProperties
+>      - deprecated
+>      - required
+> +    - not
+>      - allOf
+>      - anyOf
+>      - oneOf
 
+This should be added regardless. Can you send a patch to devicetree-spec 
+or a GH PR. But I'd skip using that here for now because then we require 
+a new version of dtschema.
 
---=20
-Luiz Augusto von Dentz
+Rob
