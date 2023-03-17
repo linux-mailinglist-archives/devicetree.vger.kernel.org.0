@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D136BE617
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FE786BE61C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:59:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjCQJ7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56056 "EHLO
+        id S229872AbjCQJ7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbjCQJ7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:59:00 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3483019129
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:58:59 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S229562AbjCQJ7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:59:34 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7ECA5E3;
+        Fri, 17 Mar 2023 02:59:32 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.156.231])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C0A4A85B2A;
-        Fri, 17 Mar 2023 10:58:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1679047137;
-        bh=RozTPNCfde2OU3/LMQ1THC4JrpTga+x0KEkC4XiKGWc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nmbAxOXZKydbATqgDMLQJePIGO01Qk1dxNn9praOwzK/2J5NOMqBjPzBx/ujrA146
-         kSotQf2Xz+FFzAbFrhETzrJkg5JJrENe3WktqIyszNnLVmfGYGhN+ebH3dgh39XGsQ
-         GWv+e5NzNpEhQCTcjBFQT3liLSd8HWSL0KE/5zOGZAxMxofLSbgTHH6bl7/WIeq5wa
-         ZNl8FB/0gQjHmlwIo6k60iIlf7wQZfUZfSTUVpQwlJ7QHLlmv0dXDYMSZyWpmaz18R
-         egEgRW7k5EF44C5j7ZbefVW3zCpFiJV6bC7sCqE4eDs/e9N2+hVbljOlD3KaeIfTcg
-         NUEdLuXc4XP/A==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] dt-bindings: soc: imx-blk-ctrl: Drop leading label in blk-ctrl in examples
-Date:   Fri, 17 Mar 2023 10:58:27 +0100
-Message-Id: <20230317095827.49100-2-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230317095827.49100-1-marex@denx.de>
-References: <20230317095827.49100-1-marex@denx.de>
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6A95F660309E;
+        Fri, 17 Mar 2023 09:59:30 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679047171;
+        bh=e/KIg4k8GoTPg3uxt66ysJDkUFF6y215cPiS3F7Sts0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YVYud1TuEBVXmXkXbL84ROVSh+8LrsQTp9qsY/suO+Mi2ohhnI2YrqfBzGSWxqZ3R
+         NzAnEKiPbXJHeHOq1MSFLtlj37ZTtCQWzFsaKy3tZTgFLDy+mPxjENInrPX7gJHkc8
+         TDovH0xsLRqc19bzi9A1g5LafgzL1/Ya0GWhG/g/dUw9I+ZUufmc3VA1HsPyZLgoRm
+         CC4jb2MnVPSKJUA8MAfStC248ug82iwQGT+huw6WSr6kzA+7MagnRGk/AixlrGAZS5
+         uo4fNU+QOW9if3no+vYTaNJixrIzEKtRiDk6xg5MKbXEX2Sl79TKml8dmtwAXQ8nqe
+         0MzrDkENAOKDQ==
+Message-ID: <d5881d9f-90cc-f7a2-72a3-0701348a03fe@collabora.com>
+Date:   Fri, 17 Mar 2023 11:59:27 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 01/11] dt-bindings: firmware: arm,scmi: Document
+ assigned-clocks and assigned-clock-rates
+To:     Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Drake <drake@endlessm.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kernel@collabora.com
+References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
+ <20230315114806.3819515-2-cristian.ciocaltea@collabora.com>
+ <20230316203417.GA3833267-robh@kernel.org>
+ <20230316222619.r4jzk3lzdxzamr2s@bogus>
+Content-Language: en-US
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230316222619.r4jzk3lzdxzamr2s@bogus>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,116 +76,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the leading label in block controller examples, it is unused.
+On 3/17/23 00:26, Sudeep Holla wrote:
+> On Thu, Mar 16, 2023 at 03:34:17PM -0500, Rob Herring wrote:
+>> +Stephen
+>>
+>> On Wed, Mar 15, 2023 at 01:47:56PM +0200, Cristian Ciocaltea wrote:
+>>> Since commit df4fdd0db475 ("dt-bindings: firmware: arm,scmi: Restrict
+>>> protocol child node properties") the following dtbs_check warning is
+>>> shown:
+>>>
+>>>    rk3588-rock-5b.dtb: scmi: protocol@14: Unevaluated properties are not allowed ('assigned-clock-rates', 'assigned-clocks' were unexpected)
+>>
+>> I think that's a somewhat questionable use of assigned-clock-rates. It
+>> should be located with the consumer rather than the provider IMO. The
+>> consumers of those 2 clocks are the CPU nodes.
+>>
+> 
+> Agreed. We definitely don't use those in the scmi clk provider driver.
+> So NACK for the generic SCMI binding change.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Marek Vasut <marex@denx.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Paul Elder <paul.elder@ideasonboard.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Richard Cochran <richardcochran@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
-Note: This was suggested by Krzysztof as part of requested changes to commit
-      0d2c843ce5adb ("dt-bindings: soc: imx8mp-media-blk-ctrl: Align block controller example name")
-      Expand the change onto all the block controllers.
----
- .../devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml   | 2 +-
- .../devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml    | 2 +-
- .../devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml   | 2 +-
- .../devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml   | 2 +-
- .../devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml    | 2 +-
- .../devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml   | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+According to [1], "configuration of common clocks, which affect multiple 
+consumer devices can be similarly specified in the clock provider node".
 
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
-index e8da8f413966b..a02a09d574a2c 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
-@@ -70,7 +70,7 @@ examples:
-     #include <dt-bindings/clock/imx8mm-clock.h>
-     #include <dt-bindings/power/imx8mm-power.h>
- 
--    disp_blk_ctl: blk-ctrl@32e28000 {
-+    blk-ctrl@32e28000 {
-       compatible = "fsl,imx8mm-disp-blk-ctrl", "syscon";
-       reg = <0x32e28000 0x100>;
-       power-domains = <&pgc_dispmix>, <&pgc_dispmix>, <&pgc_dispmix>,
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
-index d71bb20d49073..25109376d7d4a 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
-@@ -150,7 +150,7 @@ examples:
-     #include <dt-bindings/clock/imx8mm-clock.h>
-     #include <dt-bindings/power/imx8mm-power.h>
- 
--    vpu_blk_ctrl: blk-ctrl@38330000 {
-+    blk-ctrl@38330000 {
-       compatible = "fsl,imx8mm-vpu-blk-ctrl", "syscon";
-       reg = <0x38330000 0x100>;
-       power-domains = <&pgc_vpumix>, <&pgc_vpu_g1>,
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-index 9fb99fb407332..eeec9965b0919 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-@@ -71,7 +71,7 @@ examples:
-     #include <dt-bindings/clock/imx8mn-clock.h>
-     #include <dt-bindings/power/imx8mn-power.h>
- 
--    disp_blk_ctl: blk-ctrl@32e28000 {
-+    blk-ctrl@32e28000 {
-       compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
-       reg = <0x32e28000 0x100>;
-       power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
-index 1fe68b53b1d83..4214c1ab4971d 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
-@@ -76,7 +76,7 @@ examples:
-     #include <dt-bindings/clock/imx8mp-clock.h>
-     #include <dt-bindings/power/imx8mp-power.h>
- 
--    hsio_blk_ctrl: blk-ctrl@32f10000 {
-+    blk-ctrl@32f10000 {
-         compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
-         reg = <0x32f10000 0x24>;
-         clocks = <&clk IMX8MP_CLK_USB_ROOT>,
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
-index 7263ebedf09f3..ea5c90c6a1b69 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
-@@ -59,7 +59,7 @@ examples:
-     #include <dt-bindings/clock/imx8mq-clock.h>
-     #include <dt-bindings/power/imx8mq-power.h>
- 
--    vpu_blk_ctrl: blk-ctrl@38320000 {
-+    blk-ctrl@38320000 {
-       compatible = "fsl,imx8mq-vpu-blk-ctrl";
-       reg = <0x38320000 0x100>;
-       power-domains = <&pgc_vpu>, <&pgc_vpu>, <&pgc_vpu>;
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-index 792ebecec22d0..b3554e7f9e76d 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-@@ -60,7 +60,7 @@ examples:
-     #include <dt-bindings/clock/imx93-clock.h>
-     #include <dt-bindings/power/fsl,imx93-power.h>
- 
--    media_blk_ctrl: system-controller@4ac10000 {
-+    system-controller@4ac10000 {
-       compatible = "fsl,imx93-media-blk-ctrl", "syscon";
-       reg = <0x4ac10000 0x10000>;
-       power-domains = <&mediamix>;
--- 
-2.39.2
+That would avoid duplicating assigned-clock-rates in the CPU nodes.
 
+[1] 
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/clock/clock.yaml
+
+Thanks,
+Cristian
