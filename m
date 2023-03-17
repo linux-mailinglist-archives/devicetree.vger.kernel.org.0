@@ -2,72 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCBE96BE3A7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:33:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E5D96BE3AF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:34:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231626AbjCQIdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:33:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41384 "EHLO
+        id S231550AbjCQIeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231552AbjCQIdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:33:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D93DFB43;
-        Fri, 17 Mar 2023 01:32:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A206BB824F6;
-        Fri, 17 Mar 2023 08:32:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F06C8C433D2;
-        Fri, 17 Mar 2023 08:31:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679041919;
-        bh=oomZDnVxdHZtUJnlVWXEtuwr3xT++1ZZD4/CrL6Q6KA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oZHAbvzuggGsV0kFkw//uH222iU6B2cdqfqqS+WMOBSAcPPZ36sGeR6ZWQlBe5V5/
-         xl53mRL8CXa4lKX89H74MVRR9BjfRDJtyYG/+/PL25S8TSBvJyPEMBleVfkNdCZt4U
-         7WcHsxKsMVkZokb42IE2Jfg1uM7+9/PFPN6V1mDeOcB5PRS8A43l1ETq53+1phO3ZG
-         7dFzutQO3OEq4gbTBoSjGIDsAgjDqwdN++zZ4fE8RlGRbKo+hEQM2tVOBLKgld7biN
-         OkAD9y39ug72oyhRCzeCg8lf2mnXmAAI52tvlcrlffTnCfuTuw6MUYlTDYmxenVx2s
-         LCn2hfN6fFrCg==
-Message-ID: <d8776be3-75a2-02fd-3702-79169675e4f6@kernel.org>
-Date:   Fri, 17 Mar 2023 10:31:52 +0200
+        with ESMTP id S231636AbjCQIdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:33:45 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C39F3B3D2
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:32:41 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id y4so17424764edo.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:32:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679041952;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oDOcNIcbSN9Lk2htsV80EHwrNf4UOCNV6ZaL1McyWuk=;
+        b=Nb0YDCUjo8OyvolKZu7uS9pixhnVmAjS/JIK0BCtKNVk1/oMea0jrQd3l/lFz6bVCR
+         USIyJRSbW3jZp8FOUyQrA+revcu9mDP2Gj82GWbNeC8+Syck8Y8va4gbH2ni+Y80SYaB
+         wxZC/laPoSIONRF9xS3gye6DieykFm/d/QeR1Cw9Q3qSmG2znVuLWufS7iZlhuoVeqTM
+         xYrRKzIq1JBntBrTw73UYZQ7rSc2HusEYilpAYzIPc8CJjEpkul1g0ctguduBCb144kf
+         QzN71abPTQv/RaiIIdaIK2ySfGwINZfJzFD5FMzCKD/1k7mmENVlYtkB71ke8LSKmAc0
+         2DVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679041952;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oDOcNIcbSN9Lk2htsV80EHwrNf4UOCNV6ZaL1McyWuk=;
+        b=6W7G/93MGzQUFSjcX1CR0+Kb9zSKxs7BmjYVa9Lviw410L//RJgT4chPFUTfBlJpRN
+         HejUm54/u3tzUVYHobPLPrxGoZVEYZk28reLiyQwGlAgMO9FavQ7w7Y5PArZhV0Rb/gc
+         eLZFp/XD9N+am+j8aMpnwV4UB3OaWq8dbC83Iw4BXxTo2gCMXcdOnKnCa18G0z3O6Ia9
+         mxB5xP1ZHyAIkxzWv6FcF9sJOPVsQkcY6wZQZZV5C0UYwhAhH00LbXlRTNuqrVwER2mB
+         7VOKZNM2g63PiR7YqPBfVHn+M1LbE4k1Ye7f4TtekehBoduch2ZfuiOY6VUHIiSR8/P8
+         OQLA==
+X-Gm-Message-State: AO0yUKWdB0JajgSDkwQLIgwIAU/KaZ2RpoFdEyAsjznBZ7Xk+w72ggln
+        heaMz10cAxrPtX6X+GgoWKwsyg==
+X-Google-Smtp-Source: AK7set/64No4okniI9+o2EC5df5JYtg/Ur5By37PIJVSfElLEiA0wNITxxOCYNOCOgrpQmgmHOSDJg==
+X-Received: by 2002:a17:907:3fa6:b0:878:7189:a457 with SMTP id hr38-20020a1709073fa600b008787189a457mr16572865ejc.51.1679041952687;
+        Fri, 17 Mar 2023 01:32:32 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
+        by smtp.gmail.com with ESMTPSA id mj4-20020a170906af8400b008ca8b62cda6sm699999ejb.177.2023.03.17.01.32.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 01:32:32 -0700 (PDT)
+Message-ID: <0edf6829-3a23-7a75-a225-d69222ae2788@linaro.org>
+Date:   Fri, 17 Mar 2023 09:32:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v4 4/5] soc: ti: pruss: Add
- helper functions to set GPI mode, MII_RT_event and XFR
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Document SM61[12]5 GPU SMMU
 Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-Cc:     linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230313111127.1229187-1-danishanwar@ti.com>
- <20230313111127.1229187-5-danishanwar@ti.com>
- <d168e7dd-42a0-b728-5c4c-e97209c13871@kernel.org>
- <b1409f34-86b5-14e8-f352-5032aa57ca46@ti.com>
- <60e73395-f670-6eaa-0eb7-389553320a71@kernel.org>
- <20718115-7606-a77b-7e4d-511ca9c1d798@ti.com>
- <e49b9a78-5e35-209e-7ecc-2333478b98b0@kernel.org>
- <468f85ad-e4b0-54e1-a5b9-4692ae8a1445@ti.com>
- <455440f4-7f2b-366e-53ec-700c3bb98534@kernel.org>
- <22b8860c-12bd-384d-41af-93f1dde9a0fd@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <22b8860c-12bd-384d-41af-93f1dde9a0fd@ti.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230315-topic-kamorta_adrsmmu-v1-0-d1c0dea90bd9@linaro.org>
+ <20230315-topic-kamorta_adrsmmu-v1-1-d1c0dea90bd9@linaro.org>
+ <f09e93e1-235a-ea0a-902d-4f41a8c90ee5@linaro.org>
+ <d260b390-f6f2-493a-071c-f88c36582881@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d260b390-f6f2-493a-071c-f88c36582881@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,64 +86,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/03/2023 22:59, Konrad Dybcio wrote:
+> 
+> 
+> On 16.03.2023 20:29, Krzysztof Kozlowski wrote:
+>> On 15/03/2023 11:52, Konrad Dybcio wrote:
+>>> Both of these SoCs have a Qualcomm MMU500 implementation of SMMU
+>>> in front of their GPUs that expect 3 clocks. Both of them also have
+>>> an APPS SMMU that expects no clocks. Remove qcom,sm61[12]5-smmu-500
+>>> from the "no clocks" list (intentionally 'breaking' the schema checks
+>>> of APPS SMMU, as now it *can* accept clocks - with the current
+>>> structure of this file it would have taken a wastefully-long time to
+>>> sort this out properly..) and add necessary yaml to describe the
+>>> clocks required by the GPU SMMUs.
+>>
+>>
+>>> +      properties:
+>>> +        compatible:
+>>> +          items:
+>>> +            - enum:
+>>> +                - qcom,sm6115-smmu-500
+>>> +                - qcom,sm6125-smmu-500
+>>> +            - const: qcom,adreno-smmu
+>>> +            - const: qcom,smmu-500
+>>> +            - const: arm,mmu-500
+>>
+>> If you drop the hunk later (from allOf:if), then what clocks do you
+>> expect for non-GPU SMMU?
+> Both 6115 and 6125 require no clocks under the APPS (non-GPU) SMMU.
+> However, the list below uses a `contains:` which means I'd have
+> to add a whole another hunk like
+> 
+> 	- items:
+>             - enum:
+>                 - qcom,sm6115-smmu-500
+>                 - qcom,sm6125-smmu-500
+>             - const: qcom,smmu-500
+>             - const: arm,mmu-500
+> 
+> and add another level of indentation to the previous one
+> 
+> I figured skipping that was less messy (I think we discussed this
+> once as well), but if you prefer to keep it strict, I can.
 
+Nah, ok, it's fine.
 
-On 17/03/2023 07:02, Md Danish Anwar wrote:
-> 
-> 
-> On 16/03/23 19:34, Roger Quadros wrote:
->>
->> Hi,
->>
->> On 16/03/2023 15:11, Md Danish Anwar wrote:
->>>
->>>
->>> On 16/03/23 17:49, Roger Quadros wrote:
->>>>
->>>>
->>>> On 16/03/2023 13:44, Md Danish Anwar wrote:
->>>>>
->>>>> On 16/03/23 17:06, Roger Quadros wrote:
->>>>>> Hi,
->>>>>>
->>>>>> On 16/03/2023 13:05, Md Danish Anwar wrote:
->>>>>>> Hi Roger,
->>>>>>>
->>>>>>> On 15/03/23 17:52, Roger Quadros wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 13/03/2023 13:11, MD Danish Anwar wrote:
->>>>>>>>> From: Suman Anna <s-anna@ti.com>
->>
-> 
-> [..]
-> 
->>> Sure, then I will use the existing enum pru_type.
->>>
->>> The enum pru_type is currently in drivers/remoteproc/pruss.c I will move this
->>> enum definition from there to include/linux/remoteproc/pruss.h
->>
->> There are 2 public pruss.h files.
->> 	include/linux/remoteproc/pruss.h
->> and
->> 	include/linux/pruss_driver.h
->>
->> Why is that and when to use what?
->>
-> 
-> The include/linux/remoteproc/pruss.h file was introduced in series [1] as a
-> public header file for PRU_RPROC driver (drivers/remoteproc/pru_rproc.c)
-> 
-> The second header file include/linux/pruss_driver.h was introduced much earlier
-> as part of [2] , "soc: ti: pruss: Add a platform driver for PRUSS in TI SoCs".
-> 
-> As far as I can see, seems like pruss_driver.h was added as a public header
-> file for PRUSS platform driver (drivers/soc/ti/pruss.c)
-> 
-> [1] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/
-> [2] https://lore.kernel.org/all/1542886753-17625-7-git-send-email-rogerq@ti.com/
+Best regards,
+Krzysztof
 
-Thanks. "include/linux/remoteproc/pruss.h" seems appropriate for enum pru_type.
-
-cheers,
--roger
