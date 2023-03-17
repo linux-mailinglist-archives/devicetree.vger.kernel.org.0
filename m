@@ -2,82 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63E4F6BECF8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:32:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 193BE6BED50
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:51:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbjCQPcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 11:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
+        id S231151AbjCQPvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 11:51:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbjCQPb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:31:58 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B878D9925F;
-        Fri, 17 Mar 2023 08:31:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ojT5RV7IuxtmiG8XmC3PkiAz0l5iLYwDs/bmvH+qy3Q=; b=1+M/cQPdinsHbsS3ReG/eGwi9/
-        ReUm5bedO3hK206pCGqDpEkqc511QuPJT3JyypdqC5/Edx2VVdTTEYOht0nf3jbqERkmhif9hHqyw
-        HwWNDtKt516jtVFOH1cJeNvWqclwTtXrr7HyVjfydiCFGyj9VqzuD+XCJtjHMdjbP0zs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pdC3D-007cjC-2w; Fri, 17 Mar 2023 16:31:27 +0100
-Date:   Fri, 17 Mar 2023 16:31:27 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230335AbjCQPvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:51:22 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E93B1A49
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:51:21 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id cy23so22068634edb.12
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:51:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679068279;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VgbCEwBBaMJgjzTFKLCTgfUkZg+a1TMJ6pPEoqV63Hc=;
+        b=LwuCElSXbXOCVZGj7kYeemZnW62++O0ppaxM7gnXTHJSYAyJpXJoVkQ6DwBOhLNaMJ
+         Kf4s1x9Cc69FYIaJywiJMkt86sBWGheEfqggTlkg3v9Qs5LctnwnQfXKWmbQDk3Yuh9r
+         g+tDtl8BlfPDL8GXvh6KyA5aggB1LpL2rV2UcjyA/qytvb7zxpgXFIc7eutHCtx14aze
+         Y3byhgJcqb5+9UzImhKpn/GG+qN+lbe4sQLDvqmeBBegMst5k512i+IlC6pkBjt0sob4
+         LaGs8Ob+BCPvmVjLrMR3UT2NUe4h9u7+3b91+l88eUdb624n8f9Od8Re/7TIJK49RGpT
+         roCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679068279;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VgbCEwBBaMJgjzTFKLCTgfUkZg+a1TMJ6pPEoqV63Hc=;
+        b=uawG28OkTyqa0aoNGGokwQMV7f9mSaWYuHqBp9h/MBpxKBorlgao+eZCoN0Svdr7i4
+         KC4sW49eyldZN8AupOtb63OYarSBI7eGIHPahYkszBgcRAMaG0BzhCYROEUSgqlE3cAw
+         zK/tgS7SfjgRmjH+nAXZ6iPI40W7JqO7zRBOlWH2pXua59ZICm5hBvWsJra/3sWB3BF5
+         MSsKZ0DEq8AH1Q3/tMSi0yy1UyhnT+QwOg4AiMKmVuhtrZxUetsfoU1MH2yF76bnMoNN
+         vWwT2BR1av0j4KV7jgKOwFAX4Byc7AJPFnZoPfv3TrpnyhuPNthdBiXMMSI+/PxlZEuW
+         fm2A==
+X-Gm-Message-State: AO0yUKW1A0eZt10wT/uDQjhPZdQy+EOo944M6uExS3PofGiR6XBl4cxE
+        +S53WeiRT397xThjP2CxmTwSCA==
+X-Google-Smtp-Source: AK7set+le+sP+6r2wPX7W1qxTD9Ck//nvh8FN3PUI0b+9ZyihWQUg3l+YvlQhJ034uCNeDK4yazy9w==
+X-Received: by 2002:aa7:db97:0:b0:4fb:fd22:29b6 with SMTP id u23-20020aa7db97000000b004fbfd2229b6mr3165846edt.40.1679068279633;
+        Fri, 17 Mar 2023 08:51:19 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
+        by smtp.gmail.com with ESMTPSA id k12-20020a50ce4c000000b004af70c546dasm1226755edj.87.2023.03.17.08.51.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 08:51:19 -0700 (PDT)
+Message-ID: <7469290a-0671-7d2f-b0ce-cdde2a9e66cc@linaro.org>
+Date:   Fri, 17 Mar 2023 16:51:18 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: spi: add loongson spi
+Content-Language: en-US
+To:     zhuyinbo <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v4 04/14] net: phy: Add a binding for PHY LEDs
-Message-ID: <2c2d7c4a-bd35-4454-aa58-3106334806f2@lunn.ch>
-References: <20230317023125.486-1-ansuelsmth@gmail.com>
- <20230317023125.486-5-ansuelsmth@gmail.com>
- <20230317084519.12d3587a@dellmb>
- <6cf03603-2a8e-4c08-a61b-aef164a0f5d9@lunn.ch>
- <20230317152903.5103f2c4@dellmb>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230317152903.5103f2c4@dellmb>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
+ <20230317082950.12738-2-zhuyinbo@loongson.cn>
+ <a736c6db-466a-12e4-8e22-c8dc900978d4@linaro.org>
+ <e944732b-9a2d-b6ff-8336-7363788809b9@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e944732b-9a2d-b6ff-8336-7363788809b9@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Yes, and this would solve the problem for a user who wants to change
-> the behaviour of a LED for a given PHY. But a user who wants to list
-> all available LEDs by listing /sys/class/leds can also retrieve a nice
-> list of names that make sense, if the documented format is followed.
+On 17/03/2023 11:00, zhuyinbo wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - loongson,ls2k-spi
+>>> +      - loongson,ls7a-spi
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>> I don't understand why did you change it. I did not ask for it.
+>>
+>> Best regards,
+>> Krzysztof
+> Add clocks "minItems: 1" description is for fix yaml file compile issue.
 
-Please make a concrete proposal.
+minItems: 1 is not correct, so you cannot use incorrect code to suppress
+some warning. This should be list the clocks or use maxItems: 1, if you
+have only one clock.
 
-Also, keep in mind, ethernet device names change at runtime, and are
-not unique. Function also changes at run time, which is in fact the
-whole purpose of this collection of patchsets.
+Best regards,
+Krzysztof
 
-      Andrew
