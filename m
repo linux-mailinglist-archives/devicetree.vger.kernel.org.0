@@ -2,122 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE8126BEB24
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081286BEB2D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbjCQO2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 10:28:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46844 "EHLO
+        id S231157AbjCQO27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 10:28:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjCQO17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:27:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D84D366A8;
-        Fri, 17 Mar 2023 07:27:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 03E89622D4;
-        Fri, 17 Mar 2023 14:27:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CE7EC433D2;
-        Fri, 17 Mar 2023 14:27:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679063277;
-        bh=Ja0gXd3YfBR6uYrUbXl92wXVqvLZJFGUpGHdiwj+ROI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mdwCqXGqNep4EKAupw8jzfhWRrjq79YWH/MMQgK3tQSZC3hiyuYvbCWPTxwxLwpHJ
-         FhfR3yNKFqj/NDBbszx/GvZ/J3/VMSeXoWCDwzES0AjdQiL1tvLD0BBMZ//FgxkrFf
-         rRZHPmusSP2wcH9FuRjE8NFAqd7RVcTHkYI4fFrxuBQTLwnCSup5sz3Pq3dyCuOkyy
-         Yi4E+sbyIKDivzUMuGYa8qkS9ILxgOwMjxYArHb//UyvvSyvqI8tHbgy89AH02HhIV
-         agzW+EDeGvYcmM54DsDVhSg7ETaaEAxyM6Q15ke0yOFXafWjNuoaAIC7GScvP7ngF8
-         BGyMe2skQ+W4w==
-Received: by mail-ua1-f54.google.com with SMTP id s23so3448973uae.5;
-        Fri, 17 Mar 2023 07:27:57 -0700 (PDT)
-X-Gm-Message-State: AO0yUKWfvo4CBuV82B9uDN/S02GEuAwBoay9st8BnJ+TS9FNh0pWfCJi
-        d0KeppyRzNw0E1L6a+yAscYPHCXCFR48c2E4Jg==
-X-Google-Smtp-Source: AK7set+opXfvV0KuRUWrTn9+KJEXDQa7roIGehinVec3htJJWc+YaBCYf2jrEie3nmO3df834BaxB7f6VqlHHcNfwWw=
-X-Received: by 2002:a1f:2cd7:0:b0:401:73f4:dfe with SMTP id
- s206-20020a1f2cd7000000b0040173f40dfemr8088vks.3.1679063276330; Fri, 17 Mar
- 2023 07:27:56 -0700 (PDT)
+        with ESMTP id S230173AbjCQO26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:28:58 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3658A22DDF
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 07:28:56 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id i9so4612911wrp.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 07:28:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679063334;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tR0wQE8M8Ta7hlf9T/C518wbuU/k1dFHdTpiVCbCQdI=;
+        b=HCaaMySfgkDU+bWp7bW2t9rdVrsQ8GHioDCTlMLMf+IjW9YDEPsuVCotEPWyrbXYTd
+         4br89bZ1UzJv1aPgq0dvgItl5QG8RMJBynsBt6HACyz+qZeEXkBzqFAvT3dPJa0uQBEG
+         aDH5KCDYVdMPmarak8pJ4iWTYDLGrciE2h2Yjz+PC3PvNYtsbzRARj8aX9I0KFj0QWDW
+         PhcbFQjS7o5FjxP6zzQiXy//CpKR2j6Ah1KYAvE4cHiwLNB56qKgp79SZCX8BxD9X01C
+         q9ZEmGUAmkylHO0zHr77aEZcEfR1vRYqv9gYSI38HVwfpt0AU7kAkfew7EjzqjKeatRX
+         qIjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679063334;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tR0wQE8M8Ta7hlf9T/C518wbuU/k1dFHdTpiVCbCQdI=;
+        b=KKDArJP3xYTce8/jTRaw0MmE/gnxXDm2I6jqHQIOMHMB4h/80tiBy03erRdKUWeoXs
+         0QCgZt70jgxnXs7173OUZeYl0PLarq8evR4sWtHr9452SY+LTwscWk333HEUNCHDrtWu
+         utfznUUi4jGMpoMMWyhEpGi9MUOOweaiNt0ygMQ5OcgUedMeAf5DfqFODz1qtwehL/X+
+         TtUlX0sD1tUxKrCt4vknCPHHSOWkvRP1jro0Y/E18CFEqHeu988lFX0blr2whI5jOBDh
+         ywnCMGY2XdPLIsJIBOYy3jfFy/NzGJzKySQqhfovF85NAnNVeoCwbcX7BkBdkOanatn3
+         R2+A==
+X-Gm-Message-State: AO0yUKW63NK2s+ac7glDVsjakJdORgXHZXJ75XkViOP6f06mvGpO9frR
+        KgXRLNBwspcLpf2Lr3SgdeL9Rg==
+X-Google-Smtp-Source: AK7set8AKYEIAth7Eh89Fp1MUe2n6Pd90pcAPWLJZ+SNTSiWn6+fUk1b6MLbrI5cbflwdqY3s2h0AA==
+X-Received: by 2002:adf:f68b:0:b0:2cb:d8f1:1d2f with SMTP id v11-20020adff68b000000b002cbd8f11d2fmr7678165wrp.17.1679063334621;
+        Fri, 17 Mar 2023 07:28:54 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9ed5:bad0:e925:7938? ([2a01:e0a:982:cbb0:9ed5:bad0:e925:7938])
+        by smtp.gmail.com with ESMTPSA id e8-20020adffc48000000b002c8476dde7asm2057650wrs.114.2023.03.17.07.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 07:28:54 -0700 (PDT)
+Message-ID: <77195576-34c1-d522-194c-85eba5d023fe@linaro.org>
+Date:   Fri, 17 Mar 2023 15:28:53 +0100
 MIME-Version: 1.0
-References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
- <20230315114806.3819515-2-cristian.ciocaltea@collabora.com>
- <20230316203417.GA3833267-robh@kernel.org> <20230316222619.r4jzk3lzdxzamr2s@bogus>
- <d5881d9f-90cc-f7a2-72a3-0701348a03fe@collabora.com>
-In-Reply-To: <d5881d9f-90cc-f7a2-72a3-0701348a03fe@collabora.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 17 Mar 2023 09:27:44 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL_EogoKOQ1xwU75=rJSC4o7yV3Jej4vadtacX2Pt3-hw@mail.gmail.com>
-Message-ID: <CAL_JsqL_EogoKOQ1xwU75=rJSC4o7yV3Jej4vadtacX2Pt3-hw@mail.gmail.com>
-Subject: Re: [PATCH 01/11] dt-bindings: firmware: arm,scmi: Document
- assigned-clocks and assigned-clock-rates
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v5 4/5] arm64: dts: qcom: sm8450: switch to usb3/dp combo
+ phy
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Drake <drake@endlessm.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230206-topic-sm8450-upstream-dp-controller-v5-0-a27f1b26ebe8@linaro.org>
+ <20230206-topic-sm8450-upstream-dp-controller-v5-4-a27f1b26ebe8@linaro.org>
+ <ab6391c4-ff38-8286-77ff-c781669f5aa0@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <ab6391c4-ff38-8286-77ff-c781669f5aa0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 4:59=E2=80=AFAM Cristian Ciocaltea
-<cristian.ciocaltea@collabora.com> wrote:
->
-> On 3/17/23 00:26, Sudeep Holla wrote:
-> > On Thu, Mar 16, 2023 at 03:34:17PM -0500, Rob Herring wrote:
-> >> +Stephen
-> >>
-> >> On Wed, Mar 15, 2023 at 01:47:56PM +0200, Cristian Ciocaltea wrote:
-> >>> Since commit df4fdd0db475 ("dt-bindings: firmware: arm,scmi: Restrict
-> >>> protocol child node properties") the following dtbs_check warning is
-> >>> shown:
-> >>>
-> >>>    rk3588-rock-5b.dtb: scmi: protocol@14: Unevaluated properties are =
-not allowed ('assigned-clock-rates', 'assigned-clocks' were unexpected)
-> >>
-> >> I think that's a somewhat questionable use of assigned-clock-rates. It
-> >> should be located with the consumer rather than the provider IMO. The
-> >> consumers of those 2 clocks are the CPU nodes.
-> >>
-> >
-> > Agreed. We definitely don't use those in the scmi clk provider driver.
-> > So NACK for the generic SCMI binding change.
->
-> According to [1], "configuration of common clocks, which affect multiple
-> consumer devices can be similarly specified in the clock provider node".
+On 17/03/2023 13:09, Dmitry Baryshkov wrote:
+> On 17/03/2023 11:12, Neil Armstrong wrote:
+>> The QMP PHY is a USB3/DP combo phy, switch to the newly
+>> documented bindings and register the clocks to the GCC
+>> and DISPCC controllers.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 42 +++++++++++++-----------------------
+>>   1 file changed, 15 insertions(+), 27 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> index 69695eb83897..0b5a151ce138 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> @@ -11,6 +11,7 @@
+>>   #include <dt-bindings/dma/qcom-gpi.h>
+>>   #include <dt-bindings/gpio/gpio.h>
+>>   #include <dt-bindings/mailbox/qcom-ipcc.h>
+>> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+>>   #include <dt-bindings/power/qcom-rpmpd.h>
+>>   #include <dt-bindings/interconnect/qcom,sm8450.h>
+>>   #include <dt-bindings/soc/qcom,gpr.h>
+>> @@ -748,7 +749,7 @@ gcc: clock-controller@100000 {
+>>                    <&ufs_mem_phy_lanes 0>,
+>>                    <&ufs_mem_phy_lanes 1>,
+>>                    <&ufs_mem_phy_lanes 2>,
+>> -                 <0>;
+>> +                 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>>               clock-names = "bi_tcxo",
+>>                         "sleep_clk",
+>>                         "pcie_0_pipe_clk",
+>> @@ -2034,37 +2035,24 @@ usb_1_hsphy: phy@88e3000 {
+>>               resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+>>           };
+>> -        usb_1_qmpphy: phy-wrapper@88e9000 {
+>> -            compatible = "qcom,sm8450-qmp-usb3-phy";
+>> -            reg = <0 0x088e9000 0 0x200>,
+>> -                  <0 0x088e8000 0 0x20>;
+>> -            status = "disabled";
+>> -            #address-cells = <2>;
+>> -            #size-cells = <2>;
+>> -            ranges;
+>> +        usb_1_qmpphy: phy@88e8000 {
+>> +            compatible = "qcom,sm8450-qmp-usb3-dp-phy";
+>> +            reg = <0 0x088e8000 0 0x4000>;
+> 
+> This should be 0x3000 too, like 8350
 
-True, but in this case it's really a single consumer because it's all
-CPU nodes which are managed together.
+Ack thx for noticing
 
-> That would avoid duplicating assigned-clock-rates in the CPU nodes.
+> 
+>>               clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>>                    <&rpmhcc RPMH_CXO_CLK>,
+>> -                 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+>> -            clock-names = "aux", "ref_clk_src", "com_aux";
+>> +                 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+>> +                 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>> +            clock-names = "aux", "ref", "com_aux", "usb3_pipe";
+>>               resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+>>                    <&gcc GCC_USB3_PHY_PRIM_BCR>;
+>>               reset-names = "phy", "common";
+>> -            usb_1_ssphy: phy@88e9200 {
+>> -                reg = <0 0x088e9200 0 0x200>,
+>> -                      <0 0x088e9400 0 0x200>,
+>> -                      <0 0x088e9c00 0 0x400>,
+>> -                      <0 0x088e9600 0 0x200>,
+>> -                      <0 0x088e9800 0 0x200>,
+>> -                      <0 0x088e9a00 0 0x100>;
+>> -                #phy-cells = <0>;
+>> -                #clock-cells = <0>;
+>> -                clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>> -                clock-names = "pipe0";
+>> -                clock-output-names = "usb3_phy_pipe_clk_src";
+>> -            };
+>> +            #clock-cells = <1>;
+>> +            #phy-cells = <1>;
+>> +
+>> +            status = "disabled";
+>>           };
+>>           remoteproc_slpi: remoteproc@2400000 {
+>> @@ -2972,8 +2960,8 @@ dispcc: clock-controller@af00000 {
+>>                    <&mdss_dsi0_phy 1>,
+>>                    <&mdss_dsi1_phy 0>,
+>>                    <&mdss_dsi1_phy 1>,
+>> -                 <0>, /* dp0 */
+>> -                 <0>,
+>> +                 <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
+>> +                 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
+>>                    <0>, /* dp1 */
+>>                    <0>,
+>>                    <0>, /* dp2 */
+>> @@ -4168,7 +4156,7 @@ usb_1_dwc3: usb@a600000 {
+>>                   iommus = <&apps_smmu 0x0 0x0>;
+>>                   snps,dis_u2_susphy_quirk;
+>>                   snps,dis_enblslpm_quirk;
+>> -                phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+>> +                phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+>>                   phy-names = "usb2-phy", "usb3-phy";
+>>               };
+>>           };
+>>
+> 
 
-Wouldn't one node be sufficient?
-
-Thinking more about this, why aren't you using OPP tables to define
-CPU frequencies. Assigned-clocks looks like a temporary hack because
-you haven't done proper OPP tables.
-
-Rob
