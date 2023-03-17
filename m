@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E536BF3A1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 22:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C5B06BF3AC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 22:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbjCQVNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 17:13:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43276 "EHLO
+        id S229769AbjCQVQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 17:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbjCQVNE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 17:13:04 -0400
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4D6F951;
-        Fri, 17 Mar 2023 14:13:03 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id h7so3423373ila.5;
-        Fri, 17 Mar 2023 14:13:03 -0700 (PDT)
+        with ESMTP id S229734AbjCQVQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 17:16:27 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD1469CFB;
+        Fri, 17 Mar 2023 14:16:26 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id i19so3409878ila.10;
+        Fri, 17 Mar 2023 14:16:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679087583;
+        d=1e100.net; s=20210112; t=1679087785;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0cLT9nvbyGDO+rZS3qLUAHKtUfaXz4dTYvgAZ9mY5+E=;
-        b=NpWMh+H/TD2usHQijYSLrbgfH08F/dXQAukjeJk8X3pFC3/OOoyaeJqDGolc4GsFdD
-         sX3tFXazEBEGNvrksvkPxxrrE/YmQPhKdhI1rUiuX5QiqT1GMKBoLwPe74jLuI0Tgsgl
-         mViVoGLWjhM1SJsAxotvIUK/bfmMQD4Jj1eJ5fquCfZMa93wqJxlQsv3Wv2agSu7Oiik
-         D47JBbCZkF1QowdIAp5dm436H1wptG5fYqy8DS5ODZfzF+NtLRqzBVeDAHpGWt/T4gAk
-         u4oqvFZ0mNY6YfkzCb3DgfFh0RGaMGlkdpMqEzjULOpQHzdZkz8R7Wmo/JsCH6CmOg/i
-         JR2w==
-X-Gm-Message-State: AO0yUKX/Gmnk2m+ztIn66dn4lTEmLbl9GNRBJ/eRMTE5aX7FFTV6IFjX
-        /MG7dvcRZcBBshVSaXFR0A==
-X-Google-Smtp-Source: AK7set+kHa11pPniVGqEyT+IX45l08nf/CPb3WXSyO/YNiwEYWD2EUMXyJV7HLcXyV4EPbUjxdWQlg==
-X-Received: by 2002:a92:d40c:0:b0:317:93dc:10f5 with SMTP id q12-20020a92d40c000000b0031793dc10f5mr33737ilm.19.1679087582684;
-        Fri, 17 Mar 2023 14:13:02 -0700 (PDT)
+        bh=E8EReBm37JWyJO8L1kIPOgKUl1U5FCQclLtDZ/qXfAs=;
+        b=T9OD8EDmmspN5qP6O0f9aqn23exd9IXa16FNFPu9CWKpEB6ZJdDN2SZYeKENQQG5Ef
+         fWY9t1SLe/M/Z9CZAAnsfuUSOSp7Oqquo7QN8gsMKC1U1BPWnun6YWISwZMWrRAyAoPW
+         mTW3MBSi6+9pZFblEhNr39Q672Uq9tn9FiIx1+XK1kbXENjlVrDX7WV1UcC0TilOPZF8
+         qqOrikKJnz8uyFGtl9f74h5ZcphO5DVL6kc6u4PcK6Yd4Q9/J+a5x98oqimeXLEeX23p
+         ubUZ6cloyeRehh8OJ9jKEWSTMsR4XvQkX8VSejJH11HjBrZp9cOzv9cA85blkSoMBB8N
+         N8gw==
+X-Gm-Message-State: AO0yUKWiwyBiUE9fqyYObhX5SfGwCBqeLxjAVE9YReg2bSWzqA07UcoL
+        bqLPWKVPzdczxfVfYTLtksl5rKLPBA==
+X-Google-Smtp-Source: AK7set+44jDdZQnQ5gK5eSj07BZtp0lA+8sBDtriRGbUAZiENzi39wMOmMGgf61Ip66/ii32uJBABg==
+X-Received: by 2002:a92:cc08:0:b0:317:99b9:3d1c with SMTP id s8-20020a92cc08000000b0031799b93d1cmr12777ilp.26.1679087785257;
+        Fri, 17 Mar 2023 14:16:25 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.249])
-        by smtp.gmail.com with ESMTPSA id i35-20020a056638382300b003a607dccd1bsm1009090jav.17.2023.03.17.14.13.00
+        by smtp.gmail.com with ESMTPSA id c7-20020a929407000000b003232362a4c2sm879970ili.8.2023.03.17.14.16.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 14:13:02 -0700 (PDT)
-Received: (nullmailer pid 2814507 invoked by uid 1000);
-        Fri, 17 Mar 2023 21:13:00 -0000
-Date:   Fri, 17 Mar 2023 16:13:00 -0500
+        Fri, 17 Mar 2023 14:16:23 -0700 (PDT)
+Received: (nullmailer pid 2819364 invoked by uid 1000);
+        Fri, 17 Mar 2023 21:16:21 -0000
+Date:   Fri, 17 Mar 2023 16:16:21 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Christian Lamparter <chunkeey@googlemail.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org,
+        Tony Lindgren <tony@atomide.com>,
+        Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Felipe Balbi <balbi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
         "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
         Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v3 09/14] dt-bindings: net: dsa: dsa-port:
- Document support for LEDs node
-Message-ID: <20230317211300.GA2811156-robh@kernel.org>
-References: <20230314101516.20427-1-ansuelsmth@gmail.com>
- <20230314101516.20427-1-ansuelsmth@gmail.com>
- <20230314101516.20427-10-ansuelsmth@gmail.com>
- <20230314101516.20427-10-ansuelsmth@gmail.com>
- <20230315005000.co4in33amy3t3xbx@skbuf>
- <afd1f052-6bb6-4388-9620-1adb02e6d607@lunn.ch>
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] p54spi: convert to devicetree
+Message-ID: <20230317211621.GA2814846-robh@kernel.org>
+References: <20230314163201.955689-1-arnd@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <afd1f052-6bb6-4388-9620-1adb02e6d607@lunn.ch>
+In-Reply-To: <20230314163201.955689-1-arnd@kernel.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -85,40 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 02:58:23AM +0100, Andrew Lunn wrote:
-> On Wed, Mar 15, 2023 at 02:50:00AM +0200, Vladimir Oltean wrote:
-> > On Tue, Mar 14, 2023 at 11:15:11AM +0100, Christian Marangi wrote:
-> > > Document support for LEDs node in dsa port.
-> > > Switch may support different LEDs that can be configured for different
-> > > operation like blinking on traffic event or port link.
-> > > 
-> > > Also add some Documentation to describe the difference of these nodes
-> > > compared to PHY LEDs, since dsa-port LEDs are controllable by the switch
-> > > regs and the possible intergated PHY doesn't have control on them.
-> > > 
-> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/net/dsa/dsa-port.yaml | 21 +++++++++++++++++++
-> > >  1 file changed, 21 insertions(+)
-> > 
-> > Of all schemas, why did you choose dsa-port.yaml? Why not either something
-> > hardware specific (qca8k.yaml) or more generic (ethernet-controller.yaml)?
+On Tue, Mar 14, 2023 at 05:30:56PM +0100, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
 > 
-> The binding should be generic. So qca8k.yaml is way to specific. The
-> Marvell switch should re-use it at some point.
+> The Prism54 SPI driver hardcodes GPIO numbers and expects users to
+> pass them as module parameters, apparently a relic from its life as a
+> staging driver. This works because there is only one user, the Nokia
+> N8x0 tablet.
 > 
-> Looking at the hierarchy, ethernet-controller.yaml would work since
-> dsa-port includes ethernet-switch-port, which includes
-> ethernet-controller.
+> Convert this to the gpio descriptor interface and move the gpio
+> line information into devicetree to improve this and simplify the
+> code at the same time.
 > 
-> These are MAC LEDs, and there is no reason why a standalone MAC in a
-> NIC could not implement such LEDs. So yes,
-> ethernet-controller.yaml.
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> As I don't have an N8x0, this is completely untested.
 > 
-> Is there actually anything above ethernet-controller.yaml?
+> I listed the driver authors (Johannes and Christian) as the maintainers
+> of the binding document, but I don't know if they actually have this
+> hardware. It might be better to list someone who is actually using it.
+> 
+> Among the various chip identifications, I wasn't sure which one to
+> use for the compatible string and the name of the binding document.
+> I picked st,stlc4560 as that was cited as the version in the N800
+> on multiple websites.
+> ---
+>  .../bindings/net/wireless/st,stlc45xx.yaml    | 64 +++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  arch/arm/boot/dts/omap2.dtsi                  |  4 ++
+>  arch/arm/boot/dts/omap2420-n8x0-common.dtsi   | 12 ++++
+>  arch/arm/mach-omap2/board-n8x0.c              | 18 -----
+>  drivers/net/wireless/intersil/p54/p54spi.c    | 69 +++++++------------
+>  drivers/net/wireless/intersil/p54/p54spi.h    |  3 +
+>  7 files changed, 109 insertions(+), 62 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/st,stlc45xx.yaml
 
-Yes, the one under review[1].
+Binding looks fine, but I assume you'll split this into at least 3 
+patches?
 
 Rob
- 
-[1] https://lore.kernel.org/all/20230203-dt-bindings-network-class-v2-0-499686795073@jannau.net/
