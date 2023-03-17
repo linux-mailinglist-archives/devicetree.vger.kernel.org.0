@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5840A6BEB3A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B9B6BEB76
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:35:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbjCQO3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 10:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49866 "EHLO
+        id S230147AbjCQOfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 10:35:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbjCQO33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:29:29 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E4DD5A70;
-        Fri, 17 Mar 2023 07:29:23 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id x3so21041256edb.10;
-        Fri, 17 Mar 2023 07:29:23 -0700 (PDT)
+        with ESMTP id S229886AbjCQOfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:35:23 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228EEE5012
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 07:34:52 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id eg48so21051064edb.13
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 07:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679063362;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WbJNlgfkQTcIcyauJojLunW4hotdL0Nx1hjKKHYLlTI=;
-        b=oc59BrlN2yrTwiyQOaLLKV1foWciYfkFG3M+xvSoDZ8xJuEjYy2B5kTBe4hCwqWTXJ
-         xihpvuVcFhr2TpoAPjQE/SEQe2r4YG7VGLx1ir9mrXRK0EVy0YIbtOr8+fGkMWf10T7r
-         +RCDJUSXaEprvmjbWPbb2lPde+rxpjfqGtQLOSkIhYfldaoG5QQ3EPLruMghgJsWxFgq
-         FmldHiuf4dAFbPDGYo6dyCSrg3N/NScB48Id2Wg5xG11aYL+A+p+gxvoEbt+jP109cQx
-         odIkL6L8fcxIzbLa1ACYDpeWiZz4avAliotV8rebvCWfXuQ5UW9QrquxchvugWdLZu5r
-         9e9A==
+        d=linaro.org; s=google; t=1679063686;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=K4FKk1Fwhr1fzG6SpZjspB0mX89kWkmddwIe7IQAMes=;
+        b=UENArZTj3eYJid1mlv2le+ufGlum1Zp0eLeeq/UMk2jR1tIsCq8g4fnTOWOjeXS05X
+         9wmwkepGz2SvRU8GWyOwtI5NvaWBNAOo5mZ5ZibAWbNg1lVNyW8Eb2lkBpbbc5bvOMCn
+         S3hUKHL4JUvzWowv2pFzSFUz/38OYNVQyUTsSWfNO1uRQ/Fib22/BpfqF27k9zhFqol1
+         pP2RWAq50SxYGZliECPrKyQccTxB3qRGLAnpzqizhY8lhvfMb2UCdEA7/lM3qwonljmz
+         atsj1ZlbsCwcif2lrkfKAedNAr3o4vZKAGGbRDVSpB1amb1pNrz3LhvcUJxeQEs1AHw1
+         FZtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679063362;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20210112; t=1679063686;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WbJNlgfkQTcIcyauJojLunW4hotdL0Nx1hjKKHYLlTI=;
-        b=crG4krjrH6VfURFkMy2mt1OOQoATe8vDfFVc0LfYTGNCNZShAkiAQ9dcn6fHHy4uKK
-         PLks1/TDr+MHgWzGGT4QGXnrkrSSxYfosiYoQKg48hKUHdxshIvzcoUV4oDBTvtIB3A/
-         Oxs467O9Q30opNZmBdz72XiNIsxCn4OZlw7oGr2EBZGp52Ozuwm9jFz+QQXtGJe78/vL
-         qvuDjZoogQwbIkLycBJkp9ztyrkLvTLE5XhV9Y1YVT6KJSVBsjBwK3n9CjS80xnyFejS
-         L8lKZGhtAf1hvU0VsAtYc7KZRbUGdXNhk6Vx19ZK0cT5tid+CycIoFYml2e5QNATaiVS
-         JWWw==
-X-Gm-Message-State: AO0yUKUFT6vVxKEQ/TY0WXP5XuMJLqU9MEPK3Zuw3fSmcU+++HbCe4NS
-        72x8UKGl0AzAkngbVL9TamAc8GFo+uLcuw==
-X-Google-Smtp-Source: AK7set86PnzPDdgOAKEnlLnoHq+mEbpGvfPk6cycza1324IuDdfYr0vINgCd/CG8jj2xL8q/RZ9XHg==
-X-Received: by 2002:a17:907:1de4:b0:932:4378:b237 with SMTP id og36-20020a1709071de400b009324378b237mr1500641ejc.77.1679063361626;
-        Fri, 17 Mar 2023 07:29:21 -0700 (PDT)
-Received: from skbuf ([188.27.184.189])
-        by smtp.gmail.com with ESMTPSA id i3-20020a508703000000b004fbd365fb33sm1165721edb.38.2023.03.17.07.29.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 07:29:21 -0700 (PDT)
-Date:   Fri, 17 Mar 2023 16:29:19 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?w4FsdmFybyBGZXJuw6FuZGV6?= Rojas <noltari@gmail.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
-        jonas.gorski@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] net: dsa: b53: mmap: register MDIO Mux bus controller
-Message-ID: <20230317142919.hhjd64juws35j47o@skbuf>
-References: <20230317113427.302162-1-noltari@gmail.com>
- <20230317113427.302162-3-noltari@gmail.com>
- <20230317115115.s32r52rz3svuj4ed@skbuf>
- <CAKR-sGe3xHkN-1+aLn0ixnskctPK4GTzfXu8O_dkFhHyY1nTeg@mail.gmail.com>
- <20230317130434.7cbzk5gxx5guarcz@skbuf>
- <CAKR-sGeFZLnuqH=4Gok1URJEvrQKxbk203Q8zdMd9830G_XD7A@mail.gmail.com>
+        bh=K4FKk1Fwhr1fzG6SpZjspB0mX89kWkmddwIe7IQAMes=;
+        b=lTp1zQT4TpSGXNaSLVawPot3KUq7bhcBpLbQo0PmrreIhP/qbrJGQHCofLWppldG7/
+         MH304zkgln5EXieEKVNZrCKbIqZj4XI0VYN+eLrnKWSl3QeG66FCTXTf5Ckkxnk90jLQ
+         /50hNx9ai9ZtaF7og+KMG6H/kVNwCcyYDO3P9LmzekJIoN0A2RXOyR1xa9433VTSI2mk
+         I3cNdCYoRDtV7gGaJUfZrRxH56qhQc0gtsR1i8AbDZxR82Q183PoNGFkEyKPmctc4gC1
+         qA3x4uYZwmtS6Tk8sVDTgVyBD+6wLqGomWx3vgRzKXTXVzZw+rX05LmkVzCNH/JErvDB
+         NC0g==
+X-Gm-Message-State: AO0yUKWyLzUOe5VhLjB7B4dSXiX0y6508XBh/ogTGwy7fLg2JLxzWSLd
+        5nXmI+2NNR1DiyaQ85RriOedFA==
+X-Google-Smtp-Source: AK7set/5VawiO0rvgEB3jmpUoHQievfUgoXM5XEaTxW/KdVKozL8AZkY8bPCPx6Dl2eH5jQEGkKctQ==
+X-Received: by 2002:a17:906:9413:b0:930:9197:24d1 with SMTP id q19-20020a170906941300b00930919724d1mr3059411ejx.6.1679063686618;
+        Fri, 17 Mar 2023 07:34:46 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
+        by smtp.gmail.com with ESMTPSA id e8-20020a170906c00800b008e1509dde19sm1029098ejz.205.2023.03.17.07.34.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 07:34:46 -0700 (PDT)
+Message-ID: <3a6a756c-3393-abf7-3ddf-7dd44c8ea160@linaro.org>
+Date:   Fri, 17 Mar 2023 15:34:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: Probing devices by their less-specific "compatible" bindings
+ (here: brcmnand)
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>
+References: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKR-sGeFZLnuqH=4Gok1URJEvrQKxbk203Q8zdMd9830G_XD7A@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,45 +81,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 03:17:12PM +0100, Álvaro Fernández Rojas wrote:
-> > The proposed solution is too radical for a problem that was not properly
-> > characterized yet, so this patch set has my temporary NACK.
+On 17/03/2023 11:02, RafaÅ‚ MiÅ‚ecki wrote:
+> Hi, I just spent few hours debugging hidden hw lockup and I need to
+> consult driver core code behaviour.
 > 
-> Forgive me, but why do you consider this solution too radical?
-
-Because it involves changing device tree bindings (stable ABI) in an
-incompatible way.
-
-> >
-> > > But maybe Florian or Jonas can give some more details about the issue...
-> >
-> > I think you also have the tools necessary to investigate this further.
-> > We need to know what resource belonging to the switch is it that the
-> > MDIO mux needs. Where is the earliest place you can add the call to
-> > b53_mmap_mdiomux_init() such that your board works reliably? Note that
-> > b53_switch_register() indirectly calls b53_setup(). By placing this
-> > function where you have, the entirety of b53_setup() has finished
-> > execution, and we don't know exactly what is it from there that is
-> > needed.
+> I have a BCM4908 SoC based board with a NAND controller on it.
 > 
-> In the following link you will find different bootlogs related to
-> different scenarios all of them with the same result: any attempt of
-> calling b53_mmap_mdiomux_init() earlier than b53_switch_register()
-> will either result in a kernel panic or a device hang:
-> https://gist.github.com/Noltari/b0bd6d5211160ac7bf349d998d21e7f7
 > 
-> 1. before b53_switch_register():
+> ### Hardware binding
 > 
-> 2. before dsa_register_switch():
+> Hardware details:
+> arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
 > 
-> 3. before b53_switch_init():
+> Relevant part:
+> nand-controller@1800 {
+> 	compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
 
-Did you read what I said?
+(...)
 
-| Note that b53_switch_register() indirectly calls b53_setup(). By placing
-| this function where you have, the entirety of b53_setup() has finished
-| execution, and we don't know exactly what is it from there that is
-| needed.
+> ### Problem
+> 
+> As first Linux probes my hardware using the "brcm,nand-bcm63138"
+> compatibility string driver bcm63138_nand.c. That's good.
+> 
+> It that fails however (.probe() returns an error) then Linux core starts
+> probing using drivers for less specific bindings.
+> 
+> In my case probing with the "brcm,brcmnand" string driver brcmstb_nand.c
+> results in ignoring SoC specific bits and causes a hardware lockup. Hw
+> isn't initialized properly and writel_relaxed(0x00000009, base + 0x04)
+> just make it hang.
+> 
+> That obviously isn't an acceptable behavior for me. So I'm wondering
+> what's going on wrong here.
+> 
+> Should Linux avoid probing with less-specific compatible strings?
 
-Can you place the b53_mmap_mdiomux_init() in various places within
-b53_setup() to restrict the search further?
+Why? If less-specific compatible is there, it means device is compatible
+with it and it should work.
+
+> Or should I not claim hw to be "brcm,brcmnand" compatible if it REQUIRES
+> SoC-specific handling?
+
+As you pointed this compatible does not work for your device, so they
+are not compatible.
+
+
+Best regards,
+Krzysztof
+
