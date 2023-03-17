@@ -2,131 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A26F6BE408
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25CC16BE423
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:45:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbjCQImQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39586 "EHLO
+        id S229702AbjCQIpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:45:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231436AbjCQImA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:42:00 -0400
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EDF1205F;
-        Fri, 17 Mar 2023 01:40:37 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 40E4A2B06754;
-        Fri, 17 Mar 2023 04:39:55 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Fri, 17 Mar 2023 04:39:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-        1679042394; x=1679049594; bh=vd9YrYSnV4XdS8WGt7v2P7Vyy5NZXy01mXq
-        mDhxZrBk=; b=J5Flu0OFGnWhvnczWVSoPOJKDUehhmBYZx8M1v7obqIpWIJlYUH
-        PTGqbYbvMURhKg20tWtkTjMhVU1LLQYvtQYXrvKjT8PPF3gtmxkaGZaOxfv7pPOD
-        sp8WKeQG279mQ7PBEAv8nHP3pBze/hfCKQTQt8Ad+KWT0yR6NxSdhsg12OjHY8rZ
-        nqgJsXXSYojYL+QOoIJ/qh4rQ9Uiehgrmfn57ZcUalByr1EDyh/0erX9LFx0PRM7
-        MTWb5wTQ8ZO/42AyMIQL1X4ybU7liD7d1ApxE/WXqeLq6R1mNofBg3ukeJYn+9YU
-        tbiOpECuDKPBgPzexnLmrCUcGTPEDGVSsJA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-        1679042394; x=1679049594; bh=vd9YrYSnV4XdS8WGt7v2P7Vyy5NZXy01mXq
-        mDhxZrBk=; b=KqtwJZjwVnUe5XBlxTwzUKQNXyC3Rfsei1gmTYeUHmfumN9D6xG
-        09uK5EKqNS+BBcRqEe5TaalMgM1TqLZZssOtpMDrCuJTu5rA9H1JBAFNTk/1AuLe
-        sIE0ZzNC14+F1kvMpLuhD6yimW4RlLH8dtvEHYQL3wiHN/E0LTpCpAZjzWm39089
-        nQY+ydpKmPpU69PFkZGUruBLAUFvrROZT8Abkv/joe4n5TgVzExbwEHiNzmpTuQf
-        p+ScDFBOpLur5LwyhJPMsr0oE5KtukTw1bX5nsjTvvGOvS1chYho8w6vo3ptoTpm
-        cFbOdQ9AWm7hg4GgCsvc1FgRFNWNNPed0MQ==
-X-ME-Sender: <xms:WicUZHLilA8zXpe5Xb1fj3MjTT_oK8DCnUE9GCcRjRDnvbCzy72yzw>
-    <xme:WicUZLLy5EqEHolQ1oAGq-md_oHg6x8Xf1cgdYuR0QByrIHTaABMu5m15uAq0Z1fr
-    ZL4nQfj41mAGsNHkCE>
-X-ME-Received: <xmr:WicUZPuZ_6TZ6oGcbxdPMMxZzZkoDNHiCj8S5ax3eVW2TnOQHs5nbHJfsb4SFfn7bzXNCkDLHmQwTa_ZVhf_N-_T6kO8Q-4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdefuddguddvgecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgr
-    gihimhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtf
-    frrghtthgvrhhnpeeitdeuffevieeufedtuddvffffffegfffgkeeihfelleektdelhfev
-    hfduudfhgfenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
-    vggthh
-X-ME-Proxy: <xmx:WicUZAZ-c8e0fPKAOsp-qMCsIOlSrT-zVWG5n-P4NsktYNrXKJEPmw>
-    <xmx:WicUZObQMU2D5jvplwyUvdeuBpE28F4Zgi4VUi1Y21G_AssogWcU6A>
-    <xmx:WicUZEAy0yj0Eg9FZp8z1DN3HQkMUEb9imJ_jeUciBfXTU0CXo0epw>
-    <xmx:WicUZBldN-2lwA1IiSkG-EhWzd4we2dkvC2wdt2HqTupC5jE7QPPL-pnr1E>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 17 Mar 2023 04:39:53 -0400 (EDT)
-Date:   Fri, 17 Mar 2023 09:39:51 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@lists.linux.dev,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        David Gow <davidgow@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        kunit-dev@googlegroups.com
-Subject: Re: [PATCH v2 00/11] clk: Add kunit tests for fixed rate and parent
- data
-Message-ID: <20230317083951.oaupqybf7llrpmeo@houat>
-References: <20230315183729.2376178-1-sboyd@kernel.org>
+        with ESMTP id S231697AbjCQIoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:44:19 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CCF9B75F
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:43:17 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id y4so17518916edo.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679042593;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CyjsELfFw3lppmbggM22hydH2zqp9jlm3lTnEs6D8is=;
+        b=HUvjbzmDbBt2pJx9PYHfYufQrQwXrdyNXF9UkWGR+N1EEfRNjewLhQ03io6sM4WuOV
+         GnvIM6bMAuclAa3iPXZR5JkPODMzLPcQ4tjm+j4Uz39iyMVvN6QVv+rg6Jb0SkEzK+64
+         95tWkxo2PFMEsvdvPLRJA8Y7H2PBW5FcXN8XoN768YsQoe46PbreGx4J2WE2A9CgHXfs
+         FJ2qNDtOAt+9sQFra6a8V3aew870duReNp4B/SYov0YWpk92vLc3vMZjEeriWbYyMAJ9
+         NucsJdcl/iFyc63O7TV7pel9hplwavP04t2dsSdhmkAhxGTu75rdVFgZuhldcLNmIG/k
+         5Aew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679042593;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CyjsELfFw3lppmbggM22hydH2zqp9jlm3lTnEs6D8is=;
+        b=I/CU37IxX4UDRkZH+BdCxr1bun6v1V84k+yszBE+PjxUhEn4o1tGbU/ls45Dpn2sRy
+         pc9Q1BZuKvBxk9mM4wuUlqUdZWN20rIGYy9PeG9Mu/pJPWBa+KYyWQorJaR/X/AptWw3
+         3twO4qUuQUzRLLWkw1wNZ02LvO/kTnyxvc4d4l7Iee/Py/fLE4w4Xcz5bt3puYG90fNY
+         zH+j21Jfp3jTYgH88ODbWSjseU+dggNJcPs+Rxv64PbKJGEjf4T8FwvMzKKmk032f2iI
+         iquhfMuejnObtS8j/OTpsOH/bKiuPpGcVE6Y/SvYoDRpkw0AlOPDIYXrCdaqzp4XBE6b
+         kliA==
+X-Gm-Message-State: AO0yUKX1NXJHZpQXpqq3OOzNjc5OYgQNNeF6pX+fbmyZajH8L7UNIEa2
+        zOLhLuW/NMauGjbsC58kQaNFpQ==
+X-Google-Smtp-Source: AK7set8/JFYEHKdhIyD71Irxi9tirZUYjiWurePXG0zdgWoXg9pW/ioBLAFfYrD2WHCFd+uU8pnQuQ==
+X-Received: by 2002:a17:906:f914:b0:88c:6345:d0e7 with SMTP id lc20-20020a170906f91400b0088c6345d0e7mr12442194ejb.36.1679042593540;
+        Fri, 17 Mar 2023 01:43:13 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
+        by smtp.gmail.com with ESMTPSA id s10-20020a1709060d6a00b008d044ede804sm688481ejh.163.2023.03.17.01.43.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 01:43:12 -0700 (PDT)
+Message-ID: <451c8112-c7f3-f435-5d90-840f01c60bd5@linaro.org>
+Date:   Fri, 17 Mar 2023 09:43:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230315183729.2376178-1-sboyd@kernel.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 3/5] dt-binding: Add JH7110 USB wrapper layer doc.
+Content-Language: en-US
+To:     Minda Chen <minda.chen@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+References: <20230315104411.73614-1-minda.chen@starfivetech.com>
+ <20230315104411.73614-4-minda.chen@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230315104411.73614-4-minda.chen@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 15/03/2023 11:44, Minda Chen wrote:
+> The dt-binding doc of Cadence USBSS-DRD controller wrapper
+> layer.
 
-On Wed, Mar 15, 2023 at 11:37:17AM -0700, Stephen Boyd wrote:
-> This patch series adds unit tests for the clk fixed rate basic type and
-> the clk registration functions that use struct clk_parent_data. To get
-> there, we add support for loading device tree overlays onto the live DTB
-> along with probing platform drivers to bind to device nodes in the
-> overlays. With this series, we're able to exercise some of the code in
-> the common clk framework that uses devicetree lookups to find parents
-> and the fixed rate clk code that scans device tree directly and creates
-> clks. Please review.
->=20
-> I Cced everyone to all the patches so they get the full context. I'm
-> hoping I can take the whole pile through the clk tree as they almost all
-> depend on each other.
->=20
-> Changes from v1 (https://lore.kernel.org/r/20230302013822.1808711-1-sboyd=
-@kernel.org):
->  * Don't depend on UML, use unittest data approach to attach nodes
->  * Introduce overlay loading API for KUnit
->  * Move platform_device KUnit code to drivers/base/test
->  * Use #define macros for constants shared between unit tests and
->    overlays
->  * Settle on "test" as a vendor prefix
->  * Make KUnit wrappers have "_kunit" postfix
+Subject: drop full stop. It's not a sentence.
 
-Maybe I'm overthinking this, but wouldn't it make more sense to have a
-kunit *prefix* to those functions? Any other function in the kernel
-taking a kunit test pointer as a parameter starts with kunit (like
-kunit_kzalloc), so it would make more sense to me that kunit-related clk
-functions follow the same pattern.
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-Maxime
+
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> ---
+>  .../bindings/usb/starfive,jh7110-usb.yaml     | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+> new file mode 100644
+> index 000000000000..b1a8dc6d7b4b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/starfive,jh7110-usb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controller
+> +
+> +maintainers:
+> +  - Minda Chen <minda.chen@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-usb
+> +
+> +  clocks:
+> +    items:
+> +      - description: lpm clock
+> +      - description: stb clock
+> +      - description: apb clock
+> +      - description: axi clock
+> +      - description: utmi apb clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lpm
+> +      - const: stb
+> +      - const: apb
+> +      - const: axi
+> +      - const: utmi_apb
+> +
+> +  resets:
+> +    items:
+> +      - description: PWRUP reset
+> +      - description: APB reset
+> +      - description: AXI reset
+> +      - description: UTMI_APB reset
+> +
+> +  starfive,sys-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle to System Register Controller sys_syscon node.
+> +        - description: offset of SYS_SYSCONSAIF__SYSCFG register for USB.
+> +    description:
+> +      The phandle to System Register Controller syscon node and the offset
+> +      of SYS_SYSCONSAIF__SYSCFG register for USB.
+> +
+> +  starfive,stg-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      items:
+> +        - description: phandle to System Register Controller stg_syscon node.
+> +        - description: register0 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +        - description: register1 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +        - description: register2 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +        - description: register3 offset of STG_SYSCONSAIF__SYSCFG register for USB.
+> +    description:
+> +      The phandle to System Register Controller syscon node and the offset
+> +      of STG_SYSCONSAIF__SYSCFG register for USB. Total 4 regsisters offset
+> +      for USB.
+> +
+> +  "#address-cells":
+> +    maximum: 2
+
+enum: [ 1, 2 ]
+(because 0 should not be valid for you)
+
+> +
+> +  "#size-cells":
+> +    maximum: 2
+
+ditto
+
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^usb@[0-9a-f]+$":
+> +    type: object
+
+missing $ref and unevaluatedProperties: false
+
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - starfive,sys-syscon
+> +  - starfive,stg-syscon
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+
+
+Best regards,
+Krzysztof
+
