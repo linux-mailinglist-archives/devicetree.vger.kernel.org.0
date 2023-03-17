@@ -2,171 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A096BEA11
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 14:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B596BEA27
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 14:35:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbjCQN1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 09:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
+        id S230003AbjCQNfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 09:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbjCQN0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 09:26:35 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707BC212A9;
-        Fri, 17 Mar 2023 06:26:33 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id a32so5086148ljq.1;
-        Fri, 17 Mar 2023 06:26:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679059591;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bWn5xXqBj6yi7+enhvrMvqUOn19onL6aIZYPMgopTDA=;
-        b=Oj6V2PCimtWlltVB2+AyFA1DqnZAojZU3hVO2883M9Gp4gxHeUoLkTJIcSNHxDLpnS
-         +V2rJzbGJIXMypWrzFzx11lP5YcG3JXQkl65RP/xA5SpyyWkBNUBg8XvYTq2ZQB3PgrP
-         Ub2UPWw5+Rh0fEBXxHgYIXaaKvW+lhF9Hjrm1SvygV+S142+xLo32OcjNbd0eLaijbrl
-         gww3P9tPf31sti0nHRjO4cS73bpT80qIP4Yhg6ewks6JiqUg+PMzNJDdFtDogoFZwqV6
-         olTf0h+K9vLYDVCJvLZiWBLsC5wVdNm0NwizJSbn90QCcMQ7S+lK8wHcKJjBvvm3YHSp
-         Je+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679059591;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bWn5xXqBj6yi7+enhvrMvqUOn19onL6aIZYPMgopTDA=;
-        b=D1qkZKxS7/Tmn+xoJ+5nr47S7YUTu4hpyE2AHpPUg6p0Ew5F29UnIbWlsU03O284Cc
-         yQdswzBRP8xHaU84e/qkmHzONdpqrfmz60Q97f9NMmfS9Ai4PBiIoge4RfgKXgIxa885
-         WpmEoh/RinMWMtK17O6I3GQdrvwtzDkK/d/h77ij/90P/pRXj09Iv+LsV53dUxl5nOmm
-         lWVKLPjnZbY1YustyeKbvm+qaMWipVJkC/kGAyLIB3rxcAu1DRCc+SFLe23mnHkvspM1
-         RVvoReunxjEgwn7HXAfcBAqahUcPD932VE3jPxJqo3Xo7MoZqNMS1oN4m5qJkveL5KWb
-         NAwg==
-X-Gm-Message-State: AO0yUKWFq8x5wO1oaIS2xIgVrxJ3LwDeO1JVsW4OkOfT6McYWoOcmyv2
-        gHtGC6458KcNgumlzy0WnBA=
-X-Google-Smtp-Source: AK7set/00kAGhBMpoTNzaud5U11pLUBia2K1nAvT4IMnIwPHtiX8OmDHOOjTpanu7a9MGrLSIXN/NQ==
-X-Received: by 2002:a2e:97da:0:b0:298:3a2d:4363 with SMTP id m26-20020a2e97da000000b002983a2d4363mr3725806ljj.5.1679059591810;
-        Fri, 17 Mar 2023 06:26:31 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id p15-20020a2e740f000000b00295b588d21dsm411083ljc.49.2023.03.17.06.26.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 06:26:31 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230301AbjCQNfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 09:35:02 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2255932CF6;
+        Fri, 17 Mar 2023 06:35:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=sMgPoyPPbmthFsOo4pbmCIyEwyFeSHdtD951iyErX4c=; b=N+Y1sHinP4QOoLsO2qOFjgGPGD
+        jRqmx45xn4xtEWFjeN/F1sNKAbV2b8yySim0h7I3sEDVUc40Afz25wbdGX3CpsTO0jPXXKMGa0AFO
+        P6/YbERXaivsDWH5iiN3L0afOlZAfYU3tYqA6Zntm6CSMgDRnsY4+Ov+7Ej5lr41Owww=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pdAE7-007c37-QO; Fri, 17 Mar 2023 14:34:35 +0100
+Date:   Fri, 17 Mar 2023 14:34:35 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michal Kubiak <michal.kubiak@intel.com>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V4 4/4] nvmem: layouts: add fixed cells layout
-Date:   Fri, 17 Mar 2023 14:26:20 +0100
-Message-Id: <20230317132620.31142-5-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230317132620.31142-1-zajec5@gmail.com>
-References: <20230317132620.31142-1-zajec5@gmail.com>
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH v4 02/14] net: dsa: qca8k: add LEDs basic support
+Message-ID: <1c84a42a-2691-4ee9-bbe3-dc8e65fc31b1@lunn.ch>
+References: <20230317023125.486-1-ansuelsmth@gmail.com>
+ <20230317023125.486-3-ansuelsmth@gmail.com>
+ <ZBRN563Zw9Z28aET@localhost.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZBRN563Zw9Z28aET@localhost.localdomain>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+> (I guess the LED configuration i only makes sense for non-CPU ports? It
+> seems you want to configure up to 15 LEDs in total for 5 ports).
 
-This adds a driver for the "fixed-layout" NVMEM layout binding. It
-allows defining NVMEM cells in a layout DT node named "nvmem-layout".
+Hi Michal
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/layouts/Kconfig  |  8 +++++++
- drivers/nvmem/layouts/Makefile |  1 +
- drivers/nvmem/layouts/fixed.c  | 41 ++++++++++++++++++++++++++++++++++
- 3 files changed, 50 insertions(+)
- create mode 100644 drivers/nvmem/layouts/fixed.c
+In the general case, there is no reason that i can think that stops
+the CPU port having LEDs. For many switch designs, there is no
+specific CPU port, any can be used. And all ports are likely to have
+an LED controller.
 
-diff --git a/drivers/nvmem/layouts/Kconfig b/drivers/nvmem/layouts/Kconfig
-index 7ff1ee1c1f05..2ebbde7b15b2 100644
---- a/drivers/nvmem/layouts/Kconfig
-+++ b/drivers/nvmem/layouts/Kconfig
-@@ -2,6 +2,14 @@
- 
- menu "Layout Types"
- 
-+config NVMEM_LAYOUT_FIXED
-+	tristate "Fixed cells layout support"
-+	help
-+	  Say Y here if you want to support layout with fixed cells (hardcoded
-+	  offsets and sizes).
-+
-+	  If unsure, say N.
-+
- config NVMEM_LAYOUT_SL28_VPD
- 	tristate "Kontron sl28 VPD layout support"
- 	select CRC8
-diff --git a/drivers/nvmem/layouts/Makefile b/drivers/nvmem/layouts/Makefile
-index 2974bd7d33ed..449dd893f968 100644
---- a/drivers/nvmem/layouts/Makefile
-+++ b/drivers/nvmem/layouts/Makefile
-@@ -3,5 +3,6 @@
- # Makefile for nvmem layouts.
- #
- 
-+obj-$(CONFIG_NVMEM_LAYOUT_FIXED) += fixed.o
- obj-$(CONFIG_NVMEM_LAYOUT_SL28_VPD) += sl28vpd.o
- obj-$(CONFIG_NVMEM_LAYOUT_ONIE_TLV) += onie-tlv.o
-diff --git a/drivers/nvmem/layouts/fixed.c b/drivers/nvmem/layouts/fixed.c
-new file mode 100644
-index 000000000000..b8d2f141d272
---- /dev/null
-+++ b/drivers/nvmem/layouts/fixed.c
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of.h>
-+
-+static int fixed_add_cells(struct device *dev, struct nvmem_device *nvmem,
-+			   struct nvmem_layout *layout)
-+{
-+	struct device_node *layout_np;
-+	int err;
-+
-+	layout_np = of_nvmem_layout_get_container(nvmem);
-+	if (!layout_np)
-+		return -ENOENT;
-+
-+	err = nvmem_add_cells_from_of(nvmem, layout_np);
-+
-+	of_node_put(layout_np);
-+
-+	return err;
-+}
-+
-+static const struct of_device_id fixed_of_match_table[] = {
-+	{ .compatible = "fixed-layout" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, fixed_of_match_table);
-+
-+struct nvmem_layout fixed_nvmem_layout = {
-+	.name = "fixed-layout",
-+	.of_match_table = fixed_of_match_table,
-+	.add_cells = fixed_add_cells,
-+};
-+
-+module_nvmem_layout_driver(fixed_nvmem_layout);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL");
-+MODULE_DEVICE_TABLE(of, fixed_of_match_table);
--- 
-2.34.1
+What becomes tricky with Linux is offloading blinking to CPU ports.
+There is no netdev to represent it, hence no netdev based software
+blinking. And without software blinking, you have nothing to offload
+to hardware. But you could still use the LEDs for other things.
 
+Having said all that, i don't think i have ever seen a box with LEDs
+for the CPU port.
+
+    Andrew
