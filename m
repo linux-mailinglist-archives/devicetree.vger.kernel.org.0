@@ -2,112 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 175066BEC93
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:11:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 002726BEC83
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:09:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbjCQPLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 11:11:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35086 "EHLO
+        id S231620AbjCQPJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 11:09:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231574AbjCQPLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:11:49 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D2E2BF15;
-        Fri, 17 Mar 2023 08:11:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1679065663; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=OCcXsHRmuKa+sLox4/7AGham5SQey/UeFaoYscgjSu6eu5KEgdFVdKwHuS7T8Ej7EY
-    6KYn2wn0Co+QYqODO/bPPxfR5Mbnkw8ccbzqcyDWdFvvGqUwt3RENbnQ/2+k93lPoT0f
-    BOX2ELAJPpWahS/E4/rOWaWz6XzpRhEQjpPdgzUF2VKV7wi++WMqgHKVmDiOeEOTPggm
-    kVWpciGB2RSSvEuDYUnOgw/geMEVwVdJf1lRdoHsU+xw6V43EATYcPsuc5iJpCaXOMDc
-    xsAMK6VwGRpKqzVJHgJkUbXtr/dM11kM49XHFrHzXkkbvnG4ffl22G0JNtDDmVAAjPe0
-    S97A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1679065663;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Bg5tiTHnWuEjrwbVFU8mQBT11uFxh9IrkXhotJWkwPc=;
-    b=SUCqMdI8YXw3fOFvzbWWL3NnLeOA+QN5gVBPNqIZhX92/VWtbxP1W8Q6s0kPItogjk
-    9waSbag0WByRLMGPZ14ygAMBOzcyeSnFkYQq8cJY02gYBez8ZTpGLDdueiRj24dGHKO6
-    CXXMio8UIjQcsa6KFjibABDUNEIg5QJMSyNVt/Q0KqJ3d8adzkJDyra8fulywavR93kg
-    KvV2r36Br5g0LQ8ftqh+TRAgmjhHB4zxKiRrHcDBuvjwIhmbJZ22p/5U96x0mkG9en8j
-    cHzOEbNobPzcGwqhv6svaU3obWT5DdOSeYzZn7jfsPpUNgrrIFfs3UkGaD8q+qpeQoGQ
-    gbDw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1679065663;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Bg5tiTHnWuEjrwbVFU8mQBT11uFxh9IrkXhotJWkwPc=;
-    b=hSscblhuTM1MBH8nTgtq7kHm0NXaS5Rk0U52kVXIQEOdNhs/5IgxSi2+Rg6eBUX3Zl
-    7Md70Z/ZR5k1gEzAjCpHlo0NyCSKX3B788oEIusUChl+JeZkqKOJMjotRGjylnO9o5Lj
-    WJqiHhPNB/Ni4rmZ8G0L/V3wIWdJfiTJPC4szQtOzE1BY+sKHqHjxq2xK1vCcQilmPkf
-    j1uoMCba7q8In49mV9vkVDo0tKFddyknLbdaNKB98QL1WcI1ev6IYjDhg2Lp337Eo2VV
-    BQgu28JbjzAoVxdh8hAkCBUCyDfZCfWrbi0mKVjAR1V4VreQt52V7Snc0NtmBrVp+kAh
-    JTdQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKjXrKpU"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.3.1 AUTH)
-    with ESMTPSA id i40d22z2HF7g6cX
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 17 Mar 2023 16:07:42 +0100 (CET)
-Date:   Fri, 17 Mar 2023 16:07:35 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
- values
-Message-ID: <ZBSCN0f8yC/nkGll@gerhold.net>
-References: <20230315103950.2679317-1-stephan.gerhold@kernkonzept.com>
- <20230315103950.2679317-3-stephan.gerhold@kernkonzept.com>
- <ad64143c-13c0-63e3-561a-620c44f26b9d@linaro.org>
+        with ESMTP id S231624AbjCQPJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:09:00 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D136F10DE7C;
+        Fri, 17 Mar 2023 08:08:40 -0700 (PDT)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8162C66030B9;
+        Fri, 17 Mar 2023 15:07:43 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679065665;
+        bh=oDkOpASujwD4omvYh15ZgVx02nJzDslcJUvtWJE8YGA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y+3fXThjONEiG2GDz0f94e6hUKgev5us7WM1wv9muoN55JAJ1EkRRiy7/AdAYYnjz
+         xu+Cm92GqsrWm/eWOnBuouHfl0ZSju9jqP1SrRpqNYfRstB5dsC8+leTYDz6fPqs0u
+         o/tzh3xzeO7eEnI9g036SAR6q/5FHncyeCYHXKN3Jv+NlSp2zHAnkRwCBU6ubBeQaT
+         SfOrRKRZfYJ6gAl95bWAaqOQ+xW3lOGroCn8UpskrV1boNQ6YQbqp6jGjmXLIBwyar
+         +l7qlVpWRtnYa2XciTvIvz9cpxssH/HhYPAqZcAiwb4QyQPcnMiQ5QBLmHLk+bwWQw
+         N0NyKQIgAMceQ==
+Date:   Fri, 17 Mar 2023 11:07:39 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4,1/2] media: mediatek: vcodec: Force capture queue
+ format to MM21
+Message-ID: <20230317150739.wmrik43dols5ju3a@notapiano>
+References: <20230317030833.16836-1-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ad64143c-13c0-63e3-561a-620c44f26b9d@linaro.org>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230317030833.16836-1-yunfei.dong@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 01:39:25AM +0100, Konrad Dybcio wrote:
-> On 15.03.2023 11:39, Stephan Gerhold wrote:
-> > According to the msm-3.18 vendor kernel from Qualcomm [1], mdm9607 uses
-> > a non-standard slope value of 3000 (instead of 3200) for all sensors.
-> > Fill it properly similar to the 8939 code added recently.
-> > 
-> > [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi#L875
-> > 
-> FWIW there's a 4.9 release for 9607
+On Fri, Mar 17, 2023 at 11:08:32AM +0800, Yunfei Dong wrote:
+> While the decoder can produce frames in both MM21 and MT21C formats, only MM21
+> is currently supported by userspace tools (like gstreamer and libyuv). In order
+> to ensure userspace keeps working after the SCP firmware is updated to support
+> both MM21 and MT21C formats, force the MM21 format for the capture queue.
 > 
-> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.2.3.6.c5-03900-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi
+> This is meant as a stopgap solution while dynamic format switching between
+> MM21 and MT21C isn't implemented in the driver.
+> 
+> Fixes: 7501edef6b1f ("media: mediatek: vcodec: Different codec using different capture format")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-You seem to have linked 3.18 too?
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-I don't see tsens support for mdm9607 in msm-4.9, although maybe I'm
-looking at the wrong branch. :D
+
+With this patch and the new firmware [1], I was able to run fluster using the
+VP8, VP9 and H.264 codecs on both MT8192 and MT8195:
+
+MT8192:
+	        VP8: 59/61
+	        VP9: 250/303
+		     0/6 (HIGH)
+	        H.264: 92/135
+		       27/69 (JVT-FR-EXT)
+
+MT8195:
+	        VP8: 59/61
+	        VP9: 276/303
+		     0/6 (HIGH)
+	        H.264: 95/135
+		       27/69 (JVT-FR-EXT)
+
+[1] https://lore.kernel.org/linux-firmware/a43524a089a783f70adbe89b83eeb01fbd405d04.camel@mediatek.com/T/#mb0591267d7921bbfada7c06ee2bda128db554648
 
 Thanks,
-Stephan
+Nícolas
