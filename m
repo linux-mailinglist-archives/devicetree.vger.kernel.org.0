@@ -2,87 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D4E6BE608
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:58:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAFC36BE616
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:59:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbjCQJ6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54158 "EHLO
+        id S230039AbjCQJ7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:59:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjCQJ6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:58:07 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF38A18166;
-        Fri, 17 Mar 2023 02:58:05 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S229872AbjCQJ67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:58:59 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DA5A24D
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:58:58 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4DAE4660309E;
-        Fri, 17 Mar 2023 09:58:03 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679047084;
-        bh=tXDWTLClrv/QmGecD8rHF7kXTlD8mLRA4GFHO0CFYr0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YKD74482ToL3Qoudx0OsGSVtXkCtxQ/PBbhgnu4poZfps52fk7HDAxNUAMcd7274Q
-         5z7fY2Dwn0sJIwAvB2f9Aja/fFJ8zobnRSPEjlzd1K00p4vEjVq9ClQujh9/rVgo8b
-         5UwFhDu8LMLTbT8vRjsrE3uShn/oN1hIw2+wJHxzYTNUSiWuqFIEI511apNStJ9nwE
-         mDqZefQ6g1FFS3OBwqaG9mUNiNceq55nkZskerrk8J/hJRaFWeI7dEZgCylUCFjZkc
-         vWqO+1GP290byKLMqivviOgBMkQGWUHTOPhPMtKvKQGAZNmq/xvrHMCZvFzXTQukQH
-         JqsU5qC6jDNTQ==
-Message-ID: <34c758c0-cbbb-da11-6263-e7b084040ed6@collabora.com>
-Date:   Fri, 17 Mar 2023 10:58:00 +0100
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 03762858D6;
+        Fri, 17 Mar 2023 10:58:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1679047136;
+        bh=sGSfHgXupyRkA3rOnel6j9Fn/cS74+iQ89ryIAXdUU0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tNO7lQzrxc9j02HENS2B4xIqwF6IlgdRp18ZLmfZ59sSVm5qTas547KjioDuD2XSc
+         J6sfJdxyFzbrg1uifUXHlKEeyyWJ8evYLfSSOeERJai+IFjRu9Kw4eDYAQc2HcDU9v
+         NpxIxyi6AzPv3dadgOP0EGQwLSG6o7tfEH4I8XLjv3/4rwp13BRLm2JozU0/9iaqG0
+         BJGefstLJSs85CEpZim04cWG7FvmfUJxyodyEcf93HNT95vqh/FJ/DvIYJs9kZ44EN
+         bNGUSkIaSNM9M0r7RwL+eQZ2Po2BDQVOWwrNvHSScLFxpiclosPxylXUHyLibU1ieM
+         LjJiUvtxOVfJQ==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: soc: imx8m-blk-ctrl: Rename blk_ctrl to blk-ctrl in examples
+Date:   Fri, 17 Mar 2023 10:58:26 +0100
+Message-Id: <20230317095827.49100-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
- mt8195
-Content-Language: en-US
-To:     =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "nathan@kernel.org" <nathan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "clang-built-linux@googlegroups.com" 
-        <clang-built-linux@googlegroups.com>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>
-References: <20221227081011.6426-1-nancy.lin@mediatek.com>
- <20221227081011.6426-2-nancy.lin@mediatek.com>
- <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
- <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
- <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
- <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
- <e5ceec9e-d51b-2aeb-1db7-b79b151bd44c@collabora.com>
- <0ebf187d-972e-4228-d8a0-8c0ce02f642d@linaro.org>
- <72cf6344a1c5942bff0872d05dce82b787b49b76.camel@mediatek.com>
- <4027714e-b4e8-953b-68e2-f74f7a7f0e8e@linaro.org>
- <fdd0a157-eedb-bf21-c632-79b02a4cd6b0@collabora.com>
- <5695b8e5ab8339764c646ee581529cb6cee04346.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <5695b8e5ab8339764c646ee581529cb6cee04346.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,147 +62,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/03/23 10:52, Nancy Lin (林欣螢) ha scritto:
-> On Fri, 2023-03-17 at 10:37 +0100, AngeloGioacchino Del Regno wrote:
->> Il 17/03/23 10:03, Krzysztof Kozlowski ha scritto:
->>> On 17/03/2023 08:55, Nancy Lin (林欣螢) wrote:
->>>> On Thu, 2023-03-16 at 12:36 +0100, Krzysztof Kozlowski wrote:
->>>>> On 16/03/2023 10:53, AngeloGioacchino Del Regno wrote:
->>>>>
->>>>>> Hello Krzysztof, Nancy,
->>>>>>
->>>>>> Since this series has reached v29, can we please reach an
->>>>>> agreement
->>>>>> on the bindings
->>>>>> to use here, so that we can get this finally upstreamed?
->>>>>>
->>>>>> I will put some examples to try to get this issue resolved.
->>>>>>
->>>>>> ### Example 1: Constrain the number of GCE entries to *seven*
->>>>>> array
->>>>>> elements (7x4!)
->>>>>>
->>>>>>      mediatek,gce-client-reg:
->>>>>>        $ref: /schemas/types.yaml#/definitions/phandle-array
->>>>>>        maxItems: 1
->>>>>>        description: The register of display function block to
->>>>>> be set
->>>>>> by gce.
->>>>>>          There are 4 arguments in this property, gce node,
->>>>>> subsys id,
->>>>>> offset and
->>>>>>          register size. The subsys id is defined in the gce
->>>>>> header of
->>>>>> each chips
->>>>>>          include/dt-bindings/gce/<chip>-gce.h, mapping to the
->>>>>> register of display
->>>>>>          function block.
->>>>>>        items:
->>>>>>          minItems: 28
->>>>>>          maxItems: 28
->>>>>>          items:                     <----- this block doesn't
->>>>>> seem to
->>>>>> get checked :\
->>>>>>            - description: phandle of GCE
->>>>>>            - description: GCE subsys id
->>>>>>            - description: register offset
->>>>>>            - description: register size
->>>>>
->>>>> This is what we would like to have but it requires exception in
->>>>> dtschema. Thus:
->>>>>
->>>>>>
->>>>>>
->>>>>> ### Example 2: Don't care about constraining the number of
->>>>>> arguments
->>>>>>
->>>>>>      mediatek,gce-client-reg:
->>>>>>        $ref: /schemas/types.yaml#/definitions/phandle-array
->>>>>>        maxItems: 1
->>>>>>        description: The register of display function block to
->>>>>> be set
->>>>>> by gce.
->>>>>>          There are 4 arguments in this property, gce node,
->>>>>> subsys id,
->>>>>> offset and
->>>>>>          register size. The subsys id is defined in the gce
->>>>>> header of
->>>>>> each chips
->>>>>>          include/dt-bindings/gce/<chip>-gce.h, mapping to the
->>>>>> register of display
->>>>>>          function block.
->>>>>
->>>>> use this.
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>
->>>>
->>>> Hi Krzysztof, Angelo,
->>>>
->>>> Thanks for the comment.
->>>> The Example 2 can pass dt_binding_check.
->>>>
->>>> But the example in the binding has 7 items [1] and dts [2]. Does
->>>> the
->>>> "maxItems: 1" affect any other schema or dts check?
->>>
->>> Ah, then it should be maxItems: 7, not 1.
->>>
->>
->> Keep in mind for your v30:
->>
->> maxItems: 7 will pass - but only if minItems is *not* 7 :-)
->>
->> -> (so, do not declare minItems, as default is 1) <-
->>
->> Regards,
->> Angelo
->>
-> Hi Angelo,
-> 
-> I still have one message [1] when runing dt_binding_check for "example
-> 2 + maxItems: 7" [2].
-> 
-> [1]
-> /proj/mtk19347/cros/src/third_party/kernel/v5.10/Documentation/devicetr
-> ee/bindings/display/mediatek/mediatek,ethdr.example.dtb:
-> hdr-engine@1c114000: mediatek,gce-client-reg: [[4294967295, 7, 16384,
-> 4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
-> 4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295, 7,
-> 45056, 4096, 4294967295, 7, 49152, 4096]] is too short
-> 
-> 
-> [2]
->     mediatek,gce-client-reg:
->       $ref: /schemas/types.yaml#/definitions/phandle-array
->       maxItems: 7
->       description: The register of display function block to be set by
-> gce.
->         There are 4 arguments in this property, gce node, subsys id,
-> offset and
->         register size. The subsys id is defined in the gce header of
-> each chips
->         include/dt-bindings/gce/<chip>-gce.h, mapping to the register of
-> display
->         function block.
-> 
+Rename blk_ctrl@ to blk-ctrl (with dash instead of underscore) in examples
+so that they would match the imx8m[mn].dtsi in current Linux kernel.
 
-Maybe I'm wrong about the "do not declare minItems"... try with
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Marek Vasut <marex@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Paul Elder <paul.elder@ideasonboard.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Richard Cochran <richardcochran@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ .../devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml   | 2 +-
+ .../devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-minItems: 1
-maxItems: 7
-
-
-...does it work now?
-
-> Regards,
-> Nancy
-> 
-> 
->>> Best regards,
->>> Krzysztof
->>>
-
-
+diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
+index ecd86cfb3da41..e8da8f413966b 100644
+--- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
++++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
+@@ -70,7 +70,7 @@ examples:
+     #include <dt-bindings/clock/imx8mm-clock.h>
+     #include <dt-bindings/power/imx8mm-power.h>
+ 
+-    disp_blk_ctl: blk_ctrl@32e28000 {
++    disp_blk_ctl: blk-ctrl@32e28000 {
+       compatible = "fsl,imx8mm-disp-blk-ctrl", "syscon";
+       reg = <0x32e28000 0x100>;
+       power-domains = <&pgc_dispmix>, <&pgc_dispmix>, <&pgc_dispmix>,
+diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+index fbeaac399c502..9fb99fb407332 100644
+--- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
++++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+@@ -71,7 +71,7 @@ examples:
+     #include <dt-bindings/clock/imx8mn-clock.h>
+     #include <dt-bindings/power/imx8mn-power.h>
+ 
+-    disp_blk_ctl: blk_ctrl@32e28000 {
++    disp_blk_ctl: blk-ctrl@32e28000 {
+       compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
+       reg = <0x32e28000 0x100>;
+       power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
+-- 
+2.39.2
 
