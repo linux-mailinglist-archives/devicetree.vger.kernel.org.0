@@ -2,148 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0EE26BE627
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 11:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1AA6BE63C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 11:10:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbjCQKCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 06:02:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33074 "EHLO
+        id S230169AbjCQKKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 06:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbjCQKCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 06:02:21 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8473B4ECE0;
-        Fri, 17 Mar 2023 03:02:19 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id o8so5850001lfo.0;
-        Fri, 17 Mar 2023 03:02:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679047338;
-        h=content-transfer-encoding:subject:from:to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9eeXpy6H8yVQu/J+zK/P14XqNfA5ICBlylety0kmfWE=;
-        b=l2+3ZGioV/xd27HWk9bsZkZkPdhI6AhBmPEmeRC82rB4jTJegJ9NW9u0PO3cGe7OMW
-         sFv4nK/WLCon2YDFH7p7e7F4IIipCh6ZTUG/rQcWhUoT/3inDK6JVyQPSINmYYalK2f6
-         CeC4zD8yGHghiidpu6Bt3AalJBP9HlYOu2kRoc/GG80268Dx289dspxbeanOz1y0b0LH
-         vnSFmDjkQiDpu6E9mXcqvq1bcRsQctP8DQGZyQgqpcqtvZukiPpRcjW9pwNYQj7IwsFQ
-         Tor9ln0+hqmrpEdoPciQfxG5ZcBPJz7IbC4eRonjxOY6abdY0sO/tkRfCtavsb7Zjn4c
-         hTJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679047338;
-        h=content-transfer-encoding:subject:from:to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9eeXpy6H8yVQu/J+zK/P14XqNfA5ICBlylety0kmfWE=;
-        b=w59wkdS9uMJ1RAqR7JzQJVU5pfCUqluIBZ/LaZPJbCvyuVGI2GqKrnnXgb6yf1UekT
-         +8PBSJ+Ra7BBTyAVrh+KzY6iydLDuGDpHDUsbcNGwuTDRyFI3euahrQofKLCLGYC+n6t
-         GonpAST/yQJMVR3YcsgGUz8uuVWE3yoZZnMLlgMPiF01VhIcRDtDWAeJYa1IpYKaxNsO
-         SXC0IW6Jn40Owby5g0BZlxp3OlhdssSTOzmlH1enj9Atx/RA02DkBg2aDcunAes09fQU
-         Lv5p5uQjKiAU+JmupBWTN8oSuK6/iQJrOL3BAsPdiQiIjBgFPLggF0fvUHAeg9vNNQZD
-         nTFw==
-X-Gm-Message-State: AO0yUKXWYJSWADT7hBs2ABYjyih3/FcifXctTPGhvKyIVUeFCulVqh/x
-        PNKODlkH0GHsXKgwAJGrVd8=
-X-Google-Smtp-Source: AK7set8Tm3fHhcsR2/TeyQWDbWsJv4+LyPW4hXo1mqVZCmpRzAmSuYWWRt1LllYOjcSFxxf+5B/YCA==
-X-Received: by 2002:a19:7512:0:b0:4dd:99cf:8788 with SMTP id y18-20020a197512000000b004dd99cf8788mr3991527lfe.54.1679047337504;
-        Fri, 17 Mar 2023 03:02:17 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id t27-20020ac243bb000000b004cc9c2932a9sm297228lfl.302.2023.03.17.03.02.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 03:02:17 -0700 (PDT)
-Message-ID: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
-Date:   Fri, 17 Mar 2023 11:02:15 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230093AbjCQKKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 06:10:08 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BD55ADF0
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 03:10:06 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4E58C85983;
+        Fri, 17 Mar 2023 11:10:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1679047804;
+        bh=unmYFqrBOddeJ4iazTOieng/4slbGvOeEKuJu3Hu/oU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MMRMLnsEqDtna2TLGZttObsP+kbkO8gAIchIje5RcSkcoftcM7lqJvfBXhAITB0W2
+         K9TLfS8iUOGfbfxCmh7mmp3IWdASBGZy0qdVd+Y03InXnDlNkLM/prI4aVWGO/JcBS
+         M8whSuT2vm9xbrycto+bo81cSSn9kdavyL6mOqt19/7kxeseePSQv+g7tLtATR0Rxk
+         xcN2FwFln9ahFx9KcGK891d4re8vhkcQPF+6M6MTJMlK0PFItlzXo+KyDmxy8npPWs
+         AUDQ3d1WNkYtkYuxxwOiRjEgU0Jc3qQgfOXKAKCu7klt7webSb5mflS7vVtATpIHMZ
+         UVPavw/vt5i4g==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Subject: Probing devices by their less-specific "compatible" bindings (here:
- brcmnand)
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org
+Subject: [PATCH v5 1/2] dt-bindings: arm: Add Data Modul i.MX8M Plus eDM SBC
+Date:   Fri, 17 Mar 2023 11:09:49 +0100
+Message-Id: <20230317100950.53971-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, I just spent few hours debugging hidden hw lockup and I need to
-consult driver core code behaviour.
+Add DT compatible for Data Modul i.MX8M Plus eDM SBC board.
+This is an evaluation board for various custom display units.
 
-I have a BCM4908 SoC based board with a NAND controller on it.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Li Yang <leoyang.li@nxp.com>
+Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>
+Cc: Max Krummenacher <max.krummenacher@toradex.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+V2: Add AB from Krzysztof
+V3: No change
+V4: Rebase on next-20230127
+V5: Rebase on next-20230317
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 67a325ed57941..ee1703a689f9b 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1002,6 +1002,7 @@ properties:
+         items:
+           - enum:
+               - beacon,imx8mp-beacon-kit  # i.MX8MP Beacon Development Kit
++              - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
+               - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
+               - polyhex,imx8mp-debix      # Polyhex Debix boards
+-- 
+2.39.2
 
-### Hardware binding
-
-Hardware details:
-arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-
-Relevant part:
-nand-controller@1800 {
-	compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
-	reg = <0x1800 0x600>, <0x2000 0x10>;
-	reg-names = "nand", "nand-int-base";
-}:
-
-Above binding is based on the documentation:
-Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-
-
-### Linux drivers
-
-Linux has separated drivers for few Broadcom's NAND controller bindings:
-
-1. drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c for:
-brcm,nand-bcm63138
-
-2. drivers/mtd/nand/raw/brcmnand/brcmnand.c for:
-brcm,brcmnand-v2.1
-brcm,brcmnand-v2.2
-brcm,brcmnand-v4.0
-brcm,brcmnand-v5.0
-brcm,brcmnand-v6.0
-brcm,brcmnand-v6.1
-brcm,brcmnand-v6.2
-brcm,brcmnand-v7.0
-brcm,brcmnand-v7.1
-brcm,brcmnand-v7.2
-brcm,brcmnand-v7.3
-
-3. drivers/mtd/nand/raw/brcmnand/brcmstb_nand.c for:
-brcm,brcmnand
-
-
-### Problem
-
-As first Linux probes my hardware using the "brcm,nand-bcm63138"
-compatibility string driver bcm63138_nand.c. That's good.
-
-It that fails however (.probe() returns an error) then Linux core starts
-probing using drivers for less specific bindings.
-
-In my case probing with the "brcm,brcmnand" string driver brcmstb_nand.c
-results in ignoring SoC specific bits and causes a hardware lockup. Hw
-isn't initialized properly and writel_relaxed(0x00000009, base + 0x04)
-just make it hang.
-
-That obviously isn't an acceptable behavior for me. So I'm wondering
-what's going on wrong here.
-
-Should Linux avoid probing with less-specific compatible strings?
-Or should I not claim hw to be "brcm,brcmnand" compatible if it REQUIRES
-SoC-specific handling?
-
-An extra note: that fallback probing happens even with .probe()
-returning -EPROBE_DEFER. This actually smells fishy for me on the Linux
-core part.
-I'm not an expect but I think core should wait for actual error without
-trying less-specific compatible strings & drivers.
