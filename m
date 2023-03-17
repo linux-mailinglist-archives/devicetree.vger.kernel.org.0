@@ -2,262 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A16D6BE92D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D26B46BE953
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbjCQM2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 08:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47040 "EHLO
+        id S229530AbjCQMej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 08:34:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjCQM2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:28:08 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D135F3B0D4
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:28:05 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id o12so19629345edb.9
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:28:05 -0700 (PDT)
+        with ESMTP id S229517AbjCQMei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:34:38 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605C7AD31;
+        Fri, 17 Mar 2023 05:33:51 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id i9so4281524wrp.3;
+        Fri, 17 Mar 2023 05:33:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679056084;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c4NJZTZucxQIhmv+yhQCHkUP4VMj8aSUUr6DI8AUneE=;
-        b=l3HbbDmGhWJkfrjdeVRql3v6S18wD3xSANEHfyxftEs99S0h1gdT4hA2xMdVFe04f0
-         GdpH+F77m2VruQr7DBdj9iphFo/oK3n3KN/tpIHMXOEdIs21miF+chuVuGQBqj32B7ym
-         mcQk7e9I44HH9wgpZyV4R1bjc57w1HCnYtK38NQAldVN2NjPvGMzRNm/m5PLnlYMysHu
-         VOhb34OheGo7T3hFViX3Dl6be3FSj0HLF539spYWEQU0KihI5Xje3+iBjO32mLXTtaoq
-         FICKqui1l3X2IOOslxWckIWWKfCFFIPoQIYPyvG507Ir6hx20nDUS8OrZp/fAEeLflmq
-         8JoQ==
+        d=gmail.com; s=20210112; t=1679056409;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0/Wy1AwTsLh6VX8OVUHCexjXRtBHIjRzVBkQ4ezpP1E=;
+        b=jMpD+KdfbZTIQ73dkfe3Llm4sRYdiQUUJyKsjmjLB6F3sY3MXKTmlm586mT4ISBbpQ
+         EQ+/QbiQbyM4qE7teB+rpAYVYWht1G94AMjV5rQa0MLfWi/ZovIlfKJhbsFD+zPvV1eL
+         xMxKe8Rqk6WDxHY7fKZ2mCP/2AbSNJ2iaO6geBoxUBguToMAkGfrPCcxa6JfLlNDovTV
+         QQ0i2YDgQNdbJCPfVPIiu4p+E3YvrHJVKt2NAWvJSKcWyZfZwznaPpo8yWUMdBz1wPJD
+         zFEhzAOmMCj0AgCb1dZToqdrfDVoY1TzyfmSY3Z2cJ3837yvyNFxf/SP8tZnPMO4YipK
+         Iu6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679056084;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c4NJZTZucxQIhmv+yhQCHkUP4VMj8aSUUr6DI8AUneE=;
-        b=qKcV/kqKTxAXBBF/kOGXAEkmqBOecTYTyauq8y6IMY2+klk5uqv74D7rePWSbhp8GZ
-         ABVNc1YAbIdtP9giizlLS3i/eIMzFGWJISp3C0nuEh3aw5GdGydXo9VAKgv30GzqCBq0
-         B6qdQI97iGuUOHVfyrrsnOGcRZwrDYzUPRWLl1W7iJZSpw359CTEku6rBFODCK30AjJo
-         t/bcikxRvK3MBOnDHIYaQsQqiBmtrRnwj1bUJlM+XQ39nz8e+by6fTvZzIfpIhjQzdmb
-         6B9B2vyWfy4H7y9NJUz9JOavdvD7ivJP6JaTABTvlkUxxGMhQmHvA/OVXXS9eHEYhWbk
-         Ming==
-X-Gm-Message-State: AO0yUKUoE/4D2/PhemW/h+N1bpsUeC/BT7Si6DSv7Rgod00djrq5zAGo
-        pudVVvp8T9dYYbKLkLGyozbqXA==
-X-Google-Smtp-Source: AK7set9t/UoX9hFHOcngKEhZnhSWZjQqE2c9vms2p3PISVzTQWVOpgxYc5pqcHwBaTzITEMiLULNzw==
-X-Received: by 2002:aa7:dbd8:0:b0:4ae:e5ab:46d7 with SMTP id v24-20020aa7dbd8000000b004aee5ab46d7mr2667687edt.8.1679056084346;
-        Fri, 17 Mar 2023 05:28:04 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id u20-20020a50a414000000b004fd1ee3f723sm1002701edb.67.2023.03.17.05.28.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 05:28:03 -0700 (PDT)
-Message-ID: <216262b8-fe48-6696-17a4-eaa82e776db7@linaro.org>
-Date:   Fri, 17 Mar 2023 13:28:02 +0100
+        d=1e100.net; s=20210112; t=1679056409;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0/Wy1AwTsLh6VX8OVUHCexjXRtBHIjRzVBkQ4ezpP1E=;
+        b=HDuUsEnUb5NyKj1XIdjrYdRDiadswqDo8lP7SCcje8WqHYMaYwc/IIo5NKbTkLA1tO
+         diD0zTYOCfZ+NTXYCjEdcVl7APJlOw0GkoKHYwtTImGzdKiWcTHJNe9hBFjwNywHPdom
+         TBJi2wwwAtj3UiVjaHvXVCunQERJNCicvgHq4sA0BDStyCLHZQeUxJ7ezxYU4BEFHHKP
+         SblxjNJ5C8eM2O9MgQWxWCKbxpvOme942AE7UODMDYKC2Bboflcc96GC4+nTs4/bSm5V
+         N8gF9IVYKGTtk1ytoeRTZqXg8ric9MOUIdv7Mq4PFzi0SaKolKGTkofcmybwY1Cow5Gf
+         e2ww==
+X-Gm-Message-State: AO0yUKUc/Lj3vQIUm5MdkBw8juUyTGtaeIC63BNZoefw3KT1C/kMYbcB
+        lw8wO6OwcEr2mlcybts/TOc=
+X-Google-Smtp-Source: AK7set/30dngfeeDzKQ+QTuk8xOPIdlr4/4bPmXxw19Uy+Rt7exKXaCjOkbocIePzfVBKXogZ3Svtw==
+X-Received: by 2002:adf:dd92:0:b0:2cf:e3c7:596e with SMTP id x18-20020adfdd92000000b002cfe3c7596emr7354228wrl.35.1679056408550;
+        Fri, 17 Mar 2023 05:33:28 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:cc60:8c15:c868:fa91])
+        by smtp.gmail.com with ESMTPSA id j10-20020a5d464a000000b002cea8f07813sm1876515wrs.81.2023.03.17.05.33.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 05:33:27 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/2] RZ/G2L: Add CRU, CSI support
+Date:   Fri, 17 Mar 2023 12:33:12 +0000
+Message-Id: <20230317123314.145121-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 2/2] ARM: dts: exynos: add mmc aliases
-Content-Language: en-US
-To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        m.szyprowski@samsung.com, jenneron@protonmail.com,
-        markuss.broks@gmail.com, martin.juecker@gmail.com,
-        virag.david003@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Cc:     Valentine Iourine <iourine@iourine.msk.su>
-References: <20230316211558.8526-1-henrik@grimler.se>
- <20230316211558.8526-3-henrik@grimler.se>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316211558.8526-3-henrik@grimler.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 22:15, Henrik Grimler wrote:
-> Add aliases for eMMC, SD card and WiFi where applicable, so that
-> assigned mmc indeces are always the same.
-> 
-> Co-developed-by: Anton Bambura <jenneron@protonmail.com>
-> Signed-off-by: Anton Bambura <jenneron@protonmail.com>
-> [ Tested on exynos5800-peach-pi ]
-> Tested-by: Valentine Iourine <iourine@iourine.msk.su>
-> Signed-off-by: Henrik Grimler <henrik@grimler.se>
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Hi All,
 
+This patch series adds support for CRU and CSI support to RZ/G2L SoC
+and enables it on the RZ/G2L SMARC EVK. Also ov5645 node is added which
+connects to the CSI2 node.
 
->  	chosen {
-> diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-> index bba85011ecc9..7051e2c4b391 100644
-> --- a/arch/arm/boot/dts/exynos4210-i9100.dts
-> +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-> @@ -25,6 +25,12 @@ memory@40000000 {
->  		reg = <0x40000000 0x40000000>;
->  	};
->  
-> +	aliases {
-> +		mmc0 = &sdhci_0;
-> +		mmc2 = &sdhci_2;
-> +		mmc3 = &sdhci_3;
+Note, this patch series applies on top of [0].
 
-Here...
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230131223529.11905-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-> +	};
-> +
->  	chosen {
->  		stdout-path = "serial2:115200n8";
->  	};
-> diff --git a/arch/arm/boot/dts/exynos4210-origen.dts b/arch/arm/boot/dts/exynos4210-origen.dts
-> index 1103e7f92b57..1970c31410e5 100644
-> --- a/arch/arm/boot/dts/exynos4210-origen.dts
-> +++ b/arch/arm/boot/dts/exynos4210-origen.dts
-> @@ -30,6 +30,11 @@ memory@40000000 {
->  		       0x70000000 0x10000000>;
->  	};
->  
-> +	aliases {
-> +		mmc0 = &sdhci_0;
+v1->v2
+* Dropped using SOC_PREFIX() macro in patch #1
+* Included RB tag from Geert for patch #1
+* Used overlay to enable CRU, CSI and ov5645 sensor
 
-here ....
+v1:
+https://patchwork.kernel.org/project/linux-renesas-soc/cover/20230216175347.99778-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-> +		mmc2 = &sdhci_2;
-> +	};
-> +
->  	chosen {
->  		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
->  		stdout-path = "serial2:115200n8";
-> diff --git a/arch/arm/boot/dts/exynos4210-smdkv310.dts b/arch/arm/boot/dts/exynos4210-smdkv310.dts
-> index 181c99eca675..cb74af41e17c 100644
-> --- a/arch/arm/boot/dts/exynos4210-smdkv310.dts
-> +++ b/arch/arm/boot/dts/exynos4210-smdkv310.dts
-> @@ -25,6 +25,10 @@ memory@40000000 {
->  		reg = <0x40000000 0x80000000>;
->  	};
->  
-> +	aliases {
-> +		mmc2 = &sdhci_2;
-> +	};
-> +
->  	chosen {
->  		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
->  		stdout-path = "serial1:115200n8";
-> diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
-> index b8e9dd23fc51..b6b0c116016c 100644
-> --- a/arch/arm/boot/dts/exynos4210-trats.dts
-> +++ b/arch/arm/boot/dts/exynos4210-trats.dts
-> @@ -26,6 +26,12 @@ memory@40000000 {
->  			0x70000000 0x10000000>;
->  	};
->  
-> +	aliases {
-> +		mmc0 = &sdhci_0;
-> +		mmc2 = &sdhci_2;
-> +		mmc3 = &sdhci_3;
-> +	};
-> +
->  	chosen {
->  		bootargs = "root=/dev/mmcblk0p5 rootwait earlyprintk panic=5";
->  		stdout-path = "serial2:115200n8";
-> diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-> index 140abfb38e1d..f42cfcbcdcfa 100644
-> --- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
-> +++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-> @@ -24,6 +24,12 @@ memory@40000000 {
->  			0x50000000 0x10000000>;
->  	};
->  
-> +	aliases {
-> +		mmc0 = &sdhci_0;
-> +		mmc2 = &sdhci_2;
+Cheers,
+Prabhakar
 
+Lad Prabhakar (2):
+  arm64: dts: renesas: r9a07g044: Add CSI and CRU nodes
+  arm64: dts: renesas: rzg2l-smarc: Enable CRU, CSI support
 
-Why this is 2? Aliases are continues and match the board. For example
-Universal calls this mmc1 and the next mmc2, not 3.
+ arch/arm64/boot/dts/renesas/Makefile          |  1 +
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 79 +++++++++++++++++
+ .../r9a07g044l2-smarc-cru-csi-ov5645.dtso     | 18 ++++
+ .../dts/renesas/rz-smarc-cru-csi-ov5645.dtsi  | 87 +++++++++++++++++++
+ 4 files changed, 185 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2-smarc-cru-csi-ov5645.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/rz-smarc-cru-csi-ov5645.dtsi
 
-I bet it is the same on Trats and all other boards.
-
-> +		mmc3 = &sdhci_3;
-> +	};
-> +
->  	chosen {
->  		bootargs = "root=/dev/mmcblk0p5 rw rootwait earlyprintk panic=5 maxcpus=1";
->  		stdout-path = "serial2:115200n8";
-> diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-> index 6260da187e92..0e5419c0eaff 100644
-> --- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
-> +++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-> @@ -20,6 +20,10 @@ / {
->  	model = "TOPEET iTop 4412 Elite board based on Exynos4412";
->  	compatible = "topeet,itop4412-elite", "samsung,exynos4412", "samsung,exynos4";
->  
-> +	aliases {
-> +		mmc2 = &sdhci_2;
-
-mmc1
-
-> +	};
-> +
->  	chosen {
->  		bootargs = "root=/dev/mmcblk0p2 rw rootfstype=ext4 rootdelay=1 rootwait";
->  		stdout-path = "serial2:115200n8";
-> diff --git a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
-> index ca8d42b2ce3b..7bc6968af9c3 100644
-> --- a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
-> +++ b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
-> @@ -23,6 +23,10 @@ memory@40000000 {
->  		reg = <0x40000000 0x40000000>;
->  	};
->  
-> +	aliases {
-> +		mmc0 = &mshc_0;
-> +	};
-> +
->  	firmware@203f000 {
->  		compatible = "samsung,secure-firmware";
->  		reg = <0x0203f000 0x1000>;
-> diff --git a/arch/arm/boot/dts/exynos4412-midas.dtsi b/arch/arm/boot/dts/exynos4412-midas.dtsi
-> index 82aed59cba7c..e6b949c1a00f 100644
-> --- a/arch/arm/boot/dts/exynos4412-midas.dtsi
-> +++ b/arch/arm/boot/dts/exynos4412-midas.dtsi
-> @@ -25,6 +25,9 @@ / {
->  	aliases {
->  		i2c11 = &i2c_max77693;
->  		i2c12 = &i2c_max77693_fuel;
-> +		mmc0 = &mshc_0;
-> +		mmc2 = &sdhci_2;
-> +		mmc3 = &sdhci_3;
-
-This is actually correct.
-
->  	};
->  
->  	chosen {
-> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-> index 25e082fda955..45ef7b7ba7e0 100644
-> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-> @@ -13,6 +13,11 @@
->  #include "exynos-mfc-reserved-memory.dtsi"
->  
->  / {
-> +	aliases {
-> +		mmc0 = &mshc_0;
-> +		mmc2 = &sdhci_2;
-
-This is also correct.
-
-> +	};
-
-For all other cases, where schematics are missing, just make them linear.
-
-Krzysztof
+-- 
+2.25.1
 
