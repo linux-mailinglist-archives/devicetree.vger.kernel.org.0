@@ -2,194 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 281AE6BEB94
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4536BEBBC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 15:52:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbjCQOnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 10:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43162 "EHLO
+        id S230092AbjCQOwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 10:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230479AbjCQOnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:43:12 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56D8367C5;
-        Fri, 17 Mar 2023 07:43:03 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id f16so5309222ljq.10;
-        Fri, 17 Mar 2023 07:43:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679064182;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ghmMfinFDDdTN92ApK4Yf07wpTrmYSX8BQBPIjw/BlY=;
-        b=Rw4Z7OonWOm+/1aLHL0yAopg91Yj6Nk75pGuBl73xJuErQZp8AbYTMvPICA+G4NftH
-         OV51IDbVPMV86jBf3nDDWS/YjPuxNkZ4ZaqCF8zsX7pv+Ysc49qLovWAo1xLaVIkqQqc
-         ff6t8axPIboXtt2vusX5meHj9gfujmrHRaAvDERvLsSIb2i9ElpeCGffHxoDX0jrowZI
-         5i017j+KCmdD+3qSyLGnVgKNwycaZ3XvTAa+243HYUHSepLg2rNvi+K/TkWcikqYentU
-         7sGJlFnQ0PXPZi7qf741otX10tD8TzR4Q88lY/SDsoRp0e5M78AK77lwRGLDhGs9kLh7
-         sXeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679064182;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ghmMfinFDDdTN92ApK4Yf07wpTrmYSX8BQBPIjw/BlY=;
-        b=s8WbZF7W7q9Rk+iWsHzPkfnUc3OF85JIEV99O3jcWAAkziws/rej7ZgCVEWfuaXzDh
-         fSg17mx7n3dWHMxd2TrmYLT++Y191JEfLO7/UKGin9Jqu6SFKcs0y6EqEf/OjQxNKvW6
-         r2RoocG3pBbTuBDezki29QhTRq30IjxidVBfVJt6fElMQqsQkSEIp9YN+MXcFfIzSTwM
-         DTyE+5I0WWI3B9yV26880ULRJHeqh2609D9I5X0NJBe5aQ73VgnXiq477gxnEl32Cckv
-         7fYW4QimLoKOzPkXBYhslVbpvgX3rs1lmK8dUn5mkHqNtYoKpmGlY8ojDKaOXegvGRFz
-         NUqA==
-X-Gm-Message-State: AO0yUKVdflT+RCd8bCfFqM5p+mdts/VFcdZR2foZALbH1sa99jGSkM8I
-        zBfyG/ZgSvRdBEjDjAEEHq8=
-X-Google-Smtp-Source: AK7set8Rnl2k70DUO2K+6qCdnN447e2my1s4zgfcx6/oAmQzvx0y6N8q3RkgvW3OKvc5nUsAUVAIrQ==
-X-Received: by 2002:a05:651c:150a:b0:298:a164:590f with SMTP id e10-20020a05651c150a00b00298a164590fmr4426010ljf.45.1679064182065;
-        Fri, 17 Mar 2023 07:43:02 -0700 (PDT)
-Received: from fedora ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id s9-20020a2e2c09000000b00293d7c95df1sm437851ljs.78.2023.03.17.07.43.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 07:43:01 -0700 (PDT)
-Date:   Fri, 17 Mar 2023 16:42:57 +0200
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/8] dt-bindings: iio: light: Support ROHM BU27034
-Message-ID: <b76268e49d116fcd00b1ba63974e2bdff9f31b00.1679062529.git.mazziesaccount@gmail.com>
-References: <cover.1679062529.git.mazziesaccount@gmail.com>
+        with ESMTP id S229823AbjCQOwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 10:52:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4030664F9;
+        Fri, 17 Mar 2023 07:52:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 521EF60301;
+        Fri, 17 Mar 2023 14:52:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B129FC433A1;
+        Fri, 17 Mar 2023 14:52:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679064750;
+        bh=RemW7D3ij2yOrB+ogcaXKniVsacHQNaAVK4rBDGYz4Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IozllazTbZyyaYXT3amI+U3cYXoYTfyN3j05jbPfb654yzF7uucPlpYjfhbDPDf0m
+         e7lFNEzhyCEqImHAHTCTZl/9dHd+wNW2o69FXwJ+CFXOfAbHSee1DddG1SHVePFmik
+         6pS1mB99n4NHNlZUDWO0GWqfFL/EdpHe+9wDPUGNUT7p4EuXZkLJ9wP0KpNhn2WwWK
+         w4G1JRm8BSxTPNyIyZnjzF9zS6laNb0am5V1Zj772puADvXYqqxQHQihKBVuqUWiQr
+         hf/+ahZ8xfsqLK3aUhebsboArCF7Anp0EBw9cRjNhvmFtNyCaShvHoQxB5niawtwqi
+         ZjTpF54428zrg==
+Received: by mail-ua1-f50.google.com with SMTP id g23so3501215uak.7;
+        Fri, 17 Mar 2023 07:52:30 -0700 (PDT)
+X-Gm-Message-State: AO0yUKWFQxBIDxTdYi/pfBQsf3a7duv4t1LlzvjhuPK2Q4nncP5b36a7
+        6omOzUrQpv1QTt/Ayo1remBb8hLWeu1456gwCg==
+X-Google-Smtp-Source: AK7set9DTA37RQ8MLUsuBcTMmfhuaSeaXAnHDyapP11GtUcP5QrFKPElA5Ajcksn57LAkYRXZ1Q3oo+iw0evcfnULlQ=
+X-Received: by 2002:ab0:4a1a:0:b0:68b:8665:a73b with SMTP id
+ q26-20020ab04a1a000000b0068b8665a73bmr29789667uae.1.1679064749554; Fri, 17
+ Mar 2023 07:52:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="MP2Qmur0xHqWTD0n"
-Content-Disposition: inline
-In-Reply-To: <cover.1679062529.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230317030501.1811905-1-anshuman.khandual@arm.com> <20230317030501.1811905-7-anshuman.khandual@arm.com>
+In-Reply-To: <20230317030501.1811905-7-anshuman.khandual@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 17 Mar 2023 09:52:18 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
+Message-ID: <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
+Subject: Re: [PATCH 6/7] of/platform: Skip coresight etm4x devices from AMBA bus
+To:     Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        suzuki.poulose@arm.com, scclevenger@os.amperecomputing.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 16, 2023 at 10:06=E2=80=AFPM Anshuman Khandual
+<anshuman.khandual@arm.com> wrote:
+>
+> Allow other drivers to claim a device, disregarding the "priority" of
+> "arm,primecell". e.g., CoreSight ETM4x devices could be accessed via MMIO
+> (AMBA Bus) or via CPU system instructions.
 
---MP2Qmur0xHqWTD0n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The OS can pick which one, use both, or this is a system integration
+time decision?
 
-ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
-capable of detecting a very wide range of illuminance. Typical application
-is adjusting LCD and backlight power of TVs and mobile phones.
+> The CoreSight ETM4x platform
+> driver can now handle both types of devices. In order to make sure the
+> driver gets to handle the "MMIO based" devices, which always had the
+> "arm,primecell" compatible, we have two options :
+>
+> 1) Remove the "arm,primecell" from the DTS. But this may be problematic
+>  for an older kernel without the support.
+>
+> 2) The other option is to allow OF code to "ignore" the arm,primecell
+> priority for a selected list of compatibles. This would make sure that
+> both older kernels and the new kernels work fine without breaking
+> the functionality. The new DTS could always have the "arm,primecell"
+> removed.
 
-Add dt-bindings.
+3) Drop patches 6 and 7 and just register as both AMBA and platform
+drivers. It's just some extra boilerplate. I would also do different
+compatible strings for CPU system instruction version (assuming this
+is an integration time decision).
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> This patch implements Option (2).
+>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Russell King (Oracle) <linux@armlinux.org.uk>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Co-developed-by: Suzuki Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Suzuki Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+> ---
+>  drivers/of/platform.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index b2bd2e783445..59ff1a38ccaa 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -325,6 +325,13 @@ static const struct of_dev_auxdata *of_dev_lookup(co=
+nst struct of_dev_auxdata *l
+>         return NULL;
+>  }
+>
+> +static const struct of_device_id of_ignore_amba_table[] =3D {
+> +#ifdef CONFIG_CORESIGHT_SOURCE_ETM4X
+> +       { .compatible =3D "arm,coresight-etm4x" },
+> +#endif
+> +       {}    /* NULL terminated */
+> +};
+> +
+>  /**
+>   * of_platform_bus_create() - Create a device for a node and its childre=
+n.
+>   * @bus: device node of the bus to instantiate
+> @@ -373,7 +380,8 @@ static int of_platform_bus_create(struct device_node =
+*bus,
+>                 platform_data =3D auxdata->platform_data;
+>         }
+>
+> -       if (of_device_is_compatible(bus, "arm,primecell")) {
+> +       if (of_device_is_compatible(bus, "arm,primecell") &&
+> +           unlikely(!of_match_node(of_ignore_amba_table, bus))) {
 
----
-v2 =3D>
-- No changes
+of_match_node is going to take orders of magnitude longer than any
+difference unlikely() would make. Drop it.
 
-Changes since RFCv1 =3D> v2
-- Fix binding file name and id by using comma instead of a hyphen to
-  separate the vendor and part names.
----
- .../bindings/iio/light/rohm,bu27034.yaml      | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2703=
-4.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml =
-b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-new file mode 100644
-index 000000000000..30a109a1bf3b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BU27034 ambient light sensor
-+
-+maintainers:
-+  - Matti Vaittinen <mazziesaccount@gmail.com>
-+
-+description: |
-+  ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diod=
-es
-+  capable of detecting a very wide range of illuminance. Typical applicati=
-on
-+  is adjusting LCD and backlight power of TVs and mobile phones.
-+  https://fscdn.rohm.com/en/products/databook/datasheet/ic/sensor/light/bu=
-27034nuc-e.pdf
-+
-+properties:
-+  compatible:
-+    const: rohm,bu27034
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+
-+      light-sensor@38 {
-+        compatible =3D "rohm,bu27034";
-+        reg =3D <0x38>;
-+        vdd-supply =3D <&vdd>;
-+      };
-+    };
-+
-+...
---=20
-2.39.2
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---MP2Qmur0xHqWTD0n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmQUfHEACgkQeFA3/03a
-ocVJiwf/QboumHD0nWvLt8F5UN9bt5KO023XluK8eaCJf5GslPBFeZiOZFCYsn8H
-qDA484vUdGgPMFBYS3pKPimczBzGrnhMyAqO65BFl3T0TOi139oJ3KMpliQt0C9G
-4QbnVBjjn9e5brVheY10ogo1NqwU4+P9l0CYioj+bKCks0RWPIlMwnL8KDpHc8Az
-76JbR7c2kn6KD5J9EtEqSA6yoXjuduRTbxKNJ1DwuJQjD/uHspsaX4HAxay6xR50
-uBWsUj7WOCpznQ6HIWEUW7zwSQY/e3X9j5r1m12zLETdL/rTD81DKGjCy/bnI4fp
-1VJnCp1IaP5viwpchrfp9S5vggLvCw==
-=LERK
------END PGP SIGNATURE-----
-
---MP2Qmur0xHqWTD0n--
+>                 /*
+>                  * Don't return an error here to keep compatibility with =
+older
+>                  * device tree files.
+> --
+> 2.25.1
+>
