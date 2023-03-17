@@ -2,121 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E9F56BE8AA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 12:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 212A36BE8B2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 12:57:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjCQLz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 07:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34390 "EHLO
+        id S229647AbjCQL5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 07:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbjCQLzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 07:55:55 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FDB3B5FE4
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 04:55:45 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id y4so19387871edo.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 04:55:45 -0700 (PDT)
+        with ESMTP id S229679AbjCQL5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 07:57:45 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A596BBB2C
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 04:57:31 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id c8-20020a05600c0ac800b003ed2f97a63eso4952970wmr.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 04:57:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679054144;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1679054250;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QCfN6F0y+kXWsG65TzOeSOHJ6drfqPHeFbLKw0Y/4s8=;
-        b=VIUUaZkpbCR3AYJSEO8c6EiLnQNmeAC8tRTMe2yPr30khWpYlUywqm6yH7DGRJCHZY
-         vka+VfTLn5D64BZl0Vpt+myHQf6eFZDfsqFyrkc5zbr14RN5w8APrAjLKndrv+LFFnuX
-         fcxzFVVrUPsGYLYsNRi+GBwR7BCZYTKJzpoKK8ZA2blmbLBQ9lX38Ttj410by/rnFvBn
-         DMfu/IXaho0ZAsFaQ/nzWog0lhO6I+Q7y+3i9xKSFg6oxaFw4tXa9cBqYKjKQl4rVPG+
-         VZcmVr9eohRDQXOPLmAhdxhktnB+PyNHiL0cDRAt3Nclx75CSn3LA1uktPS4MnKTAnKv
-         2lEw==
+        bh=qgvWbwsyEB+gGG8DJc2B/pZSZJeuWMK+G3i6ZsnIT1k=;
+        b=pxUX4MkdHQrAtuiOU3oXvUpzKVpIKtpaMMepwzt+mpVsB7GCPRsfv47EH36hQItV/e
+         zxXZEtzjMErI5HFo+2ONrE+ieAKTzu6r0jczVNF8EGi8pa0De1tvzjUD58ctdtF0lDSs
+         49JEnyexq4t0pL1bKHB9BjlMp9XKjEBv7+UBzhksVxxJh7Ty87ji28arijtidYnSmh/2
+         qNwct20R8zF/DNDBoFgRJjzGk4tmol1E1RN9T9gerJPfd13UYLRqTNCoXUSPU9D8TTgD
+         7dMLfNIMQiz1cshss/dOWca4cdfiJk9/srojK3ZpF6Xm6WW1GIIg8rZfrQXlD1lORDSI
+         GF0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679054144;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1679054250;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QCfN6F0y+kXWsG65TzOeSOHJ6drfqPHeFbLKw0Y/4s8=;
-        b=17mBPk9BOBxB6qaPSPPS5gHhJfYmBxHPHxYvC0OcFMHzsDbffu+eIxV6kmWUy8a6KT
-         a9+yABYj65f6UnaWX0LHQKoSRWwl7jjV4gW5FyCIQ2cWbhmTPmF6iJcW72HiFmVhyxff
-         jgcBAi/I+GNSqvoa48aIijDCMa0SeSiRZ1de9EdCmJw2oEw8Nt0yl2sb68TK00Y1eOHR
-         4enJYUYe43jPfDB0b9DzaJ6yQK9DptBs/kekVMY5MFTj7fks6gZv81qVk3zly0UJ7S4u
-         JJ1PhEWDXDm0BIOdQgQN7SIWrdMRWLFOfN/fskMgCf9+n6FROA+XSMF7hOZL8Y/Xm2wx
-         vGpw==
-X-Gm-Message-State: AO0yUKW9sxmZP622dLN8shtUN75XWP9Y/WswdfDRXElewPbpv7xeIPFB
-        EX6cxyFvIekysR3uKhh1iE5+mw==
-X-Google-Smtp-Source: AK7set+Ko5FIjm3ObaskmXZ0dZBIDnZsLVXTEbaqMpCzXJHlY/hAwcXTRKxymUkWCqYoFZOlhjr2Gw==
-X-Received: by 2002:aa7:d056:0:b0:4fb:6d55:7e7 with SMTP id n22-20020aa7d056000000b004fb6d5507e7mr3074656edo.21.1679054143738;
-        Fri, 17 Mar 2023 04:55:43 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id m23-20020a509317000000b004fb95f51f54sm981748eda.12.2023.03.17.04.55.42
+        bh=qgvWbwsyEB+gGG8DJc2B/pZSZJeuWMK+G3i6ZsnIT1k=;
+        b=Zd8o5U3lUn0cxmj54H/bfRhk4n+eiDekbXpWIHg88jJtyC55jUqu4njj1qASlhS3kz
+         5s0uCdgl3/JyiCmGtaRWkm5PS8GjNGqooJ5f0HifdfpUeUAZByWRUonBEWvGz9UKn3iO
+         ehhax3wBTe17tb2pTNDvsfh0tepkbabvLl/xRHKcPSlEqb/wjF2DTNVIPTWIihYCdnMv
+         sXsMSVsn85iavi6YucELQKqykSEkUR5GYxHJhbOScib2QcYzW+NwUoNBXDymyZqaftCd
+         25cDOY8k9SzNQO6pI+T2DQVhYsnHIl05dYCba/Y5t1x33IeBPsyvtWPoxRUXamQgO6va
+         H2rQ==
+X-Gm-Message-State: AO0yUKVgiRL8+tZh8EXR2Y/IMF50y1XnMjDArAF6gcerplvHRmovys54
+        qxqE0+iTz6eFAYz7V0vHm1PqUg==
+X-Google-Smtp-Source: AK7set8GSaMaBFVqOeBLDlwhD3HnE+PH9ZmLeqoREQYjdYbOiuC3GMqSxbZGn33oQJQV0LXhpudmNQ==
+X-Received: by 2002:a05:600c:198e:b0:3eb:2f3b:4477 with SMTP id t14-20020a05600c198e00b003eb2f3b4477mr23903615wmq.28.1679054249817;
+        Fri, 17 Mar 2023 04:57:29 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:1dfd:dcd7:94d3:86b3? ([2a05:6e02:1041:c10:1dfd:dcd7:94d3:86b3])
+        by smtp.googlemail.com with ESMTPSA id n13-20020a05600c3b8d00b003e8dcc67bdesm8058955wms.30.2023.03.17.04.57.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 04:55:43 -0700 (PDT)
-Message-ID: <20db729f-e8fb-3d16-54a2-b9a54b9a1b55@linaro.org>
-Date:   Fri, 17 Mar 2023 12:55:40 +0100
+        Fri, 17 Mar 2023 04:57:29 -0700 (PDT)
+Message-ID: <59fc344b-4d1a-e0b2-92b5-2341b014ae11@linaro.org>
+Date:   Fri, 17 Mar 2023 12:57:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 1/2] ARM: dts: exynos: replace mshc0 alias with
- mmc-ddr-1_8v property
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/4] dt-bindings: thermal: mediatek: Add AP domain to LVTS
+ thermal controllers for mt8195
 Content-Language: en-US
-To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
-        m.szyprowski@samsung.com, jenneron@protonmail.com,
-        markuss.broks@gmail.com, martin.juecker@gmail.com,
-        virag.david003@gmail.com, devicetree@vger.kernel.org,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>, bchihi@baylibre.com,
+        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230316211558.8526-1-henrik@grimler.se>
- <20230316211558.8526-2-henrik@grimler.se>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316211558.8526-2-henrik@grimler.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <20230307154524.118541-1-bchihi@baylibre.com>
+ <20230307154524.118541-2-bchihi@baylibre.com>
+ <CAGXv+5FUrWEF4SZ6DKjoF8Oai--JGFffzQ3_DyzQrUrThVEQ7Q@mail.gmail.com>
+ <e5959cb5-af8c-9410-9530-b3e19e9b647a@linaro.org>
+ <20230316223543.GA4008428-robh@kernel.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230316223543.GA4008428-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 22:15, Henrik Grimler wrote:
-> Previously, the mshc0 alias has been necessary so that
-> MMC_CAP_1_8V_DDR | MMC_CAP_8_BIT_DATA are set for mshc_0/mmc_0.
-> However, these capabilities should be described in the device tree so
-> that we do not have to rely on the alias.
-> 
-> The property mmc-ddr-1_8v replaces MMC_CAP_1_8V_DDR, while bus_width =
-> <8>, which is already set for all the mshc0/mmc0 nodes, replaces
-> MMC_CAP_8_BIT_DATA.
-> 
-> Also drop other mshc aliases as they are not needed.
-> 
-> Signed-off-by: Henrik Grimler <henrik@grimler.se>
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> 
-> ---
-> 
-> Changes since v4:
-> * Do not set mmc-ddr-1_8v for sdhci_0 on Exynos 4210,
->   following Marek's tests
-> 
-> Changes since v3:
-> * Drop attempt at node sorting/cleaning
-> * Move two mmc alias additions to the other patch
-> * Update commit message
-> 
-> Changes since v2:
-> * Set mmc-ddr-1_8v in device trees for mshc_0/mmc_0
-> 
-> 
->  arch/arm/boot/dts/exynos3250-artik5.dtsi            | 1 +
->  arch/arm/boot/dts/exynos3250-monk.dts               | 1 +
->  arch/arm/boot/dts/exynos3250-rinato.dts             | 1 +
 
-Why you do not remove Exynos3250 aliases?
+Hi Rob,
 
-Best regards,
-Krzysztof
+On 16/03/2023 23:35, Rob Herring wrote:
+> On Thu, Mar 09, 2023 at 11:39:13AM +0100, Daniel Lezcano wrote:
+>> On 09/03/2023 05:40, Chen-Yu Tsai wrote:
+>>> On Wed, Mar 8, 2023 at 12:46 AM <bchihi@baylibre.com> wrote:
+>>>>
+>>>> From: Balsam CHIHI <bchihi@baylibre.com>
+>>>>
+>>>> Add AP Domain to LVTS thermal controllers dt-binding definition for mt8195.
+>>>>
+>>>> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+>>>> ---
+>>>>    include/dt-bindings/thermal/mediatek,lvts-thermal.h | 10 ++++++++++
+>>>>    1 file changed, 10 insertions(+)
+>>>>
+>>>> diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+>>>> index c09398920468..8fa5a46675c4 100644
+>>>> --- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+>>>> +++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+>>>> @@ -16,4 +16,14 @@
+>>>>    #define MT8195_MCU_LITTLE_CPU2  6
+>>>>    #define MT8195_MCU_LITTLE_CPU3  7
+>>>>
+>>>> +#define MT8195_AP_VPU0  8
+>>>
+>>> Can't this start from 0? This is a different hardware block. The index
+>>> namespace is separate. Same question for MT8192.
+>>
+>> The ID is used to differentiate the thermal zone identifier in the device
+>> tree from the driver.
+>>
+>> +		vpu0-thermal {
+>> +			polling-delay = <0>;
+>> +			polling-delay-passive = <0>;
+>> +			thermal-sensors = <&lvts_ap MT8195_AP_VPU0>;
+>> +
+>> +			trips {
+>> +				vpu0_crit: trip-crit {
+>> +					temperature = <100000>;
+>> +					hysteresis = <2000>;
+>> +					type = "critical";
+>> +				};
+>> +			};
+>> +		};
+>>
+>> If MT8195_AP_VPU0 is 0, then the code won't be able to differentiate
+>> MT8195_AP_VPU0 and MT8195_MCU_BIG_CPU0
+>>
+>> The LVTS driver will call devm_thermal_of_zone_register() with the sensor
+>> id. If MT8195_MCU_BIG_CPU0 and MT8195_AP_VPU0 have the same id, then at the
+>> moment of registering the MT8195_AP_VPU0, the underlying OF thermal
+>> framework code will use MT8195_MCU_BIG_CPU0 description instead because it
+>> will be the first to be find in the DT.
+>>
+>> If MT8195_AP_VPU0 is described in DT before, then the same will happen when
+>> registering MT8195_MCU_BIG_CPU0, MT8195_AP_VPU0 will be registered instead.
+>>
+>> IOW all ids must be different.
+> 
+> That's broken for how producer/consumer phandle+args bindings work.
+
+Do you mean this is broken for thermal zone description in the DT in 
+general ?
+
+What would be the correct approach ?
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
