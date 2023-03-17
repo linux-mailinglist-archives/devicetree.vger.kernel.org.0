@@ -2,121 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 941766BE974
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:38:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4985A6BE97B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230285AbjCQMif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 08:38:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37972 "EHLO
+        id S230261AbjCQMkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 08:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbjCQMic (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:38:32 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3868ABC9
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:38:15 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id z21so19837045edb.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:38:15 -0700 (PDT)
+        with ESMTP id S230205AbjCQMkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:40:35 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C2448FBC6
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:40:06 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id eh3so19743101edb.11
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679056693;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ieazCt2VSnmnZGU95p6J0fsPaC9JLJVb1N3OVs1/cl0=;
-        b=wWm92anBEh5LJKqIt11EWk8LOC6uQMCTPlNDhESr9AByn7qv7i10LEhfT2+27ABv4X
-         oVhyfgQFosdO3SGAKXDB4xLIbhIp1DAXDFNu9+vDlKHisyMVe/MVX4wlteE21O4IdHyF
-         2MaDQ6NoVjZVSvDAJEuinunyBkf9JCEqu1L4rUiO55egC0EqoUrH+jwa2T9YsSOmyxM6
-         e6egpVHFb57LQ2q/8w1CPNPJYjwIQBBTI5FuVR7YR+y3o9XEigW32n/pgJPj3J8TdZ6+
-         4/1fY4SXxgu4fwsN93Jee/F6x/S2n78zutVYPRUvmp9MJ6qNvaYPvYAk/iv6orVy0Wg9
-         tJGA==
+        d=linaro.org; s=google; t=1679056805;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NZdioywxv4DBqMZ9RgNrXeNmAndv8OmU2ThJ2U10tRs=;
+        b=oQYhioHIBjtpW1kqQ1fRnRJu7V+nvIauVTm4GX9uq0czcvyOrdWzmXDY4Bu8KxvTE2
+         1MlEVtv75YtG/UP2hMxE+OcUGufO4jUERYlrSti4hPKa1a6GfLPnbPJtMzq3mUQHhmFp
+         HxsIzmiIl80ra9Rvydi0/Qawv104Cg1O1UqYBfuryXPBdygSY51KhZs1QEHfv4EWBKpy
+         NkTf2SHe66HQEEuvBzcqJsNmCxuIhLsQ7iHjjUaLC00IfFOh/bRj43qQIZ0fWjoAjAkw
+         5r7mGajiu6P2A6fITIHeSFd0o5Qeti0E065+/T6imUg2+NJD7Xag+qpjMoiZpMzblByM
+         rnfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679056693;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ieazCt2VSnmnZGU95p6J0fsPaC9JLJVb1N3OVs1/cl0=;
-        b=RQyzdIrK6PDCfTmiQw33ahodwJLwD1Jzum6Em9tAGdYtVXTxk37hR+uwhJYCWa7Szo
-         V0JCMEWBcdO8Ob7fceSMEuOd9XFMkwLPsiTzX6mLop1SL5NC8pRWx1vawZhkzuPxNw8d
-         RHOrClxgIfxH0VvFoslLQqjd8W7Mme++ee3k1/9cz+je4hgaVFFBiFMvmah3G1lxOF6N
-         iae6aUz1e6nU9zPebfcR6PpPiHc8GUuxLT5xVpiEcrYqXI8x0mcX6Ge+G5+bX6nrKSIQ
-         ieUFK3WbtdmtXgDBvbrMy/32AA1ChNNoOxdod9eZeGzfOb1JUv5VkzLs8zHnpeQwikwK
-         uocw==
-X-Gm-Message-State: AO0yUKXSOtQ2ktu/rzDYBun4QkGgZF1soBCkU+FT8Ik7d5ktR2CxENm2
-        OFgk3KBvTjjR6TK44dw2b6veU3vJ/lLhplH2oTE=
-X-Google-Smtp-Source: AK7set+1PvvGYbX0zTdWZ0gf0CuuqjXnelxeVybKsKLfgomNgbJ0antRXviNxYHV7QkozPwqUu1Hsg==
-X-Received: by 2002:a17:907:c304:b0:8ae:e724:ea15 with SMTP id tl4-20020a170907c30400b008aee724ea15mr13960431ejc.76.1679056693686;
-        Fri, 17 Mar 2023 05:38:13 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id v6-20020a170906b00600b0091f58083a15sm936500ejy.175.2023.03.17.05.38.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 05:38:12 -0700 (PDT)
-Message-ID: <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
-Date:   Fri, 17 Mar 2023 13:38:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
-        jani.nikula@intel.com, tzimmermann@suse.de, javierm@redhat.com,
-        ville.syrjala@linux.intel.com, r-ravikumar@ti.com,
-        lyude@redhat.com, alexander.deucher@amd.com, sjakhade@cadence.com,
-        yamonkar@cadence.com
-References: <20230316140823.234263-1-j-choudhary@ti.com>
- <20230316140823.234263-2-j-choudhary@ti.com>
+        d=1e100.net; s=20210112; t=1679056805;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NZdioywxv4DBqMZ9RgNrXeNmAndv8OmU2ThJ2U10tRs=;
+        b=JQKpXVe4JgTZY2seqhtsP73Jh5QponSSeN/pXdS3GCe929QD3mfpTmjZasV9XdPoiA
+         rJuHOl5q5E0kFx05SOZcK/lqxClKxlNd6l3Y219O9ljnDuBssMScBIJL252wqlk9O0K1
+         vbOOLZcCfXomJIGzz2RVriJoMyXQzvpU7sh9v/3aNq0c/LKQqFllTiSUx7zbdW1ZWXGW
+         yn0uzb+4GHfkN+jLByAzum8il/qPDZHIrTupknX00Xm4zziqRDNsncCoSI3bvfoSqD+9
+         WvtFP8QhBmtnmkPdiglOn7OxsbLF70d0k3bF76QwtJopkjpGc1dmxQcA7sDRu0LWue/p
+         sAMA==
+X-Gm-Message-State: AO0yUKU8ed8KK6i+0OPj4rDJM9RvVrB3lpAhNVQzd4fFGQgRB98vQlvc
+        eGV4RdYh9FKe8fWugbqONuiBZsUfztBuOg+RX6U=
+X-Google-Smtp-Source: AK7set/zHtS5IdCaHy4y7kYzlopahgl0CEDEM45X/bMGHuNVgPhr+sgmYVzyCrdvUdB1LMGdzUaY6A==
+X-Received: by 2002:a17:907:6d0d:b0:932:29a7:56ee with SMTP id sa13-20020a1709076d0d00b0093229a756eemr1880706ejc.12.1679056805275;
+        Fri, 17 Mar 2023 05:40:05 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
+        by smtp.gmail.com with ESMTPSA id la18-20020a170907781200b00914001c91fcsm937445ejc.86.2023.03.17.05.40.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 05:40:04 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316140823.234263-2-j-choudhary@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Rob Herring <robh@kernel.org>, Robert Richter <rric@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH] arm64: dts: cavium: Fix GICv3 ITS nodes
+Date:   Fri, 17 Mar 2023 13:40:03 +0100
+Message-Id: <167905678622.28214.16950824199262428569.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230208185506.2305349-1-robh@kernel.org>
+References: <20230208185506.2305349-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 15:08, Jayesh Choudhary wrote:
-> From: Rahul T R <r-ravikumar@ti.com>
+On Wed, 8 Feb 2023 12:55:06 -0600, Rob Herring wrote:
+> The GICv3 ITS is an MSI controller, therefore its node name should be
+> 'msi-controller'. The ITS node is also expected to have '#msi-cells'.
+> Add it on Thunder as there are no users. Thunder2 uses 'msi-parent', but
+> Robin says that should be 'msi-map' instead and I'm not sure what's
+> correct for it.
 > 
-> Add no-hpd property to the bindings, to disable
-> hpd when not connected or unusable
+> The unit-addresses of both the ITS and main GIC node on thunder2 are also
+> wrong, so fix them while we're here.
 > 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  .../devicetree/bindings/display/bridge/cdns,mhdp8546.yaml   | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index b2e8bc6da9d0..69d381195218 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -57,6 +57,12 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  cdns,no-hpd:
+> [...]
 
-There is already no-hpd property.
+Applied, thanks! Let me know if someone else wants to take this.
 
-> +    type: boolean
-> +    description:
-> +      Set if the HPD line on the bridge isn't hooked up to anything or is
-> +      otherwise unusable.
-
-It's the property of the panel, not bridge. Unless you want to say that
-bridge physically does not have HPD? Does it follow the standard in such
-case?
+[1/1] arm64: dts: cavium: Fix GICv3 ITS nodes
+      https://git.kernel.org/krzk/linux-dt/c/d2e5c16f6c86901040f3bb6b40d1a01ccf1a21b0
 
 Best regards,
-Krzysztof
-
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
