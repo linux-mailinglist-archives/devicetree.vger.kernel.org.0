@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 096146BE915
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A16D6BE92D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:28:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbjCQMT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 08:19:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38596 "EHLO
+        id S229929AbjCQM2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 08:28:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230088AbjCQMTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:19:55 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BDF19109
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:19:53 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id j11so6194199lfg.13
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:19:53 -0700 (PDT)
+        with ESMTP id S229517AbjCQM2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:28:08 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D135F3B0D4
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:28:05 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id o12so19629345edb.9
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 05:28:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679055592;
+        d=linaro.org; s=google; t=1679056084;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=621ABpoi5KgPunSWjk55F8jRowzyF4/iYlPhbyE1p3k=;
-        b=Tcz6A375PBqbDYHy74MKAPAIlPZ1jemPuQr4I6n8D2OO3pIV62Z/hGSGxZAt2tem3o
-         PNdlhA0pksXg2VtFM4TOuFuJGf3TuQHMIhA1jhGQ+KfM3LCKL1oFGu4bRigcfll36cMA
-         rGmTIgzNEuz53ZbWOtBwmdIY9q/ZRxrgbzLDwXPlLfi2J9M1Xd+Df26AZLY5cQXJm/Fr
-         i5ApGdtUxPCQbq0PzSXsLLErCEZ2KMJoFempeASZUoz97tvZAPa+JqccFaza9CbjUgEM
-         nT3UKhbxfQeWvlZmXyHDJMUi6MjBaTNSyOgbFgluMct7G//tJ+rCLjQDmlOcLWBRA1YG
-         VkMg==
+        bh=c4NJZTZucxQIhmv+yhQCHkUP4VMj8aSUUr6DI8AUneE=;
+        b=l3HbbDmGhWJkfrjdeVRql3v6S18wD3xSANEHfyxftEs99S0h1gdT4hA2xMdVFe04f0
+         GdpH+F77m2VruQr7DBdj9iphFo/oK3n3KN/tpIHMXOEdIs21miF+chuVuGQBqj32B7ym
+         mcQk7e9I44HH9wgpZyV4R1bjc57w1HCnYtK38NQAldVN2NjPvGMzRNm/m5PLnlYMysHu
+         VOhb34OheGo7T3hFViX3Dl6be3FSj0HLF539spYWEQU0KihI5Xje3+iBjO32mLXTtaoq
+         FICKqui1l3X2IOOslxWckIWWKfCFFIPoQIYPyvG507Ir6hx20nDUS8OrZp/fAEeLflmq
+         8JoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679055592;
+        d=1e100.net; s=20210112; t=1679056084;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=621ABpoi5KgPunSWjk55F8jRowzyF4/iYlPhbyE1p3k=;
-        b=liSYFh9xtAaqVSH484B6l4CuGcwExArwuMYSlMgDFfk2P8XcfAzBYCN9fIBdbHJmMs
-         WCopy9mp7zgka7vtMhVTciWEWIW8dKWpyvJMdPhv5V0ze9y+nrjmcx72ItjxIekqPTxL
-         yYsZsYYn7qIzZX+sE5n4sRQwhi1nHjBl16bZF02GTJ9hFW4HTVrncNz/rDm0doZaj5VB
-         J1/0cpU/Rl/Re5aHlvOxIeW8hGAnEVS2a1KyxcfCRhBy1mdOyJAiseg4ZVXC+m/MneVh
-         y7e6YF+N/dVF/wFz4r72AOf/2g0TNtIRhSIghn5h34CkbT09ZZvzSRuJgL9eOheVqq2k
-         PzUA==
-X-Gm-Message-State: AO0yUKVO8uMSQNuEsRNOwr3QLAjkA96G8BM27mR6WAdZTeEZjjmZ0CUl
-        Bzpene9h3XWsofNFwMrneexzJg==
-X-Google-Smtp-Source: AK7set9ad5XRcgl5xT0h9V0R6N2FtgL3FB9Rbklyz6pXbnXEyTKtGoy/nJkE4hVrwMTiEM4xVHG/Aw==
-X-Received: by 2002:a19:ac02:0:b0:4d7:4826:3192 with SMTP id g2-20020a19ac02000000b004d748263192mr882384lfc.5.1679055591940;
-        Fri, 17 Mar 2023 05:19:51 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v2-20020ac25602000000b004a0589786ddsm344236lfd.69.2023.03.17.05.19.51
+        bh=c4NJZTZucxQIhmv+yhQCHkUP4VMj8aSUUr6DI8AUneE=;
+        b=qKcV/kqKTxAXBBF/kOGXAEkmqBOecTYTyauq8y6IMY2+klk5uqv74D7rePWSbhp8GZ
+         ABVNc1YAbIdtP9giizlLS3i/eIMzFGWJISp3C0nuEh3aw5GdGydXo9VAKgv30GzqCBq0
+         B6qdQI97iGuUOHVfyrrsnOGcRZwrDYzUPRWLl1W7iJZSpw359CTEku6rBFODCK30AjJo
+         t/bcikxRvK3MBOnDHIYaQsQqiBmtrRnwj1bUJlM+XQ39nz8e+by6fTvZzIfpIhjQzdmb
+         6B9B2vyWfy4H7y9NJUz9JOavdvD7ivJP6JaTABTvlkUxxGMhQmHvA/OVXXS9eHEYhWbk
+         Ming==
+X-Gm-Message-State: AO0yUKUoE/4D2/PhemW/h+N1bpsUeC/BT7Si6DSv7Rgod00djrq5zAGo
+        pudVVvp8T9dYYbKLkLGyozbqXA==
+X-Google-Smtp-Source: AK7set9t/UoX9hFHOcngKEhZnhSWZjQqE2c9vms2p3PISVzTQWVOpgxYc5pqcHwBaTzITEMiLULNzw==
+X-Received: by 2002:aa7:dbd8:0:b0:4ae:e5ab:46d7 with SMTP id v24-20020aa7dbd8000000b004aee5ab46d7mr2667687edt.8.1679056084346;
+        Fri, 17 Mar 2023 05:28:04 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
+        by smtp.gmail.com with ESMTPSA id u20-20020a50a414000000b004fd1ee3f723sm1002701edb.67.2023.03.17.05.28.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 05:19:51 -0700 (PDT)
-Message-ID: <30b349bd-c083-ed17-1e20-c84e4b67d449@linaro.org>
-Date:   Fri, 17 Mar 2023 14:19:50 +0200
+        Fri, 17 Mar 2023 05:28:03 -0700 (PDT)
+Message-ID: <216262b8-fe48-6696-17a4-eaa82e776db7@linaro.org>
+Date:   Fri, 17 Mar 2023 13:28:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v5 5/5] arm64: dts: qcom: sm8450: add dp controller
-Content-Language: en-GB
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230206-topic-sm8450-upstream-dp-controller-v5-0-a27f1b26ebe8@linaro.org>
- <20230206-topic-sm8450-upstream-dp-controller-v5-5-a27f1b26ebe8@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230206-topic-sm8450-upstream-dp-controller-v5-5-a27f1b26ebe8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v5 2/2] ARM: dts: exynos: add mmc aliases
+Content-Language: en-US
+To:     Henrik Grimler <henrik@grimler.se>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alim.akhtar@samsung.com,
+        m.szyprowski@samsung.com, jenneron@protonmail.com,
+        markuss.broks@gmail.com, martin.juecker@gmail.com,
+        virag.david003@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Valentine Iourine <iourine@iourine.msk.su>
+References: <20230316211558.8526-1-henrik@grimler.se>
+ <20230316211558.8526-3-henrik@grimler.se>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230316211558.8526-3-henrik@grimler.se>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -86,120 +81,183 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2023 11:12, Neil Armstrong wrote:
-> Add the Display Port controller subnode to the MDSS node.
+On 16/03/2023 22:15, Henrik Grimler wrote:
+> Add aliases for eMMC, SD card and WiFi where applicable, so that
+> assigned mmc indeces are always the same.
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 79 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 79 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 0b5a151ce138..41f5015e615b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -2751,6 +2751,13 @@ dpu_intf2_out: endpoint {
->   						};
->   					};
->   
-> +					port@2 {
-> +						reg = <2>;
-> +						dpu_intf0_out: endpoint {
-> +							remote-endpoint = <&mdss_dp0_in>;
-> +						};
-> +					};
-> +
->   				};
->   
->   				mdp_opp_table: opp-table {
-> @@ -2783,6 +2790,78 @@ opp-500000000 {
->   				};
->   			};
->   
-> +			mdss_dp0: displayport-controller@ae90000 {
-> +				compatible = "qcom,sm8450-dp", "qcom,sm8350-dp";
-> +				reg = <0 0xae90000 0 0x200>,
-> +				      <0 0xae90200 0 0x200>,
-> +				      <0 0xae90400 0 0xc00>,
-> +				      <0 0xae91000 0 0x400>,
-> +				      <0 0xae91400 0 0x400>;
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <12>;
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-> +				clock-names = "core_iface",
-> +					      "core_aux",
-> +					      "ctrl_link",
-> +			                      "ctrl_link_iface",
-> +					      "stream_pixel";
-> +
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-> +						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-> +				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-> +
-> +				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
-> +			        phy-names = "dp";
-> +
-> +			        #sound-dai-cells = <0>;
-> +
-> +				operating-points-v2 = <&dp_opp_table>;
-> +				power-domains = <&rpmhpd SM8450_MMCX>;
-> +
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						mdss_dp0_in: endpoint {
-> +							remote-endpoint = <&dpu_intf0_out>;
-> +						};
-> +					};
-> +				};
-> +
-> +				dp_opp_table: opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					opp-19200000 {
-> +						opp-hz = /bits/ 64 <19200000>;
-> +						required-opps = <&rpmhpd_opp_low_svs>;
-> +					};
-
-Yes, the vendor kernel has 19.2 MHz as a frequency for the low_svs. 
-However I don't think we should do it this way, we list DP rates here, 
-so the lowest entry should be RBR, 160000000.
-
-> +
-> +					opp-270000000 {
-> +						opp-hz = /bits/ 64 <270000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-540000000 {
-> +						opp-hz = /bits/ 64 <540000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-> +					};
-> +
-> +					opp-810000000 {
-> +						opp-hz = /bits/ 64 <810000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +				};
-> +			};
-> +
->   			mdss_dsi0: dsi@ae94000 {
->   				compatible = "qcom,sm8450-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->   				reg = <0 0x0ae94000 0 0x400>;
+> Co-developed-by: Anton Bambura <jenneron@protonmail.com>
+> Signed-off-by: Anton Bambura <jenneron@protonmail.com>
+> [ Tested on exynos5800-peach-pi ]
+> Tested-by: Valentine Iourine <iourine@iourine.msk.su>
+> Signed-off-by: Henrik Grimler <henrik@grimler.se>
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > 
 
--- 
-With best wishes
-Dmitry
+
+
+>  	chosen {
+> diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+> index bba85011ecc9..7051e2c4b391 100644
+> --- a/arch/arm/boot/dts/exynos4210-i9100.dts
+> +++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+> @@ -25,6 +25,12 @@ memory@40000000 {
+>  		reg = <0x40000000 0x40000000>;
+>  	};
+>  
+> +	aliases {
+> +		mmc0 = &sdhci_0;
+> +		mmc2 = &sdhci_2;
+> +		mmc3 = &sdhci_3;
+
+Here...
+
+> +	};
+> +
+>  	chosen {
+>  		stdout-path = "serial2:115200n8";
+>  	};
+> diff --git a/arch/arm/boot/dts/exynos4210-origen.dts b/arch/arm/boot/dts/exynos4210-origen.dts
+> index 1103e7f92b57..1970c31410e5 100644
+> --- a/arch/arm/boot/dts/exynos4210-origen.dts
+> +++ b/arch/arm/boot/dts/exynos4210-origen.dts
+> @@ -30,6 +30,11 @@ memory@40000000 {
+>  		       0x70000000 0x10000000>;
+>  	};
+>  
+> +	aliases {
+> +		mmc0 = &sdhci_0;
+
+here ....
+
+> +		mmc2 = &sdhci_2;
+> +	};
+> +
+>  	chosen {
+>  		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
+>  		stdout-path = "serial2:115200n8";
+> diff --git a/arch/arm/boot/dts/exynos4210-smdkv310.dts b/arch/arm/boot/dts/exynos4210-smdkv310.dts
+> index 181c99eca675..cb74af41e17c 100644
+> --- a/arch/arm/boot/dts/exynos4210-smdkv310.dts
+> +++ b/arch/arm/boot/dts/exynos4210-smdkv310.dts
+> @@ -25,6 +25,10 @@ memory@40000000 {
+>  		reg = <0x40000000 0x80000000>;
+>  	};
+>  
+> +	aliases {
+> +		mmc2 = &sdhci_2;
+> +	};
+> +
+>  	chosen {
+>  		bootargs = "root=/dev/ram0 rw ramdisk=8192 initrd=0x41000000,8M init=/linuxrc";
+>  		stdout-path = "serial1:115200n8";
+> diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+> index b8e9dd23fc51..b6b0c116016c 100644
+> --- a/arch/arm/boot/dts/exynos4210-trats.dts
+> +++ b/arch/arm/boot/dts/exynos4210-trats.dts
+> @@ -26,6 +26,12 @@ memory@40000000 {
+>  			0x70000000 0x10000000>;
+>  	};
+>  
+> +	aliases {
+> +		mmc0 = &sdhci_0;
+> +		mmc2 = &sdhci_2;
+> +		mmc3 = &sdhci_3;
+> +	};
+> +
+>  	chosen {
+>  		bootargs = "root=/dev/mmcblk0p5 rootwait earlyprintk panic=5";
+>  		stdout-path = "serial2:115200n8";
+> diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> index 140abfb38e1d..f42cfcbcdcfa 100644
+> --- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> +++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
+> @@ -24,6 +24,12 @@ memory@40000000 {
+>  			0x50000000 0x10000000>;
+>  	};
+>  
+> +	aliases {
+> +		mmc0 = &sdhci_0;
+> +		mmc2 = &sdhci_2;
+
+
+Why this is 2? Aliases are continues and match the board. For example
+Universal calls this mmc1 and the next mmc2, not 3.
+
+I bet it is the same on Trats and all other boards.
+
+> +		mmc3 = &sdhci_3;
+> +	};
+> +
+>  	chosen {
+>  		bootargs = "root=/dev/mmcblk0p5 rw rootwait earlyprintk panic=5 maxcpus=1";
+>  		stdout-path = "serial2:115200n8";
+> diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
+> index 6260da187e92..0e5419c0eaff 100644
+> --- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
+> +++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
+> @@ -20,6 +20,10 @@ / {
+>  	model = "TOPEET iTop 4412 Elite board based on Exynos4412";
+>  	compatible = "topeet,itop4412-elite", "samsung,exynos4412", "samsung,exynos4";
+>  
+> +	aliases {
+> +		mmc2 = &sdhci_2;
+
+mmc1
+
+> +	};
+> +
+>  	chosen {
+>  		bootargs = "root=/dev/mmcblk0p2 rw rootfstype=ext4 rootdelay=1 rootwait";
+>  		stdout-path = "serial2:115200n8";
+> diff --git a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
+> index ca8d42b2ce3b..7bc6968af9c3 100644
+> --- a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
+> +++ b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
+> @@ -23,6 +23,10 @@ memory@40000000 {
+>  		reg = <0x40000000 0x40000000>;
+>  	};
+>  
+> +	aliases {
+> +		mmc0 = &mshc_0;
+> +	};
+> +
+>  	firmware@203f000 {
+>  		compatible = "samsung,secure-firmware";
+>  		reg = <0x0203f000 0x1000>;
+> diff --git a/arch/arm/boot/dts/exynos4412-midas.dtsi b/arch/arm/boot/dts/exynos4412-midas.dtsi
+> index 82aed59cba7c..e6b949c1a00f 100644
+> --- a/arch/arm/boot/dts/exynos4412-midas.dtsi
+> +++ b/arch/arm/boot/dts/exynos4412-midas.dtsi
+> @@ -25,6 +25,9 @@ / {
+>  	aliases {
+>  		i2c11 = &i2c_max77693;
+>  		i2c12 = &i2c_max77693_fuel;
+> +		mmc0 = &mshc_0;
+> +		mmc2 = &sdhci_2;
+> +		mmc3 = &sdhci_3;
+
+This is actually correct.
+
+>  	};
+>  
+>  	chosen {
+> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+> index 25e082fda955..45ef7b7ba7e0 100644
+> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+> @@ -13,6 +13,11 @@
+>  #include "exynos-mfc-reserved-memory.dtsi"
+>  
+>  / {
+> +	aliases {
+> +		mmc0 = &mshc_0;
+> +		mmc2 = &sdhci_2;
+
+This is also correct.
+
+> +	};
+
+For all other cases, where schematics are missing, just make them linear.
+
+Krzysztof
 
