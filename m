@@ -2,177 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E401A6BE6E8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 11:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B8AE6BE6FF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 11:40:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230310AbjCQKe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 06:34:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53780 "EHLO
+        id S230336AbjCQKj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 06:39:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbjCQKeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 06:34:25 -0400
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2087.outbound.protection.outlook.com [40.107.104.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27FDA2ED7D;
-        Fri, 17 Mar 2023 03:34:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fpqtu2o1B7YnZYi9sIDL6YkATjRbu8wias2Y25oLePkDAGalLABnDUecAU9/AMGoKBQv/TSLSZ+7r8ZTq+H+GMEQIuT3rGWGhlR9HtnbKP2p3iFEACdO2jnpWBSlud1BDSOf5QhG6QXkGa3WVaWcepAAoxvaS0YVSva3MOWfOC+mQw4/vmGmcSzntz+cYUp/SucLPI/TCULD7A9ek+I4cUNKYCFY6d+xKdvRfxWtf9hEMd7+4bO73v8jgr2ecs2IcZ/WGK2qw+a4YZZl9obYxm2Rn1xuM6/eope+LS354RZzIsa/uUgN66kR3G8V5XExlr/o8qvxyElpQl2qoVtFow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sHXkshLbgX+yWZhHWpTz+is3prSmtkm8aEp/t3QL8rw=;
- b=ZeRIUSILVRmP7JtAIWISg8BeSENm4H28s0WKQt2PJ9AJQF3FY58MD9CAMOnkoNNMiyUAt4gfYT5E0mRgvqJ5X2XC6DFpYsfUp2zBDJfmuQgwdiHUM2k6oHw+r6DrNZnTlCZA7WvcHPFalheZJJ95G0eUBEL0ibw2UmIzvps5tFDE7Np0zEKXwgbJxmeJICRhT1c42ckglBJja9/9xyuRDVzqw5kseqQ2B4KTJo2t1vJBzBB9jWieI+b9j6MJVwHe+/knCcvXsxwpMTYIE6P/yr6sNSI82uLedyUDV5hXKwlKuB05gzWLJAWoZ4CAYeCL+J5oG726gHcsc/CHQf1chQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=chargebyte.com; dmarc=pass action=none
- header.from=chargebyte.com; dkim=pass header.d=chargebyte.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c4c.onmicrosoft.com;
- s=selector2-c4c-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sHXkshLbgX+yWZhHWpTz+is3prSmtkm8aEp/t3QL8rw=;
- b=mR1XGHyB2u0sqvEgO+yEZv6bw9mLFkLwYVb+H4vS12LTTaeUNq39v6DaodVAX7O5wDzPClsjdMyRNzi1ZBDTWWxRZMPxWsOeg/A46AUZgshnz9ZGcNDvaq/Q1A7pHZL7qg6EmjnjO0Ivxr3aQi8aV1qv2A1/ZYddMwkeyDQdygU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=chargebyte.com;
-Received: from DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:33f::5)
- by DB8PR10MB3863.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:168::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.10; Fri, 17 Mar
- 2023 10:33:51 +0000
-Received: from DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::92e9:73c9:940:579e]) by DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::92e9:73c9:940:579e%5]) with mapi id 15.20.6222.008; Fri, 17 Mar 2023
- 10:33:51 +0000
-From:   Stefan Wahren <stefan.wahren@chargebyte.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, Li Yang <leoyang.li@nxp.com>,
-        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-Subject: [PATCH V2 8/8] ARM: imx_v6_v7_defconfig: Enable Tarragon peripheral drivers
-Date:   Fri, 17 Mar 2023 11:33:23 +0100
-Message-Id: <20230317103323.7741-9-stefan.wahren@chargebyte.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230317103323.7741-1-stefan.wahren@chargebyte.com>
-References: <20230317103323.7741-1-stefan.wahren@chargebyte.com>
-Content-Type: text/plain
-X-ClientProxiedBy: FR2P281CA0125.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9d::19) To DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:33f::5)
+        with ESMTP id S229991AbjCQKju (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 06:39:50 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E960AB88B;
+        Fri, 17 Mar 2023 03:39:48 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id z21so18607645edb.4;
+        Fri, 17 Mar 2023 03:39:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679049587;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eKIfm+D775tviW4GZ27nzlsfupMIf0/4oiKYtylWRdQ=;
+        b=btWizO4cuF+abdNF0aKBebb+a9Xnhb1uK5KnTtiks1xm/+RuJJGtNpPckLa1AyKkS/
+         lQAEQ99EkQCEF+UnsNvXaOvkNew3IMk/uzuXyVx4SAS0OdjgeyWExP9o1JB030h9XsjC
+         Y7QxRVTEh099uZ3fcxVcP+UKr9v0SvvAl7lQcsNIJzgDTRcIhMuvQE5gased9YG/s3sz
+         lbdx1Q3e7wqqCVcxfcoROE/HZzoykGfgaS+2YVSAXZxVZc2ZAm7yiT1XvRNgSMx6DbED
+         pPz0YJWT5XnbarwnYbWsCP2+yceZ+7gKUT/QeVldJHiCdNQtRnmluR4CNKqx3ThonPTj
+         TODQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679049587;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eKIfm+D775tviW4GZ27nzlsfupMIf0/4oiKYtylWRdQ=;
+        b=TQVfWA5NJQjDvZ7Mp0+jO8LXKMnAXhsEmZmdd7EcvFoBxyUEF1vOQyzGkOEXlWSUY4
+         z8snYlz5gVObQH5iJurANGuxNx7KXmB6SJ6a+Xf7VH6zUnNt8DyGefmW7Q1N1yu3Qe97
+         TUnWn7gR8G9Jbw10z0HSUx8x+WEZmPEdesD2rbNBpxmpaXQG7RdLYvCb3qU7OvaVLFuk
+         9TCrl8dZYCM5KdVtzwaaXW4cYxe2pmPVcBcNEW+UgGoDzbiB+GZIjRoO6DEftPUtD+Ia
+         2cvkbV62KeIyUsGP+4lNymXgvPYJJw4uLxUDA9llQ0YZ+LhHK9VdMEonAbVW+/gyPgaJ
+         a9pg==
+X-Gm-Message-State: AO0yUKVtDzTO1PK3Inzl7vGC6Nx4Y+X0p00CPhByr1AwRRvWrA+yWzHe
+        IGSL/zaM4FFvwZR6Id8s9eI=
+X-Google-Smtp-Source: AK7set8CRtluQavjL2rqcA7gt0swyV0bQRpzf6jGZ0dAS/pRPJw7PHbKdKIa3+Dg8ZtC1ZSKRB+z1w==
+X-Received: by 2002:a17:907:60ca:b0:930:cf90:3074 with SMTP id hv10-20020a17090760ca00b00930cf903074mr5935803ejc.51.1679049586761;
+        Fri, 17 Mar 2023 03:39:46 -0700 (PDT)
+Received: from [192.168.99.196] (84-84-8-249.fixed.kpn.net. [84.84.8.249])
+        by smtp.gmail.com with ESMTPSA id cd2-20020a170906b34200b0092c8da1e5ecsm829294ejb.21.2023.03.17.03.39.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 03:39:45 -0700 (PDT)
+Message-ID: <57b22a4f-3b7e-d62d-d9a7-f9f4e052c253@gmail.com>
+Date:   Fri, 17 Mar 2023 11:39:44 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR10MB5211:EE_|DB8PR10MB3863:EE_
-X-MS-Office365-Filtering-Correlation-Id: df19906e-f24f-45e9-0787-08db26d319ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ouTvVXqTLUH6z6e7fFohkvohEYFeGaoCpEo4sPbyr1lef0ZiUK9OUy85Yxy9Lod1w6ocEZKABGaWK8WQFurLF8Y0OB2lRysVkemWAtZjP6x5/eWKJSnxRyh1kq+A+HrLJzeR+KaNS6+xyJTCgkkxjpg3QDQqKLFAW9CHfNQTtTxLQ0yvJMi2uicPUgj4PV8IATS/PND6HzWFf+5akHjjbrBmXornWTxHLYZm3TVTPRqKpFVtXUTDEQsQ6a49wZcK/LBgGdBbL9vyDaYtPkwO6UB9zdQDBKxonxie0A1qTJ64bR9xN9btdBu4f2mfYa1zIpko1ZJff5wJth24/nWmQyzM2KU95GDtltB/VlAutSFZIUuDZMyM6+T9CxD6Z5bfiyMYsRMVaIO4JpuMHzztgeIDOYF4D8xplGj31899oxcDOk2BobQ7Fu/dnK6/d7KMhKbovh9uMFnULHXRqxYIcC+kS9wQ6KX5xzaiefn6cgnffYG0UXvr4m88+1xloR9A7Ks5nAj1zSK9A/2LlunqYWRcDxvEw/DFsljGicesd1RT9r5kWGpP7EZq6vElYcnPdPk13tFu9xlwxKg4Tq1s4MsiQYO9sZDdnmHtF/I4JMc02ddnnkbRTdZL8EFIAxWy+8tNRMkgELE6sO8kYLF4zHD8k6yd/qjpqsjyJb76q0rQM0vzOrIhpwsP7ROIPa4p1KRzSYcQWIqVziAHpBr4zfgkacTWFmiMPWXoBNjEUfg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(4636009)(396003)(376002)(346002)(136003)(39850400004)(366004)(451199018)(921005)(38350700002)(38100700002)(66946007)(36756003)(7416002)(478600001)(86362001)(4326008)(2906002)(5660300002)(44832011)(8936002)(110136005)(8676002)(54906003)(316002)(41300700001)(66556008)(83380400001)(52116002)(6506007)(6486002)(66476007)(2616005)(107886003)(26005)(186003)(6512007)(6666004)(1076003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Dlh/hGBLpRKXrx4dbQzYmMn+aKXhYdYBxGnpMAlihROL8Ac3vZVo2BRaMj8k?=
- =?us-ascii?Q?6Q40RmPJKyI1395WhzvS74eEGUSZFa+/CQ2DWgHNe+BMOl/E3vNGjgHKl+G3?=
- =?us-ascii?Q?l8e0gRj3WSHR07mNrxYzpb2JfvH6SrC5EnVXui9kli6dMLzVzItWo4eP0Fiz?=
- =?us-ascii?Q?W5TYWPL9G5ePrHQ9C5VwTmnGcS2/phER8cCTLf9CH+6Iz+NzLDrn8drFGBWG?=
- =?us-ascii?Q?hQKlEncKcIGXWt55HrzlOfkUx7wwriRNCeFL+Vt18TrWamI8QAe2iKRHZ6Is?=
- =?us-ascii?Q?+ReoFfXusoZMjuVjeuc3/m4Ocmc+huk4uVrfuI9T/0lPuYGRiZqBDBbceFt0?=
- =?us-ascii?Q?av7PSngNPlXD9ShcUL0DTXBZJ7T/ipGHibIx6kQoRxBJjAjUjjnJ/lEzIskt?=
- =?us-ascii?Q?VUiBwMAM7vpciC92FzTg+W/bAcbIYpuz8PEwuVTnX1y7MqhfCAV0tgf7mzPx?=
- =?us-ascii?Q?JM2jMT3zHjWJbk7AlibIhELsVyzfGbNyjdMhzot7YZsTWfOSnLgyREGQKIPq?=
- =?us-ascii?Q?svOETyDGfGHUeowu/Y458iIodwFj9unFdnPRVamHeVfuTWIHk60Z7pWGkfks?=
- =?us-ascii?Q?tu3LTmZcVebbJai5tGyok/V7ih4hPF+EmDOdh0Uwo+CHP8yrvfpBt1A5gKfg?=
- =?us-ascii?Q?5iiKIh+b3XlDSL8V4oddnw/IdimgM4a/yXJnI+xy5CnNhzBq5acs1kMW4+co?=
- =?us-ascii?Q?N+6fn0oT47+inRSh4LQrTqTw9E1vo/JX2DU+88Is27Kvnw79OqWEqH/rYYti?=
- =?us-ascii?Q?ZsD51EM6yhlrU53MWLn6gtvi+ryHyOHQzfr4IjFlxOSwhfpXfeL1pU81DJsZ?=
- =?us-ascii?Q?RiTzSrVONyBAa1GrFJcnpUW1fqssrwU8lrpEW/zybq32rcf+HKbDf7E3oBuQ?=
- =?us-ascii?Q?1yqPFrY3kXAvyX2o7D4MRSZzPWuJZNYRtjniQnOZhref72m5V7QmvGs3Pj+1?=
- =?us-ascii?Q?fYiQ6dEh9EsksJFpiNucc+mjxSV8lmr7pj9FOhffjuhZAYOJ3IomR3mGoiGO?=
- =?us-ascii?Q?nMaBQJRkJjvUn+w8UySw33pcsdbTNnrzoSk+LmncwVW84FEOzGdWBw3eBoPd?=
- =?us-ascii?Q?5oh5PrtnMEk9NK3VQvhp3yh+suAAJJl1MbQzg8GCqxRZdLSYFvggrfl/f/rG?=
- =?us-ascii?Q?/wHIpZ/uzratpOCNu0RsTJwkLmmlD9xrhfDPXf6p/POtDxhYAWhgdD+t7Mnx?=
- =?us-ascii?Q?FRoT+7bofvCDGv4IBbcm0e6VGF9xWZ89S2l15ij3Q92DKuPLmI71ypQdNIXe?=
- =?us-ascii?Q?FEkp79IIiYQ0nVarprLkMCgMtb0Xiz9MhDtNqNq6YQR89oPpCg6RVFxJzG0V?=
- =?us-ascii?Q?ibDeJNqqGL5L/uK6ICPGY4qj80yCYDuvll5uw12ZC1BcDtqufIS6tE5vYhvp?=
- =?us-ascii?Q?xHo9lqsCfBCFcqZ//LK3qV3yTJPvp+zM0hVyg7ud8cRRy+46PU60btQApp8I?=
- =?us-ascii?Q?z5o3qUZ2SoYQ2rWBLfzQYelYTIkVvpNaaBEDXbY9IgfuvUM9HuQ/ysovN4Pc?=
- =?us-ascii?Q?lO3JOzMT6FostFQHsdJucxhVY+r58+GzK8nyZKWv0LeiYsitYgOHNaxrpfLz?=
- =?us-ascii?Q?aQnZY06qc+AG1fa9cRHTvv3D2uY+ocz4AW2cI7s53UN4Ra0YmqZ+UqV1nKaI?=
- =?us-ascii?Q?Bw=3D=3D?=
-X-OriginatorOrg: chargebyte.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: df19906e-f24f-45e9-0787-08db26d319ad
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2023 10:33:51.5459
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30547194-0d55-4a2f-900d-687893d3bdc0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BazFcU+lK4tG+quMpo4l3xmix/2WossgjZbqAxrQaDfewSy1MZs6rxNBJZmC+qTEzLGGaMJLVntbwdZDUNXanuAJvIGFWrv4X5jgwm5ApUI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3863
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: input: touchscreen: Add
+ 'goodix-hold-in-reset' property to Goodix
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     alexandre.belloni@bootlin.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        kernel@undef.tools, krzysztof.kozlowski+dt@linaro.org,
+        linux-input@vger.kernel.org, robh+dt@kernel.org
+References: <20230312183106.551840-1-jajadekroon@gmail.com>
+ <20230316152949.67441-1-jajadekroon@gmail.com>
+ <1ae4767f-563a-6425-f20b-32be6ba8a7c7@linaro.org>
+From:   Jan Jasper de Kroon <jajadekroon@gmail.com>
+In-Reply-To: <1ae4767f-563a-6425-f20b-32be6ba8a7c7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to enable some drivers in order to use the following peripherals
-of Tarragon:
-  * QCA7000/7005 Powerline chip
-  * One-Wire Master DS2484 with external thermal sensors
-  * external 4 pin PWM fan
-  * ST IIS328DQ I2C accelerometer
 
-Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
----
- arch/arm/configs/imx_v6_v7_defconfig | 6 ++++++
- 1 file changed, 6 insertions(+)
+Op 16-03-2023 om 20:25 schreef Krzysztof Kozlowski:
+> On 16/03/2023 16:29, Jan Jasper de Kroon wrote:
+>> Add an optional 'goodix-hold-in-reset', to the Goodix touchscreen
+>> device tree binding. When set to true, the touchscreen controller will
+>> be held in reset mode during system suspend, reducing power consumption.
+>> If not present, the property defaults to false.
+>>
+>> Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
+> Don't attach new patchsets to some other threads. It messes with our
+> tools and reading/reviewing process.
+Thank you for bringing this to my attention. I apologize for any
+inconvenience caused by attaching the patchset to the wrong threads. As a
+new user of LKML, I'm still learning the appropriate protocol for
+submitting patches. Going forward, I will ensure to attach patchsets to
+the correct threads.
+>> ---
+>> Changes from v2 to v3:
+>> - Used imperative mood instead of "This patch adds".
+>> - Dropped "I am submitting this patch to..." as it is redundant.
+>> - Removed the paragraph related to the related patch sent to the
+>>    linux-input mailing list as it is not necessary.
+>> - Renamed the hold-in-reset-in-suspend function to
+>>    goodix-hold-in-reset to prevent potential naming conflicts with other
+>>    functions in the codebase. No functional changes were made.
+>>
+>> Changes from v1 to v2:
+>> - Updated subject prefix to match subsystem.
+>> - Added more detailed description of the change.
+>> - Fixed formatting issues in commit message.
+>>   .../devicetree/bindings/input/touchscreen/goodix.yaml     | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+>> index 3d016b87c8df..197f8db9acc2 100644
+>> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+>> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+>> @@ -56,6 +56,13 @@ properties:
+>>     touchscreen-size-y: true
+>>     touchscreen-swapped-x-y: true
+>>   
+>> +  goodix-hold-in-reset:
+> That's not a vendor prefix... missing coma.
+Thank you for pointing out the mistake in the vendor prefix. I appreciate
+your feedback and apologize for any inconvenience caused. I wasn't aware
+of the correct vendor prefix style, but I've learned from developer Hans
+de Goede that it should be "goodix,hold-in-reset." I will make sure to
+correct this in my local branch and ensure that it is applied correctly in
+the future. Thanks again for bringing this to my attention.
+>> +    description: |
+>> +      When set to true, the touchscreen controller will be held in reset mode
+>> +      during system suspend. This can help reduce power consumption, but may
+>> +      cause the touchscreen to take longer to resume when the system is woken
+>> +      up from suspend.
+> Anyway, my concerns were not answered, so to be clear:
+>
+> NAK till you answer them. Do not send new versions without answering
+> existing concerns and discussion.
+Thank you again for reviewing my patchset and providing feedback. I
+appreciate your time and effort in ensuring the quality and suitability
+of the DeviceTree.
 
-diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-index 02ccc86a8d4a..3a255dd5a453 100644
---- a/arch/arm/configs/imx_v6_v7_defconfig
-+++ b/arch/arm/configs/imx_v6_v7_defconfig
-@@ -128,6 +128,7 @@ CONFIG_CS89x0_PLATFORM=y
- # CONFIG_NET_VENDOR_MICREL is not set
- # CONFIG_NET_VENDOR_MICROCHIP is not set
- # CONFIG_NET_VENDOR_NATSEMI is not set
-+CONFIG_QCA7000_SPI=m
- # CONFIG_NET_VENDOR_SEEQ is not set
- CONFIG_SMC91X=y
- CONFIG_SMC911X=y
-@@ -216,6 +217,9 @@ CONFIG_GPIO_PCF857X=y
- CONFIG_GPIO_BD71815=y
- CONFIG_GPIO_STMPE=y
- CONFIG_GPIO_74X164=y
-+CONFIG_W1=m
-+CONFIG_W1_MASTER_DS2482=m
-+CONFIG_W1_SLAVE_THERM=m
- CONFIG_POWER_RESET=y
- CONFIG_POWER_RESET_SYSCON=y
- CONFIG_POWER_RESET_SYSCON_POWEROFF=y
-@@ -224,6 +228,7 @@ CONFIG_RN5T618_POWER=m
- CONFIG_SENSORS_MC13783_ADC=y
- CONFIG_SENSORS_GPIO_FAN=y
- CONFIG_SENSORS_IIO_HWMON=y
-+CONFIG_SENSORS_PWM_FAN=y
- CONFIG_SENSORS_SY7636A=y
- CONFIG_THERMAL_STATISTICS=y
- CONFIG_THERMAL_WRITABLE_TRIPS=y
-@@ -408,6 +413,7 @@ CONFIG_CLK_IMX8MQ=y
- CONFIG_SOC_IMX8M=y
- CONFIG_EXTCON_USB_GPIO=y
- CONFIG_IIO=y
-+CONFIG_IIO_ST_ACCEL_3AXIS=m
- CONFIG_MMA8452=y
- CONFIG_IMX7D_ADC=y
- CONFIG_RN5T618_ADC=y
--- 
-2.17.1
+Regarding the concerns you raised about the proposed feature, I would
+like to address them directly. You mentioned that the property does not
+look suitable for Devicetree because it describes system policies that are
+not within the scope of Devicetree. While I understand your point, I
+believe this property is appropriate for Devicetree for the following
+reasons:
 
+- The property directly relates to the hardware configuration of the
+   device, specifically the touchscreen controller, and is not a software
+   policy.
+
+- The property is required for proper system operation and is not optional
+   in specific device use cases. To be more specific in the case of the
+   PinePhone Original and Pro. The original commit message of the driver
+   implementation in driver/input/touchscreen contained the following:
+   "It consumes quite a bit of power (~40mW) during system sleep, and more
+   when the screen is touched."
+   Because the phone is usually kept in your pocket, so prone to a lot of
+   screen touches, this is highly undesired behavior for the touchscreen in
+   this case. This in my opinion makes it a mandatory property in this
+   situation.
+
+- The property is not a user-facing configuration option and is not meant
+   to be changed by the end-user.
+
+- The property, although in separate device specific kernel, and still
+   called 'poweroff-in-suspend' is already in use on specific devices,
+   including the PinePhone Original and PinePhone Pro.
+
+However, I understand your concern that Devicetree should not be used for
+policies. To address this concern, I would like to propose the following
+changes to the property description:
+1. Remove the sentence about reducing power consumption, as this could be
+    considered a policy.
+2. Emphasize that the property is a required hardware configuration and
+    not an optional feature on certain devices.
+3. Recommend that any changes to the property value should only be made by
+    experienced system administrators and not end-users.
+
+I hope these changes address your concerns and make the property more
+suitable for inclusion in Devicetree. If you have any further suggestions
+or feedback, please let me know. Thank you again for your time and
+guidance.
+
+Best regards,
+
+Jan Jasper de Kroon
+>
+>
+> Best regards,
+> Krzysztof
+>
