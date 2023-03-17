@@ -2,65 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 002726BEC83
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5093F6BEC9C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:13:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231620AbjCQPJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 11:09:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
+        id S231597AbjCQPNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 11:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231624AbjCQPJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:09:00 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D136F10DE7C;
-        Fri, 17 Mar 2023 08:08:40 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8162C66030B9;
-        Fri, 17 Mar 2023 15:07:43 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679065665;
-        bh=oDkOpASujwD4omvYh15ZgVx02nJzDslcJUvtWJE8YGA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y+3fXThjONEiG2GDz0f94e6hUKgev5us7WM1wv9muoN55JAJ1EkRRiy7/AdAYYnjz
-         xu+Cm92GqsrWm/eWOnBuouHfl0ZSju9jqP1SrRpqNYfRstB5dsC8+leTYDz6fPqs0u
-         o/tzh3xzeO7eEnI9g036SAR6q/5FHncyeCYHXKN3Jv+NlSp2zHAnkRwCBU6ubBeQaT
-         SfOrRKRZfYJ6gAl95bWAaqOQ+xW3lOGroCn8UpskrV1boNQ6YQbqp6jGjmXLIBwyar
-         +l7qlVpWRtnYa2XciTvIvz9cpxssH/HhYPAqZcAiwb4QyQPcnMiQ5QBLmHLk+bwWQw
-         N0NyKQIgAMceQ==
-Date:   Fri, 17 Mar 2023 11:07:39 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        with ESMTP id S231573AbjCQPNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:13:17 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 541393FBB7;
+        Fri, 17 Mar 2023 08:12:54 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4905D5C012F;
+        Fri, 17 Mar 2023 11:12:50 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 17 Mar 2023 11:12:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1679065970; x=1679152370; bh=VG
+        89h2qlkyB6IZyzHlEvOd4043stnLQ8kCwTLcVn9EQ=; b=B0C4iHxOmf+YcKBYwW
+        ypLHUeWEu4ZgWO+L57C3ocJCJHdu1G0Q1reI/md8XvkIP0H7NBY+4okAW1FLidaC
+        nHAGBSpcfoF9hWqOIt25P+B7yOyJCZylZzR/xhPUpkULBkWZArwUnEwz3pzEtP05
+        3bKQMNcNw7Kwn5FGONJLJx/ifyidu4M2noautF4SKSuP2jcZ55jGv2I8Gx5lh6sR
+        wqrxo1BvtxNd1UvyJje6wp5ytVEjF8gTK2tY/MUjCUgGj49D1D2M1exVMvbNeJ8S
+        ayehlr7I4DAQNn3K3ELD6Jc0i89iCor8jQzW92NFBV9bu+SCECjBgGLEde58bs3C
+        CTwg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1679065970; x=1679152370; bh=VG89h2qlkyB6I
+        ZyzHlEvOd4043stnLQ8kCwTLcVn9EQ=; b=D4SuTNuS3tz7+OsIXpNwu7UIoMeom
+        iM8r8ULHx7je504+kV+KFpA+b2v4kXbmriiJX/JsEHACfQMzJwudQhV6vp+MpUVP
+        8kG+QdP9IgyqNyEWdhphjYEX3wdqkd2Pry435y72Jxi8/4aYFhIFt4pm3KPAe8IX
+        QqPjmV1N9uogcJcI10LXdoNCtt8Veng9AtiE9K6rQh1mDWuiv82qf+CgQulYHttd
+        k6g+4tWsn0+oqugAGXK6woOcxAYCFC7PZDk1CfFfkjx6vzrnFk45xqh8ZBTL6+7x
+        XO7roKk8a2yQk5nBvaGQ+J0miPyMgJuWuhGXg72dMzLToi600p+YbVmvw==
+X-ME-Sender: <xms:cYMUZJM5Dq4tHqjvTMadGb8rCXCRMeI0yAvP3s3zvidl4PSO8NTRmQ>
+    <xme:cYMUZL-xQrmleZItr-fK_5p3DS-uPkcPzCePZT0B03iT4WtZgqcdIgePRmb9lRvmq
+    6VDjH01T57XOo7kH_A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdefvddgjedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:cYMUZISgi0LJyZK-CbfDEnZvD0m_Mcj2InXfNGaM-1R9rigjtrhf7g>
+    <xmx:cYMUZFtcPX7s3CfiAZKg_yDCK0BvUZeDPAAtk9Zns-QHGU96Odh02A>
+    <xmx:cYMUZBfZQStwznvotb23Qh4QHTUKzR8-WUnJ0WVdnc5JCSdHxL-jyg>
+    <xmx:coMUZM0vaPD-dRKv3OAs28EVcmjGB_xHEUBRDqAwdwTujx-L8sEsrQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 89984B60089; Fri, 17 Mar 2023 11:12:49 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
+Mime-Version: 1.0
+Message-Id: <c193ee65-b3c8-4993-a50a-f01139a5827e@app.fastmail.com>
+In-Reply-To: <20230303063435.803097-1-davidwang@quantatw.com>
+References: <20230303063435.803097-1-davidwang@quantatw.com>
+Date:   Fri, 17 Mar 2023 16:11:58 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "David Wang" <tomato1220@gmail.com>,
+        "Olof Johansson" <olof@lixom.net>, soc@kernel.org,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     avifishman70@gmail.com, "Tomer Maimon" <tmaimon77@gmail.com>,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v4,1/2] media: mediatek: vcodec: Force capture queue
- format to MM21
-Message-ID: <20230317150739.wmrik43dols5ju3a@notapiano>
-References: <20230317030833.16836-1-yunfei.dong@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230317030833.16836-1-yunfei.dong@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        openbmc@lists.ozlabs.org, fran.hsu@quantatw.com,
+        "David Wang" <davidwang@quantatw.com>
+Subject: Re: [PATCH 1/7] ARM: dts: nuvoton: Add Quanta GIS BMC Device Tree
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,41 +90,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 11:08:32AM +0800, Yunfei Dong wrote:
-> While the decoder can produce frames in both MM21 and MT21C formats, only MM21
-> is currently supported by userspace tools (like gstreamer and libyuv). In order
-> to ensure userspace keeps working after the SCP firmware is updated to support
-> both MM21 and MT21C formats, force the MM21 format for the capture queue.
-> 
-> This is meant as a stopgap solution while dynamic format switching between
-> MM21 and MT21C isn't implemented in the driver.
-> 
-> Fixes: 7501edef6b1f ("media: mediatek: vcodec: Different codec using different capture format")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Fri, Mar 3, 2023, at 07:34, David Wang wrote:
+> Add the device tree for the Quanta GIS BMC and it's
+> based on NPCM730 SoC
+>
+> Signed-off-by: David Wang <davidwang@quantatw.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |    1 +
+>  .../boot/dts/nuvoton-npcm730-gis-pincfg.dtsi  |  732 +++++++++++
+>  arch/arm/boot/dts/nuvoton-npcm730-gis.dts     | 1076 +++++++++++++++++
+>  3 files changed, 1809 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/nuvoton-npcm730-gis-pincfg.dtsi
+>  create mode 100644 arch/arm/boot/dts/nuvoton-npcm730-gis.dts
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Hi David,
 
+I have not looked at the patch series in detail and assume it's
+largely ok, but I should clarify a few issues about the submission:
 
-With this patch and the new firmware [1], I was able to run fluster using the
-VP8, VP9 and H.264 codecs on both MT8192 and MT8195:
+You have sent this 'To:' the SoC and DT maintainers, but we are not
+the ones that would pick up the patches. On a future submission,
+please address the npcm maintainers  in the 'To' field to clarify
+that they are the ones to review and accept the patches. Please
+leave out the soc@kernel.org address entirely from future submissions,
+as we only use that when the platform maintainers send the pull
+request for integration into the soc tree, not for getting things
+into the platform specific trees.
 
-MT8192:
-	        VP8: 59/61
-	        VP9: 250/303
-		     0/6 (HIGH)
-	        H.264: 92/135
-		       27/69 (JVT-FR-EXT)
+There are a few automated replies from the build bot, you should
+address those and resend the series.
 
-MT8195:
-	        VP8: 59/61
-	        VP9: 276/303
-		     0/6 (HIGH)
-	        H.264: 95/135
-		       27/69 (JVT-FR-EXT)
-
-[1] https://lore.kernel.org/linux-firmware/a43524a089a783f70adbe89b83eeb01fbd405d04.camel@mediatek.com/T/#mb0591267d7921bbfada7c06ee2bda128db554648
-
-Thanks,
-Nícolas
+       Arnd
