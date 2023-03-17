@@ -2,146 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264576BE19B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 07:54:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BF06BE1C5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 08:13:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbjCQGyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 02:54:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45128 "EHLO
+        id S230281AbjCQHNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 03:13:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbjCQGyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 02:54:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB0124731;
-        Thu, 16 Mar 2023 23:54:14 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32H6JYt1023423;
-        Fri, 17 Mar 2023 06:54:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=/9dyV5Xq6V5b8tf5RtQHdkaKqWhyTXZtPVIt4IFiap0=;
- b=BuAYVzcpBhOCyeAqDqpDyNRbq73PTcmVrlIOiXoGWNmdtlgPeAT65dwK7vXYoqq1ehAY
- ZWxym7hNnxoIH4p6waSwOD0z3w09nBWYerKlSuvpYLNxnD7Fd6oKBCTTcUcM63LqI7rZ
- 2q5Vb62hb1L8cAKknB22wTZuCAEashk1BIgEFNhDjybzf/QvVibWAyPGgaW+FLZJYlMy
- 2dkxR6SCQtBqHT2rXZQL+fHGO1OP3A2L19Fpr1iQBrCNgshloz6cwOD8bAElDAWz64G9
- WihhCRDkNWMuGheCfeEajWzCW1Jnko/DWtNxWxMaBxDcuaOJ4h5NkamqLjec0mmfJJiH Lg== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pc624hyx7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Mar 2023 06:54:07 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 32H6s3a0016065;
-        Fri, 17 Mar 2023 06:54:04 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3p8jqmd9dw-1;
-        Fri, 17 Mar 2023 06:54:04 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32H6s4Zm016111;
-        Fri, 17 Mar 2023 06:54:04 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 32H6s3Rb016108;
-        Fri, 17 Mar 2023 06:54:04 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 314BC4F42; Fri, 17 Mar 2023 12:24:02 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mani@kernel.org,
-        lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
-        manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v4 5/5] ARM: dts: qcom: sdx65-mtp: Enable PCIe EP
-Date:   Fri, 17 Mar 2023 12:23:59 +0530
-Message-Id: <1679036039-27157-6-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1679036039-27157-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1679036039-27157-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SUnl2wkb7dU-bD46nPMk2220eLTSH9Of
-X-Proofpoint-ORIG-GUID: SUnl2wkb7dU-bD46nPMk2220eLTSH9Of
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-17_02,2023-03-16_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- adultscore=0 mlxlogscore=643 priorityscore=1501 spamscore=0 suspectscore=0
- impostorscore=0 mlxscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303150002
- definitions=main-2303170045
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230273AbjCQHNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 03:13:45 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEFE452F7C;
+        Fri, 17 Mar 2023 00:13:43 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id iw3so4412230plb.6;
+        Fri, 17 Mar 2023 00:13:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679037223;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rS8vmgsmQUQexeshG8mg626xwm1wz51m7Q+8asY/2Rw=;
+        b=dhf4sO35yzWINMqYFOfO0OiEfnkf/Ms5Tso+UVfgZtZ42r+r1xIn4kJhUgYmKxeJ8u
+         h3FwuIt3itmFdxlFgYinuYSUk0xEqo1ee3o/qqq9lQ8ZkyZpCgg4mUFE9EFIUsGkBlYl
+         t3/UgPnDTOaqqkSqGZoy26MXGe9NkqMR+RD1pBgNfyABMSxnBmIkQ9EHDiRfFP36QnOl
+         icyehwAC9hy6osr8EvZdfagt48ecy1B4eYDuW55L3ZdWMtTEM27V4sRSiws7WGUdAqHt
+         zsSWCvMjrWr3YZ41EBOcLCUMtmiuHIrKLRHDiBIECDZwlsav3sVw0KxN4pmnqKD28Lor
+         /Dsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679037223;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rS8vmgsmQUQexeshG8mg626xwm1wz51m7Q+8asY/2Rw=;
+        b=y3C2Y3wQQrWdylZhJ5dERAJeHcz1J1WHlTu1S0dZtvtfXB4Qdm3010HBMdjNnq4MRx
+         IlIBk1xsOr7v8Z6tnWpVX00BoaQCN17QiLHE2a1wI+Be51ZLh0LGRo960sfSymZjIIXP
+         KPwgFtT9WL0DioQOTT8OUKJ8aZUR2uBByJ9Grzby0bG+iINwGZ8rdHsn3lH9rvhUW2kP
+         7QCYAnP8KY5nHtjy+zzritkuTnestk0wS33WNKOpiTEtJaetYE87AUijgJ0fk8XBG2xf
+         kmiHGoegCBbtG2zY+aH5FI7V9FVdvwqoOYM6zaEfjH669iUdjGDK+fcQIIBYK4NKAd4i
+         sXTQ==
+X-Gm-Message-State: AO0yUKX/i5UcPMUQcfoSwzILyid1669IqUpE+B5a6RMT2GnacB9pySun
+        1V/X3FnJhOlKEySloPaYdwQ=
+X-Google-Smtp-Source: AK7set+ragKq/pQ1oF0HYlPS9kQvnXfjm0DjLY6PdurywOwCN6KVkYzJcWX/Km5eamNV0UdUUIq+bw==
+X-Received: by 2002:a17:90b:350e:b0:23d:3f32:1cd5 with SMTP id ls14-20020a17090b350e00b0023d3f321cd5mr7053391pjb.26.1679037223289;
+        Fri, 17 Mar 2023 00:13:43 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id y10-20020a1709029b8a00b0019a7bb18f98sm853322plp.48.2023.03.17.00.13.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 00:13:42 -0700 (PDT)
+Message-ID: <1120263c-60d3-d359-5e68-d922fdc20c87@gmail.com>
+Date:   Fri, 17 Mar 2023 15:13:39 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   Jacky Huang <ychuang570808@gmail.com>
+Subject: Re: [PATCH 13/15] reset: Add Nuvoton ma35d1 reset driver support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-14-ychuang570808@gmail.com>
+ <cbfad8ff-fe52-4e25-40d8-84ff43f5c3ad@linaro.org>
+Content-Language: en-US
+In-Reply-To: <cbfad8ff-fe52-4e25-40d8-84ff43f5c3ad@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable PCIe Endpoint controller on the SDX65 MTP board based
-on Qualcomm SDX65 platform.
+Hi Krzysztof,
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- arch/arm/boot/dts/qcom-sdx65-mtp.dts | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-index 70720e6..afe970a 100644
---- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-+++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-@@ -245,6 +245,17 @@
- 	status = "okay";
- };
- 
-+&pcie_ep {
-+	pinctrl-0 = <&pcie_ep_clkreq_default &pcie_ep_perst_default
-+			&pcie_ep_wake_default>;
-+	pinctrl-names = "default";
-+
-+	reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
- &pcie_phy {
- 	vdda-phy-supply = <&vreg_l1b_1p2>;
- 	vdda-pll-supply = <&vreg_l4b_0p88>;
-@@ -277,6 +288,29 @@
- 	status = "okay";
- };
- 
-+&tlmm {
-+	pcie_ep_clkreq_default: pcie-ep-clkreq-default-state {
-+		pins = "gpio56";
-+		function = "pcie_clkreq";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	pcie_ep_perst_default: pcie-ep-perst-default-state {
-+		pins = "gpio57";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	pcie_ep_wake_default: pcie-ep-wake-default-state {
-+		pins = "gpio53";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
-+
- &usb {
- 	status = "okay";
- };
--- 
-2.7.4
+On 2023/3/16 下午 03:51, Krzysztof Kozlowski wrote:
+> On 15/03/2023 08:29, Jacky Huang wrote:
+>> From: Jacky Huang<ychuang3@nuvoton.com>
+>>
+>> This driver supports individual IP reset for ma35d1. The reset
+>> control registers is a subset of system control registers.
+>>
+>> Signed-off-by: Jacky Huang<ychuang3@nuvoton.com>
+>> ---
+>>   drivers/reset/Kconfig        |   6 ++
+>>   drivers/reset/Makefile       |   1 +
+>>   drivers/reset/reset-ma35d1.c | 152 +++++++++++++++++++++++++++++++++++
+>>   3 files changed, 159 insertions(+)
+>>   create mode 100644 drivers/reset/reset-ma35d1.c
+>>
+>> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+>> index 2a52c990d4fe..47671060d259 100644
+>> --- a/drivers/reset/Kconfig
+>> +++ b/drivers/reset/Kconfig
+>> @@ -143,6 +143,12 @@ config RESET_NPCM
+>>   	  This enables the reset controller driver for Nuvoton NPCM
+>>   	  BMC SoCs.
+>>   
+>> +config RESET_NUVOTON_MA35D1
+>> +	bool "Nuvton MA35D1 Reset Driver"
+>> +	default ARCH_NUVOTON
+> || COMPILE_TEST
+
+I will add this config. Thank you.
+
+>> +	help
+>> +	  This enables the reset controller driver for Nuvoton MA35D1 SoC.
+>> +
+> Best regards,
+> Krzysztof
+>
+
+Best regards,
+
+Jacky Huang
 
