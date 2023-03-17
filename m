@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E23A66BE4E3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC2C6BE4EF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231444AbjCQJGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:06:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50792 "EHLO
+        id S231464AbjCQJI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231205AbjCQJG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:06:27 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090829B2CD
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:05:29 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id cy23so17562277edb.12
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:05:28 -0700 (PDT)
+        with ESMTP id S230180AbjCQJIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:08:02 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E09DA42E7
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:07:06 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id m18-20020a05600c3b1200b003ed2a3d635eso2815654wms.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:07:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679043927;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DzBd7HT5FyF1nJ/VeywWx68y7xEvX1DO0Qu+XaR3Ies=;
-        b=nFzHQ8e59uVOg3X5y/kmGeK5xG6QDYyZSib3GNyucs3oz+XLZI2Fi+ytZhHZ+PorXX
-         AsDfbT7vtTV49SmQrY3DS8R0glPoribCUp1ydUq74Yjv5ai9XU2kBqrwbKxGY44wJk4P
-         BpectOPAUXM/SyAoohmc/um6LwGj0pbGxO1lk+dLkRO34thmuNWGKkAg26g3xkqiDDXP
-         oe+CqhAe8yRaHpiaiXe3/9T+2QnOrMoPvjy0V5/H4BK9jvdKZBIFbcoiM/8HR4JbM6pN
-         H/HITyJ8CR6jYq9JdVj+3JGZ7yfm9OVaKyGSHqEqxluLJLEFTdRB7+gQcCqP8mHTIEKh
-         vA6A==
+        d=linaro.org; s=google; t=1679044021;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=FkEW8ZYuZi33cVLz405PPEYTVS02b7guai4VJnc/u0s=;
+        b=Q6GGawkHUaBC3zY4KVyRU2zkTV8I/A3fQwxW7vTpJrTozVht9LImkNfbBCRCosXa0m
+         pd7TBNyANDkYveJ2bhPyAp4KF6gKFGL5nSe71B61hyNABpnJuYVwciehnVTke16XsHkt
+         FsBJJhM40ydNvoYFsecqfm0EzfkcQunE5FgD8M6ukgPmOfmmmPgu/4NlxdQjJpj+hPYJ
+         axfR6dGJrSVb3HtEHlPHaxD2AyWfNzbMa4+JeWw0nvc6HsJ085fcxmt3vgf5tLRbSyby
+         YeUW4PmcBtee2DYPwXFAwToI8SgWqv+LAG8OKBai099FX6K2zS8T9UqV+0L1tZUy9wWV
+         d3Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679043927;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DzBd7HT5FyF1nJ/VeywWx68y7xEvX1DO0Qu+XaR3Ies=;
-        b=IDLwvhb9tjzLD2PbBhEdJ6lOBFwv4eU8k3bHvkiqwdYLLCn7PZ87cSciU0y+F2KnDx
-         SaV96ufG/ClTaNnoO9VPfpIsyt+PDX282/90cVYgCxczhe7SULZU8E52zvs60BmS2m9g
-         Q7TNWmBv8b0DnR1LFAdEEtfAP4fHh3DgwZh6mR3I2t25c7guULh/Sv/IbNae3WQoVKuU
-         NKPUZYgK8vNLI8ZFd09Efy5vwFXfDT1fPmlyadpLSkrXwFTRXv6HwpsFv9y9fa0sqfKR
-         nknhNsxcXmb/FdeEdwa+L3KLqWJ6Y0/CvZEoxcxqTZiy+JFEHLNWLJo/JNksd/DKfTz6
-         8eJg==
-X-Gm-Message-State: AO0yUKU7AntkEx/GptHlxoxkFJZ9O4NvdPtNRNZ+JZLcE0aoVTVipdpK
-        XLl91FXPB6ccuWR4h+tSrSABPA==
-X-Google-Smtp-Source: AK7set+3ApSYPWrNrDJMa5s0BnGt06KsinVyg9V6q9n4BTTzQ3csEXPJyQOI88XIQvE/hDMHbuYUpw==
-X-Received: by 2002:a17:906:950b:b0:8b1:77bf:3bdd with SMTP id u11-20020a170906950b00b008b177bf3bddmr14005064ejx.36.1679043927574;
-        Fri, 17 Mar 2023 02:05:27 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id ce6-20020a170906b24600b0092101bb66desm723105ejb.147.2023.03.17.02.05.26
+        d=1e100.net; s=20210112; t=1679044021;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FkEW8ZYuZi33cVLz405PPEYTVS02b7guai4VJnc/u0s=;
+        b=UjT29kVZgaw+dufCFTL8LlV4N9FBjx+/N4E5qVv6jCK2LxCiGUIwpFB414XHZyqicd
+         Legpwee7nU5t4PoUwaAoxAE3olzsmbnXDRx5yYMuIzZ1scOCgdZuwTJxeGlkNdqREEvy
+         iOHCGSu194CKz89rObN7fc452RiU74ovh67r0BTx/MJ7VuhXY7HkZL2ytcbDi5+JT0LI
+         pHYiPezEcR5+RyVedpMXwBhJNQEsjhmLjhcSKdtBCAvxBpNAVH4SStiBaBw/izxgGt6o
+         HdVnO8Vk4A3sXClYLswhAkFrCscQqQANDoo/Xi/ebswNuA9Ih0SbnXm2/wn5o0DDuV7l
+         gM5g==
+X-Gm-Message-State: AO0yUKWGPyZpgVwFn9akN2cQLvC7iytiKMCq95uNIdFqYBwV5r1IALE5
+        HwLcQoVXoE/qBTXuE0Cq5oyG/Q==
+X-Google-Smtp-Source: AK7set+A4ni6dKWDcGtNRjRWaK1QKtVa/vvIX67r+ZAtb/CzWUnqPiOUWmFYG5d7yJ93VdhYmJaZlw==
+X-Received: by 2002:a05:600c:450c:b0:3ea:e7e7:95d9 with SMTP id t12-20020a05600c450c00b003eae7e795d9mr25428831wmo.32.1679044021068;
+        Fri, 17 Mar 2023 02:07:01 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9ed5:bad0:e925:7938? ([2a01:e0a:982:cbb0:9ed5:bad0:e925:7938])
+        by smtp.gmail.com with ESMTPSA id ay38-20020a05600c1e2600b003df7b40f99fsm7331479wmb.11.2023.03.17.02.06.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 02:05:27 -0700 (PDT)
-Message-ID: <7060560d-eb09-4400-7a68-496a53e5da33@linaro.org>
-Date:   Fri, 17 Mar 2023 10:05:26 +0100
+        Fri, 17 Mar 2023 02:07:00 -0700 (PDT)
+Message-ID: <8a6ecd92-ff4f-e72f-457e-4061546dc46f@linaro.org>
+Date:   Fri, 17 Mar 2023 10:06:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V2 1/3] dt-bindings: arm: ti: Add BeaglePlay
+ Thunderbird/102.8.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: sm8450: add dp controller
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Julien Panis <jpanis@baylibre.com>, Bryan Brattlof <bb@ti.com>,
-        Andrew Davis <afd@ti.com>, Jason Kridner <jkridner@gmail.com>,
-        Robert Nelson <robertcnelson@gmail.com>
-References: <20230316152143.2438928-1-nm@ti.com>
- <20230316152143.2438928-2-nm@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316152143.2438928-2-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230206-topic-sm8450-upstream-dp-controller-v4-0-dca33f531e0d@linaro.org>
+ <20230206-topic-sm8450-upstream-dp-controller-v4-5-dca33f531e0d@linaro.org>
+ <c63ecdc2-11e0-79d2-8647-284913f0c0da@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <c63ecdc2-11e0-79d2-8647-284913f0c0da@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -82,20 +90,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 16:21, Nishanth Menon wrote:
-> From: Robert Nelson <robertcnelson@gmail.com>
+On 14/03/2023 23:12, Konrad Dybcio wrote:
 > 
-> This board is based on ti,am625
 > 
-> https://beagleplay.org/
-> https://git.beagleboard.org/beagleplay/beagleplay
-> 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> Co-developed-by: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> On 9.03.2023 10:19, Neil Armstrong wrote:
+>> Add the Display Port controller subnode to the MDSS node.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> [...]
+>> +
+>> +				dp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-160000000 {
+>> +						opp-hz = /bits/ 64 <160000000>;
+>> +						required-opps = <&rpmhpd_opp_low_svs>;
+>> +					};
+> Downstream seems to use 19200000 here
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Ack, will update.
 
-Best regards,
-Krzysztof
+Thx,
+Neil
+
+> 
+> Otherwise,
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Konrad
+> 
+>> +
+>> +					opp-270000000 {
+>> +						opp-hz = /bits/ 64 <270000000>;
+>> +						required-opps = <&rpmhpd_opp_svs>;
+>> +					};
+>> +
+>> +					opp-540000000 {
+>> +						opp-hz = /bits/ 64 <540000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+>> +					};
+>> +
+>> +					opp-810000000 {
+>> +						opp-hz = /bits/ 64 <810000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+>> +					};
+>> +				};
+>> +			};
+>> +
+>>   			mdss_dsi0: dsi@ae94000 {
+>>   				compatible = "qcom,sm8450-dsi-ctrl", "qcom,mdss-dsi-ctrl";
+>>   				reg = <0 0x0ae94000 0 0x400>;
+>>
 
