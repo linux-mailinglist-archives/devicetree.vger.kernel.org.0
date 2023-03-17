@@ -2,124 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B01A6BE61F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 11:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B55376BE625
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 11:02:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjCQKAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 06:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57966 "EHLO
+        id S229562AbjCQKCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 06:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbjCQKAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 06:00:07 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6762C49891;
-        Fri, 17 Mar 2023 03:00:04 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxYcwiOhRkt1QNAA--.19364S3;
-        Fri, 17 Mar 2023 18:00:02 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxHuQgOhRk04oDAA--.15428S3;
-        Fri, 17 Mar 2023 18:00:00 +0800 (CST)
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: add loongson spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S230092AbjCQKCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 06:02:11 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47005509B9;
+        Fri, 17 Mar 2023 03:02:10 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6AAF6660309E;
+        Fri, 17 Mar 2023 10:02:08 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679047329;
+        bh=TMHaDRJxVsbdEfgdoNDcUPXT2v6iasHxnqvCenh9+X0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nRxass+X8shswNMfVMRW/AmV5JHvJisYGFQf5YbGjCAd9oBrSiE5/xYPt+JpDxv4C
+         V4OVbjdOlo0uUaevwmu7gF6WZaXY1vMv1wt5Xdf4Ghbo2Qlq8d3A4EZyDGs6s7n+GE
+         X8pyP+uVkYvembkADaDvzVSM0V2SbURmCpcX0LEcqed4xOQWeH4OHH0BWrsZBmSEJU
+         N08TPchsnVMLlia2J+UAz2h+Jkn0CjgDozzA9VqlC4WeHcMDqntjl8xUBwJoWo8pzg
+         LJHAldj2+Ggm6Mp/h05j08JF7ZgfzEI+Ry9aDdtArT09k0nrNb7LDeax4zDppMikPq
+         iGPLaQSXji0Vw==
+Message-ID: <58bcc0b7-331b-1670-2702-3e04f5565a56@collabora.com>
+Date:   Fri, 17 Mar 2023 11:02:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 4/7] arm64: dts: mediatek: mt8186: Add ADSP node
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
- <20230317082950.12738-2-zhuyinbo@loongson.cn>
- <a736c6db-466a-12e4-8e22-c8dc900978d4@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <e944732b-9a2d-b6ff-8336-7363788809b9@loongson.cn>
-Date:   Fri, 17 Mar 2023 18:00:00 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <a736c6db-466a-12e4-8e22-c8dc900978d4@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        hsinyi@chromium.org
+References: <20230317060917.15175-1-allen-kh.cheng@mediatek.com>
+ <20230317060917.15175-5-allen-kh.cheng@mediatek.com>
 Content-Language: en-US
-X-CM-TRANSID: AQAAf8BxHuQgOhRk04oDAA--.15428S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7ur4ktF47Cr17GFyxCryfJFb_yoW8Xw1xpF
-        1xCFs3GFWjqF17Jwsaga48GwsxZr95JFnrJF47t347CF9093WFqF43KryUZw43AF18GFW2
-        vFyjgr4UKF4UAFJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bx8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAq
-        jxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
-        AFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
-        0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz4
-        8v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I
-        3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIx
-        AIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAI
-        cVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2js
-        IEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j8pnQUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230317060917.15175-5-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 17/03/23 07:09, Allen-KH Cheng ha scritto:
+> Add ADSP node for MT8186 SoC.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-在 2023/3/17 下午5:15, Krzysztof Kozlowski 写道:
-> On 17/03/2023 09:29, Yinbo Zhu wrote:
->> Add the Loongson platform spi binding with DT schema format using
->> json-schema.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../bindings/spi/loongson,ls-spi.yaml         | 44 +++++++++++++++++++
->>   MAINTAINERS                                   |  6 +++
->>   2 files changed, 50 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->> new file mode 100644
->> index 000000000000..936b8dc82ce8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->> @@ -0,0 +1,44 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +
-> Drop blank line above.
->
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/spi/loongson,ls-spi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson SPI controller
->> +
->> +maintainers:
->> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->> +
->> +allOf:
->> +  - $ref: /schemas/spi/spi-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - loongson,ls2k-spi
->> +      - loongson,ls7a-spi
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    minItems: 1
-> I don't understand why did you change it. I did not ask for it.
->
-> Best regards,
-> Krzysztof
-Add clocks "minItems: 1" description is for fix yaml file compile issue.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 
