@@ -2,81 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A02936BED9B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 17:03:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22CE96BEDA1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 17:04:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231342AbjCQQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 12:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
+        id S231482AbjCQQEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 12:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjCQQDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 12:03:39 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D5E67823
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 09:03:15 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z21so22354866edb.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 09:03:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679068994;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f91aUWF3bfVcup+/r6HBb6TIwUZDRmvhzawedVd1n+4=;
-        b=QZFmgKgKizW06OL/OcBs8EB3SNBeaHL+iQVhSlMP+M6wH32n6Oc1hIX4Rcs1e3YP8K
-         0SOnb32xdYx1Je9wEdBtNAzsipXzauyGCLZg46AjgQ21+PG4k/vTmEVfFtNCZjTkVezx
-         0sV54cR0qABx2ipD4z61+PykyDGDT5e8Sv7o6dM8X52OeuOdryvnLNGDjOJuv/jZvuAK
-         vS1mzHf9lRJ0gFSKJiyiOgJCfpFIPpOFDgBGjTKS38fq2czOsRDKzrOukdVd5k2DYcgq
-         vBgGNQapQDIUqw8iW6f7Hqg0pD6zGDRGsEN7VmB+iYxyZMF9yhxuqMyk6aazRCS/LB5y
-         qubw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679068994;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f91aUWF3bfVcup+/r6HBb6TIwUZDRmvhzawedVd1n+4=;
-        b=q/1yUo4zdA5OkBSoDdkMWhBzE74CrjIeOiPp+/LR3eFNLSy9KLZszQcoCrTV/K17g+
-         ULdo5CVlowBvj6IpsewLRvHemcM/lc+i/ts5qq+8hiqe0D3QKzbjlfHOHm6z584WBiaQ
-         dlZDVAoQ0dY8lRY/ITbGvLINCD8VZj8NYDbHkqmznyqtRF6h4ICjebbO9bfCjYbrE/Bq
-         lS0jj/taeb4VdIKhp9ZllwKFTu4NVnbKrGIEG+tSmIgiMTVMUenYTEP31LoA571KSVY1
-         gRb+aeE9Rn6vtp+FSS7E7baDnSb6alAvq6/ltIzML9IxY7H5ycEZ/sHM/5xWXmh80ipu
-         Bm/Q==
-X-Gm-Message-State: AO0yUKUSaL33ew6O+T06DELYPO9VGSi1RUH0UCB2wT1GabyMUwwQ1LM+
-        gGcJXKYgt3VocIUbfYTUBcYj2A==
-X-Google-Smtp-Source: AK7set8y+JmSoAblxtlJHgL+/D77eZGhCYSsjE/9HekTLHS+R8PVlnHgsSGC0Nv0xoO1Q5SQPK/4Dg==
-X-Received: by 2002:a17:907:212e:b0:92f:efdc:610e with SMTP id qo14-20020a170907212e00b0092fefdc610emr7722289ejb.66.1679068994051;
-        Fri, 17 Mar 2023 09:03:14 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d013:3eeb:7658:cec? ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id g1-20020a170906348100b0090953b9da51sm1121500ejb.194.2023.03.17.09.03.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 09:03:13 -0700 (PDT)
-Message-ID: <85d9b8c3-6ddf-9b4c-76a2-8e9761eacc96@linaro.org>
-Date:   Fri, 17 Mar 2023 17:03:12 +0100
+        with ESMTP id S231396AbjCQQES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 12:04:18 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AA3213DFA;
+        Fri, 17 Mar 2023 09:03:54 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AD85213D5;
+        Fri, 17 Mar 2023 09:04:37 -0700 (PDT)
+Received: from [10.57.53.217] (unknown [10.57.53.217])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4832A3F885;
+        Fri, 17 Mar 2023 09:03:51 -0700 (PDT)
+Message-ID: <b1518e16-d74b-719c-a0fc-bc172a6011c4@arm.com>
+Date:   Fri, 17 Mar 2023 16:03:49 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 08/15] dt-bindings: clock: Document ma35d1 clock
- controller bindings
-Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-9-ychuang570808@gmail.com>
- <0ad8521d-90b9-29c7-62e6-2d65aa2a7a27@linaro.org>
- <00423efa-d4ca-5d76-d0b2-11853a49c5e9@gmail.com>
- <b9753d54-6605-e3cb-2943-795b4d58cd83@linaro.org>
- <77b713f8-93bd-d0fa-d344-c8a4ec365c50@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <77b713f8-93bd-d0fa-d344-c8a4ec365c50@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH 6/7] of/platform: Skip coresight etm4x devices from AMBA
+ bus
+To:     Rob Herring <robh+dt@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        scclevenger@os.amperecomputing.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
+ <20230317030501.1811905-7-anshuman.khandual@arm.com>
+ <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,40 +58,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2023 10:52, Jacky Huang wrote:
-> Dear Krzysztof,
-> 
-> Thanks for your advice.
-> 
-> On 2023/3/17 下午 05:13, Krzysztof Kozlowski wrote:
->> On 17/03/2023 04:47, Jacky Huang wrote:
->>>>> +
->>>>> +  nuvoton,pll-mode:
->>>>> +    description:
->>>>> +      A list of PLL operation mode corresponding to CAPLL, DDRPLL, APLL,
->>>>> +      EPLL, and VPLL in sequential. The operation mode value 0 is for
->>>>> +      integer mode, 1 is for fractional mode, and 2 is for spread
->>>>> +      spectrum mode.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>> +    maxItems: 5
->>>>> +    items:
->>>>> +      minimum: 0
->>>>> +      maximum: 2
->>>> Why exactly this is suitable for DT?
->>> I will use strings instead.
->> I have doubts why PLL mode is a property of DT. Is this a board-specific
->> property?
-> 
-> CA-PLL has mode 0 only.
-> DDRPLL, APLL, EPLL, and VPLL have the same PLL design that supports
-> integer mode, fractional mode, and spread spctrum mode. The PLL mode
-> is controlled by clock controller register. I think it's not board-specific.
+Hi Rob
 
-You described the feature but that does not answer why this is suitable
-in DT. If this is not board-specific, then it is implied by compatible,
-right? Or it does not have to be in DT at all.
+Thanks for your response.
+
+On 17/03/2023 14:52, Rob Herring wrote:
+> On Thu, Mar 16, 2023 at 10:06 PM Anshuman Khandual
+> <anshuman.khandual@arm.com> wrote:
+>>
+>> Allow other drivers to claim a device, disregarding the "priority" of
+>> "arm,primecell". e.g., CoreSight ETM4x devices could be accessed via MMIO
+>> (AMBA Bus) or via CPU system instructions.
+> 
+> The OS can pick which one, use both, or this is a system integration
+> time decision?
+
+Not an OS choice. Historically, this has always been MMIO accessed but
+with v8.4 TraceFiltering support, CPUs are encouraged to use system
+instructions and obsolete MMIO. So, yes, MMIO is still possible but
+something that is discouraged and have to be decided at system
+integration time.
+
+> 
+>> The CoreSight ETM4x platform
+>> driver can now handle both types of devices. In order to make sure the
+>> driver gets to handle the "MMIO based" devices, which always had the
+>> "arm,primecell" compatible, we have two options :
+>>
+>> 1) Remove the "arm,primecell" from the DTS. But this may be problematic
+>>   for an older kernel without the support.
+>>
+>> 2) The other option is to allow OF code to "ignore" the arm,primecell
+>> priority for a selected list of compatibles. This would make sure that
+>> both older kernels and the new kernels work fine without breaking
+>> the functionality. The new DTS could always have the "arm,primecell"
+>> removed.
+> 
+> 3) Drop patches 6 and 7 and just register as both AMBA and platform
+> drivers. It's just some extra boilerplate. I would also do different
+> compatible strings for CPU system instruction version (assuming this
+> is an integration time decision).
+
+The system instruction (and the reigster layouts) are all part of the
+ETMv4/ETE architecture and specific capabilities/features are
+discoverable, just like the Arm CPUs. Thus we don't need special
+versions within the ETMv4x or ETE minor versions. As of now, we have
+one for etm4x and another for ete.
+
+One problem with the AMBA driver in place is having to keep on adding
+new PIDs for the CPUs. The other option is to have a blanket mask
+for matching the PIDs with AMBA_UCI_ID checks.
 
 
-Best regards,
-Krzysztof
+> 
+>>
+>> This patch implements Option (2).
+>>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Cc: Russell King (Oracle) <linux@armlinux.org.uk>
+>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Co-developed-by: Suzuki Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Suzuki Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>> ---
+>>   drivers/of/platform.c | 10 +++++++++-
+>>   1 file changed, 9 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+>> index b2bd2e783445..59ff1a38ccaa 100644
+>> --- a/drivers/of/platform.c
+>> +++ b/drivers/of/platform.c
+>> @@ -325,6 +325,13 @@ static const struct of_dev_auxdata *of_dev_lookup(const struct of_dev_auxdata *l
+>>          return NULL;
+>>   }
+>>
+>> +static const struct of_device_id of_ignore_amba_table[] = {
+>> +#ifdef CONFIG_CORESIGHT_SOURCE_ETM4X
+>> +       { .compatible = "arm,coresight-etm4x" },
+>> +#endif
+>> +       {}    /* NULL terminated */
+>> +};
+>> +
+>>   /**
+>>    * of_platform_bus_create() - Create a device for a node and its children.
+>>    * @bus: device node of the bus to instantiate
+>> @@ -373,7 +380,8 @@ static int of_platform_bus_create(struct device_node *bus,
+>>                  platform_data = auxdata->platform_data;
+>>          }
+>>
+>> -       if (of_device_is_compatible(bus, "arm,primecell")) {
+>> +       if (of_device_is_compatible(bus, "arm,primecell") &&
+>> +           unlikely(!of_match_node(of_ignore_amba_table, bus))) {
+> 
+> of_match_node is going to take orders of magnitude longer than any
+> difference unlikely() would make. Drop it.
+
+Agreed.
+
+Suzuki
+
+> 
+>>                  /*
+>>                   * Don't return an error here to keep compatibility with older
+>>                   * device tree files.
+>> --
+>> 2.25.1
+>>
 
