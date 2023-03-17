@@ -2,253 +2,874 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE586BDF45
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 04:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1564D6BDF4E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 04:09:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbjCQDH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 23:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
+        id S230030AbjCQDJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 23:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbjCQDHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 23:07:19 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E6C5ADD1;
-        Thu, 16 Mar 2023 20:06:22 -0700 (PDT)
-X-UUID: ade4865ec47011ed91027fb02e0f1d65-20230317
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=xCAtiUv62oRheeexKIXCKEztwpg+A6HxqGJgj3r6Fa4=;
-        b=Bn33ckP2aZjQaW9hthP1+K8U4N0Uq7g62LKBvaNh20ElfXpHm7P545ATIuClk7/2w5mXBG2YQ85BSJvpusKIELFJIh1U7MqaLTSznJyn81F7d9xA4pde93pxtNnaFUkuXI6vTe0Xh1bQ64Za0skGw0Spt98uq+D+5hVsGIZmCTs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.21,REQID:b45e6cf7-6794-40dd-955c-0fd54b26df68,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:83295aa,CLOUDID:d40311f6-ddba-41c3-91d9-10eeade8eac7,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: ade4865ec47011ed91027fb02e0f1d65-20230317
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1623338612; Fri, 17 Mar 2023 11:06:15 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Fri, 17 Mar 2023 11:06:13 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Fri, 17 Mar 2023 11:06:13 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hmi8EETLX3XiVyrVj9nknsTFtZOcc65FI7DNOXNxIco2p/HIBlj2pOk3maxbVK4VT2LO7er+kV8eRTwfJaLJ3+rEGVQHIYvMqFW2ou0PTONB6HiOuFp6N5G5+sYqvlDd9D0wuYlyBzHgemW5MhJiP+VkDu9Zsdeb0RV8U2DpgH2TSUwSz7oNsHQe34B+yQHsz1/JQIoCf7HNCVs+cj9MLLu73NGEmu/2ddSpbn1mNx/hyKs+ZovhHrxM73F0C8pcgS8FyZEQ+RkLQzsQ7mOqM+oqgpyOejDCFRYvlss6d2mEaW3QpXLJsqzSnPIWAojXFE3Ls9MZCsrfiPEMfiYcMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xCAtiUv62oRheeexKIXCKEztwpg+A6HxqGJgj3r6Fa4=;
- b=njEHY/FIdmXqVAMhPHJ3FTjigWDqzj0cdaEwJPutUZPjL+Xm+H7qQ5i76ZcXVcGtmjF9DLRWZUNag9lbwAt9TQqpXII+enuO448cd4ARZ4YyLWNwQH7RgDpSOjEB7HPmLpaBwfFYEiBMoXiwaFpGw+An5rtfOt+IU9/+o3mYHckSoHA4/hwgHNNPjEjGYEzGa6SzHNhF4LBWN7kvbp3Yj9k+voQeOlOhE1o1N2hC7P3Zpdj5giPhbA3ktOMO5oSqXJlWDMNIEKZ0aE89/gUGmxCBcDhtoD4P0WPh44m5qEKsXAADrw/0JKf9h0r+0x/DWfoe6lm/f79qIy8a5BT33w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+        with ESMTP id S229489AbjCQDJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 23:09:03 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68F0B7182;
+        Thu, 16 Mar 2023 20:07:43 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id cn6so3661621pjb.2;
+        Thu, 16 Mar 2023 20:07:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xCAtiUv62oRheeexKIXCKEztwpg+A6HxqGJgj3r6Fa4=;
- b=O+zHnLayYxvysEnCSWRQhl0af8tD2PcJ0wYkpqyq4b0Y2s+PtfyqYAWMUovc3Z4/t0WYznMO5MtaKZUpHJOk5imGFdJ/IiytS0YhqgvVyFu1Fq3BZjh7zXRb8Oo4/Q2YRINzxO/t/HMxcDjmMMNR3wt/7/Vh0C4r5R6553SR5xc=
-Received: from SL2PR03MB4153.apcprd03.prod.outlook.com (2603:1096:100:4e::10)
- by TYZPR03MB5213.apcprd03.prod.outlook.com (2603:1096:405:6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.33; Fri, 17 Mar
- 2023 03:06:11 +0000
-Received: from SL2PR03MB4153.apcprd03.prod.outlook.com
- ([fe80::be91:ad71:bc02:f8f2]) by SL2PR03MB4153.apcprd03.prod.outlook.com
- ([fe80::be91:ad71:bc02:f8f2%5]) with mapi id 15.20.6178.033; Fri, 17 Mar 2023
- 03:06:11 +0000
-From:   =?utf-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
-        <Yunfei.Dong@mediatek.com>
-To:     "nfraprado@collabora.com" <nfraprado@collabora.com>
-CC:     "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "frkoenig@chromium.org" <frkoenig@chromium.org>,
-        "stevecho@chromium.org" <stevecho@chromium.org>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v3] media: mediatek: vcodec: Force capture queue format to
- MM21
-Thread-Topic: [PATCH v3] media: mediatek: vcodec: Force capture queue format
- to MM21
-Thread-Index: AQHZVkZTwKjbLXkbmE6C0rhMdARylK795aoAgABooYA=
-Date:   Fri, 17 Mar 2023 03:06:11 +0000
-Message-ID: <a07360437c160baaec3ca624588bef90a499ca25.camel@mediatek.com>
-References: <20230314072557.29669-1-yunfei.dong@mediatek.com>
-         <20230316205140.sjkdwrpj2xwquho2@notapiano>
-In-Reply-To: <20230316205140.sjkdwrpj2xwquho2@notapiano>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SL2PR03MB4153:EE_|TYZPR03MB5213:EE_
-x-ms-office365-filtering-correlation-id: 634cb6d9-74c8-4371-a408-08db26948fc6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: UsKyPEjHuSwck3V7V5y9oqorB2ix9Luu132LnXwTt3ylfn3rVH41Q2l2TNd3J0ZGeYGTwBOpZHkFxS/AIrFQ5GGmUu2QR0uXCHEa5ADGXiC/CBLLafgVTa8BNLMW0F5ID1wVOqQtBC9M8zbV/mhzmwDYYN4NYume7sR+cFXTlJiPl4SKPzj9v5WxvQkunV/O/3AIeEVcyJIDLGJ7TCUFNlXKFuDGkQIyQ81d/IlShMv52ebuHAKmFRA3HO9S64DOE658D086jhdUa/2RS0yl4DfeyyweXgpOtqceP10v7il/gGUQ13FWYcyOQEWBJH9WcdNALEnZEZU4PwKFiPhMiPEuTJuQls2vVT2zXI4U14Ez7kyHtQpmLyewXzDDMHYy1H3J1CW13KHwgoQVLtRqlEXIu4XAZt+jaSTfEtsbqTWJ188ETFoe8W52SCt50RGAiSq0EkZryvbSGNxXoAaU89k4nGL7o0naR7uyisqxE5hfUz6hPnyrmsxsFAmlPbcsDdM2NpNxb8KqkO+sijeA4LR0K+HASRRNky8DpfD7t5nYlhtfu06d3xpw1Q42cDVhzj29mBFdd+/T2gL0ksPVGuWOUdkl3hUcN4nTIkSmJk1i52DcjhW2hqINJviBRjeGqt/1ao23UzbYf86VwcMgedU87Eiy4wLeSjuGOsUEYImkTqk5T95RGNlJErX1prVdrP1JtGiWAMNUQLRp5Fm1EjdGeGHDfIMbRedNuMZ4PIY=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2PR03MB4153.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(376002)(346002)(39860400002)(396003)(136003)(451199018)(122000001)(38100700002)(66946007)(6916009)(66476007)(8676002)(64756008)(66446008)(66556008)(4326008)(41300700001)(54906003)(316002)(91956017)(76116006)(83380400001)(8936002)(38070700005)(2616005)(71200400001)(5660300002)(7416002)(478600001)(26005)(6506007)(6512007)(36756003)(86362001)(66574015)(186003)(2906002)(6486002)(85182001)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eGxwOWFTamJvaW1Ib0dhT0kyVDEyS3RKL0VNRFRKb0pzOGd4bitjTEN1cG91?=
- =?utf-8?B?azhId2dUNG9IVDdpcXIrVW4wbmNaa1pTZTN6Sndhbk1sbllENU9uaDRPb0I0?=
- =?utf-8?B?SUR3OXRLOEJZSm10WnJBZlBUZE1rTmFIS0JYbDNmK0RJb2ZxVE9XRFJXVmlZ?=
- =?utf-8?B?UmFhYXk1clhIdjAzYkQvVnBOeXlJUTlXTFNZRnhIS2tYbTkraTJJcnZZaFhR?=
- =?utf-8?B?Smw0cUdTL09IL3gzK1hnVksyZDNGT2RBNm5wT0VGSFAxbHNCSGJBVmloNFk5?=
- =?utf-8?B?VGNmVytZUjI5YVdxVkRoZHpzY1kzc1NHTEVnQjZqTGZzeEdMWks3akcrcStL?=
- =?utf-8?B?VjlZQXBSS05wcmo3M0VpQ05yR1doOFBWQ3lYUlFZZGtyY21GRGJSRHR6dE95?=
- =?utf-8?B?a1MzSDd1S1lXbnU2dEdXS2lvbTVDK3l4cWk2QkRHRmpLK3hSYUlsY3FFSkx5?=
- =?utf-8?B?TldBNXp0NlJWZUIyWlY2RVlBOTNna2ZjRDNLVHR5T3dpbjFjSE4vbVRvZk9E?=
- =?utf-8?B?UXBlb2dDV0puZjIvUVZOay9DT0NvNk93VHlsdzJ4T1ZxbHcxY1BxRjFNaFkw?=
- =?utf-8?B?Y3EwdmwzR0ZiSlhwdG1McEF5Ym15a1lYN2swNEJMakMvOE1WTWJ1TWErcmhZ?=
- =?utf-8?B?SkZtNGQvV2hVYThmcmVidWdVZlo3SDBrNlcrRjQxVHpXNnNrdmRjcHNTSEpY?=
- =?utf-8?B?dnhwWUVQYldvYjRDZC91WHd1WTZpS3RDaWJGV2w3MWRFUVJXRDZXZWJmSzFX?=
- =?utf-8?B?ZXpuMU9BVk9SVlduTUgxa2ZYb29BSTBEaFd5L24rNzBSUm1wRXJOZDFNL0Zu?=
- =?utf-8?B?QXBEMm0vNnJ4Zm80enZINDh0cUNvcGZob3dwTzFwUDZsbGRCY1BMUkdWTU80?=
- =?utf-8?B?MWhaQ3lPaGh4Umh0cGJlN21pbVA3c2pYalJPZEgrUUdkbTdhYUVadTlQT3B0?=
- =?utf-8?B?UmxxemxOQU8xN2UzclpyRjlmYUxnYnVLNG9VZVFWSmRUY1c3OUlOL0hCSHpT?=
- =?utf-8?B?cjIyV3RpYmhDY1A3ckpwTmZPREYyZ002ZXZad25xaEY5eVJia1ZiTzNLZzBr?=
- =?utf-8?B?NGtIbjk2czRQaUxmWGpTb0EyM1RwZXlUbHRFQ0s3YXZzT3NRd1RPTnhNVzNy?=
- =?utf-8?B?d2lrbUpvRkV5MmZ3NHpzREQ1Y2ZEdkRIV1NzZ0RVSk5WblJPc0JrUUFiKzBR?=
- =?utf-8?B?R1RlRkE0TVFUcHQ3b2RpdWc0cU0yWHJIMDA3amFDU0dVTkVkS2RLMVB0UFVO?=
- =?utf-8?B?czJQNXZnRU5DZXpoSStvZzdjaXQ5ZUE4T3hKR2VMaFNxUGFpV1VaWjcxNW9Z?=
- =?utf-8?B?cUUyTFJtZmszdlFrWmllMFlwZjBOWnhmWStodHZqSm13dTBhUStRUzBtc3hh?=
- =?utf-8?B?empadTIwTDFvYkNMdWhDdndiUG15cnBPVEZEa0YydVl2YWVmRHg2MUQ2eGZ0?=
- =?utf-8?B?cGVXMEZ6dWpWNlZFbkJZNTBjODNQUmd3a2VNQlpCNUtHOU9DdlVmUERyR3JJ?=
- =?utf-8?B?NS96Wkw0a1dNMGVOenB3cWhBT3EwdDJvWlJwWmJSL1RFRmVQMjlYcHVGWmZT?=
- =?utf-8?B?QndTWWFlT0M4OXhCVldMWXpEMmlNS05ydThWd0F4ZEhwMFNHZjRENnRYcXNo?=
- =?utf-8?B?SVhiVkFHQjB5TW90VFFsV0tWaHg4ajZ4bjR6WmdMNXp4K2lvVzE2dDJsZUpa?=
- =?utf-8?B?ZVV0am1JcHNhUjJqY2F0NUdJeUpwcWJwN0YwVGpIbnMxR0RrRmRTL01wc2Ry?=
- =?utf-8?B?WkN4cDZvMlBpcFpMbUFvMmhVcjRzdy9iQ0VFR1dkOGpEcmJScmF6R1NZSDNW?=
- =?utf-8?B?UXVOZVpKOEREWXRoNnE2YzlER1pZWi9NZGR1eGZ1SEliV0Q4Tml6aUhXUlZi?=
- =?utf-8?B?dGhNRnkrU0lKREpMRzcyc1JGblo4SFBTa1ZST0NkWi8wcDFvVGxxNzdLU3lB?=
- =?utf-8?B?WmR5cjQ4aXM5Mk1QTkZqOWZGY1RJc3dnN0N5L3p1YVFFaXBaU2xxVlN3Z3Na?=
- =?utf-8?B?MFYvdTNuRURocXEvNXlRQnpxQlk3VTFGa2ZIZWtiWW5ET2tYYU1NWklTVm9w?=
- =?utf-8?B?dlBKQkYva1Y3RzFWazhacVl2a014NzRuakpKT1MveTM1MzFQdlFqeHNCS0NY?=
- =?utf-8?B?OExrWkJYdUloeTFBVWVNd1B4UnBKNmFSbVVGUHdsZHZFTVhLWDk0MjZkOS9W?=
- =?utf-8?B?OWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CD051B1E31445146871E7748CAB88A53@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112; t=1679022458;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CkJh2oESNHGt+mpeONu9fOzwq2ixyZFdT7YuiwRkL3A=;
+        b=V7U8ykvqArjNtVacaqihDfKHj2kgelcGt5wuRjD4IMDJdOL5OMd0Vn0Vrf5DTYTX2w
+         DeX4PBwVecylsjG0R2+/8tWjae46khtya1JiCLHq6pxxVMo/NDns5dWk98a4aoL2kV+G
+         C2mkNpJ7ZgR2F155urHo/8O7oNWfDtmVMUdV+sssyFYgaVGZwmCFVuLhSH7epekkk/2p
+         ePAaGkGag5DBbbfpUv+/iXP0aAvW2M3Ky/OiUJMTdlVyq/rHkXvGRq+HZy7MsTKeRfRL
+         FPV92TPIQQG6KdLCW5vhHCAJoF4FBfnwPKll1dhqGae3LGOk2VKbO9yKNfrd/pjojl9l
+         9P8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679022458;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CkJh2oESNHGt+mpeONu9fOzwq2ixyZFdT7YuiwRkL3A=;
+        b=oh+ct1LwGtXNlGHfiod2aORocxbYME0NbsMp0khLepczFlHLoCn0b85byBcPqaBgGi
+         30QCqR/LaptBO9tS63/OSRxHgQ1h7cAeYaF82DcQadGcLG+7y87Btu2EQIMEZBKrThlA
+         MQ1eBF8LouX+DLA68NR+Q1Oo42ye+fGkeYb6Vb51z0dg/LJ7WFXbIKRU1SN3mR33XdUZ
+         9FxEt2KwDsGpYMPwhhnBnoKBylt3FQTihVSgazZR/9x2MdTyxKWXW431l4/H3MvOgjKn
+         NowcsfVqjySfZP3NiAnFtbi0ie6uROdtg4yWZDVstNAkUF+6/F95YBR6kKGmsYLwyDPK
+         vRWQ==
+X-Gm-Message-State: AO0yUKUaTz3tNg7YxERCUCL33TtQfaYBEvEqYGY6Z3bg8NUbIi4/roLW
+        hxg9AxfJMQHfBaiSsa+Rea0=
+X-Google-Smtp-Source: AK7set+W8OGmKSPYrEwGTAKwikeluZQssWx7IIEtQBPk7M740p1vMfqfaKDC06HpxzKZ37hNk+y9XQ==
+X-Received: by 2002:a17:902:c44a:b0:1a1:a706:5df3 with SMTP id m10-20020a170902c44a00b001a1a7065df3mr700692plm.15.1679022458224;
+        Thu, 16 Mar 2023 20:07:38 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id u10-20020a170902a60a00b00192fe452e17sm393339plq.162.2023.03.16.20.07.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Mar 2023 20:07:37 -0700 (PDT)
+Message-ID: <493c9c33-5ad9-e3f3-501c-d9f27b4d54d5@gmail.com>
+Date:   Fri, 17 Mar 2023 11:07:34 +0800
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SL2PR03MB4153.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 634cb6d9-74c8-4371-a408-08db26948fc6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2023 03:06:11.1763
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +8ayAZZ/9kULETIDunxLdt6aTbGjuiuDN7b6Q95xO4L/imevfSGvcR0k0FYVbGtHOLgWSRyOCovdA1e7E9ug+DYqcYuazZUdNLKRbj28asM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5213
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 12/15] clk: nuvoton: Add clock driver for ma35d1 clock
+ controller
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-13-ychuang570808@gmail.com>
+ <33aa6111d09fa7a75d0e603c3fd3ac11.sboyd@kernel.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <33aa6111d09fa7a75d0e603c3fd3ac11.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTmljb2xhcywNCg0KVGhhbmtzIGZvciB5b3VyIHN1Z2dlc3Rpb24uDQpPbiBUaHUsIDIwMjMt
-MDMtMTYgYXQgMTY6NTEgLTA0MDAsIE7DrWNvbGFzIEYuIFIuIEEuIFByYWRvIHdyb3RlOg0KPiBI
-aSBZdW5mZWksDQo+IA0KPiB0aGFua3MgZm9yIHRoZSBwYXRjaC4NCj4gDQo+IE9uIFR1ZSwgTWFy
-IDE0LCAyMDIzIGF0IDAzOjI1OjU3UE0gKzA4MDAsIFl1bmZlaSBEb25nIHdyb3RlOg0KPiA+IExp
-Ynl1diBpcyBvbmUgc29mdHdhcmUgbGlicmFyeSB1c2VkIHRvIGNvdmVydCBmb3JtYXQuIE9ubHkg
-Y292ZXJ0DQo+ID4gbWVkaWF0ZWsgdW5jb21wcmVzc2VkIG1vZGUgTU0yMSB0byBzdGFuZGFyZCB5
-dXY0MjAgZm9yIE1UMjEgaXMNCj4gPiBjb21wcmVzc2VkIG1vZGUuIE5lZWQgdG8gc2V0IGNhcHR1
-cmUgcXVldWUgZm9ybWF0IHRvIE1NMjEgaW4gb3JkZXINCj4gPiB0byB1c2UgTGlieXV2IHdoZW4g
-c2NwIGZpcm13YXJlIHN1cHBvcnQgTU0yMSBhbmQgTVQyMS4NCj4gDQo+IFRoaXMgY29tbWl0IG1l
-c3NhZ2UgaXMgYSBiaXQgY29uZnVzaW5nIHN0aWxsLiBIZXJlJ3MgYSBzdWdnZXN0aW9uOg0KPiAN
-Cj4gCVdoaWxlIHRoZSBkZWNvZGVyIGNhbiBwcm9kdWNlIGZyYW1lcyBpbiBib3RoIE1NMjEgYW5k
-IE1UMjFDDQo+IGZvcm1hdHMsIG9ubHkgTU0yMQ0KPiAJaXMgY3VycmVudGx5IHN1cHBvcnRlZCBi
-eSB1c2Vyc3BhY2UgdG9vbHMgKGxpa2UgZ3N0cmVhbWVyIGFuZA0KPiBsaWJ5dXYpLiBJbiBvcmRl
-cg0KPiAJdG8gZW5zdXJlIHVzZXJzcGFjZSBrZWVwcyB3b3JraW5nIGFmdGVyIHRoZSBTQ1AgZmly
-bXdhcmUgaXMNCj4gdXBkYXRlZCB0byBzdXBwb3J0DQo+IAlib3RoIE1NMjEgYW5kIE1UMjFDIGZv
-cm1hdHMsIGZvcmNlIHRoZSBNTTIxIGZvcm1hdCBmb3IgdGhlDQo+IGNhcHR1cmUgcXVldWUuDQo+
-IA0KPiAJVGhpcyBpcyBtZWFudCBhcyBhIHN0b3BnYXAgc29sdXRpb24gd2hpbGUgZHluYW1pYyBm
-b3JtYXQNCj4gc3dpdGNoaW5nIGJldHdlZW4gDQo+IAlNTTIxIGFuZCBNVDIxQyBpc24ndCBpbXBs
-ZW1lbnRlZCBpbiB0aGUgZHJpdmVyLg0KPiANCldpbGwgY2hhbmdlIGl0IGxpa2UgdGhpcy4NCj4g
-PiANCj4gPiBGaXhlczogNzUwMWVkZWY2YjFmICgibWVkaWE6IG1lZGlhdGVrOiB2Y29kZWM6IERp
-ZmZlcmVudCBjb2RlYw0KPiA+IHVzaW5nIGRpZmZlcmVudCBjYXB0dXJlIGZvcm1hdCIpDQo+ID4g
-U2lnbmVkLW9mZi1ieTogWXVuZmVpIERvbmcgPHl1bmZlaS5kb25nQG1lZGlhdGVrLmNvbT4NCj4g
-PiAtLS0NCj4gPiBjaGFuZ2VkIHdpdGggdjI6DQo+ID4gLSByZS13cml0ZSBjb21taXQgbWVzc2Fn
-ZS4NCj4gPiAtIGNoYW5nZSB0aGUgZHJpdmVyIGZsb3cuDQo+ID4gY2hhbmdlZCB3aXRoIHYxOg0K
-PiA+IC0gYWRkIEZpeGVzIHRhZy4NCj4gPiAtLS0NCj4gPiAgLi4uL3BsYXRmb3JtL21lZGlhdGVr
-L3Zjb2RlYy9tdGtfdmNvZGVjX2RlYy5jIHwgMjQgKysrLS0tLS0tLS0tLQ0KPiA+IC0tLS0tLQ0K
-PiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkNCj4g
-PiANCj4gDQo+IFdoaWxlIHRoaXMgY2hhbmdlIHdvcmtzICh0aGF0IGlzLCBJJ20gYWJsZSB0byBy
-dW4gZmx1c3RlciB0ZXN0cyBvbg0KPiBib3RoIE1UODE5Mg0KPiBhbmQgTVQ4MTk1IHVzaW5nIHRo
-ZSBuZXcgTU0yMStNVDIxQyBmaXJtd2FyZSksIGl0IGNhdXNlcyBhIHJlZ3Jlc3Npb24NCj4gb24N
-Cj4gdjRsMi1jb21wbGlhbmNlOg0KPiANCj4gCVsuLl0NCj4gCUZvcm1hdCBpb2N0bHM6DQo+IAlb
-Li5dDQo+IAkJCWZhaWw6IHY0bDItdGVzdC1mb3JtYXRzLmNwcCg0NzgpOiBwaXhlbGZvcm1hdA0K
-PiAzMTMyNTQ0ZCAoTVQyMSkgZm9yIGJ1ZnR5cGUgOSBub3QgcmVwb3J0ZWQgYnkgRU5VTV9GTVQN
-Cj4gCQl0ZXN0IFZJRElPQ19HX0ZNVDogRkFJTA0KPiAJCQlmYWlsOiB2NGwyLXRlc3QtZm9ybWF0
-cy5jcHAoNDc4KTogcGl4ZWxmb3JtYXQNCj4gMzEzMjU0NGQgKE1UMjEpIGZvciBidWZ0eXBlIDkg
-bm90IHJlcG9ydGVkIGJ5IEVOVU1fRk1UDQo+IAkJdGVzdCBWSURJT0NfVFJZX0ZNVDogRkFJTA0K
-PiAJCQlmYWlsOiB2NGwyLXRlc3QtZm9ybWF0cy5jcHAoNDc4KTogcGl4ZWxmb3JtYXQNCj4gMzEz
-MjU0NGQgKE1UMjEpIGZvciBidWZ0eXBlIDkgbm90IHJlcG9ydGVkIGJ5IEVOVU1fRk1UDQo+IAkJ
-dGVzdCBWSURJT0NfU19GTVQ6IEZBSUwNCj4gCVsuLl0NCj4gCVRvdGFsIGZvciBtdGstdmNvZGVj
-LWRlYyBkZXZpY2UgL2Rldi92aWRlbzI6IDQ2LCBTdWNjZWVkZWQ6IDQzLA0KPiBGYWlsZWQ6IDMs
-IFdhcm5pbmdzOiAwDQo+IA0KTmVlZCB0byBhZGQgb25lIHBhdGNoIHRvIGNoYW5nZSBNTTIxIGFz
-IHRoZSBkZWZhdWx0IGNhcHR1cmUgcXVldWUNCmZvcm1hdC4NCg0KQmVzdCBSZWdhcmRzLA0KWXVu
-ZmVpIERvbmcNCj4gVGhlIHBhdGNoIG1ha2VzIG9ubHkgTU0yMSBzaG93IGluIFZJRElPQ19FTlVN
-X0ZNVCwgYnV0IFZJRElPQ19TX0ZNVCwNCj4gVklESU9DX0dfRk1UIGFuZCBWSURJT0NfVFJZX0ZN
-VCBzdGlsbCBzaG93IE1UMjEuIFNvIEkgdGhpbmsgeW91IG5lZWQNCj4gdG8gZG8gdGhlDQo+IHNh
-bWUgZm9yY2luZyBvZiBNTTIxIGZvciB0aG9zZSBpb2N0bHMuDQo+IA0KPiBUaGFua3MsDQo+IE7D
-rWNvbGFzDQo+IA0KPiA+IGRpZmYgLS1naXQNCj4gPiBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0v
-bWVkaWF0ZWsvdmNvZGVjL210a192Y29kZWNfZGVjLmMNCj4gPiBiL2RyaXZlcnMvbWVkaWEvcGxh
-dGZvcm0vbWVkaWF0ZWsvdmNvZGVjL210a192Y29kZWNfZGVjLmMNCj4gPiBpbmRleCA2NDFmNTMz
-YzQxN2YuLmM5OTcwNTY4MWEwMyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL21lZGlhL3BsYXRm
-b3JtL21lZGlhdGVrL3Zjb2RlYy9tdGtfdmNvZGVjX2RlYy5jDQo+ID4gKysrIGIvZHJpdmVycy9t
-ZWRpYS9wbGF0Zm9ybS9tZWRpYXRlay92Y29kZWMvbXRrX3Zjb2RlY19kZWMuYw0KPiA+IEBAIC0z
-OSwxMCArMzksOSBAQCBzdGF0aWMgYm9vbCBtdGtfdmRlY19nZXRfY2FwX2ZtdChzdHJ1Y3QNCj4g
-PiBtdGtfdmNvZGVjX2N0eCAqY3R4LCBpbnQgZm9ybWF0X2luZGV4KQ0KPiA+ICB7DQo+ID4gIAlj
-b25zdCBzdHJ1Y3QgbXRrX3Zjb2RlY19kZWNfcGRhdGEgKmRlY19wZGF0YSA9IGN0eC0+ZGV2LQ0K
-PiA+ID52ZGVjX3BkYXRhOw0KPiA+ICAJY29uc3Qgc3RydWN0IG10a192aWRlb19mbXQgKmZtdDsN
-Cj4gPiAtCXN0cnVjdCBtdGtfcV9kYXRhICpxX2RhdGE7DQo+ID4gIAlpbnQgbnVtX2ZyYW1lX2Nv
-dW50ID0gMCwgaTsNCj4gPiAtCWJvb2wgcmV0ID0gdHJ1ZTsNCj4gPiAgDQo+ID4gKwlmbXQgPSAm
-ZGVjX3BkYXRhLT52ZGVjX2Zvcm1hdHNbZm9ybWF0X2luZGV4XTsNCj4gPiAgCWZvciAoaSA9IDA7
-IGkgPCAqZGVjX3BkYXRhLT5udW1fZm9ybWF0czsgaSsrKSB7DQo+ID4gIAkJaWYgKGRlY19wZGF0
-YS0+dmRlY19mb3JtYXRzW2ldLnR5cGUgIT0gTVRLX0ZNVF9GUkFNRSkNCj4gPiAgCQkJY29udGlu
-dWU7DQo+ID4gQEAgLTUwLDI3ICs0OSwxMCBAQCBzdGF0aWMgYm9vbCBtdGtfdmRlY19nZXRfY2Fw
-X2ZtdChzdHJ1Y3QNCj4gPiBtdGtfdmNvZGVjX2N0eCAqY3R4LCBpbnQgZm9ybWF0X2luZGV4KQ0K
-PiA+ICAJCW51bV9mcmFtZV9jb3VudCsrOw0KPiA+ICAJfQ0KPiA+ICANCj4gPiAtCWlmIChudW1f
-ZnJhbWVfY291bnQgPT0gMSkNCj4gPiArCWlmIChudW1fZnJhbWVfY291bnQgPT0gMSB8fCBmbXQt
-PmZvdXJjYyA9PSBWNEwyX1BJWF9GTVRfTU0yMSkNCj4gPiAgCQlyZXR1cm4gdHJ1ZTsNCj4gPiAg
-DQo+ID4gLQlmbXQgPSAmZGVjX3BkYXRhLT52ZGVjX2Zvcm1hdHNbZm9ybWF0X2luZGV4XTsNCj4g
-PiAtCXFfZGF0YSA9ICZjdHgtPnFfZGF0YVtNVEtfUV9EQVRBX1NSQ107DQo+ID4gLQlzd2l0Y2gg
-KHFfZGF0YS0+Zm10LT5mb3VyY2MpIHsNCj4gPiAtCWNhc2UgVjRMMl9QSVhfRk1UX1ZQOF9GUkFN
-RToNCj4gPiAtCQlpZiAoZm10LT5mb3VyY2MgPT0gVjRMMl9QSVhfRk1UX01NMjEpDQo+ID4gLQkJ
-CXJldCA9IHRydWU7DQo+ID4gLQkJYnJlYWs7DQo+ID4gLQljYXNlIFY0TDJfUElYX0ZNVF9IMjY0
-X1NMSUNFOg0KPiA+IC0JY2FzZSBWNEwyX1BJWF9GTVRfVlA5X0ZSQU1FOg0KPiA+IC0JCWlmIChm
-bXQtPmZvdXJjYyA9PSBWNEwyX1BJWF9GTVRfTU0yMSkNCj4gPiAtCQkJcmV0ID0gZmFsc2U7DQo+
-ID4gLQkJYnJlYWs7DQo+ID4gLQlkZWZhdWx0Og0KPiA+IC0JCXJldCA9IHRydWU7DQo+ID4gLQkJ
-YnJlYWs7DQo+ID4gLQl9DQo+ID4gLQ0KPiA+IC0JcmV0dXJuIHJldDsNCj4gPiArCXJldHVybiBm
-YWxzZTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgc3RhdGljIHN0cnVjdCBtdGtfcV9kYXRhICptdGtf
-dmRlY19nZXRfcV9kYXRhKHN0cnVjdA0KPiA+IG10a192Y29kZWNfY3R4ICpjdHgsDQo+ID4gLS0g
-DQo+ID4gMi4yNS4xDQo+ID4gDQo+IA0KPiANCg==
+Dear Stephen,
+
+Thanks for your review.
+
+
+On 2023/3/16 上午 06:30, Stephen Boyd wrote:
+> Quoting Jacky Huang (2023-03-15 00:28:59)
+>> diff --git a/drivers/clk/nuvoton/clk-ma35d1-divider.c b/drivers/clk/nuvoton/clk-ma35d1-divider.c
+>> new file mode 100644
+>> index 000000000000..5f4791531e47
+>> --- /dev/null
+>> +++ b/drivers/clk/nuvoton/clk-ma35d1-divider.c
+>> @@ -0,0 +1,144 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/io.h>
+>> +#include <linux/err.h>
+>> +#include <linux/spinlock.h>
+>> +
+>> +#include "clk-ma35d1.h"
+>> +
+>> +#define div_mask(width)                ((1 << (width)) - 1)
+> This is clk_div_mask()
+
+OK, I will rename div_mask() as clk_div_mask().
+
+>
+>> +
+>> +struct ma35d1_adc_clk_divider {
+>> +       struct clk_hw hw;
+>> +       void __iomem *reg;
+>> +       u8 shift;
+>> +       u8 width;
+>> +       u32 mask;
+>> +       const struct clk_div_table *table;
+>> +       spinlock_t *lock;
+>> +};
+>> +
+>> +#define to_ma35d1_adc_clk_divider(_hw) \
+>> +       container_of(_hw, struct ma35d1_adc_clk_divider, hw)
+>> +
+>> +static unsigned long ma35d1_clkdiv_recalc_rate(struct clk_hw *hw,
+>> +                                              unsigned long parent_rate)
+>> +{
+>> +       unsigned int val;
+>> +       struct ma35d1_adc_clk_divider *dclk = to_ma35d1_adc_clk_divider(hw);
+>> +
+>> +       val = readl_relaxed(dclk->reg) >> dclk->shift;
+>> +       val &= div_mask(dclk->width);
+>> +       val += 1;
+>> +       return divider_recalc_rate(hw, parent_rate, val, dclk->table,
+>> +                                  CLK_DIVIDER_ROUND_CLOSEST, dclk->width);
+>> +}
+>> +
+>> +static long ma35d1_clkdiv_round_rate(struct clk_hw *hw, unsigned long rate,
+>> +                                    unsigned long *prate)
+>> +{
+>> +       struct ma35d1_adc_clk_divider *dclk = to_ma35d1_adc_clk_divider(hw);
+>> +
+>> +       return divider_round_rate(hw, rate, prate, dclk->table,
+>> +                                 dclk->width, CLK_DIVIDER_ROUND_CLOSEST);
+>> +}
+>> +
+>> +static int ma35d1_clkdiv_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +                                 unsigned long parent_rate)
+>> +{
+>> +       int value;
+>> +       unsigned long flags = 0;
+>> +       u32 data;
+>> +       struct ma35d1_adc_clk_divider *dclk = to_ma35d1_adc_clk_divider(hw);
+>> +
+>> +       value = divider_get_val(rate, parent_rate, dclk->table,
+>> +                               dclk->width, CLK_DIVIDER_ROUND_CLOSEST);
+>> +
+>> +       if (dclk->lock)
+>> +               spin_lock_irqsave(dclk->lock, flags);
+>> +
+>> +       data = readl_relaxed(dclk->reg);
+>> +       data &= ~(div_mask(dclk->width) << dclk->shift);
+>> +       data |= (value - 1) << dclk->shift;
+>> +       data |= dclk->mask;
+>> +
+>> +       writel_relaxed(data, dclk->reg);
+>> +
+>> +       if (dclk->lock)
+>> +               spin_unlock_irqrestore(dclk->lock, flags);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static const struct clk_ops ma35d1_adc_clkdiv_ops = {
+>> +       .recalc_rate = ma35d1_clkdiv_recalc_rate,
+>> +       .round_rate = ma35d1_clkdiv_round_rate,
+>> +       .set_rate = ma35d1_clkdiv_set_rate,
+>> +};
+>> +
+>> +struct clk_hw *ma35d1_reg_adc_clkdiv(struct device *dev, const char *name,
+>> +                                    const char *parent_name,
+>> +                                    unsigned long flags, void __iomem *reg,
+>> +                                    u8 shift, u8 width, u32 mask_bit)
+>> +{
+>> +       struct ma35d1_adc_clk_divider *div;
+>> +       struct clk_init_data init;
+>> +       struct clk_div_table *table;
+>> +       u32 max_div, min_div;
+>> +       struct clk_hw *hw;
+>> +       int ret;
+>> +       int i;
+>> +
+>> +       /* allocate the divider */
+> Please remove useless comment.
+>
+>> +       div = kzalloc(sizeof(*div), GFP_KERNEL);
+>> +       if (!div)
+>> +               return ERR_PTR(-ENOMEM);
+>> +
+>> +       /* Init the divider table */
+> Please remove useless comment.
+
+I will remove all useless comments.
+
+>
+>> +       max_div = div_mask(width) + 1;
+>> +       min_div = 1;
+>> +
+>> +       table = kcalloc(max_div + 1, sizeof(*table), GFP_KERNEL);
+> Use devm_ allocations please.
+
+OK, I will use devm_kzallloc() instead.
+
+>> +       if (!table) {
+>> +               kfree(div);
+>> +               return ERR_PTR(-ENOMEM);
+>> +       }
+>> +
+>> +       for (i = 0; i < max_div; i++) {
+>> +               table[i].val = (min_div + i);
+>> +               table[i].div = 2 * table[i].val;
+>> +       }
+>> +       table[max_div].val = 0;
+>> +       table[max_div].div = 0;
+>> +
+>> +       init.name = name;
+>> +       init.ops = &ma35d1_adc_clkdiv_ops;
+>> +       init.flags |= flags;
+>> +       init.parent_names = parent_name ? &parent_name : NULL;
+>> +       init.num_parents = parent_name ? 1 : 0;
+>> +
+>> +       /* struct ma35d1_adc_clk_divider assignments */
+> Please remove useless comment.
+>
+>> +       div->reg = reg;
+>> +       div->shift = shift;
+>> +       div->width = width;
+>> +       div->mask = mask_bit ? BIT(mask_bit) : 0;
+>> +       div->lock = &ma35d1_lock;
+>> +       div->hw.init = &init;
+>> +       div->table = table;
+>> +
+>> +       /* Register the clock */
+> Please remove useless comment.
+>
+>> +       hw = &div->hw;
+>> +       ret = clk_hw_register(NULL, hw);
+> Use devm_clk_hw_register()
+
+I will use devm_clk_hw_registers() instead.
+
+>
+>> +       if (ret) {
+>> +               kfree(table);
+>> +               kfree(div);
+>> +               return ERR_PTR(ret);
+>> +       }
+>> +       return hw;
+>> +}
+>> diff --git a/drivers/clk/nuvoton/clk-ma35d1-pll.c b/drivers/clk/nuvoton/clk-ma35d1-pll.c
+>> new file mode 100644
+>> index 000000000000..79e724b148fa
+>> --- /dev/null
+>> +++ b/drivers/clk/nuvoton/clk-ma35d1-pll.c
+>> @@ -0,0 +1,534 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+>> + */
+>> +
+>> +#include <linux/clk.h>
+> Do you need to include this header?
+
+I remove it and compile passed. It is not used here.
+I will remove it in the next version.
+
+>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/io.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/bitfield.h>
+>> +
+>> +#include "clk-ma35d1.h"
+>> +
+>> +#define to_ma35d1_clk_pll(clk) \
+>> +       (container_of(clk, struct ma35d1_clk_pll, clk))
+>> +
+>> +#define PLL0CTL0_FBDIV_MSK     GENMASK(7, 0)
+>> +#define PLL0CTL0_INDIV_MSK     GENMASK(11, 8)
+>> +#define PLL0CTL0_OUTDIV_MSK    GENMASK(13, 12)
+>> +#define PLL0CTL0_PD_MSK                BIT(16)
+>> +#define PLL0CTL0_BP_MSK                BIT(17)
+>> +#define PLLXCTL0_FBDIV_MSK     GENMASK(10, 0)
+>> +#define PLLXCTL0_INDIV_MSK     GENMASK(17, 12)
+>> +#define PLLXCTL0_MODE_MSK      GENMASK(19, 18)
+>> +#define PLLXCTL0_SSRATE_MSK    GENMASK(30, 20)
+>> +#define PLLXCTL1_PD_MSK                BIT(0)
+>> +#define PLLXCTL1_BP_MSK                BIT(1)
+>> +#define PLLXCTL1_OUTDIV_MSK    GENMASK(6, 4)
+>> +#define PLLXCTL1_FRAC_MSK      GENMASK(31, 8)
+>> +#define PLLXCTL2_SLOPE_MSK     GENMASK(23, 0)
+>> +
+>> +struct ma35d1_clk_pll {
+>> +       struct clk_hw hw;
+>> +       u8 type;
+>> +       u8 mode;
+>> +       unsigned long rate;
+>> +       void __iomem *ctl0_base;
+>> +       void __iomem *ctl1_base;
+>> +       void __iomem *ctl2_base;
+>> +       struct regmap *regmap;
+>> +};
+>> +
+>> +struct vsipll_freq_conf_reg_tbl {
+>> +       unsigned long freq;
+>> +       u8 mode;
+>> +       u32 ctl0_reg;
+>> +       u32 ctl1_reg;
+>> +       u32 ctl2_reg;
+>> +};
+>> +
+>> +static const struct vsipll_freq_conf_reg_tbl ma35d1pll_freq[] = {
+>> +       { 1000000000, VSIPLL_INTEGER_MODE, 0x307d, 0x10, 0 },
+>> +       { 884736000, VSIPLL_FRACTIONAL_MODE, 0x41024, 0xdd2f1b11, 0 },
+>> +       { 533000000, VSIPLL_SS_MODE, 0x12b8102c, 0x6aaaab20, 0x12317 },
+>> +       { }
+>> +};
+>> +
+>> +static void CLK_UnLockReg(struct ma35d1_clk_pll *pll)
+> Please don't use a mix of upper and lower case function names.
+> Everything should be lower case. Maybe the name should be
+>
+> 	ma35d1_clk_pll_unlock_reg()
+
+Sure, we will review all the macros and API to have all lower case naming.
+
+>> +{
+>> +       int ret;
+>> +
+>> +       /* Unlock PLL registers */
+>> +       do {
+>> +               regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x59);
+>> +               regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x16);
+>> +               regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x88);
+>> +               regmap_read(pll->regmap, REG_SYS_RLKTZNS, &ret);
+>> +       } while (ret == 0);
+>> +}
+>> +
+>> +static void CLK_LockReg(struct ma35d1_clk_pll *pll)
+>> +{
+> 	ma35d1_clk_pll_lock_reg()
+>
+>> +       /* Lock PLL registers */
+> Remove these worthless comments.
+>
+>> +       regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x0);
+>> +}
+>> +
+>> +/* SMIC PLL for CAPLL */
+>> +unsigned long CLK_GetPLLFreq_SMICPLL(struct ma35d1_clk_pll *pll,
+>> +                                    unsigned long PllSrcClk)
+>> +{
+>> +       u32 u32M, u32N, u32P, u32OutDiv;
+> Variable names should not have the type in them. 'm', 'n', 'p', 'div'
+> should suffice.
+
+OK, we review all variables naming and modify them to linux coding style.
+
+>> +       u32 val;
+>> +       unsigned long u64PllClk;
+>> +       u32 clk_div_table[] = { 1, 2, 4, 8};
+>> +
+>> +       val = __raw_readl(pll->ctl0_base);
+> Why do you need to use __raw_readl()? Just use readl() here.
+
+OK, I will modify all __raw_real() to raw_read().
+
+>> +
+>> +       u32N = FIELD_GET(PLL0CTL0_FBDIV_MSK, val);
+>> +       u32M = FIELD_GET(PLL0CTL0_INDIV_MSK, val);
+>> +       u32P = FIELD_GET(PLL0CTL0_OUTDIV_MSK, val);
+>> +       u32OutDiv = clk_div_table[u32P];
+>> +
+>> +       if (val & PLL0CTL0_BP_MSK) {
+>> +               u64PllClk = PllSrcClk;
+>> +       } else {
+>> +               u64PllClk = PllSrcClk * u32N;
+>> +               do_div(u64PllClk, u32M * u32OutDiv);
+>> +       }
+> Add a newline here.
+>
+>> +       return u64PllClk;
+>> +}
+>> +
+>> +/* VSI-PLL: INTEGER_MODE */
+> I have no idea what this means.
+
+The PLL has 3 operation modes, and integer mode in one of them.
+We will add descriptions about PLL to comments.
+
+>
+>> +unsigned long CLK_CalPLLFreq_Mode0(unsigned long PllSrcClk,
+>> +                                  unsigned long u64PllFreq, u32 *u32Reg)
+> Again, don't put types into the variable name.
+>
+>> +{
+>> +       u32 u32TmpM, u32TmpN, u32TmpP;
+>> +       u32 u32RngMinN, u32RngMinM, u32RngMinP;
+>> +       u32 u32RngMaxN, u32RngMaxM, u32RngMaxP;
+>> +       u32 u32Tmp, u32Min, u32MinN, u32MinM, u32MinP;
+>> +       unsigned long u64PllClk;
+>> +       unsigned long u64Con1, u64Con2, u64Con3;
+> My eyes! Seriously, kernel style is not this way. Did checkpatch.pl pass
+> on this?
+
+We will completely rewrite this function to make it readable.
+
+>> +
+>> +       u64PllClk = 0;
+>> +       u32Min = (u32) -1;
+>> +
+>> +       if (!((u64PllFreq >= VSIPLL_FCLKO_MIN_FREQ) &&
+>> +           (u64PllFreq <= VSIPLL_FCLKO_MAX_FREQ))) {
+>> +               u32Reg[0] = ma35d1pll_freq[0].ctl0_reg;
+>> +               u32Reg[1] = ma35d1pll_freq[0].ctl1_reg;
+>> +               u64PllClk = ma35d1pll_freq[0].freq;
+>> +               return u64PllClk;
+>> +       }
+>> +
+>> +       u32RngMinM = 1UL;
+>> +       u32RngMaxM = 63UL;
+>> +       u32RngMinM = ((PllSrcClk / VSIPLL_FREFDIVM_MAX_FREQ) > 1) ?
+>> +                    (PllSrcClk / VSIPLL_FREFDIVM_MAX_FREQ) : 1;
+>> +       u32RngMaxM = ((PllSrcClk / VSIPLL_FREFDIVM_MIN_FREQ0) < u32RngMaxM) ?
+>> +                    (PllSrcClk / VSIPLL_FREFDIVM_MIN_FREQ0) : u32RngMaxM;
+>> +
+>> +       for (u32TmpM = u32RngMinM; u32TmpM < (u32RngMaxM + 1); u32TmpM++) {
+>> +               u64Con1 = PllSrcClk / u32TmpM;
+>> +               u32RngMinN = 16UL;
+>> +               u32RngMaxN = 2047UL;
+>> +               u32RngMinN = ((VSIPLL_FCLK_MIN_FREQ / u64Con1) > u32RngMinN) ?
+>> +                            (VSIPLL_FCLK_MIN_FREQ / u64Con1) : u32RngMinN;
+>> +               u32RngMaxN = ((VSIPLL_FCLK_MAX_FREQ / u64Con1) < u32RngMaxN) ?
+>> +                            (VSIPLL_FCLK_MAX_FREQ / u64Con1) : u32RngMaxN;
+> Is this clamp()?
+>
+>> +
+>> +               for (u32TmpN = u32RngMinN; u32TmpN < (u32RngMaxN + 1);
+>> +                    u32TmpN++) {
+>> +                       u64Con2 = u64Con1 * u32TmpN;
+>> +                       u32RngMinP = 1UL;
+>> +                       u32RngMaxP = 7UL;
+>> +                       u32RngMinP = ((u64Con2 / VSIPLL_FCLKO_MAX_FREQ) > 1) ?
+>> +                                     (u64Con2 / VSIPLL_FCLKO_MAX_FREQ) : 1;
+> Is this clamp()?
+>
+>> +                       u32RngMaxP = ((u64Con2 / VSIPLL_FCLKO_MIN_FREQ) <
+>> +                                     u32RngMaxP) ?
+>> +                                     (u64Con2 / VSIPLL_FCLKO_MIN_FREQ) :
+>> +                                     u32RngMaxP;
+>> +                       for (u32TmpP = u32RngMinP; u32TmpP < (u32RngMaxP + 1);
+>> +                            u32TmpP++) {
+>> +                               u64Con3 = u64Con2 / u32TmpP;
+>> +                               if (u64Con3 > u64PllFreq)
+>> +                                       u32Tmp = u64Con3 - u64PllFreq;
+>> +                               else
+>> +                                       u32Tmp = u64PllFreq - u64Con3;
+>> +
+>> +                               if (u32Tmp < u32Min) {
+>> +                                       u32Min = u32Tmp;
+>> +                                       u32MinM = u32TmpM;
+>> +                                       u32MinN = u32TmpN;
+>> +                                       u32MinP = u32TmpP;
+>> +
+>> +                                       if (u32Min == 0UL) {
+>> +                                               u32Reg[0] = (u32MinM << 12) |
+>> +                                                           (u32MinN);
+>> +                                               u32Reg[1] = (u32MinP << 4);
+>> +                                               return ((PllSrcClk * u32MinN) /
+>> +                                                       (u32MinP * u32MinM));
+>> +                                       }
+>> +                               }
+>> +                       }
+>> +               }
+>> +       }
+> It's too hard to read this code.
+
+We will completely rewrite this function to make it readable.
+And add formula descriptions to comments.
+
+>> +
+>> +       u32Reg[0] = (u32MinM << 12) | (u32MinN);
+> FIELD_PREP?
+>
+>> +       u32Reg[1] = (u32MinP << 4);
+> ditto?
+>
+>> +       u64PllClk = (PllSrcClk * u32MinN) / (u32MinP * u32MinM);
+>> +       return u64PllClk;
+>> +}
+>> +
+>> +/* VSI-PLL: FRACTIONAL_MODE */
+>> +unsigned long CLK_CalPLLFreq_Mode1(unsigned long PllSrcClk,
+>> +                                  unsigned long u64PllFreq, u32 *u32Reg)
+>> +{
+>> +       unsigned long u64X, u64N, u64M, u64P, u64tmp;
+>> +       unsigned long u64PllClk, u64FCLKO;
+>> +       u32 u32FRAC;
+>> +
+>> +       if (u64PllFreq > VSIPLL_FCLKO_MAX_FREQ) {
+>> +               u32Reg[0] = ma35d1pll_freq[1].ctl0_reg;
+>> +               u32Reg[1] = ma35d1pll_freq[1].ctl1_reg;
+>> +               u64PllClk = ma35d1pll_freq[1].freq;
+>> +               return u64PllClk;
+>> +       }
+>> +
+>> +       if (u64PllFreq > (VSIPLL_FCLKO_MIN_FREQ/(100-1))) {
+> Use a local variable for the right hand side of the comparison.
+
+We will completely rewrite this function to make it readable.
+And add formula descriptions to comments.
+
+
+>> +               u64FCLKO = u64PllFreq * ((VSIPLL_FCLKO_MIN_FREQ / u64PllFreq) +
+>> +                          ((VSIPLL_FCLKO_MIN_FREQ % u64PllFreq) ? 1 : 0));
+> Is this DIV_ROUND_UP() or something like that?
+>
+>> +       } else {
+>> +               pr_err("Failed to set rate %ld\n", u64PllFreq);
+>> +               return 0;
+>> +       }
+>> +
+>> +       u64P = (u64FCLKO >= VSIPLL_FCLK_MIN_FREQ) ? 1 :
+>> +              ((VSIPLL_FCLK_MIN_FREQ / u64FCLKO) +
+>> +               ((VSIPLL_FCLK_MIN_FREQ % u64FCLKO) ? 1 : 0));
+>> +
+>> +       if ((PllSrcClk > (VSIPLL_FREFDIVM_MAX_FREQ * (64-1))) ||
+>> +           (PllSrcClk < VSIPLL_FREFDIVM_MIN_FREQ1))
+>> +               return 0;
+>> +
+> [...]
+>> +               break;
+>> +       }
+>> +
+>> +       return pllfreq;
+>> +}
+>> +
+>> +static long ma35d1_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+>> +                                     unsigned long *prate)
+>> +{
+>> +       return rate;
+> This needs to do actual math and figure out that some rate will not
+> work and calculate what the rate will actually be if clk_set_rate() is
+> called with 'rate'.
+
+Got it. We will add clock rate check here.
+
+>> +}
+>> +
+>> +static int ma35d1_clk_pll_is_prepared(struct clk_hw *hw)
+>> +{
+>> +       struct ma35d1_clk_pll *pll = to_ma35d1_clk_pll(hw);
+>> +       u32 val = __raw_readl(pll->ctl1_base);
+>> +
+>> +       return (val & VSIPLLCTL1_PD_MSK) ? 0 : 1;
+>> +}
+>> +
+>> +static int ma35d1_clk_pll_prepare(struct clk_hw *hw)
+>> +{
+>> +       struct ma35d1_clk_pll *pll = to_ma35d1_clk_pll(hw);
+>> +       u32 val;
+>> +
+>> +       if ((pll->type == MA35D1_CAPLL) || (pll->type == MA35D1_DDRPLL)) {
+>> +               pr_warn("Nuvoton MA35D1 CAPLL/DDRPLL is read only.\n");
+>> +               return -EACCES;
+>> +       }
+>> +
+>> +       CLK_UnLockReg(pll);
+>> +       val = __raw_readl(pll->ctl1_base);
+>> +       val &= ~VSIPLLCTL1_PD_MSK;
+>> +       __raw_writel(val, pll->ctl1_base);
+>> +       CLK_LockReg(pll);
+>> +       return 0;
+>> +}
+>> +
+>> +static void ma35d1_clk_pll_unprepare(struct clk_hw *hw)
+>> +{
+>> +       struct ma35d1_clk_pll *pll = to_ma35d1_clk_pll(hw);
+>> +       u32 val;
+>> +
+>> +       if ((pll->type == MA35D1_CAPLL) || (pll->type == MA35D1_DDRPLL)) {
+>> +               pr_warn("Nuvoton MA35D1 CAPLL/DDRPLL is read only.\n");
+>> +       } else {
+>> +               val = __raw_readl(pll->ctl1_base);
+>> +               val |= VSIPLLCTL1_PD_MSK;
+>> +               __raw_writel(val, pll->ctl1_base);
+>> +       }
+>> +}
+>> +
+>> +static const struct clk_ops ma35d1_clk_pll_ops = {
+>> +       .is_prepared = ma35d1_clk_pll_is_prepared,
+>> +       .prepare = ma35d1_clk_pll_prepare,
+>> +       .unprepare = ma35d1_clk_pll_unprepare,
+>> +       .set_rate = ma35d1_clk_pll_set_rate,
+>> +       .recalc_rate = ma35d1_clk_pll_recalc_rate,
+>> +       .round_rate = ma35d1_clk_pll_round_rate,
+>> +};
+>> +
+>> +struct clk_hw *ma35d1_reg_clk_pll(enum ma35d1_pll_type type,
+>> +                                 u8 u8mode, const char *name,
+>> +                                 const char *parent,
+>> +                                 unsigned long targetFreq,
+>> +                                 void __iomem *base,
+>> +                                 struct regmap *regmap)
+>> +{
+>> +       struct ma35d1_clk_pll *pll;
+>> +       struct clk_hw *hw;
+>> +       struct clk_init_data init;
+>> +       int ret;
+>> +
+>> +       pll = kmalloc(sizeof(*pll), GFP_KERNEL);
+>> +       if (!pll)
+>> +               return ERR_PTR(-ENOMEM);
+>> +
+>> +       pll->type = type;
+>> +       pll->mode = u8mode;
+>> +       pll->rate = targetFreq;
+>> +       pll->ctl0_base = base + VSIPLL_CTL0;
+>> +       pll->ctl1_base = base + VSIPLL_CTL1;
+>> +       pll->ctl2_base = base + VSIPLL_CTL2;
+>> +       pll->regmap = regmap;
+>> +
+>> +       init.name = name;
+>> +       init.flags = 0;
+>> +       init.parent_names = &parent;
+>> +       init.num_parents = 1;
+>> +       init.ops = &ma35d1_clk_pll_ops;
+>> +       pll->hw.init = &init;
+>> +       hw = &pll->hw;
+>> +
+>> +       ret = clk_hw_register(NULL, hw);
+>> +       if (ret) {
+>> +               pr_err("failed to register vsi-pll clock!!!\n");
+>> +               kfree(pll);
+>> +               return ERR_PTR(ret);
+>> +       }
+>> +       return hw;
+>> +}
+>> diff --git a/drivers/clk/nuvoton/clk-ma35d1.c b/drivers/clk/nuvoton/clk-ma35d1.c
+>> new file mode 100644
+>> index 000000000000..ac8154458b81
+>> --- /dev/null
+>> +++ b/drivers/clk/nuvoton/clk-ma35d1.c
+>> @@ -0,0 +1,970 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+>> + */
+>> +
+>> +#include <linux/clk.h>
+> I don't see any clk consumer usage. Please remove.
++#include <linux/clk-provider.h>
+>> +#include <linux/clkdev.h>
+> I don't see any clkdev usage. Please remove.
+
+Yes, clk.h and clkdev.h are not used here. I will remove them.
+
+
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_address.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/spinlock.h>
+>> +#include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>> +
+>> +#include "clk-ma35d1.h"
+>> +
+>> +DEFINE_SPINLOCK(ma35d1_lock);
+> Why not static?
+
+ma35d1_lock is used in clk-ma35d1-divider.c only.
+I will move it form clk-ma35d1.c to clk-ma35d1-divider.c as add static.
+
+>
+>> +
+>> +static const char *const ca35clk_sel_clks[] = {
+>> +       "hxt", "capll", "ddrpll", "dummy"
+> Are these parent mappings? Please use 'struct clk_parent_data' instead
+> if so.
+>
+>> +};
+>> +
+>> +static const char *const sysclk0_sel_clks[] = {
+>> +       "epll_div2", "syspll"
+>> +};
+>> +
+> [...]
+>> +
+>> +static struct clk_hw **hws;
+>> +static struct clk_hw_onecell_data *ma35d1_hw_data;
+> Any reason to make these global pointers vs local pointers during probe?
+
+We will consider about using devm_of_clk_add_hw_provider() and remove 
+these global pointers.
+
+>
+>> +
+>> +static int ma35d1_clocks_probe(struct platform_device *pdev)
+>> +{
+>> +       int ret;
+>> +       struct device *dev = &pdev->dev;
+>> +       struct device_node *clk_node = dev->of_node;
+>> +       void __iomem *clk_base;
+>> +       struct regmap *regmap;
+>> +       u32 pllmode[5] = { 0, 0, 0, 0, 0 };
+>> +       u32 pllfreq[5] = { 0, 0, 0, 0, 0 };
+>> +
+>> +       dev_info(&pdev->dev, "Nuvoton MA35D1 Clock Driver\n");
+> Drop this banner message please.
+
+OK, I will remove it.
+
+>
+>> +       ma35d1_hw_data = devm_kzalloc(&pdev->dev, struct_size(ma35d1_hw_data,
+>> +                                     hws, CLK_MAX_IDX), GFP_KERNEL);
+>> +
+>> +       if (WARN_ON(!ma35d1_hw_data))
+>> +               return -ENOMEM;
+>> +
+>> +       ma35d1_hw_data->num = CLK_MAX_IDX;
+>> +       hws = ma35d1_hw_data->hws;
+>> +
+>> +       clk_node = of_find_compatible_node(NULL, NULL, "nuvoton,ma35d1-clk");
+>> +       clk_base = of_iomap(clk_node, 0);
+> Use platform_device APIs as you have a platform device here ('pdev').
+
+OK, I will fix it.
+
+>> +       of_node_put(clk_node);
+>> +       if (!clk_base) {
+>> +               pr_err("%s: could not map region\n", __func__);
+>> +               return -ENOMEM;
+>> +       }
+>> +       regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
+>> +                                                "nuvoton,sys");
+> Why is it a syscon?
+>
+>> +       if (IS_ERR(regmap))
+>> +               pr_warn("%s: Unable to get syscon\n", __func__);
+> How can we continue without the regmap?
+
+I will make it return error here.
+
+>
+>> +
+>> +       /* clock sources */
+>> +       hws[HXT] = ma35d1_clk_fixed("hxt", 24000000);
+> [...]
+>> +       /* EADC */
+>> +       hws[EADC_DIV] = ma35d1_clk_divider_table("eadc_div", "pclk2",
+>> +                                                clk_base + REG_CLK_CLKDIV4,
+>> +                                                0, 4, eadc_div_table);
+>> +       hws[EADC_GATE] = ma35d1_clk_gate("eadc_gate", "eadc_div",
+>> +                                        clk_base + REG_CLK_APBCLK2, 25);
+>> +
+>> +       ret = of_clk_add_hw_provider(clk_node, of_clk_hw_onecell_get,
+> Use devm_ variant.
+
+OK, I will fix it.
+
+>
+>> +                                    ma35d1_hw_data);
+>> +       if (ret < 0) {
+>> +               dev_err(dev, "failed to register hws for MA35D1\n");
+>> +               iounmap(clk_base);
+> Use devm mapping APIs to avoid unmapping on error path.
+
+>> +       }
+>> +       return ret;
+>> +}
+>> +
+>> +static const struct of_device_id ma35d1_clk_of_match[] = {
+>> +       { .compatible = "nuvoton,ma35d1-clk" },
+>> +       { },
+> Drop comma above so nothing can come after this.
+
+I will remove the comma.
+
+>
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ma35d1_clk_of_match);
+>> +
+>> +static struct platform_driver ma35d1_clk_driver = {
+>> +       .probe = ma35d1_clocks_probe,
+>> +       .driver = {
+>> +               .name = "ma35d1-clk",
+>> +               .of_match_table = ma35d1_clk_of_match,
+>> +       },
+>> +};
+>> +
+>> +static int __init ma35d1_clocks_init(void)
+>> +{
+>> +       return platform_driver_register(&ma35d1_clk_driver);
+>> +}
+>> +
+>> +postcore_initcall(ma35d1_clocks_init);
+>> +
+>> +MODULE_AUTHOR("Chi-Fang Li<cfli0@nuvoton.com>");
+>> +MODULE_DESCRIPTION("NUVOTON MA35D1 Clock Driver");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/nuvoton/clk-ma35d1.h b/drivers/clk/nuvoton/clk-ma35d1.h
+>> new file mode 100644
+>> index 000000000000..faae5a17e425
+>> --- /dev/null
+>> +++ b/drivers/clk/nuvoton/clk-ma35d1.h
+>> @@ -0,0 +1,198 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+>> + */
+>> +
+>> +#ifndef __DRV_CLK_NUVOTON_MA35D1_H
+>> +#define __DRV_CLK_NUVOTON_MA35D1_H
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/clkdev.h>
+> Are these includes used?
+
+I remove them and compile passed, so I will will remove them in the next 
+version.
+
+
+>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/spinlock.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/mfd/ma35d1-sys.h>
+> These probably aren't needed to be included here. Just forward declare
+> structs you need and include the headers in the C file.
+
+Sure, we will move all #include in clk-ma35d1.h, and only include 
+required .h files in C file.
+
+>> +
+> [...]
+>> +
+>> +struct clk_hw *ma35d1_reg_adc_clkdiv(struct device *dev,
+>> +                                   const char *name,
+>> +                                   const char *parent_name,
+>> +                                   unsigned long flags,
+>> +                                   void __iomem *reg, u8 shift,
+>> +                                   u8 width, u32 mask_bit);
+>> +
+>> +extern spinlock_t ma35d1_lock;
+> Why?
+I will remove all "extern" ma35d1_lock, as it will be static in 
+clk-ma35d1-divider.c.
+
+
+Best regards,
+
+Jacky Huang
+
+
