@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B826BE587
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:26:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 777E56BE58D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbjCQJ0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:26:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37982 "EHLO
+        id S230499AbjCQJ12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:27:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231344AbjCQJ02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:26:28 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10D1B857C
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:26:24 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id o12so17808592edb.9
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:26:24 -0700 (PDT)
+        with ESMTP id S231163AbjCQJ11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:27:27 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA4CBCBA1
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:27:23 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id y4so17928297edo.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:27:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679045183;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1679045242;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dS1ViTo7YXyoHaesprxlUZ73a5LNDAZaMI4/y98OGuE=;
-        b=tyy1h+/Rm73cWzgEe1RM3BtxotuK6dKfzT1mKLI4UP2oyUQUP4x+WLCi7NAplS54Tb
-         n74zCjRqOOEZENLO0BRqMkVmy29sD0/pztmylHrQSYGlKkU+p8rHnyRqtKz4f2l9UgbI
-         Ixd5CEwtb6SyMdJ7YAKTLAggVpn3O62mCgRkseNRODAXHqaizsPvBiGYeKySM3Inmogk
-         DTO8qjUvvCi8ZVmSmAzO1ApPPleLxA1auE+zNNaq1fVHzI+5UrX3gqDXk6yfMC9rom98
-         jj7sG0ryeYKPNHPM5Za+GXpXi2DrIEo9Bm9wVxGKfvbkCjYeScDUau3WQrB9xxVr7LuI
-         GQ3A==
+        bh=/vpwcPBpvj9pishkPLLrcgxPr2/RjOuXIj7XCYaMKNA=;
+        b=AL0npIf713GInE0x+HCfSfiAErIUh+5J2yvd3OPKKOZgFVAnd1Gabp2rdpKnSbVZj4
+         B8Rd9dh1JliM8dS0j4N7GN5BjeYhtGkvrwAb0DP9boUMKUUBrDP/y1T2KhoiaGV2k972
+         EtmcC4MUxNIGTq+iLftWKpI/5GTX4JMi7/EP+cJa3K5HnUq5B26q5VTxdvoVDd+QS/mD
+         rM2O3O5I6yMDwMbhA9oQRA2aKuWdSdlh5dgMh9W19FjNQIs+COBTGbmY81TH+WU7mGRg
+         wzrD1gxfOBCO+p/7zRt3Lo13eq+nRLmoOny5FLlHqhWzKn0gIgjZGqgvh1VxprP4t3aX
+         C3nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679045183;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20210112; t=1679045242;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dS1ViTo7YXyoHaesprxlUZ73a5LNDAZaMI4/y98OGuE=;
-        b=Os2nqGFJRuXIUu6q9+WvDhVaScBud9sVHhEset0l2IwWOesulHLAb4CAwPnHQqgDgl
-         VtFt6ijhQh7xCaME2ljlWnulCOoQNWZGDqlLceiTFzBG/SoPxyK4W3LaoGgzihpC0vND
-         1cdCW3g7K2k/TwBBjDByiCn97IK9RnDkrm/3ST+v/ZjExHRsMZBc6YwsAWaziGFWNUZG
-         kfzewvJN+JfG3tbBH3EvdzJZLXupp/Hh6xGLT0kkrVb/N5KBJmqp65ovf/XWhwlTOWXk
-         8+pWF/PinMPCUXvf0xx/WQ+wyekfcj0Dzal6XpfD0dPMv6OzCSc08q6pOx7vlGDFs2+y
-         Z3iw==
-X-Gm-Message-State: AO0yUKXqBAWxMWMB2xi/HtcCtQwolrsls8+Em0C31JJrBfJF50RRRCyh
-        n61gA+ODbQ0KKy9RRKdIAN+2Gg==
-X-Google-Smtp-Source: AK7set9xWJGf4X02U+zMuBYCf/KV6yHt7pRADOs3M3LCzDMMcohMQJRFroGQ2jAbyqSumn9pK8pf9A==
-X-Received: by 2002:a05:6402:1057:b0:4fa:96fd:797b with SMTP id e23-20020a056402105700b004fa96fd797bmr2268033edu.6.1679045183373;
-        Fri, 17 Mar 2023 02:26:23 -0700 (PDT)
+        bh=/vpwcPBpvj9pishkPLLrcgxPr2/RjOuXIj7XCYaMKNA=;
+        b=T5xcRBgt0bWA8GKf/Z+akV5m+CTVYcIZ+oZsx+pJDOOAMvObj0OIHCAGlif4Yjwx2u
+         p5i9vtMsLUDfnB5GQlHunOsvdwwd7fDF8fxYvt0m2jYZrhiTli/lKk8+C9h8AmDfh0E1
+         7MAfLCNys9YSKkFgJWFw537jtYPS91r+/QH+NqAksQP9Cd3hmg2E0fgArnHITNOUhwIR
+         bXPfVt+emGv9OgrL5eoCXPoRO5SfMkVMNcl9OfhORAY4LA26kvKHnCRAMW/zPtLEQRmU
+         hz8sh4GmNNnTdsngrNRycEs5TXJ2oGB1HPHOekvaSGTg6OqhYqs21V4pjydvbLy2ObvC
+         xLPA==
+X-Gm-Message-State: AO0yUKUspRjNexjCT5bwXJOt9HiOyhZQEhMejRew6kdZOFIzUT9/sndo
+        j/UkK84xK5DU16o/BQMgLnjhzg==
+X-Google-Smtp-Source: AK7set/nMbiF7GOlcn9PyjlA2lZijSx/2JZto82YrGSxJKdzBet8Ky/XFm0gwi0lrNol3+2x+TadhQ==
+X-Received: by 2002:a17:906:b844:b0:931:ce20:db8e with SMTP id ga4-20020a170906b84400b00931ce20db8emr1719938ejb.51.1679045241043;
+        Fri, 17 Mar 2023 02:27:21 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id i4-20020a170906850400b0093018c7c07dsm746241ejx.82.2023.03.17.02.26.22
+        by smtp.gmail.com with ESMTPSA id g22-20020a170906199600b008b1797b77b2sm731814ejd.221.2023.03.17.02.27.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 02:26:22 -0700 (PDT)
-Message-ID: <5a8fa13b-d9f7-aca8-3898-51d6e53fa78a@linaro.org>
-Date:   Fri, 17 Mar 2023 10:26:21 +0100
+        Fri, 17 Mar 2023 02:27:20 -0700 (PDT)
+Message-ID: <1f62677c-158d-967b-7ccb-99594e631ce8@linaro.org>
+Date:   Fri, 17 Mar 2023 10:27:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v5 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-us i2c
- property
+Subject: Re: [PATCH] ASoC: dt-bindings: adi,adau17x1: fix indentaion and
+ example
 Content-Language: en-US
-To:     Andi Shyti <andi.shyti@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-References: <20230314215612.23741-4-andi.shyti@kernel.org>
- <20230314221614.24205-1-andi.shyti@kernel.org>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230316191918.266312-1-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314221614.24205-1-andi.shyti@kernel.org>
+In-Reply-To: <20230316191918.266312-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,33 +79,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 23:16, Andi Shyti wrote:
-> "fsl,timeout" is marked as deprecated and replaced by the
-> "i2c-scl-clk-low-timeout-us" i2c property.
+On 16/03/2023 20:19, Krzysztof Kozlowski wrote:
+> Fix errors in binding indentation and example:
 > 
-> Use this latter and, in case it is missing, for back
-> compatibility, check whether we still have "fsl,timeout" defined.
-> 
-> Signed-off-by: Andi Shyti <andi.shyti@kernel.org>
-> Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> Hi,
-> 
-> this should be the only patch where I forgot an 'ms'.
-> It should be fixed now.
-> 
-> Thanks, Chris.
-> 
-> V4 -> v5
->  - replace /ms/us/ in the commit subject and in the comment.
-> 
+>   adi,adau17x1.yaml:8:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+>   adi,adau17x1.example.dts:29.3-30.1 syntax error
 
-Please send entire new v5, because this messes with our
-threading/reviewing and our tools.
+Typo in subject. I'll send a v2.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
