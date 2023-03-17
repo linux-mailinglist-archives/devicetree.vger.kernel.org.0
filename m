@@ -2,144 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F51C6BE144
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 07:30:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7775A6BE15D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 07:39:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbjCQGaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 02:30:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38846 "EHLO
+        id S229875AbjCQGjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 02:39:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjCQGae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 02:30:34 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7596773C;
-        Thu, 16 Mar 2023 23:30:33 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id ix20so4327860plb.3;
-        Thu, 16 Mar 2023 23:30:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679034632;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QowYjOwpVeC+cmhtPU+4JUq/a+8cTteF1DVyYYSO1iY=;
-        b=l2WwTVnblFcR+NDGUILKqhkLSo/PPXRbUyCP3ps08M59W/rMYB33ormF3RBDGAs7WE
-         L3o95/WlF2oe9GVEtLGtmbXPobglas+d2YGJti8Kpg9N7n6B9sv74E/g33k2OQy3lFQP
-         9xfRxOZDwAibCIvDT7nKYUEXxxcUGpewRLGEfDY4mfW8rmjrrJMiS0MskiFU00C8Pc7j
-         TS0CQJ9hPdqVKoOb6OS5ZNtbo5X3skRjpif5GRgJU6MX+il0+OE6HtY+bR+RLb5o0t/8
-         Ee6MhertRAcox4n7aJxVGqrPsMKLiP8CGT5AqNeiyYiS4rrrOAjiC9oV+fvX6mpWfXym
-         rToQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679034632;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QowYjOwpVeC+cmhtPU+4JUq/a+8cTteF1DVyYYSO1iY=;
-        b=zN/X6w5t+SChee6wmbkf5+tPo953gVeHru/YzwGIUmTy9U0fVmsJdlOPUXrVM8Yif/
-         cXoJJ00aMDB37av4XQURs7KChfgIt6R47gdrGuxNavEAUpy+iiIE1Hc7WawvumMNxbZe
-         hg1UkyJisf+HxZyrgD/17Oi71f2R3X4hJgzyzyWtPkLkeZxBv/cqp4pk0LwTOO3ekgid
-         ZuBX1OEsm12+Y9UqQnqPlQNneymSNdLiA1gyYeME+7onerKoSJPVi5AOSAjPhb6MMG8x
-         Cy+NIwYpkii/lBNAaV2fhr1p2A+7xqyst1g9sa7F7qua/Xj45alrl+Tlk3XMeBco1Dr9
-         STQg==
-X-Gm-Message-State: AO0yUKXwXPI6/aBnNYFDjknb9BXKjeXPGmYghkCPbt1oSomsyqyAZx5H
-        +k09YqU/LNlyi3CZjYp8yms=
-X-Google-Smtp-Source: AK7set/jCr8RT3wJrihBeThKo6LPb99Ma+fIdEQqKEHJqXbq96VBfVdC2af3+6srNdH8FfiZFXd4QA==
-X-Received: by 2002:a17:903:2283:b0:19e:7c33:3722 with SMTP id b3-20020a170903228300b0019e7c333722mr7617579plh.40.1679034632455;
-        Thu, 16 Mar 2023 23:30:32 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id j12-20020a17090276cc00b0019abb539cddsm753773plt.10.2023.03.16.23.30.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 23:30:32 -0700 (PDT)
-Message-ID: <1a1277ac-4ae5-eaab-01c3-0242c12be76b@gmail.com>
-Date:   Fri, 17 Mar 2023 14:30:28 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 00/15] Introduce Nuvoton ma35d1 SoC
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <f2699aa1-4d8a-48c0-b332-484db0b04252@app.fastmail.com>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <f2699aa1-4d8a-48c0-b332-484db0b04252@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230037AbjCQGja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 02:39:30 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A835BDBD;
+        Thu, 16 Mar 2023 23:39:11 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32H6JwQt004498;
+        Fri, 17 Mar 2023 06:38:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=pDWQnqNyjpbCezBdx2gkQLrqL0n1VlRnEw54BojTBow=;
+ b=Z6DKxwmD9c/ZIJ/O/xvns+kbUOlgt4xm6Km4lJ5YW01W8lLBcP8QGhoM4Y7Cta9/fLGE
+ jQ+tQyiRROEiX9gkraogii2M8s41jNP5NlA+W5M9pWvNFOlS6/ZLEDaIYdxKeqmqTVmd
+ kSpHfY1uf5EQ+qt0/fGs7k3Yu0Oa/u2BZl+gjFII2V1S26JEFNqyeZ1/KYBbcRmDS/Fc
+ M2sCMmoQkRA9DvXuACLoyjD1gL0RtrmtNVJRTnvMxfdCUECwXkKxXLwMm1G2dENl5WtH
+ GdIc2Cl4zm8TOe+Y/iBYChBKKYkNlR3IfMuUHAn/xnNJ1RoWiux9jas07+KLe9aht3gL YA== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pbpxjvbf9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 17 Mar 2023 06:38:41 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 32H6ca0o000618;
+        Fri, 17 Mar 2023 06:38:36 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3p8jqmd71c-1;
+        Fri, 17 Mar 2023 06:38:36 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 32H6cau5000611;
+        Fri, 17 Mar 2023 06:38:36 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 32H6cZma000608;
+        Fri, 17 Mar 2023 06:38:36 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id 5B7184E4A; Fri, 17 Mar 2023 12:08:35 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, manivannan.sadhasivam@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH v3 0/2] Add support for PCIe PHY in SDX65
+Date:   Fri, 17 Mar 2023 12:08:32 +0530
+Message-Id: <1679035114-19879-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BiUNjYERgVPprdTpwc6GEiNd2q67JLfh
+X-Proofpoint-ORIG-GUID: BiUNjYERgVPprdTpwc6GEiNd2q67JLfh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-17_03,2023-03-16_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ adultscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015 malwarescore=0
+ priorityscore=1501 bulkscore=0 phishscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303170044
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+Changes in v3:
+ - Addressed minor comments from Krzysztof of removing redundant binding
+   usage in commit message.
+
+Changes in v2:
+ - Addressing Dmitry's comments and adjusting according to new bindings.
+ - Rebased on top of 6.3-rc1.
+
+This series adds support for PCIe PHY found in Qualcomm SDX65 platform.
+The PHY version is v5.20 which has different register offsets compared with
+previous v5.0x and v4.0x versions. So separate defines are introducted to
+handle the differences.
+
+Thanks,
+Rohit.
 
 
-On 2023/3/16 下午 10:05, Arnd Bergmann wrote:
-> On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> This patchset adds initial support for the Nuvoton ma35d1 SoC, including
->> initial device tree, clock driver, reset driver, and serial driver.
->>
->> This patchset cover letter is based from the initial support for Nuvoton
->> ma35d1 to keep tracking the version history.
->>
->> This patchset had been applied to Linux kernel 6.3-rc2 and tested on the
->> Nuvoton ma35d1 SOM evaluation board.
->>
->> (ma35d1 information:
->> https://www.nuvoton.com/products/microprocessors/arm-cortex-a35-mpus/)
->> MA35D1 porting on linux-5.10.y can be found at:
->> https://github.com/OpenNuvoton/MPU-Family
-> Hi Jacky,
->
-> Thanks a lot for your submission. I saw this presented at
-> EmbeddedWorld yesterday and asked about mainline Linux
-> support, but did not expect to see the patches this soon ;-)
->
-> The easiest process for getting the series merged is to
-> have me add it the entire series to the SoC tree after the
-> individual drivers have been reviewed by the respective
-> subsystem maintainers that are already on Cc here. When
-> the review is complete, you can add soc@kernel.org to Cc,
-> so they show up in patchwork, or alternatively send a pull
-> request for a git tree to that address. Until then, you
-> can add my own email address to Cc so I can follow the
-> reviews.
->
-> After the initial merge, the normal method for additional
-> device drivers is to have them sent for inclusion to the
-> subsystem maintainers. The soc tree and soc@kernel.org address
-> is then only used for changes in arch/arm64, i.e. updates
-> to the dts files, Kconfig, defconfig and MAINTAINERS,
-> as well as the drivers/soc and drivers/firmware directories,
-> if you have anything in there.
->
-> If you have any additional questions about the process,
-> feel free to also ask me.
->
->       Arnd
+Rohit Agarwal (2):
+  dt-bindings: phy: qcom,qmp: Add SDX65 QMP PHY
+  phy: qcom-qmp: Add support for SDX65 QMP PCIe PHY
 
-Hi Anrd,
+ .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 165 +++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |   3 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5_20.h      |   1 +
+ .../phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v5_20.h |  24 +++
+ 5 files changed, 194 insertions(+)
 
-Thank you very much for your kind help. You explained it so well,
-I have understood the process. We got a lot of suggestions for this
-patchset, and there are a lot of issues to fix. When most of the
-problems get solved and acknowledged by the reviewers, I will
-add you and soc@kernel.org to Cc.
-
-
-Best regards,
-
-Jacky Huang
+-- 
+2.7.4
 
