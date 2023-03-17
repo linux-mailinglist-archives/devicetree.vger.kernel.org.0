@@ -2,174 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 861A26BF4B0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 22:54:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB8F16BF4C0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 22:57:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbjCQVyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 17:54:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
+        id S229616AbjCQV5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 17:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231350AbjCQVyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 17:54:41 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BCC0AF1F;
-        Fri, 17 Mar 2023 14:54:18 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id k15so2947238pgt.10;
-        Fri, 17 Mar 2023 14:54:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679090057;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QgWoxlECZXdVrynxfG/iUFVQwxWjeSo565mClnIZWnc=;
-        b=YaTxmeYgjyyGDmiFAS7L+PljTKNdLcc5nol9+/wEE4H/wa86Znz2DX0ZJfrJwf3NQn
-         mi3C91RvdtoBgNdOgNPzvLFxbkHQkvXTlyahrA98EeV9jXJbi9Sf/XEa9/M9qyswTCDW
-         D99bJK6fLSCVJlxECISp5CFXVVNG2U3nnd/arcWTtrF02mJTSLao1RZSGb5ddQAsDtD0
-         V/Kg+cT9lPI18ueEdAm4jK/b8QlthdZ8NjbUa5tvX9L4AXpUzN7XDHJnLEp7WPDEa0Vo
-         rMhgXgfShXbVMEgHkEdJHLTq9hSBwCIDpZz3rogKfyxXw7dAmr6u14NdJ5LyUmR3w+3T
-         PuPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679090057;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QgWoxlECZXdVrynxfG/iUFVQwxWjeSo565mClnIZWnc=;
-        b=1QN89Y+2vIkEyIxSCLPLnH6F4dehA9JFpJQDEn6TGwR/mQm2eZIb05GvkXtJatv+qN
-         VRDVkKm6WQfM4P2tO0/fpPz/68zgBD+WhQWdMm5d69r602tGUYDt3OrVDkEP/ZecGrKx
-         xxZa81e+UDtnaw2xz1/rNWKKalD7mLMtcV9JGz55HS1UV3AQBI3sxhSeup/o0e1XQTw8
-         iiGzYu6gt+7S2d2MWhN5wNIU+GrUcC06pH7+zJviJVY52Za8sk/W5fmZDdRMe9Yn22D7
-         U+TJPB6YSqXQw1IninFfNJPx9YA/X4cbhX2rzG/LR0Mmyy5BjNybNbB+Fqam1WzjVd5f
-         kvNQ==
-X-Gm-Message-State: AO0yUKU/6/l8vrpFz1Q3BRVI68fR2yK8Im5xX+kZcD2dmJqXHLOFx1yD
-        JWPqUbKASYyPaFOBxFtQVvI=
-X-Google-Smtp-Source: AK7set++51QrZc9ogfyZzZlsl7EgVQqsEkLr7zb0xLfkGDusnfnLbtVRqFamGeYkvD60E3j8n/6MAg==
-X-Received: by 2002:a62:520f:0:b0:5cd:d766:8a2b with SMTP id g15-20020a62520f000000b005cdd7668a2bmr6584338pfb.6.1679090057160;
-        Fri, 17 Mar 2023 14:54:17 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id 22-20020aa79256000000b00582f222f088sm1998885pfp.47.2023.03.17.14.54.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 14:54:16 -0700 (PDT)
-Message-ID: <0bbaa346-edbf-a1b9-3c95-5a1aacaf0c44@gmail.com>
-Date:   Fri, 17 Mar 2023 14:54:10 -0700
+        with ESMTP id S231201AbjCQV5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 17:57:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD285298D5;
+        Fri, 17 Mar 2023 14:56:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2BB01B825C3;
+        Fri, 17 Mar 2023 21:56:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6DC6C433EF;
+        Fri, 17 Mar 2023 21:56:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679090211;
+        bh=RcXRkLZJ0QUiQo2PkgHUJgLw7K4eCtZTz+7xcLtd8gc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=LQ52gPcq7B7KpQewa8arpjOH/RHGDvWniPMgCTUt08BidUSzn57gVqCgbA/UJfQQw
+         2noMdjLPJVPIru50MD0BA+8HhW0eI9nnyoNGvJRs7DDOUwHgFjaRwjLzllptVfpR99
+         00CFMbcc4AWGYT4e6Gq9L5KRkscAryhZFb3yBBejqT1OvdxwTZ6cVBlXWJrOrY3VMc
+         KSTQVL+pLrh1jl1JzsXvmmmdHBKwQvJ/yTtcNznvtoZuRFm4CQ6gZZw9OUqVcHgrp/
+         PkoTjUF1DLvgg0dk2YqynfsQYOxQfWr69Env2PfEABv9VkP1IKYrMmwrSpzkq3b6x7
+         5h4SCeHq9s9Vg==
+Date:   Fri, 17 Mar 2023 16:56:50 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     lorenzo.pieralisi@arm.com, kw@linux.com, Zhiqiang.Hou@nxp.com,
+        bhelgaas@google.com, devicetree@vger.kernel.org,
+        gustavo.pimentel@synopsys.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, minghuan.Lian@nxp.com,
+        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
+        shawnguo@kernel.org
+Subject: Re: [PATCH 1/1] PCI: layerscape: Add power management support
+Message-ID: <20230317215650.GA1973940@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: Probing devices by their less-specific "compatible" bindings
- (here: brcmnand)
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        "William (Zhenghao) Zhang" <william.zhang@broadcom.com>
-References: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230317200528.2481154-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+William,
+On Fri, Mar 17, 2023 at 04:05:28PM -0400, Frank Li wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> Add PME_Turn_Off/PME_TO_Ack handshake sequence, and finally
+> put the PCIe controller into D3 state after the L2/L3 ready
+> state transition process completion.
 
-On 3/17/23 03:02, Rafał Miłecki wrote:
-> Hi, I just spent few hours debugging hidden hw lockup and I need to
-> consult driver core code behaviour.
-> 
-> I have a BCM4908 SoC based board with a NAND controller on it.
-> 
-> 
-> ### Hardware binding
-> 
-> Hardware details:
-> arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> 
-> Relevant part:
-> nand-controller@1800 {
->      compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", 
-> "brcm,brcmnand";
->      reg = <0x1800 0x600>, <0x2000 0x10>;
->      reg-names = "nand", "nand-int-base";
-> }:
-> 
-> Above binding is based on the documentation:
-> Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> 
-> 
-> ### Linux drivers
-> 
-> Linux has separated drivers for few Broadcom's NAND controller bindings:
-> 
-> 1. drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c for:
-> brcm,nand-bcm63138
-> 
-> 2. drivers/mtd/nand/raw/brcmnand/brcmnand.c for:
-> brcm,brcmnand-v2.1
-> brcm,brcmnand-v2.2
-> brcm,brcmnand-v4.0
-> brcm,brcmnand-v5.0
-> brcm,brcmnand-v6.0
-> brcm,brcmnand-v6.1
-> brcm,brcmnand-v6.2
-> brcm,brcmnand-v7.0
-> brcm,brcmnand-v7.1
-> brcm,brcmnand-v7.2
-> brcm,brcmnand-v7.3
-> 
-> 3. drivers/mtd/nand/raw/brcmnand/brcmstb_nand.c for:
-> brcm,brcmnand
-> 
-> 
-> ### Problem
-> 
-> As first Linux probes my hardware using the "brcm,nand-bcm63138"
-> compatibility string driver bcm63138_nand.c. That's good.
-> 
-> It that fails however (.probe() returns an error) then Linux core starts
-> probing using drivers for less specific bindings.
+Can you please include a sentence or two about what this means for
+devices below the PCIe controller?  Is this guaranteed to be safe for
+them, i.e., can all PCIe devices tolerate PME_Turn_Off, etc., and
+resume correctly afterwards?
 
-Why does it fail?
+I suspect other drivers will copy this sort of pattern if it is safe
+and useful.
 
-> 
-> In my case probing with the "brcm,brcmnand" string driver brcmstb_nand.c
-> results in ignoring SoC specific bits and causes a hardware lockup. Hw
-> isn't initialized properly and writel_relaxed(0x00000009, base + 0x04)
-> just make it hang.
+>  struct ls_pcie {
+>  	struct dw_pcie *pci;
+> +	const struct ls_pcie_drvdata *drvdata;
+> +	void __iomem *pf_base;
+> +	void __iomem *lut_base;
+> +	bool big_endian;
+> +	bool ep_presence;
 
-Well, the missing piece here is that brcmnand.c is a library driver, 
-therefore it needs an entry point, the next one that matches is 
-brcmstb_nand.c.
+This means "any downstream device present", right?  Could be an
+Endpoint or could be a Switch Upstream Port?  I guess it's basically a
+cache of dw_pcie_link_up() at ls_pcie_host_init()-time.
 
-> 
-> That obviously isn't an acceptable behavior for me. So I'm wondering
-> what's going on wrong here.
-> 
-> Should Linux avoid probing with less-specific compatible strings?
-> Or should I not claim hw to be "brcm,brcmnand" compatible if it REQUIRES
-> SoC-specific handling?
-> 
-> An extra note: that fallback probing happens even with .probe()
-> returning -EPROBE_DEFER. This actually smells fishy for me on the Linux
-> core part.
-> I'm not an expect but I think core should wait for actual error without
-> trying less-specific compatible strings & drivers.
-> 
-> ______________________________________________________
-> Linux MTD discussion mailing list
-> http://lists.infradead.org/mailman/listinfo/linux-mtd/
+> +	bool pm_support;
+> +	struct regmap *scfg;
+> +	int index;
+>  };
 
--- 
-Florian
+> +static void ls1021a_pcie_send_turnoff_msg(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +
+> +	if (!pcie->scfg) {
+> +		dev_dbg(pcie->pci->dev, "SYSCFG is NULL\n");
+> +		return;
+> +	}
+> +
+> +	/* Send Turn_off message */
+> +	regmap_read(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), &val);
+> +	val |= PMXMTTURNOFF;
+> +	regmap_write(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), val);
+> +
+> +	/*
+> +	 * Components with an upstream port must respond to
+> +	 * PME_Turn_Off with PME_TO_Ack but we can't check.
+> +	 *
+> +	 * The standard recommends a 1-10ms timeout after which to
+> +	 * proceed anyway as if acks were received.
 
+Spec citation please.
+
+> +	 */
+> +	mdelay(10);
+> +
+> +	/* Clear Turn_off message */
+> +	regmap_read(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), &val);
+> +	val &= ~PMXMTTURNOFF;
+> +	regmap_write(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), val);
+> +}
+
+> +static bool ls_pcie_pm_check(struct ls_pcie *pcie)
+
+This is used as a boolean ("if (!ls_pcie_pm_check())") so it needs a
+better name.  "Check" doesn't give any hint about what a true or false
+return value means.  Something like "pm_supported" *would* give a
+hint because "if (!ls_pcie_pm_supported())" is a sensible question to
+ask.
+
+> +{
+> +	if (!pcie->ep_presence) {
+> +		dev_dbg(pcie->pci->dev, "Endpoint isn't present\n");
+> +		return false;
+> +	}
+> +
+> +	if (!pcie->pm_support)
+> +		return false;
+
+Why test the negative ("!pcie->pm_support") and then return false?
+How about:
+
+  if (pcie->pm_support)
+    return true;
+
+  return false;
+
+or even better, just:
+
+  return pcie->pm_support;
+
+> +	return true;
+> +}
