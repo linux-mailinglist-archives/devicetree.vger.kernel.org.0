@@ -2,162 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 656B46BE2E8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:19:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5BA06BE2F4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjCQITD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Mar 2023 04:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49536 "EHLO
+        id S230080AbjCQIUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:20:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbjCQITA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:19:00 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1B1183EA;
-        Fri, 17 Mar 2023 01:18:18 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id C920024DC31;
-        Fri, 17 Mar 2023 16:17:08 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Mar
- 2023 16:17:08 +0800
-Received: from [192.168.125.74] (113.72.145.194) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 17 Mar
- 2023 16:17:07 +0800
-Message-ID: <555ba3ba-085b-b7e0-f06f-3ec856034801@starfivetech.com>
-Date:   Fri, 17 Mar 2023 16:17:06 +0800
+        with ESMTP id S229967AbjCQITx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:19:53 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3EBE43475
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:19:18 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id eh3so17182691edb.11
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:19:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679041152;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5xqxJ/Errvh7wTgkyukFgXhpHkQvHOoUf0yySqdZXEc=;
+        b=WuHwb10j4ZxrwbpDxJqZm1zFX4l3Ic3OXIYvg3IoG4vH8Dxg/a3knpSIJn2vjYdJ55
+         zECsKris+3Wy4AosfG5m6uXFaWDmPjLH5cXynqreGAyEmy6Ho//IpEiICB3A4SgimERU
+         33EHFCjKrpDzJMdgsMivryFfzJAlO8A84MfizU66pMLS/suklD8GJh3EoBI6dV9LsJEk
+         9vJ9Io2Ymh0WHcHrGzzxB7QcgYshT+InI0GoIRG3ZYIREXDhiWOVKTKKyr8ikjFazVXl
+         xKYJqGZp59mteUhzHTlo+73wZXERUsy/nwBvLT824vetfRU8nFFwW6NXq5ZHkcgGaEF8
+         Ok4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679041152;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5xqxJ/Errvh7wTgkyukFgXhpHkQvHOoUf0yySqdZXEc=;
+        b=xFQ7cIaWbFTHeJ6oQM1xzlUrses3pnVEn6Z3ykQqiX6s45RPAoSQTj6dSUJgjf9yde
+         pHpSm9rW7PHgM8BCML2/BcREGlP7/8pBRydIznAB/msP2ZnoBlISCkCl7zhYmABFd/Jr
+         ePUs93vj4z1yEpD9bxEkWg/15eREbdJU8lhleHUntbH3a4njxg6/z4UjGfLnpjzqw0fY
+         tyo3O7cbUVU8ahutzPgpkwWFrxnCMFwMt/4KPkpbWDhhgIAJJ45upHhmg4qVu3uOipwQ
+         XUArL6Vh6duNEWt81rVGAx/hfMY5hKaIcvAhNmNM2eQalNcDZTtu85b9KHW3Yx9fekAO
+         PVog==
+X-Gm-Message-State: AO0yUKWy2SXP9TPu9NbXBFNR5hFgM+LAPpQH1oOMdUbBppCmAY1fyY1m
+        LQvLPdcf+jLF5+Tw7n0AFWZ3yQ==
+X-Google-Smtp-Source: AK7set+GY5sRcdwV9p/Ih5m6RTtaxAHA+cQleoUzhIWWZQ+nikjFfQYvaJcuYuAuJa25hiouXcahzw==
+X-Received: by 2002:a17:906:8393:b0:8ae:f73e:233f with SMTP id p19-20020a170906839300b008aef73e233fmr14594869ejx.32.1679041152263;
+        Fri, 17 Mar 2023 01:19:12 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
+        by smtp.gmail.com with ESMTPSA id x23-20020a50d617000000b004fa268da13esm722779edi.56.2023.03.17.01.19.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 01:19:10 -0700 (PDT)
+Message-ID: <976e4d20-fa9a-bbdc-396a-62775eb347fc@linaro.org>
+Date:   Fri, 17 Mar 2023 09:19:09 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-From:   Hal Feng <hal.feng@starfivetech.com>
-Subject: Re: [PATCH v5 06/21] reset: Create subdirectory for StarFive drivers
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-CC:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230311090733.56918-1-hal.feng@starfivetech.com>
- <20230311090733.56918-7-hal.feng@starfivetech.com>
- <3df9aa881dce1cfb1360c4d4fe6f609f5a73f97b.camel@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car
+ Gen4 support
 Content-Language: en-US
-In-Reply-To: <3df9aa881dce1cfb1360c4d4fe6f609f5a73f97b.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [113.72.145.194]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+References: <87ttzq8ga4.wl-kuninori.morimoto.gx@renesas.com>
+ <87sffa8g99.wl-kuninori.morimoto.gx@renesas.com>
+ <b2810924-169d-0bad-8f20-6ec2e683d170@gmail.com>
+ <87a60c6z3w.wl-kuninori.morimoto.gx@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <87a60c6z3w.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Mar 2023 15:34:26 +0100, Philipp Zabel wrote:
-> On Sa, 2023-03-11 at 17:07 +0800, Hal Feng wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->> 
->> This moves the StarFive JH7100 reset driver to a new subdirectory in
->> preparation for adding more StarFive reset drivers.
->> 
->> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  MAINTAINERS                                          | 2 +-
->>  drivers/reset/Kconfig                                | 8 +-------
->>  drivers/reset/Makefile                               | 2 +-
->>  drivers/reset/starfive/Kconfig                       | 8 ++++++++
->>  drivers/reset/starfive/Makefile                      | 2 ++
->>  drivers/reset/{ => starfive}/reset-starfive-jh7100.c | 0
->>  6 files changed, 13 insertions(+), 9 deletions(-)
->>  create mode 100644 drivers/reset/starfive/Kconfig
->>  create mode 100644 drivers/reset/starfive/Makefile
->>  rename drivers/reset/{ => starfive}/reset-starfive-jh7100.c (100%)
->> 
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index caba3b61ad5c..87f210e357ca 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19940,7 +19940,7 @@ STARFIVE JH7100 RESET CONTROLLER DRIVER
->>  M:	Emil Renner Berthing <kernel@esmil.dk>
->>  S:	Maintained
->>  F:	Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
->> -F:	drivers/reset/reset-starfive-jh7100.c
->> +F:	drivers/reset/starfive/reset-starfive-jh7100.c
->>  F:	include/dt-bindings/reset/starfive-jh7100.h
->>  
->> 
->> 
->> 
->>  STARFIVE JH71XX PMU CONTROLLER DRIVER
->> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
->> index 6ae5aa46a6b2..6aa8f243b30c 100644
->> --- a/drivers/reset/Kconfig
->> +++ b/drivers/reset/Kconfig
->> @@ -232,13 +232,6 @@ config RESET_SOCFPGA
->>  	  This enables the reset driver for the SoCFPGA ARMv7 platforms. This
->>  	  driver gets initialized early during platform init calls.
->>  
->> 
->> 
->> 
->> -config RESET_STARFIVE_JH7100
->> -	bool "StarFive JH7100 Reset Driver"
->> -	depends on ARCH_STARFIVE || COMPILE_TEST
->> -	default ARCH_STARFIVE
->> -	help
->> -	  This enables the reset controller driver for the StarFive JH7100 SoC.
->> -
->>  config RESET_SUNPLUS
->>  	bool "Sunplus SoCs Reset Driver" if COMPILE_TEST
->>  	default ARCH_SUNPLUS
->> @@ -320,6 +313,7 @@ config RESET_ZYNQ
->>  	help
->>  	  This enables the reset controller driver for Xilinx Zynq SoCs.
->>  
->> 
->> 
->> 
->> +source "drivers/reset/starfive/Kconfig"
->>  source "drivers/reset/sti/Kconfig"
->>  source "drivers/reset/hisilicon/Kconfig"
->>  source "drivers/reset/tegra/Kconfig"
->> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
->> index 3e7e5fd633a8..719b8f6f84bc 100644
->> --- a/drivers/reset/Makefile
->> +++ b/drivers/reset/Makefile
->> @@ -1,6 +1,7 @@
->>  # SPDX-License-Identifier: GPL-2.0
->>  obj-y += core.o
->>  obj-y += hisilicon/
->> +obj-$(CONFIG_ARCH_STARFIVE) += starfive/
+On 17/03/2023 00:44, Kuninori Morimoto wrote:
 > 
-> This should really be obj-y, otherwise this won't compile with
-> COMPILE_TEST=y but ARCH_STARFIVE=n.
+> Hi Rafał
 > 
-> With that fixed,
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+>> Hi, this patch seems to add errors for me. Are my tools outdated or is
+>> it a real issue? See below.
+> (snip)
+>>> +  #--------------------
+>>> +  # reg/reg-names
+>>> +  #--------------------
+>>> +  # for Gen1
+>>
+>> This seems to cause:
+>>
+>> ./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:282:4: [error] missing starting space in comment (comments)
+>> ./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:284:4: [error] missing starting space in comment (comments)
+>> ./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:339:4: [error] missing starting space in comment (comments)
+>> ./Documentation/devicetree/bindings/sound/renesas,rsnd.yaml:341:4: [error] missing starting space in comment (comments)
+> 
+> Hmm... I couldn't reproduce this
+> 
 
-The same problem exists in drivers/clk/Makefile.
-Will fix them in the next version. Thank you for your review.
+It's visible on current next. I'll send a fix.
 
 Best regards,
-Hal
+Krzysztof
+
