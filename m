@@ -2,119 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9986BEFCE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 18:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E496BEFF3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 18:41:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbjCQRhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 13:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
+        id S229617AbjCQRli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 13:41:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbjCQRhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 13:37:39 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60403C1BF5
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 10:37:21 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id by8so4693399ljb.12
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 10:37:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679074639;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RTPkw06mclz1qDKURG8hZknAWGe9n19Feii2ENMQnOQ=;
-        b=LLh7zF+Yta/6S1YIBhazjDn1OxMJYWjTnMEdMZGz96mwtdtpHXh0ws+zfXwdqJOJNM
-         ZP797GvnlnAZdxJXWf2zpkWTeSxjm6cXXO+JTExArHFDUQjVQ7ALgJJfhBx98v8anUqr
-         PpYuaWApgB8sawqS1Zv4evr+69rvQ/dDwemiyYVAGAVeJQqjaxsGhZ8VV++jiu7XxzT/
-         tD4rjLH6FyrJJvcPDf8/fMqbrhiMNB2VeIb/7trg8/gX1QQzzmvRT1jhTXLQ8mMNIz+8
-         O4dyza+hEC/HoWUmazA3djbZeGe8GEjT0fBUr+ZiGy10OzCx5SQwoPcZzcafwK4358RU
-         7GOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679074639;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTPkw06mclz1qDKURG8hZknAWGe9n19Feii2ENMQnOQ=;
-        b=brap1f42ZUVYi3CkZosTra2Cos1bz7YkuGOYXwCQUXAI6b/y+LWvHIAd1k0K/nPzkO
-         g3KBC6bgUN5zZN8NXWnngrujFhVclFCTKeWLt6Tf1aFIosDeDiyJ+o1kJfSlN2U3P3Zu
-         Rf+lGAylNTFoIvJC97jSx25lndcSMLXmI735jL+pWz97MGwENshdtCd5lq2OdHX7O7RM
-         aVgWe2dWV9/bgNnUIA56lOaSzAeA0cg/gH9UK9z5JdGbjgYCHRopuq6q33lj4px/IRTP
-         9oLCXhJwtIBtHgWhnvzmctOJPtDt2nio8hz1boly+ERctVwb+BvY8Ta+ronlJE7M2YEy
-         Yjug==
-X-Gm-Message-State: AO0yUKV1nE3caLhzF+DybKcyILxJxdd0mn40ZWOnwwzzYvAH/qDVfegs
-        sHqsZamL7TRIu9j8yJLV3gkQrQ==
-X-Google-Smtp-Source: AK7set9Yk/gSyIC5R3b34gUS8lBFWmGcYzdoH7jpUXJuvzCEU+jk56wZCu3B/z7xqx9xyRaNMlWwUQ==
-X-Received: by 2002:a05:651c:54e:b0:293:5cce:56eb with SMTP id q14-20020a05651c054e00b002935cce56ebmr4575084ljp.43.1679074639630;
-        Fri, 17 Mar 2023 10:37:19 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id y1-20020a2eb001000000b002986854f27dsm510277ljk.23.2023.03.17.10.37.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 10:37:19 -0700 (PDT)
-Message-ID: <2fd76707-9cf5-dbac-3514-89395a4225c2@linaro.org>
-Date:   Fri, 17 Mar 2023 18:37:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
- values
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230258AbjCQRlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 13:41:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ACC91B2DB;
+        Fri, 17 Mar 2023 10:41:15 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-191-142.ewe-ip-backbone.de [91.248.191.142])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C5BC266030C6;
+        Fri, 17 Mar 2023 17:41:13 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679074873;
+        bh=qxDBq0fQ9YqbrNkN81oPGZ/qN7uYkUt6Ntv20FQUMik=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MjOaVi27U7qOitWXFzGMk8gv4AT0f5Vw5RQzQFzIOpZ7RPKfBwEpbCCJ0oplVo0Pb
+         uaSz8xEhr80jCNQWkp+dAAQWLquz0KQaKiDMOLkmIJ5VJxbeviI87WJytOyRzTdmW7
+         D9XnsF0QdQ3U1xkSJJYo5KqkTeceCi6ndnXXoMB2YZWqsCxwz6PCbvxVymmJcBYPXO
+         EWu2M9Pxcj3pM9vGD9eB9KSbYnk3sWvmw2fUuXfP1Lvgwg5Ir7VSz3EOX4lqbmJMWi
+         +lPc5BoNBBmGNQwwgJnKNWvR2bF6Cr9R2uWbHufX7ghuhaUpHZt1EP2GlYUnInCqyL
+         Ki0WFEJNWIXuQ==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 269BA4807E1; Fri, 17 Mar 2023 18:41:11 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230315103950.2679317-1-stephan.gerhold@kernkonzept.com>
- <20230315103950.2679317-3-stephan.gerhold@kernkonzept.com>
- <ad64143c-13c0-63e3-561a-620c44f26b9d@linaro.org>
- <ZBSCN0f8yC/nkGll@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZBSCN0f8yC/nkGll@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv1 1/1] arm64: dts: rockchip: rk3588: add cache level information
+Date:   Fri, 17 Mar 2023 18:41:02 +0100
+Message-Id: <20230317174102.61209-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add missing, mandatory cache-level information for RK3588.
 
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+Fixes init_of_cache_level() returning -EINVAL
+---
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-On 17.03.2023 16:07, Stephan Gerhold wrote:
-> On Fri, Mar 17, 2023 at 01:39:25AM +0100, Konrad Dybcio wrote:
->> On 15.03.2023 11:39, Stephan Gerhold wrote:
->>> According to the msm-3.18 vendor kernel from Qualcomm [1], mdm9607 uses
->>> a non-standard slope value of 3000 (instead of 3200) for all sensors.
->>> Fill it properly similar to the 8939 code added recently.
->>>
->>> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi#L875
->>>
->> FWIW there's a 4.9 release for 9607
->>
->> https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.2.3.6.c5-03900-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi
-> 
-> You seem to have linked 3.18 too?
-> 
-> I don't see tsens support for mdm9607 in msm-4.9, although maybe I'm
-> looking at the wrong branch. :D
-Yeah wrong link
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+index 82dab5fcc3f0..0fb911704a64 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -440,6 +440,7 @@ l2_cache_l0: l2-cache-l0 {
+ 			cache-size = <131072>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -448,6 +449,7 @@ l2_cache_l1: l2-cache-l1 {
+ 			cache-size = <131072>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -456,6 +458,7 @@ l2_cache_l2: l2-cache-l2 {
+ 			cache-size = <131072>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -464,6 +467,7 @@ l2_cache_l3: l2-cache-l3 {
+ 			cache-size = <131072>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <512>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -472,6 +476,7 @@ l2_cache_b0: l2-cache-b0 {
+ 			cache-size = <524288>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <1024>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -480,6 +485,7 @@ l2_cache_b1: l2-cache-b1 {
+ 			cache-size = <524288>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <1024>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -488,6 +494,7 @@ l2_cache_b2: l2-cache-b2 {
+ 			cache-size = <524288>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <1024>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -496,6 +503,7 @@ l2_cache_b3: l2-cache-b3 {
+ 			cache-size = <524288>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <1024>;
++			cache-level = <2>;
+ 			next-level-cache = <&l3_cache>;
+ 		};
+ 
+@@ -504,6 +512,7 @@ l3_cache: l3-cache {
+ 			cache-size = <3145728>;
+ 			cache-line-size = <64>;
+ 			cache-sets = <4096>;
++			cache-level = <3>;
+ 		};
+ 	};
+ 
+-- 
+2.39.2
 
-and wrong kernel, it's actually 4.14
-
-https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/637e99f66c270385149d1f0041758c24c4f84aaf/arch/arm64/boot/dts/qcom/mdm9607.dtsi
-
-Konrad
-> 
-> Thanks,
-> Stephan
