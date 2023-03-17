@@ -2,98 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B466BED7C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 16:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88D0A6BED94
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 17:02:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbjCQP5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 11:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49090 "EHLO
+        id S230268AbjCQQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 12:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230309AbjCQP5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 11:57:31 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8185EE2535
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:57:15 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id y4so22301697edo.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 08:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679068634;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uy2ES2r2yaQEcdoZfhDVthoS5kcRZ5J4S2pvE5uM7rI=;
-        b=zNbMt5WWt7D75H1iFIKYBO0yJgcmitPlnPTpXPjM7phEqmeLtWC2xq8ZELhPbKT79H
-         fsgMDkqfaIVnzqVA0MXGv1IWFABiPzZDxrGlIHI3erRVnCvUEAj7VPmFV26SLelSUo3w
-         NbeR4PwSP7tz3iF9gizt2A2IIZnemreSH+acwprMWrVwV9pmK5g8SB8YLlYcal1euHh1
-         s3gAJ9jejgmv9MTLAjFbH7duQrMLiEpGx4LIUEioZfwPRmrVcD5j23UBXV+157jruGQR
-         13HbKn0mMW/uTugbHSOdoqW6AWjaUoyOE4LJRBfI1zG8AgI2ybvIoB4TG/FWIVmr4OhJ
-         Nw+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679068634;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uy2ES2r2yaQEcdoZfhDVthoS5kcRZ5J4S2pvE5uM7rI=;
-        b=p8/qWMR1w2NLci91wTpQbyFBja9dVF2ZZ6w1NkZVk9F8oz9N7fPQauAVMTJ6MzZmbw
-         Rlo6uwEN8sul6eBXiEAJzAjmHDTw454FNhHcVcKU2Xty9IurnCr9L5Gnzq+W/8vvk0C2
-         49jvhXZUei1KLfiJaoAIXktVxL9JkHLhvBZTo39AH06zPORd4IJqaR7Ti2svluZ/9sGs
-         aN0FmRK0ms7KtgMKxyF+ZihpSCUVX9uykOySoCrUF8Xdvo1uxaTGGr058Kh2nFdDS7kA
-         v/rxjgK5FmRctpHlavfp7rU61YsX0KEp+uH4WVTbEcozD4Mk5gonlxWGdTj9THVp1Mz+
-         PlWg==
-X-Gm-Message-State: AO0yUKUWoN8W7cDb+D6JX//KP39+g5eYstiOU+xSLdePoamoDtiHQNYl
-        CFEJvMPp7fzpAvShE3WXCSTCyg==
-X-Google-Smtp-Source: AK7set8d+ZBui09OfExOiwhJupDe51E5rlM1UNGoW1HDC8JPz8szDwdnpl8u7sd50Kds9vwa8djpCA==
-X-Received: by 2002:a17:906:612:b0:8b1:3483:e3d5 with SMTP id s18-20020a170906061200b008b13483e3d5mr13758017ejb.48.1679068634078;
-        Fri, 17 Mar 2023 08:57:14 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:d013:3eeb:7658:cec])
-        by smtp.gmail.com with ESMTPSA id q21-20020a170906a09500b009226f644a07sm1105318ejy.139.2023.03.17.08.57.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 08:57:13 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229879AbjCQQCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 12:02:50 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1271A4741D;
+        Fri, 17 Mar 2023 09:02:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=8jvxC/cI3fuMCxuOzLp5kkLkPCuNIeHm7MIIEgtYwp0=; b=QhENWArrtirPbhzhLN30jRAefc
+        lz8GpWMl3QuOk6oBP0IsKB5XWyFBxKy09l3Nw0LaoTIA14YELZMINqf23Su8H5fqRgm8TbsZX0pPr
+        SUTaEqmDdOFsWkLazi3MEIkn5UJu/YeAlYXezAUetbFCiStVTv/VFa8efWpFLiFc3bkw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pdCXL-007cwr-7Z; Fri, 17 Mar 2023 17:02:35 +0100
+Date:   Fri, 17 Mar 2023 17:02:35 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, linux-leds@vger.kernel.org,
+        pavel@ucw.cz, Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: serial: snps-dw-apb-uart: correct number of DMAs
-Date:   Fri, 17 Mar 2023 16:57:12 +0100
-Message-Id: <20230317155712.99654-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [net-next PATCH v4 10/14] dt-bindings: net: dsa: qca8k: add LEDs
+ definition example
+Message-ID: <c087d270-56f6-4ead-a15b-aa3bfb732ba8@lunn.ch>
+References: <20230317023125.486-1-ansuelsmth@gmail.com>
+ <20230317023125.486-11-ansuelsmth@gmail.com>
+ <20230317091410.58787646@dellmb>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230317091410.58787646@dellmb>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "minItems" alone does not impose any upper limit of DMAs, so switch
-it to "maxItems" which also implies same value for minItems.
-
-Fixes: 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma & dma-names properties")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-index 2becdfab4f15..8212a9f483b5 100644
---- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-@@ -68,7 +68,7 @@ properties:
-       - const: apb_pclk
+> I would like to start a discussion on this and hear about your opinions,
+> because I think that the trigger-sources and function properties were
+> proposed in good faith, but currently the implementation and usage is a
+> mess.
  
-   dmas:
--    minItems: 2
-+    maxItems: 2
- 
-   dma-names:
-     items:
--- 
-2.34.1
+Hi Marek
 
+We are pushing the boundaries of the LED code here, doing things which
+have not been done before, as far as i know. So i expect some
+discussion about this. However, that discussion should not really
+affect this patchset, which is just adding plain boring software
+controlled LEDs.
+
+A quick recap about ledtrig-netdev.
+
+If you have a plain boring LED, you have:
+
+root@370rd:/sys/class/net/eth0/phydev/leds/f1072004.mdio-mii:00:WAN# ls
+brightness  device  max_brightness  power  subsystem  trigger  uevent
+
+You can turn the LED on with
+
+root@370rd:/sys/class/net/eth0/phydev/leds/f1072004.mdio-mii:00:WAN# echo 1 > brightness 
+
+and turn it off with:
+
+root@370rd:/sys/class/net/eth0/phydev/leds/f1072004.mdio-mii:00:WAN# echo 0 > brightness 
+
+You select the trigger via the trigger sysfs file:
+
+root@370rd:/sys/class/net/eth0/phydev/leds/f1072004.mdio-mii:00:WAN# cat trigger 
+[none] kbd-scrolllock kbd-numlock kbd-capslock kbd-kanalock kbd-shiftlock kbd-altgrlock kbd-ctrllock kbd-altlock kbd-shiftllock kbd-shiftrlock kbd-ctrlllock kbd-ctrlrlock timer heartbeat netdev mmc0
+
+root@370rd:/sys/class/net/eth0/phydev/leds/f1072004.mdio-mii:00:WAN# echo netdev > trigger
+root@370rd:/sys/class/net/eth0/phydev/leds/f1072004.mdio-mii:00:WAN# ls
+activity	brightness  device_name  half_duplex  link     link_100   max_brightness  rx	     trigger  uevent
+available_mode	device	    full_duplex  interval     link_10  link_1000  power		  subsystem  tx
+
+When you select a trigger, that trigger can add additional sysfs
+files. For the netdev trigger we gain link, link_10, link_100, link_1000, rx & tx.
+
+Nothing special here, if you selected the timer trigger you get
+delay_off delay_on. The oneshot trigger has invert, delay_on,
+delay_off etc.
+
+You then configure the trigger via setting values in the sysfs
+files. If you want the LED to indicate if there is link, you would do:
+
+echo 1 > link
+
+The LED would then light up if the netdev has carrier.
+
+If you want link plus RX packets
+
+echo 1 > link
+echo 1 > rx
+
+The LED will then be on if there is link, and additionally blink if
+the netdev stats indicate received frames.
+
+For the netdev trigger, all the configuration values are boolean. So a
+simple way to represent this in DT would be boolean properties:
+
+	netdev-link = <1>;
+	netdev->rx = <1>;
+
+We probably want these properties name spaced, because we have oneshot
+delay_on and timer delay_on for example. The same sysfs name could
+have different types, bool vs milliseconds, etc.
+
+I would make it, that when the trigger is activated, the values are
+read from DT and used. There is currently no persistent state for
+triggers. If you where to swap to the timer trigger and then return to
+the netdev trigger, all state is lost, so i would re-read DT.
+
+Offloading to hardware should not make an difference here. All we are
+going to do is pass the current configuration to the LED and ask it,
+can you do this? If it says no, we keep blinking in software. If yes,
+we leave the blinking to the hardware.
+
+There is the open question of if DT should be used like this.  It is
+not describing hardware, it is describing configuration of
+hardware. So it could well get rejected. You then need to configure it
+in software.
+
+   Andrew
