@@ -2,100 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E446BE4D8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0C416BE4DA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:06:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbjCQJFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:05:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
+        id S231256AbjCQJGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:06:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232052AbjCQJFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:05:25 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9008AE7EFE
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:04:03 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id r11so17675531edd.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:04:03 -0700 (PDT)
+        with ESMTP id S231281AbjCQJFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:05:48 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B614D1F5EA
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:04:35 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id p16so2844790wmq.5
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:04:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679043840;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F+9q32H5maQAY7+Dr81+RVllp8r8V/8Ihh6QFteXqFU=;
-        b=monslhkk1VBvMFaXE+OmJpTJ7739bvnwzQ1nH76yBk0x2FvUZw9b+Eu8kFOwfvJDyQ
-         EMTxv3ziUDzdDYeevUA8okud/BGIBN7JVK/57Q4RaX3SKWkBwygjKPH64x0bG5c0Lgqa
-         A4kqEOuXntc2b9UGi+QJj3o814dpeuwV6GV3vpJZSFwr9wuXSnXECIYc+19S8HR2pI/T
-         rmOFjTzUfN7KMBXlFGr0glqk4sooxMJ1UYIRmKssQXUXE5z8QSUU/sa5wbNDkK6eDj4P
-         bPD/AR27HeaDD9i0DFNqnyU1ZBJnP6W2m6M/Sic6cDta89U0qQxoIDpf8pVcDSlRm+/7
-         KR3Q==
+        d=linaro.org; s=google; t=1679043872;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=MsOeH5VTIJLvj266rkHX55Fde/Bb5Keky5mnCISQsH4=;
+        b=sd0h8SxnEaPFkX2Ud7MfNZvoReK4uV/7qxpxBxk3xZNM+tmtsKaPyezXdyFkieGIJc
+         0dAQmQwRAPKZhYDo8xIZRl6VVMR92PTktVWVR8Q0z+vDXYswjUSsVY7wlUIFkthM+20l
+         UDj9+aGUleTQW9Ey5UxTr4So32e0lHEiq9mLQI408omO7fB5G9ivC5Qd1oOp4TH7Zs+5
+         IhAy8bnnVlm7+b12UimMblITYQesVU1arR7gYrybPcxAmy1t/iBfxpnRdVz7YWFmUplW
+         qnEwesi7jE7q/FsQ9bFv2NC7ty5F/KXLGYCECuc9O2FLPeUD2lLEmJwVPKYVEKmWw7U6
+         xWkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679043840;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F+9q32H5maQAY7+Dr81+RVllp8r8V/8Ihh6QFteXqFU=;
-        b=3L9ATx9dPjzPBs9plA0sO9vZfWfxPdtgW5gmjD5Fa12m84fn3FTv26IbgM2TUmKKvN
-         K8H7O31L/QA2kg3dT2ru9t1mQs2UVqwz3vqqyD1ijhrVJOo3lZsTYuLfmOObz0vr30Pe
-         DORQ9eKXDUOKTBTRMDnYxo9wJzEnsB9HR3oERCyXXKqlpyTCXqXt3rt3rXUgbAvpfjHB
-         3Gk2G2vF8eRhukXL4Zzvsbj+d3j3Q86HDlegTTcpe16rJFeCfMU7yCCzEei3LsMarrru
-         RqTI8i7nj6X0E/4k2Mh8w336ZzbB56SNy4snf6ZZpfVT/56iksLpLhJ9Bnco3jXIVChX
-         PfFA==
-X-Gm-Message-State: AO0yUKXa498aFxc9Jd1DJGtJc1ENqUiHWi1fjaWzVrekfR8TS/KkerK5
-        utbjCaAgEG2DVrZOuP/mjdzcLg==
-X-Google-Smtp-Source: AK7set8bTjVCu5fhcJEjLTpRFEkjqV3j8SkNDWaEpR82X2mKS8ejahTe3YQClj1j5CUX+i8qaGJ3Tw==
-X-Received: by 2002:a17:907:9622:b0:932:35b1:47fa with SMTP id gb34-20020a170907962200b0093235b147famr601376ejc.64.1679043840103;
-        Fri, 17 Mar 2023 02:04:00 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id lg10-20020a170906f88a00b008cc920469b5sm744608ejb.18.2023.03.17.02.03.58
+        d=1e100.net; s=20210112; t=1679043872;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MsOeH5VTIJLvj266rkHX55Fde/Bb5Keky5mnCISQsH4=;
+        b=n0+NJ1aelYC4F6ZoL6SotV8S4d8BSasD/ygXh5AJtZhzbfEDkgV/yOUICmKsgKb+Oo
+         fojPGqpi7aXZQOwme60r9rHG7QhrWYsooXerzyE2/xW2zhQAQOXcS0TKArQ6kKXJuBrb
+         8UiCQI7m5JULu867JfLhdOPbPtnDM5xs5/njwJdlffYu30K/mozzqt1He2tGk4v+0Q33
+         3P/pWQBVZ4KCWA+9DexpZdYN+NQbZ+WubynJGg/NhOs03YomOrdaBtuFbRMb/SK/RngS
+         vuzfq++zpJ5sMg/46dn3MkudlBar5FhZ6SvEqAWb2u1PzlQ9JuGGK9OsepSSDxiI1sLm
+         vRRw==
+X-Gm-Message-State: AO0yUKUBZaSIrBUMOSUF6dSTLDOoFtPZ4O/zGdluEc1OnM3FM6I1CMu2
+        aTTv8p8k1ynmLHyL6HGjzcFE+A==
+X-Google-Smtp-Source: AK7set+OoHD95yvZIthSsT6vMUzbdSIlC1qogPX4UgrFrwcsvTC1CiCc4Q7krtb17ucGOJ/QoYalvw==
+X-Received: by 2002:a05:600c:154d:b0:3ed:23d5:4c4c with SMTP id f13-20020a05600c154d00b003ed23d54c4cmr19408344wmg.12.1679043871668;
+        Fri, 17 Mar 2023 02:04:31 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9ed5:bad0:e925:7938? ([2a01:e0a:982:cbb0:9ed5:bad0:e925:7938])
+        by smtp.gmail.com with ESMTPSA id h9-20020a1ccc09000000b003db01178b62sm7154127wmb.40.2023.03.17.02.04.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 02:03:59 -0700 (PDT)
-Message-ID: <4027714e-b4e8-953b-68e2-f74f7a7f0e8e@linaro.org>
-Date:   Fri, 17 Mar 2023 10:03:58 +0100
+        Fri, 17 Mar 2023 02:04:31 -0700 (PDT)
+Message-ID: <f9606b1b-2981-4874-4763-ef3ce96cc6f2@linaro.org>
+Date:   Fri, 17 Mar 2023 10:04:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
- mt8195
+ Thunderbird/102.8.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: sm8350: add dp controller
 Content-Language: en-US
-To:     =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "nathan@kernel.org" <nathan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "clang-built-linux@googlegroups.com" 
-        <clang-built-linux@googlegroups.com>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>
-References: <20221227081011.6426-1-nancy.lin@mediatek.com>
- <20221227081011.6426-2-nancy.lin@mediatek.com>
- <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
- <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
- <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
- <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
- <e5ceec9e-d51b-2aeb-1db7-b79b151bd44c@collabora.com>
- <0ebf187d-972e-4228-d8a0-8c0ce02f642d@linaro.org>
- <72cf6344a1c5942bff0872d05dce82b787b49b76.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <72cf6344a1c5942bff0872d05dce82b787b49b76.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230206-topic-sm8450-upstream-dp-controller-v4-0-dca33f531e0d@linaro.org>
+ <20230206-topic-sm8450-upstream-dp-controller-v4-3-dca33f531e0d@linaro.org>
+ <68a26435-4f00-1571-88ef-1f3c0a254cef@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <68a26435-4f00-1571-88ef-1f3c0a254cef@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
@@ -106,80 +90,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2023 08:55, Nancy Lin (林欣螢) wrote:
-> On Thu, 2023-03-16 at 12:36 +0100, Krzysztof Kozlowski wrote:
->> On 16/03/2023 10:53, AngeloGioacchino Del Regno wrote:
->>
->>> Hello Krzysztof, Nancy,
->>>
->>> Since this series has reached v29, can we please reach an agreement
->>> on the bindings
->>> to use here, so that we can get this finally upstreamed?
->>>
->>> I will put some examples to try to get this issue resolved.
->>>
->>> ### Example 1: Constrain the number of GCE entries to *seven* array
->>> elements (7x4!)
->>>
->>>    mediatek,gce-client-reg:
->>>      $ref: /schemas/types.yaml#/definitions/phandle-array
->>>      maxItems: 1
->>>      description: The register of display function block to be set
->>> by gce.
->>>        There are 4 arguments in this property, gce node, subsys id,
->>> offset and
->>>        register size. The subsys id is defined in the gce header of
->>> each chips
->>>        include/dt-bindings/gce/<chip>-gce.h, mapping to the
->>> register of display
->>>        function block.
->>>      items:
->>>        minItems: 28
->>>        maxItems: 28
->>>        items:                     <----- this block doesn't seem to
->>> get checked :\
->>>          - description: phandle of GCE
->>>          - description: GCE subsys id
->>>          - description: register offset
->>>          - description: register size
->>
->> This is what we would like to have but it requires exception in
->> dtschema. Thus:
->>
->>>
->>>
->>> ### Example 2: Don't care about constraining the number of
->>> arguments
->>>
->>>    mediatek,gce-client-reg:
->>>      $ref: /schemas/types.yaml#/definitions/phandle-array
->>>      maxItems: 1
->>>      description: The register of display function block to be set
->>> by gce.
->>>        There are 4 arguments in this property, gce node, subsys id,
->>> offset and
->>>        register size. The subsys id is defined in the gce header of
->>> each chips
->>>        include/dt-bindings/gce/<chip>-gce.h, mapping to the
->>> register of display
->>>        function block.
->>
->> use this.
->>
->> Best regards,
->> Krzysztof
+On 14/03/2023 23:10, Konrad Dybcio wrote:
 > 
 > 
-> Hi Krzysztof, Angelo,
-> 
-> Thanks for the comment.
-> The Example 2 can pass dt_binding_check. 
-> 
-> But the example in the binding has 7 items [1] and dts [2]. Does the
-> "maxItems: 1" affect any other schema or dts check? 
+> On 9.03.2023 10:19, Neil Armstrong wrote:
+>> Add the Display Port controller subnode to the MDSS node.
+>>
+>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> #SM8350-HDK
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> [...]
+>> +				dp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-160000000 {
+>> +						opp-hz = /bits/ 64 <160000000>;
+>> +						required-opps = <&rpmhpd_opp_low_svs>;
+>> +					};
+> Downstream doesn't seem to use this lowest freq
 
-Ah, then it should be maxItems: 7, not 1.
+Now I know to look at, indeed, will remove.
 
-Best regards,
-Krzysztof
+Thanks,
+Neil
+
+> 
+> Konrad
+>> +
+>> +					opp-270000000 {
+>> +						opp-hz = /bits/ 64 <270000000>;
+>> +						required-opps = <&rpmhpd_opp_svs>;
+>> +					};
+>> +
+>> +					opp-540000000 {
+>> +						opp-hz = /bits/ 64 <540000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+>> +					};
+>> +
+>> +					opp-810000000 {
+>> +						opp-hz = /bits/ 64 <810000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+>> +					};
+>>   				};
+>>   			};
+>>   
+>>
 
