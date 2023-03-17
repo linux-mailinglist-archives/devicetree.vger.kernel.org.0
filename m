@@ -2,233 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6936BE958
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:34:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D356BE962
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 13:37:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbjCQMel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 08:34:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59654 "EHLO
+        id S229902AbjCQMhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 08:37:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjCQMek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:34:40 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E67CC37;
-        Fri, 17 Mar 2023 05:33:53 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso3223050wmo.0;
-        Fri, 17 Mar 2023 05:33:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679056410;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tjv5+PrqXIvURLUwrYK99nDGIhWRuR6pNFnPWF4wxiI=;
-        b=pbq6ZSdR5nIJ5secaZFI6sBee3J/JDWHO/lvytKXVsCeITaXjYWtt+t0MkrWZ3iedo
-         T9tKUfefMrXI3w1xGDD9U1ynjXMApbUXrK+Fsdrs6sUls4W0g/VCWVfkzSwXyv9u9nsY
-         GVPhUOQ5tNAtGJodPWFWdUrGZSQt3b83uqJi8let1fcM4ny9sbp98WjviMfTXc2/lGhP
-         tU7wlzYtN2VLezg2e2eSIuR5676SnuAmeEV+0jRj5NFivwgBjZpMLRZDKZ8agRTaZVLR
-         jMSv+V4V2DuZCEBgFALXw/WTR9Ox45xPjQ1U4bQG13iCpVUCMGPuL33cb36ypy2tgFix
-         w+Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679056410;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tjv5+PrqXIvURLUwrYK99nDGIhWRuR6pNFnPWF4wxiI=;
-        b=s+NIdB+HM35p8sL7hmCgyxb3Xk1m/o2HgnNvQmdL+vUOxAp0+k4wS3QRNdx9MuZPN/
-         snrkVG3XKx0j23LQQjkGGsdyTU0bmI5xLvBZwfvbkf77RddWFXMsOOQ7pvkJKMkPrf4J
-         8lrGGb9lwSZ+BwnKxFXzH5rhNd/AoSgqcb17FLgboqOVeYr9ah4kL1Fy4cMU6CIXFPXU
-         3YoRERvtAUDJIBC6JOtByCGSTwhUHj1lRUIKCKx/hvI1CV15ynk6IgKcSnu96VMKEDZ5
-         U9TWzI+Es49gPXTno0mj0cj3Jlyf7CQBFNqQ1oIAn+ACK5FsiB8RR2XfduJtIyHbAzJJ
-         876Q==
-X-Gm-Message-State: AO0yUKVZMsYQq44FSqp/rGO1h/K9NXtwC10WQa52RWpXaTeFm8iN/WeV
-        a8286Aqqc+HoUEMHIEbDBZ0=
-X-Google-Smtp-Source: AK7set9hdWTVaCX8MlH6PFGqjP0Nh+FiR/SUaH1b6OLEkubj7+mS425PcGjwWynqyiDgRVdNx5vttA==
-X-Received: by 2002:a05:600c:310d:b0:3eb:3945:d405 with SMTP id g13-20020a05600c310d00b003eb3945d405mr23817708wmo.38.1679056410405;
-        Fri, 17 Mar 2023 05:33:30 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:cc60:8c15:c868:fa91])
-        by smtp.gmail.com with ESMTPSA id j10-20020a5d464a000000b002cea8f07813sm1876515wrs.81.2023.03.17.05.33.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Mar 2023 05:33:29 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: rzg2l-smarc: Enable CRU, CSI support
-Date:   Fri, 17 Mar 2023 12:33:14 +0000
-Message-Id: <20230317123314.145121-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230317123314.145121-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230317123314.145121-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229604AbjCQMhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 08:37:36 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31DE3AD31;
+        Fri, 17 Mar 2023 05:36:54 -0700 (PDT)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 932665B6;
+        Fri, 17 Mar 2023 13:36:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1679056589;
+        bh=EvLTNZd1r7ZkfQDY14BCMttegUAqYVO14FTeWKB9xmY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lye5Gpx950Nh/PkRLTGli6cN/nw81MFgDV4r6q+UUU797/lw2wRi27hevxSloXtmZ
+         k155fZ7MZpYfL97VqC4oC/TJP3oiHFubrlBeSfBiC9LISr0NG94zsoD/r7mlNT0T/G
+         UAdgQDFWQIlIyVdgN08H06zTqlR848j0mqF7BSP8=
+Message-ID: <b281b472-f911-1f04-2cc8-c3713e771bf6@ideasonboard.com>
+Date:   Fri, 17 Mar 2023 14:36:25 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Wolfram Sang <wsa@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
+ <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
+ <20230317101606.69602bba@booty>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230317101606.69602bba@booty>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi,
 
-Enable CRU, CSI on RZ/G2L SMARC EVK and tie the CSI to OV5645 sensor
-using Device Tree overlay. rz-smarc-cru-csi-ov5645.dtsi is created so
-that RZ/G2L alike EVKs can make use of it.
+On 17/03/2023 11:16, Luca Ceresoli wrote:
+> Hi Tomi, Wolfram,
+> 
+> On Wed, 22 Feb 2023 15:29:00 +0200
+> Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+> 
+>> From: Luca Ceresoli <luca@lucaceresoli.net>
+>>
+>> An ATR is a device that looks similar to an i2c-mux: it has an I2C
+>> slave "upstream" port and N master "downstream" ports, and forwards
+>> transactions from upstream to the appropriate downstream port. But it
+>> is different in that the forwarded transaction has a different slave
+>> address. The address used on the upstream bus is called the "alias"
+>> and is (potentially) different from the physical slave address of the
+>> downstream chip.
+>>
+>> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
+>> implementing ATR features in a device driver. The helper takes care or
+>> adapter creation/destruction and translates addresses at each transaction.
+>>
+>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> 
+> Wolfram, I think Tomi improved this work as much as currently possible
+> and this patch now looks extremely good to me. I wish we had this in
+> mainline soon. Does it make sense for me to send a Reviewed-by tag,
+> given I already have a S-o-b one?
+> 
+> I have a few _extremely_ minor notes below, but I hope they won't
+> slow down merging this work. They can definitely be addressed as a
+> follow-up patch after merging this.
+> 
+> Thank you a lot Tomi for having persisted in improving the ATR code!
+> 
+>> diff --git a/Documentation/i2c/muxes/i2c-atr.rst b/Documentation/i2c/muxes/i2c-atr.rst
+>> new file mode 100644
+>> index 000000000000..da226fd4de63
+>> --- /dev/null
+>> +++ b/Documentation/i2c/muxes/i2c-atr.rst
+>> @@ -0,0 +1,97 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +
+>> +=====================
+>> +Kernel driver i2c-atr
+>> +=====================
+>> +
+>> +Author: Luca Ceresoli <luca@lucaceresoli.net>
+>> +Author: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> +
+>> +Description
+>> +-----------
+>> +
+>> +An I2C Address Translator (ATR) is a device with an I2C slave parent
+>> +("upstream") port and N I2C master child ("downstream") ports, and
+>> +forwards transactions from upstream to the appropriate downstream port
+>> +with a modified slave address. The address used on the parent bus is
+>> +called the "alias" and is (potentially) different from the physical
+>> +slave address of the child bus. Address translation is done by the
+>> +hardware.
+>> +
+>> +An ATR looks similar to an i2c-mux except:
+>> + - the address on the parent and child busses can be different
+>> + - there is normally no need to select the child port; the alias used on the
+>> +   parent bus implies it
+>> +
+>> +The ATR functionality can be provided by a chip with many other
+>> +features. This file provides a helper to implement an ATR within your
+>> +driver.
+>> +
+>> +The ATR creates a new I2C "child" adapter on each child bus. Adding
+>> +devices on the child bus ends up in invoking the driver code to select
+>> +an available alias. Maintaining an appropriate pool of available aliases
+>> +and picking one for each new device is up to the driver implementer. The
+>> +ATR maintains an table of currently assigned alias and uses it to modify
+> 
+> s/an table/a table/
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-setenv bootfile kernel_fdt.itb
-tftpboot ${bootfile}
-bootm ${fileaddr}#rzg2l-smarc#ov5645
+Right.
 
-v1->v2
-* New patch
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../r9a07g044l2-smarc-cru-csi-ov5645.dtso     | 18 ++++
- .../dts/renesas/rz-smarc-cru-csi-ov5645.dtsi  | 87 +++++++++++++++++++
- 3 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2-smarc-cru-csi-ov5645.dtso
- create mode 100644 arch/arm64/boot/dts/renesas/rz-smarc-cru-csi-ov5645.dtsi
+>> +all I2C transactions directed to devices on the child buses.
+>> +
+>> +A typical example follows.
+>> +
+>> +Topology::
+>> +
+>> +                      Slave X @ 0x10
+>> +              .-----.   |
+>> +  .-----.     |     |---+---- B
+>> +  | CPU |--A--| ATR |
+>> +  `-----'     |     |---+---- C
+>> +              `-----'   |
+>> +                      Slave Y @ 0x10
+>> +
+>> +Alias table:
+>> +
+>> +A, B and C are three physical I2C busses, electrically independent from
+>> +each other. The ATR receives the transactions initiated on bus A and
+>> +propagates them on bus B or bus C or none depending on the device address
+>> +in the transaction and based on the alias table.
+>> +
+>> +Alias table:
+>> +
+>> +.. table::
+>> +
+>> +   ===============   =====
+>> +   Client            Alias
+>> +   ===============   =====
+>> +   X (bus B, 0x10)   0x20
+>> +   Y (bus C, 0x10)   0x30
+>> +   ===============   =====
+>> +
+>> +Transaction:
+>> +
+>> + - Slave X driver sends a transaction (on adapter B), slave address 0x10
+> 
+> s/sends/requests/ is possibly better to clarify there is still no
+> electrical transaction yet at this step, as we are still in software.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 23b10c03091c..a553d99175cb 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -79,6 +79,7 @@ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc.dtb
- 
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
-+dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc-cru-csi-ov5645.dtbo
- 
- dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l2-smarc.dtb
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc-cru-csi-ov5645.dtso b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc-cru-csi-ov5645.dtso
-new file mode 100644
-index 000000000000..40cece1491bb
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc-cru-csi-ov5645.dtso
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree overlay for the RZ/G2L SMARC EVK with OV5645 camera
-+ * connected to CSI and CRU enabled.
-+ *
-+ * Copyright (C) 2023 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#define OV5645_PARENT_I2C i2c0
-+#include "rz-smarc-cru-csi-ov5645.dtsi"
-+
-+&ov5645 {
-+	enable-gpios = <&pinctrl RZG2L_GPIO(2, 0) GPIO_ACTIVE_HIGH>;
-+	reset-gpios = <&pinctrl RZG2L_GPIO(40, 2) GPIO_ACTIVE_LOW>;
-+};
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-cru-csi-ov5645.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-cru-csi-ov5645.dtsi
-new file mode 100644
-index 000000000000..95286bf2066e
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-cru-csi-ov5645.dtsi
-@@ -0,0 +1,87 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Common Device Tree for the RZ/G2L SMARC EVK (and alike EVKs) with
-+ * OV5645 camera connected to CSI and CRU enabled.
-+ *
-+ * Copyright (C) 2023 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+&{/} {
-+	ov5645_vdddo_1v8: 1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "camera_vdddo";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	ov5645_vdda_2v8: 2p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "camera_vdda";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-always-on;
-+	};
-+
-+	ov5645_vddd_1v5: 1p5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "camera_vddd";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-always-on;
-+	};
-+
-+	ov5645_fixed_clk: osc25250_clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+};
-+
-+&cru {
-+	status = "okay";
-+};
-+
-+&csi2 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			csi2_in: endpoint {
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+				remote-endpoint = <&ov5645_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&OV5645_PARENT_I2C {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	ov5645: camera@3c {
-+		compatible = "ovti,ov5645";
-+		reg = <0x3c>;
-+		clocks = <&ov5645_fixed_clk>;
-+		clock-frequency = <24000000>;
-+		vdddo-supply = <&ov5645_vdddo_1v8>;
-+		vdda-supply = <&ov5645_vdda_2v8>;
-+		vddd-supply = <&ov5645_vddd_1v5>;
-+
-+		port {
-+			ov5645_ep: endpoint {
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+				remote-endpoint = <&csi2_in>;
-+			};
-+		};
-+	};
-+};
--- 
-2.25.1
+I don't like "requests" too much either, but I see your point and I 
+think it's better than "sends".
+
+>> + - ATR driver finds slave X is on bus B and has alias 0x20, rewrites
+>> +   messages with address 0x20, forwards to adapter A
+>> + - Physical I2C transaction on bus A, slave address 0x20
+>> + - ATR chip detects transaction on address 0x20, finds it in table,
+>> +   propagates transaction on bus B with address translated to 0x10,
+>> +   keeps clock streched on bus A waiting for reply
+>> + - Slave X chip (on bus B) detects transaction at its own physical
+>> +   address 0x10 and replies normally
+>> + - ATR chip stops clock stretching and forwards reply on bus A,
+>> +   with address translated back to 0x20
+>> + - ATR driver receives the reply, rewrites messages with address 0x10
+>> +   as they were initially
+>> + - Slave X driver gets back the msgs[], with reply and address 0x10
+>> +
+>> +Usage:
+>> +
+>> + 1. In your driver (typically in the probe function) add an ATR by
+>> +    calling i2c_atr_new() passing your attach/detach callbacks
+>> + 2. When the attach callback is called pick an appropriate alias,
+>> +    configure it in your chip and return the chosen alias in the
+>> +    alias_id parameter
+>> + 3. When the detach callback is called, deconfigure the alias from
+>> +    your chip and put it back in the pool for later usage
+>> +
+>> +I2C ATR functions and data structures
+>> +-------------------------------------
+>> +
+>> +.. kernel-doc:: include/linux/i2c-atr.h
+> 
+> ...
+> 
+>> diff --git a/drivers/i2c/i2c-atr.c b/drivers/i2c/i2c-atr.c
+>> new file mode 100644
+>> index 000000000000..5ab890b83670
+>> --- /dev/null
+>> +++ b/drivers/i2c/i2c-atr.c
+>> @@ -0,0 +1,548 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * I2C Address Translator
+>> + *
+>> + * Copyright (c) 2019,2022 Luca Ceresoli <luca@lucaceresoli.net>
+>> + * Copyright (c) 2022,2023 Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> + *
+>> + * Originally based on i2c-mux.c
+> 
+> Not quite anymore I think... should this line be removed?
+
+Well, it still originally based on i2c-mux. Maybe it doesn't resemble 
+i2c-mux much anymore, but the above line is a kind of thanks for the 
+original authors.
+
+>> +/**
+>> + * struct i2c_atr - The I2C ATR instance
+>> + * @parent:    The parent &struct i2c_adapter
+>> + * @dev:       The device that owns the I2C ATR instance
+>> + * @ops:       &struct i2c_atr_ops
+>> + * @priv:      Private driver data, set with i2c_atr_set_driver_data()
+>> + * @algo:      The &struct i2c_algorithm for adapters
+>> + * @lock:      Lock for the I2C bus segment (see &struct i2c_lock_operations)
+>> + * @max_adapters: Maximum number of adapters this I2C ATR can have
+>> + * @adapter:   Array of adapters
+>> + */
+>> +struct i2c_atr {
+>> +	struct i2c_adapter *parent;
+>> +	struct device *dev;
+>> +	const struct i2c_atr_ops *ops;
+>> +
+>> +	void *priv;
+>> +
+>> +	struct i2c_algorithm algo;
+>> +	/* lock for the I2C bus segment (see struct i2c_lock_operations) */
+> 
+> This comment is identical to the one in the kerneldoc comments just
+> above, I'd just remove it.
+
+checkpatch wants an explicit comment for each lock.
+
+>> +	struct mutex lock;
+>> +	int max_adapters;
+>> +
+>> +	struct notifier_block i2c_nb;
+> 
+> Undocumented?
+
+Indeed, I'll add something here.
+
+> ...
+> 
+>> +void i2c_atr_delete(struct i2c_atr *atr)
+>> +{
+> 
+> Maybe here we could iterate over atr->adapter[] and if any is != NULL
+> just call BUG_ON() or WARN()?
+
+Yes, good idea.
+
+>> +	bus_unregister_notifier(&i2c_bus_type, &atr->i2c_nb);
+>> +	mutex_destroy(&atr->lock);
+>> +	kfree(atr);
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(i2c_atr_delete, I2C_ATR);
+> 
+> ...
+> 
+>> diff --git a/include/linux/i2c-atr.h b/include/linux/i2c-atr.h
+>> new file mode 100644
+>> index 000000000000..7596f70ce1ab
+>> --- /dev/null
+>> +++ b/include/linux/i2c-atr.h
+>> @@ -0,0 +1,116 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * I2C Address Translator
+>> + *
+>> + * Copyright (c) 2019,2022 Luca Ceresoli <luca@lucaceresoli.net>
+>> + * Copyright (c) 2022,2023 Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> + *
+>> + * Based on i2c-mux.h
+> 
+> As above, this does not apply very much anymore as it did in v1.
+> 
+> ...
+> 
+>> +/**
+>> + * i2c_atr_delete - Delete an I2C ATR helper.
+>> + * @atr: I2C ATR helper to be deleted.
+>> + *
+>> + * Precondition: all the adapters added with i2c_atr_add_adapter() mumst be
+> 
+> s/mumst/must/
+
+Yep.
+
+Thanks for the comments!
+
+  Tomi
 
