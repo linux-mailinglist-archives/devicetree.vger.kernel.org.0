@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD646BE582
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B826BE587
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:26:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjCQJZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:25:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36892 "EHLO
+        id S230478AbjCQJ0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:26:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231327AbjCQJZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:25:46 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEA722DD7
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:25:44 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id eh3so17780025edb.11
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:25:44 -0700 (PDT)
+        with ESMTP id S231344AbjCQJ02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:26:28 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10D1B857C
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:26:24 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id o12so17808592edb.9
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:26:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679045143;
+        d=linaro.org; s=google; t=1679045183;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6Pw6XAMpgTlR8PaT1jKw0afe8tRaddYEQnP2dI3tIIo=;
-        b=L1UL7kGV+3R1BsSnk91xcwAYB2stBBoXWpACPaXTUapAEwuMtsZYvWVMk7NxXfrSyS
-         fgnQtDvC2QP8RBGmZN6WAfIQ9rP0Zwypu3m8/TETtgVr+IMG4jnoxXA9C0IK+Znx59Ha
-         4hKSepl8gAhxe5IieMX69gaZ3N377cqOTgZWedmIBnFho/vrm2o7Byq16Tb0HURKavcQ
-         6+5+zTfu5OGlyEEkVAvnBqy8gyVUX31+nNv6X+XBY5y5fwU2pUx/mmH0OlO0rT1wN2Hs
-         BzYeH6LkaK2WhfKuAqJokNoBXOWggFP1w2ZgrzNsbgopFR2SouFbuW31Nc23X51Lqd+H
-         sGMQ==
+        bh=dS1ViTo7YXyoHaesprxlUZ73a5LNDAZaMI4/y98OGuE=;
+        b=tyy1h+/Rm73cWzgEe1RM3BtxotuK6dKfzT1mKLI4UP2oyUQUP4x+WLCi7NAplS54Tb
+         n74zCjRqOOEZENLO0BRqMkVmy29sD0/pztmylHrQSYGlKkU+p8rHnyRqtKz4f2l9UgbI
+         Ixd5CEwtb6SyMdJ7YAKTLAggVpn3O62mCgRkseNRODAXHqaizsPvBiGYeKySM3Inmogk
+         DTO8qjUvvCi8ZVmSmAzO1ApPPleLxA1auE+zNNaq1fVHzI+5UrX3gqDXk6yfMC9rom98
+         jj7sG0ryeYKPNHPM5Za+GXpXi2DrIEo9Bm9wVxGKfvbkCjYeScDUau3WQrB9xxVr7LuI
+         GQ3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679045143;
+        d=1e100.net; s=20210112; t=1679045183;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Pw6XAMpgTlR8PaT1jKw0afe8tRaddYEQnP2dI3tIIo=;
-        b=jxG18WxYoIIy1GNXmPCsLvhki7YC/DuHthiURXooSM0ikcuNGS6acbpVykW7TAnmPJ
-         ZBmU2toqpoin/CCFF2cX8rxC5qakKSpTepZvZrYWpoI4f787e4+NfN4sD/jU0kVJoFQA
-         pDbBALHBhaU3jD/psjoY2qR3YjGXrzri/kI3lddwqCK05PN/ALRuVVjMkALKeSlQj2Wq
-         cwO0M3sXqOs3Dnzf3y3/jqp6WTLGhTwhicGCt8aa9CtyXNJiYSo5PH/xeflKpbboI/ZV
-         mgVlu3w+oXfKecVWdYix5Coj59jTBJHeIDG7iYEtUHAr9YJdHzsGo5WKJSeBFvWexmTK
-         7IyQ==
-X-Gm-Message-State: AO0yUKUNnQ9ar0n1+GYPk8OZpJZGC6tLSNhFraqnsMDVr5IUX+rVhpjr
-        YQGD7Ag1FT/79E43pH4MX6nYs5tGoA6wScgzq1s=
-X-Google-Smtp-Source: AK7set+9NT+jmXGWxhJ+ya2LlxnSMGWlNIyWsPK814Qlf5sfchSP8o1GMGE3L61aFkWfgx8c+bCrtw==
-X-Received: by 2002:a17:906:e206:b0:8b1:bab0:aa3d with SMTP id gf6-20020a170906e20600b008b1bab0aa3dmr13148850ejb.8.1679045143401;
-        Fri, 17 Mar 2023 02:25:43 -0700 (PDT)
+        bh=dS1ViTo7YXyoHaesprxlUZ73a5LNDAZaMI4/y98OGuE=;
+        b=Os2nqGFJRuXIUu6q9+WvDhVaScBud9sVHhEset0l2IwWOesulHLAb4CAwPnHQqgDgl
+         VtFt6ijhQh7xCaME2ljlWnulCOoQNWZGDqlLceiTFzBG/SoPxyK4W3LaoGgzihpC0vND
+         1cdCW3g7K2k/TwBBjDByiCn97IK9RnDkrm/3ST+v/ZjExHRsMZBc6YwsAWaziGFWNUZG
+         kfzewvJN+JfG3tbBH3EvdzJZLXupp/Hh6xGLT0kkrVb/N5KBJmqp65ovf/XWhwlTOWXk
+         8+pWF/PinMPCUXvf0xx/WQ+wyekfcj0Dzal6XpfD0dPMv6OzCSc08q6pOx7vlGDFs2+y
+         Z3iw==
+X-Gm-Message-State: AO0yUKXqBAWxMWMB2xi/HtcCtQwolrsls8+Em0C31JJrBfJF50RRRCyh
+        n61gA+ODbQ0KKy9RRKdIAN+2Gg==
+X-Google-Smtp-Source: AK7set9xWJGf4X02U+zMuBYCf/KV6yHt7pRADOs3M3LCzDMMcohMQJRFroGQ2jAbyqSumn9pK8pf9A==
+X-Received: by 2002:a05:6402:1057:b0:4fa:96fd:797b with SMTP id e23-20020a056402105700b004fa96fd797bmr2268033edu.6.1679045183373;
+        Fri, 17 Mar 2023 02:26:23 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id v14-20020a50d58e000000b004fd29e87535sm805150edi.14.2023.03.17.02.25.42
+        by smtp.gmail.com with ESMTPSA id i4-20020a170906850400b0093018c7c07dsm746241ejx.82.2023.03.17.02.26.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 02:25:43 -0700 (PDT)
-Message-ID: <a0f93645-b147-d567-3a5e-c82afe42b0f7@linaro.org>
-Date:   Fri, 17 Mar 2023 10:25:42 +0100
+        Fri, 17 Mar 2023 02:26:22 -0700 (PDT)
+Message-ID: <5a8fa13b-d9f7-aca8-3898-51d6e53fa78a@linaro.org>
+Date:   Fri, 17 Mar 2023 10:26:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-ms i2c
+Subject: Re: [PATCH v5 3/3] i2c: mpc: Use i2c-scl-clk-low-timeout-us i2c
  property
 Content-Language: en-US
 To:     Andi Shyti <andi.shyti@kernel.org>, linux-i2c@vger.kernel.org,
@@ -63,10 +63,10 @@ Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Chris Packham <chris.packham@alliedtelesis.co.nz>,
         Ryan Chen <ryan_chen@aspeedtech.com>
-References: <20230314215612.23741-1-andi.shyti@kernel.org>
- <20230314215612.23741-4-andi.shyti@kernel.org>
+References: <20230314215612.23741-4-andi.shyti@kernel.org>
+ <20230314221614.24205-1-andi.shyti@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230314215612.23741-4-andi.shyti@kernel.org>
+In-Reply-To: <20230314221614.24205-1-andi.shyti@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,7 +79,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 22:56, Andi Shyti wrote:
+On 14/03/2023 23:16, Andi Shyti wrote:
 > "fsl,timeout" is marked as deprecated and replaced by the
 > "i2c-scl-clk-low-timeout-us" i2c property.
 > 
@@ -90,6 +90,19 @@ On 14/03/2023 22:56, Andi Shyti wrote:
 > Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
+> Hi,
+> 
+> this should be the only patch where I forgot an 'ms'.
+> It should be fixed now.
+> 
+> Thanks, Chris.
+> 
+> V4 -> v5
+>  - replace /ms/us/ in the commit subject and in the comment.
+> 
+
+Please send entire new v5, because this messes with our
+threading/reviewing and our tools.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
