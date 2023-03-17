@@ -2,275 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9472D6BE330
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:23:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F966BE3A3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:33:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbjCQIXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56850 "EHLO
+        id S231614AbjCQIde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:33:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbjCQIXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:23:12 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511543C7A1
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:22:43 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id by13so3829219vsb.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:22:43 -0700 (PDT)
+        with ESMTP id S231544AbjCQIdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:33:10 -0400
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8EDDFB55
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:31:56 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id y4so17368294edo.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:31:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112; t=1679041362;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LL9NiSo2W9/P6dBrc4byavByocRw5QCHZ/fD0RZCUO4=;
-        b=bCSye+59muZUL64mVPD0M6HQ1lRZMzEGH7seYsGp9p7PN8mKQN/vPxlH+NraDiIX7E
-         9/PZa3mptYIbRifg5RGCm8I6qH5sCQG1vcy+c8OGXkdlbtJGKTR0GeOZvjaR6XTu0IPc
-         L+Npx126tIWHS/ykrJL6eIsR0uOOCxvdxO3ZiHDfEzOTZKqNu+gMtaOVmercBUoQwxYY
-         IDfySWTCLnPWgL8l2s5CiD5aw6h1+V0BFIM1uEHFnv4rDUHefks5NtigQYrVxI6biNdV
-         ynEkdGAM9E6nAWRoIspUbo830yzf8Rze37tA5yPHEjYhTZ5qfw0YPa+R/EwgiHa957ol
-         BF+Q==
+        d=linaro.org; s=google; t=1679041561;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HMtLSDM2IpcbrZYXetfebgedF+TZqbOtztzNmGwB5dg=;
+        b=xNllU9x8j042ml+H77bhJMLbAZm/wDqztms6ARNM/UBOwP/3sBmjX4gAploxexEUve
+         +bFJEiXaRBZfSo7ac37NHA6XU1MGfIpk4ctudTT40enYtG9VmyVnCjTmuDAYRGbi+Qxx
+         488pWaIR39lMNK5g08vChO81pZVys635EQyxFcIs8rTTVAevI5qPxHVU9vV7kHjI4Fdc
+         fB0ddsE65sIxlUFutxo94A2dGNg1kTvJX/t5odR5i+2mnW9GEN8FoHKbaX/BtlHRv1kH
+         q81Bqe4ZHhDkMonv1DFAAeDkvcfjzc0vaT85Tx9mSXvpgObwoP0R8skRwAOxW5RRWcMU
+         kxRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679041362;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LL9NiSo2W9/P6dBrc4byavByocRw5QCHZ/fD0RZCUO4=;
-        b=dyOA3rLxtCmL7RID5e7SfC9IGapk5PkzkIp7Fb2+TiPJJo38lFvehC1HO7wSlEqaqu
-         rnmlTRf9WarHy/kBQKqSOZM8fzJ3YsvTlLXgmivA5uXfyIX+SUMsZ/x+uaAusnUerby/
-         3rfQNX8ypDLS72YVk/fa4B+m0K5A2G/8Z+W8MlrR8xv7NCPmYLpgCFRmIVW14Ah1nSOY
-         ifQtYntj+R0RehFoH3Pbvx6uZoMZHWfybnsMS/E7CJixZAr1E/MNktUauXBvMiY+RXaA
-         GHML9Aij3TOP3UfdmL6gyHuvsUTuUHpnhdrlyBImDw83yCevNOSlu44jp7fzW792sTP+
-         QVDQ==
-X-Gm-Message-State: AO0yUKX9xt53Qe1od4mNy0DStvAvbaBI8TANaG6xg9cq+9l8MrUBX/PW
-        dTx/1zwKNJBamLO/9jaUF5x70XZLYMgv3wphw1O3EQ==
-X-Google-Smtp-Source: AK7set/9AE4RSZxJdKcBAH5kvuNKB5KDURWDDse3moefUQ7EjosATFwsHMtyRxtgDtAo+kXYHGpu6UK8/i7ekNNEf3g=
-X-Received: by 2002:a67:dc81:0:b0:422:194a:8566 with SMTP id
- g1-20020a67dc81000000b00422194a8566mr20213687vsk.5.1679041362233; Fri, 17 Mar
- 2023 01:22:42 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679041561;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HMtLSDM2IpcbrZYXetfebgedF+TZqbOtztzNmGwB5dg=;
+        b=aGtOXY/nmNca3QD3aIH4ya1z1+yka3k9lOnyiC48pUE8DKTJh6LIbENyKgzjrvH3CR
+         Ojm0U+BGtel3QAxTdZBTKQlG70dgFIZE/a+s9gaPKGu9JJGSg+TcS2RQngqIY3kF40dU
+         5dcnabfZrLnvhZKaVjg/dTjN0BRqyrJx0+ugvnKWr03ETVHqYdE07P3Ke0pEJ3oEp9Mc
+         PB/gUJlYp0JGCePGtESf8N/mUE5hQKxCLEumz3Su35W3/r60EJTUG7c74lb4KHNZM4hJ
+         m1vy1L7rdrw0C5mJiMIALXxlicgQ0r2zeLIAaudWZBbbLzt7MvBDJYlnI9A9/K7xR4PJ
+         xdHw==
+X-Gm-Message-State: AO0yUKWmdSuB0NkoRi2hRklRlJSm8E1p34diHdYamJhs/xMjmV5lq8Lb
+        1ilhFNZwDEjN0XM30d9Qzbutsg==
+X-Google-Smtp-Source: AK7set9U+jKH5QZ3dnCfo6p1cM7zkAUSBIUFa3e0ySbP7S+RFF8CHkYY/up8+gxdnycP2TQP8pxpyw==
+X-Received: by 2002:a17:906:9f0a:b0:8b1:7fa:6588 with SMTP id fy10-20020a1709069f0a00b008b107fa6588mr14042511ejc.12.1679041561663;
+        Fri, 17 Mar 2023 01:26:01 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
+        by smtp.gmail.com with ESMTPSA id h24-20020a1709062dd800b008db605598b9sm689819eji.67.2023.03.17.01.26.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 01:26:01 -0700 (PDT)
+Message-ID: <68f6c2f3-298d-156d-b336-b5ae957358bc@linaro.org>
+Date:   Fri, 17 Mar 2023 09:26:00 +0100
 MIME-Version: 1.0
-References: <20230315183729.2376178-1-sboyd@kernel.org>
-In-Reply-To: <20230315183729.2376178-1-sboyd@kernel.org>
-From:   David Gow <davidgow@google.com>
-Date:   Fri, 17 Mar 2023 16:22:30 +0800
-Message-ID: <CABVgOS=g6yvNg6xscZqa5fQdyWMEGJ0K9_86R3K7_Fa0wCM_VQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] clk: Add kunit tests for fixed rate and parent data
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@lists.linux.dev,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        kunit-dev@googlegroups.com, Maxime Ripard <maxime@cerno.tech>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000fb79f705f7144714"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/3 V5] dt-bindings: net: realtek-bluetooth: Add RTL8821CS
+Content-Language: en-US
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-bluetooth@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alistair@alistair23.me, anarsoul@gmail.com, luiz.dentz@gmail.com,
+        johan.hedberg@gmail.com, marcel@holtmann.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20230315173657.28692-1-macroalpha82@gmail.com>
+ <20230315173657.28692-2-macroalpha82@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230315173657.28692-2-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000fb79f705f7144714
-Content-Type: text/plain; charset="UTF-8"
-
-On Thu, 16 Mar 2023 at 02:37, Stephen Boyd <sboyd@kernel.org> wrote:
->
-> This patch series adds unit tests for the clk fixed rate basic type and
-> the clk registration functions that use struct clk_parent_data. To get
-> there, we add support for loading device tree overlays onto the live DTB
-> along with probing platform drivers to bind to device nodes in the
-> overlays. With this series, we're able to exercise some of the code in
-> the common clk framework that uses devicetree lookups to find parents
-> and the fixed rate clk code that scans device tree directly and creates
-> clks. Please review.
->
-> I Cced everyone to all the patches so they get the full context. I'm
-> hoping I can take the whole pile through the clk tree as they almost all
-> depend on each other.
->
-> Changes from v1 (https://lore.kernel.org/r/20230302013822.1808711-1-sboyd@kernel.org):
->  * Don't depend on UML, use unittest data approach to attach nodes
->  * Introduce overlay loading API for KUnit
->  * Move platform_device KUnit code to drivers/base/test
->  * Use #define macros for constants shared between unit tests and
->    overlays
->  * Settle on "test" as a vendor prefix
->  * Make KUnit wrappers have "_kunit" postfix
->
+On 15/03/2023 18:36, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add compatible string for RTL8821CS for existing Realtek Bluetooth
+> driver.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  .../bindings/net/realtek-bluetooth.yaml       | 24 ++++++++++++-------
+>  1 file changed, 15 insertions(+), 9 deletions(-)
 
 
-Thanks! I like this much better, and it is working fine here under UML
-and x86_64.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-There are some issues with other architectures (mostly endianness
-problems, but I got a refcount underflow in kunit_remove_resource
-after platform_device_alloc_kunit_test on sparc64 as well), but
-otherwise it's working on most of the things I've tried.
+Best regards,
+Krzysztof
 
-I'll play around with it some more next week and dig into the code in
-more detail, but I've not seen anything I dislike about the overall
-design so far.
-
-Thanks!
--- David
-
-
-> Stephen Boyd (11):
->   of: Load KUnit DTB from of_core_init()
->   of: Add test managed wrappers for of_overlay_apply()/of_node_put()
->   dt-bindings: vendor-prefixes: Add "test" vendor for KUnit and friends
->   dt-bindings: test: Add KUnit empty node binding
->   of: Add a KUnit test for overlays and test managed APIs
->   platform: Add test managed platform_device/driver APIs
->   dt-bindings: kunit: Add fixed rate clk consumer test
->   clk: Add test managed clk provider/consumer APIs
->   clk: Add KUnit tests for clk fixed rate basic type
->   dt-bindings: clk: Add KUnit clk_parent_data test
->   clk: Add KUnit tests for clks registered with struct clk_parent_data
->
->  .../clock/test,clk-kunit-parent-data.yaml     |  47 ++
->  .../kunit/test,clk-kunit-fixed-rate.yaml      |  35 ++
->  .../bindings/test/test,kunit-empty.yaml       |  30 ++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  drivers/base/test/Makefile                    |   3 +
->  drivers/base/test/platform_kunit-test.c       | 108 +++++
->  drivers/base/test/platform_kunit.c            | 186 +++++++
->  drivers/clk/.kunitconfig                      |   3 +
->  drivers/clk/Kconfig                           |   7 +
->  drivers/clk/Makefile                          |   9 +-
->  drivers/clk/clk-fixed-rate_test.c             | 299 ++++++++++++
->  drivers/clk/clk-fixed-rate_test.h             |   8 +
->  drivers/clk/clk_kunit.c                       | 219 +++++++++
->  drivers/clk/clk_parent_data_test.h            |  10 +
->  drivers/clk/clk_test.c                        | 459 +++++++++++++++++-
->  drivers/clk/kunit_clk_fixed_rate_test.dtso    |  19 +
->  drivers/clk/kunit_clk_parent_data_test.dtso   |  28 ++
->  drivers/of/.kunitconfig                       |   5 +
->  drivers/of/Kconfig                            |  23 +
->  drivers/of/Makefile                           |   7 +
->  drivers/of/base.c                             | 182 +++++++
->  drivers/of/kunit.dtso                         |  10 +
->  drivers/of/kunit_overlay_test.dtso            |   9 +
->  drivers/of/of_kunit.c                         | 123 +++++
->  drivers/of/of_private.h                       |   6 +
->  drivers/of/of_test.c                          |  43 ++
->  drivers/of/overlay_test.c                     | 107 ++++
->  drivers/of/unittest.c                         | 101 +---
->  include/kunit/clk.h                           |  28 ++
->  include/kunit/of.h                            |  90 ++++
->  include/kunit/platform_device.h               |  15 +
->  31 files changed, 2119 insertions(+), 102 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/test,clk-kunit-parent-data.yaml
->  create mode 100644 Documentation/devicetree/bindings/kunit/test,clk-kunit-fixed-rate.yaml
->  create mode 100644 Documentation/devicetree/bindings/test/test,kunit-empty.yaml
->  create mode 100644 drivers/base/test/platform_kunit-test.c
->  create mode 100644 drivers/base/test/platform_kunit.c
->  create mode 100644 drivers/clk/clk-fixed-rate_test.c
->  create mode 100644 drivers/clk/clk-fixed-rate_test.h
->  create mode 100644 drivers/clk/clk_kunit.c
->  create mode 100644 drivers/clk/clk_parent_data_test.h
->  create mode 100644 drivers/clk/kunit_clk_fixed_rate_test.dtso
->  create mode 100644 drivers/clk/kunit_clk_parent_data_test.dtso
->  create mode 100644 drivers/of/.kunitconfig
->  create mode 100644 drivers/of/kunit.dtso
->  create mode 100644 drivers/of/kunit_overlay_test.dtso
->  create mode 100644 drivers/of/of_kunit.c
->  create mode 100644 drivers/of/of_test.c
->  create mode 100644 drivers/of/overlay_test.c
->  create mode 100644 include/kunit/clk.h
->  create mode 100644 include/kunit/of.h
->  create mode 100644 include/kunit/platform_device.h
->
->
-> base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
-> --
-> https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
-> https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
->
-
---000000000000fb79f705f7144714
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIPnwYJKoZIhvcNAQcCoIIPkDCCD4wCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-ggz5MIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
-IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
-dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
-6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
-c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
-I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
-AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
-BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
-CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
-AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
-MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
-My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
-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
-64VRg2IjDI2fJVE9RD6aMEwGA1UdIARFMEMwQQYJKwYBBAGgMgEoMDQwMgYIKwYBBQUHAgEWJmh0
-dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAwGA1UdEwEB/wQCMAAwgZoGCCsG
-AQUFBwEBBIGNMIGKMD4GCCsGAQUFBzABhjJodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9jYS9n
-c2F0bGFzcjNzbWltZWNhMjAyMDBIBggrBgEFBQcwAoY8aHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
-LmNvbS9jYWNlcnQvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3J0MB8GA1UdIwQYMBaAFHzMCmjXouse
-LHIb0c1dlW+N+/JjMEYGA1UdHwQ/MD0wO6A5oDeGNWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20v
-Y2EvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQA2lZLYRLu7foeR
-cHo1VeNA974FZBiCm08Kd44/aCMEzdTJvxAE9xbUJf7hS1i6eW49qxuSp3/YLn6U7uatwAcmZcwp
-Zma19ftf3LH+9Hvffk+X8fbPKe6uHkJhR2LktrhRzF159jj67NvXyGQv8J4n7UNeEVP0d5ByvRwv
-tF2bJwlOwRGLoxasKSyDHIyUpwTfWYPq7XvjoGqQ/tDS7Khcc5WncJl0/ZEj7EKjtoGbsDbLdXEF
-m/6vdcYKJzF9ghHewtV3YIU4RE3pEM4aCWWRtJwbExzeue6fI7RqURbNCAyQuSpWv0YQvzsX3ZX3
-c1otrs50n1N0Sf8/rfJxq7sWMYICajCCAmYCAQEwaDBUMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQ
-R2xvYmFsU2lnbiBudi1zYTEqMCgGA1UEAxMhR2xvYmFsU2lnbiBBdGxhcyBSMyBTTUlNRSBDQSAy
-MDIwAhABxy1wm0tAmHKHFkLS9RWPMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAm
-LD0bzOo1mGqnjDNiyk612P/TmqI26xsS4FiA39NZDjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
-MBwGCSqGSIb3DQEJBTEPFw0yMzAzMTcwODIyNDJaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUD
-BAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsG
-CSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAnMvBaiqgwWbHc+GYNLuy
-ZzWSji42DQggTYSuJTH6GX49osxY/MC/tgZ6U7aEB5uXnBi4AZKfKB9GMUOWjU1ZsayRtu8PjISE
-4WDI+xSidDZUTcQJVo6hho5nQeUmqk2UTSOr5XbFIOyhZlctvn6zYUrqF8/Rjx9RMpEVlKU4KdvD
-tPWs4+hzAPy9Ai7aeeWHkZ3IxD7KRyKCwT3cdX4ZWoOFRfZGU7YcJygqd2CWKOCPmhUW7nh8klWn
-olpHzCe2mfvwzuBydDC0YG6cYeL9mMDk6k1YS8wlaSU2op9+SDDxL1oighAZxPfDOm9IKqado/Ei
-e7nMMLdSLzoUedMCYg==
---000000000000fb79f705f7144714--
