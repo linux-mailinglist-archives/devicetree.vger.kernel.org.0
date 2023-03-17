@@ -2,163 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D2066BDDBA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 01:39:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A4E6BDDDD
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 02:01:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjCQAjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 20:39:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57214 "EHLO
+        id S229494AbjCQBB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 21:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbjCQAja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 20:39:30 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A1E584AF
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 17:39:28 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id b10so3370097lfb.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Mar 2023 17:39:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679013567;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=upiehW/yJZLSDpEf4y2yHj38zYrZBw51z7iV6HWK5w0=;
-        b=el9iDT2FL1/oZc4arzlytDjKbPCTshS4fLFg5039eYuml9JbYvXmfE1SCbje5PjUkF
-         cNwTvTRUAoKKpjRKopzkaxW6NhRTGYV/LJkpbBn0tp3TNpd1xVKRi3nxPe37PtkvkKck
-         Xd9Qtak51zUNaI8M14KJeXLW5lEgRDxZ5Wt6n28jL+Xwc+ycVFAOu7bZ+7BivIhui1AR
-         pV0nwz+sZEr6c6J/uNpl5Nh/w4x/CYFXCbZ0YsSheZucqk/ZpebtuPkGoRg9Q8F4jBHO
-         IITRzZNNT212Y7JAJJ7aW8Sby4CKMgquBwTVK1sDEGDazYJwtUO6Bd5bZwTlcN9hE3aq
-         lJZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679013567;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=upiehW/yJZLSDpEf4y2yHj38zYrZBw51z7iV6HWK5w0=;
-        b=bC9RJ7mdF9gRp3Hm76dwbzFafn1vArLbh2JsDs4umNb6AsJmjOAqWXk7tYpl7CS+Nf
-         JW6FqPVQ22E0tflQshU097U1KHR7r5YGlz8AmjEO/j7+bcHKZpeG7ljJQ5kbRmR52csX
-         GlRSFSMnLFk5/Yn2olJRP16DeXzFbCAwjKTHmhFb7h4L3DwdyfAq8wpwQdh0XsvHc6BL
-         ZUA4O1WEFOhJFb6ONlGlBFt8mrOMXcKw5WZvfLGjeJ7IzLOJa84OKWE+r1/ov2r1B3Qt
-         r4lESLX6hxkzgSzt0gUvuodPNRTtOR+9vw97xJVxnqdAnuFxeQrQANdFGy7LmOeTrQMi
-         IiUQ==
-X-Gm-Message-State: AO0yUKX6n+KL0UeJXhBJZJxXP9y9x0HJCgmzh5whdKJhYmnQQKjCJD0x
-        aV07Beq9RBzG/5g1Ed/jO/qBfQ==
-X-Google-Smtp-Source: AK7set9/5sjpev/ZL/osDaH1GWk4W3mmN0oW9qnRUD8kjrs1+643wwtvBj1UevDajcQUv/2O1M4dJg==
-X-Received: by 2002:a05:6512:3092:b0:4db:3902:c709 with SMTP id z18-20020a056512309200b004db3902c709mr322158lfd.32.1679013567039;
-        Thu, 16 Mar 2023 17:39:27 -0700 (PDT)
-Received: from [192.168.1.101] (abyj16.neoplus.adsl.tpnet.pl. [83.9.29.16])
-        by smtp.gmail.com with ESMTPSA id e4-20020a056512090400b004a91df49508sm107764lft.177.2023.03.16.17.39.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Mar 2023 17:39:26 -0700 (PDT)
-Message-ID: <ad64143c-13c0-63e3-561a-620c44f26b9d@linaro.org>
-Date:   Fri, 17 Mar 2023 01:39:25 +0100
+        with ESMTP id S229436AbjCQBBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 21:01:55 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576ECB6D19;
+        Thu, 16 Mar 2023 18:01:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679014913; x=1710550913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=90aXFT30DnFK60tUbNIT7GTgbDigZvOI9/EjEEL+EKw=;
+  b=TPUuqqpS38x4KPGyXpQOm2XV6FhbtqelJgOU4RQuUHtJSdO3lhwigzfR
+   nHp7XOW6G+8keIn5Qf9H+4dCXHOa977gAvG7289Cu0AeuY5QkJF6Wj9p0
+   S52x2NVMTBDnmUgP1lqsa4r9MhDmts6n0/PuevGClhNhbOkFg6YmvzB6M
+   ul6MFvSUDerDnOtCcQPvglk9+ibs2IzOdLDUXBaPhsrDohKRMQcy3DY0T
+   L/poWvhm3VWSYa/ShWuIJpPbyJq1+RwWMRUP04JTwb8V4kRPndG+9OhsP
+   EFkmNxo4oofvHrFIHsJuCbX/Cer+FJrI7t15+TngORCXj/4iR3+gDA3bD
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="317806976"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; 
+   d="scan'208";a="317806976"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2023 18:01:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="710335151"
+X-IronPort-AV: E=Sophos;i="5.98,267,1673942400"; 
+   d="scan'208";a="710335151"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 16 Mar 2023 18:01:50 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pcyTd-0008wQ-23;
+        Fri, 17 Mar 2023 01:01:49 +0000
+Date:   Fri, 17 Mar 2023 09:01:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org,
+        mazziesaccount@gmail.com
+Cc:     oe-kbuild-all@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mehdi Djait <mehdi.djait.k@gmail.com>
+Subject: Re: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+Message-ID: <202303170813.jSOLGCL5-lkp@intel.com>
+References: <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 2/6] thermal: qcom: tsens-v0_1: Fix mdm9607 slope
- values
-Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-References: <20230315103950.2679317-1-stephan.gerhold@kernkonzept.com>
- <20230315103950.2679317-3-stephan.gerhold@kernkonzept.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230315103950.2679317-3-stephan.gerhold@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mehdi,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on next-20230316]
+[cannot apply to linus/master v6.3-rc2]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/dt-bindings-iio-Add-KX132-accelerometer/20230317-075056
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k%40gmail.com
+patch subject: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230317/202303170813.jSOLGCL5-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/40c75341c42d0e5bea5d73961202978a4be41cd2
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mehdi-Djait/dt-bindings-iio-Add-KX132-accelerometer/20230317-075056
+        git checkout 40c75341c42d0e5bea5d73961202978a4be41cd2
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/iio/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303170813.jSOLGCL5-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/accel/kionix-kx022a.c: In function '__kx022a_fifo_flush':
+>> drivers/iio/accel/kionix-kx022a.c:598:9: warning: ISO C90 forbids variable length array 'buffer' [-Wvla]
+     598 |         __le16 buffer[data->chip_info->fifo_length * 3];
+         |         ^~~~~~
+--
+   drivers/iio/accel/kionix-kx022a-i2c.c: In function 'kx022a_i2c_probe':
+>> drivers/iio/accel/kionix-kx022a-i2c.c:27:19: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+      27 |         chip_info = device_get_match_data(&i2c->dev);
+         |                   ^
+   drivers/iio/accel/kionix-kx022a-i2c.c:29:27: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+      29 |                 chip_info = (const struct kx022a_chip_info *) id->driver_data;
+         |                           ^
+--
+   drivers/iio/accel/kionix-kx022a-spi.c: In function 'kx022a_spi_probe':
+>> drivers/iio/accel/kionix-kx022a-spi.c:27:19: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+      27 |         chip_info = device_get_match_data(&spi->dev);
+         |                   ^
+   drivers/iio/accel/kionix-kx022a-spi.c:29:27: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+      29 |                 chip_info = (const struct kx022a_chip_info *) id->driver_data;
+         |                           ^
 
 
-On 15.03.2023 11:39, Stephan Gerhold wrote:
-> According to the msm-3.18 vendor kernel from Qualcomm [1], mdm9607 uses
-> a non-standard slope value of 3000 (instead of 3200) for all sensors.
-> Fill it properly similar to the 8939 code added recently.
-> 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi#L875
-> 
-FWIW there's a 4.9 release for 9607
+vim +/buffer +598 drivers/iio/accel/kionix-kx022a.c
 
-https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.2.3.6.c5-03900-9x07/arch/arm/boot/dts/qcom/mdm9607.dtsi
-> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Fixes: a2149ab815fc ("thermal/drivers/qcom/tsens-v0_1: Add support for MDM9607")
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+   593	
+   594	static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
+   595				       bool irq)
+   596	{
+   597		struct kx022a_data *data = iio_priv(idev);
+ > 598		__le16 buffer[data->chip_info->fifo_length * 3];
+   599		uint64_t sample_period;
+   600		int count, fifo_bytes;
+   601		bool renable = false;
+   602		int64_t tstamp;
+   603		int ret, i;
+   604	
+   605		fifo_bytes = kx022a_get_fifo_bytes(data);
+   606		count = fifo_bytes / KX_FIFO_SAMPLES_SIZE_BYTES;
+   607		if (!count)
+   608			return 0;
+   609	
+   610		/*
+   611		 * If we are being called from IRQ handler we know the stored timestamp
+   612		 * is fairly accurate for the last stored sample. Otherwise, if we are
+   613		 * called as a result of a read operation from userspace and hence
+   614		 * before the watermark interrupt was triggered, take a timestamp
+   615		 * now. We can fall anywhere in between two samples so the error in this
+   616		 * case is at most one sample period.
+   617		 */
+   618		if (!irq) {
+   619			/*
+   620			 * We need to have the IRQ disabled or we risk of messing-up
+   621			 * the timestamps. If we are ran from IRQ, then the
+   622			 * IRQF_ONESHOT has us covered - but if we are ran by the
+   623			 * user-space read we need to disable the IRQ to be on a safe
+   624			 * side. We do this usng synchronous disable so that if the
+   625			 * IRQ thread is being ran on other CPU we wait for it to be
+   626			 * finished.
+   627			 */
+   628			disable_irq(data->irq);
+   629			renable = true;
+   630	
+   631			data->old_timestamp = data->timestamp;
+   632			data->timestamp = iio_get_time_ns(idev);
+   633		}
+   634	
+   635		/*
+   636		 * Approximate timestamps for each of the sample based on the sampling
+   637		 * frequency, timestamp for last sample and number of samples.
+   638		 *
+   639		 * We'd better not use the current bandwidth settings to compute the
+   640		 * sample period. The real sample rate varies with the device and
+   641		 * small variation adds when we store a large number of samples.
+   642		 *
+   643		 * To avoid this issue we compute the actual sample period ourselves
+   644		 * based on the timestamp delta between the last two flush operations.
+   645		 */
+   646		if (data->old_timestamp) {
+   647			sample_period = data->timestamp - data->old_timestamp;
+   648			do_div(sample_period, count);
+   649		} else {
+   650			sample_period = data->odr_ns;
+   651		}
+   652		tstamp = data->timestamp - (count - 1) * sample_period;
+   653	
+   654		if (samples && count > samples) {
+   655			/*
+   656			 * Here we leave some old samples to the buffer. We need to
+   657			 * adjust the timestamp to match the first sample in the buffer
+   658			 * or we will miscalculate the sample_period at next round.
+   659			 */
+   660			data->timestamp -= (count - samples) * sample_period;
+   661			count = samples;
+   662		}
+   663	
+   664		fifo_bytes = count * KX_FIFO_SAMPLES_SIZE_BYTES;
+   665		ret = regmap_noinc_read(data->regmap, data->chip_info->buf_read,
+   666					&buffer[0], fifo_bytes);
+   667		if (ret)
+   668			goto renable_out;
+   669	
+   670		for (i = 0; i < count; i++) {
+   671			__le16 *sam = &buffer[i * 3];
+   672			__le16 *chs;
+   673			int bit;
+   674	
+   675			chs = &data->scan.channels[0];
+   676			for_each_set_bit(bit, idev->active_scan_mask, AXIS_MAX)
+   677				chs[bit] = sam[bit];
+   678	
+   679			iio_push_to_buffers_with_timestamp(idev, &data->scan, tstamp);
+   680	
+   681			tstamp += sample_period;
+   682		}
+   683	
+   684		ret = count;
+   685	
+   686	renable_out:
+   687		if (renable)
+   688			enable_irq(data->irq);
+   689	
+   690		return ret;
+   691	}
+   692	
 
-Konrad
-> Changes in v3: Drop now unused ops_v0_1 definition
-> Changes in v2: New patch
-> ---
->  drivers/thermal/qcom/tsens-v0_1.c | 24 +++++++++++++++++-------
->  1 file changed, 17 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-> index 106d26076e3f..1b454de3928d 100644
-> --- a/drivers/thermal/qcom/tsens-v0_1.c
-> +++ b/drivers/thermal/qcom/tsens-v0_1.c
-> @@ -222,6 +222,16 @@ static int __init init_8939(struct tsens_priv *priv) {
->  	return init_common(priv);
->  }
->  
-> +static int __init init_9607(struct tsens_priv *priv)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < priv->num_sensors; ++i)
-> +		priv->sensor[i].slope = 3000;
-> +
-> +	return init_common(priv);
-> +}
-> +
->  /* v0.1: 8916, 8939, 8974, 9607 */
->  
->  static struct tsens_features tsens_v0_1_feat = {
-> @@ -271,12 +281,6 @@ static const struct reg_field tsens_v0_1_regfields[MAX_REGFIELDS] = {
->  	[TRDY] = REG_FIELD(TM_TRDY_OFF, 0, 0),
->  };
->  
-> -static const struct tsens_ops ops_v0_1 = {
-> -	.init		= init_common,
-> -	.calibrate	= tsens_calibrate_common,
-> -	.get_temp	= get_temp_common,
-> -};
-> -
->  static const struct tsens_ops ops_8916 = {
->  	.init		= init_common,
->  	.calibrate	= calibrate_8916,
-> @@ -320,9 +324,15 @@ struct tsens_plat_data data_8974 = {
->  	.fields	= tsens_v0_1_regfields,
->  };
->  
-> +static const struct tsens_ops ops_9607 = {
-> +	.init		= init_9607,
-> +	.calibrate	= tsens_calibrate_common,
-> +	.get_temp	= get_temp_common,
-> +};
-> +
->  struct tsens_plat_data data_9607 = {
->  	.num_sensors	= 5,
-> -	.ops		= &ops_v0_1,
-> +	.ops		= &ops_9607,
->  	.feat		= &tsens_v0_1_feat,
->  	.fields	= tsens_v0_1_regfields,
->  };
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
