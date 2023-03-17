@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CC16BE423
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B0C6BE42D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:46:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbjCQIpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:45:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
+        id S231564AbjCQIqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231697AbjCQIoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:44:19 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CCF9B75F
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:43:17 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id y4so17518916edo.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:43:17 -0700 (PDT)
+        with ESMTP id S231946AbjCQIpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:45:15 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CADF5AB54
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:44:37 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id h8so17442371ede.8
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:44:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679042593;
+        d=linaro.org; s=google; t=1679042675;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CyjsELfFw3lppmbggM22hydH2zqp9jlm3lTnEs6D8is=;
-        b=HUvjbzmDbBt2pJx9PYHfYufQrQwXrdyNXF9UkWGR+N1EEfRNjewLhQ03io6sM4WuOV
-         GnvIM6bMAuclAa3iPXZR5JkPODMzLPcQ4tjm+j4Uz39iyMVvN6QVv+rg6Jb0SkEzK+64
-         95tWkxo2PFMEsvdvPLRJA8Y7H2PBW5FcXN8XoN768YsQoe46PbreGx4J2WE2A9CgHXfs
-         FJ2qNDtOAt+9sQFra6a8V3aew870duReNp4B/SYov0YWpk92vLc3vMZjEeriWbYyMAJ9
-         NucsJdcl/iFyc63O7TV7pel9hplwavP04t2dsSdhmkAhxGTu75rdVFgZuhldcLNmIG/k
-         5Aew==
+        bh=juFmrQz7oKZJRVloOKbAwgle6hn0N8TdFSrYHqJtuGs=;
+        b=alyQrUOzldXMFXcXM/xm57EnS7Biz1DBBOCfYjMGS+7LLhegBZpU9leCj5vcMtwmLE
+         HPYbUWzopVK2UWhT9Bx7o8W2KKqzOF217Tx1jZER1jkeAb+WEfIt1utEjhcXplxyfiXr
+         afYezteJUkdwfm/v7IsGnLl+azcWRjGVbhVTLeYnlgJ8dj7jozEzDh1WVtibhJlpbd2s
+         0cwY/4DtVZTvNe11Lusn/tfqI0zA/RUH3kdSWB+qpiluR41RRA6+VJmJXQjVJKw1u5BS
+         n/HdliYLBUZFLH9SseWrmT0axULEsZPJGH3m4b8zBoKFeI24PCS+QeULJ8TPc9wKv1d7
+         ZQYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679042593;
+        d=1e100.net; s=20210112; t=1679042675;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CyjsELfFw3lppmbggM22hydH2zqp9jlm3lTnEs6D8is=;
-        b=I/CU37IxX4UDRkZH+BdCxr1bun6v1V84k+yszBE+PjxUhEn4o1tGbU/ls45Dpn2sRy
-         pc9Q1BZuKvBxk9mM4wuUlqUdZWN20rIGYy9PeG9Mu/pJPWBa+KYyWQorJaR/X/AptWw3
-         3twO4qUuQUzRLLWkw1wNZ02LvO/kTnyxvc4d4l7Iee/Py/fLE4w4Xcz5bt3puYG90fNY
-         zH+j21Jfp3jTYgH88ODbWSjseU+dggNJcPs+Rxv64PbKJGEjf4T8FwvMzKKmk032f2iI
-         iquhfMuejnObtS8j/OTpsOH/bKiuPpGcVE6Y/SvYoDRpkw0AlOPDIYXrCdaqzp4XBE6b
-         kliA==
-X-Gm-Message-State: AO0yUKX1NXJHZpQXpqq3OOzNjc5OYgQNNeF6pX+fbmyZajH8L7UNIEa2
-        zOLhLuW/NMauGjbsC58kQaNFpQ==
-X-Google-Smtp-Source: AK7set8/JFYEHKdhIyD71Irxi9tirZUYjiWurePXG0zdgWoXg9pW/ioBLAFfYrD2WHCFd+uU8pnQuQ==
-X-Received: by 2002:a17:906:f914:b0:88c:6345:d0e7 with SMTP id lc20-20020a170906f91400b0088c6345d0e7mr12442194ejb.36.1679042593540;
-        Fri, 17 Mar 2023 01:43:13 -0700 (PDT)
+        bh=juFmrQz7oKZJRVloOKbAwgle6hn0N8TdFSrYHqJtuGs=;
+        b=BZ10JfwOO8gSjy/B/enz/HZcv0eEobmQYwkfMn1/QUAxP4CXj/1IHX35oRCAeDqU1Q
+         ZQaEjNpeiL9h4JlABO2e6W0lsTylZmN3jVz0Nunmjp4csXpt2mxH5Vumn08Qef6sHP3I
+         Y4KD/u2tb+OSw/WamgTrrkX7d1pG7mQwBadYNHowMsNSfDIQn6EDSVC+aYkXvB3Lc2jY
+         sg+UGpaEr5DUA+cb4XY5VkhFjHzi19MFa+DhEXZF6AgCv0QMZvw+0Ns9MEBATlqr0xea
+         tqsejIL6MtDBucS7L2hALI8n6xHcL3aISa7yXaTXgxZaQvPbhr64qOE/Cfo/AvvgS6j7
+         /r4Q==
+X-Gm-Message-State: AO0yUKXIvj7dRJY7n+CLYWV7a9h69yPE8tTUkSAQ76Asu+Wi2mJhEPlN
+        sliCRWZhQdyNnGuF5D5oKMmIQw==
+X-Google-Smtp-Source: AK7set8TDDSh0NPwZz11d/QCnupF+zzxPhz66o7xVZyQ0Nwr55I5QWoofBSxOkS7LU7Suo6Z4CCdEw==
+X-Received: by 2002:a17:906:568a:b0:931:d8db:8a2f with SMTP id am10-20020a170906568a00b00931d8db8a2fmr1374810ejc.58.1679042675695;
+        Fri, 17 Mar 2023 01:44:35 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id s10-20020a1709060d6a00b008d044ede804sm688481ejh.163.2023.03.17.01.43.12
+        by smtp.gmail.com with ESMTPSA id lt11-20020a170906fa8b00b008e54ac90de1sm701978ejb.74.2023.03.17.01.44.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 01:43:12 -0700 (PDT)
-Message-ID: <451c8112-c7f3-f435-5d90-840f01c60bd5@linaro.org>
-Date:   Fri, 17 Mar 2023 09:43:11 +0100
+        Fri, 17 Mar 2023 01:44:35 -0700 (PDT)
+Message-ID: <79593668-6ded-7290-f39b-e226d30e6e95@linaro.org>
+Date:   Fri, 17 Mar 2023 09:44:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 3/5] dt-binding: Add JH7110 USB wrapper layer doc.
+Subject: Re: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts
+ configuration.
 Content-Language: en-US
 To:     Minda Chen <minda.chen@starfivetech.com>,
         Emil Renner Berthing <emil.renner.berthing@canonical.com>,
@@ -74,9 +75,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>
 References: <20230315104411.73614-1-minda.chen@starfivetech.com>
- <20230315104411.73614-4-minda.chen@starfivetech.com>
+ <20230315104411.73614-6-minda.chen@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315104411.73614-4-minda.chen@starfivetech.com>
+In-Reply-To: <20230315104411.73614-6-minda.chen@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,125 +91,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/03/2023 11:44, Minda Chen wrote:
-> The dt-binding doc of Cadence USBSS-DRD controller wrapper
-> layer.
-
-Subject: drop full stop. It's not a sentence.
+> USB Glue layer and Cadence USB subnode configuration,
+> also includes USB and PCIe phy dts configuration.
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
 
 Use subject prefixes matching the subsystem (which you can get for
 example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
 your patch is touching).
 
-
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
 > ---
->  .../bindings/usb/starfive,jh7110-usb.yaml     | 119 ++++++++++++++++++
->  1 file changed, 119 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+>  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
+>  2 files changed, 61 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> new file mode 100644
-> index 000000000000..b1a8dc6d7b4b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/starfive,jh7110-usb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index a132debb9b53..c64476aebc1a 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -236,3 +236,10 @@
+>  	pinctrl-0 = <&uart0_pins>;
+>  	status = "okay";
+>  };
 > +
-> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controller
-> +
-> +maintainers:
-> +  - Minda Chen <minda.chen@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-usb
-> +
-> +  clocks:
-> +    items:
-> +      - description: lpm clock
-> +      - description: stb clock
-> +      - description: apb clock
-> +      - description: axi clock
-> +      - description: utmi apb clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: lpm
-> +      - const: stb
-> +      - const: apb
-> +      - const: axi
-> +      - const: utmi_apb
-> +
-> +  resets:
-> +    items:
-> +      - description: PWRUP reset
-> +      - description: APB reset
-> +      - description: AXI reset
-> +      - description: UTMI_APB reset
-> +
-> +  starfive,sys-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      items:
-> +        - description: phandle to System Register Controller sys_syscon node.
-> +        - description: offset of SYS_SYSCONSAIF__SYSCFG register for USB.
-> +    description:
-> +      The phandle to System Register Controller syscon node and the offset
-> +      of SYS_SYSCONSAIF__SYSCFG register for USB.
-> +
-> +  starfive,stg-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      items:
-> +        - description: phandle to System Register Controller stg_syscon node.
-> +        - description: register0 offset of STG_SYSCONSAIF__SYSCFG register for USB.
-> +        - description: register1 offset of STG_SYSCONSAIF__SYSCFG register for USB.
-> +        - description: register2 offset of STG_SYSCONSAIF__SYSCFG register for USB.
-> +        - description: register3 offset of STG_SYSCONSAIF__SYSCFG register for USB.
-> +    description:
-> +      The phandle to System Register Controller syscon node and the offset
-> +      of STG_SYSCONSAIF__SYSCFG register for USB. Total 4 regsisters offset
-> +      for USB.
-> +
-> +  "#address-cells":
-> +    maximum: 2
+> +&usb0 {
+> +	status = "okay";
+> +	usbdrd_cdns3: usb@0 {
 
-enum: [ 1, 2 ]
-(because 0 should not be valid for you)
+You should rather override by phandle this as well.
 
-> +
-> +  "#size-cells":
-> +    maximum: 2
+> +		dr_mode = "peripheral";
+> +	};
+> +};
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index f70a4ed47eb4..17722fd1be62 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -362,6 +362,60 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		usb0: usb@10100000 {
+> +			compatible = "starfive,jh7110-usb";
+> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
+> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
+> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
+> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
+> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
+> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
+> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
+> +			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
+> +			starfive,sys-syscon = <&sys_syscon 0x18>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x10100000 0x100000>;
 
-ditto
-
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    type: object
-
-missing $ref and unevaluatedProperties: false
-
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - starfive,sys-syscon
-> +  - starfive,stg-syscon
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
+reg and ranges should be second property. This also applies to your
+binding example.
 
 
 Best regards,
