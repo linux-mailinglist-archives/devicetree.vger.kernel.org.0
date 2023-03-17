@@ -2,76 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E95196BE4FB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:10:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEA096BE515
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:12:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjCQJKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60966 "EHLO
+        id S230082AbjCQJMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231473AbjCQJJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:09:45 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE9C3A8E
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:09:21 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id w9so17765112edc.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:09:20 -0700 (PDT)
+        with ESMTP id S229954AbjCQJMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:12:53 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F070B1350F
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:12:50 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id p13-20020a05600c358d00b003ed346d4522so2829755wmq.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:12:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679044159;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bwh85sD/XE4ZPG7n6FYMfigvAZYyWZkG5V3jgNeiqVM=;
-        b=GFTPf1vCyaFRN6hLZgI1MlNKMq6zQ2OHzOcjPhbUtzZnBVMeKtakMREJMCpzYDKIhr
-         J6xfgdW3sdgohQHzg+8SDyxZ/iJ1AG4r/8+UDt60iXgVPtI9L0sQQx6SUKxJpxezCu5n
-         3jA4MEE2Dw9Jpcnm+8UJVcYusqbG6sA/+XGrqWa7whbbLfN7K58+93kMB4sI2ed+VPbl
-         GZdhpMML212wvby4/1dNcMfOHr0NNkhC5dNUkyS5ZkTbP8PHYwWArDXHhkQ0bRLoBAxc
-         cCVHZV1W8tESmnCm+DsJ5f/ccZPxuOqSF7TK5paq0DnOIz4zQsE2oe3YMVDUfyp/y7UD
-         3Z6g==
+        d=linaro.org; s=google; t=1679044369;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7c9JjlZJtBSyylkTITjEuLXDkbRdXKeg/7F2Np4VoK4=;
+        b=xn4ySr462E77WN6Cn3meWVkqicL5GPL6OoJR8/j08mehD3RwTkhDZlBARcVLYaKX0a
+         OqVYYbUHFWKbeirhwfIKeGE7dhDH9vGnz4/6WaBarvZlBHs1yBsP2YZoOQnODh6j/kg8
+         8KmbrijJg/2Afsv7lOMAJMTqd7XgybPtnUHD1ZUQKxFcaUXiE9XkLTeIQAZYdQymQiqC
+         buhLPWDH6lFEJEWiAoBwogvjVoJgH+DK3Ta0qhHIiLGO0pLJWit9MUc7HDwSLjLjLKOt
+         gXKq+dfIb6BsVlIALLkm0Cyr3goXmVV+JRCQDwDAH0I3KkGfXWOBSx0cmP9WAXytWV9x
+         rTkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679044159;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bwh85sD/XE4ZPG7n6FYMfigvAZYyWZkG5V3jgNeiqVM=;
-        b=jLPPcUNvBmvRgS/L5a9vjZ7xINZe4WsJyq5K5QmuBzGH0A9YKZ810pKQyQu5+5626U
-         wtw40ebJOAYruBU3TyN2927LuziZNoDtZY4SZS8cKOap0/sLe2BmeubjuehVxquDqT1E
-         nRROHDCHjCYfEf8tZq9aA5qf2o+KY+At1mJQFTVJqroCusA8e/MRBAEAE+ycySZvqAPW
-         IYlP69FQTbFwFAo6ge7WSwIe6qFZWDzymgxwvzLlWp5vDpyREz2dItw5zp+0wq5J068G
-         C4SkQ97g5NhDE7lTg08DvXGa8D8zJUCvseSUTSbSmDuXlSxaHv4aVqtJqFMlJ+OYrAIp
-         L3vA==
-X-Gm-Message-State: AO0yUKXvZa+KGTC58GaEFN2HMgomf9klsAl7Qvj/iYrwXhy2r/qcAOX4
-        wPzBNdeOx4hVoknDGZMFYhjB3A==
-X-Google-Smtp-Source: AK7set+jbzzcgm/NqZwsPW4WXCK9O9EUDXRK3QLEtf2yNwHhKetE4b6qIjmPC0UTyg2eeknKx/lx5A==
-X-Received: by 2002:a17:906:1316:b0:8e4:96c4:94a with SMTP id w22-20020a170906131600b008e496c4094amr12506906ejb.56.1679044159545;
-        Fri, 17 Mar 2023 02:09:19 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id g20-20020a1709061e1400b00930f5ecbd8fsm723418ejj.219.2023.03.17.02.09.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 02:09:19 -0700 (PDT)
-Message-ID: <e6935c0c-375e-b763-ea91-3b8bbc906ebc@linaro.org>
-Date:   Fri, 17 Mar 2023 10:09:18 +0100
+        d=1e100.net; s=20210112; t=1679044369;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7c9JjlZJtBSyylkTITjEuLXDkbRdXKeg/7F2Np4VoK4=;
+        b=RO+V7uCsT2veiVLzMEo5nMezphcWUywHPjnt3V/clVRVMEutX8QdOR3LEIFnIixDeI
+         Qz9Nt8H4O24OYgDRIwiOv0NzHbZ0JbL5aIvV+SoN01TKaOF8v5BTenCr2hWHeZ4wgLIs
+         faxW0lyrZ8CnvmQLlnc5lV24OuR1SI/iTslBHNHOZsVDjonRdc3JRlG3bqwR1Xus9HCg
+         SGidbM3KOcsUtgUSge6Xz8WbMrVA5daspe1ucqunfgx16LS6SeWlUghNhY1VXwxNS8JO
+         n1c1i1wy7BGU9H/4VV3jMrmwj36VoJl+dEoi2zkDKsXeWo+Gl4k7OdEw5BTDZShJckFY
+         uv+g==
+X-Gm-Message-State: AO0yUKX+TUgFfbT/fHxLlJuj4cssGr3AcKyZvHspaUlEeV0Ypoog44kj
+        0bZLVj/+dpmgYV79ahwY8wy/ug==
+X-Google-Smtp-Source: AK7set9wS82lmwxJ2FaGmXLBW3ZcVfgDdtvU2c/fw/pgl2hG50W8e3fNXMlvw97WzyU99JYiYl65iw==
+X-Received: by 2002:a05:600c:46d3:b0:3e2:a9e:4eaa with SMTP id q19-20020a05600c46d300b003e20a9e4eaamr24281346wmo.35.1679044369379;
+        Fri, 17 Mar 2023 02:12:49 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id j10-20020a5d464a000000b002cea8f07813sm1467976wrs.81.2023.03.17.02.12.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 02:12:49 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v5 0/5] arm64: dts: qcom: add DP Controller to SM8350 &
+ SM8450 DTS
+Date:   Fri, 17 Mar 2023 10:12:46 +0100
+Message-Id: <20230206-topic-sm8450-upstream-dp-controller-v5-0-a27f1b26ebe8@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add imx8qm cdns3
- glue bindings
-Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, shawnguo@kernel.org
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        imx@lists.linux.dev, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-References: <20230316212712.2426542-1-Frank.Li@nxp.com>
- <20230316212712.2426542-2-Frank.Li@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230316212712.2426542-2-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA4vFGQC/53OwW7DIBAE0F+JOHcrvIBreup/VD1gWMdIBKzFs
+ VpF/veS3Kqc6uPM4c3cRCWOVMX76SaYtlhjyS2Yl5Pws8tnghhaFihRSZQ9rGWJHupl0EbCdak
+ rk7tAWMCXvHJJiRhQSqPdiIMMJJo0ukowsst+bla+ptTKhWmK34/pz6+W51jXwj+PJ1t3b/83u
+ nUgYeqUNsMbUujsR4rZcXktfBb3gQ0PoNhQgzY4RKl684yqA6hqaK96mixZaxU+ofoAqhsavFN
+ qMqojGf6g+77/AiRA6YnrAQAA
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,174 +88,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2023 22:27, Frank Li wrote:
-> NXP imx8qm integrates 1 cdns3 IP. This is glue layer device bindings.
-> 
+Switch the QMP PHY to the newly documented USB3/DP Combo PHY
+bindings at [1] and add the DP controller nodes.
 
-Subject: drop second/last, redundant "bindings". The "dt-bindings"
-prefix is already stating that these are bindings.
+The DP output is shared with the USB3 SuperSpeed lanes and is
+usually connected to an USB-C port which Altmode is controlled
+by the PMIC Glink infrastructure in discution at [1] & [2].
 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../bindings/usb/fsl,imx8qm-cdns3.yaml        | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml b/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
-> new file mode 100644
-> index 000000000000..fc24df1e4483
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2020 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/fsl,imx8qm-cdns3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP iMX8QM Soc USB Controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8qm-usb3
-> +
-> +  reg:
-> +    items:
-> +      - description: Address and length of the register set for iMX USB3 Platform Control
+DT changes tying the DP controller to the USB-C port on the HDK
+boards will be sent later.
 
-Drop "Address and length of the"... or actually just maxItems: 1,
-because the description is a bit obvious.
+Bindings dependencies merged into v6.3-rc1.
 
-> +
-> +  "#address-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  "#size-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +  clocks:
-> +    description:
-> +      A list of phandle and clock-specifier pairs for the clocks
-> +      listed in clock-names.
+[1] https://lore.kernel.org/all/20230201041853.1934355-1-quic_bjorande@quicinc.com/
+[2] https://lore.kernel.org/all/20230130-topic-sm8450-upstream-pmic-glink-v2-0-71fea256474f@linaro.org/
 
-Drop description.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v5:
+- Add review tags
+- Fixed DP opp tables
+- Link to v4: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v4-0-dca33f531e0d@linaro.org
 
-> +    items:
-> +      - description: Standby clock. Used during ultra low power states.
-> +      - description: USB bus clock for usb3 controller.
-> +      - description: AXI clock for AXI interface.
-> +      - description: ipg clock for register access.
-> +      - description: Core clock for usb3 controller.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: usb3_lpm_clk
-> +      - const: usb3_bus_clk
-> +      - const: usb3_aclk
-> +      - const: usb3_ipg_clk
-> +      - const: usb3_core_pclk
-> +
-> +  assigned-clocks:
-> +    items:
-> +      - description: Phandle and clock specifier of IMX_SC_PM_CLK_PER.
-> +      - description: Phandle and clock specifoer of IMX_SC_PM_CLK_MISC.
-> +      - description: Phandle and clock specifoer of IMX_SC_PM_CLK_MST_BUS.
-> +
-> +  assigned-clock-rates:
-> +    items:
-> +      - description: Must be 125 Mhz.
-> +      - description: Must be 12 Mhz.
-> +      - description: Must be 250 Mhz.
+Changes in v4:
+- Updated trailers
+- Fixed patch 4 compatible and reg sizes
+- Link to v3: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v3-0-636ef9e99932@linaro.org
 
-I would argue that both properties above are not needed. If your
-hardware requires fixed frequencies, clock provider can fix them, can't it?
+Changes in v3:
+- Added Reviewed-by, Tested-by tags
+- Used QMP PHY constants for phandle parameters
+- Dropped reordering of mdp ports
+- Added p1 dp regs address space
+- Link to v2: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v2-0-529da2203659@linaro.org
 
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +# Required child node:
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    $ref: cdns,usb3.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8-lpcg.h>
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    usbotg3: usb@5b110000 {
+Changes in v2:
+- fixed the bindings
+- cleaned up the usb_1_qmpphy &  displayport-controller nodes as requested by dmitry
+- removed invalid mdss_dp0 change in sm8450-hdk.dts
+- Link to v1: https://lore.kernel.org/r/20230206-topic-sm8450-upstream-dp-controller-v1-0-f1345872ed19@linaro.org
 
-Drop label, unused
+---
+Neil Armstrong (5):
+      dt-bindings: display: msm: dp-controller: document SM8450 compatible
+      arm64: dts: qcom: sm8350: switch to combo usb3/dp phy
+      arm64: dts: qcom: sm8350: add dp controller
+      arm64: dts: qcom: sm8450: switch to usb3/dp combo phy
+      arm64: dts: qcom: sm8450: add dp controller
 
-> +      compatible = "fsl,imx8qm-usb3";
-> +      ranges;
-> +      reg = <0x5b110000 0x10000>;
-
-reg is second property
-
-> +      clocks = <&usb3_lpcg IMX_LPCG_CLK_1>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_0>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_7>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_4>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_5>;
-> +      clock-names = "usb3_lpm_clk", "usb3_bus_clk", "usb3_aclk",
-> +                    "usb3_ipg_clk", "usb3_core_pclk";
-> +      assigned-clocks = <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_PER>,
-> +                        <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MISC>,
-> +                        <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MST_BUS>;
-> +      assigned-clock-rates = <125000000>, <12000000>, <250000000>;
-> +      power-domains = <&pd IMX_SC_R_USB_2>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      status = "disabled";
-
-Drop status
-
-> +
-> +      usbotg3_cdns3: usb@5b120000 {
-
-Drop label
-
-> +          compatible = "cdns,usb3";
-> +          interrupt-parent = <&gic>;
-> +          interrupts = <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                       <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                       <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                       <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>;
-> +          interrupt-names = "host", "peripheral", "otg", "wakeup";
-> +          reg = <0x5b120000 0x10000>,   /* memory area for OTG/DRD registers */
-> +                <0x5b130000 0x10000>,   /* memory area for HOST registers */
-> +                <0x5b140000 0x10000>;   /* memory area for DEVICE registers */
-> +          reg-names = "otg", "xhci", "dev";
-
-reg is second property, reg-names third.
-
-> +          phys = <&usb3_phy>;
-> +          phy-names = "cdns3,usb3-phy";
-> +      };
-> +    };
+ .../bindings/display/msm/dp-controller.yaml        |  25 +++--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 116 +++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 121 ++++++++++++++++-----
+ 3 files changed, 198 insertions(+), 64 deletions(-)
+---
+base-commit: 6f72958a49f68553f2b6ff713e8c8e51a34c1e1e
+change-id: 20230206-topic-sm8450-upstream-dp-controller-20054ab280de
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
