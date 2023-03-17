@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4962B6BE302
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7626BE306
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjCQIVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53898 "EHLO
+        id S229712AbjCQIWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:22:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230044AbjCQIVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:21:08 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3622CC79;
-        Fri, 17 Mar 2023 01:20:46 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32H7ak6S022063;
-        Fri, 17 Mar 2023 08:19:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Odofb5S5iKcbSwRiPERtF/5jDQN1KT0/kHOd9jsZRgU=;
- b=iYR+q1WYoEz/YDSqifHS0+uJM+A/ikf1sVGG6KF85wZXCX3CjS8WcxwyLonsLqeodyMO
- Vkx0Yenv2N3VkTkdvj6UpfwfvX5uw2XsFFioYBiJD9SHF4UfZDJCMFRXx41Gw7UhOJkz
- rDK7xqOShKaQdQ5sDM/lJuQIiyYBMVbjnnrF0qC22xdTU8q0wLSX4zj09n5mcRRWCrFr
- 4DGh4pj7jRTa9DPad9ralBHrE7Mbs8Sj3FGrefmg3BXq4Rn9rfcNPt913OZCskZ9CnZO
- 8YSmBmR92b4wVKWffQwQ2ygb2FHbF4TDqT2mgqonriIFaGX2Y4Hrpekge7tmdMCrtJR6 /Q== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pcbas9972-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Mar 2023 08:19:39 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32H8JcYl029041
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 17 Mar 2023 08:19:38 GMT
-Received: from [10.233.17.245] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 17 Mar
- 2023 01:19:32 -0700
-Message-ID: <d2ecff94-e608-fcca-f82c-e8e488f4288d@quicinc.com>
-Date:   Fri, 17 Mar 2023 16:19:30 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: arm: Add Coresight Dummy Trace YAML
- schema
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        <linux-kernel@vger.kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, <linux-doc@vger.kernel.org>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S229868AbjCQIWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:22:15 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36B0DC0A6
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:21:44 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id x3so17203924edb.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679041302;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ttgr06Px/QEUxP0oNoIFTGB9mYSSeRv48aMtVkoD6UQ=;
+        b=JeiNuyIoP+dpZMvhNpzBeFhkEA0+Z6EAwmxKMjoUTZKi4GodVFvRz8oGGWiaNPS9Bz
+         HeJ352TsFytsuVoSmb6/0ExhsUgPg5KA3JLb2HHN9QicvxrXF1Jmm3pI812ykcyIaqGq
+         dV6xN7QbyFPMvlJtq4QBQCV5ztDsT78IKGyM8gDB8YM9YA9NZ2lu+sDlR1ACtPhq06Mb
+         Aylrqt4gyM7FuHaehEwJIBJiAY28ZZBUJt+1ta64EcN0ADMPeCj9fN+tDLm0UrNiY5Rr
+         BDQx4h1UAuwM4Pq7HGp5tRbH2WYP14MUAKCr5Hq7xriZswI3W1e0bTJz8w13owjPl/So
+         M2lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679041302;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ttgr06Px/QEUxP0oNoIFTGB9mYSSeRv48aMtVkoD6UQ=;
+        b=l0f2MMD0WRANOdxCQR4HEJ1UXdWEPyynA4TUO6Ax4lYuGyU7H2zZcw/Bwhw1408wKK
+         1SmwfR2iodg2ZGKuCvrVAgi7eYZsU9ln25Z5oa5CTAjY5XyaeHd5iYeABMvMaxKVsv9J
+         uc3ktVDWqsX/9ls24oFTfSiR7MlTVs7X/ka4zm30iClx7YEgxkWF6FllSv+89MKgGNE4
+         6XxBxiErgp1899utVrk/2CqBewvF1WcABucfuSGkney25XsFcufALzMEeSYkDU4trPkM
+         8b1ru4KtFvfqtVFE/YwP2KSnh3iiJCsd6Mx1epX8iosiwZEK4aGCLs42rD/e9lOasBlQ
+         VF2A==
+X-Gm-Message-State: AO0yUKUCMJIooEx/mi8VMnhtlHbOjZQpu4juc5GmXG8ROJ03neNop6KW
+        bWLmksxlUtknffvX2yRIKmvxXw==
+X-Google-Smtp-Source: AK7set8h1D4JPdlcDv4x/a3XajXnmoWknZq2UQGEUaV9yQdTNCy0+V1oVHB44c04RBWBDgnfuDbOKw==
+X-Received: by 2002:a17:907:6d09:b0:931:de76:c2e8 with SMTP id sa9-20020a1709076d0900b00931de76c2e8mr2016427ejc.9.1679041302511;
+        Fri, 17 Mar 2023 01:21:42 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:848a:1971:93e0:b465])
+        by smtp.gmail.com with ESMTPSA id e5-20020a170906314500b009236ae669ecsm673882eje.191.2023.03.17.01.21.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 01:21:41 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <coresight@lists.linaro.org>,
-        "Trilok Soni" <quic_tsoni@quicinc.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>, <devicetree@vger.kernel.org>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>
-References: <20230316032005.6509-1-quic_hazha@quicinc.com>
- <20230316032005.6509-3-quic_hazha@quicinc.com>
- <167897435275.2729718.16512739524975963906.robh@kernel.org>
-Content-Language: en-US
-From:   Hao Zhang <quic_hazha@quicinc.com>
-In-Reply-To: <167897435275.2729718.16512739524975963906.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: KT0SzSRxfq3sZW8Zt9NQP-Gm5Hd8OwZ9
-X-Proofpoint-ORIG-GUID: KT0SzSRxfq3sZW8Zt9NQP-Gm5Hd8OwZ9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-17_04,2023-03-16_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- mlxlogscore=777 mlxscore=0 malwarescore=0 bulkscore=0 phishscore=0
- spamscore=0 suspectscore=0 clxscore=1011 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303170056
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+Subject: [PATCH] ASoC: dt-bindings: renesas: rsnd: correct comments syntax
+Date:   Fri, 17 Mar 2023 09:21:37 +0100
+Message-Id: <20230317082137.12629-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+yamllint expect space after '#' comment mark:
 
+  renesas,rsnd.yaml:282:4: [error] missing starting space in comment (comments)
 
-On 3/16/2023 9:53 PM, Rob Herring wrote:
-> 
-> On Thu, 16 Mar 2023 11:20:04 +0800, Hao Zhang wrote:
->> Add new coresight-dummy.yaml file describing the bindings required
->> to define coresight dummy trace in the device trees.
->>
->> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
->> ---
->>   .../bindings/arm/qcom,coresight-dummy.yaml    | 129 ++++++++++++++++++
->>   1 file changed, 129 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml:91:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml: required:4: {'oneOf': ['qcom,dummy-sink', 'qcom,dummy-source']} is not of type 'string'
-> 	from schema $id: http://json-schema.org/draft-07/schema#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml: ignoring, error in schema: required: 4
-> Documentation/devicetree/bindings/arm/qcom,coresight-dummy.example.dtb: /example-0/dummy_sink: failed to match any schema with compatible: ['qcom,dummy']
-> Documentation/devicetree/bindings/arm/qcom,coresight-dummy.example.dtb: /example-1/dummy_source: failed to match any schema with compatible: ['qcom,dummy']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230316032005.6509-3-quic_hazha@quicinc.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Fixes: 7f8b5b24bbb4 ("ASoC: dt-bindings: renesas,rsnd.yaml: add R-Car Gen4 support")
+Reported-by: Rafał Miłecki <zajec5@gmail.com>
+Link: https://lore.kernel.org/all/b2810924-169d-0bad-8f20-6ec2e683d170@gmail.com/
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Hi Rob,
+diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+index 676dfe7a7f17..68a93b290433 100644
+--- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
++++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+@@ -279,9 +279,9 @@ required:
+ allOf:
+   - $ref: dai-common.yaml#
+ 
+-  #--------------------
++  # --------------------
+   # reg/reg-names
+-  #--------------------
++  # --------------------
+   # for Gen1
+   - if:
+       properties:
+@@ -336,9 +336,9 @@ allOf:
+               - ssi
+               - sdmc
+ 
+-  #--------------------
++  # --------------------
+   # clock-names
+-  #--------------------
++  # --------------------
+   - if:
+       properties:
+         compatible:
+-- 
+2.34.1
 
-Thanks for your check.
-I have checked it and didn't see the above errors, will follow your 
-steps and change this in the next version of patch.
-
-Thanks,
-Hao
