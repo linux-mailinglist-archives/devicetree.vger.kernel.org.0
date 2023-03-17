@@ -2,147 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D986BE592
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8386BE598
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 10:29:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjCQJ2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 05:28:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
+        id S229902AbjCQJ3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 05:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbjCQJ2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:28:09 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E5FC48A4;
-        Fri, 17 Mar 2023 02:28:07 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id v21so4692353ple.9;
-        Fri, 17 Mar 2023 02:28:07 -0700 (PDT)
+        with ESMTP id S229716AbjCQJ3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 05:29:06 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 597F1113DA
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:29:04 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id x13so17943243edd.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 02:29:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679045287;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u8LqT03HzqRZKjSDqL/i4TvoyMlrA9qMCZ206BpQZVo=;
-        b=UhjGNFXazzUo+jepNWB6YPAMrbmXmW0oEHBmFm1ZC81EcW29aOR4+oWetmBi7qdcrf
-         azA1y6bOZK6qdRinQ9Go5nTcMElTdlr4F28vYCvH94PGOa7sZde49n/nuNev5R3znB57
-         fusvjyyqjzdk4ua9i5b82o5n2TP34/ee9zHA1qMSATtUU3LV+zvJFWlR9tDncAaDpruA
-         HlK/kMqeXraybuK9R44jXpqnLh2m0ZzcRO29PbHqQParUziei/jXq4cK9H4f36llivmn
-         rEj+VwonwLlafwORogfKYb+BZMd5QbMeqzKact8ttl4J+mlXt4/FSov0TvJbf48p8jve
-         f0Yw==
+        d=linaro.org; s=google; t=1679045342;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VFUP5BW3Hbh1sE4rPRVXZjxwGcnBYX4/z1UolsFEGZg=;
+        b=dHheWwzbQmX3zunqQ5lAYxMiyTxPJKcQeQsBjBQAkgPCqI2LYFPNEkZ6Eri0b7sRmD
+         6c8/OTC5spAy6GfOSZhyoo74Q9qA60TGY3wKIgIadeBmoIsOdLzV0E2LWyxMpK3xMuAM
+         RlOuLqJCmGoTmpzzKZDyxL/6UgBaogCbp8SSRdzBiF5H1nvvT8NWCWRfy9Gg61Nfdqea
+         TVxvMZBrjZkzuNLMdmDG2QJy4+rEyz5pPvLnMTsP/YtqMxGgzoLn5kz5Vxbu8nSZEBqa
+         gQkg9OJMH71rH7bgDM0+o0msHp7MLEKp9clbm4gYxJ59NUS/u4XLEgWQMk/Yu2qdorsr
+         duXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679045287;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u8LqT03HzqRZKjSDqL/i4TvoyMlrA9qMCZ206BpQZVo=;
-        b=QZ/kkbqfHMhwqjZI3ED0Ml8Dh1ojB7YJt1TtGHfJNE64l170YVU3H0iQK1kIA/dMh4
-         Ba5wzlJvQPCieJ2FmLuQRd/zqB4xqTNes55IyNcJCdcKpTZMDUTLNPQ8lCZpGTe5KASg
-         FNlNjprutU8scQHTp6binxnWahwf+8SviuDwwyGQUlWcE2E8Mu0mZiSQk7Wqr0FM/99h
-         XaVgYTTWtao7ELODt1vxphaZD61o/8ur5WxR9VWLGrh9857wMrWI8rbfuBsVDC/v9zOk
-         wWxWNv1StUGxqQOoTei9V2USsq+7QQ2Tbc3HmymjA8VZsRwjYxRfL+YETNjKhQWteU35
-         EF2Q==
-X-Gm-Message-State: AO0yUKWq2PjoPeT9OoX+/UXJ//T7eF50tT8EuVXS8LTjOg9ErXdYX1Ki
-        Ix6YALuHU1KkPqdIe9KaQU0=
-X-Google-Smtp-Source: AK7set9eu22SCZQs8yUTVpmrhShMwDYwfOgvFcsCnNHkDvEyH1gZNPjiwGpJ20koMB6S6n7wtkNi/w==
-X-Received: by 2002:a17:902:d4cb:b0:19a:95ab:6b38 with SMTP id o11-20020a170902d4cb00b0019a95ab6b38mr8257544plg.1.1679045286859;
-        Fri, 17 Mar 2023 02:28:06 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id s7-20020a170902988700b0019edd34dac9sm1121371plp.60.2023.03.17.02.28.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 02:28:06 -0700 (PDT)
-Message-ID: <d5e18ffd-426f-79de-d8cc-7ee10b3dc110@gmail.com>
-Date:   Fri, 17 Mar 2023 17:28:03 +0800
+        d=1e100.net; s=20210112; t=1679045342;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VFUP5BW3Hbh1sE4rPRVXZjxwGcnBYX4/z1UolsFEGZg=;
+        b=OWJJxawYxwiU0re3sgR75HE10Ptj9SmEsU56bg4OpnxUzsw+KdDKA5nW7dIWtjWa05
+         TBDpmBnLJvngEdvWLpOt6AOXRoy3qb1XxP9YDRekvo2LvgJPlBc3uCbUl4JPZLB5mS6t
+         qoOSpL0qAxl1FF03owCeRTgL9Qedm6IUUQeZeL6Gl74MndLJt/KGqQs0UwGhTnFqt1u4
+         utKTFim4GzOo+CM6fo0tcCjuB2WQPfzCrZEETa7/y7/GIiWwCKYDr4RstPU/wA2k029/
+         V3AsR4ES3HpeKLahPQxRaQf9iNA0u+URecg8Uq2n+NDMvoNatEi6WLHBABVIUuolad2O
+         d+yA==
+X-Gm-Message-State: AO0yUKXZ0s1QpKT/7jnQ7JAjNsUXhctTNU8B3SmPo47Fg7tvVvaRTl1i
+        VJoH9vTie2pc+7UHHrVuWdPsbQ==
+X-Google-Smtp-Source: AK7set97O71P2trKPqgfWFwmNAyhaCD6puLvQFOFMU4zjAyg3XBjs8CH/e2ya6Z53yC5PK+oJJaY3w==
+X-Received: by 2002:a17:907:3186:b0:932:3536:2369 with SMTP id xe6-20020a170907318600b0093235362369mr673097ejb.26.1679045342610;
+        Fri, 17 Mar 2023 02:29:02 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:848a:1971:93e0:b465])
+        by smtp.gmail.com with ESMTPSA id c25-20020a50f619000000b004bd6e3ed196sm792176edn.86.2023.03.17.02.29.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Mar 2023 02:29:02 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Vijaya Anand <sunrockers8@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] ASoC: dt-bindings: adi,adau17x1: fix indentation and example
+Date:   Fri, 17 Mar 2023 10:29:00 +0100
+Message-Id: <20230317092900.16770-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 03/15] mfd: Add the header file of Nuvoton ma35d1 system
- manager
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-4-ychuang570808@gmail.com>
- <fa966844-2750-4951-9a40-ecc2653aab77@app.fastmail.com>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <fa966844-2750-4951-9a40-ecc2653aab77@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Arnd,
+Fix errors in binding indentation and example:
 
-Thanks for your advice.
+  adi,adau17x1.yaml:8:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+  adi,adau17x1.example.dts:29.3-30.1 syntax error
 
+Fixes: 87771c940258 ("ASoC: dt-bindings: adi,adau17x1: Convert to DT schema")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 2023/3/16 下午 10:44, Arnd Bergmann wrote:
-> On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> The system manager is a set of registers used for power control,
->> multi-function pin control, USB phy control, IP reset, and other
->> miscellaneous controls. It also contains some registers that
->> provide SoC information and status.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   include/linux/mfd/ma35d1-sys.h | 95 ++++++++++++++++++++++++++++++++++
->>   1 file changed, 95 insertions(+)
->>   create mode 100644 include/linux/mfd/ma35d1-sys.h
->>
->> diff --git a/include/linux/mfd/ma35d1-sys.h b/include/linux/mfd/ma35d1-sys.h
->> new file mode 100644
->> index 000000000000..dcd85231125d
->> --- /dev/null
->> +++ b/include/linux/mfd/ma35d1-sys.h
->> +
->> +#define REG_SYS_PDID		(0x000) /* Product and Device Identifier */
->> +#define REG_SYS_PWRONOTP	(0x004) /* Power-on Setting OTP Source */
->> +#define REG_SYS_PWRONPIN	(0x008) /* Power-on Setting Pin Source */
->> +#define REG_SYS_RSTSTS		(0x010) /* Reset Source Active Status */
-> ...
->
-> It is a bit odd to have a header file in include/linux/mfd/
-> but only have the register numbers in there, and not an
-> actual drivers/mfd/ driver to go along with them.
->
-> I think what we often do is to just list the individual register
-> numbers in the drivers that need them and not have the central
-> header at all. On the other hand, I can see it's useful to
-> have this documented in one place, and we clearly don't want
-> to add a driver if none is needed.
->
-> Maybe Lee has a suggestion for how he'd like to handle this.
+---
 
-Agree with this.
-We will add #define of individual system control registers to the drivers
-that have to use them.
-So, I will remove this patch from the patchset in the next version.
+Changes since v1:
+1. Fix typo in subject
+2. Add fixes tag - commit SHA from ASoC next branch
+---
+ Documentation/devicetree/bindings/sound/adi,adau17x1.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->> +void ma35d1_reg_lock(void);
->> +void ma35d1_reg_unlock(void);
-> These look like they were left over from an earlier version
-> of the code. Since you use the regmap framework, I think this
-> will take care of the locking for you.
->
->         Arnd
-
-Best regards,
-
-Jacky Huang
-
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
+index 45955f38b6fd..8ef1e7f6ec91 100644
+--- a/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
++++ b/Documentation/devicetree/bindings/sound/adi,adau17x1.yaml
+@@ -4,8 +4,7 @@
+ $id: http://devicetree.org/schemas/sound/adi,adau17x1.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title:
+- Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781 Codec
++title: Analog Devices ADAU1361/ADAU1461/ADAU1761/ADAU1961/ADAU1381/ADAU1781 Codec
+ 
+ maintainers:
+   - Lars-Peter Clausen <lars@metafoo.de>
+@@ -50,3 +49,4 @@ examples:
+         clock-names = "mclk";
+         clocks = <&audio_clock>;
+       };
++    };
+-- 
+2.34.1
 
