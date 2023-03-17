@@ -2,137 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 361DF6BDEE7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 03:34:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DDFF6BDF29
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 04:05:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbjCQCeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Mar 2023 22:34:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42100 "EHLO
+        id S229549AbjCQDFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Mar 2023 23:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230091AbjCQCeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 22:34:11 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8EF48A4E;
-        Thu, 16 Mar 2023 19:33:42 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id w11so1410295wmo.2;
-        Thu, 16 Mar 2023 19:33:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679020418;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oy4rJp/0zV8uQx96aqdFOna+cm21IPd+B8/oErRDE1c=;
-        b=DiYT5S/jOvNwe4CzhjdiIkvIKBggeGR7CexVNd4rd/sjT5lAPS1XWF1W+7fLOFMLc9
-         +M+nVvH/VqGoT3HRVUevSaiDK++YKjOvPsz8umYJfLqED/NO2vBkV/scUd1luER6cra4
-         MU9TLGEoBzC2egkV45V3/dkoR/6reCXuIEI/4Onu6ISM86v2ODghCyVpzQR3QShPKWAL
-         9jZ7MIgNa9bnV7GstyBvBvcr169haI0sCUfFl73RZ7foJuE+TayH+Tf6hYDaMGLkB/kS
-         fhVvp3xBGubVX6uhvop1IHbnljGIKuh1xuXwPSH1/oNVSjdbVXXZJzhlDpDrUqMIbqpC
-         kXqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679020418;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oy4rJp/0zV8uQx96aqdFOna+cm21IPd+B8/oErRDE1c=;
-        b=rPGCMwC5lEyATn2XIj9TYWwccH0ijOOKbKu505DFQ/yntSXE6LIM+EsgjTXDIXWnox
-         9cLKLknfWu6BSGE2ITyTfOhv9M70nO/2ZvtwMRzfH9vIMtt3xV+KEZYpVQRw7MusGQMM
-         ssK3BE95Wo+oBu6l6dEdmH4FBvVpGcLlC9scX4+3XFLpHY9qRL2QjNqdXI2rG6ZSRox2
-         Y0iW5oBHh17kNGyYokI3ow/r8/awDBnZEXsXuvVGT8/VlxGPqNO2PwngLQkxwgpoAnvK
-         kZ/h+gPd4Kotz6NPaetljhabqCjm8XnFJ5HFWGkGVy6KVlkGr88N5SJxgiI7kPzRp2Rv
-         3btQ==
-X-Gm-Message-State: AO0yUKXldj1G0urmL+gT+amy9DmOIpf1b1/2Er6nlJS/QRdIop5mG1Vd
-        81TqJpwJiEqY863/WopY24o=
-X-Google-Smtp-Source: AK7set/vLpvKe0YMV6V4xFFxWeIDZxral5oel3M8ZEVRVHfcThgwCE2w0hq0lN0ZZ/FAMivfH7aOVw==
-X-Received: by 2002:a1c:7215:0:b0:3ed:5d41:f9a7 with SMTP id n21-20020a1c7215000000b003ed5d41f9a7mr3675091wmc.2.1679020418287;
-        Thu, 16 Mar 2023 19:33:38 -0700 (PDT)
-Received: from localhost.localdomain (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
-        by smtp.googlemail.com with ESMTPSA id z15-20020a5d44cf000000b002ce9f0e4a8fsm782313wrr.84.2023.03.16.19.33.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Mar 2023 19:33:38 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229542AbjCQDFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Mar 2023 23:05:24 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1D8D426B1;
+        Thu, 16 Mar 2023 20:05:21 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1582A4B3;
+        Thu, 16 Mar 2023 20:06:05 -0700 (PDT)
+Received: from a077893.blr.arm.com (unknown [10.162.40.17])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id DC2623F64C;
+        Thu, 16 Mar 2023 20:05:15 -0700 (PDT)
+From:   Anshuman Khandual <anshuman.khandual@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        suzuki.poulose@arm.com
+Cc:     scclevenger@os.amperecomputing.com,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
         Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        linux-leds@vger.kernel.org
-Subject: [net-next PATCH v4 14/14] arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
-Date:   Fri, 17 Mar 2023 03:31:25 +0100
-Message-Id: <20230317023125.486-15-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230317023125.486-1-ansuelsmth@gmail.com>
-References: <20230317023125.486-1-ansuelsmth@gmail.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] coresight: etm4x: Migrate AMBA devices to platform driver
+Date:   Fri, 17 Mar 2023 08:34:54 +0530
+Message-Id: <20230317030501.1811905-1-anshuman.khandual@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch>
+CoreSight ETM4x devices could be accessed either via MMIO (handled via
+amba_driver) or CPU system instructions (handled via platform driver). But
+this has the following issues :
 
-The WAN port of the 370-RD has a Marvell PHY, with one LED on
-the front panel. List this LED in the device tree.
+  - Each new CPU comes up with its own PID and thus we need to keep on
+    adding the "known" PIDs to get it working with AMBA driver. While
+    the ETM4 architecture (and CoreSight architecture) defines way to
+    identify a device as ETM4. Thus older kernels  won't be able to
+    "discover" a newer CPU, unless we add the PIDs.
 
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/armada-370-rd.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+  - With ACPI, the ETM4x devices have the same HID to identify the device
+    irrespective of the mode of access. This creates a problem where two
+    different drivers (both AMBA based driver and platform driver) would
+    hook into the "HID" and could conflict. e.g., if AMBA driver gets
+    hold of a non-MMIO device, the probe fails. If we have single driver
+    hooked into the given "HID", we could handle them seamlessly,
+    irrespective of the mode of access.
 
-diff --git a/arch/arm/boot/dts/armada-370-rd.dts b/arch/arm/boot/dts/armada-370-rd.dts
-index be005c9f42ef..15b36aa34ef4 100644
---- a/arch/arm/boot/dts/armada-370-rd.dts
-+++ b/arch/arm/boot/dts/armada-370-rd.dts
-@@ -20,6 +20,7 @@
- /dts-v1/;
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/gpio/gpio.h>
- #include "armada-370.dtsi"
- 
-@@ -135,6 +136,19 @@ &mdio {
- 	pinctrl-names = "default";
- 	phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				label = "WAN";
-+				color = <LED_COLOR_ID_WHITE>;
-+				function = LED_FUNCTION_LAN;
-+				function-enumerator = <1>;
-+				linux,default-trigger = "netdev";
-+			};
-+		};
- 	};
- 
- 	switch: switch@10 {
+  - CoreSight is heavily dependent on the runtime power management. With
+    ACPI, amba_driver doesn't get us anywhere with handling the power
+    and thus one need to always turn the power ON to use them. Moving to
+    platform driver gives us the power management for free.
+
+Due to all of the above, we are moving the MMIO based etm4x devices to be
+supported via platform driver. The series makes the existing platform
+driver generic to handle both type of the access modes. With that we can
+also remove the etm4x amba driver.
+
+Finally, we need a way to make sure the new driver gets control of the
+ETM4x device on a DT based system. CoreSight devices have always had the
+"arm,primecell" in the compatible list. But the way this is handled
+currently in OF code is a bit messy. The ETM4x devices are identified by
+"arm,coresight-etm4x". The platform driver can never get a chance to probe
+these devices, since the "arm,primecell" takes priority and is hard-coded
+in the OF code. We have two options here :
+
+1) Remove the arm,primecell from all DTS. This is fine for "new" kernels
+with this change. But, for existing boards, using an older kernel will
+break. Thus, is not preferred.
+
+2) Add a white list of "compatibles" where the "priority" of the
+"arm,primecell" can be ignored.
+
+The series implements (2) above and applies on 6.3-rc2.
+
+Cc: Steve Clevenger <scclevenger@os.amperecomputing.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Russell King (Oracle) <linux@armlinux.org.uk>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Len Brown <lenb@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Leo Yan <leo.yan@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-acpi@vger.kernel.org
+Cc: coresight@lists.linaro.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+
+Anshuman Khandual (6):
+  coresight: etm4x: Allocate and device assign 'struct etmv4_drvdata' earlier
+  coresight: etm4x: Drop iomem 'base' argument from etm4_probe()
+  coresight: etm4x: Drop pid argument from etm4_probe()
+  coresight: etm4x: Change etm4_platform_driver driver for MMIO devices
+  of/platform: Skip coresight etm4x devices from AMBA bus
+  coresight: etm4x: Drop the AMBA driver
+
+Suzuki Poulose (1):
+  coresight: etm4x: Add ACPI support in platform driver
+
+ drivers/acpi/acpi_amba.c                      |   1 -
+ .../coresight/coresight-etm4x-core.c          | 171 ++++++++----------
+ drivers/hwtracing/coresight/coresight-etm4x.h |   3 +
+ drivers/of/platform.c                         |  10 +-
+ include/linux/coresight.h                     |  56 ++++++
+ 5 files changed, 143 insertions(+), 98 deletions(-)
+
 -- 
-2.39.2
+2.25.1
 
