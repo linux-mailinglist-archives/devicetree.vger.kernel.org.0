@@ -2,86 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B0C6BE42D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:46:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D24FF6BE43F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 09:48:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231564AbjCQIqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 04:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
+        id S231375AbjCQIsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 04:48:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbjCQIpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:45:15 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CADF5AB54
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:44:37 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id h8so17442371ede.8
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:44:37 -0700 (PDT)
+        with ESMTP id S231167AbjCQIrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 04:47:52 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3349121A3B
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:47:20 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id eh3so17422085edb.11
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 01:47:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679042675;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=juFmrQz7oKZJRVloOKbAwgle6hn0N8TdFSrYHqJtuGs=;
-        b=alyQrUOzldXMFXcXM/xm57EnS7Biz1DBBOCfYjMGS+7LLhegBZpU9leCj5vcMtwmLE
-         HPYbUWzopVK2UWhT9Bx7o8W2KKqzOF217Tx1jZER1jkeAb+WEfIt1utEjhcXplxyfiXr
-         afYezteJUkdwfm/v7IsGnLl+azcWRjGVbhVTLeYnlgJ8dj7jozEzDh1WVtibhJlpbd2s
-         0cwY/4DtVZTvNe11Lusn/tfqI0zA/RUH3kdSWB+qpiluR41RRA6+VJmJXQjVJKw1u5BS
-         n/HdliYLBUZFLH9SseWrmT0axULEsZPJGH3m4b8zBoKFeI24PCS+QeULJ8TPc9wKv1d7
-         ZQYA==
+        d=fairphone.com; s=fair; t=1679042837;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CnJ/BVy4SBZ8eH5OPmRpFFL8LrOC5KW/6id1E1a0ulI=;
+        b=an+ZRTybvHjMbEESndLf3cwEK4vIcpejteU+3+UR8UkDibRo6Sk8/oRtIElrLZxKNo
+         Cmgis6c4lGP9OWXs+GPd6Jf1qRFNGJThCyOV6cAHa/x7kFKIZtTF7E+eUVpRmn7ASLBe
+         /UILF2TjBpmO2vWQnBjgxrovViZK2pKeGQK3h9ABNjRK2TAA3SQ6wwKT/Gl7Ss8RoMIC
+         +Ano9T7n/OJoGy+SlK6oNvKrRZEV0juvsuJ7srqXYHll0KmbZgLrBYRk91aOoL9SxvyM
+         cS/r0KOHBwAF2al/3k+l1Cl8CL99NWUt64/KF1nQBm+HhKGAwBB+xB5+HPb2ATI8f4ZX
+         mFmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679042675;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=juFmrQz7oKZJRVloOKbAwgle6hn0N8TdFSrYHqJtuGs=;
-        b=BZ10JfwOO8gSjy/B/enz/HZcv0eEobmQYwkfMn1/QUAxP4CXj/1IHX35oRCAeDqU1Q
-         ZQaEjNpeiL9h4JlABO2e6W0lsTylZmN3jVz0Nunmjp4csXpt2mxH5Vumn08Qef6sHP3I
-         Y4KD/u2tb+OSw/WamgTrrkX7d1pG7mQwBadYNHowMsNSfDIQn6EDSVC+aYkXvB3Lc2jY
-         sg+UGpaEr5DUA+cb4XY5VkhFjHzi19MFa+DhEXZF6AgCv0QMZvw+0Ns9MEBATlqr0xea
-         tqsejIL6MtDBucS7L2hALI8n6xHcL3aISa7yXaTXgxZaQvPbhr64qOE/Cfo/AvvgS6j7
-         /r4Q==
-X-Gm-Message-State: AO0yUKXIvj7dRJY7n+CLYWV7a9h69yPE8tTUkSAQ76Asu+Wi2mJhEPlN
-        sliCRWZhQdyNnGuF5D5oKMmIQw==
-X-Google-Smtp-Source: AK7set8TDDSh0NPwZz11d/QCnupF+zzxPhz66o7xVZyQ0Nwr55I5QWoofBSxOkS7LU7Suo6Z4CCdEw==
-X-Received: by 2002:a17:906:568a:b0:931:d8db:8a2f with SMTP id am10-20020a170906568a00b00931d8db8a2fmr1374810ejc.58.1679042675695;
-        Fri, 17 Mar 2023 01:44:35 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:848a:1971:93e0:b465? ([2a02:810d:15c0:828:848a:1971:93e0:b465])
-        by smtp.gmail.com with ESMTPSA id lt11-20020a170906fa8b00b008e54ac90de1sm701978ejb.74.2023.03.17.01.44.34
+        d=1e100.net; s=20210112; t=1679042837;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CnJ/BVy4SBZ8eH5OPmRpFFL8LrOC5KW/6id1E1a0ulI=;
+        b=LQ24CJJ5TLRXqjPWvFF5xsZz6P9ScIwgwDAmpyr8fxjUihwdghBpCDEDdt7a2BIaCt
+         N78MAMDKUGKauD7Vr3Nh16JL7axrBpFh45obqChDzoYrOG/4k/Je23tpAlDQpk252t7F
+         v8iCOQYi/H5k9UbetJukalhA5Pd2ITAtyKW/sOvP7rb75ju7hi3ggpm67BMHQghbegGD
+         hWE0DyIlJtEGEFGW4PRXGQgluz0E8ykJ7k/f3Eq4HH8WQaBywZQVmALCf10lBVD/Phiq
+         OM5O8adqtnITxc8OqkET+GvTGmVXeOZvoQ3PGfUwjlLw62WT7LPgbyLnWHUGIUQMDrym
+         2ioQ==
+X-Gm-Message-State: AO0yUKVOD1o5bJylyeZWImudVBbrLVVJpMXBNZNLkE0p0OIGwUjoBwWr
+        Mxkz7g+xBkDGIFe9oYsJd+l7OA==
+X-Google-Smtp-Source: AK7set9MnDT1ldk25flR6fAwdCE+sqx5UVOMd+osCs/jxOJ7gvi9sokgU4kqzSLwEeCr53Tgbj8VNQ==
+X-Received: by 2002:a17:907:1b17:b0:930:9385:ce51 with SMTP id mp23-20020a1709071b1700b009309385ce51mr5720966ejc.68.1679042836927;
+        Fri, 17 Mar 2023 01:47:16 -0700 (PDT)
+Received: from localhost (2a02-8388-6582-fe80-0000-0000-0000-000b.cable.dynamic.v6.surfer.at. [2a02:8388:6582:fe80::b])
+        by smtp.gmail.com with ESMTPSA id n13-20020a170906088d00b0092707833d08sm707626eje.70.2023.03.17.01.47.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 01:44:35 -0700 (PDT)
-Message-ID: <79593668-6ded-7290-f39b-e226d30e6e95@linaro.org>
-Date:   Fri, 17 Mar 2023 09:44:34 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts
- configuration.
-Content-Language: en-US
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
- <20230315104411.73614-6-minda.chen@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230315104411.73614-6-minda.chen@starfivetech.com>
+        Fri, 17 Mar 2023 01:47:16 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date:   Fri, 17 Mar 2023 09:47:15 +0100
+Message-Id: <CR8J0E9M2SFJ.3B3W26OYPWP2N@otso>
+Cc:     "Marijn Suijten" <marijn.suijten@somainline.org>,
+        "Rob Herring" <robh@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sm6350: Add GPUCC node
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "AngeloGioacchino Del Regno" 
+        <angelogioacchino.delregno@somainline.org>
+X-Mailer: aerc 0.14.0
+References: <20230315-topic-lagoon_gpu-v1-0-a74cbec4ecfc@linaro.org>
+ <20230315-topic-lagoon_gpu-v1-2-a74cbec4ecfc@linaro.org>
+In-Reply-To: <20230315-topic-lagoon_gpu-v1-2-a74cbec4ecfc@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,70 +84,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 11:44, Minda Chen wrote:
-> USB Glue layer and Cadence USB subnode configuration,
-> also includes USB and PCIe phy dts configuration.
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+On Thu Mar 16, 2023 at 12:16 PM CET, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@somainline.org>
+>
+> Add and configure a node for the GPU clock controller.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+Reviewed-by: Luca Weiss <luca.weiss@fairphone.com>
 
 > ---
->  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
->  2 files changed, 61 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index a132debb9b53..c64476aebc1a 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -236,3 +236,10 @@
->  	pinctrl-0 = <&uart0_pins>;
->  	status = "okay";
->  };
-> +
-> +&usb0 {
-> +	status = "okay";
-> +	usbdrd_cdns3: usb@0 {
-
-You should rather override by phandle this as well.
-
-> +		dr_mode = "peripheral";
-> +	};
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index f70a4ed47eb4..17722fd1be62 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -362,6 +362,60 @@
->  			status = "disabled";
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/q=
+com/sm6350.dtsi
+> index c46bb6dab6a1..523c7edfa4b3 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> @@ -5,6 +5,7 @@
+>   */
+> =20
+>  #include <dt-bindings/clock/qcom,gcc-sm6350.h>
+> +#include <dt-bindings/clock/qcom,gpucc-sm6350.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/clock/qcom,sm6350-camcc.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+> @@ -1125,6 +1126,20 @@ compute-cb@5 {
+>  			};
 >  		};
->  
-> +		usb0: usb@10100000 {
-> +			compatible = "starfive,jh7110-usb";
-> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
-> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-> +			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
-> +			starfive,sys-syscon = <&sys_syscon 0x18>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x0 0x10100000 0x100000>;
-
-reg and ranges should be second property. This also applies to your
-binding example.
-
-
-Best regards,
-Krzysztof
+> =20
+> +		gpucc: clock-controller@3d90000 {
+> +			compatible =3D "qcom,sm6350-gpucc";
+> +			reg =3D <0 0x03d90000 0 0x9000>;
+> +			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_GPU_GPLL0_CLK>,
+> +				 <&gcc GCC_GPU_GPLL0_DIV_CLK>;
+> +			clock-names =3D "bi_tcxo",
+> +				      "gcc_gpu_gpll0_clk",
+> +				      "gcc_gpu_gpll0_div_clk";
+> +			#clock-cells =3D <1>;
+> +			#reset-cells =3D <1>;
+> +			#power-domain-cells =3D <1>;
+> +		};
+> +
+>  		mpss: remoteproc@4080000 {
+>  			compatible =3D "qcom,sm6350-mpss-pas";
+>  			reg =3D <0x0 0x04080000 0x0 0x4040>;
+>
+> --=20
+> 2.39.2
 
