@@ -2,387 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9296A6BF49B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 22:51:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 861A26BF4B0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Mar 2023 22:54:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbjCQVvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 17:51:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52684 "EHLO
+        id S231414AbjCQVyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 17:54:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229765AbjCQVvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 17:51:37 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B008D2FCF0;
-        Fri, 17 Mar 2023 14:51:03 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E784A240003;
-        Fri, 17 Mar 2023 21:50:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1679089818;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to; bh=RpfUPFa7Pjz3eL1lIlllGYE22+iVyiYtNaJkGf0is+0=;
-        b=IPPeK1ehF6ODLo1gc63bn/vkXoF0LZtUcIe3UewPh+/iXUP9alqzFKzqjjoGUwi7JHxbgF
-        ATVjETsXgS5oDbRhNj4DbPv8Ky87ZMxle4VM8Vo8DAHJmE95rIiQKlCZ5KDDUlsTfJOK+R
-        rrwDKbQ/k+raisljl001CIcf+qaOQq+LHU+1gE7vAdExMqp3vmgnvjjFPs1/QmIUwFw17h
-        N3pk8X50PjDeF0RN2nlxqM7MrjbX6cp/bS7OvIiR4QWQ2JmN9q4b8hsvkZtHc/s3pjpM+s
-        5/6jQvDZdWWcYzxnnOzVWrn6WpK449mprCcaR8BB7OqJIk37PNl4GTbaYMQeDg==
-Date:   Fri, 17 Mar 2023 22:50:16 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-Cc:     a.zummo@towertech.it, jdelvare@suse.com, linux@roeck-us.net,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Subject: Re: [PATCH v4 1/2] drivers: rtc: add max313xx series rtc driver
-Message-ID: <202303172150163e1de7e3@mail.local>
+        with ESMTP id S231350AbjCQVyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 17:54:41 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BCC0AF1F;
+        Fri, 17 Mar 2023 14:54:18 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id k15so2947238pgt.10;
+        Fri, 17 Mar 2023 14:54:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679090057;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QgWoxlECZXdVrynxfG/iUFVQwxWjeSo565mClnIZWnc=;
+        b=YaTxmeYgjyyGDmiFAS7L+PljTKNdLcc5nol9+/wEE4H/wa86Znz2DX0ZJfrJwf3NQn
+         mi3C91RvdtoBgNdOgNPzvLFxbkHQkvXTlyahrA98EeV9jXJbi9Sf/XEa9/M9qyswTCDW
+         D99bJK6fLSCVJlxECISp5CFXVVNG2U3nnd/arcWTtrF02mJTSLao1RZSGb5ddQAsDtD0
+         V/Kg+cT9lPI18ueEdAm4jK/b8QlthdZ8NjbUa5tvX9L4AXpUzN7XDHJnLEp7WPDEa0Vo
+         rMhgXgfShXbVMEgHkEdJHLTq9hSBwCIDpZz3rogKfyxXw7dAmr6u14NdJ5LyUmR3w+3T
+         PuPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679090057;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QgWoxlECZXdVrynxfG/iUFVQwxWjeSo565mClnIZWnc=;
+        b=1QN89Y+2vIkEyIxSCLPLnH6F4dehA9JFpJQDEn6TGwR/mQm2eZIb05GvkXtJatv+qN
+         VRDVkKm6WQfM4P2tO0/fpPz/68zgBD+WhQWdMm5d69r602tGUYDt3OrVDkEP/ZecGrKx
+         xxZa81e+UDtnaw2xz1/rNWKKalD7mLMtcV9JGz55HS1UV3AQBI3sxhSeup/o0e1XQTw8
+         iiGzYu6gt+7S2d2MWhN5wNIU+GrUcC06pH7+zJviJVY52Za8sk/W5fmZDdRMe9Yn22D7
+         U+TJPB6YSqXQw1IninFfNJPx9YA/X4cbhX2rzG/LR0Mmyy5BjNybNbB+Fqam1WzjVd5f
+         kvNQ==
+X-Gm-Message-State: AO0yUKU/6/l8vrpFz1Q3BRVI68fR2yK8Im5xX+kZcD2dmJqXHLOFx1yD
+        JWPqUbKASYyPaFOBxFtQVvI=
+X-Google-Smtp-Source: AK7set++51QrZc9ogfyZzZlsl7EgVQqsEkLr7zb0xLfkGDusnfnLbtVRqFamGeYkvD60E3j8n/6MAg==
+X-Received: by 2002:a62:520f:0:b0:5cd:d766:8a2b with SMTP id g15-20020a62520f000000b005cdd7668a2bmr6584338pfb.6.1679090057160;
+        Fri, 17 Mar 2023 14:54:17 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id 22-20020aa79256000000b00582f222f088sm1998885pfp.47.2023.03.17.14.54.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Mar 2023 14:54:16 -0700 (PDT)
+Message-ID: <0bbaa346-edbf-a1b9-3c95-5a1aacaf0c44@gmail.com>
+Date:   Fri, 17 Mar 2023 14:54:10 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230315161626.247-2-Ibrahim.Tilki@analog.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: Probing devices by their less-specific "compatible" bindings
+ (here: brcmnand)
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        "William (Zhenghao) Zhang" <william.zhang@broadcom.com>
+References: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2023 19:16:25+0300, Ibrahim Tilki wrote:
-> +static int max313xx_trickle_charger_setup(struct device *dev)
-> +{
-> +	struct max313xx *rtc = dev_get_drvdata(dev);
-> +	bool trickle_diode_en;
-> +	u32 charger_en = 0;
-> +	int index, reg;
-> +	u32 ohms = 0;
-> +	int ret;
-> +
-> +	device_property_read_u32(dev, "aux-voltage-chargeable", &charger_en);
-> +	if (charger_en > 1)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "invalid value %d for property aux-voltage-chargeable\n",
-> +				     charger_en);
++William,
 
-This is too verbose, you can simply return -EINVAL here. dtbs_check will
-report the invalid value.
-
-> +
-> +	if (!charger_en)
-> +		return 0;
-> +
-> +	trickle_diode_en = device_property_read_bool(dev, "adi,trickle-diode-enable");
-
-There is no point having this property, simply use aux-voltage-chargeable.
-
-> +	device_property_read_u32(dev, "trickle-resistor-ohms", &ohms);
-> +
-> +	if (!rtc->chip->trickle_reg) {
-> +		dev_warn(dev, "device does not have trickle charger\n");
-
-Simply return 0, no string.
-
-> +		return 0;
-> +	}
-> +
-> +	index = find_closest(ohms, max313xx_trickle_ohms,
-> +			     ARRAY_SIZE(max313xx_trickle_ohms)) + 1;
-> +
-> +	switch (rtc->id) {
-> +	case ID_MAX31329:
-> +		reg = FIELD_PREP(MAX31329_TRICKLE_ENABLE_BIT, 1) |
-> +		      FIELD_PREP(MAX31329_43_TRICKLE_RES_MASK, index) |
-> +		      FIELD_PREP(MAX31329_43_TRICKLE_DIODE_EN, trickle_diode_en);
-> +		break;
-> +	case ID_MAX31331:
-> +	case ID_MAX31334:
-> +		reg = FIELD_PREP(MAX3133X_TRICKLE_ENABLE_BIT, 1) |
-> +		      FIELD_PREP(MAX3133X_TRICKLE_RES_MASK, index) |
-> +		      FIELD_PREP(MAX3133X_TRICKLE_DIODE_EN, trickle_diode_en);
-> +		break;
-> +	case ID_MAX31341:
-> +		if (index == 1)
-> +			index = 0;
-> +
-> +		reg = FIELD_PREP(MAX31341_TRICKLE_ENABLE_BIT, 1) |
-> +		      FIELD_PREP(MAX31341_TRICKLE_RES_MASK, index) |
-> +		      FIELD_PREP(MAX31341_TRICKLE_DIODE_EN, trickle_diode_en);
-> +
-> +		ret = regmap_set_bits(rtc->regmap, MAX31341_POWER_MGMT_REG,
-> +				      MAX31341_POWER_MGMT_TRICKLE_BIT);
-> +		if (ret)
-> +			return ret;
-> +
-> +		break;
-> +	case ID_MAX31343:
-> +		reg = FIELD_PREP(MAX31329_43_TRICKLE_RES_MASK, index) |
-> +		      FIELD_PREP(MAX31329_43_TRICKLE_DIODE_EN, trickle_diode_en) |
-> +		      FIELD_PREP(MAX31343_TRICKLE_ENABLE_MASK,
-> +				 MAX31343_TRICKLE_ENABLE_CODE);
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	return regmap_write(rtc->regmap, rtc->chip->trickle_reg, reg);
-> +}
-> +
-> +static int max313xx_find_clkin_freq_index(struct clk *clk)
-> +{
-> +	unsigned long rate = clk_get_rate(clk);
-> +	int freq;
-> +	int i;
-> +
-> +	i = find_closest(rate, max313xx_clkin_freq,
-> +			 ARRAY_SIZE(max313xx_clkin_freq));
-> +	if (max313xx_clkin_freq[i] == rate)
-> +		return i;
-> +
-> +	for (i = ARRAY_SIZE(max313xx_clkin_freq) - 1; i >= 0; i--) {
-> +		freq = max313xx_clkin_freq[i];
-> +		if (freq == clk_round_rate(clk, freq))
-> +			return i;
-> +	}
-> +
-> +	/* supplied clock cannot produce one of desired frequency rate */
-> +	return -ENODEV;
-> +}
-> +
-> +static int max313xx_clkin_init(struct device *dev)
-> +{
-> +	struct max313xx *rtc = dev_get_drvdata(dev);
-> +	int rate;
-> +	int ret;
-> +
-> +	rtc->clkin = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(rtc->clkin)) {
-> +		if (PTR_ERR(rtc->clkin) == -ENOENT)
-> +			rtc->clkin = NULL;
-> +		else
-> +			return dev_err_probe(dev, PTR_ERR(rtc->clkin),
-> +					     "error while clkin setup\n");
-> +	}
-> +
-> +	if (!rtc->clkin) {
-> +		switch (rtc->id) {
-> +		case ID_MAX31329:
-> +			return regmap_clear_bits(rtc->regmap,
-> +						 MAX31329_CONFIG2_REG,
-> +						 MAX31329_CONFIG2_CLKIN_EN);
-> +		case ID_MAX31341:
-> +		case ID_MAX31342:
-> +			return regmap_clear_bits(rtc->regmap,
-> +						 MAX31341_42_CONFIG1_REG,
-> +						 MAX31341_42_CONFIG1_CLKIN_EN);
-> +		default:
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	rate = max313xx_find_clkin_freq_index(rtc->clkin);
-> +	if (rate < 0)
-> +		return dev_err_probe(dev, rate,
-> +				     "clkin cannot produce required frequency\n");
-> +
-> +	ret = clk_set_rate(rtc->clkin, max313xx_clkin_freq[rate]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (rtc->id) {
-> +	case ID_MAX31329:
-> +		ret = regmap_update_bits(rtc->regmap, MAX31329_CONFIG2_REG,
-> +					 MAX31329_CONFIG2_CLKIN_FREQ, rate);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return regmap_set_bits(rtc->regmap, MAX31329_CONFIG2_REG,
-> +				       MAX31329_CONFIG2_CLKIN_EN);
-> +	case ID_MAX31341:
-> +	case ID_MAX31342:
-> +		ret = regmap_update_bits(rtc->regmap, MAX31341_42_CONFIG1_REG,
-> +					 MAX31341_42_CONFIG1_CLKIN_FREQ,
-> +					 FIELD_PREP(MAX31341_42_CONFIG1_CLKIN_FREQ, rate));
-> +		if (ret)
-> +			return ret;
-> +
-> +		return regmap_set_bits(rtc->regmap, MAX31341_42_CONFIG1_REG,
-> +				       MAX31341_42_CONFIG1_CLKIN_EN);
-> +	default:
-> +		rtc->clkin = NULL;
-> +		dev_warn(dev, "device does not have clock input\n");
-> +		return 0;
-> +	}
-> +}
-> +
-> +static int max313xx_irq_init(struct device *dev, const char *devname)
-> +{
-> +	struct max313xx *rtc = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	switch (rtc->id) {
-> +	case ID_MAX31328:
-> +		/* max31328 sqw and interrupt pin is shared */
-> +		if (rtc->irq > 0 && rtc->clkout.clk)
-> +			return dev_err_probe(dev, -EOPNOTSUPP,
-> +					     "cannot have both sqw clock output and irq enabled");
-
-This still doesn't work, having a clock registered doesn't mean it is
-used or muxed. Also, you want to always register it so it gets disabled
-when it is not used.
-
-> +
-> +		break;
-> +	case ID_MAX31331:
-> +	case ID_MAX31334:
-> +		if (rtc->clkout.clk) {
-> +			/*
-> +			 * interrupt muxing depends on clkout so enable clkout
-> +			 * if configured before requesting interrupt
-> +			 */
-> +			ret = clk_prepare_enable(rtc->clkout.clk);
-> +			if (ret)
-> +				return dev_err_probe(dev, ret,
-> +						     "cannot enable clkout\n");
-> +		}
-> +		break;
-> +	default:
-> +		if (rtc->clkin) {
-> +			if (rtc->clkout.clk && rtc->irq > 0)
-> +				return dev_err_probe(dev, -EOPNOTSUPP,
-> +						     "irq not possible when both clkin and clkout are configured\n");
-> +
-> +			if (rtc->irq <= 0)
-> +				break;
-> +
-> +			/* clkout needs to be disabled for interrupt */
-> +			if (rtc->chip->clkout->en_invert)
-> +				ret = regmap_set_bits(rtc->regmap,
-> +						      rtc->chip->clkout->reg,
-> +						      rtc->chip->clkout->en_bit);
-> +			else
-> +				ret = regmap_clear_bits(rtc->regmap,
-> +							rtc->chip->clkout->reg,
-> +							rtc->chip->clkout->en_bit);
-> +
-
-What if you want alarm1 on INTA without any clkin? This doesn't seem to
-be configured.
-
-> +			if (ret)
-> +				return ret;
-> +		}
-> +		break;
-> +	}
-> +
-> +	if (rtc->irq > 0) {
-> +		return devm_request_threaded_irq(dev, rtc->irq, NULL,
-> +						 &max313xx_irq, IRQF_ONESHOT,
-> +						 devname, rtc);
-> +	}
-
-You still want to parse wakeup-source in case INTA/INTB is connected
-directly to a PMIC for exemple.
-
-> +
-> +	clear_bit(RTC_FEATURE_ALARM, rtc->rtc->features);
-> +
-> +	return 0;
-> +}
-> +
-> +static int max313xx_probe(struct i2c_client *client,
-> +			  const struct i2c_device_id *id)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct max313xx *max313xx;
-> +	struct device *hwmon;
-> +	const void *match;
-> +	int ret;
-> +
-> +	max313xx->irq = client->irq;
-> +
-> +	ret = max313xx_clkout_register(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = max313xx_clkin_init(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* IRQ wiring depends on the clock configuration so parse them first */
-> +	ret = max313xx_irq_init(dev, client->name);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (max313xx->chip->ram_size) {
-> +		max313xx_nvmem_cfg.size = max313xx->chip->ram_size;
-> +		max313xx_nvmem_cfg.priv = max313xx;
-> +
-> +		ret = devm_rtc_nvmem_register(max313xx->rtc, &max313xx_nvmem_cfg);
-> +		if (ret)
-> +			dev_warn(dev, "cannot register rtc nvmem\n");
-> +	}
-> +
-> +	if (max313xx->chip->temp_reg) {
-> +		hwmon = devm_hwmon_device_register_with_info(dev, client->name,
-> +							     max313xx,
-> +							     &max313xx_chip_info,
-> +							     NULL);
-> +		if (IS_ERR(hwmon))
-> +			dev_warn(dev, "cannot register hwmon device: %li\n",
-> +				 PTR_ERR(hwmon));
-> +	}
-> +
-> +	return max313xx_trickle_charger_setup(dev);
-> +}
-> +
-> +static const struct of_device_id max313xx_of_id[] = {
-> +	{ .compatible = "adi,max31328", .data = &chip[ID_MAX31328] },
-> +	{ .compatible = "adi,max31329", .data = &chip[ID_MAX31329] },
-> +	{ .compatible = "adi,max31331", .data = &chip[ID_MAX31331] },
-> +	{ .compatible = "adi,max31334", .data = &chip[ID_MAX31334] },
-> +	{ .compatible = "adi,max31341", .data = &chip[ID_MAX31341] },
-> +	{ .compatible = "adi,max31342", .data = &chip[ID_MAX31342] },
-> +	{ .compatible = "adi,max31343", .data = &chip[ID_MAX31343] },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max313xx_of_id);
-> +
-> +static const struct i2c_device_id max313xx_id[] = {
-> +	{ "max31328", (kernel_ulong_t)&chip[ID_MAX31328] },
-> +	{ "max31329", (kernel_ulong_t)&chip[ID_MAX31329] },
-> +	{ "max31331", (kernel_ulong_t)&chip[ID_MAX31331] },
-> +	{ "max31334", (kernel_ulong_t)&chip[ID_MAX31334] },
-> +	{ "max31341", (kernel_ulong_t)&chip[ID_MAX31341] },
-> +	{ "max31342", (kernel_ulong_t)&chip[ID_MAX31342] },
-> +	{ "max31343", (kernel_ulong_t)&chip[ID_MAX31343] },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, max313xx_id);
-> +
-> +static struct i2c_driver max313xx_driver = {
-> +	.driver = {
-> +		.name	= "rtc-max313xx",
-> +		.of_match_table = max313xx_of_id,
-> +	},
-> +	.probe		= max313xx_probe,
-> +	.id_table	= max313xx_id,
-> +};
-> +module_i2c_driver(max313xx_driver);
-> +
-> +MODULE_DESCRIPTION("Analog Devices MAX313XX RTCs");
-> +MODULE_AUTHOR("Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>");
-> +MODULE_AUTHOR("Ibrahim Tilki <Ibrahim.Tilki@analog.com>");
-> +MODULE_SOFTDEP("pre: regmap-i2c");
-> +MODULE_LICENSE("GPL");
-> +MODULE_VERSION("1.0");
-> -- 
-> 2.25.1
+On 3/17/23 03:02, Rafał Miłecki wrote:
+> Hi, I just spent few hours debugging hidden hw lockup and I need to
+> consult driver core code behaviour.
 > 
+> I have a BCM4908 SoC based board with a NAND controller on it.
+> 
+> 
+> ### Hardware binding
+> 
+> Hardware details:
+> arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+> 
+> Relevant part:
+> nand-controller@1800 {
+>      compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", 
+> "brcm,brcmnand";
+>      reg = <0x1800 0x600>, <0x2000 0x10>;
+>      reg-names = "nand", "nand-int-base";
+> }:
+> 
+> Above binding is based on the documentation:
+> Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> 
+> 
+> ### Linux drivers
+> 
+> Linux has separated drivers for few Broadcom's NAND controller bindings:
+> 
+> 1. drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c for:
+> brcm,nand-bcm63138
+> 
+> 2. drivers/mtd/nand/raw/brcmnand/brcmnand.c for:
+> brcm,brcmnand-v2.1
+> brcm,brcmnand-v2.2
+> brcm,brcmnand-v4.0
+> brcm,brcmnand-v5.0
+> brcm,brcmnand-v6.0
+> brcm,brcmnand-v6.1
+> brcm,brcmnand-v6.2
+> brcm,brcmnand-v7.0
+> brcm,brcmnand-v7.1
+> brcm,brcmnand-v7.2
+> brcm,brcmnand-v7.3
+> 
+> 3. drivers/mtd/nand/raw/brcmnand/brcmstb_nand.c for:
+> brcm,brcmnand
+> 
+> 
+> ### Problem
+> 
+> As first Linux probes my hardware using the "brcm,nand-bcm63138"
+> compatibility string driver bcm63138_nand.c. That's good.
+> 
+> It that fails however (.probe() returns an error) then Linux core starts
+> probing using drivers for less specific bindings.
+
+Why does it fail?
+
+> 
+> In my case probing with the "brcm,brcmnand" string driver brcmstb_nand.c
+> results in ignoring SoC specific bits and causes a hardware lockup. Hw
+> isn't initialized properly and writel_relaxed(0x00000009, base + 0x04)
+> just make it hang.
+
+Well, the missing piece here is that brcmnand.c is a library driver, 
+therefore it needs an entry point, the next one that matches is 
+brcmstb_nand.c.
+
+> 
+> That obviously isn't an acceptable behavior for me. So I'm wondering
+> what's going on wrong here.
+> 
+> Should Linux avoid probing with less-specific compatible strings?
+> Or should I not claim hw to be "brcm,brcmnand" compatible if it REQUIRES
+> SoC-specific handling?
+> 
+> An extra note: that fallback probing happens even with .probe()
+> returning -EPROBE_DEFER. This actually smells fishy for me on the Linux
+> core part.
+> I'm not an expect but I think core should wait for actual error without
+> trying less-specific compatible strings & drivers.
+> 
+> ______________________________________________________
+> Linux MTD discussion mailing list
+> http://lists.infradead.org/mailman/listinfo/linux-mtd/
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Florian
+
