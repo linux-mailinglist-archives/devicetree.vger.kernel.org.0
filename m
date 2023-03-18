@@ -2,143 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9CA6BFA77
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 14:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1A56BFA81
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 14:45:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjCRNn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 09:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34788 "EHLO
+        id S229654AbjCRNpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 09:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbjCRNnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 09:43:12 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745F734331
-        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:43:06 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id a32so7780724ljr.9
-        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:43:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679146984;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vhpul7Rh3cRj+K0GuudZQvoFoP/xfXO3CkdZI/yylms=;
-        b=j426X71mabGLe1BqLKd75IEf3x1OwnMZApw94sSoRjI9PIBDOgl5mmVj97uwADtRIo
-         dPQ35g3OJujaMQjQn7viOa6Q7fmpMnQ/y5NCKb3hLvNau9VWW993qWBwOUW89sRwWHTB
-         RrQQ/mhy3s7dFVDtwZap3HhE8vNBSXT72A3Y83fC026lvBC4bg3+0owmbu3Njq9nWxy7
-         oa3wwhpAO6vi9u2HQ0NWCRRlydJOKZTTYJ5UyqV5YvtAQIrDrAid7V4U2aonZQlZRE7I
-         qZemPNvc/UJ3Ghjgfsa73cPc1ni3yCKnhp+/HHHAdVb4vHCtrBcIP8or9yXx0OdCkHCJ
-         Idgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679146984;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Vhpul7Rh3cRj+K0GuudZQvoFoP/xfXO3CkdZI/yylms=;
-        b=D41/4Ir68PBwm+yMmeETH1pKMY1r51Ifh1MjWW3zByooq3Siao9ZV4OFkuwRey0vfx
-         PL+5tw/2KLXVacQxGjqxZ/TMdGDUJWZsoU4Pdw+Il+Eqm/kMjicInCzYozHAQ18ID1fo
-         PXQAJdoMRJY/4wd4T0nS7k3w9KFDhi3XsuXcV1ViFQFFYcEG1XhBBbM2XMeILLnFjoMA
-         dUGlBuwTweEyqKKQZQNEmhs/0LpBiV4xzVvC1zJBkSoz2Ihr2HpEOV7v4hZRFbbOJvGf
-         whCU8Ljs60w4Kots7v+cmmKjTpkQoTItF573SLqQNjPFTIApQpKizegcug4+1vILTmh+
-         JDcA==
-X-Gm-Message-State: AO0yUKWvOQDoa7RNAh8/q3yHbZ/KBl0Wof9r/aOixHZmgijKXOmoUU8b
-        D+2JrbYNCZJzTcxt1gVt3LBH4w==
-X-Google-Smtp-Source: AK7set+IUKK9tzzPVlhNLzpxw7e6QXgi8Si9QxetIZhZPNuGjkdCxGjG1Aq+32VGmSOdt+mXVZYAnw==
-X-Received: by 2002:a2e:9f44:0:b0:29b:767f:1421 with SMTP id v4-20020a2e9f44000000b0029b767f1421mr686870ljk.45.1679146984292;
-        Sat, 18 Mar 2023 06:43:04 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id c2-20020a2e9d82000000b0029a0b50a34asm888367ljj.36.2023.03.18.06.43.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Mar 2023 06:43:03 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Sat, 18 Mar 2023 14:42:53 +0100
-Subject: [PATCH v6 7/9] drm/msm/dsi: Remove custom DSI config handling
+        with ESMTP id S229602AbjCRNpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 09:45:52 -0400
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E486013DD9
+        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References;
+        bh=tq4Y9Q8t3Fg3kkQxCb7sVUL557zwzQqzJJAq+3x7Ez4=; b=cDYbQdHcXMSqK8UnI5oPyhQpuF
+        cOui74jAMcg1bfXNLDZnMpSIh00n6w+sWTs6M00VMNWmYNXjQepBUDXditKKxGrxOhWnb29ww57rX
+        1b4NdQaqvalh2di78fmZ+mkm/brz4T1c2oAPYkUYzKuVNOp7B7V5QefvnvmlAW1SUXXlIKkscSEXd
+        bjH7GrPvd/X5X+N95NW8IUtGJHFc0d01Ji93s+9rJLfrRkXV1d0EibVavPDExv6uey4eg0hsu039y
+        R0fOdrHIrj17PeE4L+v/8PG/mkSTWwseLUgAqXpI4zJJz8bSk8XtFEDLZjxCJmQb1j/2DCLpvljZH
+        56l+CVzA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1pdWqm-0004uJ-G6; Sat, 18 Mar 2023 14:44:00 +0100
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b] (helo=lars-desktop.lan)
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1pdWqm-0001MM-1Q; Sat, 18 Mar 2023 14:44:00 +0100
+From:   Lars-Peter Clausen <lars@metafoo.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Michal Simek <michal.simek@amd.com>, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: [PATCH 1/2] dt-bindings: i2c: xiic: Fix `clock-names` property name
+Date:   Sat, 18 Mar 2023 06:42:54 -0700
+Message-Id: <20230318134255.282359-1-lars@metafoo.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230307-topic-dsi_qcm-v6-7-70e13b1214fa@linaro.org>
-References: <20230307-topic-dsi_qcm-v6-0-70e13b1214fa@linaro.org>
-In-Reply-To: <20230307-topic-dsi_qcm-v6-0-70e13b1214fa@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1679146971; l=1730;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=F4fPirOHyMQPj35ost0pdi8esBWoDrjWNUljpExX+4U=;
- b=JQL4C8eZU9KdW70xgkVjmI9WYhpJRT9iemBV2gYY5kx+UgSGZNBtZXViYaamh9bBOeacUVPvECKx
- Hx3zj/elBCkSn/QqsBsTWvU8RPfp3CbFyjYsorJTAB5uakOYwph8
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26847/Sat Mar 18 08:21:32 2023)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the only user is handled by common code, remove the option to
-specify custom handlers through match data.
+The Xilinx I2C controller device tree bindings documentation documents a
+`clock-name` property. There is no such property, the correct property name
+is `clock-names` with a `s`. The `s` was accidentally dropped during
+conversion from txt to yaml.
 
-This is effectively a revert of commit:
-5ae15e76271 ("drm/msm/dsi: Allow to specify dsi config as pdata")
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Fixes: f86ca4147976 ("dt-bindings: i2c: xiic: Migrate i2c-xiic documentation to YAML")
+Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
 ---
- drivers/gpu/drm/msm/dsi/dsi.c      | 4 ++--
- drivers/gpu/drm/msm/dsi/dsi_host.c | 4 ----
- 2 files changed, 2 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi.c b/drivers/gpu/drm/msm/dsi/dsi.c
-index f761973e4cba..baab79ab6e74 100644
---- a/drivers/gpu/drm/msm/dsi/dsi.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi.c
-@@ -172,10 +172,10 @@ static int dsi_dev_remove(struct platform_device *pdev)
- }
+diff --git a/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml b/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+index 1b598638d457..cc40a61a1c8e 100644
+--- a/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
++++ b/Documentation/devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml
+@@ -27,7 +27,7 @@ properties:
+   clocks:
+     minItems: 1
  
- static const struct of_device_id dt_match[] = {
--	{ .compatible = "qcom,mdss-dsi-ctrl", .data = NULL /* autodetect cfg */ },
-+	{ .compatible = "qcom,mdss-dsi-ctrl" },
- 
- 	/* Deprecated, don't use */
--	{ .compatible = "qcom,dsi-ctrl-6g-qcm2290", .data = NULL },
-+	{ .compatible = "qcom,dsi-ctrl-6g-qcm2290" },
- 	{}
- };
- 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-index 9cfb9e91bfea..961689a255c4 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-@@ -214,10 +214,6 @@ static const struct msm_dsi_cfg_handler *dsi_get_config(
- 	int ret;
- 	u32 major = 0, minor = 0;
- 
--	cfg_hnd = device_get_match_data(dev);
--	if (cfg_hnd)
--		return cfg_hnd;
--
- 	ahb_clk = msm_clk_get(msm_host->pdev, "iface");
- 	if (IS_ERR(ahb_clk)) {
- 		pr_err("%s: cannot get interface clock\n", __func__);
-
+-  clock-name:
++  clock-names:
+     const: pclk
+     description: |
+       Input clock name.
 -- 
-2.39.2
+2.30.2
 
