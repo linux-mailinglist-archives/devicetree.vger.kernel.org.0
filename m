@@ -2,162 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB96D6BFBC5
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 18:14:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF7696BFBDF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 18:36:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbjCRRO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 13:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44010 "EHLO
+        id S229737AbjCRRgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 13:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbjCRROX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 13:14:23 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 567AB149AA;
-        Sat, 18 Mar 2023 10:14:22 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a32so8135833ljr.9;
-        Sat, 18 Mar 2023 10:14:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679159660;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o6gVXR7MyV0dGeKTkzI0XUj6QXrFR6902YeCKHs1ZQM=;
-        b=mdenNH8Nyexs6YyB62R/BZLhJHWiUS4++a1cZgCzO3QzqQ13iScjbNS8+W9Nxo9Z9o
-         nScggbnS6OkYgx2/QfjKc9S82cp+l+kNMyaGGh0C1QAyLO0d8SUZcgcMTIEaNmChWl6v
-         u1Hs51u4M9GmZ+BAZRYB+F5sYcp6/ZoiDnI07OOR1QmpifluKrnBqpFdiLZbjQnpnaU4
-         de2By0/MmkKVHh0Wjm45cKM6/zOGETPSD4zkBo/LghjDi4FI6Hq1r+g+K93M57C/YAFT
-         JaoT2+1axMz5zCIHevO/igMIB7A+U4i3J4UBjIojSr1foZN5eFiLKDU4VO6jrPi7amJg
-         f1Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679159660;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o6gVXR7MyV0dGeKTkzI0XUj6QXrFR6902YeCKHs1ZQM=;
-        b=Qwbj0opkqzxaFimEAWluWj9UjWU8nd/uhbKmCdrKIK62jeASoDoFUN/Zr3mv8meusD
-         HkTmCfYz7vzyykDstFhGlvUmqPbrIjjfWGVFjzyEEzMMuIAig9T2e62ZWHmwKYH7/KSU
-         79w/OIWy+2+spgN0hedtpl5iw1ZIr+rS9Tw1DBoj+C8zy4oiEZIvOzuGnubUBIU11TVk
-         YOOpxjowkiWe1Pfn9UDa5JHkDaMfwGODfRraY08J1W/aRkEEg4O9T1nX2U+sTWq0W6Tk
-         Eh1Bwk7ttxbFMjjw+lKyQQQhbq/RrdRM4gPT70HQgWaR8jHUqVOC3BTC63lXBl51jRjB
-         wkug==
-X-Gm-Message-State: AO0yUKU75/te4mKybJn00AX6gkTtwmbdjgzx7ti0G/BCdCT5yTHJVKw1
-        pJsOVg0K1+um+Ceb9aG4sdA=
-X-Google-Smtp-Source: AK7set8khjgdJDLOjsL60JsKr969nfrsBSBbcfsEBMv6ZZISnKH1yfHmoQD7kzYtX9KchAV/GxaTnA==
-X-Received: by 2002:a2e:7d15:0:b0:298:b065:c29b with SMTP id y21-20020a2e7d15000000b00298b065c29bmr4403516ljc.38.1679159660245;
-        Sat, 18 Mar 2023 10:14:20 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id r9-20020a2e80c9000000b0029573844d03sm929221ljg.109.2023.03.18.10.14.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Mar 2023 10:14:19 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 3/3] nvmem: u-boot-env: post-process "ethaddr" env variable
-Date:   Sat, 18 Mar 2023 18:13:56 +0100
-Message-Id: <20230318171356.29515-4-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230318171356.29515-1-zajec5@gmail.com>
-References: <20230318171356.29515-1-zajec5@gmail.com>
+        with ESMTP id S229640AbjCRRf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 13:35:59 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F0F31BF4;
+        Sat, 18 Mar 2023 10:35:56 -0700 (PDT)
+Received: from [192.168.1.141] ([37.4.248.18]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mgf4k-1q9Kq51Vfw-00h9iT; Sat, 18 Mar 2023 18:35:21 +0100
+Message-ID: <c0b0929c-41b5-6b9e-8667-e76ac9305981@i2se.com>
+Date:   Sat, 18 Mar 2023 18:35:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V2 5/8] iio: accel: add support for IIS328DQ variant
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Li Yang <leoyang.li@nxp.com>,
+        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@chargebyte.com>
+References: <20230317103323.7741-1-stefan.wahren@chargebyte.com>
+ <20230317103323.7741-6-stefan.wahren@chargebyte.com>
+ <20230318155811.0bcf85e1@jic23-huawei>
+Content-Language: en-US
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20230318155811.0bcf85e1@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:dHLkmQBUUBfuNICi6lW+Y88CFIl7yl3WDnzKeRq0UO7C0b91y9g
+ 2G8Z7vHaxdiIbJ7OgrktXJjegzGeULbkGZb5hnMcXpk5bwjNX4KoCbuOgYQkgs7G87DvVKO
+ o1ZUanrHfbB9E3vh+9uGnfp8U7OuCHSnbJ9EN9kc8O/3cANaZkLeqv9o8hwtgDUGjWLg4lj
+ vVlFt6jB5kpdPVUHlPXnQ==
+UI-OutboundReport: notjunk:1;M01:P0:dcx4nZPZQ9g=;2oy2bb6pk2vcr8L6q7wJeGC3nr3
+ KJuBnfBAcIs7Eopztt90O2xitOiH3MuMTNnEszSXQLjYJzn9Lna150O5aMS5lbVHxMLtkweBt
+ gCnrKbP7ASitGDxn86tXKDrk5ZVrmTDxxh3AIefuvmAFprwTTvzacxcXomrmg+bCMtzzxD5Cl
+ vfghDkQ/51VYSW5ktt+Sut77DIdoI2GQIf0XI8NCqGaopNn3nY28pwz/g506mUgJO8wv0Rm8S
+ K0+Zw+Uvn8toxhneSTXBFzBAACYDiaYnhiicMM5Lj6L43A3QQ3RBbexdMJgnGXDx3QQDGA/I6
+ 63YpTyEGp3mbWODqjZnNt0XCwxEg5nPXmApk8qt2ebFCcVakoYw2hrznv8C2R3oaxueKN0/oL
+ MDmLaqhDhGChEXdtKSbpvidqQDyPcKjRR24mRZyU3bSRkStJFktcJ8DnF5PIP9jDRsVkCzXaC
+ jt209fUEEf0HJn9DDlePKBy6nAXiMHkwrRmIiqf4z7IuPt9gDuTASgLT+YllRKHWbp/VT6hcq
+ /cAxfd9wpijKc6802T2c8y41WMVzl6y5tqvEf7vSL/S6aUTaCHz51YbbQtHnqUg5x06p33Eru
+ Z6C941GgXPtDhJ0U7wixrDriRIX7Xw+dNsuM+ubOT5EgBw4X/MF5O4WzVT2DBrYHjEgAzykIc
+ 7Rrk5xD1EXeY4tPkIwOoB0FssUrV91JZSRI+5v3/Jg==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Jonathan,
 
-U-Boot environment variables are stored in ASCII format so "ethaddr"
-requires parsing into binary to make it work with Ethernet interfaces.
+Am 18.03.23 um 16:58 schrieb Jonathan Cameron:
+> On Fri, 17 Mar 2023 11:33:20 +0100
+> Stefan Wahren <stefan.wahren@chargebyte.com> wrote:
+>
+>> Since the ST IIS328DQ accelerometer is compatible to the ST LIS331DL,
+>> just add the new compatible to the st_accel framework.
+>>
+>> Link: https://www.st.com/resource/en/datasheet/iis328dq.pdf
+>> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
+> Hi Stefan,
+>
+> Assuming the DT binding is fine with the DT maintainers, I plan to
+> pick the pair of IIO fixes up through my tree.  Is there any strong
+> reason they should go via another route?
 
-This includes support for indexes to support #nvmem-cell-cells = <1>.
+i'm a little bit confused about consider this as "fixes", but i'm fine 
+with them going your tree.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/Kconfig      |  1 +
- drivers/nvmem/u-boot-env.c | 26 ++++++++++++++++++++++++++
- 2 files changed, 27 insertions(+)
+Best regards
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index a2afba11c890..b291b27048c7 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -340,6 +340,7 @@ config NVMEM_U_BOOT_ENV
- 	tristate "U-Boot environment variables support"
- 	depends on OF && MTD
- 	select CRC32
-+	select GENERIC_NET_UTILS
- 	help
- 	  U-Boot stores its setup as environment variables. This driver adds
- 	  support for verifying & exporting such data. It also exposes variables
-diff --git a/drivers/nvmem/u-boot-env.c b/drivers/nvmem/u-boot-env.c
-index 29b1d87a3c51..ee9fd9989b6e 100644
---- a/drivers/nvmem/u-boot-env.c
-+++ b/drivers/nvmem/u-boot-env.c
-@@ -4,6 +4,8 @@
-  */
- 
- #include <linux/crc32.h>
-+#include <linux/etherdevice.h>
-+#include <linux/if_ether.h>
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/mtd/mtd.h>
-@@ -70,6 +72,25 @@ static int u_boot_env_read(void *context, unsigned int offset, void *val,
- 	return 0;
- }
- 
-+static int u_boot_env_read_post_process_ethaddr(void *context, const char *id, int index,
-+						unsigned int offset, void *buf, size_t bytes)
-+{
-+	u8 mac[ETH_ALEN];
-+
-+	if (bytes != 3 * ETH_ALEN - 1)
-+		return -EINVAL;
-+
-+	if (!mac_pton(buf, mac))
-+		return -EINVAL;
-+
-+	if (index)
-+		eth_addr_add(mac, index);
-+
-+	ether_addr_copy(buf, mac);
-+
-+	return 0;
-+}
-+
- static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
- 				size_t data_offset, size_t data_len)
- {
-@@ -101,6 +122,11 @@ static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
- 		priv->cells[idx].offset = data_offset + value - data;
- 		priv->cells[idx].bytes = strlen(value);
- 		priv->cells[idx].np = of_get_child_by_name(dev->of_node, priv->cells[idx].name);
-+		if (!strcmp(var, "ethaddr")) {
-+			priv->cells[idx].raw_len = strlen(value);
-+			priv->cells[idx].bytes = ETH_ALEN;
-+			priv->cells[idx].read_post_process = u_boot_env_read_post_process_ethaddr;
-+		}
- 	}
- 
- 	if (WARN_ON(idx != priv->ncells))
--- 
-2.34.1
-
+>
+> It's common for the dts files to go via ARM soc in cases like this
+> and we tend not to worry that they are 'broken' until the binding docs
+> are visible via other trees. Other than that I can't see an obvious
+> reason not to split these up.
+>
+> Thanks,
+>
+> Jonathan
+>
+>> ---
+>>   drivers/iio/accel/st_accel.h      | 1 +
+>>   drivers/iio/accel/st_accel_core.c | 1 +
+>>   drivers/iio/accel/st_accel_i2c.c  | 5 +++++
+>>   drivers/iio/accel/st_accel_spi.c  | 5 +++++
+>>   4 files changed, 12 insertions(+)
+>>
+>> diff --git a/drivers/iio/accel/st_accel.h b/drivers/iio/accel/st_accel.h
+>> index 56ed0c776d4a..e7525615712b 100644
+>> --- a/drivers/iio/accel/st_accel.h
+>> +++ b/drivers/iio/accel/st_accel.h
+>> @@ -39,6 +39,7 @@
+>>   #define LIS302DL_ACCEL_DEV_NAME		"lis302dl"
+>>   #define LSM303C_ACCEL_DEV_NAME		"lsm303c_accel"
+>>   #define SC7A20_ACCEL_DEV_NAME		"sc7a20"
+>> +#define IIS328DQ_ACCEL_DEV_NAME		"iis328dq"
+>>   
+>>   
+>>   #ifdef CONFIG_IIO_BUFFER
+>> diff --git a/drivers/iio/accel/st_accel_core.c b/drivers/iio/accel/st_accel_core.c
+>> index 6b8562f684d5..5f7d81b44b1d 100644
+>> --- a/drivers/iio/accel/st_accel_core.c
+>> +++ b/drivers/iio/accel/st_accel_core.c
+>> @@ -517,6 +517,7 @@ static const struct st_sensor_settings st_accel_sensors_settings[] = {
+>>   		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
+>>   		.sensors_supported = {
+>>   			[0] = H3LIS331DL_ACCEL_DEV_NAME,
+>> +			[1] = IIS328DQ_ACCEL_DEV_NAME,
+>>   		},
+>>   		.ch = (struct iio_chan_spec *)st_accel_12bit_channels,
+>>   		.odr = {
+>> diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
+>> index 3f02fd5d5946..fb9e2d6f4210 100644
+>> --- a/drivers/iio/accel/st_accel_i2c.c
+>> +++ b/drivers/iio/accel/st_accel_i2c.c
+>> @@ -119,6 +119,10 @@ static const struct of_device_id st_accel_of_match[] = {
+>>   		.compatible = "silan,sc7a20",
+>>   		.data = SC7A20_ACCEL_DEV_NAME,
+>>   	},
+>> +	{
+>> +		.compatible = "st,iis328dq",
+>> +		.data = IIS328DQ_ACCEL_DEV_NAME,
+>> +	},
+>>   	{},
+>>   };
+>>   MODULE_DEVICE_TABLE(of, st_accel_of_match);
+>> @@ -157,6 +161,7 @@ static const struct i2c_device_id st_accel_id_table[] = {
+>>   	{ LIS302DL_ACCEL_DEV_NAME },
+>>   	{ LSM303C_ACCEL_DEV_NAME },
+>>   	{ SC7A20_ACCEL_DEV_NAME },
+>> +	{ IIS328DQ_ACCEL_DEV_NAME },
+>>   	{},
+>>   };
+>>   MODULE_DEVICE_TABLE(i2c, st_accel_id_table);
+>> diff --git a/drivers/iio/accel/st_accel_spi.c b/drivers/iio/accel/st_accel_spi.c
+>> index 5740dc1820bd..f72a24f45322 100644
+>> --- a/drivers/iio/accel/st_accel_spi.c
+>> +++ b/drivers/iio/accel/st_accel_spi.c
+>> @@ -100,6 +100,10 @@ static const struct of_device_id st_accel_of_match[] = {
+>>   		.compatible = "st,lsm303c-accel",
+>>   		.data = LSM303C_ACCEL_DEV_NAME,
+>>   	},
+>> +	{
+>> +		.compatible = "st,iis328dq",
+>> +		.data = IIS328DQ_ACCEL_DEV_NAME,
+>> +	},
+>>   	{}
+>>   };
+>>   MODULE_DEVICE_TABLE(of, st_accel_of_match);
+>> @@ -157,6 +161,7 @@ static const struct spi_device_id st_accel_id_table[] = {
+>>   	{ LIS3DE_ACCEL_DEV_NAME },
+>>   	{ LIS302DL_ACCEL_DEV_NAME },
+>>   	{ LSM303C_ACCEL_DEV_NAME },
+>> +	{ IIS328DQ_ACCEL_DEV_NAME },
+>>   	{},
+>>   };
+>>   MODULE_DEVICE_TABLE(spi, st_accel_id_table);
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
