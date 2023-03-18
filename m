@@ -2,98 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 135A66BF6AB
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 00:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27EAC6BF6C4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 01:06:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjCQXvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 19:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40984 "EHLO
+        id S229489AbjCRAGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 20:06:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229902AbjCQXvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 19:51:09 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A3EE3B23E;
-        Fri, 17 Mar 2023 16:50:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5502BB82741;
-        Fri, 17 Mar 2023 23:50:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EB6A8C433D2;
-        Fri, 17 Mar 2023 23:50:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679097056;
-        bh=WR+tqewczy5kh9G0x5J34eXgDDCY5t9xJhykv7aIXN4=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=ptxVKc0dN/q8hYKuRw3Ps+YJg5t6XwIU6VqruWwjxVhouF71Kc/eeYZ21fCk8Dsk7
-         QcVbB6EJPmY0asHTvd7uiPP7LNnHL50Ag34RpRpO0jV3SKCVxtCN7HoFtRTwzNObxd
-         D649t4FFcAFzy1rPMsEHsjInuNuBuf2isyWfxs30brJZcIoHGv3nJBPXZkg60jmFQf
-         7viIGijL/yij7Imw0csg5gJwKflshfD7mIXP3Wa78rWtm/S5g9pZKB06Amn2n+C8Aw
-         E/SyzdqzRPBoWLjrL66URd29BM+cw9u4HYO1fap6iO7rWNdV7BO2tVR1R2PMlVRgMc
-         9S3vqVi6mlfOQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C744EE66CBF;
-        Fri, 17 Mar 2023 23:50:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229879AbjCRAGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 20:06:32 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8582C67D;
+        Fri, 17 Mar 2023 17:06:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679097988; x=1710633988;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ReMNAetjuziIagyWXWP1NZ5E1cfEyOq4UIZ1mhXddqs=;
+  b=JKQMSYSsENq1ypATxGGrxDdUMZvCxUQZPpWPlGc52qEwTl780b2X+cfU
+   xwDX7xWsWmOxHz1aIV7PB1zFsDgrKmqe7YSt7u/IPwGfXrQc33J9IY7KZ
+   Heay1chKPpbENH/ZElS/0OUuDFKDQZvD6+gQhYAO0AlUMH1WK1TQWIjXe
+   ckEYiNYr8Kd6WpCPY372egcV7OmRCxBwWHlvbCnZQnovcZLdRx5mGfIUq
+   40Ia1dODW4pO/lG515786DNE0UrrEKOud0HdHV8qv/26+0jmmAneiJcIa
+   qf3/45jrOrZ/6cMuw429k9OK3KZpneq1Fsa+SUtTCGaluCUpU3asmIic0
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="339926935"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; 
+   d="scan'208";a="339926935"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2023 17:06:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="744734167"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; 
+   d="scan'208";a="744734167"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 17 Mar 2023 17:06:24 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pdK5Y-0009fu-00;
+        Sat, 18 Mar 2023 00:06:24 +0000
+Date:   Sat, 18 Mar 2023 08:06:16 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V4 3/4] nvmem: core: export nvmem_add_cells_from_of()
+Message-ID: <202303180709.WSD6mSsu-lkp@intel.com>
+References: <20230317132620.31142-4-zajec5@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v13 0/4] Add support for NXP bluetooth chipsets
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <167909705581.28336.12052092434994272835.git-patchwork-notify@kernel.org>
-Date:   Fri, 17 Mar 2023 23:50:55 +0000
-References: <20230316172214.3899786-1-neeraj.sanjaykale@nxp.com>
-In-Reply-To: <20230316172214.3899786-1-neeraj.sanjaykale@nxp.com>
-To:     Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        alok.a.tiwari@oracle.com, hdanton@sina.com,
-        ilpo.jarvinen@linux.intel.com, leon@kernel.org,
-        simon.horman@corigine.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-serial@vger.kernel.org,
-        amitkumar.karwar@nxp.com, rohit.fule@nxp.com, sherry.sun@nxp.com
+In-Reply-To: <20230317132620.31142-4-zajec5@gmail.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Rafał,
 
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+I love your patch! Yet something to improve:
 
-On Thu, 16 Mar 2023 22:52:10 +0530 you wrote:
-> This patch adds a driver for NXP bluetooth chipsets.
-> 
-> The driver is based on H4 protocol, and uses serdev APIs. It supports host
-> to chip power save feature, which is signalled by the host by asserting
-> break over UART TX lines, to put the chip into sleep state.
-> 
-> To support this feature, break_ctl has also been added to serdev-tty along
-> with a new serdev API serdev_device_break_ctl().
-> 
-> [...]
+[auto build test ERROR on next-20230317]
+[cannot apply to robh/for-next krzk-dt/for-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.3-rc2 v6.3-rc1 v6.2 v6.3-rc2]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Here is the summary with links:
-  - [v13,1/4] serdev: Replace all instances of ENOTSUPP with EOPNOTSUPP
-    https://git.kernel.org/bluetooth/bluetooth-next/c/d227f286d259
-  - [v13,2/4] serdev: Add method to assert break signal over tty UART port
-    https://git.kernel.org/bluetooth/bluetooth-next/c/5ea260df53c2
-  - [v13,3/4] dt-bindings: net: bluetooth: Add NXP bluetooth support
-    https://git.kernel.org/bluetooth/bluetooth-next/c/02986ce4a4fe
-  - [v13,4/4] Bluetooth: NXP: Add protocol support for NXP Bluetooth chipsets
-    https://git.kernel.org/bluetooth/bluetooth-next/c/3e662aa4453a
+url:    https://github.com/intel-lab-lkp/linux/commits/Rafa-Mi-ecki/dt-bindings-nvmem-layouts-add-fixed-layout/20230317-212948
+patch link:    https://lore.kernel.org/r/20230317132620.31142-4-zajec5%40gmail.com
+patch subject: [PATCH V4 3/4] nvmem: core: export nvmem_add_cells_from_of()
+config: powerpc-allnoconfig (https://download.01.org/0day-ci/archive/20230318/202303180709.WSD6mSsu-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/70d21b7988db0cad28a2cb4b0d7f5d77d587a51f
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Rafa-Mi-ecki/dt-bindings-nvmem-layouts-add-fixed-layout/20230317-212948
+        git checkout 70d21b7988db0cad28a2cb4b0d7f5d77d587a51f
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash arch/powerpc/kernel/
 
-You are awesome, thank you!
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303180709.WSD6mSsu-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/rtc.h:18,
+                    from arch/powerpc/kernel/time.c:48:
+>> include/linux/nvmem-provider.h:230:12: error: 'nvmem_add_cells_from_of' defined but not used [-Werror=unused-function]
+     230 | static int nvmem_add_cells_from_of(struct nvmem_device *nvmem, struct device_node *np)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~
+   cc1: all warnings being treated as errors
+
+
+vim +/nvmem_add_cells_from_of +230 include/linux/nvmem-provider.h
+
+   229	
+ > 230	static int nvmem_add_cells_from_of(struct nvmem_device *nvmem, struct device_node *np)
+   231	{
+   232		return -EOPNOTSUPP;
+   233	}
+   234	
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
