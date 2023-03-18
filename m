@@ -2,191 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 336336BF7BB
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 05:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C08A86BF7D4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 05:55:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbjCREaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 00:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39428 "EHLO
+        id S229652AbjCREzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 00:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjCREaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 00:30:11 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A663B0CE;
-        Fri, 17 Mar 2023 21:30:09 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id fy10-20020a17090b020a00b0023b4bcf0727so7318741pjb.0;
-        Fri, 17 Mar 2023 21:30:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679113808;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J606gWJ17gh5ZShf0JviIKqHN/EVKTqXlnaFTD9hk8w=;
-        b=LVomUSz/r6q+IsmVYfx6G5zErL2/9e4j5uuZdkV+zM7igOLaAdsH9Fk5Th7c+mPjdd
-         3qKdSMwvaWsESHPJa5X5QSo3cXsEUw7TlpDz4NDZhs+4UNg0y2tONSZ+2LuqSuHw3JxD
-         dLb5hxpCJbVnccP4zWNE9sCf0kmiyxRy+jEKipbKFUry/OiOf7JzNhI96kPjEIiwle++
-         Z/JRAQJv0LdbvjDQt9pAPPuPdGZSZgbhk6DBGVS3VbtMKr/XCxBbBzBBBZCsf2yhh262
-         a1GG9ntYKZBbxqu2r04ZywdyIR36r75UEZOrIgY7Jlk5yfmANiqrGidn0HPajmCX4BXC
-         A1hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679113808;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J606gWJ17gh5ZShf0JviIKqHN/EVKTqXlnaFTD9hk8w=;
-        b=aBYpqgapLsxxeybFcCRGxWnQfp0gNLatC40QJQpGS8rJpQ51dvXcAOLtgEEmYBKCC/
-         lhydYmyQFfhT/ihivaZx3Dl4H/V/BQh0p8Jsme1WlUiLix8tZIJeELa4jbSR01YsRR5C
-         b24yvQSQOuYv0tULl0rDDoYr19cy9N3QsaS9b10keZiSDWBClR1JFGUjXjQ9Y1zJEJ8f
-         j4JDfQCXUq7Je1jbfDXg1EMeAY8J673EWtK0zD1ZPIIbgRmTVq2hZZpSPVuhr2ASWxt8
-         OOoBZDqoKFVPYamVDzLy2Pr+KEVZ1KHL5KVE8sSIR5MYRn4lQI2Lfd/RnzhruQMfV+SE
-         KoQg==
-X-Gm-Message-State: AO0yUKWIdWZOfBXQOR0X++0Wdj2lvxqcTvYqFtaB7z5DBFvKh2KpW1Jk
-        i6JM0znq8zqLhWckvBhRuiU=
-X-Google-Smtp-Source: AK7set+eU1cUOzicD8Shx0GvXIPvtb5jxOLtJcbk6O7QjRYc2Kn1YLw1V58mmlO5gx/X+NgeKaPuUA==
-X-Received: by 2002:a17:90b:4b90:b0:23c:fea5:74ca with SMTP id lr16-20020a17090b4b9000b0023cfea574camr10542485pjb.23.1679113808561;
-        Fri, 17 Mar 2023 21:30:08 -0700 (PDT)
-Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
-        by smtp.gmail.com with ESMTPSA id gt17-20020a17090af2d100b0023f355a0bb5sm2193788pjb.14.2023.03.17.21.30.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 21:30:08 -0700 (PDT)
-Message-ID: <4d62376f-1b33-62ac-2ed9-6b71ae7485a2@gmail.com>
-Date:   Sat, 18 Mar 2023 12:30:04 +0800
+        with ESMTP id S229585AbjCREzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 00:55:37 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABAE35A6E0;
+        Fri, 17 Mar 2023 21:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679115335; x=1710651335;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZoOoKSNk9CA4TE6nM8tAJ9g+6sxpEX6EcZivLYL6CX0=;
+  b=n2KJGfILdZO7L1ylb9lhKT/pRP75KmTjz5zdD9VdPgjCUq7WjhraYa+S
+   uSapD7rCZn3fPCWdQPPuyxDJn9sBPQMZTaQGrsQzoxk3cwnYPUX+7DE26
+   W2/YEL8IWZu74wZS1R2EfOUPHRALS+HpoeOCsJXes7sS++SbP35AYTL4w
+   skY86zNbMB+4CnNO6NTUSp3lOC0C78WhZpGiuD4p0RxJbicDaNSl+RE2p
+   0ACphd/Zk0V+5S8DadOYVZADAsm3ctzbFoNjCYAQ04xRKI9v9vo+6bgCu
+   Zyx87mEilynnpfWIIdPQu6NV4P4LqNy+DJHcRDNq486AzdpVVN1uGKky0
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="335903279"
+X-IronPort-AV: E=Sophos;i="5.98,271,1673942400"; 
+   d="scan'208";a="335903279"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2023 21:55:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="854696000"
+X-IronPort-AV: E=Sophos;i="5.98,271,1673942400"; 
+   d="scan'208";a="854696000"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 17 Mar 2023 21:55:32 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pdObL-0009oY-2P;
+        Sat, 18 Mar 2023 04:55:31 +0000
+Date:   Sat, 18 Mar 2023 12:54:52 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Bogdan Ionescu <bogdan.ionescu.work@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-leds@vger.kernel.or, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bogdan Ionescu <bogdan.ionescu.work@gmail.com>
+Subject: Re: [PATCH 2/2] leds: Add support for rohm,bd65b60 led driver
+Message-ID: <202303181228.ZP7Ig92k-lkp@intel.com>
+References: <20230308201451.11629-2-bogdan.ionescu.work@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 09/15] dt-bindings: reset: Document ma35d1 reset
- controller bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-10-ychuang570808@gmail.com>
- <cee0497e-c441-3937-07ec-0b6c4621f4e4@linaro.org>
- <b9f93711-7302-4ed6-3f71-7bb792507136@linaro.org>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <b9f93711-7302-4ed6-3f71-7bb792507136@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230308201451.11629-2-bogdan.ionescu.work@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
+Hi Bogdan,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on lee-leds/for-leds-next]
+[also build test WARNING on robh/for-next pavel-leds/for-next linus/master v6.3-rc2 next-20230317]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Bogdan-Ionescu/leds-Add-support-for-rohm-bd65b60-led-driver/20230309-041730
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20230308201451.11629-2-bogdan.ionescu.work%40gmail.com
+patch subject: [PATCH 2/2] leds: Add support for rohm,bd65b60 led driver
+config: s390-randconfig-r003-20230318 (https://download.01.org/0day-ci/archive/20230318/202303181228.ZP7Ig92k-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install s390 cross compiling tool for clang build
+        # apt-get install binutils-s390x-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/72417c0228f115628b1ad307be9d8e53532de6a6
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Bogdan-Ionescu/leds-Add-support-for-rohm-bd65b60-led-driver/20230309-041730
+        git checkout 72417c0228f115628b1ad307be9d8e53532de6a6
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=s390 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/leds/ drivers/net/usb/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303181228.ZP7Ig92k-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/leds/leds-bd65b60.c:14:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:75:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __raw_readb(PCI_IOBASE + addr);
+                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
+   #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
+                                                             ^
+   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
+   #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
+                                                        ^
+   In file included from drivers/leds/leds-bd65b60.c:14:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:75:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
+   #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
+                                                             ^
+   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
+   #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
+                                                        ^
+   In file included from drivers/leds/leds-bd65b60.c:14:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:75:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writeb(value, PCI_IOBASE + addr);
+                               ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+   include/asm-generic/io.h:692:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           readsb(PCI_IOBASE + addr, buffer, count);
+                  ~~~~~~~~~~ ^
+   include/asm-generic/io.h:700:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           readsw(PCI_IOBASE + addr, buffer, count);
+                  ~~~~~~~~~~ ^
+   include/asm-generic/io.h:708:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           readsl(PCI_IOBASE + addr, buffer, count);
+                  ~~~~~~~~~~ ^
+   include/asm-generic/io.h:717:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           writesb(PCI_IOBASE + addr, buffer, count);
+                   ~~~~~~~~~~ ^
+   include/asm-generic/io.h:726:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           writesw(PCI_IOBASE + addr, buffer, count);
+                   ~~~~~~~~~~ ^
+   include/asm-generic/io.h:735:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           writesl(PCI_IOBASE + addr, buffer, count);
+                   ~~~~~~~~~~ ^
+   drivers/leds/leds-bd65b60.c:111:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (led->state != BD65B60_KEEP) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/leds/leds-bd65b60.c:116:2: note: uninitialized use occurs here
+           ret |= regmap_update_bits(led->regmap, REG_COMSET1, OVP_MASK, led->ovp);
+           ^~~
+   drivers/leds/leds-bd65b60.c:111:2: note: remove the 'if' if its condition is always true
+           if (led->state != BD65B60_KEEP) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/leds/leds-bd65b60.c:107:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+>> drivers/leds/leds-bd65b60.c:266:34: warning: unused variable 'of_bd65b60_leds_match' [-Wunused-const-variable]
+   static const struct of_device_id of_bd65b60_leds_match[] = {
+                                    ^
+   14 warnings generated.
 
 
-Thanks for your advice.
+vim +/of_bd65b60_leds_match +266 drivers/leds/leds-bd65b60.c
 
+   265	
+ > 266	static const struct of_device_id of_bd65b60_leds_match[] = {
+   267		{ .compatible = "rohm,bd65b60" },
+   268		{},
+   269	};
+   270	MODULE_DEVICE_TABLE(of, of_bd65b60_leds_match);
+   271	
 
-On 2023/3/16 下午 03:39, Krzysztof Kozlowski wrote:
-> On 16/03/2023 08:37, Krzysztof Kozlowski wrote:
->> On 15/03/2023 08:28, Jacky Huang wrote:
->>> From: Jacky Huang <ychuang3@nuvoton.com>
->>>
->>> Add documentation to describe nuvoton ma35d1 reset driver bindings.
->> Subject: drop second/last, redundant "bindings". The "dt-bindings"
->> prefix is already stating that these are bindings.
-
-
-OK, I will fix it.
-
-
->>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->>> ---
->>>   .../bindings/reset/nuvoton,ma35d1-reset.yaml  | 50 +++++++++++++++++++
->>>   1 file changed, 50 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
->>> new file mode 100644
->>> index 000000000000..f66c566c6dce
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/reset/nuvoton,ma35d1-reset.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Nuvoton MA35D1 Reset Controller
->>> +
->>> +maintainers:
->>> +  - Chi-Fang Li <cfli0@nuvoton.com>
->>> +  - Jacky Huang <ychuang3@nuvoton.com>
->>> +
->>> +description:
->>> +  The system reset controller can be used to reset various peripheral
->>> +  controllers in MA35D1 SoC.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: nuvoton,ma35d1-reset
->>> +
->>> +  regmap:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: Phandle to the register map node.
->> You need to be specific what is this. As you can easily check, there is
->> no such property in any devices. I don't understand why do you need it
->> in the first place.
-
-         reset: reset-controller {
-             compatible = "nuvoton,ma35d1-reset";
-             regmap = <&sys>;
-             #reset-cells = <1>;
-         };
-
-The dt_binding_check check report an error about the above "regmap".
-
-I found that add this can pass the test.
-
-
-
->>> +
->>> +  '#reset-cells':
->>> +    const: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - regmap
->>> +  - '#reset-cells'
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  # system reset controller node:
->>> +  - |
->>> +    #include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
->>> +
->>> +    sys: system-management@40460000 {
->>> +        compatible = "nuvoton,ma35d1-sys", "syscon", "simple-mfd";
->> And your patchset is not bisectable.... Test for bisectability before
->> sending.
-> Ah, no, it's correct. I see the compatible in previous patch. You need
-> to clearly describe the dependencies and merging strategy/requirements
-> in cover letter.
->
-> Best regards,
-> Krzysztof
-
-Sorry for the confusion.
-
-I will add history to the cover letter.
-
-
-Best regards,
-
-Jacky Huang
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
