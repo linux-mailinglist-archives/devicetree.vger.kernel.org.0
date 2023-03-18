@@ -2,145 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD0896BF81D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 06:46:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 468826BF83F
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 07:07:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbjCRFqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 01:46:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57362 "EHLO
+        id S229940AbjCRGHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 02:07:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjCRFqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 01:46:39 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06DBF4E5D3;
-        Fri, 17 Mar 2023 22:46:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679118397; x=1710654397;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XwBj/9hfmpagIdGRdqZJjnfQeY4udKL5fw//ppbl99Q=;
-  b=nNtEEeg7ihrityF+2dHDLh0r79oIXGeELFDs7OPMnurVWyKdcyeK2Fek
-   Awhs4K6YygjX9MlqZYxkERZ/Gm0B+cEHNRY7aq4OeO4KfVz+tqt5M3mg3
-   0eFVzgOY8uV87XSaxSkVFRgInOTNr+52V3+LVjvGJGkXNgTWHwh8NJnt1
-   cXgE+1im+LA+h6hurivDD47+e3hp2C6VTNMpjl7TAk4c+/bc11XPiwnT9
-   46TcIIFm3+KstovY07dR1f99JJ8g9KwYC+niVnCwEak5qGTVVQED43pSA
-   f7I+/eSe2TWAbPzovvYQCA+Y/QLTN4DdtRl6jbiWyVVDcE9R7bw4h41Fi
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="424685487"
-X-IronPort-AV: E=Sophos;i="5.98,271,1673942400"; 
-   d="scan'208";a="424685487"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2023 22:46:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="790989675"
-X-IronPort-AV: E=Sophos;i="5.98,271,1673942400"; 
-   d="scan'208";a="790989675"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 17 Mar 2023 22:46:35 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pdPOk-0009pm-1D;
-        Sat, 18 Mar 2023 05:46:34 +0000
-Date:   Sat, 18 Mar 2023 13:46:07 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Keguang Zhang <keguang.zhang@gmail.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Keguang Zhang <keguang.zhang@gmail.com>
-Subject: Re: [PATCH v3 3/4] clk: loongson1: Re-implement the clock driver
-Message-ID: <202303181358.BXLJVMkh-lkp@intel.com>
-References: <20230316104707.236034-4-keguang.zhang@gmail.com>
+        with ESMTP id S229473AbjCRGHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 02:07:20 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 365A430E80;
+        Fri, 17 Mar 2023 23:07:17 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8CxTNoUVRVk6rcNAA--.8431S3;
+        Sat, 18 Mar 2023 14:07:17 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx8eQUVRVkILAEAA--.20922S3;
+        Sat, 18 Mar 2023 14:07:16 +0800 (CST)
+Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson spi
+ controller
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
+ <20230317082950.12738-3-zhuyinbo@loongson.cn>
+ <68b6034f-8305-4854-a4c9-962be988ade7@sirena.org.uk>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
+Date:   Sat, 18 Mar 2023 14:07:16 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230316104707.236034-4-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <68b6034f-8305-4854-a4c9-962be988ade7@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8Cx8eQUVRVkILAEAA--.20922S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7WF1DZw4rZFyUuw4fXrWxXrb_yoW8tFWfpF
+        ya934YgFyfJr18Arn8JrZ8XFyYyrWrXwnrJFZ2ya1IkryDZwn8XryUWF1Y9r43CFWxAr17
+        Xry09rWkua1rCrDanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bxxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
+        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+        vE14v26r1Y6r17McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF04k20xvE74
+        AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
+        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
+        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
+        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87
+        Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU2oGQDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Keguang,
 
-I love your patch! Yet something to improve:
+在 2023/3/18 上午12:26, Mark Brown 写道:
+> On Fri, Mar 17, 2023 at 04:29:50PM +0800, Yinbo Zhu wrote:
+>
+>> +static int loongson_spi_update_state(struct loongson_spi *loongson_spi,
+>> +				     struct spi_device *spi, struct spi_transfer *t)
+>> +{
+> ...
+>
+>> +		loongson_spi->hz = hz;
+>> +		loongson_spi->spcr = div_tmp & 3;
+>> +		loongson_spi->sper = (div_tmp >> 2) & 3;
+>> +		val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
+> This is writing to general chip registers, apparently not per chip
+> select ones.
 
-[auto build test ERROR on 6f173737e1b5670c200329677e821cce1d3d755e]
+The loongson_spi_update_state was only be called in setup or transfer_one, and I will also
+add a spin lock in tranfser_one.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang/dt-bindings-clock-Add-Loongson-1-clock/20230316-185026
-base:   6f173737e1b5670c200329677e821cce1d3d755e
-patch link:    https://lore.kernel.org/r/20230316104707.236034-4-keguang.zhang%40gmail.com
-patch subject: [PATCH v3 3/4] clk: loongson1: Re-implement the clock driver
-config: mips-loongson1c_defconfig (https://download.01.org/0day-ci/archive/20230318/202303181358.BXLJVMkh-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install mips cross compiling tool for clang build
-        # apt-get install binutils-mipsel-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/de00eab744ddc82edb1853048dd5d50aa8220115
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Keguang-Zhang/dt-bindings-clock-Add-Loongson-1-clock/20230316-185026
-        git checkout de00eab744ddc82edb1853048dd5d50aa8220115
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
+>
+>> +static int loongson_spi_setup(struct spi_device *spi)
+>> +{
+>> +	struct loongson_spi *loongson_spi;
+>> +	spin_lock(&loongson_spi->lock);
+>> +	loongson_spi_update_state(loongson_spi, spi, NULL);
+> As IIRC I mentioned last time setup() might be called while other
+> transfers are happening and therefore shouldn't affect parallel
+> operations on other devices.
+I think add spin_lock in  transfer_one interface that should be to fix 
+this issue, Do you think so?
+loongson_spi_transfer_one(struct spi_controller *ctrl, struct spi_dev
+  {
+         struct loongson_spi *loongson_spi = 
+spi_master_get_devdata(spi->master);
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303181358.BXLJVMkh-lkp@intel.com/
++       spin_lock(&loongson_spi->lock);
+         loongson_spi_update_state(loongson_spi, spi, xfer);
++       spin_unlock(&loongson_spi->lock);
 
-All errors (new ones prefixed by >>):
+>
+>> +static const struct of_device_id loongson_spi_id_table[] = {
+>> +	{ .compatible = "loongson,ls2k-spi", },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, loongson_spi_id_table);
+>> +
+>> +static struct platform_driver loongson_spi_driver = {
+>> +	.probe = loongson_spi_platform_probe,
+>> +	.driver	= {
+>> +		.name	= "loongson-spi",
+>> +		.owner	= THIS_MODULE,
+>> +		.bus = &platform_bus_type,
+>> +		.pm = &loongson_spi_dev_pm_ops,
+>> +		.of_match_table = loongson_spi_id_table,
+>> +	},
+>> +};
+>> +
+>> +#ifdef CONFIG_PCI
+>> +static int loongson_spi_pci_register(struct pci_dev *pdev,
+>> +			const struct pci_device_id *ent)
+> Again as I said last time the two buses should probably be separate
+> modules.
+>
+> Otherwise this looks fine.
+okay, I will do it.
 
->> drivers/clk/clk-loongson1.c:300:15: error: expected parameter declarator
-   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-                 ^
->> drivers/clk/clk-loongson1.c:300:15: error: expected ')'
-   drivers/clk/clk-loongson1.c:300:14: note: to match this '('
-   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-                ^
->> drivers/clk/clk-loongson1.c:300:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
-   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-   ^
-   int
->> drivers/clk/clk-loongson1.c:300:14: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
-   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-                ^
-                                                          void
-   drivers/clk/clk-loongson1.c:301:20: error: expected parameter declarator
-   MODULE_DESCRIPTION("Loongson1 clock driver");
-                      ^
-   drivers/clk/clk-loongson1.c:301:20: error: expected ')'
-   drivers/clk/clk-loongson1.c:301:19: note: to match this '('
-   MODULE_DESCRIPTION("Loongson1 clock driver");
-                     ^
-   drivers/clk/clk-loongson1.c:301:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
-   MODULE_DESCRIPTION("Loongson1 clock driver");
-   ^
-   int
-   drivers/clk/clk-loongson1.c:301:19: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
-   MODULE_DESCRIPTION("Loongson1 clock driver");
-                     ^
-                                              void
-   8 errors generated.
-
-
-vim +300 drivers/clk/clk-loongson1.c
-
-   299	
- > 300	MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
