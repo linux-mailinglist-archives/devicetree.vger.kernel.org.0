@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B716BF77E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 04:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 647F36BF784
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 04:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjCRDHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 23:07:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43940 "EHLO
+        id S229599AbjCRDVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 23:21:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbjCRDHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 23:07:16 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A05C0D2966;
-        Fri, 17 Mar 2023 20:07:11 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id lr16-20020a17090b4b9000b0023f187954acso7198006pjb.2;
-        Fri, 17 Mar 2023 20:07:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679108831;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=URZQ3gLDJKimA8H5HfP/flcS8+UR77bug41nYZUBjAI=;
-        b=bhwRich09gdEYZiFJBIfMyaJ6k3QyBPx6nzUio9WiZ0/0Hfs+tjFSzj+mSkwZxGuCo
-         UJrNcQdlkZYOtCDpH/kLCzXxXneA+/DRkw2ctPU/4ndciIMtsP7ngsRYaWa+nEf87Azh
-         arXIhLdZt/SyGCeHaNN5enFbpnDUcqCbTUbMBsSZsyPx6lGUp9gGr3RndtnHlSnsjPrk
-         FGZk2hLl4LnqWk8sr2QSU0W/ZfYKi9Z4UOFYcwAJkWk9H0afyQRBoIpDHCogsB7H6cg+
-         oYOeSydk0CNBwU0FFfHPI2rxfh+HIiZ+Kt3dFnAq2OJRBoN+uYkDcLB/uSdVSLLtgu6S
-         S0+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679108831;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=URZQ3gLDJKimA8H5HfP/flcS8+UR77bug41nYZUBjAI=;
-        b=R6Prp5pGc8iCYIQP+Bf2ZVfk+T0Fk5hvjyobF/MEKyLwDlOz0elzysrhcXGg8YzNbU
-         +52EZnZv3dHTpz9fnpvehnFd9Pbo5h94Mxq4jqG/by2NAbcy73oYFjISya4GrMjgGbqi
-         XzjeeYx1xFwtiQVhyN+QBH1hZChkH5LuiIzakGqEdYw16RJyyXo+euOSA4T+RKHDbmGf
-         Wp+GuLigWpZHrsC0SWYDr/itObenSfmZgnkAyCER5tKrFKR/Sp74xEoNb7aPeUSyEPH1
-         TiXyj8u96dfVu3xBnE2cIh694+YWfNKmmjU6+4r3FDuUcoffQ2t0viGXPBlUXdbIaQyA
-         FcHQ==
-X-Gm-Message-State: AO0yUKVIXUOX7T5+AGImrQiuB1j5imDlQRPXkKcPqtUW5t8Q9qZl1YfL
-        hdVkQREMOg043UWL52VUBJcN2EHP4Qs=
-X-Google-Smtp-Source: AK7set+sXpYsxgs1XShPfJfOrXFTCTdYJJnhtA8rWOmBQsIn0vb+NQ9X4koH/HjXIFY9cncCFmaTYA==
-X-Received: by 2002:a05:6a20:2444:b0:bc:96bd:d701 with SMTP id t4-20020a056a20244400b000bc96bdd701mr13140312pzc.13.1679108831008;
-        Fri, 17 Mar 2023 20:07:11 -0700 (PDT)
-Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
-        by smtp.gmail.com with ESMTPSA id w6-20020aa78586000000b0061949fe3be8sm2218319pfn.106.2023.03.17.20.07.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 20:07:10 -0700 (PDT)
-Message-ID: <f21df56b-43b8-a48e-ab8f-e0cf2b163976@gmail.com>
-Date:   Sat, 18 Mar 2023 11:07:07 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 00/15] Introduce Nuvoton ma35d1 SoC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S229533AbjCRDVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 23:21:35 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEAD2E80A;
+        Fri, 17 Mar 2023 20:21:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679109694; x=1710645694;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SttgIRjIQDYSInmOKqKuuVclgQPLem90fuqFtWSgOC8=;
+  b=heir2X45YLtjhd5WtzXuBTmj3kJqO/Jz/te6WifIp69mG622eWBMunry
+   C1NAyJ/DpGvjv+rFrWreB9AOjLr5gEC9Pg9ehPVNT+uBplsrnrlawU+B3
+   hjmwHov2yXwH0OLejk5aDYVoVfQT4lVSg89/lW9eX2leke9NsG6pUcuWj
+   dzP4SLyh0S60IO6p6Hrr2HSInk8aH+xePjGM49kCf8ON90PfEbAQ6iHEK
+   7mZrqdI7/oY01wHpwbGhSz7vSRNgzsbaYJWP3AoXVKhhF+GGkgRj1ECcG
+   8k7GPpL1+RNziyieZKrhuR13W/JW6YSJ5AQ0ox+K69P9OmN9wSL6LY0Yy
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="337108394"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; 
+   d="scan'208";a="337108394"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2023 20:21:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="673782826"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; 
+   d="scan'208";a="673782826"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 17 Mar 2023 20:21:30 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pdN8M-0009lo-03;
+        Sat, 18 Mar 2023 03:21:30 +0000
+Date:   Sat, 18 Mar 2023 11:21:16 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <f2699aa1-4d8a-48c0-b332-484db0b04252@app.fastmail.com>
- <1a1277ac-4ae5-eaab-01c3-0242c12be76b@gmail.com>
- <6ed7e89f-2d2c-4134-9c6f-a9d18e2fc8a8@app.fastmail.com>
- <a90fc6f6-df95-3a4f-da5b-ebdafbe7dd34@linaro.org>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <a90fc6f6-df95-3a4f-da5b-ebdafbe7dd34@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+Message-ID: <202303181149.mdhwoup2-lkp@intel.com>
+References: <20230317082950.12738-3-zhuyinbo@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230317082950.12738-3-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Yinbo,
 
-On 2023/3/18 上午 12:06, Krzysztof Kozlowski wrote:
-> On 17/03/2023 14:21, Arnd Bergmann wrote:
->> I only now saw that you had already submitted this several times
->> at the beginning of last year, and this is technically 'v5'
->> of the series, and it would make sense to add 'v6' to the subject
->> next time and link back to the previous [1] and this[2] submission
->> on lore.kernel.org.
-> ... and address previous feedback. Or at least make it clear in
-> changelog that you addressed it, so our review was not ignored.
->
-> Best regards,
-> Krzysztof
+I love your patch! Yet something to improve:
 
+[auto build test ERROR on broonie-spi/for-next]
+[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.3-rc2 next-20230317]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Dear Krzysztof,
+url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230317-163907
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20230317082950.12738-3-zhuyinbo%40loongson.cn
+patch subject: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson spi controller
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20230318/202303181149.mdhwoup2-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/a532955fcee3d37eb4332cea2b868f74ace0bc72
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230317-163907
+        git checkout a532955fcee3d37eb4332cea2b868f74ace0bc72
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303181149.mdhwoup2-lkp@intel.com/
 
-Thank you.
+All errors (new ones prefixed by >>):
 
-Of course, I will add back the changelog.
+   arm-linux-gnueabi-ld: drivers/spi/spi-loongson.o: in function `loongson_spi_update_state':
+>> spi-loongson.c:(.text+0x430): undefined reference to `__aeabi_uldivmod'
 
-And, I have a question. If subsequent modifications made to a patch, 
-should the
-
-"Reviewed-by" still be valid? Can we keep it?
-
-Best regards,
-
-Jacky Huang
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
