@@ -2,86 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 226256BF810
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 06:40:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD0896BF81D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 06:46:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230035AbjCRFkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 01:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50886 "EHLO
+        id S229737AbjCRFqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 01:46:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbjCRFkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 01:40:24 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0750B2365E;
-        Fri, 17 Mar 2023 22:40:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 6244CCE1726;
-        Sat, 18 Mar 2023 05:40:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4A402C4339E;
-        Sat, 18 Mar 2023 05:40:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679118019;
-        bh=6T6etlrRYYQ9UGMIdnLTJdf49W53EzudtlsJRMxOGj8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=j6/ADecuEzsC26zRngxf18YAqDGL0aoFTAF6eeXmt/O4/q+Z2Eq5yy67mmMZhCoIS
-         GyVQirKubt7UiNWf4FFiq6klPesR28FoWyxAqDsqayAiITuZ8T5O5QnM9O6/jd9ErU
-         umEw7hNlNUoIPzpKaJpHgBEcEUN4nSZMNncouF+8ebfsO26AVkyR1LaSy198vONgPB
-         dXd+DnPGJMif5YyqSz/ejXYhO8e2jxvabxrxZrzcYm578aIFhOVSQzvxqGXeW61xfZ
-         mmBLccVwKsGP1AoLmW4v95v2uUU8LYfF0YPHn5TT/6JSOcaXosMetg1T84Cd67oCjV
-         jdCv9wy9AIgcg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 2A729E21EE5;
-        Sat, 18 Mar 2023 05:40:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229602AbjCRFqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 01:46:39 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06DBF4E5D3;
+        Fri, 17 Mar 2023 22:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679118397; x=1710654397;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XwBj/9hfmpagIdGRdqZJjnfQeY4udKL5fw//ppbl99Q=;
+  b=nNtEEeg7ihrityF+2dHDLh0r79oIXGeELFDs7OPMnurVWyKdcyeK2Fek
+   Awhs4K6YygjX9MlqZYxkERZ/Gm0B+cEHNRY7aq4OeO4KfVz+tqt5M3mg3
+   0eFVzgOY8uV87XSaxSkVFRgInOTNr+52V3+LVjvGJGkXNgTWHwh8NJnt1
+   cXgE+1im+LA+h6hurivDD47+e3hp2C6VTNMpjl7TAk4c+/bc11XPiwnT9
+   46TcIIFm3+KstovY07dR1f99JJ8g9KwYC+niVnCwEak5qGTVVQED43pSA
+   f7I+/eSe2TWAbPzovvYQCA+Y/QLTN4DdtRl6jbiWyVVDcE9R7bw4h41Fi
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="424685487"
+X-IronPort-AV: E=Sophos;i="5.98,271,1673942400"; 
+   d="scan'208";a="424685487"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2023 22:46:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="790989675"
+X-IronPort-AV: E=Sophos;i="5.98,271,1673942400"; 
+   d="scan'208";a="790989675"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 17 Mar 2023 22:46:35 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pdPOk-0009pm-1D;
+        Sat, 18 Mar 2023 05:46:34 +0000
+Date:   Sat, 18 Mar 2023 13:46:07 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Keguang Zhang <keguang.zhang@gmail.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Keguang Zhang <keguang.zhang@gmail.com>
+Subject: Re: [PATCH v3 3/4] clk: loongson1: Re-implement the clock driver
+Message-ID: <202303181358.BXLJVMkh-lkp@intel.com>
+References: <20230316104707.236034-4-keguang.zhang@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] dt-bindings: net: qcom,ipa: add SDX65 compatible
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167911801917.9150.18113422396759927365.git-patchwork-notify@kernel.org>
-Date:   Sat, 18 Mar 2023 05:40:19 +0000
-References: <20230315194305.1647311-1-elder@linaro.org>
-In-Reply-To: <20230315194305.1647311-1-elder@linaro.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org,
-        devicetree@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        elder@kernel.org, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        simon.horman@corigine.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230316104707.236034-4-keguang.zhang@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Keguang,
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+I love your patch! Yet something to improve:
 
-On Wed, 15 Mar 2023 14:43:05 -0500 you wrote:
-> Add support for SDX65, which uses IPA v5.0.
-> 
-> Reviewed-by: Simon Horman <simon.horman@corigine.com>
-> Signed-off-by: Alex Elder <elder@linaro.org>
-> ---
-> v2: Add review tag; base on linux-next/master; drop "net-next" in subject
-> 
-> [...]
+[auto build test ERROR on 6f173737e1b5670c200329677e821cce1d3d755e]
 
-Here is the summary with links:
-  - [v2] dt-bindings: net: qcom,ipa: add SDX65 compatible
-    https://git.kernel.org/netdev/net-next/c/0de10fd6eb94
+url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang/dt-bindings-clock-Add-Loongson-1-clock/20230316-185026
+base:   6f173737e1b5670c200329677e821cce1d3d755e
+patch link:    https://lore.kernel.org/r/20230316104707.236034-4-keguang.zhang%40gmail.com
+patch subject: [PATCH v3 3/4] clk: loongson1: Re-implement the clock driver
+config: mips-loongson1c_defconfig (https://download.01.org/0day-ci/archive/20230318/202303181358.BXLJVMkh-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install mips cross compiling tool for clang build
+        # apt-get install binutils-mipsel-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/de00eab744ddc82edb1853048dd5d50aa8220115
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Keguang-Zhang/dt-bindings-clock-Add-Loongson-1-clock/20230316-185026
+        git checkout de00eab744ddc82edb1853048dd5d50aa8220115
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
 
-You are awesome, thank you!
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303181358.BXLJVMkh-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/clk-loongson1.c:300:15: error: expected parameter declarator
+   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+                 ^
+>> drivers/clk/clk-loongson1.c:300:15: error: expected ')'
+   drivers/clk/clk-loongson1.c:300:14: note: to match this '('
+   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+                ^
+>> drivers/clk/clk-loongson1.c:300:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+   ^
+   int
+>> drivers/clk/clk-loongson1.c:300:14: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+   MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+                ^
+                                                          void
+   drivers/clk/clk-loongson1.c:301:20: error: expected parameter declarator
+   MODULE_DESCRIPTION("Loongson1 clock driver");
+                      ^
+   drivers/clk/clk-loongson1.c:301:20: error: expected ')'
+   drivers/clk/clk-loongson1.c:301:19: note: to match this '('
+   MODULE_DESCRIPTION("Loongson1 clock driver");
+                     ^
+   drivers/clk/clk-loongson1.c:301:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+   MODULE_DESCRIPTION("Loongson1 clock driver");
+   ^
+   int
+   drivers/clk/clk-loongson1.c:301:19: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+   MODULE_DESCRIPTION("Loongson1 clock driver");
+                     ^
+                                              void
+   8 errors generated.
+
+
+vim +300 drivers/clk/clk-loongson1.c
+
+   299	
+ > 300	MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
