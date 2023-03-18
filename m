@@ -2,387 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A236BF843
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 07:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF576BF871
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 08:10:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbjCRGHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 02:07:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56010 "EHLO
+        id S229806AbjCRHKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 03:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbjCRGHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 02:07:46 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED1930B0A;
-        Fri, 17 Mar 2023 23:07:45 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id ix20so7462616plb.3;
-        Fri, 17 Mar 2023 23:07:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679119665;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7OSciM2x0+oGmVdQlvuC0U3qKjDi3cY9emvJC0OLmMU=;
-        b=HUJT+JUxL7hPnr380yrvXXitKd0FupDusqtJ7XLUmcmeIxJUz84ZGftGijXq2DoOBe
-         soD37gv+K2D4a+cIznZYJXf6UT2ZFEVA9K/4IOezNLgrg4nc9Bvmu9nwKzEmacIGrhLp
-         +xDIjrI4X+cBAQ8qRYWU/DHj/VIOk3b5Ip7yg2qjNmdR89tnFMMKRvOFU8VPgRQYuCD4
-         HW33Tas4Qb8KlMeN22pcEFOZIqEAwpMn+VioryYmNZJA0wF/sZv8nzUxY8LPE5e1etaI
-         X+410n8M+Mhad7tp30peKCGPcdZnMjg9pwjKVwAiUVF+Kd+p6Q5zIuEPPy33g34jFT/d
-         Oa+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679119665;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7OSciM2x0+oGmVdQlvuC0U3qKjDi3cY9emvJC0OLmMU=;
-        b=WLKyoUdLYRyWP+4R2s+TyUCWP3xCzPtg4L4UFoZzTR71aJiNA4INuvf5NFE7UCHasX
-         fGNcv7qI0PXROs8PPSaIOnLx/SwH2hsthRmmsK/NmGTs/0Cfw4YjGepCY/n5EPOLUwMB
-         NlL8MJ9lvvsn3prVIgeTbgwVmP1xTo0/4/mKHmPQWN5TmvMv5RV16iF1cB+cgVxyo/f8
-         X7eUWLQOmo8rWCuEFTBc/XTrCb/NxKYeKJL0NPx/UA2Z/sMZ0fsfkTnABmEzeWheItUI
-         hmyzXFVL7v3embGgHf/t3tz1fuJmIH6UvNMliChUVe/O1N09v4KEFTFOjz0h9/78I2b/
-         P5cw==
-X-Gm-Message-State: AO0yUKUaixPhKPLu8rARurFyKmxaeZVX2qe9utx13sNwtqG9Jkx/GnuA
-        yJ5e4xHqix9EIzO4yeMOBbU=
-X-Google-Smtp-Source: AK7set93kf5NiNy1CPG3znsB8tTN2iUuq7zIgS+nK8Er8UGMS8t75Yk4fDXt42CEHuCuL6ul03bwAA==
-X-Received: by 2002:a05:6a20:8e06:b0:d6:8c70:85ce with SMTP id y6-20020a056a208e0600b000d68c7085cemr11714588pzj.54.1679119664657;
-        Fri, 17 Mar 2023 23:07:44 -0700 (PDT)
-Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
-        by smtp.gmail.com with ESMTPSA id f23-20020aa782d7000000b0056283e2bdbdsm2447380pfn.138.2023.03.17.23.07.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 23:07:44 -0700 (PDT)
-Message-ID: <c902606e-8a1b-6673-02c7-7beea5477795@gmail.com>
-Date:   Sat, 18 Mar 2023 14:07:40 +0800
+        with ESMTP id S229799AbjCRHKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 03:10:46 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 779E51E9E5;
+        Sat, 18 Mar 2023 00:10:38 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxIk7tYxVkJLwNAA--.19900S3;
+        Sat, 18 Mar 2023 15:10:37 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxX+ToYxVkdMEEAA--.21293S3;
+        Sat, 18 Mar 2023 15:10:33 +0800 (CST)
+Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson spi
+ controller
+To:     kernel test robot <lkp@intel.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230317082950.12738-3-zhuyinbo@loongson.cn>
+ <202303181149.mdhwoup2-lkp@intel.com>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <38ee7d1d-3308-a29e-9d5b-71f62c729e6b@loongson.cn>
+Date:   Sat, 18 Mar 2023 15:10:32 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-12-ychuang570808@gmail.com>
- <fb4f60a7-011e-3745-cc40-631247735f2b@linaro.org>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <fb4f60a7-011e-3745-cc40-631247735f2b@linaro.org>
+In-Reply-To: <202303181149.mdhwoup2-lkp@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8BxX+ToYxVkdMEEAA--.21293S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxZw1xGr18AF17Xr4UKr1rJFb_yoW5Gr4fpa
+        yUuFZIgr1rXr18WaykGayDXa1Yqws8X3srXFWDur45ZFZFvryjqrs29ry5Xrnrur1kGFy8
+        Zr4rWrWvka47AaDanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07joxRhUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
 
-
-Thanks for your review.
-
-
-On 2023/3/16 下午 03:45, Krzysztof Kozlowski wrote:
-> On 15/03/2023 08:28, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> Add initial device tree support for Nuvoton ma35d1 SoC, including
->> cpu, clock, reset, and serial controllers.
->> Add reference boards som-256m and iot-512m.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
->>   .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  24 ++
->>   .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  23 ++
->>   arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 272 ++++++++++++++++++
->>   4 files changed, 321 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
->>   create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
->>   create mode 100644 arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
->> index a99dab90472a..c11ab4eac9c7 100644
->> --- a/arch/arm64/boot/dts/nuvoton/Makefile
->> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
->> @@ -1,2 +1,4 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>   dtb-$(CONFIG_ARCH_NPCM) += nuvoton-npcm845-evb.dtb
->> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-iot-512m.dtb
->> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-som-256m.dtb
->> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
->> new file mode 100644
->> index 000000000000..dffcaef1e6d8
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.dts
->> @@ -0,0 +1,24 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2023 Nuvoton Technology Corp.
->> + * Author: Shan-Chun Hung <schung@nuvoton.com>
->> + *         Jacky huang <ychuang3@nuvoton.com>
->> + */
->> +
->> +/dts-v1/;
->> +#include "ma35d1.dtsi"
->> +
->> +/ {
->> +	model = "Nuvoton MA35D1-IoT";
->> +	compatible = "nuvoton,ma35d1-iot", "nuvoton,ma35d1";
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	mem: memory@80000000 {
->> +		device_type = "memory";
->> +		reg = <0x00000000 0x80000000 0 0x20000000>; /* 512M DRAM */
->> +	};
->> +};
->> +
->> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
->> new file mode 100644
->> index 000000000000..3e6c3d5469ac
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
->> @@ -0,0 +1,23 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2023 Nuvoton Technology Corp.
->> + * Author: Shan-Chun Hung <schung@nuvoton.com>
->> + *         Jacky huang <ychuang3@nuvoton.com>
->> + */
->> +
->> +/dts-v1/;
->> +#include "ma35d1.dtsi"
->> +
->> +/ {
->> +	model = "Nuvoton MA35D1-SOM";
->> +	compatible = "nuvoton,ma35d1-som", "nuvoton,ma35d1";
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	mem: memory@80000000 {
->> +		device_type = "memory";
->> +		reg = <0x00000000 0x80000000 0 0x10000000>; /* 256M DRAM */
->> +	};
->> +};
->> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
->> new file mode 100644
->> index 000000000000..8c855f6b330a
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
->> @@ -0,0 +1,272 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2023 Nuvoton Technology Corp.
->> + * Author: Shan-Chun Hung <schung@nuvoton.com>
->> + *         Jacky huang <ychuang3@nuvoton.com>
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/input/input.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
->> +#include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
->> +
->> +/ {
->> +	compatible = "nuvoton,ma35d1";
->> +	interrupt-parent = <&gic>;
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	aliases {
->> +		serial0 = &uart0;
->> +		serial1 = &uart1;
->> +		serial2 = &uart2;
->> +		serial3 = &uart3;
->> +		serial4 = &uart4;
->> +		serial5 = &uart5;
->> +		serial6 = &uart6;
->> +		serial7 = &uart7;
->> +		serial8 = &uart8;
->> +		serial9 = &uart9;
->> +		serial10 = &uart10;
->> +		serial11 = &uart11;
->> +		serial12 = &uart12;
->> +		serial13 = &uart13;
->> +		serial14 = &uart14;
->> +		serial15 = &uart15;
->> +		serial16 = &uart16;
-> Aliases of interfaces coming out of SoC are properties of boards, not
-> SoC DTSI.
-
-
-OK, I will remove it from dtsi, and add to dts if required.
-
-
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	cpus {
->> +		#address-cells = <2>;
->> +		#size-cells = <0>;
+在 2023/3/18 上午11:21, kernel test robot 写道:
+> Hi Yinbo,
 >
-> Blank line.
+> I love your patch! Yet something to improve:
 >
->> +		cpu0: cpu@0 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a35";
->> +			reg = <0x0 0x0>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
-> Between every node as well.
-
-
-OK, I will fix them.
-
-
->> +		cpu1: cpu@1 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a35";
->> +			reg = <0x0 0x1>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +		L2_0: l2-cache0 {
->> +			compatible = "cache";
->> +			cache-level = <2>;
->> +		};
->> +	};
->> +
->> +	psci {
->> +		compatible = "arm,psci-0.2";
->> +		method = "smc";
->> +	};
->> +
->> +	clk_hxt: clock_hxt {
-> No underscores in node names.
-
-
-I will rewrite as:
-
-clk_hxt: clock-hxt {
-
-
+> [auto build test ERROR on broonie-spi/for-next]
+> [also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.3-rc2 next-20230317]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
 >
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-frequency = <24000000>;
->> +		clock-output-names = "clk_hxt";
-> This looks like a property of boards, not SoC. Are you sure the clock
-> physically is in every SoC? If so, why it is not part of clock
-> controller? (before you start explaining what is this, have in mind that
-> I am pretty sure I know what is this, so rather answer the questions)
-
-
-Yes, it's external to SoC and should be board specific.
-
-I will move this to board dts.
-
-
->> +	};
->> +
->> +	timer {
->> +		compatible = "arm,armv8-timer";
->> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
->> +			      IRQ_TYPE_LEVEL_LOW)>, /* Physical Secure */
->> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
->> +			      IRQ_TYPE_LEVEL_LOW)>, /* Physical Non-Secure */
->> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
->> +			      IRQ_TYPE_LEVEL_LOW)>, /* Virtual */
->> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
->> +			      IRQ_TYPE_LEVEL_LOW)>; /* Hypervisor */
->> +		clock-frequency = <12000000>;
->> +		interrupt-parent = <&gic>;
->> +	};
->> +
->> +	sys: system-management@40460000 {
->> +		compatible = "nuvoton,ma35d1-sys", "syscon", "simple-mfd";
->> +		reg = <0x0 0x40460000 0x0 0x200>;
->> +
->> +		reset: reset-controller {
->> +			compatible = "nuvoton,ma35d1-reset";
->> +			regmap = <&sys>;
->> +			#reset-cells = <1>;
->> +		};
->> +	};
->> +
->> +	clk: clock-controller@40460200 {
->> +		compatible = "nuvoton,ma35d1-clk", "syscon";
->> +		reg = <0x00000000 0x40460200 0x0 0x100>;
->> +		#clock-cells = <1>;
->> +		clocks = <&clk_hxt>;
->> +		clock-names = "clk_hxt";
->> +		assigned-clocks = <&clk CAPLL>,
->> +				  <&clk DDRPLL>,
->> +				  <&clk APLL>,
->> +				  <&clk EPLL>,
->> +				  <&clk VPLL>;
->> +		assigned-clock-rates = <800000000>,
->> +				       <266000000>,
->> +				       <180000000>,
->> +				       <500000000>,
->> +				       <102000000>;
->> +		nuvoton,pll-mode = <0>, <1>, <0>, <0>, <0>;
->> +		nuvoton,sys = <&sys>;
->> +	};
->> +
->> +	gic: interrupt-controller@50801000 {
->> +		compatible = "arm,gic-400";
->> +		#interrupt-cells = <3>;
->> +		interrupt-parent = <&gic>;
->> +		interrupt-controller;
->> +		reg =   <0x0 0x50801000 0 0x1000>, /* GICD */
->> +			<0x0 0x50802000 0 0x2000>, /* GICC */
->> +			<0x0 0x50804000 0 0x2000>, /* GICH */
->> +			<0x0 0x50806000 0 0x2000>; /* GICV */
-> reg is second property.
-
-
-OK, I will fix it.
-
-
+> url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230317-163907
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> patch link:    https://lore.kernel.org/r/20230317082950.12738-3-zhuyinbo%40loongson.cn
+> patch subject: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson spi controller
+> config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20230318/202303181149.mdhwoup2-lkp@intel.com/config)
+> compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>          chmod +x ~/bin/make.cross
+>          # https://github.com/intel-lab-lkp/linux/commit/a532955fcee3d37eb4332cea2b868f74ace0bc72
+>          git remote add linux-review https://github.com/intel-lab-lkp/linux
+>          git fetch --no-tags linux-review Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230317-163907
+>          git checkout a532955fcee3d37eb4332cea2b868f74ace0bc72
+>          # save the config file
+>          mkdir build_dir && cp config build_dir/.config
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm olddefconfig
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
 >
->> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x13) |
->> +			      IRQ_TYPE_LEVEL_HIGH)>;
->> +	};
->> +
->> +	uart0:serial@40700000 {
->> +		compatible = "nuvoton,ma35d1-uart";
->> +		reg = <0x0 0x40700000 0x0 0x100>;
->> +		interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
->> +		clocks = <&clk UART0_GATE>;
->> +		status = "okay";
-> Why? Drop the line... or convert it to disabled. Otherwise, why every
-> SoC has serial0 enabled? Is it used internally?
-
-
-uart0 is on all the way since this SoC booting from the MaskROM boot code,
-
-load arm-trusted-firmware, load bootloader, and finally load linux  kernel.
-
-uart0 is also the Linux console.
-
-
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Link: https://lore.kernel.org/oe-kbuild-all/202303181149.mdhwoup2-lkp@intel.com/
 >
-> Best regards,
-> Krzysztof
+> All errors (new ones prefixed by >>):
+>
+>     arm-linux-gnueabi-ld: drivers/spi/spi-loongson.o: in function `loongson_spi_update_state':
+>>> spi-loongson.c:(.text+0x430): undefined reference to `__aeabi_uldivmod'
 
+This Error's reason  was same with "__udivdi3" undefined!" ERROR and  
+use do_div replace "/"  operatators can fix this
 
-Best regards,
-
-Jacky Huang
-
+issue when it comes to division of 64bit.
 
