@@ -2,196 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A25866BFA29
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 14:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 043A76BFA31
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 14:17:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbjCRNNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 09:13:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32950 "EHLO
+        id S229550AbjCRNRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 09:17:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjCRNNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 09:13:44 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33D2012596
-        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:13:42 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id t14so7737133ljd.5
-        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:13:42 -0700 (PDT)
+        with ESMTP id S229541AbjCRNRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 09:17:45 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FA43A856;
+        Sat, 18 Mar 2023 06:17:44 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id bc12so7376428plb.0;
+        Sat, 18 Mar 2023 06:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679145220;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112; t=1679145463;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xjmr2nAua78gEqtz1WDKDDPtSDYZ8DpOst2CageaHa0=;
-        b=xp362ba1yyj5PGKIBVIZWfa15y0rAnMlDjjHHP9r6s5+yvKaX1hayfOJGMae1kN5Bk
-         3nM5IkSzwrvcFxXoSdiVYZHVI2nEqgh8URXC32SBPUeRR9N+F2iAezGxDH5JUBa954Lt
-         bsTHnGiBQhhGmwUIDlffd1WbgCV1bRgATzBkSlEE0HX+vlnrPbwjN7JCX21z8qp27G8N
-         OzcBRaoKOLazd1hPpH7hshwh5FZd6Zgm7ijGrcSo0U9kgsnY9r/nq5bLL/Ggkcbr+mCD
-         JPctzoEXe6aBdyo38+qroygvHpUvy+RE3/re4TnSoa+SNXyj8K4Oj49Hw9aYR598jX85
-         x1mw==
+        bh=f+COqB4c+m/g6jmv7auDfhMOskvwOSpXxEk7kJ344Qs=;
+        b=ptqIX8JS1BjvbCWXL88KHqmofUWW0MuFFaMWbrsHj8tBEoTuj/O9Ki65CXHqBv3uIv
+         bf/TQyC4745awZJXlbK9rgt+oXk3KhnVr5OQaEDNsnhnYbeA94iOFmuE/1jGAnwavVuO
+         g7E3Ra49aFBpBsvQUIke+Yl7JtdysIdGE6e2AIeEJvgbLObE0ziJ0qFnNEtjeAOjBTeC
+         FYNo8WgkMiA8OSZvs3VMavV7ghEHuh+jG9ohWUoscHDIInVTqWxoIXLSi0YOBcDIJA+A
+         yPG9+BpJ8vVtv4VFSj64v4kbxUQrW5EPQaC4jAF2QQVNXH3ryDxGLo2O+3rhIp/fhzpj
+         6MTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679145220;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679145463;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xjmr2nAua78gEqtz1WDKDDPtSDYZ8DpOst2CageaHa0=;
-        b=xkWDTrQw2pA1msy0q/8AW9+PWCpTgrUULgBVFf2Z2ETQm51vKvuWHYyZlAycmGFkEt
-         3scYi6ykM2WFxlOqJtMjhkctDaOrZF04HN4CAcqMPUioFcJ10L4kFrqj3Bi9CyfMbCNC
-         g2mCBy4VPPfwoOd2F8X55q/oHFtFh9r+ITRl65a/GV+kdAuWScmEGIbnYO22X/Ts+hog
-         ljZMhqXHb+TdFueFF006UzCfP2PSWdjfx+LM/Y0glmoLLt0hP8cZiXhArMg4QUJle3X7
-         kE7GDv1UWNIwyZ+jD0VVDfmHYqIeb5LlxoFusMTnOb67EWi0GbvhTtcB+c7h0ZGBCLIJ
-         xC2g==
-X-Gm-Message-State: AO0yUKVfOI0HvmvDvWJp8W3+veyGuhJH06o/FmbvbI8X7/AIwr2XhxWb
-        Zl3zKVcheldvqK/7DXn4ylvZYw==
-X-Google-Smtp-Source: AK7set/mZURMrzSttemnB8LyVCWsJ/nCFWzbuKXCB3kOdk2TmaO2WL3OUnEsV3sHoL4moxqYNPZcAg==
-X-Received: by 2002:a2e:95c7:0:b0:29b:c987:b34a with SMTP id y7-20020a2e95c7000000b0029bc987b34amr452925ljh.19.1679145220132;
-        Sat, 18 Mar 2023 06:13:40 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id j21-20020a2e8015000000b00294649d3dcasm881652ljg.44.2023.03.18.06.13.38
+        bh=f+COqB4c+m/g6jmv7auDfhMOskvwOSpXxEk7kJ344Qs=;
+        b=VsRgLlo8OkQs9jucisZXscta0vbYI/gYcSoYVHDIBWqwo9V+fQJdHBQ92a+kWxrWJQ
+         J8c+UK6y5KWfYaozqHXy4Ii8hDPhPcblKM9HMuaXONkiUNsCqQZheSB0SyxpLGdV8Atm
+         FY9jjfLx9FkdI2BsQmxxO9bntKhJHEgc2qP7N4rHftdaAOqBXuxcYwJ7UORCGRQcjBve
+         Fs3hDJGN/KDU7TQvQi7EkqtdJo91wu+RzbPyUSYNJvXKUgHxuKlOM/HfmuHai4RgZIVi
+         Fu8Nm0nxuWqTZjsgrByjIcEoBxElhm5WLCyc9aM4SLnxq7TYwsJ0om0hX5QLmXqON5zZ
+         1FmQ==
+X-Gm-Message-State: AO0yUKXaeJVLpYGwHGtTuUcGuQepGf4bIW7rB4SGbPAePOlmzYoHjIHz
+        B3PxH1zBAhDaKixdyWXghQU=
+X-Google-Smtp-Source: AK7set+B+p8x/wM/YFN9CWjDxTme8ZHWkbPrzeueh4qZtgOfVZKGg9ufoHqwDnq09mTi4nXnskNWxw==
+X-Received: by 2002:a17:902:e54e:b0:1a0:42c0:b2a5 with SMTP id n14-20020a170902e54e00b001a042c0b2a5mr12315471plf.24.1679145463445;
+        Sat, 18 Mar 2023 06:17:43 -0700 (PDT)
+Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
+        by smtp.gmail.com with ESMTPSA id q16-20020a170902dad000b00199193e5ea1sm3286293plx.61.2023.03.18.06.17.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Mar 2023 06:13:39 -0700 (PDT)
-Message-ID: <2e197a09-5e66-67f0-bcef-958578a85e75@linaro.org>
-Date:   Sat, 18 Mar 2023 14:13:38 +0100
+        Sat, 18 Mar 2023 06:17:43 -0700 (PDT)
+Message-ID: <7cc8258c-3a77-5387-aaa4-658761fbb0ae@gmail.com>
+Date:   Sat, 18 Mar 2023 21:17:40 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 14/18] arm64: dts: qcom: pm8150b: Add a TCPM
- description
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
+To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-12-ychuang570808@gmail.com>
+ <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-15-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230318121828.739424-15-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear Arnd,
 
 
-On 18.03.2023 13:18, Bryan O'Donoghue wrote:
-> Type-C port management functionality lives inside of the PMIC block on
-> pm8150b.
-> 
-> The Type-C port management logic controls orientation detection, vbus/vconn
-> sense and to send/receive Type-C Power Domain messages.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi | 70 +++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> index 66752cc063d60..6db32bdbf5747 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> @@ -7,6 +7,8 @@
->  #include <dt-bindings/iio/qcom,spmi-vadc.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/spmi/spmi.h>
-> +#include <dt-bindings/usb/typec/qcom,pmic-typec.h>
-> +#include <dt-bindings/usb/typec/qcom,pmic-pdphy.h>
->  
->  / {
->  	thermal-zones {
-> @@ -37,6 +39,14 @@ trip2 {
->  			};
->  		};
->  	};
-> +
-> +	tcpm: pm8150b-tcpm {
-> +		compatible = "qcom,pmic-virt-tcpm";
-> +		qcom,pmic-typec = <&pm8150b_typec>;
-> +		qcom,pmic-pdphy = <&pm8150b_pdphy>;
-> +
-> +		status = "disabled";
-> +	};
->  };
->  
->  &spmi_bus {
-> @@ -59,6 +69,66 @@ pm8150b_vbus: usb-vbus-regulator@1100 {
->  			reg = <0x1100>;
->  		};
->  
-> +		pm8150b_typec: typec@1500 {
-> +			compatible = "qcom,pm8150b-typec";
-> +			reg = <0x1500>;
-> +			interrupts = <0x2 0x15 PMIC_TYPEC_OR_RID_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 PMIC_TYPEC_VPD_IRQ
-> +				      IRQ_TYPE_EDGE_BOTH>,
-> +				     <0x2 0x15 PMIC_TYPEC_CC_STATE_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 PMIC_TYPEC_VCONN_OC_IRQ
-> +				      IRQ_TYPE_EDGE_BOTH>,
-> +				     <0x2 0x15 PMIC_TYPEC_VBUS_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 PMIC_TYPEC_ATTACH_DETACH_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 PMIC_TYPEC_LEGACY_CABLE_IRQ
-> +				      IRQ_TYPE_EDGE_BOTH>,
-> +				     <0x2 0x15 PMIC_TYPEC_TRY_SNK_SRC_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "or-rid-detect-change",
-> +					  "vpd-detect",
-> +					  "cc-state-change",
-> +					  "vconn-oc",
-> +					  "vbus-change",
-> +					  "attach-detach",
-> +					  "legacy-cable-detect",
-> +					  "try-snk-src-detect";
-> +			vdd-vbus-supply = <&pm8150b_vbus>;
-This belongs in the board dt, it references nodes defined there.
-> +		};
-> +
-> +		pm8150b_pdphy: pdphy@1700 {
-> +			compatible = "qcom,pm8150b-pdphy";
-> +			reg = <0x1700>;
-> +			interrupts = <0x2 0x17 PMIC_PDPHY_SIG_TX_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_SIG_RX_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_MSG_TX_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_MSG_RX_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_MSG_TX_FAIL_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_MSG_TX_DISCARD_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_MSG_RX_DISCARD_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 PMIC_PDPHY_FR_SWAP_IRQ
-> +				      IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "sig-tx",
-> +					  "sig-rx",
-> +					  "msg-tx",
-> +					  "msg-rx",
-> +					  "msg-tx-failed",
-> +					  "msg-tx-discarded",
-> +					  "msg-rx-discarded",
-> +					  "fr-swap";
-> +			vdd-phy-supply = <&vreg_l2a_3p1>;
-This belongs in the board dt, it references nodes defined there.
+Thanks for your suggestion.
 
-The rest lgtm, I think!
 
-Konrad
-> +		};
-> +
->  		pm8150b_temp: temp-alarm@2400 {
->  			compatible = "qcom,spmi-temp-alarm";
->  			reg = <0x2400>;
+On 2023/3/16 下午 10:17, Arnd Bergmann wrote:
+> On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
+>> +	mem: memory@80000000 {
+>> +		device_type = "memory";
+>> +		reg = <0x00000000 0x80000000 0 0x20000000>; /* 512M DRAM */
+>> +	};
+>> +};
+> In most machines, the memory size is detected by the boot loader
+> and filled in the dtb in memory before starting the kernel, so
+> you should not need two separate files here for the two common
+> memory configurations.
+
+
+On ma35d1, memory size is determined early before uboot.
+
+BL1 (MaskROM boot code) -> BL2 (arm-trust-firmware) -> BL32 (op-tee) & 
+BL33 (uboot).
+
+The DDR was initialized in BL2 stage with a selected DDR setting, which
+
+is hard coded, including DDR size.
+
+We searched the arm64 dts and found that almost all vendors claimed
+
+memory size in board level dtsi/dts. This seems to be common.
+
+So, can we have it unchanged?
+
+
+> Since the machine is called 'som', I would assume that this is a
+> module that is integrated on another board, so more commonly one
+> would have a dtsi file for the som in addition to the one for the
+> soc, and have all the components of the module listed in this
+> file, while the dts file that includes the som.dtsi lists the
+> devices on the carrier board and enables the on-chip devices
+> that are connected to the outside.
+>
+>         Arnd
+
+
+You are right, ma35d1 som have a base board, and a cpu board on it.
+
+It is a good suggestion that we should have a dtsi for som base board.
+
+Consider that we are in the initial submit, and such a dtsi will be an empty
+
+file at this stage. So, I would like to do it when peripheral drivers
+
+upstream started. Is it ok?
+
+
+Best  regards,
+
+Jacky Huang
+
+
