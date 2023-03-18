@@ -2,124 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C7C26BF909
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 09:38:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54A436BF92B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 10:08:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbjCRIiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 04:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40514 "EHLO
+        id S229794AbjCRJId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 05:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbjCRIiH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 04:38:07 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4E5AFBB7;
-        Sat, 18 Mar 2023 01:37:56 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id d14so448715ion.9;
-        Sat, 18 Mar 2023 01:37:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679128676;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6ieG7L9msYA/7lhUnPh05XbQYvh9ea1Tc8rd619ZsgQ=;
-        b=d5Jmz/4FBL6d+7r7Y7GwenCb+4EgG6JMg97ed/mqotPa/wVddpfWwlNAkkvWrtgpbW
-         phAlK1urY3kUsWzeTCQA6CfaKd+WEwt/MZ5e0TOFEXGbIlZaTE70UeNoUTnLsWNmgIU6
-         MI7QafQ8P8ccnOpFQpWJdgS1vlotiYEIRV+U8nkZWphxdDzr2EgfPKxcDbBgFGOvqoJw
-         WYWCr0J0N4g0i4iTaetmBrV4OQZ8XQA6rrRXIVCc4syJI7nVjTtP6Pgy3uy2eINzn202
-         mhl8tXl7aIGe9SKhQnPkHsRX3hPwByXriNw3MC6oK/D/oqwsYPcTUe7DZqtujWULD8aA
-         Pp1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679128676;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6ieG7L9msYA/7lhUnPh05XbQYvh9ea1Tc8rd619ZsgQ=;
-        b=Hshd0YzyViJoocYAlGvSWTq71SVs7KmTrAEVINoe1DD8w0lLEVNr5sH002v9XCWyuD
-         75y3bocc+pGpIUAS2W3lEjoTHMkV+GjNgXn762zf7dCsVpZFttK+eFK7SRHhko47l1tr
-         QO1qD7N4yTYZxdbGSk1TFOdu3IckUeiyTHxwL7tBQArMok4JRXhvggEZiub3ziGgTU78
-         EKzBwMhz5jz1+BqCC0bFeS20jM6iO4h5telqp0+8TZtvkZC9ZHoaOP0qJAHKvH0NsvoE
-         AaeDYdS8z2sYuK/x8fGNe/EPIMTapoF6/SB2m0Iuln0TrAnZL7WjVnz6F+fOdUiebia5
-         brLQ==
-X-Gm-Message-State: AO0yUKUmhhJhWGO301E+qrmYERSOtiunGHLZBhV0G6mDTdoqMyaof8rv
-        xNCY0Kn4GpA4+1vryrNsgAI=
-X-Google-Smtp-Source: AK7set9FGB4F1uRNXAX0Pk/2KXzDRt5VIXEaOZtMbjLEJaLnLm3z4gatwEwLDItxcVLd8R8Up8yo5Q==
-X-Received: by 2002:a05:6602:1c4:b0:74c:8dc7:aa1 with SMTP id w4-20020a05660201c400b0074c8dc70aa1mr1012004iot.17.1679128676172;
-        Sat, 18 Mar 2023 01:37:56 -0700 (PDT)
-Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
-        by smtp.googlemail.com with ESMTPSA id h8-20020a6b7a08000000b00746041ecbf9sm1174834iom.39.2023.03.18.01.37.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Mar 2023 01:37:55 -0700 (PDT)
-From:   Tianling Shen <cnsztl@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Peter Geis <pgwipeout@gmail.com>, Andy Yan <andyshrk@163.com>,
-        Tianling Shen <cnsztl@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Andrew Powers-Holmes <aholmes@omnom.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: rockchip: remove I2S1 TDM node for the NanoPi R5 series
-Date:   Sat, 18 Mar 2023 16:37:45 +0800
-Message-Id: <20230318083745.6181-6-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230318083745.6181-1-cnsztl@gmail.com>
-References: <20230318083745.6181-1-cnsztl@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229602AbjCRJIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 05:08:31 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6A124BC8;
+        Sat, 18 Mar 2023 02:08:15 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id B36285C016C;
+        Sat, 18 Mar 2023 05:08:12 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Sat, 18 Mar 2023 05:08:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm1; t=
+        1679130492; x=1679216892; bh=sqGrH9AvBNgztCnhiLWyU9ykzV8JgafnPoz
+        z27BeCm8=; b=r6PoI9GbafoXODI5wpFQtvhqCYIbdZWhsk0Z7ElJJTUKsBQpYn2
+        Ode+YilJeVD+54bk7RO9iqKKs4BCOTDBLtiFlzwsXuUjZJ4lw238xQwiczmAdJzN
+        zG4URauxC33obSxz/QufokFjViTwcpkAE0f3p1MWhipXrmHBvaMIbwysY1HEkQJP
+        gt8UVK2vJabDrD08skXIAitomdPGfiGZfVmk6YG64AabzxdQtMNARqvvM8/7Vuc6
+        LFDFQE1kS0jfbsnDOePr5upmmY+LOTfdB1D+ChYqO4m0bMJGE8gAc20lbo4vWlm7
+        9HBfGHqkL4lSHKNU4riX9/SMIgLDK5qpErA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1679130492; x=1679216892; bh=sqGrH9AvBNgztCnhiLWyU9ykzV8JgafnPoz
+        z27BeCm8=; b=ALgAwfVlw0rg1LJolgBO63qcgsx6OFhNW/qpu/yH0WuxTh/zFVW
+        hz4XsUN+BPsmsevMcQx5/Y+j3moRBXQZvh+OGY/ZFHZxu5gwa52fQOGDhhne+JBC
+        yopVZXTAmeI5KWGh/YQRlvy6gjNjt6Rj7UEgDglpG5O1iJma72Ee6MYleu9WzBKO
+        mxcyOz/H9uLYeBpkYFWgESy7SY+utKfcs6CLSEl9pOGSLV/zYaDzHVfqfcQSzpud
+        saM/JcZ5vZd1wSioPrhBMKW7X4tkpWS+R1fuVLB084DJW5pQWd9qINeGWWiKdqNP
+        0rVUg5z3fjfASWX6Q4s5543bd2fT6LWPEMw==
+X-ME-Sender: <xms:e38VZGShd-0DmUZZL2czFGIVU6cNCQLHXas-jamhZDGtEiohZ-5uqA>
+    <xme:e38VZLyrFV_amNuf4kGeRmBPFpSwQh6aY-3_6YXpn7SZDlJ31iNJ8tMWIwwi2ls3V
+    avtWbBks-vzGnMqtm8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeffedgudeftdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    tehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrf
+    grthhtvghrnhepgfekueelgeeigefhudduledtkeefffejueelheelfedutedttdfgveeu
+    feefieegnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:e38VZD1fNUWFvFSbebieEMt9jjii7BSrdlXHfW39Vr3AZW5BOrhwDA>
+    <xmx:e38VZCDHaWJBBexLNNZjXswKto_iKoYKFybnUKa1px71KrBs64Wnhg>
+    <xmx:e38VZPhMtH33aj5xLjWV7vpbamm_R99NGv3irS1neUGf_wFPC8YIGg>
+    <xmx:fH8VZKTgzOFS_XrKE3c73tP9vZTgE_Qyl0wb2H3NlciLVfmYh87-nA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id CD0BEB60086; Sat, 18 Mar 2023 05:08:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
+Mime-Version: 1.0
+Message-Id: <adf72f73-23c9-4260-b649-755af4068a02@app.fastmail.com>
+In-Reply-To: <f21df56b-43b8-a48e-ab8f-e0cf2b163976@gmail.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <f2699aa1-4d8a-48c0-b332-484db0b04252@app.fastmail.com>
+ <1a1277ac-4ae5-eaab-01c3-0242c12be76b@gmail.com>
+ <6ed7e89f-2d2c-4134-9c6f-a9d18e2fc8a8@app.fastmail.com>
+ <a90fc6f6-df95-3a4f-da5b-ebdafbe7dd34@linaro.org>
+ <f21df56b-43b8-a48e-ab8f-e0cf2b163976@gmail.com>
+Date:   Sat, 18 Mar 2023 10:07:50 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Jacky Huang" <ychuang570808@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
+Subject: Re: [PATCH 00/15] Introduce Nuvoton ma35d1 SoC
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is for the audio output which does not exist on the boards.
-Also disable regulator-always-on for vccio_acodec since it's only
-used by the audio output.
+On Sat, Mar 18, 2023, at 04:07, Jacky Huang wrote:
+> On 2023/3/18 =E4=B8=8A=E5=8D=88 12:06, Krzysztof Kozlowski wrote:
+>> On 17/03/2023 14:21, Arnd Bergmann wrote:
+>>> I only now saw that you had already submitted this several times
+>>> at the beginning of last year, and this is technically 'v5'
+>>> of the series, and it would make sense to add 'v6' to the subject
+>>> next time and link back to the previous [1] and this[2] submission
+>>> on lore.kernel.org.
+>> ... and address previous feedback. Or at least make it clear in
+>> changelog that you addressed it, so our review was not ignored.
+>>
+>
+> Of course, I will add back the changelog.
+>
+> And, I have a question. If subsequent modifications made to a patch,=20
+> should the
+>
+> "Reviewed-by" still be valid? Can we keep it?
 
-Fixes: c6629b9a6738 ("arm64: dts: rockchip: Add FriendlyElec Nanopi R5S")
+In general yes, but it's a bit of a grey area and you have
+to apply common sense. Examples where I would drop the
+Reviewed-by tag are
 
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
+- if you changed something based on feedback from a reviewer and
+  they provided a Reviewed-by tag based on that changed, but then
+  another person asked you change the same thing differently, or
+  back to the original version
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
-index dd9a7907a1c5..58ba328ea782 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
-@@ -330,7 +330,6 @@ regulator-state-mem {
- 
- 			vccio_acodec: LDO_REG4 {
- 				regulator-name = "vccio_acodec";
--				regulator-always-on;
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 
-@@ -441,11 +440,6 @@ &i2s0_8ch {
- 	status = "okay";
- };
- 
--&i2s1_8ch {
--	rockchip,trcm-sync-tx-only;
--	status = "okay";
--};
--
- &pcie30phy {
- 	data-lanes = <1 2>;
- 	status = "okay";
--- 
-2.40.0
+- if you combine a patch with another one that was not also
+  reviewed by the same person.
 
+      Arnd
