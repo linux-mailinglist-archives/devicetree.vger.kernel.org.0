@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64DDD6BF6E8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 01:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F7D56BF6F7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 01:37:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbjCRAYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 20:24:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52470 "EHLO
+        id S229679AbjCRAhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 20:37:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjCRAYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 20:24:35 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B64E4E7EE4
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 17:24:16 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id v21so7014745ple.9
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 17:24:16 -0700 (PDT)
+        with ESMTP id S229816AbjCRAhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 20:37:06 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6153F2A985
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 17:37:02 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id c18so7033618ple.11
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 17:37:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1679099056;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=nuHx/gk/UOk90RMsxQ3EOlQ24orMd2isfmJwicY7jyU=;
-        b=CiuNvcFAs2NQDA4r5bKtM3m0up/0AEx9mhVY26ppGT9gbTQ6dCTpdtSNN6vzEA9t+U
-         nYoz7YnDivvSgJOAgrvEJ9f8zTra4HFoAITpoQyhe2tJsrz1sHRzcGXNu4fUkqVcfy8C
-         7i7tKQ3NV7FbRnOtvxORxVDiHv/9Tt3q7IYeM=
+        d=google.com; s=20210112; t=1679099822;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=os6ePIEHmP798yvFxpKjy1znOP2oGPeyXknmdif5JHU=;
+        b=a5xtF12hkvnghsPvDuTuK348fpZSXALnGIbl9mESd55HVB81z0tqHcsOpNkPU+s7e3
+         SgM/1VJ9dNzTcMfEewhNEPCA7g70f189gJZFhB8Tdjy6Tga6ODWmN1n+0cc/I/WU91HX
+         EpE587pzcVBrjQbeeFphibG9cv4sWkR0nFR/jP3q40el0wuUOgBgP2J1Zs7kVpXQfCTU
+         FDKbrpJcl4ZBRoh/ImMIzOYK5tpNTJeAuPNqid1VnzayGs/z47AMfQbYzfG77sm6KszG
+         ef4WyYKllhioNDf6zzLdsyvxHsMbDh27+MEZujltTX11Lgw/XZn1yHkDZSNd+s9pjfZG
+         MWCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679099056;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nuHx/gk/UOk90RMsxQ3EOlQ24orMd2isfmJwicY7jyU=;
-        b=R5/oc6EgA0i+I4v+ZW+4HfK3fVX29VSVBoRB4af4ZstCp14nA8y7dpbPz3LcviSCda
-         uJ1SNOllfLUL1AW88IHaBFvSfhwij9cjAvIMqzgM1FPXAuft/HQ1cLF6nnDVfj3jUPsA
-         4G03+6MVK21BxXwYiYYVVNhIC6BgPmCpsheVzlDbbkS9c8RBNfjPyRENjdOXbVrOZ22l
-         y3ZZdRDxZC468pIJ4mbRoEBtIHiX52BWOX7YRHeU3ThtJhQwni5v5BHpfI3FA3verMjw
-         1lFT+8wgiUUqSIxQOiop9TE3Fp51EEl9/Uezsg5IpEtdpKO8mjCiYGF7AluUZwSg/UFt
-         E7fw==
-X-Gm-Message-State: AO0yUKUseY5hr5mD2yDuwL2SdtgAPU1o4n5T02D9ty5HKK82XJMa53xm
-        Tn9FhZQd9QAWINfh/NvW18xUxpaKoXw/NSxzwdI=
-X-Google-Smtp-Source: AK7set8dlsjaQzpr/5Hj9uU+qkR+aoGvfj9SZirH/xj53h2ft2+47WXR1i8jQNH2GwBbVy+ckyr/gA==
-X-Received: by 2002:a05:6a20:548f:b0:d5:10ca:5264 with SMTP id i15-20020a056a20548f00b000d510ca5264mr11242046pzk.59.1679099055933;
-        Fri, 17 Mar 2023 17:24:15 -0700 (PDT)
-Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id c25-20020aa78c19000000b00623f72df4e2sm2062157pfd.203.2023.03.17.17.24.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 Mar 2023 17:24:15 -0700 (PDT)
-Subject: Re: Probing devices by their less-specific "compatible" bindings
- (here: brcmnand)
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>
-References: <399d2f43-5cad-6c51-fe3a-623950e2151a@gmail.com>
- <0bbaa346-edbf-a1b9-3c95-5a1aacaf0c44@gmail.com>
-From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <f9f3ab71-a3b3-2582-b841-8e8783d81817@broadcom.com>
-Date:   Fri, 17 Mar 2023 17:24:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.4.0
+        d=1e100.net; s=20210112; t=1679099822;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=os6ePIEHmP798yvFxpKjy1znOP2oGPeyXknmdif5JHU=;
+        b=jfDL2heaK2OdQJmlktl20m2M0ShW/BBFemI0wfkWLu053lbKTpGelAPNtO9JY2dvl2
+         sAgjqT1nBtktBkdXZLr4X6rOBkZ1zL5lZ8b9JOkZeI0b5RujXT3+/4XNYLYtMd2mxb3y
+         Pwkmv05eyAkZY6Q6u72XQOD075DMU+PBBnFeMKkHkrZTOKobK/xdwlcJFWbOMnI5dbEL
+         BkNLfOybgOWKm2RSVAYQ4kBxMla4ecaL3HT4EwlYvcHGJDIdrnyiNP0W8cuj4oTLbOsa
+         ss8/o3K67XvpuJbeadTqGObeR0dIhM5QtFLE7tiPDNQ/v+S5837mBXzJEcH6lpNuV03W
+         MCNw==
+X-Gm-Message-State: AO0yUKU/HHsZ2Z15P5hoqnHM+vbe3kge0XFFuGXJWYGi2a00Y0QHS+sh
+        CrHXm1iuZd3PxyVqs/k2zW7TWBN2CvKMkK/YcPC5DQ==
+X-Google-Smtp-Source: AK7set/+lJKTdHw1xZK9DEl7C5giuxqHvkjsLLOb5yxjG+GWItax0LbcmZRuOR9nVaD7OG9442T0m+tAHXMDVL9Xxfs=
+X-Received: by 2002:a17:90a:e502:b0:237:5e4c:7d78 with SMTP id
+ t2-20020a17090ae50200b002375e4c7d78mr2702737pjy.9.1679099821549; Fri, 17 Mar
+ 2023 17:37:01 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <0bbaa346-edbf-a1b9-3c95-5a1aacaf0c44@gmail.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000ce04ee05f721b698"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
+References: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
+In-Reply-To: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 17 Mar 2023 17:36:25 -0700
+Message-ID: <CAGETcx_oYrhjo0C3zJ57gt7HGuiY_=9xEq+TvQU8R5zW6OiQCw@mail.gmail.com>
+Subject: Re: [PATCH/RFC] treewide: Fix instantiation of devices in DT overlay
+To:     geert+renesas@glider.be
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,189 +81,161 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000ce04ee05f721b698
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+On Fri, Mar 17, 2023 at 3:33=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> When loading a DT overlay that creates a device, the device is not
+> instantiated, unless the DT overlay is unloaded and reloaded again.
+>
+> Saravana explains:
+>   Basically for all overlays (I hope the function is only used for
+>   overlays) we assume all nodes are NOT devices until they actually
+>   get added as a device. Don't review the code, it's not meant to be :)
+>
+> Based on a hacky patch by Saravana Kannan, which covered only platform
+> and spi devices.
+>
+> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
+> Link: https://lore.kernel.org/all/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=3DrWYn=
+kCZ6z5bGX-wj4w@mail.gmail.com
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Marked RFC as Saravana said this is an ugly hack.
+> Still, this is a regression in v6.3-rc1 that should be fixed.
+
+Thanks for making sure this isn't forgotten.
+
+I thought about this a bit more and I've decided what I gave earlier
+isn't really too much of a hack. The other option is to handle the
+clearing of the flag at the driver core level, but we incur these
+additional instructions for all devices instead of just the overlay
+case. But the benefit is that if more busses add overlay support in
+the future, they won't need to remember to clear the flag in those
+instances too. But they'll probably start off by looking at the
+existing platform bus case, so they'll get it right.
+
+I'll continue the pondering next week and maybe test it on my device
+to make sure it's not doing anything weird for non-overlay cases.
+
+-Saravana
+
+--- a/drivers/base/core.c
++++ b/drivers/base/core.c
+@@ -3611,6 +3611,15 @@ int device_add(struct device *dev)
+         */
+        if (dev->fwnode && !dev->fwnode->dev) {
+                dev->fwnode->dev =3D dev;
++               /*
++                * If a fwnode was initially marked as not a device, but we
++                * clearly have a device added for it that can probe, then =
+clear
++                * the flag so fw_devlink will continue linking consumers t=
+o
++                * this device. This code path is really expected to run on=
+ly
++                * for DT overlays.
++                */
++               if (dev->bus)
++                       dev->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE
+                fw_devlink_link_device(dev);
+        }
+
+diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+index 07d93753b12f..f715b59d9bf3 100644
+--- a/drivers/of/dynamic.c
++++ b/drivers/of/dynamic.c
+@@ -226,6 +226,11 @@ static void __of_attach_node(struct device_node *np)
+        np->sibling =3D np->parent->child;
+        np->parent->child =3D np;
+        of_node_clear_flag(np, OF_DETACHED);
++       /*
++        * Ask fw_devlink to assume any new node is not a device. Driver co=
+re
++        * will clear this flag if the assumption turns out to be wrong.
++        */
++       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
+ }
 
 
 
-On 03/17/2023 02:54 PM, Florian Fainelli wrote:
-> +William,
-> 
-> On 3/17/23 03:02, Rafał Miłecki wrote:
->> Hi, I just spent few hours debugging hidden hw lockup and I need to
->> consult driver core code behaviour.
->>
->> I have a BCM4908 SoC based board with a NAND controller on it.
->>
->>
->> ### Hardware binding
->>
->> Hardware details:
->> arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
->>
->> Relevant part:
->> nand-controller@1800 {
->>      compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", 
->> "brcm,brcmnand";
->>      reg = <0x1800 0x600>, <0x2000 0x10>;
->>      reg-names = "nand", "nand-int-base";
->> }:
->>
->> Above binding is based on the documentation:
->> Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
->>
->>
->> ### Linux drivers
->>
->> Linux has separated drivers for few Broadcom's NAND controller bindings:
->>
->> 1. drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c for:
->> brcm,nand-bcm63138
->>
->> 2. drivers/mtd/nand/raw/brcmnand/brcmnand.c for:
->> brcm,brcmnand-v2.1
->> brcm,brcmnand-v2.2
->> brcm,brcmnand-v4.0
->> brcm,brcmnand-v5.0
->> brcm,brcmnand-v6.0
->> brcm,brcmnand-v6.1
->> brcm,brcmnand-v6.2
->> brcm,brcmnand-v7.0
->> brcm,brcmnand-v7.1
->> brcm,brcmnand-v7.2
->> brcm,brcmnand-v7.3
->>
->> 3. drivers/mtd/nand/raw/brcmnand/brcmstb_nand.c for:
->> brcm,brcmnand
->>
->>
->> ### Problem
->>
->> As first Linux probes my hardware using the "brcm,nand-bcm63138"
->> compatibility string driver bcm63138_nand.c. That's good.
->>
->> It that fails however (.probe() returns an error) then Linux core starts
->> probing using drivers for less specific bindings.
-> 
-> Why does it fail?
-> 
-Same question here.  I just tried latest linux master code on my 4908 
-reference board and the Micron NAND on my board works fine. Can you post 
-the log from the brcmnand driver?
 
->>
->> In my case probing with the "brcm,brcmnand" string driver brcmstb_nand.c
->> results in ignoring SoC specific bits and causes a hardware lockup. Hw
->> isn't initialized properly and writel_relaxed(0x00000009, base + 0x04)
->> just make it hang.
-> 
-> Well, the missing piece here is that brcmnand.c is a library driver, 
-> therefore it needs an entry point, the next one that matches is 
-> brcmstb_nand.c.
-> 
->>
->> That obviously isn't an acceptable behavior for me. So I'm wondering
->> what's going on wrong here.
->>
->> Should Linux avoid probing with less-specific compatible strings?
->> Or should I not claim hw to be "brcm,brcmnand" compatible if it REQUIRES
->> SoC-specific handling?
->>
->> An extra note: that fallback probing happens even with .probe()
->> returning -EPROBE_DEFER. This actually smells fishy for me on the Linux
->> core part.
->> I'm not an expect but I think core should wait for actual error without
->> trying less-specific compatible strings & drivers.
->>
-Are you saying the bcm63138_nand.c probe function return -EPROBE_DEFER 
-and late on kernel call brcmstb_nand.c probe instead of bcm63138_nand's 
-probe again?
-
->> ______________________________________________________
->> Linux MTD discussion mailing list
->> http://lists.infradead.org/mailman/listinfo/linux-mtd/
-> 
-
---000000000000ce04ee05f721b698
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICZQnE7WsWkosKCoNpZ86hEYk9rc
-SRDo75/9138OblfYMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDMxODAwMjQxNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQB/mVBQHDcmynUhvUPoy8jTUwI7uWAr7ZXwBF38ePKOc9Cb
-kW5WnAE/5o/lbdTCcywSOL6WX/nukP1I7ZrluLwzqBfhT4y4OjbfzdfBlDYY5ynUYxSnM4EJ2lG5
-aCgk6pBdqu0atd6C4vNHC0mhEuome+nDVknjkZ48eUHYh69My00LKIFYekerODDUAzMUHnUf1kAR
-1wVw37uiO2fZjORDJ39oouauXChd4yQ0yWG/L3j/FlO17uLrJ/Iq4RvPjm3/bjCWGIN56tLsNQpK
-V2oEPDBleboe6hHP2HtefIChKiq/Ae5nH4W33W5j55m6HtHdFdhfPkhZM9f+nukiWJ3J
---000000000000ce04ee05f721b698--
+> ---
+>  drivers/bus/imx-weim.c    | 1 +
+>  drivers/i2c/i2c-core-of.c | 1 +
+>  drivers/of/dynamic.c      | 1 +
+>  drivers/of/platform.c     | 1 +
+>  drivers/spi/spi.c         | 1 +
+>  5 files changed, 5 insertions(+)
+>
+> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+> index 2a6b4f676458612e..71d8807170fa9f29 100644
+> --- a/drivers/bus/imx-weim.c
+> +++ b/drivers/bus/imx-weim.c
+> @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb, =
+unsigned long action,
+>                                  "Failed to setup timing for '%pOF'\n", r=
+d->dn);
+>
+>                 if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
+> +                       rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE=
+;
+>                         if (!of_platform_device_create(rd->dn, NULL, &pde=
+v->dev)) {
+>                                 dev_err(&pdev->dev,
+>                                         "Failed to create child device '%=
+pOF'\n",
+> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+> index bce6b796e04c2ca0..79a0d47010ba0b20 100644
+> --- a/drivers/i2c/i2c-core-of.c
+> +++ b/drivers/i2c/i2c-core-of.c
+> @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb, u=
+nsigned long action,
+>                         return NOTIFY_OK;
+>                 }
+>
+> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 client =3D of_i2c_register_device(adap, rd->dn);
+>                 if (IS_ERR(client)) {
+>                         dev_err(&adap->dev, "failed to create client for =
+'%pOF'\n",
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 07d93753b12f5f4d..e311d406b1705306 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np)
+>         np->sibling =3D np->parent->child;
+>         np->parent->child =3D np;
+>         of_node_clear_flag(np, OF_DETACHED);
+> +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
+>  }
+>
+>  /**
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block *=
+nb,
+>                 if (of_node_check_flag(rd->dn, OF_POPULATED))
+>                         return NOTIFY_OK;
+>
+> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 /* pdev_parent may be NULL when no bus platform device */
+>                 pdev_parent =3D of_find_device_by_node(rd->dn->parent);
+>                 pdev =3D of_platform_device_create(rd->dn, NULL,
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index 1a65f96fe2aff591..7bd053a32fad1a3c 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -4480,6 +4480,7 @@ static int of_spi_notify(struct notifier_block *nb,=
+ unsigned long action,
+>                         return NOTIFY_OK;
+>                 }
+>
+> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 spi =3D of_register_spi_device(ctlr, rd->dn);
+>                 put_device(&ctlr->dev);
+>
+> --
+> 2.34.1
+>
