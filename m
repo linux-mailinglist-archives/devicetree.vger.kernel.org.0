@@ -2,96 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6477F6BF73F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 02:39:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1DC6BF746
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 02:48:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjCRBjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 21:39:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
+        id S229616AbjCRBse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 21:48:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjCRBjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 21:39:03 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 49DC5CB061;
-        Fri, 17 Mar 2023 18:39:01 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8CxC9ozFhVkL6QNAA--.26043S3;
-        Sat, 18 Mar 2023 09:38:59 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx_74zFhVkiH0EAA--.19414S3;
-        Sat, 18 Mar 2023 09:38:59 +0800 (CST)
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: add loongson spi
-To:     Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
- <20230317082950.12738-2-zhuyinbo@loongson.cn>
- <a736c6db-466a-12e4-8e22-c8dc900978d4@linaro.org>
- <e944732b-9a2d-b6ff-8336-7363788809b9@loongson.cn>
- <7469290a-0671-7d2f-b0ce-cdde2a9e66cc@linaro.org>
- <c904c1ec-9080-0cc0-ae86-7d369d52e818@linaro.org>
- <76c3a130-0413-4e56-8c97-b3697efd5a9e@sirena.org.uk>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <d0f9f023-c010-9ddd-331c-f610b49782c2@loongson.cn>
-Date:   Sat, 18 Mar 2023 09:38:58 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229473AbjCRBsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 21:48:33 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1426D3C786;
+        Fri, 17 Mar 2023 18:48:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679104112; x=1710640112;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZEIyleGGb8UU0vqHVOdtpSNb6wHhAr0V3A6sC6d3dGc=;
+  b=Fe3vnq4UCZXq+Gy11EqZ1pwFkwwHnh9CYeJFOwYDfv06oH1WGHMUQc9q
+   PCapGkPACDbP4J1okhyZc8NcKatxLlGAr3whGwLOdzt5Z9OcempwMrr+G
+   NGxoQAcMMOrgAXllmTrUhClHoHRvl0SaXqy1BZ2NElRQL5BQ/oYJjQmbH
+   d0Emwln9IA8BvEKbLh4ocg5cxnftiGJx3c/ylLVJtbEw6ZZJis5A7cVNu
+   lsVH0ta0TtGTI0aAXe1GuZI1ODBweCYnZ8aQud7ZdY/kMmwutQsXzEz/R
+   OYzNcOk36I4A1iCqnxyOS1q58SsNnddiMSHJAj5TtTB+K3qAp+W+5cgUC
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="338416570"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; 
+   d="scan'208";a="338416570"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2023 18:48:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="680484443"
+X-IronPort-AV: E=Sophos;i="5.98,270,1673942400"; 
+   d="scan'208";a="680484443"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 17 Mar 2023 18:48:28 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pdLgJ-0009io-2m;
+        Sat, 18 Mar 2023 01:48:27 +0000
+Date:   Sat, 18 Mar 2023 09:48:14 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-edac@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, git@amd.com,
+        devicetree@vger.kernel.org, bp@alien8.de,
+        krzysztof.kozlowski@linaro.org, mchehab@kernel.org,
+        tony.luck@intel.com, james.morse@arm.com, rric@kernel.org,
+        michal.simek@xilinx.com
+Subject: Re: [PATCH v4 2/2] edac/xilinx: Add EDAC support for Xilinx DDR
+ controller
+Message-ID: <202303180902.boahuY9A-lkp@intel.com>
+References: <20230317140425.16827-3-shubhrajyoti.datta@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <76c3a130-0413-4e56-8c97-b3697efd5a9e@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID: AQAAf8Cx_74zFhVkiH0EAA--.19414S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7GFW7KFW5Ary7Aw17KFW3ZFb_yoWfWrcEgr
-        sF9rZrCw17JFZxGw17GFyvqasxKw4DC34UJ3yFqr48Xr15urn3CrW5Gr9aqa43XF93tF9I
-        krn0vFWfK3sIqjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        g7CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84
-        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc80
-        4VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67
-        AKxVWUXVWUAwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48I
-        cVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x8Erc
-        xFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E
-        5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtV
-        W8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY
-        1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI
-        0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7I
-        U8c_-PUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230317140425.16827-3-shubhrajyoti.datta@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shubhrajyoti,
 
-在 2023/3/18 上午12:14, Mark Brown 写道:
-> On Fri, Mar 17, 2023 at 04:51:48PM +0100, Krzysztof Kozlowski wrote:
->> On 17/03/2023 16:51, Krzysztof Kozlowski wrote:
->>> minItems: 1 is not correct, so you cannot use incorrect code to suppress
->>> some warning. This should be list the clocks or use maxItems: 1, if you
->>> have only one clock.
->> BTW, as Rob's bot reports, this wasn't even tested... Please test the
->> patches before sending them.
-> If they're managing to see and try to fix warnings they're doing some
-> kinds of testing, obviously they've missed something you wanted doing
-> but there's clearly been some testing done.
+I love your patch! Yet something to improve:
 
-Thanks your understanding !    I had test it  and this patch need depend 
-on a clock patch, and I had added
+[auto build test ERROR on v6.2]
+[cannot apply to ras/edac-for-next linus/master v6.3-rc2 v6.3-rc1 next-20230317]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-this depend on description on changelog,  but I don't know how do make 
-the robot can depend on my clock patch after testing.
+url:    https://github.com/intel-lab-lkp/linux/commits/Shubhrajyoti-Datta/dt-bindings-edac-Add-support-for-Xilinx-Versal-EDAC-DDRMC/20230317-220620
+patch link:    https://lore.kernel.org/r/20230317140425.16827-3-shubhrajyoti.datta%40amd.com
+patch subject: [PATCH v4 2/2] edac/xilinx: Add EDAC support for Xilinx DDR controller
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230318/202303180902.boahuY9A-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/e559cd43b0a69ecf03e6f571f85953dbf8186549
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Shubhrajyoti-Datta/dt-bindings-edac-Add-support-for-Xilinx-Versal-EDAC-DDRMC/20230317-220620
+        git checkout e559cd43b0a69ecf03e6f571f85953dbf8186549
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/edac/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303180902.boahuY9A-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from <command-line>:
+   drivers/edac/versal_edac.c: In function 'setup_column_address_map':
+>> drivers/edac/versal_edac.c:852:38: error: 'COL_0_MASK' undeclared (first use in this function); did you mean 'CH_0_MASK'?
+     852 |         priv->col_bit[0] = FIELD_GET(COL_0_MASK, regval);
+         |                                      ^~~~~~~~~~
+   include/linux/compiler_types.h:338:23: note: in definition of macro '__compiletime_assert'
+     338 |                 if (!(condition))                                       \
+         |                       ^~~~~~~~~
+   include/linux/compiler_types.h:358:9: note: in expansion of macro '_compiletime_assert'
+     358 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:65:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      65 |                 BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),          \
+         |                 ^~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:128:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     128 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
+         |                 ^~~~~~~~~~~~~~~~
+   drivers/edac/versal_edac.c:852:28: note: in expansion of macro 'FIELD_GET'
+     852 |         priv->col_bit[0] = FIELD_GET(COL_0_MASK, regval);
+         |                            ^~~~~~~~~
+   drivers/edac/versal_edac.c:852:38: note: each undeclared identifier is reported only once for each function it appears in
+     852 |         priv->col_bit[0] = FIELD_GET(COL_0_MASK, regval);
+         |                                      ^~~~~~~~~~
+   include/linux/compiler_types.h:338:23: note: in definition of macro '__compiletime_assert'
+     338 |                 if (!(condition))                                       \
+         |                       ^~~~~~~~~
+   include/linux/compiler_types.h:358:9: note: in expansion of macro '_compiletime_assert'
+     358 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:65:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      65 |                 BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),          \
+         |                 ^~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:128:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     128 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
+         |                 ^~~~~~~~~~~~~~~~
+   drivers/edac/versal_edac.c:852:28: note: in expansion of macro 'FIELD_GET'
+     852 |         priv->col_bit[0] = FIELD_GET(COL_0_MASK, regval);
+         |                            ^~~~~~~~~
 
 
-Thanks!
+vim +852 drivers/edac/versal_edac.c
 
+   845	
+   846	static void setup_column_address_map(struct edac_priv *priv)
+   847	{
+   848		u32 regval;
+   849		union edac_info cols;
+   850	
+   851		regval = readl(priv->ddrmc_noc_baseaddr + XDDR_NOC_REG_ADEC8_OFFSET);
+ > 852		priv->col_bit[0] = FIELD_GET(COL_0_MASK, regval);
+   853	
+   854		regval = readl(priv->ddrmc_noc_baseaddr + XDDR_NOC_REG_ADEC9_OFFSET);
+   855		cols.i  = regval;
+   856		priv->col_bit[1] = cols.col1;
+   857		priv->col_bit[2] = cols.col2;
+   858		priv->col_bit[3] = cols.col3;
+   859		priv->col_bit[4] = cols.col4;
+   860		priv->col_bit[5] = cols.col5;
+   861	
+   862		regval = readl(priv->ddrmc_noc_baseaddr + XDDR_NOC_REG_ADEC10_OFFSET);
+   863		cols.i  = regval;
+   864		priv->col_bit[6] = cols.col1;
+   865		priv->col_bit[7] = cols.col2;
+   866		priv->col_bit[8] = cols.col3;
+   867		priv->col_bit[9] = cols.col4;
+   868	}
+   869	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
