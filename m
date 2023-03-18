@@ -2,240 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7D56BF6F7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 01:37:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 489556BF722
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 02:00:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbjCRAhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Mar 2023 20:37:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36706 "EHLO
+        id S229588AbjCRBA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Mar 2023 21:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbjCRAhG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 20:37:06 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6153F2A985
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 17:37:02 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id c18so7033618ple.11
-        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 17:37:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112; t=1679099822;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=os6ePIEHmP798yvFxpKjy1znOP2oGPeyXknmdif5JHU=;
-        b=a5xtF12hkvnghsPvDuTuK348fpZSXALnGIbl9mESd55HVB81z0tqHcsOpNkPU+s7e3
-         SgM/1VJ9dNzTcMfEewhNEPCA7g70f189gJZFhB8Tdjy6Tga6ODWmN1n+0cc/I/WU91HX
-         EpE587pzcVBrjQbeeFphibG9cv4sWkR0nFR/jP3q40el0wuUOgBgP2J1Zs7kVpXQfCTU
-         FDKbrpJcl4ZBRoh/ImMIzOYK5tpNTJeAuPNqid1VnzayGs/z47AMfQbYzfG77sm6KszG
-         ef4WyYKllhioNDf6zzLdsyvxHsMbDh27+MEZujltTX11Lgw/XZn1yHkDZSNd+s9pjfZG
-         MWCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679099822;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=os6ePIEHmP798yvFxpKjy1znOP2oGPeyXknmdif5JHU=;
-        b=jfDL2heaK2OdQJmlktl20m2M0ShW/BBFemI0wfkWLu053lbKTpGelAPNtO9JY2dvl2
-         sAgjqT1nBtktBkdXZLr4X6rOBkZ1zL5lZ8b9JOkZeI0b5RujXT3+/4XNYLYtMd2mxb3y
-         Pwkmv05eyAkZY6Q6u72XQOD075DMU+PBBnFeMKkHkrZTOKobK/xdwlcJFWbOMnI5dbEL
-         BkNLfOybgOWKm2RSVAYQ4kBxMla4ecaL3HT4EwlYvcHGJDIdrnyiNP0W8cuj4oTLbOsa
-         ss8/o3K67XvpuJbeadTqGObeR0dIhM5QtFLE7tiPDNQ/v+S5837mBXzJEcH6lpNuV03W
-         MCNw==
-X-Gm-Message-State: AO0yUKU/HHsZ2Z15P5hoqnHM+vbe3kge0XFFuGXJWYGi2a00Y0QHS+sh
-        CrHXm1iuZd3PxyVqs/k2zW7TWBN2CvKMkK/YcPC5DQ==
-X-Google-Smtp-Source: AK7set/+lJKTdHw1xZK9DEl7C5giuxqHvkjsLLOb5yxjG+GWItax0LbcmZRuOR9nVaD7OG9442T0m+tAHXMDVL9Xxfs=
-X-Received: by 2002:a17:90a:e502:b0:237:5e4c:7d78 with SMTP id
- t2-20020a17090ae50200b002375e4c7d78mr2702737pjy.9.1679099821549; Fri, 17 Mar
- 2023 17:37:01 -0700 (PDT)
+        with ESMTP id S229533AbjCRBAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Mar 2023 21:00:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E9CB22DD9
+        for <devicetree@vger.kernel.org>; Fri, 17 Mar 2023 18:00:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D9794B82749
+        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 01:00:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 742CDC433EF;
+        Sat, 18 Mar 2023 01:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679101221;
+        bh=n7fbK9Gt9s++eDvMkVmtPnuxDMaNPYXF5f2+1cxv+bY=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=YzdrVz+2gsN9ZxBz1fYUqr1E7Mjpg6tdnkV+tT1SZ0HKGBC81YxgLciOQz4J1JicM
+         Lqnc+3eCKc+l2MHaVKXfEYVbmAUcYnHm+Mf3g0YZV5LnQAle6vhqp3mi8GS56iXeZP
+         fXsB+9ZR/U5+CXHK8N9GvmCzKwkyHTWWqltMSVY4eHs1PON5LaJlCEgxzinNa0dvNM
+         PClHub6eU2wSjtIkn3Bn2NrJIL+rT0JM+YKxfUkKtZxedLBDW8ontjAxNPA6i9tye2
+         bpyEOdQj4pfFY6J2PNugV0W3GojzMhv9+KsdDYOWjUZTzdSsFdf88NVMZ5I2FkUuut
+         rkF64ZMTjDeAQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 48858E21EE9;
+        Sat, 18 Mar 2023 01:00:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
-In-Reply-To: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 17 Mar 2023 17:36:25 -0700
-Message-ID: <CAGETcx_oYrhjo0C3zJ57gt7HGuiY_=9xEq+TvQU8R5zW6OiQCw@mail.gmail.com>
-Subject: Re: [PATCH/RFC] treewide: Fix instantiation of devices in DT overlay
-To:     geert+renesas@glider.be
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v6 0/8] RISC-V: Apply Zicboz to clear_page
+From:   patchwork-bot+linux-riscv@kernel.org
+Message-Id: <167910122129.24496.10588514847374462522.git-patchwork-notify@kernel.org>
+Date:   Sat, 18 Mar 2023 01:00:21 +0000
+References: <20230224162631.405473-1-ajones@ventanamicro.com>
+In-Reply-To: <20230224162631.405473-1-ajones@ventanamicro.com>
+To:     Andrew Jones <ajones@ventanamicro.com>
+Cc:     linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, conor.dooley@microchip.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        sudip.mukherjee@codethink.co.uk, ben.dooks@codethink.co.uk,
+        atishp@rivosinc.com, aou@eecs.berkeley.edu,
+        apatel@ventanamicro.com, krzysztof.kozlowski+dt@linaro.org,
+        robh@kernel.org, jszhang@kernel.org, heiko@sntech.de
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 3:33=E2=80=AFAM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> When loading a DT overlay that creates a device, the device is not
-> instantiated, unless the DT overlay is unloaded and reloaded again.
->
-> Saravana explains:
->   Basically for all overlays (I hope the function is only used for
->   overlays) we assume all nodes are NOT devices until they actually
->   get added as a device. Don't review the code, it's not meant to be :)
->
-> Based on a hacky patch by Saravana Kannan, which covered only platform
-> and spi devices.
->
-> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
-> Link: https://lore.kernel.org/all/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=3DrWYn=
-kCZ6z5bGX-wj4w@mail.gmail.com
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Marked RFC as Saravana said this is an ugly hack.
-> Still, this is a regression in v6.3-rc1 that should be fixed.
+Hello:
 
-Thanks for making sure this isn't forgotten.
+This series was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
 
-I thought about this a bit more and I've decided what I gave earlier
-isn't really too much of a hack. The other option is to handle the
-clearing of the flag at the driver core level, but we incur these
-additional instructions for all devices instead of just the overlay
-case. But the benefit is that if more busses add overlay support in
-the future, they won't need to remember to clear the flag in those
-instances too. But they'll probably start off by looking at the
-existing platform bus case, so they'll get it right.
+On Fri, 24 Feb 2023 17:26:23 +0100 you wrote:
+> When the Zicboz extension is available we can more rapidly zero naturally
+> aligned Zicboz block sized chunks of memory. As pages are always page
+> aligned and are larger than any Zicboz block size will be, then
+> clear_page() appears to be a good candidate for the extension. While cycle
+> count and energy consumption should also be considered, we can be pretty
+> certain that implementing clear_page() with the Zicboz extension is a win
+> by comparing the new dynamic instruction count with its current count[1].
+> Doing so we see that the new count is just over a quarter of the old count
+> (see patch6's commit message for more details).
+> 
+> [...]
 
-I'll continue the pondering next week and maybe test it on my device
-to make sure it's not doing anything weird for non-overlay cases.
+Here is the summary with links:
+  - [v6,1/8] RISC-V: alternatives: Support patching multiple insns in assembly
+    https://git.kernel.org/riscv/c/0b2f658f5370
+  - [v6,2/8] RISC-V: Factor out body of riscv_init_cbom_blocksize loop
+    https://git.kernel.org/riscv/c/8b05e7d0408a
+  - [v6,3/8] dt-bindings: riscv: Document cboz-block-size
+    https://git.kernel.org/riscv/c/ea20f117ab99
+  - [v6,4/8] RISC-V: Add Zicboz detection and block size parsing
+    https://git.kernel.org/riscv/c/7ea5a73617e9
+  - [v6,5/8] RISC-V: cpufeatures: Put the upper 16 bits of patch ID to work
+    https://git.kernel.org/riscv/c/d25f256332cc
+  - [v6,6/8] RISC-V: Use Zicboz in clear_page when available
+    https://git.kernel.org/riscv/c/ab0f77465e3e
+  - [v6,7/8] RISC-V: KVM: Provide UAPI for Zicboz block size
+    https://git.kernel.org/riscv/c/665fd8862413
+  - [v6,8/8] RISC-V: KVM: Expose Zicboz to the guest
+    https://git.kernel.org/riscv/c/b20f67994f35
 
--Saravana
-
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -3611,6 +3611,15 @@ int device_add(struct device *dev)
-         */
-        if (dev->fwnode && !dev->fwnode->dev) {
-                dev->fwnode->dev =3D dev;
-+               /*
-+                * If a fwnode was initially marked as not a device, but we
-+                * clearly have a device added for it that can probe, then =
-clear
-+                * the flag so fw_devlink will continue linking consumers t=
-o
-+                * this device. This code path is really expected to run on=
-ly
-+                * for DT overlays.
-+                */
-+               if (dev->bus)
-+                       dev->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE
-                fw_devlink_link_device(dev);
-        }
-
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 07d93753b12f..f715b59d9bf3 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -226,6 +226,11 @@ static void __of_attach_node(struct device_node *np)
-        np->sibling =3D np->parent->child;
-        np->parent->child =3D np;
-        of_node_clear_flag(np, OF_DETACHED);
-+       /*
-+        * Ask fw_devlink to assume any new node is not a device. Driver co=
-re
-+        * will clear this flag if the assumption turns out to be wrong.
-+        */
-+       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
- }
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-
-
-> ---
->  drivers/bus/imx-weim.c    | 1 +
->  drivers/i2c/i2c-core-of.c | 1 +
->  drivers/of/dynamic.c      | 1 +
->  drivers/of/platform.c     | 1 +
->  drivers/spi/spi.c         | 1 +
->  5 files changed, 5 insertions(+)
->
-> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-> index 2a6b4f676458612e..71d8807170fa9f29 100644
-> --- a/drivers/bus/imx-weim.c
-> +++ b/drivers/bus/imx-weim.c
-> @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb, =
-unsigned long action,
->                                  "Failed to setup timing for '%pOF'\n", r=
-d->dn);
->
->                 if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
-> +                       rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE=
-;
->                         if (!of_platform_device_create(rd->dn, NULL, &pde=
-v->dev)) {
->                                 dev_err(&pdev->dev,
->                                         "Failed to create child device '%=
-pOF'\n",
-> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-> index bce6b796e04c2ca0..79a0d47010ba0b20 100644
-> --- a/drivers/i2c/i2c-core-of.c
-> +++ b/drivers/i2c/i2c-core-of.c
-> @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb, u=
-nsigned long action,
->                         return NOTIFY_OK;
->                 }
->
-> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
->                 client =3D of_i2c_register_device(adap, rd->dn);
->                 if (IS_ERR(client)) {
->                         dev_err(&adap->dev, "failed to create client for =
-'%pOF'\n",
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index 07d93753b12f5f4d..e311d406b1705306 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np)
->         np->sibling =3D np->parent->child;
->         np->parent->child =3D np;
->         of_node_clear_flag(np, OF_DETACHED);
-> +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
->  }
->
->  /**
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block *=
-nb,
->                 if (of_node_check_flag(rd->dn, OF_POPULATED))
->                         return NOTIFY_OK;
->
-> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
->                 /* pdev_parent may be NULL when no bus platform device */
->                 pdev_parent =3D of_find_device_by_node(rd->dn->parent);
->                 pdev =3D of_platform_device_create(rd->dn, NULL,
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 1a65f96fe2aff591..7bd053a32fad1a3c 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -4480,6 +4480,7 @@ static int of_spi_notify(struct notifier_block *nb,=
- unsigned long action,
->                         return NOTIFY_OK;
->                 }
->
-> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
->                 spi =3D of_register_spi_device(ctlr, rd->dn);
->                 put_device(&ctlr->dev);
->
-> --
-> 2.34.1
->
