@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F75D6BFA8B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 14:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E09F6BFA9C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 15:00:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbjCRNqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 09:46:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
+        id S229848AbjCROA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 10:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjCRNqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 09:46:18 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7658B16308
-        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:45:53 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id by8so6591327ljb.12
-        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 06:45:53 -0700 (PDT)
+        with ESMTP id S229837AbjCROA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 10:00:56 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938E03252A
+        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 07:00:52 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id t14so7822901ljd.5
+        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 07:00:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679147144;
+        d=linaro.org; s=google; t=1679148050;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bZmVH1RGUKYBmKWQcwY+fEbQpKKUjfXojhC77rsS5vw=;
-        b=DhvDZch5gEJxBKeV+NwUImlx9raxeIXs3Im41v4mxQuvjADUvQe3M0VqLziW6htM1J
-         2P0qzRLqBcIZAw8QfAq32ee/xTLOCWtDQ1ZBi2NV0BcYY8LlhhKnKwf2ojwq59YGgrjR
-         9Z76DsRXLEn9XARR59tn9hoa7wtJnwoML40IwdyA1h6YtsDSbARMQz39U9VotO1Svjw6
-         cn6ySS2U321F3X0u1NIrLp7ATmWvvd6tS/Z57+1VBHkhvf227CQ7/xzXOoJ9yybshApR
-         /ObHqazxSeuvuRUTptKEycigxfVPHHO0q52HsQ6LUGDY2g/LiMsYQ36xcTAlFUAP72zo
-         lwIg==
+        bh=Pq1grktIZUaFTq6y9zAYI6jqVJHwlACogyMHxjKxw0E=;
+        b=g1KLQFh26D5iGPpjd1G/eLz/Y0XGhNxEFdpNUp76JndWYhTBQ3KOkUgpIwwOxfal2b
+         /HXMQhpWt5snVr8RNE2Lr3csDUIg93q6JkoppyFIWg7wfx2RRdvqUVSI95PFzIS4NN2b
+         X8fgot6FdidtEH1NKhlSdQ6x7R+R/NdzJyJsVsabEM4JcP5gYDMyT1AsltcudcfGHOqf
+         ezLt2Xb956gymARhIZcknXaFc/0hkX6W3uaTvvAI9KKb9RS5bO/3CodqTTEIW85zApzK
+         4XtaZiocPbzoJQPKx8npL3/9p+ukUmyk8d3BG4zL0JtbR+/QXXPT3LCG4lk+1QExD7b9
+         +i2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679147144;
+        d=1e100.net; s=20210112; t=1679148050;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bZmVH1RGUKYBmKWQcwY+fEbQpKKUjfXojhC77rsS5vw=;
-        b=NLK8oG9VGuepOusz1aKi7CNAKHZxXUtMMGGh+h3Qp2X9KzjQShbFLHFybUusYAnYW3
-         4XN7vRbzMEeSDqcZVVOxlWzUrGzW8pMYvwrDDWQ6l0OZxwxfrFHdlY29Pop/QaivQRTf
-         TF6Aidf1tGM72yn/r9SEQbEMoxg2EJ/U7w3io5B0uHRpNVT5F3+jR3Lk+t8vQCaY0Mir
-         qsNIKOT6S6qRYTon6IJwBL6ELGC5aq1x1A+fJGtom48V9cAYl+5lCLmzRKPipdaHx1yc
-         NBEt7V2Sl707BgOeq+lFLGY3J6XbET9OA12FIdj6CmbxT5jK5dMOeYSKgASjZAqmtzM0
-         746Q==
-X-Gm-Message-State: AO0yUKWjJZrfxYQ8gTvt3ViPipFlSIfTA3C+DzPj90ufyoDkLJR3xS8G
-        TykcBHwpM+b3hxeMMYgdTq47UA==
-X-Google-Smtp-Source: AK7set+HlJAWljTPYjq99oajZiG5ytdECwFazBY9rPV1N0eWXvHicunAFRQxFl9lqZHrglA/jmwJpg==
-X-Received: by 2002:a2e:9b93:0:b0:29b:b7ae:e2e4 with SMTP id z19-20020a2e9b93000000b0029bb7aee2e4mr572704lji.33.1679147144126;
-        Sat, 18 Mar 2023 06:45:44 -0700 (PDT)
+        bh=Pq1grktIZUaFTq6y9zAYI6jqVJHwlACogyMHxjKxw0E=;
+        b=j2KbYS7VM0YfMi56UgriZ+LMkp1Zh+3u5/76MdfIGJxNtH0EMx3DsjOmVU9ftluTBk
+         a+L7KLd2BlQyqO3gTmN5u6i0U+qtDyC+BSoPOu543K6WleyacG0fI8LjCznyqsQhC8kL
+         GYR7YtbpSykwM1WzEhEHtEvAGmMZzLh5MHz/C/wwwBThhjAA91eg7nOrdmwDj+a5JJPJ
+         IXYfrgH7GPtTJB2aOf+ZFX6Rrmj0gjXRCKniA6Fa8WTG573+8rW8gAuFNVKzecCEkj5b
+         kv1j/1V0tP4kaJYx9GEQsR9BlEamff4NngaEzvCK///FvPjwW61j2Q5TmbF8zERX1qtH
+         JP+w==
+X-Gm-Message-State: AO0yUKWzDTYLHTLHJt2heZID8yGJ3U+tN2CuJ3V4Mo8QoO/kCHkdANbw
+        gWO/O48Y3KYqPWlbyvaZRX5FaA==
+X-Google-Smtp-Source: AK7set9n3jWRCyaEW5qHt+5N4JBeEQQ0u3VT7jFsk+GHueILW9QUIk7NEXxfqsKIUjYohI9zdk9MTQ==
+X-Received: by 2002:a2e:be92:0:b0:295:b0cd:517 with SMTP id a18-20020a2ebe92000000b00295b0cd0517mr5832408ljr.35.1679148050075;
+        Sat, 18 Mar 2023 07:00:50 -0700 (PDT)
 Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id h26-20020a2e901a000000b00298a7f8c4bfsm254175ljg.67.2023.03.18.06.45.42
+        by smtp.gmail.com with ESMTPSA id l22-20020a2e8696000000b002947028ae7csm893920lji.72.2023.03.18.07.00.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Mar 2023 06:45:43 -0700 (PDT)
-Message-ID: <22cfb674-eb2b-ff77-da87-cf6b520e592d@linaro.org>
-Date:   Sat, 18 Mar 2023 14:45:42 +0100
+        Sat, 18 Mar 2023 07:00:49 -0700 (PDT)
+Message-ID: <af8cd242-2a78-cac3-d307-ce6ab0810308@linaro.org>
+Date:   Sat, 18 Mar 2023 15:00:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sm6350: Add GPU nodes
+Subject: Re: [PATCH v4 09/12] arm64: dts: qcom: sm8350-hdk: add pmic glink
+ node
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20230315-topic-lagoon_gpu-v1-0-a74cbec4ecfc@linaro.org>
- <20230315-topic-lagoon_gpu-v1-4-a74cbec4ecfc@linaro.org>
- <CR8J7A4RGCHZ.293RWUBS367M2@otso>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230130-topic-sm8450-upstream-pmic-glink-v4-0-38bf0f5d07bd@linaro.org>
+ <20230130-topic-sm8450-upstream-pmic-glink-v4-9-38bf0f5d07bd@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CR8J7A4RGCHZ.293RWUBS367M2@otso>
+In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v4-9-38bf0f5d07bd@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,177 +87,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 17.03.2023 09:56, Luca Weiss wrote:
-> On Thu Mar 16, 2023 at 12:16 PM CET, Konrad Dybcio wrote:
->> From: Konrad Dybcio <konrad.dybcio@somainline.org>
->>
->> Add Adreno, GPU SMMU and GMU nodes to hook up everything that
->> the A619 needs to function properly.
->>
->> Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
-[...]
-
-> What about adding interconnect already? I also have opp-peak-kBps
-> additions in the opp table for that. I'll attach the diff I have at the
-> end of the email.
-I believe the GMU takes care of it internally (or at least should)
-with the bandwidth tables we send in a6xx_hfi.c : a6xx_hfi_send_bw_table()
-
-
-[...]
-
->>  
->> +		adreno_smmu: iommu@3d40000 {
+On 17.03.2023 16:04, Neil Armstrong wrote:
+> Add the pmic glink node linked with the DWC3 USB controller
+> switched to OTG mode and tagged with usb-role-switch.
 > 
-> This and gmu should be above gpucc @3d90000?
-Absolutely.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+
+[...]
+
+>  &usb_1_dwc3 {
+> -	/* TODO: Define USB-C connector properly */
+> -	dr_mode = "peripheral";
+> +	dr_mode = "otg";
+> +	usb-role-switch;
+> +
+> +	ports {
+You created these in patch [6/12]!
 
 Konrad
-> 
->> +			compatible = "qcom,sm6350-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
->> +			reg = <0 0x03d40000 0 0x10000>;
->> +			#iommu-cells = <1>;
->> +			#global-interrupts = <2>;
->> +			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			clocks = <&gpucc GPU_CC_AHB_CLK>,
->> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
->> +			clock-names = "ahb",
->> +				      "bus",
->> +				      "iface";
->> +
->> +			power-domains = <&gpucc GPU_CX_GDSC>;
->> +		};
->> +
->> +		gmu: gmu@3d6a000 {
->> +			compatible = "qcom,adreno-gmu-619.0", "qcom,adreno-gmu";
->> +			reg = <0 0x03d6a000 0 0x31000>,
->> +			      <0 0x0b290000 0 0x10000>,
->> +			      <0 0x0b490000 0 0x10000>;
->> +			reg-names = "gmu",
->> +				    "gmu_pdc",
->> +				    "gmu_pdc_seq";
->> +
->> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "hfi",
->> +					  "gmu";
->> +
->> +			clocks = <&gpucc GPU_CC_AHB_CLK>,
->> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
->> +				 <&gpucc GPU_CC_CXO_CLK>,
->> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
->> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>;
->> +			clock-names = "ahb",
->> +				      "gmu",
->> +				      "cxo",
->> +				      "axi",
->> +				      "memnoc";
->> +
->> +			power-domains = <&gpucc GPU_CX_GDSC>,
->> +					<&gpucc GPU_GX_GDSC>;
->> +			power-domain-names = "cx",
->> +					     "gx";
->> +
->> +			iommus = <&adreno_smmu 5>;
->> +
->> +			operating-points-v2 = <&gmu_opp_table>;
->> +
->> +			status = "disabled";
->> +
->> +			gmu_opp_table: opp-table {
->> +				compatible = "operating-points-v2";
->> +
->> +				opp-200000000 {
->> +					opp-hz = /bits/ 64 <200000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->> +				};
->> +			};
->> +		};
->> +
->>  		mpss: remoteproc@4080000 {
->>  			compatible = "qcom,sm6350-mpss-pas";
->>  			reg = <0x0 0x04080000 0x0 0x4040>;
->>
->> -- 
->> 2.39.2
-> 
-> Here's the diff I have for interconnect on top of this:
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> index 4954cbc2c0fc..51c5ac679a32 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> @@ -1142,6 +1142,8 @@ gpu: gpu@3d00000 {
->  			iommus = <&adreno_smmu 0>;
->  			operating-points-v2 = <&gpu_opp_table>;
->  			qcom,gmu = <&gmu>;
-> +			interconnects = <&gem_noc MASTER_GRAPHICS_3D 0 &clk_virt SLAVE_EBI_CH0 0>;
-> +			interconnect-names = "gfx-mem";
->  			nvmem-cells = <&gpu_speed_bin>;
->  			nvmem-cell-names = "speed_bin";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		port@0 {
+> +			reg = <0>;
+> +
+> +			usb_1_dwc3_hs: endpoint {
+> +				remote-endpoint = <&pmic_glink_hs_in>;
+> +			};
+> +		};
+> +
+> +		port@1 {
+> +			reg = <1>;
+> +
+> +			usb_1_dwc3_ss: endpoint {
+> +				remote-endpoint = <&pmic_glink_ss_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&usb_1_dwc3_hs {
+> +	remote-endpoint = <&pmic_glink_hs_in>;
+> +};
+> +
+> +&usb_1_dwc3_ss {
+> +	remote-endpoint = <&pmic_glink_ss_in>;
+>  };
 >  
-> @@ -1157,42 +1159,49 @@ gpu_opp_table: opp-table {
->  				opp-850000000 {
->  					opp-hz = /bits/ 64 <850000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-> +					opp-peak-kBps = <8371200>;
->  					opp-supported-hw = <0x02>;
->  				};
->  
->  				opp-800000000 {
->  					opp-hz = /bits/ 64 <800000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-> +					opp-peak-kBps = <8371200>;
->  					opp-supported-hw = <0x04>;
->  				};
->  
->  				opp-650000000 {
->  					opp-hz = /bits/ 64 <650000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-> +					opp-peak-kBps = <6220000>;
->  					opp-supported-hw = <0x08>;
->  				};
->  
->  				opp-565000000 {
->  					opp-hz = /bits/ 64 <565000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-> +					opp-peak-kBps = <5412000>;
->  					opp-supported-hw = <0x10>;
->  				};
->  
->  				opp-430000000 {
->  					opp-hz = /bits/ 64 <430000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> +					opp-peak-kBps = <4068000>;
->  					opp-supported-hw = <0xff>;
->  				};
->  
->  				opp-355000000 {
->  					opp-hz = /bits/ 64 <355000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-> +					opp-peak-kBps = <3072000>;
->  					opp-supported-hw = <0xff>;
->  				};
->  
->  				opp-253000000 {
->  					opp-hz = /bits/ 64 <253000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +					opp-peak-kBps = <2188000>;
->  					opp-supported-hw = <0xff>;
->  				};
->  			};
+>  &usb_1_hsphy {
 > 
