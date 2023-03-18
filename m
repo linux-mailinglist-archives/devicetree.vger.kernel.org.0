@@ -2,93 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 215E46BFAA6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 15:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C33326BFAAA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 15:08:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbjCROF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 10:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35420 "EHLO
+        id S229660AbjCROIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 10:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjCROF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 10:05:27 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C4D1EBC0;
-        Sat, 18 Mar 2023 07:05:23 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id C16325C01D9;
-        Sat, 18 Mar 2023 10:05:20 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Sat, 18 Mar 2023 10:05:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm1; t=
-        1679148320; x=1679234720; bh=ne/ZkURyOBnvQZJfA/dZ5P1GHL8xeaXDuo7
-        2X96mUAI=; b=PWikUWM3nRrwrVKDkhGUG4yZLKM+qv3w0qRH8+aP7kRH0GCOXso
-        x5/MwfoaRCPs+GSEE64L3II+XIY5u0api+BlU23UP7NEdV6YwrBxtpCVsmC7PwL8
-        KIIPmUVDa2cSrq9xVNaQ0TFFMQthZJKbzSTTlhDnqH7FUDHRqjGv/TWO1+C3sTmK
-        FqP6rOAiLT/xXWXU5ouibhWu0MPxHCYxjL9dZD1sILy9v11+udYxqTTSE5VBAV1a
-        12CmZpql/aowC44Ikmdu0an3RYUFJT0OqcSE3h0WiKBBbJGOlYKnGNdYkGksQA2I
-        HngjLuZ5SNSx9NzlPmqV7UG6JZyQuJCsQpg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-        1679148320; x=1679234720; bh=ne/ZkURyOBnvQZJfA/dZ5P1GHL8xeaXDuo7
-        2X96mUAI=; b=n2roBARfoflGRnl+aYU+hQ9zC7+YjssGLD9gcVAxfhISvUNwI9P
-        0R9Smd4ErRI5sWHRgsQQgg4Zm9leBCSlOI6bnCAKJQtT1mzT0wn8aOgx5JJj/nSS
-        cMPq5Xm4hDIxWL/XYk/kx8nxSO18g3WRLDKGjC6ntxJp0s1aL6YzZKOdikFLOHI6
-        ADKeoHSpJo/IAlDsXfiQxzVxt9o0faH+FqlWJq7D6A9p4FOdKzX1+O8msnJNk9Ho
-        +c9xndLcxLIrcI8AeercVpKUrL819JfskKtE+2UYbfu8wM98BtYaH84Vg8iBwPqQ
-        UetYHJM07UueJI/UV1w1HhlOHW2SfGyM0Kg==
-X-ME-Sender: <xms:H8UVZKO5hsePPBXygggc8Se1Mc17WDUEan853sWl8vGRPZWY1LuYbA>
-    <xme:H8UVZI-YX8PoBNdK14Hb22aPkgbDV3OLFKKXnLRridBDQIB2JP2XD5aLC-Jap7Jlx
-    MGPCEIdOgpOX72RHEE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdefgedgheekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:H8UVZBTH-K8trWBZHXlwQI6WJ_h5tYCXamdoN-EXBElRubJRjCZcRQ>
-    <xmx:H8UVZKsnHJMHCk7mQgtMJfnf3oyTFZfAOnXSTJf_Oqq9G5jzuz6JLQ>
-    <xmx:H8UVZCdKiAaM_7T-eIkluqlpzhN5E81HI07nO5mU73A9Wpm3R7zvpA>
-    <xmx:IMUVZI22ozlqtFOxaEyopgNB_2_sLPE_g6q-hUAUMIdAb3vD5FLm4Q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 6A542B60086; Sat, 18 Mar 2023 10:05:19 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-221-gec32977366-fm-20230306.001-gec329773
-Mime-Version: 1.0
-Message-Id: <12298b67-3012-4902-9dcc-61c3c9907a47@app.fastmail.com>
-In-Reply-To: <7cc8258c-3a77-5387-aaa4-658761fbb0ae@gmail.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-12-ychuang570808@gmail.com>
- <2063c6d1-85ed-43d9-b572-a762b6ce18c1@app.fastmail.com>
- <7cc8258c-3a77-5387-aaa4-658761fbb0ae@gmail.com>
-Date:   Sat, 18 Mar 2023 15:04:58 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jacky Huang" <ychuang570808@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Jiri Slaby" <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>
-Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        with ESMTP id S229618AbjCROIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 10:08:45 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11B052333D
+        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 07:08:42 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id h9so7862064ljq.2
+        for <devicetree@vger.kernel.org>; Sat, 18 Mar 2023 07:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679148520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HB3cmv6Sv7SdleBzkv5B5PR9GUQ7sHBXprhMZpqwa7M=;
+        b=ukwSAx9A44DJyzN8axz+CRS4ixmUIY02BAL44IvhhXqNGwpBWtYmu0gn4/7z6gEFv0
+         UKBu2DIv9Qq0kKCn8a6z3hsVtzKa4t86T7UbL4HgB5yKb2g8sBX0HyelCVgv4KRO52Ly
+         4FRE+/Fm1qr+LP2gLoHe84WkFZDEAVm9Fp+PJgdNq9IcYSwwW8YheR394nUgbp1L7DJT
+         CPFjSnOzVTKCbiJL8o1fSJ91VINdEmPDgpGZOfWW7o6s8CgazywB4aIOTylYLrmJVT0b
+         lcQhu+9Pa4IIpOTM3O1bDaUchMmOP5sH3vV0mEKAForgsIWQYEu0TUicl91m349LNZpo
+         kcZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679148520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HB3cmv6Sv7SdleBzkv5B5PR9GUQ7sHBXprhMZpqwa7M=;
+        b=hohdrb3XyahQuZaXdrFr/bL8cwcBO1lKoiUszTgtR6xyUyrhazQrtGJ82bFXcvb2J1
+         JHfpjQMWGtnF4vNCM7ri0ACYMXu7PjP8zz89meUDR2qwu2J9x2Ce7WDjkK+FRvP2Zlrs
+         74DT4zqCCG04AkpdT7Bpb2xnYeyWddHwBoRbyeWmb1gT/uYq//4Bll1RFiEbe0SY19KV
+         1bHoSqM3h+R+uXV6uv1uarZ+0FfmDq7SSS1U/ZoN/cXDGZRs2ohPgUz29fK7D5sIgXOz
+         i4sFSTSsv5zP0LA8uwDHqalmgcUVi8pUjwnB5enYOUyZp8x9AOR4zMadAZYSY2JjCuBy
+         VySw==
+X-Gm-Message-State: AO0yUKVPuBEJqww7fC87I9I8XyLawTnBB5Qba510llaQvzQ+9RD2t90s
+        /mNu3fiGtm8oDJv/5x+ayThGLg==
+X-Google-Smtp-Source: AK7set84fWddd9NO3HF0LBnwqDWLvPpSSlFEZ/L86hkrs1DNox9R/gPMzMKkcA5zkZMCaOLh/o6V9A==
+X-Received: by 2002:a05:651c:508:b0:294:6cde:b9f3 with SMTP id o8-20020a05651c050800b002946cdeb9f3mr6315626ljp.37.1679148520157;
+        Sat, 18 Mar 2023 07:08:40 -0700 (PDT)
+Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
+        by smtp.gmail.com with ESMTPSA id u5-20020ac24c25000000b004e7a0f67490sm842607lfq.110.2023.03.18.07.08.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 18 Mar 2023 07:08:39 -0700 (PDT)
+Message-ID: <ca12735e-d6c8-997e-036f-693cd8a9870f@linaro.org>
+Date:   Sat, 18 Mar 2023 15:08:37 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V2 4/6] regulator: qcom_smd: Add support to define the
+ bootup voltage
+Content-Language: en-US
+To:     Devi Priya <quic_devipriy@quicinc.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     agross@kernel.org, andersson@kernel.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_srichara@quicinc.com,
+        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_ipkumar@quicinc.com
+References: <20230217142030.16012-1-quic_devipriy@quicinc.com>
+ <20230217142030.16012-5-quic_devipriy@quicinc.com>
+ <907628d1-b88d-5ac6-ed9d-7f63e2875738@linaro.org>
+ <Y/aeu5ua7cY5cGON@sirena.org.uk>
+ <39f73580-f263-de0e-6819-89c3f4c75c3a@quicinc.com>
+ <8ce07abd-2d02-69d2-8dc6-fe11525aecda@linaro.org>
+ <11b05b9f-b969-6648-2204-2da5f8465c96@quicinc.com>
+ <751e5129-3c11-0156-719e-3fe996a149be@quicinc.com>
+ <3f434777-c4b6-272f-1971-f9adf3faefe4@linaro.org>
+ <a54d4e1b-d62d-559d-1882-e460e696c056@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <a54d4e1b-d62d-559d-1882-e460e696c056@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,61 +90,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 18, 2023, at 14:17, Jacky Huang wrote:
-> On 2023/3/16 =E4=B8=8B=E5=8D=88 10:17, Arnd Bergmann wrote:
->> On Wed, Mar 15, 2023, at 08:28, Jacky Huang wrote:
->>> +	mem: memory@80000000 {
->>> +		device_type =3D "memory";
->>> +		reg =3D <0x00000000 0x80000000 0 0x20000000>; /* 512M DRAM */
->>> +	};
->>> +};
->> In most machines, the memory size is detected by the boot loader
->> and filled in the dtb in memory before starting the kernel, so
->> you should not need two separate files here for the two common
->> memory configurations.
->
->
-> On ma35d1, memory size is determined early before uboot.
->
-> BL1 (MaskROM boot code) -> BL2 (arm-trust-firmware) -> BL32 (op-tee) &=20
-> BL33 (uboot).
-> The DDR was initialized in BL2 stage with a selected DDR setting, which
-> is hard coded, including DDR size.
->
-> We searched the arm64 dts and found that almost all vendors claimed
-> memory size in board level dtsi/dts. This seems to be common.
->
-> So, can we have it unchanged?
 
-I see the memory size encoded in about one out of three .dts files,
-which is more than I expected. It's clearly not harmful to have it
-listed in the dts, it just shouldn't be necessary.
 
-If it helps you with your current u-boot, then leave it in, but
-consider adding detection logic into u-boot so it can override
-the value in the dtb file at boot time.
-
->> Since the machine is called 'som', I would assume that this is a
->> module that is integrated on another board, so more commonly one
->> would have a dtsi file for the som in addition to the one for the
->> soc, and have all the components of the module listed in this
->> file, while the dts file that includes the som.dtsi lists the
->> devices on the carrier board and enables the on-chip devices
->> that are connected to the outside.
+On 14.03.2023 18:15, Devi Priya wrote:
+> 
+> 
+> On 3/8/2023 3:57 PM, Konrad Dybcio wrote:
 >>
->
-> You are right, ma35d1 som have a base board, and a cpu board on it.
->
-> It is a good suggestion that we should have a dtsi for som base board.
->
-> Consider that we are in the initial submit, and such a dtsi will be an=
- empty
-> file at this stage. So, I would like to do it when peripheral drivers
-> upstream started. Is it ok?
+>>
+>> On 7.03.2023 07:55, Devi Priya wrote:
+>>>
+>>>
+>>> On 3/6/2023 6:39 PM, Devi Priya wrote:
+>>>>
+>>>>
+>>>> On 3/3/2023 6:57 PM, Konrad Dybcio wrote:
+>>>>>
+>>>>>
+>>>>> On 3.03.2023 14:21, Devi Priya wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 2/23/2023 4:31 AM, Mark Brown wrote:
+>>>>>>> On Wed, Feb 22, 2023 at 11:11:42PM +0100, Konrad Dybcio wrote:
+>>>>>>>
+>>>>>>>> Thinking about it again, this seems like something that could be
+>>>>>>>> generalized and introduced into regulator core.. Hardcoding this
+>>>>>>>> will not end well.. Not to mention it'll affect all mp5496-using
+>>>>>>>> boards that are already upstream.
+>>>>>>>
+>>>>>>>> WDYT about regulator-init-microvolts Mark?
+>>>>>>>
+>>>>>>> The overwhelming majority of devices that have variable voltages
+>>>>>>> support readback, these Qualcomm firmware devices are pretty much
+>>>>>>> unique in this regard.  We don't want a general property to set a
+>>>>>>> specific voltage since normally we should be using the
+>>>>>>> constraints and don't normally need to adjust things immediately
+>>>>>>> since we can tell what the current voltage is.
+>>>>>>>
+>>>>>>> This is pretty much just going to be a device specific bodge,
+>>>>>>> ideally something that does know what the voltage is would be
+>>>>>>> able to tell us at runtime but if that's not possible then
+>>>>>>> there's no good options.  If the initial voltage might vary based
+>>>>>>> on board then a device specific DT property might be less
+>>>>>>> terrible, if it's determined by the regulator the current code
+>>>>>>> seems fine.  Or just leave the current behavour, if the
+>>>>>>> constraints are accurate then hopefully a temporary dip in
+>>>>>>> voltage is just inelegant rather than an issue.  Indeed the
+>>>>>>> current behaviour might well save power if you've got a voltage
+>>>>>>> range configured and nothing actually ever gets round to setting
+>>>>>>> the voltage (which is depressingly common, people seem keen on
+>>>>>>> setting voltage ranges even when the voltage is never varied in
+>>>>>>> practice).
+>>>>>>
+>>>>>> Hi Mark, The initial bootup voltage is actually blown into the OTP register of the PMIC and it remains the same across boards for IPQ9574 SoC.
+>>>>> But what about IPQ6018 which also uses MP5496? That's also gonna
+>>>>> set the voltage on there, it may be too high/low..
+>>> For IPQ6018, the bootup voltage is the same as that of IPQ9574 which is
+>>> 875mV
+>> Okay, but what about any other design that employs or may employ
+>> MP5496 in the future?
+>>
+>>>>>
+>>>>>    Initially the SoC runs at 800MHz with a voltage of 875mV set by the bootloaders. As kernel does not know the initial voltage, during regulator registration the framework considers the current voltage to be zero and tries to bring up the regulator to minimum supported voltage of 600mV. This causes the dip which might be of concern in SS parts where the voltage might be insufficient leading to silent reboots.
+>>>>> That's an SoC-specific thing, the same regulator can be used with
+>>>>> many different ones. We can't just assume it'll always be like this.
+>>>>> I see the problem, but I believe this is not the correct solution
+>>> Okay, As we had discussions on reading back the voltage & the generic
+>>> DT property, do you suggest any other possible solutions here?
+>> Due to the sudden influx of various IPQ SoCs on the mailing list lately
+>> I have no idea if it concerned this one too, but at least one of them
+>> was said not to use RPM for controlling the clocks. If that's the case,
+>> I see no reason at all to use it for scaling the regulators, the PMIC
+>> could be addressed directly over I2C as a normal device. You'd probably
+>> want to keep VDD_[CM]X scaling through rpmpd, but it's easily done by
+>> simply not registering the CX/MX registers as children of the I2C
+>> regulator IC.
+> 
+> IPQ9574 SoC has RPM and uses it for controlling the regulators.
+> Currently, the RPM firmware does not have read support implemented
+> and so, we were not able to read the bootup voltage.
+> As we randomly saw silent reboots when the kernel boots up,
+> do you think we could proceed with this change for time being
+> and revisit the same when any SoC in the future employs MP5496?
+I'm still thinking about a cleaner fix because hardcoding voltages
+in kernel is just dangerous. Could you check whether attaching a CPU
+supply and adding an OPP table where each level has an opp-microvolt
+property would resolve your issue?
 
-It's not a big deal either way. I if you want to keep it only with
-one dts file and one dtsi file, that's fine, but maybe rename the dts
-file based on the name of the carrier rather than the SoM in this
-case.
-
-     Arnd
+Konrad
+>>
+>> Konrad
+>>>>>
+>>>>> Konrad
+>>>>>>
+>>>>>> Best Regards,
+>>>>>> Devi Priya
