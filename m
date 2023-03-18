@@ -2,89 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1FFA6BFB74
-	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 17:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AD26BFB71
+	for <lists+devicetree@lfdr.de>; Sat, 18 Mar 2023 17:12:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbjCRQMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 12:12:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36866 "EHLO
+        id S229765AbjCRQMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 12:12:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbjCRQMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 12:12:36 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71AB025BA9;
-        Sat, 18 Mar 2023 09:12:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1679155591; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=QM+lJSxUzEdwuOZD80fMk+7IUEwl2WOSorvRQ8gzib10or1CojJz8zVC2Ynqy9wefO
-    BM64vxq5uQj+9k6Ib1yhL4HDjifXFw9Px0mJ+v5vZ6au8rK4xoabI0A78o7bWkuAdE7U
-    kCHNAweId0Sau2Z4kho+E/iUiFf6ju8FnXhau0N3K9I9AzbLDz0hyObh2aPWHZfWvdFc
-    jS+nclAaDJ7HNx58+elnj+cePtwch07kGjGY2vBeRmNseFO2VjDsWToVpwMI69pBwKjV
-    C3hLEWG0Ppwgmj0Hc5490QOAIWoOqB4esptALTGODfu8lHjF0XIPCONkn6LZUZtxZp2+
-    oF/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1679155591;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+1JUVGGqwpyFbnd+/hrUkEmDpeWXDmsdFaI+rJ6DvUA=;
-    b=rgBR5HFSl/IwBHcUYwgrRJHQafbP6jvdAlSEoyHaiBCdODSFHn3bAEEIHBRcy8yp2E
-    ce97fFJZnnuJ6n8sfbziqleifX4Sq3oDlY6QbULu7ZYxkPmUldFTOtsidjzwt5eNXDmW
-    ecfCteykNfhZz+YAThzPYwWliaUJzJVH141PqjsWEEmasnifgz49mqZDRdj0V3m8pabX
-    wvPy1pPNFeGl9xaNNfTFw7xKXyJT12dZPWTDsp6reAngsjGIsqSS6RzHOy1AWVuWXbax
-    FzoejhZ+n+woTsU88kUSwwaX4dfM0TDqMzpXhu1r2Y/GZHefeeZxFJ/E8VN3uxlxO9Hp
-    EAnA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1679155591;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=+1JUVGGqwpyFbnd+/hrUkEmDpeWXDmsdFaI+rJ6DvUA=;
-    b=GtsC5fJPvCMZqy/JLeJahzJtPFg9x2wIcaKxjE0Hv9xynCd7gobtsZX2BLye+jExOG
-    kXefhfDwhaO56mR3MzDUvbisI0lP7HgLDI5COoyypgKk2fEnPf16FJnrzWH13pv6ByuX
-    Esq4dgvVMDiImYGOcrZNJoxh+wHntse/dEDEnet9fPM7CqrM9IYAeQRCv4l5LT9fiURr
-    EZaUa6MC/A83cMaMUQlYEcmm+CFRRx7W1aFrRVEVtd4bh5gjCvuHRv515Td4jpsnh+Kt
-    VkWMmx6tYrYrT9UsP8SZh1prWuCQYspWb8Wu+odLGoZEFUAVb4/PrDW0qOcFXfdIF4xB
-    jj9g==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKjWrKs9lg=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.3.1 AUTH)
-    with ESMTPSA id i40d22z2IG6V81U
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sat, 18 Mar 2023 17:06:31 +0100 (CET)
-Date:   Sat, 18 Mar 2023 17:06:30 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] thermal: qcom: tsens-v0_1: Add mdm9607 correction
- offsets
-Message-ID: <ZBXhhpbMHUaWXoWb@gerhold.net>
-References: <20230315103950.2679317-1-stephan.gerhold@kernkonzept.com>
- <20230315103950.2679317-4-stephan.gerhold@kernkonzept.com>
- <30e4ee62-0297-0ffe-23a5-87db096a6154@linaro.org>
+        with ESMTP id S229640AbjCRQMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 12:12:08 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E4D1EFD8;
+        Sat, 18 Mar 2023 09:12:07 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id z21so31513110edb.4;
+        Sat, 18 Mar 2023 09:12:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679155925;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yDOQo2oi01br/hq0Q8teN7ROHv1Pi/RknnKhbHvLQ04=;
+        b=hgLbXmJrfSUpdCdlq6mrDkRiNsJXXXMhNzi5UYUskhpvkA+Yh+E9aeaZkC8yOvi+3h
+         kg65zIGj0l7lRcQE7Qf6v+hwZS5RRolgfPdTURBNAIl2dy0nwfkVceX9auXIEblK2AOg
+         EBE4uIhP2YYzi5P/cxP50uZXgYgZOF9Lz3chIT19djjPU3Br+Fz+ZjGA0pFi2W6uIAKV
+         nINcdCNJqacxep5u8UXUkGZLw20rEXzMF3X/sI5EnxzogM94ioqWzwMIE2qC1uf7PCft
+         qha8VN3HoNk+C5WDM/jASK62mnRWcAZGg7GVaB+bYnb0Q3G9rbDmjYokTGfw7/YMTWn4
+         tA5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679155925;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yDOQo2oi01br/hq0Q8teN7ROHv1Pi/RknnKhbHvLQ04=;
+        b=M3iXfAE7olpNIi+bY1J9ziOEQeE4BYw9c9XqPu7a9JYyV1AHvK53ASLM1r8bRce5X/
+         Scg/X3FT9MhIPfZxXcXYFhnaW+V7bR3aXWSbYgmelKj3wpb4DY3sJsdDEoiiEYSnljgI
+         T2CjQO9pdYN+26TWJratdKFIAl46tC4x4GbvJb1M1mTW48KX9evWhQuEKpAYcdQVNcNb
+         uHZaqy8nzZNdUJV0NJPPM48Xd7OBrxmP2iv427eOnRu4uQoOpRA6QkHHeeNPpSMW3vqZ
+         9b0vKHhM9SPaPXAbnGUJsCqeKBVIdsF3e4GpsEeQWqziwWj6DYIOsSzVCDV6rXf8kfVz
+         75pA==
+X-Gm-Message-State: AO0yUKUiLjhKihIDSA9D4/e1ee1vu2409NMe+Gctwyz5GLS8c7KmW2FY
+        F9uG/OQ8FUJbep76LeFqitg=
+X-Google-Smtp-Source: AK7set/rc+rM+znYsJq2SQJj4XR4rOcdBb+eKAHgbkBpmBxGOghVKizBEcTMViBwFihuJpYQgtBQVw==
+X-Received: by 2002:a17:906:b1d6:b0:8b1:3467:d71b with SMTP id bv22-20020a170906b1d600b008b13467d71bmr3432056ejb.48.1679155925482;
+        Sat, 18 Mar 2023 09:12:05 -0700 (PDT)
+Received: from carbian ([2a02:8109:aa3f:ead8::a9c0])
+        by smtp.gmail.com with ESMTPSA id g19-20020a17090613d300b00931db712768sm2130526ejc.4.2023.03.18.09.12.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Mar 2023 09:12:05 -0700 (PDT)
+Date:   Sat, 18 Mar 2023 17:12:03 +0100
+From:   Mehdi Djait <mehdi.djait.k@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     jic23@kernel.org, mazziesaccount@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+Message-ID: <ZBXi05HpZSHYs2wm@carbian>
+References: <cover.1679009443.git.mehdi.djait.k@gmail.com>
+ <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
+ <ZBRXzymSWZaRDyhq@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <30e4ee62-0297-0ffe-23a5-87db096a6154@linaro.org>
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <ZBRXzymSWZaRDyhq@smile.fi.intel.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,45 +73,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 18, 2023 at 03:02:35PM +0100, Konrad Dybcio wrote:
-> On 15.03.2023 11:39, Stephan Gerhold wrote:
-> > According to the msm-3.18 vendor kernel from Qualcomm, mdm9607 needs
-> > "correction factors" to adjust for additional offsets observed after the
-> > factory calibration values in the fuses [1, 2].
-> > 
-> > The fixed offsets should be applied unless there is a special
-> > calibration mode value that indicates that no offsets are needed [3].
-> > 
-> > Note that the new calibration mode values are called differently in this
-> > patch compared to the vendor kernel:
-> >   - TSENS_TWO_POINT_CALIB_N_WA        -> ONE_PT_CALIB2_NO_OFFSET
-> >   - TSENS_TWO_POINT_CALIB_N_OFFSET_WA -> TWO_PT_CALIB_NO_OFFSET
-> > This is because close inspection of the calibration function [3] reveals
-> > that TSENS_TWO_POINT_CALIB_N_WA is actually a "one point" calibration
-> > because the if statements skip all "point2" related code for it.
-> > 
-> > [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/commit/d9d2db1b82bf3f72f5de0803d55e6849eb5b671e
-> > [2]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/commit/d75aef53a760e8ff7bac54049d00c8b2ee1b193e
-> > [3]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LE.UM.4.3.2.r1-04200-9x07/drivers/thermal/msm-tsens.c#L2987-3136
-> > 
-> > Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Fixes: a2149ab815fc ("thermal/drivers/qcom/tsens-v0_1: Add support for MDM9607")
-> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> > ---
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi Andy,
+
+On Fri, Mar 17, 2023 at 02:06:39PM +0200, Andy Shevchenko wrote:
+> On Fri, Mar 17, 2023 at 12:48:36AM +0100, Mehdi Djait wrote:
+> > Refactor the kx022a driver implementation to make it more
+> > generic and extensible.
+> > Add the chip_info structure will to the driver's private
+> > data to hold all the device specific infos.
+> > Move the enum, struct and constants definitions to the header
+> > file.
 > 
-> BTW, did you notice some crazy readouts or would this have gone
-> unnoticed had you not dug in the code?
+> Please, compile and test before sending.
+
+My bad, I ignored the warnings... 
+I will fix it.
+
+> 
+> ...
+> 
+> >  	.driver = {
+> > -		.name   = "kx022a-spi",
+> > +		.name	= "kx022a-spi",
+> >  		.of_match_table = kx022a_of_match,
+> >  	},
+> 
+> What was changed here?
+
+Nothing. I will fix it
+
+> 
+> ...
+> 
+> > -	.id_table = kx022a_id,
+> > +	.id_table = kx022a_spi_id,
+> 
+> Why do we need this change?
 > 
 
-I'm afraid it would likely have remained unnoticed. I think these
-offsets only make a small difference but it's still good to have them
-for slightly more accurate readings.
+For consistency:
+i2c: .id_table = kx022a_i2c_id,
+spi: .id_table = kx022a_spi_id,
 
-In v1 of this series I had the offsets for MSM8909 already (hardcoded
-into the old calibration function with all the bit shifts/masks etc).
-It was more coincidence that I checked MDM9607 for v2 because I had to
-make the code more generic with the new per-sensor nvmem cells. ;)
+> ...
+> 
+> > -	name = devm_kasprintf(data->dev, GFP_KERNEL, "%s-kx022a",
+> > +	name = devm_kasprintf(data->dev, GFP_KERNEL, "%s-accel",
+> >  			      dev_name(data->dev));
+> 
+> Shouldn't you use the name from chip info?
 
-Thanks,
-Stephan
+I can use the name from chip info. 
+dev_name(data->dev) is the original implementation
+
+> 
+> ...
+> 
+> > +#define KX_MASK_BRES16			    BIT(6)
+> > +
+> > +
+> 
+> One blank line is enough.
+
+I will change it in v2
+
+--
+Kind Regards
+Mehdi Djait
