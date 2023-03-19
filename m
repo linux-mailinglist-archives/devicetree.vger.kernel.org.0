@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDF86C0528
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F09246C052C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:04:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbjCSVDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 17:03:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44618 "EHLO
+        id S230163AbjCSVEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 17:04:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbjCSVDQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:03:16 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E571EBD7
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:02:52 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id e65so10829050ybh.10
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:02:52 -0700 (PDT)
+        with ESMTP id S230158AbjCSVEI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:04:08 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB5B6A4C
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:04:04 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-53d277c1834so192142847b3.10
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679259762;
+        d=linaro.org; s=google; t=1679259844;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gbV6Bh/cNsY2Io1y10SkZjIuZK4TmLVqW2b5h9GtPaE=;
-        b=VXyRZOPszvrTh2/++fTwBNasGeYcc1YN2g1XQGu+wGihL5XAh1HWL6miXKYetReFlt
-         e+mgaizYtW5gS157vS8n93LRFEj2Ah3ZbZoohAjU3TNPEaCLDcYiFuN05UhBOzXV30mJ
-         XRHuBT4ATsajKjivNpLh5PNHcBKcChZ2qjDjwijKtZpHIKVSMiQFjwD7zqt8phrj6qgu
-         gcv6ijOUMWWHFH+Mh93Ozd0dBP2TLL25g2uZuPkfck9I5o9Cdwg5JbKZ2SJx0zzV9QUY
-         qjnebF/7bIKXS3COEBYQSb2JOaexBEQb1wVDPDNNUoZ1Y5vtm5wVUKNai6hCRWcruo1I
-         uxgg==
+        bh=uHlOtmRhbXRseoAMuvDfv2S+ldzj7KSVKxvkV6Isssc=;
+        b=bruA6+gbtnYJyIR7+WxFwZh5y5zLSPKx/augfql2C6/nmpu7P6VXCh8UcAfqFv/bfn
+         85Zt6k1m7oTqnT9BnoJnir3on8cb0wciQMS7CU4IXYFMypjpwIDuQIn7krMKKiw6eeH7
+         0b6u4UbBuOhu0LKA+OpI1AyqhWAhJbgTGnzMykdV5A1WE/k7/BfxoQjlpqSJ5oKCZ2le
+         nxTXbVG6pcKXzqghfgGhgJCkPpSis9kLJxr0x+O22dwmMP/7+y8i1UFdh1LRmuLkBiK4
+         y10+CdjVj9/R9uetTf2biaAUsmsOSwcE+i8iIsymvaikFVt0oT2qayPe66Da+lSgiCe8
+         w6gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679259762;
+        d=1e100.net; s=20210112; t=1679259844;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gbV6Bh/cNsY2Io1y10SkZjIuZK4TmLVqW2b5h9GtPaE=;
-        b=56DvDD+hzqRdGEhHn1rsIuQSM4ZujJCKAeJTNkRNjDShPRHvNE1oNwc+xgNeOJqrXW
-         4IqBdVF0bL/lWPM8YQwX/QdnNBML90nj6dVlMPF9y4B8zyOqkKMkNiWPpwhgy8Ot/Xcd
-         o4oUPiuPkeB28P1/zM6qfbFh8rElBxyg7RFWK8kI0I/qsh5V7g+Vb3lJ5l6p35RXNwNv
-         BItOC26ANq6hmd8ez6HqWQMMI/fA/EfiGRkw56vIXcslvLJU0lO//Oiz7Ey6cLFl84mh
-         eTwtH9PWLLsUkoOsB/iF8mTQJNl9u85+jFqa8R8wAo3DC/buRixbkoOwKNnXgnLQ66Aq
-         o81w==
-X-Gm-Message-State: AO0yUKV5htxXiUBGOFWLAiNRhyl2TXHwGp89h3auQ0sW0BF3HICB6i35
-        W0QgRg5pimBM0UGBnBo5fbLHUd66gxD1fVID0rVvRg==
-X-Google-Smtp-Source: AK7set9mxeFO57SGruCJH6C1TZj973V2SQLNunHNOaC44Y5XLUJPP+RqdyW12BliuWYUYiE6coMhTxlkWHzd16pXggk=
-X-Received: by 2002:a05:6902:110e:b0:b26:47f3:6cb with SMTP id
- o14-20020a056902110e00b00b2647f306cbmr3231733ybu.4.1679259762548; Sun, 19 Mar
- 2023 14:02:42 -0700 (PDT)
+        bh=uHlOtmRhbXRseoAMuvDfv2S+ldzj7KSVKxvkV6Isssc=;
+        b=gmfFZFKFIZBDC4dUwQ1tJDuDZ8/2EKq+J18o8B5sgODZ2TIcA5e6ByTwRjov2xOHbQ
+         KXO/gnI+8mjhqF3HwMf0aTEJPLczKaE8n7rvLcA7L7uNcmrsEyHZ3nrBzc/YRqLyYnoS
+         MqRUNVgOLc1ZuUjJkUeF+QMfTxm1D/+BvUfPHE0RwHajY0XB4UTdm27jgFsaH2WoUv/s
+         oOsETt5LFOAKtD6gb7JLFkbMMvUgAGnbYqVCYvQocumHgSY907oAw7GqI7CAAiHJ6jpS
+         e8Idfsy1/uw2p6lT70X6JJY9RJO6A6UHxhJwsveGSBP3sI+sdd1VXH4CqGv+uGUf6LO+
+         SlLg==
+X-Gm-Message-State: AO0yUKVtyQKAB49xyb8DlrKmYg+swIEqqMYWMV2ArxlEcMK7wrgGDoKt
+        mEfhzWg6NRQL0LMDREBVAhsqBTsY6q+FXZZWECyOGg==
+X-Google-Smtp-Source: AK7set/04BNL1IZQ2ZoTv/hKzO515Y7fhbtJesHPiD/G6odhiwBO82T6HTUjnRKfAgbfZp4XgBZ6kJZDWB83+4HIHcg=
+X-Received: by 2002:a81:e205:0:b0:52a:9f66:80c6 with SMTP id
+ p5-20020a81e205000000b0052a9f6680c6mr8233006ywl.9.1679259843810; Sun, 19 Mar
+ 2023 14:04:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230316072940.29137-1-quic_devipriy@quicinc.com> <20230316072940.29137-5-quic_devipriy@quicinc.com>
-In-Reply-To: <20230316072940.29137-5-quic_devipriy@quicinc.com>
+References: <20230316072940.29137-1-quic_devipriy@quicinc.com>
+ <20230316072940.29137-5-quic_devipriy@quicinc.com> <CACRpkdZYOQ6JvQvg5gcUb1x+FOeTn-H5rOnK=8EgDBmZh9DYig@mail.gmail.com>
+In-Reply-To: <CACRpkdZYOQ6JvQvg5gcUb1x+FOeTn-H5rOnK=8EgDBmZh9DYig@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 19 Mar 2023 22:02:31 +0100
-Message-ID: <CACRpkdZYOQ6JvQvg5gcUb1x+FOeTn-H5rOnK=8EgDBmZh9DYig@mail.gmail.com>
+Date:   Sun, 19 Mar 2023 22:03:52 +0100
+Message-ID: <CACRpkdZUhkZ0FcdAMGBfu6SX7EMpMjeikx4soU5SWi1UJRBHBQ@mail.gmail.com>
 Subject: Re: [PATCH V9 4/6] pinctrl: qcom: Add IPQ9574 pinctrl driver
 To:     Devi Priya <quic_devipriy@quicinc.com>,
         Bjorn Andersson <andersson@kernel.org>
@@ -80,28 +81,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 16, 2023 at 8:31=E2=80=AFAM Devi Priya <quic_devipriy@quicinc.c=
-om> wrote:
-
-> Add pinctrl definitions for the TLMM of IPQ9574
+On Sun, Mar 19, 2023 at 10:02=E2=80=AFPM Linus Walleij <linus.walleij@linar=
+o.org> wrote:
+> On Thu, Mar 16, 2023 at 8:31=E2=80=AFAM Devi Priya <quic_devipriy@quicinc=
+.com> wrote:
 >
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->  Changes in V9:
->         - Added COMPILE_TEST for non-OF configurations in config PINCTRL_=
-IPQ9574
->         - Unwrapped the lines for PINGROUP 34 & 62 in ipq9574_groups
->         - Removed the comma from terminator line in ipq9574_pinctrl_of_ma=
-tch[] array
->         - Moved the MODULE_DEVICE_TABLE entry just below the array
->           ipq9574_pinctrl_of_match[]
+> > Add pinctrl definitions for the TLMM of IPQ9574
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> > Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> > ---
+> >  Changes in V9:
+> >         - Added COMPILE_TEST for non-OF configurations in config PINCTR=
+L_IPQ9574
+> >         - Unwrapped the lines for PINGROUP 34 & 62 in ipq9574_groups
+> >         - Removed the comma from terminator line in ipq9574_pinctrl_of_=
+match[] array
+> >         - Moved the MODULE_DEVICE_TABLE entry just below the array
+> >           ipq9574_pinctrl_of_match[]
+>
+> Looks good to me but I would like Bjorns ACK on this patch before I merge=
+ it
+> if possible.
 
-Looks good to me but I would like Bjorns ACK on this patch before I merge i=
-t
-if possible.
+Ah wait I see that bjorn already merged the DTS file so I guess he's fine
+with the set. Patch applied!
 
 Yours,
 Linus Walleij
