@@ -2,128 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F786BFF00
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 03:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8690A6BFF29
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 03:55:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjCSCFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Mar 2023 22:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37236 "EHLO
+        id S229758AbjCSCz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Mar 2023 22:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbjCSCFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 22:05:52 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2108.outbound.protection.outlook.com [40.107.255.108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CDD21ACCA;
-        Sat, 18 Mar 2023 19:05:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AKJMRy1LvZT48yj7aPh3tEYEMUPOJFbKUL1UouLhaGCZPsugLMF88TL6LJGDtbEKyiUBQunZ9uY61C5QsrKQom1q52gy9vdxHzAynonAzoHK48DJHnpl6d9cBP6pFv+WoaWMFw+r4g8up2daUsvqerYkhJB+eYjzbuYwQUgXvBV5msKFaUvJkroy3wh0x1eGm//mLEZe2HXJ6zDMWb0UHDfzgJefAH5201quTu5r4ckwbN16dllhBShZcEuf65AW2Cn3s4/uYxirYcbmizgHL0oZVpOCP/Fcdre/bA0RDSApa9ZqlwdBZGzar9WroZPNm2RUHKAU/FYhPskX3U8ghg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PgeYUi5G7qA7xn5pUDagPqaBoyBKxVV4cjhAZE4pJJo=;
- b=MQVX2RSrAsd/x8KSayLpUe4yRb7ymPuinhq1m+a1UtmsI3utgb0uNzOUVFRI69xeh8WaWoW5CqezbxatlmGUCMawqOvAfdRU8atmPQOjgQQT75218iR3LUwWITFBMSLcveGE13ion8lS0DkRmBL36+EwU1LMeaJwFQUAs+UeTRqbD75ZMhUJXBLssVEWAEjwUASLgYRAapfQPquup82saU/BJVjGVkgsyGUxxhBpYHS9g9wMbnV0EKdXawrStrc32Xo/Y9HMye5OM4ArvsOsVNi+vqWO+D5Wo8iinGn6SVM/wFvMkzVsbEPyaqPUcdwAs5rxx4PTZQWWoKmwmX407Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PgeYUi5G7qA7xn5pUDagPqaBoyBKxVV4cjhAZE4pJJo=;
- b=nOXjJYsdtLEo7a9xrfRslrXraxj7MD9aHNlL3TNtV5/dnxmglR2P7Of8xqqtjVdXHaoCmkArSancIHaXE5Y/I/YhhqNcP8GVGW9xkWZoni12CRsyFjF9SaUs+J5L09D7NXu3Tq9xxVQEk0TWdq3XIcfqWlAf3JPdUBG4RLKVR/6eBoK6CfMcfr/KahC1MK9Jm2chNqi1M7AJQV+/B44DRGrRARRkkdTCum6jNH4zzRFR1pXactQn8/jdJC/FWfojH10cD8DBR772J+r8gj5lzXg/B/rrKQWdlH7YkHB/SGkHp5jPnnlHMph9Odml74g5iBqyrgqAseW0wCTE3qRrcw==
-Received: from SEZPR06MB5269.apcprd06.prod.outlook.com (2603:1096:101:78::6)
- by PSAPR06MB3880.apcprd06.prod.outlook.com (2603:1096:301:3c::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Sun, 19 Mar
- 2023 02:05:47 +0000
-Received: from SEZPR06MB5269.apcprd06.prod.outlook.com
- ([fe80::daf6:5ebb:a93f:1869]) by SEZPR06MB5269.apcprd06.prod.outlook.com
- ([fe80::daf6:5ebb:a93f:1869%9]) with mapi id 15.20.6178.037; Sun, 19 Mar 2023
- 02:05:47 +0000
-From:   Ryan Chen <ryan_chen@aspeedtech.com>
-To:     Andi Shyti <andi.shyti@kernel.org>
-CC:     Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-Thread-Topic: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-Thread-Index: AQHZSZBNCqcj9BIMLU6U/5WV2MINja8AX5gAgAEbpFA=
-Date:   Sun, 19 Mar 2023 02:05:46 +0000
-Message-ID: <SEZPR06MB5269DB6BE01C48BBFA17876DF2839@SEZPR06MB5269.apcprd06.prod.outlook.com>
-References: <20230226031321.3126756-1-ryan_chen@aspeedtech.com>
- <20230226031321.3126756-2-ryan_chen@aspeedtech.com>
- <20230318090936.qvqozqfskpe5lja7@intel.intel>
-In-Reply-To: <20230318090936.qvqozqfskpe5lja7@intel.intel>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEZPR06MB5269:EE_|PSAPR06MB3880:EE_
-x-ms-office365-filtering-correlation-id: b0fc9060-6cf0-4710-bf4e-08db281e745c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kLPzArKaEjZSDotKtUNqY6IRyUvjKkjyW+vwWxbXkiL8pmsw7hb+KWhWHmF5xT5P1nFt4+vu4oJZ6YXwe3Q20r8XwIC5ZX5xDHP1hOLZHhodL4ayVNrRr+kbtF0kgHa0lRk7UVEmTtdEf4Tp4VeNqjaZpr2pADOBUupatPetZFXbT7UtUWKi84jHxCl0AWVmJvlg89wEiuJ7rbx+qfUrCnU0Z3rGnuLwM0L0MRirBl/2jmYdOaDGXeHt1ROGHx9Ao0xcTbSpi6lcRPy/BjzAIpIiRc/QJC02GkRA+XZl1OLi3qKBwePSOx+bUW5KLvE8ux1gIo602kqfTGx2ZpgaovOustWHGLESaDNNqr5MjZaOy2cBbvgAo9hKUuGT2YdW0t2i5d1GAhrvNmGn4RBPkUOQMA1+QhjdejlcyTafSmwVghGsfOkf68RGCoHSB1I57tyNNcAcZ+olXoKoXh/Sb6DJ5j5goQE6VYbvEv/LQQN5n+2OkJfLVIMQ71CSt7gmiLkP5Ug0A+hNqaaPHcL2wgzMlTXLrDbLhp1adVIE6dFfSrmrgUCWEnufNEQDQ8l6XZdByQtspXXqixMi0MalEtn1k8BIJfeEMAL34MGUJmqjJjFsqgM21ORZoi8FzKmqnWP0kHOFOKR14aSLIUdosGcdG7vlwwf3qF75N4+a9rSgQleoXdYM382rV3qU98kNuHmty1b/7PHWsALSEtuRdw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5269.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(39830400003)(396003)(366004)(376002)(136003)(346002)(451199018)(83380400001)(38100700002)(86362001)(38070700005)(55016003)(122000001)(6916009)(4326008)(41300700001)(8676002)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(52536014)(2906002)(8936002)(7416002)(5660300002)(33656002)(26005)(186003)(9686003)(53546011)(6506007)(316002)(478600001)(54906003)(71200400001)(7696005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pPZqomkhpgB9brMyNS4TkOp/R+Z0SQTPVrUlnHXIFvXvxzj3zuRV2Q7URwwT?=
- =?us-ascii?Q?pAj5JqlQfIBkUZrZx+kPylWGFT0mgWp3FzWgP1/Wtf5VCxwBlxlznBEuV+tW?=
- =?us-ascii?Q?yQBFK+fYFkWd8fnLEmxgV4AZw+cX94Sgw8i0uZ3WHAAm0s1QfWdJMc9RwR67?=
- =?us-ascii?Q?lLD/xAt9xrrfRD9usN4zWcC6ECEkKaMQah/wQDlHInBjxU3ZEMbTSFo3Bwq9?=
- =?us-ascii?Q?ezmDldmlqVcodQVXq8nr37wFfOR2a8vtCcviyqu09aiesgaE36nnes2dut7p?=
- =?us-ascii?Q?QkaJoqFA/pZN0o9Rr5DJz47PMY++T2IJP45BfPmUe+SGYxAYWdH5UIN5GrcJ?=
- =?us-ascii?Q?7QNH7pJ7vbqjldLzuhOA+2G2gELO6RVZ1bQaNPQe4whfTcmTq0tgks6ZYVps?=
- =?us-ascii?Q?oRu3/fvFMIQggy3YkOMOoDbp2g9bBKmN7NH8HpxXUNL3oQ+Ub9JcokhSyGcW?=
- =?us-ascii?Q?xicI8kYoCw64SfLXZZKdDDO9TkvIZhXDmC0VFypJfwNElt534NE9iUwvfZot?=
- =?us-ascii?Q?DepVE5LdL0MCnaSoFw/H8ZdMwQZ95Y57mYBXzB8E/CjW34WFt+QKQZqyvCW9?=
- =?us-ascii?Q?AwZ8cZX3MI8QlpDsebqqUZ30hMNRoHz0RVXo1ZhtpIVv2nqAPxxGKByNQKVx?=
- =?us-ascii?Q?Zjs9U3yr21qCgYXe4N1Pu5OA8zXAATruTt/NV5mLDho6SgA3AfAK67YEmxQi?=
- =?us-ascii?Q?ejum5l7/e3uIngEL6h4aA6SqVzcjU4EUNaaznDlxZXOCNP9ttCuKKJBElIsL?=
- =?us-ascii?Q?H/xV50Zmd8vTt/6cJuuMNAaucXZnH5uMp69s46S1/3+s+B8Ezgtme7bOrOCB?=
- =?us-ascii?Q?PoZ2zmgXKo6NGTwhGEDH1c6mm9b8p7McIS/shRmw/ySn1sFcCKLK1BJq158Y?=
- =?us-ascii?Q?sRv0UOZmA5dYuly2rFoI8WncioBUZwfmMK0XuNh1fnBDalSJXkdIDDMHyj7J?=
- =?us-ascii?Q?Kmq5X0/VqpK8wrK/SsRtVpNfM7BhU7FxbqJbFidiMh67ByhXHH2diC1kw5gx?=
- =?us-ascii?Q?U1h1YOMlHXgrT3Dd/aoDVg5vNwp4av94XKA1w9FdoPmW6/IL+4XSxlkEKhaS?=
- =?us-ascii?Q?5f+UJhrfR+yUQG247+fFqiRWc8WCYxiSwbHCn9nomkGW0cL1iTRUryRZ1Sib?=
- =?us-ascii?Q?Q7KPw/iuwph0yTdBcK45hi263VBDRXBzKq/WMCPt6sTIjbIOYBSepddJtVfG?=
- =?us-ascii?Q?DU0/EULdiA8Ri9J4bTs5fkWN2+0eFDo8i2PSSt5xFaIEQDzCP7GOG71Z0HZL?=
- =?us-ascii?Q?x7VPAibyvYn3XEhdTxdXy0+zanmuNG5zahlpzUDBv/bT5FWBxcnOapmfeQdX?=
- =?us-ascii?Q?fxskDDpbD9m1hDgTx0rQWwaKouG/0jPKMm90dgWDeflJ6hWG980c7rGtmrJc?=
- =?us-ascii?Q?LcfclJSAoWdNzKx8zjMXPF6Csywi281o+wVn43Fdz4pOcCqYE6+4p+72MONv?=
- =?us-ascii?Q?J/dg269XLxX+70+lJF0AU8Zat77fcRNdpEv70ypNYYie/13No13go9UoXDxl?=
- =?us-ascii?Q?/LgM7YnBolrPb7k8ZnTO8wQSk8u4K+yXHinRUntySH8aC0A6UVS/4XPnDCd8?=
- =?us-ascii?Q?gb1UHMlUTc4mAxHen9XEjfBptIxuxz7E7L8MMXy8?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229553AbjCSCz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Mar 2023 22:55:56 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D95218B1F;
+        Sat, 18 Mar 2023 19:55:53 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id t83so4859671pgb.11;
+        Sat, 18 Mar 2023 19:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679194552;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0PtZRbdqZnLpXZl8fukP7Y6q+KTufVstJv4cmcSFX80=;
+        b=Ve+ZCQPiUJ843UAhYFg+/UWCgoBFWkn5LJ3ztK/mSo4qgIMXXwfU5h60N2g+yBkUaq
+         J9hRlOdLXaB+FIIpFPiTmIOyXZARIoThEG0ue00brVwqv+aFnGQre2cqKCB6h+N7LQwo
+         H0DtUDDnBCkbUHjV5P4ZW3ElOIDbMo6twRElIv1E1eFM9PlJwHt2/TV1KnRBrH5aiBDt
+         2IbiY5wDn7jc1RC27hIBbaA3dwAoE425Of8vjt9vEC+qYEJL0Z9+RyXNtcJg/x1hbVnA
+         f1+Ifxpj0J8rUoW+ZtLBIbC8u7nJeL14zEIztLIA/RPFi5FF4610OtpkPSDlVDnbyoR3
+         zHvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679194552;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0PtZRbdqZnLpXZl8fukP7Y6q+KTufVstJv4cmcSFX80=;
+        b=RQi+dlNWlC93H6Wb5N6m4fh8GWQad1HikzPfeJMO9II25UanRMrprKN292i3GzWWWf
+         gbtkgl4un/HXJAhE2RgHOTZrw5kmFRFGHTqdZ9TtECAZ598kdJhyx9+Z5i34R2lH6mSJ
+         +A3hj4skofrP79lJDK7SqI0KSwqQicBakrDVkzKKKox2rzqtE3DoRX8KCNjeUn1Zb09y
+         w7LyZmJXC66573XjUcBcyY7AvyPq7fAN8989QrfpK+/YX+95kqtmHsxYdnuB5vK7Jiqa
+         4xrd5Fgux4ZoNjW4ZnWBEllu4/bGKVxf7jkYBiHMxWRP14e/7gUx4t4N0hmugtX1/f/o
+         xb4Q==
+X-Gm-Message-State: AO0yUKXdAz3I/HXxYuu4YOVmjZV9sTn0aP0Lgf+4mKmse24uQUcAj9eV
+        XGUPW5xTDwi1V8mFjbt+YXER47mqJy8=
+X-Google-Smtp-Source: AK7set88GxBcPJyP5g9MNh9Pe2mwU/odxKGYQq018AMBE0O8NH5BK9OB3gRl7K0qKZGfaXh3tAwHnQ==
+X-Received: by 2002:a62:7910:0:b0:625:e77b:93b2 with SMTP id u16-20020a627910000000b00625e77b93b2mr11337018pfc.5.1679194552347;
+        Sat, 18 Mar 2023 19:55:52 -0700 (PDT)
+Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
+        by smtp.gmail.com with ESMTPSA id g11-20020a62e30b000000b005ac419804d5sm3958094pfh.98.2023.03.18.19.55.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 18 Mar 2023 19:55:52 -0700 (PDT)
+Message-ID: <822dc1c0-f2c8-def1-c5fe-a1d03a0f9c8c@gmail.com>
+Date:   Sun, 19 Mar 2023 10:55:48 +0800
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5269.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0fc9060-6cf0-4710-bf4e-08db281e745c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2023 02:05:46.9266
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VAqrP2bi1f0b8sAYEJ2btSjFjPCRHISkWcaFXbRlIisfSW18jdEYbNcnT7fxiXvzL37r32drISBZnD5ryjNxJrOZ5SZLtq+YX+LGpzoKqys=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR06MB3880
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+From:   Jacky Huang <ychuang570808@gmail.com>
+Subject: Re: [PATCH 12/15] clk: nuvoton: Add clock driver for ma35d1 clock
+ controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-13-ychuang570808@gmail.com>
+ <764f9105-e888-4776-bd49-efec72bd409d@linaro.org>
+Content-Language: en-US
+In-Reply-To: <764f9105-e888-4776-bd49-efec72bd409d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -131,53 +82,236 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Dear Krzysztof,
 
-> -----Original Message-----
-> From: Andi Shyti <andi.shyti@kernel.org>
-> Sent: Saturday, March 18, 2023 5:10 PM
-> To: Ryan Chen <ryan_chen@aspeedtech.com>
-> Cc: Andrew Jeffery <andrew@aj.id.au>; Brendan Higgins
-> <brendan.higgins@linux.dev>; Benjamin Herrenschmidt
-> <benh@kernel.crashing.org>; Joel Stanley <joel@jms.id.au>; Rob Herring
-> <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Philipp Zabel
-> <p.zabel@pengutronix.de>; linux-i2c@vger.kernel.org;
-> openbmc@lists.ozlabs.org; devicetree@vger.kernel.org;
-> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
-> linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: aspeed: support for
-> AST2600-i2cv2
->=20
-> Hi Ryan,
->=20
-> On Sun, Feb 26, 2023 at 11:13:20AM +0800, Ryan Chen wrote:
-> > Add ast2600-i2cv2 compatible and aspeed,global-regs, aspeed,timeout
-> > aspeed,xfer-mode description for ast2600-i2cv2.
-> >
-> > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> > ---
-> >  .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 44
-> +++++++++++++++++++
-> >  1 file changed, 44 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> > b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> > index f597f73ccd87..75de3ce41cf5 100644
-> > --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-> > @@ -49,6 +49,25 @@ properties:
-> >      description:
-> >        states that there is another master active on this bus
-> >
-> > +  aspeed,timeout:
-> > +    type: boolean
-> > +    description: I2C bus timeout enable for master/slave mode
->=20
-> Finally you can proceed with this. Please remove "aspeed,timeout"
-> and use "i2c-scl-has-clk-low-timeout" instead.
 
-Thanks a lot, I will start progress this.=20
+On 2023/3/16 下午 03:51, Krzysztof Kozlowski wrote:
+> On 15/03/2023 08:28, Jacky Huang wrote:
+>> From: Jacky Huang<ychuang3@nuvoton.com>
+>>
+>> The clock controller generates clocks for the whole chip, including
+>> system clocks and all peripheral clocks. This driver support ma35d1
+>> clock gating, divider, and individual PLL configuration.
+>>
+>> There are 6 PLLs in ma35d1 SoC:
+>>    - CA-PLL for the two Cortex-A35 CPU clock
+>>    - SYS-PLL for system bus, which comes from the companion MCU
+>>      and cannot be programmed by clock controller.
+>>    - DDR-PLL for DDR
+>>    - EPLL for GMAC and GFX, Display, and VDEC IPs.
+>>    - VPLL for video output pixel clock
+>>    - APLL for SDHC, I2S audio, and other IPs.
+>> CA-PLL has only one operation mode.
+>> DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
+>> operation modes: integer mode, fraction mode, and spread specturm mode.
+>>
+>> Signed-off-by: Jacky Huang<ychuang3@nuvoton.com>
+>> ---
+>>   drivers/clk/Makefile                     |   1 +
+>>   drivers/clk/nuvoton/Makefile             |   4 +
+>>   drivers/clk/nuvoton/clk-ma35d1-divider.c | 144 ++++
+>>   drivers/clk/nuvoton/clk-ma35d1-pll.c     | 534 +++++++++++++
+>>   drivers/clk/nuvoton/clk-ma35d1.c         | 970 +++++++++++++++++++++++
+>>   drivers/clk/nuvoton/clk-ma35d1.h         | 198 +++++
+>>   6 files changed, 1851 insertions(+)
+>>   create mode 100644 drivers/clk/nuvoton/Makefile
+>>   create mode 100644 drivers/clk/nuvoton/clk-ma35d1-divider.c
+>>   create mode 100644 drivers/clk/nuvoton/clk-ma35d1-pll.c
+>>   create mode 100644 drivers/clk/nuvoton/clk-ma35d1.c
+>>   create mode 100644 drivers/clk/nuvoton/clk-ma35d1.h
+>>
+>> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+>> index e3ca0d058a25..2e7916d269e1 100644
+>> --- a/drivers/clk/Makefile
+>> +++ b/drivers/clk/Makefile
+>> @@ -103,6 +103,7 @@ endif
+>>   obj-y					+= mstar/
+>>   obj-y					+= mvebu/
+>>   obj-$(CONFIG_ARCH_MXS)			+= mxs/
+>> +obj-$(CONFIG_ARCH_NUVOTON)		+= nuvoton/
+> Missing compile test.
+>
+> (...)
 
-Best Regards
-Ryan
+
+Thank you. We should have a Kconfig file in nuvoton directory.
+
+I will a Kconfig file including COMPILE_TEST.
+
+
+>> +
+>> +MODULE_AUTHOR("Chi-Fang Li<cfli0@nuvoton.com>");
+>> +MODULE_DESCRIPTION("NUVOTON MA35D1 Clock Driver");
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/nuvoton/clk-ma35d1.h b/drivers/clk/nuvoton/clk-ma35d1.h
+>> new file mode 100644
+>> index 000000000000..faae5a17e425
+>> --- /dev/null
+>> +++ b/drivers/clk/nuvoton/clk-ma35d1.h
+>> @@ -0,0 +1,198 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Chi-Fang Li<cfli0@nuvoton.com>
+>> + */
+>> +
+>> +#ifndef __DRV_CLK_NUVOTON_MA35D1_H
+>> +#define __DRV_CLK_NUVOTON_MA35D1_H
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/clkdev.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/spinlock.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/mfd/ma35d1-sys.h>
+>> +
+>> +enum ma35d1_pll_type {
+>> +	MA35D1_CAPLL,
+>> +	MA35D1_DDRPLL,
+>> +	MA35D1_APLL,
+>> +	MA35D1_EPLL,
+>> +	MA35D1_VPLL,
+>> +};
+>> +
+>> +enum ma35d1_pll_mode {
+>> +	VSIPLL_INTEGER_MODE,
+>> +	VSIPLL_FRACTIONAL_MODE,
+>> +	VSIPLL_SS_MODE,
+>> +};
+>> +
+>> +/* VSI-PLL CTL0~2 */
+>> +#define VSIPLL_CTL0			0x0
+>> +#define VSIPLL_CTL1			0x4
+>> +#define VSIPLL_CTL2			0x8
+>> +
+>> +/* VSI-PLL Specification limits */
+>> +#define VSIPLL_FREF_MAX_FREQ		200000000UL
+>> +#define VSIPLL_FREF_MIN_FREQ		1000000UL
+>> +#define VSIPLL_FREFDIVM_MAX_FREQ	40000000UL
+>> +#define VSIPLL_FREFDIVM_MIN_FREQ0	1000000UL
+>> +#define VSIPLL_FREFDIVM_MIN_FREQ1	10000000UL
+>> +#define VSIPLL_FCLK_MAX_FREQ		2400000000UL
+>> +#define VSIPLL_FCLK_MIN_FREQ		600000000UL
+>> +#define VSIPLL_FCLKO_MAX_FREQ		2400000000UL
+>> +#define VSIPLL_FCLKO_MIN_FREQ		85700000UL
+>> +#define VSIPLL_SPREAD_RANGE		194
+>> +#define VSIPLL_MODULATION_FREQ		50000
+>> +
+>> +/* Clock Control Registers Offset */
+>> +#define REG_CLK_PWRCTL			(0x00)
+>> +#define REG_CLK_SYSCLK0			(0x04)
+>> +#define REG_CLK_SYSCLK1			(0x08)
+>> +#define REG_CLK_APBCLK0			(0x0C)
+>> +#define REG_CLK_APBCLK1			(0x10)
+>> +#define REG_CLK_APBCLK2			(0x14)
+>> +#define REG_CLK_CLKSEL0			(0x18)
+>> +#define REG_CLK_CLKSEL1			(0x1C)
+>> +#define REG_CLK_CLKSEL2			(0x20)
+>> +#define REG_CLK_CLKSEL3			(0x24)
+>> +#define REG_CLK_CLKSEL4			(0x28)
+>> +#define REG_CLK_CLKDIV0			(0x2C)
+>> +#define REG_CLK_CLKDIV1			(0x30)
+>> +#define REG_CLK_CLKDIV2			(0x34)
+>> +#define REG_CLK_CLKDIV3			(0x38)
+>> +#define REG_CLK_CLKDIV4			(0x3C)
+>> +#define REG_CLK_CLKOCTL			(0x40)
+>> +#define REG_CLK_STATUS			(0x50)
+>> +#define REG_CLK_PLL0CTL0		(0x60)
+>> +#define REG_CLK_PLL2CTL0		(0x80)
+>> +#define REG_CLK_PLL2CTL1		(0x84)
+>> +#define REG_CLK_PLL2CTL2		(0x88)
+>> +#define REG_CLK_PLL3CTL0		(0x90)
+>> +#define REG_CLK_PLL3CTL1		(0x94)
+>> +#define REG_CLK_PLL3CTL2		(0x98)
+>> +#define REG_CLK_PLL4CTL0		(0xA0)
+>> +#define REG_CLK_PLL4CTL1		(0xA4)
+>> +#define REG_CLK_PLL4CTL2		(0xA8)
+>> +#define REG_CLK_PLL5CTL0		(0xB0)
+>> +#define REG_CLK_PLL5CTL1		(0xB4)
+>> +#define REG_CLK_PLL5CTL2		(0xB8)
+>> +#define REG_CLK_CLKDCTL			(0xC0)
+>> +#define REG_CLK_CLKDSTS			(0xC4)
+>> +#define REG_CLK_CDUPB			(0xC8)
+>> +#define REG_CLK_CDLOWB			(0xCC)
+>> +#define REG_CLK_CKFLTRCTL		(0xD0)
+>> +#define REG_CLK_TESTCLK			(0xF0)
+>> +#define REG_CLK_PLLCTL			(0x40)
+>> +
+>> +/* Constant Definitions for Clock Controller */
+>> +#define SMICPLLCTL0_FBDIV_POS		(0)
+>> +#define SMICPLLCTL0_FBDIV_MSK		(0xfful << SMICPLLCTL0_FBDIV_POS)
+>> +#define SMICPLLCTL0_INDIV_POS		(8)
+>> +#define SMICPLLCTL0_INDIV_MSK		(0xful << SMICPLLCTL0_INDIV_POS)
+>> +#define SMICPLLCTL0_OUTDIV_POS		(12)
+>> +#define SMICPLLCTL0_OUTDIV_MSK		(0x3ul << SMICPLLCTL0_OUTDIV_POS)
+>> +#define SMICPLLCTL0_PD_POS		(16)
+>> +#define SMICPLLCTL0_PD_MSK		(0x1ul << SMICPLLCTL0_PD_POS)
+>> +#define SMICPLLCTL0_BP_POS		(17)
+>> +#define SMICPLLCTL0_BP_MSK		(0x1ul << SMICPLLCTL0_BP_POS)
+>> +#define VSIPLLCTL0_FBDIV_POS		(0)
+>> +#define VSIPLLCTL0_FBDIV_MSK		(0x7fful << VSIPLLCTL0_FBDIV_POS)
+>> +#define VSIPLLCTL0_INDIV_POS		(12)
+>> +#define VSIPLLCTL0_INDIV_MSK		(0x3ful << VSIPLLCTL0_INDIV_POS)
+>> +#define VSIPLLCTL0_MODE_POS		(18)
+>> +#define VSIPLLCTL0_MODE_MSK		(0x3ul << VSIPLLCTL0_MODE_POS)
+>> +#define VSIPLLCTL0_SSRATE_POS		(20)
+>> +#define VSIPLLCTL0_SSRATE_MSK		(0x7fful << VSIPLLCTL0_SSRATE_POS)
+>> +#define VSIPLLCTL1_PD_POS		(0)
+>> +#define VSIPLLCTL1_PD_MSK		(0x1ul << VSIPLLCTL1_PD_POS)
+>> +#define VSIPLLCTL1_BP_POS		(1)
+>> +#define VSIPLLCTL1_BP_MSK		(0x1ul << VSIPLLCTL1_BP_POS)
+>> +#define VSIPLLCTL1_OUTDIV_POS		(4)
+>> +#define VSIPLLCTL1_OUTDIV_MSK		(0x7ul << VSIPLLCTL1_OUTDIV_POS)
+>> +#define VSIPLLCTL1_FRAC_POS		(8)
+>> +#define VSIPLLCTL1_FRAC_MSK		(0xfffffful << VSIPLLCTL1_FRAC_POS)
+>> +#define VSIPLLCTL2_SLOPE_POS		(0)
+>> +#define VSIPLLCTL2_SLOPE_MSK		(0xfffffful << VSIPLLCTL2_SLOPE_POS)
+>> +
+>> +struct clk_hw *ma35d1_reg_clk_pll(enum ma35d1_pll_type type, u8 u8mode,
+>> +				 const char *name, const char *parent,
+>> +				 unsigned long targetFreq,
+>> +				 void __iomem *base,
+>> +				 struct regmap *regmap);
+>> +
+>> +struct clk_hw *ma35d1_reg_adc_clkdiv(struct device *dev,
+>> +				    const char *name,
+>> +				    const char *parent_name,
+>> +				    unsigned long flags,
+>> +				    void __iomem *reg, u8 shift,
+>> +				    u8 width, u32 mask_bit);
+>> +
+>> +extern spinlock_t ma35d1_lock;
+> Why this is here?
+
+
+We will remove it and use "static DEFINE_SPINLOCK(ma35d1_lock);"
+
+and have it used in clk-ma35d1-divider.c only.
+
+
+>> +
+>> +static inline struct clk_hw *ma35d1_clk_fixed(const char *name, int rate)
+>> +{
+>> +	return clk_hw_register_fixed_rate(NULL, name, NULL, 0, rate);
+>> +}
+>> +
+> Why all these are here?
+
+
+These should be static functions in clk-ma35d1.c.
+
+We will move these function to the C file in next version.
+
+
+>> +
+>> +#endif /* __DRV_CLK_NUVOTON_MA35D1_H */
+> Best regards,
+> Krzysztof
+
+
+Best regards,
+
+Jacky Huang
+
+
