@@ -2,194 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 369F96C059C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9EC6C05AB
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:37:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbjCSVcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 17:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46604 "EHLO
+        id S229783AbjCSVg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 17:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbjCSVc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:32:26 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3201A498
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:31:53 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id o11-20020a05600c4fcb00b003eb33ea29a8so6375858wmq.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:31:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679261511;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iwm7j7gz5tZ/lbs8NKr0hRp3m2lnBn5LK4PqGwVU0rk=;
-        b=OAEJuxOlkduMFUJfEueREs+vEjTzCf0vFPxOHmO2fD4RPOCsqELkiG1d06zVdiHKA+
-         2ViOYhca6KlcTsxXigXUOq9LuLigxktorwe5qt7vuEt4iqt1lrBXZUE//syKVWD6zUSF
-         qX8TNmEwlJrdFSLXQojwbG6GbI3WQqei60jv7WOI8kygtO7fMEX4cD6l0cfHAxXOpLa/
-         iLszKMWDwqWqpZ/FSZHuSN0fiaZE+lkWTCZAPUBv3pwSOt8NpwUQOjzbpD9lEEO8Ozvv
-         if1Bx8WFZufFgXArVCJOr+DZoYHD49n5li7Im94czz5mBJK9+JkICIq0KD7RPsTxLTPT
-         fgLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679261511;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iwm7j7gz5tZ/lbs8NKr0hRp3m2lnBn5LK4PqGwVU0rk=;
-        b=06G+Y2ybQ4Rw5zlGPIJjBp8X4D3qfrcdFB/Ll3nSxsjFghwvYEY+/2FOET1f8cbX9/
-         eu7EkS4sQHENYC9Veo2VexwvkbQllZVORktvQG60E+/9TdOdS4f4ah3gXjpRX6GOGWN8
-         3j7jpKbisFOSFGo/PYlqxLPTyyf9tNmizZBjbtcei8Kaj6EtDM9zrx3ysoGKXoUDPVj5
-         r+9TZ/ZODgL2MhMjOaXAJY77DaiLUGqQNvGK1qPuc7fdy7Z1IclV/N3Cy3YCMUBNOcRm
-         7GqujXvHpuDmH1vjdbLu/kYYAjoyvroe0gUEn56x4mLMF88hzzlJeH07rpwC8hzKdigy
-         eR4Q==
-X-Gm-Message-State: AO0yUKVWP0UnFj8/zqXZPstQv1YTEiGU/ZMsQCArOwyOfeMh8H0Le5of
-        d6Ejaj5Ifz99/fGyO7a8hcGzHA==
-X-Google-Smtp-Source: AK7set/vhhrgnE3viT8koUFQvmrJIAcam3nM3pvPgs7nL9kcOBaDSCNnM0EsCO8FRhTW4D/EGc0uXw==
-X-Received: by 2002:a05:600c:3595:b0:3ed:2ae9:6c75 with SMTP id p21-20020a05600c359500b003ed2ae96c75mr20028219wmq.37.1679261511457;
-        Sun, 19 Mar 2023 14:31:51 -0700 (PDT)
-Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002cfe685bfd6sm7345241wrw.108.2023.03.19.14.31.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 14:31:50 -0700 (PDT)
-Message-ID: <5098322b-d09b-72ec-ac6a-128a6a64ea17@linaro.org>
-Date:   Sun, 19 Mar 2023 21:31:49 +0000
+        with ESMTP id S230218AbjCSVgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:36:45 -0400
+Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051AF1B321
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:36:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1679261779; x=1710797779;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=TT1NZFDlglG04lWn8b3D569FNDwhCTSHE8VYkA5Dx+U=;
+  b=WwgLSns7j7gDtzj1dC7n4qMQav7OUrfj3FkmleU6GeTxuQeN7mGnTHRl
+   IFgfzE9Nes8ut2l8deUs4MTzuGsBM2c3gzQJArS2H0tn1k6taMW3DMi/p
+   kQhsGRQZ30wC9TSlQTjV1KeChzPn59xTEosvqh2DbcMrpV6LMIDfK5fog
+   xDySjlxkRoxDKPO2hq+olaLujpqIAVIwESkVD0W5GzQnne4QF5Pmy/x3o
+   HBkR7EZ7Bx+S/YSUDcn8NS4uag9JTtC2CBZyVJXIzstqzVVfiT95JOldn
+   FZ/nx4fM7aMW8M1kgYp29vgzu/yvwiTBZxv2eJf7Pn3UdmT6GMl/at5NP
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,274,1673884800"; 
+   d="scan'208";a="338033416"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 20 Mar 2023 05:36:08 +0800
+IronPort-SDR: 0iUkjZZrkn9WwORk8bl6cx4RggIcrpkzxECSWHYQ+sFFOGPBkxlnPLodGd3vGUwKmykl5ZIsPB
+ VITPJJGceFivL1w+LLjG0ygO0uZ6/MqxVejgX2MWh20lkjna12c/HMJjdMiW8A5HSmsbjzrUmL
+ GstdVgnG6nvoT9la+OkYEZPEi/Ep+LUUZDQ1AKc+SmJhmZzqwbjmB7//H0XDg0dRRqOJBEhFHr
+ GsIkW4KbJJpFcsiLOkJSvib8Au2YWrxObpFH3LFdgXT3LEaUrmFMeOz1IVlZSbFYo/FM47hiaw
+ FWw=
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Mar 2023 13:52:29 -0700
+IronPort-SDR: Tm0t/zDBl9NuzUa060GqdbFaatq54Zifpr3OQ7TCb12eU9iamAXbXuSdJNT+eSPMNSExHdA+hf
+ d+cFFBbo6fkfzfmSYlQxKdaSOGKtEiScbeuHOWR7AIWGUVCvgTF8OLwWVzi8AjXv0kfrP2VpVG
+ KE08AFd+n8U9ivk/J0OcsLq0owKhH99rqASrno8p/YGLd9uyW/EigdQnQ1P244ljVsvQ9K91Da
+ +FMGBqZJxSCG96AwsoHSBeJ51s+s5dXzU1a/0LVEPxm8+7M8wfD371v5GpCah9iHi7OJbe/F6i
+ 4iI=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Mar 2023 14:36:09 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4PfrlW5FFPz1RtW4
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:36:07 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:content-language:references:to
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1679261766; x=1681853767; bh=TT1NZFDlglG04lWn8b3D569FNDwhCTSHE8V
+        YkA5Dx+U=; b=d2D4DjWtPSFjUXyC0U3hXSz1FizGwXsTTM0r4dHYMeawKj8v6Xj
+        2t1mdjZ3aFxGfrCNx2Q5l6S55yrTI2th8NgunrJcxGCLNO3nOcST/AlKeQN7sDgr
+        1uzLlj4W8+zo05uqVTKJKxdARYDcx4TzTnRqD/79Vu58OTkCm94mgecAWrHv3drh
+        urfcpgvwa3dedmDHWC6IJBtGOyjEeocE3i9n1T/9H3HG4z72LKSNLSqWLTt4S5ib
+        Ikj07Rb7kaLcaMwIFP/RvG9BqShyPIqRE1pgSu2gK3b6+6VqAOptmu7EYJrtw6KM
+        KJgylZmpTFw9/IxRkVwxupQkVUT722u5oQQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id oOXo4lHiutVv for <devicetree@vger.kernel.org>;
+        Sun, 19 Mar 2023 14:36:06 -0700 (PDT)
+Received: from [10.225.163.91] (unknown [10.225.163.91])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4PfrlK1xCLz1RtVm;
+        Sun, 19 Mar 2023 14:35:57 -0700 (PDT)
+Message-ID: <de10b014-1a97-e74a-c7c4-b1004bf4cb60@opensource.wdc.com>
+Date:   Mon, 20 Mar 2023 06:35:55 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 09/18] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
- schema
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: pinctrl: Drop unneeded quotes
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Dvorkin Dmitry <dvorkin@tibbo.com>,
+        Wells Lu <wellslutw@gmail.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230317233623.3968172-1-robh@kernel.org>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     wcheng@codeaurora.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-10-bryan.odonoghue@linaro.org>
- <7cd51a8d-7b23-7895-7c06-07dc98924931@linaro.org>
- <a4da1f8f-333e-9ded-d784-7f86c45c7156@linaro.org>
- <346ecd20-d64f-1d47-4860-861e142f9700@linaro.org>
- <aa5d1492-906f-9e30-8f97-6321db692c73@linaro.org>
- <c5ac0d15-4651-318e-4dd2-37b2f90b2ba0@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <c5ac0d15-4651-318e-4dd2-37b2f90b2ba0@linaro.org>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20230317233623.3968172-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 3/18/23 08:36, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-
-On 19/03/2023 17:50, Krzysztof Kozlowski wrote:
-> On 19/03/2023 16:44, Bryan O'Donoghue wrote:
->> On 19/03/2023 15:10, Krzysztof Kozlowski wrote:
->>> On 19/03/2023 15:59, Bryan O'Donoghue wrote:
->>>> On 19/03/2023 11:58, Krzysztof Kozlowski wrote:
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Bryan O'Donoghue<bryan.odonoghue@linaro.org>
->>>>>> +
->>>>>> +description: |
->>>>>> +  Qualcomm PMIC Virtual Type-C Port Manager Driver
->>>>>> +  A virtual device which manages Qualcomm PMIC provided Type-C port and
->>>>>> +  Power Delivery in one place.
->>>>> OK, so it looks like bindings for driver, so a no-go. Unless there is
->>>>> such device as "manager", this does not look like hardware description.
->>>>>
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: qcom,pmic-virt-tcpm
->>>>>> +
->>>>>> +  connector:
->>>>>> +    type: object
->>>>>> +    $ref: /schemas/connector/usb-connector.yaml#
->>>>>> +    unevaluatedProperties: false
->>>>>> +
->>>>>> +  port:
->>>>>> +    $ref: /schemas/graph.yaml#/properties/port
->>>>>> +    description:
->>>>>> +      Contains a port which consumes data-role switching messages.
->>>>>> +
->>>>>> +  qcom,pmic-typec:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description:
->>>>>> +      A phandle to the typec port hardware driver.
->>>>>> +
->>>>>> +  qcom,pmic-pdphy:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>> Having typec and phy as phandles - not children - also suggests this is
->>>>> some software construct, not hardware description.
->>>>
->>>> So probably I didn't interpret Rob's comment correctly here.
->>>
->>> He proposed to merge it with other node:
->>> "probably merged with
->>> one of the nodes these phandles point to."
->>>
->>> "Why can't most of this binding be part of"
->>>
->>> I don't see how you implemented his comments. Actually, nothing improved
->>> here in this regard - you still have these phandles.
->>
->> So this comment from Rob is what I was aiming for
->>
->> "Your other option is instantiate your own device from the virtual
->> driver's initcall based on presence of the 2 nodes above. "
->>
->> rather than two mush the pdphy and typec into one device, which they are 
->> not.
-> 
-> Sure, but you did not instantiate anything based on these two or one
-> nodes. You added virtual device node.
-> 
-> 
->> I guess what I'm trying to understand is how you guys would suggest that 
->> is actually done.
-> 
-> You have there already node for the PMIC USB Type-C, so this should be
-> part of it. I really do not understand why this is separate device lying
-> around in parallel like:
-
-The pdphy is fairly well encapsulated (3 tcpm callbacks go to it, that's
-all?), I think the tcpm part could be merged in with the typec driver
-and it could just have a phandle to the pdphy node to represent the
-dependency.
-
-Then in the typec driver you can get the device with
-spmi_device_from_of() and call into it that way for the few tcpm
-callbacks that it needs to handle and to pass in the tcpm_port.
-
-
-> 
-> pmic {
-> 	usb {
-> 	};
-> };
-> 
-> virtual- pmic-tcpm {
-> };
-> 
-> What hardware piece does such description represent?
-> 
->>
->> Could I trouble you for an example ?
->>
->> ---
->> bod
-> 
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
 
 -- 
-Kind Regards,
-Caleb (they/them)
+Damien Le Moal
+Western Digital Research
+
