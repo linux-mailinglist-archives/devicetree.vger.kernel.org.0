@@ -2,158 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9195A6C01A9
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 13:36:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB786C01AC
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 13:41:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbjCSMgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 08:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
+        id S229889AbjCSMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 08:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjCSMgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 08:36:23 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7361C7E4;
-        Sun, 19 Mar 2023 05:36:22 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id br6so11748604lfb.11;
-        Sun, 19 Mar 2023 05:36:22 -0700 (PDT)
+        with ESMTP id S229524AbjCSMk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 08:40:58 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB30C132FB
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:40:52 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id t5so140579edd.7
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679229381;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9O4w2SUk73WmZLm7j2lW8S2qx2ENWnudONQ20HAfaaI=;
-        b=W1wfR31wCn7rm3H//zFjjjN2gE7W3YZN/mUiGEw8UfOADmTr23qdvKaw0S+xAWluN5
-         vKOeUk81+H3r/OZl7eRage8cUiiR0DTN8CdYlGRaSz4HWLIovI75z3eQGKFuDK3iC5e1
-         EPiEAOMuSCHHDVH5QJNfFcCPQ2AAzd0T6p7BTQFTeFnmKkNr7Yjb4pfYfjW2EgaUfscv
-         hXQnVsVngOEvWaqFdmizrhsj85QpPTs8EvjNf6aFqeh4odIOAKtuniExZ7hH4X/nsW8F
-         8j6/8y7unLQ4SMILHg80T8s6kXr+7hp0qOUEg3YxI0RsU+kJdXAAp+2/4q0OgukPYwWb
-         oxgw==
+        d=linaro.org; s=google; t=1679229651;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oolnoui9bwD72saRuWz2eUL7PghL9zZD0Mg8CNmPTv8=;
+        b=TU4fToK9xe5RwL9b/rKxUGlthV1NWIQ7hzk1PZnj0tao9+WMFpR0JmIU36YK0ECFK2
+         GeR1qwIQI5eWG+OlHulbySE96Q9h3EcUUD5+TYc6NgCMu0G7ZkH3CAh6hwYXDERGtBAq
+         Eb/275avjh10RRenfGcJZrR7mq0L2V1ix0oONTR+CliZ1/ZomY0lToOcTsPvzZYP6G9I
+         sogM+TaTXZd1ODii5kGR6C/tk5RfHV5dBf8tpmcUNLm1WDTKUOGF5REN8Xk+HVHq1/fH
+         dW3A41ot2SpKd0T/W50dYuL+Vhq4Vhl4g0kKImCvxixBgiWEglqWy6+CGHYECic3020U
+         iQLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679229381;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9O4w2SUk73WmZLm7j2lW8S2qx2ENWnudONQ20HAfaaI=;
-        b=iXKxUjEagZMLXskNpCe8dXC0h9r5JtuOxmcl4PVUBU78NLwYh/RzuUIU+cz7NnWFAC
-         dXnvaUMyM4bZD/YQabsHfa16+eXqUJlT8LQlb0pEa5RfjP8VzbJZ6t448ayOKxg24kFQ
-         zo+0iT2RdmlKB1kB2aJ2df1Ukm8ZA8+xYQ8QikadFV/AswWVIB4JW0qZhyQX+GsMm13m
-         LXawSKIfwsvDEpZoxOa4CyFvPFf+sTLuy8CoaP4RiBCH+At8Vucxz0SJBSzMxVeknRGk
-         zqbBeSN/tn9RknMf8nlVySrAcI32ZpSFq+ad8GL8K9hQlBtoKOwnhHYTnqRKz2MOhaoc
-         9/VA==
-X-Gm-Message-State: AO0yUKWiI0eUEc+GseaWRvC7Q3rUFo/Xf80WCJi1Lgh0zvtvOtYM1HMk
-        ro4tCsbGp8MQoHiONG09bpipjlzZw2/7f5Wz5bY=
-X-Google-Smtp-Source: AK7set8y7mL7JJVEbiA0Bqd+vcC5IxB3NlW8Fz8bd6MEtKTTXlelQ6tkgOfmgafEY9MLLELAo7STk1RooL6GTqzvdrc=
-X-Received: by 2002:ac2:598a:0:b0:4dd:9eb6:444e with SMTP id
- w10-20020ac2598a000000b004dd9eb6444emr2664598lfn.5.1679229381051; Sun, 19 Mar
- 2023 05:36:21 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679229651;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oolnoui9bwD72saRuWz2eUL7PghL9zZD0Mg8CNmPTv8=;
+        b=BGkeocrjygGJUAWjzIbqn6i7Jao3lwf0cqS56BRLOyBBG5X9iLiyJ2dQb/Iu7Gfyga
+         q8kVNleVaEAb/bW1gvSJwzvFtcFCnmlYjY/vOE9u1yaGJpkKUTwU010m4E/W9DLVtsyA
+         KsATXjWJrFD98xJYdyogyvAccY9pin8xKsQ6v4lnhUqIAPfhLe+UuHFxRwbCKAe4SJ2r
+         ssx3eIiSX97LyhtEuPq4cXWCY/TKBiwO0uUkmN+2Q/rWsxoxxDrHU/wCyCVgkeO5PCAl
+         NUf/F+GxjN2xzgKkYtaN1uqSXo9HkxKhluMfv1G+fQmLsHkFifrepbtzfuqgR6N8/YfF
+         Cfjg==
+X-Gm-Message-State: AO0yUKVgzGzJhLzT7+7L1Ltgpe/wndgNBGhRI94KPNhgRJkmMnfLfUDg
+        aQ50diRetX8mUzt5eq1GT/h3Rg==
+X-Google-Smtp-Source: AK7set8no1xdwXSt61q0acLXah4PhkPn/qpNih1kHxFoOM8Dm3h51+p3tGWlnneauNyuCVN/2xpqkQ==
+X-Received: by 2002:aa7:cac8:0:b0:500:4c0e:cb8d with SMTP id l8-20020aa7cac8000000b005004c0ecb8dmr6412475edt.5.1679229651181;
+        Sun, 19 Mar 2023 05:40:51 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
+        by smtp.gmail.com with ESMTPSA id u4-20020a17090626c400b00924916f9c21sm3182394ejc.87.2023.03.19.05.40.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Mar 2023 05:40:50 -0700 (PDT)
+Message-ID: <708b63c9-d2b6-c65f-0112-8f50173c0bca@linaro.org>
+Date:   Sun, 19 Mar 2023 13:40:49 +0100
 MIME-Version: 1.0
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-16-ychuang570808@gmail.com> <d56ec914-c2e4-427d-abc4-a290f3467937@app.fastmail.com>
- <652015b6-c2d7-0d97-3a4f-99d26d90f7f7@gmail.com>
-In-Reply-To: <652015b6-c2d7-0d97-3a4f-99d26d90f7f7@gmail.com>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Sun, 19 Mar 2023 14:36:09 +0200
-Message-ID: <CAP6Zq1i8yw7O5bJ86U-v07PmwD7msAbnY8GWiGmZ2Ri-d1-UPw@mail.gmail.com>
-Subject: Re: [PATCH 15/15] MAINTAINERS: Add entry for NUVOTON MA35
-To:     Jacky Huang <ychuang570808@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V2 4/8] dt-bindings: iio: st-sensors: Add IIS328DQ
+ accelerometer
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Li Yang <leoyang.li@nxp.com>,
+        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com
+References: <20230317103323.7741-1-stefan.wahren@chargebyte.com>
+ <20230317103323.7741-5-stefan.wahren@chargebyte.com>
+ <20230318155534.16b47583@jic23-huawei>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230318155534.16b47583@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky and Arnd
+On 18/03/2023 16:55, Jonathan Cameron wrote:
+> On Fri, 17 Mar 2023 11:33:19 +0100
+> Stefan Wahren <stefan.wahren@chargebyte.com> wrote:
+> 
+>> The ST IIS328DQ is an accelerometer sensor, which is compatible with
+>> the already supported ST H3LIS331DL. So add the new compatible
+>> with a fallback to the ST sensor binding.
+>>
+>> Link: https://lore.kernel.org/linux-iio/2bac9ecf-9d2e-967e-9020-1c950487d781@i2se.com/
+>> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+>> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>	
+>> ---
+>>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>> index c6201976378f..5eb71b24a7cb 100644
+>> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>> @@ -48,6 +48,9 @@ properties:
+>>            - st,lsm330d-accel
+>>            - st,lsm330dl-accel
+>>            - st,lsm330dlc-accel
+>> +      - items:
+>> +          - const: st,iis328dq
+>> +          - const: st,h3lis331dl-accel
+> 
+> Hmm. So this separates the particular 'oneOf' group from the description
+> associated with the ST accelerometers.
+> 
+> DT experts, is there a better way to do this?  Ideally we'd also associate
+> other similar groups going forwards so it might become less and less obvious
+> how the groupings work. (bit late for the many groups that exist
+> already in that list above this point).
 
-On Sun, 19 Mar 2023 at 14:01, Jacky Huang <ychuang570808@gmail.com> wrote:
->
-> Dear Arnd,
->
->
-> Thanks for your advice.
->
->
-> On 2023/3/16 =E4=B8=8B=E5=8D=88 10:38, Arnd Bergmann wrote:
-> > On Wed, Mar 15, 2023, at 08:29, Jacky Huang wrote:
-> >> From: Jacky Huang <ychuang3@nuvoton.com>
-> >>
-> >> Add entry for Nuvton ma35d1 maintainer and files
-> >>
-> >> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> >> ---
-> >> +F:  Documentation/devicetree/bindings/*/*nuvoton*
-> >> +F:  arch/arm64/boot/dts/nuvoton/
-> > This clashes with the existing entry for NPCM, so
-> > contributors can easily get confused about where
-> > to send their dts patches.
-> >
-> > I don't have a good solution here, but maybe you can
-> > discuss this with the npcm maintainers (added to Cc)
-> > to see how they would like to handle this.
-> >
-> > For me, the easiest way would be to have a single
-> > maintainer send me all the patches for both ma35d1
-> > and npcm, but that may not be practical for you.
->
->
-> All I can do so far is, once we receive a patch for npcm,
->
-> forward it to the maintainers of npcm, and the npcm side
-We can forward ma35 DTS emails to you as well.
->
-> does the same.
->
-> And I would like to modify it as
->
-> +F:     arch/arm64/boot/dts/nuvoton/*ma35*
-About modify
-F: arch/arm64/boot/dts/nuvoton/
-to
-F: arch/arm64/boot/dts/nuvoton/*npcm*
-We can't guarantee that our customers will use npcm in the dts files name.
->
-> >> +F:  drivers/*/*/*ma35d1*
-> >> +F:  drivers/*/*ma35d1*
-> >> +F:  include/dt-bindings/*/*ma35d1*
-> >> +F:  include/linux/mfd/ma35d1-sys.h
-> > I would replace these with a single line
-> >
-> > K:    ma35d1
-> >
-> > that should have the same effect.
-> >
-> >       Arnd
->
->
-> It's fine. I will use K: instead. Thank you.
->
->
-> Best regards,
->
-> Jacky Huang
->
->
+If by "grouping" you mean how the oneOf items are organized with
+descriptions, I wouldn't put too much attention to it. You can add some
+'#' comments to separate the groups, but for me this is still readable.
 
-Thanks,
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Tomer
+Best regards,
+Krzysztof
+
