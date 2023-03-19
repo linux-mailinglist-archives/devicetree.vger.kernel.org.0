@@ -2,204 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9B66C023F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 15:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFDD6C0254
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 15:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbjCSOJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 10:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41650 "EHLO
+        id S230249AbjCSOQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 10:16:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbjCSOJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 10:09:49 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97EF1A5EA
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 07:09:47 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id cy23so37335866edb.12
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 07:09:47 -0700 (PDT)
+        with ESMTP id S230260AbjCSOQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 10:16:45 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3403D49DA;
+        Sun, 19 Mar 2023 07:16:38 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id a16so5383957pjs.4;
+        Sun, 19 Mar 2023 07:16:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679234986;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112; t=1679235397;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhL1dNvJd0sF5iUdbt0QiZo7RnyDqOZdrKnYCE8qaPo=;
-        b=RsfEl5pAXHAdhBp9X+IVtu69D1wlfHX5Vg9GwYcv2gMUPYQN8OpIcEL8Elrh5/G3Vy
-         U4Px8hOSNVUHari03n0EDI2SgqTiSajpeKYpkQ3rVVkvVae/2U2eQnZukJtYikirvwGa
-         eCPDZ/qfytpqxK98dFAsXezRpUCo/R0qfYBU9zaKawrwnGgnR+3NjZsCiayysKzITMoq
-         1dZ0qFT7VIW5tSRRhKd9RBabQ1n5kN0zewOBkom/Amrhb71S2Fa2a7Mlo9PDpryixu38
-         0PeYS60cc369PoQpimj3fRMEZ2O0qBxifuc1kv59gXuAqtomhRwJeWYd0l+7yAgmR4f8
-         9Q+Q==
+        bh=Fofrlve0pl+ic6K67ZryHrzuH/Gn4T8D1dVcL+8p9ZE=;
+        b=EQrhPQJzJLs6DekeTg2zcd509dgqJ/FC+3PzLgaRv666cl4ZgwLazu/sGw0+iJgTtw
+         ngLGDACi7D9p/E69Ur3GF0XY6HruLhIW8tBW3Fyjr3BTtLy8/Xb2nPMzGX7GUvdWHVZM
+         9IeDOIrYBccd9Y2D1yP22CmOqu13REZSI+2jErFkLQdZhEMhxFAq8nq7W/i0blcJtii/
+         twJgY/Sw0RQmD6YtldMyBTF1CFLC27KIrea5+0+dFvtI6P2n8PhpSahcVKAqOLUHILBd
+         Ps8Up//NHx1OIOehB5MuEWb7PMP2VfnYDmoJCQDY215itObT1UR87bup6ykNaLMWmnTb
+         Mnwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679234986;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679235397;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhL1dNvJd0sF5iUdbt0QiZo7RnyDqOZdrKnYCE8qaPo=;
-        b=mH6TUjZ0A3PfCthTnOn9YcG0qG7KnuTEw9ZDgpz0WUy7KhC34sJhi3DWdFWsdh5uno
-         kcTXtezFNv7VkFCP075VrS2fyvOyYFvJjiG9qRcezp/T5eGBfzJij/sbsN3911BCa1/F
-         rwOwx8fveFmJkzrUKxR7oFJ0ZBKAEIMKMf85pDWgBQPYjag86hUfGIGXseGtGmPOhNgE
-         +MAfU1KmvSXFZaPtUduMzVta+pgn/vlkbH0lv9N5QNVYQowyPWox64u/BdJxIkdPdJh3
-         2zxJu9kIUkIY+++u3uiyKty4xNiF1a5kYP8n7blDdusXid1W8kioad3InfzJkuXfrHib
-         dgBw==
-X-Gm-Message-State: AO0yUKUCpKARcqJ93Be6pCFTp8qxqnHNfdo/GmvWmlX4yE+jCuKXfE1l
-        /yCkFSFO0HY0L0x361qeTojahg==
-X-Google-Smtp-Source: AK7set+4QW/qDmlSqLf+fjX6bp4BwqrkdJsBI/GpPgORLmgRphpyG7pfn2UMz+JdegMrzxB5p3P5JQ==
-X-Received: by 2002:a17:906:c2c9:b0:930:2530:5f47 with SMTP id ch9-20020a170906c2c900b0093025305f47mr5548389ejb.11.1679234986063;
-        Sun, 19 Mar 2023 07:09:46 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id ha25-20020a170906a89900b00934212e973esm424351ejb.198.2023.03.19.07.09.44
+        bh=Fofrlve0pl+ic6K67ZryHrzuH/Gn4T8D1dVcL+8p9ZE=;
+        b=TFXpFOx/3YyOEqpzdK5ikItdgbXQq58jkXAuwkMqx3GUDsz0jyDJ7vMahTIlJUKr36
+         DNtSy2usi49EuIVjTb9o7pvE3p6NUU1yJIIRTYT4+xWGPbT3FkguPpV5Ys5Xn8GmZFIT
+         7gwnnUHLL5kISi1TVQebizf7sIXpj+qLCGKb/ZnJ57ZWM7pd7ovNLxL7lk5if+IQSwL7
+         yeUqNFsekJB+bPZZil6rNlw1bvrw1AtxJoCP2K6gVLlN8Pr9VM4y6KNpdb3rn2vTlvzT
+         x3/MdeRhy+W99Fr1rI5sQBurewggUdWd5iQ7Q24PfPuZREMu9fdATsIQODDk/n82zChe
+         2lvQ==
+X-Gm-Message-State: AO0yUKXOFXgjBl81W8GEeZni+Y4I7DLgWj2Wnww7lqZSpiHzSSyoEKQf
+        2qO+lWFyQLrjK+I1oTxIFoI=
+X-Google-Smtp-Source: AK7set8eZ1H2+CkVyArr75/ApS72a8JfEgQXeSMDYFkA6WnQoXs36QOZBRaawac/KuVMva4709Pbwg==
+X-Received: by 2002:a17:902:fb85:b0:19c:da68:337a with SMTP id lg5-20020a170902fb8500b0019cda68337amr12437940plb.31.1679235397565;
+        Sun, 19 Mar 2023 07:16:37 -0700 (PDT)
+Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
+        by smtp.gmail.com with ESMTPSA id s14-20020a170902b18e00b001a1ccb37847sm601054plr.146.2023.03.19.07.16.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 07:09:45 -0700 (PDT)
-Message-ID: <947f9c1f-fd48-cb18-e495-7e275f1792b9@linaro.org>
-Date:   Sun, 19 Mar 2023 15:09:44 +0100
+        Sun, 19 Mar 2023 07:16:37 -0700 (PDT)
+Message-ID: <4e4b6bfd-89b2-e917-6e20-24f3be54606a@gmail.com>
+Date:   Sun, 19 Mar 2023 22:16:34 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: input: touchscreen: Add
- 'goodix-hold-in-reset' property to Goodix
-To:     Jan Jasper de Kroon <jajadekroon@gmail.com>
-Cc:     alexandre.belloni@bootlin.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        kernel@undef.tools, krzysztof.kozlowski+dt@linaro.org,
-        linux-input@vger.kernel.org, robh+dt@kernel.org
-References: <20230312183106.551840-1-jajadekroon@gmail.com>
- <20230316152949.67441-1-jajadekroon@gmail.com>
- <1ae4767f-563a-6425-f20b-32be6ba8a7c7@linaro.org>
- <57b22a4f-3b7e-d62d-d9a7-f9f4e052c253@gmail.com>
+Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <57b22a4f-3b7e-d62d-d9a7-f9f4e052c253@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-12-ychuang570808@gmail.com>
+ <fb4f60a7-011e-3745-cc40-631247735f2b@linaro.org>
+ <c902606e-8a1b-6673-02c7-7beea5477795@gmail.com>
+ <87171ab8-9c6d-3978-6d34-4ae922361307@linaro.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <87171ab8-9c6d-3978-6d34-4ae922361307@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2023 11:39, Jan Jasper de Kroon wrote:
-> 
-> Op 16-03-2023 om 20:25 schreef Krzysztof Kozlowski:
->> On 16/03/2023 16:29, Jan Jasper de Kroon wrote:
->>> Add an optional 'goodix-hold-in-reset', to the Goodix touchscreen
->>> device tree binding. When set to true, the touchscreen controller will
->>> be held in reset mode during system suspend, reducing power consumption.
->>> If not present, the property defaults to false.
->>>
->>> Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
->> Don't attach new patchsets to some other threads. It messes with our
->> tools and reading/reviewing process.
-> Thank you for bringing this to my attention. I apologize for any
-> inconvenience caused by attaching the patchset to the wrong threads. As a
-> new user of LKML, I'm still learning the appropriate protocol for
-> submitting patches. Going forward, I will ensure to attach patchsets to
-> the correct threads.
->>> ---
->>> Changes from v2 to v3:
->>> - Used imperative mood instead of "This patch adds".
->>> - Dropped "I am submitting this patch to..." as it is redundant.
->>> - Removed the paragraph related to the related patch sent to the
->>>    linux-input mailing list as it is not necessary.
->>> - Renamed the hold-in-reset-in-suspend function to
->>>    goodix-hold-in-reset to prevent potential naming conflicts with other
->>>    functions in the codebase. No functional changes were made.
->>>
->>> Changes from v1 to v2:
->>> - Updated subject prefix to match subsystem.
->>> - Added more detailed description of the change.
->>> - Fixed formatting issues in commit message.
->>>   .../devicetree/bindings/input/touchscreen/goodix.yaml     | 8 ++++++++
->>>   1 file changed, 8 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>> index 3d016b87c8df..197f8db9acc2 100644
->>> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>> @@ -56,6 +56,13 @@ properties:
->>>     touchscreen-size-y: true
->>>     touchscreen-swapped-x-y: true
->>>   
->>> +  goodix-hold-in-reset:
->> That's not a vendor prefix... missing coma.
-> Thank you for pointing out the mistake in the vendor prefix. I appreciate
-> your feedback and apologize for any inconvenience caused. I wasn't aware
-> of the correct vendor prefix style, but I've learned from developer Hans
-> de Goede that it should be "goodix,hold-in-reset." I will make sure to
-> correct this in my local branch and ensure that it is applied correctly in
-> the future. Thanks again for bringing this to my attention.
->>> +    description: |
->>> +      When set to true, the touchscreen controller will be held in reset mode
->>> +      during system suspend. This can help reduce power consumption, but may
->>> +      cause the touchscreen to take longer to resume when the system is woken
->>> +      up from suspend.
->> Anyway, my concerns were not answered, so to be clear:
+Dear Krzyszto,
+
+
+On 2023/3/19 下午 07:06, Krzysztof Kozlowski wrote:
+> On 18/03/2023 07:07, Jacky Huang wrote:
+>>>> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x13) |
+>>>> +			      IRQ_TYPE_LEVEL_HIGH)>;
+>>>> +	};
+>>>> +
+>>>> +	uart0:serial@40700000 {
+>>>> +		compatible = "nuvoton,ma35d1-uart";
+>>>> +		reg = <0x0 0x40700000 0x0 0x100>;
+>>>> +		interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +		clocks = <&clk UART0_GATE>;
+>>>> +		status = "okay";
+>>> Why? Drop the line... or convert it to disabled. Otherwise, why every
+>>> SoC has serial0 enabled? Is it used internally?
 >>
->> NAK till you answer them. Do not send new versions without answering
->> existing concerns and discussion.
-> Thank you again for reviewing my patchset and providing feedback. I
-> appreciate your time and effort in ensuring the quality and suitability
-> of the DeviceTree.
-> 
-> Regarding the concerns you raised about the proposed feature, I would
-> like to address them directly. You mentioned that the property does not
-> look suitable for Devicetree because it describes system policies that are
-> not within the scope of Devicetree. While I understand your point, I
-> believe this property is appropriate for Devicetree for the following
-> reasons:
-> 
-> - The property directly relates to the hardware configuration of the
->    device, specifically the touchscreen controller, and is not a software
->    policy.
-
-Keeping device in reset state is not hardware configuration but driver
-behavior. You did not Cc us on all patches for some reason, so it's
-difficult to judge what exactly your driver is doing.
-
-> 
-> - The property is required for proper system operation and is not optional
->    in specific device use cases. To be more specific in the case of the
->    PinePhone Original and Pro. The original commit message of the driver
->    implementation in driver/input/touchscreen contained the following:
->    "It consumes quite a bit of power (~40mW) during system sleep, and more
->    when the screen is touched."
->    Because the phone is usually kept in your pocket, so prone to a lot of
->    screen touches, this is highly undesired behavior for the touchscreen in
->    this case. This in my opinion makes it a mandatory property in this
->    situation.
-
-Why then the touchscree should not be kept in reset for other devices?
-IOW, this should be always used. If you now say "I prefer to keep or not
-keep it in reset for my device" - it's a policy.
+>> uart0 is on all the way since this SoC booting from the MaskROM boot code,
+>>
+>> load arm-trusted-firmware, load bootloader, and finally load linux  kernel.
+>>
+>> uart0 is also the Linux console.
+> Are you sure? Maybe my board has UART0 disconnected.
+>
+> Best regards,
+> Krzysztof
 
 
-> 
-> - The property is not a user-facing configuration option and is not meant
->    to be changed by the end-user.
+OK, I will have the uart0 disabled in dtsi, and enabled it in dts.
 
-Does not matter.
-
-> 
-> - The property, although in separate device specific kernel, and still
->    called 'poweroff-in-suspend' is already in use on specific devices,
->    including the PinePhone Original and PinePhone Pro.
-
-I could not find such property in the kernel.
-
-> 
-> However, I understand your concern that Devicetree should not be used for
-> policies. To address this concern, I would like to propose the following
-> changes to the property description:
-> 1. Remove the sentence about reducing power consumption, as this could be
->     considered a policy.
-> 2. Emphasize that the property is a required hardware configuration and
->     not an optional feature on certain devices.
-> 3. Recommend that any changes to the property value should only be made by
->     experienced system administrators and not end-users.
-
-Please answer - why this should not be enabled always.
 
 Best regards,
-Krzysztof
+
+Jacky Huang
+
 
