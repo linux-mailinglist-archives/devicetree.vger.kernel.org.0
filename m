@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80D6E6C0379
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 18:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFA76C0383
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 18:42:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbjCSRah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 13:30:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41992 "EHLO
+        id S229488AbjCSRmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 13:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjCSRaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 13:30:35 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BD91423A;
-        Sun, 19 Mar 2023 10:30:34 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id h5so5426730ile.13;
-        Sun, 19 Mar 2023 10:30:34 -0700 (PDT)
+        with ESMTP id S229483AbjCSRmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 13:42:09 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BD51C594;
+        Sun, 19 Mar 2023 10:42:08 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id t129so4503514iof.12;
+        Sun, 19 Mar 2023 10:42:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679247033;
+        d=1e100.net; s=20210112; t=1679247727;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3OyXeMWwUcICjLt5skJDFYn4DtNOe/WaaKZtvUJ6fbQ=;
-        b=39bf/3Lqv1ZLXoZal1l1swuVDQBFnmnOh1D5OHaTb2FkJqKFF4Ub97HhqnWfFgVN+v
-         Dr0+ykeBsjhBwbX0ZPtPRSvkUp8encpHpgQXhj8zd/dUaiia2M3qzeheid7R51mYgRp3
-         Q9z9Ow5oMKpOniOkpmKdA6T/KtIc5bAdph/CO+SFQbb1o56lB+xW0+rRSTVxyDQnM23P
-         C94byvpy+YBmoYFCbcDCD4c41eCJwgkOTl7Ln8ZqJQPfvTFkBrNxG3KBNr2GPtg2QEAF
-         szixmp34qvZn7lqOfGZc9a4yki0SICBqNAq8yhcpwtPec1vBnoR+mTw0yGMornfTJq2e
-         BGow==
-X-Gm-Message-State: AO0yUKXmToOdzAy55JYDeXM6lyLU60f30Z2XDB2cc01x1B0oddhL8SXu
-        SsBf8wftRyiXh/Y1hQRwqA==
-X-Google-Smtp-Source: AK7set8ACMMvQgQNUSW8MZKD/yXBXF9f59lk/bVOHbqn7d499Uw5wsnlVpVGfw6TSXLh+x3kZp6H0A==
-X-Received: by 2002:a92:d083:0:b0:315:3421:ef2a with SMTP id h3-20020a92d083000000b003153421ef2amr3551536ilh.25.1679247033336;
-        Sun, 19 Mar 2023 10:30:33 -0700 (PDT)
+        bh=dcI4BBLYtEvhPbu+xjdZvkfgUtEKrU3F0hXnGswV/Ug=;
+        b=rRXEqAYEezh5J0LaA5GuJCDOm0q2BLyqsi/c5VGUO3vtMITDdDkMrMyi1PL9faIEpW
+         llTE3UCik8RdZCcSSU4C7t36juiixG96gFVwMQFDKUMxKLitX1fVSbxiZbAwfAsV7+89
+         D7OtgHNbInyWtVdt/SS4ETD0SeoqW0WrunQxLcxcdnRf6vMk8ggllRRj7T+E5ehWsU5v
+         ZrnFWm1EEM0WHocn4CpEmtQRjF5zp+pS0A+ySLNvcEClIRLbBCJz10GxBivjpfL//S+s
+         1T1+y7yhCNVVNy/MdBZiykOFaQfdGNorXQR2eOF2+8UEsim1pIp5z5mq0GDnCzNbx4r6
+         HBfg==
+X-Gm-Message-State: AO0yUKVLVmGpuSgvLJgOFEGyJgoggkcR7vMwCxQcGnEHpnH2KGtGjWYY
+        fVoMRhaMv04Yc7BjDLKgyg==
+X-Google-Smtp-Source: AK7set//n98nJ9+FQb0BtZHd7Da1WEWuL+VuV6QwEqnbAqyime0B6gw0uRYnbo/zcfdtajUZCIApqw==
+X-Received: by 2002:a5e:da4b:0:b0:74c:b180:c5db with SMTP id o11-20020a5eda4b000000b0074cb180c5dbmr4082518iop.20.1679247726909;
+        Sun, 19 Mar 2023 10:42:06 -0700 (PDT)
 Received: from robh_at_kernel.org ([2605:ef80:80c2:711:b843:6628:3fd6:ded4])
-        by smtp.gmail.com with ESMTPSA id q12-20020a05663810cc00b003e8a17d7b1fsm2617956jad.27.2023.03.19.10.30.30
+        by smtp.gmail.com with ESMTPSA id l9-20020a5d8f89000000b00740710c0a65sm2288038iol.47.2023.03.19.10.42.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Mar 2023 10:30:33 -0700 (PDT)
-Received: (nullmailer pid 30794 invoked by uid 1000);
-        Sun, 19 Mar 2023 17:30:24 -0000
+        Sun, 19 Mar 2023 10:42:06 -0700 (PDT)
+Received: (nullmailer pid 44793 invoked by uid 1000);
+        Sun, 19 Mar 2023 17:41:55 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: mmc: fujitsu: Add Socionext Synquacer
-Date:   Sun, 19 Mar 2023 12:30:06 -0500
-Message-Id: <20230319173006.30455-1-robh@kernel.org>
+Subject: [PATCH] arm64/arm: dts: rockchip: Fix DSI node names
+Date:   Sun, 19 Mar 2023 12:41:05 -0500
+Message-Id: <20230319174105.43978-1-robh@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -61,54 +61,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Socionext Synquacer SDHCI. This binding has been in use for
-some time.
-
-The interrupts were not documented. The driver only uses the first
-interrupt, but the DT and example have 2 interrupts. The 2nd one is
-unknown. "dma-coherent" was also not documented, but is used on Synquacer.
+DSI bus/controller nodes should be named 'dsi' rather than 'mipi'.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-v2:
- - Rebase on conversion done by Kunihiko
----
- .../bindings/mmc/fujitsu,sdhci-fujitsu.yaml       | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/rk3288.dtsi            | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml b/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
-index 73d747e917f3..430b62899397 100644
---- a/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
-+++ b/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
-@@ -14,9 +14,13 @@ allOf:
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index 2ca76b69add7..d401b850583c 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -1114,7 +1114,7 @@ vopl_mmu: iommu@ff940300 {
+ 		status = "disabled";
+ 	};
  
- properties:
-   compatible:
--    enum:
--      - fujitsu,mb86s70-sdhci-3.0
--      - socionext,f-sdh30-e51-mmc
-+    oneOf:
-+      - items:
-+          - const: socionext,synquacer-sdhci
-+          - const: fujitsu,mb86s70-sdhci-3.0
-+      - enum:
-+          - fujitsu,mb86s70-sdhci-3.0
-+          - socionext,f-sdh30-e51-mmc
+-	mipi_dsi: mipi@ff960000 {
++	mipi_dsi: dsi@ff960000 {
+ 		compatible = "rockchip,rk3288-mipi-dsi", "snps,dw-mipi-dsi";
+ 		reg = <0x0 0xff960000 0x0 0x4000>;
+ 		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 1881b4b71f91..e44e1c40c0ba 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -1954,7 +1954,7 @@ hdmi_in_vopl: endpoint@1 {
+ 		};
+ 	};
  
-   reg:
-     maxItems: 1
-@@ -29,6 +33,11 @@ properties:
-       - const: iface
-       - const: core
+-	mipi_dsi: mipi@ff960000 {
++	mipi_dsi: dsi@ff960000 {
+ 		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
+ 		reg = <0x0 0xff960000 0x0 0x8000>;
+ 		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH 0>;
+@@ -1990,7 +1990,7 @@ mipi_in_vopl: endpoint@1 {
+ 		};
+ 	};
  
-+  dma-coherent: true
-+
-+  interrupts:
-+    maxItems: 2
-+
-   resets:
-     maxItems: 1
- 
+-	mipi_dsi1: mipi@ff968000 {
++	mipi_dsi1: dsi@ff968000 {
+ 		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
+ 		reg = <0x0 0xff968000 0x0 0x8000>;
+ 		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH 0>;
 -- 
 2.39.2
 
