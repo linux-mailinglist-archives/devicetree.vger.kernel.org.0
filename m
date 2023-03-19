@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FDF26C0133
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 12:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9085A6C0138
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 12:59:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjCSL6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 07:58:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
+        id S230227AbjCSL7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 07:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbjCSL6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 07:58:53 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F0811154
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:58:51 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id er8so25003548edb.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:58:51 -0700 (PDT)
+        with ESMTP id S230217AbjCSL73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 07:59:29 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E3114EA5
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:59:26 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id w9so36795217edc.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:59:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679227129;
+        d=linaro.org; s=google; t=1679227164;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7MN7paXo8gARmlqdSBHrmgibY/GvfwgNXPrgzUtEv/Q=;
-        b=GczyFrt5Krq6F/hYnJjUF1PZBu4OA9IJei2yacwtwvjXjogPJtvdLs0T8THLmwfryr
-         yDzZFxOuaDrJUGSSRUPqUGetTo7c6Sk1/6a31byI5xKN+NlcOdqkm4O0ZKYQMGZS8MmZ
-         ioLXkTZyFuKY3oYqKbTZdzjoOYurvS6jRESYnNByM4/UrQHR+E7E0x1Kmu03KDes0Dsv
-         aXW4HI9o28JVhWHiou9t2wa423wKOMVbi1rzX6Poae6QU0rVlX4+EnEZQCMkgtdY41qG
-         fPuHztiEK4p95ZoUnnnA4Eoziod8nWeD4fvxdFUJtparFiwJ4XC7QHL4W0a++MS9MTds
-         ZcFQ==
+        bh=JANaCxIBV3MOyuFRgagS9zmLRxuF4zSgC3mPu6zsJWM=;
+        b=iZG6PkHJJrEuQrP+NRY5F3nU126sJQJ2ge3esmVks9yNUukTuI3Gatmgvh4zDzDONb
+         Ss0oi0goZwvGGN0rRz+qeD6SFRR+Rg2037QSAuYuNGOH2ukw2IXyL8/KHSYIzzzDjoEd
+         060IDL8IN9u1TTXaTSmY7X8IEguKv55AotzhIeF/Ux4FP2TuBFbAhESo62Hx+f4LKrx6
+         ytFexBtBvTZHIuJql5+7My3kN56gtjQ4DGWe9VK6tQRD7DT02JZorNCFG0DCJf5ge93d
+         9Yi6t874oyzbSToMDvr7unAV9RoB9gHOsFzTP2Wzz7YFPct/qgc6idmxw3Jl7mArkAkz
+         rMqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679227129;
+        d=1e100.net; s=20210112; t=1679227164;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7MN7paXo8gARmlqdSBHrmgibY/GvfwgNXPrgzUtEv/Q=;
-        b=0mMz+I5JDAU7qfTXvaB6HhZDPyKz7Kmi1IzZywjalzc+oOBbGzN14OdD6PBOrtBteA
-         JPb5cfdXwPJ4NE4WRfNfjwlbalZfom2DkAGM9bj3jA7s39/psu2Cb4haWZVHtDQg+AOZ
-         Fzk4kRglfcXQWhWOCgwMnOEhUyUmwD+6WXDqKWu15mSd/XuiG35HK+TAOmOaGJerMhqt
-         k9t7tkEp7neR+P0ard4nMIWhEbCJMGHWa6NCOVH5La/OpI3+1U5HeZGd64aKYto5+WU9
-         ZR1xT14PN1uCDRXphJnaa6B5bNPvJ20egaP9B1cGRoc6sti9Vni5fgWwoZAirSMxRhpC
-         duBQ==
-X-Gm-Message-State: AO0yUKXJ7VCDlnp1bPjpbajsdpeO6siOLbXMgAJCkU1oVadRQp2QYuqY
-        sZ/erQJV7oGCqDrCb4SsIwYq6g==
-X-Google-Smtp-Source: AK7set8Ydc0lN/b2iFpr7A/4uJXT8GJcHCAf3s3qZnrKyHTYDYLkIB4gxN14AdXCdE4nIT9+ZgQtyg==
-X-Received: by 2002:a17:906:4dda:b0:92b:dff4:f8e9 with SMTP id f26-20020a1709064dda00b0092bdff4f8e9mr5248012ejw.8.1679227129761;
-        Sun, 19 Mar 2023 04:58:49 -0700 (PDT)
+        bh=JANaCxIBV3MOyuFRgagS9zmLRxuF4zSgC3mPu6zsJWM=;
+        b=AsjrEpJvRMHhHr4IzPMSfXcbzLbxJlCC7QlJkXknWOBd9xMTjzkC+guWxbbOlRDO2D
+         BzSTWJqOmOEEzzaqQQncLcVSaVCQzhsk/ML8qIp0tNgNQyGh78AYTtt9xDDXyCiLvysp
+         B2wgntrwqH2ob8Skz+R/B3p4jT43s9O+t6uBvrZqT+EewE5XADprDRXJGc+ew9dWDfL0
+         8EyNqrpZKl2v/uAEuqeswKP6uBy2RBulhdBRgxQNlea392iEiZ+RTjV/iPUUQleHNYrZ
+         taRCEYy4/ha3W7ojMt9uZLx4e68LfV8LgFLYydPOvMup2hWf8FT2C2JYywo6aVhRP9e1
+         AbZA==
+X-Gm-Message-State: AO0yUKXnrzytleO7adiNtfrBgKvwOBuFCiw0T+bGezZoUurbr5j2UZ3N
+        IiRD0SdbJQhJ4EqmBwphO8qSzw==
+X-Google-Smtp-Source: AK7set+Qol/e+O1y3D/oVLE8G+Bm5bwNX8BRdeVhzbi4EaLVjm/puMiSgr8H+tzeORfv/x2mUS9ZiQ==
+X-Received: by 2002:aa7:d744:0:b0:4fd:2b05:aa2 with SMTP id a4-20020aa7d744000000b004fd2b050aa2mr9628658eds.42.1679227164659;
+        Sun, 19 Mar 2023 04:59:24 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id v14-20020a1709063bce00b0093344ef3764sm1271813ejf.57.2023.03.19.04.58.48
+        by smtp.gmail.com with ESMTPSA id m23-20020a509317000000b004fb95f51f54sm3402849eda.12.2023.03.19.04.59.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 04:58:49 -0700 (PDT)
-Message-ID: <88ccb21c-4370-7132-b2c1-c74b1f865cec@linaro.org>
-Date:   Sun, 19 Mar 2023 12:58:48 +0100
+        Sun, 19 Mar 2023 04:59:24 -0700 (PDT)
+Message-ID: <79e48499-37ac-90c0-820e-5cceab453868@linaro.org>
+Date:   Sun, 19 Mar 2023 12:59:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 10/18] dt-bindings: mfd: qcom,spmi-pmic: Add pdphy to
+Subject: Re: [PATCH v4 11/18] dt-bindings: mfd: qcom,spmi-pmic: Add typec to
  SPMI device types
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
@@ -66,9 +66,9 @@ Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
         konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
         robertom@qti.qualcomm.com
 References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-11-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-12-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230318121828.739424-11-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230318121828.739424-12-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,28 +81,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 13:18, Bryan O'Donoghue wrote:
-> The PDPHY sits inside of the PMIC SPMI block providing register-level
-> ability to read/write USB Type-C Power Delivery protocol packets over the
-> SBU pins.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> index 8f076bb622b15..111aec53caeb5 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> @@ -140,6 +140,10 @@ patternProperties:
->      type: object
->      $ref: /schemas/power/reset/qcom,pon.yaml#
->  
-> +  "pdphy@[0-9a-f]+$":
+On 18/03/2023 13:18, Bryan O'Donoghue wrote:> Add the PMIC Type-C port
+driver to the list of devices.
 
-phy@
-
+Either drop driver everywhere or drop the patches. We do not add drivers
+to the bindings.
 
 
 Best regards,
