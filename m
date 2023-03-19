@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 213856C02B6
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 16:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8894D6C02BE
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 16:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbjCSPUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 11:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55518 "EHLO
+        id S230304AbjCSPVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 11:21:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbjCSPUc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 11:20:32 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFB12201D
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:20:11 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id t5so984867edd.7
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:20:10 -0700 (PDT)
+        with ESMTP id S230461AbjCSPVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 11:21:34 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6D722016
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:21:29 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id t5so991866edd.7
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679239209;
+        d=linaro.org; s=google; t=1679239288;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S4xH5bq21f5bGOA7b/uw6GIqRMVe3Lm8zhDWQRo/Dhk=;
-        b=YMgxgzsSk3vPYdBEFF6eY6ZjL7d+XcjboQZ8JhOXlIbptrNLl/qu0atkdBqjaZMkPN
-         W3GcZtsQd4SqfwN93BxPrtdPnwLnbKJ3tFEA+P0sLbn+mx+6cJbaJ+dPc3taLCzK+VVy
-         D1i7CYdpPvB//9f8PoY/Ehc5MsdgGq88EljY0wf2p66nyUQ0YLgECETYSZ42bM3DKzYx
-         ysbFqOTvrQQO+GTX5kUZFGToz4ArPhCSg/gZvKhzbJnNiDQy+kkQL8g9OI7XnUnZILmq
-         Kog4hAGPmKYe9taiPv7txbFP3dEJPykqazTXDeySh5a9GNm8TtXoR6/ISfoQOKBJISc8
-         VI7A==
+        bh=0MPg17g6pPRdL9tTnpZvVwCQGrGLvOmSGuwE0LCcRsA=;
+        b=bYT6wRny1mJNAuJxI6lZyObz/9Bgqm2OoMM9QNmJkwj83FEexDyR/1CEzoZp7DS2HA
+         2qkdDHaJPPCPx/iQ4RizZSeWa39zMY/Wp1UIZbdRWBQWi5IzT2Hmfr3PDUl/MWMIrICS
+         TM1TkxzcsFCQcJnb+vDHTVmWTin4vusaZhW/OhNquYyr3iqVNg+NX/xh0Ft5M3PAZT5L
+         pIIRH4+6HqNhRGjAju5gNN7YCGlhHxxoU9pmJNqX7hWST0iau1fHEXsfkPsNMmssppmS
+         z/kP9f21A2/SE8sFpXecNRPvcHnFKiGraj9qvbTZTzOUTq8aQP7MPXMsr8GPTuHG+vuZ
+         aQcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679239209;
+        d=1e100.net; s=20210112; t=1679239288;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S4xH5bq21f5bGOA7b/uw6GIqRMVe3Lm8zhDWQRo/Dhk=;
-        b=dbBbpgP8dM80knW/LBtkiJh1o3DqJ6XqZs+9jPPabgu93GxxVPDE0veS7gIrzAWP4C
-         Yfverzq92r0cVHR9R3QLEBcHiGTevuawrg3oasu34nAQGGWkKqT3ijlB7YHH4lEKb7Hd
-         0s7b6HZx5Yt3qbhdNXoEusp0pDcuqBxga01tKr17qzoRgM0PCzO/uFTf6yUqYT5GcMUX
-         mcTcUHa7FbpFTd9HaOStGtE9PoPpMNewU+2IwhfLAPBin2kX19ElVErcc2WvKvA6cZkc
-         Im3rfT9kPq3wmS/K/upxJBm6F0fKflxiwZlRFLSiRs83TRXy8RaFtSh6z0vyAlAy9wKj
-         lSvw==
-X-Gm-Message-State: AO0yUKXsSBrmUK1EQBqP75D2W8/lpbYfU2bFw3Gvb36k7OWmqkb52K7a
-        UtI/sL6/UqauzFxueoFLMKqIgQ==
-X-Google-Smtp-Source: AK7set8dZVKzsg7dR/UhQ6awWgq4/0aOslkJPhf8bTS923fTkgyvChjFVbabhUek2iL7gD9yAR3vVw==
-X-Received: by 2002:a17:906:6055:b0:907:183f:328a with SMTP id p21-20020a170906605500b00907183f328amr5995901ejj.65.1679239209266;
-        Sun, 19 Mar 2023 08:20:09 -0700 (PDT)
+        bh=0MPg17g6pPRdL9tTnpZvVwCQGrGLvOmSGuwE0LCcRsA=;
+        b=wm9e0pPxM/QoUGDRLqtlB26oaPo6sC9J4Kcn3CYW3k1pGTDOlpUiC1EAsdAhfH7nI6
+         +7bpR4ft2HQuLddCT3N7QEGtqoFnlynrzZ3HLs+CiN4P1eWbOS0PCkWo7cSKdWorqYQb
+         pxC1HQdmcph5aeO7yVxGhmkV/80YA2kao9M+KfMetke56m3ZEL0MEVBwQQX7jI2vsQh0
+         jPTA8Gl/IG3r442nXvjdNjUp/vo2rzG57eY+dBNtPAhbULBefxnbu0VUfYZh813UK8Hp
+         JMSfx82Q7842MOYetagSnzbfkyORfoFkusN0vyaZ1hXu1Ll72NUttz1wnO/ZQs5FOGxH
+         k5ow==
+X-Gm-Message-State: AO0yUKW/WaSwIK9WM3hwyKTk+FxJN4pKjdMaWebE0uKE/lZOd3k7F5zZ
+        /oyh1iVoNpt9qQj7tLNp4y0WGw==
+X-Google-Smtp-Source: AK7set8X7boMde6L0dSuF16GMGAlEn7pBLVYH3RFoFzDgoTwbQ23rzLfAMRpql7L8BotUyBJqso0Qw==
+X-Received: by 2002:a17:906:37d3:b0:92f:d1ec:a7d7 with SMTP id o19-20020a17090637d300b0092fd1eca7d7mr5414362ejc.15.1679239288065;
+        Sun, 19 Mar 2023 08:21:28 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id o11-20020a17090608cb00b008d0dbf15b8bsm3363438eje.212.2023.03.19.08.20.08
+        by smtp.gmail.com with ESMTPSA id ja21-20020a170907989500b0093338259b2bsm1789284ejc.207.2023.03.19.08.21.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 08:20:08 -0700 (PDT)
-Message-ID: <5ca081d2-44fa-934b-09b1-01dd89cef096@linaro.org>
-Date:   Sun, 19 Mar 2023 16:20:07 +0100
+        Sun, 19 Mar 2023 08:21:27 -0700 (PDT)
+Message-ID: <45a57e8a-c6f6-be7d-21c7-3c6fffd4ebba@linaro.org>
+Date:   Sun, 19 Mar 2023 16:21:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [Patch v2 8/9] memory: tegra: make cpu cluster bw request a
- multiple of mc channels
+Subject: Re: [PATCH v5 2/2] EDAC/versal: Add a Xilinx Versal memory controller
+ driver
 Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lpieralisi@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
-        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-References: <20230220140559.28289-1-sumitg@nvidia.com>
- <20230220140559.28289-9-sumitg@nvidia.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-edac@vger.kernel.org
+Cc:     git@amd.com, devicetree@vger.kernel.org, bp@alien8.de,
+        mchehab@kernel.org, tony.luck@intel.com, james.morse@arm.com,
+        rric@kernel.org, michal.simek@xilinx.com
+References: <20230317141509.17534-1-shubhrajyoti.datta@amd.com>
+ <20230317141509.17534-3-shubhrajyoti.datta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230220140559.28289-9-sumitg@nvidia.com>
+In-Reply-To: <20230317141509.17534-3-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,18 +78,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 15:05, Sumit Gupta wrote:
-> Make CPU cluster's bandwidth (BW) request a multiple of MC channels.
-> CPU OPP tables have BW info per MC channel. But, the actual BW depends
-> on the number of MC channels which can change as per the boot config.
-> Get the number of MC channels which are actually enabled in current
-> boot configuration and multiply the BW request from a CPU cluster with
-> the number of enabled MC channels. This is not required to be done for
-> other MC clients.
+On 17/03/2023 15:15, Shubhrajyoti Datta wrote:
+> Add EDAC support for Xilinx DDR Controller, this driver
+> reports correctable and uncorrectable errors , and also creates
+> debugfs entries for error injection.
+> 
+> Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+> 
+> Changes in v5:
+> Update subject
 > 
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Only subject? So the build warning was not fixed?
 
 Best regards,
 Krzysztof
