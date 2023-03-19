@@ -2,73 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D53F6C046C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 20:36:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 920946C0485
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 20:48:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbjCSTgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 15:36:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45944 "EHLO
+        id S229788AbjCSTsq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 19 Mar 2023 15:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjCSTgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 15:36:24 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B21014E8A;
-        Sun, 19 Mar 2023 12:36:23 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id cy23so39055374edb.12;
-        Sun, 19 Mar 2023 12:36:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679254582;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V7L1LqFV6h0eVxcrS19DAAOXoiewf/UfXtUU8YR+EZ8=;
-        b=VXK8qKk8Qgt8PyfEPszQSWYU35fN9eomwlpIhaShMc1cvh/KyLq9zLQ3trY9ePHsyN
-         zJfErAwUceFATZ/j4aquZTRnWXhOhtR0RaNUxKm8VbuJMzp68eqiINuDVZf76uSzY8n7
-         0hkbxIqxt+Z2Ss8+L7/KaaXXZbT0uhX3h31MFu6/0x+NkvGpoKH/RZTtckBhAeMK3sxs
-         GE73JIP+uo0HcczFU+Y8pWqs2K+8sOqQRZUBnWXS9VQztT5XfqVcA6wyUF2FgAsZ7L7S
-         BO8AL9lkqzYJ9J5AdD8brCwPa7QxkvjSWsAhBGt9pcr7qEhQT45Bq2NQsqhH2HCH+oc9
-         +pVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679254582;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V7L1LqFV6h0eVxcrS19DAAOXoiewf/UfXtUU8YR+EZ8=;
-        b=EtNsr4cSQs/GiRIdMxOXeyEku1wRX6P2TFRcbSdFdv00uQPM2Z1kHVUt+kh95TS1ei
-         FMzff0MTRsNR9lbKQ87v/GKatt08vmqo9JXhvF6+uy7XCjfem7q137R9YAK4VVvddsmO
-         Zu9BYWjBG99LW0B3kcEVeqyneKYrmjmssG9ffDzOwVx7cV8OdjAkVAFa3CoSiUmPkrHv
-         F4o6I7nNqkgOgW4WMW4KLJb6BB89xwePWqzoXqXXsN9wjOOqwV7qOPbhUYFcdJJVXvg/
-         ZQ9WlX1Zv8OKF78T/E2R50+e6jnmifCD1UFxMxtJ7hrLQPWVELf7hUYU2d5vQIOmWxUT
-         tKnQ==
-X-Gm-Message-State: AO0yUKUHwZuEkUDXmF5qUh+jri2qN+44l640VBBFi+aj2u0mYTPYGwc/
-        zJUhPpH72k4THwU4d2T+gWWVy2gPQ8U=
-X-Google-Smtp-Source: AK7set+K/7xKEFbJZW+IljzIrB1qb3ySKS9W32jzKyfVll8cr0qtIl0DsdZbSYQLF2fM7ect5yrT2w==
-X-Received: by 2002:aa7:c948:0:b0:4bf:5981:e59f with SMTP id h8-20020aa7c948000000b004bf5981e59fmr8940849edt.6.1679254581675;
-        Sun, 19 Mar 2023 12:36:21 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id u3-20020a50d503000000b004fcd78d1215sm3916868edi.36.2023.03.19.12.36.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 12:36:21 -0700 (PDT)
-Message-ID: <591bf126-1ab7-8a5d-0d3a-1cac4cd9b112@gmail.com>
-Date:   Sun, 19 Mar 2023 20:36:20 +0100
+        with ESMTP id S229472AbjCSTsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 15:48:42 -0400
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CE116ACE;
+        Sun, 19 Mar 2023 12:48:39 -0700 (PDT)
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+          by outpost.zedat.fu-berlin.de (Exim 4.95)
+          with esmtps (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@zedat.fu-berlin.de>)
+          id 1pdz1A-002Ftj-V8; Sun, 19 Mar 2023 20:48:36 +0100
+Received: from p57bd9bc2.dip0.t-ipconnect.de ([87.189.155.194] helo=[192.168.178.81])
+          by inpost2.zedat.fu-berlin.de (Exim 4.95)
+          with esmtpsa (TLS1.3)
+          tls TLS_AES_256_GCM_SHA384
+          (envelope-from <glaubitz@physik.fu-berlin.de>)
+          id 1pdz1A-002vAw-Nj; Sun, 19 Mar 2023 20:48:36 +0100
+Message-ID: <8e15ccf2fe80445095b6653210f5cea081f6ffee.camel@physik.fu-berlin.de>
+Subject: Re: [PATCH 3/7 v4] sh: init: use OF_EARLY_FLATTREE for early init
+From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+To:     Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-sh@vger.kernel.org, stable@vger.kernel.org
+Date:   Sun, 19 Mar 2023 20:48:35 +0100
+In-Reply-To: <20230306040037.20350-4-rdunlap@infradead.org>
+References: <20230306040037.20350-1-rdunlap@infradead.org>
+         <20230306040037.20350-4-rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.4 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] arm64/arm: dts: rockchip: Fix DSI node names
-To:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230319174105.43978-1-robh@kernel.org>
-Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20230319174105.43978-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-Originating-IP: 87.189.155.194
+X-ZEDAT-Hint: PO
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,60 +56,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/19/23 18:41, Rob Herring wrote:
-> DSI bus/controller nodes should be named 'dsi' rather than 'mipi'.
-
-There's already a serie that does that.
-Lack of communication becomes common. 
-More thing must be fixed to comply then this patch alone.
-
-[PATCH v6 09/17] ARM: dts: rockchip: rk3288: fix dsi node
-https://lore.kernel.org/linux-rockchip/f3edcbff-4aef-1d24-8d65-e519c9451cda@gmail.com/
-
-[PATCH v6 15/17] arm64: dts: rockchip: rk3399: fix dp node
-https://lore.kernel.org/linux-rockchip/f6008819-db9b-0944-3f5b-5522b7cd8a8d@gmail.com/
-
+On Sun, 2023-03-05 at 20:00 -0800, Randy Dunlap wrote:
+> When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
+> SH3 build fails with a call to early_init_dt_scan(), so in
+> arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
+> CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Fixes this build error:
+> ../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
+> ../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
+>   262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
+> 
+> Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
+> Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Rich Felker <dalias@libc.org>
+> Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+> Cc: linux-sh@vger.kernel.org
+> Cc: stable@vger.kernel.org
 > ---
->  arch/arm/boot/dts/rk3288.dtsi            | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
->  2 files changed, 3 insertions(+), 3 deletions(-)
+> v2: use Suggested-by: for Rob.
+>     add more Cc's.
+> v3: skipped
+> v4: update Cc's, refresh & resend
 > 
-> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-> index 2ca76b69add7..d401b850583c 100644
-> --- a/arch/arm/boot/dts/rk3288.dtsi
-> +++ b/arch/arm/boot/dts/rk3288.dtsi
-> @@ -1114,7 +1114,7 @@ vopl_mmu: iommu@ff940300 {
->  		status = "disabled";
->  	};
+>  arch/sh/kernel/head_32.S |    6 +++---
+>  arch/sh/kernel/setup.c   |    4 ++--
+>  2 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff arch/sh/kernel/setup.c arch/sh/kernel/setup.c
+> diff -- a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
+> --- a/arch/sh/kernel/setup.c
+> +++ b/arch/sh/kernel/setup.c
+> @@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
+>  {
+>  }
 >  
-> -	mipi_dsi: mipi@ff960000 {
-> +	mipi_dsi: dsi@ff960000 {
->  		compatible = "rockchip,rk3288-mipi-dsi", "snps,dw-mipi-dsi";
->  		reg = <0x0 0xff960000 0x0 0x4000>;
->  		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index 1881b4b71f91..e44e1c40c0ba 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -1954,7 +1954,7 @@ hdmi_in_vopl: endpoint@1 {
->  		};
->  	};
+> -#ifdef CONFIG_OF_FLATTREE
+> +#ifdef CONFIG_OF_EARLY_FLATTREE
+>  void __ref sh_fdt_init(phys_addr_t dt_phys)
+>  {
+>  	static int done = 0;
+> @@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
+>  	/* Let earlyprintk output early console messages */
+>  	sh_early_platform_driver_probe("earlyprintk", 1, 1);
 >  
-> -	mipi_dsi: mipi@ff960000 {
-> +	mipi_dsi: dsi@ff960000 {
->  		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
->  		reg = <0x0 0xff960000 0x0 0x8000>;
->  		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH 0>;
-> @@ -1990,7 +1990,7 @@ mipi_in_vopl: endpoint@1 {
->  		};
->  	};
+> -#ifdef CONFIG_OF_FLATTREE
+> +#ifdef CONFIG_OF_EARLY_FLATTREE
+>  #ifdef CONFIG_USE_BUILTIN_DTB
+>  	unflatten_and_copy_device_tree();
+>  #else
+> diff -- a/arch/sh/kernel/head_32.S b/arch/sh/kernel/head_32.S
+> --- a/arch/sh/kernel/head_32.S
+> +++ b/arch/sh/kernel/head_32.S
+> @@ -64,7 +64,7 @@ ENTRY(_stext)
+>  	ldc	r0, r6_bank
+>  #endif
 >  
-> -	mipi_dsi1: mipi@ff968000 {
-> +	mipi_dsi1: dsi@ff968000 {
->  		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
->  		reg = <0x0 0xff968000 0x0 0x8000>;
->  		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH 0>;
+> -#ifdef CONFIG_OF_FLATTREE
+> +#ifdef CONFIG_OF_EARLY_FLATTREE
+>  	mov	r4, r12		! Store device tree blob pointer in r12
+>  #endif
+>  	
+> @@ -315,7 +315,7 @@ ENTRY(_stext)
+>  10:		
+>  #endif
+>  
+> -#ifdef CONFIG_OF_FLATTREE
+> +#ifdef CONFIG_OF_EARLY_FLATTREE
+>  	mov.l	8f, r0		! Make flat device tree available early.
+>  	jsr	@r0
+>  	 mov	r12, r4
+> @@ -346,7 +346,7 @@ ENTRY(stack_start)
+>  5:	.long	start_kernel
+>  6:	.long	cpu_init
+>  7:	.long	init_thread_union
+> -#if defined(CONFIG_OF_FLATTREE)
+> +#if defined(CONFIG_OF_EARLY_FLATTREE)
+>  8:	.long	sh_fdt_init
+>  #endif
+>  
+
+Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+
+-- 
+ .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
