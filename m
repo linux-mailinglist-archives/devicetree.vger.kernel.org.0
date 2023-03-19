@@ -2,137 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDCF66C0455
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 20:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D53F6C046C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 20:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbjCSTUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 15:20:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52578 "EHLO
+        id S229653AbjCSTgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 15:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbjCSTTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 15:19:50 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6252F1E9E3;
-        Sun, 19 Mar 2023 12:18:58 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id v1so2417893wrv.1;
-        Sun, 19 Mar 2023 12:18:57 -0700 (PDT)
+        with ESMTP id S229524AbjCSTgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 15:36:24 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B21014E8A;
+        Sun, 19 Mar 2023 12:36:23 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id cy23so39055374edb.12;
+        Sun, 19 Mar 2023 12:36:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679253536;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oy4rJp/0zV8uQx96aqdFOna+cm21IPd+B8/oErRDE1c=;
-        b=ITt6syLmwNGy0ZbUxm216tTbp3mY9GEm/3lMvbbE2Rt2AmFNDP+lDlVo9z74NODKkT
-         PFUABL92MyqFqXD0IsdwgSVPYtr+hzSbiu2N45Nr+n8QX8AmyN8POiYqe5G/DajGXsJc
-         67FzzJrp7CrMFY4Y3HeIEpyujtlfFQpZokxqSIZ0j8ktmSZK1E7YZqfLTa/KyiYMHoCi
-         T4VCPN2ZwK6nDdX3L3rI6l6bJJY4SzMN+vB0EOUrtkw+1Dbccm31xymXbmoBaT0mARDG
-         M0OzS1dz+KV8WVgJiqN4sFnIBVzzEuNQ9Nb7uGwFagkzmu7y1OC0cB+tPyIYFnF2eRVd
-         Ry8Q==
+        d=gmail.com; s=20210112; t=1679254582;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V7L1LqFV6h0eVxcrS19DAAOXoiewf/UfXtUU8YR+EZ8=;
+        b=VXK8qKk8Qgt8PyfEPszQSWYU35fN9eomwlpIhaShMc1cvh/KyLq9zLQ3trY9ePHsyN
+         zJfErAwUceFATZ/j4aquZTRnWXhOhtR0RaNUxKm8VbuJMzp68eqiINuDVZf76uSzY8n7
+         0hkbxIqxt+Z2Ss8+L7/KaaXXZbT0uhX3h31MFu6/0x+NkvGpoKH/RZTtckBhAeMK3sxs
+         GE73JIP+uo0HcczFU+Y8pWqs2K+8sOqQRZUBnWXS9VQztT5XfqVcA6wyUF2FgAsZ7L7S
+         BO8AL9lkqzYJ9J5AdD8brCwPa7QxkvjSWsAhBGt9pcr7qEhQT45Bq2NQsqhH2HCH+oc9
+         +pVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679253536;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oy4rJp/0zV8uQx96aqdFOna+cm21IPd+B8/oErRDE1c=;
-        b=BmLFh8WV1M+TZGUnzvPeSsGVXAQ6/vYpkGdESvvjYjJpD6zO5usE8f0HYBQ9kjZpzk
-         niBLr8jLmqTwOUNznKVsVTBt4TNb1Tcd/qA8WPpFIMpn2lM24BJ0Het5MI9QYB1Tcg9X
-         Df29M5/57Gx2gsnDYWV+Vo3vE25bLcs9ycXX5pee4VIPvgX03ATGu9JxtzNI5WEG/dnZ
-         9wvt9XeHx5AccaQduvXM+eGlHgUM8p0GO6za2z4DALIO0QTD5xOVMtKiNCEzL3/mbcoL
-         zkPWBeStNNEGL9aMYApF1jldrxQmMEqao3pO7+JSQo4D2fDeFuvgJyzOmL0fVoMNHeuc
-         Shtg==
-X-Gm-Message-State: AO0yUKWJIiv0ypZ1vCMrP5r0EYrVVKgE/DyGT9Yf+/MebxsCvgUzieD0
-        YbWyqO0hwFUmUMcBU0Svb/Q=
-X-Google-Smtp-Source: AK7set9RJTHUU3x+cB1vPG2tx4D/cF6g7trZnQtZGucpSHSmKWi61gPafYkIpRGJ4EUPGiGlo3eKQw==
-X-Received: by 2002:a5d:4205:0:b0:2cf:fd6:b83f with SMTP id n5-20020a5d4205000000b002cf0fd6b83fmr7367868wrq.8.1679253535952;
-        Sun, 19 Mar 2023 12:18:55 -0700 (PDT)
-Received: from localhost.localdomain (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
-        by smtp.googlemail.com with ESMTPSA id b7-20020a5d4b87000000b002cfe0ab1246sm7165167wrt.20.2023.03.19.12.18.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Mar 2023 12:18:55 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: [net-next PATCH v5 15/15] arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
-Date:   Sun, 19 Mar 2023 20:18:14 +0100
-Message-Id: <20230319191814.22067-16-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230319191814.22067-1-ansuelsmth@gmail.com>
-References: <20230319191814.22067-1-ansuelsmth@gmail.com>
+        d=1e100.net; s=20210112; t=1679254582;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V7L1LqFV6h0eVxcrS19DAAOXoiewf/UfXtUU8YR+EZ8=;
+        b=EtNsr4cSQs/GiRIdMxOXeyEku1wRX6P2TFRcbSdFdv00uQPM2Z1kHVUt+kh95TS1ei
+         FMzff0MTRsNR9lbKQ87v/GKatt08vmqo9JXhvF6+uy7XCjfem7q137R9YAK4VVvddsmO
+         Zu9BYWjBG99LW0B3kcEVeqyneKYrmjmssG9ffDzOwVx7cV8OdjAkVAFa3CoSiUmPkrHv
+         F4o6I7nNqkgOgW4WMW4KLJb6BB89xwePWqzoXqXXsN9wjOOqwV7qOPbhUYFcdJJVXvg/
+         ZQ9WlX1Zv8OKF78T/E2R50+e6jnmifCD1UFxMxtJ7hrLQPWVELf7hUYU2d5vQIOmWxUT
+         tKnQ==
+X-Gm-Message-State: AO0yUKUHwZuEkUDXmF5qUh+jri2qN+44l640VBBFi+aj2u0mYTPYGwc/
+        zJUhPpH72k4THwU4d2T+gWWVy2gPQ8U=
+X-Google-Smtp-Source: AK7set+K/7xKEFbJZW+IljzIrB1qb3ySKS9W32jzKyfVll8cr0qtIl0DsdZbSYQLF2fM7ect5yrT2w==
+X-Received: by 2002:aa7:c948:0:b0:4bf:5981:e59f with SMTP id h8-20020aa7c948000000b004bf5981e59fmr8940849edt.6.1679254581675;
+        Sun, 19 Mar 2023 12:36:21 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u3-20020a50d503000000b004fcd78d1215sm3916868edi.36.2023.03.19.12.36.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Mar 2023 12:36:21 -0700 (PDT)
+Message-ID: <591bf126-1ab7-8a5d-0d3a-1cac4cd9b112@gmail.com>
+Date:   Sun, 19 Mar 2023 20:36:20 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] arm64/arm: dts: rockchip: Fix DSI node names
+To:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230319174105.43978-1-robh@kernel.org>
+Content-Language: en-US
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20230319174105.43978-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch>
 
-The WAN port of the 370-RD has a Marvell PHY, with one LED on
-the front panel. List this LED in the device tree.
 
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/armada-370-rd.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On 3/19/23 18:41, Rob Herring wrote:
+> DSI bus/controller nodes should be named 'dsi' rather than 'mipi'.
 
-diff --git a/arch/arm/boot/dts/armada-370-rd.dts b/arch/arm/boot/dts/armada-370-rd.dts
-index be005c9f42ef..15b36aa34ef4 100644
---- a/arch/arm/boot/dts/armada-370-rd.dts
-+++ b/arch/arm/boot/dts/armada-370-rd.dts
-@@ -20,6 +20,7 @@
- /dts-v1/;
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/gpio/gpio.h>
- #include "armada-370.dtsi"
- 
-@@ -135,6 +136,19 @@ &mdio {
- 	pinctrl-names = "default";
- 	phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				label = "WAN";
-+				color = <LED_COLOR_ID_WHITE>;
-+				function = LED_FUNCTION_LAN;
-+				function-enumerator = <1>;
-+				linux,default-trigger = "netdev";
-+			};
-+		};
- 	};
- 
- 	switch: switch@10 {
--- 
-2.39.2
+There's already a serie that does that.
+Lack of communication becomes common. 
+More thing must be fixed to comply then this patch alone.
 
+[PATCH v6 09/17] ARM: dts: rockchip: rk3288: fix dsi node
+https://lore.kernel.org/linux-rockchip/f3edcbff-4aef-1d24-8d65-e519c9451cda@gmail.com/
+
+[PATCH v6 15/17] arm64: dts: rockchip: rk3399: fix dp node
+https://lore.kernel.org/linux-rockchip/f6008819-db9b-0944-3f5b-5522b7cd8a8d@gmail.com/
+
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  arch/arm/boot/dts/rk3288.dtsi            | 2 +-
+>  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+> index 2ca76b69add7..d401b850583c 100644
+> --- a/arch/arm/boot/dts/rk3288.dtsi
+> +++ b/arch/arm/boot/dts/rk3288.dtsi
+> @@ -1114,7 +1114,7 @@ vopl_mmu: iommu@ff940300 {
+>  		status = "disabled";
+>  	};
+>  
+> -	mipi_dsi: mipi@ff960000 {
+> +	mipi_dsi: dsi@ff960000 {
+>  		compatible = "rockchip,rk3288-mipi-dsi", "snps,dw-mipi-dsi";
+>  		reg = <0x0 0xff960000 0x0 0x4000>;
+>  		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> index 1881b4b71f91..e44e1c40c0ba 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -1954,7 +1954,7 @@ hdmi_in_vopl: endpoint@1 {
+>  		};
+>  	};
+>  
+> -	mipi_dsi: mipi@ff960000 {
+> +	mipi_dsi: dsi@ff960000 {
+>  		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
+>  		reg = <0x0 0xff960000 0x0 0x8000>;
+>  		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH 0>;
+> @@ -1990,7 +1990,7 @@ mipi_in_vopl: endpoint@1 {
+>  		};
+>  	};
+>  
+> -	mipi_dsi1: mipi@ff968000 {
+> +	mipi_dsi1: dsi@ff968000 {
+>  		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
+>  		reg = <0x0 0xff968000 0x0 0x8000>;
+>  		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH 0>;
