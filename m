@@ -2,120 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAA306C009A
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 11:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6136C00AA
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 12:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229713AbjCSK4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 06:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58286 "EHLO
+        id S229697AbjCSLFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 07:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbjCSK4N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 06:56:13 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA77522124
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 03:56:10 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id er8so24686398edb.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 03:56:10 -0700 (PDT)
+        with ESMTP id S229468AbjCSLFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 07:05:24 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CDEC233F8
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:05:19 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id b20so3514557edd.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:05:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679223369;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679223918;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zjQK98wMTvC2q3E7fdiQTGy4CfE9nib0P1aeqr32BDM=;
-        b=LoyXTmuTmKGgTLGBo0qYnX6Jp8bEDf17eVvP7XGO2qhfRemxtwJtrRH9Ep1JHhGnQk
-         DM7G/ianKOJTy+onrcx5K+rasN1+P/5phdjTikcBfSCvls5VoUEtU19R0HbCgCF7aobg
-         40WRU2UHhFcDZODehVDDkwN/snWgAt/4QDmupCFnR47uQEZePsVew0+rLxSDOdDvvAwp
-         3JMq8P2tanxmPYuvLeuCmLNfn9yRr7Dfe9NF+r536JdXbCdxebQX1OVjBpyJ7mUDvRMU
-         iVtQ2+uN79keOw++o+t+UG4w2ddZnZ5CBm+iLIx5uFLx+Pf3+PRu53Jz68pAER7B1gdw
-         MxHg==
+        bh=oz7Mn5Slt/oCZXIyID1LQ+0ctRwDR+H2/7RiKV/KiC8=;
+        b=z9Ary3jPwxWtnf6V3vNq0eQZ+9bqPM/Bmrbyxfk9GUbrahRuXb97qVmkFUmRYa+xxt
+         qhxjdZkanTFpgKwk3LMFZGwT2krOqdSJTTd89h8jm1Ukus9cQ+uXQu0/ys8Xz1Z92NRb
+         3gRq0JyWpgV72Tez7iS2oLGKsS1QH6vKeeZ0NUUbJpGm88JDLx5NLWIFiZiXJisNgFTx
+         fWy9a6H+0Np2gR8nFkyHjMJ8xJP2Wwkmp5Bkf3bitmkacsmQY6nOvlu0K6TpkaBnIuIu
+         qY4YhIT+o/gQme3tKSptm/4YKxG5u7+uK+tOffmdCMIhsbM5d6rsaFIz+uTHFIa8XpRM
+         jd2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679223369;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679223918;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjQK98wMTvC2q3E7fdiQTGy4CfE9nib0P1aeqr32BDM=;
-        b=nsyOmqtZC7HFl+/+CM2HC/q2CkNhlANSBfVfMN+/jaK2WUhcmQ+R7C9vYFKlt6mRYr
-         IXzvrv5WdNC1RRWFQlHSDjJdlWPSQvkJuUCOFNyAxcnLw3lBE84Sq3h8SD7Cjja6ZSwz
-         hHMOpdHkjbzCA6Z+1x0gqXmf8XuRYYUKUnpPRd3nIaes5XrF0/ZxdfX9q9I1nd8Y0lRV
-         wjTpAgeN8AbWPGypZ7ZpBZ4pDYnoIzwUMEbyUHImk8SMS1HsBNZbVlJnTprztch4d9oe
-         /wwAsnwbsHNgIkqNps//JqXAUBGrXLhufjOKQqXZBXRnYBSBbHDpp/yQOXnmw9YUZAOK
-         mi2A==
-X-Gm-Message-State: AO0yUKUVLGb1kkXbHxnjJNZwt/vAAslp85cYrFkX4QQt5pha9byhDUil
-        zktDOI9vLpxif70ejhhdHsdEhA==
-X-Google-Smtp-Source: AK7set8aBKLZuOSLuGkgBgWSIN+Nyo0cQB4QbrQUYK+fT1WnG6tZns0BtbZAKs7jswp9C0GRLAkphg==
-X-Received: by 2002:a17:906:7fc6:b0:923:812c:a5d3 with SMTP id r6-20020a1709067fc600b00923812ca5d3mr5250858ejs.25.1679223369254;
-        Sun, 19 Mar 2023 03:56:09 -0700 (PDT)
+        bh=oz7Mn5Slt/oCZXIyID1LQ+0ctRwDR+H2/7RiKV/KiC8=;
+        b=Wu639BwjNOOOG65i5NiWbDcor0MuWV+lD2QRaJMMsRoLy0TAhIHMj91d8D24/GrlN/
+         TZh7kjQEqXkgT3TCt+g3nNXdqoage5CJd9yUGp1H1E6M4q9c7PPK/aYPk14R2x+3PGZe
+         gQ1UuFw61ZaaUTpO6nuEwogcjtyE9NcIZ6llV25mGKL4+h5T8YkdvYDZ5ymcCAY31prx
+         gWmybbb7XUbzGfuoDWUKGV9mivv5jpLJFhlVIi+AKyYFo8QTo6Jg2Vga2nr04VECmUqX
+         ob4DtImFKu8uBMK/tnvByOy5TLWOKGkSNZ6hx8ZM7l2fPOrkxOSuf9cQpXjkBRRykrtS
+         uuUg==
+X-Gm-Message-State: AO0yUKXa6stmZUdLejLnTkbMK15J/FwDOiCROZae6003vbq10ii7+V6J
+        OCCeXteHzuFBuqIZG3wxg7Zv1A==
+X-Google-Smtp-Source: AK7set8iyweCO1S8OBE+lR0gDceMHD0ysV/bfRKB03FfwieiyiZ/Nrqp+yiz4a4BU9OPNpb08OMDEg==
+X-Received: by 2002:a17:906:4ed3:b0:932:2282:dbd6 with SMTP id i19-20020a1709064ed300b009322282dbd6mr6255501ejv.5.1679223917979;
+        Sun, 19 Mar 2023 04:05:17 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id 21-20020a170906319500b008d68d018153sm3115271ejy.23.2023.03.19.03.56.06
+        by smtp.gmail.com with ESMTPSA id qn17-20020a170907211100b0093048a8bd31sm3138943ejb.68.2023.03.19.04.05.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 03:56:08 -0700 (PDT)
-Message-ID: <23036bfc-cceb-2ac5-85fb-5e2d0bc0cbb5@linaro.org>
-Date:   Sun, 19 Mar 2023 11:56:05 +0100
+        Sun, 19 Mar 2023 04:05:17 -0700 (PDT)
+Message-ID: <fd0cb506-707a-4f5d-b917-de6a03787f6a@linaro.org>
+Date:   Sun, 19 Mar 2023 12:05:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        Dvorkin Dmitry <dvorkin@tibbo.com>,
-        Wells Lu <wellslutw@gmail.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org, patches@opensource.cirrus.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230317233623.3968172-1-robh@kernel.org>
+Subject: Re: [PATCH 09/15] dt-bindings: reset: Document ma35d1 reset
+ controller bindings
 Content-Language: en-US
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-10-ychuang570808@gmail.com>
+ <cee0497e-c441-3937-07ec-0b6c4621f4e4@linaro.org>
+ <b9f93711-7302-4ed6-3f71-7bb792507136@linaro.org>
+ <4d62376f-1b33-62ac-2ed9-6b71ae7485a2@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230317233623.3968172-1-robh@kernel.org>
+In-Reply-To: <4d62376f-1b33-62ac-2ed9-6b71ae7485a2@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -125,15 +82,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 00:36, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 18/03/2023 05:30, Jacky Huang wrote:
+> Dear Krzysztof,
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> 
+> Thanks for your advice.
+> 
+> 
+> On 2023/3/16 下午 03:39, Krzysztof Kozlowski wrote:
+>> On 16/03/2023 08:37, Krzysztof Kozlowski wrote:
+>>> On 15/03/2023 08:28, Jacky Huang wrote:
+>>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>>
+>>>> Add documentation to describe nuvoton ma35d1 reset driver bindings.
+>>> Subject: drop second/last, redundant "bindings". The "dt-bindings"
+>>> prefix is already stating that these are bindings.
+> 
+> 
+> OK, I will fix it.
+> 
+> 
+>>>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>>>> ---
+>>>>   .../bindings/reset/nuvoton,ma35d1-reset.yaml  | 50 +++++++++++++++++++
+>>>>   1 file changed, 50 insertions(+)
+>>>>   create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..f66c566c6dce
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/reset/nuvoton,ma35d1-reset.yaml
+>>>> @@ -0,0 +1,50 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/reset/nuvoton,ma35d1-reset.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Nuvoton MA35D1 Reset Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Chi-Fang Li <cfli0@nuvoton.com>
+>>>> +  - Jacky Huang <ychuang3@nuvoton.com>
+>>>> +
+>>>> +description:
+>>>> +  The system reset controller can be used to reset various peripheral
+>>>> +  controllers in MA35D1 SoC.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: nuvoton,ma35d1-reset
+>>>> +
+>>>> +  regmap:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> +    description: Phandle to the register map node.
+>>> You need to be specific what is this. As you can easily check, there is
+>>> no such property in any devices. I don't understand why do you need it
+>>> in the first place.
+> 
+>          reset: reset-controller {
+>              compatible = "nuvoton,ma35d1-reset";
+>              regmap = <&sys>;
+>              #reset-cells = <1>;
+>          };
+> 
+> The dt_binding_check check report an error about the above "regmap".
+> 
+> I found that add this can pass the test.
+
+Do not add properties to bindings to "pass the test". That's not the
+goal of bindings. Add there properties because they make sense...
+
+Anyway, you did not answer my question at all. So one by one - address them:
+1. As you can easily check, there is no such property in any devices.
+Explanation: do you see it anywhere in existing bindings?
+
+2. I don't understand why do you need it in the first place.
+Explanation: your binding suggest this is not needed. If you think
+otherwise, you need to provide rationale.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
