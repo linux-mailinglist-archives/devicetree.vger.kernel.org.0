@@ -2,131 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5EC56C0572
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FBA96C0594
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:31:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbjCSVZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 17:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43346 "EHLO
+        id S230405AbjCSVbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 17:31:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbjCSVZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:25:25 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B39513529;
-        Sun, 19 Mar 2023 14:25:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679261124; x=1710797124;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=L03xG3XmXz3MyMO1JoMvMx28hZVkFt9QVmLsPGLzWIM=;
-  b=Z2oVCbQXY1J8frpv+epo+EFSdu4p7euzLj88cPHjMrrtpyqCUkiMbBfX
-   BOoIHz0kV9ydMf2gR4fXG/dNXyWk1aENSx4+cjwQjihy0rFNheAVN76sC
-   k7ny1osdYEOkZf0Sqhhd7U49zHfztMYRHMZwJbLtljcKk8MUo8euzM4Fr
-   kzA9kSF19EREYUGahgpMXQu0psIO2cg0KAviCbu9R3lGshe4rsYU3TjOn
-   mSJJ3QjXBkOnQKByI5z3ABuNiIkwChrcgY3ubtqKfx1NBoSkaSqVbrfh7
-   LGSrW9J5ujr2V0PbMjT219nPpzJE1+Kv/XUxI7+cBvrlGgMwIjTy7m5fK
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="340080954"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="340080954"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2023 14:25:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="749866876"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="749866876"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 19 Mar 2023 14:25:21 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pe0Wn-000Af4-0D;
-        Sun, 19 Mar 2023 21:25:21 +0000
-Date:   Mon, 20 Mar 2023 05:24:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andrew Hepp <andrew.hepp@ahepp.dev>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Andrew Hepp <andrew.hepp@ahepp.dev>
-Subject: Re: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF
- converter
-Message-ID: <202303200531.buTbR2TA-lkp@intel.com>
-References: <20230319184728.49232-3-andrew.hepp@ahepp.dev>
+        with ESMTP id S230411AbjCSVas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:30:48 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE2321BADD
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:30:20 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14FA61042;
+        Sun, 19 Mar 2023 14:30:32 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 548023F67D;
+        Sun, 19 Mar 2023 14:29:46 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v6 0/6] ARM: suniv: USB and two new boards support
+Date:   Sun, 19 Mar 2023 21:29:30 +0000
+Message-Id: <20230319212936.26649-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.35.7
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230319184728.49232-3-andrew.hepp@ahepp.dev>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi,
 
-Thank you for the patch! Perhaps something to improve:
+This patchset introduces support for F1C100s' USB, and the SourceParts
+PopStick and Lctech Pi boards.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on robh/for-next linus/master v6.3-rc2 next-20230317]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+These are the remaining (DT) patches, all driver and devicetree binding
+patches for USB related devices, which were part of former versions of
+this series, have now been merged (into v6.3-rc1).
+What's left are just the DT bits: for the SoC .dtsi and LicheePi Nano
+board .dts files. On top go patches that add support for two new boards.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andrew-Hepp/dt-bindings-iio-Add-MCP9600-thermocouple-EMF-converter/20230320-024950
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20230319184728.49232-3-andrew.hepp%40ahepp.dev
-patch subject: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF converter
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230320/202303200531.buTbR2TA-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/dc26dd0d9cb47654a6910bf35d8531b90ae88ece
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Andrew-Hepp/dt-bindings-iio-Add-MCP9600-thermocouple-EMF-converter/20230320-024950
-        git checkout dc26dd0d9cb47654a6910bf35d8531b90ae88ece
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/iio/temperature/
+There were no actual changes to the patches, they are merely resend,
+with the vendor and DT board name binding patches combined for the two
+boards.  All prerequisites are in the tree, so the tooling checks pass.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303200531.buTbR2TA-lkp@intel.com/
+Cheers,
+Andre
 
-All warnings (new ones prefixed by >>):
+Changelog v5 ... v6:
+- Drop all driver and USB DT binding patches (already merged separately)
+- based on v6.3-rc2
 
-   drivers/iio/temperature/mcp9600.c: In function 'mcp9600_read':
->> drivers/iio/temperature/mcp9600.c:51:16: warning: unused variable 'buf' [-Wunused-variable]
-      51 |         __be16 buf;
-         |                ^~~
+Changelog v4 ... v5:
+- Rebase on top to v6.2-rc1
+
+Changelog v3 ... v4:
+- Dropped the PHY patches, they go via a different tree and need a
+  different base
+- rebased on top of linux-sunxi/sunxi/for-next (provides H616 USB)
+- musb DT binding: use enum
+- musb cleanup: use musb_hdrc_config config pointer directly
+- musb cleanup: use const where possible
+- drop partitions from Popstick DTS file
+- clarify Popstick has a USB type-A *plug*
+- add tags
+
+Changelog v2 ... v3:
+- remove redundant "Device Tree Bindings" suffix in DT binding doc title
+- add BSD license to binding doc file (as per checkpatch)
+- fix some commit message title prefixes
+- use proper plural spelling for usb0_id_det-gpios
+- popstick.dts: Reorder otg_sram node reference alphabetically
+- popstick.dts: Add regulator- prefix to 3.3V regulator node name
+- popstick.dts: Fix status, compatible and reg property order
+- popstick.dts: Drop unneeded mmc0 and spi0 aliases
+- add patch to clean up sunxi MUSB driver
+- add Acks and Reviewed-by's
+
+Changelog v1 ... v2:
+- USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
+- Add Popstick binding and .dts patches
 
 
-vim +/buf +51 drivers/iio/temperature/mcp9600.c
+Andre Przywara (1):
+  ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
 
-    47	
-    48	static int mcp9600_read(struct mcp9600_data *data,
-    49				struct iio_chan_spec const *chan, int *val)
-    50	{
-  > 51		__be16 buf;
-    52		int ret;
-    53	
-    54		mutex_lock(&data->read_lock);
-    55		ret = i2c_smbus_read_word_swapped(data->client, chan->address);
-    56		mutex_unlock(&data->read_lock);
-    57	
-    58		if (ret < 0)
-    59			return ret;
-    60		*val = ret;
-    61	
-    62		return 0;
-    63	}
-    64	
+Icenowy Zheng (5):
+  ARM: dts: suniv: add USB-related device nodes
+  ARM: dts: suniv: licheepi-nano: enable USB
+  dt-bindings: vendor-prefixes: add Source Parts and Lctech names
+  dt-binding: arm: sunxi: add two board compatible strings
+  ARM: dts: suniv: add device tree for PopStick v1.1
+
+ .../devicetree/bindings/arm/sunxi.yaml        | 13 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  4 +
+ arch/arm/boot/dts/Makefile                    |  4 +-
+ .../boot/dts/suniv-f1c100s-licheepi-nano.dts  | 16 ++++
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          | 32 ++++++++
+ arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 76 +++++++++++++++++
+ .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 81 +++++++++++++++++++
+ 7 files changed, 225 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.35.7
+
