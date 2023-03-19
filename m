@@ -2,181 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC82C6C0599
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 369F96C059C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:32:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230289AbjCSVbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 17:31:51 -0400
+        id S229878AbjCSVcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 17:32:39 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjCSVb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:31:26 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE89A1C31B
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:30:47 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17B88168F;
-        Sun, 19 Mar 2023 14:30:43 -0700 (PDT)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A96153F67D;
-        Sun, 19 Mar 2023 14:29:57 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH v6 6/6] ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
-Date:   Sun, 19 Mar 2023 21:29:36 +0000
-Message-Id: <20230319212936.26649-7-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.7
-In-Reply-To: <20230319212936.26649-1-andre.przywara@arm.com>
-References: <20230319212936.26649-1-andre.przywara@arm.com>
+        with ESMTP id S230180AbjCSVc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:32:26 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3201A498
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:31:53 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id o11-20020a05600c4fcb00b003eb33ea29a8so6375858wmq.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:31:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679261511;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iwm7j7gz5tZ/lbs8NKr0hRp3m2lnBn5LK4PqGwVU0rk=;
+        b=OAEJuxOlkduMFUJfEueREs+vEjTzCf0vFPxOHmO2fD4RPOCsqELkiG1d06zVdiHKA+
+         2ViOYhca6KlcTsxXigXUOq9LuLigxktorwe5qt7vuEt4iqt1lrBXZUE//syKVWD6zUSF
+         qX8TNmEwlJrdFSLXQojwbG6GbI3WQqei60jv7WOI8kygtO7fMEX4cD6l0cfHAxXOpLa/
+         iLszKMWDwqWqpZ/FSZHuSN0fiaZE+lkWTCZAPUBv3pwSOt8NpwUQOjzbpD9lEEO8Ozvv
+         if1Bx8WFZufFgXArVCJOr+DZoYHD49n5li7Im94czz5mBJK9+JkICIq0KD7RPsTxLTPT
+         fgLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679261511;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iwm7j7gz5tZ/lbs8NKr0hRp3m2lnBn5LK4PqGwVU0rk=;
+        b=06G+Y2ybQ4Rw5zlGPIJjBp8X4D3qfrcdFB/Ll3nSxsjFghwvYEY+/2FOET1f8cbX9/
+         eu7EkS4sQHENYC9Veo2VexwvkbQllZVORktvQG60E+/9TdOdS4f4ah3gXjpRX6GOGWN8
+         3j7jpKbisFOSFGo/PYlqxLPTyyf9tNmizZBjbtcei8Kaj6EtDM9zrx3ysoGKXoUDPVj5
+         r+9TZ/ZODgL2MhMjOaXAJY77DaiLUGqQNvGK1qPuc7fdy7Z1IclV/N3Cy3YCMUBNOcRm
+         7GqujXvHpuDmH1vjdbLu/kYYAjoyvroe0gUEn56x4mLMF88hzzlJeH07rpwC8hzKdigy
+         eR4Q==
+X-Gm-Message-State: AO0yUKVWP0UnFj8/zqXZPstQv1YTEiGU/ZMsQCArOwyOfeMh8H0Le5of
+        d6Ejaj5Ifz99/fGyO7a8hcGzHA==
+X-Google-Smtp-Source: AK7set/vhhrgnE3viT8koUFQvmrJIAcam3nM3pvPgs7nL9kcOBaDSCNnM0EsCO8FRhTW4D/EGc0uXw==
+X-Received: by 2002:a05:600c:3595:b0:3ed:2ae9:6c75 with SMTP id p21-20020a05600c359500b003ed2ae96c75mr20028219wmq.37.1679261511457;
+        Sun, 19 Mar 2023 14:31:51 -0700 (PDT)
+Received: from [192.168.0.15] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id n1-20020a5d67c1000000b002cfe685bfd6sm7345241wrw.108.2023.03.19.14.31.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Mar 2023 14:31:50 -0700 (PDT)
+Message-ID: <5098322b-d09b-72ec-ac6a-128a6a64ea17@linaro.org>
+Date:   Sun, 19 Mar 2023 21:31:49 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 09/18] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
+ schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-10-bryan.odonoghue@linaro.org>
+ <7cd51a8d-7b23-7895-7c06-07dc98924931@linaro.org>
+ <a4da1f8f-333e-9ded-d784-7f86c45c7156@linaro.org>
+ <346ecd20-d64f-1d47-4860-861e142f9700@linaro.org>
+ <aa5d1492-906f-9e30-8f97-6321db692c73@linaro.org>
+ <c5ac0d15-4651-318e-4dd2-37b2f90b2ba0@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <c5ac0d15-4651-318e-4dd2-37b2f90b2ba0@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lctech Pi F1C200s (also previously known under the Cherry Pi brand)
-is a small development board with the Allwinner F1C200s SoC. This is the
-same as the F1C100s, but with 64MB instead of 32MB co-packaged DRAM.
 
-Alongside the obligatory micro-SD card slot, the board features a
-SPI-NAND flash chip, LCD and touch connectors, and unpopulated
-expansion header pins.
-There are two USB Type-C ports on the board: One supplies the power, also
-connects to the USB MUSB OTG controller port. The other one is connected
-to an CH340 USB serial chip, which in turn is connected to UART1.
 
-Add a devicetree file, so that the board can be used easily.
+On 19/03/2023 17:50, Krzysztof Kozlowski wrote:
+> On 19/03/2023 16:44, Bryan O'Donoghue wrote:
+>> On 19/03/2023 15:10, Krzysztof Kozlowski wrote:
+>>> On 19/03/2023 15:59, Bryan O'Donoghue wrote:
+>>>> On 19/03/2023 11:58, Krzysztof Kozlowski wrote:
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Bryan O'Donoghue<bryan.odonoghue@linaro.org>
+>>>>>> +
+>>>>>> +description: |
+>>>>>> +  Qualcomm PMIC Virtual Type-C Port Manager Driver
+>>>>>> +  A virtual device which manages Qualcomm PMIC provided Type-C port and
+>>>>>> +  Power Delivery in one place.
+>>>>> OK, so it looks like bindings for driver, so a no-go. Unless there is
+>>>>> such device as "manager", this does not look like hardware description.
+>>>>>
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: qcom,pmic-virt-tcpm
+>>>>>> +
+>>>>>> +  connector:
+>>>>>> +    type: object
+>>>>>> +    $ref: /schemas/connector/usb-connector.yaml#
+>>>>>> +    unevaluatedProperties: false
+>>>>>> +
+>>>>>> +  port:
+>>>>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>>>>> +    description:
+>>>>>> +      Contains a port which consumes data-role switching messages.
+>>>>>> +
+>>>>>> +  qcom,pmic-typec:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>>> +    description:
+>>>>>> +      A phandle to the typec port hardware driver.
+>>>>>> +
+>>>>>> +  qcom,pmic-pdphy:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>> Having typec and phy as phandles - not children - also suggests this is
+>>>>> some software construct, not hardware description.
+>>>>
+>>>> So probably I didn't interpret Rob's comment correctly here.
+>>>
+>>> He proposed to merge it with other node:
+>>> "probably merged with
+>>> one of the nodes these phandles point to."
+>>>
+>>> "Why can't most of this binding be part of"
+>>>
+>>> I don't see how you implemented his comments. Actually, nothing improved
+>>> here in this regard - you still have these phandles.
+>>
+>> So this comment from Rob is what I was aiming for
+>>
+>> "Your other option is instantiate your own device from the virtual
+>> driver's initcall based on presence of the 2 nodes above. "
+>>
+>> rather than two mush the pdphy and typec into one device, which they are 
+>> not.
+> 
+> Sure, but you did not instantiate anything based on these two or one
+> nodes. You added virtual device node.
+> 
+> 
+>> I guess what I'm trying to understand is how you guys would suggest that 
+>> is actually done.
+> 
+> You have there already node for the PMIC USB Type-C, so this should be
+> part of it. I really do not understand why this is separate device lying
+> around in parallel like:
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/suniv-f1c100s.dtsi          |  6 ++
- arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 76 +++++++++++++++++++
- 3 files changed, 83 insertions(+)
- create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+The pdphy is fairly well encapsulated (3 tcpm callbacks go to it, that's
+all?), I think the tcpm part could be merged in with the typec driver
+and it could just have a phandle to the pdphy node to represent the
+dependency.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 3b97d7c1e3c28..a627d5593e51b 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1407,6 +1407,7 @@ dtb-$(CONFIG_MACH_SUN9I) += \
- 	sun9i-a80-cubieboard4.dtb
- dtb-$(CONFIG_MACH_SUNIV) += \
- 	suniv-f1c100s-licheepi-nano.dtb \
-+	suniv-f1c200s-lctech-pi.dtb \
- 	suniv-f1c200s-popstick-v1.1.dtb
- dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
- 	tegra20-acer-a500-picasso.dtb \
-diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-index 111f8bbc2a805..3c61d59ab5f86 100644
---- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-+++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-@@ -207,6 +207,12 @@ uart0_pe_pins: uart0-pe-pins {
- 				pins = "PE0", "PE1";
- 				function = "uart0";
- 			};
-+
-+			/omit-if-no-ref/
-+			uart1_pa_pins: uart1-pa-pins {
-+				pins = "PA2", "PA3";
-+				function = "uart1";
-+			};
- 		};
- 
- 		i2c0: i2c@1c27000 {
-diff --git a/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-new file mode 100644
-index 0000000000000..2d2a3f026df33
---- /dev/null
-+++ b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Arm Ltd,
-+ * based on work:
-+ *   Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
-+ */
-+
-+/dts-v1/;
-+#include "suniv-f1c100s.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Lctech Pi F1C200s";
-+	compatible = "lctech,pi-f1c200s", "allwinner,suniv-f1c200s",
-+		     "allwinner,suniv-f1c100s";
-+
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reg_vcc3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&mmc0 {
-+	broken-cd;
-+	bus-width = <4>;
-+	disable-wp;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&otg_sram {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pc_pins>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <40000000>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pa_pins>;
-+	status = "okay";
-+};
-+
-+/*
-+ * This is a Type-C socket, but CC1/2 are not connected, and VBUS is connected
-+ * to Vin, which supplies the board. Host mode works (if the board is powered
-+ * otherwise), but peripheral is probably the intention.
-+ */
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
+Then in the typec driver you can get the device with
+spmi_device_from_of() and call into it that way for the few tcpm
+callbacks that it needs to handle and to pass in the tcpm_port.
+
+
+> 
+> pmic {
+> 	usb {
+> 	};
+> };
+> 
+> virtual- pmic-tcpm {
+> };
+> 
+> What hardware piece does such description represent?
+> 
+>>
+>> Could I trouble you for an example ?
+>>
+>> ---
+>> bod
+> 
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.35.7
-
+Kind Regards,
+Caleb (they/them)
