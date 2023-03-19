@@ -2,121 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFDD6C0254
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 15:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E8556C0279
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 15:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230249AbjCSOQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 10:16:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
+        id S230168AbjCSOvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 10:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbjCSOQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 10:16:45 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3403D49DA;
-        Sun, 19 Mar 2023 07:16:38 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id a16so5383957pjs.4;
-        Sun, 19 Mar 2023 07:16:38 -0700 (PDT)
+        with ESMTP id S229496AbjCSOvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 10:51:03 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B91D1C33A
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 07:51:01 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id az3-20020a05600c600300b003ed2920d585so7708540wmb.2
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 07:51:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679235397;
+        d=linaro.org; s=google; t=1679237460;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fofrlve0pl+ic6K67ZryHrzuH/Gn4T8D1dVcL+8p9ZE=;
-        b=EQrhPQJzJLs6DekeTg2zcd509dgqJ/FC+3PzLgaRv666cl4ZgwLazu/sGw0+iJgTtw
-         ngLGDACi7D9p/E69Ur3GF0XY6HruLhIW8tBW3Fyjr3BTtLy8/Xb2nPMzGX7GUvdWHVZM
-         9IeDOIrYBccd9Y2D1yP22CmOqu13REZSI+2jErFkLQdZhEMhxFAq8nq7W/i0blcJtii/
-         twJgY/Sw0RQmD6YtldMyBTF1CFLC27KIrea5+0+dFvtI6P2n8PhpSahcVKAqOLUHILBd
-         Ps8Up//NHx1OIOehB5MuEWb7PMP2VfnYDmoJCQDY215itObT1UR87bup6ykNaLMWmnTb
-         Mnwg==
+        bh=Tg+WtsRKLyVBBHQPTuGjWIy3wZhbGvyEZxefNeAgn4g=;
+        b=ZvBgspzAabXpgXX5mQkbTa8jXN4N7/XhaPzqFnI2cuGxZ3A0AkZb1C82QQ5J8Ij0EF
+         WN43AH2dxtMWl0zpk0Txw9ZoR6Qo7lIlpt+JKOzdf6M05b8A5XZ9WPlJH8MrXkkvZOW1
+         j4tBfKbfgBQIiCPoh2TmUrSgRhpImD8z+2eDEtoe9DcsVpBinqIaEA4qREto084vcN/U
+         i1HNPgDJqoULdZSLLWQlerH9r50jITN4EFL7RcEomCiTs7gE4kwgwdKUK3F1IkxHjH5O
+         2tVZdxY0FQzzPvmIaZZivUWMhoVgihYnSn4uPd6+1mrWl1eKxhWZwhMoXwXYFHpUl/B8
+         Qcfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679235397;
+        d=1e100.net; s=20210112; t=1679237460;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fofrlve0pl+ic6K67ZryHrzuH/Gn4T8D1dVcL+8p9ZE=;
-        b=TFXpFOx/3YyOEqpzdK5ikItdgbXQq58jkXAuwkMqx3GUDsz0jyDJ7vMahTIlJUKr36
-         DNtSy2usi49EuIVjTb9o7pvE3p6NUU1yJIIRTYT4+xWGPbT3FkguPpV5Ys5Xn8GmZFIT
-         7gwnnUHLL5kISi1TVQebizf7sIXpj+qLCGKb/ZnJ57ZWM7pd7ovNLxL7lk5if+IQSwL7
-         yeUqNFsekJB+bPZZil6rNlw1bvrw1AtxJoCP2K6gVLlN8Pr9VM4y6KNpdb3rn2vTlvzT
-         x3/MdeRhy+W99Fr1rI5sQBurewggUdWd5iQ7Q24PfPuZREMu9fdATsIQODDk/n82zChe
-         2lvQ==
-X-Gm-Message-State: AO0yUKXOFXgjBl81W8GEeZni+Y4I7DLgWj2Wnww7lqZSpiHzSSyoEKQf
-        2qO+lWFyQLrjK+I1oTxIFoI=
-X-Google-Smtp-Source: AK7set8eZ1H2+CkVyArr75/ApS72a8JfEgQXeSMDYFkA6WnQoXs36QOZBRaawac/KuVMva4709Pbwg==
-X-Received: by 2002:a17:902:fb85:b0:19c:da68:337a with SMTP id lg5-20020a170902fb8500b0019cda68337amr12437940plb.31.1679235397565;
-        Sun, 19 Mar 2023 07:16:37 -0700 (PDT)
-Received: from [192.168.1.101] (1-160-164-133.dynamic-ip.hinet.net. [1.160.164.133])
-        by smtp.gmail.com with ESMTPSA id s14-20020a170902b18e00b001a1ccb37847sm601054plr.146.2023.03.19.07.16.34
+        bh=Tg+WtsRKLyVBBHQPTuGjWIy3wZhbGvyEZxefNeAgn4g=;
+        b=fJrPJkNZv1q2fMc8uCNsWfWw270ikH2iMDV2bEIfieP8/vApetyEg4Fgw+yyNiNG9e
+         2kEvGcScpkn2k3MbhfRtseBoq8fxKkrOduDuS6umdmFXoLuMrU0/veEV/p5bSkF2QFQk
+         PjJNWDXrvuDpqP4zNzhTPtqC4/a6somclk6QnPNEBt3K4/6DreW+gVH/pBCK6nkExp/6
+         STVuW8ilymssxj1gVMjE5UIPlrh4oKz2716v1QLe3WYfacCoOuA5UdIcZ0fbRiENxTFN
+         swdgPMhN3MbjyxXtWpgaIU4IQSPqBhNm+CNjA4RhKwvkuEIOMlLmZEjKoDH3DMSN4Szc
+         XaVw==
+X-Gm-Message-State: AO0yUKUyPBIP95eo/dq/VQ+LiwaRoHUQvI1OUf2t8+NPitsbiQC6/C9c
+        PXlCr6YlYOQ5Kj6w4xu3J34LhA==
+X-Google-Smtp-Source: AK7set+WpTUcnREx/cybLShYysBfZXOBLshiUx4JE/BB846vHWsEwxgI3/T0ksOqAgOrs5JOaPy+pA==
+X-Received: by 2002:a05:600c:5250:b0:3ed:4685:4618 with SMTP id fc16-20020a05600c525000b003ed46854618mr12296749wmb.34.1679237460029;
+        Sun, 19 Mar 2023 07:51:00 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t25-20020a1c7719000000b003ecc64edf7esm7758646wmi.39.2023.03.19.07.50.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 07:16:37 -0700 (PDT)
-Message-ID: <4e4b6bfd-89b2-e917-6e20-24f3be54606a@gmail.com>
-Date:   Sun, 19 Mar 2023 22:16:34 +0800
+        Sun, 19 Mar 2023 07:50:59 -0700 (PDT)
+Message-ID: <4ec17ff9-6e7a-fa3d-06d1-bb6919bc1444@linaro.org>
+Date:   Sun, 19 Mar 2023 14:50:58 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 11/15] arm64: dts: nuvoton: Add initial ma35d1 device tree
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 05/18] dt-bindings: usb: Add qcom,pmic-typec dt-binding
+ header
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        schung@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com>
- <20230315072902.9298-12-ychuang570808@gmail.com>
- <fb4f60a7-011e-3745-cc40-631247735f2b@linaro.org>
- <c902606e-8a1b-6673-02c7-7beea5477795@gmail.com>
- <87171ab8-9c6d-3978-6d34-4ae922361307@linaro.org>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <87171ab8-9c6d-3978-6d34-4ae922361307@linaro.org>
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
+        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-6-bryan.odonoghue@linaro.org>
+ <c1f91a8a-2844-393b-6dc1-127828446c6c@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <c1f91a8a-2844-393b-6dc1-127828446c6c@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzyszto,
+On 19/03/2023 11:50, Krzysztof Kozlowski wrote:
+> And squash it with next patch. Binding headers are not a separate
+> feature. It's the same as adding bindings.
 
-
-On 2023/3/19 下午 07:06, Krzysztof Kozlowski wrote:
-> On 18/03/2023 07:07, Jacky Huang wrote:
->>>> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x13) |
->>>> +			      IRQ_TYPE_LEVEL_HIGH)>;
->>>> +	};
->>>> +
->>>> +	uart0:serial@40700000 {
->>>> +		compatible = "nuvoton,ma35d1-uart";
->>>> +		reg = <0x0 0x40700000 0x0 0x100>;
->>>> +		interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
->>>> +		clocks = <&clk UART0_GATE>;
->>>> +		status = "okay";
->>> Why? Drop the line... or convert it to disabled. Otherwise, why every
->>> SoC has serial0 enabled? Is it used internally?
->>
->> uart0 is on all the way since this SoC booting from the MaskROM boot code,
->>
->> load arm-trusted-firmware, load bootloader, and finally load linux  kernel.
->>
->> uart0 is also the Linux console.
-> Are you sure? Maybe my board has UART0 disconnected.
->
-> Best regards,
-> Krzysztof
-
-
-OK, I will have the uart0 disabled in dtsi, and enabled it in dts.
-
-
-Best regards,
-
-Jacky Huang
-
-
+Actually I can drop these headers, you're right.
