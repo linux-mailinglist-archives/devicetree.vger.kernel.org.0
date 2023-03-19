@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E286C0181
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 13:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D26F6C0184
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 13:22:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230085AbjCSMTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 08:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40074 "EHLO
+        id S229605AbjCSMV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 08:21:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjCSMTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 08:19:53 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D19915CB4
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:19:51 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id er8so25119808edb.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:19:51 -0700 (PDT)
+        with ESMTP id S229441AbjCSMV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 08:21:59 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F671A66B
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:21:57 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id w9so36917379edc.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:21:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679228389;
+        d=linaro.org; s=google; t=1679228516;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tkW9yYShKyhPgZwZHe04L+u1EHErHafgr+Lv/oT1Nrs=;
-        b=Wjp4bMgpX09kQOMY65tynzOZrudfiPiWlTF4mKbnfFExy0bjiKjMqP06U07NQ6F5EW
-         NUufqqkqnvSP4nuouSRkb9Dz/0olEERiaMrjgXL/oHOpWhFotQh9s/wtDghBbMpgtzMZ
-         jLGHbe94fnsy+0gG30lyeYi0w6iSnYAAsHwCOtWM5TBV9FpZNLKzL6jfmAQHGw7LRzl1
-         /JNxL6f3vyHH2MObrvym8yzWYrORAjAvJQW6XE+gZbjoE2BBFLNvbUaKDhCSNdfpF4YF
-         KFkBXSbYgpSDhrzkgAok5ep2JxavqJ04+PnK1vooJLpaC0nj5lCe8aHNkCjGTMrwc1Y3
-         QMVA==
+        bh=UA/RVseheg2Mc3aNDxrWXO0sH5wS3//KYOVz8WHnSys=;
+        b=ro7/Aw85j2ohxJI5Th71eZODXAv7tXOyG3a5gSiHPGDCS8I1MyNsw4VzCN3LwKNlgo
+         Z/gvIQKe7+xuuLp3ntdlVLxyMoO+VpFVWf3rdS6JlTsMJGoDMZroYfU9S/Zo0q9qNJZv
+         7LzJ1kPPVji8vrAAE7ihaNvo0yqZ0NsMMseHd3Vdr+91O00YP3NNjZlgi9WHP/LeBJd6
+         r2yMghWhfYLGZfoNVXYTcxOCTgADg9NqDNL4d8v6+rPb+0xXi1SgwDCL4DuEFJNXEpvr
+         BTYpNPK4XDZPf7nLEFTr1P7ZJj9U+gq3LZaIDu7RpRhwWWmAt4tUoubKvp6ytxuHQsJG
+         /zLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679228389;
+        d=1e100.net; s=20210112; t=1679228516;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tkW9yYShKyhPgZwZHe04L+u1EHErHafgr+Lv/oT1Nrs=;
-        b=V+FGub9h1GPKFVedBPwJo3Vdy55tx5seFFLMQy0fRfyBTYKioXMbKiAJhFTEznjSMc
-         Yp5CKj7QHkhVKJ5hokAbNEEs9BhiO5wCnGo9g1muoXBqC0lDNZOjjicGJFm2/lObypSq
-         sC+eZKbvKzOiNF3QfN1AEHRSJYfNvH9EnA/5h2v6Qsw1gnlG6jWzsBZ7MPN5xlSeV8Z2
-         l8MfL0g+gCiDjrOd6mRwXzHFnSr0MiW0j31ho+rIcfMBmHOWBzsq6J5fsVW15i1W83JZ
-         v4VTxn6dLYbK+uSNLJcl1b+qhh4TO5s29w+t/Y2Yj8/jxlxl1RhTTHlb24/v8c/RbA6H
-         utEw==
-X-Gm-Message-State: AO0yUKX+80z8u5v9r7k/ueBwOVDVAxt6EYsro5nuMiz2LuD0lTSatbiD
-        pRljes3oozDbQmU9pkWEgedAhg==
-X-Google-Smtp-Source: AK7set9y5oC5PJn3CKLtdsyKS6tXuqCeSXG7y/nobmgBG7n5X9r+yejEzKHVCkXB5WA9CHxGZ7vHSA==
-X-Received: by 2002:a05:6402:4cf:b0:4fb:223a:76e7 with SMTP id n15-20020a05640204cf00b004fb223a76e7mr9372378edw.18.1679228389594;
-        Sun, 19 Mar 2023 05:19:49 -0700 (PDT)
+        bh=UA/RVseheg2Mc3aNDxrWXO0sH5wS3//KYOVz8WHnSys=;
+        b=P1Cc1FxBjIVBhWOrz7p5D1gDYu5MnWwbdN+0iTVQVMdvVocv9Q+Df4PtvvFIEb2r8z
+         qfc+D6+uEIAPlOYuMVicGcmVNySEs3pRI8mPICRS/N6lIemnr6xtutYzRh+5s9o90Pj4
+         lk2zJGQ2QeqNtHTMtuG6BMMrCkQYkTK5spHjxB2G0NV278YjKpgCW7Ymc1AYMG/L7m3f
+         VHTijw6TpkQNzaSpn1IKchqNv7uxraHhOeSu3Cv+l+T+8yd/hBXBajALsuJhSFCTNuhN
+         /3t5AEuOfLj1h1ws/YYR+QRCf2zjWxpm7kaDBWF5uGiV4OaTa2eoU+pI2YPAfHeQlMtK
+         midg==
+X-Gm-Message-State: AO0yUKW+4l4Z+/gt2o35xbtX6b6keyI7okr5dvg8t1BbHdXsVOgYKSpQ
+        mHTe/gEKFGOosLMRxyKz8YSW/w==
+X-Google-Smtp-Source: AK7set+E9ngdMGo3d0f03BlUazh4+7McUbDGjmEBkFAAeDIwW6xWmjiuP9WKSoc39PO9j3/TPR1elQ==
+X-Received: by 2002:a17:906:d159:b0:932:8dc:5afe with SMTP id br25-20020a170906d15900b0093208dc5afemr4941050ejb.67.1679228516021;
+        Sun, 19 Mar 2023 05:21:56 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id s30-20020a50ab1e000000b004c5d1a15bd5sm3435919edc.69.2023.03.19.05.19.48
+        by smtp.gmail.com with ESMTPSA id x93-20020a50bae6000000b004fbf6b35a56sm3458374ede.76.2023.03.19.05.21.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 05:19:49 -0700 (PDT)
-Message-ID: <10a850be-b04e-90db-cacb-127ac7698d97@linaro.org>
-Date:   Sun, 19 Mar 2023 13:19:47 +0100
+        Sun, 19 Mar 2023 05:21:55 -0700 (PDT)
+Message-ID: <c6b562d7-8d88-18ea-31df-db1fd200c251@linaro.org>
+Date:   Sun, 19 Mar 2023 13:21:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V4 1/6] dt-bindings: usb: usbmisc-imx: convert to DT
- schema
+Subject: Re: [PATCH v2 2/4] dt-bindings: mmc: Remove bindings for Intel
+ Thunder Bay SoC"
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, xu.yang_2@nxp.com
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
-References: <20230317123708.337286-1-peng.fan@oss.nxp.com>
- <20230317123708.337286-2-peng.fan@oss.nxp.com>
+To:     rashmi.a@intel.com, ulf.hansson@linaro.org,
+        michal.simek@xilinx.com, p.zabel@pengutronix.de,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vkoul@kernel.org, kishon@kernel.org, yuancan@huawei.com,
+        andriy.shevchenko@linux.intel.com, linux-phy@lists.infradead.org,
+        mgross@linux.intel.com
+Cc:     kris.pan@linux.intel.com, adrian.hunter@intel.com,
+        mahesh.r.vaidya@intel.com, nandhini.srikandan@intel.com,
+        vasavi.v.itha@intel.com, kenchappa.demakkanavar@intel.com,
+        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com
+References: <20230316120549.21486-1-rashmi.a@intel.com>
+ <20230316120549.21486-3-rashmi.a@intel.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230317123708.337286-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20230316120549.21486-3-rashmi.a@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,33 +85,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2023 13:37, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 16/03/2023 13:05, rashmi.a@intel.com wrote:
+> From: "A, Rashmi" <rashmi.a@intel.com>
 > 
+> Remove Thunder Bay specific code as the product got cancelled
+> and there are no end customers or users.
+> 
+> Signed-off-by: A, Rashmi <rashmi.a@intel.com>
+> Reviewed-by: Hunter, Adrian <adrian.hunter@intel.com>
 
 
-> +  '#index-cells':
-> +    const: 1
-> +    description: Cells used to describe usb controller index.
-> +    deprecated: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    usbmisc@2184800 {
-> +        #index-cells = <1>;
-> +        compatible = "fsl,imx6q-usbmisc";
-> +        reg = <0x02184800 0x200>;
-
-If there is going to be resend, put compatible first, reg second. Then rest.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
