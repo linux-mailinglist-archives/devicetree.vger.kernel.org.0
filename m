@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F31616C037D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 18:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80D6E6C0379
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 18:30:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjCSRgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 13:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
+        id S229548AbjCSRah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 13:30:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbjCSRgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 13:36:40 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675691B2E0
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 10:36:39 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 70BEE81F10;
-        Sun, 19 Mar 2023 18:36:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1679247394;
-        bh=UdepYM5oUlCnWvfoYl2fa6mZAY6wNb5kbkQS9WyAhqA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Lx5emFqo/eLxKjU+RNW9NrDq/IeqYyRkKwmdt9Vu0//3Y1EdViaw8SDjMkHkJ2TF5
-         2/h0py275OJKLsTJnEtaY48x04WM22LoGBKY6ydxw3Z7G8pjXiEkz/RtxCmT5KpF1Q
-         Mf9y3lh0jvDRl2pHzPN2S1t0PTOxur21sN+JsUg9LWezoTv6OD9tIELv/l4VDMfev3
-         aiG75ed2c4zlrcS1HyCqvqcVFFWEmDPg1UmUUCDo9U0E6xd93erbj8ZUKomJhicRuH
-         hcmM+bcTkuRlpamrhiog9ouKgAZya1+kyo3EEOeVSu/stgDX2lYhKUH4ZZjaO+loZN
-         DiIMUO7sIUquQ==
-Message-ID: <7a281910-0502-d71a-1e76-d392b6ed187b@denx.de>
-Date:   Sun, 19 Mar 2023 18:25:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] dt-bindings: soc: imx-blk-ctrl: Drop leading label in
- blk-ctrl in examples
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S229448AbjCSRaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 13:30:35 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BD91423A;
+        Sun, 19 Mar 2023 10:30:34 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id h5so5426730ile.13;
+        Sun, 19 Mar 2023 10:30:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679247033;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3OyXeMWwUcICjLt5skJDFYn4DtNOe/WaaKZtvUJ6fbQ=;
+        b=39bf/3Lqv1ZLXoZal1l1swuVDQBFnmnOh1D5OHaTb2FkJqKFF4Ub97HhqnWfFgVN+v
+         Dr0+ykeBsjhBwbX0ZPtPRSvkUp8encpHpgQXhj8zd/dUaiia2M3qzeheid7R51mYgRp3
+         Q9z9Ow5oMKpOniOkpmKdA6T/KtIc5bAdph/CO+SFQbb1o56lB+xW0+rRSTVxyDQnM23P
+         C94byvpy+YBmoYFCbcDCD4c41eCJwgkOTl7Ln8ZqJQPfvTFkBrNxG3KBNr2GPtg2QEAF
+         szixmp34qvZn7lqOfGZc9a4yki0SICBqNAq8yhcpwtPec1vBnoR+mTw0yGMornfTJq2e
+         BGow==
+X-Gm-Message-State: AO0yUKXmToOdzAy55JYDeXM6lyLU60f30Z2XDB2cc01x1B0oddhL8SXu
+        SsBf8wftRyiXh/Y1hQRwqA==
+X-Google-Smtp-Source: AK7set8ACMMvQgQNUSW8MZKD/yXBXF9f59lk/bVOHbqn7d499Uw5wsnlVpVGfw6TSXLh+x3kZp6H0A==
+X-Received: by 2002:a92:d083:0:b0:315:3421:ef2a with SMTP id h3-20020a92d083000000b003153421ef2amr3551536ilh.25.1679247033336;
+        Sun, 19 Mar 2023 10:30:33 -0700 (PDT)
+Received: from robh_at_kernel.org ([2605:ef80:80c2:711:b843:6628:3fd6:ded4])
+        by smtp.gmail.com with ESMTPSA id q12-20020a05663810cc00b003e8a17d7b1fsm2617956jad.27.2023.03.19.10.30.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Mar 2023 10:30:33 -0700 (PDT)
+Received: (nullmailer pid 30794 invoked by uid 1000);
+        Sun, 19 Mar 2023 17:30:24 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20230317095827.49100-1-marex@denx.de>
- <20230317095827.49100-2-marex@denx.de>
- <5e41a328-2937-8616-2fa6-474854dcbdce@linaro.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <5e41a328-2937-8616-2fa6-474854dcbdce@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mmc: fujitsu: Add Socionext Synquacer
+Date:   Sun, 19 Mar 2023 12:30:06 -0500
+Message-Id: <20230319173006.30455-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/19/23 12:21, Krzysztof Kozlowski wrote:
-> On 17/03/2023 10:58, Marek Vasut wrote:
->> Drop the leading label in block controller examples, it is unused.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Cc: Lucas Stach <l.stach@pengutronix.de>
->> Cc: Marek Vasut <marex@denx.de>
->> Cc: NXP Linux Team <linux-imx@nxp.com>
->> Cc: Paul Elder <paul.elder@ideasonboard.com>
->> Cc: Peng Fan <peng.fan@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Richard Cochran <richardcochran@gmail.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> ---
->> Note: This was suggested by Krzysztof as part of requested changes to commit
->>        0d2c843ce5adb ("dt-bindings: soc: imx8mp-media-blk-ctrl: Align block controller example name")
->>        Expand the change onto all the block controllers.
->> ---
->>   .../devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml   | 2 +-
->>   .../devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml    | 2 +-
->>   .../devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml   | 2 +-
->>   .../devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml   | 2 +-
->>   .../devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml    | 2 +-
->>   .../devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml   | 2 +-
->>   6 files changed, 6 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
->> index e8da8f413966b..a02a09d574a2c 100644
->> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
->> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
->> @@ -70,7 +70,7 @@ examples:
->>       #include <dt-bindings/clock/imx8mm-clock.h>
->>       #include <dt-bindings/power/imx8mm-power.h>
->>   
->> -    disp_blk_ctl: blk-ctrl@32e28000 {
->> +    blk-ctrl@32e28000 {
-> 
-> This piece should be squashed with previous. You are changing the same
-> line twice with two cleanups. It's still a cleanup.
+Add support for Socionext Synquacer SDHCI. This binding has been in use for
+some time.
 
-I hope its OK to keep one type of change (fix node name vs. drop labels) 
-per patch . The two patches also modify different files , so I don't 
-want to fix them up.
+The interrupts were not documented. The driver only uses the first
+interrupt, but the DT and example have 2 interrupts. The 2nd one is
+unknown. "dma-coherent" was also not documented, but is used on Synquacer.
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2:
+ - Rebase on conversion done by Kunihiko
+---
+ .../bindings/mmc/fujitsu,sdhci-fujitsu.yaml       | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml b/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
+index 73d747e917f3..430b62899397 100644
+--- a/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
++++ b/Documentation/devicetree/bindings/mmc/fujitsu,sdhci-fujitsu.yaml
+@@ -14,9 +14,13 @@ allOf:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - fujitsu,mb86s70-sdhci-3.0
+-      - socionext,f-sdh30-e51-mmc
++    oneOf:
++      - items:
++          - const: socionext,synquacer-sdhci
++          - const: fujitsu,mb86s70-sdhci-3.0
++      - enum:
++          - fujitsu,mb86s70-sdhci-3.0
++          - socionext,f-sdh30-e51-mmc
+ 
+   reg:
+     maxItems: 1
+@@ -29,6 +33,11 @@ properties:
+       - const: iface
+       - const: core
+ 
++  dma-coherent: true
++
++  interrupts:
++    maxItems: 2
++
+   resets:
+     maxItems: 1
+ 
+-- 
+2.39.2
+
