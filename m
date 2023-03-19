@@ -2,94 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B756C0178
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 13:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E286C0181
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 13:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbjCSMLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 08:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58724 "EHLO
+        id S230085AbjCSMTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 08:19:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjCSMLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 08:11:44 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D1522C87
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:11:37 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id w9so36866555edc.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:11:37 -0700 (PDT)
+        with ESMTP id S229997AbjCSMTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 08:19:53 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D19915CB4
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:19:51 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id er8so25119808edb.0
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 05:19:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679227896;
+        d=linaro.org; s=google; t=1679228389;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zjQK98wMTvC2q3E7fdiQTGy4CfE9nib0P1aeqr32BDM=;
-        b=D1fP3GN2Ho75ugMAWO87ldGgGppe72Z3Y/fiWx4nspzwK7rloaOBoF9R19b0JbiRD3
-         /mLXqx0QXb4f0L0ilB3j1w+e9Fwq4+LAGzNO+pIUKuu81K+Dhs2nyPPhOdR1hF6bDzbu
-         0y3KFtdlTTRo3LySMTaY9gOhQSMrBFk88A8n+//C69MZejED+xn55zfOI7TYqDszOPc+
-         fKWW/risjXSXRSuUrm5fQoJv/1hToGx7tQSgd3glFjr0Y54XW8bJZTY/vYLNslJ4g9T4
-         gGptc50sPXOMaTIvYxS6fPpQP0vMqlYdWsQdm9P5lE+f6mWTqVQd8o0LR1x8SVnpFN1o
-         NnGQ==
+        bh=tkW9yYShKyhPgZwZHe04L+u1EHErHafgr+Lv/oT1Nrs=;
+        b=Wjp4bMgpX09kQOMY65tynzOZrudfiPiWlTF4mKbnfFExy0bjiKjMqP06U07NQ6F5EW
+         NUufqqkqnvSP4nuouSRkb9Dz/0olEERiaMrjgXL/oHOpWhFotQh9s/wtDghBbMpgtzMZ
+         jLGHbe94fnsy+0gG30lyeYi0w6iSnYAAsHwCOtWM5TBV9FpZNLKzL6jfmAQHGw7LRzl1
+         /JNxL6f3vyHH2MObrvym8yzWYrORAjAvJQW6XE+gZbjoE2BBFLNvbUaKDhCSNdfpF4YF
+         KFkBXSbYgpSDhrzkgAok5ep2JxavqJ04+PnK1vooJLpaC0nj5lCe8aHNkCjGTMrwc1Y3
+         QMVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679227896;
+        d=1e100.net; s=20210112; t=1679228389;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjQK98wMTvC2q3E7fdiQTGy4CfE9nib0P1aeqr32BDM=;
-        b=zeV52yFg5BvwAWx05Dssp7Llr3C6UTz0t02ROKNX8VrltMiojDNbUKbxWlhhnCMFuM
-         ugRUZWdOwWyj52HNgNEVfGvvpvZeeNd1BM9AGc8C9x0qavsOYVALda10r1wmQe+SajQi
-         yZwc21l0IHCOgp4Fc2YR3LPRRhLpfi2KVKZhtyufF/l8qg2Z919dUwMfI/X2cTaV1+4S
-         yBz5UJovCEIg2ISy/v//LL9Rg8C9GHSznU9iFEb/TXDNciyyNI5dimg4l3H9/eTYEwFr
-         OmHVEUJSqu+Z0s0Py3XfsjJQb+yDTtcfrBYY7JvhZadDpwgCLIj3/5hzUe39sH6cDhz0
-         ikXQ==
-X-Gm-Message-State: AO0yUKUrRvowF53GuDPaHOazyIZ5Q0Sw0SBoPVukM57uzURaBW8bsBIa
-        Nr+cUWFAnMAaFq/Wn+Xtx34WXA==
-X-Google-Smtp-Source: AK7set8iy8PHLbwswKclQFdAmwnEMv+GMXgczERgugb4jIY36ndBXldESO9YpLHBZGsBIL348OtAog==
-X-Received: by 2002:a17:906:35d6:b0:932:be78:a728 with SMTP id p22-20020a17090635d600b00932be78a728mr5583291ejb.68.1679227896102;
-        Sun, 19 Mar 2023 05:11:36 -0700 (PDT)
+        bh=tkW9yYShKyhPgZwZHe04L+u1EHErHafgr+Lv/oT1Nrs=;
+        b=V+FGub9h1GPKFVedBPwJo3Vdy55tx5seFFLMQy0fRfyBTYKioXMbKiAJhFTEznjSMc
+         Yp5CKj7QHkhVKJ5hokAbNEEs9BhiO5wCnGo9g1muoXBqC0lDNZOjjicGJFm2/lObypSq
+         sC+eZKbvKzOiNF3QfN1AEHRSJYfNvH9EnA/5h2v6Qsw1gnlG6jWzsBZ7MPN5xlSeV8Z2
+         l8MfL0g+gCiDjrOd6mRwXzHFnSr0MiW0j31ho+rIcfMBmHOWBzsq6J5fsVW15i1W83JZ
+         v4VTxn6dLYbK+uSNLJcl1b+qhh4TO5s29w+t/Y2Yj8/jxlxl1RhTTHlb24/v8c/RbA6H
+         utEw==
+X-Gm-Message-State: AO0yUKX+80z8u5v9r7k/ueBwOVDVAxt6EYsro5nuMiz2LuD0lTSatbiD
+        pRljes3oozDbQmU9pkWEgedAhg==
+X-Google-Smtp-Source: AK7set9y5oC5PJn3CKLtdsyKS6tXuqCeSXG7y/nobmgBG7n5X9r+yejEzKHVCkXB5WA9CHxGZ7vHSA==
+X-Received: by 2002:a05:6402:4cf:b0:4fb:223a:76e7 with SMTP id n15-20020a05640204cf00b004fb223a76e7mr9372378edw.18.1679228389594;
+        Sun, 19 Mar 2023 05:19:49 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id ja21-20020a170907989500b0093338259b2bsm1635711ejc.207.2023.03.19.05.11.34
+        by smtp.gmail.com with ESMTPSA id s30-20020a50ab1e000000b004c5d1a15bd5sm3435919edc.69.2023.03.19.05.19.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 05:11:35 -0700 (PDT)
-Message-ID: <652a5f5e-6f01-4e5b-d1e3-4161b58d5ae5@linaro.org>
-Date:   Sun, 19 Mar 2023 13:11:34 +0100
+        Sun, 19 Mar 2023 05:19:49 -0700 (PDT)
+Message-ID: <10a850be-b04e-90db-cacb-127ac7698d97@linaro.org>
+Date:   Sun, 19 Mar 2023 13:19:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] regulator: dt-bindings: Drop unneeded quotes
+Subject: Re: [PATCH V4 1/6] dt-bindings: usb: usbmisc-imx: convert to DT
+ schema
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        patches@opensource.cirrus.com
-References: <20230317233616.3968003-1-robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, xu.yang_2@nxp.com
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20230317123708.337286-1-peng.fan@oss.nxp.com>
+ <20230317123708.337286-2-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230317233616.3968003-1-robh@kernel.org>
+In-Reply-To: <20230317123708.337286-2-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -102,12 +81,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 00:36, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 17/03/2023 13:37, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+
+
+> +  '#index-cells':
+> +    const: 1
+> +    description: Cells used to describe usb controller index.
+> +    deprecated: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    usbmisc@2184800 {
+> +        #index-cells = <1>;
+> +        compatible = "fsl,imx6q-usbmisc";
+> +        reg = <0x02184800 0x200>;
+
+If there is going to be resend, put compatible first, reg second. Then rest.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
