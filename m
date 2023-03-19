@@ -2,134 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0135E6C04EA
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 21:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3709A6C04F0
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 21:49:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbjCSUsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 16:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54792 "EHLO
+        id S229632AbjCSUtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 16:49:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjCSUsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 16:48:10 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D65768B;
-        Sun, 19 Mar 2023 13:48:07 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id r5so11130017qtp.4;
-        Sun, 19 Mar 2023 13:48:07 -0700 (PDT)
+        with ESMTP id S230019AbjCSUtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 16:49:49 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C226412BFB
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 13:49:47 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id y5so10836377ybu.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 13:49:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679258887;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1679258987;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HrTr039c+6RN5N35ewTG2eYP720SLlYLqSsBbC6Oub8=;
-        b=DxonOl/8K+dvmpWuo+1YenKfHOlFPr30tw66Jg22opyy3IHXlPpOn7dRUNZOT41Tz8
-         VRPg6q5HnxqAep5WpgHZTHU4/GeovoueOqbCd+GzpGrOVmNx/uWLYZopitxZPPDPl49M
-         sUA1Ol8FDk1CkA5PnpUS4VF81lDITASOygHcbOqP0VfJoLl5ITlfGwokgXy8RbUZwFuU
-         oSB5mI96cXCxeJeozDLEYIrapjy8exR+i2pfCWYNcI9s4S+OIulLm4KQzUFUfEy/EhzG
-         Xzemc8s/PAtDZ23po7mpWP2uWlyFhigw2EDdEygK/OSwwSHiUpt7JLp2yArbpqX39khE
-         kIcw==
+        bh=zrqBLpgMvGAw26DRaowqtZ6KNMhJt4QDsaLfvV/8J2M=;
+        b=hcVlyh6SCc01tHQEQKl+rMRkXdRlZaBR4PAhhkEscLByfqRTPISUDdvRSlA5rhmVVl
+         sthqa0S2nU+jceZDprhsd0t7PBSto5gQblrnyO+mFunTfH+7zT2SHpA4c3HoBI4hI8IE
+         8HPXCMvMV/3MqFjwnD9pIPu8B+/kZt8jR2cihllfOHlSnCymg1XkkC9YluVHeYuWeXoo
+         IsjCiVSDPun7MF60EXMPWmudtUj5UjGdlsmGVCZj7CD1S8xEQQ8o9bG58eDECB5cR1IV
+         InMCxoDbSJyW2nf8uwuTZMEF8pZ4ZP/U2JswAboP/a7fc731qPbcUMwumSeVaXNIVvhj
+         79+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679258887;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679258987;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HrTr039c+6RN5N35ewTG2eYP720SLlYLqSsBbC6Oub8=;
-        b=ROcwb42Z+TCpw48hy0KeORDZPacDIsoOykHg47dlocgXdTxtrzpXMCEHSX4+LY8k/6
-         PgHS4+13WAhenwr0rTzOCi/XW6M8QSOw+O+6HK5PAYQ/q4behYafJmc/o2+wtsi5tKK6
-         xi8oRpNpojpEc492ILeDYi+ET2dymcv7JLBpFtyRTjQWWPYvFrqweQAOrbms6BB1O82a
-         xjuMuxHhHM/Tm5wEM9wziUhqu56dXoaxWQCDWfBudcSFJTMOZ/KPnqVV5CmqTIihOzza
-         j5B4kWkoR7PQpI6msBP/840q5iAC1ucBKa2C0i1pvlei2yWu7CjTWzAW31TKQ7YEGI9k
-         ZK3w==
-X-Gm-Message-State: AO0yUKVfV7Wo8aNT7X/PRYWkaunil1ROFog1OIjeKz7nWCjTnQOHTIkk
-        B+4rU6elPYnjgCq9QvasP4g=
-X-Google-Smtp-Source: AK7set+q7zCLSBGRHPR1/9WObyNMJyALQo+2AYOd+xNYhamOq9gmtCR4X1wKet5VZSoLbD4joTSPQQ==
-X-Received: by 2002:a05:622a:1a0e:b0:3bf:c371:789e with SMTP id f14-20020a05622a1a0e00b003bfc371789emr24348536qtb.14.1679258886920;
-        Sun, 19 Mar 2023 13:48:06 -0700 (PDT)
-Received: from DANNY-DESKTOP.localdomain (071-013-243-092.res.spectrum.com. [71.13.243.92])
-        by smtp.gmail.com with ESMTPSA id m24-20020ac866d8000000b003b7e8c04d2esm5186021qtp.64.2023.03.19.13.48.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Mar 2023 13:48:06 -0700 (PDT)
-From:   Danny Kaehn <kaehndan@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com
-Cc:     bartosz.golaszewski@linaro.org, andriy.shevchenko@linux.intel.com,
-        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, ethan.twardy@plexus.com
-Subject: [PATCH v9 3/3] HID: cp2112: Fwnode Support
-Date:   Sun, 19 Mar 2023 15:48:02 -0500
-Message-Id: <20230319204802.1364-4-kaehndan@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230319204802.1364-1-kaehndan@gmail.com>
-References: <20230319204802.1364-1-kaehndan@gmail.com>
+        bh=zrqBLpgMvGAw26DRaowqtZ6KNMhJt4QDsaLfvV/8J2M=;
+        b=qpeyQNgWd17FcJDxsFaKaPrsZJVFpseXXi8gySu8SS9Eq0Tqqs+vhVDQmrE4kb3UkO
+         T3EoaaoRQDjbLAZ6VUa/x7QyOdIa3D3CfD4oJN4rFwBo84FJWu3m/17TLCYCYhK8KeoJ
+         Qf+5qFzj5f9ascdtgUY7YUDTFClbCyj+mDWAoY+0zTTTKQhgprejKEXBr2doTqlID759
+         RDHNVtbdSniRUDyGdxs7lSuGNFZMkOGUzLgjJOVKTbJhpmdGFRlc7N/X9rWMd1dSvkI5
+         MIvhjybWg5EtJHkEYq/FYhGNIbxDgYBz+z4fAmIVwxcqVHw0GujGLqXqdS45UtKkKmJ/
+         SUDw==
+X-Gm-Message-State: AO0yUKVvAuvnv3B5YT6ubiaNx6XKit8oM1Z0T4c6WzcmSOyBwSfhsxkP
+        hIpi+CYMkiUEoWPXvUunzC7e5wLoA8nk/K5NEhI/rg==
+X-Google-Smtp-Source: AK7set9UmCKLhMhtD1XyfXAykvchqeWDh0btzTty+BysNe0ltmHg+QaEhAeymn18rA2vpcmu4EmZo8R4MRqI+S7yupE=
+X-Received: by 2002:a05:6902:102d:b0:a6b:bc64:a0af with SMTP id
+ x13-20020a056902102d00b00a6bbc64a0afmr4087551ybt.4.1679258987014; Sun, 19 Mar
+ 2023 13:49:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230317213011.13656-1-arinc.unal@arinc9.com>
+In-Reply-To: <20230317213011.13656-1-arinc.unal@arinc9.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 19 Mar 2023 21:49:35 +0100
+Message-ID: <CACRpkdbWmtBtpkW2=DUX2v6CR7aJz52R6y5mJ=W+VDena+Fzng@mail.gmail.com>
+Subject: Re: [PATCH v3 00/21] pinctrl: ralink: fix ABI, improve driver, move
+ to mediatek, improve dt-bindings
+To:     arinc9.unal@gmail.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        William Dean <williamsukatube@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Del Regno <angelogioacchino.delregno@collabora.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support describing the CP2112's I2C and GPIO interfaces in firmware.
+On Fri, Mar 17, 2023 at 10:30=E2=80=AFPM <arinc9.unal@gmail.com> wrote:
 
-I2C and GPIO child nodes can either be children with names "i2c" and
-"gpio", or, for ACPI, device nodes with _ADR Zero and One,
-respectively.
+> This is an ambitious effort I've been wanting to do for months.
 
-Additionally, support configuring the I2C bus speed from the
-clock-frequency device property.
+I don't see any major missing ACKs so I just applied the patches, we
+can fix any remaining issues in-tree.
 
-Signed-off-by: Danny Kaehn <kaehndan@gmail.com>
----
- drivers/hid/hid-cp2112.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Good work!
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 27cadadda7c9..9e327763fd90 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -1234,6 +1234,10 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	u8 buf[3];
- 	struct cp2112_smbus_config_report config;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
-+	struct fwnode_handle *child;
-+	u32 addr;
-+	const char *name;
- 	int ret;
- 
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1247,6 +1251,17 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 
- 	mutex_init(&dev->lock);
- 
-+	device_for_each_child_node(&hdev->dev, child) {
-+		name = fwnode_get_name(child);
-+		ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-+
-+		if ((name && strcmp("i2c", name) == 0) || (!ret && addr == 0))
-+			device_set_node(&dev->adap.dev, child);
-+		else if ((name && strcmp("gpio", name)) == 0 ||
-+					(!ret && addr == 1))
-+			dev->gc.fwnode = child;
-+	}
-+
- 	ret = hid_parse(hdev);
- 	if (ret) {
- 		hid_err(hdev, "parse failed\n");
-@@ -1292,6 +1307,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
--- 
-2.25.1
-
+Yours,
+Linus Walleij
