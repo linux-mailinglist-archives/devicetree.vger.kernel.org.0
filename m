@@ -2,103 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22AF16C055E
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:17:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5EC56C0572
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:25:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbjCSVRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 17:17:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60662 "EHLO
+        id S230055AbjCSVZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 17:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230123AbjCSVRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:17:09 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29824B461
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:17:07 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id z83so10878484ybb.2
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:17:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679260626;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=umIKUZ29cWxRGLpplScGRMR85hsAlE3Adfx/LlasVhM=;
-        b=odOHan5KodgnZmQYP5bE+Zx5oWuObSka+JlAj9+I+PEuls9mRUte5Fd1E9WehPEH0v
-         ZEUouTX/UvXXQBiT/SNrO1n/f3o+kSQlfaYmdNK4DAR8Ejqf2fhzotkFgCdRQtcs1CVC
-         t5VLMfDqC+6dzZCRc67iIWhzpcy/Pk8gir+iKkECVK6wCNHZH2ZDuC5lvdh7tZq5DQuj
-         ObQBbb4TSLQVxE7XBRQy+d8Lbb9XjTL/2eJtfomhereizk9tghsCcrHhrXpWlcA+TL2p
-         v61FtSAq1/yzKQz5Qm+nbB//3YVMqfY7U/pGKdm4qJTu9FwuezpIoi2MADQXjrLIWQlB
-         6CZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679260626;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=umIKUZ29cWxRGLpplScGRMR85hsAlE3Adfx/LlasVhM=;
-        b=3Ya/J2LJaKsaiBNGeWcFgzbu+7V7Os18Z4tjkIwD5tgbE90j3cjQZz2k9eyrUJkzqs
-         piBv2AWDVQr+RK7TL+dWCTj2OIwyc+bsyAF/2FveBgJr11CrDO2JJduMR0GJC5dANlt9
-         jPYQ1dzSWEb3YS01q71w5fwj73b4UdtTK3x4Au1Ntgp9AT7wPBfOrw8xj810OaKd6Pix
-         WhxlpGG7lKkMenbQOMO5H44UgKyM93NBdz2u6HD7Q+4n+G2OG9CiQyFmFYrUb/66aCGl
-         IVfiDue8vgNeUz60YcoIYCITbfwUt2WZjLJDu7W4eWvrL95tIuGb2hlZJmDb2SjJDG8E
-         cdjA==
-X-Gm-Message-State: AO0yUKV7MityCW7/O6a9Xo5naXJlfKxbML4XcZxtg9CsYIwkrWp7jLMV
-        t8Id5ssxBy2uk27ocA4gxU5EMXKOrfj+LESyAKICiV+qXoDh3rrq
-X-Google-Smtp-Source: AK7set9Y0TmDGARQ0tonQqRCQHdH+03X2NR6qq22FebqKohfKPMVp4wrMtKTGiLfsl0XoE3P/cG/TeF1FO39PIanZTY=
-X-Received: by 2002:a05:6902:1143:b0:aa9:bd2e:3746 with SMTP id
- p3-20020a056902114300b00aa9bd2e3746mr2999493ybu.4.1679260626301; Sun, 19 Mar
- 2023 14:17:06 -0700 (PDT)
+        with ESMTP id S229619AbjCSVZZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:25:25 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B39513529;
+        Sun, 19 Mar 2023 14:25:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679261124; x=1710797124;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=L03xG3XmXz3MyMO1JoMvMx28hZVkFt9QVmLsPGLzWIM=;
+  b=Z2oVCbQXY1J8frpv+epo+EFSdu4p7euzLj88cPHjMrrtpyqCUkiMbBfX
+   BOoIHz0kV9ydMf2gR4fXG/dNXyWk1aENSx4+cjwQjihy0rFNheAVN76sC
+   k7ny1osdYEOkZf0Sqhhd7U49zHfztMYRHMZwJbLtljcKk8MUo8euzM4Fr
+   kzA9kSF19EREYUGahgpMXQu0psIO2cg0KAviCbu9R3lGshe4rsYU3TjOn
+   mSJJ3QjXBkOnQKByI5z3ABuNiIkwChrcgY3ubtqKfx1NBoSkaSqVbrfh7
+   LGSrW9J5ujr2V0PbMjT219nPpzJE1+Kv/XUxI7+cBvrlGgMwIjTy7m5fK
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="340080954"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="340080954"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2023 14:25:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="749866876"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="749866876"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 19 Mar 2023 14:25:21 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pe0Wn-000Af4-0D;
+        Sun, 19 Mar 2023 21:25:21 +0000
+Date:   Mon, 20 Mar 2023 05:24:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andrew Hepp <andrew.hepp@ahepp.dev>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Andrew Hepp <andrew.hepp@ahepp.dev>
+Subject: Re: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF
+ converter
+Message-ID: <202303200531.buTbR2TA-lkp@intel.com>
+References: <20230319184728.49232-3-andrew.hepp@ahepp.dev>
 MIME-Version: 1.0
-References: <20230317233631.3968509-1-robh@kernel.org>
-In-Reply-To: <20230317233631.3968509-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 19 Mar 2023 22:16:55 +0100
-Message-ID: <CACRpkdY0twhF1+ipbV0DuWUdeCyq09uZidyVSNr7eW=K6ecnkw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230319184728.49232-3-andrew.hepp@ahepp.dev>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 18, 2023 at 12:36=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
+Hi Andrew,
 
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Thank you for the patch! Perhaps something to improve:
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on robh/for-next linus/master v6.3-rc2 next-20230317]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Yours,
-Linus Walleij
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrew-Hepp/dt-bindings-iio-Add-MCP9600-thermocouple-EMF-converter/20230320-024950
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20230319184728.49232-3-andrew.hepp%40ahepp.dev
+patch subject: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF converter
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230320/202303200531.buTbR2TA-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/dc26dd0d9cb47654a6910bf35d8531b90ae88ece
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Andrew-Hepp/dt-bindings-iio-Add-MCP9600-thermocouple-EMF-converter/20230320-024950
+        git checkout dc26dd0d9cb47654a6910bf35d8531b90ae88ece
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/iio/temperature/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303200531.buTbR2TA-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/temperature/mcp9600.c: In function 'mcp9600_read':
+>> drivers/iio/temperature/mcp9600.c:51:16: warning: unused variable 'buf' [-Wunused-variable]
+      51 |         __be16 buf;
+         |                ^~~
+
+
+vim +/buf +51 drivers/iio/temperature/mcp9600.c
+
+    47	
+    48	static int mcp9600_read(struct mcp9600_data *data,
+    49				struct iio_chan_spec const *chan, int *val)
+    50	{
+  > 51		__be16 buf;
+    52		int ret;
+    53	
+    54		mutex_lock(&data->read_lock);
+    55		ret = i2c_smbus_read_word_swapped(data->client, chan->address);
+    56		mutex_unlock(&data->read_lock);
+    57	
+    58		if (ret < 0)
+    59			return ret;
+    60		*val = ret;
+    61	
+    62		return 0;
+    63	}
+    64	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
