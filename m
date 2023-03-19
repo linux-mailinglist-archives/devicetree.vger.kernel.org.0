@@ -2,57 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 889476C008C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 11:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA306C009A
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 11:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbjCSKuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 06:50:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50616 "EHLO
+        id S229713AbjCSK4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 06:56:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjCSKuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 06:50:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BFC136D6;
-        Sun, 19 Mar 2023 03:50:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A641060F98;
-        Sun, 19 Mar 2023 10:50:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E0D6CC4339C;
-        Sun, 19 Mar 2023 10:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679223018;
-        bh=C8O4+Edg6nUoP/urzz0ELTJ2vdwjDQ04VBL86H1WkiI=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=kYR/x3CcdqDTHdGrY4y+fXQJEwUIN6Gu43szRfEMJgB3kJW0HAJSp50x9iWRDrkwU
-         ixbiyX0IXIFWfINS5OldqAsaeseY2ts1opqsOMU26hvO42lInnlz1cxYS9tZ0JmiGb
-         NY+x2cVtQ5cHwZ/QFxEypVnf5BRWh6fnAhu9A3MRSn0DWW2L6LbipfmRgk3eBsPRd6
-         WoOckysBK95U35rAZh4bm/joykZ1AB/M6l1wiKWq8Dc6ztSaaehUAAg9UydFkKpNe1
-         1BDIVetMcnLnG5W6FYzzadQiWn8z5IYpGbVgngpycXGNqHLZK6E0/iPB51Av0lvOUQ
-         zflov9I9qFZnw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C4060C43161;
-        Sun, 19 Mar 2023 10:50:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229541AbjCSK4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 06:56:13 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA77522124
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 03:56:10 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id er8so24686398edb.0
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 03:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679223369;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zjQK98wMTvC2q3E7fdiQTGy4CfE9nib0P1aeqr32BDM=;
+        b=LoyXTmuTmKGgTLGBo0qYnX6Jp8bEDf17eVvP7XGO2qhfRemxtwJtrRH9Ep1JHhGnQk
+         DM7G/ianKOJTy+onrcx5K+rasN1+P/5phdjTikcBfSCvls5VoUEtU19R0HbCgCF7aobg
+         40WRU2UHhFcDZODehVDDkwN/snWgAt/4QDmupCFnR47uQEZePsVew0+rLxSDOdDvvAwp
+         3JMq8P2tanxmPYuvLeuCmLNfn9yRr7Dfe9NF+r536JdXbCdxebQX1OVjBpyJ7mUDvRMU
+         iVtQ2+uN79keOw++o+t+UG4w2ddZnZ5CBm+iLIx5uFLx+Pf3+PRu53Jz68pAER7B1gdw
+         MxHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679223369;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zjQK98wMTvC2q3E7fdiQTGy4CfE9nib0P1aeqr32BDM=;
+        b=nsyOmqtZC7HFl+/+CM2HC/q2CkNhlANSBfVfMN+/jaK2WUhcmQ+R7C9vYFKlt6mRYr
+         IXzvrv5WdNC1RRWFQlHSDjJdlWPSQvkJuUCOFNyAxcnLw3lBE84Sq3h8SD7Cjja6ZSwz
+         hHMOpdHkjbzCA6Z+1x0gqXmf8XuRYYUKUnpPRd3nIaes5XrF0/ZxdfX9q9I1nd8Y0lRV
+         wjTpAgeN8AbWPGypZ7ZpBZ4pDYnoIzwUMEbyUHImk8SMS1HsBNZbVlJnTprztch4d9oe
+         /wwAsnwbsHNgIkqNps//JqXAUBGrXLhufjOKQqXZBXRnYBSBbHDpp/yQOXnmw9YUZAOK
+         mi2A==
+X-Gm-Message-State: AO0yUKUVLGb1kkXbHxnjJNZwt/vAAslp85cYrFkX4QQt5pha9byhDUil
+        zktDOI9vLpxif70ejhhdHsdEhA==
+X-Google-Smtp-Source: AK7set8aBKLZuOSLuGkgBgWSIN+Nyo0cQB4QbrQUYK+fT1WnG6tZns0BtbZAKs7jswp9C0GRLAkphg==
+X-Received: by 2002:a17:906:7fc6:b0:923:812c:a5d3 with SMTP id r6-20020a1709067fc600b00923812ca5d3mr5250858ejs.25.1679223369254;
+        Sun, 19 Mar 2023 03:56:09 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
+        by smtp.gmail.com with ESMTPSA id 21-20020a170906319500b008d68d018153sm3115271ejy.23.2023.03.19.03.56.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Mar 2023 03:56:08 -0700 (PDT)
+Message-ID: <23036bfc-cceb-2ac5-85fb-5e2d0bc0cbb5@linaro.org>
+Date:   Sun, 19 Mar 2023 11:56:05 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/2] ACPI/DT mdiobus module owner fixes
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167922301879.22899.11427209223870054217.git-patchwork-notify@kernel.org>
-Date:   Sun, 19 Mar 2023 10:50:18 +0000
-References: <20230316233317.2169394-1-f.fainelli@gmail.com>
-In-Reply-To: <20230316233317.2169394-1-f.fainelli@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        frowand.list@gmail.com, rafael@kernel.org,
-        calvin.johnson@oss.nxp.com, grant.likely@arm.com,
-        ioana.ciornei@nxp.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mbizon@freebox.fr
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: pinctrl: Drop unneeded quotes
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Dvorkin Dmitry <dvorkin@tibbo.com>,
+        Wells Lu <wellslutw@gmail.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230317233623.3968172-1-robh@kernel.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230317233623.3968172-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,31 +125,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Thu, 16 Mar 2023 16:33:15 -0700 you wrote:
-> This patch series fixes wrong mdiobus module ownership for MDIO buses
-> registered from DT or ACPI.
+On 18/03/2023 00:36, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Thanks Maxime for providing the first patch and making me see that ACPI
-> also had the same issue.
-> 
-> Changes in v2:
-> 
-> [...]
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-Here is the summary with links:
-  - [v2,1/2] net: mdio: fix owner field for mdio buses registered using device-tree
-    https://git.kernel.org/netdev/net/c/99669259f336
-  - [v2,2/2] net: mdio: fix owner field for mdio buses registered using ACPI
-    https://git.kernel.org/netdev/net/c/30b605b8501e
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Best regards,
+Krzysztof
 
