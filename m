@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 091966C02AB
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 16:19:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6446C02B1
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 16:20:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbjCSPTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 11:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54150 "EHLO
+        id S230483AbjCSPUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 11:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbjCSPTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 11:19:46 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E15A1CF73
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:19:44 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id o12so37747990edb.9
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:19:44 -0700 (PDT)
+        with ESMTP id S230412AbjCSPUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 11:20:10 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FA622016
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:19:56 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id b20so4849072edd.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:19:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679239184;
+        d=linaro.org; s=google; t=1679239194;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Q6ClqIgVOHNCTBlkJq9gBU6UBpDkGzT/c4HHOyonXE=;
-        b=UhN7bYBnd/YU3Knem+rzukKTpmxlSYIQOOlkOCx6eTVtLQjaWVUshCXSA6fkmc7psv
-         ciOydeCX1OIHbpTjZ4tPu97FNdwh+EufTY3EZWgv7JD7JZ9bGbRnuoMxup14PhRHoX2Q
-         rDjpGg+YjZ8EoQZna6y8kOHGvLsOuO0khl6mUWgseQQcRcr3FuXr3+vl+bRd29yvYfMw
-         XEPhmBfOwlxecQZyLuXAw3NBkrT54RKD3+aigV+X9avwGKlmU/I1nejSOsH9Ocvn+FNj
-         GQrbV4mzOkknwJytCW4WfFaU7hYlv9O/yxADaP2OaZSRSBvIAk8xPtGf7RR9WsxMKr0H
-         d0xQ==
+        bh=qc2nZvpFcuHVwHLCLVwrqbjFkrLhao980yrB5e8kC6s=;
+        b=QQv5JX22+4+hbeyzGGAYFyijcfI6v0Oj3QOv/kxLz8ETpP3bR471hdf5X4z9f93sYW
+         Doshe7Lf0AHD1pz3WGVPnSeJ8SdKCCm0BiUAjtIorgiWJt5fmKYyxYiRThRJKnqHZJ9H
+         z53/vC+ijvDCSjsroA5vIt0BtbpQjD2PVBUa3AJyA8GVzH+wTidnrtazPseTQGfrAwtj
+         W9tNyiKzhsMspB3ltws8xSESnbTV8jbanWYMC/1i3fVUaWSgNK8NdbtW7vZqL3YVi22n
+         igSG0Z8zr0K/bwPhTWL0/QsT/GQxAx+pUM5hA/HrM2A2+lEai+wrNFxfGIwM38pMnoJL
+         gsJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679239184;
+        d=1e100.net; s=20210112; t=1679239194;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Q6ClqIgVOHNCTBlkJq9gBU6UBpDkGzT/c4HHOyonXE=;
-        b=ArUcQQDfrP2A2+b3VmFMf4z8uk8X1vKvFVPljHAkn0+yMZ8uDPtifnaig1DYbHoDO4
-         4E7tC9g3Yje61606UKsXORWc0TMmWZDta6UiAXMAOTPNbP3U3SkvUqlZC2NTvGJ7n3Eb
-         qw73qtw1a5BYaCzszwJqxwLa83grNB0S3YGCE2l/dA8A7TelfKVH415/K/mzbINOAy7s
-         JoOkCShomQGlg9Mpc7Q+ryWZJ7z9tXijjctD6CBpy5EsZbErEx74Ct4cEvGsIPA4qioj
-         qpSe3ZhM80uir97YMEISFtdvTVG6qleBZgte00e6X2xbcOuyoyQrdSMV2bODy9dOgKwq
-         4G2A==
-X-Gm-Message-State: AO0yUKX5xVQisCWD3lSD47Wl+HKas3f1t+O/QuE/knN0tRd58orPtjqB
-        VcsLrYzR5jglXPHiyyng/KbwjQ==
-X-Google-Smtp-Source: AK7set/lweaMTIWXmtx9ReSmmvXJnZok55jpk05ti02JFR2ABXcYN5l8llKddo9aAPFTIRZhERW1qA==
-X-Received: by 2002:a17:906:4552:b0:884:3174:119d with SMTP id s18-20020a170906455200b008843174119dmr6227816ejq.14.1679239184152;
-        Sun, 19 Mar 2023 08:19:44 -0700 (PDT)
+        bh=qc2nZvpFcuHVwHLCLVwrqbjFkrLhao980yrB5e8kC6s=;
+        b=BJYZqN8T9gQtpA/vhtSKh5sUQke5uCEqVzhqlKjKDUmlzvzvjMbZj8UVPmM8pXFQAH
+         tO9NrB6RrND6LL6CqCjWF7veSkzPc/vGgVQ93xxdexU/oCcVntM+sCmwS4KUEkxZRDDs
+         IHxighji1F+PT0ylvJRlWeGd/2FWqIQ4u2533omKkUmBqkDhmZJfGsM6M3qtyyxF0QOw
+         A0Sl09FanpEJkoaMeuRSN8Dfkj4BiYtoXWu3fj76HomOYNjyQanXyxKdAhQ7xlUSygDy
+         Lmq11U9TedOSMkQf9KzFE9W3JoJUei1gCN57TO27W3vTNwOmTQ+xDEGf8DO5oh+MyrUh
+         U8gA==
+X-Gm-Message-State: AO0yUKW0yBHmkNtDprJRTWGccyE8Jbi37RzDssoHt5fwC6XBkm1H2x+9
+        rNUKyhEVy52wXB476Zh5TEYgIw==
+X-Google-Smtp-Source: AK7set9JIe05OtsEVPSjBNvvPqa37Nl33NR0Yp2pnmjv54h3N/usCJvJ00I8Z6K+qGSCrUHaXKcafA==
+X-Received: by 2002:a17:907:10c2:b0:930:310:abc2 with SMTP id rv2-20020a17090710c200b009300310abc2mr6051842ejb.35.1679239194724;
+        Sun, 19 Mar 2023 08:19:54 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id qh7-20020a170906eca700b0092bea699124sm3340424ejb.106.2023.03.19.08.19.42
+        by smtp.gmail.com with ESMTPSA id gz4-20020a170907a04400b0090e0a4e1bacsm3309894ejc.159.2023.03.19.08.19.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 08:19:43 -0700 (PDT)
-Message-ID: <5069856f-46c1-39ee-cae1-5bb941864bda@linaro.org>
-Date:   Sun, 19 Mar 2023 16:19:42 +0100
+        Sun, 19 Mar 2023 08:19:54 -0700 (PDT)
+Message-ID: <2eeabd4d-393a-6b0e-9b24-86ac6368920e@linaro.org>
+Date:   Sun, 19 Mar 2023 16:19:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [Patch v2 3/9] memory: tegra: add mc clients for Tegra234
+Subject: Re: [Patch v2 4/9] memory: tegra: add software mc clients in Tegra234
 Content-Language: en-US
 To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
         dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
@@ -66,9 +66,9 @@ Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
         bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
         ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
 References: <20230220140559.28289-1-sumitg@nvidia.com>
- <20230220140559.28289-4-sumitg@nvidia.com>
+ <20230220140559.28289-5-sumitg@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230220140559.28289-4-sumitg@nvidia.com>
+In-Reply-To: <20230220140559.28289-5-sumitg@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,15 +82,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/02/2023 15:05, Sumit Gupta wrote:
-> Add few Isochronous (ISO) and Non-ISO MC clients.
-> ISO clients have guaranteed bandwidth requirement.
-> PCIE clients added to the mc_clients table represent
-> each controller in Tegra234.
-> 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> Add dummy Memory Controller clients to represent CPU clusters.
+> They will be used by the CPUFREQ driver to scale DRAM FREQ
+> with the CPU FREQ.
 > ---
->  drivers/memory/tegra/tegra234.c | 420 ++++++++++++++++++++++++++++++++
->  1 file changed, 420 insertions(+)
+>  drivers/memory/tegra/tegra234.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
