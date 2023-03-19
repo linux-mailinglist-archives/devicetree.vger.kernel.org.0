@@ -2,108 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FFA76C0383
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 18:42:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 429D66C0394
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 18:51:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbjCSRmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 13:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51384 "EHLO
+        id S229734AbjCSRvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 13:51:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjCSRmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 13:42:09 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BD51C594;
-        Sun, 19 Mar 2023 10:42:08 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id t129so4503514iof.12;
-        Sun, 19 Mar 2023 10:42:08 -0700 (PDT)
+        with ESMTP id S229705AbjCSRvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 13:51:01 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60C512F1B
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 10:50:58 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id t5so1779419edd.7
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 10:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679248257;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=00maLYThbB2ZrBGgsPig398VSjnMsDm6aNo0Lct8eGo=;
+        b=lJkZ6gmXxRW0A/ZcnO2EucL6IJohFtVAWD2S8QqfMumXHV2q/Ir5daDPjDnpsdcc7z
+         ZXP4RO+UErYLSm6yE4V6f+F7DwhA7uUAeu7VWZpYJdPXbE4YGTrBynTJPOGPGTzp07Uz
+         sicAaC4Qmh8m+dOzQUI9VrEjOiQhSVcKXg8MMZ/ttAFM45/praCmEtyJZ5pyicxfDfvp
+         /YnXAL20qVoLYiJ7uUI8ew8rebTpyLciTDQssGo79Wwl7+QJFZ9Oi7qfy39sWXI6y8jC
+         kn+8aSfhXOWPbamDVD1oXKe0GV8cNNuKuc1kiP4ZeJp2b1XnjfFlYbG8PHWLRP+Npb0f
+         G6VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679247727;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dcI4BBLYtEvhPbu+xjdZvkfgUtEKrU3F0hXnGswV/Ug=;
-        b=rRXEqAYEezh5J0LaA5GuJCDOm0q2BLyqsi/c5VGUO3vtMITDdDkMrMyi1PL9faIEpW
-         llTE3UCik8RdZCcSSU4C7t36juiixG96gFVwMQFDKUMxKLitX1fVSbxiZbAwfAsV7+89
-         D7OtgHNbInyWtVdt/SS4ETD0SeoqW0WrunQxLcxcdnRf6vMk8ggllRRj7T+E5ehWsU5v
-         ZrnFWm1EEM0WHocn4CpEmtQRjF5zp+pS0A+ySLNvcEClIRLbBCJz10GxBivjpfL//S+s
-         1T1+y7yhCNVVNy/MdBZiykOFaQfdGNorXQR2eOF2+8UEsim1pIp5z5mq0GDnCzNbx4r6
-         HBfg==
-X-Gm-Message-State: AO0yUKVLVmGpuSgvLJgOFEGyJgoggkcR7vMwCxQcGnEHpnH2KGtGjWYY
-        fVoMRhaMv04Yc7BjDLKgyg==
-X-Google-Smtp-Source: AK7set//n98nJ9+FQb0BtZHd7Da1WEWuL+VuV6QwEqnbAqyime0B6gw0uRYnbo/zcfdtajUZCIApqw==
-X-Received: by 2002:a5e:da4b:0:b0:74c:b180:c5db with SMTP id o11-20020a5eda4b000000b0074cb180c5dbmr4082518iop.20.1679247726909;
-        Sun, 19 Mar 2023 10:42:06 -0700 (PDT)
-Received: from robh_at_kernel.org ([2605:ef80:80c2:711:b843:6628:3fd6:ded4])
-        by smtp.gmail.com with ESMTPSA id l9-20020a5d8f89000000b00740710c0a65sm2288038iol.47.2023.03.19.10.42.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Mar 2023 10:42:06 -0700 (PDT)
-Received: (nullmailer pid 44793 invoked by uid 1000);
-        Sun, 19 Mar 2023 17:41:55 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64/arm: dts: rockchip: Fix DSI node names
-Date:   Sun, 19 Mar 2023 12:41:05 -0500
-Message-Id: <20230319174105.43978-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20210112; t=1679248257;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=00maLYThbB2ZrBGgsPig398VSjnMsDm6aNo0Lct8eGo=;
+        b=owVlFxZOcBIiyzxOUyKHuY5gFJNa47nS+MqKjwCs8NUs/IzZkBOCBxGQHdjwJm59J1
+         fxcKsZmuXBCJyLBN9xMbRNhPu6h72yEWaeePCVy0270Y/TSrBP3PeQ+eq+JR3WHNt8/+
+         mf96wPLvTc8c05dL+9QljYaEjnrXLrWU7v0pUUv7LsH/6wH1ueC8qFDzRI5Xkpn05PeD
+         gDaVxLYmOUFe6JBbtiaCBWLKgC2sIjgvh9+prdKjtnCFKeN3tmjbLp6jaJCHGssPiQ1Z
+         O1AxBtxoz13xav3C5hNfN0P+aUVre/LoDt4mXd/BCGBqw6m6IO/51fOPaGsNonY0tAhQ
+         L9lg==
+X-Gm-Message-State: AO0yUKUN6MU4VDG8+5aCLp5auux3F0spGVoPxTRqXTCS77TSShXtZNlJ
+        vC8zHUL7BDsMQVe4XoWfSBmH/w==
+X-Google-Smtp-Source: AK7set95aPTJOHeKu+bHDcG+A9CTzrJ759cvWgUDbIS/MNtnexz5zTiCWWPjRGB4nZF5d7WJrTSc7w==
+X-Received: by 2002:a17:906:c284:b0:926:7d96:9434 with SMTP id r4-20020a170906c28400b009267d969434mr6244371ejz.51.1679248257162;
+        Sun, 19 Mar 2023 10:50:57 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
+        by smtp.gmail.com with ESMTPSA id v2-20020a17090651c200b008d57e796dcbsm3474576ejk.25.2023.03.19.10.50.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Mar 2023 10:50:56 -0700 (PDT)
+Message-ID: <c5ac0d15-4651-318e-4dd2-37b2f90b2ba0@linaro.org>
+Date:   Sun, 19 Mar 2023 18:50:55 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 09/18] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
+ schema
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
+        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-10-bryan.odonoghue@linaro.org>
+ <7cd51a8d-7b23-7895-7c06-07dc98924931@linaro.org>
+ <a4da1f8f-333e-9ded-d784-7f86c45c7156@linaro.org>
+ <346ecd20-d64f-1d47-4860-861e142f9700@linaro.org>
+ <aa5d1492-906f-9e30-8f97-6321db692c73@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <aa5d1492-906f-9e30-8f97-6321db692c73@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DSI bus/controller nodes should be named 'dsi' rather than 'mipi'.
+On 19/03/2023 16:44, Bryan O'Donoghue wrote:
+> On 19/03/2023 15:10, Krzysztof Kozlowski wrote:
+>> On 19/03/2023 15:59, Bryan O'Donoghue wrote:
+>>> On 19/03/2023 11:58, Krzysztof Kozlowski wrote:
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Bryan O'Donoghue<bryan.odonoghue@linaro.org>
+>>>>> +
+>>>>> +description: |
+>>>>> +  Qualcomm PMIC Virtual Type-C Port Manager Driver
+>>>>> +  A virtual device which manages Qualcomm PMIC provided Type-C port and
+>>>>> +  Power Delivery in one place.
+>>>> OK, so it looks like bindings for driver, so a no-go. Unless there is
+>>>> such device as "manager", this does not look like hardware description.
+>>>>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: qcom,pmic-virt-tcpm
+>>>>> +
+>>>>> +  connector:
+>>>>> +    type: object
+>>>>> +    $ref: /schemas/connector/usb-connector.yaml#
+>>>>> +    unevaluatedProperties: false
+>>>>> +
+>>>>> +  port:
+>>>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>>>> +    description:
+>>>>> +      Contains a port which consumes data-role switching messages.
+>>>>> +
+>>>>> +  qcom,pmic-typec:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>> +    description:
+>>>>> +      A phandle to the typec port hardware driver.
+>>>>> +
+>>>>> +  qcom,pmic-pdphy:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> Having typec and phy as phandles - not children - also suggests this is
+>>>> some software construct, not hardware description.
+>>>
+>>> So probably I didn't interpret Rob's comment correctly here.
+>>
+>> He proposed to merge it with other node:
+>> "probably merged with
+>> one of the nodes these phandles point to."
+>>
+>> "Why can't most of this binding be part of"
+>>
+>> I don't see how you implemented his comments. Actually, nothing improved
+>> here in this regard - you still have these phandles.
+> 
+> So this comment from Rob is what I was aiming for
+> 
+> "Your other option is instantiate your own device from the virtual
+> driver's initcall based on presence of the 2 nodes above. "
+> 
+> rather than two mush the pdphy and typec into one device, which they are 
+> not.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm/boot/dts/rk3288.dtsi            | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Sure, but you did not instantiate anything based on these two or one
+nodes. You added virtual device node.
 
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index 2ca76b69add7..d401b850583c 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -1114,7 +1114,7 @@ vopl_mmu: iommu@ff940300 {
- 		status = "disabled";
- 	};
- 
--	mipi_dsi: mipi@ff960000 {
-+	mipi_dsi: dsi@ff960000 {
- 		compatible = "rockchip,rk3288-mipi-dsi", "snps,dw-mipi-dsi";
- 		reg = <0x0 0xff960000 0x0 0x4000>;
- 		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 1881b4b71f91..e44e1c40c0ba 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1954,7 +1954,7 @@ hdmi_in_vopl: endpoint@1 {
- 		};
- 	};
- 
--	mipi_dsi: mipi@ff960000 {
-+	mipi_dsi: dsi@ff960000 {
- 		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
- 		reg = <0x0 0xff960000 0x0 0x8000>;
- 		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -1990,7 +1990,7 @@ mipi_in_vopl: endpoint@1 {
- 		};
- 	};
- 
--	mipi_dsi1: mipi@ff968000 {
-+	mipi_dsi1: dsi@ff968000 {
- 		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
- 		reg = <0x0 0xff968000 0x0 0x8000>;
- 		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH 0>;
--- 
-2.39.2
+
+> I guess what I'm trying to understand is how you guys would suggest that 
+> is actually done.
+
+You have there already node for the PMIC USB Type-C, so this should be
+part of it. I really do not understand why this is separate device lying
+around in parallel like:
+
+pmic {
+	usb {
+	};
+};
+
+virtual- pmic-tcpm {
+};
+
+What hardware piece does such description represent?
+
+> 
+> Could I trouble you for an example ?
+> 
+> ---
+> bod
+
+Best regards,
+Krzysztof
 
