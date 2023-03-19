@@ -2,98 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8EAE6C02EA
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 16:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35CC96C02DA
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 16:40:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbjCSPuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 11:50:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
+        id S229791AbjCSPkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 11:40:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbjCSPuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 11:50:18 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110FD17CCF
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:50:15 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso6097225wmo.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 08:50:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679241013;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X4czx9tA1HUqBAlDkv/jkPT3tRpMiU0R2k2/njPI7W0=;
-        b=ltG9twIe84qt1LrDyZRz60XRnLpY52hVYiqIYG0NxPm750D+cckOV5oWloJa7gYg1k
-         GDkJgLtMBMNGeuRQZfLyBHaXfk2golI5UTeToSMxqbp2btTGZNoqFenOnXryDCln3qMo
-         vTg+fHIFI9uo5MNRttUHbZraATzo5+zcaChY/8cuMCG5EJK6rbE9obiDOwy5qa+zzY7N
-         WcpWutnoToxfmdKwOIj1gzR3QvetJZ/nxoMrT6Z+lLPdF/r8aFhq0ochzxa2+kHzR77N
-         2SxDjzzQO89wcsjF9zT6AEN9Z/tn7edfAmv+ih9l7UgPdOk3n1b6y8y4M0z31y464nGe
-         /VQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679241013;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X4czx9tA1HUqBAlDkv/jkPT3tRpMiU0R2k2/njPI7W0=;
-        b=vZf+okjaf8nfFGAu0aob59Jao2hEBFZMSEBF6imY0/nssLUyk8ejz8OjCEHtqTFYkt
-         8MvpqVTFBQKDgGs4iaFBHHfAxD6TOK9FbOwicGDmaLuakzuo2gpPGEW8lt3GQj6cNnnm
-         b4ShlPjJQByrOHBWhZT+6ddTYIN42km3IyvhxPuq3bVwZ8sW7BoarQXWqlwgf6r7ZjrD
-         xsbR+DvQhLdDpLSJ2o/TQnc7AmO4J7/gPVhOIypbMYGpRsIzALM53fVL1F+g0WnXb9SY
-         kLfD7E9jKSUAwOOTqzYlUjmm9ytidnQObLZ/0vBaPcF8GPBFv0JRcCIDZ/O8AdX03Xxf
-         lmdw==
-X-Gm-Message-State: AO0yUKXc54d57gSrwdhFIvfCx8mdyYHjN/Cm8L1Y6Ol4BPoZjdnfw3y9
-        HTnYbVuwhQuCCnyOClDWGCC1vw==
-X-Google-Smtp-Source: AK7set9TKTKEV3DmvG0D6ZMt/puh1YRthWJQDtQYNEiGq1Qd41PTZLtWwokVjNY9kmJisUsEnL6+dQ==
-X-Received: by 2002:a05:600c:46ca:b0:3ed:4818:be62 with SMTP id q10-20020a05600c46ca00b003ed4818be62mr12694036wmo.34.1679241013538;
-        Sun, 19 Mar 2023 08:50:13 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id w16-20020a05600c475000b003edc9a5f98asm3323053wmo.44.2023.03.19.08.50.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 08:50:13 -0700 (PDT)
-Message-ID: <115e84d3-e21e-1c21-2fc1-b3f2eef640eb@linaro.org>
-Date:   Sun, 19 Mar 2023 15:50:12 +0000
+        with ESMTP id S229472AbjCSPkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 11:40:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC671115B;
+        Sun, 19 Mar 2023 08:39:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4642D610A4;
+        Sun, 19 Mar 2023 15:39:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 699AEC433D2;
+        Sun, 19 Mar 2023 15:39:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679240397;
+        bh=QT/ENZzeITH/GmdHuf2zyuTiJNVRErIxf7sbSW3a7yk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RXvhCL6UV6OpRj/zl9wgTAa5EAgWpViFyDz4XG0RaTY126gnOsXE8pjvUQ7o6aZ6l
+         LGPaG8FPl5CjuFkiG9Vh6DEVKtbVd+B8JRp/zxM4l0i4Bgk+uPu45olp4+rQTSAj1H
+         EszgSt4OPdAfYqsYJkl/sJdTNQQv/nKO0HJhw2PqrwI6unSNo6uBw1Fewn6LS4sV1l
+         7YgM6dxGkNsnyZyhDjuQalpFfh8l/OdIwr5ea8zaZM8kVORCSwHS3MpiL2rgM9mjv3
+         zbI+cXzvco+UkvATU3hV3VUfD6lvIvMIXDF+H5rVU9Xps0dCujac/wUKbVaNtYHVBz
+         /CtaHRSCG+Kow==
+Date:   Sun, 19 Mar 2023 15:54:51 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>
+Cc:     mazziesaccount@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: Add KX132 accelerometer
+Message-ID: <20230319155451.0207118a@jic23-huawei>
+In-Reply-To: <d677b957164930c3d2fee900117795b25b85c3fa.1679009443.git.mehdi.djait.k@gmail.com>
+References: <cover.1679009443.git.mehdi.djait.k@gmail.com>
+        <d677b957164930c3d2fee900117795b25b85c3fa.1679009443.git.mehdi.djait.k@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 09/18] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
- schema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
-        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-10-bryan.odonoghue@linaro.org>
- <7cd51a8d-7b23-7895-7c06-07dc98924931@linaro.org>
- <a4da1f8f-333e-9ded-d784-7f86c45c7156@linaro.org>
- <346ecd20-d64f-1d47-4860-861e142f9700@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <346ecd20-d64f-1d47-4860-861e142f9700@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/03/2023 15:10, Krzysztof Kozlowski wrote:
-> What is tcpm? Linux driver? Then not. You cannot have device nodes for a
-> Linux driver.
+On Fri, 17 Mar 2023 00:48:35 +0100
+Mehdi Djait <mehdi.djait.k@gmail.com> wrote:
 
-Hmm. Well, actually I'll just - concatonate these into one node but, it 
-will have to be called something like "typec" and encompass both 
-hardware blocks.
+> Extend the kionix,kx022a.yaml file to support the
+> kx132 device
+> 
+> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
 
-I'll try to make the name of that make sense.
+Pins and power supplies etc all look the same to me so indeed seems that
+you have covered all that is needed.  One small comment inline
+and I think Matti's point about more specific compatibles probably
+needs to be taken into account if there are known variants.
 
----
-bod
+Kionix has done this for a long time. I remember that fun with the
+kxsd9 lots of years back - that had lots of subtle variants.
+
+> ---
+>  .../bindings/iio/accel/kionix,kx022a.yaml           | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml b/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
+> index 986df1a6ff0a..ac1e27402d5e 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
+> @@ -4,19 +4,22 @@
+>  $id: http://devicetree.org/schemas/iio/accel/kionix,kx022a.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: ROHM/Kionix KX022A Accelerometer
+> +title: ROHM/Kionix KX022A and KX132 Accelerometers
+>  
+>  maintainers:
+>    - Matti Vaittinen <mazziesaccount@gmail.com>
+>  
+>  description: |
+> -  KX022A is a 3-axis accelerometer supporting +/- 2G, 4G, 8G and 16G ranges,
+> -  output data-rates from 0.78Hz to 1600Hz and a hardware-fifo buffering.
+> -  KX022A can be accessed either via I2C or SPI.
+> +  KX022A and KX132 are 3-axis accelerometers supporting +/- 2G, 4G, 8G and
+> +  16G ranges, output data-rates from 0.78Hz to 1600Hz and a hardware-fifo
+
+This may be one of those 'there are many versions' of the chip issues, but
+the random datasheet I got via digikey (kionix website was slow and I'm
+impatient) has max as 25600Hz for the KX132-1211.
+
+No particular reason the sampling rates need to be in this description so
+if they are different I'd just remove the mention or just say
+"variable output data-rates"
+
+> +  buffering.
+> +  KX022A and KX132 can be accessed either via I2C or SPI.
+>  
+>  properties:
+>    compatible:
+> -    const: kionix,kx022a
+> +    enum:
+> +      - kionix,kx022a
+> +      - kionix,kx132
+>  
+>    reg:
+>      maxItems: 1
+
