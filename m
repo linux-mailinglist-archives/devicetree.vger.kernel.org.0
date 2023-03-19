@@ -2,253 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB916C0335
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 17:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 276516C0337
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 17:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjCSQjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 12:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46970 "EHLO
+        id S230228AbjCSQm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 12:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231182AbjCSQjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 12:39:07 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9F2BB88;
-        Sun, 19 Mar 2023 09:39:00 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id o12so38168140edb.9;
-        Sun, 19 Mar 2023 09:39:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679243939;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qsKmmT3hzKFgxVud0QoxCpjm7npJMMJbDApSRG1w2Zc=;
-        b=hd9KVmIrF33ODkbc8qi8v+3X+HOGxrL+KG//CbWoJ4hEeYOwK29Z+tue9xka3RK4yi
-         HSd7fg1c/Lz1FSu8g5BYXASoPRnBGvuwPDqckDvskvjG1dMGktIqT4YXR11/LlM8ko7X
-         52FcIpo/eYpVphNmDbC89lMOYje7uX8dadD+Ccq6IECchrIiCaYAFrxNxIKuXetsCsc3
-         6gLHEp7VU2sUe6DTMoQyCBIm0Q+6AfPYtn9jdwxLBmAx/LFp0bCq2QXowpnRjvCPC8Bd
-         048N00FJV09sMwWTEkik1o+ZDCyqMNEovQAz4h2vd9ydAyAEo54t414EjS8SP+q+dhAx
-         svOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679243939;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qsKmmT3hzKFgxVud0QoxCpjm7npJMMJbDApSRG1w2Zc=;
-        b=btk5QXKuqtPMmDcMFxKFWssEuN1d4hqVlpvXZiqELeVrjnfLxCBKx25LmNXHD4z5ch
-         PdgWXa+usiSqGf41DW90WNUFNBl3fWfrUfYSp/L3UBijjrN2flft85fCCvvMf9TjoY0h
-         cr3tswkB91fqBUke9konUlYmTgockx2VoHeDII1W+cYhowZT7xc5U3QMVB6Vsxk4jmwD
-         0odEf0keZ+0uyji0mvGFHLkHyuE4G0wtTbhdsK3b+tVFRgvq0iJh1CA26PBAwBS/fRZ1
-         36yiQa0SJEz2U/t5ndDI/DBUmVKMTmhW4FGVahZwwYQJbM/BZ8fRcXshgdrWxlGwV4yf
-         VkfQ==
-X-Gm-Message-State: AO0yUKX+aRL3iZov68/SCbAMy75ydBy7gXbkJWhW926olnSbd/JWrwNb
-        PXp+ubLOmJsWlpN8NXDRaHs=
-X-Google-Smtp-Source: AK7set8ridj/8EWIi31QBW5m0+3/gAWNKVcjsKqskhWcMR84ea1k0e/F6o8WKa9Fj7bIMFg581YrOg==
-X-Received: by 2002:a17:906:e287:b0:930:d0f1:9d8 with SMTP id gg7-20020a170906e28700b00930d0f109d8mr6323847ejb.27.1679243938826;
-        Sun, 19 Mar 2023 09:38:58 -0700 (PDT)
-Received: from [192.168.99.196] (84-84-8-249.fixed.kpn.net. [84.84.8.249])
-        by smtp.gmail.com with ESMTPSA id sd24-20020a170906ce3800b00931024e96c5sm3444093ejb.99.2023.03.19.09.38.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 09:38:58 -0700 (PDT)
-Message-ID: <c4c3f402-ea3b-ba0a-d9bd-23a642f09946@gmail.com>
-Date:   Sun, 19 Mar 2023 17:38:56 +0100
+        with ESMTP id S229652AbjCSQm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 12:42:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4300A18B18;
+        Sun, 19 Mar 2023 09:42:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CA5EA6112F;
+        Sun, 19 Mar 2023 16:42:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ADBEC433D2;
+        Sun, 19 Mar 2023 16:42:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679244174;
+        bh=m3sw+XMw5dhiv51zM8Qz+hZaNj1/M9NgJPRnsGEcfMI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ip9eElWgROXjI51RtuYe4l8KWQeEtlbGygArtNQjnrdrNcd0kP8gof5qDnbDGDvpW
+         zM3p/K94E4mjaRiqHRD8n8PgOnAEQxW6o02esXSQO4lEU1aL8C4Ls8pqgh7kAbwiON
+         D9I/2eyvFpXFbNgU48cji/75VAb/ZHaWq7iUvqRBQTdQV2KpHYcRIAcst/rJsYYnQ2
+         2gMK/psN50XePqbkk0mk0xXy4B2jVEwxAQ+04UM7cavU0jLZocJ0GVbOfeR7OI4iYF
+         eYqRpShmxefMK7Fqy0xYisPV2vbA4ROJaSFzLmvHj9wkWIWR/Rb+1mKWkgnc8m2mle
+         xFyxd83qmONJA==
+Date:   Sun, 19 Mar 2023 16:57:44 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Noralf =?UTF-8?B?VHLDuG5uZXM=?= <noralf@tronnes.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Paul Gazzillo <paul@pgazz.com>,
+        =?UTF-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Emma Anholt <emma@anholt.net>,
+        Liam Beguin <liambeguin@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v4 0/8] Support ROHM BU27034 ALS sensor
+Message-ID: <20230319165744.10e49cc0@jic23-huawei>
+In-Reply-To: <cover.1679062529.git.mazziesaccount@gmail.com>
+References: <cover.1679062529.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: input: touchscreen: Add
- 'goodix-hold-in-reset' property to Goodix
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     alexandre.belloni@bootlin.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        kernel@undef.tools, krzysztof.kozlowski+dt@linaro.org,
-        linux-input@vger.kernel.org, robh+dt@kernel.org
-References: <20230312183106.551840-1-jajadekroon@gmail.com>
- <20230316152949.67441-1-jajadekroon@gmail.com>
- <1ae4767f-563a-6425-f20b-32be6ba8a7c7@linaro.org>
- <57b22a4f-3b7e-d62d-d9a7-f9f4e052c253@gmail.com>
- <947f9c1f-fd48-cb18-e495-7e275f1792b9@linaro.org>
-From:   Jan Jasper de Kroon <jajadekroon@gmail.com>
-In-Reply-To: <947f9c1f-fd48-cb18-e495-7e275f1792b9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 17 Mar 2023 16:40:16 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Op 19-03-2023 om 15:09 schreef Krzysztof Kozlowski:
-> On 17/03/2023 11:39, Jan Jasper de Kroon wrote:
->> Op 16-03-2023 om 20:25 schreef Krzysztof Kozlowski:
->>> On 16/03/2023 16:29, Jan Jasper de Kroon wrote:
->>>> Add an optional 'goodix-hold-in-reset', to the Goodix touchscreen
->>>> device tree binding. When set to true, the touchscreen controller will
->>>> be held in reset mode during system suspend, reducing power consumption.
->>>> If not present, the property defaults to false.
->>>>
->>>> Signed-off-by: Jan Jasper de Kroon <jajadekroon@gmail.com>
->>> Don't attach new patchsets to some other threads. It messes with our
->>> tools and reading/reviewing process.
->> Thank you for bringing this to my attention. I apologize for any
->> inconvenience caused by attaching the patchset to the wrong threads. As a
->> new user of LKML, I'm still learning the appropriate protocol for
->> submitting patches. Going forward, I will ensure to attach patchsets to
->> the correct threads.
->>>> ---
->>>> Changes from v2 to v3:
->>>> - Used imperative mood instead of "This patch adds".
->>>> - Dropped "I am submitting this patch to..." as it is redundant.
->>>> - Removed the paragraph related to the related patch sent to the
->>>>     linux-input mailing list as it is not necessary.
->>>> - Renamed the hold-in-reset-in-suspend function to
->>>>     goodix-hold-in-reset to prevent potential naming conflicts with other
->>>>     functions in the codebase. No functional changes were made.
->>>>
->>>> Changes from v1 to v2:
->>>> - Updated subject prefix to match subsystem.
->>>> - Added more detailed description of the change.
->>>> - Fixed formatting issues in commit message.
->>>>    .../devicetree/bindings/input/touchscreen/goodix.yaml     | 8 ++++++++
->>>>    1 file changed, 8 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>>> index 3d016b87c8df..197f8db9acc2 100644
->>>> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>>> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
->>>> @@ -56,6 +56,13 @@ properties:
->>>>      touchscreen-size-y: true
->>>>      touchscreen-swapped-x-y: true
->>>>    
->>>> +  goodix-hold-in-reset:
->>> That's not a vendor prefix... missing coma.
->> Thank you for pointing out the mistake in the vendor prefix. I appreciate
->> your feedback and apologize for any inconvenience caused. I wasn't aware
->> of the correct vendor prefix style, but I've learned from developer Hans
->> de Goede that it should be "goodix,hold-in-reset." I will make sure to
->> correct this in my local branch and ensure that it is applied correctly in
->> the future. Thanks again for bringing this to my attention.
->>>> +    description: |
->>>> +      When set to true, the touchscreen controller will be held in reset mode
->>>> +      during system suspend. This can help reduce power consumption, but may
->>>> +      cause the touchscreen to take longer to resume when the system is woken
->>>> +      up from suspend.
->>> Anyway, my concerns were not answered, so to be clear:
->>>
->>> NAK till you answer them. Do not send new versions without answering
->>> existing concerns and discussion.
->> Thank you again for reviewing my patchset and providing feedback. I
->> appreciate your time and effort in ensuring the quality and suitability
->> of the DeviceTree.
->>
->> Regarding the concerns you raised about the proposed feature, I would
->> like to address them directly. You mentioned that the property does not
->> look suitable for Devicetree because it describes system policies that are
->> not within the scope of Devicetree. While I understand your point, I
->> believe this property is appropriate for Devicetree for the following
->> reasons:
->>
->> - The property directly relates to the hardware configuration of the
->>     device, specifically the touchscreen controller, and is not a software
->>     policy.
-> Keeping device in reset state is not hardware configuration but driver
-> behavior. You did not Cc us on all patches for some reason, so it's
-> difficult to judge what exactly your driver is doing.
-Thank you for your response. I apologize for not including all the
-necessary information in my previous messages. Like you are already aware,
-the DT patch is only one part of the solution, and the driver part has
-been submitted to the linux-input mailing list. Here is the link to the
-latest patch submission:
-https://lore.kernel.org/all/20230316152159.66922-1-jajadekroon@gmail.com/
+> Support ROHM BU27034 ALS sensor
 
-I understand that it may have been difficult to judge what the driver is
-doing without the complete context. The original patch consists of two
-'out-of-tree' commits, one that attempts to power off the touchscreen device
-controller completely, including the regulators:
-https://github.com/megous/linux/commit/a38e3e2900c69f5b9961aca8e003c21950453857
-and another that reverts disabling the regulators:
-https://github.com/megous/linux/commit/cafc7adf456c03eb4564c2ba750a5345b9c6ceed
-The reason for this is that different peripherals are attached to the same
-power supply in the case of the PinePhone Original and PinePhone Pro.
+Hi Matti,
 
-I hope this clarifies part of the situation. If you have any further
-questions or concerns, please do not hesitate to let me know.
->
->> - The property is required for proper system operation and is not optional
->>     in specific device use cases. To be more specific in the case of the
->>     PinePhone Original and Pro. The original commit message of the driver
->>     implementation in driver/input/touchscreen contained the following:
->>     "It consumes quite a bit of power (~40mW) during system sleep, and more
->>     when the screen is touched."
->>     Because the phone is usually kept in your pocket, so prone to a lot of
->>     screen touches, this is highly undesired behavior for the touchscreen in
->>     this case. This in my opinion makes it a mandatory property in this
->>     situation.
-> Why then the touchscree should not be kept in reset for other devices?
-> IOW, this should be always used. If you now say "I prefer to keep or not
-> keep it in reset for my device" - it's a policy.
-Thank you for your question. While it's true that keeping the touchscreen
-in reset state during system sleep can reduce power consumption for other
-devices, the decision to use this property should be based on the specific
-use case and hardware configuration of each device. In the case of the
-PinePhone Original and Pro, the touchscreen's power consumption during
-system sleep is significant, and the device is often kept in a pocket, so
-accidental screen touches can occur frequently, leading to further power
-drain. As such, keeping the touchscreen in reset state is necessary for
-proper system operation in these specific devices. However, for other
-devices with different hardware configurations and use cases, the decision
-to use this property should be based on a thorough assessment of the power
-consumption and potential impact on system behavior.
->
->
->> - The property is not a user-facing configuration option and is not meant
->>     to be changed by the end-user.
-> Does not matter.
->
->> - The property, although in separate device specific kernel, and still
->>     called 'poweroff-in-suspend' is already in use on specific devices,
->>     including the PinePhone Original and PinePhone Pro.
-> I could not find such property in the kernel.
-I apologize for the confusion, but the current mainline kernel doesn't
-include this property. As I stated to support the PinePhone Original and
-PinePhone Pro, the community makes use of a forked mainline kernel, with
-a lot of out-of-tree patches/commits, mainly maintained by developer
-Ondrej Jirman. For the PinePhone Original, the DeviceTree configuration
-in the PinePhone DTS gets set in the following commit:
-https://github.com/megous/linux/commit/74fc0a5f0527afdccb67ce3be690f0ae18c8eca6
-For the PinePhone Pro it is set in the following commit, at line 466:
-https://github.com/megous/linux/commit/471c5f33ba74c3d498ccc1eb69c098623b193926#
-The property here is still called "poweroff-in-suspend".
->
->> However, I understand your concern that Devicetree should not be used for
->> policies. To address this concern, I would like to propose the following
->> changes to the property description:
->> 1. Remove the sentence about reducing power consumption, as this could be
->>      considered a policy.
->> 2. Emphasize that the property is a required hardware configuration and
->>      not an optional feature on certain devices.
->> 3. Recommend that any changes to the property value should only be made by
->>      experienced system administrators and not end-users.
-> Please answer - why this should not be enabled always.
-One reason why the Touchscreen Controller should not be kept in reset
-always is that some devices may have a use case where the touchscreen
-needs to remain active even during system sleep, and keeping it in reset
-would cause issues with that case. However, in the case of the
-battery-powered PinePhone Original and Pro, keeping the touchscreen
-controller in reset during system sleep is required for proper system
-operation. Having the device in your pocket makes unintentional screen
-touches almost unavoidable, and this property enabled is necessary for
-these devices. In the case of the PinePhone Original and Pro, enabling
-this feature we do consider its impact on battery life or in other words
-power consumption.
-But bottomlined, enabling this feature should be evaluated on a
-case-by-case basis, taking into consideration the specific device use case
-and hardware configurations. Thank you for your feedback.
->
-> Best regards,
-> Krzysztof
->
+For ease of when this is ready to apply, better to just keep
+key mailing lists and individuals cc'd on all patches.
+
+Mind you cc list is random enough I'm guessing it wasn't
+deliberate (like the maintainers patch 8 only went to lkml
+where no one will notice it)
+
+I can scrape these all of lore, but it's a step that not
+all reviewers are going to bother with.
+
+Jonathan
+
+
+
+> 
+> This series adds support for ROHM BU27034 Ambient Light Sensor.
+> 
+> The BU27034 has configurable gain and measurement (integration) time
+> settings. Both of these have inversely proportional relation to the
+> sensor's intensity channel scale.
+> 
+> Many users only set the scale, which means that many drivers attempt to
+> 'guess' the best gain+time combination to meet the scale. Usually this
+> is the biggest integration time which allows setting the requested
+> scale. Typically, increasing the integration time has better accuracy
+> than increasing the gain, which often amplifies the noise as well as the
+> real signal.
+> 
+> However, there may be cases where more responsive sensors are needed.
+> So, in some cases the longest integration times may not be what the user
+> prefers. The driver has no way of knowing this.
+> 
+> Hence, the approach taken by this series is to allow user to set both
+> the scale and the integration time with following logic:
+> 
+> 1. When scale is set, the existing integration time is tried to be
+>    maintained as a first priority.
+>    1a) If the requested scale can't be met by current time, then also
+>        other time + gain combinations are searched. If scale can be met
+>        by some other integration time, then the new time may be applied.
+>        If the time setting is common for all channels, then also other
+>        channels must be able to maintain their scale with this new time
+>        (by changing their gain). The new times are scanned in the order
+>        of preference (typically the longest times first).
+>    1b) If the requested scale can be met using current time, then only
+>        the gain for the channel is changed.
+> 
+> 2. When the integration time change - scale is tried to be maintained.
+>    When integration time change is requested also gain for all impacted
+>    channels is adjusted so that the scale is not changed, or is chaned
+>    as little as possible. This is different from the RFCv1 where the
+>    request was rejected if suitable gain couldn't be found for some
+>    channel(s).
+> 
+> This logic is simple. When total gain (either caused by time or hw-gain)
+> is doubled, the scale gets halved. Also, the supported times are given a
+> 'multiplier' value which tells how much they increase the total gain.
+> 
+> However, when I wrote this logic in bu27034 driver, I made quite a few
+> errors on the way - and driver got pretty big. As I am writing drivers
+> for two other sensors (RGB C/IR + flicker BU27010 and RGB C/IR BU27008)
+> with similar gain-time-scale logic I thought that adding common helpers
+> for these computations might be wise. I hope this way all the bugs will
+> be concentrated in one place and not in every individual driver ;)
+> 
+> Hence, this series also intriduces IIO gain-time-scale helpers
+> (abbreviated as gts-helpers) + a couple of KUnit tests for the most
+> hairy parts.
+> 
+> Speaking of which - testing the devm interfaces requires a 'dummy
+> device'. There were neat helpers in DRM tests for creating and freeing
+> such a device. This series moves those helpers to more generic location.
+> What is worth noting is that there is something similar ongoing in the
+> CCF territory:
+> https://lore.kernel.org/all/20230302013822.1808711-1-sboyd@kernel.org/
+> These efforts should be somehow coordinated in order to avoid any ajor
+> conflicts.
+> 
+> Finally, these added helpers do provide some value also for drivers
+> which only:
+>  a) allow gain change
+>   or
+>  b) allow changing both the time and gain while trying to maintain the
+>     scale.
+> 
+> For a) we provide the gain - selector (register value) table format +
+> selector to gain look-ups, gain <-> scale conversions and the available
+> scales helpers.
+> 
+> For latter case we also provide the time-tables, and actually all the
+> APIs should be usable by setting the time multiplier to 1. (not testeted
+> thoroughly though).
+> 
+> Revision history:
+> v3 => v4: (Stil ostly fixes to review comments from Andy and Jonathan)
+> - more accurate change-log in individual patches
+> - dt-binding and maintainer patches unchanged.
+> - dropped unused helpers and converted ones currently used only internally
+>   to static.
+> - extracted "dummy device" creation helpers from DRM tests.
+> - added tests for devm APIs
+> - dropped scale for PROCESSED channel in BU27034 and converted mLux
+>   values to luxes
+> - dropped channel 2 GAIN setting which can't be done due to HW
+>   limitations.
+> 
+> v2 => v3: (Mostly fixes to review comments from Andy and Jonathan)
+> - dt-binding and maintainer patches unchanged.
+> - iio-gts-helper tests: Use namespaces
+> - iio-gts-helpers + bu27034 plenty of changes. See more comprehensive
+>   changelog in individual patches.
+> 
+> RFCv1 => v2:
+>   dt-bindings:
+> 	- Fix binding file name and id by using comma instead of a hyphen to
+> 	  separate the vendor and part names.
+>   gts-helpers:
+> 	- fix include guardian
+> 	- Improve kernel doc for iio_init_iio_gts.
+> 	- Add iio_gts_scale_to_total_gain
+> 	- Add iio_gts_total_gain_to_scale
+> 	- Fix review comments from Jonathan
+> 	  - add documentation to few functions
+> 	  - replace 0xffffffffffffffffLLU by U64_MAX
+> 	  - some styling fixes
+> 	  - drop unnecessary NULL checks
+> 	  - order function arguments by  in / out purpose
+> 	  - drop GAIN_SCALE_ITIME_MS()
+> 	- Add helpers for available scales and times
+> 	- Rename to iio-gts-helpers
+>   gts-tests:
+> 	- add tests for available scales/times helpers
+> 	- adapt to renamed iio-gts-helpers.h header
+>   bu27034-driver:
+> 	- (really) protect read-only registers
+> 	- fix get and set gain
+> 	- buffered mode
+> 	- Protect the whole sequences including meas_en/meas_dis to avoid messing
+> 	  up the enable / disable order
+> 	- typofixes / doc improvements
+> 	- change dropped GAIN_SCALE_ITIME_MS() to GAIN_SCALE_ITIME_US()
+> 	- use more accurate scale for lux channel (milli lux)
+> 	- provide available scales / integration times (using helpers).
+> 	- adapt to renamed iio-gts-helpers.h file
+> 	- bu27034 - longer lines in Kconfig
+> 	- Drop bu27034_meas_en and bu27034_meas_dis wrappers.
+> 	- Change device-name from bu27034-als to bu27034
+>   MAINTAINERS:
+> 	- Add iio-list
+> 
+> ---
+> 
+> 
+> 
+> Matti Vaittinen (8):
+>   drm/tests: helpers: rename generic helpers
+>   kunit: drm/tests: move generic helpers
+>   dt-bindings: iio: light: Support ROHM BU27034
+>   iio: light: Add gain-time-scale helpers
+>   iio: test: test gain-time-scale helpers
+>   MAINTAINERS: Add IIO gain-time-scale helpers
+>   iio: light: ROHM BU27034 Ambient Light Sensor
+>   MAINTAINERS: Add ROHM BU27034
+> 
+>  .../bindings/iio/light/rohm,bu27034.yaml      |   46 +
+>  MAINTAINERS                                   |   14 +
+>  drivers/base/test/Kconfig                     |    5 +
+>  drivers/base/test/Makefile                    |    2 +
+>  drivers/base/test/test_kunit_device.c         |   83 +
+>  drivers/gpu/drm/Kconfig                       |    2 +
+>  .../gpu/drm/tests/drm_client_modeset_test.c   |    5 +-
+>  drivers/gpu/drm/tests/drm_kunit_helpers.c     |   69 -
+>  drivers/gpu/drm/tests/drm_managed_test.c      |    5 +-
+>  drivers/gpu/drm/tests/drm_modes_test.c        |    5 +-
+>  drivers/gpu/drm/tests/drm_probe_helper_test.c |    5 +-
+>  drivers/gpu/drm/vc4/Kconfig                   |    1 +
+>  drivers/gpu/drm/vc4/tests/vc4_mock.c          |    3 +-
+>  .../gpu/drm/vc4/tests/vc4_test_pv_muxing.c    |    9 +-
+>  drivers/iio/Kconfig                           |    3 +
+>  drivers/iio/Makefile                          |    1 +
+>  drivers/iio/industrialio-gts-helper.c         |  990 +++++++++++
+>  drivers/iio/light/Kconfig                     |   14 +
+>  drivers/iio/light/Makefile                    |    1 +
+>  drivers/iio/light/rohm-bu27034.c              | 1491 +++++++++++++++++
+>  drivers/iio/test/Kconfig                      |   16 +
+>  drivers/iio/test/Makefile                     |    1 +
+>  drivers/iio/test/iio-test-gts.c               |  461 +++++
+>  include/drm/drm_kunit_helpers.h               |    7 +-
+>  include/linux/iio/iio-gts-helper.h            |  113 ++
+>  25 files changed, 3265 insertions(+), 87 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+>  create mode 100644 drivers/base/test/test_kunit_device.c
+>  create mode 100644 drivers/iio/industrialio-gts-helper.c
+>  create mode 100644 drivers/iio/light/rohm-bu27034.c
+>  create mode 100644 drivers/iio/test/iio-test-gts.c
+>  create mode 100644 include/linux/iio/iio-gts-helper.h
+> 
+> 
+> base-commit: eeac8ede17557680855031c6f305ece2378af326
+
