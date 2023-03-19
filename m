@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9C86C012E
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 12:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B396C0132
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 12:58:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230370AbjCSL4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 07:56:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36728 "EHLO
+        id S229497AbjCSL6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 07:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230167AbjCSL4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 07:56:07 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F387F973
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:55:47 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id o12so36672261edb.9
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:55:47 -0700 (PDT)
+        with ESMTP id S229561AbjCSL6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 07:58:19 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A671E291
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:58:17 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id x3so36667904edb.10
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 04:58:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679226945;
+        d=linaro.org; s=google; t=1679227095;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=W86ni2fvopCMREDkQgNbfIsjEmzHedwnrGMI3OaiZas=;
-        b=Ksq21zw6Ubc1diC9TKxCmhC35sYpZgqIxyW7Bs+SP1mp9NhckPOu2uwcQcmokYLdu9
-         knQ/LphhssU4pK2eItK/IdCUMg1ce5kdmZb7Oao7nPHCNlonIkrNyzvnftF5E7Y6ndIg
-         s4LDKzMm8QbDLlM2myEgnG46HrzNUJCLXIGnn3vEHnqAPNINAtpPr7vWZ25qaDflT8PR
-         R/w03t6A38Xw6nISCVBvl0SIpx/6j8kMJbAmM89JxjXQwRqRK8XjTUA0vxWr+tQEr1og
-         FHNSCtFT1NpDgJqLvBPNrRr2bNjvdIxDTiC7E20xdpJ8mkDJCpWJpwrmpR9sl38QZOGs
-         lbQA==
+        bh=zV3nBvF2UoCbcifgnzs3qvd5B+6u3fG0m7J5yZixV74=;
+        b=sdCo51yYMDuXzywN3kxCGlFlZZOiEnPG1x7ZrFMTPVIulEJV/safiFExKwegANLdSx
+         QDSU96WT/XQ6cd0M4VS7kNMppPP5YhERzLmG3O3ZMpynuZ9q6qD2ZPnnozR4eY8yCIhU
+         G0nhaSrRsQmQ+ze+SOiHqW+4sRQS8fEt3wYi7FxfMW6Q5Tnuxmzt86a7LruYfIZQhh8c
+         LOi/bRXb1SdMBQDtu1EN4OVerCbyvomMrZEND0Qr3HsvxH+HbmYIJ1gP0RdQr3nl8+3o
+         XqrZG8ES2WwhHVBqNLfwSHRFn7FT057HaepLNWjr+aty2ogEVnWuIR4l9Dy3kT9TuB0T
+         RvQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679226945;
+        d=1e100.net; s=20210112; t=1679227095;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W86ni2fvopCMREDkQgNbfIsjEmzHedwnrGMI3OaiZas=;
-        b=hdQlBDz0DDGoOQ8chHA4lnH7bxrVe23HhZW5Aj2vC4+/CxXkucf2Mmyh/fMYzt46ZV
-         W8/SGtUucRvqkmUYeLbOvWg3BdwSHXCWOCVupChwPAVJ9yvTxRNKkSllGWOKvFjwa209
-         9Kiv26+f8gloLl23W2VL83ezgNzlgrwy5IW/CObYNq6cK6j66CT2RKewXaqf9gu+i5sK
-         PHVyshTYKdrtoMH60HlYi9GXnO13DxyA422P884rZrE4K+WVRiHlClgysOQ2f1Uvv2f+
-         SFqAIujpQszV3Kqo3epithTidzBGeEVRgELNmA5eLiSRkdfp7Ebc/+UW+jM2abtLlJDZ
-         fefw==
-X-Gm-Message-State: AO0yUKX1lbJu2InYh9gM2zG4Qz7NUYviwMUD46tJrtMC4JgOVndH5az3
-        RTPrqSZKsYyd3tRIby9wJvyLtw==
-X-Google-Smtp-Source: AK7set+eNYxnR5pVVFUZqFSv3njTPNiiYD2G7A3voAQ+/TrwVON9wiIIpRcDcAkhgLV+aJiltLeZhg==
-X-Received: by 2002:a17:906:d555:b0:8b1:7de3:cfaa with SMTP id cr21-20020a170906d55500b008b17de3cfaamr6796442ejc.3.1679226945716;
-        Sun, 19 Mar 2023 04:55:45 -0700 (PDT)
+        bh=zV3nBvF2UoCbcifgnzs3qvd5B+6u3fG0m7J5yZixV74=;
+        b=N2wUOnZFwTJrGMf1cmA5VnB3IhlOmlIdgYmqN+H8CV3qTVKb+TFSyVWh8xLlsKFy6n
+         daqi9O9QEIHe18SRR6uJIGj0hITFYPpLOyCKV7zIKpSrfSHSdY2nRZjnuQQsB6HXLu6e
+         N7V2f3Jw4P8GvRQ4qyoM3Ssr69fPtaGcGdVbpJTd+TswcPnU+zTv0KZCymFVB5P1ubWi
+         jVHD8gSTSaO0wgUb34Rt8l4PbLrU0msH96D0u+7MtNtYlhBrsmWLJBUQ+9T+vH4z6iyc
+         3oBzqUPuq16zPv5tuoH7q5Nl62RE45nlwptY9S5tgOr0ldyhS6luRbO1YbiYR9y6T5pw
+         +gXw==
+X-Gm-Message-State: AO0yUKUZG3L6+e5ay4hGT5A2Zjm2n1MkY1dTj5PcCje8f2TfrjgL6A8U
+        K92L/dEnCk47UUxuyR82gAZ1kQ==
+X-Google-Smtp-Source: AK7set/fzmIz7f/PELvxUKzkwiNcBjFyemxZe6yy2b+cwUlEfQ01W8yn5mhHjJO90kSbKOheHAuSRQ==
+X-Received: by 2002:aa7:db8a:0:b0:4a3:43c1:8431 with SMTP id u10-20020aa7db8a000000b004a343c18431mr8828106edt.5.1679227095542;
+        Sun, 19 Mar 2023 04:58:15 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5b5f:f22b:a0b:559d? ([2a02:810d:15c0:828:5b5f:f22b:a0b:559d])
-        by smtp.gmail.com with ESMTPSA id w1-20020a05640234c100b004f1e91c9f87sm3391702edc.3.2023.03.19.04.55.44
+        by smtp.gmail.com with ESMTPSA id h5-20020a50c385000000b004f9e6495f94sm3466385edf.50.2023.03.19.04.58.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 04:55:45 -0700 (PDT)
-Message-ID: <9a0764fe-2c8c-9101-10a7-5722a98b734f@linaro.org>
-Date:   Sun, 19 Mar 2023 12:55:44 +0100
+        Sun, 19 Mar 2023 04:58:15 -0700 (PDT)
+Message-ID: <7cd51a8d-7b23-7895-7c06-07dc98924931@linaro.org>
+Date:   Sun, 19 Mar 2023 12:58:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 08/18] dt-bindings: usb: Add Qualcomm PMIC PDPHY
- controller YAML schema
+Subject: Re: [PATCH v4 09/18] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
+ schema
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
         heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
@@ -66,9 +66,9 @@ Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
         konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
         robertom@qti.qualcomm.com
 References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-9-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-10-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230318121828.739424-9-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230318121828.739424-10-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,63 +82,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/03/2023 13:18, Bryan O'Donoghue wrote:
-> Add a YAML binding for the power-delivery PHY silicon interface inside
-> Qualcomm's pm8150b hardware block.
+> Add a YAML description for the pm8150b-tcpm driver. The pm8150b-tcpm
 
-Subject: drop second/last, redundant "YAML schema". The "dt-bindings"
-prefix is already stating that.
+No, do not add YAML description for driver.
 
-This applies to other patches as well.
+Please add bindings for some hardware and describe the hardware.
 
-
-> 
-> The pdphy driver operates with a type-c driver inside of a high level
-> single TCPM device to provide overall TCPM functionality.
+> encapsulates a type-c block and a pdphy block into one block presented to
+> the TCPM Linux API.
 > 
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  .../bindings/usb/qcom,pmic-pdphy.yaml         | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml
+>  .../bindings/usb/qcom,pmic-virt-tcpm.yaml     | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-virt-tcpm.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-virt-tcpm.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-virt-tcpm.yaml
 > new file mode 100644
-> index 0000000000000..79318e3da41e6
+> index 0000000000000..576842c8b65b4
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml
-> @@ -0,0 +1,89 @@
+> +++ b/Documentation/devicetree/bindings/usb/qcom,pmic-virt-tcpm.yaml
+> @@ -0,0 +1,88 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/usb/qcom,pmic-pdphy.yaml#"
+> +$id: "http://devicetree.org/schemas/usb/qcom,pmic-virt-tcpm.yaml#"
 > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-All comments from previous patch apply
-
 > +
+> +title: Qualcomm PMIC Virtual TCPM Driver
 
-> +title: Qualcomm PMIC based USB PDPHY driver
+All previous comments apply.
+
 > +
 > +maintainers:
 > +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > +
 > +description: |
-> +  Qualcomm PMIC Power Delivery PHY driver
-> +
+> +  Qualcomm PMIC Virtual Type-C Port Manager Driver
+> +  A virtual device which manages Qualcomm PMIC provided Type-C port and
+> +  Power Delivery in one place.
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/usb/typec/qcom,pmic-pdphy.h>
-> +
-> +    pm8150b {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pm8150b_pdphy: pdphy@1700 {
+OK, so it looks like bindings for driver, so a no-go. Unless there is
+such device as "manager", this does not look like hardware description.
 
-I guess: phy@
-(and drop the label)
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,pmic-virt-tcpm
+> +
+> +  connector:
+> +    type: object
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +    unevaluatedProperties: false
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      Contains a port which consumes data-role switching messages.
+> +
+> +  qcom,pmic-typec:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle to the typec port hardware driver.
+> +
+> +  qcom,pmic-pdphy:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+
+Having typec and phy as phandles - not children - also suggests this is
+some software construct, not hardware description.
+
+
 
 Best regards,
 Krzysztof
