@@ -2,86 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3345C6C0530
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:05:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E52D6C0539
+	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 22:06:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbjCSVFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 17:05:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
+        id S230014AbjCSVGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 17:06:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbjCSVFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:05:16 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043E0D538
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:05:15 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5416b0ab0ecso192545277b3.6
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:05:14 -0700 (PDT)
+        with ESMTP id S229937AbjCSVGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 17:06:43 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828F414993
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:06:36 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id x198so1155636ybe.9
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 14:06:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679259914;
+        d=linaro.org; s=google; t=1679259996;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uJwr32nXo3n3jCAviEoeLqs6lIUA78kCP1VpZbyNQgg=;
-        b=CL+UY8SopOn9ob1vM7RQAWFKv3P1o5tmKWr0GBhdBtvGJeilM1qaiBUS12BV7T77aS
-         sktmDLln7XEEo1Zb1BFKsV+IOlm8f8/eEAyjtQ8ICoYDI6iXiVoMsh52xuIlCzL/Bon0
-         jCSS3T7aTPzQ079DapAu1+cJSQUi9Iifgz2vPh1RtY6afQ9TeLK/aEusRym625gF3Oul
-         5pHKSAFD4t0KTRY13yse7lyNLD+zhIUVC3CQWz9iImuR7uFyMw63OIVM+Swlax+OsgEu
-         2GpLEC8FrcB5lY7uuxuffDLGzZJ5cQAsZ2DYKjOOIasZTWmXpscgF+eLkTtRq2AcJ/CF
-         mEyQ==
+        bh=144zZiImRVfFBnZW6GKzVJXTL60Wcv553hHE4rrYsuQ=;
+        b=msNj49r7LqypPEI0BLP4RQhp10RJ4kLSXcqS2bdjXVPx1HXklwnvfV4jnjJaUl8sct
+         1biFSUgNAwZOznfDoQIvaacztlXEzI4VBZMaOyfTtvPwTd1gknE8anR8qIQxnd/L6A7+
+         VyK735auqhYLDQ7KVL3butV+7Fo0uRomComCM0x5K543a8EjFbFee5eT2Vk8IQKjhBRx
+         BNb7rVea5dLakaadrMwe4KqALUAA/Al8HTu0SUubSHEM3AJVykigGQDLa7eo81F4aaLx
+         wF0mSA4O1BVXur3rEe8DrfYoLz70gwloCtXW1EY8JbEZgGUx7Y+KaN8/NL8tnlaBMyfx
+         HnUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679259914;
+        d=1e100.net; s=20210112; t=1679259996;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uJwr32nXo3n3jCAviEoeLqs6lIUA78kCP1VpZbyNQgg=;
-        b=8Aevk1CavO7l3oYLDl0ImZLwtsBe3qoGsWbYJRufVgcOYN+wKt/e0kzcy9pd1QTib3
-         3CFjgwPgqV42qAeAe45NFwZ/kv9xZDQvHE0Y+0Z6/0oHlf6AcU4VVQo4fkhUGDlrGx90
-         F09C4j8mljQR5Nc2W7G9mZwpf8KfjxFQScoPqFyvGRzryk39f6LRj03AeCWHcag1JMEn
-         iPwXG4LuPgcOmms0pqUnt35jQ7/px3cnt4Ljy6/0mlWSfrW56YZgj9HHmZZwIg4K2YB2
-         BJUKXb6gJBp7lChPVc8Nplt5EtAmrOFrO5h7AeaalOdiGdaDcRXgtq0dlEw+AXv7ZnBn
-         OwZA==
-X-Gm-Message-State: AO0yUKXomd0LZ45VcrV8iPqzsGF4Nyn8jZMtOKqTFjEMJQq3aIEqhAGj
-        MlVYn+E42F9aky/LldZ6owHvPuPYy+PVL90OLDg2xw==
-X-Google-Smtp-Source: AK7set+xsBN/Np6Fm5HDOI9Y0MBGXMYg1Su1jiQMnSUNnee2Q6cteK4f+D2SVzraHD9lMSM2HujZ4D5MerQnoteiJIk=
-X-Received: by 2002:a81:a807:0:b0:536:4ad1:f71 with SMTP id
- f7-20020a81a807000000b005364ad10f71mr8255817ywh.9.1679259914203; Sun, 19 Mar
- 2023 14:05:14 -0700 (PDT)
+        bh=144zZiImRVfFBnZW6GKzVJXTL60Wcv553hHE4rrYsuQ=;
+        b=1ccloo4BTs/Ou2pbRnydIi+TdQMXcLi0RYArZLcVrfMzDQg/qKymVMPV5MV1Noc7jz
+         l7P20IqIo5jsN3gE7u+Oh11b4CfRy6fLNtr6M/DZng07nR2nAfl2lbhvw9cGUXCMP+U7
+         TQMHm0l2BuaQuHc7FNVAu+SeEdnCMRH5dXNVJJkpAMyxXvqobCgSJCeE4iphncwlcjwA
+         5BAeKToDYe3/tTVq8j6YHS4+KiKOH/2rmzXMM66UH+GkS7hGM/n9fkBstu7FwrMwmlbR
+         mOT9TgjRmRT46+mK1dGzBisqHP73+LN7tAWJpzXn7XHMXI3dKloZTVj6JQEvrUzEIMcZ
+         dsPQ==
+X-Gm-Message-State: AO0yUKVbYbvMvo57/1MHBYxMDhU+HAks689aZzJE1KfBvhaPTZtP4ozv
+        ad3PxudTxM3F6oT2tFirbKOSvnrWx1bklIMPXkJIAA==
+X-Google-Smtp-Source: AK7set86eBleqoMmdM1qKSjYGk83l57PtBMZSwB9gQjU2KxZzli9OcwUY6W2YU/g+N6Hzqg6WiRJsTE9pIe1Zz8fjV0=
+X-Received: by 2002:a25:9786:0:b0:b23:4649:7ef3 with SMTP id
+ i6-20020a259786000000b00b2346497ef3mr4009486ybo.4.1679259995778; Sun, 19 Mar
+ 2023 14:06:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230314222705.2940258-1-konrad.dybcio@linaro.org>
-In-Reply-To: <20230314222705.2940258-1-konrad.dybcio@linaro.org>
+References: <20230316105800.18751-1-johan+linaro@kernel.org>
+In-Reply-To: <20230316105800.18751-1-johan+linaro@kernel.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 19 Mar 2023 22:05:02 +0100
-Message-ID: <CACRpkdYpTFncS476ud16RsSv7sraLtJzOVzEL_bNaZRdkSg3CQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,qcm2290-tlmm: Allow input-enable
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, marijn.suijten@somainline.org,
+Date:   Sun, 19 Mar 2023 22:06:24 +0100
+Message-ID: <CACRpkdZizYOjqJMuW+dQ4-Nm6vMLymJHW4WiWhF4jZkES_zc=Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sc8280xp-tlmm: allow 'bias-bus-hold'
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawn.guo@linaro.org>, linux-gpio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 11:27=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linar=
-o.org> wrote:
+On Thu, Mar 16, 2023 at 11:57=E2=80=AFAM Johan Hovold <johan+linaro@kernel.=
+org> wrote:
 
-> Allow the common input-enable. This was missed with the
-> initial submission.
+> The controller supports 'bias-bus-hold' so add it to the binding.
 >
-> Fixes: 5147022214db ("dt-bindings: pinctrl: qcom: Add QCM2290 pinctrl bin=
-dings")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Patch applied as non-urgent fix.
+Patch applied!
 
 Yours,
 Linus Walleij
