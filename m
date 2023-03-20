@@ -2,66 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 045886C1A2D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB84A6C1A35
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:50:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232055AbjCTPtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 11:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55856 "EHLO
+        id S233303AbjCTPtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 11:49:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233007AbjCTPsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:48:12 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D413F33454;
-        Mon, 20 Mar 2023 08:40:07 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-177ca271cb8so13460508fac.2;
-        Mon, 20 Mar 2023 08:40:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679326807;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jgk3KZtzxxXItnf/+rB0VTBN9p0dTxRpbFOr+Nh5gQo=;
-        b=VZNeo0puhsbgqKNUAvBZYuCJYjJdQMdqjh25it533X6n7z+6Ai1QYuJJTzUp/2isbA
-         43ND6b3mDmhCpEiWX7mc2yIjA11oSurFIYgP1KQTudPR/hEofjx9fzkNDZox516pSFsz
-         oMpDrazVqaeYEy80ylGn4jcYNsEaXMyfmBO+HxrcvnH9BHamf14NHLBBFZrlvh5tiER/
-         H5BpHatpgQFBzK65dTu7bOJzzHmbJzxXaDOBHmqwvUm2JwHobUHdPRYpzS8uesyL8Vfp
-         iM8laxAgjmy2o+gokUFBwrerXIVSGs2m+sbBZOWiuLqyIB2031YMezJ1PwMRXnIqgcIU
-         w2Ng==
-X-Gm-Message-State: AO0yUKWhzgKppxYRhoBM5jMTdLwl8aSS4gqIgDP/SJRUQrdEgqE8SdCX
-        4ccXyJq4YQulTAh4rCTPug==
-X-Google-Smtp-Source: AK7set87VF+yIaIfxL/PlV0G1miQvufThf1triexklF4keCIjfhdIpG9fdtEZpA/DP+1tMLyJ5YfXw==
-X-Received: by 2002:a05:6870:c351:b0:177:b62d:cc26 with SMTP id e17-20020a056870c35100b00177b62dcc26mr5085501oak.8.1679326807020;
-        Mon, 20 Mar 2023 08:40:07 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k126-20020acaba84000000b00386eff32f58sm2155846oif.13.2023.03.20.08.40.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 08:40:06 -0700 (PDT)
-Received: (nullmailer pid 1739413 invoked by uid 1000);
-        Mon, 20 Mar 2023 15:40:05 -0000
-Date:   Mon, 20 Mar 2023 10:40:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Julien Panis <jpanis@baylibre.com>
-Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-Subject: Re: [PATCH v2 0/4] TI TPS6594 PMIC support (Core, ESM, PFSM)
-Message-ID: <20230320154005.GA1733616-robh@kernel.org>
-References: <20230315110736.35506-1-jpanis@baylibre.com>
+        with ESMTP id S232030AbjCTPtR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:49:17 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0943238468;
+        Mon, 20 Mar 2023 08:40:56 -0700 (PDT)
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32KFBrOt032652;
+        Mon, 20 Mar 2023 15:40:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=+oDfw6Mvr0wKvxX614yC01eUxBJ7vNlpY3tgso6PD0o=;
+ b=YGjZHsQzfHiXytdfDyuMX3jbCpFHSQa8mA8wVBtDvKFwfLYkcE7tOmJYrPxzbLkClRKB
+ pow4HkvfPqdIn2e1uBJr5rRmLX+qbYZjMU21TXh1hdOsi0cgACpL0x+mJI6vSTZAVZ+y
+ auTLGOQmAeNe+1CJw7rcsRlphxFHvzSD6+Z55Z4LzUsi1k2C98GelB9kAQpeK+RvWyeu
+ 5O+oGWwxhwohAHJQwO1L0RB8LZy25Nv5soUTMzjS7CYmV8dSP7lU7se8kWVXkbxh/Tgx
+ fhl/5uVEQGDJkoULTZXa5xNEbGxQttYUNe6yIbwZZbY+1KxpdCEeYt+O1fCv6rdk5Dr3 Gw== 
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3per8vc618-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 15:40:34 +0000
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+        by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32KEb7P0020743;
+        Mon, 20 Mar 2023 15:40:33 GMT
+Received: from smtprelay03.dal12v.mail.ibm.com ([9.208.130.98])
+        by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3pd4x70vk5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 15:40:33 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
+        by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32KFeVom49479942
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 20 Mar 2023 15:40:31 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 8231258061;
+        Mon, 20 Mar 2023 15:40:31 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 7385F5805A;
+        Mon, 20 Mar 2023 15:40:31 +0000 (GMT)
+Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
+        by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTPS;
+        Mon, 20 Mar 2023 15:40:31 +0000 (GMT)
+Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
+        id 0D97374A47B; Mon, 20 Mar 2023 10:40:31 -0500 (CDT)
+From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+To:     robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Subject: [PATCH v2 0/5] hwmon: (pmbus/acbel-crps) Add Acbel CRPS power supply driver
+Date:   Mon, 20 Mar 2023 10:40:14 -0500
+Message-Id: <20230320154019.1943770-1-lakshmiy@us.ibm.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230315110736.35506-1-jpanis@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: SbK7iQFwdb6SfQbYG9MrFth5Jgaz4ypR
+X-Proofpoint-ORIG-GUID: SbK7iQFwdb6SfQbYG9MrFth5Jgaz4ypR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-20_12,2023-03-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 spamscore=0 bulkscore=0 mlxlogscore=708 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303200128
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,49 +83,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 12:07:32PM +0100, Julien Panis wrote:
-> TPS6594 is a Power Management IC which provides regulators and others
-> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
-> communicate through the I2C or SPI interfaces.
-> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
-> 
-> This series adds support to TI TPS6594 PMIC and its derivatives.
-> 
-> The features implemented in this series are:
-> - Core (MFD I2C and SPI entry points)
-> - ESM (child device)
-> - PFSM (child device)
-> 
-> - Core description:
-> I2C and SPI interface protocols are implemented, with and without
-> the bit-integrity error detection feature (CRC mode).
-> In multi-PMIC configuration, all instances share a single GPIO of
-> the SoC to generate interrupt requests via their respective nINT
-> output pin.
-> 
-> - ESM description:
-> This device monitors the SoC error output signal at its nERR_SOC
-> input pin. In error condition, ESM toggles its nRSTOUT_SOC pin
-> to reset the SoC.
-> Basically, ESM driver starts ESM hardware.
-> 
-> - PFSM description:
-> Strictly speaking, PFSM is not hardware. It is a piece of code.
-> PMIC integrates a state machine which manages operational modes.
-> Depending on the current operational mode, some voltage domains
-> remain energized while others can be off.
-> PFSM driver can be used to trigger transitions between configured
-> states.
-> 
-> Link to v1:
-> https://lore.kernel.org/all/20230216114410.183489-1-jpanis@baylibre.com/
-> 
-> Others series will be submitted over the next few weeks, providing
-> drivers for others child devices like GPIOs (pinctrl), RTC, and
-> regulators. Board support will also be added (device trees).
+Adding new acbel,crps driver and documentation updates.
 
-I don't care about the drivers, but I need a complete binding for 
-the device to review it.
+Changes since V1:
+- New patch added for documentation.
+- Fix acbel,crps drives as per review comments.
 
-Rob
+Lakshmi Yadlapati (5):
+  dt-bindings: vendor-prefixes: Add prefix for acbel
+  dt-bindings: trivial-devices: Add acbel,crps
+  hwmon: (pmbus/acbel-crps) Add Acbel CRPS power supply driver
+  docs: hwmon: Add documenttaion for acbel-crps PSU
+  ARM: dts: aspeed: p10bmc: Change power supply info
+
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ Documentation/hwmon/acbel-crps.rst            |  81 ++++++++++++++
+ arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts  |  12 +--
+ drivers/hwmon/pmbus/Kconfig                   |  10 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/acbel-crps.c              | 102 ++++++++++++++++++
+ 7 files changed, 204 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/hwmon/acbel-crps.rst
+ create mode 100644 drivers/hwmon/pmbus/acbel-crps.c
+
+-- 
+2.37.2
+
