@@ -2,155 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 743846C2144
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 20:23:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 781966C2174
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 20:31:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbjCTTXp convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 15:23:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58842 "EHLO
+        id S231254AbjCTTbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 15:31:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230368AbjCTTXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 15:23:25 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC0FBB82;
-        Mon, 20 Mar 2023 12:15:40 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id bz27so2705385qtb.1;
-        Mon, 20 Mar 2023 12:15:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679339692;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gLrYVBZ/JL47Hc4gzY0cU/VlY4M0TqGjw22AJ3Xwse4=;
-        b=X7f+gRsNeew36SyBXf52CvMxMJ9MXqtLI9iOIhtNsEBhkhnEbvtlun86016zYPhMQP
-         27qUbWhSfqzRPm9IxB+TEsnBy0KVHJ/nnZGt2M5W1KVBMeP4+jcCaPlkUOdD23cw2tE2
-         nn+az9JdenSf1OpqJt4j64gxI6TRt2OLLYMEGDKYeGQ0rFwOVj/R/JtBK38+ym05D5ot
-         oc4qJpzHUSCvKzJsC+yUvpunqD/QnZDRLPQUGf/ST7hdI3sOFTWJxBy6u9Sm5gSxFmJA
-         lnAGJ1ZTZN8yDcQ9Yl+kIUWy7qg70pg6JAoXJdmWs78Y+MKqAeqMVDiy9UwBl5L079C1
-         z+Dw==
-X-Gm-Message-State: AO0yUKUEUEc4L8mJ9AK4w9YMyem1UIA+mYSroytYm182OgWZucyJUbQc
-        JTc5jHOx/H/P/c1iVaAwpDqFUW6dGxQm1w==
-X-Google-Smtp-Source: AK7set+7XMCiHuoBSIHXVhosh9+u94jdD4Pf00MwlZ+k3m2Nu+qCenJUPTXyCmic7ih4tiYxsJ3OGA==
-X-Received: by 2002:a05:622a:5d1:b0:3bf:e13e:30d2 with SMTP id d17-20020a05622a05d100b003bfe13e30d2mr255682qtb.67.1679339692317;
-        Mon, 20 Mar 2023 12:14:52 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id d124-20020ae9ef82000000b007469587115dsm957174qkg.19.2023.03.20.12.14.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 12:14:51 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id i6so14472195ybu.8;
-        Mon, 20 Mar 2023 12:14:51 -0700 (PDT)
-X-Received: by 2002:a25:aac2:0:b0:b46:c5aa:86ef with SMTP id
- t60-20020a25aac2000000b00b46c5aa86efmr229267ybi.12.1679339691579; Mon, 20 Mar
- 2023 12:14:51 -0700 (PDT)
+        with ESMTP id S229846AbjCTTbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 15:31:11 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D263A98;
+        Mon, 20 Mar 2023 12:24:04 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.156.231])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1A3C46603089;
+        Mon, 20 Mar 2023 19:24:01 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679340242;
+        bh=73rNgAiRZKESdwk9lBa5SvOXwN+9LmWd+1/M3nw9rTA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Q68WvDc4qZ40xlJFOUXVHGFdF2dqRvTm9Qr0Sw44sFAIBBGDvaduV3YUuCgXjXG+y
+         fNXQOpHryBnV6DMykWkqjVS0j/c03DvLi8DqJ/R2/vd0DIgyxnXH+qKfcCYEDQNEj6
+         Cu8auu4popy5l6bph7TyLvQpZQOy7QkX80zL4cXTVnppwoHkUuTcgBY0FHVBgz2Ibo
+         6tOz1CYXe6g/Ji1cM6lFmDhhNKIEzZi9acDV4sFXkDqxwnDKs9Dnu/c29CAD+5rIRA
+         8gx5wyINXYeDj4dp1DU/ZNzAvS0SIeTSd00ljhwcqoPhl2rZRHvHzIcKPB6fmr+pEN
+         AkJ6mrS8BiRaQ==
+Message-ID: <73fab0de-38f5-b9c3-9696-3f0dfc0a6b93@collabora.com>
+Date:   Mon, 20 Mar 2023 21:23:58 +0200
 MIME-Version: 1.0
-References: <20230320105339.236279-1-biju.das.jz@bp.renesas.com> <20230320105339.236279-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230320105339.236279-6-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Mar 2023 20:14:40 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXJDeWko1W_OeaJn7Xrgo3nBVnKrD_Ce8Xd0foD1nRDWQ@mail.gmail.com>
-Message-ID: <CAMuHMdXJDeWko1W_OeaJn7Xrgo3nBVnKrD_Ce8Xd0foD1nRDWQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: renesas: r9a07g044: Enable sci0 nodes
- using dt overlay
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 02/11] dt-bindings: serial: snps-dw-apb-uart: Relax
+ dma-names order constraint
+To:     Rob Herring <robh@kernel.org>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Drake <drake@endlessm.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kernel@collabora.com
+References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
+ <20230315114806.3819515-3-cristian.ciocaltea@collabora.com>
+ <3679f2d0-55f0-1710-abc2-b268b6fc6969@linaro.org>
+ <8ae57fe3-56aa-7e50-3eaa-a12a40657baf@collabora.com>
+ <80796828-7b38-184a-2e8e-3cfe9158b67f@linaro.org>
+ <13cb8dbd-994c-4b38-b715-44a3bf3d278d@spud>
+ <e81f02f2-e692-e4ef-1510-fdc285dd5964@collabora.com>
+ <20230320160137.GB1755078-robh@kernel.org>
+Content-Language: en-US
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20230320160137.GB1755078-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On 3/20/23 18:01, Rob Herring wrote:
+> On Fri, Mar 17, 2023 at 07:43:53PM +0200, Cristian Ciocaltea wrote:
+>> On 3/17/23 18:26, Conor Dooley wrote:
+>>> On Fri, Mar 17, 2023 at 04:54:47PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 17/03/2023 11:21, Cristian Ciocaltea wrote:
+>>>>> On 3/17/23 10:31, Krzysztof Kozlowski wrote:
+>>>>>> On 15/03/2023 12:47, Cristian Ciocaltea wrote:
+>>>>>>> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
+>>>>>>> dma-names properties") documented dma-names property to handle Allwiner
+>>>>>>> D1 dtbs_check warnings, but relies on a strict rx->tx ordering, which is
+>>>>>>> the reverse of what a different board expects:
+>>>>>>>
+>>>>>>>      rk3326-odroid-go2.dtb: serial@ff030000: dma-names:0: 'rx' was expected
+>>>>>>>
+>>>>>>> A quick and incomplete check shows the inconsistency is present in many
+>>>>>>> other DT files:
+>>>>>>
+>>>>>> Why not fixing the DTS? The properties should have fixed order.
+>>>>>
+>>>>> I was initially concerned about the risk of a potential ABI breakage,
+>>>>> but I think that's not really a problem since dma-names is not directly
+>>>>> accessed in the driver and DT Kernel API doesn't rely on a particular order.
+>>>>>
+>>>>> If there are no objections, I would switch the order in the binding to
+>>>>> tx->rx, since that's what most of the DTS use, and fix the remaining ones.
+>>>>
+>>>> Since we added the order recently, I rather assume it is the correct or
+>>>> preferred one.
+>>>
+>>> IIRC I checked around the other serial bindings & there was not a
+>>> consistent order that all serial bindings used, so I picked the order that
+>>> was used across the various allwinner boards that do use dma-names.
+>>
+>> Thanks for clarifying this, Conor! Would it be fine to switch to tx->rx
+>> order as it requires less changes to fix the inconsistencies?
+>>
+>>> Before changing dts files, it's probably a good idea to make sure that
+>>> the dma-names are not used somewhere outside of Linux.
+>>
+>> Right, that means we cannot exclude the ABI breakage concern. Not sure how
+>> easy would be to actually verify this. Hence I wonder if there is really no
+>> chance to allow the flexible order in the binding..
+> 
+> If it changes and someone complains, then yes we'll allow flexible
+> order.
 
-On Mon, Mar 20, 2023 at 11:54 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable sci0 node using dt overlay and disable can{0,1}-stb-hog
-> nodes in dt overlay as its pins are shared with sci0 pins.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3:
->  * New patch
+I looked a bit further and it seems the allwiner boards are not really 
+affected as all of them are using the same DMA channel for both rx and 
+tx. So we should be fine by switching to tx->rx order.
 
-Thanks for your patch!
+$ git grep -A10 snps,dw-apb-uart | grep 'sun.*dmas' | sort -u
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtso
+arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 10>, <&dma 10>;
+arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 22>, <&dma 22>;
+arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 6>, <&dma 6>;
+arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 7>, <&dma 7>;
+arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 8>, <&dma 8>;
+arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 9>, <&dma 9>;
+arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 10>, <&dma 10>;
+arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 6>, <&dma 6>;
+arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 7>, <&dma 7>;
+arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 8>, <&dma 8>;
+arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 9>, <&dma 9>;
+arch/arm/boot/dts/sun8i-v3s.dtsi-	dmas = <&dma 6>, <&dma 6>;
+arch/arm/boot/dts/sun8i-v3s.dtsi-	dmas = <&dma 7>, <&dma 7>;
+arch/arm/boot/dts/sun8i-v3s.dtsi-	dmas = <&dma 8>, <&dma 8>;
+arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 6>, <&dma 6>;
+arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 7>, <&dma 7>;
+arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 8>, <&dma 8>;
+arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 9>, <&dma 9>;
+arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 14>, 
+<&dma 14>;
+arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 15>, 
+<&dma 15>;
+arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 16>, 
+<&dma 16>;
+arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 17>, 
+<&dma 17>;
+arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 18>, 
+<&dma 18>;
+arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 19>, 
+<&dma 19>;
 
-Can you please come up with a better filename?
-Perhaps r9a07g043-smarc-pmod.dtso?
-
-> @@ -0,0 +1,45 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the RZ/{G2UL, Five} SMARC EVK PMOD parts
-> + *
-> + * Copyright (C) 2023 Renesas Electronics Corp.
-> + *
-> + *
-> + * [Connection]
-> + *
-> + * SMARC EVK                           PMOD USBUART
-> + * +----------------------------+
-> + * |CN7 (PMOD1 PIN HEADER)     |
-> + * |   SCI0_TXD          pin7  |<----->| pin2  Tx      |
-> + * |   SCI1_RXD          pin8  |<----->| pin3  Rx      |
-> + * |   Gnd               pin11 |<----->| pin5  Gnd     |
-> + * |   Vcc               pin12 |<----->| pin6  Vcc     |
-> + * +----------------------------+      +---------------+
-
-I don't think the right side of this diagram belongs here. The user
-is not limited to a USB-UART bridge, but can connect whatever he wants
-to the PMOD connector.
-
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +#include <dt-bindings/gpio/gpio.h>
-
-Unused?
-
-> +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-> +
-> +&pinctrl {
-> +       can0-stb-hog {
-> +               status = "disabled";
-> +       };
-> +
-> +       can1-stb-hog {
-> +               status = "disabled";
-> +       };
-> +
-> +       sci0_pins: sci0-pins {
-> +               pinmux = <RZG2L_PORT_PINMUX(2, 2, 5)>, /* TxD */
-> +                        <RZG2L_PORT_PINMUX(2, 3, 5)>; /* RxD */
-> +       };
-> +};
-> +
-> +&sci0 {
-> +       pinctrl-0 = <&sci0_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
-> +};
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Cristian
