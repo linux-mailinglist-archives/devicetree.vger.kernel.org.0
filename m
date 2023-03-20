@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B63B46C21AE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 20:37:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D77946C21CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 20:44:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbjCTThu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 15:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52982 "EHLO
+        id S230027AbjCTToJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 15:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjCTThT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 15:37:19 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390E83645F;
-        Mon, 20 Mar 2023 12:31:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=HojbwMSiEtZKlQdfE1hnnoB2RYxodFjMqNVmkdMaTE4=; b=UTwuS59N/DkJgr/7fUE2JTH62X
-        AhIEtJYFFX67UsLmhqkAOgHh4nQviuZbanJJ5f7SM98Xq/YbeJU1Mc3XeoxdfdEsym7a4Q0bty5sf
-        XU2PDo/aguksS9t7Gp0rZ6vDxNs0cA+Dmaf3GIHQ3xeplirk2AthvAl5u+QeTJ5Csk/8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1peLEG-007tlX-8U; Mon, 20 Mar 2023 20:31:36 +0100
-Date:   Mon, 20 Mar 2023 20:31:36 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v5 04/15] leds: Provide stubs for when CLASS_LED
- is disabled
-Message-ID: <5ee3c2cf-8100-4f35-a2df-b379846a8736@lunn.ch>
-References: <20230319191814.22067-1-ansuelsmth@gmail.com>
- <20230319191814.22067-5-ansuelsmth@gmail.com>
- <aa2d0a8b-b98b-4821-9413-158be578e8e0@lunn.ch>
- <64189d72.190a0220.8d965.4a1c@mx.google.com>
+        with ESMTP id S230036AbjCTTnm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 15:43:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5409837560;
+        Mon, 20 Mar 2023 12:38:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A72B9617AF;
+        Mon, 20 Mar 2023 19:38:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0426EC433D2;
+        Mon, 20 Mar 2023 19:38:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679341136;
+        bh=xw7yWF8qm73chBz32rRP1ijEJSTjInaPKsdd1qVK5HM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=n+xBaCiehuuGEAUfECWs9RatEiWhhHrMX7r8r3XZXyPrvBI3T8hPrXoAPIwulENLU
+         lUYyhLWvUGA9HC0VYzdPuDVc/rUeGaZq3+W2NHbRdm08mDzX5rGmjdLfadYRo9krR3
+         TS6ZOCH7HJYgdPVo6hSPzJaMvYiubVvd1ptuD9UmSP5eTJzd/lqjmNxcEn79ICXt/S
+         BcmO4ybDzyS50d418FbZL/UbBbC+UlSLnbO0zW2CDYosGK4UE67f7T1PkqmdmOpewV
+         f6v68HggM2zyaEDBDolh3GecsqUzg51TEzS7ybfLtduXbbKoQSpHFo9JB5nCIWBV6O
+         XcWCan0yaHi+A==
+Message-ID: <966523bee1d28d546969a24eff60d315.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <64189d72.190a0220.8d965.4a1c@mx.google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230320161823.1424278-8-sergio.paracuellos@gmail.com>
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com> <20230320161823.1424278-8-sergio.paracuellos@gmail.com>
+Subject: Re: [PATCH 07/10] mips: ralink: remove clock related function prototypes
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-mips@vger.kernel.org, tsbogend@alpha.franken.de,
+        john@phrozen.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, mturquette@baylibre.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        arinc.unal@arinc9.com
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-clk@vger.kernel.org
+Date:   Mon, 20 Mar 2023 12:38:53 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 06:52:47PM +0100, Christian Marangi wrote:
-> On Sun, Mar 19, 2023 at 11:49:02PM +0100, Andrew Lunn wrote:
-> > > +#if IS_ENABLED(CONFIG_LEDS_CLASS)
-> > >  enum led_default_state led_init_default_state_get(struct fwnode_handle *fwnode);
-> > > +#else
-> > > +static inline enum led_default_state
-> > > +led_init_default_state_get(struct fwnode_handle *fwnode)
-> > > +{
-> > > +	return LEDS_DEFSTATE_OFF;
-> > > +}
-> > > +#endif
-> > 
-> > 0-day is telling me i have this wrong. The function is in led-core.c,
-> > so this should be CONFIG_NEW_LEDS, not CONFIG_LEDS_CLASS.
-> > 
-> 
-> Any idea why? NEW_LEDS just enable LEDS_CLASS selection so why we need
-> to use that? Should not make a difference (in theory)
+Quoting Sergio Paracuellos (2023-03-20 09:18:20)
+> Clock related code has been removed from 'arch/mips/ralink' folder and put
+> into drivers space. Hence remove clock related prototypes which are not
+> used anymore.
+>=20
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
+>  arch/mips/ralink/common.h | 3 ---
+>  1 file changed, 3 deletions(-)
+>=20
+> diff --git a/arch/mips/ralink/common.h b/arch/mips/ralink/common.h
+> index 87fc16751281..fcdfc9dc6210 100644
+> --- a/arch/mips/ralink/common.h
+> +++ b/arch/mips/ralink/common.h
+> @@ -23,9 +23,6 @@ extern struct ralink_soc_info soc_info;
+> =20
+>  extern void ralink_of_remap(void);
+> =20
+> -extern void ralink_clk_init(void);
 
-0-day came up with a configuration which resulted in NEW_LEDS enabled
-but LEDS_CLASS disabled. That then resulted in multiple definitions of 
-led_init_default_state_get() when linking.
+Why isn't this removed in the patch that removes the function?
 
-I _guess_ this is because select is used, which is not mandatory. So
-randconfig can turn off something which is enabled by select.
+> -extern void ralink_clk_add(const char *dev, unsigned long rate);
+> -
 
-I updated my tree, and so far 0-day has not complained, but it can
-take a few days when it is busy.
+Same comment.
 
-	Andrew
+>  extern void ralink_rst_init(void);
+>
