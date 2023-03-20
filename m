@@ -2,146 +2,459 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4887D6C0BAF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 09:01:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EE076C0BC1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 09:08:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbjCTIBV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 04:01:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43568 "EHLO
+        id S229890AbjCTIIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 04:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbjCTIBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 04:01:18 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD9E132C6;
-        Mon, 20 Mar 2023 01:01:17 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id r16so12081776qtx.9;
-        Mon, 20 Mar 2023 01:01:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679299276;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9YDU8IzF0EsSpDkzRDjzs/d7Q1NfYw1Ou2xNB8kfdm8=;
-        b=ZF3taVLGj6p5NQ0ktZFXkNENzlu54mi1CPuhErVVCfY+wqdgwlS1ulIEMCOdZPW1Qs
-         QagB6yKvsLnfJCabixWuNjCzdUMl6js1q5FO5WiFUlTH/viJlvTG0vqoLogxGmIxnMfP
-         CzakzXDUZ5qAt9ga0DvzZijTIQdrC75G7E/TdJb9FU6/5sYrOpsVapNlJxh4YpSVBPZj
-         OJi4iMlL/k0KWcX0C7NEkBVB3DFPZOoMylx1+Qy1ah43q9QQ/aByVQRivGerVkox4uXd
-         p0O3d+bitkUvZNGCV9PHoR3BCpdEmYlOUtvAbuGba2UA/RwjJ3uEBRsZA22/ii5ptkMx
-         kJWg==
-X-Gm-Message-State: AO0yUKW7UiDBbj2kk9NT+sglee16Cp8YwaUIMQsbAuYUe741T+VOWLGl
-        ixOH70QpJZl/AdT3yTf7gSKbYFCRRkPuig==
-X-Google-Smtp-Source: AK7set9wKCjL9JyrlRTw4jWPcXjkkvkIn3NAxrnMK4AytsO3ekZIyiJO7P0vFM6REENGt8zOG0b/uQ==
-X-Received: by 2002:ac8:5c03:0:b0:3d5:6eaf:fe8f with SMTP id i3-20020ac85c03000000b003d56eaffe8fmr18445959qti.11.1679299276270;
-        Mon, 20 Mar 2023 01:01:16 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id a72-20020ae9e84b000000b00745a3b63569sm6839336qkg.107.2023.03.20.01.01.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 01:01:15 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-53d277c1834so209022017b3.10;
-        Mon, 20 Mar 2023 01:01:14 -0700 (PDT)
-X-Received: by 2002:a81:e508:0:b0:544:5fc7:f01f with SMTP id
- s8-20020a81e508000000b005445fc7f01fmr9057012ywl.4.1679299274592; Mon, 20 Mar
- 2023 01:01:14 -0700 (PDT)
+        with ESMTP id S229776AbjCTIIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 04:08:53 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED798193D9;
+        Mon, 20 Mar 2023 01:08:47 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9C37824E26D;
+        Mon, 20 Mar 2023 16:08:45 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 16:08:45 +0800
+Received: from [192.168.60.83] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 16:08:44 +0800
+Message-ID: <e58bce6f-105f-6c39-f898-0dcae5a23edb@starfivetech.com>
+Date:   Mon, 20 Mar 2023 16:08:44 +0800
 MIME-Version: 1.0
-References: <20230310144721.1544669-1-robh@kernel.org> <CAMuHMdUaeyHs9fQxS+16F62uHaifJYMXKJpL2-xi-SL5HCrTHQ@mail.gmail.com>
- <CAMuHMdX1=+WwWjfiWDYOjSzTjcYBEY+QR=XKuU+o5_SCyU7rag@mail.gmail.com> <CACRpkdaw7TodD0hr3vD8cGB80k0qtEiaC1ne-ivCj6YEefi44w@mail.gmail.com>
-In-Reply-To: <CACRpkdaw7TodD0hr3vD8cGB80k0qtEiaC1ne-ivCj6YEefi44w@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Mar 2023 09:01:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVgWne0goeJ3A1=v8FZCz3hmHC2j_UEYPn51gD1jz-9uA@mail.gmail.com>
-Message-ID: <CAMuHMdVgWne0goeJ3A1=v8FZCz3hmHC2j_UEYPn51gD1jz-9uA@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: Use of_property_present() for testing DT
- property presence
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Sean Wang <sean.wang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-renesas-soc@vger.kernel.org, linux-sunxi@lists.linux.dev
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/6] media: dt-bindings: cadence-csi2rx: Convert to DT
+ schema
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Eugen Hristev" <eugen.hristev@collabora.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230310120553.60586-1-jack.zhu@starfivetech.com>
+ <20230310120553.60586-3-jack.zhu@starfivetech.com>
+ <20230312100057.GE707@pendragon.ideasonboard.com>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <20230312100057.GE707@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
 
-On Sun, Mar 19, 2023 at 9:55 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Mon, Mar 13, 2023 at 12:00 PM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
-> > On Mon, Mar 13, 2023 at 10:00 AM Geert Uytterhoeven
-> > <geert@linux-m68k.org> wrote:
-> > > On Fri, Mar 10, 2023 at 3:56 PM Rob Herring <robh@kernel.org> wrote:
-> > > > It is preferred to use typed property access functions (i.e.
-> > > > of_property_read_<type> functions) rather than low-level
-> > > > of_get_property/of_find_property functions for reading properties. As
-> > > > part of this, convert of_get_property/of_find_property calls to the
-> > > > recently added of_property_present() helper when we just want to test
-> > > > for presence of a property and nothing more.
-> > > >
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/drivers/pinctrl/renesas/pinctrl.c
-> > > > +++ b/drivers/pinctrl/renesas/pinctrl.c
-> > > > @@ -125,8 +125,8 @@ static int sh_pfc_dt_subnode_to_map(struct pinctrl_dev *pctldev,
-> > > >          * inside a subnode nor across subnodes.
-> > > >          */
-> > > >         if (!pmx->func_prop_name) {
-> > > > -               if (of_find_property(np, "groups", NULL) ||
-> > > > -                   of_find_property(np, "pins", NULL)) {
-> > > > +               if (of_property_present(np, "groups")||
-> > > > +                   of_property_present(np, "pins")) {
-> > > >                         pmx->func_prop_name = "function";
-> > > >                         pmx->groups_prop_name = "groups";
-> > > >                         pmx->pins_prop_name = "pins";
-> > >
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >
-> > > This check is used to auto-detect if the standard property names
-> > > should be used, or the "renesas,"-prefixed ones.
-> > > As the last users of the latter were removed from DTS in v4.10,
-> > > perhaps I should just remove these checks instead?
-> >
-> > Sent a patch just doing that, so you can drop this chunk.
-> > https://lore.kernel.org/linux-renesas-soc/ff9c14781110bbf19b56b45dd1f01e6da90319ad.1678704441.git.geert+renesas@glider.be
->
-> So I need a new version of this patch before I can apply it
-> I guess, or there will be conflict with Reseas stuff?
 
-It would be a minor conflict, though, and you would have to resolve
-that yourself, when merging my renesas-pinctrl PR.  So when you
-will send a PR to The Other Linus, there won't be a conflict anymore,
-and no angriness ;-)
+On 2023/3/12 19:09, Laurent Pinchart wrote:
+> Hi Jack,
+> 
+> Thank you for the patch.
+> 
+> On Fri, Mar 10, 2023 at 08:05:49PM +0800, Jack Zhu wrote:
+>> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
+>> to DT schema format and add new properties.
+> 
+> This would have been easier to review if the patch had been split in
+> two, with conversion to YAML first, and then addition of new properties.
+> Generally speaking, one patch should contain a single logical change.
+> 
 
-Thanks!
+OK, will split the patch into two patches.
 
-Gr{oetje,eeting}s,
+>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+>> ---
+>>  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 -----------
+>>  .../bindings/media/cdns,csi2rx.yaml           | 163 ++++++++++++++++++
+>>  MAINTAINERS                                   |   1 +
+>>  3 files changed, 164 insertions(+), 100 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+>>  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+>> deleted file mode 100644
+>> index 6b02a0657ad9..000000000000
+>> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+>> +++ /dev/null
+>> @@ -1,100 +0,0 @@
+>> -Cadence MIPI-CSI2 RX controller
+>> -===============================
+>> -
+>> -The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+>> -lanes in input, and 4 different pixel streams in output.
+>> -
+>> -Required properties:
+>> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
+>> -  - reg: base address and size of the memory mapped region
+>> -  - clocks: phandles to the clocks driving the controller
+>> -  - clock-names: must contain:
+>> -    * sys_clk: main clock
+>> -    * p_clk: register bank clock
+>> -    * pixel_if[0-3]_clk: pixel stream output clock, one for each stream
+>> -                         implemented in hardware, between 0 and 3
+>> -
+>> -Optional properties:
+>> -  - phys: phandle to the external D-PHY, phy-names must be provided
+>> -  - phy-names: must contain "dphy", if the implementation uses an
+>> -               external D-PHY
+>> -
+>> -Required subnodes:
+>> -  - ports: A ports node with one port child node per device input and output
+>> -           port, in accordance with the video interface bindings defined in
+>> -           Documentation/devicetree/bindings/media/video-interfaces.txt. The
+>> -           port nodes are numbered as follows:
+>> -
+>> -           Port Description
+>> -           -----------------------------
+>> -           0    CSI-2 input
+>> -           1    Stream 0 output
+>> -           2    Stream 1 output
+>> -           3    Stream 2 output
+>> -           4    Stream 3 output
+>> -
+>> -           The stream output port nodes are optional if they are not
+>> -           connected to anything at the hardware level or implemented
+>> -           in the design.Since there is only one endpoint per port,
+>> -           the endpoints are not numbered.
+>> -
+>> -
+>> -Example:
+>> -
+>> -csi2rx: csi-bridge@0d060000 {
+>> -	compatible = "cdns,csi2rx";
+>> -	reg = <0x0d060000 0x1000>;
+>> -	clocks = <&byteclock>, <&byteclock>
+>> -		 <&coreclock>, <&coreclock>,
+>> -		 <&coreclock>, <&coreclock>;
+>> -	clock-names = "sys_clk", "p_clk",
+>> -		      "pixel_if0_clk", "pixel_if1_clk",
+>> -		      "pixel_if2_clk", "pixel_if3_clk";
+>> -
+>> -	ports {
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -
+>> -		port@0 {
+>> -			reg = <0>;
+>> -
+>> -			csi2rx_in_sensor: endpoint {
+>> -				remote-endpoint = <&sensor_out_csi2rx>;
+>> -				clock-lanes = <0>;
+>> -				data-lanes = <1 2>;
+>> -			};
+>> -		};
+>> -
+>> -		port@1 {
+>> -			reg = <1>;
+>> -
+>> -			csi2rx_out_grabber0: endpoint {
+>> -				remote-endpoint = <&grabber0_in_csi2rx>;
+>> -			};
+>> -		};
+>> -
+>> -		port@2 {
+>> -			reg = <2>;
+>> -
+>> -			csi2rx_out_grabber1: endpoint {
+>> -				remote-endpoint = <&grabber1_in_csi2rx>;
+>> -			};
+>> -		};
+>> -
+>> -		port@3 {
+>> -			reg = <3>;
+>> -
+>> -			csi2rx_out_grabber2: endpoint {
+>> -				remote-endpoint = <&grabber2_in_csi2rx>;
+>> -			};
+>> -		};
+>> -
+>> -		port@4 {
+>> -			reg = <4>;
+>> -
+>> -			csi2rx_out_grabber3: endpoint {
+>> -				remote-endpoint = <&grabber3_in_csi2rx>;
+>> -			};
+>> -		};
+>> -	};
+>> -};
+>> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>> new file mode 100644
+>> index 000000000000..ed573a67f93e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>> @@ -0,0 +1,163 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Cadence MIPI-CSI2 RX controller
+>> +
+>> +maintainers:
+>> +  - Maxime Ripard <mripard@kernel.org>
+>> +
+>> +description:
+>> +  The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+>> +  lanes in input, and 4 different pixel streams in output.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - cdns,csi2rx
+> 
+> The existing bindings state
+> 
+>   - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
+> 
+> This should thus be
+> 
+>   compatible:
+>     items:
+>       - enum:
+>           - vendor1,device1
+> 	  - ...
+>       - const: cdns,csi2rx
+> 
+> The trouble is that the existing bindings are not used in mainline and
+> don't specify any SoC-specific compatible string, so I don't know what
+> to indicate for vendor1,device1. One option would be to add the StarFive
+> compatible string already:
+> 
+>   compatible:
+>     items:
+>       - enum:
+>           - starfive,jh7110-csi2rx
+>       - const: cdns,csi2rx
+> 
+> The example below should be updated accordingly.
+> 
 
-                        Geert
+Will alter it according your opinion. Thanks.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: CSI2Rx system clock
+>> +      - description: Gated Register bank clock for APB interface
+>> +      - description: pixel Clock for Stream interface 0
+>> +      - description: pixel Clock for Stream interface 1
+>> +      - description: pixel Clock for Stream interface 2
+>> +      - description: pixel Clock for Stream interface 3
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: sys
+>> +      - const: reg_bank
+>> +      - const: pixel_if0
+>> +      - const: pixel_if1
+>> +      - const: pixel_if2
+>> +      - const: pixel_if3
+> 
+> This changes the clock names and breaks compatibility with the driver.
+> The existing names must be preserved.
+> 
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+OK, will use the existing names.
+
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: CSI2Rx system reset
+>> +      - description: Gated Register bank reset for APB interface
+>> +      - description: pixel reset for Stream interface 0
+>> +      - description: pixel reset for Stream interface 1
+>> +      - description: pixel reset for Stream interface 2
+>> +      - description: pixel reset for Stream interface 3
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: sys
+>> +      - const: reg_bank
+>> +      - const: pixel_if0
+>> +      - const: pixel_if1
+>> +      - const: pixel_if2
+>> +      - const: pixel_if3
+> 
+> Let's move the addition of the resets and reset-names properties to a
+> patch separate from the YAML conversion to make it easier to review them
+> independently.
+
+OK, will do. Thank.
+
+> 
+>> +
+>> +  phys:
+>> +    maxItems: 1
+>> +    description: MIPI D-PHY
+>> +
+>> +  phy-names:
+>> +    items:
+>> +      - const: dphy
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description:
+>> +          Input port node, single endpoint describing the CSI-2 transmitter.
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              bus-type:
+>> +                enum:
+>> +                  - 4
+> 
+> You can simplify this to
+> 
+>               bus-type:
+> 	        const: 4
+> 
+
+OK, will fix
+
+>> +
+>> +              clock-lanes:
+>> +                maximum: 4
+>> +
+>> +              data-lanes:
+>> +                minItems: 1
+>> +                maxItems: 4
+>> +                items:
+>> +                  maximum: 4
+> 
+> Does the IP core support clock and data lanes remapping ?
+
+Only data lanes remapping is supported.
+Will change it to the below:
+
+		 clock-lanes:
+		   const: 0
+
+> 
+>> +
+>> +            required:
+>> +              - clock-lanes
+>> +              - data-lanes
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description:
+>> +          Output port node
+> 
+> This is also a change compared to the existing bindings, and it will
+> break backward compatibility. You should have four output ports.
+
+OK, will fix.
+
+> 
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    csi2rx: csi@0d060000 {
+> 
+> The csi2rx label is never referenced, you can drop it.
+
+OK, will drop it.
+
+> 
+>> +        compatible = "cdns,csi2rx";
+>> +        reg = <0x0d060000 0x1000>;
+>> +        clocks = <&byteclock 7>, <&byteclock 6>,
+>> +                 <&coreclock 8>, <&coreclock 9>,
+>> +                 <&coreclock 10>, <&coreclock 11>;
+>> +        clock-names = "sys", "reg_bank",
+>> +                      "pixel_if0", "pixel_if1",
+>> +                      "pixel_if2", "pixel_if3";
+>> +        resets = <&bytereset 9>, <&bytereset 4>,
+>> +                 <&corereset 5>, <&corereset 6>,
+>> +                 <&corereset 7>, <&corereset 8>;
+>> +        reset-names = "sys", "reg_bank",
+>> +                      "pixel_if0", "pixel_if1",
+>> +                      "pixel_if2", "pixel_if3";
+>> +        phys = <&csi_phy>;
+>> +        phy-names = "dphy";
+>> +
+>> +        ports {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                port@0 {
+>> +                    reg = <0>;
+>> +
+>> +                    csi2rx_in_sensor: endpoint {
+>> +                        remote-endpoint = <&sensor_out_csi2rx>;
+>> +                        clock-lanes = <0>;
+>> +                        data-lanes = <1 2>;
+>> +                    };
+>> +                };
+>> +
+>> +                port@1 {
+>> +                    reg = <1>;
+>> +
+>> +                    csi2rx_out_grabber0: endpoint {
+>> +                        remote-endpoint = <&grabber0_in_csi2rx>;
+>> +                    };
+>> +                };
+>> +        };
+>> +    };
+>> +
+>> +...
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 8ddef8669efb..b2e7ca5603c3 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -4632,6 +4632,7 @@ M:	Maxime Ripard <mripard@kernel.org>
+>>  L:	linux-media@vger.kernel.org
+>>  S:	Maintained
+>>  F:	Documentation/devicetree/bindings/media/cdns,*.txt
+>> +F:	Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+>>  F:	drivers/media/platform/cadence/cdns-csi2*
+>>  
+>>  CADENCE NAND DRIVER
+> 
