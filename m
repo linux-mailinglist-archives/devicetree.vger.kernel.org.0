@@ -2,165 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C80D6C1EF1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E417C6C1EFD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:05:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbjCTSEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 14:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
+        id S230500AbjCTSFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 14:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbjCTSDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:03:39 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06A14200
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:57:41 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id le6so13321588plb.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679335045;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TTLqYdGFZkGom4FYP+0l2YM3DyL4CPb+gNvcjA2sta8=;
-        b=GGRc6NHuQPNvdJDi95tsj9Fdk98zaHEOdlFFVHCPwB77yfj5hO5wyG0vtfUn/RUfLn
-         sv6LnNalBQnWQQZ8kgahN6tTrF0kCh2uHkmat5sxdpRSNyh5y9oT72mvSbEbSANW3XsO
-         BcUSqICRFrhMxN/VNdP78YVQUJ1RIfHBdLJhRHPOMAB/PLH/+dzINbZRSPXqR4zJ9RXg
-         TGy8odYm98NW+d8uMAd61KqopiHA8Uee8b9oN0TdfT7V0zUteKJzjWgdjjhnOGBW+8bN
-         n3qQyFpUCn3FWIU8Zt/r6W3FNmiPWihhZWFHgiuzl9VmGTY0fuGoQ+OC8St99GJYn3ro
-         MiAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679335045;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TTLqYdGFZkGom4FYP+0l2YM3DyL4CPb+gNvcjA2sta8=;
-        b=exttPkFzacHGBBVxDalWhd84hWaTn4RYZ+dMvJudI6+8pW9qjFPI1dc86gw27OwuqS
-         wimhjUMmyg0qUkSLMMERczqHYMgla9niAe10t31XYUeqi7Jm+yuDsrBbyt7coSiJBqbM
-         VkIIHC3kreVQjN4gDFrRPNkNQ7lHXJ433710fTaZTyLFEJFRw0+xHgwi5ThS+ub5kplR
-         qj3aRjAT4cKGeAop/MWPzT0+vOE6pD80+9hH9LVfEWWoM4yW52s22tQ3wYpQ2Y3aanvB
-         R727Z70ncNohd8VAOW6Rog/D63VEvNAU62L3ozsZbhgFc+xoWPn6DSpEAdOgOCXR8GT/
-         5Yag==
-X-Gm-Message-State: AO0yUKXmAD5GhbhrFSDh/njG2TdNpo5jjMDZL8gOAKz5sjiHJfxduHso
-        /rGaiIBywRodRaOfzQcnn3lSTu9Hz58qTAZrQPbibw==
-X-Google-Smtp-Source: AK7set8/YwBWDFBpyHo0/hfquyhBJpFJp9n/0UHpqT5eybpBB6edSz10AhON/8lghXTurJ3D2NDuSZ4yQF7ho2AvGmA=
-X-Received: by 2002:a17:90a:7ac8:b0:23d:4ab8:b1a3 with SMTP id
- b8-20020a17090a7ac800b0023d4ab8b1a3mr33238pjl.1.1679335045509; Mon, 20 Mar
- 2023 10:57:25 -0700 (PDT)
+        with ESMTP id S229531AbjCTSFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:05:11 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A3110268;
+        Mon, 20 Mar 2023 10:59:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1679335067; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=VNx4QWYCLV74z3Zba6mzNuV84BPhcZfC1VGce7T2tEeVW/OtIDxUKtaoxOQINQoU5Ir8kpBIZrR4wBXWo5QMgpDrxVjyWLqqDhbXTHxwphe4RHJIzoE7Fva66eTtCn5MPlLITCzOkp4xSZvpPF1sOEF1OEdO8eLiEj6OZP8Z5wA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1679335067; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=2DI5mRRmeJks6i+blxmhayxvI3We+3JTiNb4Ey8Bp68=; 
+        b=PPGFJHC7cmwRV1DOlopzVV7QNS2nHO4cmol7VwdSrlNlvVsBdQjdugFG3gNzPoG3Ai2cmfXIr7sH7J5yWocJ1RBaqBWtklpvJ8iHd3p/jX3W26BFAnUqApjezvRIll9ejnGVClPoMREaY4BaIEfVvMQblosuxFxxshYwivavPFs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679335067;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=2DI5mRRmeJks6i+blxmhayxvI3We+3JTiNb4Ey8Bp68=;
+        b=jM+gKd2b3IDauXZezQHzPctNJcFd+cDCN603B4qe0+sWpcyRCHMZwPaevHSDc+ae
+        BkJMVjlQSQAnKLeGBISX22Q0rBAZLBAqP9QzSuyf/IKh9uyMJ/kPAypgOGok/Om2/Wa
+        a14VoiWC2K5BNFuuQZTVLn469ZuOE/39tBSJnSLM=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1679335065878288.9131534580729; Mon, 20 Mar 2023 10:57:45 -0700 (PDT)
+Message-ID: <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+Date:   Mon, 20 Mar 2023 20:57:40 +0300
 MIME-Version: 1.0
-References: <CGME20230308230935eucas1p1e919f4d4b020e3386ce0eac8b4c8d299@eucas1p1.samsung.com>
- <20230308230931.27261-1-semen.protsenko@linaro.org> <d1175c3e-301d-1cbc-607c-e94051780806@samsung.com>
- <611fe922-1937-d37d-a2ce-cc0a13aed9e0@linaro.org>
-In-Reply-To: <611fe922-1937-d37d-a2ce-cc0a13aed9e0@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 20 Mar 2023 12:57:14 -0500
-Message-ID: <CAPLW+4=Yd0KfaMp+oSA=rOrqJfUotHjB=QOKpaPitMh3V2fMrA@mail.gmail.com>
-Subject: Re: [PATCH 0/6] soc: samsung: pm_domains: Add Exynos850 support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
+ tree binding documentation
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+ <20230320161823.1424278-2-sergio.paracuellos@gmail.com>
+ <1e2f67b4-3bfb-d394-4f60-e6f63ce6a2fd@linaro.org>
+ <CAMhs-H8OQ9gJLsifLuHD2GN8rYwnY=Zmdb0kMEfX4UUHhjMUyQ@mail.gmail.com>
+ <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Mar 2023 at 08:41, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 09/03/2023 11:12, Marek Szyprowski wrote:
-> > Hi Sam,
-> >
-> > On 09.03.2023 00:09, Sam Protsenko wrote:
-> >> Power Domains in Exynos850 are not really different from other Exynos
-> >> platforms. Enabling Exynos850 support in the PD driver is really just a
-> >> matter of adding:
-> >>
-> >>      static const struct exynos_pm_domain_config exynos850_cfg = {
-> >>          .local_pwr_cfg = 0x1,
-> >>      };
-> >>
-> >> to the driver. But in the face of recent developments, e.g. this patch:
-> >>
-> >>      arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
-> >>
-> >> it looked logical to rework the PD driver a bit to support its nesting
-> >> under the PMU node, while adding Exynos850 support to it. Initially I
-> >> only wanted to add syscon regmap support via some dedicated property,
-> >> but pulling PD nodes under the PMU syscon looks like more correct way.
-> >
-> > Frankly speaking if you are changing this, you can go even further.
-> > Simply make PMU node a PM domain provider and specify the power domain
-> > as a phandle parameter. This is how it should have been done from the
-> > beginning, but for some unknown reasons wasn't. There is really no need
-> > to have a separate node for each power domain. This will also move
-> > implementation details to the PMU / power domain drivers and it will
-> > make it much easier to extend/modify it in the future. IMHO same applies
-> > for PHY nodes.
->
-> I agree. The "samsung,pd-index" property is not a correct approach.
-> Either you use address space or not. If not, then this should be part of
-> power domain provider, which is also matching most of other SoC
-> architectures.
->
+On 20.03.2023 20:36, Krzysztof Kozlowski wrote:
+> On 20/03/2023 18:24, Sergio Paracuellos wrote:
+>> Hi Krzysztof,
+>>
+>> On Mon, Mar 20, 2023 at 5:36 PM Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 20/03/2023 17:18, Sergio Paracuellos wrote:
+>>>> Adds device tree binding documentation for clocks and resets in the
+>>>> Mediatek MIPS and Ralink SOCs. This covers RT2880, RT3050, RT3052, RT3350,
+>>>> RT3883, RT5350, MT7620, MT7628 and MT7688 SoCs.
+>>>
+>>> Use subject prefixes matching the subsystem (which you can get for
+>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>>> your patch is touching).
+>>>
+>>> Subject: drop second/last, redundant "device tree binding
+>>> documentation". The "dt-bindings" prefix is already stating that these
+>>> are bindings.
+>>
+>> Sure, will do. Sorry for the inconvenience.
+>>
+>>> (BTW, that's the longest redundant component I ever saw)
+>>
+>> I thought it was better to just list compatible strings inside one
+>> single file than adding the same binding in multiple files.
+> 
+> I don't understand how this is answers about redundant piece of subject.
+> Amount of files are not related to repeating pieces of subject prefix.
+> 
+>>
+>>>
+>>>>
+>>>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>>>> ---
+>>>>   .../bindings/clock/mtmips-clock.yaml          | 68 +++++++++++++++++++
+>>>>   1 file changed, 68 insertions(+)
+>>>>   create mode 100644 Documentation/devicetree/bindings/clock/mtmips-clock.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/clock/mtmips-clock.yaml b/Documentation/devicetree/bindings/clock/mtmips-clock.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..c92969ce231d
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/mtmips-clock.yaml
+>>>
+>>> Filename matching compatible, so vendor prefix and device name (or
+>>> family of names).
+>>
+>> I used mtmips here but list compatibles starting with ralink. As I
+>> have said in the cover letter I am inspired by the last merged pinctrl
+>> series for these SoCs.
+>> See:
+>> - https://lore.kernel.org/linux-gpio/e9e6ad87-2db5-9767-ff39-64a302b06185@arinc9.com/T/#t
+> 
+> 21 patches, so what exactly I should see (except that I was involved in
+> that discussions)?
+> 
+> Plus nothing from this thread warrants here exception from naming style.
+> 
+> 
+>>
+>> Not all of compatible currently exist.
+> 
+> Then clearly state this.
+> 
+>> All of these are at the end the
+>> way we can properly match compatible-data to write a proper driver.
+>> The current ralink dtsi files which are in tree now
+>> are totally incomplete and not documented so we are planning to align
+> 
+> Nothing like this was said in commit msg, so how can we know?
+> 
+>> all of this with openWRT used files and others soon. That's the reason
+>> we are not touching
+>> 'arch/mips/boot/dts' at all now. I don't think anybody is using any of
+>> this but mt7621 which is properly completed and documented.
+> 
+> Anyway, none of this explains exception from naming convention - vendor,
+> device or family name.
 
-Did a bit of research, looked at how it's implemented on other
-platforms. Before I start reworking it, want to check with you on a
-couple of decisions, to avoid unnecessary resubmissions later, if it's
-ok:
+Would mediatek,mtmips-clock.yaml make sense?
 
-1. Instead of actually merging PD driver into PMU driver, guess it
-might be better to create a new power-controller driver (e.g.
-drivers/soc/samsung/exynos-power.c). This is how it's implemented for
-the most of platforms, and this way we can neatly separate it from
-what we already have in the PMU driver (not really power controller
-related things). This way, in device tree we'll have a
-power-controller node under PMU node, and this node can be referenced
-further as a phandle in power-domains properties of users.
-
-2. After moving PD implementation into a new power-controller driver
-(with new compatibility string), the old one (pm_domains.c) should be
-probably removed. Is it reasonable, e.g. from point of view of
-compatibility with out-of-tree (downstream) dts's? Also, if I remove
-the PD driver, probably all existing (upstream) Exynos dts's should be
-reworked to use the new power-controller compatibility string?
-
-3. Where to keep offsets for each power domain (inside of PMU register
-area). Can be done in dts (a separate child node of power-controller
-for each power domain), or in the power-controller driver. I saw both
-of those ways for different platforms actually. But I guess offsets
-are more like internal details, and should be kept inside the driver,
-for each supported SoC.
-
-4. Specifying particular power domain in power-domains property. Guess
-the best way would be to have some indexes defined in dt-bindings
-header, and use those like this:
-
-        power-domains = <&power_controller EXYNOS850_PD_G3D>;
-
-   Those constants can be also used then in the driver, to keep PD
-offsets in the array, etc. Another way would be to use reg offsets,
-but indices look better: can provide more flexibility in the driver in
-future, e.g. if we'd need to add some more details other that offsets
-later.
-
-Please let me know what you think. At the moment I have to switch to
-another task temporarily. When I get back to this one, discussing the
-above items would help me a great deal.
-
-Thanks!
-
->
-> Best regards,
-> Krzysztof
->
+Arınç
