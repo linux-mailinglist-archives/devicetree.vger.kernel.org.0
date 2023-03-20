@@ -2,131 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA4E96C1281
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:00:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5307C6C12D0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:11:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231269AbjCTNAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 09:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49706 "EHLO
+        id S231622AbjCTNLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 09:11:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231414AbjCTNAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:00:33 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329EF16309;
-        Mon, 20 Mar 2023 06:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679317226; x=1710853226;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VIjJPJO/7ZtLy4pvhz1nqqvXEA9yRbCBrn9viPhUIgs=;
-  b=C/OMu0JC2MkfspPlYzu96R8QcBZKJL9wBZddMdSWa7cc2ZfqUyt+od5z
-   4Ppzf8MdlfrAoJ9pQ5XUPCu9Zm7sDdoIRJAAe95L4UOeChqXdgbdIScs0
-   zpQ7rvBtqMFgAx0N2RpQve3nHLDIyVK23Gz5DossAhf4nOdvw8GmDjjQF
-   NdVTxiyvjeoESQS0e7AlNS88cA/kNtRvoaJO0fSO8irm9okNt+qeJALW6
-   GBFfBCFqISUaDt0cdad9wkZyioBIZXpyhw/SpwXg0cjtzsjuGck5H3P5j
-   OBISIhosQIWa0inZhjcnZFrxdfhkBNLfQtiqidncZjQTOx86uDtXTkY12
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="366370775"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="366370775"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 06:00:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="713551019"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="713551019"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga001.jf.intel.com with ESMTP; 20 Mar 2023 06:00:22 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1peF7c-006GwX-1s;
-        Mon, 20 Mar 2023 15:00:20 +0200
-Date:   Mon, 20 Mar 2023 15:00:20 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Danny Kaehn <kaehndan@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZBhY5Gp88gVK7q/g@smile.fi.intel.com>
-References: <20230319204802.1364-1-kaehndan@gmail.com>
- <20230319204802.1364-4-kaehndan@gmail.com>
- <ZBhYXwjPeRiZwxMT@smile.fi.intel.com>
+        with ESMTP id S231580AbjCTNLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:11:22 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FF422104;
+        Mon, 20 Mar 2023 06:11:20 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-17683b570b8so12898911fac.13;
+        Mon, 20 Mar 2023 06:11:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679317879;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DBr9c5b67bRojO7ujP8kx0WSXnrTxlAuuYnRf7yafXk=;
+        b=H043XpUEn8F9JCTJ8bEBaWzeZ2M2hl4xdbvxNWd/nmI/ZZbX21GkDVx/QlJCr0SJbs
+         W1x4yA5IxBojnQltkrTz9/PGEvdxQTkSsmvvrvJoQXIknBJTZrBCtbCzmonHTXMVMN5e
+         FBT3aqTkDZEDHP6dLELb9XEUDPw9EszU2Aq0IfKaDP7z+VyMCfVCkBtQ6EiXDYF4bAF4
+         il+SH/E1OULxliB/bMCBx4oOWiQnL+9b6zJ42rkieN/MqUpRNhjOY2uLURxg6ntvwqst
+         4z7KSdx5eSmB7h4j6V0DZHEgh2YrG5uC9zcKHIbK4ZWpVFq14BraTHLrQNQWqxCvz5Q2
+         1d2g==
+X-Gm-Message-State: AO0yUKVAgTSJ+4bpM8H+wAWmTG0JirHMg5AaZ5qFA91aDbkuHj1UplVB
+        wim2UGqsLqOG6kQ+Eg4mqw==
+X-Google-Smtp-Source: AK7set+kAhkcOQ9jmYGffSEAwz3MqFLZgdXjIcCXTR5S4JEeE40EwhfCCF+T0rohxxxly9WNpXMOaw==
+X-Received: by 2002:a05:6871:5c6:b0:17e:cb7:29bc with SMTP id v6-20020a05687105c600b0017e0cb729bcmr4589960oan.13.1679317879289;
+        Mon, 20 Mar 2023 06:11:19 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id tl3-20020a0568718a0300b001777dc4dac1sm3246334oab.39.2023.03.20.06.11.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 06:11:18 -0700 (PDT)
+Received: (nullmailer pid 1433164 invoked by uid 1000);
+        Mon, 20 Mar 2023 13:11:18 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZBhYXwjPeRiZwxMT@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     stern@rowland.harvard.edu, vigneshr@ti.com,
+        devicetree@vger.kernel.org, Thinh.Nguyen@synopsys.com,
+        gregkh@linuxfoundation.org, srk@ti.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, r-gunasekaran@ti.com
+In-Reply-To: <20230320093447.32105-2-rogerq@kernel.org>
+References: <20230320093447.32105-1-rogerq@kernel.org>
+ <20230320093447.32105-2-rogerq@kernel.org>
+Message-Id: <167931771710.1430059.457411418248576558.robh@kernel.org>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: usb: snps,dwc3: Add
+ 'snps,gadget-keep-connect-sys-sleep'
+Date:   Mon, 20 Mar 2023 08:11:18 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 02:58:07PM +0200, Andy Shevchenko wrote:
-> On Sun, Mar 19, 2023 at 03:48:02PM -0500, Danny Kaehn wrote:
 
-...
+On Mon, 20 Mar 2023 11:34:46 +0200, Roger Quadros wrote:
+> The current USB gadget driver behaviour is to stop the controller
+> and disconnect from the bus during System sleep.
+> 
+> The 'snps,gadget-keep-connect-sys-sleep' property can be used to
+> change this behaviour and keep the controller active and connected
+> to the bus during System sleep. This is useful for applications
+> that want to enter a low power state when USB is suspended but
+> remain connected so they can resume activity on USB resume.
+> 
+> This feature introduces a new constraint if Gadget driver is connected
+> to USB host: i.e.  the gadget must be in USB suspend state to allow
+> a System sleep as we cannot process any USB transactions
+> when in System sleep.
+> 
+> The system hardware is responsible to detect the end of USB suspend
+> and wake up the system so we can begin processing the USB transactions
+> as soon as possible.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-> > +	device_for_each_child_node(&hdev->dev, child) {
-> > +		name = fwnode_get_name(child);
-> > +		ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-> > +
-> > +		if ((name && strcmp("i2c", name) == 0) || (!ret && addr == 0))
-> > +			device_set_node(&dev->adap.dev, child);
-> > +		else if ((name && strcmp("gpio", name)) == 0 ||
-> > +					(!ret && addr == 1))
-> > +			dev->gc.fwnode = child;
-> > +	}
-> 
-> Please, make addresses defined explicitly. You may also do it with node naming
-> schema:
-> 
-> #define CP2112_I2C_ADR		0
-> #define CP2112_GPIO_ADR		1
-> 
-> static const char * const cp2112_cell_names[] = {
-> 	[CP2112_I2C_ADR]	= "i2c",
-> 	[CP2112_GPIO_ADR]	= "gpio",
-> };
-> 
-> 	device_for_each_child_node(&hdev->dev, child) {
-> 		name = fwnode_get_name(child);
-> 		if (name) {
-> 			ret = match_string(cp2112_cell_names, ARRAY_SIZE(cp2112_cell_names), name);
-> 			if (ret >= 0)
-> 				addr = ret;
-> 		} else
-> 			ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-> 		if (ret < 0)
-> 			...error handling if needed...
-> 
-> 		switch (addr) {
-> 		case CP2112_I2C_ADR:
-> 			device_set_node(&dev->adap.dev, child);
-> 			break;
-> 		case CP2112_GPIO_ADR:
-> 			dev->gc.fwnode = child;
-> 			break;
-> 		default:
-> 			...error handling...
-> 		}
-> 	}
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Btw, don't you use "reg" property for the child nodes? It would be better from
-de facto used patterns (we have a couple of mode drivers that have a common
-code to read "reg" or _ADR() and that code can be split into a helper and used
-here).
+yamllint warnings/errors:
 
--- 
-With Best Regards,
-Andy Shevchenko
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/intel,keembay-dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/qcom,dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: properties:snps,gadget-keep-connect-sys-sleep: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: properties:snps,gadget-keep-connect-sys-sleep: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: properties:snps,gadget-keep-connect-sys-sleep: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+./Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/ti,am62-usb.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230320093447.32105-2-rogerq@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
