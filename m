@@ -2,111 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 052E66C0CF9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 10:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E686C0D0F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 10:21:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230048AbjCTJTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 05:19:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52998 "EHLO
+        id S231244AbjCTJVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 05:21:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjCTJTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 05:19:12 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EC812CEF;
-        Mon, 20 Mar 2023 02:19:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1679303947; x=1710839947;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=KcTqCESxcN73NYJ/dcxfK/tm8NaiYnSt/OcyW2m0CDY=;
-  b=PzYMe67ybkNgPD2CFOjwa4BeFbVm5/gSEao3zziy5/O8dRGmvtRvZv0/
-   1i9hRm3JyK5RdqDjI1VPjU/yGnX5QsJFi0KfmAU322Rth2qlmrR5EZjrW
-   PQ9UTqCL6ijXW/6fSULey4OloJ9VSRRqWBA4PXbfoN9OXUVtDDIL1tBL9
-   ZBdcn+4dENa60WfV2Q7SA95g8iY97idwybce5J4omy2DY7QBQwhFcJvNu
-   mgyo36WervCpPvyMKi5OysmDS4N9MW/rkHqNytVmsbgBeGjq6wXv9oUeI
-   95OpbShzQaPXtWK7lV8A7XyUS/bL3zWjpe5zBDTkSLmn6i7ssL6Z0YHmi
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,274,1673938800"; 
-   d="scan'208";a="202463786"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Mar 2023 02:19:05 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 20 Mar 2023 02:19:02 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 20 Mar 2023 02:18:56 -0700
-Message-ID: <b6609e59-0f68-689b-81db-4324ed5deb26@microchip.com>
-Date:   Mon, 20 Mar 2023 10:18:50 +0100
+        with ESMTP id S231249AbjCTJUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 05:20:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B07B12870
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 02:20:35 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1peBgt-0007ye-C4; Mon, 20 Mar 2023 10:20:31 +0100
+Message-ID: <8ea65a63-9cb2-8e80-d5ee-429db14be6d1@pengutronix.de>
+Date:   Mon, 20 Mar 2023 10:20:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] dt-bindings: watchdog: Drop unneeded quotes
+ Thunderbird/102.7.2
+Subject: Re: [PATCH v1] ARM: dts: stm32: Add coprocessor detach mbox on
+ stm32mp15xx-osd32 SoM
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        Julius Werner <jwerner@chromium.org>,
-        "Evan Benn" <evanbenn@chromium.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <asahi@lists.linux.dev>, <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230317233643.3969019-1-robh@kernel.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20230317233643.3969019-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230310092650.1007662-1-l.goehrs@pengutronix.de>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20230310092650.1007662-1-l.goehrs@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 at 00:36, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 10.03.23 10:26, Leonard Göhrs wrote:
+> To support the detach feature, add a new mailbox channel to inform
+> the remote processor on a detach. This signal allows the remote processor
+> firmware to stop IPC communication and to reinitialize the resources for
+> a re-attach.
 > 
-> Signed-off-by: Rob Herring<robh@kernel.org>
+> See 6257dfc1c412dcdbd76ca5fa92c8444222dbe5b0 for a patch that does the
+> same for stm32mp15x-dkx boards.
+> 
+> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
+Thanks,
+Ahmad
+
 > ---
+>  arch/arm/boot/dts/stm32mp15xx-osd32.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> index 935b7084b5a2..a43965c86fe8 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> @@ -210,8 +210,8 @@ &ipcc {
+>  &m4_rproc {
+>  	memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
+>  			<&vdev0vring1>, <&vdev0buffer>;
+> -	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+> -	mbox-names = "vq0", "vq1", "shutdown";
+> +	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>, <&ipcc 3>;
+> +	mbox-names = "vq0", "vq1", "shutdown", "detach";
+>  	interrupt-parent = <&exti>;
+>  	interrupts = <68 1>;
+>  	status = "okay";
+> 
+> base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
 
-[..]
-
->   .../devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml         | 2 +-
-
-For Microchip platforms:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-Thanks, best regards,
-   Nicolas
 -- 
-Nicolas Ferre
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
