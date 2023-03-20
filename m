@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CAEA6C0ABF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 07:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1861C6C0AC2
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 07:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbjCTGh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 02:37:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39136 "EHLO
+        id S229799AbjCTGie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 02:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjCTGhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 02:37:25 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DC91116A
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 23:37:22 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id ek18so42474976edb.6
-        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 23:37:22 -0700 (PDT)
+        with ESMTP id S229776AbjCTGid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 02:38:33 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96AEBE19C
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 23:38:30 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id r11so42488520edd.5
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 23:38:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679294241;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679294309;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nMAbHeAxn10XpZBHVp/8FgkoGfk6Ak3SIPc/tdQAzaU=;
-        b=cKNT2IPoYuLDU3GHiau+62cf+h4z8T6ZyosMDPFLS7tYFBxWRjiygHSJFE56UKTXsj
-         GVgZTvOke3jD3hhizxQ/iV+y9D+TULtf+CCRjJFqBlIFG6o08a9UwLyWAlm3wGSqTyqo
-         53iHnDyWzIr7IlqSzhUaEsQzf59Qn8M8CA6dgCd2yn0gZPS2jDy0dqy0ChJo8U9gfF35
-         oyGLDa0bchDbYA2aE8rIfl0wavTdFSCwb5npB6+N9NxcEWOnnIp5a8qNKR6e1YrLL78B
-         6Wcq4DmHjKJlR3MGHqrU3vcLB7f1gl/Jx9mxGbuX0yz7CPX1DWuRNAe6RgnRcQ53pLH4
-         P8IA==
+        bh=t7XeoSe7UBuX/qyHKNlFZtj5mQnbrycYOrmZq1cWzw8=;
+        b=og1arrjvv3V1NdTKTL6nqWdto4cJlvx1lJaOUNCZQU3G6Z+9CVFWBZwA9KKnSw9aCN
+         AG75/Do04vm1Qf4H6oTVavstgAkPq6nCdoXdzjjkRh3Hnod3I/hA70S3G5qRXRazZ3ov
+         eDALdS055/VHd+mWMubR9Dg5B1MNq1EfJKbUtmWmPaZzxSpEGUa9h5RCr/K9i48XzaJ3
+         eA4n/AbtFz9gQv4nRpJZ1B2daPdP2um5KxxScW7XpjE76P2aZDJkuc+91Mze3/Uz0Mvk
+         OLvcAyE258gGyChEZjewf1ULjk0gfkA/IEMNzI4ItXaPGyH+bLbNBtqEkQg0UvfJ77S8
+         bz8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679294241;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679294309;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nMAbHeAxn10XpZBHVp/8FgkoGfk6Ak3SIPc/tdQAzaU=;
-        b=xK+aSbxjDVid8YU0RoTyOsDKE9KC6sUKyRDsHmhd9nl5vtdPtO0fWsYqEdiPnYQzGW
-         HyFBnVcYL+5WkmXOM6bjlsD8Kqx4ZAQuLRDNq/OFPcszgN90XdIYj1InEIC/JaHs+kBK
-         at52DKTyTq1Bca36Tvdafiu+EPvJ3b1h4CEcaKDqpI0r5xJaLevX7Gv24NEhPgZeEjVd
-         VgD14zR/nXJiT9akW+fzlPKVdQTm8Rsjvrw2xeFTTvNqLY2ziDxpWHxFOZ9Hd4AUHT0Y
-         5srDW+q+xGCNAUyB1YWftDfz5URiXrweBWkwExmz0+IZnl5e8TtvYFZOA6y8YuIYuFrt
-         RMoQ==
-X-Gm-Message-State: AO0yUKWelkIWdLk6RlsBu1GiT1ALg7Lm58RP6juKfyZS2k9j0YxlUO8d
-        x7PvkdDMkkUVszOed4ua+6toxA==
-X-Google-Smtp-Source: AK7set8VRtL9ZQsZfjAfc7z9H6C2FM1URQbMoaWzmaCRPc426Ay97st5q+LNo4+luc9BKJHApke3UA==
-X-Received: by 2002:a05:6402:211:b0:500:50f6:dd33 with SMTP id t17-20020a056402021100b0050050f6dd33mr7570647edv.2.1679294240864;
-        Sun, 19 Mar 2023 23:37:20 -0700 (PDT)
+        bh=t7XeoSe7UBuX/qyHKNlFZtj5mQnbrycYOrmZq1cWzw8=;
+        b=vXlkVbs/74NifX3mLcDWrSYT+0AXpkFCVtHkFvCQa6IzW4x5YoP5NFgHTv72+qB540
+         mOxm2nLycgPzb7IZaNrAfiLwcuIoWbIl5V4nfWzOo4iAtNHlDi31ohs/xXv+AwB/6lOV
+         gW/C7Drj4MYSm5BGYceagI7KSiHNOVBnAgG2SyVOV3rBGdD63+W0krkP/8IKbgUohV0q
+         blodAB9o2PRWnLzJ+7zaBQrVWY0L1su0XRmdMKHV79nfsQeynknwFZDD/bu3P3u5/IS0
+         zzYl+qB3IncwPqDmpKIzWBe1YVnRFdArvrOgrEKztl9BrD21BBFbXLfvl1/ags65m3Jm
+         t+wg==
+X-Gm-Message-State: AO0yUKUajpzqMYV3rfVmMloen0sqf4Z31oGpbgmo8/Whwqn9hCUREy1J
+        a55DYrj+l5veTBiC54DJcC3BKhUIPVM18q07Djg=
+X-Google-Smtp-Source: AK7set8zaCmvCo/leOy8Mug11ajTRxSNFLkO0e1EhQz95/FxfjvSuWjkKWa7MhfAtVfj+tsoVUmaGQ==
+X-Received: by 2002:a17:906:1f53:b0:931:91a:fa4f with SMTP id d19-20020a1709061f5300b00931091afa4fmr8592424ejk.41.1679294309064;
+        Sun, 19 Mar 2023 23:38:29 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:4428:8354:afb6:2992? ([2a02:810d:15c0:828:4428:8354:afb6:2992])
-        by smtp.gmail.com with ESMTPSA id y70-20020a50bb4c000000b004fa380a14e7sm4389167ede.77.2023.03.19.23.37.19
+        by smtp.gmail.com with ESMTPSA id 8-20020a170906300800b008e2dfc6382asm3967122ejz.125.2023.03.19.23.38.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Mar 2023 23:37:20 -0700 (PDT)
-Message-ID: <a6b9bab2-4151-c811-85ff-2424866e21d8@linaro.org>
-Date:   Mon, 20 Mar 2023 07:37:19 +0100
+        Sun, 19 Mar 2023 23:38:28 -0700 (PDT)
+Message-ID: <f25cc55e-3405-4b17-fb45-5ae5eb36a404@linaro.org>
+Date:   Mon, 20 Mar 2023 07:38:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 3/6] dt-bindings: soc: starfive: syscon: Add optional
- patternProperties
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230316030514.137427-1-xingyu.wu@starfivetech.com>
- <20230316030514.137427-4-xingyu.wu@starfivetech.com>
- <1f352445-4677-e33b-be14-c76bd7ffa188@linaro.org>
- <45221a1c-dc01-2759-3e32-658636625529@starfivetech.com>
+Subject: Re: [RESEND v6 1/2] dt-bindings: soc: starfive: Add StarFive syscon
+ doc
 Content-Language: en-US
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>
+References: <20230315055813.94740-1-william.qiu@starfivetech.com>
+ <20230315055813.94740-2-william.qiu@starfivetech.com>
+ <850bc37e-c6d1-2381-a851-965a4cbee8a0@linaro.org>
+ <e38efd81-9c79-553b-7556-7aff30f6ec50@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <45221a1c-dc01-2759-3e32-658636625529@starfivetech.com>
+In-Reply-To: <e38efd81-9c79-553b-7556-7aff30f6ec50@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,101 +81,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 04:54, Xingyu Wu wrote:
-> On 2023/3/19 20:28, Krzysztof Kozlowski wrote:
->> On 16/03/2023 04:05, Xingyu Wu wrote:
->>> Add optional compatible and patternProperties.
+On 20/03/2023 06:54, William Qiu wrote:
+> 
+> 
+> On 2023/3/19 20:27, Krzysztof Kozlowski wrote:
+>> On 15/03/2023 06:58, William Qiu wrote:
+>>> Add documentation to describe StarFive System Controller Registers.
 >>>
->>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 >>> ---
->>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 39 ++++++++++++++++---
->>>  1 file changed, 33 insertions(+), 6 deletions(-)
+>>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 41 +++++++++++++++++++
+>>>  MAINTAINERS                                   |  5 +++
+>>>  2 files changed, 46 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
 >>>
 >>> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>> index ae7f1d6916af..b61d8921ef42 100644
->>> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>> new file mode 100644
+>>> index 000000000000..ae7f1d6916af
+>>> --- /dev/null
 >>> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>> @@ -15,16 +15,31 @@ description: |
->>>  
->>>  properties:
->>>    compatible:
->>> -    items:
->>> -      - enum:
->>> -          - starfive,jh7110-aon-syscon
->>> -          - starfive,jh7110-stg-syscon
->>> -          - starfive,jh7110-sys-syscon
->>> -      - const: syscon
->>> +    oneOf:
->>> +      - items:
->>> +          - enum:
->>> +              - starfive,jh7110-aon-syscon
->>> +              - starfive,jh7110-stg-syscon
->>> +              - starfive,jh7110-sys-syscon
->>> +          - const: syscon
->>> +      - items:
->>> +          - enum:
->>> +              - starfive,jh7110-aon-syscon
->>> +              - starfive,jh7110-stg-syscon
->>> +              - starfive,jh7110-sys-syscon
->>> +          - const: syscon
->>> +          - const: simple-mfd
->>>  
->>>    reg:
->>>      maxItems: 1
->>>  
->>> +patternProperties:
->>> +  # Optional children
->>> +  "pll-clock-controller":
->>
->> It's not a pattern.
-> 
-> Does it use 'properties' instead of 'patternProperties'?
-
-Yes.
-
-> 
->>
->> Anyway should be clock-controller
-> 
-> Will fix.
-> 
->>
->>> +    type: object
->>> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
->>> +    description: Clock provider for PLL.
+>>> @@ -0,0 +1,41 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
+>>> +title: StarFive JH7110 SoC system controller
+>>> +
+>>> +maintainers:
+>>> +  - William Qiu <william.qiu@starfivetech.com>
+>>> +
+>>> +description: |
+>>> +  The StarFive JH7110 SoC system controller provides register information such
+>>> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - starfive,jh7110-aon-syscon
+>>> +          - starfive,jh7110-stg-syscon
+>>> +          - starfive,jh7110-sys-syscon
+>>> +      - const: syscon
 >>
->> You just added these bindings! So the initial submission was incomplete
->> on purpose?
+>> Does not look like you tested the bindings. Please run `make
+>> dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
 >>
->> No, add complete bindings.
+>> ... or your PLL clock controller was not tested.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Hi Krzysztof,
 > 
-> Does you mean that it should drop the 'description', or add complete 'description',
-> or add 'compatible', 'clocks' and 'clock-cells' of complete clock-controller bindings?
+> I've already done`make dt_binding_check`, and get no error. So maybe PLL clock controller
+> was not tested which I didn't add in this patch series. And PLL clock controller belongs
+> to Xingyu Wu, I would tell him.
 
-It means it should be squashed with the patch which adds it.
-
-> 
->>
->>>  required:
->>>    - compatible
->>>    - reg
->>> @@ -38,4 +53,16 @@ examples:
->>>          reg = <0x10240000 0x1000>;
->>>      };
->>>  
->>> +  - |
->>> +    syscon@13030000 {
->>
->> No need for new example... Just put it in existing one.
->>
-> 
-> Actually, the PLL clock-controller are just set in sys-syscon resgisters. The stg-syscon and
-> aon-syscon don't need it. So PLL clock-controller node only is added in sys-syscon node.
-
-So why having other examples if they are included here? Drop them.
-
-
+What's confusing you do not allow here clock controller.
 
 Best regards,
 Krzysztof
