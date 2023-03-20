@@ -2,176 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E2C66C157D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74E566C1587
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:51:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbjCTOuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:50:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55024 "EHLO
+        id S231932AbjCTOvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:51:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231959AbjCTOtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:49:32 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D0023133
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:47:53 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id cy23so47636797edb.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:47:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679323641;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QD7ylI6TVHUGdBJgMovYJYcYKC/vfqGxmwJNLbiL6ds=;
-        b=PkVWnB6X3c63HHvavZdeVbDn3Tx36qitT0fT6ic0Its1qN+eoMlxng6rqKjwWQDFyY
-         whXJcFWvxPa9cqiHXs2Kkgw3YrCnW03UTs96YcZpLxXHD3EgHAON0LddK5jOZAmlXcV7
-         S9TN/x2Y7cv1gHcJglVbmEyqWwlz2yXkcnC4r9WjqwFifBQedcDJYrO1AGJCARZfhjqX
-         PXXPU2e/kM7Srb3kfYIwp/us0ZjYp7bu3xKgggdzmKmV3S5jR6vkd+locDC4tnj3GWVH
-         +QD3N6tKee/XwzPoBx3DbsqIaq5j8jZqKJsewEm+i2QKDgyqR3WwCp6wH0ZURIYb7YbN
-         oEQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679323641;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QD7ylI6TVHUGdBJgMovYJYcYKC/vfqGxmwJNLbiL6ds=;
-        b=Xs5lAeAHIvYpTSdpWwT41+uCNOCO85Fc+Cs0lqU5l1Eswg1TMeTL+FzmmG/Fkv9/0l
-         XAFql1rdGVyzpk5Yt2MqSEBPv3B827Rc0npTgunyuUscBo6FrBdeLevMNTHim4d0OP7D
-         pouYgZovrY6DASsv9Y0I/T96AGoXJNwMXpYL5QO1A9Wr9Iu0m/e7OUKlQ5trOMgjxk1P
-         4Ow63r39KaWEWp/h+0+ovShldUxWoFaj7nw7L0TwV5gBFWS10xLI9UaVfKEjSugCD34O
-         j2PUorpZfJJHF6F+AEIw2fIxjbgUmIavNrdBs/vtOyByn0jeMr5hmTK9aO6J0LPNFMyM
-         g4iw==
-X-Gm-Message-State: AO0yUKUIBujfFkW1DTTtJ41KPKCDDyemu8Jk0mLoQwUq4F5Hvv0b55jG
-        QspgTsVx50IeUXsUq0hcD50OPw==
-X-Google-Smtp-Source: AK7set9AXmDHkrfGSpB3Wj9T0K1GNyabMNZ0AJIw+bnZjLcG3lQNkav0xtkhhLFt0gjqJA/tL7ycxw==
-X-Received: by 2002:a05:6402:7c3:b0:4fa:4b1c:5ea3 with SMTP id u3-20020a05640207c300b004fa4b1c5ea3mr12880116edy.23.1679323641641;
-        Mon, 20 Mar 2023 07:47:21 -0700 (PDT)
-Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id x2-20020a50ba82000000b004fb30fc1dabsm4913172ede.96.2023.03.20.07.47.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 07:47:21 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>
-Subject: [RESEND PATCH v9 2/2] PCI: qcom: Add SM8550 PCIe support
-Date:   Mon, 20 Mar 2023 16:46:58 +0200
-Message-Id: <20230320144658.1794991-2-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230320144658.1794991-1-abel.vesa@linaro.org>
-References: <20230320144658.1794991-1-abel.vesa@linaro.org>
+        with ESMTP id S231991AbjCTOvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:51:22 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2050.outbound.protection.outlook.com [40.107.15.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0A7158B4;
+        Mon, 20 Mar 2023 07:49:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JzJoWFnCFSuQAbhZoMNmCUD2NMEoninOI9v0cpDdXTQ04rf4qUvzRh6QXknhc1q762tKVjIEldqnwg6KkIBtEIGHmc2Cz6yi9HO458GYTL65uhVdvMfcVmE+9w4XwGsqsC8SAeEaECL+IzPpy37iDKXsgy8cexuigG97HQjq5Rw1nAqnnGzEr1X0QUspz/E5nYJeB584joUkP5nDM/J2EYTaUeEzLUCc/xMDdaCQPqGAVCY+YCbSaEkOvLpsGElS/QxEXfANow79GthFZAqyKsi9rhNDiRFlZ5wbED6wXDvIZcRPGPIaJlA5lXrxcy9FfJ+TpQGFmHwrQZLKoupQMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=frPrIeJLF0whALGVlIKRC36kdWHWxNDga2x0bzZMrgw=;
+ b=J6ZXApt59CcGYdNMu2guRZV1ss+cue0CxBmfeIeCRPBZ9V+TQulLLYRnLCAhjx9SFHAyJDd62r/WqzXwnxyi6U7vR4t6Eyft0/KOwop02QNTkm0FltNhRfnge9M1LYWdp+eacbATaNjcVvjDhKAEzDgsn/RJLhb5M208HuTAneumy7fqply0bs08w8n3+hCJAnOnjDVstSYqCOsqxpyoDM+oyQQGZG0FVWdmt4ur2ADs79zUFcNUPUTyERVLV7UXAPyWCPMurw+84NeedIRCUWZ2ZzBSRJk+d6gmq8uGoPDmWFrC5BKw4vRzcLJ+GgihV8MqDVrMBBW5uj00r0f6sw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=frPrIeJLF0whALGVlIKRC36kdWHWxNDga2x0bzZMrgw=;
+ b=Hik0HC3BaTisLaNAcJERawDMUhgXDCIFP41TUA1l/5BojpX4BJarDn9wRRN66l9ZioGUFNK7kLl4DeYckacbV48XmjAWkbShAIvXofHWx6RyT0lcSSRc/+hh2LqhC0rH9RmRjsjdLDjqnCGO731uJqDtzg4HzuGTJgv0rbQeTuU=
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by PR3PR04MB7401.eurprd04.prod.outlook.com (2603:10a6:102:8d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
+ 2023 14:49:08 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::fb2a:a683:b78e:b9b5]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::fb2a:a683:b78e:b9b5%4]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
+ 14:49:12 +0000
+From:   Frank Li <frank.li@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: RE: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+ imx8qm cdns3 glue bindings
+Thread-Topic: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+ imx8qm cdns3 glue bindings
+Thread-Index: AQHZWE4ev2xmRcSa20iFYFwtFRu1OK7+r7IAgABftWCAAueGAIABzLvg
+Date:   Mon, 20 Mar 2023 14:49:11 +0000
+Message-ID: <AM6PR04MB483800D7CDCC7AF48F88BF9688809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+References: <20230316212712.2426542-1-Frank.Li@nxp.com>
+ <20230316212712.2426542-2-Frank.Li@nxp.com>
+ <e6935c0c-375e-b763-ea91-3b8bbc906ebc@linaro.org>
+ <AM6PR04MB4838D1958A029701E1601BA588BD9@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <1fd1fe42-3da6-1598-a04d-cb99a9b4b145@linaro.org>
+In-Reply-To: <1fd1fe42-3da6-1598-a04d-cb99a9b4b145@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB4838:EE_|PR3PR04MB7401:EE_
+x-ms-office365-filtering-correlation-id: c2d059f6-f121-4dbe-3b22-08db295244cd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: GcjkIwCWGf8RhTkxalc4FCny4QkALGV/nmqbAqYyVIOoUA/PKJtfqfp0ZIPctjPJ85sJHy4nQ7FwXRdvJt7g4f/yIlZ8pZSdF7267yN7hdd41QuhogRu9WfuatW4s6/GYR5KbO+W3G23wjQTqC0lVFsCVUgmwUBebX0FNRALr4hlBQGU4embhJuk85gusTdZra+NlAD3JvumlaN6sKg4vvXSkOuEAJ8hHF52y9eJ6xTN3hmNnbj95NNGewJHHYfRsxKXCFfWYoVZw3eWPTbTCD2OALAVUo/n8trqIHMJM2RBdo5lzFyX6mt6aex9DzF0r9UldTlmOTXteEPQKvnByeo0uJ1KUyayKtTIUWncq7QVgfLmMy0GNX3uaVsWAKMjsLTyzlJCyxrHiqDlEHVEHkx7z0+yvEBd+/KgLNyGqotcuarGPJ+3yfSn3v1t3I9UVny+pG9NVYoye+bkvllSXJsKzJV8mdYDeIDpQ/i/ohzAx4pprfO4SuEbu8/Px6+PA7h/EZxuJJBMoBTfX4kU2tpfq0tcQjTc7nHzvcSlP19M5u8YyMSgqyLLm7LMC7kf0KR+dD6VVt307Qj09UeVtp5B7XuWSm4J2lGJVwiY/1rwRQ6g3tOQSCmO8O1aYzLklgUttx7htyZyVqXCBicVassGvcTZYXRqpGNrXbrTCxeYCLYLbE+FpDFl4anHAAeosxSChcNVtWaHW8EsV770lI0MUdKcQr7dFAuMPoaDNig=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(136003)(39860400002)(376002)(366004)(396003)(451199018)(7696005)(186003)(478600001)(9686003)(8676002)(26005)(966005)(83380400001)(6506007)(54906003)(45080400002)(53546011)(55236004)(110136005)(316002)(71200400001)(66446008)(66556008)(66476007)(76116006)(64756008)(66946007)(4326008)(8936002)(44832011)(52536014)(7416002)(41300700001)(5660300002)(122000001)(38100700002)(2906002)(55016003)(86362001)(38070700005)(33656002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?IhQCz2phUbEC8XIPnrKBW5AXshPhQ+8hQh9bCrjaYFdZfuXGOTbdS1m5DfST?=
+ =?us-ascii?Q?Au9J3hcUkiStk9oO4DBMTEJ/B6mGhi4hESDJUflxjNS5OyQunr/7S6jPZ3ll?=
+ =?us-ascii?Q?vxGGgsKt3GQ8/nVRCp4eeanmS1q4BY4qlqRbI0ZtcAZSDBJfX91G4BYvW/Sa?=
+ =?us-ascii?Q?CtZ4x7IhUjYeiM7brM1Znly/yxKT1Wts/kaUu0/fJsp/+IoUAsXAQctQisle?=
+ =?us-ascii?Q?4hK1CVhwaj6p8ZIfrLw+r2gzMWXLUflmRIBWrACriiR/tKRtlMyTc/yO6ZI3?=
+ =?us-ascii?Q?Uo/WH0DXDh1eM+/HrjDics/rkMPkw1hfkOTvykDwqHBck4j3lI2Z3EX3JGqj?=
+ =?us-ascii?Q?Jl0htwFq7VOsdHjZnUN1+kx6tcldTl+8Ue1cda3eG55Wl2J1MOive8JX55xY?=
+ =?us-ascii?Q?6nuY5E1CRbko6pRvzKijEVVbWNsrNGzISfpjqfjo39Fa++KRUv6+wBAyduN3?=
+ =?us-ascii?Q?3u1Ippc0ZxvYfqkhtPoZimmKG7lTXaI62wHuh3wXM2fqDn0HztbaHu8RNO9Z?=
+ =?us-ascii?Q?nPmoAYPzgTV6TdK5PhjrFyAKPAS/aPKeeSZaHaSTkaYlR/9+Saf+ThTbCRsj?=
+ =?us-ascii?Q?DCByCqiQLktCIJ8OuKBU0D9nOayDd9LpFEwFo4y82BvWtetaZTfWffpgGhAv?=
+ =?us-ascii?Q?ptew/luBD0yWd5ZC79Ho9Ae0BRZMbUOnCUDl54M9r5fxk/2jIBvqIgDLfNGg?=
+ =?us-ascii?Q?nlgcaAMOA/qXZjAyHbb7BRz2nQv9PP/UlMDm8lBOvuxQ6ylKGYk4AQN6jRaE?=
+ =?us-ascii?Q?wWFGYMO9JM6MEy7/dKQ5uKTsqumjwYgUPveR1XtktB44uE4RvewRh7IoGrzl?=
+ =?us-ascii?Q?l/D8WxGQTxtAEvQvQ7aOForPmwguZpmxpRVyKWMyFKcM8fk1O9MRVMK9qsjf?=
+ =?us-ascii?Q?g8O+dd/P/f36TFsdWndDUhszUiksM5mBVumyImlEG5fVQhgbOAMqCMvnclxw?=
+ =?us-ascii?Q?/kzqXlJYhGhXKlhLc/cmFHfpK14SYmEgKwFzSThrmP1adyDkicC8nHnqOO/h?=
+ =?us-ascii?Q?6JVBn/RCqlFgLh/e0obuge110MqAXi3y74TILyIJJXIOQkF5G2WjaWE8qThe?=
+ =?us-ascii?Q?GPxQGDEAKSnDARSFzZb7q4k3/qBvc6nd25wamXj9cgcmU1zYoQWB5sfefVf8?=
+ =?us-ascii?Q?1OjuXQiN4q+dgAvzmyXDQpCCQ/vNHi6spRQiTYVDvI/y979qZYzkOsg6X+hy?=
+ =?us-ascii?Q?TL2QNisKa+/5QwBqhGZitHeUh8LTN+olK8NXlPaMjwZGdRZ2U8mI5eEkEvy3?=
+ =?us-ascii?Q?L0odztFUEzbVdmPxEgEGzG0bfzqeDHfxQ1uABNu7bD5mDl5cXrrl7qnHtnvr?=
+ =?us-ascii?Q?Q2ChAGInUou+GW6Bi0ggSL4Zk67S48pvsQhu3AYQwEgYd1gfOcetmcFodbH0?=
+ =?us-ascii?Q?5Bw6Mi+M/OSGAu7N2hwGHWB7+aMlRfJrGpOk9niTKgFBg8DJEE4NWeVjTRh2?=
+ =?us-ascii?Q?RWbFQu2RM+bNbyrT8VWfaTErSf1hgARFWbyCB8meVohlqM+D2M2X/jkCr+DC?=
+ =?us-ascii?Q?iVI9ocUfiN5m7PDIT/kx6M8sRixJNegfbB3w3iisfHPXQ35HKMMKwygupqG4?=
+ =?us-ascii?Q?mg6y/5eWB427bCGVGA0=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2d059f6-f121-4dbe-3b22-08db295244cd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2023 14:49:12.1102
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yYXGtoD+1mkWMMFzkQf80Y5WWCS2SAWYZdba6nUEsOyrHDycdXcJc9Zl4Evt5HyOUrSr0ninHm9uG9BCGFwbXA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7401
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for both PCIe found on SM8550.
-Also add the noc_aggr and cnoc_sf_axi clocks needed by the SM8550.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
----
 
-This patch is a resend of the following:
-https://lore.kernel.org/all/20230208180020.2761766-11-abel.vesa@linaro.org/
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sent: Sunday, March 19, 2023 6:13 AM
+> To: Frank Li <frank.li@nxp.com>; shawnguo@kernel.org
+> Cc: devicetree@vger.kernel.org; festevam@gmail.com; imx@lists.linux.dev;
+> kernel@pengutronix.de; krzysztof.kozlowski+dt@linaro.org; linux-arm-
+> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; linux-
+> kernel@vger.kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> Subject: Re: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+> imx8qm cdns3 glue bindings
+>=20
+> Caution: EXT Email
+>=20
+> On 17/03/2023 15:55, Frank Li wrote:
+> >
+> >
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> Sent: Friday, March 17, 2023 4:09 AM
+> >> To: Frank Li <frank.li@nxp.com>; shawnguo@kernel.org
+> >> Cc: devicetree@vger.kernel.org; festevam@gmail.com;
+> imx@lists.linux.dev;
+> >> kernel@pengutronix.de; krzysztof.kozlowski+dt@linaro.org; linux-arm-
+> >> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; linux-
+> >> kernel@vger.kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> >> Subject: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+> >> imx8qm cdns3 glue bindings
+> >>
+> >> Caution: EXT Email
+> >>
+> >> On 16/03/2023 22:27, Frank Li wrote:
+> >>> NXP imx8qm integrates 1 cdns3 IP. This is glue layer device bindings.
+> >>>
+> >>
+> >> Subject: drop second/last, redundant "bindings". The "dt-bindings"
+> >> prefix is already stating that these are bindings.
+> >>
+> >>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> >>> ---
+> >>>  .../bindings/usb/fsl,imx8qm-cdns3.yaml        | 122
+> ++++++++++++++++++
+> >>>  1 file changed, 122 insertions(+)
+> >>>  create mode 100644
+> Documentation/devicetree/bindings/usb/fsl,imx8qm-
+> >> cdns3.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/usb/fsl,imx8qm-
+> >> cdns3.yaml b/Documentation/devicetree/bindings/usb/fsl,imx8qm-
+> >> cdns3.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..fc24df1e4483
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
+> >>> @@ -0,0 +1,122 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +# Copyright (c) 2020 NXP
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id:
+> >>
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevice
+> %2F&data=3D05%7C01%7Cfrank.li%40nxp.com%7Cc2d76d3694194fba130a08db
+> 286ae90e%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6381482118
+> 66106607%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoi
+> V2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DLo
+> JUcnJnBaGjywN1zF%2BuUpFVUmldixTci96NPzVuio0%3D&reserved=3D0
+> >> tree.org%2Fschemas%2Fusb%2Ffsl%2Cimx8qm-
+> >>
+> cdns3.yaml%23&data=3D05%7C01%7CFrank.Li%40nxp.com%7Cac9af3d617dc4cf
+> >>
+> 14baf08db26c74b07%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6
+> >>
+> 38146409617970248%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMD
+> >>
+> AiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C
+> >>
+> &sdata=3DEczZhjyMUGnnp7ZGfSvTj4lmOUuGlOtWYIsxxXIlNXw%3D&reserved
+> >> =3D0
+> >>> +$schema:
+> >>
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevice
+> %2F&data=3D05%7C01%7Cfrank.li%40nxp.com%7Cc2d76d3694194fba130a08db
+> 286ae90e%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6381482118
+> 66106607%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoi
+> V2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DLo
+> JUcnJnBaGjywN1zF%2BuUpFVUmldixTci96NPzVuio0%3D&reserved=3D0
+> >> tree.org%2Fmeta-
+> >>
+> schemas%2Fcore.yaml%23&data=3D05%7C01%7CFrank.Li%40nxp.com%7Cac9a
+> >>
+> f3d617dc4cf14baf08db26c74b07%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C
+> >>
+> 0%7C0%7C638146409617970248%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiM
+> >>
+> C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000
+> >> %7C%7C%7C&sdata=3DuTNYuDm%2ByhZ56oQET2pX8sHpEqVvsUYtmOBCPX
+> EK
+> >> v40%3D&reserved=3D0
+> >>> +
+> >>> +title: NXP iMX8QM Soc USB Controller
+> >>> +
+> >>> +maintainers:
+> >>> +  - Frank Li <Frank.Li@nxp.com>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: fsl,imx8qm-usb3
+> >>> +
+> >>> +  reg:
+> >>> +    items:
+> >>> +      - description: Address and length of the register set for iMX =
+USB3
+> >> Platform Control
+> >>
+> >> Drop "Address and length of the"... or actually just maxItems: 1,
+> >> because the description is a bit obvious.
+> >>
+> >>> +
+> >>> +  "#address-cells":
+> >>> +    enum: [ 1, 2 ]
+> >>> +
+> >>> +  "#size-cells":
+> >>> +    enum: [ 1, 2 ]
+> >>> +
+> >>> +  ranges: true
+> >>> +
+> >>> +  clocks:
+> >>> +    description:
+> >>> +      A list of phandle and clock-specifier pairs for the clocks
+> >>> +      listed in clock-names.
+> >>
+> >> Drop description.
+> >>
+> >>> +    items:
+> >>> +      - description: Standby clock. Used during ultra low power stat=
+es.
+> >>> +      - description: USB bus clock for usb3 controller.
+> >>> +      - description: AXI clock for AXI interface.
+> >>> +      - description: ipg clock for register access.
+> >>> +      - description: Core clock for usb3 controller.
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: usb3_lpm_clk
+> >>> +      - const: usb3_bus_clk
+> >>> +      - const: usb3_aclk
+> >>> +      - const: usb3_ipg_clk
+> >>> +      - const: usb3_core_pclk
+> >>> +
+> >>> +  assigned-clocks:
+> >>> +    items:
+> >>> +      - description: Phandle and clock specifier of IMX_SC_PM_CLK_PE=
+R.
+> >>> +      - description: Phandle and clock specifoer of
+> IMX_SC_PM_CLK_MISC.
+> >>> +      - description: Phandle and clock specifoer of
+> >> IMX_SC_PM_CLK_MST_BUS.
+> >>> +
+> >>> +  assigned-clock-rates:
+> >>> +    items:
+> >>> +      - description: Must be 125 Mhz.
+> >>> +      - description: Must be 12 Mhz.
+> >>> +      - description: Must be 250 Mhz.
+> >>
+> >> I would argue that both properties above are not needed. If your
+> >> hardware requires fixed frequencies, clock provider can fix them, can'=
+t it?
+> >
+> > Clock provider don't know fixed value and turn on only used by client.
+>=20
+> So maybe fix the clock provider? Or this device driver? Requiring by
+> binding specific frequencies for every board is a bit redundant.
 
-No changes since then.
+It is not for every boards, it is common for a chip family.  Only a place t=
+o set for
+QM and QXP.=20
 
- drivers/pci/controller/dwc/pcie-qcom.c | 25 ++++++++++++++-----------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+The similar case is network driver, which require a specific frequency at c=
+lock assign.
+Generally frequency is fixed,  clock source name may change at difference c=
+hips.=20
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index a232b04af048..6a70c9c6f98d 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -182,10 +182,10 @@ struct qcom_pcie_resources_2_3_3 {
- 
- /* 6 clocks typically, 7 for sm8250 */
- struct qcom_pcie_resources_2_7_0 {
--	struct clk_bulk_data clks[12];
-+	struct clk_bulk_data clks[14];
- 	int num_clks;
- 	struct regulator_bulk_data supplies[2];
--	struct reset_control *pci_reset;
-+	struct reset_control *rst;
- };
- 
- struct qcom_pcie_resources_2_9_0 {
-@@ -1177,9 +1177,9 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
- 	unsigned int idx;
- 	int ret;
- 
--	res->pci_reset = devm_reset_control_get_exclusive(dev, "pci");
--	if (IS_ERR(res->pci_reset))
--		return PTR_ERR(res->pci_reset);
-+	res->rst = devm_reset_control_array_get_exclusive(dev);
-+	if (IS_ERR(res->rst))
-+		return PTR_ERR(res->rst);
- 
- 	res->supplies[0].supply = "vdda";
- 	res->supplies[1].supply = "vddpe-3v3";
-@@ -1205,9 +1205,11 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
- 	res->clks[idx++].id = "ddrss_sf_tbu";
- 	res->clks[idx++].id = "aggre0";
- 	res->clks[idx++].id = "aggre1";
-+	res->clks[idx++].id = "noc_aggr";
- 	res->clks[idx++].id = "noc_aggr_4";
- 	res->clks[idx++].id = "noc_aggr_south_sf";
- 	res->clks[idx++].id = "cnoc_qx";
-+	res->clks[idx++].id = "cnoc_sf_axi";
- 
- 	num_opt_clks = idx - num_clks;
- 	res->num_clks = idx;
-@@ -1237,17 +1239,17 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
- 	if (ret < 0)
- 		goto err_disable_regulators;
- 
--	ret = reset_control_assert(res->pci_reset);
--	if (ret < 0) {
--		dev_err(dev, "cannot assert pci reset\n");
-+	ret = reset_control_assert(res->rst);
-+	if (ret) {
-+		dev_err(dev, "reset assert failed (%d)\n", ret);
- 		goto err_disable_clocks;
- 	}
- 
- 	usleep_range(1000, 1500);
- 
--	ret = reset_control_deassert(res->pci_reset);
--	if (ret < 0) {
--		dev_err(dev, "cannot deassert pci reset\n");
-+	ret = reset_control_deassert(res->rst);
-+	if (ret) {
-+		dev_err(dev, "reset deassert failed (%d)\n", ret);
- 		goto err_disable_clocks;
- 	}
- 
-@@ -1841,6 +1843,7 @@ static const struct of_device_id qcom_pcie_match[] = {
- 	{ .compatible = "qcom,pcie-sm8350", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
-+	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
- 	{ }
- };
- 
--- 
-2.34.1
+>=20
+> Best regards,
+> Krzysztof
 
