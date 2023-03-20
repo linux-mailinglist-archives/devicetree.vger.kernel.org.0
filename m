@@ -2,168 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 781966C2174
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 20:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B63B46C21AE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 20:37:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231254AbjCTTbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 15:31:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38088 "EHLO
+        id S230138AbjCTThu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 15:37:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbjCTTbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 15:31:11 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D263A98;
-        Mon, 20 Mar 2023 12:24:04 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.24.156.231])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1A3C46603089;
-        Mon, 20 Mar 2023 19:24:01 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679340242;
-        bh=73rNgAiRZKESdwk9lBa5SvOXwN+9LmWd+1/M3nw9rTA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Q68WvDc4qZ40xlJFOUXVHGFdF2dqRvTm9Qr0Sw44sFAIBBGDvaduV3YUuCgXjXG+y
-         fNXQOpHryBnV6DMykWkqjVS0j/c03DvLi8DqJ/R2/vd0DIgyxnXH+qKfcCYEDQNEj6
-         Cu8auu4popy5l6bph7TyLvQpZQOy7QkX80zL4cXTVnppwoHkUuTcgBY0FHVBgz2Ibo
-         6tOz1CYXe6g/Ji1cM6lFmDhhNKIEzZi9acDV4sFXkDqxwnDKs9Dnu/c29CAD+5rIRA
-         8gx5wyINXYeDj4dp1DU/ZNzAvS0SIeTSd00ljhwcqoPhl2rZRHvHzIcKPB6fmr+pEN
-         AkJ6mrS8BiRaQ==
-Message-ID: <73fab0de-38f5-b9c3-9696-3f0dfc0a6b93@collabora.com>
-Date:   Mon, 20 Mar 2023 21:23:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 02/11] dt-bindings: serial: snps-dw-apb-uart: Relax
- dma-names order constraint
-To:     Rob Herring <robh@kernel.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
+        with ESMTP id S230337AbjCTThT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 15:37:19 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390E83645F;
+        Mon, 20 Mar 2023 12:31:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=HojbwMSiEtZKlQdfE1hnnoB2RYxodFjMqNVmkdMaTE4=; b=UTwuS59N/DkJgr/7fUE2JTH62X
+        AhIEtJYFFX67UsLmhqkAOgHh4nQviuZbanJJ5f7SM98Xq/YbeJU1Mc3XeoxdfdEsym7a4Q0bty5sf
+        XU2PDo/aguksS9t7Gp0rZ6vDxNs0cA+Dmaf3GIHQ3xeplirk2AthvAl5u+QeTJ5Csk/8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1peLEG-007tlX-8U; Mon, 20 Mar 2023 20:31:36 +0100
+Date:   Mon, 20 Mar 2023 20:31:36 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Drake <drake@endlessm.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org, kernel@collabora.com
-References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
- <20230315114806.3819515-3-cristian.ciocaltea@collabora.com>
- <3679f2d0-55f0-1710-abc2-b268b6fc6969@linaro.org>
- <8ae57fe3-56aa-7e50-3eaa-a12a40657baf@collabora.com>
- <80796828-7b38-184a-2e8e-3cfe9158b67f@linaro.org>
- <13cb8dbd-994c-4b38-b715-44a3bf3d278d@spud>
- <e81f02f2-e692-e4ef-1510-fdc285dd5964@collabora.com>
- <20230320160137.GB1755078-robh@kernel.org>
-Content-Language: en-US
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20230320160137.GB1755078-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH v5 04/15] leds: Provide stubs for when CLASS_LED
+ is disabled
+Message-ID: <5ee3c2cf-8100-4f35-a2df-b379846a8736@lunn.ch>
+References: <20230319191814.22067-1-ansuelsmth@gmail.com>
+ <20230319191814.22067-5-ansuelsmth@gmail.com>
+ <aa2d0a8b-b98b-4821-9413-158be578e8e0@lunn.ch>
+ <64189d72.190a0220.8d965.4a1c@mx.google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <64189d72.190a0220.8d965.4a1c@mx.google.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/20/23 18:01, Rob Herring wrote:
-> On Fri, Mar 17, 2023 at 07:43:53PM +0200, Cristian Ciocaltea wrote:
->> On 3/17/23 18:26, Conor Dooley wrote:
->>> On Fri, Mar 17, 2023 at 04:54:47PM +0100, Krzysztof Kozlowski wrote:
->>>> On 17/03/2023 11:21, Cristian Ciocaltea wrote:
->>>>> On 3/17/23 10:31, Krzysztof Kozlowski wrote:
->>>>>> On 15/03/2023 12:47, Cristian Ciocaltea wrote:
->>>>>>> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
->>>>>>> dma-names properties") documented dma-names property to handle Allwiner
->>>>>>> D1 dtbs_check warnings, but relies on a strict rx->tx ordering, which is
->>>>>>> the reverse of what a different board expects:
->>>>>>>
->>>>>>>      rk3326-odroid-go2.dtb: serial@ff030000: dma-names:0: 'rx' was expected
->>>>>>>
->>>>>>> A quick and incomplete check shows the inconsistency is present in many
->>>>>>> other DT files:
->>>>>>
->>>>>> Why not fixing the DTS? The properties should have fixed order.
->>>>>
->>>>> I was initially concerned about the risk of a potential ABI breakage,
->>>>> but I think that's not really a problem since dma-names is not directly
->>>>> accessed in the driver and DT Kernel API doesn't rely on a particular order.
->>>>>
->>>>> If there are no objections, I would switch the order in the binding to
->>>>> tx->rx, since that's what most of the DTS use, and fix the remaining ones.
->>>>
->>>> Since we added the order recently, I rather assume it is the correct or
->>>> preferred one.
->>>
->>> IIRC I checked around the other serial bindings & there was not a
->>> consistent order that all serial bindings used, so I picked the order that
->>> was used across the various allwinner boards that do use dma-names.
->>
->> Thanks for clarifying this, Conor! Would it be fine to switch to tx->rx
->> order as it requires less changes to fix the inconsistencies?
->>
->>> Before changing dts files, it's probably a good idea to make sure that
->>> the dma-names are not used somewhere outside of Linux.
->>
->> Right, that means we cannot exclude the ABI breakage concern. Not sure how
->> easy would be to actually verify this. Hence I wonder if there is really no
->> chance to allow the flexible order in the binding..
+On Mon, Mar 20, 2023 at 06:52:47PM +0100, Christian Marangi wrote:
+> On Sun, Mar 19, 2023 at 11:49:02PM +0100, Andrew Lunn wrote:
+> > > +#if IS_ENABLED(CONFIG_LEDS_CLASS)
+> > >  enum led_default_state led_init_default_state_get(struct fwnode_handle *fwnode);
+> > > +#else
+> > > +static inline enum led_default_state
+> > > +led_init_default_state_get(struct fwnode_handle *fwnode)
+> > > +{
+> > > +	return LEDS_DEFSTATE_OFF;
+> > > +}
+> > > +#endif
+> > 
+> > 0-day is telling me i have this wrong. The function is in led-core.c,
+> > so this should be CONFIG_NEW_LEDS, not CONFIG_LEDS_CLASS.
+> > 
 > 
-> If it changes and someone complains, then yes we'll allow flexible
-> order.
+> Any idea why? NEW_LEDS just enable LEDS_CLASS selection so why we need
+> to use that? Should not make a difference (in theory)
 
-I looked a bit further and it seems the allwiner boards are not really 
-affected as all of them are using the same DMA channel for both rx and 
-tx. So we should be fine by switching to tx->rx order.
+0-day came up with a configuration which resulted in NEW_LEDS enabled
+but LEDS_CLASS disabled. That then resulted in multiple definitions of 
+led_init_default_state_get() when linking.
 
-$ git grep -A10 snps,dw-apb-uart | grep 'sun.*dmas' | sort -u
+I _guess_ this is because select is used, which is not mandatory. So
+randconfig can turn off something which is enabled by select.
 
-arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 10>, <&dma 10>;
-arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 22>, <&dma 22>;
-arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 6>, <&dma 6>;
-arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 7>, <&dma 7>;
-arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 8>, <&dma 8>;
-arch/arm/boot/dts/sun6i-a31.dtsi-	dmas = <&dma 9>, <&dma 9>;
-arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 10>, <&dma 10>;
-arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 6>, <&dma 6>;
-arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 7>, <&dma 7>;
-arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 8>, <&dma 8>;
-arch/arm/boot/dts/sun8i-a23-a33.dtsi-	dmas = <&dma 9>, <&dma 9>;
-arch/arm/boot/dts/sun8i-v3s.dtsi-	dmas = <&dma 6>, <&dma 6>;
-arch/arm/boot/dts/sun8i-v3s.dtsi-	dmas = <&dma 7>, <&dma 7>;
-arch/arm/boot/dts/sun8i-v3s.dtsi-	dmas = <&dma 8>, <&dma 8>;
-arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 6>, <&dma 6>;
-arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 7>, <&dma 7>;
-arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 8>, <&dma 8>;
-arch/arm/boot/dts/sunxi-h3-h5.dtsi-	dmas = <&dma 9>, <&dma 9>;
-arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 14>, 
-<&dma 14>;
-arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 15>, 
-<&dma 15>;
-arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 16>, 
-<&dma 16>;
-arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 17>, 
-<&dma 17>;
-arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 18>, 
-<&dma 18>;
-arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi- dmas = <&dma 19>, 
-<&dma 19>;
+I updated my tree, and so far 0-day has not complained, but it can
+take a few days when it is busy.
 
-Thanks,
-Cristian
+	Andrew
