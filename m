@@ -2,121 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15ECA6C132A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:23:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEF696C1357
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbjCTNW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 09:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50676 "EHLO
+        id S230174AbjCTN2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 09:28:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbjCTNW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:22:56 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDC3196A1;
-        Mon, 20 Mar 2023 06:22:55 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id bp22so1863039oib.6;
-        Mon, 20 Mar 2023 06:22:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679318574;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ux14OwgY8H5fgO7IVmMzzrEbv4R7hHF2xiI4gbIKjE4=;
-        b=47cxygcLSSkiKTxEBXVGytP8zVfiRnoXJ4WPEKSMmTmEbtQ/vCCCTXWdYw2k+7r4Hh
-         Mpwn9OgV5Ues3eg6Wukh8j8QJmrXXOOfOUvie2Vyh1rt/Frkzr3WRvWuoEN3HxCAc6Vl
-         C+PLPfRVv/nb6QZPR0BIhL17peH6nkDy85xbXzHUNGTX2PQkOW3BdGZVPOkew76L7V53
-         dFHoAoZqEl/dYOo7ePirDTkK09UNWrCmsnoIUFnB6fuiJgmhjT4wuN8MVD7j5dOV1y1+
-         rzbHRHV4xzkD5tFFYnWCEan4OM4F/U8ZGjvZ5VtFuqNWkJqwwZHB3ctZteeleX6aNdzm
-         u7SA==
-X-Gm-Message-State: AO0yUKUVCDnHzLzVe+5qkU13IhW/qj75fkyfjIV9WD60skNJTd1IVSKM
-        hIszO8Py1hrY5Ah+ZqgayxFoS2wgdg==
-X-Google-Smtp-Source: AK7set9/7tjSuYHC6DcIiwcsDj22kt1OMSA5SOhAI4ceO1Xj3QUhHqYXFl9CsqNcQeqNJy+F7l5qAw==
-X-Received: by 2002:a05:6808:6c5:b0:37f:936d:b5d9 with SMTP id m5-20020a05680806c500b0037f936db5d9mr8978153oih.12.1679318573208;
-        Mon, 20 Mar 2023 06:22:53 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 129-20020a4a1887000000b005252d376caesm3777554ooo.22.2023.03.20.06.22.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 06:22:52 -0700 (PDT)
-Received: (nullmailer pid 1445818 invoked by uid 1000);
-        Mon, 20 Mar 2023 13:22:52 -0000
-Date:   Mon, 20 Mar 2023 08:22:52 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     Thinh.Nguyen@synopsys.com, stern@rowland.harvard.edu,
-        gregkh@linuxfoundation.org, vigneshr@ti.com, srk@ti.com,
-        r-gunasekaran@ti.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] dt-bindings: usb: snps,dwc3: Add
- 'snps,gadget-keep-connect-sys-sleep'
-Message-ID: <20230320132252.GA1440894-robh@kernel.org>
-References: <20230320093447.32105-1-rogerq@kernel.org>
- <20230320093447.32105-2-rogerq@kernel.org>
+        with ESMTP id S231331AbjCTN2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:28:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA5E72BB
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 06:28:09 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <s.trumtrar@pengutronix.de>)
+        id 1peFYU-00065i-AI; Mon, 20 Mar 2023 14:28:06 +0100
+From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
+To:     linux-stm32@st-md-mailman.stormreply.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 00/10] ARM: stm32: add support for Phycore STM32MP1
+Date:   Mon, 20 Mar 2023 14:27:45 +0100
+Message-Id: <20230320132755.2150384-1-s.trumtrar@pengutronix.de>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230320093447.32105-2-rogerq@kernel.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 11:34:46AM +0200, Roger Quadros wrote:
-> The current USB gadget driver behaviour is to stop the controller
-> and disconnect from the bus during System sleep.
+Hi,
+   
+this is the fifth installement of my series for adding support for the
+Phytec STM32MP1-based SoM and board.
+ 
+Phytec itself calls the board "Phycore STM32MP1-3" and has other
+endnumbers. I only have access to the "-3" and that's what this series
+adds.
 
-What's USB gadget? ;)
+Changes since v4:
+  - cleanup usage of "status = okay|disabled"
+  - fix remaining non-generic node names
+  - rework sai nodes to not duplicate the existing settings in stm32mp151.dtsi
+  - move the dt-bindings patch in front of the patch adding the board
+    
+Changes since v3:
+  - cleanup board-compatible
+  - cleanup aliases
+  - rename nodes according to schema
+  - use interrupt flag
+  - integrate pinmux into main stm32mp15-pinctrl.dtsi
 
-> The 'snps,gadget-keep-connect-sys-sleep' property can be used to
-> change this behaviour and keep the controller active and connected
-> to the bus during System sleep. This is useful for applications
-> that want to enter a low power state when USB is suspended but
-> remain connected so they can resume activity on USB resume.
-> 
-> This feature introduces a new constraint if Gadget driver is connected
-> to USB host: i.e.  the gadget must be in USB suspend state to allow
-> a System sleep as we cannot process any USB transactions
-> when in System sleep.
-> 
-> The system hardware is responsible to detect the end of USB suspend
-> and wake up the system so we can begin processing the USB transactions
-> as soon as possible.
+Best regards,
+Steffen
 
-Sounds like something the user/OS would want to choose rather than fixed 
-by your board's firmware.
 
-Is this somehow DWC3 specific? If not, why a DWC3 specific property?
+Steffen Trumtrar (10):
+  ARM: dts: stm32: Add alternate pinmux for ethernet
+  ARM: dts: stm32: Add alternate pinmux for sai2b
+  ARM: dts: stm32: Add new pinmux for sdmmc1_b4
+  ARM: dts: stm32: Add new pinmux for sdmmc2_d47
+  ARM: dts: stm32: Add pinmux for USART1 pins
+  ARM: dts: stm32: Add idle/sleep pinmux for USART3
+  ARM: dts: stm32: Add sleep pinmux for SPI1 pins_a
+  dt-bindings: arm: stm32: Add Phytec STM32MP1 board
+  ARM: dts: stm32: add STM32MP1-based Phytec SoM
+  ARM: dts: stm32: add STM32MP1-based Phytec board
 
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index be36956af53b..1ce8008e7fef 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -262,6 +262,11 @@ properties:
->        asserts utmi_sleep_n.
->      type: boolean
->  
-> +  snps,gadget-keep-connect-sys-sleep:
-> +    description:
-> +      If True then gadget driver will not disconnect during system sleep.
-> +      System sleep will not be allowed if gadget is not already in USB suspend.
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      | 231 +++++++
+ .../dts/stm32mp157c-phycore-stm32mp1-3.dts    |  66 ++
+ .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 609 ++++++++++++++++++
+ 5 files changed, 914 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+ create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
 
-'gadget' is a Linuxism.
+-- 
+2.39.1
 
-> +
->    snps,hird-threshold:
->      description: HIRD threshold
->      $ref: /schemas/types.yaml#/definitions/uint8
-> -- 
-> 2.34.1
-> 
