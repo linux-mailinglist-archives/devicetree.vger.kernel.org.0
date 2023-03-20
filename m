@@ -2,54 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D13986C1D3F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:07:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F4496C1D57
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232505AbjCTRG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 13:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44342 "EHLO
+        id S232169AbjCTRIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 13:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233315AbjCTRGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 13:06:22 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87B9CCDDB;
-        Mon, 20 Mar 2023 10:01:09 -0700 (PDT)
+        with ESMTP id S232565AbjCTRIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 13:08:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60DEBBB81;
+        Mon, 20 Mar 2023 10:02:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 274DBB8100B;
-        Mon, 20 Mar 2023 16:59:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B860C433D2;
-        Mon, 20 Mar 2023 16:59:28 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 79FFEB80FF1;
+        Mon, 20 Mar 2023 17:00:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 866FAC433EF;
+        Mon, 20 Mar 2023 17:00:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679331568;
-        bh=erXq85FyIZtloI+86moWAdAbuiYWCHhJtUTWTR5zF24=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=u6Yew46aNS37ilruUDPlt8PDEPagkM02hjjuYvwmCyha0ErZGzm+AnrYwU4QfSneu
-         aVhngWEpjFKmnzW/ounuNw2VTPBYK4UVmX8666/kyvzx4MvPPWvIXSuo7ty1fSrpqy
-         EX3RTHitTqmOuAENKuqWmy+Wdj9oPbECvfe4MbQFZ7Xjl3Fdz6HucCyw2CwowTc8rZ
-         ToR74R+tKAslNphht+kW1LWEEtow7yyvayizvEUUwtY52+nkSy6g5qRQ0RAmBw5rE2
-         PC7E4NPpSULVp1NCM8fVAB66RJFwZvCIJ15jlo4d4P3tBnHbs8tNTQpeliwS2Fpx1Y
-         G4KaBPh8WWIvQ==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     netdev@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        lorenzo.bianconi@redhat.com, daniel@makrotopia.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH net-next 10/10] arm64: dts: mt7986: move dlm in a dedicated node
-Date:   Mon, 20 Mar 2023 17:58:04 +0100
-Message-Id: <d74e38de00ad1b858b59a7ef6cb02321b0faf750.1679330630.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1679330630.git.lorenzo@kernel.org>
-References: <cover.1679330630.git.lorenzo@kernel.org>
+        s=k20201202; t=1679331645;
+        bh=/djYoZe9ntFSOZv339dKdTqeE9XcpIw3rmFzL5xK5wM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D9J+jNnUyG8XvfRGVoKpZa9jOutVYyLOYQgDSFJCXyYata3ZIpPO0ZNtjJTxrlhBS
+         rW8qMOpu6YoMNhwYidRGE3WH2XhzdcRlI8WafChZeGijpuFoc08FfDK5S8zOoKXka4
+         1npTXPa/eHn8mFULIkGN67E1owEoGrazdQam3cBV74CswiK79vAf0JCfWT6VmdV2xf
+         /mzpewb2X3E0w35to99OEREy0mDx2MMKVW8zQrF1J5g6wBZEXM9CwdtCebkh5ddEAm
+         hlgZ/EORi0lXYcOvdwLMlXIzdWP+zmW4TvZe5vNn6Ql8f5/125K8uV1PSyeMqTj557
+         v/TYt+IxRNZCg==
+Date:   Mon, 20 Mar 2023 18:00:38 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
+Message-ID: <ZBiRNpvITuOT03rE@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>, Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
+ <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
+ <204f124a-1030-99bd-9c84-25ed067991b6@ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+tPumYvoRMdn+0LO"
+Content-Disposition: inline
+In-Reply-To: <204f124a-1030-99bd-9c84-25ed067991b6@ideasonboard.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,83 +93,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the dlm memory region is not part of the RAM SoC, move dlm in a
-deidicated syscon node.
-This patch helps to keep backward-compatibility with older version of
-uboot codebase where we have a limit of 8 reserved-memory dts child
-nodes.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 30 ++++++++++++-----------
- 1 file changed, 16 insertions(+), 14 deletions(-)
+--+tPumYvoRMdn+0LO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index a0d96d232ee5..0ae6aa59d3c6 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -93,16 +93,6 @@ wo_data: wo-data@4fd80000 {
- 			reg = <0 0x4fd80000 0 0x240000>;
- 			no-map;
- 		};
--
--		wo_dlm0: wo-dlm@151e8000 {
--			reg = <0 0x151e8000 0 0x2000>;
--			no-map;
--		};
--
--		wo_dlm1: wo-dlm@151f8000 {
--			reg = <0 0x151f8000 0 0x2000>;
--			no-map;
--		};
- 	};
- 
- 	timer {
-@@ -444,10 +434,11 @@ wed0: wed@15010000 {
- 			reg = <0 0x15010000 0 0x1000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
--			memory-region = <&wo_emi0>, <&wo_dlm0>, <&wo_data>;
--			memory-region-names = "wo-emi", "wo-dlm", "wo-data";
-+			memory-region = <&wo_emi0>, <&wo_data>;
-+			memory-region-names = "wo-emi", "wo-data";
- 			mediatek,wo-ccif = <&wo_ccif0>;
- 			mediatek,wo-ilm = <&wo_ilm0>;
-+			mediatek,wo-dlm = <&wo_dlm0>;
- 			mediatek,wo-cpuboot = <&wo_cpuboot>;
- 		};
- 
-@@ -457,10 +448,11 @@ wed1: wed@15011000 {
- 			reg = <0 0x15011000 0 0x1000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
--			memory-region = <&wo_emi1>, <&wo_dlm1>, <&wo_data>;
--			memory-region-names = "wo-emi", "wo-dlm", "wo-data";
-+			memory-region = <&wo_emi1>, <&wo_data>;
-+			memory-region-names = "wo-emi", "wo-data";
- 			mediatek,wo-ccif = <&wo_ccif1>;
- 			mediatek,wo-ilm = <&wo_ilm1>;
-+			mediatek,wo-dlm = <&wo_dlm1>;
- 			mediatek,wo-cpuboot = <&wo_cpuboot>;
- 		};
- 
-@@ -488,6 +480,16 @@ wo_ilm1: syscon@151f0000 {
- 			reg = <0 0x151f0000 0 0x8000>;
- 		};
- 
-+		wo_dlm0: syscon@151e8000 {
-+			compatible = "mediatek,mt7986-wo-dlm", "syscon";
-+			reg = <0 0x151e8000 0 0x2000>;
-+		};
-+
-+		wo_dlm1: syscon@151f8000 {
-+			compatible = "mediatek,mt7986-wo-dlm", "syscon";
-+			reg = <0 0x151f8000 0 0x2000>;
-+		};
-+
- 		wo_cpuboot: syscon@15194000 {
- 			compatible = "mediatek,mt7986-wo-cpuboot", "syscon";
- 			reg = <0 0x15194000 0 0x1000>;
--- 
-2.39.2
+Hi Tomi,
 
+> Wolfram, do you have any comments on this?
+
+Not yet. I need to dive into the previous discussions again to
+understand what we agreed on and what potential problems we had to face.
+However, holiday season is near, it could be that I won't have really
+time for this until Mid-April or so. I'll try earlier but no promises :/
+
+> Things have been calming down, I think, and I'd like to merge the series
+> soon if nothing major comes up. The easiest way would be to merge the whole
+> series via linux-media, as most of the patches are for media. If this looks
+> good, can you ack it and I'll send a pull request to linux-media
+> maintainers?
+
+I'd think this is a too elemental (is this a word?) change for someone
+else to pull it. But no worries, I would offer an immutable branch right
+when I am done with reviewing so other subsystems can pull it. Or are
+there other technical reasons I missed?
+
+Sorry for not having better news,
+
+   Wolfram
+
+
+--+tPumYvoRMdn+0LO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQYkTIACgkQFA3kzBSg
+KbajBxAAkjZdWBWFPtrSxR/LahXMxyN95xYIZuGOYTIVmt6GWdN5oimajXGp72Kp
+gn/PysIRZ6LRH6lruLwVNiLPV3OzvSs0K/seVwxE3CINFd1QnHajhXpjwajZmVy8
+ZnDpbdl3aN6OSpuZuKlANJ/PNt2BN5Wm2iC+bOXKb30u+2u+3cfGoRkZ+MngUxmR
+T5XSFXGMxokpHyIIaP47gerFh/aYwQ280kyRM/ZfBNVYhsfy2FnehHWfOtk1X+/h
+ALwGntFezsferOQUB/qbzNg33sTkGu6rVMhlFZu/40QBgFhqozOuHousk9I66MmT
+Or7sGgZ12EDsmdgAIn2Aik2hSvGXBdlpINBVr+lPE3Rxo4J2H7uTjSrsedBjGYwH
+acU3dD6hqzTjL7Xth6hHE7HAft6nzso2EEB1EKZQtsw3MlYfRNQb35jdbcvPc8tc
+U58KKbV3wBIJ/VnPbQ44j5S0B/LFhPwhhhhohBZ3NY0Yv1tw7ckMqzMiWxue2cVQ
+1jPT5HCCD5mskzm9n56EQ9A5JE3Naic2/iaOHNP3K4TPYAhZ7lXGziuNuS5jRr84
+8z3ffCgs/aSpPe1OPQdZwYAPewFe5TP332nDzTOLNaxDJSManIpyoyOgmuaEZdXH
+LvY7DaRf2zW49i6gi05WhzUYL0Mb2sfv3Xm7gyxSH0ieFZ/0CX8=
+=j1Ll
+-----END PGP SIGNATURE-----
+
+--+tPumYvoRMdn+0LO--
