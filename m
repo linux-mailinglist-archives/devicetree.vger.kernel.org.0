@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B536C1470
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0646C1475
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231596AbjCTOLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:11:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37624 "EHLO
+        id S230364AbjCTOMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:12:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231559AbjCTOLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:11:44 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD6B26C38
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:11:42 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id t5so10476283edd.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:11:42 -0700 (PDT)
+        with ESMTP id S230204AbjCTOMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:12:46 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 431561DB9D
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:12:44 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id cy23so47194884edb.12
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:12:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679321500;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679321563;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zqsTFDEIzMfX5ajkLD3ueLEMMOLfBd6eRtfjnaY98hM=;
-        b=gqNU2RmiZ+f3uZu7C3LuXSwIJc6Yziv0gP0OHPbWhIg6hmv4dgDx4ICbS8dewLVfCv
-         2DATj65OkfHKdQYDDijRz48sDx7Y/xjMO6o0UMMFI1pdlyRD4A6nguPr7KoSK7Qsr5ij
-         nrR37+iDv+Tva4GpFCcjK/L8heAmOGzrAw5hsxEJfEq/oOsStmuI2RSjOR6bLhM2ZgQ/
-         d9Bg5W/G8LNsot/xjrPeVZ99UI2gMzVUENxRVtG+SY0WylZVZDts5tEH5mkqLpTQiD2m
-         lBsYfaHNTMvjwAlc388BddPF9vnZ1F4r4sVmOuGUejmdtABqd1kZqDXcPHNwNqt7dCgG
-         pX/Q==
+        bh=dK2MAyLuCPlT9bihWVJaLt1UKGVXwplMktCHcbhdemo=;
+        b=sKhOnZ7exS206JUl6LhXyyEdxlDCBOVR424VFOx1mbYbmunR4tSa639aKm87Zs69jz
+         cHzizdq+A5fAJlQDUKA2tEp8UVc2LqtOJmNjsLO+/tdU8BilWgePVDvsD8WXPLhYJeUE
+         d23h4Q5PrLrSuivpBcqIwZz9KEiq5QvXg0RGVbTXIb3Z7zqrTc49SpI/HPPI7FBrkZGP
+         O9pS3Va+H1kDMruwcxOaWwCGI9WmxzROJ25hncFG9WVCaCLePGJsosgODfeZTLiLuVT0
+         yZNGXXAg6lAzoX+51ABOT1uM2Y9sdNREw65vrn2vo4kS1Is2WHWbSx1EKNAoG/1V1VPk
+         BCQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679321500;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679321563;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zqsTFDEIzMfX5ajkLD3ueLEMMOLfBd6eRtfjnaY98hM=;
-        b=yKLpdEzYmKSPgda8MmcVqt96of2RqWvoZrmxWPvWvQyK/WDXiQCzh6f8vtq/MQGAvv
-         sY878YLUMHZmD3Z1eeakKqNkNW8CYvZyLahCSY4dZGOhWth0NDhQoz4ky1QdiZ+KlCIu
-         VRgIDr5+ae7AMIvI5Kx8+Sm3vqBQTw61eIPEkfJKkeoI+Fio6QoYEeTV3rK+8M9LlFyP
-         ofwS+gUbAvCyotFRugs0WcDrXPYESmdIDzQetjMQf/6ju8G42Siz1L92ecuTAzjlOCIV
-         AvVu8tV2gibRJLSKB3DRxKdI9xBYoO9GeBX+XIckuL+rRKQkHktTcEH7/oYprubmDidI
-         i3sQ==
-X-Gm-Message-State: AO0yUKWhkZ6vJnGbI4+5wYPiWCqwAx2nivxZRg/sv10dGP96RVZTqXx8
-        S+pfCFjloOHLV9cdskN+4aqSsQ==
-X-Google-Smtp-Source: AK7set/3U1qoyrWt6Maf9b5TKS7NEcQvufNUWBOClA2yZS76LdoX0gwFYrjpGdjWbZ7IVc9CfL49SQ==
-X-Received: by 2002:aa7:d78f:0:b0:4fa:e1fd:5a30 with SMTP id s15-20020aa7d78f000000b004fae1fd5a30mr13617495edq.19.1679321500692;
-        Mon, 20 Mar 2023 07:11:40 -0700 (PDT)
+        bh=dK2MAyLuCPlT9bihWVJaLt1UKGVXwplMktCHcbhdemo=;
+        b=jWV3BZ4NqPsi4gXTB4xPPpCcMY8haRxUy4LUhuLtgsZkvAf2VJzC7m07t4tUhVtw3m
+         gGjRx+ruWwjtw6YRSRmyCfjreALLZe0MgUJuT6qLLlQZN9ByYVs3RY3Mqu7Cq4puZDxy
+         UsHpX4QbywuR4xyYLatieJpfpKGl62mx7o34qvR9nhOMIZBq3BSc3DFuCwNRYW9iAdGE
+         9f/yfIDo8G4grmekiztbnogcsVusYMVnBF9Spuh834RZRyzFuBb5TYSlI0ifrlZhyL7G
+         OM259/Ua3HMQ3xkSPvOq4k2QoERm+a0/SanwI0r9Y4W+sWVZaxcLKsgi2qW/NLTuRhVP
+         MiEw==
+X-Gm-Message-State: AO0yUKVoBiTjCzwZtWaxa8KWL/ZOSrV2KvBD7w/T6XVkgFPoZbGNTevI
+        a9aNEW6BF9VOX7XNhZ9RiDo+cw==
+X-Google-Smtp-Source: AK7set/V4bwREHn2modMximaNeeAuaCA22rmL3fOs5w0Kxpcp55OZ9uXu/6F5/kMHmGidCVuyNNqbg==
+X-Received: by 2002:a17:906:960a:b0:92f:f2cc:93 with SMTP id s10-20020a170906960a00b0092ff2cc0093mr9331191ejx.22.1679321562761;
+        Mon, 20 Mar 2023 07:12:42 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id q3-20020a50cc83000000b004fc86fcc4b3sm4944425edi.80.2023.03.20.07.11.39
+        by smtp.gmail.com with ESMTPSA id f22-20020a170906825600b00925ce7c7705sm4450809ejx.162.2023.03.20.07.12.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 07:11:40 -0700 (PDT)
-Message-ID: <1a009919-a1c9-7a0c-9f93-bdcb8cf316bc@linaro.org>
-Date:   Mon, 20 Mar 2023 15:11:39 +0100
+        Mon, 20 Mar 2023 07:12:42 -0700 (PDT)
+Message-ID: <136736ef-2502-0f09-1c09-02fbf155ae4e@linaro.org>
+Date:   Mon, 20 Mar 2023 15:12:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc8280xp-pmics: fix sdam 'reg'
+Subject: Re: [PATCH 1/3] dt-bindings: nvmem: qcom,spmi-sdam: fix example 'reg'
  property
+Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Lee Jones <lee@kernel.org>,
@@ -67,10 +68,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230320135710.1989-1-johan+linaro@kernel.org>
- <20230320135710.1989-3-johan+linaro@kernel.org>
-Content-Language: en-US
+ <20230320135710.1989-2-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320135710.1989-3-johan+linaro@kernel.org>
+In-Reply-To: <20230320135710.1989-2-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,10 +86,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 20/03/2023 14:57, Johan Hovold wrote:
 > The SPMI PMIC register region width is fixed and should not be encoded
 > in the devicetree.
+> 
+> Amend the example with a parent pmic node with the expected
+> '#address-cells' and '#size-cells' and fix up the 'reg' property.
+> 
+> Fixes: 9664a6b54c57 ("dt-bindings: nvmem: add binding for QTI SPMI SDAM")
 
-It also violates size-cells=0.
+I would argue there is nothing to fix - the original example in that
+context was correct, because examples have size-cells=1.
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 
 Best regards,
