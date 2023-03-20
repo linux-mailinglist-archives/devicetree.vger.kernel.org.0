@@ -2,115 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D893F6C0FCC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 085286C0FF7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjCTKzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 06:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
+        id S230091AbjCTK66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 06:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbjCTKya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:54:30 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A452686A
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 03:51:05 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id h17so9858831wrt.8
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 03:51:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679309439;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k16MUxzAr7So06ek3jaPuSWRMbCu5blX7yixTU1VOIo=;
-        b=TUjCPRxVhQuoSawmdT/2OKkR4iUiPflMVWDGo2wYLEp0WZg3xNzlxz1faeUHkKAFCk
-         HJWl9xVQRQZfCsWug46ErVo50fe2uV36sJ5JTq7tbjJ5acEuJYAmFuhav1dikwrrwAZ8
-         OYPpKM6t7tkHZF2+9o4ftn4oedpp5AJkaWi24nBQIcmxau3X2JmuF5GHhXJL9g9gGzYt
-         lYvcfutBWP57axCnPHdGLBt3wxtpL4JnigXRbLEb+KqJVEGlVQD0RIZMwFrJpLZwWUgO
-         spqaVnbZyPhEn13GYGaA+BnFYmJg+lpLr+c89XUZzc0NCVpFHw2YcYCtUWIBRcfOHmaL
-         LHNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679309439;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k16MUxzAr7So06ek3jaPuSWRMbCu5blX7yixTU1VOIo=;
-        b=vAkt3E/gsKasYmrJw7XHx/OICTJdWd7Ux8PANCWiRlq/NeFQ6gm/k6sEujSi0aVbbS
-         ow6Q+2WRE3L5oxf3J1r15aovREiCxiclNbshKj6OVvYaKieAFK4Nanw0MaV0rGKw5ukE
-         BovIiQGA6++AkLVEyGYIoflKrmgtF0fdyiB5DMJymYGK1mM/Pp5MWdCX3+AF52BAmUub
-         W5hsgvOwWNNHfe9X9C4TVFLU/4EhU9S07dRHMzeYvz0W/9KH0Cq1pW1yyFrjmSF6+ItK
-         Ksyt2NxbyqkLwYK04dw6CA1MzprRLlgUUYZWwWRbWTIHtCtLBNPdPqeRP4Wo7zG02uQ4
-         tNbA==
-X-Gm-Message-State: AO0yUKWKxDQ+uJogInmYzcRgvhNbEx+8vqOFsyFf2prksm2GbPseylZX
-        hWpZSfk6uA0KdludIoTl9qakH2AXbDfjDkdhlhY=
-X-Google-Smtp-Source: AK7set8rHwqmHn+7sNRobBB28oMLRWp7yGgCfY/k3lB8f0Hw3GPmtlFfnPKnKWQkObtFPzP1JQGv4Q==
-X-Received: by 2002:ac2:5097:0:b0:4b5:2ef3:fd2a with SMTP id f23-20020ac25097000000b004b52ef3fd2amr7744823lfm.47.1679308926377;
-        Mon, 20 Mar 2023 03:42:06 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id r8-20020a19ac48000000b004e8b90e14a8sm1659531lfc.25.2023.03.20.03.42.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 03:42:06 -0700 (PDT)
-Message-ID: <0a8fcd57-94dc-61e6-0ba0-b1591e05e6f2@linaro.org>
-Date:   Mon, 20 Mar 2023 11:42:04 +0100
+        with ESMTP id S230322AbjCTK6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:58:06 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1BC13D6C;
+        Mon, 20 Mar 2023 03:54:54 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32K8OlqD017738;
+        Mon, 20 Mar 2023 10:45:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=wOFEbWs9Cw33LhoI4x7uWEBuX97sD4JEm+1a7zgmROw=;
+ b=LvoB6rv/ZdFR0D6QdmjdVP8KS3MlnGIGq6rWURgHAKwDj2VXjPjAfwZg/TQX4355kmXO
+ vkGtD385GB3JPE1XE+ySkD1LWWIbJ+VENwMgGw/Yg2X/qELMLdCV/emK+Lj0X2fPs2Ee
+ clRgkd9TxQCUAJRDpc7SAw7UG0lyGzmwKqOSozdpK10F/5xvyHh0jvt8HB8M75OPie1/
+ Nk4yruJayZJo7FvKWPB7AWuA5+KUjEnmj05UCu8PcHfByTTS4ESff4/XCEYdikgZDv4G
+ 1c08TkNykp38jqNfdTqtZ2AkKs6UfOik5yy4mHSeTVGM6DhgveV507IC6rbowotg8/12 lQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3peg57ru01-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 10:45:50 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32KAjmh5023616
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 10:45:48 GMT
+Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Mon, 20 Mar 2023 03:45:44 -0700
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH V2 0/2] Add few device nodes for IPQ5332 SoC
+Date:   Mon, 20 Mar 2023 16:15:28 +0530
+Message-ID: <20230320104530.30411-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] dmaengine: qcom: bam_dma: Add support for BAM engine
- v1.7.4
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        dmaengine@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, bhupesh.linux@gmail.com, vkoul@kernel.org,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        vladimir.zapolskiy@linaro.org
-References: <20230320071211.3005769-1-bhupesh.sharma@linaro.org>
- <20230320071211.3005769-2-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230320071211.3005769-2-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4df9pUOpMs9NWn9PQR7hz6ehNyp8yeqq
+X-Proofpoint-GUID: 4df9pUOpMs9NWn9PQR7hz6ehNyp8yeqq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-20_06,2023-03-20_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 spamscore=0 clxscore=1015 phishscore=0 mlxlogscore=644
+ priorityscore=1501 mlxscore=0 suspectscore=0 adultscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303200090
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds the support for QUP peripherals, PRNG, WDT for IPQ5332
+SoC.
 
+This series depends on the below patch, due to the node ordering
+https://lore.kernel.org/linux-arm-msm/20230217083308.12017-6-quic_kathirav@quicinc.com/#t
 
-On 20.03.2023 08:12, Bhupesh Sharma wrote:
-> Qualcomm SoCs SM6115 and  QRB2290 support BAM engine version
-> v1.7.4.
-> 
-> Add the support for the same in driver. Since the reg info of
-> this version is similar to version v1.7.0, so reuse the same.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  drivers/dma/qcom/bam_dma.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
-> index 1e47d27e1f81..153d189de7d2 100644
-> --- a/drivers/dma/qcom/bam_dma.c
-> +++ b/drivers/dma/qcom/bam_dma.c
-> @@ -1228,6 +1228,7 @@ static const struct of_device_id bam_of_match[] = {
->  	{ .compatible = "qcom,bam-v1.3.0", .data = &bam_v1_3_reg_info },
->  	{ .compatible = "qcom,bam-v1.4.0", .data = &bam_v1_4_reg_info },
->  	{ .compatible = "qcom,bam-v1.7.0", .data = &bam_v1_7_reg_info },
-> +	{ .compatible = "qcom,bam-v1.7.4", .data = &bam_v1_7_reg_info },
-The compatible is meaningless as of today (it uses the exact same driver
-data as v1.7.0), so I'd say going with:
+Kathiravan T (2):
+  dt-bindings: watchdog: qcom-wdt: add qcom,apss-wdt-ipq5332 compatible
+  arm64: dts: qcom: ipq5332: add few device nodes
 
-compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+ .../bindings/watchdog/qcom-wdt.yaml           |  1 +
+ arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts   | 14 ++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 67 +++++++++++++++++++
+ 3 files changed, 82 insertions(+)
 
-is what we want.
+-- 
+2.17.1
 
-Konrad
->  	{}
->  };
->  
