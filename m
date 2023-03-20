@@ -2,141 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 617F36C1589
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDCB36C158B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:52:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbjCTOvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
+        id S231912AbjCTOwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:52:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232036AbjCTOv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:51:27 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15C572A98B;
-        Mon, 20 Mar 2023 07:50:00 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-17aeb49429eso12955903fac.6;
-        Mon, 20 Mar 2023 07:50:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679323755;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1HQ2/RBVM5ivbrUSk8sQg1YLF+lsQLWjCSPQVmBOV9U=;
-        b=L9Q0mUOG3IumZ7wGgZP7ZmIXwhRxoZMTHBjeHa95fXbeU1KrS5peiLXO1rWZSsZFNQ
-         QmsGzxNBsh6zWDiSRW9I1t1al/yKw80CPmlT+MVPAbz6TY3TU925s47QXY9HFZIPq+z+
-         8TnxkYynJOnm0T2KizpDW9mKK0SIRddkG7IwA/q5oKy2Lxw9U3TCB+WF8uJxf/LlPllE
-         u9BUDTCag7YlxcjoQUZnTaCrVVNW6l0weezg4+Tdgx53E8Y3wgHFJ2X4sq4uraROBttT
-         fLpk+FBJoSfUnPivKfU0oREh0MEMK1Tf3Vn/VttAdRzN86DBRdLZojNvUcoTOx9l3NQi
-         Y/Cw==
-X-Gm-Message-State: AO0yUKXVWhLGvEN938woLk+YAqCsnr2/dMP19Uo9cg/4XRicYgm3Ecs2
-        95sTtpfHOXkHLMvX7r6wiFlyhmufAw==
-X-Google-Smtp-Source: AK7set/ZCTDXdsG18Bu/FCuwWWVwlwzog1n2WnJjg1X7C4DhvYAQ7wmM2mbS4GSt3Ueo1m7Zvq/BYQ==
-X-Received: by 2002:a05:6871:285:b0:177:c4c1:db8a with SMTP id i5-20020a056871028500b00177c4c1db8amr5902297oae.0.1679323755507;
-        Mon, 20 Mar 2023 07:49:15 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id zq24-20020a0568718e9800b00172721f6cd5sm3354302oab.16.2023.03.20.07.49.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 07:49:15 -0700 (PDT)
-Received: (nullmailer pid 1615498 invoked by uid 1000);
-        Mon, 20 Mar 2023 14:49:14 -0000
-Date:   Mon, 20 Mar 2023 09:49:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: iommu: renesas, ipmmu-vmsa: Update for
- R-Car Gen4
-Message-ID: <20230320144914.GA1609519-robh@kernel.org>
-References: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S232026AbjCTOvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:51:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A340265B9;
+        Mon, 20 Mar 2023 07:50:08 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 13979660212C;
+        Mon, 20 Mar 2023 14:49:39 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679323779;
+        bh=b0evVStbmjbebTg7JnPsa981Y/oOfL5M+cclKuYMXd0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=GYRb86+aryGONKFjqeSPCtp73ReTpHeVIYtvviGDWsTH85KWMsUYqYnxQeCg3aQfQ
+         LbtIYr46t3CCTuc4NYj/IDFtKOihGcpIDDx5Bcd1q0Fppui5Rm1R5d8ShoIiz6UnFu
+         c2rfcOoIwdMpmS4ykyWz0btoUYbvzUThzpE/S8KlpYcbBOAxKP2Py5dbVsH29RzJMJ
+         0CVtWOpDblwdhVl6HBrby6IAxqJiXk/CONk8s/QbWPBV/EthJFJk3ZPEUC4s4BQo0o
+         MWQCjk4MztswjODewvbHJvFTY1ElNGP9aIF2uM0vDiwYOcRQtPLHDGTQce551QC27j
+         8YOxLMiOO/j4g==
+Message-ID: <100a6c2e-f65f-5297-919a-06b8f73444fa@collabora.com>
+Date:   Mon, 20 Mar 2023 15:49:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/6 RESEND] media: mediatek: vcodec: Add a debugfs file to
+ get different useful information
+Content-Language: en-US
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230320102838.8313-1-yunfei.dong@mediatek.com>
+ <20230320102838.8313-4-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230320102838.8313-4-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 09:40:26PM +0900, Yoshihiro Shimoda wrote:
-> Since R-Car Gen4 does not have the main IPMMU IMSSTR register, update
-> the bindings to drop the interrupt bit number from the
-> renesas,ipmmu-main property.
-
-Wouldn't it be easier to define a value meaning 'no interrupt bit' such 
-as 0 or ~0 than having a variable sized property to parse?
-
+Il 20/03/23 11:28, Yunfei Dong ha scritto:
+> In oder to get each instance information according to test command, adding
+> one file node "vdec".
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> [geert: Re-add removed items level, add minItems/maxItems constraints]
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Can use echo command to set different string value as 'echo -picinfo > vdec'
+> to get real and aligned resolution.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > ---
-> Changes from v3:
-> https://lore.kernel.org/all/20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com/
->  - Revise the dt-bindings by Geert-san (Thanks a lot!).
+>   .../mediatek/vcodec/mtk_vcodec_dbgfs.c        | 85 +++++++++++++++++++
+>   .../mediatek/vcodec/mtk_vcodec_dbgfs.h        | 20 +++++
+>   .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |  2 +
+>   3 files changed, 107 insertions(+)
 > 
->  .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 32 ++++++++++++++-----
->  1 file changed, 24 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> index 72308a4c14e7..be90f68c11d1 100644
-> --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> @@ -74,16 +74,16 @@ properties:
->    renesas,ipmmu-main:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      items:
-> -      - items:
-> +      - minItems: 1
-> +        items:
->            - description: phandle to main IPMMU
-> -          - description: the interrupt bit number associated with the particular
-> -              cache IPMMU device. The interrupt bit number needs to match the main
-> -              IPMMU IMSSTR register. Only used by cache IPMMU instances.
-> +          - description:
-> +              The interrupt bit number associated with the particular cache
-> +              IPMMU device. If present, the interrupt bit number needs to match
-> +              the main IPMMU IMSSTR register. Only used by cache IPMMU
-> +              instances.
->      description:
-> -      Reference to the main IPMMU phandle plus 1 cell. The cell is
-> -      the interrupt bit number associated with the particular cache IPMMU
-> -      device. The interrupt bit number needs to match the main IPMMU IMSSTR
-> -      register. Only used by cache IPMMU instances.
-> +      Reference to the main IPMMU.
->  
->  required:
->    - compatible
-> @@ -109,6 +109,22 @@ allOf:
->        required:
->          - power-domains
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,rcar-gen4-ipmmu-vmsa
-> +    then:
-> +      properties:
-> +        renesas,ipmmu-main:
-> +          items:
-> +            - maxItems: 1
-> +    else:
-> +      properties:
-> +        renesas,ipmmu-main:
-> +          items:
-> +            - minItems: 2
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
+> index bef78c028a75..9e7d57d21cea 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
+> @@ -10,6 +10,86 @@
+>   #include "mtk_vcodec_drv.h"
+>   #include "mtk_vcodec_util.h"
+>   
+> +static ssize_t mtk_vdec_dbgfs_write(struct file *filp, const char __user *ubuf,
+> +				    size_t count, loff_t *ppos)
+> +{
+> +	struct mtk_vcodec_dev *vcodec_dev = filp->private_data;
+> +	char buf[32] = { 0 };
+> +	int len, str_count = 0;
+> +	struct mtk_vcodec_dbgfs_inst *dbgfs_inst;
+> +	struct mtk_vcodec_ctx *ctx;
 > +
->  examples:
->    - |
->      #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
-> -- 
-> 2.25.1
-> 
+> +	len = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
+> +	if (len <= 0)
+> +		return len;
+> +
+> +	list_for_each_entry(dbgfs_inst, &vcodec_dev->dbgfs.dbgfs_head, node) {
+> +		pr_info("dbgfs_inst id: %d\n", dbgfs_inst->inst_id);
+> +		ctx = dbgfs_inst->vcodec_ctx;
+> +
+> +		if (strstr(buf, "-picinfo")) {
+> +			str_count++;
+> +			pr_info("resolution: real(%dx%d)=>align(%dx%d)\n",
+> +				ctx->picinfo.pic_w, ctx->picinfo.pic_h,
+> +				ctx->picinfo.buf_w, ctx->picinfo.buf_h);
+
+If you want to use debugfs (which is a good choice!), you should use debugfs!
+This means that you shouldn't print this kind of information to the kernel,
+but rather to a debugfs entry.
+
+Example:
+
+$ echo "-picinfo" > vdec
+$ cat vdec
+
+resolution: real(1024x768)=>align(something)
+
+This is the same for all of the commits of this series, so, please properly
+use debugfs.
+
+
+Regards,
+Angelo
+
