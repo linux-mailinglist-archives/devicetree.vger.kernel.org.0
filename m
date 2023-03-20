@@ -2,149 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E208B6C1B52
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B70A6C1B59
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:25:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232084AbjCTQYa convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 12:24:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36540 "EHLO
+        id S229564AbjCTQZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:25:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232363AbjCTQYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:24:13 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C67366BB;
-        Mon, 20 Mar 2023 09:17:11 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id r5so13704896qtp.4;
-        Mon, 20 Mar 2023 09:17:11 -0700 (PDT)
+        with ESMTP id S233090AbjCTQZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:25:02 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B6725B85;
+        Mon, 20 Mar 2023 09:18:29 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id o32so1514014wms.1;
+        Mon, 20 Mar 2023 09:18:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679329107;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IZ0QVsH9HEKdarKuMtmTbFTjEp0iLRbtuconCVoJf8I=;
+        b=TZ/iLRsSEXCpTe82KusSMD08bbOfaKx8NZR+ATFKBI6WtbQNYdQACXYlVgOblmYZZb
+         IQqaq4d4bG5w0EH8oJEGY9P9rocHxb2F6sBl2d44Mkl+eOw0Qb/SM9S+CEkxeaxMtS+d
+         rNwpGt6XrE8U9LBHrEhgOXFgq4ol9TuGfgCGKXnNPQqzVYVnvlBTiluhz7j0O1QT7O8j
+         lFSm3V0PHYCdcfAjCoYms4tGF5vCbM3bMzEs/AHD7a3wzDnjxHWEbRtPHdgDSRuvNY8b
+         ZOLlze7IGBTQQk3Paq2VNtdE9V2rysATFQeaRrw7jKtFBq1Fxduh2qvn0C+OAJGtRdih
+         VDXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679329029;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BU12f+vPMvEhFHISO9GFf1PVW/V1JjwDrJX6/nQgB0M=;
-        b=K1IbLXOnn+ydDKkHR0dQxvbYPinGO3CcobjW6HQJmwQOXWZXQCCm8TdBAMv2BU8mIp
-         Yh2GCLFx2VYQyE8JLcQMuUKklYQsnoGl+/HZOKNad1NXYBL0wTZYZ0+CdYVtzBjbSf/l
-         osueTVVEKWvPy0ILfW+Vx0W8clQ/bEJQrEeXeFNIyOWHBBUXCvKXEgQSF7ZcWoNShZcz
-         PTzEFNyVlmRKMw6U8YHTYWUHuT5qHjRNG/MBxupSK+QaOcWekEjprXMsq6sFmEs1ANuw
-         qA7AbOLLbTJYJ0TAQap1Vy+Y7pZUsHSmwB8K1hW9TD+Ve54bI8la0PFHJV0bV65uv2Si
-         cNHw==
-X-Gm-Message-State: AO0yUKVv3Ng89dTN8te9+ClQ0hIV5vo4OEFKnUPVOfgua3aWmC7DvgH4
-        mblraeeDE3sOAev4szyoSFywbmfSlpQPaA==
-X-Google-Smtp-Source: AK7set8qsrQymzOrUc8HrZbJ6rwg4yYKGU+XhyKYT9eD7tIm3ulgFbIJ9zaSfXKT3BZKAS6773uxHQ==
-X-Received: by 2002:a05:622a:1829:b0:3e2:ccf9:bfa0 with SMTP id t41-20020a05622a182900b003e2ccf9bfa0mr3816568qtc.49.1679329028966;
-        Mon, 20 Mar 2023 09:17:08 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id c9-20020ac853c9000000b003e37dac7eb5sm418013qtq.87.2023.03.20.09.17.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 09:17:08 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id e194so13773505ybf.1;
-        Mon, 20 Mar 2023 09:17:08 -0700 (PDT)
-X-Received: by 2002:a5b:d0f:0:b0:b3b:6576:b22b with SMTP id
- y15-20020a5b0d0f000000b00b3b6576b22bmr5929917ybp.12.1679329028181; Mon, 20
- Mar 2023 09:17:08 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679329107;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IZ0QVsH9HEKdarKuMtmTbFTjEp0iLRbtuconCVoJf8I=;
+        b=P6O++MKuKjNoWKZSI6jHuET4gY8DzrtTv/R4FA8QOUCOOJTYzwQLriDDn9ubathjFC
+         ohaL1VeRhxEhNTU7qdTdSq1yCqpJzGpe5kWUwjUUgxO+/fBUZz367lkL6LKwIJBWYq8R
+         RKNsN21pXvldlk1zcYTXi83KZoW+k3mtDTbHH48zm7B4fa8cnr/lGMKY1Ozn2hnZWYnx
+         LdIYtG4duSgUUnc52tWf7mldTZ92OjukbEmF0ER2PJ2s3Jr2wXdV763bsMSNe61HQGEa
+         9J4RNKK7QEAkQA6u9qwKobN3YUPpMqgWnQBz+dhhwQhuacd7BvzBjOWUF5/zvS7VyNBE
+         didw==
+X-Gm-Message-State: AO0yUKV+5vlFU4OFxsy0zP/mf8AlMBXhiuWaxfW1D3XDJnn9PocK9q6S
+        X94vSc1YsVsIXJ5OvyQXjReArmusook=
+X-Google-Smtp-Source: AK7set/H/OwhdtyFvEdzyRrZwmVZ/kSuOIQFNJAtbQhkjAqn+bHfabyr/Da8XO/ZQSlc5rueTcDEig==
+X-Received: by 2002:a1c:ed0b:0:b0:3eb:966f:5811 with SMTP id l11-20020a1ced0b000000b003eb966f5811mr97126wmh.3.1679329106876;
+        Mon, 20 Mar 2023 09:18:26 -0700 (PDT)
+Received: from localhost.localdomain (106.red-88-13-29.dynamicip.rima-tde.net. [88.13.29.106])
+        by smtp.gmail.com with ESMTPSA id iv16-20020a05600c549000b003ee1acdaf95sm847776wmb.36.2023.03.20.09.18.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 09:18:26 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     linux-clk@vger.kernel.org
+Cc:     linux-mips@vger.kernel.org, tsbogend@alpha.franken.de,
+        john@phrozen.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        arinc.unal@arinc9.com
+Subject: [PATCH 00/10] mips: ralink: add complete clock and reset driver for mtmips SoCs
+Date:   Mon, 20 Mar 2023 17:18:13 +0100
+Message-Id: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <052af97ecbaa9ba6e0d406883dd3389fa397579a.1678891999.git.geert+renesas@glider.be>
- <20230320160521.GA1771933-robh@kernel.org>
-In-Reply-To: <20230320160521.GA1771933-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Mar 2023 17:16:56 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX9U+tPfeU1=K-PZd2O=jeFewvJNqarOyNM2ge+vSBa1g@mail.gmail.com>
-Message-ID: <CAMuHMdX9U+tPfeU1=K-PZd2O=jeFewvJNqarOyNM2ge+vSBa1g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: spi: renesas,sh-msiof: Miscellaneous improvements
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patchset is a big effort to properly implement a clock and reset
+driver for old ralink SoCs. This allow to properly define clocks in 
+device tree and avoid to use fixed-clocks directly from 'arch/mips/ralink'
+architecture directory code.
 
-On Mon, Mar 20, 2023 at 5:07 PM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Mar 15, 2023 at 03:54:07PM +0100, Geert Uytterhoeven wrote:
-> > Make "clocks" and "power-domains" required everywhere.
-> > Make "resets" required on R-Car Gen2 and newer (i.e. all but SH-Mobile).
->
-> Breaking the ABI is fine because ???
+Device tree 'sysc' node will be both clock and reset provider using 
+'clock-cells' and 'reset-cells' properties.
 
-This does not break the ABI, as all related DTS already have these properties.
-This just aligns the bindings with reality.
+The ralink SoCs we are taking about are RT2880, RT3050, RT3052, RT3350,
+RT3352, RT3883, RT5350, MT7620, MT7628 and MT7688. Mostly the code in
+this new driver has been extracted from 'arch/mips/ralink' and cleanly
+put using kernel clock and reset driver APIs. The clock plans for this
+SoCs only talks about relation between CPU frequency and BUS frequency.
+This relation is different depending on the particular SoC. CPU clock is
+derived from XTAL frequencies.
 
-> > Update the example to match reality:
-> >   - Use interrupt binding definitions instead of hardcoded numbers,
-> >   - Convert to new-style CPG/MSSR bindings,
-> >   - Add missing "power-domains" and "resets" properties.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> >  .../bindings/spi/renesas,sh-msiof.yaml        | 23 +++++++++++++++----
-> >  1 file changed, 19 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> > index 491a695a2deb3b83..00acbbb0f65dcf57 100644
-> > --- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> > @@ -149,23 +149,38 @@ required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> > +  - clocks
-> > +  - power-domains
-> >    - '#address-cells'
-> >    - '#size-cells'
-> >
-> > +if:
-> > +  not:
-> > +    properties:
-> > +      compatible:
-> > +        contains:
-> > +          const: renesas,sh-mobile-msiof
-> > +then:
-> > +  required:
-> > +    - resets
-> > +
-> >  unevaluatedProperties: false
-> >
-> >  examples:
-> >    - |
-> > -    #include <dt-bindings/clock/r8a7791-clock.h>
-> > -    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/power/r8a7791-sysc.h>
-> >
-> >      msiof0: spi@e6e20000 {
-> >          compatible = "renesas,msiof-r8a7791", "renesas,rcar-gen2-msiof";
-> >          reg = <0xe6e20000 0x0064>;
-> > -        interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
-> > -        clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
-> > +        interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks = <&cpg CPG_MOD 000>;
-> >          dmas = <&dmac0 0x51>, <&dmac0 0x52>;
-> >          dma-names = "tx", "rx";
-> > +        power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
-> > +        resets = <&cpg 0>;
-> >          #address-cells = <1>;
-> >          #size-cells = <0>;
-> >      };
+ Depending on the SoC we have the following frequencies:
+ * RT2880 SoC:
+     - XTAL: 40 MHz.
+     - CPU: 250, 266, 280 or 300 MHz.
+     - BUS: CPU / 2 MHz.
+  * RT3050, RT3052, RT3350:
+     - XTAL: 40 MHz.
+     - CPU: 320 or 384 MHz.
+     - BUS: CPU / 3 MHz.
+  * RT3352:
+     - XTAL: 40 MHz.
+     - CPU: 384 or 400 MHz.
+     - BUS: CPU / 3 MHz.
+     - PERIPH: 40 MHz.
+  * RT3383:
+     - XTAL: 40 MHz.
+     - CPU: 250, 384, 480 or 500 MHz.
+     - BUS: Depends on RAM Type and CPU:
+       + RAM DDR2: 125. ELSE 83 MHz.
+       + RAM DDR2: 128. ELSE 96 MHz.
+       + RAM DDR2: 160. ELSE 120 MHz.
+       + RAM DDR2: 166. ELSE 125 MHz.
+  * RT5350:
+      - XTAL: 40 MHz.
+      - CPU: 300, 320 or 360 MHz.
+      - BUS: CPU / 3, CPU / 4, CPU / 3 MHz.
+      - PERIPH: 40 MHz.
+  * MT7628 and MT7688:
+     - XTAL: 20 MHz or 40 MHz.
+     - CPU: 575 or 580 MHz.
+     - BUS: CPU / 3.
+     - PCMI2S: 480 MHz.
+     - PERIPH: 40 MHz.
+  * MT7620:
+     - XTAL: 20 MHz or 40 MHz.
+     - PLL: XTAL, 480, 600 MHz.
+     - CPU: depends on PLL and some mult and dividers.
+     - BUS: depends on PLL and some mult and dividers.
+     - PERIPH: 40 or XTAL MHz.
 
-Gr{oetje,eeting}s,
+MT7620 is a bit more complex deriving CPU clock from a PLL and an bunch of
+register reads and predividers. To derive CPU and BUS frequencies in the
+MT7620 SoC 'mt7620_calc_rate()' helper is used.
+In the case XTAL can have different frequencies and we need a different
+clock frequency for peripherals 'periph' clock in introduced.
+The rest of the peripherals present in the SoC just follow their parent
+frequencies.
 
-                        Geert
+I am using 'mtmips' inside for ralink clock driver. This is aligned with
+pinctrl series recently merged through pinctrl git tree [0].
+
+Changes have been compile tested for:
+- RT2880
+- RT3883
+- MT7620
+
+Changes have been properly tested in RT5350 SoC based board (ALL5003 board)
+resulting in a working platform.
+
+Dts files for these SoCs in-tree except MT7621 are incomplete. We are
+planning to align with openWRT files at some point and add extra needed
+changes. Hence I am not touching them at all in these series. If this is
+a problem, please let me know and I will update them.
+
+Talking about merging this series I'd like all of the patches going through
+the MIPS tree if possible.
+
+Thanks in advance for your time.
+
+Best regards,
+    Sergio Paracuellos
+
+[0]: https://lore.kernel.org/linux-gpio/e9e6ad87-2db5-9767-ff39-64a302b06185@arinc9.com/T/#t
+
+Sergio Paracuellos (10):
+  dt: bindings: clock: add mtmips SoCs clock device tree binding
+    documentation
+  clk: ralink: add clock and reset driver for MTMIPS SoCs
+  mips: ralink: rt288x: remove clock related code
+  mips: ralink: rt305x: remove clock related code
+  mips: ralink: rt3883: remove clock related code
+  mips: ralink: mt7620: remove clock related code
+  mips: ralink: remove clock related function prototypes
+  mips: ralink: remove reset related code
+  mips: ralink: get cpu rate from new driver code
+  MAINTAINERS: add Mediatek MTMIPS Clock maintainer
+
+ .../bindings/clock/mtmips-clock.yaml          |  68 ++
+ MAINTAINERS                                   |   6 +
+ arch/mips/include/asm/mach-ralink/mt7620.h    |  35 -
+ arch/mips/include/asm/mach-ralink/rt288x.h    |  10 -
+ arch/mips/include/asm/mach-ralink/rt305x.h    |  21 -
+ arch/mips/include/asm/mach-ralink/rt3883.h    |   8 -
+ arch/mips/ralink/clk.c                        |  26 +-
+ arch/mips/ralink/common.h                     |   5 -
+ arch/mips/ralink/mt7620.c                     | 226 ----
+ arch/mips/ralink/of.c                         |   4 -
+ arch/mips/ralink/reset.c                      |  61 --
+ arch/mips/ralink/rt288x.c                     |  31 -
+ arch/mips/ralink/rt305x.c                     |  78 --
+ arch/mips/ralink/rt3883.c                     |  44 -
+ drivers/clk/ralink/Kconfig                    |   7 +
+ drivers/clk/ralink/Makefile                   |   1 +
+ drivers/clk/ralink/clk-mtmips.c               | 985 ++++++++++++++++++
+ 17 files changed, 1086 insertions(+), 530 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mtmips-clock.yaml
+ create mode 100644 drivers/clk/ralink/clk-mtmips.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
