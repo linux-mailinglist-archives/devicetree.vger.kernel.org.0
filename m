@@ -2,97 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DEF26C1DA5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E7326C1DA8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:21:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232458AbjCTRVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 13:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44978 "EHLO
+        id S231905AbjCTRVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 13:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233393AbjCTRUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 13:20:54 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD43812F3A;
-        Mon, 20 Mar 2023 10:16:50 -0700 (PDT)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1DDE0B6C;
-        Mon, 20 Mar 2023 18:15:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1679332553;
-        bh=EtloMJtVOSZ7X0F3GelvhtXn9Uc+JmrNunKBY6hpZrY=;
-        h=Date:Subject:To:References:Cc:From:In-Reply-To:From;
-        b=jjvlCa00TY1Seag3XuFDhTgasxGbNJFQ05XrzpZriMCmkDv3MElrGTL9TGCrK44ef
-         i2DC+LCaGXRrEZo3Y2UMYCLVYPpN9khkr4uHiJjkG7IsS8vtd9iKTESfMznuGszjSy
-         urglxA3Yp6RRkon27rRu0pria9OW7+IrqoA+eZmg=
-Message-ID: <96794a9a-889b-0ddd-0da6-6622ba27ff64@ideasonboard.com>
-Date:   Mon, 20 Mar 2023 19:15:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
-Content-Language: en-US
-To:     Wolfram Sang <wsa@kernel.org>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
- <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
- <204f124a-1030-99bd-9c84-25ed067991b6@ideasonboard.com>
- <ZBiRNpvITuOT03rE@ninjato>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233332AbjCTRU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 13:20:57 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4103345A
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:16:52 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id o40-20020a05600c512800b003eddedc47aeso2567436wms.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:16:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679332590;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ciOmJ8lUq444j7rDWT4tZ7vaysYFPy1lLMlFYtJcqeU=;
+        b=Wj6DFJV5bgY1B1s0AC8CpnmL/Chzw5urw8WvMx8m3wgXUNUCzrja4X7RXKenSvKv0l
+         X+aefOjRXrGEr3x1UgOwkxIk/jaFbKyB0tjBLKAKFH9quNoyaqx5nOSwucH53fG980nZ
+         bOrN9LhymAA8lkjNhL6oUw1MY4RGGsGWXnoxxEnL9I3/+cNxWY5xXmP1cTcqibiBnr3M
+         FSq7PuyL5/AZE7YoQpN88PtqvcWAvHkQgTaUzQr9lZ+S7iKn0BaamJsa2/wtG6d5YUzE
+         6KvNWK6znDl6KOOZwUBZeLijhZjIAwZ9cObTlvixPt+gT59JKNWw6tKP5k97Sjs241rH
+         gcHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679332590;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ciOmJ8lUq444j7rDWT4tZ7vaysYFPy1lLMlFYtJcqeU=;
+        b=wuuEzlnq04+qWicPxkfEdFyupbmeRgaesvazqnszrftM1OHC9b0YEfEOOUyB0ISbvd
+         AeIlUiQ7bwhSWnZAzJPTXbkji6R9yAUY0lbIWEFr2qXlwqvyEvt6bcYxxo2gEQ9xGE9r
+         fBwgY6moKOJmcu70349/IT9ChxF2JEkhPipBc6ggooI4NOgJfKgjGIvJcRbDrlTvWhOR
+         tRbmYqwNmQ3grylQfASZoF8sjTn/ToAvK8Q1Y7k5yvot7DCjPZ8M42FOD6OwiwLuOrBv
+         OEE1wJvNUtgF2mDQmvdUkEkP8D0E2AwSndSF2LfO+BKEY5vPDtm1bd4jN1QjuycSHxHZ
+         o55w==
+X-Gm-Message-State: AO0yUKWr/ayGNDSlXjUv8DzCfIefZM8b3YGcUyHWrfBc+IGzMHjQErt+
+        CZ3eBPjMMY4oq2xw0MwgHew=
+X-Google-Smtp-Source: AK7set/Lwe4k4z2yQrfaST/GdpK1kDGFBWheWR7e4nD+NYss/JKF5uDs5aFhla2w0vdhMTw/+3SuTw==
+X-Received: by 2002:a1c:7311:0:b0:3ea:d611:f8 with SMTP id d17-20020a1c7311000000b003ead61100f8mr222568wmb.38.1679332590270;
+        Mon, 20 Mar 2023 10:16:30 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-57-73.cust.vodafonedsl.it. [188.217.57.73])
+        by smtp.gmail.com with ESMTPSA id r10-20020adfce8a000000b002cefcac0c62sm9452559wrn.9.2023.03.20.10.16.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 10:16:29 -0700 (PDT)
+Date:   Mon, 20 Mar 2023 18:16:27 +0100
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <ZBiRNpvITuOT03rE@ninjato>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Sandor Yu <Sandor.yu@nxp.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        patchwork-lst@pengutronix.de,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-phy@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v0.5 0/9] i.MX8MP HDMI support
+Message-ID: <ZBiU6wvZR+vfLEYO@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20220506181034.2001548-1-l.stach@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220506181034.2001548-1-l.stach@pengutronix.de>
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+Hello Lucas,
 
-On 20/03/2023 19:00, Wolfram Sang wrote:
-> Hi Tomi,
+On Fri, May 06, 2022 at 08:10:25PM +0200, Lucas Stach wrote:
+> Hi all,
 > 
->> Wolfram, do you have any comments on this?
+> second round of the i.MX8MP HDMI work. Still not split up into proper
+> parts for merging through the various trees this needs to go into, but
+> should make it easy for people to test.
 > 
-> Not yet. I need to dive into the previous discussions again to
-> understand what we agreed on and what potential problems we had to face.
-> However, holiday season is near, it could be that I won't have really
-> time for this until Mid-April or so. I'll try earlier but no promises :/
+> I've worked in the feedback I got from the last round, including fixing
+> the system hang that could happen when the drivers were built as modules.
 > 
->> Things have been calming down, I think, and I'd like to merge the series
->> soon if nothing major comes up. The easiest way would be to merge the whole
->> series via linux-media, as most of the patches are for media. If this looks
->> good, can you ack it and I'll send a pull request to linux-media
->> maintainers?
+> Series is based on linux-next/master, as there are some prerequisite
+> patches in both the drm and imx tree already. The last patch from [1]
+> and the patches from [2] need to be applied. Please note that this series
+> expects the sync polarity from the LCDIF to be set according to the
+> comments I made in [2]. Please test and provide feedback.
 > 
-> I'd think this is a too elemental (is this a word?) change for someone
-> else to pull it. But no worries, I would offer an immutable branch right
-> when I am done with reviewing so other subsystems can pull it. Or are
-> there other technical reasons I missed?
+> Regards,
+> Lucas
 
-An immutable branch is fine too.
+I tested your series on Linux 6.2.0-rc8
+Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
 
-  Tomi
+Thanks for your work!
 
+Regards,
+Tommaso
+
+> 
+> [1] https://lore.kernel.org/all/20220406153402.1265474-1-l.stach@pengutronix.de/
+> [2] https://lore.kernel.org/all/20220322142853.125880-1-marex@denx.de/
+> 
+> Lucas Stach (9):
+>   dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+>   drm/imx: add bridge wrapper driver for i.MX8MP DWC HDMI
+>   dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+>   drm/imx: add driver for HDMI TX Parallel Video Interface
+>   dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+>   phy: freescale: add Samsung HDMI PHY
+>   arm64: dts: imx8mp: add HDMI irqsteer
+>   arm64: dts: imx8mp: add HDMI display pipeline
+>   arm64: dts: imx8mp-evk: enable HDMI
+> 
+>  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      |   83 ++
+>  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml |   73 ++
+>  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     |   62 +
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |   19 +
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |   94 ++
+>  drivers/gpu/drm/imx/Kconfig                   |    1 +
+>  drivers/gpu/drm/imx/Makefile                  |    2 +
+>  drivers/gpu/drm/imx/bridge/Kconfig            |   18 +
+>  drivers/gpu/drm/imx/bridge/Makefile           |    4 +
+>  drivers/gpu/drm/imx/bridge/imx-hdmi-pvi.c     |  201 +++
+>  drivers/gpu/drm/imx/bridge/imx-hdmi.c         |  141 +++
+>  drivers/phy/freescale/Kconfig                 |    6 +
+>  drivers/phy/freescale/Makefile                |    1 +
+>  drivers/phy/freescale/phy-fsl-samsung-hdmi.c  | 1078 +++++++++++++++++
+>  14 files changed, 1783 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+>  create mode 100644 drivers/gpu/drm/imx/bridge/Kconfig
+>  create mode 100644 drivers/gpu/drm/imx/bridge/Makefile
+>  create mode 100644 drivers/gpu/drm/imx/bridge/imx-hdmi-pvi.c
+>  create mode 100644 drivers/gpu/drm/imx/bridge/imx-hdmi.c
+>  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> 
+> -- 
+> 2.30.2
+> 
+> 
