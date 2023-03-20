@@ -2,103 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9533A6C0FFC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:59:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 568D86C1005
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjCTK7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 06:59:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S230025AbjCTK7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 06:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230184AbjCTK6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:58:13 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D785C19135;
-        Mon, 20 Mar 2023 03:54:58 -0700 (PDT)
+        with ESMTP id S229851AbjCTK6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:58:40 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1BA8A29402;
+        Mon, 20 Mar 2023 03:55:07 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="5.98,274,1673881200"; 
-   d="scan'208";a="153188024"
+   d="scan'208";a="156562994"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Mar 2023 19:53:45 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 20 Mar 2023 19:54:02 +0900
 Received: from localhost.localdomain (unknown [10.226.92.205])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 119084004BCF;
-        Mon, 20 Mar 2023 19:53:41 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E7FA14004937;
+        Mon, 20 Mar 2023 19:53:59 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        linux-serial@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 0/5] Renesas SCI fixes
-Date:   Mon, 20 Mar 2023 10:53:34 +0000
-Message-Id: <20230320105339.236279-1-biju.das.jz@bp.renesas.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 5/5] arm64: dts: renesas: r9a07g044: Enable sci0 nodes using dt overlay
+Date:   Mon, 20 Mar 2023 10:53:39 +0000
+Message-Id: <20230320105339.236279-6-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230320105339.236279-1-biju.das.jz@bp.renesas.com>
+References: <20230320105339.236279-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.4 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RZ/G2UL SMARC EVK has sci pins exposed through PMOD1 interface.
-On testing, found that irq handler, tx and rx is broken.
+Enable sci0 node using dt overlay and disable can{0,1}-stb-hog
+nodes in dt overlay as its pins are shared with sci0 pins.
 
-This series fixes these issues.
-
-v2->v3:
- * Cced stable@vger.kernel.org
- * Added Rx, Tx and Tx end interrupt handler patch.
-v1->v2:
- * Replaced the wrong fixes tag
- * Added a simpler check in sci_init_single() and added a check in
-   probe to catch invalid interrupt count.
-Tested the SCI0 interface on RZ/G2UL by connecting to PMOD USBUART.
- 39:          0     GICv3 437 Level     1004d000.serial:rx err
- 40:         12     GICv3 438 Edge      1004d000.serial:rx full
- 41:         70     GICv3 439 Edge      1004d000.serial:tx empty
- 42:         18     GICv3 440 Level     1004d000.serial:tx end
-
-Overlay compilation:
---------------------
-Enable CONFIG_OF_OVERLAY in defconfig
-
-cpp -nostdinc -I include -I arch -undef -x assembler-with-cpp \
-  arch/arm64/boot//dts/renesas/r9a07g043u11-smarc.dts \
-  r9a07g043u11-smarc.dts.tmp
-
-dtc -@ -i include/ -I dts -O dtb -o arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dtb   r9a07g043u11-smarc.dts.tmp
-
-cpp -nostdinc -I include -I arch -undef -x assembler-with-cpp \
-  arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtso \
-  r9a07g043-smarc.dtso.tmp
-
-dtc -@ -i include/ -I dts -O dtb -o arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtbo   r9a07g043-smarc.dtso.tmp
-
-Applying overlay:
------------------
-apply_overlay=tftp 0x48000000 RZ-G2UL/r9a07g043u11-smarc.dtb;fdt addr 0x48000000;fdt resize 8192;tftp 0x4A000000 RZ-G2UL/r9a07g043-smarc.dtbo;fdt apply 0x4A000000
-bootcmd-overlay=run apply_overlay;tftp 0x48080000 RZ-G2UL/Image;booti 0x48080000 - 0x48000000
-
-Biju Das (5):
-  tty: serial: sh-sci: Fix transmit end interrupt handler
-  tty: serial: sh-sci: Fix Rx on RZ/G2L SCI
-  tty: serial: sh-sci: Fix Tx on SCI IP
-  tty: serial: sh-sci: Add support for tx end interrupt handling
-  arm64: dts: renesas: r9a07g044: Enable sci0 nodes using dt overlay
-
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v3:
+ * New patch
+---
  arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../boot/dts/renesas/r9a07g043-smarc.dtso     | 45 ++++++++++++
- drivers/tty/serial/sh-sci.c                   | 72 +++++++++++++++++--
- drivers/tty/serial/sh-sci.h                   |  3 +
- 4 files changed, 115 insertions(+), 6 deletions(-)
+ .../boot/dts/renesas/r9a07g043-smarc.dtso     | 45 +++++++++++++++++++
+ 2 files changed, 46 insertions(+)
  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtso
 
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 23b10c03091c..be938f360264 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-ulcb-kf.dtb
+ dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
+ 
+ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc.dtb
++dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043-smarc.dtbo
+ 
+ dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
+ dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtso b/arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtso
+new file mode 100644
+index 000000000000..515f9fb82938
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a07g043-smarc.dtso
+@@ -0,0 +1,45 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Source for the RZ/{G2UL, Five} SMARC EVK PMOD parts
++ *
++ * Copyright (C) 2023 Renesas Electronics Corp.
++ *
++ *
++ * [Connection]
++ *
++ * SMARC EVK				PMOD USBUART
++ * +----------------------------+
++ * |CN7 (PMOD1 PIN HEADER)	|
++ * |	SCI0_TXD	  pin7  |<----->| pin2  Tx	|
++ * |	SCI1_RXD	  pin8  |<----->| pin3  Rx	|
++ * |	Gnd	  	  pin11 |<----->| pin5  Gnd	|
++ * |	Vcc	  	  pin12 |<----->| pin6  Vcc	|
++ * +----------------------------+	+---------------+
++ *
++ */
++
++/dts-v1/;
++/plugin/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
++
++&pinctrl {
++	can0-stb-hog {
++		status = "disabled";
++	};
++
++	can1-stb-hog {
++		status = "disabled";
++	};
++
++	sci0_pins: sci0-pins {
++		pinmux = <RZG2L_PORT_PINMUX(2, 2, 5)>, /* TxD */
++			 <RZG2L_PORT_PINMUX(2, 3, 5)>; /* RxD */
++	};
++};
++
++&sci0 {
++	pinctrl-0 = <&sci0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
 -- 
 2.25.1
 
