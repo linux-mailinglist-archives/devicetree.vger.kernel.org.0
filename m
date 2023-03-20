@@ -2,129 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C18026C230C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B40316C2301
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:41:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjCTUmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 16:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43562 "EHLO
+        id S229779AbjCTUld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 16:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjCTUmO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:42:14 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B7C1EBDF;
-        Mon, 20 Mar 2023 13:41:32 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id x15so3137214pjk.2;
-        Mon, 20 Mar 2023 13:41:32 -0700 (PDT)
+        with ESMTP id S230298AbjCTUl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:41:29 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511292203D;
+        Mon, 20 Mar 2023 13:41:11 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id l15so5609480ilv.4;
+        Mon, 20 Mar 2023 13:41:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679344891;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
-        b=a0HcIxFpIjo1lSgr+MxW8pudqshXcHw+BiPZWFvBtQqePhHvgvVEQVZdmnTDBmMDK7
-         CmY91u5/YP6ybN/4gdZa8q8Mgky1m5JbY7TEnEZvulms39aEHxjr7Gf+psuJinYYj9cj
-         tQAAVEnc4BPk5+UErXx38+ddx4LMuOzQaHgrcnEVEkmD1KOxTkCCqgAEGWlyOb7pT4SK
-         LH9Rs8k5OVkK8NEwmDJmgpHNxtKcCBuGfvxI4+gLk40kdj/ZBp/MpdPdAjQbjiscQZd4
-         BS0SF8pqdy9NPUsz8F4A8dlnswapEQueHbN8FdH3agnrJmmSH0HgmvtdrgUKAAgRryhY
-         UHXw==
+        d=gmail.com; s=20210112; t=1679344870;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FfP1M8AIpQDk/dFV6Re7F0lLwMe3nNKA3tGt6+sXSrA=;
+        b=fqgInDamz/2KApokQYzyEA0HcCwgH2b0u/VF5rAWQVF/3Jwx5xvqiXtEQlyd7oW65f
+         agUQ5obgzyK2bhDc6I/5ULgb+P/BCLs5i38UUwEDZuyoNiFwM0P9ZasrTUXVihlAVUBz
+         8FZ7DHyUR+T02tNZUj72EjaGYqRdmzpMRXg+hfUwogH9uzzZmPLZFUya2B57nWlaAxq2
+         o4uFCX4LO2ZnsJxYi+4xTl9UfF+iwbFFT8P3WqqPKEKphow2UhQ23JCvOtAFsunRNLka
+         3YH9kw9wFEEyAsqsKJx33ndrg8VrM1fp2/zydqUnk9EAeUqjj1x9CLDvrvZlbRmPaIti
+         Jj5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679344891;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679344870;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
-        b=ei/3sFtFHynA7Q8IIOVuBQd69OGvue3l/NSyT/M0lzf1MvboJMfCqUCWvCZ/JI+rG+
-         W4Cj35DMfanwiyY9zuFH+noJ6qSGaoFHC3QX830quLGZihZ/VaLvF6uH8ebaP7DwXZYC
-         NGZXGuDH68wd0RTSuktNawsnZ2+19qqs+cah15wQm2FfjJzCKx3suqELsN9YLvQS46Ec
-         n6iJbEJgICydnj3SxvJuwYsqjxNj1bqZm1+Hvw9LpvJMgf3SVvQnArTn9MffOLjkQ/uR
-         oXxJSOK1H0oSerb8us5ItJbWK0aOEWUED0j9KT+m2PVam7Xvyy+TzyoiqpmEr9NLL34z
-         rlIA==
-X-Gm-Message-State: AO0yUKUAyFu/8q6U+32qUcXxjCbSQ8rMJyAjfACTtZVIY+T8seQBNibt
-        E84jvl+C9rndy1ZbnwWrI9M=
-X-Google-Smtp-Source: AK7set8RQR+fc+qe2esmHZrxVXZ0nOPF1zAz+mZWdv/urEMxOguZoqyh1B3Hr75AJXbELY1VcDLbxA==
-X-Received: by 2002:a17:90b:1a8e:b0:234:e3f:f53b with SMTP id ng14-20020a17090b1a8e00b002340e3ff53bmr454210pjb.21.1679344891331;
-        Mon, 20 Mar 2023 13:41:31 -0700 (PDT)
-Received: from d.home.yangfl.dn42 ([104.28.213.202])
-        by smtp.gmail.com with ESMTPSA id c3-20020a17090aa60300b0023b29b464f9sm6580943pjq.27.2023.03.20.13.41.25
+        bh=FfP1M8AIpQDk/dFV6Re7F0lLwMe3nNKA3tGt6+sXSrA=;
+        b=5drYxV6kMjtLgRMhKKdts4jrTu/FEbz3YKhZcrILuJ0Jn9ubaVKiiuW0U9GkY2OxiL
+         p6zdJRLKFSjY3+WOULSE7taF526JXIDOexth31otw+MgmgiDrED8/YGwx4+ys+ROoZK0
+         VfzW9vTWz8sIf0uToipAFjjkzxhTKt7vdQqaaBVOxPQCR2VrY0+51wzQVzSBYY8yA+tB
+         LNUeTZVoWoJ2KvlJZXd9kcAbnXijO8HfpYnPs/nUrhmwaedEGnj8AiH1NM7pJM0vSEGh
+         AfXDlVo1ooiSnQ472dMCEJRO8JrXF/nouuGQxIbRdoVEzt7wGLvHJZGMzo61UIGzxw5U
+         2/bA==
+X-Gm-Message-State: AO0yUKWCmSysMOHuOrzj/HcRiz5UfCLFwh5f7sUAwv+O/wZcJGAKLZDd
+        H8gJZy5EGeepKnoaOE1j6JWGlNkAUA8=
+X-Google-Smtp-Source: AK7set/Jy0gPn/8VLWBE5pMhbyEeAt9lpYudgFKGUHcMaHHuJnNJDBpUNJ0hyh1VDjVpYm/+stOPBQ==
+X-Received: by 2002:a92:dc42:0:b0:315:9937:600e with SMTP id x2-20020a92dc42000000b003159937600emr542324ilq.26.1679344870512;
+        Mon, 20 Mar 2023 13:41:10 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n16-20020a056638111000b0040619720af8sm3455751jal.35.2023.03.20.13.41.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 13:41:31 -0700 (PDT)
-From:   David Yang <mmyangfl@gmail.com>
-Cc:     David Yang <mmyangfl@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 4/5] dt-bindings: clock: Add Hi3798MV100 CRG
-Date:   Tue, 21 Mar 2023 04:40:37 +0800
-Message-Id: <20230320204042.980708-5-mmyangfl@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230320204042.980708-1-mmyangfl@gmail.com>
-References: <20230320204042.980708-1-mmyangfl@gmail.com>
+        Mon, 20 Mar 2023 13:41:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 20 Mar 2023 13:41:09 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Cc:     robh+dt@kernel.org, jdelvare@suse.com,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: trivial-devices: Add acbel,crps
+Message-ID: <13782cac-c46d-4299-896f-ac0341c26f45@roeck-us.net>
+References: <20230320154019.1943770-1-lakshmiy@us.ibm.com>
+ <20230320154019.1943770-3-lakshmiy@us.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230320154019.1943770-3-lakshmiy@us.ibm.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CRG bindings for Hi3798MV100 SoC. CRG (Clock and Reset Generator)
-module generates clock and reset signals used by other module blocks on
-SoC.
+On Mon, Mar 20, 2023 at 10:40:16AM -0500, Lakshmi Yadlapati wrote:
+> Add Acbel CRPS Series power supply to trivial devices.
+> 
+> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 6f482a254a1d..ae2cf4411b39 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -30,6 +30,8 @@ properties:
+>      items:
+>        - enum:
+>              # SMBus/I2C Digital Temperature Sensor in 6-Pin SOT with SMBus Alert and Over Temperature Pin
+> +          - acbel,crps
+> +            # Acbel CRPS Series power supply
 
-Signed-off-by: David Yang <mmyangfl@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/clock/hisi-crg.txt          |  2 ++
- include/dt-bindings/clock/histb-clock.h             | 13 +++++++++++++
- 2 files changed, 15 insertions(+)
+This is way too generic. There is not just one Acbel CRPS power supply,
+there is a whole lot of them. It is very unlikely that they can all
+be described with a single devicetree "compatible" property.
 
-diff --git a/Documentation/devicetree/bindings/clock/hisi-crg.txt b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-index cc60b3d42..972c038c8 100644
---- a/Documentation/devicetree/bindings/clock/hisi-crg.txt
-+++ b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-@@ -13,6 +13,8 @@ Required Properties:
-   - "hisilicon,hi3516cv300-crg"
-   - "hisilicon,hi3516cv300-sysctrl"
-   - "hisilicon,hi3519-crg"
-+  - "hisilicon,hi3798mv100-crg"
-+  - "hisilicon,hi3798mv100-sysctrl"
-   - "hisilicon,hi3798cv200-crg"
-   - "hisilicon,hi3798cv200-sysctrl"
- 
-diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
-index e64e5770a..126b1f839 100644
---- a/include/dt-bindings/clock/histb-clock.h
-+++ b/include/dt-bindings/clock/histb-clock.h
-@@ -58,6 +58,19 @@
- #define HISTB_USB3_UTMI_CLK1		48
- #define HISTB_USB3_PIPE_CLK1		49
- #define HISTB_USB3_SUSPEND_CLK1		50
-+#define HISTB_USB2_UTMI_CLK1		51
-+#define HISTB_USB2_2_BUS_CLK		52
-+#define HISTB_USB2_2_PHY_CLK		53
-+#define HISTB_USB2_2_UTMI_CLK		54
-+#define HISTB_USB2_2_UTMI_CLK1		55
-+#define HISTB_USB2_2_12M_CLK		56
-+#define HISTB_USB2_2_48M_CLK		57
-+#define HISTB_USB2_2_OTG_UTMI_CLK	58
-+#define HISTB_USB2_2_PHY1_REF_CLK	59
-+#define HISTB_USB2_2_PHY2_REF_CLK	60
-+#define HISTB_FEPHY_CLK			61
-+#define HISTB_GPU_BUS_CLK		62
-+#define HISTB_GPU_CORE_CLK		63
- 
- /* clocks provided by mcu CRG */
- #define HISTB_MCE_CLK			1
--- 
-2.39.2
+Guenter
 
+>            - ad,ad7414
+>              # ADM9240: Complete System Hardware Monitor for uProcessor-Based Systems
+>            - ad,adm9240
+> -- 
+> 2.37.2
+> 
