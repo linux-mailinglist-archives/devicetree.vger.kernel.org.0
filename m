@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D83BA6C24EF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 23:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 252D66C24F9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 23:57:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbjCTWwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 18:52:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58052 "EHLO
+        id S229617AbjCTW5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 18:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjCTWwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 18:52:51 -0400
+        with ESMTP id S229553AbjCTW5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 18:57:31 -0400
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5DB2FCCC;
-        Mon, 20 Mar 2023 15:52:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1982E800;
+        Mon, 20 Mar 2023 15:57:29 -0700 (PDT)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KMqgHg022739;
-        Mon, 20 Mar 2023 17:52:42 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KMvJro023518;
+        Mon, 20 Mar 2023 17:57:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679352762;
-        bh=Wrl+pdsJ7Yy8iawkVu9UhlYUAMXjyKrDWM6jikSpajY=;
+        s=ti-com-17Q1; t=1679353039;
+        bh=M67PRLwFLDe+3gJD44sdCYfLWHH0IjEiv4dDXPyoH5o=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=iOu7k7sWpWlqQSE/uL8oofFsTHcLh/WYGXAdlwwv75JO4lEOes6bRkKt9IQHnOOqH
-         31F0ttLmMRlY9YBB4bwdN/y70uiuPPR3rbn3MOmfW+A2FV984gfrkBwW4ysfgjkKEN
-         s/sRRItADT0MB9MMnEaRCNBHoFjmJAy+9JcM01VA=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KMqgBI042584
+        b=IexiYJ8frK6KNZ9Mu5SjvlltVJ+2bHsc360Sdu9rykcy89CyegY6uwLzBnuNsRXSn
+         8u6+qtEBOpY9gMG0qCX2BnyeY+55bPZOeiIhUIF8qXsDF73jxAMEMvDm/qSTtof8PK
+         2G8CJ1FgQLGU74n3Bv3aBeUBhMRi6emiil2GNR/4=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KMvJrc045259
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 17:52:42 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 20 Mar 2023 17:57:19 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 17:52:42 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2023 17:57:19 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 17:52:42 -0500
+ Frontend Transport; Mon, 20 Mar 2023 17:57:18 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KMqgDm016833;
-        Mon, 20 Mar 2023 17:52:42 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KMvIEC092988;
+        Mon, 20 Mar 2023 17:57:18 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     <vigneshr@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <a-nandan@ti.com>, <hnagalla@ti.com>, <vaishnav.a@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: (subset) [PATCH v2 0/2] Add Crypto Support for J784S4 SoC
-Date:   Mon, 20 Mar 2023 17:52:41 -0500
-Message-ID: <167935272979.212397.5705926679911778715.b4-ty@ti.com>
+To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        Bhavya Kapoor <b-kapoor@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 0/2] arm64: dts: ti: k3-j721s2: Add support for ADC nodes
+Date:   Mon, 20 Mar 2023 17:57:18 -0500
+Message-ID: <167935297528.213211.11496422611397737657.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230314152611.140969-1-j-choudhary@ti.com>
-References: <20230314152611.140969-1-j-choudhary@ti.com>
+In-Reply-To: <20230316095146.498999-1-b-kapoor@ti.com>
+References: <20230316095146.498999-1-b-kapoor@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -65,27 +65,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jayesh Choudhary,
+Hi Bhavya Kapoor,
 
-On Tue, 14 Mar 2023 20:56:09 +0530, Jayesh Choudhary wrote:
-> This series adds the crypto node for sa2ul for j784s4 platform.
+On Thu, 16 Mar 2023 15:21:44 +0530, Bhavya Kapoor wrote:
+> J721s2 has two instances of 8 channel ADCs in MCU domain. Add support
+> for both ADC nodes in dtsi file. Add pinmux information for both
+> instances of ADC in board dts file.
 > 
-> First patch adds the device-id for NAVSS without which the probe
-> for dma-controller fails due to 'ti,sci-dev-id' read failure.
-> Second patch adds the crypto node.
-> 
-> This series has functional dependency on j784s4 k3_soc_id[1] and
-> PSIL-thread support[2] but it does not affect the boot.
+> Changelog v6->v7:
+>  - Created 2 commits for k3-j721s2-mcu-wakeup.dtsi and
+>  k3-j721s2-common-proc-board.dts instead of a single commit
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
-This takes care of the missing patch for actually enabling crypto.
-
 Thank you!
 
-[2/2] arm64: dts: ti: k3-j784s4-main: Enable crypto accelerator
-      commit: a43f0ac3851833302174567dadd60f58e24d0f30
+[1/2] arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support for ADC nodes
+      commit: 4beba5cf9ecc099d59e6fe8a03254cd995b80123
+[2/2] arm64: dts: ti: k3-j721s2-common-proc-board: Add pinmux information for ADC
+      commit: cf2aacfe5f48b8c91d148dd7a3d3814b8ae04463
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
