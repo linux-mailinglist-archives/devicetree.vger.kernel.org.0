@@ -2,180 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2987B6C22BE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:32:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C18026C230C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:42:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229953AbjCTUct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 16:32:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56514 "EHLO
+        id S229945AbjCTUmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 16:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbjCTUcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:32:46 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD8C5B99;
-        Mon, 20 Mar 2023 13:32:43 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id t129so6023031iof.12;
-        Mon, 20 Mar 2023 13:32:43 -0700 (PDT)
+        with ESMTP id S229677AbjCTUmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:42:14 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B7C1EBDF;
+        Mon, 20 Mar 2023 13:41:32 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id x15so3137214pjk.2;
+        Mon, 20 Mar 2023 13:41:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679344362;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C19puc1CjUet0EnZr5hTIF4s8WkcyV5Hqj3hnqm8iww=;
-        b=Kf3Qg7ddjIzrSZaWovacFmGN96E8CXjiP25SwSFF4XgtDoCH0LTIXikQ0dxeiOTUhw
-         CO3tuebeb3adC1dm/uEoX7prE5Iq8xDFcxeO3SNKUqVrMNOLVDtIXNOduOEQAbXb+BuD
-         ETIIV5ZdXegL7q1KY8GpYt6meRwXI8zkbBiKS3HP2XDXqNsrkgbstJTrrXrAog/VPG7w
-         5gMF9uigs+YIqRgC519Mhi7OGZfaG79i3qUxE1/Nvw+MQKaVmc7SoN04A3Qhx8gBbG2y
-         6GVzTRF4qcsr/0DFfn4B0bGyUBIUuao+RnT9UKFWBtW3YmEFn26yFsSyOxLWFhYQjSfU
-         Qp0w==
+        d=gmail.com; s=20210112; t=1679344891;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
+        b=a0HcIxFpIjo1lSgr+MxW8pudqshXcHw+BiPZWFvBtQqePhHvgvVEQVZdmnTDBmMDK7
+         CmY91u5/YP6ybN/4gdZa8q8Mgky1m5JbY7TEnEZvulms39aEHxjr7Gf+psuJinYYj9cj
+         tQAAVEnc4BPk5+UErXx38+ddx4LMuOzQaHgrcnEVEkmD1KOxTkCCqgAEGWlyOb7pT4SK
+         LH9Rs8k5OVkK8NEwmDJmgpHNxtKcCBuGfvxI4+gLk40kdj/ZBp/MpdPdAjQbjiscQZd4
+         BS0SF8pqdy9NPUsz8F4A8dlnswapEQueHbN8FdH3agnrJmmSH0HgmvtdrgUKAAgRryhY
+         UHXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679344362;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679344891;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=C19puc1CjUet0EnZr5hTIF4s8WkcyV5Hqj3hnqm8iww=;
-        b=4R33+qTQhQceR/2TtXcjPWBd6kiOB8alspcKwwEIsEz7tFer3zmsEvxcUuguUc9BOp
-         uyYU/Yk6ZzJUl8EX1otDc2e1g9Hs1hy+g5eVYcOlQS6oILf0OnesFc6ITr3CKVKCOmW+
-         CWA5Ar3uiryA9ilKi8ADzV6G3ojAaDZpvr2dQYKDrcHBSjSRHVaLtr+Grzl+BQZOhQQm
-         Bu9zJUfomTFvMUTrJAnPIvOPaT+iVjWZP6GAWEV/lVFjZISMXzaGbbkj98njw2x0iVmg
-         F5r7wUmtL7j2UMwHeUCyBmgLV92IRoJ374ejuibgMXihA12lb7y4Lun92CTiZKFiAjsV
-         LeJg==
-X-Gm-Message-State: AO0yUKV9byLu/dVRA+a2/uqNw6s5o1Z65FXg3bv1cg6veCqAg/Fts0Ij
-        B7vPHmcwpbskp890s8A5ASHaZPWlfaE=
-X-Google-Smtp-Source: AK7set+lGRVgqCvTAlOWkDWUXK2qRiOlAyqjXOmkeTiocYZ6VJUlOBKDGXKULYPkl+YRhFodxJoZ3Q==
-X-Received: by 2002:a5e:c702:0:b0:74c:e43e:48f7 with SMTP id f2-20020a5ec702000000b0074ce43e48f7mr125807iop.13.1679344362633;
-        Mon, 20 Mar 2023 13:32:42 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o15-20020a02a1cf000000b003b015157f47sm3502646jah.9.2023.03.20.13.32.42
+        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
+        b=ei/3sFtFHynA7Q8IIOVuBQd69OGvue3l/NSyT/M0lzf1MvboJMfCqUCWvCZ/JI+rG+
+         W4Cj35DMfanwiyY9zuFH+noJ6qSGaoFHC3QX830quLGZihZ/VaLvF6uH8ebaP7DwXZYC
+         NGZXGuDH68wd0RTSuktNawsnZ2+19qqs+cah15wQm2FfjJzCKx3suqELsN9YLvQS46Ec
+         n6iJbEJgICydnj3SxvJuwYsqjxNj1bqZm1+Hvw9LpvJMgf3SVvQnArTn9MffOLjkQ/uR
+         oXxJSOK1H0oSerb8us5ItJbWK0aOEWUED0j9KT+m2PVam7Xvyy+TzyoiqpmEr9NLL34z
+         rlIA==
+X-Gm-Message-State: AO0yUKUAyFu/8q6U+32qUcXxjCbSQ8rMJyAjfACTtZVIY+T8seQBNibt
+        E84jvl+C9rndy1ZbnwWrI9M=
+X-Google-Smtp-Source: AK7set8RQR+fc+qe2esmHZrxVXZ0nOPF1zAz+mZWdv/urEMxOguZoqyh1B3Hr75AJXbELY1VcDLbxA==
+X-Received: by 2002:a17:90b:1a8e:b0:234:e3f:f53b with SMTP id ng14-20020a17090b1a8e00b002340e3ff53bmr454210pjb.21.1679344891331;
+        Mon, 20 Mar 2023 13:41:31 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([104.28.213.202])
+        by smtp.gmail.com with ESMTPSA id c3-20020a17090aa60300b0023b29b464f9sm6580943pjq.27.2023.03.20.13.41.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 13:32:42 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 20 Mar 2023 13:32:41 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Cc:     robh+dt@kernel.org, jdelvare@suse.com,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] docs: hwmon: Add documenttaion for acbel-crps PSU
-Message-ID: <3298cf17-5160-4543-ae72-0daae8384d05@roeck-us.net>
-References: <20230320154019.1943770-1-lakshmiy@us.ibm.com>
- <20230320154019.1943770-5-lakshmiy@us.ibm.com>
+        Mon, 20 Mar 2023 13:41:31 -0700 (PDT)
+From:   David Yang <mmyangfl@gmail.com>
+Cc:     David Yang <mmyangfl@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 4/5] dt-bindings: clock: Add Hi3798MV100 CRG
+Date:   Tue, 21 Mar 2023 04:40:37 +0800
+Message-Id: <20230320204042.980708-5-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230320204042.980708-1-mmyangfl@gmail.com>
+References: <20230320204042.980708-1-mmyangfl@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230320154019.1943770-5-lakshmiy@us.ibm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 10:40:18AM -0500, Lakshmi Yadlapati wrote:
-> Add documentation changes for acbel-crps psu
-> 
-> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-> ---
->  Documentation/hwmon/acbel-crps.rst | 81 ++++++++++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/hwmon/acbel-crps.rst
-> 
-> diff --git a/Documentation/hwmon/acbel-crps.rst b/Documentation/hwmon/acbel-crps.rst
-> new file mode 100644
-> index 000000000000..89a43fb88c8c
-> --- /dev/null
-> +++ b/Documentation/hwmon/acbel-crps.rst
-> @@ -0,0 +1,81 @@
-> +Kernel driver acbel-crps
-> +=======================
-> +
-> +Supported chips:
-> +
-> +  * ACBEL Common Redundant Power Supply.
-> +  Supported models: FSG032-00xG
-> +
-> +Author: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-> +
-> +Description
-> +-----------
-> +
-> +This driver supports ACBEL Common Redundant Power Supply. This driver
-> +is a client to the core PMBus driver.
+Add CRG bindings for Hi3798MV100 SoC. CRG (Clock and Reset Generator)
+module generates clock and reset signals used by other module blocks on
+SoC.
 
-No, it supports the FSG032-00xG power supply. Neither the driver nor its
-documentation should claim otherwise.
+Signed-off-by: David Yang <mmyangfl@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/clock/hisi-crg.txt          |  2 ++
+ include/dt-bindings/clock/histb-clock.h             | 13 +++++++++++++
+ 2 files changed, 15 insertions(+)
 
-> +
-> +Usage Notes
-> +-----------
-> +
-> +This driver does not auto-detect devices. You will have to instantiate the
-> +devices explicitly. Please see Documentation/i2c/instantiating-devices.rst for
-> +details.
-> +
-> +Sysfs entries
-> +-------------
-> +
-> +The following attributes are supported:
-> +
-> +======================= ======================================================
-> +curr1_crit          Critical maximum current.
-> +curr1_crit_alarm    Input current critical alarm.
-> +curr1_input         Measured output current.
-> +curr1_label         "iin"
-> +curr1_max           Maximum input current.
-> +curr1_max_alarm     Maximum input current high alarm.
-> +curr1_rated_max     Maximum rated input current.
-> +curr2_crit          Critical maximum current.
-> +curr2_crit_alarm    Output current critical alarm.
-> +curr2_input         Measured output current.
-> +curr2_label         "iout1"
-> +curr2_max           Maximum output current.
-> +curr2_max_alarm     Output current high alarm.
-> +curr2_rated_max     Maximum rated output current.
-> +
-> +
-> +fan1_alarm          Fan 1 warning.
-> +fan1_fault	    Fan 1 fault.
-> +fan1_input	    Fan 1 speed in RPM.
-> +fan1_target         Set fan speed reference.
-> +
-> +in1_alarm           Input voltage under-voltage alarm.
-> +in1_input           Measured input voltage.
-> +in1_label           "vin"
-> +in1_rated_max       Maximum rated input voltage.
-> +in1_rated_min       Minimum rated input voltage.
-> +in2_crit            Critical maximum output voltage.
-> +in2_crit_alarm      Output voltage critical high alarm.
-> +in2_input           Measured output voltage.
-> +in2_label           "vout1"
-> +in2_lcrit           Critical minimum output voltage.
-> +in2_lcrit_alarm     Output voltage critical low alarm.
-> +in2_rated_max       Maximum rated output voltage.
-> +in2_rated_min       Minimum rated output voltage.
-> +
-> +power1_alarm        Input fault or alarm.
-> +power1_input        Measured input power.
-> +power1_label        "pin"
-> +power1_max          Input power limit.
-> +power1_rated_max    Maximum rated input power.
-> +power2_crit         Critical output power limit.
-> +power2_crit_alarm   Output power crit alarm limit exceeded.
-> +power2_input        Measured output power.
-> +power2_label        "pout"
-> +power2_max          Output power limit.
-> +power2_max_alarm    Output power high alarm.
-> +power2_rated_max    Maximum rated output power.
-> +
-> +temp[1-3]_input     Measured temperature.
-> +temp[1-2]_max       Maximum temperature.
-> +temp[1-3]_rated_max Temperature high alarm.
-> +======================= ======================================================
-> -- 
-> 2.37.2
-> 
+diff --git a/Documentation/devicetree/bindings/clock/hisi-crg.txt b/Documentation/devicetree/bindings/clock/hisi-crg.txt
+index cc60b3d42..972c038c8 100644
+--- a/Documentation/devicetree/bindings/clock/hisi-crg.txt
++++ b/Documentation/devicetree/bindings/clock/hisi-crg.txt
+@@ -13,6 +13,8 @@ Required Properties:
+   - "hisilicon,hi3516cv300-crg"
+   - "hisilicon,hi3516cv300-sysctrl"
+   - "hisilicon,hi3519-crg"
++  - "hisilicon,hi3798mv100-crg"
++  - "hisilicon,hi3798mv100-sysctrl"
+   - "hisilicon,hi3798cv200-crg"
+   - "hisilicon,hi3798cv200-sysctrl"
+ 
+diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
+index e64e5770a..126b1f839 100644
+--- a/include/dt-bindings/clock/histb-clock.h
++++ b/include/dt-bindings/clock/histb-clock.h
+@@ -58,6 +58,19 @@
+ #define HISTB_USB3_UTMI_CLK1		48
+ #define HISTB_USB3_PIPE_CLK1		49
+ #define HISTB_USB3_SUSPEND_CLK1		50
++#define HISTB_USB2_UTMI_CLK1		51
++#define HISTB_USB2_2_BUS_CLK		52
++#define HISTB_USB2_2_PHY_CLK		53
++#define HISTB_USB2_2_UTMI_CLK		54
++#define HISTB_USB2_2_UTMI_CLK1		55
++#define HISTB_USB2_2_12M_CLK		56
++#define HISTB_USB2_2_48M_CLK		57
++#define HISTB_USB2_2_OTG_UTMI_CLK	58
++#define HISTB_USB2_2_PHY1_REF_CLK	59
++#define HISTB_USB2_2_PHY2_REF_CLK	60
++#define HISTB_FEPHY_CLK			61
++#define HISTB_GPU_BUS_CLK		62
++#define HISTB_GPU_CORE_CLK		63
+ 
+ /* clocks provided by mcu CRG */
+ #define HISTB_MCE_CLK			1
+-- 
+2.39.2
+
