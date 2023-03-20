@@ -2,200 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA9F6C0AB4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 07:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CAEA6C0ABF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 07:37:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230014AbjCTGfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 02:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35880 "EHLO
+        id S229920AbjCTGh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 02:37:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbjCTGeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 02:34:46 -0400
-Received: from smtp.gentoo.org (mail.gentoo.org [IPv6:2001:470:ea4a:1:5054:ff:fec7:86e4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA267296;
-        Sun, 19 Mar 2023 23:34:42 -0700 (PDT)
-Message-ID: <70323408-b823-1f1a-0202-434e6243b2af@gentoo.org>
-Date:   Mon, 20 Mar 2023 07:34:34 +0100
+        with ESMTP id S229511AbjCTGhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 02:37:25 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DC91116A
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 23:37:22 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id ek18so42474976edb.6
+        for <devicetree@vger.kernel.org>; Sun, 19 Mar 2023 23:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679294241;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nMAbHeAxn10XpZBHVp/8FgkoGfk6Ak3SIPc/tdQAzaU=;
+        b=cKNT2IPoYuLDU3GHiau+62cf+h4z8T6ZyosMDPFLS7tYFBxWRjiygHSJFE56UKTXsj
+         GVgZTvOke3jD3hhizxQ/iV+y9D+TULtf+CCRjJFqBlIFG6o08a9UwLyWAlm3wGSqTyqo
+         53iHnDyWzIr7IlqSzhUaEsQzf59Qn8M8CA6dgCd2yn0gZPS2jDy0dqy0ChJo8U9gfF35
+         oyGLDa0bchDbYA2aE8rIfl0wavTdFSCwb5npB6+N9NxcEWOnnIp5a8qNKR6e1YrLL78B
+         6Wcq4DmHjKJlR3MGHqrU3vcLB7f1gl/Jx9mxGbuX0yz7CPX1DWuRNAe6RgnRcQ53pLH4
+         P8IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679294241;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nMAbHeAxn10XpZBHVp/8FgkoGfk6Ak3SIPc/tdQAzaU=;
+        b=xK+aSbxjDVid8YU0RoTyOsDKE9KC6sUKyRDsHmhd9nl5vtdPtO0fWsYqEdiPnYQzGW
+         HyFBnVcYL+5WkmXOM6bjlsD8Kqx4ZAQuLRDNq/OFPcszgN90XdIYj1InEIC/JaHs+kBK
+         at52DKTyTq1Bca36Tvdafiu+EPvJ3b1h4CEcaKDqpI0r5xJaLevX7Gv24NEhPgZeEjVd
+         VgD14zR/nXJiT9akW+fzlPKVdQTm8Rsjvrw2xeFTTvNqLY2ziDxpWHxFOZ9Hd4AUHT0Y
+         5srDW+q+xGCNAUyB1YWftDfz5URiXrweBWkwExmz0+IZnl5e8TtvYFZOA6y8YuIYuFrt
+         RMoQ==
+X-Gm-Message-State: AO0yUKWelkIWdLk6RlsBu1GiT1ALg7Lm58RP6juKfyZS2k9j0YxlUO8d
+        x7PvkdDMkkUVszOed4ua+6toxA==
+X-Google-Smtp-Source: AK7set8VRtL9ZQsZfjAfc7z9H6C2FM1URQbMoaWzmaCRPc426Ay97st5q+LNo4+luc9BKJHApke3UA==
+X-Received: by 2002:a05:6402:211:b0:500:50f6:dd33 with SMTP id t17-20020a056402021100b0050050f6dd33mr7570647edv.2.1679294240864;
+        Sun, 19 Mar 2023 23:37:20 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:4428:8354:afb6:2992? ([2a02:810d:15c0:828:4428:8354:afb6:2992])
+        by smtp.gmail.com with ESMTPSA id y70-20020a50bb4c000000b004fa380a14e7sm4389167ede.77.2023.03.19.23.37.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Mar 2023 23:37:20 -0700 (PDT)
+Message-ID: <a6b9bab2-4151-c811-85ff-2424866e21d8@linaro.org>
+Date:   Mon, 20 Mar 2023 07:37:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-From:   zzam@gentoo.org
-Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+Subject: Re: [PATCH v2 3/6] dt-bindings: soc: starfive: syscon: Add optional
+ patternProperties
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
- <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
-Content-Language: en-GB
-In-Reply-To: <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230316030514.137427-1-xingyu.wu@starfivetech.com>
+ <20230316030514.137427-4-xingyu.wu@starfivetech.com>
+ <1f352445-4677-e33b-be14-c76bd7ffa188@linaro.org>
+ <45221a1c-dc01-2759-3e32-658636625529@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <45221a1c-dc01-2759-3e32-658636625529@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some inline comments below.
-
-Regards
-Matthias
-
-Am 22.02.23 um 14:29 schrieb Tomi Valkeinen:
-> From: Luca Ceresoli <luca@lucaceresoli.net>
+On 20/03/2023 04:54, Xingyu Wu wrote:
+> On 2023/3/19 20:28, Krzysztof Kozlowski wrote:
+>> On 16/03/2023 04:05, Xingyu Wu wrote:
+>>> Add optional compatible and patternProperties.
+>>>
+>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> ---
+>>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 39 ++++++++++++++++---
+>>>  1 file changed, 33 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>> index ae7f1d6916af..b61d8921ef42 100644
+>>> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>>> @@ -15,16 +15,31 @@ description: |
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    items:
+>>> -      - enum:
+>>> -          - starfive,jh7110-aon-syscon
+>>> -          - starfive,jh7110-stg-syscon
+>>> -          - starfive,jh7110-sys-syscon
+>>> -      - const: syscon
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - enum:
+>>> +              - starfive,jh7110-aon-syscon
+>>> +              - starfive,jh7110-stg-syscon
+>>> +              - starfive,jh7110-sys-syscon
+>>> +          - const: syscon
+>>> +      - items:
+>>> +          - enum:
+>>> +              - starfive,jh7110-aon-syscon
+>>> +              - starfive,jh7110-stg-syscon
+>>> +              - starfive,jh7110-sys-syscon
+>>> +          - const: syscon
+>>> +          - const: simple-mfd
+>>>  
+>>>    reg:
+>>>      maxItems: 1
+>>>  
+>>> +patternProperties:
+>>> +  # Optional children
+>>> +  "pll-clock-controller":
+>>
+>> It's not a pattern.
 > 
-> An ATR is a device that looks similar to an i2c-mux: it has an I2C
-> slave "upstream" port and N master "downstream" ports, and forwards
-> transactions from upstream to the appropriate downstream port. But it
-> is different in that the forwarded transaction has a different slave
-> address. The address used on the upstream bus is called the "alias"
-> and is (potentially) different from the physical slave address of the
-> downstream chip.
-> 
-> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
-> implementing ATR features in a device driver. The helper takes care or
-> adapter creation/destruction and translates addresses at each transaction.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
->   Documentation/i2c/index.rst         |   1 +
->   Documentation/i2c/muxes/i2c-atr.rst |  97 +++++
->   MAINTAINERS                         |   8 +
->   drivers/i2c/Kconfig                 |   9 +
->   drivers/i2c/Makefile                |   1 +
->   drivers/i2c/i2c-atr.c               | 548 ++++++++++++++++++++++++++++
->   include/linux/i2c-atr.h             | 116 ++++++
->   7 files changed, 780 insertions(+)
->   create mode 100644 Documentation/i2c/muxes/i2c-atr.rst
->   create mode 100644 drivers/i2c/i2c-atr.c
->   create mode 100644 include/linux/i2c-atr.h
-> 
-[...]
-> diff --git a/drivers/i2c/i2c-atr.c b/drivers/i2c/i2c-atr.c
-> new file mode 100644
-> index 000000000000..5ab890b83670
-> --- /dev/null
-> +++ b/drivers/i2c/i2c-atr.c
-> @@ -0,0 +1,548 @@
-[...]
-> +
-> +/*
-> + * Replace all message addresses with their aliases, saving the original
-> + * addresses.
-> + *
-> + * This function is internal for use in i2c_atr_master_xfer(). It must be
-> + * followed by i2c_atr_unmap_msgs() to restore the original addresses.
-> + */
-> +static int i2c_atr_map_msgs(struct i2c_atr_chan *chan, struct i2c_msg *msgs,
-> +			    int num)
-> +{
-> +	struct i2c_atr *atr = chan->atr;
-> +	static struct i2c_atr_cli2alias_pair *c2a;
-> +	int i;
-> +
-> +	/* Ensure we have enough room to save the original addresses */
-> +	if (unlikely(chan->orig_addrs_size < num)) {
-> +		u16 *new_buf;
-> +
-> +		/* We don't care about old data, hence no realloc() */
-> +		new_buf = kmalloc_array(num, sizeof(*new_buf), GFP_KERNEL);
-> +		if (!new_buf)
-> +			return -ENOMEM;
-> +
-> +		kfree(chan->orig_addrs);
-> +		chan->orig_addrs = new_buf;
-> +		chan->orig_addrs_size = num;
-> +	}
-> +
-> +	for (i = 0; i < num; i++) {
-> +		chan->orig_addrs[i] = msgs[i].addr;
-> +
-> +		c2a = i2c_atr_find_mapping_by_addr(&chan->alias_list,
-> +						   msgs[i].addr);
-> +		if (!c2a) {
-> +			dev_err(atr->dev, "client 0x%02x not mapped!\n",
-> +				msgs[i].addr);
-> +			return -ENXIO;
-I miss the roll-back of previously modified msgs[].addr values.
+> Does it use 'properties' instead of 'patternProperties'?
 
-> +		}
-> +
-> +		msgs[i].addr = c2a->alias;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Restore all message address aliases with the original addresses. This
-> + * function is internal for use in i2c_atr_master_xfer().
-> + *
-> + * @see i2c_atr_map_msgs()
-> + */
-> +static void i2c_atr_unmap_msgs(struct i2c_atr_chan *chan, struct i2c_msg *msgs,
-> +			       int num)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < num; i++)
-> +		msgs[i].addr = chan->orig_addrs[i];
-Does this code needs null and size checks for orig_addrs/orig_addrs_size 
-to protect from oopses?
-This cannot happen now as i2c_atr_master_xfer returns early when 
-i2c_atr_map_msgs fails.
+Yes.
 
-> +}
-> +
-> +static int i2c_atr_master_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
-> +			       int num)
-> +{
-> +	struct i2c_atr_chan *chan = adap->algo_data;
-> +	struct i2c_atr *atr = chan->atr;
-> +	struct i2c_adapter *parent = atr->parent;
-> +	int ret;
-> +
-> +	/* Translate addresses */
-> +	mutex_lock(&chan->orig_addrs_lock);
-> +
-> +	ret = i2c_atr_map_msgs(chan, msgs, num);
-> +	if (ret < 0)
-> +		goto err_unlock;
-> +
-> +	/* Perform the transfer */
-> +	ret = i2c_transfer(parent, msgs, num);
-> +
-> +	/* Restore addresses */
-> +	i2c_atr_unmap_msgs(chan, msgs, num);
-> +
-> +err_unlock:
-> +	mutex_unlock(&chan->orig_addrs_lock);
-> +
-> +	return ret;
-> +}
-> +
-[...]
+> 
+>>
+>> Anyway should be clock-controller
+> 
+> Will fix.
+> 
+>>
+>>> +    type: object
+>>> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+>>> +    description: Clock provider for PLL.
+>>> +
+>>
+>> You just added these bindings! So the initial submission was incomplete
+>> on purpose?
+>>
+>> No, add complete bindings.
+> 
+> Does you mean that it should drop the 'description', or add complete 'description',
+> or add 'compatible', 'clocks' and 'clock-cells' of complete clock-controller bindings?
 
+It means it should be squashed with the patch which adds it.
+
+> 
+>>
+>>>  required:
+>>>    - compatible
+>>>    - reg
+>>> @@ -38,4 +53,16 @@ examples:
+>>>          reg = <0x10240000 0x1000>;
+>>>      };
+>>>  
+>>> +  - |
+>>> +    syscon@13030000 {
+>>
+>> No need for new example... Just put it in existing one.
+>>
+> 
+> Actually, the PLL clock-controller are just set in sys-syscon resgisters. The stg-syscon and
+> aon-syscon don't need it. So PLL clock-controller node only is added in sys-syscon node.
+
+So why having other examples if they are included here? Drop them.
+
+
+
+Best regards,
+Krzysztof
 
