@@ -2,173 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A1776C13A5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:40:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9E46C140F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:55:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjCTNkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 09:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
+        id S229749AbjCTNzO convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 09:55:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbjCTNkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:40:19 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A504227;
-        Mon, 20 Mar 2023 06:40:17 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id s1so10504127vsk.5;
-        Mon, 20 Mar 2023 06:40:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679319616;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KkAa9Rg7+gEbROnuFiTTZXiHSDa+ELHN4dq6sNy3AKQ=;
-        b=jKN/xoRyF0HlH8OOc8+S5NXT1KIhaiP+9ht7qHJ5kvAw3GFPT52UOEQx74qXwqnT77
-         DqnkmHfZGVH9yqRVB9KxVUZI+Ei3tFktEPVu+fESzSroIw3Q+5Ydno5wU8mxw6NiRHDe
-         2o3FbOyAZKNRgJ6Nn+Amat7i/y960EHIeg5g3BKCJvhOfP23dakGRVXKmsLcHZqYwItC
-         fW/ZO8ZYiyONP5jwW3mik0jrHRPHUJzOloKjeTWa9ba+9pjFw98UPGOMZ4Agh7y7mnPa
-         jQKLNENQdMobStbnsC99Vlx8l5Ha7EyvFBILe4min9m/P/i7mMg3XzQj2lIqpvJyQdv8
-         29Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679319616;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KkAa9Rg7+gEbROnuFiTTZXiHSDa+ELHN4dq6sNy3AKQ=;
-        b=fSwQdRHKfLOtV30OheNAV7BF5j+K0MEkFOP14+HAHfWHyQ5FgmEMe0CAi9UIWiDmwE
-         CoD6+8hCcEg3xWX/mQZZ5pVB28JSV0QUW1C+JjE4Lwas+YIZnIOMMPqzGkmigMJrc9+P
-         wfDCGiHhQOVlIbTQome7C11SxSuNFrE6/e1ZI/Af7U9KFRX0Z7Z/4rV/INcIIBzNFVNT
-         lpq2CWHs0pQ71GsZDMiyO4Vk9yz7O2BOvYNRINAYfabDRoh58hzupIv85Sgu00gPVRmN
-         Wz1Xah346xsuzArrBhiDRx4sgYX+30sgpeDQ/4IVNqE1IvJxBcpc5S10hUATViP0popq
-         3M1Q==
-X-Gm-Message-State: AO0yUKWoiLyihLL7KSNv8LJKXKYsHR03ifFGzDJrSV+nvQH0Ol4lbCtO
-        rc5IN0hNTWUfahIFyRE6pL6fc+8L5HKtBtnPssY=
-X-Google-Smtp-Source: AK7set/0jW9R/bupB56Gi6g9rdP22UBRhR09j+GWuEbHj5WU4WJTWmoBMjPhlvRTC4PCfGwYOlnmmHKlYsREMqUB5LU=
-X-Received: by 2002:a67:d508:0:b0:412:5424:e58e with SMTP id
- l8-20020a67d508000000b004125424e58emr4166830vsj.0.1679319616409; Mon, 20 Mar
- 2023 06:40:16 -0700 (PDT)
+        with ESMTP id S231660AbjCTNyx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:54:53 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48632F979;
+        Mon, 20 Mar 2023 06:54:38 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3CBBA24E06F;
+        Mon, 20 Mar 2023 21:54:35 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 21:54:35 +0800
+Received: from localhost.localdomain (183.27.97.64) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 21:54:34 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+Subject: [PATCH v2 0/3] Add timer driver for StarFive JH7110 RISC-V SoC
+Date:   Mon, 20 Mar 2023 21:54:30 +0800
+Message-ID: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230319204802.1364-1-kaehndan@gmail.com> <20230319204802.1364-4-kaehndan@gmail.com>
- <ZBhYXwjPeRiZwxMT@smile.fi.intel.com> <ZBhY5Gp88gVK7q/g@smile.fi.intel.com>
-In-Reply-To: <ZBhY5Gp88gVK7q/g@smile.fi.intel.com>
-From:   Daniel Kaehn <kaehndan@gmail.com>
-Date:   Mon, 20 Mar 2023 08:40:07 -0500
-Message-ID: <CAP+ZCCc=q_=d18UHEZ9N8HVQ6AYQsTfNgS1r93UCJOB-OEodSw@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_FILL_THIS_FORM_SHORT
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [183.27.97.64]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 8:00=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Mon, Mar 20, 2023 at 02:58:07PM +0200, Andy Shevchenko wrote:
-> > On Sun, Mar 19, 2023 at 03:48:02PM -0500, Danny Kaehn wrote:
->
-> ...
->
-> > > +   device_for_each_child_node(&hdev->dev, child) {
-> > > +           name =3D fwnode_get_name(child);
-> > > +           ret =3D acpi_get_local_address(ACPI_HANDLE_FWNODE(child),=
- &addr);
-> > > +
-> > > +           if ((name && strcmp("i2c", name) =3D=3D 0) || (!ret && ad=
-dr =3D=3D 0))
-> > > +                   device_set_node(&dev->adap.dev, child);
-> > > +           else if ((name && strcmp("gpio", name)) =3D=3D 0 ||
-> > > +                                   (!ret && addr =3D=3D 1))
-> > > +                   dev->gc.fwnode =3D child;
-> > > +   }
-> >
-> > Please, make addresses defined explicitly. You may also do it with node=
- naming
-> > schema:
-> >
-> > #define CP2112_I2C_ADR                0
-> > #define CP2112_GPIO_ADR               1
-> >
-> > static const char * const cp2112_cell_names[] =3D {
-> >       [CP2112_I2C_ADR]        =3D "i2c",
-> >       [CP2112_GPIO_ADR]       =3D "gpio",
-> > };
-> >
-> >       device_for_each_child_node(&hdev->dev, child) {
-> >               name =3D fwnode_get_name(child);
-> >               if (name) {
-> >                       ret =3D match_string(cp2112_cell_names, ARRAY_SIZ=
-E(cp2112_cell_names), name);
-> >                       if (ret >=3D 0)
-> >                               addr =3D ret;
-> >               } else
-> >                       ret =3D acpi_get_local_address(ACPI_HANDLE_FWNODE=
-(child), &addr);
-> >               if (ret < 0)
-> >                       ...error handling if needed...
-> >
-> >               switch (addr) {
-> >               case CP2112_I2C_ADR:
-> >                       device_set_node(&dev->adap.dev, child);
-> >                       break;
-> >               case CP2112_GPIO_ADR:
-> >                       dev->gc.fwnode =3D child;
-> >                       break;
-> >               default:
-> >                       ...error handling...
-> >               }
-> >       }
->
-> Btw, don't you use "reg" property for the child nodes? It would be better=
- from
-> de facto used patterns (we have a couple of mode drivers that have a comm=
-on
-> code to read "reg" or _ADR() and that code can be split into a helper and=
- used
-> here).
->
+This patch serises are to add timer driver for the StarFive JH7110
+RISC-V SoC. The first patch adds documentation to describe device
+tree bindings. The subsequent patch adds timer driver and support
+JH7110 SoC. The last patch adds device node about timer to JH7110
+dts.
 
-Named nodes _seem_ to be preferred in DT for when there isn't a
-logical / natural
-numbering to the child nodes. A.e. for USB, reg is used to specify
-which port, for I2C,
- which address on the bus, but for two parallel and independent
-functions on the same
-device, it seems named nodes would make more sense in DT. Many examples exi=
-st
-in mainline where named nodes are used in DT in this way. One example
-is network cards
-which provide an mdio bus bind through the child "mdio". One example
-of a specifically a
-child i2c controller being bound to "i2c" can be found in
-pine64,pinephone-keyboard.yaml.
-But it's certainly possible this isn't the desired direction moving
-forward in DT -- my opinion
-should definitely be taken with a grain of salt. Maybe this is
-something I should follow up on
-with DT folks on that DT vs. ACPI thread made earlier.
+This timer has four free-running 32 bit counters in StarFive JH7110
+SoC. And each channel(counter) triggers an interrupt when timeout.
+They support one-shot mode and continuous-run mode.
 
-One thing I did notice when looking at the mfd subsystem is that most
-DT drivers actually
-match on the compatible string of the child nodes, a.e.
-"silabs,cp2112", "silabs,cp2112-gpio".
-"silabs,cp2112-i2c". We could implement that here, but I think that
-would make more sense if
-we were to actually split the cp2112 into mfd & platform drivers, and
-additionally split the DT
-binding by function.
+The last patch should be applied after the patchset [1]:
+[1] https://lore.kernel.org/all/20230311090733.56918-1-hal.feng@starfivetech.com/
 
-Thanks,
+Changes since v1:
+- Added description about timer and modified properties' description
+  in dt-bindings.
+- Dropped the 'interrupt-names' and 'clock-frequency' in dt-bindings.
+- Renamed the functions and added 'starfive_'
+- Modified that the driver probe by platform bus.
 
-Danny Kaehn
+v1 https://lore.kernel.org/all/20221223094801.181315-1-xingyu.wu@starfivetech.com/
+
+Xingyu Wu (3):
+  dt-bindings: timer: Add timer for StarFive JH7110 SoC
+  clocksource: Add StarFive timer driver
+  riscv: dts: jh7110: starfive: Add timer node
+
+ .../bindings/timer/starfive,jh7110-timer.yaml |  95 +++++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  20 +
+ drivers/clocksource/Kconfig                   |  12 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-starfive.c          | 390 ++++++++++++++++++
+ drivers/clocksource/timer-starfive.h          |  96 +++++
+ 7 files changed, 621 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+ create mode 100644 drivers/clocksource/timer-starfive.c
+ create mode 100644 drivers/clocksource/timer-starfive.h
+
+
+base-commit: 8ca09d5fa3549d142c2080a72a4c70ce389163cd
+prerequisite-patch-id: ebaead89601acf604e83224f4df8d57a7f4331b8
+prerequisite-patch-id: 609d5d7c55b0b8e2967966673dab8f62a6fceab9
+prerequisite-patch-id: ac150a8c622e858e088df8121093d448df49c245
+prerequisite-patch-id: a4255724d4698f1238663443024de56de38d717b
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: dfb8d5a1fb262127d7a8e1ef3e97f455aaa19509
+prerequisite-patch-id: 11b0f5746bbfbf8aa5c5746dcd7b0dce62e7f922
+prerequisite-patch-id: 315303931e4b6499de7127a88113763f86e97e16
+prerequisite-patch-id: 40cb8212ddb024c20593f73d8b87d9894877e172
+prerequisite-patch-id: a1673a9e9f19d6fab5a51abb721e54e36636f067
+prerequisite-patch-id: 189a0f41ba4eecd4f3f35c503baac8aed8ccd7de
+prerequisite-patch-id: 1117ecaa40a353c667b71802ab34ecf9568d8bb2
+prerequisite-patch-id: 25923a0c77e92631ed3cd8a163d789daad35f0f8
+prerequisite-patch-id: 6a6f6215f09932e68fdfd294df2e813ec9d2481f
+prerequisite-patch-id: 2cc95b47cad25fd9b875d27f4e8e3d84eb70274b
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: e7773c977a7b37692e9792b21cc4f17fa58f9215
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 0a0ac5a8a90655b415f6b62e324f3db083cdaaee
+-- 
+2.25.1
+
