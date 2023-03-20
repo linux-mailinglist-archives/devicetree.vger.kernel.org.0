@@ -2,108 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B40316C2301
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C25FD6C2385
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 22:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbjCTUld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 16:41:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
+        id S230128AbjCTVVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 17:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230298AbjCTUl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:41:29 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511292203D;
-        Mon, 20 Mar 2023 13:41:11 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id l15so5609480ilv.4;
-        Mon, 20 Mar 2023 13:41:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679344870;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FfP1M8AIpQDk/dFV6Re7F0lLwMe3nNKA3tGt6+sXSrA=;
-        b=fqgInDamz/2KApokQYzyEA0HcCwgH2b0u/VF5rAWQVF/3Jwx5xvqiXtEQlyd7oW65f
-         agUQ5obgzyK2bhDc6I/5ULgb+P/BCLs5i38UUwEDZuyoNiFwM0P9ZasrTUXVihlAVUBz
-         8FZ7DHyUR+T02tNZUj72EjaGYqRdmzpMRXg+hfUwogH9uzzZmPLZFUya2B57nWlaAxq2
-         o4uFCX4LO2ZnsJxYi+4xTl9UfF+iwbFFT8P3WqqPKEKphow2UhQ23JCvOtAFsunRNLka
-         3YH9kw9wFEEyAsqsKJx33ndrg8VrM1fp2/zydqUnk9EAeUqjj1x9CLDvrvZlbRmPaIti
-         Jj5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679344870;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FfP1M8AIpQDk/dFV6Re7F0lLwMe3nNKA3tGt6+sXSrA=;
-        b=5drYxV6kMjtLgRMhKKdts4jrTu/FEbz3YKhZcrILuJ0Jn9ubaVKiiuW0U9GkY2OxiL
-         p6zdJRLKFSjY3+WOULSE7taF526JXIDOexth31otw+MgmgiDrED8/YGwx4+ys+ROoZK0
-         VfzW9vTWz8sIf0uToipAFjjkzxhTKt7vdQqaaBVOxPQCR2VrY0+51wzQVzSBYY8yA+tB
-         LNUeTZVoWoJ2KvlJZXd9kcAbnXijO8HfpYnPs/nUrhmwaedEGnj8AiH1NM7pJM0vSEGh
-         AfXDlVo1ooiSnQ472dMCEJRO8JrXF/nouuGQxIbRdoVEzt7wGLvHJZGMzo61UIGzxw5U
-         2/bA==
-X-Gm-Message-State: AO0yUKWCmSysMOHuOrzj/HcRiz5UfCLFwh5f7sUAwv+O/wZcJGAKLZDd
-        H8gJZy5EGeepKnoaOE1j6JWGlNkAUA8=
-X-Google-Smtp-Source: AK7set/Jy0gPn/8VLWBE5pMhbyEeAt9lpYudgFKGUHcMaHHuJnNJDBpUNJ0hyh1VDjVpYm/+stOPBQ==
-X-Received: by 2002:a92:dc42:0:b0:315:9937:600e with SMTP id x2-20020a92dc42000000b003159937600emr542324ilq.26.1679344870512;
-        Mon, 20 Mar 2023 13:41:10 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n16-20020a056638111000b0040619720af8sm3455751jal.35.2023.03.20.13.41.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 13:41:10 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 20 Mar 2023 13:41:09 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-Cc:     robh+dt@kernel.org, jdelvare@suse.com,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: trivial-devices: Add acbel,crps
-Message-ID: <13782cac-c46d-4299-896f-ac0341c26f45@roeck-us.net>
-References: <20230320154019.1943770-1-lakshmiy@us.ibm.com>
- <20230320154019.1943770-3-lakshmiy@us.ibm.com>
+        with ESMTP id S229916AbjCTVVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 17:21:51 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2454B30B22;
+        Mon, 20 Mar 2023 14:21:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 51613B810F4;
+        Mon, 20 Mar 2023 21:21:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD943C433EF;
+        Mon, 20 Mar 2023 21:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679347300;
+        bh=qlNHY3AtvWM7FXZ0JBT4vSXElewhp64RqmgLO5c9uUA=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=Ix7ZaNOlKAc03BSJ5Yo5CFuhMP1KPy47cHjl2PazM9iz8L+mGwNHH/jnYEkSTC6yM
+         +BibgyyMHBkRKkeYwciv/AmH1EZmsFJSNq7/gggByVWpHjcFcChlaNqPFkFHYI38Il
+         dUtshLcxPsukp5NjNYyuphYZl0p3/uy6vs5V6aYXkgmAk7sa+TJ8a2pUsqUIL3SW8y
+         4DnARn1o9d+LuKw9TzBL9WNbns0wXiDeLZf96/7gXhE8k3PAUgQL2swfpxqJ1lWins
+         wQ2dHlZmAP222HeWmVaxu0E75beLz77mPOEDd3Ano5EwSPn0Tt06v0QCvQRxYPY7z0
+         c4b31eGXpvKFA==
+Message-ID: <90dd1f841e7941d8b5931ef68cd6d14e.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230320154019.1943770-3-lakshmiy@us.ibm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMhs-H-y6TsSoKsJzM0gkFk6wx7xNigXKJb7wm8rBzrigtJANg@mail.gmail.com>
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com> <20230320161823.1424278-8-sergio.paracuellos@gmail.com> <966523bee1d28d546969a24eff60d315.sboyd@kernel.org> <CAMhs-H-y6TsSoKsJzM0gkFk6wx7xNigXKJb7wm8rBzrigtJANg@mail.gmail.com>
+Subject: Re: [PATCH 07/10] mips: ralink: remove clock related function prototypes
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org, arinc.unal@arinc9.com
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 20 Mar 2023 14:21:37 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 10:40:16AM -0500, Lakshmi Yadlapati wrote:
-> Add Acbel CRPS Series power supply to trivial devices.
-> 
-> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 6f482a254a1d..ae2cf4411b39 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -30,6 +30,8 @@ properties:
->      items:
->        - enum:
->              # SMBus/I2C Digital Temperature Sensor in 6-Pin SOT with SMBus Alert and Over Temperature Pin
-> +          - acbel,crps
-> +            # Acbel CRPS Series power supply
+Quoting Sergio Paracuellos (2023-03-20 13:17:47)
+> Hi Stephen,
+>=20
+> On Mon, Mar 20, 2023 at 8:38=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> w=
+rote:
+> >
+> > Quoting Sergio Paracuellos (2023-03-20 09:18:20)
+> > > Clock related code has been removed from 'arch/mips/ralink' folder an=
+d put
+> > > into drivers space. Hence remove clock related prototypes which are n=
+ot
+> > > used anymore.
+> > >
+> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > ---
+> > >  arch/mips/ralink/common.h | 3 ---
+> > >  1 file changed, 3 deletions(-)
+> > >
+> > > diff --git a/arch/mips/ralink/common.h b/arch/mips/ralink/common.h
+> > > index 87fc16751281..fcdfc9dc6210 100644
+> > > --- a/arch/mips/ralink/common.h
+> > > +++ b/arch/mips/ralink/common.h
+> > > @@ -23,9 +23,6 @@ extern struct ralink_soc_info soc_info;
+> > >
+> > >  extern void ralink_of_remap(void);
+> > >
+> > > -extern void ralink_clk_init(void);
+> >
+> > Why isn't this removed in the patch that removes the function?
+>=20
+> Because the function exists for all the SoCs code and there are
+> several patches removing it; one per SoC, so I decided to remove this
+> at the end. Should I squash all patches together instead?
 
-This is way too generic. There is not just one Acbel CRPS power supply,
-there is a whole lot of them. It is very unlikely that they can all
-be described with a single devicetree "compatible" property.
-
-Guenter
-
->            - ad,ad7414
->              # ADM9240: Complete System Hardware Monitor for uProcessor-Based Systems
->            - ad,adm9240
-> -- 
-> 2.37.2
-> 
+No. But you should squash this with whatever patch removes the last one.
