@@ -2,91 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1083B6C1CF3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09BF76C1D0A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232955AbjCTQy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57164 "EHLO
+        id S232161AbjCTRAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 13:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232278AbjCTQx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:53:57 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E0429164
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 09:45:57 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id r11so49245965edd.5
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 09:45:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679330752;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K3T1LPv1K70J3JuBzIbTNRHXgTwj8NY1hYmQMPryDkg=;
-        b=pHM15ySsN+x1vypUH4DKrKjtcuCi+sDsrUICtxNGaQ9WMBPB1Mr5pJl1rYYgraURQ0
-         vNDsyf48UgmQcrUsVvC4ao72qGIoEuaCF2rMx1OoQxCAmogaNS4Hfnu+kVDAl4jZCOW5
-         TGmheZof1cmBVQD9fsXZF+HjhbKu9JeIc0LdN31haZlnWf86mucFK5epnkUfKRZgZk30
-         3SCIYErCFvCPfXADnlS+YiW+NXOkLxfCdfrqvJg/alj0tIQeYE4mAgAyGsdFH68Elc1n
-         dgILrbXL7d/41Na1uRoH4tPhB3reW/K7giz5vf5gFreiucW+flAGUoXS6p+twVxxeoyB
-         Ey2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679330752;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K3T1LPv1K70J3JuBzIbTNRHXgTwj8NY1hYmQMPryDkg=;
-        b=Mrcnyn/TZthdPMhwqu/R1X/bNB7sBpI1XNFJBnofIxa7iFPvXSxWYNF03s2TzO/JbZ
-         EIiXLA1wPPf5J1QYmccs6x5Qg2qt5Q0ynyHEMzTQsUn2/HMD9kXw7C96N7YwyPNx6N6H
-         /za4hjUIb953yy2Vn6+MWaqaCvAKapuJe73VdJIM+b9PpSjRsE2kqfUPKamUqrY+M3SC
-         S6WAbWTORWA5wIW3Q4ko1RcTWwG7P7B/lDFp5R0ce8oHJGj59Rae2vE6C+DzrDN4vYbV
-         ILPihszSVP4bYQhq5E8Ifvf6+lykACl4aZf8z8FTeI6+IjI+4r9oTp5KO/kAzmOM8Tv8
-         MqtQ==
-X-Gm-Message-State: AO0yUKXFhNTlnH2OxDcGfrUeLK7N4L+MDdgexfcurr0B7oqry2u7inNW
-        KQRhMokz7k9um51ehIaP2/llAQ==
-X-Google-Smtp-Source: AK7set9JkBaxsjpNVS4TqrKVAg5N+Zo9mzzcVIk7zoedDZNpbcE9LmYckt7ZGz+KLpSbMaB8GaPd4Q==
-X-Received: by 2002:a17:906:590c:b0:932:2874:cc5 with SMTP id h12-20020a170906590c00b0093228740cc5mr9239993ejq.16.1679330752142;
-        Mon, 20 Mar 2023 09:45:52 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id bu6-20020a170906a14600b00933c52c2a0esm2043336ejb.173.2023.03.20.09.45.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 09:45:51 -0700 (PDT)
-Message-ID: <7426cf61-957e-077a-120e-5c3747ee0e20@linaro.org>
-Date:   Mon, 20 Mar 2023 17:45:50 +0100
+        with ESMTP id S232956AbjCTQ7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:59:38 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FDD199F1;
+        Mon, 20 Mar 2023 09:53:00 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KGpOJY021129;
+        Mon, 20 Mar 2023 11:51:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679331084;
+        bh=QPyC/DbvOyWHYeXOzG9GugyttVskkFsiS09ljjL/M7g=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=fdgnjN4CmGalQTfpdpRkDjUlSwy9FxKuWVGKHdnmm/PBkh9wbGgcqawSZywMz+ViJ
+         aehcilXnlO1V+xLHUSo5VPgDNkwjrAIrCS1JQb1KBdD+TyldpesqxT9IJlxT/9fjEO
+         dXbPOhfMBCNEvL3VKw8XWXLP/GuPoJ/mLUEGZ0pw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KGpOdC094500
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Mar 2023 11:51:24 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
+ Mar 2023 11:51:24 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 20 Mar 2023 11:51:24 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KGpOQo021931;
+        Mon, 20 Mar 2023 11:51:24 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Julien Panis <jpanis@baylibre.com>, <bb@ti.com>,
+        <d-gole@ti.com>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V3 1/2] arm64: dts: ti: k3-am62-wakeup: Introduce RTC node
+Date:   Mon, 20 Mar 2023 11:51:22 -0500
+Message-ID: <20230320165123.80561-2-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230320165123.80561-1-nm@ti.com>
+References: <20230320165123.80561-1-nm@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 08/10] dt-bindings: arm: stm32: Add Phytec STM32MP1
- board
-Content-Language: en-US
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-stm32@st-md-mailman.stormreply.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230320132755.2150384-1-s.trumtrar@pengutronix.de>
- <20230320132755.2150384-9-s.trumtrar@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320132755.2150384-9-s.trumtrar@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 14:27, Steffen Trumtrar wrote:
-> The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to
-> 1 GB eMMC, up to 16 MB QSPI and up to 128 GB NAND flash.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
+Introduce digital RTC node in wakeup domain. Even though this has
+no specific battery backup supply, this on-chip RTC is used in
+cost-optimized board designs as a wakeup source.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+Changes since v2:
+- Just reviewed-by pickups
 
-Best regards,
-Krzysztof
+V2: https://lore.kernel.org/all/20230315170706.1598977-2-nm@ti.com/
+V1: https://lore.kernel.org/all/20230311105850.21811-2-nm@ti.com/
+
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+index 38dced6b4fef..fec81546fbbd 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+@@ -40,4 +40,14 @@ wkup_i2c0: i2c@2b200000 {
+ 		clock-names = "fck";
+ 		status = "disabled";
+ 	};
++
++	wkup_rtc0: rtc@2b1f0000 {
++		compatible = "ti,am62-rtc";
++		reg = <0x00 0x2b1f0000 0x00 0x100>;
++		interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&k3_clks 117 6> , <&k3_clks 117 0>;
++		clock-names = "vbus", "osc32k";
++		power-domains = <&k3_pds 117 TI_SCI_PD_EXCLUSIVE>;
++		wakeup-source;
++	};
+ };
+-- 
+2.40.0
 
