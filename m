@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E0646C1475
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F0B6C1478
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230364AbjCTOMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38452 "EHLO
+        id S231268AbjCTONp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230204AbjCTOMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:12:46 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 431561DB9D
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:12:44 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id cy23so47194884edb.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:12:44 -0700 (PDT)
+        with ESMTP id S230078AbjCTONo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:13:44 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CF6FF2D
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:13:40 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id t5so10501839edd.7
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:13:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679321563;
+        d=linaro.org; s=google; t=1679321619;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dK2MAyLuCPlT9bihWVJaLt1UKGVXwplMktCHcbhdemo=;
-        b=sKhOnZ7exS206JUl6LhXyyEdxlDCBOVR424VFOx1mbYbmunR4tSa639aKm87Zs69jz
-         cHzizdq+A5fAJlQDUKA2tEp8UVc2LqtOJmNjsLO+/tdU8BilWgePVDvsD8WXPLhYJeUE
-         d23h4Q5PrLrSuivpBcqIwZz9KEiq5QvXg0RGVbTXIb3Z7zqrTc49SpI/HPPI7FBrkZGP
-         O9pS3Va+H1kDMruwcxOaWwCGI9WmxzROJ25hncFG9WVCaCLePGJsosgODfeZTLiLuVT0
-         yZNGXXAg6lAzoX+51ABOT1uM2Y9sdNREw65vrn2vo4kS1Is2WHWbSx1EKNAoG/1V1VPk
-         BCQw==
+        bh=2KhLTwAPbhzahu8cLvqWPKYphjoJMZGlrXReeRqVQsY=;
+        b=zsXBiB7+F5D7QTP+fOLUoSvKOjZYiP8Ene0Sa6MTBgICONnAM4d6nFV7vghsZKF0yE
+         3caHH1/En3W6wlfXQGmVM8scKu2jLFi2LvsO6ymxwZ2Ct6+vRXLRnX8F6hXYve/Ytalc
+         YdZvmZfvlG6VbYE905wVnL4Ua3FfYzUo4VZ8d58OliaoPMhLXVJlIOrvkZkywfkqmEkm
+         1yqAWmoRwrmnzAch1Qb5h+BECQ3JzxfknD8Tm3jiAaB+MHb0Cy11U26LMFKy3H34jAXL
+         anjOL9JOAQc36tAHUSsMa2CFxFmxN+MhHiFqJZtS88/L0NHg8+3+b4M7vNctFcRQelqx
+         vTIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679321563;
+        d=1e100.net; s=20210112; t=1679321619;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dK2MAyLuCPlT9bihWVJaLt1UKGVXwplMktCHcbhdemo=;
-        b=jWV3BZ4NqPsi4gXTB4xPPpCcMY8haRxUy4LUhuLtgsZkvAf2VJzC7m07t4tUhVtw3m
-         gGjRx+ruWwjtw6YRSRmyCfjreALLZe0MgUJuT6qLLlQZN9ByYVs3RY3Mqu7Cq4puZDxy
-         UsHpX4QbywuR4xyYLatieJpfpKGl62mx7o34qvR9nhOMIZBq3BSc3DFuCwNRYW9iAdGE
-         9f/yfIDo8G4grmekiztbnogcsVusYMVnBF9Spuh834RZRyzFuBb5TYSlI0ifrlZhyL7G
-         OM259/Ua3HMQ3xkSPvOq4k2QoERm+a0/SanwI0r9Y4W+sWVZaxcLKsgi2qW/NLTuRhVP
-         MiEw==
-X-Gm-Message-State: AO0yUKVoBiTjCzwZtWaxa8KWL/ZOSrV2KvBD7w/T6XVkgFPoZbGNTevI
-        a9aNEW6BF9VOX7XNhZ9RiDo+cw==
-X-Google-Smtp-Source: AK7set/V4bwREHn2modMximaNeeAuaCA22rmL3fOs5w0Kxpcp55OZ9uXu/6F5/kMHmGidCVuyNNqbg==
-X-Received: by 2002:a17:906:960a:b0:92f:f2cc:93 with SMTP id s10-20020a170906960a00b0092ff2cc0093mr9331191ejx.22.1679321562761;
-        Mon, 20 Mar 2023 07:12:42 -0700 (PDT)
+        bh=2KhLTwAPbhzahu8cLvqWPKYphjoJMZGlrXReeRqVQsY=;
+        b=707c7/zMoh1EJi8f4K3rdZuERJCyH1h2YSoejsN+AOf15hvk5LBNJQNLbnLgpFJ06J
+         PSgx+C92APTD8DRyimqEqViq9eFS/L83khau6w4fms9fTjNcN7hk/HOuy48kjBiIfNCY
+         qF3JBlEhE0aEzNhc62V9Nr3RW1JK7SMQmF7RSpSVZ3RcUOIgYPl9OVMIyJdXAviI+iqq
+         fSDHIJxyo07VYWREhCsHbI7rexPlcntyVMawLGDa6gnx6dWUAsBPLHRCwDfmtFu5L4Og
+         bhZE9Dr82IAVOL+xDg+3XGaG76tywtcTL5yQGWZXZhg/8V89fBGcypJlmO8FpQpBgE6N
+         FNJQ==
+X-Gm-Message-State: AO0yUKX+6HmqqzLDMMZRR7tmh6eMRG+0A3sG36GqfW/61hpttaJqEllg
+        pW50OxAESRHCYymv2a+l/yQxOQ==
+X-Google-Smtp-Source: AK7set8X8htMZpH5R7tt01dJroDyS7MQHlNZpNqPtHpJNiqqqr40KShtWPW6JhWp7HCt72I9A8LZ7g==
+X-Received: by 2002:a17:907:a04f:b0:931:51c0:7300 with SMTP id gz15-20020a170907a04f00b0093151c07300mr9180387ejc.77.1679321619259;
+        Mon, 20 Mar 2023 07:13:39 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id f22-20020a170906825600b00925ce7c7705sm4450809ejx.162.2023.03.20.07.12.41
+        by smtp.gmail.com with ESMTPSA id jx3-20020a170907760300b00930876176e2sm4514553ejc.29.2023.03.20.07.13.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 07:12:42 -0700 (PDT)
-Message-ID: <136736ef-2502-0f09-1c09-02fbf155ae4e@linaro.org>
-Date:   Mon, 20 Mar 2023 15:12:41 +0100
+        Mon, 20 Mar 2023 07:13:38 -0700 (PDT)
+Message-ID: <8e673c47-5cdf-a5ac-5999-ede025dfe63e@linaro.org>
+Date:   Mon, 20 Mar 2023 15:13:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] dt-bindings: nvmem: qcom,spmi-sdam: fix example 'reg'
- property
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: qcom,spmi-pmic: add nvram function
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -68,15 +67,14 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230320135710.1989-1-johan+linaro@kernel.org>
- <20230320135710.1989-2-johan+linaro@kernel.org>
+ <20230320135710.1989-4-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320135710.1989-2-johan+linaro@kernel.org>
+In-Reply-To: <20230320135710.1989-4-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,21 +82,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/03/2023 14:57, Johan Hovold wrote:
-> The SPMI PMIC register region width is fixed and should not be encoded
-> in the devicetree.
+> Add an 'nvram' pattern property and a reference to the corresponding
+> SDAM DT schema.
 > 
-> Amend the example with a parent pmic node with the expected
-> '#address-cells' and '#size-cells' and fix up the 'reg' property.
-> 
-> Fixes: 9664a6b54c57 ("dt-bindings: nvmem: add binding for QTI SPMI SDAM")
-
-I would argue there is nothing to fix - the original example in that
-context was correct, because examples have size-cells=1.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
 
 Best regards,
 Krzysztof
