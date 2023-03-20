@@ -2,178 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20AFD6C2246
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35F0C6C2263
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbjCTUL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 16:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51544 "EHLO
+        id S230415AbjCTURY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 16:17:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjCTUL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:11:58 -0400
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2127.outbound.protection.outlook.com [40.107.94.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C553D83F3;
-        Mon, 20 Mar 2023 13:11:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B+6hyXOnz3TIec7ljs/6Lzt5XmeEaimmiHkwG4Wc+wbIwj4hlZoKjhNZDuhrarLjtgC/uhIwv5JnulkzqOn2DeGg03JsG29XW1DSVvei/D+7nipaxYR2Fbz6ACu3RCvWHeEqoKFqXYRZDRKAnWGBB8DW6TdCgZ/rJRV2vy8/1QziJfZEEM6dF+JXSPB8QF31tpKaP4v2AYoOhbCDJrr3sR1m/Yi9oHsDIwBh22BpAe3SdSrCjh20v6G94zM5foD+HQAkcWNsP7LnVZ7tiebIr2EElw6/evMKNMNmpn1Li3Ez/4FkRXjUTYhwWIdMKtdep8hHiRkt5fXsl3zoXV8tjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h7IBPSE2g2uxui4uFnt4ZluZdCuNj5pLtuikQuvSnCU=;
- b=VHBj3GoSSlNQA3aVaIwZA2jDejMTXXNHAkzLKbjxynpo3q8Bw/pKDGWiOdF7Pap8nifIIHs9kq+1DXwkSKZyWLHxpQ28uHltxbRO7nXJyp8v+KLy+8m88JNI8tL6wf2bbjl22gL0dtT2f2SAv++C4pAXILSda8qlZugx61A3Md3vVRe+hMVSni70YzyR7xmIJCa6jICIkoH5zwVZNhxSVTjWDGKuz9pbZAaFcCHELwEm+5oBpaLA86hW7w7AgOUNHnE7OD4jB9PWH85Y+f6StLw2ba/Gt5KIpcufbq8vvBt4EHoU1lSHu0Qtzudd3zy51B6iKQk0UeKTfuGasc0Q+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h7IBPSE2g2uxui4uFnt4ZluZdCuNj5pLtuikQuvSnCU=;
- b=XdSASsbF/m0zlu996fpJIjSmpLVSQ+OroO9W/BQa3kCMcnMbQCSlr2xl26+PQ6IceE8yUxtY+U3+vWh+INmNMbNh6kFTec2LMPbS5zL1Kng0/2p5GGPO2aG6dczRsZWGxCCzepWokJsQwMc1Q1Cyu8acYKBtKnd7ETBf5zFiPmI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by DS0PR13MB6307.namprd13.prod.outlook.com (2603:10b6:8:12a::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
- 2023 20:11:51 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::85f5:bdb:fb9e:294c%2]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
- 20:11:51 +0000
-Date:   Mon, 20 Mar 2023 21:11:38 +0100
-From:   Simon Horman <simon.horman@corigine.com>
-To:     =?utf-8?B?w4FsdmFybyBGZXJuw6FuZGV6?= Rojas <noltari@gmail.com>
-Cc:     f.fainelli@gmail.com, andrew@lunn.ch, olteanv@gmail.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] net: dsa: b53: mmap: add more BCM63xx SoCs
-Message-ID: <ZBi9+ulgaBxX37MK@corigine.com>
-References: <20230320155024.164523-1-noltari@gmail.com>
- <20230320155024.164523-3-noltari@gmail.com>
- <ZBi56yI4CnY2AAtH@corigine.com>
- <CAKR-sGf1XFP1pE1KmQVQmZADc6udS_8+qqM5NvrNZ266VPkMtw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKR-sGf1XFP1pE1KmQVQmZADc6udS_8+qqM5NvrNZ266VPkMtw@mail.gmail.com>
-X-ClientProxiedBy: AM3PR03CA0067.eurprd03.prod.outlook.com
- (2603:10a6:207:5::25) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        with ESMTP id S230180AbjCTURY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:17:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861B231E02;
+        Mon, 20 Mar 2023 13:17:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3C6F0B8100E;
+        Mon, 20 Mar 2023 20:17:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4567C433EF;
+        Mon, 20 Mar 2023 20:17:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679343440;
+        bh=/ZtNqAMQPcKkMwrwO1UdBvMa5zg/aN46lvJizXeqpG0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=ZSW4eNq6R0M8Xe4TWgOKuSTih99Wtnm/OkwE36byhp1NotDPuKYCgKP5S6jKVmnN9
+         eVGFCJhxUojoUrh0mKvhFxvuWvQYoFgXBucmSD9QnkZcgZNpe7wAI5jHnO6pKIes4o
+         VLByjWzsABlEBzSRcVJY9lyFithqxpK8j7ZpB3rEoJaDpJdevsEoGBbUwE64+WzS0+
+         2JxquPcAM6+Us8KzRxv/mICG8qqK85h1LP6/IFYukUfiA/j1SIDc2QGlqlVBiYXF6D
+         VPXUlJFViLjV7B8WxjZAgCdL3kj33ykm7AFVaeWq6COkdfcxdfYSEA5HmJ9Ey8/pLP
+         rF09mcYmLyATA==
+Message-ID: <1bac2baccd4de561944c4a3f8454f7d3.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|DS0PR13MB6307:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a4ad888-3ce5-4d4f-ff96-08db297f576f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Nafsq95S3CqoodYlb1g1vxqHqcr2YbtL+B6zhTUnDsDGlWgd9hMG0g40/Z4g8nv1ZyNerwTIvdVH8KaqlIYBH+wIkRLrh+MPmyaqX9NxSIRGCjqxvzUxkJQnpI9TDbTWTNDJ3ob5Plz3xKXNjWddiJRC1ZpAQr+VD6SFC4byIG4p7Uj4pDhndlhVVvkeIxC91HzCSECoi/IB8JX4XbVCZOESSLU46ctEmhEapbbxZ3DbYQng0I9i+MkBAiBrVbBrEcqx5iUtmoHxNBL0HxDc6hIPUuiDnlya4kIRVeo1G8mDXB6to4HtyMxO4nKIqGYQzEA5guHGRFhy/GdlArxhCB6GaILHzv60kJ2ezYfHf3t8OPcbSeyiKgoKSgKV89WRsda6bxrtfFM6uko3sfzOmXKcKgDj9VOsWKl8YmUf7P/6JHz+nXmbOlSaXjNyBUf5S9MF7tULd0YwrXCRhhLQkBxnG4H3wWS8+dHpIlg6mgdXROPeKH6rOISs30gf9UiLGIj3ekLJ/bW0djXFK9lADVJvLy/IW1B1MZwcuTUpIDG3rrQg2Ujyjsc1xVQ44iq7wkU4wq3spEWbMHjk0x6f4q9+iXqC3t8J2ZJsd9kGhEcw8je1P+BloK5ZngnPM7ylxYMcWwXM9NKiZ3j+43sPZJXulmHFtvQrXDCWXgmGQhUhQt1odWRzjSMc6BjjSdpt
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(6029001)(4636009)(136003)(366004)(376002)(346002)(39840400004)(396003)(451199018)(2616005)(66574015)(38100700002)(86362001)(44832011)(8676002)(66556008)(36756003)(41300700001)(66476007)(8936002)(6916009)(5660300002)(2906002)(66946007)(4326008)(186003)(7416002)(478600001)(6666004)(316002)(6512007)(6506007)(6486002)(67856001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXpnaWk4SXd1d3NaYWNDUEoycENYdUpEZEJUT3Jobyt2R05EdU9JbStxaWpT?=
- =?utf-8?B?S1RmOE15bnVpUlNUZmdTdnNmZWw3WWg0YUZxZGdnZnAzaExyekZDMlNIS3pD?=
- =?utf-8?B?akl4aHdTaTNYcWpwOGFlYmhpUnZ1OHpSZDhocGFSellYSHI5dmN3dWY2ek1z?=
- =?utf-8?B?RXY4dUkvMVlTZUpFYkNyOVRqNC9RN3JoV3FMTUVET1NtaWRKc0Vtekx2Nno3?=
- =?utf-8?B?NkgzdWJCbEl5S1pjeGNJU1BPTkNsR2k1Vk5GZmlhU2hUaU9kVzJkbE8xVUF0?=
- =?utf-8?B?UFNEVTZrMlR3dUdUaGpBT0VEWm9uSktseEVMOW15d2JtTkFxQmRMeGpXcms4?=
- =?utf-8?B?Y28vRW9KRzhBTEFOM1ZMNm05bHJEc3F0cWdGdlBKbDNzNHRZeDk4YVJvZndY?=
- =?utf-8?B?R2REZVhYck0xZ1ZaV3NSSkNua2JOejZ0QWhvbWNJVkRYYmloMGVaZ1JlRmhp?=
- =?utf-8?B?T0h5bjVjbWNXNGltbWMyZGR2dkh6NzBvayt3K1VKZTB2QlN1eWx4R2R6OTFW?=
- =?utf-8?B?Tkh1SDBJSnRPc3FncXRiZ3VKbTN5L3BQZkJDa295bmFXZUJkbjE3ZHdCeWt5?=
- =?utf-8?B?RjBhWkJYMlR4c0I2WjQ0NnJNdmZKQVYxL0tvZDlUbGdlZ2pEcDlCUFlEcXl0?=
- =?utf-8?B?MUd5eDJyUUhMdzF0OEdHeFRKdGIxaTZsdThHNUVBK3FUUWpmWXVUSE5GUzA2?=
- =?utf-8?B?SHlUQVlJbzNTQUFnWVpTd05IUStqcXZ0VG42THRaUm5Wa0JNcmE0NU4rc3Q3?=
- =?utf-8?B?QTc1YmpMVGRQTnd1TkpNNVFNZktveXB4cDQ1QzNjSm9vZ2tZL2RGWXZCWjlD?=
- =?utf-8?B?U1A2QlJKMEVOS3RHTUhKdVhLdWNxbzJ5cEw4cmFSdVBaZVNFMXJJRldRRXRB?=
- =?utf-8?B?VFdTOUI3ODRzNXBUTHIwc3pYaEsxMXZpWlhsK1VXS09xZ1ZuRkI1ZVhSQzNx?=
- =?utf-8?B?eS80SnZoNi8vOEUxUXNwNlB1Y0Y4NTl6UmlLUnFZOXNnQWtqeGhYSnJRaEkr?=
- =?utf-8?B?OU0zQVpITEJaVU5tTVMrUTVZN0hLdWRFbkVSdXprOVhxbnhPY0hpazFpU1Zo?=
- =?utf-8?B?d1hka0pNNS9CNlc2UHFxb295NDFkSWU4R0UxUlN6am9jVmV5ZU92cnNmcjJx?=
- =?utf-8?B?SFFWbEdVOGYyS3phNjUwVHNiUzdYWTJWdEZLQ1RKbFlqcHFwcUEyNVB1SHVS?=
- =?utf-8?B?OFovR3I2SE4wdDVLOHV6TVVsdlBWZnpJdWU2UnhsNjJ0cnNoTzBTNnlmS2F1?=
- =?utf-8?B?WDFNQmh4dTM1enlwZVk0dFRFWnFlNGczeFEwZm1VQUNHcVpoQlVzaThpU1Q5?=
- =?utf-8?B?dm8wb3JGK1NhWjlsYXRXOW0xck53S0lKajFUMXR3YmJ5SnFTVmovVDZhQTh0?=
- =?utf-8?B?M1dETllQeTZ6RlI5WTFtWVh1bTQrcGtCZThxTGRVOFJTVDdtQ0xwT1NRQ0Rv?=
- =?utf-8?B?VnV1Uksvek9xOUdTeTI0dGhXRDc5RVUwQnU5UFpuN0dFZFZTZUdzeTc4UVVK?=
- =?utf-8?B?STR2YXZ1MEFNMjJHaCtxVGJrQW5PZDJCUW1TSTZXcmtKRlZmY2tmVDA3YVBB?=
- =?utf-8?B?ZWoxTDlxYjZnaFZOVWtZZHorUnlIRDgwQW5GcXVHWW4zZXdwc1ppMUxnWG1N?=
- =?utf-8?B?aEt1UzVUTzhYQ09tamdzMmI2dmt4L09rRzBBenUzVDRzVnBnRlBKTHYyb0FM?=
- =?utf-8?B?R0J6bkFJbld3blViRFIzSUVVTVo4M3BWUHJhVERpUWREYlN4eFk4VnU0amg1?=
- =?utf-8?B?YmdHMTJOazVHdG5GcXBVM0xkdkFkU1MzZHpEREJLdmsvK3FjemZMcUx4YkpC?=
- =?utf-8?B?REM1dUJQVS9FTERwbFhZNWZOdGtnOGd4dVN5RGdjTDAxQ1dQQWsvMjVqVW9H?=
- =?utf-8?B?WTZWRXpUZ0FzWnE4OVVQWVZsY1dzZVU4TEJNbzViVW5SUDdPaHhpenJEc3NO?=
- =?utf-8?B?OWdTNlpuUVBVb0JoZS80TGd6aEQ0c09zZStDcm5XSFU5dUV3dGFCZ2FQcGN0?=
- =?utf-8?B?WU1lUHYwSzlYVmV1RlZRYXBiOVpyZkhjbkk4K2NnQUpFRkNmejFSSjNXRkwv?=
- =?utf-8?B?UzFaVnVaNEFIVDNLNTYwenhuZkltZ1YraWE3bkw4aEZkR1JNWGZlYjJvZTdF?=
- =?utf-8?B?NzNJcWpkREg5akllb1NMU01BT2dadCtmRktlSzQ3U09wY2VmcGY0d0hHcVZv?=
- =?utf-8?B?d2pXaC9uQzdzNE9XbTdkRFNRZlozY2x5dTV2YVQwN0JBM0wxcCs4MDFPc09Y?=
- =?utf-8?B?OGcxR3dzSWJqMFRxaVdYNEZna1ZnPT0=?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a4ad888-3ce5-4d4f-ff96-08db297f576f
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2023 20:11:50.9474
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gw1dA5H20IwciTmNLu66bt5ojUkcrYxiZu/X2XFyLHIl9gP0txnKLKiH1KhrJ60eEJNGvtSQwOiOCNdR8cZZRqLjwPUQ8p5maBzW8ToN5rM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR13MB6307
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230318075340.22770-2-zhuyinbo@loongson.cn>
+References: <20230318075340.22770-1-zhuyinbo@loongson.cn> <20230318075340.22770-2-zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v14 2/2] clk: clk-loongson2: add clock controller driver support
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Mon, 20 Mar 2023 13:17:17 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 08:56:58PM +0100, Álvaro Fernández Rojas wrote:
-> El lun, 20 mar 2023 a las 20:54, Simon Horman
-> (<simon.horman@corigine.com>) escribió:
-> >
-> > On Mon, Mar 20, 2023 at 04:50:22PM +0100, Álvaro Fernández Rojas wrote:
-> > > BCM6318, BCM6362 and BCM63268 are SoCs with a B53 MMAP switch.
-> > >
-> > > Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> > > ---
-> > >  drivers/net/dsa/b53/b53_mmap.c | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/drivers/net/dsa/b53/b53_mmap.c b/drivers/net/dsa/b53/b53_mmap.c
-> > > index 70887e0aece3..464c77e10f60 100644
-> > > --- a/drivers/net/dsa/b53/b53_mmap.c
-> > > +++ b/drivers/net/dsa/b53/b53_mmap.c
-> > > @@ -331,8 +331,11 @@ static void b53_mmap_shutdown(struct platform_device *pdev)
-> > >
-> > >  static const struct of_device_id b53_mmap_of_table[] = {
-> > >       { .compatible = "brcm,bcm3384-switch" },
-> > > +     { .compatible = "brcm,bcm6318-switch" },
-> > >       { .compatible = "brcm,bcm6328-switch" },
-> > > +     { .compatible = "brcm,bcm6362-switch" },
-> > >       { .compatible = "brcm,bcm6368-switch" },
-> > > +     { .compatible = "brcm,bcm63268-switch" },
-> >
-> > This patch adds support to this driver for "brcm,bcm63268-switch".
-> > However, less I am mistaken, this support doesn't work without
-> > patches 3/4 and 4/4 of this series.
-> 
-> It works for those devices which only use ports 0-3 (Comtrend VR-3032u
-> for example).
-> If the device has a external switch or uses any of the RGMIIs then it
-> won't configure those ports properly.
+Quoting Yinbo Zhu (2023-03-18 00:53:40)
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 1eef05bb1f99..c0f32d9c1cc4 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -325,6 +325,15 @@ config COMMON_CLK_LOCHNAGAR
+>           This driver supports the clocking features of the Cirrus Logic
+>           Lochnagar audio development board.
+> =20
+> +config COMMON_CLK_LOONGSON2
+> +       bool "Clock driver for Loongson-2 SoC"
+> +       depends on COMMON_CLK && OF
 
-Ok, I guess that all drivers have incomplete support,
-so from that point of view I guess this is fine.
+It doesn't depend on OF to build, right? If so, remove it. Also, this is
+within the 'if COMMON_CLK' section of this file, so the 'depends on
+COMMON_CLK' is redundant and should be removed.
 
-> > I think it would be better to re-range this series so
-> > that support for "brcm,bcm63268-switch" works when it is
-> > added to/enabled in the driver.
-> >
-> > >       { .compatible = "brcm,bcm63xx-switch" },
-> > >       { /* sentinel */ },
-> > >  };
-> > > --
-> > > 2.30.2
-> > >
+> +       help
+> +          This driver provides support for clock controller on Loongson-=
+2 SoC.
+> +          The clock controller can generates and supplies clock to vario=
+us
+> +          peripherals within the SoC.
+> +          Say Y here to support Loongson-2 SoC clock driver.
+> +
+>  config COMMON_CLK_NXP
+>         def_bool COMMON_CLK && (ARCH_LPC18XX || ARCH_LPC32XX)
+>         select REGMAP_MMIO if ARCH_LPC32XX
+> diff --git a/drivers/clk/clk-loongson2.c b/drivers/clk/clk-loongson2.c
+> new file mode 100644
+> index 000000000000..c423932b626d
+> --- /dev/null
+> +++ b/drivers/clk/clk-loongson2.c
+> @@ -0,0 +1,356 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/init.h>
+> +#include <linux/of.h>
+
+Don't think this include will be needed.
+
+> +#include <linux/of_address.h>
+
+Don't include this.
+
+> +#include <linux/clk-provider.h>
+> +#include <linux/slab.h>
+> +#include <linux/clk.h>
+
+Drop this include. This isn't a clk consumer.
+
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/io-64-nonatomic-lo-hi.h>
+> +#include <dt-bindings/clock/loongson,ls2k-clk.h>
+> +
+> +#define LOONGSON2_PLL_MULT_SHIFT               32
+> +#define LOONGSON2_PLL_MULT_WIDTH               10
+> +#define LOONGSON2_PLL_DIV_SHIFT                        26
+> +#define LOONGSON2_PLL_DIV_WIDTH                        6
+> +#define LOONGSON2_APB_FREQSCALE_SHIFT          20
+> +#define LOONGSON2_APB_FREQSCALE_WIDTH          3
+> +#define LOONGSON2_USB_FREQSCALE_SHIFT          16
+> +#define LOONGSON2_USB_FREQSCALE_WIDTH          3
+> +#define LOONGSON2_SATA_FREQSCALE_SHIFT         12
+> +#define LOONGSON2_SATA_FREQSCALE_WIDTH         3
+> +#define LOONGSON2_BOOT_FREQSCALE_SHIFT         8
+> +#define LOONGSON2_BOOT_FREQSCALE_WIDTH         3
+> +
+> +static void __iomem *loongson2_pll_base;
+> +
+> +static const struct clk_parent_data pdata[] =3D {
+> +       { .fw_name =3D "ref_100m", .name =3D "ref_clk", },
+
+Are you mainintain backwards compatibility? If not, which I believe is
+the case, drop .name assignment.
+
+> +};
+> +
+> +static struct clk_hw *loongson2_clk_register(struct device_node *np,
+
+Take a struct device instead.
+
+> +                                         const char *name,
+> +                                         const char *parent_name,
+> +                                         const struct clk_ops *ops,
+> +                                         unsigned long flags)
+> +{
+> +       int ret;
+> +       struct clk_hw *hw;
+> +       struct clk_init_data init;
+> +
+> +       /* allocate the divider */
+> +       hw =3D kzalloc(sizeof(*hw), GFP_KERNEL);
+> +       if (!hw)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       init.name =3D name;
+> +       init.ops =3D ops;
+> +       init.flags =3D flags;
+> +       init.num_parents =3D 1;
+> +
+> +       if (!parent_name)
+> +               init.parent_data =3D pdata;
+> +       else
+> +               init.parent_names =3D &parent_name;
+> +
+> +       hw->init =3D &init;
+> +
+> +       /* register the clock */
+> +       ret =3D of_clk_hw_register(np, hw);
+
+Use devm_clk_hw_register()
+
+> +       if (ret) {
+> +               kfree(hw);
+> +               hw =3D ERR_PTR(ret);
+> +       }
+> +
+> +       return hw;
+> +}
+> +
+> +static unsigned long loongson2_calc_pll_rate(int offset, unsigned long r=
+ate)
+> +{
+> +       u64 val;
+> +       u32 mult =3D 1, div =3D 1;
+
+Why are these initialized?
+
+> +
+> +       val =3D readq(loongson2_pll_base + offset);
+> +
+> +       mult =3D (val >> LOONGSON2_PLL_MULT_SHIFT) &
+> +                       clk_div_mask(LOONGSON2_PLL_MULT_WIDTH);
+> +       div =3D (val >> LOONGSON2_PLL_DIV_SHIFT) &
+> +                       clk_div_mask(LOONGSON2_PLL_DIV_WIDTH);
+
+They're overwritten here.
+
+> +
+> +       return div_u64((u64)rate * mult, div);
+> +}
+> +
+> +static unsigned long loongson2_node_recalc_rate(struct clk_hw *hw,
+> +                                         unsigned long parent_rate)
+> +{
+> +       return loongson2_calc_pll_rate(0x0, parent_rate);
+> +}
+[...]
+> +
+> +static inline void loongson2_check_clk_hws(struct clk_hw *clks[], unsign=
+ed int count)
+> +{
+> +       unsigned int i;
+> +
+> +       for (i =3D 0; i < count; i++)
+> +               if (IS_ERR(clks[i]))
+> +                       pr_err("Loongson2 clk %u: register failed with %l=
+d\n",
+> +                               i, PTR_ERR(clks[i]));
+> +}
+> +
+> +static void loongson2_clocks_init(struct device_node *np)
+
+Inline this function at the caller.
+
+> +{
+> +       struct clk_hw **hws;
+> +       struct clk_hw_onecell_data *clk_hw_data;
+> +       spinlock_t loongson2_clk_lock;
+> +
+> +       loongson2_pll_base =3D of_iomap(np, 0);
+
+Use platform device APIs.
+
+> +
+> +       if (!loongson2_pll_base) {
+> +               pr_err("clk: unable to map loongson2 clk registers\n");
+
+Drop error messages when mapping.
+
+> +               return;
+> +       }
+> +
+> +       clk_hw_data =3D kzalloc(struct_size(clk_hw_data, hws, LOONGSON2_C=
+LK_END),
+
+Use devm_kzalloc()
+
+> +                                       GFP_KERNEL);
+> +       if (WARN_ON(!clk_hw_data))
+> +               goto err;
+> +
+[...]
+> +
+> +static int loongson2_clk_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct device_node *np =3D dev->of_node;
+> +
+> +       loongson2_clocks_init(np);
+> +
+> +       return 0;
+> +}
+> +
