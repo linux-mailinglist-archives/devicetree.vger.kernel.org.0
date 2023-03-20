@@ -2,114 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE616C0EBF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA296C0ED8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:32:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbjCTK2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 06:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40886 "EHLO
+        id S229685AbjCTKcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 06:32:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230161AbjCTK2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:28:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF4F13538;
-        Mon, 20 Mar 2023 03:28:52 -0700 (PDT)
-X-UUID: ff902efec70911ed91027fb02e0f1d65-20230320
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=PRlLNM8ERP7NINB4lD68gxCWnKzgU2w5yy3xxtNVMFU=;
-        b=LFz/6booB2XWh4MyffnXYQ9qbg0bl4Y54adq+8FcFxUAhB94sivGniEWud9y+O1NqiOvQ7zuOyxoJmlcFMz5PQ1E3yfmJqqYwBZJ5TBrMN9QjfEXd0uPyBbGgw7vwrD5vdJI4/6qFw1kKrZKgZ+rbLBliNR/zn+Zcx4ibKFOyUI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:19fdb34a-bb3e-4b99-bcd9-7c9cdd5130cd,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:90
-X-CID-INFO: VERSION:1.1.22,REQID:19fdb34a-bb3e-4b99-bcd9-7c9cdd5130cd,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:90
-X-CID-META: VersionHash:120426c,CLOUDID:de84c8b3-beed-4dfc-bd9c-e1b22fa6ccc4,B
-        ulkID:230320182848AHQWRGGJ,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,CO
-        L:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-UUID: ff902efec70911ed91027fb02e0f1d65-20230320
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1079437468; Mon, 20 Mar 2023 18:28:47 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Mon, 20 Mar 2023 18:28:46 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Mon, 20 Mar 2023 18:28:45 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 6/6 RESEND] media: mediatek: vcodec: Add encode to support dbgfs
-Date:   Mon, 20 Mar 2023 18:28:38 +0800
-Message-ID: <20230320102838.8313-7-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230320102838.8313-1-yunfei.dong@mediatek.com>
-References: <20230320102838.8313-1-yunfei.dong@mediatek.com>
+        with ESMTP id S230127AbjCTKbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:31:47 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2CE623DBF;
+        Mon, 20 Mar 2023 03:31:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679308297; x=1710844297;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version:content-id;
+  bh=u75KIvpojk8bOs9GDkjrsePIrDttzD1llg3QobSi+Xo=;
+  b=RgqFIs8c49Ngm0KBuDSrnD/HYCQSwjMXpsC6o4Oz4ZBeWG2kvQvV/teZ
+   6o2eiUmKnOJ/lQTRm+9NEXdqZ43zrVnKOTCkLW/2L3FtjSolJgv3FF20/
+   D98Tsj3TWVON3NHPhSPSrCF7xOhkEECmq5F227bCoz2sZghCD1HLnrUeL
+   kqAFvvbOpGjq+sTk9wNRMypXC+/bNv+lDvRxwKJiBIEJDlpMyn3+woiVl
+   GsEprTcQFYZln+64sV4ftMa4/dBh4JlRzI6328CwGqM3z9mjCvrpnAVyk
+   /6YWjHybehmr1G8RsLnwz1Ot32W3roloN3f0td9KtT1QknNNvTDItXbpZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="326997580"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="326997580"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 03:31:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="713523451"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="713523451"
+Received: from mbouhaou-mobl1.ger.corp.intel.com ([10.252.61.151])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 03:31:31 -0700
+Date:   Mon, 20 Mar 2023 12:31:29 +0200 (EET)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Jacky Huang <ychuang570808@gmail.com>
+cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [PATCH 12/15] clk: nuvoton: Add clock driver for ma35d1 clock
+ controller
+In-Reply-To: <00c3748b-61fa-f14b-f92c-b60fd9d6b4ee@gmail.com>
+Message-ID: <9115473c-2e88-da76-9631-ca19b9129be4@linux.intel.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com> <20230315072902.9298-13-ychuang570808@gmail.com> <8b5854d3-2793-bc33-137e-5a2673d72329@linux.intel.com> <00c3748b-61fa-f14b-f92c-b60fd9d6b4ee@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/mixed; BOUNDARY="8323329-1678519641-1679307619=:2177"
+Content-ID: <3549237f-f963-10e-aa4c-3c3227b3c958@linux.intel.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add encode to support dbgfs.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c | 2 ++
- 1 file changed, 2 insertions(+)
+--8323329-1678519641-1679307619=:2177
+Content-Type: text/plain; CHARSET=UTF-8
+Content-Transfer-Encoding: 8BIT
+Content-ID: <7de21190-7ef6-abd3-494-1cf39f4974d4@linux.intel.com>
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
-index 9095186d5495..94703c66da74 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
-@@ -353,6 +353,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		goto err_enc_reg;
- 	}
- 
-+	mtk_vcodec_dbgfs_init(dev, false);
- 	mtk_v4l2_debug(0, "encoder %d registered as /dev/video%d",
- 		       dev->venc_pdata->core_id, vfd_enc->num);
- 
-@@ -463,6 +464,7 @@ static int mtk_vcodec_enc_remove(struct platform_device *pdev)
- 	if (dev->vfd_enc)
- 		video_unregister_device(dev->vfd_enc);
- 
-+	mtk_vcodec_dbgfs_deinit(dev);
- 	v4l2_device_unregister(&dev->v4l2_dev);
- 	pm_runtime_disable(dev->pm.dev);
- 	mtk_vcodec_fw_release(dev->fw_handler);
+On Sun, 19 Mar 2023, Jacky Huang wrote:
+
+> 
+> On 2023/3/16 下午 11:56, Ilpo Järvinen wrote:
+> > On Wed, 15 Mar 2023, Jacky Huang wrote:
+> > 
+> > > From: Jacky Huang <ychuang3@nuvoton.com>
+> > > 
+> > > The clock controller generates clocks for the whole chip, including
+> > > system clocks and all peripheral clocks. This driver support ma35d1
+> > > clock gating, divider, and individual PLL configuration.
+> > > 
+> > > There are 6 PLLs in ma35d1 SoC:
+> > >    - CA-PLL for the two Cortex-A35 CPU clock
+> > >    - SYS-PLL for system bus, which comes from the companion MCU
+> > >      and cannot be programmed by clock controller.
+> > >    - DDR-PLL for DDR
+> > >    - EPLL for GMAC and GFX, Display, and VDEC IPs.
+> > >    - VPLL for video output pixel clock
+> > >    - APLL for SDHC, I2S audio, and other IPs.
+> > > CA-PLL has only one operation mode.
+> > > DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
+> > > operation modes: integer mode, fraction mode, and spread specturm mode.
+> > > 
+> > > Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> > > ---
+
+> > > +};
+> > > +
+> > > +#define to_ma35d1_adc_clk_divider(_hw)	\
+> > > +	container_of(_hw, struct ma35d1_adc_clk_divider, hw)
+> > static inline
+> 
+> 
+> I will modify these "static" functions as "static inline".
+
+No, that's not what I meant. Make the container_of define static inline
+function instead, no other functions. (Or if you have more than one of 
+such, all of them of course).
+
+> > > +}
+> > > diff --git a/drivers/clk/nuvoton/clk-ma35d1-pll.c
+> > > b/drivers/clk/nuvoton/clk-ma35d1-pll.c
+> > > new file mode 100644
+> > > index 000000000000..79e724b148fa
+> > > --- /dev/null
+> > > +++ b/drivers/clk/nuvoton/clk-ma35d1-pll.c
+> > > @@ -0,0 +1,534 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Copyright (C) 2023 Nuvoton Technology Corp.
+> > > + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+> > > + */
+> > > +
+> > > +#include <linux/clk.h>
+> > > +#include <linux/clk-provider.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/slab.h>
+> > > +#include <linux/bitfield.h>
+> > > +
+> > > +#include "clk-ma35d1.h"
+> > > +
+> > > +#define to_ma35d1_clk_pll(clk) \
+> > > +	(container_of(clk, struct ma35d1_clk_pll, clk))
+> > static inline
+> 
+> 
+> I am sorry cannot get "static inline" refer to which one.
+> 
+> Would you give more advice here?
+> 
+> Thank you.
+
+static inline struct ...type_here... *to_ma35d1_clk_pll(struct ...type_here... *clk)
+{
+	return container_of(clk, struct ma35d1_clk_pll, clk);
+}
+
+
+> > > +	} else {
+> > > +		pr_err("Failed to set rate %ld\n", u64PllFreq);
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	u64P = (u64FCLKO >= VSIPLL_FCLK_MIN_FREQ) ? 1 :
+> > > +	       ((VSIPLL_FCLK_MIN_FREQ / u64FCLKO) +
+> > > +		((VSIPLL_FCLK_MIN_FREQ % u64FCLKO) ? 1 : 0));
+> > Ditto.
+> > 
+> > Is here some ...ROUND_UP() trick hidden too?
+> 
+> 
+> This follows the description of PLL spec.
+
+Right but I was looking into what the math does. To me this looks like 
+rounding up:
+ VSIPLL_FCLK_MIN_FREQ / u64FCLKO + (VSIPLL_FCLK_MIN_FREQ % u64FCLKO ? 1 : 0)
+
+When modulo is > 0, add one, which is round up, no?
+
+There are helpers which you should use for rounding up, search for 
+*_ROUND_UP. I think math64.h had one 64-bit one.
+
+> > > +	u64X = u64tmp % 1000;
+> > > +	u32FRAC = ((u64X << 24) + 500) / 1000;
+
+I missed this earlier, is this rounding? ...Use a helper if it is. 
+Otherwise define what 500 is. (No need to answer despite question mark, 
+just do the change).
+
+> > > +
+> > > +	u64SSRATE = ((PllSrcClk >> 1) / (u32Fmod * 2)) - 1;
+> > > +	u64SLOPE = ((u64tmp * u32SR / u64SSRATE) << 24) / 100 / 1000;
+> > > +
+> > > +	u64PllClk = (PllSrcClk * u64tmp) / u64P / u64M / 1000;
+> > Is some *SEC_PER_*SEC define relevant for 1000 ?
+> > 
+> > Or some other units, e.g., HZ related?
+> 
+> 
+> 1000 is for kHz to MHz, and 100 is for percentage.
+
+Okay, then use KHZ_PER_MHZ from linux/units.h.
+
+We don't have anything for percents under include/ I think so that can be 
+left as literal.
+
+> > > +	switch (pll->mode) {
+> > > +	case VSIPLL_INTEGER_MODE:
+> > > +		u64PllClk = CLK_CalPLLFreq_Mode0(PllSrcClk, u64PllFreq,
+> > > +						 u32Reg);
+> > One line.
+> 
+> 
+> It will exceed 80 characters in one line.
+
+Yeah, the semicolon won't fit to 80 chars :-) which means there won't be 
+significant information loss even on 80 chars terminal. This kind of cases 
+is why checkpatch won't complain until 100 chars. Use common sense (don't 
+hide most of the logic to 80-100 but don't be afraid of breaking the 80 
+chars where the information loss is not significant issue).
+
+Besides, once you removed the types from variable names, it will be 
+shorter anyway.
+
+
 -- 
-2.25.1
-
+ i.
+--8323329-1678519641-1679307619=:2177--
