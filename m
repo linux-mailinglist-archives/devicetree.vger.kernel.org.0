@@ -2,101 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 316856C1411
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F21B46C1418
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 14:56:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbjCTNzQ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 09:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41046 "EHLO
+        id S229735AbjCTN4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 09:56:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231775AbjCTNzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:55:00 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D36312590;
-        Mon, 20 Mar 2023 06:54:44 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 7E2C024E1F4;
-        Mon, 20 Mar 2023 21:54:37 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 21:54:37 +0800
-Received: from localhost.localdomain (183.27.97.64) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 21:54:36 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
-Subject: [PATCH v2 3/3] riscv: dts: jh7110: starfive: Add timer node
-Date:   Mon, 20 Mar 2023 21:54:33 +0800
-Message-ID: <20230320135433.144832-4-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
-References: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S231675AbjCTN4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 09:56:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8D3AD0C;
+        Mon, 20 Mar 2023 06:55:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0F25461519;
+        Mon, 20 Mar 2023 13:55:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 664BBC433D2;
+        Mon, 20 Mar 2023 13:55:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679320556;
+        bh=IDEsPDZL0eVwZgvBZYPKhbIzQ+HsdvJH6DLdaGRl3Ac=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tQGGrQ5AMiheYj07qk45aCmweD1tdADnr1eWNnnKsZsBym9j7m6Rkb4tdRd+hctU7
+         zrdy/kGvDs45M34yPyS3owtcpTf6taDAntYDHO6TwedOLNpYoxDpQH1vFIuImEKCt3
+         +9RZo6bYAjrB1LjAbgovPePcuPMfph9eMLOzjBEkEzr4FNFlFW7VDsuwuVAMEdjfZs
+         ifJW7Ws1EUvPYT9Vg/d0sVAdc3uwxLePFSFiwtk1+1WbLEERD/uCrOjM+wzPORUhtt
+         bwhRZWg4XjlAkOg25g8wyhh8nuRZRNXZ21KPHinUZzM/qbnA3p1yogpdUuX1q/n0VG
+         agDpaR9s7gE+g==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1peG0j-0000WP-Kq; Mon, 20 Mar 2023 14:57:17 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>, Lee Jones <lee@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/3] arm64: dts: qcom: sc8280xp-pmics: fix sdam 'reg' property
+Date:   Mon, 20 Mar 2023 14:57:07 +0100
+Message-Id: <20230320135710.1989-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.97.64]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the timer node for the Starfive JH7110 SoC.
+This series addresses the dt-schema validation warnings that were
+introduced when enabling the PMIC SDAM block (and RTC) on sc8280xp.
 
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+I guess this should go through the nvmem, qcom, and mfd trees,
+respectively.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index d484ecdf93f7..fbd0a510ca1b 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -478,6 +478,26 @@ sysgpio: pinctrl@13040000 {
- 			#gpio-cells = <2>;
- 		};
- 
-+		timer@13050000 {
-+			compatible = "starfive,jh7110-timer";
-+			reg = <0x0 0x13050000 0x0 0x10000>;
-+			interrupts = <69>, <70>, <71> ,<72>;
-+			clocks = <&syscrg JH7110_SYSCLK_TIMER_APB>,
-+				 <&syscrg JH7110_SYSCLK_TIMER0>,
-+				 <&syscrg JH7110_SYSCLK_TIMER1>,
-+				 <&syscrg JH7110_SYSCLK_TIMER2>,
-+				 <&syscrg JH7110_SYSCLK_TIMER3>;
-+			clock-names = "apb", "ch0", "ch1",
-+				      "ch2", "ch3";
-+			resets = <&syscrg JH7110_SYSRST_TIMER_APB>,
-+				 <&syscrg JH7110_SYSRST_TIMER0>,
-+				 <&syscrg JH7110_SYSRST_TIMER1>,
-+				 <&syscrg JH7110_SYSRST_TIMER2>,
-+				 <&syscrg JH7110_SYSRST_TIMER3>;
-+			reset-names = "apb", "ch0", "ch1",
-+				      "ch2", "ch3";
-+		};
-+
- 		aoncrg: clock-controller@17000000 {
- 			compatible = "starfive,jh7110-aoncrg";
- 			reg = <0x0 0x17000000 0x0 0x10000>;
+Johan
+
+
+Johan Hovold (3):
+  dt-bindings: nvmem: qcom,spmi-sdam: fix example 'reg' property
+  arm64: dts: qcom: sc8280xp-pmics: fix sdam 'reg' property
+  dt-bindings: mfd: qcom,spmi-pmic: add nvram function
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |  4 +++
+ .../bindings/nvmem/qcom,spmi-sdam.yaml        | 31 +++++++++++--------
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  |  2 +-
+ 3 files changed, 23 insertions(+), 14 deletions(-)
+
 -- 
-2.25.1
+2.39.2
 
