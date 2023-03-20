@@ -2,158 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BDA36C0CED
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 10:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 052E66C0CF9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 10:19:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbjCTJQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 05:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49956 "EHLO
+        id S230048AbjCTJTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 05:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbjCTJQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 05:16:38 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC17E13DFE;
-        Mon, 20 Mar 2023 02:16:36 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9508024E1B5;
-        Mon, 20 Mar 2023 17:16:29 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 17:16:29 +0800
-Received: from [192.168.125.128] (183.27.97.64) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 17:16:28 +0800
-Message-ID: <e3604902-2b7d-6ca5-9523-04dc09c920ed@starfivetech.com>
-Date:   Mon, 20 Mar 2023 17:16:20 +0800
+        with ESMTP id S230149AbjCTJTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 05:19:12 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EC812CEF;
+        Mon, 20 Mar 2023 02:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1679303947; x=1710839947;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=KcTqCESxcN73NYJ/dcxfK/tm8NaiYnSt/OcyW2m0CDY=;
+  b=PzYMe67ybkNgPD2CFOjwa4BeFbVm5/gSEao3zziy5/O8dRGmvtRvZv0/
+   1i9hRm3JyK5RdqDjI1VPjU/yGnX5QsJFi0KfmAU322Rth2qlmrR5EZjrW
+   PQ9UTqCL6ijXW/6fSULey4OloJ9VSRRqWBA4PXbfoN9OXUVtDDIL1tBL9
+   ZBdcn+4dENa60WfV2Q7SA95g8iY97idwybce5J4omy2DY7QBQwhFcJvNu
+   mgyo36WervCpPvyMKi5OysmDS4N9MW/rkHqNytVmsbgBeGjq6wXv9oUeI
+   95OpbShzQaPXtWK7lV8A7XyUS/bL3zWjpe5zBDTkSLmn6i7ssL6Z0YHmi
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,274,1673938800"; 
+   d="scan'208";a="202463786"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Mar 2023 02:19:05 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 20 Mar 2023 02:19:02 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Mon, 20 Mar 2023 02:18:56 -0700
+Message-ID: <b6609e59-0f68-689b-81db-4324ed5deb26@microchip.com>
+Date:   Mon, 20 Mar 2023 10:18:50 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 3/6] dt-bindings: soc: starfive: syscon: Add optional
- patternProperties
+Subject: Re: [PATCH] dt-bindings: watchdog: Drop unneeded quotes
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        William Qiu <william.qiu@starfivetech.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230316030514.137427-1-xingyu.wu@starfivetech.com>
- <20230316030514.137427-4-xingyu.wu@starfivetech.com>
- <1f352445-4677-e33b-be14-c76bd7ffa188@linaro.org>
- <45221a1c-dc01-2759-3e32-658636625529@starfivetech.com>
- <a6b9bab2-4151-c811-85ff-2424866e21d8@linaro.org>
- <ce674ea9-41ec-2862-c39c-207f0b6c45a2@starfivetech.com>
- <a65697f4-0a75-23e2-517c-2784b0c382bc@linaro.org>
- <2eb0380e-bbb7-83fd-3916-9bdd8b068334@starfivetech.com>
- <8c5a7421-2948-674d-91a0-9cafe336401b@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <8c5a7421-2948-674d-91a0-9cafe336401b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Rob Herring <robh@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        Julius Werner <jwerner@chromium.org>,
+        "Evan Benn" <evanbenn@chromium.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <asahi@lists.linux.dev>, <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230317233643.3969019-1-robh@kernel.org>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230317233643.3969019-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.64]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/3/20 16:36, Krzysztof Kozlowski wrote:
-> On 20/03/2023 09:26, Xingyu Wu wrote:
->> On 2023/3/20 15:40, Krzysztof Kozlowski wrote:
->>> On 20/03/2023 08:29, Xingyu Wu wrote:
->>>> On 2023/3/20 14:37, Krzysztof Kozlowski wrote:
->>>>> On 20/03/2023 04:54, Xingyu Wu wrote:
->>>>>> On 2023/3/19 20:28, Krzysztof Kozlowski wrote:
->>>>>>> On 16/03/2023 04:05, Xingyu Wu wrote:
->>>>>>>> Add optional compatible and patternProperties.
->>>>>>>>
->>>>>>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>>>>>>> ---
->>>>>>>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 39 ++++++++++++++++---
->>>>>>>>  1 file changed, 33 insertions(+), 6 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>>>>>>> index ae7f1d6916af..b61d8921ef42 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
->>>>>>>> @@ -15,16 +15,31 @@ description: |
->>>>>>>>  
->>>>>>>>  properties:
->>>>>>>>    compatible:
->>>>>>>> -    items:
->>>>>>>> -      - enum:
->>>>>>>> -          - starfive,jh7110-aon-syscon
->>>>>>>> -          - starfive,jh7110-stg-syscon
->>>>>>>> -          - starfive,jh7110-sys-syscon
->>>>>>>> -      - const: syscon
->>>>>>>> +    oneOf:
->>>>>>>> +      - items:
->>>>>>>> +          - enum:
->>>>>>>> +              - starfive,jh7110-aon-syscon
->>>>>>>> +              - starfive,jh7110-stg-syscon
->>>>>>>> +              - starfive,jh7110-sys-syscon
->>>>>>>> +          - const: syscon
->>>>>>>> +      - items:
->>>>>>>> +          - enum:
->>>>>>>> +              - starfive,jh7110-aon-syscon
->>>>>>>> +              - starfive,jh7110-stg-syscon
->>>>>>>> +              - starfive,jh7110-sys-syscon
->>>>>>>> +          - const: syscon
->>>>>>>> +          - const: simple-mfd
->>>
->>> BTW, this also looks wrong. You just said that clock controller exists
->>> only in few variants. Also, why sometimes the same device  goes with
->>> simple-mfd and sometimies without? It's the same device.
->> 
->> Oh yes, If modified to:
->> 
->> oneOf:
->>       - items:
->>           - enum:
->>               - starfive,jh7110-aon-syscon
->>               - starfive,jh7110-stg-syscon
->>           - const: syscon
->>       - items:
->>           - const: starfive,jh7110-sys-syscon
->>           - const: syscon
->>           - const: simple-mfd
->> 
->> Or:
->> 
->>      - minItems: 2
->>        items:
->>          - enum:
->>              - starfive,jh7110-aon-syscon
->>              - starfive,jh7110-stg-syscon
->>              - starfive,jh7110-sys-syscon
->>          - const: syscon
->>          - const: simple-mfd
->> 
->> 
->> Which one is better?
+On 18/03/2023 at 00:36, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> If aon and stg are not supposed to have children, then only the first is
-> correct. It's not which is better, the second is not really correct in
-> such case.
-> 
+> Signed-off-by: Rob Herring<robh@kernel.org>
+> ---
 
-OK, will modify it in next version. Thanks.
+[..]
 
-Best regards,
-Xingyu Wu
+>   .../devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml         | 2 +-
+
+For Microchip platforms:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Thanks, best regards,
+   Nicolas
+-- 
+Nicolas Ferre
 
