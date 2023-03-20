@@ -2,125 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 999CD6C221A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2342F6C221D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbjCTUAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 16:00:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36562 "EHLO
+        id S230451AbjCTUAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 16:00:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjCTUAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:00:44 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F4FBDD5;
-        Mon, 20 Mar 2023 13:00:23 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id q88so2100400qvq.13;
-        Mon, 20 Mar 2023 13:00:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679342422;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uK4an5IRfEdpcLHvzRWsxmJ6vlYV0PkLamta65Wo9WM=;
-        b=BiZjGvdnJU2MQaQfHwoFOFhNRFz3PtJqwdiLljGre/M1uxpBCXW11o1bAAK04SkOj0
-         2EJcwCcD4JiGRZKX4H3KqWvlzBA0ZWLSrYOxfvBfKKXaBSAAN4B9Z7p6wQzwizOS0PQU
-         ycnu/dESAn3f6psN8fLxGRkYRUNCUfiPrg+JQREbO9fzXaR53fKv9qjS1jMCuN8eMVna
-         ck+eYNtADgnscR1+UCdaC0oRs48VtmKA6N/R6FT7nVa0Pz5Aw7Ly9FGt0NLDOruSlto8
-         lEGyeKLoXGc3nDvZm+PhKSztdJYzWuPbEtawBB5DHvRR/77+bHCMqe1RY1myVRxVUJXm
-         lxIQ==
+        with ESMTP id S229548AbjCTUAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:00:48 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8362222D1
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 13:00:36 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id w2so2996359oiv.5
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 13:00:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679342422;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679342436;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uK4an5IRfEdpcLHvzRWsxmJ6vlYV0PkLamta65Wo9WM=;
-        b=AA9Q6wkMVLcOnh9O94qgs2iupzkliPZGdqZzKAz+U6YgJpJac7ya3A2lX8cU1nRMW/
-         b9mtbWHrnqKXqUwy4TCdiKsitCj2w1VIJgRrmIam+6Fq/kFQ2kterM0Q5miFXzgIkR5l
-         INoAb/c8ihGf7qHZr49Vi2kIoPjaYPzmS5EAUyEMpwY40NH8RGA59s+l/Y1yKk3IEUdU
-         X0wOAbIh/2Aa2bZYSQk/QadqWPT6CCR42DONd6Ty+TGfqUA+romV1z77u0eIu3QmhFJx
-         Nds47GJXNum2D92ysI6KJJS3kTROJYExEcmHptwmABapafmjVWOYiHzhCCZuhLBF3ApW
-         zdYw==
-X-Gm-Message-State: AO0yUKVr12PsQFM1fKaFaxbR1/Ly3+JutwVjTFcXP31UbceT3icQFjIR
-        LFiegeCgQ5sx69T7XER5EjQ=
-X-Google-Smtp-Source: AK7set8am0n0iqcCczejb+M4mjKbMTpHk7CLBVNcxZJA3LDgnUvfmg6PZvWWWiRzrEo0DCsbzv2F7A==
-X-Received: by 2002:a05:6214:19ed:b0:5c8:ad0d:3b7e with SMTP id q13-20020a05621419ed00b005c8ad0d3b7emr205412qvc.35.1679342422543;
-        Mon, 20 Mar 2023 13:00:22 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id s127-20020a37a985000000b007469b5bc2c4sm104393qke.13.2023.03.20.13.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 13:00:21 -0700 (PDT)
-Message-ID: <6f7e9b8c-6256-e7dd-b130-8e1429610faa@gmail.com>
-Date:   Mon, 20 Mar 2023 13:00:15 -0700
+        bh=UYim/7SiZ5WuVLP+u8nOT1tGdgIB1/IAEaCSCaB6rs4=;
+        b=5L16W1uhzpjQNn0+iNwytLLX/Mb8wwdinxU9ogo4Lp6wCju6lkL+ELimolGLSafB2K
+         +U8xoppfNqEHK/12tDhzjXJFtwZw6t6+zScvs/mC9VhlcjLHuz8D3k4eahfK3AN/FbzA
+         rzXwmVUHatM5vBdtcpWf/q/bzzgNmxobrku9QerC4rIWkqU+B83g7nSFZ0zbfAALK5zi
+         sQjXFdOfjd65KhruyV5EHYQIalNOH2FikdYVF26vJl8/eLFNYt5TzUY5eu1U+1c3bWV6
+         NtjTc//B5PhaavkR7ylG5nz0QrlfzrE4SF2DhfE+SUtaA0PaL+nWBzz7hBltKKGL+ESb
+         PupQ==
+X-Gm-Message-State: AO0yUKV5EWIIU9uZYFwKH0j/pdPXHlrKi50yrVCDmPqmL/Dwsr1hXpTD
+        cC7f2t4vcixj7hTgQ2lkbg==
+X-Google-Smtp-Source: AK7set8yunUWfIOnklD8AlbJ6ssdQC0kMQ1RbGLh4nAAqchpgsyKIpuFB8UN0FQzuptq0XBAFvqrwg==
+X-Received: by 2002:a05:6808:7c5:b0:35e:1a0f:7dea with SMTP id f5-20020a05680807c500b0035e1a0f7deamr565452oij.12.1679342435699;
+        Mon, 20 Mar 2023 13:00:35 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t129-20020a4a5487000000b0049fd5c02d25sm4151032ooa.12.2023.03.20.13.00.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 13:00:35 -0700 (PDT)
+Received: (nullmailer pid 2323411 invoked by uid 1000);
+        Mon, 20 Mar 2023 20:00:34 -0000
+Date:   Mon, 20 Mar 2023 15:00:34 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/3] of: unittest: Convert to platform remove callback
+ returning void
+Message-ID: <167934236383.2322173.8793079261392492796.robh@kernel.org>
+References: <20230319100620.295849-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 4/4] net: dsa: b53: add BCM63268 RGMII configuration
-Content-Language: en-US
-To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230320155024.164523-1-noltari@gmail.com>
- <20230320155024.164523-5-noltari@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230320155024.164523-5-noltari@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230319100620.295849-1-u.kleine-koenig@pengutronix.de>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/20/23 08:50, Álvaro Fernández Rojas wrote:
-> BCM63268 requires special RGMII configuration to work.
+
+On Sun, 19 Mar 2023 11:06:17 +0100, Uwe Kleine-K�nig wrote:
+> Hello,
 > 
-> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-> ---
->   drivers/net/dsa/b53/b53_common.c | 6 +++++-
->   drivers/net/dsa/b53/b53_regs.h   | 1 +
->   2 files changed, 6 insertions(+), 1 deletion(-)
+> this series converts the of unittests to use the
+> .remove_new() callback. Compared to the traditional .remove() callback
+> .remove_new() returns no value. This is a good thing because the driver core
+> doesn't (and cannot) cope for errors during remove. The only effect of a
+> non-zero return value in .remove() is that the driver core emits a warning. The
+> device is removed anyhow and an early return from .remove() usually yields a
+> resource leak.
 > 
-> diff --git a/drivers/net/dsa/b53/b53_common.c b/drivers/net/dsa/b53/b53_common.c
-> index 6e212f6f1cb9..d0a22c8a55c9 100644
-> --- a/drivers/net/dsa/b53/b53_common.c
-> +++ b/drivers/net/dsa/b53/b53_common.c
-> @@ -1240,8 +1240,12 @@ static void b53_adjust_63xx_rgmii(struct dsa_switch *ds, int port,
->   		break;
->   	}
->   
-> -	if (port != dev->imp_port)
-> +	if (port != dev->imp_port) {
-> +		if (is63268(dev))
-> +			rgmii_ctrl |= RGMII_CTRL_MII_OVERRIDE;
+> By changing the remove callback to return void driver authors cannot
+> reasonably assume any more that there is some kind of cleanup later.
+> 
+> The first patch is an orthogonal cleanup. The second patch fixes the one
+> driver that doesn't already always return zero in .remove(). The last
+> patch does the actual conversion.
+> 
+> Best regards
+> Uwe
+> 
+> Uwe Kleine-K�nig (3):
+>   of: unittest: Drop call to platform_set_drvdata(..., NULL)
+>   of: unittest: Drop if blocks with always false condition
+>   of: unittest: Convert to platform remove callback returning void
+> 
+>  drivers/of/unittest.c | 21 ++++++---------------
+>  1 file changed, 6 insertions(+), 15 deletions(-)
+> 
+> 
+> base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+> --
+> 2.39.2
+> 
+> 
 
-AFAICT the override bit is defined and valid for both 63268 and 6318, 
-essentially whenever more than one RGMII control register for port 4, 
-but also for other ports, it seems like the bit becomes valid. The 
-comment I have says that the override bit ensures that what is populated 
-in bits 5:4 which is the actual RGMII interface mode is applied. That 
-mode can be one of:
-
-0b00: RGMII mode
-0b01: MII mode
-0b10: RVMII mode
-0b11: GMII mode
-
-even though this is not documented as such, I suspect that the override 
-bit does not only set the mode, but also ensures that the delays are 
-also applied.
-
-Once you update patch 3, this LGTM and you may add:
-
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-
-For your v2. Thanks!
--- 
-Florian
+Applied, thanks!
 
