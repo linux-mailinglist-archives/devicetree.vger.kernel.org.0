@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D7DB6C254E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25CD86C2556
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:03:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbjCTXAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 19:00:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38466 "EHLO
+        id S229640AbjCTXDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 19:03:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjCTXAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:00:52 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9E483CE;
-        Mon, 20 Mar 2023 16:00:51 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KN0idr024180;
-        Mon, 20 Mar 2023 18:00:44 -0500
+        with ESMTP id S229540AbjCTXDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:03:38 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD57DBCB;
+        Mon, 20 Mar 2023 16:03:37 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KN3Rq3075543;
+        Mon, 20 Mar 2023 18:03:27 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679353244;
-        bh=RQOIEpCSGYjhwGa7ZpvSmcbm5++KjQDdyIMwuBvzfPg=;
+        s=ti-com-17Q1; t=1679353407;
+        bh=IlweAH0ZEGReArX7aWf9fp3QqUONco7uXt26jNxT7K8=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=w75XUw1UDclBUMUud0wsCvVk+PTI4agX7owjXXq17FA7yZO0at+pgeFje0RPZbNDM
-         YlV++jYfoVWFWmTZ3J2TppyQUbKFInm83lrDv2iycSOfLkFC5o5/4K/VezL40oK2IV
-         vNEFTmjhQTvXaMkjqZGlGrpUyzvGIiXNAVsqepgw=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KN0ijn104946
+        b=DfEEpprUfT1cJiXJCoG7m9fanxny1UDK58u3Q7KL6GQq5Y9pL9BzSmC24hILle/5P
+         V0+IT6pJljBXHS2Z/bsxQ1I6lw83uKeLBJ/rvef7M4c1kyirjLkDOz6Nv/M+Io5Ips
+         xpBl7MphrexToSaorJyHN9s6ee7vXra4AOyD+Z9U=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KN3Rk6049785
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 18:00:44 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 20 Mar 2023 18:03:27 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 18:00:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2023 18:03:27 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 18:00:44 -0500
+ Frontend Transport; Mon, 20 Mar 2023 18:03:27 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KN0iGg096961;
-        Mon, 20 Mar 2023 18:00:44 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KN3R01094836;
+        Mon, 20 Mar 2023 18:03:27 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH v3 0/4] Add DT support for J721E CPSW9G and J7200 CPSW5G
-Date:   Mon, 20 Mar 2023 18:00:43 -0500
-Message-ID: <167935322172.215185.12851063500203208364.b4-ty@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Nishanth Menon <nm@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Julien Panis <jpanis@baylibre.com>, Bryan Brattlof <bb@ti.com>,
+        Andrew Davis <afd@ti.com>, Jason Kridner <jkridner@gmail.com>,
+        Robert Nelson <robertcnelson@gmail.com>
+Subject: Re: [PATCH V2 0/3] arm64: dts/defconfig/binding: Add support for BeaglePlay
+Date:   Mon, 20 Mar 2023 18:03:25 -0500
+Message-ID: <167935333606.215823.10442790342780935769.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230315062307.1612220-1-s-vadapalli@ti.com>
-References: <20230315062307.1612220-1-s-vadapalli@ti.com>
+In-Reply-To: <20230316152143.2438928-1-nm@ti.com>
+References: <20230316152143.2438928-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -66,29 +69,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siddharth Vadapalli,
+Hi Nishanth Menon,
 
-On Wed, 15 Mar 2023 11:53:03 +0530, Siddharth Vadapalli wrote:
-> This series adds the device-tree nodes for the CPSW9G instance of CPSW
-> Ethernet Switch on TI's J721E SoC and the CPSW5G instance of CPSW
-> Ethernet Switch on TI's J7200 SoC. Additionally, overlays are also added
-> to individually enable CPSW9G on J721E SoC and CPSW5G on J7200 SoC in
-> QSGMII mode with the Add-On J7 QUAD Port Ethernet expansion QSGMII
-> daughtercard.
+On Thu, 16 Mar 2023 10:21:40 -0500, Nishanth Menon wrote:
+> BeagleBoard.org BeaglePlay[1][2] is an easy to use, affordable open source
+> hardware single board computer based on the Texas Instruments AM625
+> SoC. Add the base support for the same.
+> 
+> Bootlog: https://gist.github.com/nmenon/2e7647970a4d6af05017e545ac0f8218
+> 
+> Changes Since v1: (major ones)
+> - All patches updated
+> - signed-off-by order fixups
+> - Cleanup to drop errant pre-production board vestiges
+> - defconfig adds SPI to get to mikrobus spi interface.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/4] arm64: dts: ti: k3-j721e: Add CPSW9G nodes
-      commit: a2ff7f1108f6eeaa73a60378ed891b634a3bba61
-[2/4] arm64: dts: ti: k3-j721e: Add overlay to enable CPSW9G ports in QSGMII mode
-      commit: 86e7de8bf908a03ac8fba4afeef25c54a1c2ef4a
-[3/4] arm64: dts: ti: j7200-main: Add CPSW5G nodes
-      commit: d3bac98015da55866891054a2aeb42af7904fca8
-[4/4] arm64: dts: ti: k3-j7200: Add overlay to enable CPSW5G ports in QSGMII mode
-      commit: 496cdc82e05f5683cdca5ab157938091e7744c95
+[1/3] dt-bindings: arm: ti: Add BeaglePlay
+      commit: 3cd557272ef0b1bbad3c5450f09629e451e101f3
+[2/3] arm64: dts: ti: Add k3-am625-beagleplay
+      commit: 2afe6a26744bf4245a6b33593a9c38e7cb464078
+
+I have applied the following to branch ti-k3-config-next on [1].
+[3/3] arm64: defconfig: Enable drivers for BeaglePlay
+      commit: 673c8894d7d0124f14c900313d85dba0870bb7cc
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
