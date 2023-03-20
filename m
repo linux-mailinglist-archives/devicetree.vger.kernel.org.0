@@ -2,81 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9760B6C061C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Mar 2023 23:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2688C6C06E7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 01:53:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbjCSWtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 18:49:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41884 "EHLO
+        id S229472AbjCTAxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 20:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229715AbjCSWtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 18:49:23 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B2A13DFF;
-        Sun, 19 Mar 2023 15:49:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=6DxZO2hH60e5R+3GI4rscUU2uKUcFxM5hHa6Am0rX+o=; b=xam6TR0IzPC5KXUIu8Z6eY+YPf
-        /UUSYcR6SmeikvRv1qsRGJ4eMyfIUvbfSzjFrZXrvjCoML2Hl+JFD+AuzecOoOi8RZ7Z++Xu3Zyo6
-        4zoNUE+F68zQ4M+gi8FOfy6hdsQP8zXRJj5cWR/7SiovQUjcl2GMmFyLwo5slJHuE0aw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pe1pm-007nEY-FJ; Sun, 19 Mar 2023 23:49:02 +0100
-Date:   Sun, 19 Mar 2023 23:49:02 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229446AbjCTAxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 20:53:04 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2E65C19F28;
+        Sun, 19 Mar 2023 17:53:02 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6BF40FEC;
+        Sun, 19 Mar 2023 17:53:46 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E3DD53F885;
+        Sun, 19 Mar 2023 17:52:59 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v5 04/15] leds: Provide stubs for when CLASS_LED
- is disabled
-Message-ID: <aa2d0a8b-b98b-4821-9413-158be578e8e0@lunn.ch>
-References: <20230319191814.22067-1-ansuelsmth@gmail.com>
- <20230319191814.22067-5-ansuelsmth@gmail.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        =?UTF-8?q?Andr=C3=A1s=20Szemz=C3=B6?= <szemzo.andras@gmail.com>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Belisko Marek <marek.belisko@gmail.com>
+Subject: [PATCH v2 0/4] ARM: dts: sunxi: Add MangoPi MQ-R board support
+Date:   Mon, 20 Mar 2023 00:52:45 +0000
+Message-Id: <20230320005249.13403-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.35.7
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230319191814.22067-5-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +#if IS_ENABLED(CONFIG_LEDS_CLASS)
->  enum led_default_state led_init_default_state_get(struct fwnode_handle *fwnode);
-> +#else
-> +static inline enum led_default_state
-> +led_init_default_state_get(struct fwnode_handle *fwnode)
-> +{
-> +	return LEDS_DEFSTATE_OFF;
-> +}
-> +#endif
+Hi,
 
-0-day is telling me i have this wrong. The function is in led-core.c,
-so this should be CONFIG_NEW_LEDS, not CONFIG_LEDS_CLASS.
+this is v2, mostly acknowledging the fact that there is an Allwinner D1s
+version of the board as well, thus splitting the board .dts into a
+shared .dtsi and a stub .dts for the ARM version. I don't have the RISC-V
+version, so cannot provide (nor test) this .dts file, but creation should
+be easy, being based on the shared board .dtsi file.
+Since the D1/D1s .dts files are now merged, this patch set should compile
+cleanly now.
 
-	    Andrew
+======================================
+
+The MangoPi MQ-R-T113 is a small SBC with the Allwinner T113-s3 SoC.
+That is a very close relative to the Allwinner D1/D1s SoCs, but with
+Arm Cortex-A7 cores, and 128 MB of SIP co-packaged DDR3 DRAM.
+
+This series introduces the missing T113-s .dtsi, which builds on top of
+the D1/D1s .dtsi, but adds the ARM specific peripherals, like the CPU
+cores, the arch timer, the GIC and the PMU.
+This requires to add a symlink to the RISC-V DT directory in patch 1/4,
+to be able to easily reference the base .dtsi from other architecture
+directories.
+Since there are versions of the MQ-R boards with the Allwinner D1s,
+there is shared .dtsi describing the board peripherals, plus a small
+stub .dts to tie together all bits for the actual board.
+
+Cheers,
+Andre
+
+Changelog v1 ... v2:
+- rebase on top of v6.3-rc3 (including now merged D1/D1s .dtsi files)
+- refine board naming, stating both RISC-V and ARM versions
+- move board .dts into a shared .dtsi (to cover RISC-V version)
+- fix 5V regulator node name
+
+Andre Przywara (4):
+  dts: add riscv include prefix link
+  ARM: dts: sunxi: add Allwinner T113-s SoC .dtsi
+  dt-bindings: arm: sunxi: document MangoPi MQ-R board names
+  ARM: dts: sunxi: add MangoPi MQ-R-T113 board
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../devicetree/bindings/riscv/sunxi.yaml      |   5 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/sun8i-t113s-mangopi-mq-r-t113.dts     |  35 +++++
+ arch/arm/boot/dts/sun8i-t113s.dtsi            |  59 ++++++++
+ .../boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi | 126 ++++++++++++++++++
+ scripts/dtc/include-prefixes/riscv            |   1 +
+ 7 files changed, 232 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
+ create mode 100644 arch/arm/boot/dts/sun8i-t113s.dtsi
+ create mode 100644 arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
+ create mode 120000 scripts/dtc/include-prefixes/riscv
+
+-- 
+2.35.7
+
