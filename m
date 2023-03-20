@@ -2,79 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B9A6C1C20
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:40:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3437D6C1C4E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:45:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232186AbjCTQkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54694 "EHLO
+        id S230218AbjCTQpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:45:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232718AbjCTQjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:39:52 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F7AB476
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 09:35:08 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id o40-20020a05600c512800b003eddedc47aeso2479189wms.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 09:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679330106;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gWxn3l14RXLabu7eJJmB4eERcGGiKycFSTENeGZGJGU=;
-        b=3gApqsN+aCSqX8uSfjeEedbiRwDvoKklvCoIUy/s4e7N53FPbT9T3wUT7NlsyC6DZR
-         qDKuSL6u8RzE75MFeQ+/SUgKvjuKSPG3icP+egXYgmmNB7N6AgIXbUQGxSLAtTBq4Es4
-         CPnoDEIG2FglBWN1eAXbF9f38+YiepxVpOH2z75bg9tQURSy/3tXCsqvTmwZpDhpc1Nv
-         KGPAyz3iGzcnhPZMzbiXRYzpzCihoFdMIwGO9OndgQiIvM9sLDiOXyba9uPOfsOAflFs
-         lHd8rEWvy52IqmX+x9OUK51xqmRtkdc8kP1WCroYdfLSKgOHXCso1KmDKI9Z5arri+8E
-         3apw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679330106;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gWxn3l14RXLabu7eJJmB4eERcGGiKycFSTENeGZGJGU=;
-        b=d1mrgJZav8lnZFASLhNbbBSHa41wRoN0pKw7871nWclQPD57GjUWwg3+AuaAm2aapy
-         PUtmWRgplbbQzjyZN7TBeN3pFLRoCzzAO2vPNbXaEGD/UifBtTB1x0/6dMlOrgHPAi0N
-         bHaA6q6ijL8x9HzgySoRWIGU88KVS+mRdWuf9Jm4FQITGO/AwqV3Ku+c09T+W9HMrHbb
-         h5D1wwenVtBLn6E20Ybu5gxM+2Rpv/SHRLl1An2UsIK8VVTRYx4KsoF22tMGuiZUsfjR
-         5eVyUMpfV3UbMUrQemt/sa8pkuplQcqe1pYu1eT6YJ3ag2nTHn7MHug+diICJHWl4Exb
-         LU8Q==
-X-Gm-Message-State: AO0yUKU88Ne76xvMI21i0MeoUlm9KjHEDHDNDEAr9+PPLyPvBB20jQvw
-        McUqEzxg/PB9M+MuM2AUI0NpfQ==
-X-Google-Smtp-Source: AK7set8GooS3gQhj5FZBxaNBFZaG2KzUVWPRMkoPvYo1ebuUko7PW1z97XjgURXrfeTYQ5Gc/4grEw==
-X-Received: by 2002:a7b:c3ce:0:b0:3eb:37ce:4c3e with SMTP id t14-20020a7bc3ce000000b003eb37ce4c3emr136754wmj.16.1679330106515;
-        Mon, 20 Mar 2023 09:35:06 -0700 (PDT)
-Received: from [192.168.1.70] (151.31.102.84.rev.sfr.net. [84.102.31.151])
-        by smtp.gmail.com with ESMTPSA id n5-20020a05600c4f8500b003b47b80cec3sm17092150wmq.42.2023.03.20.09.35.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 09:35:06 -0700 (PDT)
-Message-ID: <04914464-2bc2-9d86-e9e2-8a716b929f28@baylibre.com>
-Date:   Mon, 20 Mar 2023 17:35:03 +0100
+        with ESMTP id S231604AbjCTQoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:44:34 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3945274B0;
+        Mon, 20 Mar 2023 09:39:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679330350; x=1710866350;
+  h=date:from:to:cc:subject:message-id:references:
+   in-reply-to:mime-version;
+  bh=IvrUFdZbgte0iYPQwUAurZNQZwK9MU8puDgdWXmtHQQ=;
+  b=G7H9TrR9k9aZRpnvJB11SZNpMq9pkGNVgeSbKqPkAiaQFAO1rRfCe70d
+   gwMI594nVrBbi289O5LiYtZsePviZwPNZ42T5OEPAzqEU5jKUUstF9utP
+   RXBIaB/PlETiXnrpmSB2F/Zp9zofIqIaY3FERi44p9hwjOGKaK6jYIij6
+   Qz7m2/VKubHbsDjlnA24RXibJK3YvhBbNHkSnu7PtqHXczTqRSYgYLbUm
+   kmI3d+ycy96HCJe8Cm2sftHKYskJ16GLFOhGK5npBSrjAzXXTFLhTbTZH
+   RuAkjPfBENWCYzGzuTBAvZkX0wMd/Ay5nB3FySHMdr97eq0Vvl3vWBZbT
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="366431960"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; 
+   d="scan'208";a="366431960"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 09:36:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="674453856"
+X-IronPort-AV: E=Sophos;i="5.98,276,1673942400"; 
+   d="scan'208";a="674453856"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+  by orsmga007.jf.intel.com with ESMTP; 20 Mar 2023 09:36:35 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 20 Mar 2023 09:36:35 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 20 Mar 2023 09:36:35 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Mon, 20 Mar 2023 09:36:35 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Mon, 20 Mar 2023 09:36:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K+/N0Z6eI/WqLXP4H32WRjwhSnGxnrTco1GvApgR9T726edv6jvChsaC/mcUrbak6AQFQFbjTVt4QYNpvYq55KMEN7yXWq/BII+oDlqKeLpnStUYTQ/gzI9gHWN7/vE3YrwKb3jEwlwTLQRCLCdCGQkMxd+XEVaqae6DgeNjZaGRJSPhEIR92NH3p79Y7j5BrhL15qUcvaBVdNAxZlOY0nrDbqFFEMqaMWkGJ2uLfUrEa/qQR58nNcanixSNwycyPbEqL7BgfGScYN3c3mNWC5zS32w4zSy+uOovMKz/5bHL+YvmAoXtQGEPsBwwDd/puXt4fc/Mftlq14tcTDQfyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UrXMQJIFYc+KnjppqtRei8OCIbS5Kqw0Hul6v2Jgngc=;
+ b=Ey0mIgOLMXo6JWr1k7gLIWB1zt/JDJD10vUEdwkZfkiJAOVheYMoYn6Ju5OQ86U2y61gFUDJ/wTpqKJekHeo58B0qGRzQ/R2SsH3D97t4Om6xrhKjumabN/1iKUEjTAxKqOGaQfQgZJb/hgMYMjKIW8q1gYaPJcP7TN9L0NqDVSbJK0EaUh1ZKfMMb8FsItKdL7ZcVpEbBp4XKRdpD1Mg7DFXtV1GJc/ZLop8vgQPDpmxHm/FLCTI1Hskh/5RYd/RiW6raQInHhXT0kggRoch1awx+GttZiDF//a8E+PyxeKLQ5cf2kTA18jGxxVAdKJVS5vfT78bhN9QflnnXW6PQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2937.namprd11.prod.outlook.com (2603:10b6:5:62::13) by
+ DM6PR11MB4625.namprd11.prod.outlook.com (2603:10b6:5:2a8::24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.37; Mon, 20 Mar 2023 16:36:33 +0000
+Received: from DM6PR11MB2937.namprd11.prod.outlook.com
+ ([fe80::cece:5e80:b74f:9448]) by DM6PR11MB2937.namprd11.prod.outlook.com
+ ([fe80::cece:5e80:b74f:9448%7]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
+ 16:36:33 +0000
+Date:   Mon, 20 Mar 2023 17:36:23 +0100
+From:   Michal Kubiak <michal.kubiak@intel.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+CC:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        John Crispin <john@phrozen.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-leds@vger.kernel.org>
+Subject: Re: [net-next PATCH v5 06/15] net: phy: phy_device: Call into the
+ PHY driver to set LED brightness
+Message-ID: <ZBiLh3RMRdVKnXCT@localhost.localdomain>
+References: <20230319191814.22067-1-ansuelsmth@gmail.com>
+ <20230319191814.22067-7-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230319191814.22067-7-ansuelsmth@gmail.com>
+X-ClientProxiedBy: FRYP281CA0008.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::18)
+ To DM6PR11MB2937.namprd11.prod.outlook.com (2603:10b6:5:62::13)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-References: <20230315110736.35506-1-jpanis@baylibre.com>
- <20230315110736.35506-2-jpanis@baylibre.com>
- <20230320155354.GB1733616-robh@kernel.org>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <20230320155354.GB1733616-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2937:EE_|DM6PR11MB4625:EE_
+X-MS-Office365-Filtering-Correlation-Id: 21811197-3e0f-4220-6211-08db296143ba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QUpszyl8ujMxHSpKiNCga+BUOp8cx7XJ/DTPQFNJo1W6xSh9JQnLCcnaDPn1zskL81mVycufLh+Hx825QE606VApTi715X2Uy3YQP5qL12p7iKuU9iMx9P2WB/1AGaw2wqhJQs5iAiCHJ031uCAE7m0OK/+mZlIiiH0CnkqxWb0DgKyeOeVm/MqGU5YmdH8e2xHU33miJPcV/9bv/CabsK7H9eJnHKewnJxa0BQ34KDVmXNePe6YRSzJcu+HVOrj/Yk2Cq+63NvoMyXJ+97bAEPcKMlCODynhk2zxHltXf+RBq9mgU3TghSQZq1tqESlNYVlwfix9ktYe1595a2cxF5DxgdzOwe2dhHMk8EImBZspyjeoJvh+Of60jr0CO7KHrc0cgnlM1JljHF6HDQig02cwaB0/XstBD/c3xoYnz54FD2NllSQdp8fQMdhOt9HXiMsfbNELYr7BQKstM7Ki+ocWCSFTiU9r0D8UBM9FT0dBaCMoTji96KjxdCDWz/5YrCnS/f3Hc8ZprswF1TYgWIhU6VHUnRtLnk4lbpkTlW1B95/LU9UVZTsAw9Xw+VbDsWpQzkqJpBIYccKLDC4rrEyIj4Vj4ylAFEItIAjJ+OD74dYMIStymjZMEFf00NGl99P891ldosOojme+01roA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB2937.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(346002)(396003)(366004)(376002)(136003)(39860400002)(451199018)(8936002)(5660300002)(44832011)(7416002)(4744005)(41300700001)(86362001)(38100700002)(82960400001)(2906002)(4326008)(6486002)(478600001)(6666004)(186003)(26005)(6506007)(6512007)(9686003)(54906003)(66476007)(316002)(8676002)(66946007)(66556008)(6916009);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sPBX/K6b6nj6Pb5Rl4AH744nPGcjnVHdu48xNBMEtq1rQQ4+W5YwRb5ufwF1?=
+ =?us-ascii?Q?0ZQWXLshhVRlpKfzw46z9ktWUeb4sKzhxTIkzwGM4GGHILhDF9jEkpku87Tr?=
+ =?us-ascii?Q?sgbdmO9wcu/QjUC9fCOqLRsNB86ogSXRZXgIhD6DDdHfTnChTuBUccPih92b?=
+ =?us-ascii?Q?9ogJ80VrV+wFJSWq2HMn/f6GJVUdG/bT6dW8O/iw8lHegSJo9PaIP68r/I3C?=
+ =?us-ascii?Q?PSAhlUx/Bp/DTBNTR6lOcpIm7yscDkqrtb/enq8RyrfDbEXSjfVFVvuGWJD4?=
+ =?us-ascii?Q?Oth7i/UtNd71YZF6bMtQR01WKv67jB2VMdXq4eQZTaaSH43d/t4hNTFlitCt?=
+ =?us-ascii?Q?z8D7WzRDCVi/R8yX5HWlvozajKYTyZPi1PqYSYsXEp7JxwedU8UTRwkHkB4o?=
+ =?us-ascii?Q?9fx0E9jt7RqwIhdeLHCeXJsuZ33MU1JsrBXiWH1NptDTDGyNOFmLbRvA11vS?=
+ =?us-ascii?Q?GQ/cDSe37IvZHR5qM38s0gQms67GYDGZbzaBpolNITYNhoMutkk9FKXXvaUh?=
+ =?us-ascii?Q?JbkGqFMIsijxg/RRhrPitMkbeKaTvQy+dsdakA0AjCvhXl0bfXBOEEpvv/Hb?=
+ =?us-ascii?Q?GHojIVCLZD4aP6eTZTzxaeYV067EnNqalbaydrGGo+q9bQSJ+TPKn8OAgT0N?=
+ =?us-ascii?Q?C2movGLh5+LS6uaYoE7kcxJyvGddH9WD5GX8xK7iwQOEEMnP6tZq6kdvn9od?=
+ =?us-ascii?Q?qeHfkrW9J0RXM0BPiOgAKSf70/fT4bMgQLElw6x+++JSQSyK1sfLCeWvwoE3?=
+ =?us-ascii?Q?rQC3EIEBVwTs4G0LeMtZigWSseGcp7GO1x1kYnl7vYJvNeV13Qw4xEBJTgc0?=
+ =?us-ascii?Q?U8IN0In5KSbzRA2pdTiJAC2pIb7aH3yFbaLE7Fkd1YDEO7YkzBckvShT3vmU?=
+ =?us-ascii?Q?HUi5UKY4bMvk+HRkuOB9/9JXsJQ/8JDA262NuF/cCzZRXoZF0dXFfShH0HU9?=
+ =?us-ascii?Q?NMI5YmAIiYAvuULaWeY8ivBIE+Mv2UQivxc9TmT96AKL35ZQz++iMtdKzwx9?=
+ =?us-ascii?Q?gzYUoYgEDHtOVcnHn+eGyWFfKuS7nbOlkKA4Z5rxDYq+CBS6Jl1IngfqZ6EA?=
+ =?us-ascii?Q?rQnzQ9eWcmML0QsPw3wzLi8gO+ckU6R0MezeSfAaPXGb4itVlLMJFuWqENdH?=
+ =?us-ascii?Q?I+tAH6D4GPoLKdqUlvg5+WtP8lPU/xIDSaFOy7Gxon7sNvVt0knOGAj0WrB/?=
+ =?us-ascii?Q?ZRuchXRxYIl+uF2ABQ4sx15vMr3VRMtAnddGvzuyMGPGZ5B2hUY60uvRoolW?=
+ =?us-ascii?Q?hxBxD/KdwFxv96z6pJZaaOy3pLps0AzRb/iTKYFyAtECPNJAoojE2NZFRF+l?=
+ =?us-ascii?Q?wWqcZXDc3fm86XhooCaVZT2jrtymSbY1yBZmNU3u+HMuJK1BCjq7q5cpNQTH?=
+ =?us-ascii?Q?U2GuyIXHi6gwdKyuzEhREHrpehNFhnLZsd1pp5e3tigyCit8ZKRRy+7WBMZb?=
+ =?us-ascii?Q?6XHYurSOvl1wobaJH7w1vGdsijqHGcwfRncmltZz0977MEpeIiixmkyvGskE?=
+ =?us-ascii?Q?SGqJ1Nb4oMzNFtOJGf50mzQINQjtQ7ikGmuVxsuq1L15MUhdUFKDkrGoWo8J?=
+ =?us-ascii?Q?klh1qXMYbbfI7LN4m/UyU6AdVQNrOOsaG0Su7mcGmMteJ5pqiNQw+LaHnHH9?=
+ =?us-ascii?Q?jA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21811197-3e0f-4220-6211-08db296143ba
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2937.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2023 16:36:33.1036
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 45/4pCBO+zy+OWLaDfQyIywNpg2CY4bVwBs0bLPH+0MpNnvxzpNFrpRfeny5ai5zcbNTaOThdMLGVRYyXEspqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4625
+X-OriginatorOrg: intel.com
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,256 +167,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Mar 19, 2023 at 08:18:05PM +0100, Christian Marangi wrote:
+> From: Andrew Lunn <andrew@lunn.ch>
+> 
+> Linux LEDs can be software controlled via the brightness file in /sys.
+> LED drivers need to implement a brightness_set function which the core
+> will call. Implement an intermediary in phy_device, which will call
+> into the phy driver if it implements the necessary function.
+> 
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-
-On 3/20/23 16:53, Rob Herring wrote:
-> On Wed, Mar 15, 2023 at 12:07:33PM +0100, Julien Panis wrote:
->> TPS6594 is a Power Management IC which provides regulators and others
->> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->> PFSM (Pre-configurable Finite State Machine) managing the state of the
->> device.
->> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
-> As mentioned, the binding needs to be complete. It's missing GPIO at
-> least. RTC and watchdog may or may not need binding changes.
-
-Thank you for your feedback.
-
-About GPIO, do you speak about 'gpio-controller'
-and/or '#gpio-cells' properties ?
-For RTC (and for watchdog, once the driver will be
-implemented), our driver do not require any node
-to work. What could make an explicit instantiation
-necessary in DT ?
-
->
->> Signed-off-by: Julien Panis <jpanis@baylibre.com>
->> ---
->>   .../devicetree/bindings/mfd/ti,tps6594.yaml   | 191 ++++++++++++++++++
->>   1 file changed, 191 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->> new file mode 100644
->> index 000000000000..18f47cd6a2f9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->> @@ -0,0 +1,191 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI TPS6594 Power Management Integrated Circuit
->> +
->> +maintainers:
->> +  - Julien Panis <jpanis@baylibre.com>
->> +
->> +description: |
-> Don't need '|'.
->
->> +  TPS6594 is a Power Management IC which provides regulators and others
->> +  features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->> +  PFSM (Pre-configurable Finite State Machine) managing the state of the device.
->> +  TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,lp8764x
->> +      - ti,tps6593
->> +      - ti,tps6594
->> +
->> +  reg:
->> +    description: I2C slave address or SPI chip select number.
->> +    maxItems: 1
->> +
->> +  ti,spmi-controller:
->> +    type: boolean
->> +    description: |
->> +      Identify the primary PMIC on SPMI bus.
-> Perhaps the property name should include 'primary' and 'pmic'.
-> Otherwise, it looks like it is just marked as 'a SPMI controller'.
-
-Including 'primary' and 'pmic' will be more understandable indeed.
-I will change that in v3.
-
->
->
->> +      A multi-PMIC synchronization scheme is implemented in the PMIC device
->> +      to synchronize the power state changes with other PMIC devices. This is
->> +      accomplished through a SPMI bus: the primary PMIC is the controller
->> +      device on the SPMI bus, and the secondary PMICs are the target devices
->> +      on the SPMI bus.
-> Is this a TI specific feature?
-
-I don't think so. I will double-check that.
-If not, shall I remove the 'ti,' prefix ?
-
->
->> +
->> +  system-power-controller: true
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  ti,multi-phase-id:
->> +    description: |
->> +      Describes buck multi-phase configuration, if any. For instance, XY id means
->> +      that outputs of buck converters X and Y are combined in multi-phase mode.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [12, 34, 123, 1234]
-> coupled regulator stuff doesn't work here?
-
-Coupled regulator stuff works here.
-Is it also necessary to specify some 'allOf' logic here to ensure
-that mutual exclusions described below (for regulators) will be
-applied ?
-
->
->> +
->> +  regulators:
->> +    type: object
->> +    description: List of regulators provided by this controller.
->> +
->> +    patternProperties:
->> +      "^buck([1-5]|12|34|123|1234)$":
->> +        type: object
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +
->> +        unevaluatedProperties: false
->> +
->> +      "^ldo[1-4]$":
->> +        type: object
->> +        $ref: /schemas/regulator/regulator.yaml#
->> +
->> +        unevaluatedProperties: false
->> +
->> +    allOf:
->> +      - if:
->> +          required:
->> +            - buck12
->> +        then:
->> +          properties:
->> +            buck123: false
->> +            buck1234: false
->> +      - if:
->> +          required:
->> +            - buck123
->> +        then:
->> +          properties:
->> +            buck34: false
->> +      - if:
->> +          required:
->> +            - buck1234
->> +        then:
->> +          properties:
->> +            buck34: false
->> +
->> +    additionalProperties: false
->> +
->> +patternProperties:
->> +  "^buck([1-5]|12|34|123|1234)-supply$":
->> +    description: Input supply phandle for each buck.
->> +
->> +  "^ldo[1-4]-supply$":
->> +    description: Input supply phandle for each ldo.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        tps6593: pmic@48 {
->> +            compatible = "ti,tps6593";
->> +            reg = <0x48>;
->> +            ti,spmi-controller;
->> +            system-power-controller;
->> +
->> +            pinctrl-names = "default";
->> +            pinctrl-0 = <&pmic_irq_pins_default>;
->> +            interrupt-parent = <&mcu_gpio0>;
->> +            interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
->> +
->> +            ti,multi-phase-id = <123>;
->> +
->> +            buck123-supply = <&vcc_3v3_sys>;
->> +            buck4-supply = <&vcc_3v3_sys>;
->> +            buck5-supply = <&vcc_3v3_sys>;
->> +            ldo1-supply = <&vcc_3v3_sys>;
->> +            ldo2-supply = <&vcc_3v3_sys>;
->> +            ldo3-supply = <&buck5>;
->> +            ldo4-supply = <&vcc_3v3_sys>;
->> +
->> +            regulators {
->> +                buck123: buck123 {
->> +                    regulator-name = "vcc_core";
->> +                    regulator-min-microvolt = <750000>;
->> +                    regulator-max-microvolt = <850000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +
->> +                buck4: buck4 {
->> +                    regulator-name = "vcc_1v1";
->> +                    regulator-min-microvolt = <1100000>;
->> +                    regulator-max-microvolt = <1100000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +
->> +                buck5: buck5 {
->> +                    regulator-name = "vcc_1v8_sys";
->> +                    regulator-min-microvolt = <1800000>;
->> +                    regulator-max-microvolt = <1800000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +
->> +                ldo1: ldo1 {
->> +                    regulator-name = "vddshv5_sdio";
->> +                    regulator-min-microvolt = <3300000>;
->> +                    regulator-max-microvolt = <3300000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +
->> +                ldo2: ldo2 {
->> +                    regulator-name = "vpp_1v8";
->> +                    regulator-min-microvolt = <1800000>;
->> +                    regulator-max-microvolt = <1800000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +
->> +                ldo3: ldo3 {
->> +                    regulator-name = "vcc_0v85";
->> +                    regulator-min-microvolt = <850000>;
->> +                    regulator-max-microvolt = <850000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +
->> +                ldo4: ldo4 {
->> +                    regulator-name = "vdda_1v8";
->> +                    regulator-min-microvolt = <1800000>;
->> +                    regulator-max-microvolt = <1800000>;
->> +                    regulator-boot-on;
->> +                    regulator-always-on;
->> +                };
->> +            };
->> +        };
->> +    };
->> -- 
->> 2.37.3
->>
-
+Reviewed-by: Michal Kubiak <michal.kubiak@intel.com>
