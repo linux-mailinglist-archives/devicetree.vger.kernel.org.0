@@ -2,154 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41DB76C227D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2E76C22B4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 21:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbjCTUXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 16:23:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42300 "EHLO
+        id S229524AbjCTUbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 16:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbjCTUWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:22:52 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA54034008;
-        Mon, 20 Mar 2023 13:22:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 7910ACE13E7;
-        Mon, 20 Mar 2023 20:22:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E190CC4339C;
-        Mon, 20 Mar 2023 20:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679343762;
-        bh=DsQcH8xwycCkHIQ8QfvnCvZGiwQiVzM3IGKlFw3c6vs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=C0iv1Wn2Pa5vHsqdFDR6zw0f6xRpMK70/N1T2glolnKQ3YLIxVa9NLi/VD/MuIgDD
-         AMlrJgSTLVgGIpOVJF1+Ghunoe4Mbsb67QPp53znrKW3xqS69cxFryb/04xLE/z2UL
-         cYlidr2lmoh4xOWy5u90QTZdPEyL7HL6T0jBjSwd5lfJMMfoBUHFNLgIBWf0S+srxu
-         QZQgZ6OIkcxVFR1EjRm8zUOSHLQaN3IU6e6CbVR9+h6qLlj6H177msFp2UNHRvKiJl
-         8K9FZ0cUgUsllPY3vklbGfqakT/9Rif52mfARdFAsLbORk70Elf2bjYltEQCF1V5q6
-         z2BOKHQPJU6XQ==
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-544787916d9so244339317b3.13;
-        Mon, 20 Mar 2023 13:22:42 -0700 (PDT)
-X-Gm-Message-State: AO0yUKViLwnhnSTssDtvD243PVLOWIq9eYqLY0+Uc0eKx4e8fgxyNqRe
-        xpJchmn/BgvPRbOhWHGE1YhIkIgoEbGhJLyk1w==
-X-Google-Smtp-Source: AK7set9FJ+m1VwanpiAMfxA818L7HV/dPyhWg6DYQSadevXyKErLiGfJvZlidEnREDYwVbhCFXXRZvTZAhJh0VfOM4I=
-X-Received: by 2002:a1f:28c4:0:b0:436:2fa4:e25d with SMTP id
- o187-20020a1f28c4000000b004362fa4e25dmr363729vko.3.1679343741554; Mon, 20 Mar
- 2023 13:22:21 -0700 (PDT)
+        with ESMTP id S229648AbjCTUbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 16:31:39 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38A013DD1;
+        Mon, 20 Mar 2023 13:31:32 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id f14so6025282iow.5;
+        Mon, 20 Mar 2023 13:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679344292;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8gfYK0bX5S7genRF/sON2o+bfi4WasC/1IzTrYcf/kc=;
+        b=Dvf7eQPhkolCQ5nbIMbEajl5tXNAGhCSiOcFD8LL+vgXXem2c9IK0VpXz54xaxJc8U
+         erMc7uTuKH8CQecpEms0kUiix+hsSWOm2cOAMLp3sIkTh/+ovJt09lmSruyVoCwyHJX/
+         cDLtUwFIyuZHDeWxPoBcSuUwYFZtwwK91VdLzUsmd7i/FIjXnzjYhYSDXMwmu4B8unu9
+         cPZPz+NDpvQnyCJ/TcR6KY1oRnMJxWWQaTGSBwYIz/Z3lBvpJWEvkT0fbng4/yo274Cb
+         2eKT2IO6lK+MrP6ASxBEtCCZTHIEvXTW5Z4zwi4Wrzm6DJEiCMC1bCWUWlz/0534GMOG
+         6d3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679344292;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8gfYK0bX5S7genRF/sON2o+bfi4WasC/1IzTrYcf/kc=;
+        b=fdtBs77adr3syRgBV0+8V2FAtKswR1/ruLKnoa1q2i4wYwjlM6EIdYE1Xg5kZakC74
+         LudY/rLVroofi8HMmifiP8D3QHZ6HjFFZY/yHYl6HnIS0UxYL7zYduMoS0gJlJ0uM/xZ
+         4fFNIVhpZjxSu2pAFEoX6Y14Wr/FFIwUvvxrX6Xuhkd+3qCiPOjVpfYYVAAUHJ8cwyRP
+         8XXPLlijTmjuaK2Ds/6a54AnLcqNvIrN5zZELyz4hnzsUnwGaPyyzJt9/25yC76sM2UI
+         AmCLY2JESxjyrRN2+wUPvGSpnMyghSiwdAQYSrjkyyyD6UGrTAHvZ9poHq9ZJ+KTAEK5
+         PbxA==
+X-Gm-Message-State: AO0yUKVFv0vV2PED+n/e0jNmAvWFMTzKSZaTsE25qqSTPnTU3USM/8wz
+        vNBGpmO9IcnWoiXeMHNNssY=
+X-Google-Smtp-Source: AK7set/ruFnR10D4y7bea8W7of8zkR/kM0RzakzIbpmiREdZ4IHlo+AiXbCGaQp5W+iVaOMhunpcLg==
+X-Received: by 2002:a5d:8d0b:0:b0:74c:d689:64bd with SMTP id p11-20020a5d8d0b000000b0074cd68964bdmr79548ioj.19.1679344291906;
+        Mon, 20 Mar 2023 13:31:31 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l6-20020a026646000000b003c488204c6fsm3441356jaf.76.2023.03.20.13.31.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 13:31:31 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 20 Mar 2023 13:31:30 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Cc:     robh+dt@kernel.org, jdelvare@suse.com,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] hwmon: (pmbus/acbel-crps) Add Acbel CRPS power
+ supply driver
+Message-ID: <5466e42f-6a3d-4b33-8215-ae374d3d5fc9@roeck-us.net>
+References: <20230320154019.1943770-1-lakshmiy@us.ibm.com>
+ <20230320154019.1943770-4-lakshmiy@us.ibm.com>
 MIME-Version: 1.0
-References: <20230317233605.3967621-1-robh@kernel.org>
-In-Reply-To: <20230317233605.3967621-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 20 Mar 2023 15:22:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK+Q5HS=0PqnA60gV43O7ymxhPH-WHKFJKpQMYe5KfEfg@mail.gmail.com>
-Message-ID: <CAL_JsqK+Q5HS=0PqnA60gV43O7ymxhPH-WHKFJKpQMYe5KfEfg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: Drop unneeded quotes
-To:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
-        Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Tobias Waldekranz <tobias@waldekranz.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Daniel Machon <daniel.machon@microchip.com>,
-        UNGLinuxDriver@microchip.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-aspeed@lists.ozlabs.org,
-        linux-can@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230320154019.1943770-4-lakshmiy@us.ibm.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 6:36=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Mon, Mar 20, 2023 at 10:40:17AM -0500, Lakshmi Yadlapati wrote:
+> Add the driver to support Acbel CRPS power supply.
+> 
+> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
 > ---
->  .../devicetree/bindings/net/actions,owl-emac.yaml  |  2 +-
->  .../bindings/net/allwinner,sun4i-a10-emac.yaml     |  2 +-
->  .../bindings/net/allwinner,sun4i-a10-mdio.yaml     |  2 +-
->  .../devicetree/bindings/net/altr,tse.yaml          |  2 +-
->  .../bindings/net/aspeed,ast2600-mdio.yaml          |  2 +-
->  .../devicetree/bindings/net/brcm,amac.yaml         |  2 +-
->  .../devicetree/bindings/net/brcm,systemport.yaml   |  2 +-
->  .../bindings/net/broadcom-bluetooth.yaml           |  2 +-
->  .../devicetree/bindings/net/can/xilinx,can.yaml    |  6 +++---
->  .../devicetree/bindings/net/dsa/brcm,sf2.yaml      |  2 +-
->  .../devicetree/bindings/net/dsa/qca8k.yaml         |  2 +-
->  .../devicetree/bindings/net/engleder,tsnep.yaml    |  2 +-
->  .../devicetree/bindings/net/ethernet-phy.yaml      |  2 +-
->  .../bindings/net/fsl,qoriq-mc-dpmac.yaml           |  2 +-
->  .../bindings/net/intel,ixp4xx-ethernet.yaml        |  8 ++++----
->  .../devicetree/bindings/net/intel,ixp4xx-hss.yaml  | 14 +++++++-------
->  .../devicetree/bindings/net/marvell,mvusb.yaml     |  2 +-
->  .../devicetree/bindings/net/mdio-gpio.yaml         |  2 +-
->  .../devicetree/bindings/net/mediatek,net.yaml      |  2 +-
->  .../bindings/net/mediatek,star-emac.yaml           |  2 +-
->  .../bindings/net/microchip,lan966x-switch.yaml     |  2 +-
->  .../bindings/net/microchip,sparx5-switch.yaml      |  4 ++--
->  .../devicetree/bindings/net/mscc,miim.yaml         |  2 +-
->  .../devicetree/bindings/net/nfc/marvell,nci.yaml   |  2 +-
->  .../devicetree/bindings/net/nfc/nxp,pn532.yaml     |  2 +-
->  .../bindings/net/pse-pd/podl-pse-regulator.yaml    |  2 +-
->  .../devicetree/bindings/net/qcom,ipq4019-mdio.yaml |  2 +-
->  .../devicetree/bindings/net/qcom,ipq8064-mdio.yaml |  2 +-
->  .../devicetree/bindings/net/rockchip,emac.yaml     |  2 +-
->  .../devicetree/bindings/net/snps,dwmac.yaml        |  2 +-
->  .../devicetree/bindings/net/stm32-dwmac.yaml       |  4 ++--
->  .../devicetree/bindings/net/ti,cpsw-switch.yaml    | 10 +++++-----
->  .../devicetree/bindings/net/ti,davinci-mdio.yaml   |  2 +-
->  .../devicetree/bindings/net/ti,dp83822.yaml        |  2 +-
->  .../devicetree/bindings/net/ti,dp83867.yaml        |  2 +-
->  .../devicetree/bindings/net/ti,dp83869.yaml        |  2 +-
->  36 files changed, 53 insertions(+), 53 deletions(-)
+> Changes since V1
+> - Removed debugfs stuff.
+> - Removed acbel_crps_read_word_data and acbel_crps_read_byte_data.
+> - Removed PMBUS_MFR_IIN_MAX.
+> - Added validation for the supported power supply.
+> - Fix the formatting.
+> 
+>  drivers/hwmon/pmbus/Kconfig      |  10 +++
+>  drivers/hwmon/pmbus/Makefile     |   1 +
+>  drivers/hwmon/pmbus/acbel-crps.c | 102 +++++++++++++++++++++++++++++++
+>  3 files changed, 113 insertions(+)
+>  create mode 100644 drivers/hwmon/pmbus/acbel-crps.c
+> 
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 59d9a7430499..0215709c3dd2 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -27,6 +27,16 @@ config SENSORS_PMBUS
+>  	  This driver can also be built as a module. If so, the module will
+>  	  be called pmbus.
+>  
+> +config SENSORS_ACBEL_CRPS
+> +	tristate "ACBEL CRPS Power Supply"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for the ACBEL
+> +	  Common Redundant Power Supply.
+> +
 
-Sending a v2 as there are a few more cases with $id and $schema quoted.
+This sounds like there is only one, but ...
 
-Rob
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called acbel-crps.
+> +	  Supported models: FSG032-00xG
+> +
+... here it says that only one model is (currently) supported.
+
+This should just say "Support for Acbel FSG032-00xG CRPS Power Supply"
+and not claim that it supports any others.
+
+I am also not convinced that the Kconfig option driver name should simply
+be "crps" There is no guarantee that all crps power supplies from this
+vendor will always be supported (supportable) by this driver.
+
+
+>  config SENSORS_ADM1266
+>  	tristate "Analog Devices ADM1266 Sequencer"
+>  	select CRC8
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 3ae019916267..39aef0cb9934 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -5,6 +5,7 @@
+>  
+>  obj-$(CONFIG_PMBUS)		+= pmbus_core.o
+>  obj-$(CONFIG_SENSORS_PMBUS)	+= pmbus.o
+> +obj-$(CONFIG_SENSORS_ACBEL_CRPS) += acbel-crps.o
+>  obj-$(CONFIG_SENSORS_ADM1266)	+= adm1266.o
+>  obj-$(CONFIG_SENSORS_ADM1275)	+= adm1275.o
+>  obj-$(CONFIG_SENSORS_BEL_PFE)	+= bel-pfe.o
+> diff --git a/drivers/hwmon/pmbus/acbel-crps.c b/drivers/hwmon/pmbus/acbel-crps.c
+> new file mode 100644
+> index 000000000000..ac281699709f
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/acbel-crps.c
+> @@ -0,0 +1,102 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright 2023 IBM Corp.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/fs.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pmbus.h>
+> +#include <linux/hwmon-sysfs.h>
+
+Unused include
+
+> +#include "pmbus.h"
+> +
+> +struct acbel_crps {
+> +	struct i2c_client *client;
+> +};
+> +
+> +static const struct i2c_device_id acbel_crps_id[] = {
+> +	{ "acbel_crps" },
+> +	{}
+> +};
+> +#define to_psu(x, y) container_of((x), struct acbel_crps, debugfs_entries[(y)])
+> +
+> +static const struct file_operations acbel_crps_fops = {
+> +	.llseek = noop_llseek,
+> +	.open = simple_open,
+> +};
+
+The above code is unused.
+
+> +
+> +static struct pmbus_driver_info acbel_crps_info = {
+> +	.pages = 1,
+> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_IIN | PMBUS_HAVE_PIN |
+> +		   PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT | PMBUS_HAVE_POUT |
+> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
+> +		   PMBUS_HAVE_FAN12 | PMBUS_HAVE_STATUS_VOUT |
+> +		   PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_TEMP |
+> +		   PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_FAN12,
+> +};
+> +
+> +static int acbel_crps_probe(struct i2c_client *client)
+> +{
+> +	struct acbel_crps *psu;
+> +	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
+> +	struct device *dev = &client->dev;
+> +	int rc;
+> +
+> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, buf);
+> +	if (rc < 0) {
+> +		dev_err(dev, "Failed to read PMBUS_MFR_ID\n");
+> +		return rc;
+> +	}
+> +	if (strncmp(buf, "ACBEL", 5)) {
+
+this also needs to check for rc
+	if (rc < 5 || ...)
+
+> +		buf[rc] = '\0';
+> +		dev_err(dev, "Manufacturer '%s' not supported\n", buf);
+> +		return -ENODEV;
+> +	}
+> +
+> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
+> +	if (rc < 0) {
+> +		dev_err(dev, "Failed to read PMBUS_MFR_MODEL\n");
+> +		return rc;
+> +	}
+> +
+> +	if (strncmp(buf, "FSG032", 6)) {
+
+	if (rc < 6 || ...)
+
+> +		buf[rc] = '\0';
+> +		dev_err(dev, "Model '%s' not supported\n", buf);
+> +		return -ENODEV;
+> +	}
+> +
+> +	rc = pmbus_do_probe(client, &acbel_crps_info);
+> +	if (rc)
+> +		return rc;
+> +	/*
+> +         * Don't fail the probe if there isn't enough memory for debugfs.
+> +         */
+
+Formatting
+
+> +	psu = devm_kzalloc(&client->dev, sizeof(*psu), GFP_KERNEL);
+> +	if (!psu)
+> +		return 0;
+
+This code doesn't make any sense.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id acbel_crps_of_match[] = {
+> +	{ .compatible = "acbel,crps" },
+
+This is way too generic. What if there is some other Acbel power supply
+which needs some other options or supports other attributes ?
+This needs to be something like "acbel,fsg032" or similar.
+
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, acbel_crps_of_match);
+> +
+> +static struct i2c_driver acbel_crps_driver = {
+> +	.driver = {
+> +		.name = "acbel-crps",
+> +		.of_match_table = acbel_crps_of_match,
+> +	},
+> +	.probe_new = acbel_crps_probe,
+
+I think probe_new may be gone.
+
+> +	.id_table = acbel_crps_id,
+> +};
+> +
+> +module_i2c_driver(acbel_crps_driver);
+> +
+> +MODULE_AUTHOR("Lakshmi Yadlapati");
+> +MODULE_DESCRIPTION("PMBus driver for AcBel Power System power supplies");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
+> -- 
+> 2.37.2
+> 
