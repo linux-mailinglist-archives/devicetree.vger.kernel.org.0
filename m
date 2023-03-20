@@ -2,85 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B33E6C0C09
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 09:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B89836C0C1C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 09:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbjCTITP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 04:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
+        id S230351AbjCTIXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 04:23:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbjCTITP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 04:19:15 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A3349E3;
-        Mon, 20 Mar 2023 01:19:13 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8322B24E2A9;
-        Mon, 20 Mar 2023 16:19:11 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 16:19:11 +0800
-Received: from [192.168.60.83] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 16:19:11 +0800
-Message-ID: <ccfe65e1-3580-3cfd-b13a-fd952da91539@starfivetech.com>
-Date:   Mon, 20 Mar 2023 16:19:10 +0800
+        with ESMTP id S229975AbjCTIXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 04:23:17 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D0919C4A;
+        Mon, 20 Mar 2023 01:23:14 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 99C83D25;
+        Mon, 20 Mar 2023 09:23:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1679300591;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=k7p3GshOWFUfQDgDGYql3a7aiSxpAejgoQOR+iS4cbU=;
+        b=s2gpV8HtUhm4w+PWU7PHEwT6COKkNpdDK951SSXxFysdn4BTK/cdj7OutITFWKFgLbJm/r
+        hCUo5dlxsj7hjjESNVX/moyMfBic1bcN1C1bosuNelC4+wMj8rFWJ0Zu0ZwY5ZlJhGWT8h
+        6hbkFJM0xRQAFzB/ESfoSSUyBQcx+aNVevqB6GCR5Xrhj3ybxOPdKhl3lOYKNOqPkcD5/K
+        rHFGgclMYqxpDmBhIMIvSCztcaiyMHMsScx7XRK5fXkxUxQrmSCuxNIiZvHEoJ990fb6yq
+        M/PDTgmEMf44thm7Kq2rEGlcIOBLKQsju9BvfBx0XoQ+gXPElkGaHmC91jXzig==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/6] media: dt-bindings: cadence-csi2rx: Convert to DT
- schema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Mon, 20 Mar 2023 09:23:11 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        "Todor Tomov" <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230310120553.60586-1-jack.zhu@starfivetech.com>
- <20230310120553.60586-3-jack.zhu@starfivetech.com>
- <e0bcfe7a-6b24-3543-318a-86c1d7a60f12@linaro.org>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <e0bcfe7a-6b24-3543-318a-86c1d7a60f12@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?Ra?= =?UTF-8?Q?fa=C5=82_Mi=C5=82ecki?= 
+        <rafal@milecki.pl>
+Subject: Re: [PATCH V4 3/4] nvmem: core: export nvmem_add_cells_from_of()
+In-Reply-To: <20230317132620.31142-4-zajec5@gmail.com>
+References: <20230317132620.31142-1-zajec5@gmail.com>
+ <20230317132620.31142-4-zajec5@gmail.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <01b2adc922951f7d8cd74bc7bb1b42f1@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/3/12 19:17, Krzysztof Kozlowski wrote:
-> On 10/03/2023 13:05, Jack Zhu wrote:
->> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
->> to DT schema format and add new properties.
+Am 2023-03-17 14:26, schrieb Rafał Miłecki:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> As pointed, first conversion, then new properties.
+> This symbol can be cleanly re-used by the fixed NVMEM layout driver.
+> Allow passing DT node as argument to make it a bit more generic.
 > 
-> You also need to test each binding before sending.
-
-Thank you for your suggestion. I will split the patch into two patches and test.
-
-> Best regards,
-> Krzysztof
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  drivers/nvmem/core.c           | 7 ++++---
+>  include/linux/nvmem-provider.h | 7 +++++++
+>  2 files changed, 11 insertions(+), 3 deletions(-)
 > 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index 212c5ba5789f..985a42cfb0a2 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -694,7 +694,7 @@ static int nvmem_validate_keepouts(struct
+> nvmem_device *nvmem)
+>  	return 0;
+>  }
+> 
+> -static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
+> +int nvmem_add_cells_from_of(struct nvmem_device *nvmem, struct 
+> device_node *np)
+
+I'm not sure, how to feel about exposing an "internal" function to
+the layouts module. I mean all these nvmem_add_cells_from_* are internal
+to the core. Also the help text of the add_cells() callback tells you to
+use nvmem_add_one_cell().
+
+Although there is a bit of code duplication, I'd rather refactor
+the nvmem_add_cells_from_of() to split it into parsing and adding.
+Then re-use just the parsing from the fixed layout module and
+call the appropriate nvmem_add_one_cell() yourself there.
+
+-michael
