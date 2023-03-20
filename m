@@ -2,128 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A76676C2032
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E45DF6C206A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:54:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230372AbjCTSnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 14:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49780 "EHLO
+        id S230281AbjCTSyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 14:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230469AbjCTSn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:43:28 -0400
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDBED31E;
-        Mon, 20 Mar 2023 11:36:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1679337260; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=anXf6Am1T9NK86qA90SdIAMl71YV8UEjW1td0WDHnxZ/E/dRM8Q3BCorHNS/IC15sfb/AdecuYXdTOvasyAXXqoFo9AtM2RRcrd0mGma9tPv20CqJKO6S7vWT9FhvMruTMUzob08GI+BiIlT8jQjHoAWaJZBu0B89lqz5eug/4U=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1679337260; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=a9RwxvXHbJPa9t8iHG3Uau7EBpBE/ftRSWJKTpfTPy4=; 
-        b=LfgwroXGyHQYOGq7lkQNQRDzCEIOMW8Qv9hSef7taXVC7lX+Ckc7UZDSQKL9vR85ot3EuUx74IcjOGRWjIerz0PNk8mYnpfi8dhy0myKYhGCujbCPgnXCxiyfQSMTh+Yhx8ccuAeKYZfENcj1poDw7023RN6jomoobkk5bNe2C4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679337260;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=a9RwxvXHbJPa9t8iHG3Uau7EBpBE/ftRSWJKTpfTPy4=;
-        b=N0LHOty5yjqwZcpgt8lT3Im2xOyWYTyvJAYjCNapnpQ9stZeI4pyeIfY3v3Y46Wm
-        2WEWlmfRt7pplAwSkSI5A2s0H1bKWNlMxFpeF8wp9FyGS51QpTHLvrZJA9pqMJatVdN
-        F/g0nIyL8NC2kCzZc5MOKV+lLxnUpJLg/kOMIqyk=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 16793372581171015.9762932646127; Mon, 20 Mar 2023 11:34:18 -0700 (PDT)
-Message-ID: <4eed7059-128c-f614-625a-5ab596351ce8@arinc9.com>
-Date:   Mon, 20 Mar 2023 21:34:10 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 20/21] dt-bindings: pinctrl: mediatek: mt7620: split
- binding
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S230050AbjCTSx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:53:57 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C9729428;
+        Mon, 20 Mar 2023 11:46:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 1107CCE1268;
+        Mon, 20 Mar 2023 18:41:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDF97C433D2;
+        Mon, 20 Mar 2023 18:41:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679337689;
+        bh=2f37lfeV2uqUCawsoKtMP9QdXPtifZqxFzFW3xEcp8A=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=lWjFQyEDIo8MQTCiFBBVl1jHJQAxQmCPf74aa6CD2aNlUTBxZk29rMePvw8C6mLZc
+         wrLYKoBIJEJBr84jjiWrDCUAOen5B8fxBAYivmL2MrxnYEaa7BLtJ0yNKhlJyJlhJn
+         mwO2PQGUjdAF//4mjd+cijoCJT/NPCkgIT1s085wg/N6CmLzuCuhpmGN9xNZpRS996
+         QgdIbY2voj2IIg2MFiNX4yGIE86800v/tQ4SJLTjcZCL3l3WbgQyAALlno3xrapB+e
+         J9/eA4VdhrKZiarWIOG/mieT8wjMe8N+wVuD6CJPn5AKpxNeO6gSsg5qN2EH05S8Ga
+         B9glULQd/XfTA==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Hui Liu <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
-References: <20230317213011.13656-1-arinc.unal@arinc9.com>
- <20230317213011.13656-21-arinc.unal@arinc9.com>
- <1d0c0e49-4f50-7fc8-d514-b19cf4054066@collabora.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <1d0c0e49-4f50-7fc8-d514-b19cf4054066@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
+References: <20230320104658.22186-1-johan+linaro@kernel.org>
+        <20230320104658.22186-2-johan+linaro@kernel.org>
+        <87ttyfhatn.fsf@kernel.org> <ZBhUo1C08U5mp9zP@hovoldconsulting.com>
+Date:   Mon, 20 Mar 2023 20:41:21 +0200
+In-Reply-To: <ZBhUo1C08U5mp9zP@hovoldconsulting.com> (Johan Hovold's message
+        of "Mon, 20 Mar 2023 13:42:11 +0100")
+Message-ID: <87a607fepa.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.03.2023 18:00, AngeloGioacchino Del Regno wrote:
-> Il 17/03/23 22:30, arinc9.unal@gmail.com ha scritto:
->> From: Arınç ÜNAL <arinc.unal@arinc9.com>
->>
->> The MT7628 and MT7688 SoCs contain different pin muxing information,
->> therefore, should be split. This can be done now that there are 
->> compatible
->> strings to distinguish them from other SoCs.
->>
->> Split the schema out to mediatek,mt76x8-pinctrl.yaml.
->>
->> Remove mediatek,mt76x8-pinctrl from mt7620.
->>
->> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>   .../pinctrl/mediatek,mt7620-pinctrl.yaml      | 379 +--------------
->>   .../pinctrl/mediatek,mt76x8-pinctrl.yaml      | 450 ++++++++++++++++++
-> 
-> AFAIK, wildcards aren't allowed, so the new file should instead be called
-> "mediatek,mt7628-pinctrl.yaml", the compatible string 
-> "ralink,mt76x8-pinctrl"
-> should be deprecated (but still present as to not break ABI), and the 
-> driver
-> updated to accept the compatible string "ralink,mt7628-pinctrl".
-> 
-> At that point, you could update the devicetrees as well: for MT7628, you'd
-> have a node using
-> 
-> compatible = "ralink,mt7628-pinctrl";
-> 
-> while for MT7688, you'd have
-> 
-> compatible = "ralink,mt7688-pinctrl", "ralink,mt7628-pinctrl";
-> 
-> If you don't want to go through those lengths, you could still do the
-> cleanup that you wanted to perform, but with a filename containing no
-> wildcards - anyway.
++ ath11k list
 
-I was able to have it accepted by Rob, and the patches are already 
-applied so I'm going to leave it as is for now.
+Johan Hovold <johan@kernel.org> writes:
 
-Arınç
+> On Mon, Mar 20, 2023 at 02:22:12PM +0200, Kalle Valo wrote:
+>> Johan Hovold <johan+linaro@kernel.org> writes:
+>> 
+>> > Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6856
+>> > for which the calibration data variant may need to be described.
+>> >
+>> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>> > ---
+>> >  .../bindings/net/wireless/pci17cb,1103.yaml   | 56 +++++++++++++++++++
+>> >  1 file changed, 56 insertions(+)
+>> >  create mode 100644
+>> > Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
+>> 
+>> I'm confused (as usual), how does this differ from
+>> bindings/net/wireless/qcom,ath11k.yaml? Why we need two .yaml files?
+>
+> Almost none of bindings/net/wireless/qcom,ath11k.yaml applies to WCN6856
+> when using PCIe (e.g. as most properties are then discoverable).
+>
+> We could try to encode everything in one file, but that would likely
+> just result in a big mess of a schema with conditionals all over.
+
+Ah, so the current qcom,ath11k.yaml would be only for ath11k AHB devices
+and this new file is only for ath11k PCI devices? But why still the odd
+name pci17cb,1103.yaml? It's not really descriptive and I'm for sure
+will not remember that pci17cb,1103.yaml is for ath11k :)
+
+Also it doesn't look good that we have qcom,ath11k-calibration-variant
+documented twice now. I'm no DT expert but isn't there any other way? Is
+it possible to include other files? For example, if we would have three
+files:
+
+qcom,ath11k.yaml
+qcom,ath11k-ahb.yaml
+qcom,ath11k-pci.yaml
+
+Then have the common properties like ath11k-calibration-variant in the
+first file and ahb/pci files would include that.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
