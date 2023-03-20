@@ -2,121 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CD86C2556
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B2576C2598
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:28:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjCTXDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 19:03:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42172 "EHLO
+        id S229700AbjCTX2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 19:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjCTXDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:03:38 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD57DBCB;
-        Mon, 20 Mar 2023 16:03:37 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KN3Rq3075543;
-        Mon, 20 Mar 2023 18:03:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679353407;
-        bh=IlweAH0ZEGReArX7aWf9fp3QqUONco7uXt26jNxT7K8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=DfEEpprUfT1cJiXJCoG7m9fanxny1UDK58u3Q7KL6GQq5Y9pL9BzSmC24hILle/5P
-         V0+IT6pJljBXHS2Z/bsxQ1I6lw83uKeLBJ/rvef7M4c1kyirjLkDOz6Nv/M+Io5Ips
-         xpBl7MphrexToSaorJyHN9s6ee7vXra4AOyD+Z9U=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KN3Rk6049785
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 18:03:27 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 18:03:27 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 18:03:27 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KN3R01094836;
-        Mon, 20 Mar 2023 18:03:27 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Nishanth Menon <nm@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Julien Panis <jpanis@baylibre.com>, Bryan Brattlof <bb@ti.com>,
-        Andrew Davis <afd@ti.com>, Jason Kridner <jkridner@gmail.com>,
-        Robert Nelson <robertcnelson@gmail.com>
-Subject: Re: [PATCH V2 0/3] arm64: dts/defconfig/binding: Add support for BeaglePlay
-Date:   Mon, 20 Mar 2023 18:03:25 -0500
-Message-ID: <167935333606.215823.10442790342780935769.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230316152143.2438928-1-nm@ti.com>
-References: <20230316152143.2438928-1-nm@ti.com>
+        with ESMTP id S229579AbjCTX2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:28:23 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37E863587;
+        Mon, 20 Mar 2023 16:28:21 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32KITHIa022196;
+        Mon, 20 Mar 2023 23:28:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=a/IDKoJVzHM1US9p3+YmQx5LUxlZjCPiY9+PMVoxE/M=;
+ b=dSg07JhZfBgdp7myyhYtnFQqK1pE/YQsoJSAyvS89gATjFD9EzXGyLpFxLaYpjys7GmA
+ 2qpPeKSPdVxaiVjGGqlxSGd35QUbyeEGGFUg3XDDZKb7HwjtWPOygdgRW+uvCfmkI0V2
+ R5ZLnaOh5Wkz1DKJq2BdmdP25q+8baA6eKeb3leC1ffN1FUNYZDf6zFqAy+GNHpW+qNE
+ mzYzFGsXzMvWsUYm5w2jB9VrWyyFiKCX/bpJCeIs7VuH1zyrLeBqW/aiRprKzhNwtRAB
+ cu8Ao+4w+FD1FI5avqRk9OJOt2EEkiiR02EmoSFdjbnOidOCZ0u+KqsGXbWX8aZd/oQ3 kg== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pernkhayu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 23:28:17 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32KNSGZx000714
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 23:28:16 GMT
+Received: from [10.110.115.97] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 20 Mar
+ 2023 16:28:15 -0700
+Message-ID: <80851901-b5d6-3336-2d38-1b84a2185df1@quicinc.com>
+Date:   Mon, 20 Mar 2023 16:28:15 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: qdu1000: Add IPCC, MPSS, AOSS
+ nodes
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230306231719.22263-1-quic_molvera@quicinc.com>
+ <20230306231719.22263-2-quic_molvera@quicinc.com>
+ <af21f499-5895-c564-3e6f-d23ba188544b@linaro.org>
+ <3ee969ec-faae-fd9f-d583-6a8e2670b567@quicinc.com>
+ <4d7d3d5a-4a3c-44ab-6f32-ddee2cb621fc@linaro.org>
+Content-Language: en-US
+From:   Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <4d7d3d5a-4a3c-44ab-6f32-ddee2cb621fc@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QC6B2Leo2XY4HwPEPuULlGB4PNbCDY0I
+X-Proofpoint-GUID: QC6B2Leo2XY4HwPEPuULlGB4PNbCDY0I
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-20_16,2023-03-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 clxscore=1015 impostorscore=0 adultscore=0 phishscore=0
+ mlxscore=0 bulkscore=0 spamscore=0 suspectscore=0 priorityscore=1501
+ mlxlogscore=712 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303200197
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
 
-On Thu, 16 Mar 2023 10:21:40 -0500, Nishanth Menon wrote:
-> BeagleBoard.org BeaglePlay[1][2] is an easy to use, affordable open source
-> hardware single board computer based on the Texas Instruments AM625
-> SoC. Add the base support for the same.
-> 
-> Bootlog: https://gist.github.com/nmenon/2e7647970a4d6af05017e545ac0f8218
-> 
-> Changes Since v1: (major ones)
-> - All patches updated
-> - signed-off-by order fixups
-> - Cleanup to drop errant pre-production board vestiges
-> - defconfig adds SPI to get to mikrobus spi interface.
-> 
+
+On 3/14/2023 3:55 AM, Konrad Dybcio wrote:
+>
+> On 13.03.2023 22:25, Melody Olvera wrote:
+>>
+>> On 3/8/2023 2:23 AM, Konrad Dybcio wrote:
+>>> On 7.03.2023 00:17, Melody Olvera wrote:
+>>>> Add nodes for IPCC, MPSS, and AOSS drivers. Also update
+>>>> the scm node to include its interconnect.
+>>> Quite a bit of stuff in a single commit, this could be
+>>> separated into:
+>>>
+>>> - scm icc
+>>> - aoss+ipcc
+>>> - smp2p+mpss
+>> Hmm ok. Will split this patch into a few patches.
+>>
+>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>>> ---
 > [...]
+>
+>>>> +			      <0x0 0x4180000 0x0 0x1000>;
+>>> No reg-names?
+>> No; we don't use reg-names in the driver. Lmk if we should be.
+>>
+> qcom_q6v5_mss.c / qcom_q6v5_wcss.c get the 'rmb' region with
+> [...]_byname and I think it'd scale better if we did the same here,
+> as one day there may be a weird SoC that'd have an "XYZ" region,
+> different to "base" and "rmb", which we would need to handle.. somehow..
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Yeah that's sensible. Will update the driver and this entry.
 
-[1/3] dt-bindings: arm: ti: Add BeaglePlay
-      commit: 3cd557272ef0b1bbad3c5450f09629e451e101f3
-[2/3] arm64: dts: ti: Add k3-am625-beagleplay
-      commit: 2afe6a26744bf4245a6b33593a9c38e7cb464078
-
-I have applied the following to branch ti-k3-config-next on [1].
-[3/3] arm64: defconfig: Enable drivers for BeaglePlay
-      commit: 673c8894d7d0124f14c900313d85dba0870bb7cc
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanks,
+Melody
+>
+> Konrad
 
