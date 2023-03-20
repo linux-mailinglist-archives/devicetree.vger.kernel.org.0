@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EEAF6C1B22
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8C36C1B03
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232286AbjCTQSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:18:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46942 "EHLO
+        id S232093AbjCTQOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232133AbjCTQSA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:18:00 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5347819F1E;
-        Mon, 20 Mar 2023 09:07:55 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-17ac5ee3f9cso13442197fac.12;
-        Mon, 20 Mar 2023 09:07:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679328167;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GXPLPHoO6OcEzh0FRvvTkMYHJJivlJafTToDO4kOl40=;
-        b=jyUQ+8KxMKko/mmIJD5/4QNYqSPU+mTXZsocZv7KMZ9UHjNhDDAXTqsV6We5qw67m/
-         rEJBL0uh5z6/6N4DOvA3Q7JVyBwfTFtGXPOWmZ9XLcQmNXBBYzfeAan4MyyaGhpGD24Z
-         ayS/QPxkP07QCNTgGQH9faG6V72U7qbqba2pMAkBinfx9rqSA5y5yk1iGPbgT39ToQlh
-         EK6YGLtBpCF7J/jwH4OYxIF5HqSiZO0N9KNzClzb0qLBk4Nuye+fxCr9PMOTw7t5sTU9
-         w/TozNMFHSf+ZZxZoBwVbzOW4XHgNTeXdB9OWWCdjL0doKiKg2dWb/TjwVoQ298xzeW0
-         1vsw==
-X-Gm-Message-State: AO0yUKWO9k2s0XYIeuYw9DB+ZwOvIbo5HkKiZf7dGh2+zEhn1TZxAzUW
-        CIjQIHaZeeQpuI7A9l9fTw==
-X-Google-Smtp-Source: AK7set8XvRgwjmJDOYipg3BA4ranqSKnJyKo74CpeOtIhfaO2wH4agFUVkOR5yGuCLkfnjT0NXGXHA==
-X-Received: by 2002:a05:6870:a549:b0:17a:b214:f004 with SMTP id p9-20020a056870a54900b0017ab214f004mr5277277oal.6.1679328167586;
-        Mon, 20 Mar 2023 09:02:47 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id tk6-20020a05687189c600b0017703cd8ff6sm3389673oab.7.2023.03.20.09.02.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 09:02:47 -0700 (PDT)
-Received: (nullmailer pid 1768734 invoked by uid 1000);
-        Mon, 20 Mar 2023 16:02:45 -0000
-Date:   Mon, 20 Mar 2023 11:02:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Daniel Drake <drake@endlessm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Takashi Iwai <tiwai@suse.com>, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229643AbjCTQOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:14:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6B749FB;
+        Mon, 20 Mar 2023 09:04:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 77BA8B80EE4;
+        Mon, 20 Mar 2023 16:03:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E7A2C433EF;
+        Mon, 20 Mar 2023 16:03:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679328186;
+        bh=f+Fe3d6mcU/e1HJlTyNQZ9rPA6EQCcDs3cZYrQ8vciQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W5HpTAr5VQRNB+R4cL3cWwRs30gHBL/s0oZP+WbOvrSrobL8s3wQZdDgyzu+sIgj8
+         UYKgTt2ooTgm9S6YNZs2mx0K9luACqnVByf42eAiPyTOtdEWR/WBOxip0hJCfeYNgH
+         pdnhtboFyCf8rXdDKq2vyD7pMc8WQ7mAPob+LhcilyNwGLL9Pvh9TZXl70upbAE+QK
+         NKzJVyCdnn9NPD13+iGuVp6TY43EGdt33ufxd96dox5RwvWMcvmPWIPtkVg2H5YvYL
+         i3FUyuTErEWzKP0qWgSy8eyHgd+QI5HYhLRvR1SqwBFjn2PYjODODQ7+XZpVfrowrV
+         CHbVCoMrkPJfQ==
+Date:   Mon, 20 Mar 2023 16:02:58 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Saravana Kannan <saravanak@google.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-riscv@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>, kernel@collabora.com,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH 04/11] ASoC: dt-bindings: rockchip: Document audio graph
- port
-Message-ID: <167932816525.1768684.13404674229392132860.robh@kernel.org>
-References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
- <20230315114806.3819515-5-cristian.ciocaltea@collabora.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH/RFC] treewide: Fix instantiation of devices in DT overlay
+Message-ID: <42406441-3933-4781-a450-42930bd1f6b2@sirena.org.uk>
+References: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="em2KL6o747ySzM/d"
 Content-Disposition: inline
-In-Reply-To: <20230315114806.3819515-5-cristian.ciocaltea@collabora.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
+X-Cookie: Keep away from fire or flame.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,22 +66,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 15 Mar 2023 13:47:59 +0200, Cristian Ciocaltea wrote:
-> The Rockchip I2S controller is currently used in conjunction with
-> audio-graph-card to provide an endpoint for binding with the other side
-> of the audio link.
-> 
-> This is achieved via the 'port' property, which is not allowed:
-> 
->   rk3399-rockpro64.dtb: i2s@ff890000: Unevaluated properties are not allowed ('port' was unexpected)
-> 
-> Fix the issue by documenting the missing property.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+--em2KL6o747ySzM/d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Fri, Mar 17, 2023 at 11:33:18AM +0100, Geert Uytterhoeven wrote:
+> When loading a DT overlay that creates a device, the device is not
+> instantiated, unless the DT overlay is unloaded and reloaded again.
+>=20
+> Saravana explains:
+>   Basically for all overlays (I hope the function is only used for
+>   overlays) we assume all nodes are NOT devices until they actually
+>   get added as a device. Don't review the code, it's not meant to be :)
+>=20
+> Based on a hacky patch by Saravana Kannan, which covered only platform
+> and spi devices.
 
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--em2KL6o747ySzM/d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQYg7EACgkQJNaLcl1U
+h9ABegf+PF2PVDH8Dhw/efe40xzJUJWJZRQJLiBX1X0iezwm9Krg6Z4IaDYjXRs1
+73vmt/yXhAIkmswkOpASrsUvH/59U6xxBImYqFaTFVbOkZoQHCzWArwWvnUwxZQ5
+KYqWEBg0ptn9Y/m5b990euIqTqWbuvmSHOh4ds9fDC6Av2jDS2f6TmZb95jKbFkb
+AjR5sTEunETufUPr1eSEibRT2lkwCZbEDuZ/epXewy9O3EG9unGKvwflJHqlEgIw
+TyUYa3fQ30VUP8qjEFXBAvaEtuamuFgRJbngk5eAoMLDDthIdHpCeo957wP839hM
+9OYloUvwKeEyf8yQLdAzmtRXBZ1f+g==
+=0W/T
+-----END PGP SIGNATURE-----
+
+--em2KL6o747ySzM/d--
