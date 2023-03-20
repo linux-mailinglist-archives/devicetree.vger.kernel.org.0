@@ -2,195 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F28816C1172
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8016C1190
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:12:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbjCTMFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 08:05:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54938 "EHLO
+        id S230289AbjCTMMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 08:12:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjCTMFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:05:38 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BCF83F5
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 05:05:36 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id er8so34012743edb.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 05:05:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679313935;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fedWdOIXJsNBKS4RtVOA7U0PbI5IbSCYkI9M2Yv/QEg=;
-        b=Ei7LNCBt7McN/imVovbkYW70ZdaAZlmUX8ZXfNVOiyuG80+m+jPF+4TTKyLfGbGxPp
-         8KDJrFMHjzGQKXFKnQMAtFSMWyVAZyKydtmXHp+FUa/SuXAvLz4GtwUW1wGEWxf5QgL1
-         X5Sse5ymSooYAKa5IHVye7AgsKjR2sTzNzuiYem0c4qANN6L0z8VJPKcHFLJzzd4xA4n
-         ghFsMCMu8x1oKFxXELHIjUPk6cyQxLre3HZeSjJtwK1IJUWhsFNGS7BxLV3A/Q5CYfvh
-         n5OHJt+xLZQdZuAGzxYt/I3J7kdwB39ZW2bZqYwDXQd2ihwWQu7dq7MJHcDqpLWa5P8R
-         qOgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679313935;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fedWdOIXJsNBKS4RtVOA7U0PbI5IbSCYkI9M2Yv/QEg=;
-        b=gX25MCCkld71MWx3jMCg+62j05vE7YIirw8oZOA66Sko9DhauFufveHSXD7WL01r89
-         eHF6xcd2TvSJLGZePuWUqFDcrDMT8eSAehA19k2MpBdp2KRzuCB8EZ3l0JX2I8O025A8
-         fUBb78rGwkX9XTqSW2qFKIaWgNHlzBrBU2hfByJfS9I5VZQsvmKKRn605jhGnUe/fdUD
-         Ku68e+rLUQFDbrIm+V8xX++Q85WZmX/fmMFux24v+22J7bdeuL9zdSwSfMsDHKMH82rl
-         8O72L40c8ZUE2jkZd4pl6dH6RDxqURfgyRA80TWXpZQCfXqs6D+YaLshLZOZHZUBCGa9
-         qfxQ==
-X-Gm-Message-State: AO0yUKVHQdWGl/UCFciBOZ9ZP976/4ot6qC3GdI56VX8JgmenWygIq2F
-        9EeDAxO6UrgpcfCn9I3WN/vudg==
-X-Google-Smtp-Source: AK7set9+EEqEhfmet3QUBcm61u82chev994J+/ophV6+5EzW4nCrCF0i2u8CUkU7H7xrhP9w+C8hRA==
-X-Received: by 2002:a05:6402:1353:b0:4fa:ba31:6c66 with SMTP id y19-20020a056402135300b004faba316c66mr12438314edw.42.1679313934876;
-        Mon, 20 Mar 2023 05:05:34 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id u2-20020a50a402000000b004c4eed3fe20sm4825654edb.5.2023.03.20.05.05.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 05:05:34 -0700 (PDT)
-Message-ID: <e98f0068-dfd0-0402-8089-3ca53870263d@linaro.org>
-Date:   Mon, 20 Mar 2023 13:05:33 +0100
+        with ESMTP id S230259AbjCTMMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:12:05 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5877355B6;
+        Mon, 20 Mar 2023 05:12:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1679314323; x=1710850323;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=f0cFu0waq1sUq+AFu96iKtjuSciX3NLthHqTvv/AT2A=;
+  b=eMg1sYRUdPDJnjwMuCE0M2fZtTnbvC4m5tyJZ+CJYyUTqFa6WOhlUH+3
+   psIaUsOb2be857XaoLwmlD8wy8gZgU6kd6YwOZK2dU0CXtDjSFd3LamId
+   3kAbq1QbVG41Qce4Hwkd9AtD7Vn603nLc3w7t6VeaRGBLQ/CrQjL9niL9
+   emgHDX/nkmmbCHJVtMXmXjbowlnLpd/dwBOY3S64m7sFXT8mpPo5hZ3dH
+   jMs4ecPUBXPV67auiOuvd2jlfvJRvIo1T6R7kLV6cdCrcxIUtJelip3cx
+   bohqoYKBR8litpM1JIc9xfUATjUiIH5+DKzBxfzaa04aebr2dpNLyzHjE
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,274,1673938800"; 
+   d="asc'?scan'208";a="205502494"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Mar 2023 05:12:02 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 20 Mar 2023 05:12:01 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 20 Mar 2023 05:11:59 -0700
+Date:   Mon, 20 Mar 2023 12:11:29 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Alexandre Ghiti <alex@ghiti.fr>
+CC:     Mike Rapoport <rppt@kernel.org>, Conor Dooley <conor@kernel.org>,
+        <palmer@dabbelt.com>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <frowand.list@gmail.com>, <robh+dt@kernel.org>,
+        <mick@ics.forth.gr>, <paul.walmsley@sifive.com>,
+        <aou@eecs.berkeley.edu>, <Valentina.FernandezAlanis@microchip.com>,
+        <Daire.McNamara@microchip.com>
+Subject: Re: RISC-V reserved memory problems
+Message-ID: <e2203659-e1ac-4fbf-9b5d-2c561255b645@spud>
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+ <Y9wytv5KSt1ca+td@spud>
+ <ZAchb/DfbIh+qaE4@kernel.org>
+ <8abfb680-e1dd-8d1f-dd10-0a8bf086f5c3@ghiti.fr>
+ <b797bd15-ef3d-4d28-9aad-ffe0a32aa0b0@spud>
+ <de204b7c-7c1d-bd7b-0072-d128757258e2@ghiti.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH linux-next] dt-bindings: usb: snps,dwc3: correct i.MX8MQ
- support
-Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        Xu Yang <xu.yang_2@nxp.com>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, Jun Li <jun.li@nxp.com>
-References: <20230320020714.955800-1-peng.fan@oss.nxp.com>
- <8efe78d3-ff50-1970-3a90-28bab4992bad@linaro.org>
- <DU0PR04MB9417D88E67200F4A74C5CF4888809@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <355d5dde-cc86-018c-85d5-51cf59bdb36a@linaro.org>
- <DU0PR04MB9417FBDEC58F46C069A359B888809@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417FBDEC58F46C069A359B888809@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pKzsOyM01oqrnRqw"
+Content-Disposition: inline
+In-Reply-To: <de204b7c-7c1d-bd7b-0072-d128757258e2@ghiti.fr>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 12:44, Peng Fan wrote:
->> Subject: Re: [PATCH linux-next] dt-bindings: usb: snps,dwc3: correct
->> i.MX8MQ support
->>
->> On 20/03/2023 12:02, Peng Fan wrote:
->>>> Subject: Re: [PATCH linux-next] dt-bindings: usb: snps,dwc3: correct
->>>> i.MX8MQ support
->>>>
->>>> On 20/03/2023 03:07, Peng Fan (OSS) wrote:
->>>>> From: Peng Fan <peng.fan@nxp.com>
->>>>>
->>>>> The previous i.MX8MQ support breaks rockchip,dwc3 support, so use
->>>>> select to restrict i.MX8MQ support and avoid break others.
->>>>>
->>>>> Fixes: 3754c41c7686 ("dt-bindings: usb: snps,dwc3: support i.MX8MQ")
->>>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>>>> ---
->>>>>  .../devicetree/bindings/usb/snps,dwc3.yaml    | 21 ++++++++++++-------
->>>>>  1 file changed, 14 insertions(+), 7 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>> b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>> index 16c7d06c9172..6347a6769ee3 100644
->>>>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>>>> @@ -28,15 +28,22 @@ allOf:
->>>>>      else:
->>>>>        $ref: usb-xhci.yaml#
->>>>>
->>>>> +select:
->>>>> +  properties:
->>>>> +    compatible:
->>>>> +      contains:
->>>>> +        enum:
->>>>> +          - fsl,imx8mq-dwc3
->>>>
->>>> And what about all snps,dwc3 devices there (without specific compatible)?
->>>> Previously they were selected and now they are not... so you just
->>>> disabled schema for all of them.
->>> [Peng Fan]
->>>
->>> I am not sure how to address:
->>>
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
->>> .kernel.org%2Fall%2FCAL_Jsq%2BnrqTX5ND3%3D%2BkFUmStx-
->> %2Bb%3DqpE_WsL_Le
->>> -YX8c285-
->> 5A%40mail.gmail.com%2F&data=05%7C01%7Cpeng.fan%40nxp.com%7C1e
->>>
->> 67df79692243f058fa08db2937befd%7C686ea1d3bc2b4c6fa92cd99c5c30163
->> 5%7C0%
->>>
->> 7C0%7C638149091586933618%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC
->> 4wLjAwMDAiL
->>>
->> CJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&s
->> data=r1
->>> fesB1c%2B3YxohCGM36xySFucVU25WVYIMlpgGkdoWk%3D&reserved=0
->>>
->>> Rob suggested use select, but I am not sure how to use it here. Use an
->>> extra yaml file with select or else.
->>>
->>>>
->>>>> +  required:
->>>>> +    - compatible
->>>>> +
->>>>>  properties:
->>>>>    compatible:
->>>>> -    oneOf:
->>>>> -      - items:
->>>>> -          - const: fsl,imx8mq-dwc3
->>>>
->>>> I don't understand why you remove your compatible.
->>> [Peng Fan]
->>>
->>> My last change drops 'contains' by mistake, and breaks
->>
->> This I understand.
->>
->>> rockchip,dwc3, so just bring back the original content
->>
->> This is not a reason to make your compatible undocumented. You basically
->> revert your patch. It does not make any sense to me.
-> [Peng Fan] 
-> 
-> ok, let me think more. Honestly not have good idea (:
-> If you have any guidance, that would be helpful.
+--pKzsOyM01oqrnRqw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You should only need a select, however most likely selecting also
-snps,dwc3 (without specific compatible). Anyway this binding - including
-how it is referenced by others - is getting unmanagable. I think I
-commented about this on some other occasion. The point is that no one
-refactors it thus it grows and grows leading to more of such tricky
-scenarios.
+On Thu, Mar 09, 2023 at 04:12:57PM +0100, Alexandre Ghiti wrote:
+> On 3/9/23 13:51, Conor Dooley wrote:
+> > On Thu, Mar 09, 2023 at 01:45:05PM +0100, Alexandre Ghiti wrote:
+> > > On 3/7/23 12:35, Mike Rapoport wrote:
+> > > > Hi Conor,
+> > > >=20
+> > > > Sorry for the delay, somehow this slipped between the cracks.
+> > > >=20
+> > > > On Thu, Feb 02, 2023 at 10:01:26PM +0000, Conor Dooley wrote:
+> > > > > Hullo Palmer, Mike & whoever else may read this,
+> > > > >=20
+> > > > > Just reviving this thread from a little while ago as I have been =
+in the
+> > > > > area again recently...
+> > > > TBH, I didn't really dig deep into the issues, but the thought I ha=
+d was
+> > > > what if DT was mapped via fixmap until the setup_vm_final() and the=
+n it
+> > > > would be possible to call DT methods early.
+> > > >=20
+> > > > Could be I'm shooting in the dark :)
+> > >=20
+> > > I think I understand the issue now, it's because In riscv, we establi=
+sh 2
+> > > different virtual mappings and we map the device tree at 2 different =
+virtual
+> > > addresses, which is the problem.
+> > >=20
+> > > So to me, the solution is:
+> > >=20
+> > > - to revert your previous fix, that is calling
+> > > early_init_fdt_scan_reserved_mem() before any call to memblock_alloc()
+> > > (which could result in an allocation in the area you want to reserve)
+> > >=20
+> > > - to map the device tree at the same virtual address, because
+> > > early_init_fdt_scan_reserved_mem() initializes reserved_mem with the =
+dtb
+> > > mapping established in setup_vm() and uses reserved_mem with the new =
+mapping
+> > > from setup_vm_final (which is what Mike proposes, we should use the f=
+ixmap
+> > > region to have the same virtual addresses)
+> > >=20
+> > > Hope that makes sense: I'll come up with something this afternoon for=
+ you to
+> > > test!
+> > Sounds good. Please give me some ELI5 commit messages if you can,
+> > explanations for this stuff (which I found took a lot of archaeology to
+> > understand) would be very welcome next time we need to go back looking
+> > at this stuff.
+>=20
+>=20
+> Can you give it a try here:
+> https://github.com/AlexGhiti/riscv-linux/commits/dev/alex/conor_dtb_fixma=
+p_v1
+> ?
+>=20
+> That works for me but I need to carefully explain and check that's correct
+> though, not upstreamable as is.
 
-How it should be refactored? Probably just like all other with re-usable
-components: common part and device specific bindings including it. While
-snps,dwc3 alone should not be allowed anymore.
+Hey Alex,
 
-Best regards,
-Krzysztof
+So I ended up being pretty sick & had to take a week off. I gave this an
+initial spin today & it appears to work.
+I'll take it for a longer test-drive when you send a "real" patch for
+it, but I tested both the lookup by name & the situation that was
+allocating in reserved memory and both were not an issue.
 
+Thanks for working on this,
+Conor.
+
+--pKzsOyM01oqrnRqw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZBhNcQAKCRB4tDGHoIJi
+0jHSAQDYXV+uHHctZPqRy4OTzH84+s3JkFLcich/mv5xUvEIsAEAttjvErnc91Wo
+/sgB9RuUAHwyl42K555VXdhZIr5oHQg=
+=vZ1A
+-----END PGP SIGNATURE-----
+
+--pKzsOyM01oqrnRqw--
