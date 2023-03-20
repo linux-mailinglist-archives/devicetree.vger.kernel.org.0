@@ -2,63 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09EE16C14FB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F02256C157E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:50:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbjCTOkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43316 "EHLO
+        id S229849AbjCTOuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231801AbjCTOjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:39:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81389CC0F;
-        Mon, 20 Mar 2023 07:39:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1DB6461551;
-        Mon, 20 Mar 2023 14:39:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607AEC4339C;
-        Mon, 20 Mar 2023 14:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679323177;
-        bh=TMmbW+cR0Ww7zrPZPoAPWl9ooanMqWYfTSDibgGBb3k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KHm0N0Ic99KHo2XdkiPlGeo1WQDieOsMdUrSVamYUOn17UrJvLTKGJelVywzoAbEl
-         2uovKZL56DoZl+0qwvPYq5znj8JHz6Tm0iJ8lmOsfqcmN2qzxlg/npYXz1bqOB/dcF
-         65krg6U/NUTzT90ZKUocZP0iA+kLdAPehZGtwLd1pY5cs0lxVgUBBT3z+NpwTPgN4w
-         uT8Nq6J3Pvb/20A5jFmMbeoWqbnEZmJSwnnYCbtn7AKV13rhzfq6Xzk2Dk04YHeLKx
-         DGEmB29oBpnhcHyxS0embAluzgZDmIGF/3c0AK3LsA1Q4dDY/tIGYS2MLGUmFNvcK9
-         4XXHD3lfRMfxA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1peGh0-0000o8-JQ; Mon, 20 Mar 2023 15:40:58 +0100
-Date:   Mon, 20 Mar 2023 15:40:58 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        with ESMTP id S231995AbjCTOtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:49:32 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E8825957
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:47:48 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id r11so47750735edd.5
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:47:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679323640;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Il9YWorlQE7qriqKsC4ZO4n1FQhxWC5upPu4Ay50MJY=;
+        b=FBcCe0Xs0m4wCKZL7wJQPbxIonSqZsX0kg3cURIN3/IszssXDbcQRURBwuYQCwhXra
+         wgFt+NPOwYG4vJfPKs86Ju9T/efHjo29D3lLGApKgLJ1zpH4Fy1zlZiBLDuWDCvpkTGU
+         Ea/nA+kpZPyZOk4+XlZDVG/bxVFZY/aK/bPcNGefdx1qVMAxq8vmjj9nNjnv9MyoUF2h
+         f322ouEa1vEVtuumatLFlxHEVoyPifT9g1g9L2WvT/Mr7wgwna9JYW2PTeZZXHAtA/4A
+         IUAK6Occ1xz5GFmiCcBWzehOcHgr2qpte2UAay2/51BLIuLpFWleLow3Z4tkYuX30lFJ
+         1FcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679323640;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Il9YWorlQE7qriqKsC4ZO4n1FQhxWC5upPu4Ay50MJY=;
+        b=QZlt9m5KnkRrLYTvnQka6MJ259ILxy8BxraS6YA6x0SmkPLNN7vhxDgzzQaEadCHoX
+         wp/7Yyrd/BJIEAGJPmt6KUuO982rfRl6C+VEWUu8VGtFGmu3juqdixldsoFtSV1S64rk
+         LLzFBuUN/La5p3oeB3InPJtGSLK9+EIS2NiJTgtpy6W1N+duDl/WOgwtP5rPp+21wJVZ
+         SJWgOC+2en2ybYKbTSW1zcPlJ97wUw70rEH1fzw/pl+eGdee6qE4cmogl7ta3yduZhwI
+         EKONAGHiSxCUfhav5slFO92vhLuaENENqJgC8zAEpRh2nXwfb3JpLSMUkCt9qkwi9EKD
+         NOCA==
+X-Gm-Message-State: AO0yUKVcFi36WCHIRB+73GWzCxKxVUBPayFSdj08LcYm8p0es9WjTRE+
+        OyHE0J95HRRCs6f1vQFKJ7PCtQ==
+X-Google-Smtp-Source: AK7set/OVWu4fwaMjI+KXgkPc6AvBpPPQLglH9fGEnmWHgw5U+gGtq86OjeKuhQ9kIsRt8FWJx9Ogg==
+X-Received: by 2002:a17:906:39ce:b0:932:c1e2:9983 with SMTP id i14-20020a17090639ce00b00932c1e29983mr10328923eje.15.1679323640207;
+        Mon, 20 Mar 2023 07:47:20 -0700 (PDT)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id x2-20020a50ba82000000b004fb30fc1dabsm4913172ede.96.2023.03.20.07.47.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 07:47:19 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Lee Jones <lee@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: nvmem: qcom,spmi-sdam: fix example
- 'reg' property
-Message-ID: <ZBhwevJxxEz2I4i9@hovoldconsulting.com>
-References: <20230320135710.1989-1-johan+linaro@kernel.org>
- <20230320135710.1989-2-johan+linaro@kernel.org>
- <136736ef-2502-0f09-1c09-02fbf155ae4e@linaro.org>
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [RESEND PATCH v9 1/2] dt-bindings: PCI: qcom: Add SM8550 compatible
+Date:   Mon, 20 Mar 2023 16:46:57 +0200
+Message-Id: <20230320144658.1794991-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <136736ef-2502-0f09-1c09-02fbf155ae4e@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,21 +79,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 03:12:41PM +0100, Krzysztof Kozlowski wrote:
-> On 20/03/2023 14:57, Johan Hovold wrote:
-> > The SPMI PMIC register region width is fixed and should not be encoded
-> > in the devicetree.
-> > 
-> > Amend the example with a parent pmic node with the expected
-> > '#address-cells' and '#size-cells' and fix up the 'reg' property.
-> > 
-> > Fixes: 9664a6b54c57 ("dt-bindings: nvmem: add binding for QTI SPMI SDAM")
-> 
-> I would argue there is nothing to fix - the original example in that
-> context was correct, because examples have size-cells=1.
+Add the SM8550 platform to the binding.
 
-But you'll never find these PMIC functions on a memory-mapped or other
-bus with size-cells != 0 so I'd still say that the example is broken
-(and it is definitely misleading as I found out the hard way).
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+---
 
-Johan
+This patch is a resend of the following:
+https://lore.kernel.org/all/20230208180020.2761766-10-abel.vesa@linaro.org/
+
+No changes since then.
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index fb32c43dd12d..be7b4b805291 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -38,6 +38,7 @@ properties:
+           - qcom,pcie-sm8350
+           - qcom,pcie-sm8450-pcie0
+           - qcom,pcie-sm8450-pcie1
++          - qcom,pcie-sm8550
+       - items:
+           - const: qcom,pcie-msm8998
+           - const: qcom,pcie-msm8996
+@@ -58,6 +59,12 @@ properties:
+     minItems: 1
+     maxItems: 8
+ 
++  iommus:
++    maxItems: 1
++
++  iommu-map:
++    maxItems: 2
++
+   # Common definitions for clocks, clock-names and reset.
+   # Platform constraints are described later.
+   clocks:
+@@ -205,6 +212,7 @@ allOf:
+               - qcom,pcie-sm8350
+               - qcom,pcie-sm8450-pcie0
+               - qcom,pcie-sm8450-pcie1
++              - qcom,pcie-sm8550
+     then:
+       properties:
+         reg:
+@@ -639,6 +647,37 @@ allOf:
+           items:
+             - const: pci # PCIe core reset
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pcie-sm8550
++    then:
++      properties:
++        clocks:
++          minItems: 7
++          maxItems: 8
++        clock-names:
++          minItems: 7
++          items:
++            - const: aux # Auxiliary clock
++            - const: cfg # Configuration clock
++            - const: bus_master # Master AXI clock
++            - const: bus_slave # Slave AXI clock
++            - const: slave_q2a # Slave Q2A clock
++            - const: ddrss_sf_tbu # PCIe SF TBU clock
++            - const: noc_aggr # Aggre NoC PCIe AXI clock
++            - const: cnoc_sf_axi # Config NoC PCIe1 AXI clock
++        resets:
++          minItems: 1
++          maxItems: 2
++        reset-names:
++          minItems: 1
++          items:
++            - const: pci # PCIe core reset
++            - const: link_down # PCIe link down reset
++
+   - if:
+       properties:
+         compatible:
+@@ -724,6 +763,7 @@ allOf:
+               - qcom,pcie-sm8350
+               - qcom,pcie-sm8450-pcie0
+               - qcom,pcie-sm8450-pcie1
++              - qcom,pcie-sm8550
+     then:
+       oneOf:
+         - properties:
+-- 
+2.34.1
+
