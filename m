@@ -2,31 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4BAC6C1494
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 060C46C1497
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:23:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbjCTOWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:22:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48576 "EHLO
+        id S231493AbjCTOXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:23:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231625AbjCTOWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:22:41 -0400
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A3232203D;
-        Mon, 20 Mar 2023 07:22:38 -0700 (PDT)
-Date:   Mon, 20 Mar 2023 14:22:20 +0000
+        with ESMTP id S230214AbjCTOXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:23:02 -0400
+X-Greylist: delayed 140 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 20 Mar 2023 07:22:57 PDT
+Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EE12203D
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:22:57 -0700 (PDT)
+Date:   Mon, 20 Mar 2023 14:22:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1679322154; x=1679581354;
-        bh=PyBkroZpp5Idh5EiLvqP12MWQHI/I6jk1Thl/HtlRy0=;
+        s=protonmail3; t=1679322175; x=1679581375;
+        bh=hnNQw8IGieeGXczUkQFigxPqYaJQ3wX8rs+fIziAfsA=;
         h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
          Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
          Message-ID:BIMI-Selector;
-        b=q2mL4lvgqq6/UT0kzVkGmepQtIBR6RAoGnxho6bvKGLlC4mnjndRTyRybHHjkrQG9
-         o3/KldHRayXXuqnvLQWQNJEuS0hX722OevRqQksAJ7Dj/Tmv+UBcmjjJGSsvjb+e3B
-         BSxTABGUPWgHtLcgChRVgth7FvhxLgwf2ncmf7YSw8UzuXN9Jvh1WSJwKjF7yeST21
-         kEp1TTmxo/zZXvjexnHrXq1SHs9pnpKn5CohBY9Kv6UrGQ3FPDWfhux0OCQlaCh++l
-         QhR+Jgad6PLbRbBq0pY6wyQ4myRQT7qygFd3qNEo2fOvu8OHbgecHZpMEyw8N1gBW5
-         hpXXhAuZahOpw==
+        b=cFCg2QVgznqVtFP9eEgtD2O96s0VDDWHNQ0clkXOHyio208BE1CMPBFTq4FxwqAQd
+         DgPGzeubXAFZXrfzVtVoI6RuU8pSHhSw4ylAt4cENkTCqaxziMWT9VxFi3cd8pAwC5
+         iZfknvxU4Lc9+h7rpdHZIjSi2+BhCdjILweF8oOS4SQPDkylWbOxfBwJ2RPcZDI8PZ
+         p7TXOfLVGNPJ+TgPBMhK5Iscjv0ckxSNJc2wZlOP7lM/9O+amqmFDm0O4ByYFxJkp1
+         C6CZafVjnJ7fyFscCLtxZufKA5kUkAB4rQ86uVxcNwGHjSU9CO2VqIjd3nhJfBmAmB
+         kBdNVB6qyz1rg==
 To:     linux-kernel@vger.kernel.org
 From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
 Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
@@ -36,46 +37,110 @@ Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Stephan Gerhold <stephan@gerhold.net>,
         linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH 1/2] dt-bindings: leds: aw2013: Document vdd-supply
-Message-ID: <20230320142103.3440-1-linmengbo0689@protonmail.com>
+Subject: [PATCH 2/2] leds: aw2013: Add vdd regulator
+Message-ID: <20230320142116.3494-1-linmengbo0689@protonmail.com>
 In-Reply-To: <20230320141638.3378-1-linmengbo0689@protonmail.com>
 References: <20230320141638.3378-1-linmengbo0689@protonmail.com>
 Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document vdd-supply, a regulator providing power to the "VDD" pin.
+Implement support for a "vdd" that is enabled by the aw2013 driver so that
+the regulator gets enabled when needed.
 
 Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 ---
- Documentation/devicetree/bindings/leds/leds-aw2013.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/leds/leds-aw2013.c | 26 +++++++++++++++++---------
+ 1 file changed, 17 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml b/Docu=
-mentation/devicetree/bindings/leds/leds-aw2013.yaml
-index 08f3e1cfc1b1..51a58f4b8ed6 100644
---- a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
-@@ -23,6 +23,9 @@ properties:
-   vcc-supply:
-     description: Regulator providing power to the "VCC" pin.
+diff --git a/drivers/leds/leds-aw2013.c b/drivers/leds/leds-aw2013.c
+index 0b52fc9097c6..91d720edb857 100644
+--- a/drivers/leds/leds-aw2013.c
++++ b/drivers/leds/leds-aw2013.c
+@@ -62,7 +62,7 @@ struct aw2013_led {
 =20
-+  vdd-supply:
-+    description: Regulator providing power to the "VDD" pin.
-+
-   "#address-cells":
-     const: 1
+ struct aw2013 {
+ =09struct mutex mutex; /* held when writing to registers */
+-=09struct regulator *vcc_regulator;
++=09struct regulator_bulk_data regulators[2];
+ =09struct i2c_client *client;
+ =09struct aw2013_led leds[AW2013_MAX_LEDS];
+ =09struct regmap *regmap;
+@@ -106,7 +106,8 @@ static void aw2013_chip_disable(struct aw2013 *chip)
 =20
+ =09regmap_write(chip->regmap, AW2013_GCR, 0);
+=20
+-=09ret =3D regulator_disable(chip->vcc_regulator);
++=09ret =3D regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
++=09=09=09=09     chip->regulators);
+ =09if (ret) {
+ =09=09dev_err(&chip->client->dev,
+ =09=09=09"Failed to disable regulator: %d\n", ret);
+@@ -123,7 +124,8 @@ static int aw2013_chip_enable(struct aw2013 *chip)
+ =09if (chip->enabled)
+ =09=09return 0;
+=20
+-=09ret =3D regulator_enable(chip->vcc_regulator);
++=09ret =3D regulator_bulk_enable(ARRAY_SIZE(chip->regulators),
++=09=09=09=09    chip->regulators);
+ =09if (ret) {
+ =09=09dev_err(&chip->client->dev,
+ =09=09=09"Failed to enable regulator: %d\n", ret);
+@@ -348,16 +350,20 @@ static int aw2013_probe(struct i2c_client *client)
+ =09=09goto error;
+ =09}
+=20
+-=09chip->vcc_regulator =3D devm_regulator_get(&client->dev, "vcc");
+-=09ret =3D PTR_ERR_OR_ZERO(chip->vcc_regulator);
+-=09if (ret) {
++=09chip->regulators[0].supply =3D "vcc";
++=09chip->regulators[1].supply =3D "vdd";
++=09ret =3D devm_regulator_bulk_get(&client->dev,
++=09=09=09=09      ARRAY_SIZE(chip->regulators),
++=09=09=09=09      chip->regulators);
++=09if (ret < 0) {
+ =09=09if (ret !=3D -EPROBE_DEFER)
+ =09=09=09dev_err(&client->dev,
+ =09=09=09=09"Failed to request regulator: %d\n", ret);
+ =09=09goto error;
+ =09}
+=20
+-=09ret =3D regulator_enable(chip->vcc_regulator);
++=09ret =3D regulator_bulk_enable(ARRAY_SIZE(chip->regulators),
++=09=09=09=09    chip->regulators);
+ =09if (ret) {
+ =09=09dev_err(&client->dev,
+ =09=09=09"Failed to enable regulator: %d\n", ret);
+@@ -382,7 +388,8 @@ static int aw2013_probe(struct i2c_client *client)
+ =09if (ret < 0)
+ =09=09goto error_reg;
+=20
+-=09ret =3D regulator_disable(chip->vcc_regulator);
++=09ret =3D regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
++=09=09=09=09     chip->regulators);
+ =09if (ret) {
+ =09=09dev_err(&client->dev,
+ =09=09=09"Failed to disable regulator: %d\n", ret);
+@@ -394,7 +401,8 @@ static int aw2013_probe(struct i2c_client *client)
+ =09return 0;
+=20
+ error_reg:
+-=09regulator_disable(chip->vcc_regulator);
++=09regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
++=09=09=09       chip->regulators);
+=20
+ error:
+ =09mutex_destroy(&chip->mutex);
 --=20
 2.30.2
 
