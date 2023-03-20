@@ -2,148 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9846C1BC1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A776C1BCF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232204AbjCTQe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:34:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
+        id S232405AbjCTQgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:36:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232291AbjCTQeI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:34:08 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3874B1BFB
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 09:27:28 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id r11so49027903edd.5
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 09:27:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679329644;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XnwEPxx5YL7Zi9KDhWj9Zn5PB5/beeG3PJ/g8T7eV2A=;
-        b=xRcg+DCrSBd/eo+qM0Lw4k0Vt8NlLOOh1A3iakfND6UM34tnNbgLXSoa8tQ0643p4j
-         DJcZZ9pZ4pSmJf+q7NSbi4iNO1V0OKB7oshHqnN86H2OGSweWdKpXAyiS+nINaiZKv40
-         5jLYZ6OUxuykProx0xFju8xLeQb61h+pf6sB6OqW9TOUqhQfG4CThGLnMD5OSwSOP8J8
-         p1N2HqgnfCQWiuyJt1H6588nhuWjKxktwKWH4m1SXzQbSSog9XiuR/OzBgerpzIMZsc3
-         9z0qF1JmwUpBSFeUGN8NjLGvzTSECMvi+l1Tk4lo9vl7Ig50bwHLL0LuFSt/hBOKTgRP
-         /Jtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679329644;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XnwEPxx5YL7Zi9KDhWj9Zn5PB5/beeG3PJ/g8T7eV2A=;
-        b=SMH4864WC/XF2ZwzDGVVevdEvqhKEvYXC6CzPZ7Ab75M7Qua7IP8igUozXwrinKBvO
-         zTlhEXU0ssOs2VB7w9R1tLRdJdLp085H7iaNUzxh7GoO3kevshASekUzF9KkNnXcpHvo
-         1EXcjPL+sOURY5vYD7aX0vEuvYpw8yAbsRQc27G0Wb/xn35MgiQu414Bi6GfJeYa6PRV
-         WfClg8Uf5GMAw6GSnxSQ9DHO7Vd0y2SZXfIJKgtYoyOZQkdlELKh44ARA2ePuaSws8HS
-         Qm6YBShH2hwt0DQVTU77DRpIYSF1USBZ2G7rnqmpAUIY+BAv28kZUcRN6dBgo+CsiTDz
-         Fuhg==
-X-Gm-Message-State: AO0yUKWoqXKw1KbrLvuKQNhFZfD+kao4hJ4h4VTzd5Y0iYso02HGchoQ
-        BRcbAMaIWWgN57LtLdpT6NVXcw==
-X-Google-Smtp-Source: AK7set/Pob6U/DYlrD/H/KyyBeppvFxPMq7piDaQGnQG1fbu46kGcOBrV0ICBwN/T15mV1Z0zOGACw==
-X-Received: by 2002:a17:906:2b56:b0:922:d34e:2ba1 with SMTP id b22-20020a1709062b5600b00922d34e2ba1mr10035489ejg.63.1679329644492;
-        Mon, 20 Mar 2023 09:27:24 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id r5-20020a1709064d0500b00923f05b2931sm4588816eju.118.2023.03.20.09.27.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 09:27:23 -0700 (PDT)
-Message-ID: <fc5c76d1-51cd-5992-9bfa-06f57874fc03@linaro.org>
-Date:   Mon, 20 Mar 2023 17:27:22 +0100
+        with ESMTP id S231786AbjCTQfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:35:32 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 749F112046;
+        Mon, 20 Mar 2023 09:29:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 6A147CE1307;
+        Mon, 20 Mar 2023 16:29:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 758DDC433A0;
+        Mon, 20 Mar 2023 16:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679329744;
+        bh=kjNE+xZqCrD8iMoVdwZ7yuZZfBEJymUt10XwIxYh2IY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vv4sNgoQPQYZIt80kDvbscTGV8EyAOBLnvQJNKOVjOIWof8MSUsP1pcxCF0mz9ilD
+         QdNVhF/zy/ob6sZsf7Np9llMREtIsDd3VQEp4F26Of52jZ44R5ryPsOTBtdIMQ1AE3
+         8dugyBf2AOcS1qqBnqPzyb8hdBKvxChJ65hR7ns4FF8TnD9anxfVvrRrE8LbXM1ve5
+         QeLODxSRqLl/EnwXRwUB96JZfcfb4trlUcc8RSaE5/6lvDa6NAaYzoT08VoT55/Onn
+         37iXDFAs1+YyXU9uqijre8jtsuOUDS2/Zhf52EXBvYN8x3ECX6pphoxUdsqZ4YacrU
+         +51lo3tKKklTA==
+Date:   Mon, 20 Mar 2023 16:28:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Drake <drake@endlessm.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH 02/11] dt-bindings: serial: snps-dw-apb-uart: Relax
+ dma-names order constraint
+Message-ID: <3f544569-553c-40c5-9d9a-31dfc48d06a4@sirena.org.uk>
+References: <20230315114806.3819515-1-cristian.ciocaltea@collabora.com>
+ <20230315114806.3819515-3-cristian.ciocaltea@collabora.com>
+ <3679f2d0-55f0-1710-abc2-b268b6fc6969@linaro.org>
+ <167904851367.26.16449705310108549543@mailman-core.alsa-project.org>
+ <20230320155812.GA1755078-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
- imx8qm cdns3 glue bindings
-To:     Frank Li <frank.li@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-References: <20230316212712.2426542-1-Frank.Li@nxp.com>
- <20230316212712.2426542-2-Frank.Li@nxp.com>
- <e6935c0c-375e-b763-ea91-3b8bbc906ebc@linaro.org>
- <AM6PR04MB4838D1958A029701E1601BA588BD9@AM6PR04MB4838.eurprd04.prod.outlook.com>
- <1fd1fe42-3da6-1598-a04d-cb99a9b4b145@linaro.org>
- <AM6PR04MB483800D7CDCC7AF48F88BF9688809@AM6PR04MB4838.eurprd04.prod.outlook.com>
- <b8801c83-f2dc-f144-de58-03e5c24436fd@linaro.org>
- <AM6PR04MB4838F5C9EF13A588E799D5C488809@AM6PR04MB4838.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AM6PR04MB4838F5C9EF13A588E799D5C488809@AM6PR04MB4838.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SSpxkFyPmL3iEqN+"
+Content-Disposition: inline
+In-Reply-To: <20230320155812.GA1755078-robh@kernel.org>
+X-Cookie: Keep away from fire or flame.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 17:22, Frank Li wrote:
->>>>>>> +  assigned-clocks:
->>>>>>> +    items:
->>>>>>> +      - description: Phandle and clock specifier of
->> IMX_SC_PM_CLK_PER.
->>>>>>> +      - description: Phandle and clock specifoer of
->>>> IMX_SC_PM_CLK_MISC.
->>>>>>> +      - description: Phandle and clock specifoer of
->>>>>> IMX_SC_PM_CLK_MST_BUS.
->>>>>>> +
->>>>>>> +  assigned-clock-rates:
->>>>>>> +    items:
->>>>>>> +      - description: Must be 125 Mhz.
->>>>>>> +      - description: Must be 12 Mhz.
->>>>>>> +      - description: Must be 250 Mhz.
->>>>>>
->>>>>> I would argue that both properties above are not needed. If your
->>>>>> hardware requires fixed frequencies, clock provider can fix them, can't
->> it?
->>>>>
->>>>> Clock provider don't know fixed value and turn on only used by client.
->>>>
->>>> So maybe fix the clock provider? Or this device driver? Requiring by
->>>> binding specific frequencies for every board is a bit redundant.
->>>
->>> It is not for every boards, it is common for a chip family.  Only a place to set
->> for
->>> QM and QXP.
->>>
->>> The similar case is network driver, which require a specific frequency at
->> clock assign.
->>> Generally frequency is fixed,  clock source name may change at difference
->> chips.
->>
->> If frequency is always fixed, I don't understand why this is in DT
->> bindings. I would even say it should not be in DTS. We don't put into
->> DTS properties which are always the same, because otherwise they would
->> grow crazy big.
-> 
-> Although frequency is fixed, clock name may change for difference platform.
-> 
->                 assigned-clocks = <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_PER>,
->                                  	     <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MISC>,
->                                  	     <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MST_BUS>;
->                assigned-clock-rates = <125000000>, <12000000>, <250000000>;
->  
-> some platform use IMX_SC_R_USB_2, other platform may use IMX_SC_R_USB_3.
 
-This I understand, you wrote it above, so nothing new and my concerns
-are still there.
+--SSpxkFyPmL3iEqN+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Mon, Mar 20, 2023 at 10:58:12AM -0500, Rob Herring wrote:
+> On Fri, Mar 17, 2023 at 12:21:41PM +0200, Cristian Ciocaltea via Alsa-dev=
+el wrote:
 
+> >  dma-names order constraint
+> > Message-ID: <8ae57fe3-56aa-7e50-3eaa-a12a40657baf@collabora.com>
+> > User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+> >  Thunderbird/102.7.2
+
+> There is something strange going on with your mails as there are 2=20
+> copies in the archives with the 2nd one getting the header twice. It's=20
+> coming from the alsa-devel list.
+
+This is probably caused by alsa-devel, it'll be mailman rewriting bits
+of the message.  There's stuff coming up with other people's mails too.
+
+--SSpxkFyPmL3iEqN+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQYiccACgkQJNaLcl1U
+h9AWWgf+NrPa0MYP5i63yT+84rj5CMEVq9erNCfVLLi4aX7Rk2t3p7OHm6nPT5iH
+nEuh1CIOa+avBw3wouVQt6nokWi+mq6QbmYustWX7hPq0Gz2FRTJyXl78DNWj8Ys
+fZ4osjdXbr7f0Sa5lZVvImuVpGh7z03Fg9XbLkMXt7FDacubv1DY6RwJdphesoG7
+C99xjwHv55veTyp/QbwCuyctpKWo1Dn4HvkL8XU//892rRaHt6enBBju6DWo8GTF
+tr89XuM3flXYbOGumon2KSlsbzAXV7QKwnK9RCPsLaXuvO36PRBMippV/VmwnJCh
+dYBmTNrePnumx6r2BbCzk0Gx8LMfdw==
+=+3s7
+-----END PGP SIGNATURE-----
+
+--SSpxkFyPmL3iEqN+--
