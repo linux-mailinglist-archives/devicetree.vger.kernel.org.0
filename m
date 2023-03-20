@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 828CA6C092E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 04:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5078A6C097E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 04:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbjCTDGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Mar 2023 23:06:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58952 "EHLO
+        id S229846AbjCTDyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Mar 2023 23:54:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjCTDF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 23:05:56 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6A03411E80;
-        Sun, 19 Mar 2023 20:05:34 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B65F9FEC;
-        Sun, 19 Mar 2023 20:06:16 -0700 (PDT)
-Received: from [10.162.41.7] (a077893.blr.arm.com [10.162.41.7])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8B1343F67D;
-        Sun, 19 Mar 2023 20:05:26 -0700 (PDT)
-Message-ID: <4d3fa526-f108-3f8c-71db-ebfb2734f9fa@arm.com>
-Date:   Mon, 20 Mar 2023 08:35:23 +0530
+        with ESMTP id S229446AbjCTDyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Mar 2023 23:54:40 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A36A1CAD7;
+        Sun, 19 Mar 2023 20:54:36 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8D4D524E2B0;
+        Mon, 20 Mar 2023 11:54:34 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 11:54:34 +0800
+Received: from [192.168.125.128] (183.27.97.64) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 11:54:33 +0800
+Message-ID: <45221a1c-dc01-2759-3e32-658636625529@starfivetech.com>
+Date:   Mon, 20 Mar 2023 11:54:25 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 4/7] coresight: etm4x: Change etm4_platform_driver driver
- for MMIO devices
+Subject: Re: [PATCH v2 3/6] dt-bindings: soc: starfive: syscon: Add optional
+ patternProperties
 Content-Language: en-US
-To:     kernel test robot <lkp@intel.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        suzuki.poulose@arm.com
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        scclevenger@os.amperecomputing.com,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230317030501.1811905-5-anshuman.khandual@arm.com>
- <202303181800.KxbuwjRT-lkp@intel.com>
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-In-Reply-To: <202303181800.KxbuwjRT-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230316030514.137427-1-xingyu.wu@starfivetech.com>
+ <20230316030514.137427-4-xingyu.wu@starfivetech.com>
+ <1f352445-4677-e33b-be14-c76bd7ffa188@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <1f352445-4677-e33b-be14-c76bd7ffa188@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Originating-IP: [183.27.97.64]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,58 +67,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023/3/19 20:28, Krzysztof Kozlowski wrote:
+> On 16/03/2023 04:05, Xingyu Wu wrote:
+>> Add optional compatible and patternProperties.
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> ---
+>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 39 ++++++++++++++++---
+>>  1 file changed, 33 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> index ae7f1d6916af..b61d8921ef42 100644
+>> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> @@ -15,16 +15,31 @@ description: |
+>>  
+>>  properties:
+>>    compatible:
+>> -    items:
+>> -      - enum:
+>> -          - starfive,jh7110-aon-syscon
+>> -          - starfive,jh7110-stg-syscon
+>> -          - starfive,jh7110-sys-syscon
+>> -      - const: syscon
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - starfive,jh7110-aon-syscon
+>> +              - starfive,jh7110-stg-syscon
+>> +              - starfive,jh7110-sys-syscon
+>> +          - const: syscon
+>> +      - items:
+>> +          - enum:
+>> +              - starfive,jh7110-aon-syscon
+>> +              - starfive,jh7110-stg-syscon
+>> +              - starfive,jh7110-sys-syscon
+>> +          - const: syscon
+>> +          - const: simple-mfd
+>>  
+>>    reg:
+>>      maxItems: 1
+>>  
+>> +patternProperties:
+>> +  # Optional children
+>> +  "pll-clock-controller":
+> 
+> It's not a pattern.
 
+Does it use 'properties' instead of 'patternProperties'?
 
-On 3/18/23 15:54, kernel test robot wrote:
-> Hi Anshuman,
 > 
-> Thank you for the patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on robh/for-next]
-> [also build test WARNING on soc/for-next rafael-pm/linux-next linus/master v6.3-rc2 next-20230317]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Anshuman-Khandual/coresight-etm4x-Allocate-and-device-assign-struct-etmv4_drvdata-earlier/20230317-110755
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> patch link:    https://lore.kernel.org/r/20230317030501.1811905-5-anshuman.khandual%40arm.com
-> patch subject: [PATCH 4/7] coresight: etm4x: Change etm4_platform_driver driver for MMIO devices
-> config: arm64-buildonly-randconfig-r002-20230312 (https://download.01.org/0day-ci/archive/20230318/202303181800.KxbuwjRT-lkp@intel.com/config)
-> compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # install arm64 cross compiling tool for clang build
->         # apt-get install binutils-aarch64-linux-gnu
->         # https://github.com/intel-lab-lkp/linux/commit/f02ad9e7f97ab4fc1f90c7e6399004e9ec89ef26
->         git remote add linux-review https://github.com/intel-lab-lkp/linux
->         git fetch --no-tags linux-review Anshuman-Khandual/coresight-etm4x-Allocate-and-device-assign-struct-etmv4_drvdata-earlier/20230317-110755
->         git checkout f02ad9e7f97ab4fc1f90c7e6399004e9ec89ef26
->         # save the config file
->         mkdir build_dir && cp config build_dir/.config
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/hwtracing/coresight/
-> 
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Link: https://lore.kernel.org/oe-kbuild-all/202303181800.KxbuwjRT-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
->>> drivers/hwtracing/coresight/coresight-etm4x-core.c:2336:32: warning: unused variable 'etm4_dev_pm_ops' [-Wunused-const-variable]
->    static const struct dev_pm_ops etm4_dev_pm_ops = {
+> Anyway should be clock-controller
 
-These pm_ops needs to tagged along with the platform driver.
+Will fix.
 
-diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-index 3ce2b4911a49..fe10dd91183e 100644
---- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-+++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-@@ -2280,6 +2280,7 @@ static struct platform_driver etm4_platform_driver = {
-                .of_match_table         = etm4_match,
-                .acpi_match_table       = ACPI_PTR(etm4x_acpi_ids),
-                .suppress_bind_attrs    = true,
-+               .pm                     = &etm4_dev_pm_ops,
-        },
- };
+> 
+>> +    type: object
+>> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+>> +    description: Clock provider for PLL.
+>> +
+> 
+> You just added these bindings! So the initial submission was incomplete
+> on purpose?
+> 
+> No, add complete bindings.
+
+Does you mean that it should drop the 'description', or add complete 'description',
+or add 'compatible', 'clocks' and 'clock-cells' of complete clock-controller bindings?
+
+> 
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -38,4 +53,16 @@ examples:
+>>          reg = <0x10240000 0x1000>;
+>>      };
+>>  
+>> +  - |
+>> +    syscon@13030000 {
+> 
+> No need for new example... Just put it in existing one.
+> 
+
+Actually, the PLL clock-controller are just set in sys-syscon resgisters. The stg-syscon and
+aon-syscon don't need it. So PLL clock-controller node only is added in sys-syscon node.
+
+Best regards,
+Xingyu Wu
