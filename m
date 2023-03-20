@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D01D86C1F1B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E6436C1F27
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:11:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbjCTSJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 14:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41092 "EHLO
+        id S230428AbjCTSLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 14:11:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbjCTSJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:09:03 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C7832E66
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:02:51 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id t5so13369895edd.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:02:51 -0700 (PDT)
+        with ESMTP id S231463AbjCTSKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:10:21 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110533E1DA
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:04:34 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id t5so13388190edd.7
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:04:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679335370;
+        d=linaro.org; s=google; t=1679335464;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=s0eoWfmO41fcTesmFbumMelX1mm4aMPERyhh0espiXY=;
-        b=qmP95LEReUwzh5aFhObeTYcZF8mkRX+F2NKB82E7CMqOUN2qq7XLyh8EJXDIKkvQ9M
-         iRMAPlV3qmDQl46VrmXFD9r16xGdGc3riIb3SX5cjcxqca9Ixlf95ni69oIUH9yfMHPj
-         ya6DT8n8KRcHpeIZ8EaCGlaOlDPu+h6b1PvZCW/1ZnwJSe+cxxA4RNuPd6I964iA7un5
-         PKDxsMcZIbVOtW5IHFoJcXGK/Hb5N4WV8jtUOWRWQ0WzGbkuWtW+qPzLRYVZ9J8rR1yZ
-         jZxLhkTneuUUVn/AlSD3jYviJfqOdXocoPv/ztf0jF1GLiOiYxY6NwhNb7uAkrtM5Qfs
-         +2Sg==
+        bh=nlbvOvcRdjikHkGUAlyi2gafrmdSiUtbdmOmB2pwxAQ=;
+        b=vF7FFDLUxwbbu19+9bi9lG2X3u9NftQ5nmLJ3gRFUsq1cLs0kxIhqz/Z20haoPEqYU
+         gKGXtaz67MTUrptzTWpNiRsRBLmqwAqIijoCeZsEUeCgwWX8w3cQJbqPOHHMvH/UxYG5
+         Catw6Y0mRkhSLO+GEkiKkJyetu3DNTQ4hLLICj7Qi08leeZ+syj20rY90xGFAiVvPswq
+         XYBKI1KjP6IyNr796auFZIqgSBRGbm7XSiGAdyNh//c8D2urdRZaPvtt7RmvdMcCRLio
+         /7VgJQuByjEM2ASpHDzmIoaXyL/GfF/y0/7tqZkx7aZkZ0Dop2YTNZyoaucJ842gj4e4
+         vShA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679335370;
+        d=1e100.net; s=20210112; t=1679335464;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s0eoWfmO41fcTesmFbumMelX1mm4aMPERyhh0espiXY=;
-        b=Kan8ptQSx0hxE2l1Uv7SfjqC27quKySVCEkPLmCYt2TqbEly7BKe+XUf0yV82a+wsc
-         1kJw8bzX8InkXjCPLz5k/8YqO3+BDdLFWowx/iK9+e+FKl8SWlKNMOUDIMld9+dG+j2v
-         pmvlPvYwR+Pp/1FCUwywthTVNEC34ZWgtY4mx9/ij4d1pX7xAwJMR8pFr2Yjk21hSXfG
-         SOJh4/r5zC6Cx5nmQqtQtMkBk89Ev+MZ7zVx2jVl08z4xipgXLgAmwCPBi8ILBi6W9jS
-         GszKV7cCxdxIVnJnr8+K1xV1LwsVUl4orS1je9X+UOndt+WX6bANKKs8MKxNLV2ZXI/+
-         0abg==
-X-Gm-Message-State: AO0yUKWu0lVpoh1MxpRQ8eutAW6OOpkNDVdI7QSbe07oQGw5iQeMT7R+
-        Iu9KDlOMWBOnUX1IQukFrCZ9bA==
-X-Google-Smtp-Source: AK7set+X8Ws3lSJorXAGlLHIxDKllor1Be8KbnrGdbc3YDiOHCp60p/e04Sg1zXSgKAnrXNGG2uQuw==
-X-Received: by 2002:a17:906:2b15:b0:922:8fc9:d235 with SMTP id a21-20020a1709062b1500b009228fc9d235mr533372ejg.9.1679335370626;
-        Mon, 20 Mar 2023 11:02:50 -0700 (PDT)
+        bh=nlbvOvcRdjikHkGUAlyi2gafrmdSiUtbdmOmB2pwxAQ=;
+        b=PThBhw6BLhx7VOCEBqAGdXws4QUNcHsjFPdEgelIvxgvWmf/NEJXb5Urq9Wug/OhIH
+         m8ivi/7W8Nvi/zKOIn4d2NnVJTu2cfg9aGzC5ablrI/JCNUl8zdMdPEyB/8wQdqhXcY3
+         4Eayv+Xfbe4qImdjdTnOjCmNg/VZplfeS8QUZlZJSKsm5cAlIrNDilZhvwWKw93LxReK
+         mlq36IzCNoqrLC6+IXGFTJZALo2h+ZTEihjdB0bjO1WT3HlSMsrmZFJmNxG6Z/7jshy+
+         BcknQ1KA998VSuUIje/oRJHJsNBvo1TpY2ImR02paybIcsjAHnN8hc3VJT79sD5Shi+N
+         sZwQ==
+X-Gm-Message-State: AO0yUKWVPlv0ysXc8kTjOiQAiOj9o9cGBJSLO9CvyfVDed8sFv3c3HIM
+        +kgEmptMjVd9Z+sVgwVc058okVEmH9reogdKw9E=
+X-Google-Smtp-Source: AK7set+3A23KwD3p9Eh/ZVXzZ3ZMSeEl55VrVNQ0P3GLWZqCiYEP3aXfFUQWpAk/8Ym3CRDLeTbQIg==
+X-Received: by 2002:aa7:c7c2:0:b0:4fb:9372:f837 with SMTP id o2-20020aa7c7c2000000b004fb9372f837mr482985eds.4.1679335463946;
+        Mon, 20 Mar 2023 11:04:23 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id gv27-20020a1709072bdb00b008b9b4ab6ad1sm4705102ejc.102.2023.03.20.11.02.49
+        by smtp.gmail.com with ESMTPSA id q30-20020a50aa9e000000b004fadc041e13sm5239875edc.42.2023.03.20.11.04.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 11:02:50 -0700 (PDT)
-Message-ID: <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org>
-Date:   Mon, 20 Mar 2023 19:02:49 +0100
+        Mon, 20 Mar 2023 11:04:23 -0700 (PDT)
+Message-ID: <922eab51-6931-8533-db51-51cd911a36b3@linaro.org>
+Date:   Mon, 20 Mar 2023 19:04:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
- tree binding documentation
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: aw2013: Document vddio-supply
 Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        tsbogend@alpha.franken.de, john@phrozen.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org
-References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
- <20230320161823.1424278-2-sergio.paracuellos@gmail.com>
- <1e2f67b4-3bfb-d394-4f60-e6f63ce6a2fd@linaro.org>
- <CAMhs-H8OQ9gJLsifLuHD2GN8rYwnY=Zmdb0kMEfX4UUHhjMUyQ@mail.gmail.com>
- <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
- <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nikita Travkin <nikita@trvn.ru>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230320174949.174600-1-linmengbo0689@protonmail.com>
+ <20230320175131.174657-1-linmengbo0689@protonmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+In-Reply-To: <20230320175131.174657-1-linmengbo0689@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -85,27 +81,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 18:57, Arınç ÜNAL wrote:
->>> All of these are at the end the
->>> way we can properly match compatible-data to write a proper driver.
->>> The current ralink dtsi files which are in tree now
->>> are totally incomplete and not documented so we are planning to align
->>
->> Nothing like this was said in commit msg, so how can we know?
->>
->>> all of this with openWRT used files and others soon. That's the reason
->>> we are not touching
->>> 'arch/mips/boot/dts' at all now. I don't think anybody is using any of
->>> this but mt7621 which is properly completed and documented.
->>
->> Anyway, none of this explains exception from naming convention - vendor,
->> device or family name.
-> 
-> Would mediatek,mtmips-clock.yaml make sense?
+On 20/03/2023 18:55, Lin, Meng-Bo wrote:
+> Some LEDs controllers are used with external pull-up for the interrupt
+> line and the I2C lines, so we might need to enable a regulator to bring
+> the lines into usable state.
 
-More, except:
-1. This is not clock, but sysc.
-2. mips sounds redundant. Do you have rt2xxx and mt7xxx chips which are ARM?
+Not a property of this device.
+
+> Otherwise, this might cause spurious
+> interrupts and reading from I2C will fail.
+> 
+> Document support for "vddio-supply" that is enabled by the aw2013 driver
+> so that the regulator gets enabled when needed.
+> 
+> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-aw2013.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> index 08f3e1cfc1b1..79b69cf1d1fe 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> @@ -23,6 +23,11 @@ properties:
+>    vcc-supply:
+>      description: Regulator providing power to the "VCC" pin.
+>  
+> +  vddio-supply:
+> +    description: |
+> +      Optional regulator that provides digital I/O voltage,
+
+NAK. I responded to your patch and you just send a v2 without explanation.
+
+The device does not have VDDIO pin, either.
 
 Best regards,
 Krzysztof
