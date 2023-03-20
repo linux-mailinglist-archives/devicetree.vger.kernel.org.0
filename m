@@ -2,117 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 552266C1997
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05EDA6C19AD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:36:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233100AbjCTPfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 11:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
+        id S233092AbjCTPgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 11:36:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233217AbjCTPey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:34:54 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1884B3A4C3
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 08:27:33 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id t5so11459054edd.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 08:27:33 -0700 (PDT)
+        with ESMTP id S233089AbjCTPgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:36:19 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63C237F2A
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 08:28:21 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id x3so48219380edb.10
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 08:28:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679326051;
+        d=linaro.org; s=google; t=1679326095;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WEmn3ezyj6eA5BOfLU0yXf7IoBAmpDvuzLW+5wrOX+g=;
-        b=VVvn4d8bEf/oUM2tTGl4fQO5uS2x0It0EfbJYchV5E/p2pdzybPW9q75kxKStMuwND
-         nEyNGy7E68tGnlspW3ierXl/cz4IDEit52b3b8b1F9aV4mkCAHiPUPS2MmAUkQtRWlfx
-         R9MJ4DrhQxbPHxkLteE9fDhZxePSilbC5UNvTmYK9YQbfo3B+ZEBE5ZF6dUOJRlKzVHZ
-         gGKK3ULN3UjXtXzYzH3rXK/Lw3IpeoFds7pkiLpduRc0plIi5916oZyJeZ42Yh6PEJJG
-         ZajQs40soEXCJ2UdYkGSCr1KHJK2bHdZNnq+rZWnSJEfHtSsk9vTEpG73LRJ3IRvDKrp
-         RY+A==
+        bh=QvbqjlcL+bcFddHkzakeQEvxE0WZLFtin/eJNP/6Jds=;
+        b=FEOyk0ch5NcBUPDFJ9vRXINT4BtRWlDouCCJ816Aj6tFvs26zQZo6D+GNErhheVAid
+         kW5KwvupeDkpX+3TgwMAO0w/zysHZyZamDsRnY3p8nkDJjTLBzO1QOqFgi3eZML2VcKn
+         17q0N9QM2F0z41UQWbsuFDkOckccgC6yMMDZLZHEbUiycUDMJZDbFIfw/MlzEUaZL45K
+         JKK/bCU6IWlkF0imhDntDV+OZFOBrH7kuKxmED/oRLB0P5/8UZTfxqPvk7OY4mMkrrU7
+         mWqS0l2zgAcqy1m9l+0uS+8Ut6UimND9YNXyyAWvhz3/xAeSJje/H26bU7CeOVB53nc/
+         2Wqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679326051;
+        d=1e100.net; s=20210112; t=1679326095;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WEmn3ezyj6eA5BOfLU0yXf7IoBAmpDvuzLW+5wrOX+g=;
-        b=db4gTiawncAwambJiB3yvXSJN1wpsbutodLKfbWbrpqePNhTd+LOuVNrsuZmyTHOyh
-         Z8dO7nomEsvTGGyEiTMralFulrN16P287Ya4a7LX+MiZonP4FJ5OV6fXRCZpO4vC6ZM9
-         jbn5xD1E45EYbpBaxOO3W9yXX4a0UCMFykmFmzRVp5JLb172+QYaj1cEK7Ar1FkXsHAf
-         f1ElZmHdqkJA2Gkqo8g2OrQdp+PE8mBtWvREKSoqLIt+Cp+jt+T7eOC2Y5+OlwlU5AqO
-         jSoArzB8R8IHpxThkjRugW/TbdmkMk1v1z7oExBz2hrwHI19uxP5XxyFbM3QjFsqugWj
-         lbHA==
-X-Gm-Message-State: AO0yUKVPsDaRpzG4nNWmH76IpC5Nbtv4+O7SOW19uQocC1UEWPtLY80a
-        xe7ZMKvdxPPrC9JMAWUtPmx22g==
-X-Google-Smtp-Source: AK7set8Mv/6NZQmY/cewfFovcPQx3S77XB1TuD1OioHu4HZdpCl+pYhmc38k1airbGaoEgTwpYzVsg==
-X-Received: by 2002:a17:906:84d:b0:933:1134:be1e with SMTP id f13-20020a170906084d00b009331134be1emr8843315ejd.53.1679326051561;
-        Mon, 20 Mar 2023 08:27:31 -0700 (PDT)
+        bh=QvbqjlcL+bcFddHkzakeQEvxE0WZLFtin/eJNP/6Jds=;
+        b=dYPE3fXeipokqDDIUxUQWfHB/P/ea4X0J+1sKe3idt39elYfhdyUyRxGxeyD6i0vKi
+         j/Fl1mX1VH7UyoIRP/RLUZ+YLvZLTFTZvPIdK5QCyMUFO9u+KYBKwqX5HvXV1M7FHRSB
+         OH8S4yg08l0fGZnMejQbBZyENElxHavGdmXEiXHSwNmqxK8wV4ptH6ey+9bjbBpVxnMP
+         Az4PGbzUac4mKo1k6LgTr0sTYqI0TJQs0d0P/6/ozVLV0MD/TsV2FOmP7r3/3OxL6NqI
+         YGOH7dUoloBnJe0OvR4neq8qbiiMfnufJlKEmcyfMoEvoFE8YyNUVswNPm7XUkiOwRSO
+         zByQ==
+X-Gm-Message-State: AO0yUKXvRm2tqc8tfK9/Ul7QOl5Tm7+6nw+vGq8Fi4v4Ga7JuI5sGs0G
+        tXy2Azt4giMeb6dN9tCXSoSK3g==
+X-Google-Smtp-Source: AK7set9o5/mI7mPNEgdgSeUp6yCydHUMivwcHSQX/kXIVqElEKWBRdss2+/J/gJTgoRLEs+1lYT3ww==
+X-Received: by 2002:a17:907:779a:b0:8fc:c566:dc67 with SMTP id ky26-20020a170907779a00b008fcc566dc67mr10735529ejc.64.1679326095219;
+        Mon, 20 Mar 2023 08:28:15 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id d2-20020a17090648c200b008ea8effe947sm4568161ejt.225.2023.03.20.08.27.30
+        by smtp.gmail.com with ESMTPSA id v4-20020a509544000000b004fb402a2a37sm5084567eda.33.2023.03.20.08.28.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 08:27:31 -0700 (PDT)
-Message-ID: <f4c9e4cd-200f-9ec4-16e1-38596f74770c@linaro.org>
-Date:   Mon, 20 Mar 2023 16:27:30 +0100
+        Mon, 20 Mar 2023 08:28:14 -0700 (PDT)
+Message-ID: <2b86ecc8-bc02-dc0b-cc80-51bcc018e4e0@linaro.org>
+Date:   Mon, 20 Mar 2023 16:28:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCHv1 2/7] dt-bindings: display: st7789v: add Inanbo
- T28CP45TN89
+Subject: Re: [PATCH v2] dt-bindings: mmc: fujitsu: Add Socionext Synquacer
 Content-Language: en-US
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20230317232355.1554980-1-sre@kernel.org>
- <20230317232355.1554980-3-sre@kernel.org>
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230319173006.30455-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230317232355.1554980-3-sre@kernel.org>
+In-Reply-To: <20230319173006.30455-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 00:23, Sebastian Reichel wrote:
-> Add compatible value for Inanbo t28cp45tn89 and
-> make reset GPIO non mandatory, since it might not
-> be connected to the CPU.
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-
+On 19/03/2023 18:30, Rob Herring wrote:
+> Add support for Socionext Synquacer SDHCI. This binding has been in use for
+> some time.
 > 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->  .../devicetree/bindings/display/panel/sitronix,st7789v.yaml  | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> The interrupts were not documented. The driver only uses the first
+> interrupt, but the DT and example have 2 interrupts. The 2nd one is
+> unknown. "dma-coherent" was also not documented, but is used on Synquacer.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> index d984b59daa4a..4fc86f96b00f 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> @@ -15,7 +15,9 @@ allOf:
->  
->  properties:
->    compatible:
-> -    const: sitronix,st7789v
-> +    enum:
-> +      - sitronix,st7789v
-> +      - inanbo,t28cp45tn89-v17
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Keep them ordered by name.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
