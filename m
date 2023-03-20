@@ -2,199 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 346266C2609
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:48:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BED2D6C260F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:50:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbjCTXsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 19:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46194 "EHLO
+        id S229836AbjCTXuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 19:50:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230176AbjCTXsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:48:06 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12941E9C0
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 16:47:27 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id j13so13852930pjd.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 16:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112; t=1679355989;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CVD5kdtXy54YH3zU4G6cezFVCE0kWaOWnyh3a3H/fVw=;
-        b=gqS4hwId4OLnZEQgJI+kyIQkdjmZZrN+nyj53I24mqFbKwumRa3syzV+0mkcoQUlbp
-         I3AgRwMOV5tpdFgxUwMOdyobSn6YGJLq5ce4Okpmp1xF8WMyk+AYS/fECsmmnrjwBbvh
-         m416ye8JJBLiaMGKdPSU4vq6gcd8bwzfYtt4uBxxudYPXhLppUa4BnHpOAHtMLbQfY1m
-         MgvnWpRfkoiw5QiNdjNC8e97mTNXbNTRxWG+QQNHRgAgPLzHdXjluPpcHMXjwu63j5tq
-         +AkQmONBFJpyV0p6OQzwTmHpFlFVOZSZARJD9iWGVFgf52pT57vGrjmsDw1ywIryYuNH
-         Cqbw==
+        with ESMTP id S230294AbjCTXuC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:50:02 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067A02D5E;
+        Mon, 20 Mar 2023 16:49:21 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id s8so83939ois.2;
+        Mon, 20 Mar 2023 16:49:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679355989;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CVD5kdtXy54YH3zU4G6cezFVCE0kWaOWnyh3a3H/fVw=;
-        b=vCCUkwOfQwJ66IlGJwbTazT69FZnSLIYc0svjmP0dy6LuzDTRAN0XFNdaRpkY2QFny
-         PX4xozudKPWBsO0W5oGJjppp2sK+GtFzwR21AXDXsRU/J0PqXnQ6UbhqG+7e3hjzlot8
-         BXQhIBNXczkMbDDC0rcvgZx9QxtaoalU9gu7GDpAm0A1pbyB36QZq7JICGgYAPuvNRRT
-         F4Uk+jATleg1C2dzF8oIcKgc3eCDI0jgGDwiJmanYAF3cQtMDE6hlcKr0wxYMhYzCw1u
-         O43S3jGUi9ewD/VfxuXDB5H4Wgym2rDRnGvRkAn14moftN6SrC5XfQ+DoInc+YmjoeUX
-         2u3w==
-X-Gm-Message-State: AO0yUKVVNuGrWKhyMAMJenUyUGGxD1tBekea/lsNuJsUI7+SQP1zYEtg
-        /ur9puLsqlUDHD72poxSC5tJrQ==
-X-Google-Smtp-Source: AK7set+Eo6dVqOrcG8rwMRvHa6vfuVju4SycRcGmgII+64sM2O1goAy6bcstJI4WTVXmjXHmb/WVRA==
-X-Received: by 2002:a17:90b:1e43:b0:23f:9fac:6b31 with SMTP id pi3-20020a17090b1e4300b0023f9fac6b31mr367842pjb.25.1679355989349;
-        Mon, 20 Mar 2023 16:46:29 -0700 (PDT)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id 30-20020a630c5e000000b00502fd141ffbsm6756689pgm.49.2023.03.20.16.46.28
+        d=1e100.net; s=20210112; t=1679356047;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=09zhwGZdslyyy0wEVjKWFObTfJyiv32GzYkmakn90gk=;
+        b=MA/T70/CCgY7qQ/VDG+SBiDLHMmSuHrL4gVP3joV7QRe0tFBI/oVCJhj9xkn2Fc/Ec
+         2CWRscpjLn07BQGtFUUimQr1vpCOOrorwY5sq2KRbiGZtoKfcgPcpHH1MzfHV7y0/CX0
+         DlE8PHV+iu6FuxG8qSs0bIShrfNln9pajG694+35xr9CHBWh6bvYiHPcE5HCWxdoqBbq
+         cb0/yKHBvslt2Ig1/+juny1QWV4X43CaNBM4G2UVy3BraJ0gc84TD3TGpIUHRVPBadAk
+         +Q2SH/+u73pZebLad6Ep0sXVpHk/NhEBf2J4NXC45mk7fO0I+zyVLskf2VIwx/TwDwal
+         KPvQ==
+X-Gm-Message-State: AO0yUKVHhjmtYKN62BfSuC2mvJB3REKjweCncGSuyOGzR5VS+qeXnLDj
+        pFxYy/XQaEr3h5at7xDB3Q==
+X-Google-Smtp-Source: AK7set9WTfaJXM41TJy22yCuZh1qIWa2bJcddNw/957CohV/gMvQrnK7rg84XkJp//b3oWasSQ68WQ==
+X-Received: by 2002:a05:6808:656:b0:383:e7c8:4000 with SMTP id z22-20020a056808065600b00383e7c84000mr129044oih.13.1679356047370;
+        Mon, 20 Mar 2023 16:47:27 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b66-20020aca3445000000b0037d7c3cfac7sm4263116oia.15.2023.03.20.16.47.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 16:46:28 -0700 (PDT)
-Date:   Mon, 20 Mar 2023 16:46:28 -0700 (PDT)
-X-Google-Original-Date: Mon, 20 Mar 2023 16:45:32 PDT (-0700)
-Subject:     Re: [PATCH 01/12] dt-bindings: riscv: sifive-ccache: Add compatible for StarFive JH7100 SoC
-In-Reply-To: <Y+vxw28NWPfaW7ql@spud>
-CC:     cristian.ciocaltea@collabora.com, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, kernel@esmil.dk,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        sagar.kadam@sifive.com, yanhong.wang@starfivetech.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-49aaa4a3-0280-4401-ba33-7fe2f3b79534@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        Mon, 20 Mar 2023 16:47:27 -0700 (PDT)
+Received: (nullmailer pid 2930320 invoked by uid 1000);
+        Mon, 20 Mar 2023 23:47:26 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] dt-bindings: input: Drop unneeded quotes
+Date:   Mon, 20 Mar 2023 18:47:18 -0500
+Message-Id: <20230320234718.2930154-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Feb 2023 12:40:35 PST (-0800), Conor Dooley wrote:
-> Hey all,
->
-> On Sat, Feb 11, 2023 at 05:18:10AM +0200, Cristian Ciocaltea wrote:
->> Document the compatible for the SiFive Composable Cache Controller found
->> on the StarFive JH7100 SoC.
->> 
->> This also requires extending the 'reg' property to handle distinct
->> ranges, as specified via 'reg-names'.
->> 
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  .../bindings/riscv/sifive,ccache0.yaml        | 28 ++++++++++++++++++-
->>  1 file changed, 27 insertions(+), 1 deletion(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
->> index 31d20efaa6d3..2b864b2f12c9 100644
->> --- a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
->> @@ -25,6 +25,7 @@ select:
->>            - sifive,ccache0
->>            - sifive,fu540-c000-ccache
->>            - sifive,fu740-c000-ccache
->> +          - starfive,jh7100-ccache
->>  
->>    required:
->>      - compatible
->> @@ -37,6 +38,7 @@ properties:
->>                - sifive,ccache0
->>                - sifive,fu540-c000-ccache
->>                - sifive,fu740-c000-ccache
->> +              - starfive,jh7100-ccache
->>            - const: cache
->>        - items:
->>            - const: starfive,jh7110-ccache
->> @@ -70,7 +72,13 @@ properties:
->>        - description: DirFail interrupt
->>  
->>    reg:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  reg-names:
->> +    items:
->> +      - const: control
->> +      - const: sideband
->
-> So why is this called "sideband"?
-> In the docs for the JH7100 it is called LIM & it's called LIM in our
-> docs for the PolarFire SoC (at the same address btw) and we run the HSS
+Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+checking for this can be enabled in yamllint.
 
-IIRC it's both: "LIM" is the memory, "sideband" is the port.  I can't 
-find any proper documentation of "sideband" outside of DT and errata, 
-but there's a hanful of references to it in the bootloader for the 
-fu540: 
-<https://github.com/sifive/freedom-u540-c000-bootloader/search?q=sideband>.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/input/adc-joystick.yaml     | 4 ++--
+ .../devicetree/bindings/input/google,cros-ec-keyb.yaml        | 2 +-
+ Documentation/devicetree/bindings/input/imx-keypad.yaml       | 2 +-
+ Documentation/devicetree/bindings/input/matrix-keymap.yaml    | 2 +-
+ .../devicetree/bindings/input/mediatek,mt6779-keypad.yaml     | 2 +-
+ .../devicetree/bindings/input/microchip,cap11xx.yaml          | 4 ++--
+ Documentation/devicetree/bindings/input/pwm-vibrator.yaml     | 4 ++--
+ Documentation/devicetree/bindings/input/regulator-haptic.yaml | 4 ++--
+ .../bindings/input/touchscreen/elan,elants_i2c.yaml           | 4 ++--
+ 9 files changed, 14 insertions(+), 14 deletions(-)
 
-It's not really clear which is more correct here: sideband accesses are 
-only useful when the cache is configured as an LIM, at least for general 
-software.  IIRC the accesses to the LIM only go through the sideband 
-port for the E core, but I might be wrong about that.
+diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+index da0f8dfca8bf..6c244d66f8ce 100644
+--- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
++++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019-2020 Artur Rojek
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/input/adc-joystick.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/input/adc-joystick.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: ADC attached joystick
+ 
+diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+index e05690b3e963..3486c81699a8 100644
+--- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
++++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+@@ -57,7 +57,7 @@ if:
+       contains:
+         const: google,cros-ec-keyb
+ then:
+-  $ref: "/schemas/input/matrix-keymap.yaml#"
++  $ref: /schemas/input/matrix-keymap.yaml#
+   required:
+     - keypad,num-rows
+     - keypad,num-columns
+diff --git a/Documentation/devicetree/bindings/input/imx-keypad.yaml b/Documentation/devicetree/bindings/input/imx-keypad.yaml
+index 7514df62b592..b110eb1f3358 100644
+--- a/Documentation/devicetree/bindings/input/imx-keypad.yaml
++++ b/Documentation/devicetree/bindings/input/imx-keypad.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Liu Ying <gnuiyl@gmail.com>
+ 
+ allOf:
+-  - $ref: "/schemas/input/matrix-keymap.yaml#"
++  - $ref: /schemas/input/matrix-keymap.yaml#
+ 
+ description: |
+   The KPP is designed to interface with a keypad matrix with 2-point contact
+diff --git a/Documentation/devicetree/bindings/input/matrix-keymap.yaml b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+index 4d6dbe91646d..a715c2a773fe 100644
+--- a/Documentation/devicetree/bindings/input/matrix-keymap.yaml
++++ b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+@@ -21,7 +21,7 @@ description: |
+ 
+ properties:
+   linux,keymap:
+-    $ref: '/schemas/types.yaml#/definitions/uint32-array'
++    $ref: /schemas/types.yaml#/definitions/uint32-array
+     description: |
+       An array of packed 1-cell entries containing the equivalent of row,
+       column and linux key-code. The 32-bit big endian cell is packed as:
+diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+index d768c30f48fb..47aac8794b68 100644
+--- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
++++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Mattijs Korpershoek <mkorpershoek@baylibre.com>
+ 
+ allOf:
+-  - $ref: "/schemas/input/matrix-keymap.yaml#"
++  - $ref: /schemas/input/matrix-keymap.yaml#
+ 
+ description: |
+   Mediatek's Keypad controller is used to interface a SoC with a matrix-type
+diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+index 5fa625b5c5fb..5b5d4f7d3482 100644
+--- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
++++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/input/microchip,cap11xx.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/input/microchip,cap11xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Microchip CAP11xx based capacitive touch sensors
+ 
+diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+index a70a636ee112..d32716c604fe 100644
+--- a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
++++ b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/input/pwm-vibrator.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/input/pwm-vibrator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: PWM vibrator
+ 
+diff --git a/Documentation/devicetree/bindings/input/regulator-haptic.yaml b/Documentation/devicetree/bindings/input/regulator-haptic.yaml
+index 627891e1ef55..cf63f834dd7d 100644
+--- a/Documentation/devicetree/bindings/input/regulator-haptic.yaml
++++ b/Documentation/devicetree/bindings/input/regulator-haptic.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/input/regulator-haptic.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/input/regulator-haptic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Regulator Haptic
+ 
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
+index f9053e5e9b24..3255c2c8951a 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/input/touchscreen/elan,elants_i2c.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/input/touchscreen/elan,elants_i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Elantech I2C Touchscreen
+ 
+-- 
+2.39.2
 
-> out of it! LIM being "loosely integrated memory", which by the limit
-> hits on Google may be a SiFive-ism?
-
-Yep: TIM is the SiFive version of Arm's TCM (tightly coupled memory), 
-and LIM is the flavor that's farther away (L2 instead of L1).
-
-> I'm not really sure if adding it as a "reg" section is the right thing
-> to do as it's not "just" a register bank.
-> Perhaps Rob/Krzysztof have a take on that one?
->
->>  
->>    next-level-cache: true
->>  
->> @@ -89,6 +97,7 @@ allOf:
->>            contains:
->>              enum:
->>                - sifive,fu740-c000-ccache
->> +              - starfive,jh7100-ccache
->>                - starfive,jh7110-ccache
->>                - microchip,mpfs-ccache
->>  
->> @@ -106,12 +115,29 @@ allOf:
->>              Must contain entries for DirError, DataError and DataFail signals.
->>            maxItems: 3
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: starfive,jh7100-ccache
->> +
->> +    then:
->> +      properties:
->> +        reg:
->> +          maxItems: 2
->> +
->> +    else:
->> +      properties:
->> +        reg:
->> +          maxItems: 1
->> +
->>    - if:
->>        properties:
->>          compatible:
->>            contains:
->>              enum:
->>                - sifive,fu740-c000-ccache
->> +              - starfive,jh7100-ccache
->>                - starfive,jh7110-ccache
->>  
->>      then:
->> -- 
->> 2.39.1
->> 
