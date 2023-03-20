@@ -2,190 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8106C0CB5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 10:03:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7F56C0CCA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 10:08:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231159AbjCTJDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 05:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35804 "EHLO
+        id S230216AbjCTJIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 05:08:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230431AbjCTJC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 05:02:59 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0985A901C;
-        Mon, 20 Mar 2023 02:02:53 -0700 (PDT)
-X-UUID: fbd435e6c6fd11edbd2e61cc88cc8f98-20230320
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=re5jNmQzZvvbnh+ZDncyQ0vMqq4XQvsEfcpbCQKHnYw=;
-        b=HTt3VqAy1KWXS4acvtnhPsr0zje8MemIIvy2jJqGi/AKJqDVdJ/jDfHtIF/IK04OVZ2Bw3aOYyGj5p2hFUFUBhLfuAHzeKWbAh6Y25wG8/TJIPkTey/iVzh+4DiUN597Le/TAsphajkUrTNepmIFzW8551rD3PpBc6wSYpRq0Xg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:7b89f412-2a3b-4bd5-b9cc-4f4408137561,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:2,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-3
-X-CID-META: VersionHash:120426c,CLOUDID:3adfe428-564d-42d9-9875-7c868ee415ec,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: fbd435e6c6fd11edbd2e61cc88cc8f98-20230320
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <jian.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 559912955; Mon, 20 Mar 2023 17:02:47 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Mon, 20 Mar 2023 17:02:46 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n1.mediatek.com (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Mon, 20 Mar 2023 17:02:45 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hFBcwZMp0vt4Hz1mqPpoM8oCXJ4iI0VWUszvQCeYRpCWMA8TimuA3hjxwqi87vx64sMZTAzBWkQoqHsUBwB6nQp+0UYB4VZRtAKhslihwJQh3ZUN4E6lCa8aLyG1wLlEJOOYDIT7kixH+y6kJJAWSY9KGy32zvXDF/zR9mJS51LUNdvxYmYjjSECDR0cnmKNUcijxkPV5R+C8HySwfOcAXaWu3VJr9K7nxzVuExnUWKBl9+DYhk67pHO/kGWyiaT95AGqIX20SkHJAgi0Y45eMUux5iGL6GOD4tT/O76XtH4K1XZE4RK9XveYpV8OQwCKk+4VgwrDw8w5jxS/ms1dg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=re5jNmQzZvvbnh+ZDncyQ0vMqq4XQvsEfcpbCQKHnYw=;
- b=Clsj4n4gg3DtbXXC3rubsmxsaEr36xU6pZvi6bDWbrjUHeyRPAP0px6t39w5H25zUpg85xVhYQO5MdgiwAF6W6tpNgUzdS+J6WpFVEf1pQswVW3uoNfyWQVDJlrpm/E4UDepptu43H0FJXOVLsEYA5Q1D7L0iV/HdPxEg5sGpIQrd5+0r7T99qCKAZCoS5pAyN1XN8FGQaNYtHOQSsNW0dU95Z7kFJF0J3l8ZQ7CbUV040I1stMzTA5cyrtgsFCx/AcpzOTJpoXiox57uA52jhEKHLeSsCpg5YW/jDcyh2ryt8bwv/kXFOpnMfjaRtYmuQJ29GKETJQSfWjpRHS69w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=re5jNmQzZvvbnh+ZDncyQ0vMqq4XQvsEfcpbCQKHnYw=;
- b=BKpz0kv74T1grl218Wy5iRrExg+ermBeXEkBZjZyLFaprPckbtFQy4FrFrtdc+ky78PpnYVvYAuaOR+a1FDzFpZIf6OiFahZMAJ+Ov9UXs4yjyS48JeYJ5ocIRIgXXWHOUggQStk2XEQSwaWTr/bA/NBGQ2ImEu8VK/enW8M/1Y=
-Received: from TYZPR03MB6021.apcprd03.prod.outlook.com (2603:1096:400:128::9)
- by TYZPR03MB5881.apcprd03.prod.outlook.com (2603:1096:400:121::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
- 2023 09:02:44 +0000
-Received: from TYZPR03MB6021.apcprd03.prod.outlook.com
- ([fe80::e440:dd1d:be13:d79b]) by TYZPR03MB6021.apcprd03.prod.outlook.com
- ([fe80::e440:dd1d:be13:d79b%8]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
- 09:02:44 +0000
-From:   =?utf-8?B?SmlhbiBZYW5nICjmnajmiKwp?= <Jian.Yang@mediatek.com>
-To:     "robh@kernel.org" <robh@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        =?utf-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= 
-        <Jianjun.Wang@mediatek.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?utf-8?B?SmlleXkgWWFuZyAo5p2o5rSBKQ==?= <Jieyy.Yang@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?utf-8?B?Q2h1YW5qaWEgTGl1ICjmn7PkvKDlmIkp?= 
-        <Chuanjia.Liu@mediatek.com>,
-        =?utf-8?B?UWl6aG9uZyBDaGVuZyAo56iL5ZWf5b+gKQ==?= 
-        <Qizhong.Cheng@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] PCI: mediatek-gen3: Support controlling power and
-Thread-Topic: [PATCH v2 0/2] PCI: mediatek-gen3: Support controlling power and
-Thread-Index: AQHZT/a0FE9BkfPezEOgcSBhzWr+qa8DdYcA
-Date:   Mon, 20 Mar 2023 09:02:43 +0000
-Message-ID: <33525d184e53674b19d51cc3da5d63c4b1fbd565.camel@mediatek.com>
-References: <20230306064059.7239-1-jian.yang@mediatek.com>
-In-Reply-To: <20230306064059.7239-1-jian.yang@mediatek.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6021:EE_|TYZPR03MB5881:EE_
-x-ms-office365-filtering-correlation-id: a689eb64-818c-47e8-3082-08db2921de32
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GycN6PLlEsnSOGlSnj6kTOKF2J9hTV+c0WCUltBIQvcMxG5IhVv2JbcvngFbqMhtC3HDXWZtz8rRvFPMrdpNtYFsSgZ7JetEL0aD1JkVbsrCWVQHHXYOGGAMwfmoAZXojYp/7D8/xkTBrIw/A64KWmfJoEZYZQ4IqZn5aRkzIbn7hFXVWMfSU5gBgkfskeLoJ4nkth+Vb3RPsQGMZ/ORJ/PFJEE+aOsiQQss+hj2Wr2f0Vqo73u6EGXeh2yZBhIqwwiifTUfATn3/hvaFHV6UmYULxtZTA7v/uba0Db5FKVsz7D8IEPdVx8vLZw+25gHZAQVsVFOXf7cL1mFNReOGo1AmM55jpUlJwof/vXXrGqEGanQKXRP4zKPo8RpadFoNpCZjpGlZoeZHMtzpzz1d9Zvp5UgCDU515evtIv3UtazeuMlR7w8D/zeQ1fBjOaXjPzMdpQ1//GgjoN6TWsq4R1qzUvQjtpPoU+1IE5sBYU1MpZmpYturPtG0WP/Jqp5Y8DIjXYVCQvdnz4lHRUr1zDfZkr45i48+HMxULqfwh0Sw9y6+dYRlOfkZ9+sspVa7Jua47HAO+ozEyfHwbdrowiqL60S+xs6VUsUN0SlUihNlGh+v2Y2+3rzxfVY/VGuxC+/CtHVzxRqK5XfHR3SGd5QaY/qGd8l00D3CLBJxdzosCunXkvvefneV/JVf+CuEEuuPWDhXA4EBCUdISfLatI2+wVmMQ6G0+6LZxeL6Vd02U25QGl4hTJ65ldhYxDz
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6021.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(136003)(39860400002)(396003)(366004)(376002)(346002)(451199018)(86362001)(36756003)(85182001)(71200400001)(478600001)(91956017)(66556008)(66476007)(66946007)(4326008)(83380400001)(316002)(110136005)(54906003)(64756008)(186003)(6512007)(26005)(6506007)(2616005)(6486002)(76116006)(8676002)(2906002)(66446008)(122000001)(38100700002)(5660300002)(38070700005)(8936002)(41300700001)(7416002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RjdDRFhjcXVPWjRZbk1WLzVOd3FpeUJlOEphTFU5VWpxZU9LbllFMWVBYk1p?=
- =?utf-8?B?VWhtckRuLzlKVHN0L1I1NlZ3emg0VjZ2S2pTM1BqZDRkR0hmZWx3S212ams3?=
- =?utf-8?B?QmZ0eWNhcnF2WlJGMWg1OUVjZ0xVbnRTS2RrYUJOaWhGR216MGhNOWxZR2x3?=
- =?utf-8?B?eVNaRnZZeEkxVHJjcnNtbENVaE40dFBEbjJDV1JQSDY4cGUySTBWcTAyS0ZW?=
- =?utf-8?B?cmFCUE1iZlVsU09paW5DOWxteGxENnZLTW4zN0g0STlhRklKUVlWSlk4aHRM?=
- =?utf-8?B?WnZ3TWlyZ0FFemJIMDFRQU5iR3FnTlhkOEczS3NWRk5mSHJCT1ZRUUNDcEVk?=
- =?utf-8?B?UEh1cmRFbkFLNUhUYzZXUnhSaEpWK3dMY0FwaW1MSXl6UU5rK0YvaG81OThn?=
- =?utf-8?B?TFFrT0lzTVhYS2srT2hWT2tvMmdMUW4rbWcrTFhYMTltL0FRUkE3WnlsZHdN?=
- =?utf-8?B?elZuQnFIY2U0d3QxSSszT2ZhZmRTdWt0RkdaMFBBTENxQkw4SGtDZ0JQd1g1?=
- =?utf-8?B?RmFzOEptMDZKS1VLU2c4VC83NGRjSFFPWkVOdWxXTzhLK1ZxdDJKK2NGWVZ6?=
- =?utf-8?B?Zy9yN2JnUTl5U2JTeEhudnBYeklSSVFZQmxXQ2xKN3FLS2dzZEx3QTNJR1gz?=
- =?utf-8?B?SjRkVEhwTjVQa2N1QXY4cHhnSVRDOHpUbFFiNGJYc3dMWE5NRHo2QThhTlds?=
- =?utf-8?B?bzh3NnA2QnB2ZjJtNE10YkFScFhOOVhTK01xbXJhaVdTcENwZkZla3FyU2gy?=
- =?utf-8?B?U1VqeElqY2FNWS92Q1JNZHcrMHJ5dHNyU3ZOdWpkakM2S3FzWFpyMWNNSS8r?=
- =?utf-8?B?cGZVeXY0dGlBYldmRUdnR0pvTmVXNTM4REN6N3IrclVza3E5c2RnYktVYjZL?=
- =?utf-8?B?YVRuWlhrZTY4RXVydGMwblZibFQzRjU5bkpEQjhxRFFPSVh5eG1UNDd3WmhC?=
- =?utf-8?B?alZZNFo1UVpReXMvYUdiYmN2NytRU0ZybXA0NlA2L2JjMm5udFFZTmo2NXkw?=
- =?utf-8?B?Yk1tSTFXazgwT3d3cDNQc0VIeHNHSWw1MVNpNnpsVWltY0ZHanVyck92ZFNV?=
- =?utf-8?B?UnlrdExrZkFYUkt3cHJ6SWNLemxIMVpVYUVJZHRBVzZTQmRPNG9IMlZXOFVU?=
- =?utf-8?B?UlFRalZXY1EzVDYvQjVhNEhIYVg0aDk4c002ZE5aUVZDYXZ6NXFVam1uU3JO?=
- =?utf-8?B?L21sTzdYQnAxUG1zcEkzSW1naEtMSDdlTGhpMk5PSU1saCtOMDJoT2JnKzV2?=
- =?utf-8?B?d3l6alpoZzJrWHhucnZaYWZtTU43VEcvZ1pFVkxFQ2ozMjZVNlR5VlptdVVq?=
- =?utf-8?B?R081QlNxdTE2Y2s2Z1hTYnlWUWdXZHBOV2tFSmtoMEo5Wi9Gb3pMZjhpajNp?=
- =?utf-8?B?UUl6L1doWDB2YnJDME1BQXR5bXo3Q3oxU1huZllNSk1wVU9MdG9TaTdCQzZ1?=
- =?utf-8?B?S1JZVzZsMUpxWGhhNWd4UFhFVEFMbnhyeThZc2s4RGdoc3lxdlk0SFJaYnd2?=
- =?utf-8?B?dlFCRmxhbll3dzVyTEpLR3BXYUlGd3Q2SVBkOFIvQlc0bFdzMzV5K0tFV0ZE?=
- =?utf-8?B?WDE5dTJNMndRZ0ZRQTY4Y3FxOVdqVEt4YUtoQ3d4NHRYUnl6VEhwOUQ4TnlM?=
- =?utf-8?B?WU8xZERoc09EOXUrK3FuK0ZRQWw5RUx4ZGlXWGpROTI3QkFUWDhPUU1zTjB2?=
- =?utf-8?B?cmgrZTl2a3pvWlpVMWVLdEVBbUt3NnRGZ2RCeEUvV2FIWkdrTjVFVkxvNkZp?=
- =?utf-8?B?a3N1U0VJbWxKaWl5U05EbTFzU3RQR2kwdHhUY2xnSTNNeW55NWhsZXA5TGhn?=
- =?utf-8?B?YmtCMU56aVdCQm1SUzZxcy9wRUR0RENMWS9xYXY3QVZpNGh1RHE0d0d6c2FJ?=
- =?utf-8?B?MkF4YnhqT3Z1ZWNOc2Jqd1U3NDZxWDVzeXFQQkRNb2FnMitEcXV1UjBTVTBX?=
- =?utf-8?B?dEgxcHBpK1dhZCtvMzkrK1I3enBSc3E2cFFuZGZITFRGSEZkZkY1L29QMC9z?=
- =?utf-8?B?ai9TY1NUN0RQeXJKeDg1UmZicDRTZ2hpNFAvc2lhVWprb2pwWXZjR1RReDVx?=
- =?utf-8?B?U3VzUmllQWVyWExlVytWeW1JODBmUTdIQnNyNjZuNkVkb0laSjEySTNKUitS?=
- =?utf-8?B?azFKUTc2QVBlV3EvZHZSMi9oMmFjWmp6bXNCVDdwR1hCV09wWnF2dXZ0cm41?=
- =?utf-8?B?UEE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EE492D14527CF24FAA94F1BB3ABD0A83@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S230210AbjCTJIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 05:08:53 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 76EA5E1B4;
+        Mon, 20 Mar 2023 02:08:50 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8DxUOWhIhhkh8UOAA--.21561S3;
+        Mon, 20 Mar 2023 17:08:49 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxHuRTIhhk8TIHAA--.29689S3;
+        Mon, 20 Mar 2023 17:07:32 +0800 (CST)
+Subject: Re: [PATCH v13 1/2] thermal: loongson-2: add thermal management
+ support
+To:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>, wanghongliang@loongson.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
+References: <20230221095355.9799-1-zhuyinbo@loongson.cn>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <7a980426-d6ca-d14c-3b41-62c0fb16440c@loongson.cn>
+Date:   Mon, 20 Mar 2023 17:07:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6021.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a689eb64-818c-47e8-3082-08db2921de32
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2023 09:02:44.0923
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xZD4ICXlNSqgMUdOX3HVeMNRk/3Bqcr+7ZeT4GCxx9N6b3UTy3NfWfi+OFALb683jEGON5VHApJTdhBX8v4vfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5881
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230221095355.9799-1-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8BxHuRTIhhk8TIHAA--.29689S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWfJFWxJF1DGw4xXr13Kry7trb_yoWDCw1fpF
+        W7Ca9xCFZrXFsruwn8Ar18AFs0y3W3tFy7ZFs7Gw15urZ8t343Wry8KFy8ArWxCrWDJF4j
+        vF909r4DCFWDu3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bxxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x
+        8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
+        x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrw
+        CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI
+        42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
+        80aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUzgAwDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBNYWludGFpbmVycywNCg0KR2VudGxlIHBpbmcgZm9yIHRoaXMgcGF0Y2ggc2VyaWVzLCBp
-ZiB0aGVyZSBpcyBhbnl0aGluZyBJIGNhbiBkbyB0byBnZXQNCnRoZXNlIHBhdGNoZXMgbWVyZ2Vk
-LCBwbGVhc2UgbGV0IG1lIGtub3cuDQoNCkJlc3QgcmVnYXJkcywNCkppYW4gWWFuZw0KDQpPbiBN
-b24sIDIwMjMtMDMtMDYgYXQgMTQ6NDAgKzA4MDAsIEppYW4gWWFuZyB3cm90ZToNCj4gRnJvbTog
-ImppYW4ueWFuZyIgPGppYW4ueWFuZ0BtZWRpYXRlay5jb20+DQo+IA0KPiBUaGVzZSBzZXJpZXMg
-cGF0Y2hlcyBhZGQgc3VwcG9ydCBmb3IgY29udHJvbGxpbmcgcG93ZXIgc3VwcGxpZXMgYW5kDQo+
-IHJlc2V0DQo+IEdQSU8gb2YgYSBkb3duc3RyZWFtIGNvbXBvbmVudCBpbiBNZWRpYXRlaydzIFBD
-SWUgR0VOMyBjb250cm9sbGVyDQo+IGRyaXZlci4NCj4gDQo+IENoYW5nZXMgaW4gdjI6DQo+IDEu
-IFJlbW92ZSBhbiB1bm5lY2Vzc2FyeSBwcm9wZXJ0eSBpbiBkdC1iaW5kaW5ncyBmaWxlLg0KPiAy
-LiBVc2UgdGhlIGZsYWcgJ0dQSU9EX09VVF9MT1cnIHRvIHNldCBpbml0aWFsIHN0YXRlIG9mIGEg
-ZG93bnN0cmVhbQ0KPiBjb21wb25lbnQncyByZXNldCBHUElPLg0KPiAzLiBLZWVwIGRvd25zdHJl
-YW0gY29tcG9uZW50IHBvd2VyZWQgb24gaW4gc3VzcGVuZCBzdGF0ZSBpZiBpdCBuZWVkDQo+IHRv
-DQo+IHdha2V1cCB0aGUgc3lzdGVtLg0KPiANCj4gamlhbi55YW5nICgyKToNCj4gICBkdC1iaW5k
-aW5nczogUENJOiBtZWRpYXRlay1nZW4zOiBBZGQgc3VwcG9ydCBmb3IgY29udHJvbGxpbmcgcG93
-ZXINCj4gYW5kDQo+ICAgICByZXNldA0KPiAgIFBDSTogbWVkaWF0ZWstZ2VuMzogQWRkIHBvd2Vy
-IGFuZCByZXNldCBjb250cm9sIGZlYXR1cmUgZm9yDQo+IGRvd25zdHJlYW0NCj4gICAgIGNvbXBv
-bmVudA0KPiANCj4gIC4uLi9iaW5kaW5ncy9wY2kvbWVkaWF0ZWstcGNpZS1nZW4zLnlhbWwgICAg
-ICB8IDE3ICsrKysNCj4gIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay1nZW4z
-LmMgICB8IDg2DQo+ICsrKysrKysrKysrKysrKysrKy0NCj4gIDIgZmlsZXMgY2hhbmdlZCwgMTAy
-IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gDQo=
+Friendly ping ?
+
+ÔÚ 2023/2/21 ÏÂÎç5:53, Yinbo Zhu Ð´µÀ:
+> This patch adds the support for Loongson-2 thermal sensor controller,
+> which can support maximum 4 sensors, each sensor contains a sampling
+> register and a control register. The sampling register is used to obtain
+> the temperature in real time, the control register GATE field is used to
+> set the threshold of high or low temperature, when the input temperature
+> is higher than the high temperature threshold or lower than the low
+> temperature threshold, an interrupt will occur.
+>
+> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v13:
+> 		1. Add a description about that how works the sensor.
+> 		2. Drop the COMPILE_TEST.
+> 		3. Rework the help prograph in LOONGSON2_THERMAL Kconfig.
+> 		4. Drop the 'tzd' 'irq' and 'pdev' element in loongson2_thermal_data.
+> 		5. Drop the reset of variable in loongson2_thermal_set.
+> 		6. Drop the function loongson2_thermal_get_sensor_id.
+> 		7. Drop the function loongson2_thermal_alarm_irq.
+> 		8. Rework the devm_thermal_of_zone_register.
+> 		9. Pass 'tzd' instead of 'data' in devm_request_threaded_irq.
+> 		10. Drop the "data->tzd->tzp->no_hwmon = false".
+> 		11. Drop the loongson2_thermal_remove.
+> 		12. Add the sensor id in the of_device_id data field.
+> 		13. Drop the save and restore function.
+> Change in v12:
+> 		1. Fixup it about min and max.
+> 		2. Use dev_err_probe replace dev_err in devm_request_threaded_irq context.
+> Change in v11:
+> 		1. Add min() and max() to replace related code in function
+> 		   loongson2_thermal_set.
+> 		2. Add dev_err_probe to to replace related code for function
+> 		   return value use devm_thermal_of_zone_register.
+> 		3. Replace thermal_add_hwmon_sysfs with devm_thermal_add_hwmon_sysfs
+> 		   and use dev_warn replace dev_err in this context.
+> Change in v10:
+> 		1. Add all history change log information.
+> Change in v9:
+> 		1. Switch new API that use devm_thermal_of_zone_register
+> 		   to replace previous interfaces.
+> 		2. Add depend on LOONGARCH || COMPILE_TEST.
+> Change in v8:
+>                  1. Replace string loongson2/Loongson2/LOONGSON2 with loongson-2/
+>                     Loongson-2/LOONGSON-2 in Kconfig and commit log and MAINTAINERS
+> 		   files.
+> Change in v7:
+> 		1. Split the modification of patch 3 and merge it into this patch.
+> 		2. Remove the unless code annotation to fix the compile warning
+> 		   when compile C code with W=1.
+> Change in v6:
+> 		1. NO change, but other patch in this series of patches set has
+> 		   changes.
+> Change in v5:
+> 		1. NO change, but other patch in this series of patches set has
+> 		   changes.
+> Change in v4:
+> 		1. Fixup the compatible.
+> Change in v3:
+> 		1. Add a function to gain sensor id an remove dts id.
+> Change in v2:
+> 		1. Remove error msg printing when addr ioremap has error.
+> 		2. Make loongson2 thermal driver was built-in by default.
+> 		3. Replace ls2k with loongson2.
+> 		4. Remove CONFIG_PM_SLEEP and set pm function type was
+> 		   __maybe_unused.
+>
+>   MAINTAINERS                         |   7 ++
+>   drivers/thermal/Kconfig             |  11 ++
+>   drivers/thermal/Makefile            |   1 +
+>   drivers/thermal/loongson2_thermal.c | 167 ++++++++++++++++++++++++++++
+>   4 files changed, 186 insertions(+)
+>   create mode 100644 drivers/thermal/loongson2_thermal.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 57d1d6ecb33d..54e63f51ae6d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12086,6 +12086,13 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+>   F:	drivers/pinctrl/pinctrl-loongson2.c
+>   
+> +LOONGSON-2 SOC SERIES THERMAL DRIVER
+> +M:	zhanghongchen <zhanghongchen@loongson.cn>
+> +M:	Yinbo Zhu <zhuyinbo@loongson.cn>
+> +L:	linux-pm@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/thermal/loongson2_thermal.c
+> +
+>   LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+>   M:	Sathya Prakash <sathya.prakash@broadcom.com>
+>   M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index eaeb2b2ee6e9..d4b5ecead80e 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -508,4 +508,15 @@ config KHADAS_MCU_FAN_THERMAL
+>   	  If you say yes here you get support for the FAN controlled
+>   	  by the Microcontroller found on the Khadas VIM boards.
+>   
+> +config LOONGSON2_THERMAL
+> +	tristate "Loongson-2 SoC series thermal driver"
+> +	depends on LOONGARCH && OF
+> +	help
+> +	  Support for Thermal driver found on Loongson-2 SoC series platforms.
+> +	  The thermal driver realizes get_temp and set_trips function, which
+> +	  are used to obtain the temperature of the current node and set the
+> +	  temperature range to trigger the interrupt. When the input temperature
+> +	  is higher than the high temperature threshold or lower than the low
+> +	  temperature threshold, the interrupt will occur.
+> +
+>   endif
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index b9b5dc86f5fd..bfc928f70f6d 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -62,3 +62,4 @@ obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+>   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+>   obj-$(CONFIG_SPRD_THERMAL)	+= sprd_thermal.o
+>   obj-$(CONFIG_KHADAS_MCU_FAN_THERMAL)	+= khadas_mcu_fan.o
+> +obj-$(CONFIG_LOONGSON2_THERMAL)	+= loongson2_thermal.o
+> diff --git a/drivers/thermal/loongson2_thermal.c b/drivers/thermal/loongson2_thermal.c
+> new file mode 100644
+> index 000000000000..7d5f32f50c0c
+> --- /dev/null
+> +++ b/drivers/thermal/loongson2_thermal.c
+> @@ -0,0 +1,167 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: zhanghongchen <zhanghongchen@loongson.cn>
+> + *         Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/cpufreq.h>
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/io.h>
+> +#include <linux/of_device.h>
+> +#include <linux/thermal.h>
+> +#include "thermal_hwmon.h"
+> +
+> +#define LOONGSON2_SOC_MAX_SENSOR_NUM			4
+> +
+> +#define LOONGSON2_TSENSOR_CTRL_HI			0x0
+> +#define LOONGSON2_TSENSOR_CTRL_LO			0x8
+> +#define LOONGSON2_TSENSOR_STATUS			0x10
+> +#define LOONGSON2_TSENSOR_OUT				0x14
+> +
+> +struct loongson2_thermal_data {
+> +	int id;
+> +	void __iomem *regs;
+> +};
+> +
+> +static int loongson2_thermal_set(struct loongson2_thermal_data *data,
+> +					int low, int high, bool enable)
+> +{
+> +	u64 reg_ctrl = 0;
+> +	int reg_off = data->id * 2;
+> +
+> +	if (low > high)
+> +		return -EINVAL;
+> +
+> +	low = max(low, -40);
+> +	high = min(high, 125);
+> +
+> +	low += 100;
+> +	high += 100;
+> +
+> +	reg_ctrl = low;
+> +	reg_ctrl |= enable ? 0x100 : 0;
+> +	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
+> +
+> +	reg_ctrl = high;
+> +	reg_ctrl |= enable ? 0x100 : 0;
+> +	writew(reg_ctrl, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
+> +
+> +	return 0;
+> +}
+> +
+> +static int loongson2_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	u32 reg_val;
+> +	struct loongson2_thermal_data *data = tz->devdata;
+> +
+> +	reg_val = readl(data->regs + LOONGSON2_TSENSOR_OUT);
+> +	*temp = ((reg_val & 0xff) - 100) * 1000;
+> +
+> +	return 0;
+> +}
+> +
+> +static irqreturn_t loongson2_thermal_irq_thread(int irq, void *dev)
+> +{
+> +	struct thermal_zone_device *tzd = dev;
+> +	struct loongson2_thermal_data *data = tzd->devdata;
+> +
+> +	/* clear interrupt */
+> +	writeb(0x3, data->regs + LOONGSON2_TSENSOR_STATUS);
+> +
+> +	thermal_zone_device_update(tzd, THERMAL_EVENT_UNSPECIFIED);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int loongson2_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
+> +{
+> +	struct loongson2_thermal_data *data = tz->devdata;
+> +
+> +	return loongson2_thermal_set(data, low/1000, high/1000, true);
+> +}
+> +
+> +static const struct thermal_zone_device_ops loongson2_of_thermal_ops = {
+> +	.get_temp = loongson2_thermal_get_temp,
+> +	.set_trips = loongson2_thermal_set_trips,
+> +};
+> +
+> +static int loongson2_thermal_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *res;
+> +	struct loongson2_thermal_data *data;
+> +	struct thermal_zone_device *tzd;
+> +	int ret, irq, i;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->id = (uintptr_t)device_get_match_data(dev);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	data->regs = devm_ioremap(dev, res->start, resource_size(res));
+> +	if (IS_ERR(data->regs))
+> +		return PTR_ERR(data->regs);
+> +
+> +	/* get irq */
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	if (data->id > LOONGSON2_SOC_MAX_SENSOR_NUM - 1 || data->id < 0) {
+> +		dev_err(dev, "sensor id error,must be in <0 ~ %d>\n",
+> +				LOONGSON2_SOC_MAX_SENSOR_NUM - 1);
+> +		return -EINVAL;
+> +	}
+> +
+> +	writeb(0xff, data->regs + LOONGSON2_TSENSOR_STATUS);
+> +
+> +	loongson2_thermal_set(data, 0, 0, false);
+> +
+> +	for (i = 0; i < LOONGSON2_SOC_MAX_SENSOR_NUM; i++) {
+> +		tzd = devm_thermal_of_zone_register(&pdev->dev, i,
+> +		    data, &loongson2_of_thermal_ops);
+> +
+> +		if (!IS_ERR(tzd))
+> +			break;
+> +
+> +		if (PTR_ERR(tzd) != ENODEV)
+> +			continue;
+> +
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(tzd),
+> +				     "failed to register");
+> +	}
+> +
+> +	ret = devm_request_threaded_irq(dev, irq, NULL, loongson2_thermal_irq_thread,
+> +			IRQF_ONESHOT, "loongson2_thermal", tzd);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to request alarm irq\n");
+> +
+> +	if (devm_thermal_add_hwmon_sysfs(tzd))
+> +		dev_warn(&pdev->dev, "Failed to add hwmon sysfs attributes\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id of_loongson2_thermal_match[] = {
+> +	{ .compatible = "loongson,ls2k-thermal", .data = (const void *)0},
+> +	{ /* end */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, of_loongson2_thermal_match);
+> +
+> +static struct platform_driver loongson2_thermal_driver = {
+> +	.driver = {
+> +		.name		= "loongson2_thermal",
+> +		.of_match_table = of_loongson2_thermal_match,
+> +	},
+> +	.probe	= loongson2_thermal_probe,
+> +};
+> +module_platform_driver(loongson2_thermal_driver);
+> +
+> +MODULE_DESCRIPTION("Loongson2 thermal driver");
+> +MODULE_LICENSE("GPL");
+
