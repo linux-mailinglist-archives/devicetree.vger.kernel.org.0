@@ -2,167 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A906F6C1469
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:10:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 163AE6C1451
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:06:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjCTOKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:10:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36572 "EHLO
+        id S231473AbjCTOF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:05:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbjCTOKn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:10:43 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CE810AB0;
-        Mon, 20 Mar 2023 07:10:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679321441; x=1710857441;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=lE1DIZvdTN/JZ2Aqr7k5UOK8wRZRTjDFOgLlJyvZ29Q=;
-  b=bRVo6wMznPPvQ5oPmZT78uObyH65jBA3xDJZoqnh1jVYwbrwM96Z5qz7
-   Zz0XDSv39ngvASAEwzsKOXhLY0L2dYA/DwL6ynjuQtEPGOs7vdcJiQ3i+
-   wGQCyRL/Tuye5xssA1ntUuv2DSE4WP7j9Si2+H3ulK8PDzhGXlEsUnvnJ
-   LmgVfJ+wcD1b1eqMHjam5rrGt9Fcdj+RJnm1m3FxNxZw63fjQKLZHtkCT
-   /Etui1WieUt/RGjk6/m4bN+12Cabx6gyzvbJyAH85QPaqXxQO5568YtHO
-   /Ak4pUIdXiO/h16v5liETx3W8VdN/4qBkI8T8w1Xzqm1Oo6hX6rsnsVKw
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="366388378"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="366388378"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 07:05:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="681074935"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="681074935"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP; 20 Mar 2023 07:05:21 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1peG8V-006IuJ-1g;
-        Mon, 20 Mar 2023 16:05:19 +0200
-Date:   Mon, 20 Mar 2023 16:05:19 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Daniel Kaehn <kaehndan@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jikos@kernel.org, benjamin.tissoires@redhat.com,
-        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        ethan.twardy@plexus.com
-Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
-Message-ID: <ZBhoHzTr5l38u/kX@smile.fi.intel.com>
-References: <20230319204802.1364-1-kaehndan@gmail.com>
- <20230319204802.1364-4-kaehndan@gmail.com>
- <ZBhYXwjPeRiZwxMT@smile.fi.intel.com>
- <ZBhY5Gp88gVK7q/g@smile.fi.intel.com>
- <CAP+ZCCc=q_=d18UHEZ9N8HVQ6AYQsTfNgS1r93UCJOB-OEodSw@mail.gmail.com>
+        with ESMTP id S231440AbjCTOF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:05:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6DA3C15;
+        Mon, 20 Mar 2023 07:05:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F21B96151A;
+        Mon, 20 Mar 2023 14:05:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62A8AC433AA;
+        Mon, 20 Mar 2023 14:05:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679321155;
+        bh=BQx8aUl7GLoq/qgDAS8nVwKZ9Vn7FKwuFxwItO3PCP0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mayXoqmJjcxaDkUKWupUUGhvhO9+cCSHMV2JNu8Ku/A0Mfnm8T5TSQrUni5J85nyt
+         QqOXImkzYfuBXg3JjwHBufuQoWkov8eNYHviaCWHkrdh24Xi+SImYK1uBd5dyWWbHH
+         Tz8EI7767ikZmooyCorp1Ru+nejcnJBRk0BX4kG9kEwafELIOMZo7ZsbwV+2wh5SLA
+         TNzaqtUy+gXS84soB/z4ew6LwMk/dEG9tXCiyU1HXCa0fkC/IeRaNzWEVsw4GwJTge
+         rGWtol9+r39Ql5Z9ttR7575hEB53/X+TMsvKl0C2OXW2hC8EOkiCA6G0vvtf5wh+om
+         ev2iJpSPWFkfA==
+Received: by mail-ua1-f44.google.com with SMTP id 89so7996520uao.0;
+        Mon, 20 Mar 2023 07:05:55 -0700 (PDT)
+X-Gm-Message-State: AO0yUKVUHMoSqAtIKxWbFi9fbKTP3zov6O5jVNEluSDNypyD/gB4g22e
+        VjNzV3kPe8V4Vg6RtWP18eeTJd7TL1LR71WLKg==
+X-Google-Smtp-Source: AK7set8KpE3+llxGpjySVigXjI5p31ZGTqkP+0UwGIrVC3LsLtO04RucwbkyTavWeO9OiCygzYpQ8IOMAOBgRZidHCs=
+X-Received: by 2002:a1f:1690:0:b0:432:95d0:abaf with SMTP id
+ 138-20020a1f1690000000b0043295d0abafmr3969353vkw.3.1679321153900; Mon, 20 Mar
+ 2023 07:05:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP+ZCCc=q_=d18UHEZ9N8HVQ6AYQsTfNgS1r93UCJOB-OEodSw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
+References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
+ <20230317030501.1811905-7-anshuman.khandual@arm.com> <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
+ <b1518e16-d74b-719c-a0fc-bc172a6011c4@arm.com> <CAL_JsqKQWL4Y9zZj5x11QUB=8N9GLKo26EX=fVxXes_gShYf7Q@mail.gmail.com>
+ <aa4090eb-4d9a-3c3b-afab-94d7132af0c7@arm.com>
+In-Reply-To: <aa4090eb-4d9a-3c3b-afab-94d7132af0c7@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 20 Mar 2023 09:05:42 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+bJJBi++tpqPMoNTVUswvwFJq=kQj5zHuf-rDphbDwkQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+bJJBi++tpqPMoNTVUswvwFJq=kQj5zHuf-rDphbDwkQ@mail.gmail.com>
+Subject: Re: [PATCH 6/7] of/platform: Skip coresight etm4x devices from AMBA bus
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        scclevenger@os.amperecomputing.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 08:40:07AM -0500, Daniel Kaehn wrote:
-> On Mon, Mar 20, 2023 at 8:00 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Mon, Mar 20, 2023 at 02:58:07PM +0200, Andy Shevchenko wrote:
-> > > On Sun, Mar 19, 2023 at 03:48:02PM -0500, Danny Kaehn wrote:
-
-...
-
-> > > > +   device_for_each_child_node(&hdev->dev, child) {
-> > > > +           name = fwnode_get_name(child);
-> > > > +           ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-> > > > +
-> > > > +           if ((name && strcmp("i2c", name) == 0) || (!ret && addr == 0))
-> > > > +                   device_set_node(&dev->adap.dev, child);
-> > > > +           else if ((name && strcmp("gpio", name)) == 0 ||
-> > > > +                                   (!ret && addr == 1))
-> > > > +                   dev->gc.fwnode = child;
-> > > > +   }
-> > >
-> > > Please, make addresses defined explicitly. You may also do it with node naming
-> > > schema:
-> > >
-> > > #define CP2112_I2C_ADR                0
-> > > #define CP2112_GPIO_ADR               1
-> > >
-> > > static const char * const cp2112_cell_names[] = {
-> > >       [CP2112_I2C_ADR]        = "i2c",
-> > >       [CP2112_GPIO_ADR]       = "gpio",
-> > > };
-> > >
-> > >       device_for_each_child_node(&hdev->dev, child) {
-> > >               name = fwnode_get_name(child);
-> > >               if (name) {
-> > >                       ret = match_string(cp2112_cell_names, ARRAY_SIZE(cp2112_cell_names), name);
-> > >                       if (ret >= 0)
-> > >                               addr = ret;
-> > >               } else
-> > >                       ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-> > >               if (ret < 0)
-> > >                       ...error handling if needed...
-> > >
-> > >               switch (addr) {
-> > >               case CP2112_I2C_ADR:
-> > >                       device_set_node(&dev->adap.dev, child);
-> > >                       break;
-> > >               case CP2112_GPIO_ADR:
-> > >                       dev->gc.fwnode = child;
-> > >                       break;
-> > >               default:
-> > >                       ...error handling...
-> > >               }
-> > >       }
+On Mon, Mar 20, 2023 at 5:37=E2=80=AFAM Suzuki K Poulose <suzuki.poulose@ar=
+m.com> wrote:
+>
+>
+> On 17/03/2023 20:06, Rob Herring wrote:
+> > On Fri, Mar 17, 2023 at 11:03=E2=80=AFAM Suzuki K Poulose
+> > <suzuki.poulose@arm.com> wrote:
+> >>
+> >> Hi Rob
+> >>
+> >> Thanks for your response.
+> >>
+> >> On 17/03/2023 14:52, Rob Herring wrote:
+> >>> On Thu, Mar 16, 2023 at 10:06=E2=80=AFPM Anshuman Khandual
+> >>> <anshuman.khandual@arm.com> wrote:
+> >>>>
+> >>>> Allow other drivers to claim a device, disregarding the "priority" o=
+f
+> >>>> "arm,primecell". e.g., CoreSight ETM4x devices could be accessed via=
+ MMIO
+> >>>> (AMBA Bus) or via CPU system instructions.
+> >>>
+> >>> The OS can pick which one, use both, or this is a system integration
+> >>> time decision?
+> >>
+> >> Not an OS choice. Historically, this has always been MMIO accessed but
+> >> with v8.4 TraceFiltering support, CPUs are encouraged to use system
+> >> instructions and obsolete MMIO. So, yes, MMIO is still possible but
+> >> something that is discouraged and have to be decided at system
+> >> integration time.
+> >>
+> >>>
+> >>>> The CoreSight ETM4x platform
+> >>>> driver can now handle both types of devices. In order to make sure t=
+he
+> >>>> driver gets to handle the "MMIO based" devices, which always had the
+> >>>> "arm,primecell" compatible, we have two options :
+> >>>>
+> >>>> 1) Remove the "arm,primecell" from the DTS. But this may be problema=
+tic
+> >>>>    for an older kernel without the support.
+> >>>>
+> >>>> 2) The other option is to allow OF code to "ignore" the arm,primecel=
+l
+> >>>> priority for a selected list of compatibles. This would make sure th=
+at
+> >>>> both older kernels and the new kernels work fine without breaking
+> >>>> the functionality. The new DTS could always have the "arm,primecell"
+> >>>> removed.
+> >>>
+> >>> 3) Drop patches 6 and 7 and just register as both AMBA and platform
+> >>> drivers. It's just some extra boilerplate. I would also do different
+> >>> compatible strings for CPU system instruction version (assuming this
+> >>> is an integration time decision).
+> >>
+> >> The system instruction (and the reigster layouts) are all part of the
+> >> ETMv4/ETE architecture and specific capabilities/features are
+> >> discoverable, just like the Arm CPUs. Thus we don't need special
+> >> versions within the ETMv4x or ETE minor versions. As of now, we have
+> >> one for etm4x and another for ete.
 > >
-> > Btw, don't you use "reg" property for the child nodes? It would be better from
-> > de facto used patterns (we have a couple of mode drivers that have a common
-> > code to read "reg" or _ADR() and that code can be split into a helper and used
-> > here).
+> > I just meant 2 new compatible strings. One each for ETMv4x and ETE,
+> > but different from the 2 existing ones. It is different h/w presented
+> > to the OS, so different compatible.
 > >
-> 
-> Named nodes _seem_ to be preferred in DT for when there isn't a logical /
-> natural numbering to the child nodes. A.e. for USB, reg is used to specify
-> which port, for I2C, which address on the bus, but for two parallel and
-> independent functions on the same device, it seems named nodes would make
-> more sense in DT. Many examples exist in mainline where named nodes are used
-> in DT in this way.
+>
+> Sorry, was not very clear here.
+>
+> Right now, we have :
+>
+> 1) arm,coresight-etm4x && arm,primecell - For AMBA based devices
+> 2) arm,coresight-etm4x-sysreg   - For system instruction based
+> 3) arm,embedded-trace-extension - For ETE
 
-Okay, I'm not an expert in the DT preferable schemas, so I believe DT people
-should answer on this.
+Ah, so we already have that...
 
-> One example is network cards which provide an mdio bus
-> bind through the child "mdio". One example of a specifically a
-> child i2c controller being bound to "i2c" can be found in
-> pine64,pinephone-keyboard.yaml.
-> But it's certainly possible this isn't the desired direction moving forward
-> in DT -- my opinion should definitely be taken with a grain of salt. Maybe
-> this is something I should follow up on with DT folks on that DT vs. ACPI
-> thread made earlier.
-> 
-> One thing I did notice when looking at the mfd subsystem is that most DT
-> drivers actually match on the compatible string of the child nodes, a.e.
-> "silabs,cp2112", "silabs,cp2112-gpio".  "silabs,cp2112-i2c". We could
-> implement that here, but I think that would make more sense if we were to
-> actually split the cp2112 into mfd & platform drivers, and additionally split
-> the DT binding by function.
+>
+>
+> >> One problem with the AMBA driver in place is having to keep on adding
+> >> new PIDs for the CPUs. The other option is to have a blanket mask
+> >> for matching the PIDs with AMBA_UCI_ID checks.
+> >
+> > But if MMIO access is discouraged, then new h/w would use the platform
+> > driver(s), not the amba driver, and you won't have to add PIDs.
+>
+> Yes for v8.4 onwards. Alternatively, the newer DTS could skip
+> arm,primecell in the entry and that would kick the platform driver
+> in. So, that should be fine I guess.
 
-IIRC (but might be very well mistaken) the compatible strings for children
-are discouraged.
+Except that the new dts would not work with older kernels.
 
--- 
-With Best Regards,
-Andy Shevchenko
+I'm now lost as to what problem this series is trying to solve. Will
+reply further on cover letter...
 
-
+Rob
