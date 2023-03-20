@@ -2,77 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59DE06C1B91
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:27:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E22166C1BA6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:31:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232342AbjCTQ1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:27:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41144 "EHLO
+        id S231952AbjCTQbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:31:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbjCTQ0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:26:17 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B75274A9;
-        Mon, 20 Mar 2023 09:19:07 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KGItjd048864;
-        Mon, 20 Mar 2023 11:18:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679329135;
-        bh=TV5xrOJHNTkQRHNTWPevo+vvjls9WVfFGAOlRBzE0tA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=appZFvfZvdK9Lpywew3m+eSgxUjq3O8zAxcxcWk32c3neqCGuBqy+0p6YdjRPeVh0
-         XuzcJ9RXRCe4ispupbAKvtXx7eJx93pSVvJ8RCfo7rcCTV1jZQ4PeT7Y/YUsW6VwfE
-         zPKPz7v0xe+pbf4FWBjdeRMPRTx6+MEn1Onh0two=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KGItSb077637
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 11:18:55 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 11:18:55 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 11:18:55 -0500
-Received: from [10.250.33.229] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KGIsx0025182;
-        Mon, 20 Mar 2023 11:18:54 -0500
-Message-ID: <13048b01-641a-1d92-178c-02b87c5fa1b9@ti.com>
-Date:   Mon, 20 Mar 2023 11:18:54 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [EXTERNAL] Re: [PATCH v4 2/5] soc: ti: pruss: Add
- pruss_{request,release}_mem_region() API
-Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC:     <linux-remoteproc@vger.kernel.org>,
+        with ESMTP id S231915AbjCTQaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:30:52 -0400
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2084.outbound.protection.outlook.com [40.107.14.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4851270E;
+        Mon, 20 Mar 2023 09:23:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aA7x3TRPIchHCdQ8w6V4R+RMatj9Rr9BvPz1HtAPqB1icAtJv7FVZMhjXQHSvni0FQqsEyWD/3sYWWHOBNqWdGNfrdBL9kVCo9NS9vOhDjjvHhBDZTRx/oRUvMrz0pl6cbMRp6KL6lPk+cMLhdFa5jt9JswxYQf1tttYR5clCtbZMxJKo1o3JUcKyT5OP0LA18xcQ/12entfGTDGNEPp0G86YXhbDJ/FOv2e12mUrU/cTYWHjfnln3CXd4WySj30kB4P2kgbVpfWFwr1zS0AofmL5F6xhrQ/ZW0v26401clkHp4pkMnS/RRhOoZ7YCxKtK7+HBQ3UMSpq/tTgOnIsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VUB4t0xM/Q7BbaJ/HgyQPQ52zZLVIfEK0kVY/abARs8=;
+ b=SLq/yhwQuGB3bM6szltFEfOuPFyMTgTVL0jugMLuAmypC55b5c7inpXaoH95lD2DPJE+j3PNQqtyyYRPWx0ILBfhEnCHnZMq71cnCNC+xTEKd0fMMnj6n64ZuWCwciPnw3CVafGV94s0JKZ8MbF+2WpwHtd8McsaB5YXVEHbkDi7Mkx48kQIdLr/8bg9ugT4rvz4XS9br5ouykMQtXipFF63MHEmaeJoencx7KXslqxmJyMSyjncFl6bOYFAs08HQiugL7mDxZCIZxksI7kiwmoXIeQBavvBgbVxdxNnaKZ+na4n0XINl3DHaa3u2bmWfx9IavX9rnle87UfWU0ShQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VUB4t0xM/Q7BbaJ/HgyQPQ52zZLVIfEK0kVY/abARs8=;
+ b=lgoKC9EB465I1SJzrUvPn6QO0uO6xX9Aeq83bDHslPlwnfbTWl9Pwgwb6pnDiAZtmhnlAW1TeAvSqD6HNfRLvBRsDRmuGCoYTIYycCe8ASQRJLlj9oAT/bCuzJzWroWcPjR7gkwzLpyv3KmqEjgnDsiaeBXpasFxKyQSA7evxQQ=
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by AM8PR04MB7844.eurprd04.prod.outlook.com (2603:10a6:20b:236::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
+ 2023 16:22:47 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::fb2a:a683:b78e:b9b5]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::fb2a:a683:b78e:b9b5%4]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
+ 16:22:47 +0000
+From:   Frank Li <frank.li@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <srk@ti.com>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <20230313111127.1229187-1-danishanwar@ti.com>
- <20230313111127.1229187-3-danishanwar@ti.com>
- <3f26b194-287c-074d-8e78-572875f9a734@kernel.org>
- <52aeb13f-1fe4-825f-9d28-ba64860ae76d@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <52aeb13f-1fe4-825f-9d28-ba64860ae76d@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: RE: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+ imx8qm cdns3 glue bindings
+Thread-Topic: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+ imx8qm cdns3 glue bindings
+Thread-Index: AQHZWE4ev2xmRcSa20iFYFwtFRu1OK7+r7IAgABftWCAAueGAIABzLvggAALc4CAAAzzgA==
+Date:   Mon, 20 Mar 2023 16:22:47 +0000
+Message-ID: <AM6PR04MB4838F5C9EF13A588E799D5C488809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+References: <20230316212712.2426542-1-Frank.Li@nxp.com>
+ <20230316212712.2426542-2-Frank.Li@nxp.com>
+ <e6935c0c-375e-b763-ea91-3b8bbc906ebc@linaro.org>
+ <AM6PR04MB4838D1958A029701E1601BA588BD9@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <1fd1fe42-3da6-1598-a04d-cb99a9b4b145@linaro.org>
+ <AM6PR04MB483800D7CDCC7AF48F88BF9688809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <b8801c83-f2dc-f144-de58-03e5c24436fd@linaro.org>
+In-Reply-To: <b8801c83-f2dc-f144-de58-03e5c24436fd@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM6PR04MB4838:EE_|AM8PR04MB7844:EE_
+x-ms-office365-filtering-correlation-id: 6b42d449-9307-4ae9-d1ba-08db295f57cd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 1coNYv2ZMIWn5Vwli0zGl+cAQGjJLyw9yrFNNuLqJVDpDei9NRLMzN7gy6PReL4IEy32tgetphX78CnHeUJtnqIOF6hhDT5z8fUU9J5J2Y9k4gvWKPkgqofurLd/oeNLHW47o+h61voiAUGQJRn1A198tZvi6LVdmq/QNSHxm0ipjl5k2TjJ/bTU6/Cm+h1W/gqtYWmZVozSeR5pcZZ/AaOzHFnTJsenYuaNqqhPo54+C1r/69On80rdj9Wbp7AnEmPqfbpquouHmreHVyqZyAL3uW8+ktwTglG5SXY9qdZdI+WntvTxV4WEJUblEwLUpKkgcATCye7E8/ccH8XWW4pUblha8ETMfzFG7IqstqWhf4u37OZz71AqPywxx3Pbphq0oqOHyzbi9C/dMO7YsBH4Hd1iXmUe4ewiCz6PoofLvnWEczSVtGhunC15MB/ztXPJgyUQFQAhf2MOajE3cS9dTprrPMWv90hxQDEQf6OhbiUgbk5LzA4neqWEif41UU8mY2K6qdQwu275duDyNiP2cK/cd3ysTJTkDo2iJsAPhFXWhI2SfpYhhZF4J553KNmcJHZSrG0TC1eUjyg5zSssN0SP2K7x9F/jNmIujvH9fJmLZEcxujEfQFJDmpDIAS+RmD7ifFnrmvJFboOs9JQsJUByqhFIQy1ia7EaIVvjXBjknvQHUuIu0UTkxQdQ9FYeYzQ+KGSENwyw+0H4o9sN+xFyzz02qfXKw3yOmd8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(396003)(366004)(136003)(39860400002)(346002)(451199018)(54906003)(83380400001)(110136005)(478600001)(71200400001)(7696005)(6506007)(316002)(9686003)(33656002)(5660300002)(186003)(26005)(55236004)(7416002)(122000001)(38070700005)(55016003)(38100700002)(86362001)(8936002)(2906002)(66946007)(41300700001)(76116006)(52536014)(44832011)(64756008)(4326008)(8676002)(66446008)(66476007)(66556008)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NW1Sb29mSXRJOHV3Q3ljYlZtZHFjU1NEdkQvUmxjUnNQN2twblVlWVJXY2VY?=
+ =?utf-8?B?eDRzT25NSFpEOW1Lemh0cGRSSHNmUHZNU1lLNWRXcnd5V3FJbHZwWlE4QmJX?=
+ =?utf-8?B?U09ib0U2TGxVeXA1RXhZa3Z6ek5XODkwZE1kUW15Q1pLNXE3K1dJd2I2TU1s?=
+ =?utf-8?B?eDhUYjBUT2laUEhmQmtYclpYYncvZkZHaHlHS2dXSStaYnpLd1RYeU15dDRZ?=
+ =?utf-8?B?UVhUZFVQQzVTV2FNeDh1VHVTL0pRNmRiSnJHNG5ad2JWYWMvM1RReUUvVVB6?=
+ =?utf-8?B?aGZNSzFBdXdGSWF5ckxuQlNBOUFxMk9tcUFUNUIxOXU4a1VUTTAxRlVmYlZC?=
+ =?utf-8?B?Skdna1FkMmpwMjFZQW5GOVJUNG5aVnNlSkgzc0trazhqMDMvR1lTZmIzc0hL?=
+ =?utf-8?B?TWhGRGllN2l5TUZvL3ExekdyaXVtNjgzcWd0L3VTN2tML2pYM3ZxemR5TzEy?=
+ =?utf-8?B?QU4xYUlXMVErMmZGeDZxR1BvdU9uYkdIVENVdHFLZm9MbTVQU3gycjg4T0xH?=
+ =?utf-8?B?QVB1VHowOXMyTVZhTnVaZ3FvZ2o5VHVOa3VSQnZYemV1N085UDYyS1dMemxz?=
+ =?utf-8?B?TDRTYXNwNGVPYlZuOWd3VnJSN3hKNVJJa2VPSVBuTTFORjJVNXRNNWZlMTAr?=
+ =?utf-8?B?UER1TElZQjZsVWNiUUgzb1Z3SEF4ZmZQblYvTmQzLzAzeHlMemtaKzdrd3l4?=
+ =?utf-8?B?M3djNlRpNXF4dTQ0cTJZazgraU1vQ1B5OU1UM3FCTnZyVnYwSDVXVDVOYU9t?=
+ =?utf-8?B?UW5UREZBRERUWkNUUVk3czZtdG1qYndWTXNDTklBL1RRbHR3cGR4ekJVTWtj?=
+ =?utf-8?B?NkFFZC8yOW1VU08wbTZPMHgyNjJCWkVqWkFyeEJVbWlvUFh0d2dYUWt5Lyt1?=
+ =?utf-8?B?ZWNaZU1VK1NwYlI1QVBQMUh5MzRDZlp5QnFLN1FQV3VQMFkzL1AwNVVWSng5?=
+ =?utf-8?B?TmhPald5Y0gxVWlwNkJrRmt1dFEwaExWN3BMQUFwNGlLdlZWTk1zeEE1aEx1?=
+ =?utf-8?B?WWVaM2NtME1nOUlFNEUzekJYaUpYUno4Y0dTNHhTbjRSWW5jUlE4UHRwYjBO?=
+ =?utf-8?B?MEpUTEdqeE1rbWUzcEhST0RpMVc3eGhCS0pFM0NHYnNEZzZQWEw0UjlkbzlU?=
+ =?utf-8?B?UkNxb1NhYmhDajlXQmlHZDBGZHJLNDQvKzE4dzY2c25KNzF2YzhBa0drN1hk?=
+ =?utf-8?B?Nk5sVWlyeEtMVlVDeG95SG5rL0VHcFRWckNKU0FVaXZWVmJVVHV1aTRubU5S?=
+ =?utf-8?B?MnNwelRCTWFHQjdneDc1MmZPalpKclM4ZStuZWMyeTYzUzlidHZUOEJMd2kr?=
+ =?utf-8?B?enNzY3NyVHdFN3hicE5hbktOYXRLWWY5elJJTzNEanViMjRwbnZmbjdBM2dK?=
+ =?utf-8?B?UUVCaXJveURTWldyT0JjQnpyNXMyTGptbW53akVSQ0lWTVBHZDd3ZEJKbVgz?=
+ =?utf-8?B?NWZKa2h5U1FzalJqRWFKdnhQVXQ0dGpQQVNaaVhjdGxvTEw5SDVHUWlVc0lH?=
+ =?utf-8?B?QW9UUVU4eG5Pb0JtbFN4bHR1VHlIV2dBUjhwS00zRmN0M0tYRVlLZzJyOWpJ?=
+ =?utf-8?B?RDA0cHJjNGR2QWpkZWsxeWtiOWUxMkFiRGtqVE9JZEhPellwSEoxZTNYMjho?=
+ =?utf-8?B?SUtLdmxYQTQ2SnVBdzJxakpUbG14YjVjN0haSWswN0d6ZmVZSWhtNVJPaVR0?=
+ =?utf-8?B?SlFwTEhJclk3OVBQZU5MNGZwWmJKZmR4Skc3SGZ1WXUvQ2hnQ3hCMlNXRElv?=
+ =?utf-8?B?bHFMMjJVNlpwY3JmUWZHSVRBWG9XamRQdFByZnk0SzlKUDVQYVBkYU5SK2Jn?=
+ =?utf-8?B?UzhSWGdvU2lvZTFMV2JSVS9nZGhyNWxGQzlRaFhNV25kTng2ditiMGI5QzNy?=
+ =?utf-8?B?L2ZmY0FyMTlYRjZxZmYxUDJ3czcrMy9lbThaeHo0akk1R0NoWnVyKzhsOFJ1?=
+ =?utf-8?B?czJqMkpzUndEOWp6SXZ0OGJEdVluVnQ1QmtRd2RhQ3dWN2V5cjZGNGhRMkdD?=
+ =?utf-8?B?MmpOTXZqeCtyRUQ0YXE4L2o0QnkrYXhPOTByMjNKVWl4REx2M3p5UTZBTStZ?=
+ =?utf-8?B?RHlxbEJTOGhtQlFzRzE3VUdXWTJjdXB5Vi92cG5TTVdpVDRCSUlqT2hheG9Q?=
+ =?utf-8?Q?8drQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b42d449-9307-4ae9-d1ba-08db295f57cd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2023 16:22:47.4170
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OEef2/hds6OW0RbMhr1h6HdUazjJp6ZsbZozFjF22DDn/Z2T9ouGKulXvuB734VqK3eMC0LYOrm7f8R+wMYA+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7844
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,279 +142,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/20/23 12:11 AM, Md Danish Anwar wrote:
-> Hi Roger,
-> 
-> On 17/03/23 14:26, Roger Quadros wrote:
->> Hi Andrew & Danish,
->>
->>
->> On 13/03/2023 13:11, MD Danish Anwar wrote:
->>> From: "Andrew F. Davis" <afd@ti.com>
->>>
->>> Add two new API - pruss_request_mem_region() & pruss_release_mem_region(),
->>> to the PRUSS platform driver to allow client drivers to acquire and release
->>> the common memory resources present within a PRU-ICSS subsystem. This
->>> allows the client drivers to directly manipulate the respective memories,
->>> as per their design contract with the associated firmware.
->>>
->>> Co-developed-by: Suman Anna <s-anna@ti.com>
->>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>> Signed-off-by: Andrew F. Davis <afd@ti.com>
->>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>> Reviewed-by: Roger Quadros <rogerq@kernel.org>
->>> ---
->>>   drivers/soc/ti/pruss.c           | 77 ++++++++++++++++++++++++++++++++
->>>   include/linux/pruss_driver.h     | 27 +++--------
->>>   include/linux/remoteproc/pruss.h | 39 ++++++++++++++++
->>
->>
->> We have these 2 header files and I think anything that deals with
->> 'struct pruss' should go in include/linux/pruss_driver.h
->>
->> Anything that deals with pru_rproc (i.e. struct rproc) should go in
->> include/linux/remoteproc/pruss.h
->>
->> Do you agree?
->>
-> 
-> I agree with you Roger but Andrew is the right person to comment here as he is
-> the author of this and several other patches.
-> 
-> Hi Andrew, Can you please comment on this?
-> 
-
-Original idea was a consumer driver (like "ICSSG Ethernet Driver" in your other
-series) could just
-
-#include <linux/remoteproc/pruss.h>
-
-and get everything they need, and nothing they do not.
-
-pruss_driver.h (which could be renamed pruss_internal.h) exists to allow
-comunication between the pruss core and the pru rproc driver which live
-in different subsystems.
-
-Andrew
-
->>>   3 files changed, 121 insertions(+), 22 deletions(-)
->>>
->>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
->>> index a169aa1ed044..c8053c0d735f 100644
->>> --- a/drivers/soc/ti/pruss.c
->>> +++ b/drivers/soc/ti/pruss.c
->>> @@ -88,6 +88,82 @@ void pruss_put(struct pruss *pruss)
->>>   }
->>>   EXPORT_SYMBOL_GPL(pruss_put);
->>>   
->>> +/**
->>> + * pruss_request_mem_region() - request a memory resource
->>> + * @pruss: the pruss instance
->>> + * @mem_id: the memory resource id
->>> + * @region: pointer to memory region structure to be filled in
->>> + *
->>> + * This function allows a client driver to request a memory resource,
->>> + * and if successful, will let the client driver own the particular
->>> + * memory region until released using the pruss_release_mem_region()
->>> + * API.
->>> + *
->>> + * Return: 0 if requested memory region is available (in such case pointer to
->>> + * memory region is returned via @region), an error otherwise
->>> + */
->>> +int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->>> +			     struct pruss_mem_region *region)
->>> +{
->>> +	if (!pruss || !region || mem_id >= PRUSS_MEM_MAX)
->>> +		return -EINVAL;
->>> +
->>> +	mutex_lock(&pruss->lock);
->>> +
->>> +	if (pruss->mem_in_use[mem_id]) {
->>> +		mutex_unlock(&pruss->lock);
->>> +		return -EBUSY;
->>> +	}
->>> +
->>> +	*region = pruss->mem_regions[mem_id];
->>> +	pruss->mem_in_use[mem_id] = region;
->>> +
->>> +	mutex_unlock(&pruss->lock);
->>> +
->>> +	return 0;
->>> +}
->>> +EXPORT_SYMBOL_GPL(pruss_request_mem_region);
->>> +
->>> +/**
->>> + * pruss_release_mem_region() - release a memory resource
->>> + * @pruss: the pruss instance
->>> + * @region: the memory region to release
->>> + *
->>> + * This function is the complimentary function to
->>> + * pruss_request_mem_region(), and allows the client drivers to
->>> + * release back a memory resource.
->>> + *
->>> + * Return: 0 on success, an error code otherwise
->>> + */
->>> +int pruss_release_mem_region(struct pruss *pruss,
->>> +			     struct pruss_mem_region *region)
->>> +{
->>> +	int id;
->>> +
->>> +	if (!pruss || !region)
->>> +		return -EINVAL;
->>> +
->>> +	mutex_lock(&pruss->lock);
->>> +
->>> +	/* find out the memory region being released */
->>> +	for (id = 0; id < PRUSS_MEM_MAX; id++) {
->>> +		if (pruss->mem_in_use[id] == region)
->>> +			break;
->>> +	}
->>> +
->>> +	if (id == PRUSS_MEM_MAX) {
->>> +		mutex_unlock(&pruss->lock);
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	pruss->mem_in_use[id] = NULL;
->>> +
->>> +	mutex_unlock(&pruss->lock);
->>> +
->>> +	return 0;
->>> +}
->>> +EXPORT_SYMBOL_GPL(pruss_release_mem_region);
->>> +
->>>   static void pruss_of_free_clk_provider(void *data)
->>>   {
->>>   	struct device_node *clk_mux_np = data;
->>> @@ -290,6 +366,7 @@ static int pruss_probe(struct platform_device *pdev)
->>>   		return -ENOMEM;
->>>   
->>>   	pruss->dev = dev;
->>> +	mutex_init(&pruss->lock);
->>>   
->>>   	child = of_get_child_by_name(np, "memories");
->>>   	if (!child) {
->>> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
->>> index 86242fb5a64a..22b4b37d2536 100644
->>> --- a/include/linux/pruss_driver.h
->>> +++ b/include/linux/pruss_driver.h
->>> @@ -9,37 +9,18 @@
->>>   #ifndef _PRUSS_DRIVER_H_
->>>   #define _PRUSS_DRIVER_H_
->>>   
->>> +#include <linux/mutex.h>
->>>   #include <linux/remoteproc/pruss.h>
->>>   #include <linux/types.h>
->>>   
->>> -/*
->>> - * enum pruss_mem - PRUSS memory range identifiers
->>> - */
->>> -enum pruss_mem {
->>> -	PRUSS_MEM_DRAM0 = 0,
->>> -	PRUSS_MEM_DRAM1,
->>> -	PRUSS_MEM_SHRD_RAM2,
->>> -	PRUSS_MEM_MAX,
->>> -};
->>> -
->>> -/**
->>> - * struct pruss_mem_region - PRUSS memory region structure
->>> - * @va: kernel virtual address of the PRUSS memory region
->>> - * @pa: physical (bus) address of the PRUSS memory region
->>> - * @size: size of the PRUSS memory region
->>> - */
->>> -struct pruss_mem_region {
->>> -	void __iomem *va;
->>> -	phys_addr_t pa;
->>> -	size_t size;
->>> -};
->>> -
->>>   /**
->>>    * struct pruss - PRUSS parent structure
->>>    * @dev: pruss device pointer
->>>    * @cfg_base: base iomap for CFG region
->>>    * @cfg_regmap: regmap for config region
->>>    * @mem_regions: data for each of the PRUSS memory regions
->>> + * @mem_in_use: to indicate if memory resource is in use
->>> + * @lock: mutex to serialize access to resources
->>>    * @core_clk_mux: clk handle for PRUSS CORE_CLK_MUX
->>>    * @iep_clk_mux: clk handle for PRUSS IEP_CLK_MUX
->>>    */
->>> @@ -48,6 +29,8 @@ struct pruss {
->>>   	void __iomem *cfg_base;
->>>   	struct regmap *cfg_regmap;
->>>   	struct pruss_mem_region mem_regions[PRUSS_MEM_MAX];
->>> +	struct pruss_mem_region *mem_in_use[PRUSS_MEM_MAX];
->>> +	struct mutex lock; /* PRU resource lock */
->>>   	struct clk *core_clk_mux;
->>>   	struct clk *iep_clk_mux;
->>>   };
->>> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
->>> index 93a98cac7829..33f930e0a0ce 100644
->>> --- a/include/linux/remoteproc/pruss.h
->>> +++ b/include/linux/remoteproc/pruss.h
->>> @@ -44,6 +44,28 @@ enum pru_ctable_idx {
->>>   	PRU_C31,
->>>   };
->>>   
->>> +/*
->>> + * enum pruss_mem - PRUSS memory range identifiers
->>> + */
->>> +enum pruss_mem {
->>> +	PRUSS_MEM_DRAM0 = 0,
->>> +	PRUSS_MEM_DRAM1,
->>> +	PRUSS_MEM_SHRD_RAM2,
->>> +	PRUSS_MEM_MAX,
->>> +};
->>> +
->>> +/**
->>> + * struct pruss_mem_region - PRUSS memory region structure
->>> + * @va: kernel virtual address of the PRUSS memory region
->>> + * @pa: physical (bus) address of the PRUSS memory region
->>> + * @size: size of the PRUSS memory region
->>> + */
->>> +struct pruss_mem_region {
->>> +	void __iomem *va;
->>> +	phys_addr_t pa;
->>> +	size_t size;
->>> +};
->>> +
->>>   struct device_node;
->>>   struct rproc;
->>>   struct pruss;
->>> @@ -52,6 +74,10 @@ struct pruss;
->>>   
->>>   struct pruss *pruss_get(struct rproc *rproc);
->>>   void pruss_put(struct pruss *pruss);
->>> +int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->>> +			     struct pruss_mem_region *region);
->>> +int pruss_release_mem_region(struct pruss *pruss,
->>> +			     struct pruss_mem_region *region);
->>>   
->>>   #else
->>>   
->>> @@ -62,6 +88,19 @@ static inline struct pruss *pruss_get(struct rproc *rproc)
->>>   
->>>   static inline void pruss_put(struct pruss *pruss) { }
->>>   
->>> +static inline int pruss_request_mem_region(struct pruss *pruss,
->>> +					   enum pruss_mem mem_id,
->>> +					   struct pruss_mem_region *region)
->>> +{
->>> +	return -EOPNOTSUPP;
->>> +}
->>> +
->>> +static inline int pruss_release_mem_region(struct pruss *pruss,
->>> +					   struct pruss_mem_region *region)
->>> +{
->>> +	return -EOPNOTSUPP;
->>> +}
->>> +
->>>   #endif /* CONFIG_TI_PRUSS */
->>>   
->>>   #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
->>
->> cheers,
->> -roger
-> 
+PiA+Pj4+PiArICBhc3NpZ25lZC1jbG9ja3M6DQo+ID4+Pj4+ICsgICAgaXRlbXM6DQo+ID4+Pj4+
+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBQaGFuZGxlIGFuZCBjbG9jayBzcGVjaWZpZXIgb2YNCj4g
+SU1YX1NDX1BNX0NMS19QRVIuDQo+ID4+Pj4+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBQaGFuZGxl
+IGFuZCBjbG9jayBzcGVjaWZvZXIgb2YNCj4gPj4gSU1YX1NDX1BNX0NMS19NSVNDLg0KPiA+Pj4+
+PiArICAgICAgLSBkZXNjcmlwdGlvbjogUGhhbmRsZSBhbmQgY2xvY2sgc3BlY2lmb2VyIG9mDQo+
+ID4+Pj4gSU1YX1NDX1BNX0NMS19NU1RfQlVTLg0KPiA+Pj4+PiArDQo+ID4+Pj4+ICsgIGFzc2ln
+bmVkLWNsb2NrLXJhdGVzOg0KPiA+Pj4+PiArICAgIGl0ZW1zOg0KPiA+Pj4+PiArICAgICAgLSBk
+ZXNjcmlwdGlvbjogTXVzdCBiZSAxMjUgTWh6Lg0KPiA+Pj4+PiArICAgICAgLSBkZXNjcmlwdGlv
+bjogTXVzdCBiZSAxMiBNaHouDQo+ID4+Pj4+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBNdXN0IGJl
+IDI1MCBNaHouDQo+ID4+Pj4NCj4gPj4+PiBJIHdvdWxkIGFyZ3VlIHRoYXQgYm90aCBwcm9wZXJ0
+aWVzIGFib3ZlIGFyZSBub3QgbmVlZGVkLiBJZiB5b3VyDQo+ID4+Pj4gaGFyZHdhcmUgcmVxdWly
+ZXMgZml4ZWQgZnJlcXVlbmNpZXMsIGNsb2NrIHByb3ZpZGVyIGNhbiBmaXggdGhlbSwgY2FuJ3QN
+Cj4gaXQ/DQo+ID4+Pg0KPiA+Pj4gQ2xvY2sgcHJvdmlkZXIgZG9uJ3Qga25vdyBmaXhlZCB2YWx1
+ZSBhbmQgdHVybiBvbiBvbmx5IHVzZWQgYnkgY2xpZW50Lg0KPiA+Pg0KPiA+PiBTbyBtYXliZSBm
+aXggdGhlIGNsb2NrIHByb3ZpZGVyPyBPciB0aGlzIGRldmljZSBkcml2ZXI/IFJlcXVpcmluZyBi
+eQ0KPiA+PiBiaW5kaW5nIHNwZWNpZmljIGZyZXF1ZW5jaWVzIGZvciBldmVyeSBib2FyZCBpcyBh
+IGJpdCByZWR1bmRhbnQuDQo+ID4NCj4gPiBJdCBpcyBub3QgZm9yIGV2ZXJ5IGJvYXJkcywgaXQg
+aXMgY29tbW9uIGZvciBhIGNoaXAgZmFtaWx5LiAgT25seSBhIHBsYWNlIHRvIHNldA0KPiBmb3IN
+Cj4gPiBRTSBhbmQgUVhQLg0KPiA+DQo+ID4gVGhlIHNpbWlsYXIgY2FzZSBpcyBuZXR3b3JrIGRy
+aXZlciwgd2hpY2ggcmVxdWlyZSBhIHNwZWNpZmljIGZyZXF1ZW5jeSBhdA0KPiBjbG9jayBhc3Np
+Z24uDQo+ID4gR2VuZXJhbGx5IGZyZXF1ZW5jeSBpcyBmaXhlZCwgIGNsb2NrIHNvdXJjZSBuYW1l
+IG1heSBjaGFuZ2UgYXQgZGlmZmVyZW5jZQ0KPiBjaGlwcy4NCj4gDQo+IElmIGZyZXF1ZW5jeSBp
+cyBhbHdheXMgZml4ZWQsIEkgZG9uJ3QgdW5kZXJzdGFuZCB3aHkgdGhpcyBpcyBpbiBEVA0KPiBi
+aW5kaW5ncy4gSSB3b3VsZCBldmVuIHNheSBpdCBzaG91bGQgbm90IGJlIGluIERUUy4gV2UgZG9u
+J3QgcHV0IGludG8NCj4gRFRTIHByb3BlcnRpZXMgd2hpY2ggYXJlIGFsd2F5cyB0aGUgc2FtZSwg
+YmVjYXVzZSBvdGhlcndpc2UgdGhleSB3b3VsZA0KPiBncm93IGNyYXp5IGJpZy4NCg0KQWx0aG91
+Z2ggZnJlcXVlbmN5IGlzIGZpeGVkLCBjbG9jayBuYW1lIG1heSBjaGFuZ2UgZm9yIGRpZmZlcmVu
+Y2UgcGxhdGZvcm0uDQoNCiAgICAgICAgICAgICAgICBhc3NpZ25lZC1jbG9ja3MgPSA8JmNsayBJ
+TVhfU0NfUl9VU0JfMiBJTVhfU0NfUE1fQ0xLX1BFUj4sDQogICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAJICAgICA8JmNsayBJTVhfU0NfUl9VU0JfMiBJTVhfU0NfUE1fQ0xLX01JU0M+
+LA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCSAgICAgPCZjbGsgSU1YX1NDX1Jf
+VVNCXzIgSU1YX1NDX1BNX0NMS19NU1RfQlVTPjsNCiAgICAgICAgICAgICAgIGFzc2lnbmVkLWNs
+b2NrLXJhdGVzID0gPDEyNTAwMDAwMD4sIDwxMjAwMDAwMD4sIDwyNTAwMDAwMDA+Ow0KIA0Kc29t
+ZSBwbGF0Zm9ybSB1c2UgSU1YX1NDX1JfVVNCXzIsIG90aGVyIHBsYXRmb3JtIG1heSB1c2UgSU1Y
+X1NDX1JfVVNCXzMuDQoNCg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
