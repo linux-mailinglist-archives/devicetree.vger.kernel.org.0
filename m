@@ -2,163 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41EC66C1684
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 676376C1718
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:11:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232165AbjCTPGr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 11:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60408 "EHLO
+        id S232228AbjCTPLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 11:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232180AbjCTPGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:06:30 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EC92F07D;
-        Mon, 20 Mar 2023 08:02:03 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id k14-20020a056830150e00b0069f156d4ce9so2273645otp.6;
-        Mon, 20 Mar 2023 08:02:03 -0700 (PDT)
+        with ESMTP id S232241AbjCTPL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:11:26 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C035CC160
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 08:06:27 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id h8so47974045ede.8
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 08:06:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679324784;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pTaRac2KuzXOfFSAle5BbPdkfj484jnycW56D0T/zoQ=;
+        b=r2b5tl1OVPdmCMM0CfCwwrKTT8cPxL7MJDzDXxMgGt4gTPSiR+5cUFz3F4RbnypK25
+         oSdfFsHyPbgyMOdLe3q6OkP8uqoHeTu1M0L4rqStxMConPJgQWhXCFihWkc3VXFfhTBH
+         +YsiIYt+eTxCFFUulW6jKPQ6JO/kdzFJcTnTa/Rtfu7+3lyE1aFGE1Uyt5KOEx81TJld
+         GuVPBRGK1L8PtPU1IcFgLjAM5ZWvx1eJV0hNTvVcLAt0Qxta7f4hBs6I55Fj+3bCK+lQ
+         UktsGrafgLKRsyEL1fz+5cVPeNhxCjULtRH5XMk714aUQBrkgatEJ5BC/LTCSiB89rJG
+         Nv1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679324483;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gnfGX7Qm2m1ximJzaBiSodqBclPMC2gwUS6QauY2y6c=;
-        b=WTHoSEsEOHwFn7a/NIu2YL785EXN91z+mSDjKdPZTagNF8iED69ZIRKt+ETQSqwJzF
-         GQGxYJBOborwypp9gmEleScLCBNJTnRJhBV2oNOSE3N7YeQddjvt9918OUmjpqUHHWGK
-         yLPRAmNZk7gXPfBnxNoIX5SPfNJBH7kCEPQTkD36DEdXuPUvSfkB9D0jSexQCep8lD1f
-         7cjoqjRqOG2BonteLxV5poIC3MShnGAXx6PMumtZiSRQ8eaKCyyhVubC5kRDzKMamigK
-         OXygfiEWOeAH4F1bestXRtZ0POUg+FxQdHIm1zc7xYuFo0u6gM8euI0bVeuetsLGLwOQ
-         Gu/w==
-X-Gm-Message-State: AO0yUKVMCST+afUqUyJjfObXF46zEL8QsU/0isNWUJgz0fehMrWFS8Bv
-        JI1uAIlEeLsXS+FWr7gooSy1NFtpVSP0/g==
-X-Google-Smtp-Source: AK7set9TEsz5eAzbYPU1BaLExsg77mIBTXtu4MQdSbyc8tK1Yz1U76J+og6gRiZXc5xr63eeUtj+wg==
-X-Received: by 2002:a9d:6f8a:0:b0:69f:6663:6fb with SMTP id h10-20020a9d6f8a000000b0069f666306fbmr159222otq.13.1679324483425;
-        Mon, 20 Mar 2023 08:01:23 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id z83-20020a376556000000b007468ed0160csm1119785qkb.128.2023.03.20.08.01.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 08:01:22 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id x198so3727987ybe.9;
-        Mon, 20 Mar 2023 08:01:22 -0700 (PDT)
-X-Received: by 2002:a25:f208:0:b0:b6b:841a:aae4 with SMTP id
- i8-20020a25f208000000b00b6b841aaae4mr2274045ybe.12.1679324482409; Mon, 20 Mar
- 2023 08:01:22 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679324784;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pTaRac2KuzXOfFSAle5BbPdkfj484jnycW56D0T/zoQ=;
+        b=lFof0zqyJcUyKGIoeCm3f6n1N/6gPu2N8f2hjk+rj4+xu2dFiacZHcyi3NA5FDirdb
+         mCv5tjrziZ9xDMDACVKyTuXh06+KZCj2Ql4K04dEyoKw5+CQvmzkr8t+9qn9Vu3Evybv
+         s5Pg8B2Z7zKMaCXR4eYEFUiNzxrI1DDbjj++Ulz06kgrJWH1XIWpSDa03UYCYui51INz
+         0086GODcZoRZWnl/7E9mYepD1VcM8iV0ycp8Cyx3D6BlS0vcEmXINKieYCTtZLwOnX+3
+         LX6RHgPM6G1cA+nFnYT9stJi9nmVkbUIY9Jim9Bb5dHwpJYkwJRMSj88fBm3ZBMDApjN
+         Moxg==
+X-Gm-Message-State: AO0yUKXZrDiAr/UoolU/qSNGlczVm5QPS7WaYDm45x7nOSU3Pl7jbKtn
+        jd03HhBVtsL+ROeKiZTUhwBxhQ==
+X-Google-Smtp-Source: AK7set/p8hBsFhTjeh+z9Qpbdk6f6BDsx4o5/JTnxkMUBW7GVqu1TullPkQd/8LbrvpBQ7n6E/GE+Q==
+X-Received: by 2002:a17:906:ca55:b0:92f:48f0:736d with SMTP id jx21-20020a170906ca5500b0092f48f0736dmr10886595ejb.62.1679324783869;
+        Mon, 20 Mar 2023 08:06:23 -0700 (PDT)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id u27-20020a170906069b00b00923bb9f0c36sm4532795ejb.127.2023.03.20.08.06.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Mar 2023 08:06:23 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH v5] dt-bindings: mfd: qcom,spmi-pmic: Add pattern property for phy
+Date:   Mon, 20 Mar 2023 17:06:17 +0200
+Message-Id: <20230320150617.1824465-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com> <20230320144914.GA1609519-robh@kernel.org>
-In-Reply-To: <20230320144914.GA1609519-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Mar 2023 16:01:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUOxNUL9Sm5n+SB01TaF1hgdFvZiAydKGw3OiLbbOCCPw@mail.gmail.com>
-Message-ID: <CAMuHMdUOxNUL9Sm5n+SB01TaF1hgdFvZiAydKGw3OiLbbOCCPw@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: iommu: renesas, ipmmu-vmsa: Update for
- R-Car Gen4
-To:     Rob Herring <robh@kernel.org>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        krzysztof.kozlowski+dt@linaro.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The phy pattern property will be used for providing eUSB2 repeater
+functionality. This will be modelled as a Qualcomm PHY driver.
 
-On Mon, Mar 20, 2023 at 3:49 PM Rob Herring <robh@kernel.org> wrote:
-> On Mon, Mar 13, 2023 at 09:40:26PM +0900, Yoshihiro Shimoda wrote:
-> > Since R-Car Gen4 does not have the main IPMMU IMSSTR register, update
-> > the bindings to drop the interrupt bit number from the
-> > renesas,ipmmu-main property.
->
-> Wouldn't it be easier to define a value meaning 'no interrupt bit' such
-> as 0 or ~0 than having a variable sized property to parse?
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Lee Jones <lee@kernel.org>
+---
 
-(That would be ~0, as 0 is a valid bit number)
+Resend of:
+https://lore.kernel.org/all/20230208190200.2966723-3-abel.vesa@linaro.org/
 
-In theory: yes.
-In practice: it doesn't matter much, as the driver doesn't use the value
-anyway. Cfr. its parsing code being reworked in your patch
-"[PATCH] iommu: Use of_property_present() for testing DT property presence"
-https://lore.kernel.org/all/20230310144709.1542910-1-robh@kernel.org
+Added Krzysztof's R-b tag and Lee's A-b tag.
 
-So yes, using ~0 would simplify the bindings, but would complicate
-the DTS files (and probably we should introduce a #define instead of
-using ~0 or 0xffffffff or some other value).
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > [geert: Re-add removed items level, add minItems/maxItems constraints]
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > Changes from v3:
-> > https://lore.kernel.org/all/20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com/
-> >  - Revise the dt-bindings by Geert-san (Thanks a lot!).
-> >
-> >  .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 32 ++++++++++++++-----
-> >  1 file changed, 24 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> > index 72308a4c14e7..be90f68c11d1 100644
-> > --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> > +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> > @@ -74,16 +74,16 @@ properties:
-> >    renesas,ipmmu-main:
-> >      $ref: /schemas/types.yaml#/definitions/phandle-array
-> >      items:
-> > -      - items:
-> > +      - minItems: 1
-> > +        items:
-> >            - description: phandle to main IPMMU
-> > -          - description: the interrupt bit number associated with the particular
-> > -              cache IPMMU device. The interrupt bit number needs to match the main
-> > -              IPMMU IMSSTR register. Only used by cache IPMMU instances.
-> > +          - description:
-> > +              The interrupt bit number associated with the particular cache
-> > +              IPMMU device. If present, the interrupt bit number needs to match
-> > +              the main IPMMU IMSSTR register. Only used by cache IPMMU
-> > +              instances.
-> >      description:
-> > -      Reference to the main IPMMU phandle plus 1 cell. The cell is
-> > -      the interrupt bit number associated with the particular cache IPMMU
-> > -      device. The interrupt bit number needs to match the main IPMMU IMSSTR
-> > -      register. Only used by cache IPMMU instances.
-> > +      Reference to the main IPMMU.
-> >
-> >  required:
-> >    - compatible
-> > @@ -109,6 +109,22 @@ allOf:
-> >        required:
-> >          - power-domains
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,rcar-gen4-ipmmu-vmsa
-> > +    then:
-> > +      properties:
-> > +        renesas,ipmmu-main:
-> > +          items:
-> > +            - maxItems: 1
-> > +    else:
-> > +      properties:
-> > +        renesas,ipmmu-main:
-> > +          items:
-> > +            - minItems: 2
-> > +
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+index 975c30aad23c..f59f1f8cd52f 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+@@ -137,6 +137,10 @@ patternProperties:
+     type: object
+     $ref: /schemas/pinctrl/qcom,pmic-gpio.yaml#
+ 
++  "phy@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/phy/qcom,snps-eusb2-repeater.yaml#
++
+   "pon@[0-9a-f]+$":
+     type: object
+     $ref: /schemas/power/reset/qcom,pon.yaml#
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
