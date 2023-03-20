@@ -2,91 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97E866C120A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 208526C1243
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:48:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231415AbjCTMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 08:40:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45188 "EHLO
+        id S231580AbjCTMsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 08:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231407AbjCTMk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:40:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48887D53A;
-        Mon, 20 Mar 2023 05:40:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F1AE7B80D5B;
-        Mon, 20 Mar 2023 12:40:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EEBC433D2;
-        Mon, 20 Mar 2023 12:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679316050;
-        bh=ygtqlan6gmapNgIcCgqJ3TjvKfvjZ61I2WRWKTEMJxo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UwNNBTfSSGciqjoxIuA483/4GSZisGmO74L5rjgFf1VrMRKXk1DESUqtixBnJyHV4
-         vaNneXW5W9EkzqDs3If7nSW9Xe+jLtNyRz76G/leyj/EoYObEgx8cHqxqOe93imq4c
-         2sKBT3jxhceJgjrSEX8oOQqHfUQ7BTAQrgA1CDqYIpUTHdHvucyoVBnrpZ5JpPmd+D
-         6ceJUhvOKyxE5XoY+NIxKNEljshhvKP9/G+CD3i/qjZxkc+sRRkEvlltj1F+KdC9wk
-         p98AKHdOjQnRk3Sfx54YLlK6odc0yxfw+oxJDXm+aGO7YsaElDG/kFTUll++RShD6d
-         4SCdYZ2LponHA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1peEq3-0006a9-Cj; Mon, 20 Mar 2023 13:42:11 +0100
-Date:   Mon, 20 Mar 2023 13:42:11 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Kalle Valo <kvalo@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231578AbjCTMrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:47:40 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9FA149AB;
+        Mon, 20 Mar 2023 05:47:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679316455; x=1710852455;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BS/iDj084XvVXlM/TI4ORDgBbDzLSZq0yXe7n1ACXBA=;
+  b=j9QG30vAS0DKc/3qnMLMiFY6bp9keIN4U7TKil+tNwggJBlBHE1OGdou
+   Ev3hGaBRV0UqJ/V0IY0FARCF8BkxP7/vpmT1IucShYPvlZOVCYp4RHFG3
+   u2p/n43Db23Ch67urc+ILtKcE0QTHNyQuaFjO6gvkNxSG2SYmPKD7wB0S
+   CeidzDI12sphF0MbiQxsrHW1wn+1+nm+YaigHaMwLrtF9AztVQTjcCs7s
+   XNVqf/oGAAlmyaURzYERCQhuCcIrwRd4cPpXyq5Aj25JEmN0qlPW4kO+t
+   dlaM9tr9TYJ6rA3ZR+nYkYQff4XMdpWxmZo0HuezHYLF72yGco18BsY2G
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="319050903"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="319050903"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 05:46:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="745361757"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="745361757"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP; 20 Mar 2023 05:46:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1peEuW-006GkN-0C;
+        Mon, 20 Mar 2023 14:46:48 +0200
+Date:   Mon, 20 Mar 2023 14:46:47 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Paul Fertser <fercerpav@gmail.com>
+Cc:     Iwona Winiarska <iwona.winiarska@intel.com>,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-aspeed@lists.ozlabs.org, linux-doc@vger.kernel.org,
+        Dave Hansen <dave.hansen@intel.com>,
+        Zev Weiss <zweiss@equinix.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Billy Tsai <billy_tsai@aspeedtech.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
-Message-ID: <ZBhUo1C08U5mp9zP@hovoldconsulting.com>
-References: <20230320104658.22186-1-johan+linaro@kernel.org>
- <20230320104658.22186-2-johan+linaro@kernel.org>
- <87ttyfhatn.fsf@kernel.org>
+        Borislav Petkov <bp@alien8.de>,
+        Dan Williams <dan.j.williams@intel.com>,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        Tony Luck <tony.luck@intel.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Olof Johansson <olof@lixom.net>
+Subject: Re: [PATCH v8 10/13] hwmon: peci: Add cputemp driver
+Message-ID: <ZBhVt74i1DSoa+bE@smile.fi.intel.com>
+References: <20220208153639.255278-1-iwona.winiarska@intel.com>
+ <20220208153639.255278-11-iwona.winiarska@intel.com>
+ <ZBhHS7v+98NK56is@home.paul.comp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87ttyfhatn.fsf@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ZBhHS7v+98NK56is@home.paul.comp>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 02:22:12PM +0200, Kalle Valo wrote:
-> Johan Hovold <johan+linaro@kernel.org> writes:
+On Mon, Mar 20, 2023 at 02:45:15PM +0300, Paul Fertser wrote:
+> Hello,
 > 
-> > Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6856
-> > for which the calibration data variant may need to be described.
-> >
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  .../bindings/net/wireless/pci17cb,1103.yaml   | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
+> We are seeing wrong DTS temperatures on at least "Intel(R) Xeon(R)
+> Bronze 3204 CPU @ 1.90GHz" and most probably other Skylake Xeon CPUs
+> are also affected, see inline.
+
+Thanks for the report! I guess we need a fix for this indeed.
+
+> On Tue, Feb 08, 2022 at 04:36:36PM +0100, Iwona Winiarska wrote:
+> > Add peci-cputemp driver for Digital Thermal Sensor (DTS) thermal
+> > readings of the processor package and processor cores that are
+> > accessible via the PECI interface.
+> ...
+> > +static const struct cpu_info cpu_hsx = {
+> > +	.reg		= &resolved_cores_reg_hsx,
+> > +	.min_peci_revision = 0x33,
+> > +	.thermal_margin_to_millidegree = &dts_eight_dot_eight_to_millidegree,
+> > +};
+> > +
+> > +static const struct cpu_info cpu_icx = {
+> > +	.reg		= &resolved_cores_reg_icx,
+> > +	.min_peci_revision = 0x40,
+> > +	.thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
+> > +};
+> ...
+> > +	{
+> > +		.name = "peci_cpu.cputemp.skx",
+> > +		.driver_data = (kernel_ulong_t)&cpu_hsx,
+> > +	},
 > 
-> I'm confused (as usual), how does this differ from
-> bindings/net/wireless/qcom,ath11k.yaml? Why we need two .yaml files?
+> With this configuration we get this data:
+> 
+> /sys/bus/peci/devices/0-30/peci_cpu.cputemp.skx.48/hwmon/hwmon15# grep . temp[123]_{label,input}
+> temp1_label:Die
+> temp2_label:DTS
+> temp3_label:Tcontrol
+> temp1_input:30938
+> temp2_input:67735
+> temp3_input:80000
+> 
+> On the host system "sensors" report
+> 
+> Package id 0:  +31.C (high = +80.C, crit = +90.C)
+> 
+> So I conclude Die temperature as retrieved over PECI is correct while
+> DTS is mis-calculated. The old downstream code in OpenBMC was using
+> ten_dot_six_to_millidegree() function for conversion, and that was
+> providing expected results. And indeed if we reverse the calculation
+> here we get 80000 - ((80000-67735) * 256 / 64) = 30940 which matches
+> expectations.
 
-Almost none of bindings/net/wireless/qcom,ath11k.yaml applies to WCN6856
-when using PCIe (e.g. as most properties are then discoverable).
+-- 
+With Best Regards,
+Andy Shevchenko
 
-We could try to encode everything in one file, but that would likely
-just result in a big mess of a schema with conditionals all over.
 
-Johan
