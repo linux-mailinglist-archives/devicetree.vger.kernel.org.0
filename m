@@ -2,151 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC14D6C1D91
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DEF26C1DA5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 18:21:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232660AbjCTRRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 13:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
+        id S232458AbjCTRVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 13:21:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232690AbjCTRRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 13:17:08 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D22366A1
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:13:04 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id m2so11097237wrh.6
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:13:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679332288;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=706WFCInGYoTO+FPwORemuFUi5ASSP3+w8lBv2dgJY0=;
-        b=Gcri07HXDQZnMlez6E78X9YlaJbZ+LAdcQDJ42m6tVl0NQD7xi3zN7UTqa34epNHM7
-         edK2CREx8HTMuySsavDwZdjg3+RWKxsvPOCYhKiTI+i6MSbMr4wXRc5oc4Mr0O44T1lM
-         fFLWgDs4tMdeWmSkOgm97LKz7LO9KpgMedGeCUixNt68PzLSz39coD1Q5jxGw7XcWzoI
-         hLaJ5JyTuweTRkQuklSe8TV4c96OKYWn8SdXb/EphxgvuX+pbCWVMCnREkXaeHi8AaMQ
-         sOC30YgviU2O64ydvqLDHAcA6gVR6NF3VWv416H1UQhI+Y6fdxsdZFI/8XHnoR1GtDW4
-         8iqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679332288;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=706WFCInGYoTO+FPwORemuFUi5ASSP3+w8lBv2dgJY0=;
-        b=36CghgJnhPF+9ru9sHRWLQCV54sNRRiol6iUOk/CQn3W8/kqBTnQ5/8gzdIFsZ8RpS
-         furDE8ZSxlUgtTZUXx90ruCGrg73Vx3c4+i4riKjnkxY2UdgPfOCy5N9RKkTDiJRtso3
-         QJvRDzIk5XY+prcGD8kBw2vasRf0/lBBwP/q2Dt2mWAZaIuDk83i7iuA9J2C5rOKnp9U
-         Wmh+Rsbt86uOejCfPjY6oeFJdhXh596KbM8H4s5FW41poj/cH8KjqhWmtoflmFEbYr3q
-         uTJPnCxM1JI3jA0tec5gVLd8tdcrCPg35S5+M2x3CS1/tAeqqpGJohwsroHiDx3lTVbu
-         Smdw==
-X-Gm-Message-State: AO0yUKVaeNsON/CWGww5fviKzzCVX7vuUlIPspQKJ2MdJJImedz0lnNK
-        vdTh+G4dIAuNl+APgsBBZFNLow==
-X-Google-Smtp-Source: AK7set+qBbsK8y3erVftw+UbVluDwKIM+MnwxIS2tnzu7s1GG+PMcB/ALTg8wu5jShtIOlAB4oRLlQ==
-X-Received: by 2002:a5d:538b:0:b0:2cf:ea5f:6de with SMTP id d11-20020a5d538b000000b002cfea5f06demr83356wrv.14.1679332288535;
-        Mon, 20 Mar 2023 10:11:28 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4f6f:868d:9c7b:5ab1? ([2a01:e0a:982:cbb0:4f6f:868d:9c7b:5ab1])
-        by smtp.gmail.com with ESMTPSA id f11-20020a5d4dcb000000b002cfe3f842c8sm9281174wru.56.2023.03.20.10.11.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 10:11:28 -0700 (PDT)
-Message-ID: <0f878db9-a0da-f5f9-fe78-37551b85b268@linaro.org>
-Date:   Mon, 20 Mar 2023 18:11:26 +0100
+        with ESMTP id S233393AbjCTRUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 13:20:54 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD43812F3A;
+        Mon, 20 Mar 2023 10:16:50 -0700 (PDT)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1DDE0B6C;
+        Mon, 20 Mar 2023 18:15:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1679332553;
+        bh=EtloMJtVOSZ7X0F3GelvhtXn9Uc+JmrNunKBY6hpZrY=;
+        h=Date:Subject:To:References:Cc:From:In-Reply-To:From;
+        b=jjvlCa00TY1Seag3XuFDhTgasxGbNJFQ05XrzpZriMCmkDv3MElrGTL9TGCrK44ef
+         i2DC+LCaGXRrEZo3Y2UMYCLVYPpN9khkr4uHiJjkG7IsS8vtd9iKTESfMznuGszjSy
+         urglxA3Yp6RRkon27rRu0pria9OW7+IrqoA+eZmg=
+Message-ID: <96794a9a-889b-0ddd-0da6-6622ba27ff64@ideasonboard.com>
+Date:   Mon, 20 Mar 2023 19:15:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 09/12] arm64: dts: qcom: sm8350-hdk: add pmic glink
- node
+Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Wolfram Sang <wsa@kernel.org>
+References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
+ <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
+ <204f124a-1030-99bd-9c84-25ed067991b6@ideasonboard.com>
+ <ZBiRNpvITuOT03rE@ninjato>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230130-topic-sm8450-upstream-pmic-glink-v4-0-38bf0f5d07bd@linaro.org>
- <20230130-topic-sm8450-upstream-pmic-glink-v4-9-38bf0f5d07bd@linaro.org>
- <af8cd242-2a78-cac3-d307-ce6ab0810308@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <af8cd242-2a78-cac3-d307-ce6ab0810308@linaro.org>
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <ZBiRNpvITuOT03rE@ninjato>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2023 15:00, Konrad Dybcio wrote:
-> 
-> 
-> On 17.03.2023 16:04, Neil Armstrong wrote:
->> Add the pmic glink node linked with the DWC3 USB controller
->> switched to OTG mode and tagged with usb-role-switch.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> 
-> [...]
-> 
->>   &usb_1_dwc3 {
->> -	/* TODO: Define USB-C connector properly */
->> -	dr_mode = "peripheral";
->> +	dr_mode = "otg";
->> +	usb-role-switch;
->> +
->> +	ports {
-> You created these in patch [6/12]!
+Hi Wolfram,
 
-Damn!
-
-Thx!
-
-Neil
-
+On 20/03/2023 19:00, Wolfram Sang wrote:
+> Hi Tomi,
 > 
-> Konrad
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		port@0 {
->> +			reg = <0>;
->> +
->> +			usb_1_dwc3_hs: endpoint {
->> +				remote-endpoint = <&pmic_glink_hs_in>;
->> +			};
->> +		};
->> +
->> +		port@1 {
->> +			reg = <1>;
->> +
->> +			usb_1_dwc3_ss: endpoint {
->> +				remote-endpoint = <&pmic_glink_ss_in>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&usb_1_dwc3_hs {
->> +	remote-endpoint = <&pmic_glink_hs_in>;
->> +};
->> +
->> +&usb_1_dwc3_ss {
->> +	remote-endpoint = <&pmic_glink_ss_in>;
->>   };
->>   
->>   &usb_1_hsphy {
->>
+>> Wolfram, do you have any comments on this?
+> 
+> Not yet. I need to dive into the previous discussions again to
+> understand what we agreed on and what potential problems we had to face.
+> However, holiday season is near, it could be that I won't have really
+> time for this until Mid-April or so. I'll try earlier but no promises :/
+> 
+>> Things have been calming down, I think, and I'd like to merge the series
+>> soon if nothing major comes up. The easiest way would be to merge the whole
+>> series via linux-media, as most of the patches are for media. If this looks
+>> good, can you ack it and I'll send a pull request to linux-media
+>> maintainers?
+> 
+> I'd think this is a too elemental (is this a word?) change for someone
+> else to pull it. But no worries, I would offer an immutable branch right
+> when I am done with reviewing so other subsystems can pull it. Or are
+> there other technical reasons I missed?
+
+An immutable branch is fine too.
+
+  Tomi
 
