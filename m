@@ -2,182 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7BCB6C1A0E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB53E6C1A1B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232230AbjCTPoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 11:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48830 "EHLO
+        id S232000AbjCTPqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 11:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232248AbjCTPnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:43:42 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA13D3D903;
-        Mon, 20 Mar 2023 08:34:31 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1755e639b65so13451035fac.3;
-        Mon, 20 Mar 2023 08:34:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679326461;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VT0AHmQ3LShuOXZctue2K5uPH5tMEpocTPWo5CKLfa0=;
-        b=bkMrArMDEPOKJucZppT7+/OnPxvi7mvJN0X05hQXRVA80sR7ZFh894pzrsV/WzMVis
-         2pxOrUeMHmZQ/LSwSKPXeHYyQzWLBCLF9DTWJVag7W7M7r2u/M9TzmRTRcBJp7cCDMxu
-         INyzQ1F8XkLq4GVJLSupwRM1O8MyrF+m/LqhzKMIVgjIXX10nsxXcvsnR17plNHwADEL
-         du6+6UJA8qvYetVLmn9AfvZ5dg4RJSOg2aREhNWoUzOZD/YSCH64VEOpRdLjMqA/5e79
-         fyKbZhF+dRTQ0CFgzGcDR1h1Bd1/5yFwJonpUr8g7SCt0MJuhQbLwzwQEJxcNata0KKk
-         g7bg==
-X-Gm-Message-State: AO0yUKWVfaYvOY3ThgKwlQ9CXjwZLO7yPRuxq7UZbOOhXhaCXx03+DjC
-        9PvR5wh8LMpygphKFjIkTQ==
-X-Google-Smtp-Source: AK7set9L5/qTXuFZHlohcnrxPqSNgsXDyQvryNGkS1I36QP55MJIx++eLXjYhVeo+Ka0kocDB+oHog==
-X-Received: by 2002:a05:6870:8092:b0:177:ac2e:fc5 with SMTP id q18-20020a056870809200b00177ac2e0fc5mr5391174oab.50.1679326461151;
-        Mon, 20 Mar 2023 08:34:21 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id di7-20020a0568303a0700b00690e21a46e1sm4018649otb.56.2023.03.20.08.34.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 08:34:20 -0700 (PDT)
-Received: (nullmailer pid 1733448 invoked by uid 1000);
-        Mon, 20 Mar 2023 15:34:19 -0000
-Date:   Mon, 20 Mar 2023 10:34:19 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts
- configuration.
-Message-ID: <20230320153419.GB1713196-robh@kernel.org>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
- <20230315104411.73614-6-minda.chen@starfivetech.com>
+        with ESMTP id S232172AbjCTPqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:46:11 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19ED71449B;
+        Mon, 20 Mar 2023 08:37:04 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KFanmp004337;
+        Mon, 20 Mar 2023 10:36:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679326609;
+        bh=FB9V7ot/l1vqWyvOklMmEs6w7A6C77GIOnMJLjkxaFo=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=YhgBtifD/VG87/BGJN7RrRUEbGUhVV+ohIjJxccre6NZirrT2ulffgjMHs0deG5lR
+         vfaQD/VCXyCQNV6tQMLUAfsTtdnEEZ2N+B6GyRcZAVYj7MtKamO03sEz12pLO6/v32
+         zyZMzjCjTN/oY/cP477s0R8P92bOxVNUSO+pxy5M=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KFanx7092023
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Mar 2023 10:36:49 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
+ Mar 2023 10:36:49 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 20 Mar 2023 10:36:49 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KFanVZ094827;
+        Mon, 20 Mar 2023 10:36:49 -0500
+Date:   Mon, 20 Mar 2023 10:36:49 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Julien Panis <jpanis@baylibre.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am62: Add watchdog nodes
+Message-ID: <20230320153649.zfmyhk65ngh4u35d@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20230311105850.21811-1-nm@ti.com>
+ <20230311105850.21811-3-nm@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20230315104411.73614-6-minda.chen@starfivetech.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230311105850.21811-3-nm@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 06:44:11PM +0800, Minda Chen wrote:
-> USB Glue layer and Cadence USB subnode configuration,
-> also includes USB and PCIe phy dts configuration.
+On March 11, 2023 thus sayeth Nishanth Menon:
+> From: Julien Panis <jpanis@baylibre.com>
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Add nodes for watchdogs :
+> - 5 in main domain
+> - 1 in MCU domain
+> - 1 in wakeup domain
+> 
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
->  2 files changed, 61 insertions(+)
+> Changes since V3:
+> - Dropped the board level wdt reservation, do that with overlays based on
+>   modifiable firmware dependencies.
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index a132debb9b53..c64476aebc1a 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -236,3 +236,10 @@
->  	pinctrl-0 = <&uart0_pins>;
->  	status = "okay";
->  };
-> +
-> +&usb0 {
-> +	status = "okay";
-> +	usbdrd_cdns3: usb@0 {
-> +		dr_mode = "peripheral";
-> +	};
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index f70a4ed47eb4..17722fd1be62 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -362,6 +362,60 @@
->  			status = "disabled";
->  		};
+> V3: https://lore.kernel.org/all/20221109093026.103790-2-jpanis@baylibre.com/
+> 
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 11 ++++++
+>  3 files changed, 65 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index ea683fd77d6a..90d5f145de4f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -758,6 +758,51 @@ main_mcan0: can@20701000 {
+>  		status = "disabled";
+>  	};
 >  
-> +		usb0: usb@10100000 {
-> +			compatible = "starfive,jh7110-usb";
-> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
-> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-> +			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
-> +			starfive,sys-syscon = <&sys_syscon 0x18>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x0 0x10100000 0x100000>;
+> +	main_rti0: watchdog@e000000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e000000 0x00 0x100>;
+> +		clocks = <&k3_clks 125 0>;
+> +		power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 125 0>;
+> +		assigned-clock-parents = <&k3_clks 125 2>;
+> +	};
 > +
-> +			usbdrd_cdns3: usb@0 {
-> +				compatible = "cdns,usb3";
+> +	main_rti1: watchdog@e010000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e010000 0x00 0x100>;
+> +		clocks = <&k3_clks 126 0>;
+> +		power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 126 0>;
+> +		assigned-clock-parents = <&k3_clks 126 2>;
+> +	};
+> +
+> +	main_rti2: watchdog@e020000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e020000 0x00 0x100>;
+> +		clocks = <&k3_clks 127 0>;
+> +		power-domains = <&k3_pds 127 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 127 0>;
+> +		assigned-clock-parents = <&k3_clks 127 2>;
+> +	};
+> +
+> +	main_rti3: watchdog@e030000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e030000 0x00 0x100>;
+> +		clocks = <&k3_clks 128 0>;
+> +		power-domains = <&k3_pds 128 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 128 0>;
+> +		assigned-clock-parents = <&k3_clks 128 2>;
+> +	};
+> +
+> +	main_rti4: watchdog@e0f0000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e0f0000 0x00 0x100>;
+> +		clocks = <&k3_clks 130 0>;
+> +		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 130 0>;
+> +		assigned-clock-parents = <&k3_clks 130 2>;
+> +	};
+> +
 
-This pattern of USB wrapper and then a "generic" IP node is discouraged 
-if it is just clocks, resets, power-domains, etc. IOW, unless there's an 
-actual wrapper h/w block with its own registers, then don't do this 
-split. Merge it all into a single node.
+This may be a dumb question, though the ti-sci and TRM documentation is 
+labeling this as rti15? idk if we should label this the same? it might 
+make grepping a little easier :)
 
-> +				reg = <0x0 0x10000>,
-> +				      <0x10000 0x10000>,
-> +				      <0x20000 0x10000>;
-> +				reg-names = "otg", "xhci", "dev";
-> +				interrupts = <100>, <108>, <110>;
-> +				interrupt-names = "host", "peripheral", "otg";
-> +				phys = <&usbphy0>;
-> +				phy-names = "cdns3,usb2-phy";
-
-No need for *-names when there is only 1 entry. Names are local to the 
-device and only to distinguish entries, so 'usb2' would be sufficient 
-here.
-
-> +				maximum-speed = "super-speed";
-> +			};
-> +		};
-> +
-> +		usbphy0: phy@10200000 {
-> +			compatible = "starfive,jh7110-usb-phy";
-> +			reg = <0x0 0x10200000 0x0 0x10000>;
-> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
-> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
-> +			clock-names = "125m", "app_125";
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		pciephy0: phy@10210000 {
-> +			compatible = "starfive,jh7110-pcie-phy";
-> +			reg = <0x0 0x10210000 0x0 0x10000>;
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		pciephy1: phy@10220000 {
-> +			compatible = "starfive,jh7110-pcie-phy";
-> +			reg = <0x0 0x10220000 0x0 0x10000>;
-> +			#phy-cells = <0>;
-> +		};
-> +
->  		stgcrg: clock-controller@10230000 {
->  			compatible = "starfive,jh7110-stgcrg";
->  			reg = <0x0 0x10230000 0x0 0x10000>;
-> -- 
-> 2.17.1
-> 
+~Bryan
