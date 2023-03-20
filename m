@@ -2,110 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E196C144D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A906F6C1469
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:10:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231434AbjCTOF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:05:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58704 "EHLO
+        id S229665AbjCTOKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:10:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbjCTOFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:05:25 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A22944BB
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:05:22 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 20so5089497lju.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 07:05:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679321120;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gyP8cPsTynEfs4jfCgbyH6l14kydhBexEBR3QMjvFNQ=;
-        b=NRCaTomUVj+w6H5NMFXOC8rh+iD9ErqCuqCzyvw9xJP9z2Eh4NcRF3nIjQ8R+vSupO
-         ykdi0Dt9QQ4vTtJ/I0oKy9KsY5g4+ABU6nj2QVUVEYJT3DCv9p98Yq5AI27sYxT6W5ZQ
-         IPEP+Z4FjDzfguefmhj81nDOnoYneXRXKflLtUStSH6KeIKhCxnTnx0dncN0sIRZAm4r
-         Pd+iZCmx1iG+wP4B161WfEVIwdfMceD6EGj5Yp44EHEmmOacArQ985BI/S8bTylA0htF
-         naKuZ4F5ic+0OmjZIrr37vax26PTi1ICJM17Qw0NFy7jWMJ3lFLtMkhVvLH4fJy5fSHl
-         uSqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679321120;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gyP8cPsTynEfs4jfCgbyH6l14kydhBexEBR3QMjvFNQ=;
-        b=QxJOQ/uHZMWu+By1B+zRtiFQrs77CCj7omcFUkAvYZGBZ7FEfOZl/xRjPgYa/g7ubc
-         7lCc03/oZFmau2UqzgtqPWuTfGd7mKN+Qy+mKFLUvLYFtdhyFo6EoaOrBTbvV4yiA6bn
-         fgQgUY9EvFrMq2n0Q3Hf4LqtWGtEjGqpwd+/rlPFkrQHyKfXi8iLPQQJu5/tsz/s79QY
-         MfRQjMkHN9F71XePhmj9QiKpSGFddGZfvwv00MuzfGqyJrQEcV/CGbZ9AVxClDsTcMe7
-         JjamwyU9jL8DWKPqBoPRx59MHrbZBvIAnLssTTsAAjyhj6Se5e+f0AIv7M8v9Mz/ziqm
-         j7yg==
-X-Gm-Message-State: AO0yUKX3mxFcUCAWSEIKeH69DabkyiZ7Mztrra2FWU0WJzN+8p6SHOGw
-        kU3xUsAIVcmjp3c8zwKCN3lVuA==
-X-Google-Smtp-Source: AK7set9pwNNzHb7r1wfH84CMm+tWb1ElKGpXvOV619Vgh+0XucIf7xLfDpkTfo+3Z+ID0GS8EPASTw==
-X-Received: by 2002:a2e:9d43:0:b0:293:4b91:d03e with SMTP id y3-20020a2e9d43000000b002934b91d03emr33276ljj.1.1679321120277;
-        Mon, 20 Mar 2023 07:05:20 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id s24-20020a2e98d8000000b002996e0e6461sm1763779ljj.29.2023.03.20.07.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 07:05:19 -0700 (PDT)
-Message-ID: <165c8a48-3082-23f7-4b19-11c0d303b14f@linaro.org>
-Date:   Mon, 20 Mar 2023 15:05:18 +0100
+        with ESMTP id S230126AbjCTOKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:10:43 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CE810AB0;
+        Mon, 20 Mar 2023 07:10:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679321441; x=1710857441;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=lE1DIZvdTN/JZ2Aqr7k5UOK8wRZRTjDFOgLlJyvZ29Q=;
+  b=bRVo6wMznPPvQ5oPmZT78uObyH65jBA3xDJZoqnh1jVYwbrwM96Z5qz7
+   Zz0XDSv39ngvASAEwzsKOXhLY0L2dYA/DwL6ynjuQtEPGOs7vdcJiQ3i+
+   wGQCyRL/Tuye5xssA1ntUuv2DSE4WP7j9Si2+H3ulK8PDzhGXlEsUnvnJ
+   LmgVfJ+wcD1b1eqMHjam5rrGt9Fcdj+RJnm1m3FxNxZw63fjQKLZHtkCT
+   /Etui1WieUt/RGjk6/m4bN+12Cabx6gyzvbJyAH85QPaqXxQO5568YtHO
+   /Ak4pUIdXiO/h16v5liETx3W8VdN/4qBkI8T8w1Xzqm1Oo6hX6rsnsVKw
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="366388378"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="366388378"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 07:05:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="681074935"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="681074935"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002.jf.intel.com with ESMTP; 20 Mar 2023 07:05:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1peG8V-006IuJ-1g;
+        Mon, 20 Mar 2023 16:05:19 +0200
+Date:   Mon, 20 Mar 2023 16:05:19 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Daniel Kaehn <kaehndan@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
+Message-ID: <ZBhoHzTr5l38u/kX@smile.fi.intel.com>
+References: <20230319204802.1364-1-kaehndan@gmail.com>
+ <20230319204802.1364-4-kaehndan@gmail.com>
+ <ZBhYXwjPeRiZwxMT@smile.fi.intel.com>
+ <ZBhY5Gp88gVK7q/g@smile.fi.intel.com>
+ <CAP+ZCCc=q_=d18UHEZ9N8HVQ6AYQsTfNgS1r93UCJOB-OEodSw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc8280xp-pmics: fix sdam 'reg'
- property
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Lee Jones <lee@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230320135710.1989-1-johan+linaro@kernel.org>
- <20230320135710.1989-3-johan+linaro@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230320135710.1989-3-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAP+ZCCc=q_=d18UHEZ9N8HVQ6AYQsTfNgS1r93UCJOB-OEodSw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 20, 2023 at 08:40:07AM -0500, Daniel Kaehn wrote:
+> On Mon, Mar 20, 2023 at 8:00 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Mon, Mar 20, 2023 at 02:58:07PM +0200, Andy Shevchenko wrote:
+> > > On Sun, Mar 19, 2023 at 03:48:02PM -0500, Danny Kaehn wrote:
 
+...
 
-On 20.03.2023 14:57, Johan Hovold wrote:
-> The SPMI PMIC register region width is fixed and should not be encoded
-> in the devicetree.
+> > > > +   device_for_each_child_node(&hdev->dev, child) {
+> > > > +           name = fwnode_get_name(child);
+> > > > +           ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+> > > > +
+> > > > +           if ((name && strcmp("i2c", name) == 0) || (!ret && addr == 0))
+> > > > +                   device_set_node(&dev->adap.dev, child);
+> > > > +           else if ((name && strcmp("gpio", name)) == 0 ||
+> > > > +                                   (!ret && addr == 1))
+> > > > +                   dev->gc.fwnode = child;
+> > > > +   }
+> > >
+> > > Please, make addresses defined explicitly. You may also do it with node naming
+> > > schema:
+> > >
+> > > #define CP2112_I2C_ADR                0
+> > > #define CP2112_GPIO_ADR               1
+> > >
+> > > static const char * const cp2112_cell_names[] = {
+> > >       [CP2112_I2C_ADR]        = "i2c",
+> > >       [CP2112_GPIO_ADR]       = "gpio",
+> > > };
+> > >
+> > >       device_for_each_child_node(&hdev->dev, child) {
+> > >               name = fwnode_get_name(child);
+> > >               if (name) {
+> > >                       ret = match_string(cp2112_cell_names, ARRAY_SIZE(cp2112_cell_names), name);
+> > >                       if (ret >= 0)
+> > >                               addr = ret;
+> > >               } else
+> > >                       ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+> > >               if (ret < 0)
+> > >                       ...error handling if needed...
+> > >
+> > >               switch (addr) {
+> > >               case CP2112_I2C_ADR:
+> > >                       device_set_node(&dev->adap.dev, child);
+> > >                       break;
+> > >               case CP2112_GPIO_ADR:
+> > >                       dev->gc.fwnode = child;
+> > >                       break;
+> > >               default:
+> > >                       ...error handling...
+> > >               }
+> > >       }
+> >
+> > Btw, don't you use "reg" property for the child nodes? It would be better from
+> > de facto used patterns (we have a couple of mode drivers that have a common
+> > code to read "reg" or _ADR() and that code can be split into a helper and used
+> > here).
+> >
 > 
-> Fixes: 42f45cc655d0 ("arm64: dts: qcom: sc8280xp-pmics: add pmk8280 sdam nvram")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Named nodes _seem_ to be preferred in DT for when there isn't a logical /
+> natural numbering to the child nodes. A.e. for USB, reg is used to specify
+> which port, for I2C, which address on the bus, but for two parallel and
+> independent functions on the same device, it seems named nodes would make
+> more sense in DT. Many examples exist in mainline where named nodes are used
+> in DT in this way.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Okay, I'm not an expert in the DT preferable schemas, so I believe DT people
+should answer on this.
+
+> One example is network cards which provide an mdio bus
+> bind through the child "mdio". One example of a specifically a
+> child i2c controller being bound to "i2c" can be found in
+> pine64,pinephone-keyboard.yaml.
+> But it's certainly possible this isn't the desired direction moving forward
+> in DT -- my opinion should definitely be taken with a grain of salt. Maybe
+> this is something I should follow up on with DT folks on that DT vs. ACPI
+> thread made earlier.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> index 1411edd42b25..c35e7f6bd657 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> @@ -107,7 +107,7 @@ pmk8280_rtc: rtc@6100 {
->  
->  		pmk8280_sdam_6: nvram@8500 {
->  			compatible = "qcom,spmi-sdam";
-> -			reg = <0x8500 0x100>;
-> +			reg = <0x8500>;
->  			#address-cells = <1>;
->  			#size-cells = <1>;
->  			ranges = <0 0x8500 0x100>;
+> One thing I did notice when looking at the mfd subsystem is that most DT
+> drivers actually match on the compatible string of the child nodes, a.e.
+> "silabs,cp2112", "silabs,cp2112-gpio".  "silabs,cp2112-i2c". We could
+> implement that here, but I think that would make more sense if we were to
+> actually split the cp2112 into mfd & platform drivers, and additionally split
+> the DT binding by function.
+
+IIRC (but might be very well mistaken) the compatible strings for children
+are discouraged.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
