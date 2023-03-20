@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 303646C1AC3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F53C6C1AE0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:05:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233310AbjCTQAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46084 "EHLO
+        id S231761AbjCTQFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233519AbjCTQAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:00:12 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA2C438B53;
-        Mon, 20 Mar 2023 08:50:38 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id iw17so2507691wmb.0;
-        Mon, 20 Mar 2023 08:50:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679327433;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WlRvHn65p7ApqB1hkWXEl334dlDtfL7sexIylSD7RF8=;
-        b=Xb9J1kzvH/7/KC9kfFPe5nfM0jOx0VqmPqlTVHQ2ICuE/eznYiDnZR2GROkiEBeSW5
-         aj8nTpjx/Zgj9GE1Ere9JmGDP4qH6Ms4GG1dcgxiwCZUubj8EmKPPzq+xRYgui52JXXZ
-         GG9yZPfp/eWkFHvSgIPzHyC1iWc88F8XSN7+xdXyC7MOoEWIbvy0y04VrbuO9p8+RjCl
-         XbF+dk2kkZAseZ7QMlgJZ2Bt8HfHx2I4D6+r4BhyVy6oIsdzkMTei+drCezAB5fFzerw
-         y3GD2qAHDRRSrMpv7wTUuM9Erg/6k7sGs+HKjLlgmmAwT7LMqxNkXvmZeU5IucnlPzyQ
-         zxGw==
+        with ESMTP id S233477AbjCTQE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:04:59 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D8220565;
+        Mon, 20 Mar 2023 08:54:24 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id v2-20020a056830090200b0069c6952f4d3so6972673ott.7;
+        Mon, 20 Mar 2023 08:54:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679327433;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WlRvHn65p7ApqB1hkWXEl334dlDtfL7sexIylSD7RF8=;
-        b=mx+DrcUS/RrkssaKZwtjxNb1RtQP6+pwhyW7/EaPvgWZPMBZeDHy7B+x5GRw7gA8l5
-         lIqtZ41yhnrcZ8wp6SSyG+pJJ2Xn4q0N8W3NJS8vZz5/ORmoRdLxyNY8IdlTQlmjV9YT
-         jY1LCVegFoErlMPP49XZ1fzJtRPIeFv0MZphvdw7nXk5yhg4+vpnfCPKzOJdOmpEgfut
-         GnIW/BBXCezqjF0GT9Lmp61lPf1j0PCq8lmrcrZtKwI11zyVmOPqgdWmkRh+YirD5L0P
-         ORDeuqwz5SkyDZ+Sw+dahSLeLtZ/VB+58nFWPpxF4yUw/sKPrhpkZfGzo/VN/jDL1ZfN
-         1t3w==
-X-Gm-Message-State: AO0yUKVurWpxXw8kQLLJFFk7zmIVuc+hSmpXM9lpLIB/ByDuw5z3fAds
-        TZs+QVHvNnvyK9ovwNMJwU0=
-X-Google-Smtp-Source: AK7set8fEPc92nUNA58HgNEL8eOH1DCae42kd5S11MkuO5+TV9yIVNP77n+5gS3XrTpCzsFfJmaf/A==
-X-Received: by 2002:a05:600c:470e:b0:3eb:42fc:fb30 with SMTP id v14-20020a05600c470e00b003eb42fcfb30mr34204824wmo.32.1679327433327;
-        Mon, 20 Mar 2023 08:50:33 -0700 (PDT)
-Received: from atlantis.lan (255.red-79-146-124.dynamicip.rima-tde.net. [79.146.124.255])
-        by smtp.gmail.com with ESMTPSA id 3-20020a05600c020300b003eddefd8792sm4812333wmi.14.2023.03.20.08.50.32
+        d=1e100.net; s=20210112; t=1679327636;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FmajzwKQ27IaG+SvB6h9L8PkvI+NSZehwwVkiXfw6Wc=;
+        b=bEGmuIftgySM4Q4748/zTvhW/v2pxfJ8d7XQzgi6lKK+LDKE6iO4prfIlYf+Z8qvY4
+         n+Zt0CtNhD5d29/tkkF5Q6EJla3Ee7/9GOBfRu6RY8F5wO/nb3W6QDxglbXIkvHDZfeT
+         DyRhEOKM+tGztPjWBA4LlSAg01NiNo1iro/f3j7fxrpU7KuKovGtG0ldQ1aqS6SxAaia
+         L6wt2vyAE/RRjn6dXl8z/sdYh35kcikdhSUvTvLVD+loc9mMlCwMb91EyW7LnjDuigNX
+         Yde4Pv6X5vs1SzWodCu68GnzjkWNATp+vncNaobMEcGrQ3OLDMJn6FOgZ2ivdTRyPVWr
+         IdRA==
+X-Gm-Message-State: AO0yUKUixQ40r5273iEQla6W1h4U3viWHBr5JmVahmCa/5LHFFcsASam
+        XNNKBTKKrwp2VIpkoC8u9phljM3bZg==
+X-Google-Smtp-Source: AK7set90CdO59qXJ4IlzGk/4w+mlZuMP0bJSIPTWgVPYG3JnCmqE0fVwWUIagAi1YZdBFoDt6NDoEA==
+X-Received: by 2002:a9d:65cd:0:b0:69f:1c2c:8f8c with SMTP id z13-20020a9d65cd000000b0069f1c2c8f8cmr208362oth.25.1679327635832;
+        Mon, 20 Mar 2023 08:53:55 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g1-20020a4ab041000000b00529cc3986c8sm3871829oon.40.2023.03.20.08.53.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 08:50:32 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     f.fainelli@gmail.com, andrew@lunn.ch, olteanv@gmail.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-Subject: [PATCH 4/4] net: dsa: b53: add BCM63268 RGMII configuration
-Date:   Mon, 20 Mar 2023 16:50:24 +0100
-Message-Id: <20230320155024.164523-5-noltari@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230320155024.164523-1-noltari@gmail.com>
-References: <20230320155024.164523-1-noltari@gmail.com>
+        Mon, 20 Mar 2023 08:53:55 -0700 (PDT)
+Received: (nullmailer pid 1754258 invoked by uid 1000);
+        Mon, 20 Mar 2023 15:53:54 -0000
+Date:   Mon, 20 Mar 2023 10:53:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+        arnd@arndb.de, gregkh@linuxfoundation.org,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
+        stephen@networkplumber.org, davem@davemloft.net,
+        christian.koenig@amd.com, contact@emersion.fr,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
+        eblanc@baylibre.com, jneanne@baylibre.com
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
+Message-ID: <20230320155354.GB1733616-robh@kernel.org>
+References: <20230315110736.35506-1-jpanis@baylibre.com>
+ <20230315110736.35506-2-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230315110736.35506-2-jpanis@baylibre.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,44 +70,234 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM63268 requires special RGMII configuration to work.
+On Wed, Mar 15, 2023 at 12:07:33PM +0100, Julien Panis wrote:
+> TPS6594 is a Power Management IC which provides regulators and others
+> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+> PFSM (Pre-configurable Finite State Machine) managing the state of the
+> device.
+> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
----
- drivers/net/dsa/b53/b53_common.c | 6 +++++-
- drivers/net/dsa/b53/b53_regs.h   | 1 +
- 2 files changed, 6 insertions(+), 1 deletion(-)
+As mentioned, the binding needs to be complete. It's missing GPIO at 
+least. RTC and watchdog may or may not need binding changes.
 
-diff --git a/drivers/net/dsa/b53/b53_common.c b/drivers/net/dsa/b53/b53_common.c
-index 6e212f6f1cb9..d0a22c8a55c9 100644
---- a/drivers/net/dsa/b53/b53_common.c
-+++ b/drivers/net/dsa/b53/b53_common.c
-@@ -1240,8 +1240,12 @@ static void b53_adjust_63xx_rgmii(struct dsa_switch *ds, int port,
- 		break;
- 	}
- 
--	if (port != dev->imp_port)
-+	if (port != dev->imp_port) {
-+		if (is63268(dev))
-+			rgmii_ctrl |= RGMII_CTRL_MII_OVERRIDE;
-+
- 		rgmii_ctrl |= RGMII_CTRL_ENABLE_GMII;
-+	}
- 
- 	b53_write8(dev, B53_CTRL_PAGE, off, rgmii_ctrl);
- 
-diff --git a/drivers/net/dsa/b53/b53_regs.h b/drivers/net/dsa/b53/b53_regs.h
-index b2c539a42154..bfbcb66bef66 100644
---- a/drivers/net/dsa/b53/b53_regs.h
-+++ b/drivers/net/dsa/b53/b53_regs.h
-@@ -138,6 +138,7 @@
- 
- #define B53_RGMII_CTRL_IMP		0x60
- #define   RGMII_CTRL_ENABLE_GMII	BIT(7)
-+#define   RGMII_CTRL_MII_OVERRIDE	BIT(6)
- #define   RGMII_CTRL_TIMING_SEL		BIT(2)
- #define   RGMII_CTRL_DLL_RXC		BIT(1)
- #define   RGMII_CTRL_DLL_TXC		BIT(0)
--- 
-2.30.2
+> 
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> ---
+>  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 191 ++++++++++++++++++
+>  1 file changed, 191 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+> new file mode 100644
+> index 000000000000..18f47cd6a2f9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+> @@ -0,0 +1,191 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TPS6594 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Julien Panis <jpanis@baylibre.com>
+> +
+> +description: |
 
+Don't need '|'.
+
+> +  TPS6594 is a Power Management IC which provides regulators and others
+> +  features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+> +  PFSM (Pre-configurable Finite State Machine) managing the state of the device.
+> +  TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,lp8764x
+> +      - ti,tps6593
+> +      - ti,tps6594
+> +
+> +  reg:
+> +    description: I2C slave address or SPI chip select number.
+> +    maxItems: 1
+> +
+> +  ti,spmi-controller:
+> +    type: boolean
+> +    description: |
+> +      Identify the primary PMIC on SPMI bus.
+
+Perhaps the property name should include 'primary' and 'pmic'. 
+Otherwise, it looks like it is just marked as 'a SPMI controller'.
+
+
+> +      A multi-PMIC synchronization scheme is implemented in the PMIC device
+> +      to synchronize the power state changes with other PMIC devices. This is
+> +      accomplished through a SPMI bus: the primary PMIC is the controller
+> +      device on the SPMI bus, and the secondary PMICs are the target devices
+> +      on the SPMI bus.
+
+Is this a TI specific feature?
+
+> +
+> +  system-power-controller: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ti,multi-phase-id:
+> +    description: |
+> +      Describes buck multi-phase configuration, if any. For instance, XY id means
+> +      that outputs of buck converters X and Y are combined in multi-phase mode.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [12, 34, 123, 1234]
+
+coupled regulator stuff doesn't work here?
+
+> +
+> +  regulators:
+> +    type: object
+> +    description: List of regulators provided by this controller.
+> +
+> +    patternProperties:
+> +      "^buck([1-5]|12|34|123|1234)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +
+> +        unevaluatedProperties: false
+> +
+> +      "^ldo[1-4]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +
+> +        unevaluatedProperties: false
+> +
+> +    allOf:
+> +      - if:
+> +          required:
+> +            - buck12
+> +        then:
+> +          properties:
+> +            buck123: false
+> +            buck1234: false
+> +      - if:
+> +          required:
+> +            - buck123
+> +        then:
+> +          properties:
+> +            buck34: false
+> +      - if:
+> +          required:
+> +            - buck1234
+> +        then:
+> +          properties:
+> +            buck34: false
+> +
+> +    additionalProperties: false
+> +
+> +patternProperties:
+> +  "^buck([1-5]|12|34|123|1234)-supply$":
+> +    description: Input supply phandle for each buck.
+> +
+> +  "^ldo[1-4]-supply$":
+> +    description: Input supply phandle for each ldo.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tps6593: pmic@48 {
+> +            compatible = "ti,tps6593";
+> +            reg = <0x48>;
+> +            ti,spmi-controller;
+> +            system-power-controller;
+> +
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&pmic_irq_pins_default>;
+> +            interrupt-parent = <&mcu_gpio0>;
+> +            interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +            ti,multi-phase-id = <123>;
+> +
+> +            buck123-supply = <&vcc_3v3_sys>;
+> +            buck4-supply = <&vcc_3v3_sys>;
+> +            buck5-supply = <&vcc_3v3_sys>;
+> +            ldo1-supply = <&vcc_3v3_sys>;
+> +            ldo2-supply = <&vcc_3v3_sys>;
+> +            ldo3-supply = <&buck5>;
+> +            ldo4-supply = <&vcc_3v3_sys>;
+> +
+> +            regulators {
+> +                buck123: buck123 {
+> +                    regulator-name = "vcc_core";
+> +                    regulator-min-microvolt = <750000>;
+> +                    regulator-max-microvolt = <850000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                buck4: buck4 {
+> +                    regulator-name = "vcc_1v1";
+> +                    regulator-min-microvolt = <1100000>;
+> +                    regulator-max-microvolt = <1100000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                buck5: buck5 {
+> +                    regulator-name = "vcc_1v8_sys";
+> +                    regulator-min-microvolt = <1800000>;
+> +                    regulator-max-microvolt = <1800000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                ldo1: ldo1 {
+> +                    regulator-name = "vddshv5_sdio";
+> +                    regulator-min-microvolt = <3300000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                ldo2: ldo2 {
+> +                    regulator-name = "vpp_1v8";
+> +                    regulator-min-microvolt = <1800000>;
+> +                    regulator-max-microvolt = <1800000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                ldo3: ldo3 {
+> +                    regulator-name = "vcc_0v85";
+> +                    regulator-min-microvolt = <850000>;
+> +                    regulator-max-microvolt = <850000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                ldo4: ldo4 {
+> +                    regulator-name = "vdda_1v8";
+> +                    regulator-min-microvolt = <1800000>;
+> +                    regulator-max-microvolt = <1800000>;
+> +                    regulator-boot-on;
+> +                    regulator-always-on;
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.37.3
+> 
