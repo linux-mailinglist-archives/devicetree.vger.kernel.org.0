@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 712956C24FD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 23:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1726C2514
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:00:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbjCTW6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 18:58:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36080 "EHLO
+        id S229455AbjCTXAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 19:00:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjCTW6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 18:58:51 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37B3144A0;
-        Mon, 20 Mar 2023 15:58:49 -0700 (PDT)
+        with ESMTP id S229854AbjCTXAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:00:09 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9902B193D5;
+        Mon, 20 Mar 2023 16:00:08 -0700 (PDT)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KMwf8k095770;
-        Mon, 20 Mar 2023 17:58:41 -0500
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KMxxW1074559;
+        Mon, 20 Mar 2023 17:59:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679353121;
-        bh=wsTtWN2OQdRCzW6T2CmMtC89qMDelx9MSUHWhiVIjgc=;
+        s=ti-com-17Q1; t=1679353199;
+        bh=71EY7V9kl8VznXN41MHsmUqEwx9Sj/qvjwupG52J4JQ=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=cz2xlawdXuKqu3IXCoATl898Z5SFYGb5bhghknWgYLRUu8BipNb07zC2+g3wUvKT6
-         AyTLZx8I7W/kHxJhhnpUe0ojy1FV8cdoXaja1AYwlWDiBqNiEHevGtHk4vmMDbHBk8
-         TDp0x5VDhmZALdDy5TeAPeScy+rVzXiBfPhRq54c=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KMwfJx045891
+        b=K6RgknibzeoP2IGVkc3N4ca4YMWH6Zzq382Sxj3J0UTaM/8/JWbWKQOD4l9EZ7UVh
+         ogjW+XIzYWHIDka+olK9IUGCzq8Ni+v9R7SWT4EvGuN2TGr3rfo4u0ehGV00Mab5k2
+         vLKuyFGjmpXEKRnelM3B3gyV/dhCIJ7qTmpksP4E=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KMxxYB046414
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 17:58:41 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 20 Mar 2023 17:59:59 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 17:58:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2023 17:59:58 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 17:58:40 -0500
+ Frontend Transport; Mon, 20 Mar 2023 17:59:58 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KMwe1k021530;
-        Mon, 20 Mar 2023 17:58:41 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KMxwNX022163;
+        Mon, 20 Mar 2023 17:59:58 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Julien Panis <jpanis@baylibre.com>, <bb@ti.com>,
-        <d-gole@ti.com>
-Subject: Re: [PATCH V3 0/2] arm64: dts: ti: k3-am62: Add watchdog and rtc nodes
-Date:   Mon, 20 Mar 2023 17:58:40 -0500
-Message-ID: <167935310086.214729.122196133818257568.b4-ty@ti.com>
+To:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Enable MCU CPSW2G
+Date:   Mon, 20 Mar 2023 17:59:57 -0500
+Message-ID: <167935317752.215003.7431774729095480986.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230320165123.80561-1-nm@ti.com>
-References: <20230320165123.80561-1-nm@ti.com>
+In-Reply-To: <20230315042548.1500528-1-s-vadapalli@ti.com>
+References: <20230315042548.1500528-1-s-vadapalli@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -67,27 +66,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
+Hi Siddharth Vadapalli,
 
-On Mon, 20 Mar 2023 11:51:21 -0500, Nishanth Menon wrote:
-> Couple of Misc patches
+On Wed, 15 Mar 2023 09:55:48 +0530, Siddharth Vadapalli wrote:
+> Add device tree support to enable MCU CPSW with J784S4 EVM.
 > 
-> Changes since v2:
->  - Picked up Reviewed-bys
->  - wdt node rename to match with TRM
 > 
-> V2: https://lore.kernel.org/all/20230315170706.1598977-1-nm@ti.com/
-> V1: https://lore.kernel.org/all/20230311105850.21811-1-nm@ti.com/#t
-> 
-> [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/2] arm64: dts: ti: k3-am62-wakeup: Introduce RTC node
-      commit: 0c51ceeebf04c388c06e29a2bb69855cd97f7c91
-[2/2] arm64: dts: ti: k3-am62: Add watchdog nodes
-      commit: 4eec5d77d330638dc8e79e25992420a78f2a3019
+[1/1] arm64: dts: ti: k3-j784s4-evm: Enable MCU CPSW2G
+      commit: 6cd4b7cfbcca4a45f06a8031f299c4019221a4ce
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
