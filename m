@@ -2,133 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16F006C1B11
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7A56C1B41
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 17:21:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbjCTQQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 12:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46388 "EHLO
+        id S232183AbjCTQVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 12:21:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbjCTQPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:15:47 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3912BEEF;
-        Mon, 20 Mar 2023 09:05:24 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id m20-20020a9d6094000000b0069caf591747so7002710otj.2;
-        Mon, 20 Mar 2023 09:05:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679328322;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KMy/XUwZdz1opl6uF+cUXlOpU4U5F/wKGlLbUO4FxC8=;
-        b=cYSOy2VidldSHZI31QRJ4Rz8SOFTZoWGMai4INJtD2y9iQZ+GfjLJF45JeB81lIXaL
-         Eup9WOhLHdj8ogWExMHs+HjjgSizwNlK/r1njI1yhvDoaQfxi94xmnUHyYdTE03mLpKD
-         nnl828i2ngOfPS8yvMMGOWMRX8kTDNKzYCwZZpCeiijDuuPK7j3805lsc3pVscwPS5E9
-         4wXTYDB62bcbvCUYzKt9fXrh6oD7jgjKzH/pvW5pkFCmPQDa8sIgn0auFK65K7om6FY3
-         tbl6DjpKrgNWHXG3tXn4hIVW0T2cx8EzOjupq+YlKBUzDjsafnZ7SPbu4Sbrk18O0IzQ
-         DlDw==
-X-Gm-Message-State: AO0yUKW3JfCVCVR5rahn+ZW+vqve/4ksLgMMWJt24/iZmXbCYkQEWIKW
-        PWdYkUuClArOqUmo1sF+Eg==
-X-Google-Smtp-Source: AK7set9PuVuQ7ZP4TdzOFsM+8Y3IhncWSBadOo5fQTAJHd734GfGDGag/kuUsYlsOqbiHu1TfLfNlw==
-X-Received: by 2002:a05:6830:1bc1:b0:69e:cb8:afa2 with SMTP id v1-20020a0568301bc100b0069e0cb8afa2mr110841ota.18.1679328322633;
-        Mon, 20 Mar 2023 09:05:22 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w23-20020a056830111700b0068664355604sm4162542otq.22.2023.03.20.09.05.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 09:05:22 -0700 (PDT)
-Received: (nullmailer pid 1785496 invoked by uid 1000);
-        Mon, 20 Mar 2023 16:05:21 -0000
-Date:   Mon, 20 Mar 2023 11:05:21 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: spi: renesas,sh-msiof: Miscellaneous
- improvements
-Message-ID: <20230320160521.GA1771933-robh@kernel.org>
-References: <052af97ecbaa9ba6e0d406883dd3389fa397579a.1678891999.git.geert+renesas@glider.be>
+        with ESMTP id S232336AbjCTQVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 12:21:37 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4862C132F6;
+        Mon, 20 Mar 2023 09:14:19 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32KF4Yt6019970;
+        Mon, 20 Mar 2023 17:13:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=NgXwip3o4wXvf5NxUnDvu10B6XH84zMDeQuJvYMe7Vg=;
+ b=K9zLZUzMadtdLq2tG/MTTTVQfBEic3JY21LeF+gOr89GdIgdZH8EOLeQSSthS7VGhcSv
+ Uo8kxadvOjMJ8gAmqRJulD0dRgNn8IeXhqb8NvGzifjLd0Uee2cKwHWc8l80cd0ygVVx
+ gNQW/ULIcHGc1HqW0iqMKxfOSH/B/VFc+Ns/hfNk9pl/B+mH4KYETXOY4nWIixVeb8bP
+ cYDVo1myfPxdzylphr88capYzDlMTYqgSDkE2UyxWXoGlOZUvL15uCJ1yAH2uWDp7BPb
+ Yt+mXJJ+C7nOBn/ETUzIXkeM/D1qIUzS3uHD6BaAhJ6egDwYV2GD2FXViTthZkCTtz9b LA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pekqx3bh2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 20 Mar 2023 17:13:58 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2D7D610002A;
+        Mon, 20 Mar 2023 17:13:56 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 276AB216EFE;
+        Mon, 20 Mar 2023 17:13:56 +0100 (CET)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 20 Mar
+ 2023 17:13:55 +0100
+Message-ID: <37b5bf6c-c290-1283-1dca-6e8fdbf7f430@foss.st.com>
+Date:   Mon, 20 Mar 2023 17:13:54 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <052af97ecbaa9ba6e0d406883dd3389fa397579a.1678891999.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1] ARM: dts: stm32: Add coprocessor detach mbox on
+ stm32mp15xx-osd32 SoM
+Content-Language: en-US
+To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <kernel@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230310092650.1007662-1-l.goehrs@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230310092650.1007662-1-l.goehrs@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-20_13,2023-03-20_02,2023-02-09_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 03:54:07PM +0100, Geert Uytterhoeven wrote:
-> Make "clocks" and "power-domains" required everywhere.
-> Make "resets" required on R-Car Gen2 and newer (i.e. all but SH-Mobile).
+Hi Leonard
 
-Breaking the ABI is fine because ???
-
+On 3/10/23 10:26, Leonard Göhrs wrote:
+> To support the detach feature, add a new mailbox channel to inform
+> the remote processor on a detach. This signal allows the remote processor
+> firmware to stop IPC communication and to reinitialize the resources for
+> a re-attach.
 > 
-> Update the example to match reality:
->   - Use interrupt binding definitions instead of hardcoded numbers,
->   - Convert to new-style CPG/MSSR bindings,
->   - Add missing "power-domains" and "resets" properties.
+> See 6257dfc1c412dcdbd76ca5fa92c8444222dbe5b0 for a patch that does the
+> same for stm32mp15x-dkx boards.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
 > ---
->  .../bindings/spi/renesas,sh-msiof.yaml        | 23 +++++++++++++++----
->  1 file changed, 19 insertions(+), 4 deletions(-)
+>   arch/arm/boot/dts/stm32mp15xx-osd32.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> index 491a695a2deb3b83..00acbbb0f65dcf57 100644
-> --- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> +++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> @@ -149,23 +149,38 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> +  - clocks
-> +  - power-domains
->    - '#address-cells'
->    - '#size-cells'
->  
-> +if:
-> +  not:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          const: renesas,sh-mobile-msiof
-> +then:
-> +  required:
-> +    - resets
-> +
->  unevaluatedProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/r8a7791-clock.h>
-> -    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a7791-sysc.h>
->  
->      msiof0: spi@e6e20000 {
->          compatible = "renesas,msiof-r8a7791", "renesas,rcar-gen2-msiof";
->          reg = <0xe6e20000 0x0064>;
-> -        interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
-> -        clocks = <&mstp0_clks R8A7791_CLK_MSIOF0>;
-> +        interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cpg CPG_MOD 000>;
->          dmas = <&dmac0 0x51>, <&dmac0 0x52>;
->          dma-names = "tx", "rx";
-> +        power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
-> +        resets = <&cpg 0>;
->          #address-cells = <1>;
->          #size-cells = <0>;
->      };
-> -- 
-> 2.34.1
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> index 935b7084b5a2..a43965c86fe8 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> @@ -210,8 +210,8 @@ &ipcc {
+>   &m4_rproc {
+>   	memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
+>   			<&vdev0vring1>, <&vdev0buffer>;
+> -	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+> -	mbox-names = "vq0", "vq1", "shutdown";
+> +	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>, <&ipcc 3>;
+> +	mbox-names = "vq0", "vq1", "shutdown", "detach";
+>   	interrupt-parent = <&exti>;
+>   	interrupts = <68 1>;
+>   	status = "okay";
 > 
+
+Applied on stm32-next.
+
+Thanks.
+Alex
+
+> base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+
