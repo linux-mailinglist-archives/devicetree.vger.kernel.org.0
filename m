@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0A5A6C0A2F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 06:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 808C36C0A44
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 06:54:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjCTFiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 01:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34206 "EHLO
+        id S229486AbjCTFyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 01:54:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjCTFiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 01:38:02 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9E27E6EBA;
-        Sun, 19 Mar 2023 22:38:00 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 848C9FEC;
-        Sun, 19 Mar 2023 22:38:43 -0700 (PDT)
-Received: from [10.162.41.7] (a077893.blr.arm.com [10.162.41.7])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 61EE93F67D;
-        Sun, 19 Mar 2023 22:37:54 -0700 (PDT)
-Message-ID: <6ac7d093-b11c-b37f-8058-72c8d41fba73@arm.com>
-Date:   Mon, 20 Mar 2023 11:07:51 +0530
+        with ESMTP id S229670AbjCTFyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 01:54:49 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27DF41ACE7;
+        Sun, 19 Mar 2023 22:54:47 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 445E224E047;
+        Mon, 20 Mar 2023 13:54:40 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 13:54:40 +0800
+Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 13:54:39 +0800
+Message-ID: <e38efd81-9c79-553b-7556-7aff30f6ec50@starfivetech.com>
+Date:   Mon, 20 Mar 2023 13:54:38 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 6/7] of/platform: Skip coresight etm4x devices from AMBA
- bus
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [RESEND v6 1/2] dt-bindings: soc: starfive: Add StarFive syscon
+ doc
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>
+References: <20230315055813.94740-1-william.qiu@starfivetech.com>
+ <20230315055813.94740-2-william.qiu@starfivetech.com>
+ <850bc37e-c6d1-2381-a851-965a4cbee8a0@linaro.org>
 Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        scclevenger@os.amperecomputing.com,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
- <20230317030501.1811905-7-anshuman.khandual@arm.com>
- <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
- <b1518e16-d74b-719c-a0fc-bc172a6011c4@arm.com>
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-In-Reply-To: <b1518e16-d74b-719c-a0fc-bc172a6011c4@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <850bc37e-c6d1-2381-a851-965a4cbee8a0@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,39 +62,61 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 3/17/23 21:33, Suzuki K Poulose wrote:
->>>   drivers/of/platform.c | 10 +++++++++-
->>>   1 file changed, 9 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
->>> index b2bd2e783445..59ff1a38ccaa 100644
->>> --- a/drivers/of/platform.c
->>> +++ b/drivers/of/platform.c
->>> @@ -325,6 +325,13 @@ static const struct of_dev_auxdata *of_dev_lookup(const struct of_dev_auxdata *l
->>>          return NULL;
->>>   }
->>>
->>> +static const struct of_device_id of_ignore_amba_table[] = {
->>> +#ifdef CONFIG_CORESIGHT_SOURCE_ETM4X
->>> +       { .compatible = "arm,coresight-etm4x" },
->>> +#endif
->>> +       {}    /* NULL terminated */
->>> +};
->>> +
->>>   /**
->>>    * of_platform_bus_create() - Create a device for a node and its children.
->>>    * @bus: device node of the bus to instantiate
->>> @@ -373,7 +380,8 @@ static int of_platform_bus_create(struct device_node *bus,
->>>                  platform_data = auxdata->platform_data;
->>>          }
->>>
->>> -       if (of_device_is_compatible(bus, "arm,primecell")) {
->>> +       if (of_device_is_compatible(bus, "arm,primecell") &&
->>> +           unlikely(!of_match_node(of_ignore_amba_table, bus))) {
->>
->> of_match_node is going to take orders of magnitude longer than any
->> difference unlikely() would make. Drop it.
+On 2023/3/19 20:27, Krzysztof Kozlowski wrote:
+> On 15/03/2023 06:58, William Qiu wrote:
+>> Add documentation to describe StarFive System Controller Registers.
+>> 
+>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>> ---
+>>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 41 +++++++++++++++++++
+>>  MAINTAINERS                                   |  5 +++
+>>  2 files changed, 46 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> new file mode 100644
+>> index 000000000000..ae7f1d6916af
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>> @@ -0,0 +1,41 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH7110 SoC system controller
+>> +
+>> +maintainers:
+>> +  - William Qiu <william.qiu@starfivetech.com>
+>> +
+>> +description: |
+>> +  The StarFive JH7110 SoC system controller provides register information such
+>> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - starfive,jh7110-aon-syscon
+>> +          - starfive,jh7110-stg-syscon
+>> +          - starfive,jh7110-sys-syscon
+>> +      - const: syscon
 > 
-> Agreed.
+> Does not look like you tested the bindings. Please run `make
+> dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> 
+> ... or your PLL clock controller was not tested.
+> 
+> Best regards,
+> Krzysztof
+> 
+Hi Krzysztof,
 
-Sure, will drop the unlikely() here.
+I've already done`make dt_binding_check`, and get no error. So maybe PLL clock controller
+was not tested which I didn't add in this patch series. And PLL clock controller belongs
+to Xingyu Wu, I would tell him.
+
+Best regards
+William
