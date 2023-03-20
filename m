@@ -2,116 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1320D6C14E6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 485BE6C14D7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 15:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231825AbjCTOha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 10:37:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40852 "EHLO
+        id S231316AbjCTOgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 10:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231837AbjCTOhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:37:24 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B93F224729;
-        Mon, 20 Mar 2023 07:37:09 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KEauwu099838;
-        Mon, 20 Mar 2023 09:36:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679323016;
-        bh=LmKfiqOB9lLaiKr+Uw2VYK639kxj+XeEJN2M8SFWSfk=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=l2DBSGa+CbgIUe1ieMhINKpKNWGK4nqeAa6lWSh/EVvLI2VQI0s9VvwGDbVfJ2Xrk
-         OlmAT3Xocz2t/JOFL4fADi8Xt7jM6S9RhdZIiRyV2zOY0Btd8lAR8vvmO2yiS+JRXE
-         kIZqRS34edGCA2fuOsNO0/iIHh2v2ezLc1XaW1jA=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KEaue3017624
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 09:36:56 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 09:36:56 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 09:36:56 -0500
-Received: from [10.249.132.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KEaqkI041627;
-        Mon, 20 Mar 2023 09:36:53 -0500
-Message-ID: <70bf6237-1762-98f4-393d-42dd3ade3fe4@ti.com>
-Date:   Mon, 20 Mar 2023 20:06:52 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 1/2] arm64: dts: ti: k3-am62-wakeup: Introduce RTC node
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
+        with ESMTP id S231445AbjCTOgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 10:36:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E91B1A651;
+        Mon, 20 Mar 2023 07:36:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE7126155F;
+        Mon, 20 Mar 2023 14:36:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C70BC433EF;
+        Mon, 20 Mar 2023 14:36:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679322964;
+        bh=xq2tMD+B7ia6JNh3O/9A7b/U2XKkAO4qVKedNe/qPK0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nOYhbdUn0Z+Lrg4yhdALBN5lZPnLW7Zu7MTUXbyKk8ywMf+RXwQ6WAqVGDsm8s2Kf
+         Dus4RK7zmd+QMO1ri7UeoB9U0mfytcUVlNKHpAoEFEbAPYlcQ+O2UFu3QlgbGkEwjT
+         TFPEsR79BVl6Q4qQZ0BmPvYjEUW4d2MgAJCyMAzPmJE20NwtfChcqKUEBBG7ORh6F3
+         Ca3Eouma7zAU24FteDpe+Ht7JV2fOSpN5D++75cUg0oIQPt8XdDBf/qRSGwvAVjHhH
+         RN5mkt4aLKwTM+rPAPwyxFoc25f9xp5mttO0RNttw+NyowUViBFqQ9RR3DVcduXLSf
+         XJDIWPubNG1Gg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1peGdZ-0000mf-5E; Mon, 20 Mar 2023 15:37:25 +0100
+Date:   Mon, 20 Mar 2023 15:37:25 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>, Lee Jones <lee@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20230315170706.1598977-1-nm@ti.com>
- <20230315170706.1598977-2-nm@ti.com>
-From:   Dhruva Gole <d-gole@ti.com>
-In-Reply-To: <20230315170706.1598977-2-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc8280xp-pmics: fix sdam 'reg'
+ property
+Message-ID: <ZBhvpXTZu/rwPvyt@hovoldconsulting.com>
+References: <20230320135710.1989-1-johan+linaro@kernel.org>
+ <20230320135710.1989-3-johan+linaro@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230320135710.1989-3-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Mar 20, 2023 at 02:57:09PM +0100, Johan Hovold wrote:
+> The SPMI PMIC register region width is fixed and should not be encoded
+> in the devicetree.
+> 
+> Fixes: 42f45cc655d0 ("arm64: dts: qcom: sc8280xp-pmics: add pmk8280 sdam nvram")
 
-On 15/03/23 22:37, Nishanth Menon wrote:
-> Introduce digital RTC node in wakeup domain. Even though this has
-> no specific battery backup supply, this on-chip RTC is used in
-> cost-optimized board designs as a wakeup source.
->
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->
-> No changes since V1
-> V1: https://lore.kernel.org/all/20230311105850.21811-2-nm@ti.com/
->
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index 38dced6b4fef..fec81546fbbd 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -40,4 +40,14 @@ wkup_i2c0: i2c@2b200000 {
->  		clock-names = "fck";
->  		status = "disabled";
->  	};
-> +
-> +	wkup_rtc0: rtc@2b1f0000 {
-> +		compatible = "ti,am62-rtc";
-> +		reg = <0x00 0x2b1f0000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&k3_clks 117 6> , <&k3_clks 117 0>;
-> +		clock-names = "vbus", "osc32k";
-> +		power-domains = <&k3_pds 117 TI_SCI_PD_EXCLUSIVE>;
-> +		wakeup-source;
-> +	};
->  };
+Bah, that should have been:
 
-LGTM!
+Fixes: d6dbbda37ab5 ("arm64: dts: qcom: sc8280xp-pmics: add pmk8280 sdam nvram")
 
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Can you fix that up when applying, Bjorn?
 
--- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
-
+Johan
