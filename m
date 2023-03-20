@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3F956C0BDB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 09:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B33E6C0C09
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 09:19:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbjCTINX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 04:13:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57702 "EHLO
+        id S230072AbjCTITP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 04:19:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjCTINW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 04:13:22 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46612193DC;
-        Mon, 20 Mar 2023 01:13:11 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 32K7v6wj088828;
-        Mon, 20 Mar 2023 15:57:07 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from Chiawei-PC03.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 20 Mar
- 2023 16:11:39 +0800
-From:   Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-To:     <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <gregkh@linuxfoundation.org>,
-        <jirislaby@kernel.org>, <pmenzel@molgen.mpg.de>,
-        <ilpo.jarvinen@linux.intel.com>, <hdanton@sina.com>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <openbmc@lists.ozlabs.org>
-Subject: [PATCH v3 5/5] ARM: dts: aspeed-g6: Add UDMA node
-Date:   Mon, 20 Mar 2023 16:11:33 +0800
-Message-ID: <20230320081133.23655-6-chiawei_wang@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230320081133.23655-1-chiawei_wang@aspeedtech.com>
-References: <20230320081133.23655-1-chiawei_wang@aspeedtech.com>
+        with ESMTP id S229762AbjCTITP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 04:19:15 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A3349E3;
+        Mon, 20 Mar 2023 01:19:13 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8322B24E2A9;
+        Mon, 20 Mar 2023 16:19:11 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 16:19:11 +0800
+Received: from [192.168.60.83] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
+ 2023 16:19:11 +0800
+Message-ID: <ccfe65e1-3580-3cfd-b13a-fd952da91539@starfivetech.com>
+Date:   Mon, 20 Mar 2023 16:19:10 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.66]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 32K7v6wj088828
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/6] media: dt-bindings: cadence-csi2rx: Convert to DT
+ schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230310120553.60586-1-jack.zhu@starfivetech.com>
+ <20230310120553.60586-3-jack.zhu@starfivetech.com>
+ <e0bcfe7a-6b24-3543-318a-86c1d7a60f12@linaro.org>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <e0bcfe7a-6b24-3543-318a-86c1d7a60f12@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the device tree node for the UART DMA (UDMA) controller.
 
-Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index 8246a60de0d0..172dd748d807 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -863,6 +863,15 @@ fsim1: fsi@1e79b100 {
- 				clocks = <&syscon ASPEED_CLK_GATE_FSICLK>;
- 				status = "disabled";
- 			};
-+
-+			udma: dma-controller@1e79e000 {
-+				compatible = "aspeed,ast2600-udma";
-+				reg = <0x1e79e000 0x1000>;
-+				interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+				dma-channels = <28>;
-+				#dma-cells = <1>;
-+				status = "disabled";
-+			};
- 		};
- 	};
- };
--- 
-2.25.1
+On 2023/3/12 19:17, Krzysztof Kozlowski wrote:
+> On 10/03/2023 13:05, Jack Zhu wrote:
+>> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
+>> to DT schema format and add new properties.
+> 
+> As pointed, first conversion, then new properties.
+> 
+> You also need to test each binding before sending.
 
+Thank you for your suggestion. I will split the patch into two patches and test.
+
+> Best regards,
+> Krzysztof
+> 
