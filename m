@@ -2,112 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4946C1264
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D076C127A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:59:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231520AbjCTMyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 08:54:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
+        id S230094AbjCTM73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 08:59:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231672AbjCTMxj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:53:39 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF41D10416;
-        Mon, 20 Mar 2023 05:52:49 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id a32so11969799ljr.9;
-        Mon, 20 Mar 2023 05:52:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679316768;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zCToRhyvamqpUChblok6lbeYTkxrxScmxRdGNZTiQXQ=;
-        b=hXwQuDiR7xgFlpYbDYDX8VjJaFYLQuQ2cb/hE4kCQ3u7w0dMhJ3WnHPy59pTozkDOQ
-         ThkjLKj3sNbISRTaG+7gC9BdVtN0+PQt5xu8RqTs1ixxO8GA9N/2herx/sNBwnI4JSmY
-         UAd5UWjXHlGblFGXj6F6ceNtISGrha1L/pwV2F0sVitytDb5kywIgwCS049R+UiSrPBy
-         dIL11sNyitVSrLW7lHx0DnwC48XHXYNa+M4GvjX66plt1ftUTNluNuW+rigKddarElR/
-         Uv+qYtEKGWaAr+leddvnl3QQwKk2pI5QVcbyp9/udEYdZSceTdhUTIZvkgJOZG0+pCG2
-         nQgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679316768;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zCToRhyvamqpUChblok6lbeYTkxrxScmxRdGNZTiQXQ=;
-        b=6wF/4KGQCAew3cU1/YhplhEP193Bou6yn2BBCgyiPooh+I+X4Yj5TwXT6tJPO7ffaM
-         y7bSI56mDm+0UixhUCEdlb9xih1X7T7HqzPiWD0hR2GErojI2hCVe2JNEEVBcmg/EiG+
-         T6KhXpYdUEugILN0AgC+RKp7N+cP30qhUww6o3ZexiBMUOd9vECq3ryJsM3Pu3ynup9l
-         N4pxGrEJxuKuQo38/YjsoCN6o/rqXZMPwylqA9xyYWIqVdTDNN+xGZCefzGQGdnkoY8s
-         LiZRq46CVcyheuuZYjmFcWnHFtQAs9vhtxdl4Ti1xQqSV30GH31qSjrQcI90KXyx1H6P
-         +YIA==
-X-Gm-Message-State: AO0yUKUL3QbetqJ7VualnIsFAlxO2Mun40AyPsnnSVsQK1kwApgnRyF9
-        7WjbrCDPqIqJTs/rXODfcpIrXC9IyAY=
-X-Google-Smtp-Source: AK7set9ABfMHLkdwBXy7qpN2dpsdelT7S9eqrnTc1mDgipV3LpikiNQJ1ZCO6//w0RHspkNadvxGMA==
-X-Received: by 2002:a05:651c:50b:b0:298:a864:8c14 with SMTP id o11-20020a05651c050b00b00298a8648c14mr8117364ljp.10.1679316768151;
-        Mon, 20 Mar 2023 05:52:48 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id r2-20020a2eb602000000b0029a1ccdc560sm1730478ljn.118.2023.03.20.05.52.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 05:52:47 -0700 (PDT)
-Message-ID: <f2bb93af-da9c-cf16-2f07-90e653af662f@gmail.com>
-Date:   Mon, 20 Mar 2023 14:52:46 +0200
+        with ESMTP id S229902AbjCTM7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:59:08 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FED10400;
+        Mon, 20 Mar 2023 05:58:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679317139; x=1710853139;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8SV2irE2pQGlkBG89eqsKeZRRukdH3jolsJL0WVMQYs=;
+  b=F5ghox+6Obne6aCzlEjpBhiYToqHUIgOHLFm0/hKr3+An0H+D1ja/qoS
+   vzQjKIaEbOmBKkjc0kWFo58V1WqVD7uKjb/THPWs0j8SyhOglbblsQeb3
+   HFy02amYa3QHMobFX7KW6Go0yQQ2lJZ62EBPbbYVf9Cd0G9wwuB/h3alM
+   BHBtl0XiKba9mU3Jlw4ZoYUNeg5y4HjSY1ejSRF98BmDlUPfvrzGTH/KM
+   ilqFFVGJSRx8tpXHYaXSH14jQuZ/bxOSKFxTcVMGG4zYwPMc8ap853XSu
+   lnmyzzKUc3lH1cpn4Fqa5dZE/mJ4ZdltIUec2J1zavXhpxK135LIZ1wKY
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="366370254"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="366370254"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 05:58:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="855274301"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="855274301"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga005.jf.intel.com with ESMTP; 20 Mar 2023 05:58:09 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1peF5T-006GuW-1R;
+        Mon, 20 Mar 2023 14:58:07 +0200
+Date:   Mon, 20 Mar 2023 14:58:07 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Danny Kaehn <kaehndan@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
+Message-ID: <ZBhYXwjPeRiZwxMT@smile.fi.intel.com>
+References: <20230319204802.1364-1-kaehndan@gmail.com>
+ <20230319204802.1364-4-kaehndan@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1679009443.git.mehdi.djait.k@gmail.com>
- <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
- <4c28925d-c07c-61b7-8863-9c00e6846687@gmail.com>
- <20230320123408.000008c0@Huawei.com>
-Content-Language: en-US, en-GB
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20230320123408.000008c0@Huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230319204802.1364-4-kaehndan@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/20/23 14:34, Jonathan Cameron wrote:
-> On Mon, 20 Mar 2023 11:35:06 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Sun, Mar 19, 2023 at 03:48:02PM -0500, Danny Kaehn wrote:
+> Support describing the CP2112's I2C and GPIO interfaces in firmware.
 > 
->> On 3/17/23 01:48, Mehdi Djait wrote:
->>
->> OTOH, to really benefit from this we should probably pull out the
->> regmap-configs from the kionix-kx022a.c. I am not really sure where we
->> should put it then though. Hence, if there is no good ideas how to split
->> the config and chip-info so they are only available/used where needed -
->> then I am also Ok with the current approach.
+> I2C and GPIO child nodes can either be children with names "i2c" and
+> "gpio", or, for ACPI, device nodes with _ADR Zero and One,
+> respectively.
 > 
-> Definitely stick to current approach.  If I had the time I'd
-> rip out all the code useing enums in match tables. It's bitten us
-> a few times with nasty to track down bugs that only affect more obscure
-> ways of binding the driver.
-> 
+> Additionally, support configuring the I2C bus speed from the
+> clock-frequency device property.
 
-Seems like Jonathan has a strong opinion on this. Please follow his and 
-Andy's guidance on this one and forget my comment.
+Thank you for the update, my comments below.
 
+...
 
-Yours,
-	-- Matti
+> +	struct i2c_timings timings;
+> +	struct fwnode_handle *child;
+
+Longer line first easier to read.
+
+> +	u32 addr;
+> +	const char *name;
+
+Ditto.
+
+...
+
+> +	device_for_each_child_node(&hdev->dev, child) {
+> +		name = fwnode_get_name(child);
+> +		ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+> +
+> +		if ((name && strcmp("i2c", name) == 0) || (!ret && addr == 0))
+> +			device_set_node(&dev->adap.dev, child);
+> +		else if ((name && strcmp("gpio", name)) == 0 ||
+> +					(!ret && addr == 1))
+> +			dev->gc.fwnode = child;
+> +	}
+
+Please, make addresses defined explicitly. You may also do it with node naming
+schema:
+
+#define CP2112_I2C_ADR		0
+#define CP2112_GPIO_ADR		1
+
+static const char * const cp2112_cell_names[] = {
+	[CP2112_I2C_ADR]	= "i2c",
+	[CP2112_GPIO_ADR]	= "gpio",
+};
+
+	device_for_each_child_node(&hdev->dev, child) {
+		name = fwnode_get_name(child);
+		if (name) {
+			ret = match_string(cp2112_cell_names, ARRAY_SIZE(cp2112_cell_names), name);
+			if (ret >= 0)
+				addr = ret;
+		} else
+			ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+		if (ret < 0)
+			...error handling if needed...
+
+		switch (addr) {
+		case CP2112_I2C_ADR:
+			device_set_node(&dev->adap.dev, child);
+			break;
+		case CP2112_GPIO_ADR:
+			dev->gc.fwnode = child;
+			break;
+		default:
+			...error handling...
+		}
+	}
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+With Best Regards,
+Andy Shevchenko
 
-~~ When things go utterly wrong vim users can always type :help! ~~
 
