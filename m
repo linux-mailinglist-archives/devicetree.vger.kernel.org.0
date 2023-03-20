@@ -2,659 +2,473 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94D906C1148
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 12:55:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 337FC6C114D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 12:56:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231180AbjCTLzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 07:55:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39586 "EHLO
+        id S231319AbjCTL4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 07:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbjCTLzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 07:55:07 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 170BA233D0;
-        Mon, 20 Mar 2023 04:54:54 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3D9FD24E292;
-        Mon, 20 Mar 2023 19:54:51 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 19:54:51 +0800
-Received: from [192.168.60.83] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 20 Mar
- 2023 19:54:50 +0800
-Message-ID: <6923fefa-0358-c496-fc97-cb84bbb42d9a@starfivetech.com>
-Date:   Mon, 20 Mar 2023 19:54:49 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 4/6] media: cadence: Add support for external dphy and
- JH7110 SoC
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S231297AbjCTL4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 07:56:32 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47A6C24108;
+        Mon, 20 Mar 2023 04:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679313390; x=1710849390;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=r1s5/ZMg2lLOSle8HVr6eWPHl10IKSNJRBE1UwV5bX0=;
+  b=FDm1uJvrHZad9clSGe2KXImZdlrkJVDWEB2puL5mqpRZ5sCuR0MXAO+b
+   6RahidznhZT0N+LfmkAq6YYnhsuL0AOAGU3iU0Tpm9YBxtOTjgtLyB02C
+   s/gzi+EtX1Zlgc4kFUM2kFrHfTRnCpCHPwqIbKGvCyEjP+SEiTCSissJ1
+   /kWB0j3tS5goQoX57EYdtOYk4HUYRdWBUYUcLpvSqHJAV49QfBq+W1JLQ
+   n723F2+WabhUMDPxu1ORYpvfbQ+E3Ivyg+Vfb6R7D/hUCNEccBsWPzqSl
+   8Tx2yc0a11lA4IvMSQMha8HeHdS8bTU7dmVflHoqSC1PmNmOZSyyhNFvX
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="403511333"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="403511333"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 04:56:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="824450449"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
+   d="scan'208";a="824450449"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 20 Mar 2023 04:56:25 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 20 Mar 2023 13:56:24 +0200
+Date:   Mon, 20 Mar 2023 13:56:24 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        "Todor Tomov" <todor.too@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
-        Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Eugen Hristev" <eugen.hristev@collabora.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <changhuang.liang@starfivetech.com>
-References: <20230310120553.60586-1-jack.zhu@starfivetech.com>
- <20230310120553.60586-5-jack.zhu@starfivetech.com>
- <20230312113338.GC2545@pendragon.ideasonboard.com>
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <20230312113338.GC2545@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 01/12] usb: typec: ucsi: add PMIC Glink UCSI driver
+Message-ID: <ZBhJ6P9lDcvwW3/x@kuha.fi.intel.com>
+References: <20230130-topic-sm8450-upstream-pmic-glink-v4-0-38bf0f5d07bd@linaro.org>
+ <20230130-topic-sm8450-upstream-pmic-glink-v4-1-38bf0f5d07bd@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v4-1-38bf0f5d07bd@linaro.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/3/12 19:33, Laurent Pinchart wrote:
-> Hi Jack,
+On Fri, Mar 17, 2023 at 04:04:17PM +0100, Neil Armstrong wrote:
+> Introduce the UCSI PMIC Glink aux driver that communicates
+> with the aDSP firmware with the UCSI protocol which handles
+> the USB-C Port(s) Power Delivery.
 > 
-> Thank you for the patch.
+> The UCSI messaging is necessary on newer Qualcomm SoCs to
+> provide USB role switch and altmode notifications.
 > 
-> On Fri, Mar 10, 2023 at 08:05:51PM +0800, Jack Zhu wrote:
->> Add support for external MIPI D-PHY and Starfive JH7110 SoC which
->> has the cadence csi2 receiver.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+> ---
+>  drivers/usb/typec/ucsi/Kconfig      |  10 ++
+>  drivers/usb/typec/ucsi/Makefile     |   1 +
+>  drivers/usb/typec/ucsi/ucsi_glink.c | 345 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 356 insertions(+)
 > 
-> This patch bundles multiple changes that should be split into their own
-> patches. I'll comment on that below.
+> diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
+> index 8f9c4b9f31f7..b3bb0191987e 100644
+> --- a/drivers/usb/typec/ucsi/Kconfig
+> +++ b/drivers/usb/typec/ucsi/Kconfig
+> @@ -58,4 +58,14 @@ config UCSI_STM32G0
+>  	  To compile the driver as a module, choose M here: the module will be
+>  	  called ucsi_stm32g0.
+>  
+> +config UCSI_PMIC_GLINK
+> +	tristate "UCSI Qualcomm PMIC GLINK Interface Driver"
+> +	depends on QCOM_PMIC_GLINK
+> +	help
+> +	  This driver enables UCSI support on platforms that expose UCSI
+> +	  interface as PMIC GLINK device.
+> +
+> +	  To compile the driver as a module, choose M here: the module will be
+> +	  called ucsi_glink.
+> +
+>  endif
+> diff --git a/drivers/usb/typec/ucsi/Makefile b/drivers/usb/typec/ucsi/Makefile
+> index 480d533d762f..77f09e136956 100644
+> --- a/drivers/usb/typec/ucsi/Makefile
+> +++ b/drivers/usb/typec/ucsi/Makefile
+> @@ -18,3 +18,4 @@ endif
+>  obj-$(CONFIG_UCSI_ACPI)			+= ucsi_acpi.o
+>  obj-$(CONFIG_UCSI_CCG)			+= ucsi_ccg.o
+>  obj-$(CONFIG_UCSI_STM32G0)		+= ucsi_stm32g0.o
+> +obj-$(CONFIG_UCSI_PMIC_GLINK)		+= ucsi_glink.o
+> diff --git a/drivers/usb/typec/ucsi/ucsi_glink.c b/drivers/usb/typec/ucsi/ucsi_glink.c
+> new file mode 100644
+> index 000000000000..b454a5159896
+> --- /dev/null
+> +++ b/drivers/usb/typec/ucsi/ucsi_glink.c
+> @@ -0,0 +1,345 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023, Linaro Ltd
+> + */
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/soc/qcom/pdr.h>
+> +#include <linux/soc/qcom/pmic_glink.h>
+> +#include "ucsi.h"
+> +
+> +#define UCSI_BUF_SIZE                   48
+> +
+> +#define MSG_TYPE_REQ_RESP               1
+> +#define UCSI_BUF_SIZE                   48
+> +
+> +#define UC_NOTIFY_RECEIVER_UCSI         0x0
+> +#define UC_UCSI_READ_BUF_REQ            0x11
+> +#define UC_UCSI_WRITE_BUF_REQ           0x12
+> +#define UC_UCSI_USBC_NOTIFY_IND         0x13
+> +
+> +struct ucsi_read_buf_req_msg {
+> +	struct pmic_glink_hdr   hdr;
+> +};
+> +
+> +struct ucsi_read_buf_resp_msg {
+> +	struct pmic_glink_hdr   hdr;
+> +	u8                      buf[UCSI_BUF_SIZE];
+> +	u32                     ret_code;
+> +};
+> +
+> +struct ucsi_write_buf_req_msg {
+> +	struct pmic_glink_hdr   hdr;
+> +	u8                      buf[UCSI_BUF_SIZE];
+> +	u32                     reserved;
+> +};
+> +
+> +struct ucsi_write_buf_resp_msg {
+> +	struct pmic_glink_hdr   hdr;
+> +	u32                     ret_code;
+> +};
+> +
+> +struct ucsi_notify_ind_msg {
+> +	struct pmic_glink_hdr   hdr;
+> +	u32                     notification;
+> +	u32                     receiver;
+> +	u32                     reserved;
+> +};
+> +
+> +struct pmic_glink_ucsi {
+> +	struct device *dev;
+> +
+> +	struct pmic_glink_client *client;
+> +
+> +	struct ucsi *ucsi;
+> +	struct completion read_ack;
+> +	struct completion write_ack;
+> +	struct completion sync_ack;
+> +	bool sync_pending;
+> +	struct mutex lock;	/* protects concurrent access to PMIC Glink interface */
+> +
+> +	int sync_val;
+> +
+> +	struct work_struct notify_work;
+> +	struct work_struct register_work;
+> +
+> +	u8 read_buf[UCSI_BUF_SIZE];
+> +};
+> +
+> +static int pmic_glink_ucsi_read(struct ucsi *__ucsi, unsigned int offset,
+> +				void *val, size_t val_len)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = ucsi_get_drvdata(__ucsi);
+> +	struct ucsi_read_buf_req_msg req = {};
+> +	unsigned long left;
+> +	int ret;
+> +
+> +	req.hdr.owner = PMIC_GLINK_OWNER_USBC;
+> +	req.hdr.type = MSG_TYPE_REQ_RESP;
+> +	req.hdr.opcode = UC_UCSI_READ_BUF_REQ;
+> +
+> +	mutex_lock(&ucsi->lock);
+> +	memset(ucsi->read_buf, 0, sizeof(ucsi->read_buf));
+> +	reinit_completion(&ucsi->read_ack);
+> +
+> +	ret = pmic_glink_send(ucsi->client, &req, sizeof(req));
+> +	if (ret < 0) {
+> +		dev_err(ucsi->dev, "failed to send UCSI read request: %d\n", ret);
+> +		goto out_unlock;
+> +	}
+> +
+> +	left = wait_for_completion_timeout(&ucsi->read_ack, 5 * HZ);
+> +	if (!left) {
+> +		dev_err(ucsi->dev, "timeout waiting for UCSI read response\n");
+> +		ret = -ETIMEDOUT;
+> +		goto out_unlock;
+> +	}
+> +
+> +	memcpy(val, &ucsi->read_buf[offset], val_len);
+> +	ret = 0;
+> +
+> +out_unlock:
+> +	mutex_unlock(&ucsi->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pmic_glink_ucsi_locked_write(struct pmic_glink_ucsi *ucsi, unsigned int offset,
+> +					const void *val, size_t val_len)
+> +{
+> +	struct ucsi_write_buf_req_msg req = {};
+> +	unsigned long left;
+> +	int ret;
+> +
+> +	req.hdr.owner = PMIC_GLINK_OWNER_USBC;
+> +	req.hdr.type = MSG_TYPE_REQ_RESP;
+> +	req.hdr.opcode = UC_UCSI_WRITE_BUF_REQ;
+> +	memcpy(&req.buf[offset], val, val_len);
+> +
+> +	reinit_completion(&ucsi->write_ack);
+> +
+> +	ret = pmic_glink_send(ucsi->client, &req, sizeof(req));
+> +	if (ret < 0) {
+> +		dev_err(ucsi->dev, "failed to send UCSI write request: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	left = wait_for_completion_timeout(&ucsi->write_ack, 5 * HZ);
+> +	if (!left) {
+> +		dev_err(ucsi->dev, "timeout waiting for UCSI write response\n");
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pmic_glink_ucsi_async_write(struct ucsi *__ucsi, unsigned int offset,
+> +				       const void *val, size_t val_len)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = ucsi_get_drvdata(__ucsi);
+> +	int ret;
+> +
+> +	mutex_lock(&ucsi->lock);
+> +	ret = pmic_glink_ucsi_locked_write(ucsi, offset, val, val_len);
+> +	mutex_unlock(&ucsi->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pmic_glink_ucsi_sync_write(struct ucsi *__ucsi, unsigned int offset,
+> +				      const void *val, size_t val_len)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = ucsi_get_drvdata(__ucsi);
+> +	unsigned long left;
+> +	int ret;
+> +
+> +	/* TOFIX: Downstream forces recipient to CON when UCSI_GET_ALTERNATE_MODES command */
+> +
+> +	mutex_lock(&ucsi->lock);
+> +	ucsi->sync_val = 0;
+> +	reinit_completion(&ucsi->sync_ack);
+> +	ucsi->sync_pending = true;
+> +	ret = pmic_glink_ucsi_locked_write(ucsi, offset, val, val_len);
+> +	mutex_unlock(&ucsi->lock);
+> +
+> +	left = wait_for_completion_timeout(&ucsi->sync_ack, 5 * HZ);
+> +	if (!left) {
+> +		dev_err(ucsi->dev, "timeout waiting for UCSI sync write response\n");
+> +		ret = -ETIMEDOUT;
+> +	} else if (ucsi->sync_val) {
+> +		dev_err(ucsi->dev, "sync write returned: %d\n", ucsi->sync_val);
+> +	}
+> +
+> +	ucsi->sync_pending = false;
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct ucsi_operations pmic_glink_ucsi_ops = {
+> +	.read = pmic_glink_ucsi_read,
+> +	.sync_write = pmic_glink_ucsi_sync_write,
+> +	.async_write = pmic_glink_ucsi_async_write
+> +};
+> +
+> +static void pmic_glink_ucsi_read_ack(struct pmic_glink_ucsi *ucsi, const void *data, int len)
+> +{
+> +	const struct ucsi_read_buf_resp_msg *resp = data;
+> +
+> +	if (resp->ret_code)
+> +		return;
+> +
+> +	memcpy(ucsi->read_buf, resp->buf, UCSI_BUF_SIZE);
+> +	complete(&ucsi->read_ack);
+> +}
+> +
+> +static void pmic_glink_ucsi_write_ack(struct pmic_glink_ucsi *ucsi, const void *data, int len)
+> +{
+> +	const struct ucsi_write_buf_resp_msg *resp = data;
+> +
+> +	if (resp->ret_code)
+> +		return;
+> +
+> +	ucsi->sync_val = resp->ret_code;
+> +	complete(&ucsi->write_ack);
+> +}
+> +
+> +static void pmic_glink_ucsi_notify(struct work_struct *work)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = container_of(work, struct pmic_glink_ucsi, notify_work);
+> +	unsigned int con_num;
+> +	u32 cci;
+> +	int ret;
+> +
+> +	ret = pmic_glink_ucsi_read(ucsi->ucsi, UCSI_CCI, &cci, sizeof(cci));
+> +	if (ret) {
+> +		dev_err(ucsi->dev, "failed to read CCI on notification\n");
+> +		return;
+> +	}
+> +
+> +	con_num = UCSI_CCI_CONNECTOR(cci);
+> +	if (con_num)
+> +		ucsi_connector_change(ucsi->ucsi, con_num);
+> +
+> +	if (ucsi->sync_pending && cci & UCSI_CCI_BUSY) {
+> +		ucsi->sync_val = -EBUSY;
+> +		complete(&ucsi->sync_ack);
+> +	} else if (ucsi->sync_pending &&
+> +		   (cci & (UCSI_CCI_ACK_COMPLETE | UCSI_CCI_COMMAND_COMPLETE))) {
+> +		complete(&ucsi->sync_ack);
+> +	}
+> +}
+> +
+> +static void pmic_glink_ucsi_register(struct work_struct *work)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = container_of(work, struct pmic_glink_ucsi, register_work);
+> +
+> +	ucsi_register(ucsi->ucsi);
+> +}
+> +
+> +static void pmic_glink_ucsi_callback(const void *data, size_t len, void *priv)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = priv;
+> +	const struct pmic_glink_hdr *hdr = data;
+> +
+> +	switch (hdr->opcode) {
+> +	case UC_UCSI_READ_BUF_REQ:
+> +		pmic_glink_ucsi_read_ack(ucsi, data, len);
+> +		break;
+> +	case UC_UCSI_WRITE_BUF_REQ:
+> +		pmic_glink_ucsi_write_ack(ucsi, data, len);
+> +		break;
+> +	case UC_UCSI_USBC_NOTIFY_IND:
+> +		schedule_work(&ucsi->notify_work);
+> +		break;
+> +	};
+> +}
+> +
+> +static void pmic_glink_ucsi_pdr_notify(void *priv, int state)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = priv;
+> +
+> +	if (state == SERVREG_SERVICE_STATE_UP)
+> +		schedule_work(&ucsi->register_work);
+> +	else if (state == SERVREG_SERVICE_STATE_DOWN)
+> +		ucsi_unregister(ucsi->ucsi);
+> +}
+> +
+> +static void pmic_glink_ucsi_destroy(void *data)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = data;
+> +
+> +	/* Protect to make sure we're not in a middle of a transaction from a glink callback */
+> +	mutex_lock(&ucsi->lock);
+> +	ucsi_destroy(ucsi->ucsi);
+> +	mutex_unlock(&ucsi->lock);
+> +}
+> +
+> +static int pmic_glink_ucsi_probe(struct auxiliary_device *adev,
+> +				 const struct auxiliary_device_id *id)
+> +{
+> +	struct pmic_glink_ucsi *ucsi;
+> +	struct device *dev = &adev->dev;
+> +	int ret;
+> +
+> +	ucsi = devm_kzalloc(dev, sizeof(*ucsi), GFP_KERNEL);
+> +	if (!ucsi)
+> +		return -ENOMEM;
+> +
+> +	ucsi->dev = dev;
+> +	dev_set_drvdata(dev, ucsi);
+> +
+> +	INIT_WORK(&ucsi->notify_work, pmic_glink_ucsi_notify);
+> +	INIT_WORK(&ucsi->register_work, pmic_glink_ucsi_register);
+> +	init_completion(&ucsi->read_ack);
+> +	init_completion(&ucsi->write_ack);
+> +	init_completion(&ucsi->sync_ack);
+> +	mutex_init(&ucsi->lock);
+> +
+> +	ucsi->ucsi = ucsi_create(dev, &pmic_glink_ucsi_ops);
+> +	if (IS_ERR(ucsi->ucsi))
+> +		return PTR_ERR(ucsi->ucsi);
+> +
+> +	/* Make sure we destroy *after* pmic_glink unregister */
+> +	ret = devm_add_action_or_reset(dev, pmic_glink_ucsi_destroy, ucsi);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ucsi_set_drvdata(ucsi->ucsi, ucsi);
+> +
+> +	ucsi->client = devm_pmic_glink_register_client(dev,
+> +						       PMIC_GLINK_OWNER_USBC,
+> +						       pmic_glink_ucsi_callback,
+> +						       pmic_glink_ucsi_pdr_notify,
+> +						       ucsi);
+> +	return PTR_ERR_OR_ZERO(ucsi->client);
+> +}
+> +
+> +static void pmic_glink_ucsi_remove(struct auxiliary_device *adev)
+> +{
+> +	struct pmic_glink_ucsi *ucsi = dev_get_drvdata(&adev->dev);
+> +
+> +	/* Unregister first to stop having read & writes */
+> +	ucsi_unregister(ucsi->ucsi);
+> +}
+> +
+> +static const struct auxiliary_device_id pmic_glink_ucsi_id_table[] = {
+> +	{ .name = "pmic_glink.ucsi", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, pmic_glink_ucsi_id_table);
+> +
+> +static struct auxiliary_driver pmic_glink_ucsi_driver = {
+> +	.name = "pmic_glink_ucsi",
+> +	.probe = pmic_glink_ucsi_probe,
+> +	.remove = pmic_glink_ucsi_remove,
+> +	.id_table = pmic_glink_ucsi_id_table,
+> +};
+> +
+> +module_auxiliary_driver(pmic_glink_ucsi_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm PMIC GLINK UCSI driver");
+> +MODULE_LICENSE("GPL");
 
-Thank you for your suggestion and comments. I'll split the patch.
+thanks,
 
-> 
->> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
->> ---
->>  drivers/media/platform/cadence/cdns-csi2rx.c | 273 ++++++++++++++++++-
->>  1 file changed, 263 insertions(+), 10 deletions(-)
->> 
->> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
->> index cc3ebb0d96f6..7e7b096869fc 100644
->> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
->> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
->> @@ -10,9 +10,11 @@
->>  #include <linux/io.h>
->>  #include <linux/module.h>
->>  #include <linux/of.h>
->> +#include <linux/of_device.h>
->>  #include <linux/of_graph.h>
->>  #include <linux/phy/phy.h>
->>  #include <linux/platform_device.h>
->> +#include <linux/reset.h>
->>  #include <linux/slab.h>
->>  
->>  #include <media/v4l2-ctrls.h>
->> @@ -30,6 +32,12 @@
->>  #define CSI2RX_STATIC_CFG_DLANE_MAP(llane, plane)	((plane) << (16 + (llane) * 4))
->>  #define CSI2RX_STATIC_CFG_LANES_MASK			GENMASK(11, 8)
->>  
->> +#define CSI2RX_DPHY_LANE_CTRL_REG		0x40
->> +#define CSI2RX_DPHY_CL_RST			BIT(16)
->> +#define CSI2RX_DPHY_DL_RST(i)			BIT((i) + 12)
->> +#define CSI2RX_DPHY_CL_EN			BIT(4)
->> +#define CSI2RX_DPHY_DL_EN(i)			BIT(i)
->> +
->>  #define CSI2RX_STREAM_BASE(n)		(((n) + 1) * 0x100)
->>  
->>  #define CSI2RX_STREAM_CTRL_REG(n)		(CSI2RX_STREAM_BASE(n) + 0x000)
->> @@ -37,6 +45,7 @@
->>  
->>  #define CSI2RX_STREAM_DATA_CFG_REG(n)		(CSI2RX_STREAM_BASE(n) + 0x008)
->>  #define CSI2RX_STREAM_DATA_CFG_EN_VC_SELECT		BIT(31)
->> +#define CSI2RX_STREAM_DATA_CFG_EN_DATA_TYPE_0	BIT(7)
->>  #define CSI2RX_STREAM_DATA_CFG_VC_SELECT(n)		BIT((n) + 16)
->>  
->>  #define CSI2RX_STREAM_CFG_REG(n)		(CSI2RX_STREAM_BASE(n) + 0x00c)
->> @@ -54,8 +63,19 @@ enum csi2rx_pads {
->>  	CSI2RX_PAD_MAX,
->>  };
->>  
->> +struct csi2rx_fmt {
->> +	u32				code;
->> +	u8				bpp;
->> +	u32				dt;
->> +};
->> +
->> +struct csi2rx_platform_info {
->> +	unsigned long sys_clk_rate;
->> +};
->> +
->>  struct csi2rx_priv {
->>  	struct device			*dev;
->> +	unsigned int			power_count;
->>  	unsigned int			count;
->>  
->>  	/*
->> @@ -68,6 +88,9 @@ struct csi2rx_priv {
->>  	struct clk			*sys_clk;
->>  	struct clk			*p_clk;
->>  	struct clk			*pixel_clk[CSI2RX_STREAMS_MAX];
->> +	struct reset_control		*sys_rst;
->> +	struct reset_control		*p_rst;
->> +	struct reset_control		*pixel_rst[CSI2RX_STREAMS_MAX];
->>  	struct phy			*dphy;
->>  
->>  	u8				lanes[CSI2RX_LANES_MAX];
->> @@ -83,14 +106,100 @@ struct csi2rx_priv {
->>  	/* Remote source */
->>  	struct v4l2_subdev		*source_subdev;
->>  	int				source_pad;
->> +
->> +	const struct csi2rx_platform_info	*platform_info;
->> +};
->> +
->> +static const struct csi2rx_fmt formats[] = {
->> +	{
->> +		.code	= MEDIA_BUS_FMT_SRGGB10_1X10,
->> +		.bpp	= 10,
->> +		.dt	= 0x2b,
->> +	},
->> +	{
->> +		.code	= MEDIA_BUS_FMT_SGRBG10_1X10,
->> +		.bpp	= 10,
->> +		.dt	= 0x2b,
->> +	},
->> +	{
->> +		.code	= MEDIA_BUS_FMT_SGBRG10_1X10,
->> +		.bpp	= 10,
->> +		.dt	= 0x2b,
->> +	},
->> +	{
->> +		.code	= MEDIA_BUS_FMT_SBGGR10_1X10,
->> +		.bpp	= 10,
->> +		.dt	= 0x2b,
->> +	},
->>  };
->>  
->> +static u8 csi2rx_get_bpp(u32 code)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < ARRAY_SIZE(formats); i++) {
->> +		if (formats[i].code == code)
->> +			return formats[i].bpp;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static u32 csi2rx_get_dt(u32 code)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < ARRAY_SIZE(formats); i++) {
->> +		if (formats[i].code == code)
->> +			return formats[i].dt;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static s64 csi2rx_get_pixel_rate(struct csi2rx_priv *csi2rx)
->> +{
->> +	struct v4l2_ctrl *ctrl;
->> +
->> +	ctrl = v4l2_ctrl_find(csi2rx->source_subdev->ctrl_handler,
->> +			      V4L2_CID_PIXEL_RATE);
->> +	if (!ctrl) {
->> +		dev_err(csi2rx->dev, "no pixel rate control in subdev: %s\n",
->> +			csi2rx->source_subdev->name);
->> +		return -EINVAL;
->> +	}
->> +
->> +	return v4l2_ctrl_g_ctrl_int64(ctrl);
->> +}
->> +
->>  static inline
->>  struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
->>  {
->>  	return container_of(subdev, struct csi2rx_priv, subdev);
->>  }
->>  
->> +static int csi2rx_s_power(struct v4l2_subdev *subdev, int on)
-> 
-> .s_power() is deprecated, please drop it. You should use runtime PM
-> instead (with autosuspend). In .s_stream(), you should call
-> pm_runtime_resume_and_get() when starting streaming, and
-> pm_runtime_put_autosuspend() when stopping streaming.
-> 
-
-OK, will drop .s_power(). The csi2rx will do not call phy_init()/
-phy_exit(). The work of phy_init()/phy_exit() is integrated into PHY
-driver.
-
->> +{
->> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
->> +
->> +	mutex_lock(&csi2rx->lock);
->> +
->> +	if (on) {
->> +		if (!csi2rx->power_count)
->> +			phy_init(csi2rx->dphy);
->> +
->> +		csi2rx->power_count++;
->> +	} else {
->> +		csi2rx->power_count--;
->> +
->> +		if (!csi2rx->power_count)
->> +			phy_exit(csi2rx->dphy);
->> +	}
->> +
->> +	mutex_unlock(&csi2rx->lock);
->> +	return 0;
->> +}
->> +
->>  static void csi2rx_reset(struct csi2rx_priv *csi2rx)
->>  {
->>  	writel(CSI2RX_SOFT_RESET_PROTOCOL | CSI2RX_SOFT_RESET_FRONT,
->> @@ -101,17 +210,70 @@ static void csi2rx_reset(struct csi2rx_priv *csi2rx)
->>  	writel(0, csi2rx->base + CSI2RX_SOFT_RESET_REG);
->>  }
->>  
->> +static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
-> 
-> Support for external DPHYs should be split to a patch of its own.
-
-OK, will split the patch.
-
-> 
->> +{
->> +	union phy_configure_opts opts = { };
->> +	struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
->> +	struct v4l2_subdev_format sd_fmt;
->> +	s64 pixel_rate;
->> +	int ret;
->> +	u8 bpp;
->> +
->> +	sd_fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
->> +	sd_fmt.pad = 0;
->> +
->> +	ret = v4l2_subdev_call(csi2rx->source_subdev, pad, get_fmt, NULL,
->> +			       &sd_fmt);
-> 
-> Don't call .get_fmt() on the source. A subdev driver should only look at
-> its own formats. As the format on the source pad of the source must
-> match the format on the sink pad of this subdev when the pipeline is
-> valid, you can use the format on the sink pad here.
-
-OK, will drop. This step of work is not necessary.
-
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	bpp = csi2rx_get_bpp(sd_fmt.format.code);
->> +	if (!bpp)
->> +		return -EINVAL;
->> +
->> +	pixel_rate = csi2rx_get_pixel_rate(csi2rx);
->> +	if (pixel_rate < 0)
->> +		return pixel_rate;
->> +
->> +	ret = phy_mipi_dphy_get_default_config(pixel_rate, bpp,
->> +					       csi2rx->num_lanes, cfg);
->> +	if (ret)
->> +		return ret;
->> +
->> +	phy_pm_runtime_get_sync(csi2rx->dphy);
->> +
->> +	ret = phy_power_on(csi2rx->dphy);
->> +	if (ret)
->> +		goto out;
->> +
->> +	ret = phy_configure(csi2rx->dphy, &opts);
->> +	if (ret) {
->> +		/* Can't do anything if it fails. Ignore the return value. */
->> +		phy_power_off(csi2rx->dphy);
->> +		goto out;
->> +	}
->> +
->> +out:
->> +	phy_pm_runtime_put_sync(csi2rx->dphy);
->> +
->> +	return ret;
->> +}
->> +
->>  static int csi2rx_start(struct csi2rx_priv *csi2rx)
->>  {
->> +	struct v4l2_subdev_format sd_fmt;
->>  	unsigned int i;
->>  	unsigned long lanes_used = 0;
->>  	u32 reg;
->> +	u32 dt = 0;
->>  	int ret;
->>  
->>  	ret = clk_prepare_enable(csi2rx->p_clk);
->>  	if (ret)
->>  		return ret;
->>  
->> +	reset_control_deassert(csi2rx->p_rst);
-> 
-> Support for reset controllers should also be split to a patch of its
-> own.
-
-OK, will split the patch according to logic change.
-
-> 
->> +
->>  	csi2rx_reset(csi2rx);
->>  
->>  	reg = csi2rx->num_lanes << 8;
->> @@ -139,6 +301,29 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->>  	if (ret)
->>  		goto err_disable_pclk;
->>  
->> +	/* Enable DPHY clk and data lanes. */
->> +	if (csi2rx->dphy) {
->> +		reg = CSI2RX_DPHY_CL_EN | CSI2RX_DPHY_CL_RST;
->> +		for (i = 0; i < csi2rx->num_lanes; i++) {
->> +			reg |= CSI2RX_DPHY_DL_EN(csi2rx->lanes[i] - 1);
->> +			reg |= CSI2RX_DPHY_DL_RST(csi2rx->lanes[i] - 1);
->> +		}
->> +
->> +		writel(reg, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
->> +	}
->> +
->> +	sd_fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
->> +	sd_fmt.pad = 0;
->> +
->> +	ret = v4l2_subdev_call(csi2rx->source_subdev, pad, get_fmt, NULL,
->> +			       &sd_fmt);
-> 
-> Same as above regarding the format.
-
-OK, will fix.
-
-> 
->> +	if (ret)
->> +		dev_warn(csi2rx->dev, "Couldn't get format\n");
->> +
->> +	dt = csi2rx_get_dt(sd_fmt.format.code);
->> +	if (!dt)
-> 
-> When you reach this point, the format should be guaranteed to be valid
-> as .set_fmt() will have adjusted it. There should thus be no need to
-> handle errors.
-> 
->> +		dev_warn(csi2rx->dev, "Couldn't get dt\n");
->> +
->>  	/*
->>  	 * Create a static mapping between the CSI virtual channels
->>  	 * and the output stream.
->> @@ -154,6 +339,8 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->>  		if (ret)
->>  			goto err_disable_pixclk;
->>  
->> +		reset_control_deassert(csi2rx->pixel_rst[i]);
->> +
->>  		writel(CSI2RX_STREAM_CFG_FIFO_MODE_LARGE_BUF,
->>  		       csi2rx->base + CSI2RX_STREAM_CFG_REG(i));
->>  
->> @@ -161,6 +348,11 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->>  		       CSI2RX_STREAM_DATA_CFG_VC_SELECT(i),
->>  		       csi2rx->base + CSI2RX_STREAM_DATA_CFG_REG(i));
->>  
->> +		if (dt)
->> +			writel(readl(csi2rx->base + CSI2RX_STREAM_DATA_CFG_REG(i)) |
->> +			       CSI2RX_STREAM_DATA_CFG_EN_DATA_TYPE_0 | dt,
->> +			       csi2rx->base + CSI2RX_STREAM_DATA_CFG_REG(i));
-> 
-> Support for CSI-2 DT should be split to a patch of its own.
-
-CSI-2 DT is not necessary. I will drop the relevant code.
-
-> 
->> +
->>  		writel(CSI2RX_STREAM_CTRL_START,
->>  		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
->>  	}
->> @@ -169,10 +361,27 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->>  	if (ret)
->>  		goto err_disable_pixclk;
->>  
->> +	if (csi2rx->platform_info && csi2rx->platform_info->sys_clk_rate > 0)
->> +		clk_set_rate(csi2rx->sys_clk,
->> +			     csi2rx->platform_info->sys_clk_rate);
->> +
->> +	reset_control_deassert(csi2rx->sys_rst);
->> +
->> +	if (csi2rx->dphy) {
->> +		ret = csi2rx_configure_ext_dphy(csi2rx);
->> +		if (ret) {
->> +			dev_err(csi2rx->dev,
->> +				"Failed to configure external DPHY: %d\n", ret);
->> +			goto err_disable_sysclk;
->> +		}
->> +	}
->> +
->>  	clk_disable_unprepare(csi2rx->p_clk);
->>  
->>  	return 0;
->>  
->> +err_disable_sysclk:
->> +	clk_disable_unprepare(csi2rx->sys_clk);
->>  err_disable_pixclk:
->>  	for (; i > 0; i--)
->>  		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
->> @@ -188,18 +397,28 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
->>  	unsigned int i;
->>  
->>  	clk_prepare_enable(csi2rx->p_clk);
->> +	reset_control_assert(csi2rx->sys_rst);
->>  	clk_disable_unprepare(csi2rx->sys_clk);
->>  
->>  	for (i = 0; i < csi2rx->max_streams; i++) {
->>  		writel(0, csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
->>  
->> +		reset_control_assert(csi2rx->pixel_rst[i]);
->>  		clk_disable_unprepare(csi2rx->pixel_clk[i]);
->>  	}
->>  
->> +	reset_control_assert(csi2rx->p_rst);
->>  	clk_disable_unprepare(csi2rx->p_clk);
->>  
->>  	if (v4l2_subdev_call(csi2rx->source_subdev, video, s_stream, false))
->>  		dev_warn(csi2rx->dev, "Couldn't disable our subdev\n");
->> +
->> +	if (csi2rx->dphy) {
->> +		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
->> +
->> +		if (phy_power_off(csi2rx->dphy))
->> +			dev_warn(csi2rx->dev, "Couldn't power off DPHY\n");
->> +	}
->>  }
->>  
->>  static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
->> @@ -236,11 +455,16 @@ static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
->>  	return ret;
->>  }
->>  
->> +static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
->> +	.s_power = csi2rx_s_power,
->> +};
->> +
->>  static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
->>  	.s_stream	= csi2rx_s_stream,
->>  };
->>  
->>  static const struct v4l2_subdev_ops csi2rx_subdev_ops = {
->> +	.core		= &csi2rx_core_ops,
->>  	.video		= &csi2rx_video_ops,
->>  };
->>  
->> @@ -250,6 +474,8 @@ static int csi2rx_async_bound(struct v4l2_async_notifier *notifier,
->>  {
->>  	struct v4l2_subdev *subdev = notifier->sd;
->>  	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
->> +	struct v4l2_device *v4l2_dev;
->> +	int ret;
->>  
->>  	csi2rx->source_pad = media_entity_get_fwnode_pad(&s_subdev->entity,
->>  							 s_subdev->fwnode,
->> @@ -265,6 +491,15 @@ static int csi2rx_async_bound(struct v4l2_async_notifier *notifier,
->>  	dev_dbg(csi2rx->dev, "Bound %s pad: %d\n", s_subdev->name,
->>  		csi2rx->source_pad);
->>  
->> +	/* ensure source subdev register subdev node */
->> +	v4l2_dev = notifier->v4l2_dev ? notifier->v4l2_dev :
->> +		notifier->parent->v4l2_dev;
->> +	if (v4l2_dev) {
->> +		ret = v4l2_device_register_subdev_nodes(v4l2_dev);
-> 
-> This belongs to the main driver (the camss in your case), not this
-> driver.
-
-OK, will fix.
-
-> 
->> +		if (ret < 0)
->> +			return ret;
->> +	}
->> +
->>  	return media_create_pad_link(&csi2rx->source_subdev->entity,
->>  				     csi2rx->source_pad,
->>  				     &csi2rx->subdev.entity, 0,
->> @@ -299,21 +534,23 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
->>  		return PTR_ERR(csi2rx->p_clk);
->>  	}
->>  
->> +	csi2rx->sys_rst =
->> +		devm_reset_control_get_optional_exclusive(&pdev->dev,
->> +							  "sys_rst");
->> +	if (IS_ERR(csi2rx->sys_rst))
->> +		return PTR_ERR(csi2rx->sys_rst);
->> +
->> +	csi2rx->p_rst =
->> +		devm_reset_control_get_optional_exclusive(&pdev->dev, "p_rst");
->> +	if (IS_ERR(csi2rx->p_rst))
->> +		return PTR_ERR(csi2rx->p_rst);
->> +
->>  	csi2rx->dphy = devm_phy_optional_get(&pdev->dev, "dphy");
->>  	if (IS_ERR(csi2rx->dphy)) {
->>  		dev_err(&pdev->dev, "Couldn't get external D-PHY\n");
->>  		return PTR_ERR(csi2rx->dphy);
->>  	}
->>  
->> -	/*
->> -	 * FIXME: Once we'll have external D-PHY support, the check
->> -	 * will need to be removed.
->> -	 */
->> -	if (csi2rx->dphy) {
->> -		dev_err(&pdev->dev, "External D-PHY not supported yet\n");
->> -		return -EINVAL;
->> -	}
->> -
->>  	ret = clk_prepare_enable(csi2rx->p_clk);
->>  	if (ret) {
->>  		dev_err(&pdev->dev, "Couldn't prepare and enable P clock\n");
->> @@ -343,13 +580,14 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
->>  	 * FIXME: Once we'll have internal D-PHY support, the check
->>  	 * will need to be removed.
->>  	 */
->> -	if (csi2rx->has_internal_dphy) {
->> +	if (!csi2rx->dphy && csi2rx->has_internal_dphy) {
->>  		dev_err(&pdev->dev, "Internal D-PHY not supported yet\n");
->>  		return -EINVAL;
->>  	}
->>  
->>  	for (i = 0; i < csi2rx->max_streams; i++) {
->>  		char clk_name[16];
->> +		char rst_name[16];
->>  
->>  		snprintf(clk_name, sizeof(clk_name), "pixel_if%u_clk", i);
->>  		csi2rx->pixel_clk[i] = devm_clk_get(&pdev->dev, clk_name);
->> @@ -357,6 +595,13 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
->>  			dev_err(&pdev->dev, "Couldn't get clock %s\n", clk_name);
->>  			return PTR_ERR(csi2rx->pixel_clk[i]);
->>  		}
->> +
->> +		snprintf(rst_name, sizeof(rst_name), "pixel_if%u_rst", i);
->> +		csi2rx->pixel_rst[i] =
->> +			devm_reset_control_get_optional_exclusive(&pdev->dev,
->> +								  rst_name);
->> +		if (IS_ERR(csi2rx->pixel_rst[i]))
->> +			return PTR_ERR(csi2rx->pixel_rst[i]);
->>  	}
->>  
->>  	return 0;
->> @@ -425,6 +670,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->>  	csi2rx = kzalloc(sizeof(*csi2rx), GFP_KERNEL);
->>  	if (!csi2rx)
->>  		return -ENOMEM;
->> +	csi2rx->platform_info = of_device_get_match_data(&pdev->dev);
->>  	platform_set_drvdata(pdev, csi2rx);
->>  	csi2rx->dev = &pdev->dev;
->>  	mutex_init(&csi2rx->lock);
->> @@ -441,6 +687,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->>  	csi2rx->subdev.dev = &pdev->dev;
->>  	v4l2_subdev_init(&csi2rx->subdev, &csi2rx_subdev_ops);
->>  	v4l2_set_subdevdata(&csi2rx->subdev, &pdev->dev);
->> +	csi2rx->subdev.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->>  	snprintf(csi2rx->subdev.name, V4L2_SUBDEV_NAME_SIZE, "%s.%s",
->>  		 KBUILD_MODNAME, dev_name(&pdev->dev));
->>  
->> @@ -462,6 +709,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->>  	dev_info(&pdev->dev,
->>  		 "Probed CSI2RX with %u/%u lanes, %u streams, %s D-PHY\n",
->>  		 csi2rx->num_lanes, csi2rx->max_lanes, csi2rx->max_streams,
->> +		 csi2rx->dphy ? "external" :
->>  		 csi2rx->has_internal_dphy ? "internal" : "no");
->>  
->>  	return 0;
->> @@ -483,8 +731,13 @@ static int csi2rx_remove(struct platform_device *pdev)
->>  	return 0;
->>  }
->>  
->> +static const struct csi2rx_platform_info stf_jh7110_info = {
->> +	.sys_clk_rate = 297000000,
-> 
-> This sounds like something that would be better handled through the
-> assigned-clock-rates property in DT.
-
-OK, will use assigned-clock-rates property in DT.
-
-> 
->> +};
->> +
->>  static const struct of_device_id csi2rx_of_table[] = {
->>  	{ .compatible = "cdns,csi2rx" },
->> +	{ .compatible = "starfive,jh7110-csi2rx", .data = &stf_jh7110_info },
-> 
-> I would move SoC-specific compatible strings before the generic one.
-
-OK, will move it before the generic one.
-
-> Maxime, is there a need to keep the generic compatible string now that
-> we have SoC-specific support ?
-
-The existing bindings state
-
-  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
-
-It might be better to keep the generic compatible string.
-
-> 
->>  	{ },
->>  };
->>  MODULE_DEVICE_TABLE(of, csi2rx_of_table);
-> 
+-- 
+heikki
