@@ -2,83 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5F16C1FB3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD05A6C1FE3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:35:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231394AbjCTS3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 14:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54364 "EHLO
+        id S229995AbjCTSfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 14:35:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231181AbjCTS3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:29:19 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB22303FD
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:22:02 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id o12so50375570edb.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:22:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679336501;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/X9WXUcUsiurfEv5uSz+kyXpuEydk+JbwaKqCGJ/9xc=;
-        b=FRrtmnC2erBBSvcnfzAxZ0K+BNPrRJi9gvV+Y0DLpIQtW9/q8vTte52DHucVARi5H/
-         iclHcJca1gpjlufGutbrbuwc00BP02ijcdvHXFUkU25oUNNbWEEKyoQvEZDbdZtn8t1h
-         98euk1Ifedp56RVTl6lrri/uS/bNgxHQKaeinYrOOHIO3N9/vUDJ1EqYl5aEbE1iGOOR
-         IUR3ZXzHvz1cNRsN/VPaWWMvImetsMXlGM8sS6wmyZAF3qOADyXPbR2B8aBL+nYhZ0UQ
-         TTKzSsx2aI4XnTJWxlbglCJ+4TdHPspN3cb4xSfJze97oV18jxT1eC5k5ZXCzqeT4UIH
-         34Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679336501;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/X9WXUcUsiurfEv5uSz+kyXpuEydk+JbwaKqCGJ/9xc=;
-        b=OEmnS4JWCfMA12BCC4woEp70YEBz+FMgeS2uVOSsm3/MsprrqOUbS+HIr+mUDMhuxm
-         Yr/vZ3YbaUKnVAEKrsNTjAaPe87sAyUrS1YlDoGxVwtSj25lNPtmQdQDJfrFsla2Fs1Z
-         YvHPw3ciA+MM8tJDWhHS6nlX90CPSFX5d6lf3KDHss5ausL2vWZpapmB3Rs7+77wlZ3m
-         a8YiIZv1k0AcRT4A6J7Y2kn+uhybCNORDCDtxgcHRgo5HfLii4wZ2wXqmk5xLY+FUj54
-         rjbJ9EM32aEaMnqKuJvqrjg0UkA3KMc/IBpjeKvhtGAy/fgHVzHwld8Lfp7HDfiK9RBP
-         fzAA==
-X-Gm-Message-State: AO0yUKWTOkGVKfCKi2lwQ9DWbR2tX0jVmruXJ2QhIeP2QhCUmRiEkbDu
-        c61/ta+tjCRHxJhG7w87l9RReg==
-X-Google-Smtp-Source: AK7set/TzLbyJz/SUqgVkIflRB13JN7Q1OB7bH1C/bWuRTHbXNImEIuhuCpFYE0Hfc2BS6vLAusRJw==
-X-Received: by 2002:a17:906:7fcb:b0:930:6ead:f81 with SMTP id r11-20020a1709067fcb00b009306ead0f81mr9440396ejs.71.1679336500884;
-        Mon, 20 Mar 2023 11:21:40 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:458e:64e7:8cf1:78b0? ([2a02:810d:15c0:828:458e:64e7:8cf1:78b0])
-        by smtp.gmail.com with ESMTPSA id i27-20020a170906251b00b0093128426980sm4743489ejb.48.2023.03.20.11.21.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 11:21:40 -0700 (PDT)
-Message-ID: <f8227202-95ba-7dae-8f41-2023d7a08691@linaro.org>
-Date:   Mon, 20 Mar 2023 19:21:39 +0100
+        with ESMTP id S231496AbjCTSep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:34:45 -0400
+Received: from sender3-op-o19.zoho.com (sender3-op-o19.zoho.com [136.143.184.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF2D315CA2
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 11:26:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1679336618; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=OYpZ8/MOy9/Sv5w/gjuY/jMFNCToIzLNTzT7zIWp77kYm+evVOI3i5rrD82y8xKaQHI+DFYsDmQq+HuUob7hJ4obnCQ9AeSCodFtRq5UyivirXi+hvxsg0wHY2KYXWUiqMaJmeWGOI1kueZkVmo2EtIMCwJfuT0EJf1fo8Coayo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1679336618; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=so7tX6OW8//LFmzMA4l6Ntrngg/J9YJH/igJ97ZyXrs=; 
+        b=nG+N3IzKipK81vh2DnBEWZ8Y1CgdD+jEQ1D9BoF9T2V/bW5f//TrVk2G4VbXCsegA61dg7RYLPTmlvBy4e1sf3Vx6AUvN4H5x9z4NXdHG2yn3i+X9i+A9Cf3r5+uAStQzLwpb7Gv4dl8gCYmJENCGMuLyKVslIsmeXq2+5qH9hU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679336618;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=so7tX6OW8//LFmzMA4l6Ntrngg/J9YJH/igJ97ZyXrs=;
+        b=NZ4+d6yGK+tBdGjKHfUksQWt0tCnk+puc1vo3QZUhzsoHC79RJwvm5HxqS5q3hrg
+        3JhkFabTOWBa1ztiHnK4Z7iFHTOI287C6BZCiSVkQNsnKI1RvLGnPp5ULpSbPZapvEw
+        GXPya8bJ9vqJBCKpJZXp3el2kpfLIhU0uzeG2x7k=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1679336616427517.2861213917661; Mon, 20 Mar 2023 11:23:36 -0700 (PDT)
+Message-ID: <6a8989c5-f12d-a4cb-9b20-29049dee016e@arinc9.com>
+Date:   Mon, 20 Mar 2023 21:23:31 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 5/7] dt-bindings: sound: Add support for the Lantiq
- PEF2256 codec
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
+ tree binding documentation
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-clk@vger.kernel.org
+Cc:     linux-mips@vger.kernel.org, tsbogend@alpha.franken.de,
+        john@phrozen.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+ <20230320161823.1424278-2-sergio.paracuellos@gmail.com>
+ <5109c01b-48bd-2854-3f42-bf8ef8b4a821@linaro.org>
+ <9cfd5bc1-64e9-5250-5a8d-18ac4c205584@arinc9.com>
+ <f323f1bc-1d91-f8bb-2c1f-2f1b93fe1b3e@linaro.org>
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230316122741.577663-1-herve.codina@bootlin.com>
- <20230316122741.577663-6-herve.codina@bootlin.com>
- <2d4dae57-e46d-7e81-9b56-2148074c8406@linaro.org>
- <20230320191700.3d48e264@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320191700.3d48e264@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <f323f1bc-1d91-f8bb-2c1f-2f1b93fe1b3e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -89,65 +70,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 19:17, Herve Codina wrote:
-> Hi Krzysztof
-> 
-> On Fri, 17 Mar 2023 09:57:11 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 16/03/2023 13:27, Herve Codina wrote:
->>> The Lantiq PEF2256, also known as Infineon PEF2256 or FALC256, is a
->>> framer and line interface component designed to fulfill all required
->>> interfacing between an analog E1/T1/J1 line and the digital PCM system
->>> highway/H.100 bus.
+On 20.03.2023 21:11, Krzysztof Kozlowski wrote:
+> On 20/03/2023 19:07, Arınç ÜNAL wrote:
+>> On 20.03.2023 21:01, Krzysztof Kozlowski wrote:
+>>> On 20/03/2023 17:18, Sergio Paracuellos wrote:
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - enum:
+>>>> +          - ralink,rt2880-sysc
+>>>> +          - ralink,rt3050-sysc
+>>>> +          - ralink,rt3052-sysc
+>>>> +          - ralink,rt3352-sysc
+>>>> +          - ralink,rt3883-sysc
+>>>> +          - ralink,rt5350-sysc
+>>>> +          - ralink,mt7620-sysc
+>>>> +          - ralink,mt7620a-sysc
+>>>> +          - ralink,mt7628-sysc
+>>>> +          - ralink,mt7688-sysc
 >>>
->>> The codec support allows to use some of the PCM system highway
->>> time-slots as audio channels to transport audio data over the E1/T1/J1
->>> lines.
->>>   
+>>> One more comment - this and maybe other compatibles - have wrong vendor
+>>> prefix. This is mediatek, not ralink.
 >>
->> Your other file should also have specific compatible, unless this codec
->> is actually part of the framer. Did not look like this in the binding -
->> not $ref.
+>> This platform was acquired from Ralink by MediaTek. I couldn't change
+>> some existing ralink compatible strings to mediatek as Rob explained on
+>> my pinctrl patch series that we don't do that. The compatible strings on
+>> this patch series here are new but I'd rather keep the compatible
+>> strings ralink to keep things consistent.
 > 
-> No sure to understand what you mean.
+> The comment that you cannot change existing compatibles does not apply
+> to these, because these are new. However indeed some SoCs have already
+> compatibles with ralink, so it's fine for these. mt7620 and mt7628 are
+> already used with mediatek, so these should be rather corrected to new
+> prefix.
 
-Compatible "lantiq,pef2256" in the context of this file is confusing.
-Two devices without parent-child having similar but different
-compatibles, of which one is generic (covers entire device) and one is
-function (codec) specific.
+If you're talking about the pinctrl schemas for MT7620 and MT7628, it's 
+just the name of the yaml files that have mediatek. The compatible 
+string is still ralink so it should be kept ralink here as well.
 
-
-> 
-> Anyway, I plan to use a MFD device for pef2256 and reference this yaml
-> from the lantiq,pef2256.yaml in the node related to the codec.
-
-It should be part of these series. Submit complete bindings.
-
-> 
-> One question related to bindings and related checks:
-> Is there a way to check the compatible property of the parent node.
-> I mean, here is the binding of a child node of a MFD node.
-> From this binding, I would like to be sure that the parent is really a
-> pef2256 MFD node.
-
-You cannot and you shouldn't. Parent checks children, not vice-versa.
-
-> 
-> May be something like:
->   parent-properties:
->     allOf:
->       compatible:
->         contains:
->           const: lantiq,pef2256
-> 
-> The idea is to have dtbs_check raise an error if the parent's compatible
-> property is not 'lantiq,pef2256'.
-
-But it does not matter. Why your device cannot be used in
-lantiq,foobar-9999?
-
-
-Best regards,
-Krzysztof
-
+Arınç
