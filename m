@@ -2,225 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBA296C0ED8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 493236C0F16
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjCTKcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 06:32:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46360 "EHLO
+        id S230366AbjCTKiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 06:38:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbjCTKbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:31:47 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2CE623DBF;
-        Mon, 20 Mar 2023 03:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679308297; x=1710844297;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version:content-id;
-  bh=u75KIvpojk8bOs9GDkjrsePIrDttzD1llg3QobSi+Xo=;
-  b=RgqFIs8c49Ngm0KBuDSrnD/HYCQSwjMXpsC6o4Oz4ZBeWG2kvQvV/teZ
-   6o2eiUmKnOJ/lQTRm+9NEXdqZ43zrVnKOTCkLW/2L3FtjSolJgv3FF20/
-   D98Tsj3TWVON3NHPhSPSrCF7xOhkEECmq5F227bCoz2sZghCD1HLnrUeL
-   kqAFvvbOpGjq+sTk9wNRMypXC+/bNv+lDvRxwKJiBIEJDlpMyn3+woiVl
-   GsEprTcQFYZln+64sV4ftMa4/dBh4JlRzI6328CwGqM3z9mjCvrpnAVyk
-   /6YWjHybehmr1G8RsLnwz1Ot32W3roloN3f0td9KtT1QknNNvTDItXbpZ
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="326997580"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="326997580"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 03:31:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="713523451"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; 
-   d="scan'208";a="713523451"
-Received: from mbouhaou-mobl1.ger.corp.intel.com ([10.252.61.151])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 03:31:31 -0700
-Date:   Mon, 20 Mar 2023 12:31:29 +0200 (EET)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Jacky Huang <ychuang570808@gmail.com>
-cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>, schung@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH 12/15] clk: nuvoton: Add clock driver for ma35d1 clock
- controller
-In-Reply-To: <00c3748b-61fa-f14b-f92c-b60fd9d6b4ee@gmail.com>
-Message-ID: <9115473c-2e88-da76-9631-ca19b9129be4@linux.intel.com>
-References: <20230315072902.9298-1-ychuang570808@gmail.com> <20230315072902.9298-13-ychuang570808@gmail.com> <8b5854d3-2793-bc33-137e-5a2673d72329@linux.intel.com> <00c3748b-61fa-f14b-f92c-b60fd9d6b4ee@gmail.com>
+        with ESMTP id S230376AbjCTKiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:38:01 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EF0B3EB6B;
+        Mon, 20 Mar 2023 03:37:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9C7DDFEC;
+        Mon, 20 Mar 2023 03:37:58 -0700 (PDT)
+Received: from [10.57.53.93] (unknown [10.57.53.93])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 03C043F67D;
+        Mon, 20 Mar 2023 03:37:11 -0700 (PDT)
+Message-ID: <aa4090eb-4d9a-3c3b-afab-94d7132af0c7@arm.com>
+Date:   Mon, 20 Mar 2023 10:37:10 +0000
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-1678519641-1679307619=:2177"
-Content-ID: <3549237f-f963-10e-aa4c-3c3227b3c958@linux.intel.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH 6/7] of/platform: Skip coresight etm4x devices from AMBA
+ bus
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        scclevenger@os.amperecomputing.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
+ <20230317030501.1811905-7-anshuman.khandual@arm.com>
+ <CAL_JsqK8vnwTZ3-nTd-S+dpCrQebAUm-NRiaJBE6KkoAVq=Ovg@mail.gmail.com>
+ <b1518e16-d74b-719c-a0fc-bc172a6011c4@arm.com>
+ <CAL_JsqKQWL4Y9zZj5x11QUB=8N9GLKo26EX=fVxXes_gShYf7Q@mail.gmail.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <CAL_JsqKQWL4Y9zZj5x11QUB=8N9GLKo26EX=fVxXes_gShYf7Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-1678519641-1679307619=:2177
-Content-Type: text/plain; CHARSET=UTF-8
-Content-Transfer-Encoding: 8BIT
-Content-ID: <7de21190-7ef6-abd3-494-1cf39f4974d4@linux.intel.com>
+On 17/03/2023 20:06, Rob Herring wrote:
+> On Fri, Mar 17, 2023 at 11:03 AM Suzuki K Poulose
+> <suzuki.poulose@arm.com> wrote:
+>>
+>> Hi Rob
+>>
+>> Thanks for your response.
+>>
+>> On 17/03/2023 14:52, Rob Herring wrote:
+>>> On Thu, Mar 16, 2023 at 10:06 PM Anshuman Khandual
+>>> <anshuman.khandual@arm.com> wrote:
+>>>>
+>>>> Allow other drivers to claim a device, disregarding the "priority" of
+>>>> "arm,primecell". e.g., CoreSight ETM4x devices could be accessed via MMIO
+>>>> (AMBA Bus) or via CPU system instructions.
+>>>
+>>> The OS can pick which one, use both, or this is a system integration
+>>> time decision?
+>>
+>> Not an OS choice. Historically, this has always been MMIO accessed but
+>> with v8.4 TraceFiltering support, CPUs are encouraged to use system
+>> instructions and obsolete MMIO. So, yes, MMIO is still possible but
+>> something that is discouraged and have to be decided at system
+>> integration time.
+>>
+>>>
+>>>> The CoreSight ETM4x platform
+>>>> driver can now handle both types of devices. In order to make sure the
+>>>> driver gets to handle the "MMIO based" devices, which always had the
+>>>> "arm,primecell" compatible, we have two options :
+>>>>
+>>>> 1) Remove the "arm,primecell" from the DTS. But this may be problematic
+>>>>    for an older kernel without the support.
+>>>>
+>>>> 2) The other option is to allow OF code to "ignore" the arm,primecell
+>>>> priority for a selected list of compatibles. This would make sure that
+>>>> both older kernels and the new kernels work fine without breaking
+>>>> the functionality. The new DTS could always have the "arm,primecell"
+>>>> removed.
+>>>
+>>> 3) Drop patches 6 and 7 and just register as both AMBA and platform
+>>> drivers. It's just some extra boilerplate. I would also do different
+>>> compatible strings for CPU system instruction version (assuming this
+>>> is an integration time decision).
+>>
+>> The system instruction (and the reigster layouts) are all part of the
+>> ETMv4/ETE architecture and specific capabilities/features are
+>> discoverable, just like the Arm CPUs. Thus we don't need special
+>> versions within the ETMv4x or ETE minor versions. As of now, we have
+>> one for etm4x and another for ete.
+> 
+> I just meant 2 new compatible strings. One each for ETMv4x and ETE,
+> but different from the 2 existing ones. It is different h/w presented
+> to the OS, so different compatible.
+> 
 
-On Sun, 19 Mar 2023, Jacky Huang wrote:
+Sorry, was not very clear here.
+
+Right now, we have :
+
+1) arm,coresight-etm4x && arm,primecell - For AMBA based devices
+2) arm,coresight-etm4x-sysreg	- For system instruction based
+3) arm,embedded-trace-extension - For ETE
+
+
+>> One problem with the AMBA driver in place is having to keep on adding
+>> new PIDs for the CPUs. The other option is to have a blanket mask
+>> for matching the PIDs with AMBA_UCI_ID checks.
+> 
+> But if MMIO access is discouraged, then new h/w would use the platform
+> driver(s), not the amba driver, and you won't have to add PIDs.
+
+Yes for v8.4 onwards. Alternatively, the newer DTS could skip 
+arm,primecell in the entry and that would kick the platform driver
+in. So, that should be fine I guess.
+
+Kind regards
+Suzuki
 
 > 
-> On 2023/3/16 下午 11:56, Ilpo Järvinen wrote:
-> > On Wed, 15 Mar 2023, Jacky Huang wrote:
-> > 
-> > > From: Jacky Huang <ychuang3@nuvoton.com>
-> > > 
-> > > The clock controller generates clocks for the whole chip, including
-> > > system clocks and all peripheral clocks. This driver support ma35d1
-> > > clock gating, divider, and individual PLL configuration.
-> > > 
-> > > There are 6 PLLs in ma35d1 SoC:
-> > >    - CA-PLL for the two Cortex-A35 CPU clock
-> > >    - SYS-PLL for system bus, which comes from the companion MCU
-> > >      and cannot be programmed by clock controller.
-> > >    - DDR-PLL for DDR
-> > >    - EPLL for GMAC and GFX, Display, and VDEC IPs.
-> > >    - VPLL for video output pixel clock
-> > >    - APLL for SDHC, I2S audio, and other IPs.
-> > > CA-PLL has only one operation mode.
-> > > DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
-> > > operation modes: integer mode, fraction mode, and spread specturm mode.
-> > > 
-> > > Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> > > ---
+> Rob
 
-> > > +};
-> > > +
-> > > +#define to_ma35d1_adc_clk_divider(_hw)	\
-> > > +	container_of(_hw, struct ma35d1_adc_clk_divider, hw)
-> > static inline
-> 
-> 
-> I will modify these "static" functions as "static inline".
-
-No, that's not what I meant. Make the container_of define static inline
-function instead, no other functions. (Or if you have more than one of 
-such, all of them of course).
-
-> > > +}
-> > > diff --git a/drivers/clk/nuvoton/clk-ma35d1-pll.c
-> > > b/drivers/clk/nuvoton/clk-ma35d1-pll.c
-> > > new file mode 100644
-> > > index 000000000000..79e724b148fa
-> > > --- /dev/null
-> > > +++ b/drivers/clk/nuvoton/clk-ma35d1-pll.c
-> > > @@ -0,0 +1,534 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (C) 2023 Nuvoton Technology Corp.
-> > > + * Author: Chi-Fang Li <cfli0@nuvoton.com>
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/clk-provider.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/slab.h>
-> > > +#include <linux/bitfield.h>
-> > > +
-> > > +#include "clk-ma35d1.h"
-> > > +
-> > > +#define to_ma35d1_clk_pll(clk) \
-> > > +	(container_of(clk, struct ma35d1_clk_pll, clk))
-> > static inline
-> 
-> 
-> I am sorry cannot get "static inline" refer to which one.
-> 
-> Would you give more advice here?
-> 
-> Thank you.
-
-static inline struct ...type_here... *to_ma35d1_clk_pll(struct ...type_here... *clk)
-{
-	return container_of(clk, struct ma35d1_clk_pll, clk);
-}
-
-
-> > > +	} else {
-> > > +		pr_err("Failed to set rate %ld\n", u64PllFreq);
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	u64P = (u64FCLKO >= VSIPLL_FCLK_MIN_FREQ) ? 1 :
-> > > +	       ((VSIPLL_FCLK_MIN_FREQ / u64FCLKO) +
-> > > +		((VSIPLL_FCLK_MIN_FREQ % u64FCLKO) ? 1 : 0));
-> > Ditto.
-> > 
-> > Is here some ...ROUND_UP() trick hidden too?
-> 
-> 
-> This follows the description of PLL spec.
-
-Right but I was looking into what the math does. To me this looks like 
-rounding up:
- VSIPLL_FCLK_MIN_FREQ / u64FCLKO + (VSIPLL_FCLK_MIN_FREQ % u64FCLKO ? 1 : 0)
-
-When modulo is > 0, add one, which is round up, no?
-
-There are helpers which you should use for rounding up, search for 
-*_ROUND_UP. I think math64.h had one 64-bit one.
-
-> > > +	u64X = u64tmp % 1000;
-> > > +	u32FRAC = ((u64X << 24) + 500) / 1000;
-
-I missed this earlier, is this rounding? ...Use a helper if it is. 
-Otherwise define what 500 is. (No need to answer despite question mark, 
-just do the change).
-
-> > > +
-> > > +	u64SSRATE = ((PllSrcClk >> 1) / (u32Fmod * 2)) - 1;
-> > > +	u64SLOPE = ((u64tmp * u32SR / u64SSRATE) << 24) / 100 / 1000;
-> > > +
-> > > +	u64PllClk = (PllSrcClk * u64tmp) / u64P / u64M / 1000;
-> > Is some *SEC_PER_*SEC define relevant for 1000 ?
-> > 
-> > Or some other units, e.g., HZ related?
-> 
-> 
-> 1000 is for kHz to MHz, and 100 is for percentage.
-
-Okay, then use KHZ_PER_MHZ from linux/units.h.
-
-We don't have anything for percents under include/ I think so that can be 
-left as literal.
-
-> > > +	switch (pll->mode) {
-> > > +	case VSIPLL_INTEGER_MODE:
-> > > +		u64PllClk = CLK_CalPLLFreq_Mode0(PllSrcClk, u64PllFreq,
-> > > +						 u32Reg);
-> > One line.
-> 
-> 
-> It will exceed 80 characters in one line.
-
-Yeah, the semicolon won't fit to 80 chars :-) which means there won't be 
-significant information loss even on 80 chars terminal. This kind of cases 
-is why checkpatch won't complain until 100 chars. Use common sense (don't 
-hide most of the logic to 80-100 but don't be afraid of breaking the 80 
-chars where the information loss is not significant issue).
-
-Besides, once you removed the types from variable names, it will be 
-shorter anyway.
-
-
--- 
- i.
---8323329-1678519641-1679307619=:2177--
