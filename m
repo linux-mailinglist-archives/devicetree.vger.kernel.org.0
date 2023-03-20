@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6EF6C1262
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4946C1264
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231636AbjCTMxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 08:53:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37806 "EHLO
+        id S231520AbjCTMyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 08:54:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231558AbjCTMxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:53:23 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AAC5FCA;
-        Mon, 20 Mar 2023 05:52:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5AD7EB80D5B;
-        Mon, 20 Mar 2023 12:52:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C693DC4339B;
-        Mon, 20 Mar 2023 12:52:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679316726;
-        bh=n5+Z0EWzVOx+HrYkSJdus/2VhgrkucWhKSzM/jEvrrA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JSdfOY444Kn4KQdYZExJ0fhaYkkEziHh/TpN11EkvuLy7wiYxZTDRVkSaj3qcofdU
-         Ayu2cB8aoWoy27d5jE7TYxktNFbL7eBPyc6/5O4l8H5s5aUz+kzXXKIVjPOetrX0qW
-         mlMZO4Hr5h54ItwHan9Dmb+czV5I0FFfDRk1bvzkppdkAeYxENnZj9MOPKCORaHQzA
-         ogpNqiqfKOSdGz7NNM8MeD5o8lCQWHF9zoUQ6edXbr+5buNPWLhB/DFT0t4LO+7WXF
-         WFf/KBl2IU1VC5rd7n5XsobNOPcDgesiGzmKKX1X1SIaDCTgfJtp1XUqXgnCR46Nr1
-         2tAyNltueNPaw==
-Date:   Mon, 20 Mar 2023 12:52:00 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     zhuyinbo <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <9917d619-1104-4040-bb6f-c564fcf72806@sirena.org.uk>
-References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
- <20230317082950.12738-3-zhuyinbo@loongson.cn>
- <68b6034f-8305-4854-a4c9-962be988ade7@sirena.org.uk>
- <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
+        with ESMTP id S231672AbjCTMxj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:53:39 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF41D10416;
+        Mon, 20 Mar 2023 05:52:49 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id a32so11969799ljr.9;
+        Mon, 20 Mar 2023 05:52:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679316768;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zCToRhyvamqpUChblok6lbeYTkxrxScmxRdGNZTiQXQ=;
+        b=hXwQuDiR7xgFlpYbDYDX8VjJaFYLQuQ2cb/hE4kCQ3u7w0dMhJ3WnHPy59pTozkDOQ
+         ThkjLKj3sNbISRTaG+7gC9BdVtN0+PQt5xu8RqTs1ixxO8GA9N/2herx/sNBwnI4JSmY
+         UAd5UWjXHlGblFGXj6F6ceNtISGrha1L/pwV2F0sVitytDb5kywIgwCS049R+UiSrPBy
+         dIL11sNyitVSrLW7lHx0DnwC48XHXYNa+M4GvjX66plt1ftUTNluNuW+rigKddarElR/
+         Uv+qYtEKGWaAr+leddvnl3QQwKk2pI5QVcbyp9/udEYdZSceTdhUTIZvkgJOZG0+pCG2
+         nQgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679316768;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zCToRhyvamqpUChblok6lbeYTkxrxScmxRdGNZTiQXQ=;
+        b=6wF/4KGQCAew3cU1/YhplhEP193Bou6yn2BBCgyiPooh+I+X4Yj5TwXT6tJPO7ffaM
+         y7bSI56mDm+0UixhUCEdlb9xih1X7T7HqzPiWD0hR2GErojI2hCVe2JNEEVBcmg/EiG+
+         T6KhXpYdUEugILN0AgC+RKp7N+cP30qhUww6o3ZexiBMUOd9vECq3ryJsM3Pu3ynup9l
+         N4pxGrEJxuKuQo38/YjsoCN6o/rqXZMPwylqA9xyYWIqVdTDNN+xGZCefzGQGdnkoY8s
+         LiZRq46CVcyheuuZYjmFcWnHFtQAs9vhtxdl4Ti1xQqSV30GH31qSjrQcI90KXyx1H6P
+         +YIA==
+X-Gm-Message-State: AO0yUKUL3QbetqJ7VualnIsFAlxO2Mun40AyPsnnSVsQK1kwApgnRyF9
+        7WjbrCDPqIqJTs/rXODfcpIrXC9IyAY=
+X-Google-Smtp-Source: AK7set9ABfMHLkdwBXy7qpN2dpsdelT7S9eqrnTc1mDgipV3LpikiNQJ1ZCO6//w0RHspkNadvxGMA==
+X-Received: by 2002:a05:651c:50b:b0:298:a864:8c14 with SMTP id o11-20020a05651c050b00b00298a8648c14mr8117364ljp.10.1679316768151;
+        Mon, 20 Mar 2023 05:52:48 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id r2-20020a2eb602000000b0029a1ccdc560sm1730478ljn.118.2023.03.20.05.52.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Mar 2023 05:52:47 -0700 (PDT)
+Message-ID: <f2bb93af-da9c-cf16-2f07-90e653af662f@gmail.com>
+Date:   Mon, 20 Mar 2023 14:52:46 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UQy/+RE7PqT3TMK0"
-Content-Disposition: inline
-In-Reply-To: <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
-X-Cookie: Keep away from fire or flame.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1679009443.git.mehdi.djait.k@gmail.com>
+ <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
+ <4c28925d-c07c-61b7-8863-9c00e6846687@gmail.com>
+ <20230320123408.000008c0@Huawei.com>
+Content-Language: en-US, en-GB
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20230320123408.000008c0@Huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 3/20/23 14:34, Jonathan Cameron wrote:
+> On Mon, 20 Mar 2023 11:35:06 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> On 3/17/23 01:48, Mehdi Djait wrote:
+>>
+>> OTOH, to really benefit from this we should probably pull out the
+>> regmap-configs from the kionix-kx022a.c. I am not really sure where we
+>> should put it then though. Hence, if there is no good ideas how to split
+>> the config and chip-info so they are only available/used where needed -
+>> then I am also Ok with the current approach.
+> 
+> Definitely stick to current approach.  If I had the time I'd
+> rip out all the code useing enums in match tables. It's bitten us
+> a few times with nasty to track down bugs that only affect more obscure
+> ways of binding the driver.
+> 
 
---UQy/+RE7PqT3TMK0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Seems like Jonathan has a strong opinion on this. Please follow his and 
+Andy's guidance on this one and forget my comment.
 
-On Sat, Mar 18, 2023 at 02:07:16PM +0800, zhuyinbo wrote:
-> =E5=9C=A8 2023/3/18 =E4=B8=8A=E5=8D=8812:26, Mark Brown =E5=86=99=E9=81=
-=93:
-> > On Fri, Mar 17, 2023 at 04:29:50PM +0800, Yinbo Zhu wrote:
 
-> > As IIRC I mentioned last time setup() might be called while other
-> > transfers are happening and therefore shouldn't affect parallel
-> > operations on other devices.
+Yours,
+	-- Matti
 
-> I think add spin_lock in=C2=A0 transfer_one interface that should be to f=
-ix this
-> issue, Do you think so?
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-No, that doesn't help if setup() reconfigures the controller while it's
-doing a transfer.  The issue is that the controller might be put into
-the wrong mode or run at the wrong speed.
+~~ When things go utterly wrong vim users can always type :help! ~~
 
---UQy/+RE7PqT3TMK0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQYVu8ACgkQJNaLcl1U
-h9AP6gf/SBhSh2gZSV/RhDWzmCpbWueMzWS3CZY7eGRvr0gQ0FIQQUH+zMtP0kl9
-Hy24uUGeIFHBL26BUmzuWegPU3iWcj3eFS22XHmRpJCz6mtlLDK6tgYL7DTSUPZ0
-aAMpB/r9uopGNetiidI8I2/eyN39WIJEt5Cfp9otSSYE0dqcoS/ufOKv3EIlyf7q
-9M29FCI9GtiHgn54mNMY7TEC7DLcP7ZrbOl+fif8715RanAePrSQx7qo5XSrnpbR
-ZSpOpf/TNnPHYCsCcsOCYqzM6wooC1ri8B06WXO7IQ+r6E4NUrVH501vozYeq0wG
-Rs0U1X7q6K8DPh2F5YfMYd5pelLMHg==
-=iIdB
------END PGP SIGNATURE-----
-
---UQy/+RE7PqT3TMK0--
