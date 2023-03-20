@@ -2,179 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E726C1259
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B6EF6C1262
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 13:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbjCTMxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 08:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56638 "EHLO
+        id S231636AbjCTMxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 08:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbjCTMwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:52:45 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8139E6A47;
-        Mon, 20 Mar 2023 05:51:16 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KCp2fu000304;
-        Mon, 20 Mar 2023 07:51:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679316662;
-        bh=9yj/sSLEFScvZN4SMkKA20b3bGP1XpPkx/aHTkcoFCo=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=BVG1BOkzCW2K3fnBQSV/5bXr9PmH2BybS8CpejKI65wlGP3DgwbT3KCYhUG1TjVil
-         QOHsMDoJFqeg666DNQlpK3HtcItZIrUeInzACEFsQY/B6qRHxe/ScztAHaMJzvTtLV
-         emLIZYR+R/wxdFFr55+fuu4hfwLZML+1IwF7/kNw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KCp23u081617
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Mar 2023 07:51:02 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
- Mar 2023 07:51:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 20 Mar 2023 07:51:02 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KCp07D015535;
-        Mon, 20 Mar 2023 07:51:01 -0500
-Date:   Mon, 20 Mar 2023 18:21:03 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Vaishnav Achath <vaishnav.a@ti.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <mripard@kernel.org>, <mchehab@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <laurent.pinchart@ideasonboard.com>,
-        <sakari.ailus@linux.intel.com>, <tomi.valkeinen@ideasonboard.com>,
-        <linux-kernel@vger.kernel.org>, <bparrot@ti.com>,
-        <niklas.soderlund+renesas@ragnatech.se>, <devarsht@ti.com>,
-        <praneeth@ti.com>, <u-kumar1@ti.com>, <vigneshr@ti.com>,
-        <nm@ti.com>, <martyn.welch@collabora.com>
-Subject: Re: [PATCH v7 10/13] media: ti: Add CSI2RX support for J721E
-Message-ID: <20230320125103.sw463k4xzgnysgo3@uda0497096>
-References: <20230314115516.667-1-vaishnav.a@ti.com>
- <20230314115516.667-11-vaishnav.a@ti.com>
+        with ESMTP id S231558AbjCTMxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 08:53:23 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AAC5FCA;
+        Mon, 20 Mar 2023 05:52:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5AD7EB80D5B;
+        Mon, 20 Mar 2023 12:52:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C693DC4339B;
+        Mon, 20 Mar 2023 12:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679316726;
+        bh=n5+Z0EWzVOx+HrYkSJdus/2VhgrkucWhKSzM/jEvrrA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JSdfOY444Kn4KQdYZExJ0fhaYkkEziHh/TpN11EkvuLy7wiYxZTDRVkSaj3qcofdU
+         Ayu2cB8aoWoy27d5jE7TYxktNFbL7eBPyc6/5O4l8H5s5aUz+kzXXKIVjPOetrX0qW
+         mlMZO4Hr5h54ItwHan9Dmb+czV5I0FFfDRk1bvzkppdkAeYxENnZj9MOPKCORaHQzA
+         ogpNqiqfKOSdGz7NNM8MeD5o8lCQWHF9zoUQ6edXbr+5buNPWLhB/DFT0t4LO+7WXF
+         WFf/KBl2IU1VC5rd7n5XsobNOPcDgesiGzmKKX1X1SIaDCTgfJtp1XUqXgnCR46Nr1
+         2tAyNltueNPaw==
+Date:   Mon, 20 Mar 2023 12:52:00 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     zhuyinbo <zhuyinbo@loongson.cn>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+Message-ID: <9917d619-1104-4040-bb6f-c564fcf72806@sirena.org.uk>
+References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
+ <20230317082950.12738-3-zhuyinbo@loongson.cn>
+ <68b6034f-8305-4854-a4c9-962be988ade7@sirena.org.uk>
+ <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xmlq6vdtjzrg2y6d"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="UQy/+RE7PqT3TMK0"
 Content-Disposition: inline
-In-Reply-To: <20230314115516.667-11-vaishnav.a@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
+X-Cookie: Keep away from fire or flame.
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---xmlq6vdtjzrg2y6d
-Content-Type: text/plain; charset=us-ascii
+
+--UQy/+RE7PqT3TMK0
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Vaishnav,
+On Sat, Mar 18, 2023 at 02:07:16PM +0800, zhuyinbo wrote:
+> =E5=9C=A8 2023/3/18 =E4=B8=8A=E5=8D=8812:26, Mark Brown =E5=86=99=E9=81=
+=93:
+> > On Fri, Mar 17, 2023 at 04:29:50PM +0800, Yinbo Zhu wrote:
 
-Thanks for the series.
+> > As IIRC I mentioned last time setup() might be called while other
+> > transfers are happening and therefore shouldn't affect parallel
+> > operations on other devices.
 
-On Mar 14, 2023 at 17:25:13 +0530, Vaishnav Achath wrote:
-> From: Pratyush Yadav <p.yadav@ti.com>
->=20
-> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
-> capture over a CSI-2 bus.
->=20
-> The Cadence CSI2RX IP acts as a bridge between the TI specific parts and
-> the CSI-2 protocol parts. TI then has a wrapper on top of this bridge
-> called the SHIM layer. It takes in data from stream 0, repacks it, and
-> sends it to memory over PSI-L DMA.
->=20
-> This driver acts as the "front end" to V4L2 client applications. It
-> implements the required ioctls and buffer operations, passes the
-> necessary calls on to the bridge, programs the SHIM layer, and performs
-> DMA via the dmaengine API to finally return the data to a buffer
-> supplied by the application.
->=20
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-> ---
-[...]
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c=20
-> b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> new file mode 100644
-> index 000000000000..0c8dad049f5b
-> --- /dev/null
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -0,0 +1,1022 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * TI CSI2 RX driver.
-> + *
-> + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.co=
-m/
-> + *
-> + * Author: Pratyush Yadav <p.yadav@ti.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/dmaengine.h>
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include <media/mipi-csi2.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-ioctl.h>
-> +#include <media/videobuf2-dma-contig.h>
-> +
-> +#define TI_CSI2RX_MODULE_NAME		"j721e-csi2rx"
-> +
-> +#define SHIM_CNTL			0x10
-> +#define SHIM_CNTL_PIX_RST		BIT(0)
-> +
-> +#define SHIM_DMACNTX			0x20
-> +#define SHIM_DMACNTX_EN			BIT(31)
-> +#define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
-> +#define SHIM_DMACNTX_FMT		GENMASK(5, 0)
-> +#define SHIM_DMACNTX_UYVY		0
-> +#define SHIM_DMACNTX_VYUY		1
-> +#define SHIM_DMACNTX_YUYV		2
-> +#define SHIM_DMACNTX_YVYU		3
-> +
-> +#define SHIM_PSI_CFG0			0x24
-> +#define SHIM_PSI_CFG0_SRC_TAG		GENMASK(15, 0)
-> +#define SHIM_PSI_CFG0_DST_TAG		GENMASK(31, 15)
+> I think add spin_lock in=C2=A0 transfer_one interface that should be to f=
+ix this
+> issue, Do you think so?
 
-This should be GENMASK(31, 16) instead.
+No, that doesn't help if setup() reconfigures the controller while it's
+doing a transfer.  The issue is that the controller might be put into
+the wrong mode or run at the wrong speed.
 
-> +
-> +#define PSIL_WORD_SIZE_BYTES		16
-> +/*
-[...]
-
-Thanks,
-Jai
-
---xmlq6vdtjzrg2y6d
+--UQy/+RE7PqT3TMK0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmQYVrQACgkQQ96R+SSa
-cUVuRBAAxtn1Z+pOBmlQ6rCENKCZcZWAQ6CFObHjfHXnjpQnIeY9pACDuYuUv+Ls
-s5rBNMWpXJv8/1vyesCMTsDgfOeJ37E3GiylvG9KuP0nFqTApzubbxydI5zs14rF
-nkkXBSJ4PtoEhEKi8pcFwAWtL0uAx0fX860oXxMTuLhJS1PGZAYfrW5oAgjhlspY
-cDEPJH14KwPfJ38TnMP5llMFbvnxpBUCV+203LBeZMzIziS21OuxYk/5uVHHaJTF
-JNBhGbYMDZUX7dD2T1vWhHvmZ9XTeRrEdLDflMRVVUndxyI13Eg3k9RvVh5c6yhq
-raAwCSk7KXoAwvX5ZV+Djd+7hHkitxbmb3GRM1Yf1x6bZgovAWfZv4xJZkKG0RBz
-/Xk+t7Zeqyoxmj7T6hOqGYnm/pNgxKqlNfOEPH4MLV+P+y7J9iIYdi1QgsqwGv/r
-xdkJft3b0IGtqKCwNK22d0+Lxvqr2zDniiJMj2li/KkX/gtVTFQE7t1p9gcD4EhM
-aQUwFDW0Q0y3oSQWbSanCgVAM4Ns4V1pYqbLQw2p1fuvofbs37bEAYkvrMgv+rEf
-FZPzT30rqBrHhFCKQz8fCMJuHq+2hE7+7SFv6KePD5wBsfhaA7xrk9Zxg5PFGRIo
-FlgL6j62yUhwExElJ3yNx8HlvGNoxFPFZZGHQb9FV2aYWfYAHh4=
-=7zFN
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQYVu8ACgkQJNaLcl1U
+h9AP6gf/SBhSh2gZSV/RhDWzmCpbWueMzWS3CZY7eGRvr0gQ0FIQQUH+zMtP0kl9
+Hy24uUGeIFHBL26BUmzuWegPU3iWcj3eFS22XHmRpJCz6mtlLDK6tgYL7DTSUPZ0
+aAMpB/r9uopGNetiidI8I2/eyN39WIJEt5Cfp9otSSYE0dqcoS/ufOKv3EIlyf7q
+9M29FCI9GtiHgn54mNMY7TEC7DLcP7ZrbOl+fif8715RanAePrSQx7qo5XSrnpbR
+ZSpOpf/TNnPHYCsCcsOCYqzM6wooC1ri8B06WXO7IQ+r6E4NUrVH501vozYeq0wG
+Rs0U1X7q6K8DPh2F5YfMYd5pelLMHg==
+=iIdB
 -----END PGP SIGNATURE-----
 
---xmlq6vdtjzrg2y6d--
+--UQy/+RE7PqT3TMK0--
