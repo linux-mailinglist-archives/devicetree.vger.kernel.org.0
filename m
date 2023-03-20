@@ -2,91 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2436C165A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41EC66C1684
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 16:06:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbjCTPFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 11:05:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53822 "EHLO
+        id S232165AbjCTPGr convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 11:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232385AbjCTPFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:05:21 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909CF2A989;
-        Mon, 20 Mar 2023 08:01:31 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 47A0B6602173;
-        Mon, 20 Mar 2023 15:00:32 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679324433;
-        bh=AfixiP+8HtjjvMIA24QWs2GNAgmS/cAvbsYFMd2V1R8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lGZKoKJxulxhXT27+WHTQ+D3jlwfNFNNGlfa364Q4mk2q1N9H4KmoaTaDyUmAY+PK
-         g5K9dzh3EqHGF5Hcuy0xo+uTHp8TF0LvQ7hagbAuZhREWCG79YJmzP7kjQHQShKYO8
-         HskdECNhT4ha3jDhD5NUjeFKZUkg9Gk4SHl1g71s+arA9SYUlGXoHQdrPHmqGsJ/R0
-         FFRytE5zUKlv29DQO5ksvTNSV6QKI1Z+mJrII540pU/bTMm10lf4Yixtex3xaes4JU
-         c+X2xcpw7ifZCuI48Gu2lt35+InR0TgHPJ72E462Ytm+6G7eqc66eIvM6bBbdx0daB
-         9/Ce92kV9ANgQ==
-Message-ID: <a19a4310-3228-c6b5-8eec-ed7f35eb5e13@collabora.com>
-Date:   Mon, 20 Mar 2023 16:00:30 +0100
+        with ESMTP id S232180AbjCTPGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 11:06:30 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EC92F07D;
+        Mon, 20 Mar 2023 08:02:03 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id k14-20020a056830150e00b0069f156d4ce9so2273645otp.6;
+        Mon, 20 Mar 2023 08:02:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679324483;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gnfGX7Qm2m1ximJzaBiSodqBclPMC2gwUS6QauY2y6c=;
+        b=WTHoSEsEOHwFn7a/NIu2YL785EXN91z+mSDjKdPZTagNF8iED69ZIRKt+ETQSqwJzF
+         GQGxYJBOborwypp9gmEleScLCBNJTnRJhBV2oNOSE3N7YeQddjvt9918OUmjpqUHHWGK
+         yLPRAmNZk7gXPfBnxNoIX5SPfNJBH7kCEPQTkD36DEdXuPUvSfkB9D0jSexQCep8lD1f
+         7cjoqjRqOG2BonteLxV5poIC3MShnGAXx6PMumtZiSRQ8eaKCyyhVubC5kRDzKMamigK
+         OXygfiEWOeAH4F1bestXRtZ0POUg+FxQdHIm1zc7xYuFo0u6gM8euI0bVeuetsLGLwOQ
+         Gu/w==
+X-Gm-Message-State: AO0yUKVMCST+afUqUyJjfObXF46zEL8QsU/0isNWUJgz0fehMrWFS8Bv
+        JI1uAIlEeLsXS+FWr7gooSy1NFtpVSP0/g==
+X-Google-Smtp-Source: AK7set9TEsz5eAzbYPU1BaLExsg77mIBTXtu4MQdSbyc8tK1Yz1U76J+og6gRiZXc5xr63eeUtj+wg==
+X-Received: by 2002:a9d:6f8a:0:b0:69f:6663:6fb with SMTP id h10-20020a9d6f8a000000b0069f666306fbmr159222otq.13.1679324483425;
+        Mon, 20 Mar 2023 08:01:23 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id z83-20020a376556000000b007468ed0160csm1119785qkb.128.2023.03.20.08.01.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Mar 2023 08:01:22 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id x198so3727987ybe.9;
+        Mon, 20 Mar 2023 08:01:22 -0700 (PDT)
+X-Received: by 2002:a25:f208:0:b0:b6b:841a:aae4 with SMTP id
+ i8-20020a25f208000000b00b6b841aaae4mr2274045ybe.12.1679324482409; Mon, 20 Mar
+ 2023 08:01:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 11/21] dt-bindings: pinctrl: mediatek: mt8186: rename
- to mediatek,mt8186-pinctrl
-Content-Language: en-US
-To:     arinc9.unal@gmail.com, Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Rob Herring <robh@kernel.org>,
-        William Dean <williamsukatube@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Hui Liu <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Daniel Santos <daniel.santos@pobox.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
-References: <20230317213011.13656-1-arinc.unal@arinc9.com>
- <20230317213011.13656-12-arinc.unal@arinc9.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230317213011.13656-12-arinc.unal@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com> <20230320144914.GA1609519-robh@kernel.org>
+In-Reply-To: <20230320144914.GA1609519-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 20 Mar 2023 16:01:11 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUOxNUL9Sm5n+SB01TaF1hgdFvZiAydKGw3OiLbbOCCPw@mail.gmail.com>
+Message-ID: <CAMuHMdUOxNUL9Sm5n+SB01TaF1hgdFvZiAydKGw3OiLbbOCCPw@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: iommu: renesas, ipmmu-vmsa: Update for
+ R-Car Gen4
+To:     Rob Herring <robh@kernel.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        krzysztof.kozlowski+dt@linaro.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/03/23 22:30, arinc9.unal@gmail.com ha scritto:
-> From: Arınç ÜNAL <arinc.unal@arinc9.com>
-> 
-> Rename pinctrl-mt8186.yaml to mediatek,mt8186-pinctrl.yaml to be on par
-> with the compatible string and other mediatek dt-binding schemas.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+Hi Rob,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Mon, Mar 20, 2023 at 3:49 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Mar 13, 2023 at 09:40:26PM +0900, Yoshihiro Shimoda wrote:
+> > Since R-Car Gen4 does not have the main IPMMU IMSSTR register, update
+> > the bindings to drop the interrupt bit number from the
+> > renesas,ipmmu-main property.
+>
+> Wouldn't it be easier to define a value meaning 'no interrupt bit' such
+> as 0 or ~0 than having a variable sized property to parse?
 
+(That would be ~0, as 0 is a valid bit number)
 
+In theory: yes.
+In practice: it doesn't matter much, as the driver doesn't use the value
+anyway. Cfr. its parsing code being reworked in your patch
+"[PATCH] iommu: Use of_property_present() for testing DT property presence"
+https://lore.kernel.org/all/20230310144709.1542910-1-robh@kernel.org
+
+So yes, using ~0 would simplify the bindings, but would complicate
+the DTS files (and probably we should introduce a #define instead of
+using ~0 or 0xffffffff or some other value).
+
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > [geert: Re-add removed items level, add minItems/maxItems constraints]
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > Changes from v3:
+> > https://lore.kernel.org/all/20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com/
+> >  - Revise the dt-bindings by Geert-san (Thanks a lot!).
+> >
+> >  .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 32 ++++++++++++++-----
+> >  1 file changed, 24 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > index 72308a4c14e7..be90f68c11d1 100644
+> > --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > @@ -74,16 +74,16 @@ properties:
+> >    renesas,ipmmu-main:
+> >      $ref: /schemas/types.yaml#/definitions/phandle-array
+> >      items:
+> > -      - items:
+> > +      - minItems: 1
+> > +        items:
+> >            - description: phandle to main IPMMU
+> > -          - description: the interrupt bit number associated with the particular
+> > -              cache IPMMU device. The interrupt bit number needs to match the main
+> > -              IPMMU IMSSTR register. Only used by cache IPMMU instances.
+> > +          - description:
+> > +              The interrupt bit number associated with the particular cache
+> > +              IPMMU device. If present, the interrupt bit number needs to match
+> > +              the main IPMMU IMSSTR register. Only used by cache IPMMU
+> > +              instances.
+> >      description:
+> > -      Reference to the main IPMMU phandle plus 1 cell. The cell is
+> > -      the interrupt bit number associated with the particular cache IPMMU
+> > -      device. The interrupt bit number needs to match the main IPMMU IMSSTR
+> > -      register. Only used by cache IPMMU instances.
+> > +      Reference to the main IPMMU.
+> >
+> >  required:
+> >    - compatible
+> > @@ -109,6 +109,22 @@ allOf:
+> >        required:
+> >          - power-domains
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: renesas,rcar-gen4-ipmmu-vmsa
+> > +    then:
+> > +      properties:
+> > +        renesas,ipmmu-main:
+> > +          items:
+> > +            - maxItems: 1
+> > +    else:
+> > +      properties:
+> > +        renesas,ipmmu-main:
+> > +          items:
+> > +            - minItems: 2
+> > +
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
