@@ -2,150 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB0E6C1EE0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C80D6C1EF1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 19:04:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbjCTSCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 14:02:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60240 "EHLO
+        id S230031AbjCTSEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 14:04:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjCTSBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:01:54 -0400
-Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F86166D3;
-        Mon, 20 Mar 2023 10:56:23 -0700 (PDT)
-Date:   Mon, 20 Mar 2023 17:55:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1679334922; x=1679594122;
-        bh=WnTjqPoCH078vNV00BMZ3l8kftmBf3Xp4U/sMRslT94=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=MEYoC3t/S7+Cl2DFKbnGn+joi2EOIGRG8NbXBUdvvDmTwrW+iv1JFwuqVK2VekocQ
-         feJ+ZQ7K2HPAH39NR/yLVH/UhA4AUkU4IBFyUYMyeOWc23d43rbbp7JBnRCT2Qh9k3
-         GT6vShagPTjGnJ8RDYq/3xhY9hN8jkkftq5yH8nLlL4JW+wqfjQ9QudSLqcEJxyG36
-         ZuZ2EgCc1EWyCy3uqbPJXVfubFCrx1e+h7d+Tn/skCFhhaJYD505j884lvUT71+GPr
-         NSE20pxHef+72UF823jyQE01KS9dxMLY8JxEbmGrTjoGs+7AkYkQDc4xQyXOM02xU6
-         jXkuVz6RThn7g==
-To:     linux-kernel@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v2 2/2] leds: aw2013: Add vddio regulator
-Message-ID: <20230320175150.174711-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20230320174949.174600-1-linmengbo0689@protonmail.com>
-References: <20230320174949.174600-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S230169AbjCTSDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 14:03:39 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06A14200
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:57:41 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id le6so13321588plb.12
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 10:57:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679335045;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TTLqYdGFZkGom4FYP+0l2YM3DyL4CPb+gNvcjA2sta8=;
+        b=GGRc6NHuQPNvdJDi95tsj9Fdk98zaHEOdlFFVHCPwB77yfj5hO5wyG0vtfUn/RUfLn
+         sv6LnNalBQnWQQZ8kgahN6tTrF0kCh2uHkmat5sxdpRSNyh5y9oT72mvSbEbSANW3XsO
+         BcUSqICRFrhMxN/VNdP78YVQUJ1RIfHBdLJhRHPOMAB/PLH/+dzINbZRSPXqR4zJ9RXg
+         TGy8odYm98NW+d8uMAd61KqopiHA8Uee8b9oN0TdfT7V0zUteKJzjWgdjjhnOGBW+8bN
+         n3qQyFpUCn3FWIU8Zt/r6W3FNmiPWihhZWFHgiuzl9VmGTY0fuGoQ+OC8St99GJYn3ro
+         MiAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679335045;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TTLqYdGFZkGom4FYP+0l2YM3DyL4CPb+gNvcjA2sta8=;
+        b=exttPkFzacHGBBVxDalWhd84hWaTn4RYZ+dMvJudI6+8pW9qjFPI1dc86gw27OwuqS
+         wimhjUMmyg0qUkSLMMERczqHYMgla9niAe10t31XYUeqi7Jm+yuDsrBbyt7coSiJBqbM
+         VkIIHC3kreVQjN4gDFrRPNkNQ7lHXJ433710fTaZTyLFEJFRw0+xHgwi5ThS+ub5kplR
+         qj3aRjAT4cKGeAop/MWPzT0+vOE6pD80+9hH9LVfEWWoM4yW52s22tQ3wYpQ2Y3aanvB
+         R727Z70ncNohd8VAOW6Rog/D63VEvNAU62L3ozsZbhgFc+xoWPn6DSpEAdOgOCXR8GT/
+         5Yag==
+X-Gm-Message-State: AO0yUKXmAD5GhbhrFSDh/njG2TdNpo5jjMDZL8gOAKz5sjiHJfxduHso
+        /rGaiIBywRodRaOfzQcnn3lSTu9Hz58qTAZrQPbibw==
+X-Google-Smtp-Source: AK7set8/YwBWDFBpyHo0/hfquyhBJpFJp9n/0UHpqT5eybpBB6edSz10AhON/8lghXTurJ3D2NDuSZ4yQF7ho2AvGmA=
+X-Received: by 2002:a17:90a:7ac8:b0:23d:4ab8:b1a3 with SMTP id
+ b8-20020a17090a7ac800b0023d4ab8b1a3mr33238pjl.1.1679335045509; Mon, 20 Mar
+ 2023 10:57:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <CGME20230308230935eucas1p1e919f4d4b020e3386ce0eac8b4c8d299@eucas1p1.samsung.com>
+ <20230308230931.27261-1-semen.protsenko@linaro.org> <d1175c3e-301d-1cbc-607c-e94051780806@samsung.com>
+ <611fe922-1937-d37d-a2ce-cc0a13aed9e0@linaro.org>
+In-Reply-To: <611fe922-1937-d37d-a2ce-cc0a13aed9e0@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 20 Mar 2023 12:57:14 -0500
+Message-ID: <CAPLW+4=Yd0KfaMp+oSA=rOrqJfUotHjB=QOKpaPitMh3V2fMrA@mail.gmail.com>
+Subject: Re: [PATCH 0/6] soc: samsung: pm_domains: Add Exynos850 support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some LEDs controllers are used with external pull-up for the interrupt
-line and the I2C lines, so we might need to enable a regulator to bring
-the lines into usable state. Otherwise, this might cause spurious
-interrupts and reading from I2C will fail.
+On Fri, 10 Mar 2023 at 08:41, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 09/03/2023 11:12, Marek Szyprowski wrote:
+> > Hi Sam,
+> >
+> > On 09.03.2023 00:09, Sam Protsenko wrote:
+> >> Power Domains in Exynos850 are not really different from other Exynos
+> >> platforms. Enabling Exynos850 support in the PD driver is really just a
+> >> matter of adding:
+> >>
+> >>      static const struct exynos_pm_domain_config exynos850_cfg = {
+> >>          .local_pwr_cfg = 0x1,
+> >>      };
+> >>
+> >> to the driver. But in the face of recent developments, e.g. this patch:
+> >>
+> >>      arm64: dts: exynos: move MIPI phy to PMU node in Exynos5433
+> >>
+> >> it looked logical to rework the PD driver a bit to support its nesting
+> >> under the PMU node, while adding Exynos850 support to it. Initially I
+> >> only wanted to add syscon regmap support via some dedicated property,
+> >> but pulling PD nodes under the PMU syscon looks like more correct way.
+> >
+> > Frankly speaking if you are changing this, you can go even further.
+> > Simply make PMU node a PM domain provider and specify the power domain
+> > as a phandle parameter. This is how it should have been done from the
+> > beginning, but for some unknown reasons wasn't. There is really no need
+> > to have a separate node for each power domain. This will also move
+> > implementation details to the PMU / power domain drivers and it will
+> > make it much easier to extend/modify it in the future. IMHO same applies
+> > for PHY nodes.
+>
+> I agree. The "samsung,pd-index" property is not a correct approach.
+> Either you use address space or not. If not, then this should be part of
+> power domain provider, which is also matching most of other SoC
+> architectures.
+>
 
-Implement support for "vddio-supply" that is enabled by the aw2013 driver
-so that the regulator gets enabled when needed.
+Did a bit of research, looked at how it's implemented on other
+platforms. Before I start reworking it, want to check with you on a
+couple of decisions, to avoid unnecessary resubmissions later, if it's
+ok:
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- drivers/leds/leds-aw2013.c | 26 +++++++++++++++++---------
- 1 file changed, 17 insertions(+), 9 deletions(-)
+1. Instead of actually merging PD driver into PMU driver, guess it
+might be better to create a new power-controller driver (e.g.
+drivers/soc/samsung/exynos-power.c). This is how it's implemented for
+the most of platforms, and this way we can neatly separate it from
+what we already have in the PMU driver (not really power controller
+related things). This way, in device tree we'll have a
+power-controller node under PMU node, and this node can be referenced
+further as a phandle in power-domains properties of users.
 
-diff --git a/drivers/leds/leds-aw2013.c b/drivers/leds/leds-aw2013.c
-index 0b52fc9097c6..95f2f9bf95ee 100644
---- a/drivers/leds/leds-aw2013.c
-+++ b/drivers/leds/leds-aw2013.c
-@@ -62,7 +62,7 @@ struct aw2013_led {
-=20
- struct aw2013 {
- =09struct mutex mutex; /* held when writing to registers */
--=09struct regulator *vcc_regulator;
-+=09struct regulator_bulk_data regulators[2];
- =09struct i2c_client *client;
- =09struct aw2013_led leds[AW2013_MAX_LEDS];
- =09struct regmap *regmap;
-@@ -106,7 +106,8 @@ static void aw2013_chip_disable(struct aw2013 *chip)
-=20
- =09regmap_write(chip->regmap, AW2013_GCR, 0);
-=20
--=09ret =3D regulator_disable(chip->vcc_regulator);
-+=09ret =3D regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
-+=09=09=09=09     chip->regulators);
- =09if (ret) {
- =09=09dev_err(&chip->client->dev,
- =09=09=09"Failed to disable regulator: %d\n", ret);
-@@ -123,7 +124,8 @@ static int aw2013_chip_enable(struct aw2013 *chip)
- =09if (chip->enabled)
- =09=09return 0;
-=20
--=09ret =3D regulator_enable(chip->vcc_regulator);
-+=09ret =3D regulator_bulk_enable(ARRAY_SIZE(chip->regulators),
-+=09=09=09=09    chip->regulators);
- =09if (ret) {
- =09=09dev_err(&chip->client->dev,
- =09=09=09"Failed to enable regulator: %d\n", ret);
-@@ -348,16 +350,20 @@ static int aw2013_probe(struct i2c_client *client)
- =09=09goto error;
- =09}
-=20
--=09chip->vcc_regulator =3D devm_regulator_get(&client->dev, "vcc");
--=09ret =3D PTR_ERR_OR_ZERO(chip->vcc_regulator);
--=09if (ret) {
-+=09chip->regulators[0].supply =3D "vcc";
-+=09chip->regulators[1].supply =3D "vddio";
-+=09ret =3D devm_regulator_bulk_get(&client->dev,
-+=09=09=09=09      ARRAY_SIZE(chip->regulators),
-+=09=09=09=09      chip->regulators);
-+=09if (ret < 0) {
- =09=09if (ret !=3D -EPROBE_DEFER)
- =09=09=09dev_err(&client->dev,
- =09=09=09=09"Failed to request regulator: %d\n", ret);
- =09=09goto error;
- =09}
-=20
--=09ret =3D regulator_enable(chip->vcc_regulator);
-+=09ret =3D regulator_bulk_enable(ARRAY_SIZE(chip->regulators),
-+=09=09=09=09    chip->regulators);
- =09if (ret) {
- =09=09dev_err(&client->dev,
- =09=09=09"Failed to enable regulator: %d\n", ret);
-@@ -382,7 +388,8 @@ static int aw2013_probe(struct i2c_client *client)
- =09if (ret < 0)
- =09=09goto error_reg;
-=20
--=09ret =3D regulator_disable(chip->vcc_regulator);
-+=09ret =3D regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
-+=09=09=09=09     chip->regulators);
- =09if (ret) {
- =09=09dev_err(&client->dev,
- =09=09=09"Failed to disable regulator: %d\n", ret);
-@@ -394,7 +401,8 @@ static int aw2013_probe(struct i2c_client *client)
- =09return 0;
-=20
- error_reg:
--=09regulator_disable(chip->vcc_regulator);
-+=09regulator_bulk_disable(ARRAY_SIZE(chip->regulators),
-+=09=09=09       chip->regulators);
-=20
- error:
- =09mutex_destroy(&chip->mutex);
---=20
-2.30.2
+2. After moving PD implementation into a new power-controller driver
+(with new compatibility string), the old one (pm_domains.c) should be
+probably removed. Is it reasonable, e.g. from point of view of
+compatibility with out-of-tree (downstream) dts's? Also, if I remove
+the PD driver, probably all existing (upstream) Exynos dts's should be
+reworked to use the new power-controller compatibility string?
 
+3. Where to keep offsets for each power domain (inside of PMU register
+area). Can be done in dts (a separate child node of power-controller
+for each power domain), or in the power-controller driver. I saw both
+of those ways for different platforms actually. But I guess offsets
+are more like internal details, and should be kept inside the driver,
+for each supported SoC.
 
+4. Specifying particular power domain in power-domains property. Guess
+the best way would be to have some indexes defined in dt-bindings
+header, and use those like this:
+
+        power-domains = <&power_controller EXYNOS850_PD_G3D>;
+
+   Those constants can be also used then in the driver, to keep PD
+offsets in the array, etc. Another way would be to use reg offsets,
+but indices look better: can provide more flexibility in the driver in
+future, e.g. if we'd need to add some more details other that offsets
+later.
+
+Please let me know what you think. At the moment I have to switch to
+another task temporarily. When I get back to this one, discussing the
+above items would help me a great deal.
+
+Thanks!
+
+>
+> Best regards,
+> Krzysztof
+>
