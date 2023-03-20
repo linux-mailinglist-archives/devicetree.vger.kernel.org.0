@@ -2,137 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94DBD6C0E9F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CDC96C0EB0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Mar 2023 11:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbjCTKUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 06:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58816 "EHLO
+        id S229619AbjCTKY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 06:24:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229837AbjCTKUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:20:44 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21A222039
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 03:20:35 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id er8so32824051edb.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 03:20:35 -0700 (PDT)
+        with ESMTP id S230083AbjCTKYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 06:24:50 -0400
+Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27565BB98
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 03:24:47 -0700 (PDT)
+Received: by mail-vs1-xe36.google.com with SMTP id c1so7245946vsk.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 03:24:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679307634;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2kK6ZKQu/hSTehLzcd0ok1R36H64mU2xn5KpGhq6J1w=;
-        b=Ju6zmO0MlfizGGz7Jd7gcva/CJl93kFD7GL9WBLqwSkQXbm5diuXdjj66wL4FqPd0o
-         vDDspm4OpDKzQCvZjrw48YkcjilgM2DN0tTww/RgQ+zeLRf3ab6kDouqkBfp3Fs/lf5P
-         IiCthWkEFSAhHxMOTZONAInrmRc7bSZ4ytEHlYF1DSeNT71Oss6698O9b6VI3HSPWO51
-         7kV19EcKUprriQNj8EZkOrzRmEvpiM6MDK4EDxxcuULZyLikbgPLwLGGaw9jHZlad1/4
-         WY7GSPPz82nh7+5l+vQjbk23/B0uB2FuuZFy1+G0GmqeAjGX09lCzcMaPqIW7mn+QDVa
-         XPbQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679307886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MMr1WoTvszkHMn826fWIWzwxgXcAXUrmwDv+A43kxrw=;
+        b=HC0Ol9AjVA6fsxwuasIjT+8fB4dMQKcPk8dZP3YbCa6ryA6GJVYaZuLfgQOYP4oF3C
+         ee1FCMyZUlA1dqhvMtsrybitPi5eshAyrybZDDOHKlHJkCPsXPfuWSnrP8nfWRxmgkJx
+         GwVUtzid5QicAj69sqw4TN2KO0mxrsmKVcT4Evs7dh8Us3ZJp3OrEfsERMmyDfN6hdt1
+         oQMs1xFoUSfkwyy4cCRE1DvDBv4fw/CPWHHH+WieOEPgYUIBfZRoFC26VM8WxiWqhW5E
+         B2IBubyGKRWItXGMJcDGQEdcBTubZ675+8phT19v9xtl8lbIcC4FPXlY1kLn184kMAUH
+         zklg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679307634;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2kK6ZKQu/hSTehLzcd0ok1R36H64mU2xn5KpGhq6J1w=;
-        b=zoqRnnkv8NcA4FeXsgdcETEjGsWR/b1H+6iINkJMlfhUPlRWpD6c5LPuN1plfoA0uN
-         sEvPbQmOKusgdtH9wYDGZaNU7lOu7SliXaCjiahBuyAGtzLMYP1yMWxE+/hY4LufrOEI
-         TKbORJslE8UTfETRjc1VwzBi0xnsu6w9/qdnfno7Nk+2vy67e7nlU3pICODG1fyFp0MZ
-         lBB5GO2ToctAcyV6Wc2Bmob5T2thZvG0EE6zljYUXQ7Cj3kU8tQiuwe7G1qBW3toHdFU
-         8NBZj/XPk/tijOK8z+4fcnZKhSLPTCgFuTsaCE/8zZ+2decdnWEUGguej0bXSenbin7y
-         XLpg==
-X-Gm-Message-State: AO0yUKUtIKvZGK7ikHldFRymPn+yyCxylQcSPy0CvpRd0UtdCk65gNt6
-        SqKomUqZrqsPAVR60ogxQWUGdA==
-X-Google-Smtp-Source: AK7set9UbCg3tUOgT6QPPPtQgc+SuVDmWxP5HoFhnXgAOMYpzcIlAvQy0NuhQuV0XfPLvoiivhc3GQ==
-X-Received: by 2002:aa7:db52:0:b0:4fa:ba60:8188 with SMTP id n18-20020aa7db52000000b004faba608188mr12697594edt.8.1679307633952;
-        Mon, 20 Mar 2023 03:20:33 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:4428:8354:afb6:2992? ([2a02:810d:15c0:828:4428:8354:afb6:2992])
-        by smtp.gmail.com with ESMTPSA id y70-20020a50bb4c000000b004fa380a14e7sm4663350ede.77.2023.03.20.03.20.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 03:20:33 -0700 (PDT)
-Message-ID: <f13b06e3-1947-b0f3-6523-d2986f085898@linaro.org>
-Date:   Mon, 20 Mar 2023 11:20:32 +0100
+        d=1e100.net; s=20210112; t=1679307886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MMr1WoTvszkHMn826fWIWzwxgXcAXUrmwDv+A43kxrw=;
+        b=Lz3L9FeFYXh3Nsrk/l05u6PgDpMYd9p24ZdMktCqziuc6wYgppjQVXbM8DRkmRDu1w
+         CgxQ+yNJlwC/7ewZXPtZlRIe/TZx+sr6FyZbyXC4thOI3rmwz7hnyiRaBKxwdypjfWWy
+         z/fZIGBuzq1AqNoiYDx3uIOQ0FH6pz6BodevWtjMCkiM/ZUC2rsph+E5zAZgq4JCgMIp
+         EDMGhnOHOcD/IutM9109VvihSEXljsK0PBTm1WPnPqsyR0qdy42so/teCZnU1xVkfE7Z
+         8noNwFZA56+Z5tyfGSd8Uj1e9GJMnvQ0pCwd1YYn76ZB9AOxqLTGYjubARiULwgAQheW
+         FhNA==
+X-Gm-Message-State: AO0yUKXX34ariACBtEdV+X/YXH8JYCCLy+v2diVLyYqjNx85oTnDCYg2
+        Dco9ouRa2BAVsviRj08dnMHQU1a8aG02S7NItu6GqQ==
+X-Google-Smtp-Source: AK7set+QVBe9J3CJc30jBUPlLxhp9RAGQykt/RN2GdLJJ1f2BAGM9XTNEP1fhBJxspkysoECoTvry9uuwZ2wiscA4y8=
+X-Received: by 2002:a67:ca18:0:b0:425:b61a:9c13 with SMTP id
+ z24-20020a67ca18000000b00425b61a9c13mr3780116vsk.0.1679307886261; Mon, 20 Mar
+ 2023 03:24:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: misc: Add the Lantiq PEF2466 E1/T1/J1
- framer
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20230314183043.619997-1-brgl@bgdev.pl> <20230314183043.619997-6-brgl@bgdev.pl>
+ <08dff56d-227a-a791-549c-15ac0f1ac08b@linaro.org>
+In-Reply-To: <08dff56d-227a-a791-549c-15ac0f1ac08b@linaro.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 20 Mar 2023 11:24:35 +0100
+Message-ID: <CAMRc=MdSRY8w0pWuhprB1ALPFpcCdYOnyQZ63BSzJPa3u1a-jA@mail.gmail.com>
+Subject: Re: [PATCH 05/14] arm64: dts: qcom: sa8775p: add support for the
+ on-board PMICs
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230316122741.577663-1-herve.codina@bootlin.com>
- <20230316122741.577663-2-herve.codina@bootlin.com>
- <96b01241-d57d-a460-4a8b-9e83eaab24ae@linaro.org>
- <20230320104619.468a304b@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320104619.468a304b@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/03/2023 10:46, Herve Codina wrote:
->>
->>> +
->>> +  lantiq,data-rate-bps:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [2048000, 4096000, 8192000, 16384000]
->>> +    default: 2048000
->>> +    description:
->>> +      Data rate (bit per seconds) on the system highway.  
->>
->> Why do you need it? How is it different from clock? Do you expect some
->> DDR here?
-> 
-> This is needed to set the data position on the data line.
-> If the data line clock (sysclk-rate-hz) is greater than 'data-rate-bps',
-> the device interleaves some holes between data in the full frame.
-> 
-> The exact position of the data and the holes is defined by 'channel-phase'
-> 
-> So, two information are needed:
-> - The number of slots available (deduced from 'lantiq,data-rate-bps')
-> - The slot to use in the available slots ('lantiq,channel-phase" property
-> 
-> lantiq,data-rate-bps is not a clock but a property used to set the frame
-> physical setting. ie the correct data position in the frame. 
+On Tue, Mar 14, 2023 at 9:22=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
+>
+>
+>
+> On 14.03.2023 19:30, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add a new .dtsi file for sa8775p PMICs and add the four PMICs interface=
+d
+> > to the SoC via SPMI.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 37 +++++++++++++++++++++
+> >  1 file changed, 37 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/b=
+oot/dts/qcom/sa8775p-pmics.dtsi
+> > new file mode 100644
+> > index 000000000000..77e2515a7ab9
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+> > @@ -0,0 +1,37 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/spmi/spmi.h>
+> > +
+> > +&spmi_bus {
+> > +     pmk8775_0: pmic@0 {
+> pmk8775..
+>
+> > +             compatible =3D "qcom,pmm8654au", "qcom,spmi-pmic";
+> ..or pmm8654au?
+>
 
-OK
+Honestly, I got inspired by this bit from sc8280xp-pmics.dtsi:
 
-(...)
+ 54 &spmi_bus {
+ 55         pmk8280: pmic@0 {
+ 56                 compatible =3D "qcom,pmk8350", "qcom,spmi-pmic";
+ 57                 reg =3D <0x0 SPMI_USID>;
+ 58                 #address-cells =3D <1>;
+ 59                 #size-cells =3D <0>;
 
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/gpio/gpio.h>
->>> +    pef2256@2000000 {  
->>
->> Figure out some generic node name.
-> 
-> What do you think about 'framer' ?
+Where the label seems to follow the SoC's numbering. Do you think it
+would be better to consistently use the pmic's name?
 
-Sure, I don't have particular proposal.
+Bartosz
 
-
-Best regards,
-Krzysztof
-
+> Konrad
+> > +             reg =3D <0x0 SPMI_USID>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +     };
+> > +
+> > +     pmk8775_1: pmic@2 {
+> > +             compatible =3D "qcom,pmm8654au", "qcom,spmi-pmic";
+> > +             reg =3D <0x2 SPMI_USID>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +     };
+> > +
+> > +     pmk8775_2: pmic@4 {
+> > +             compatible =3D "qcom,pmm8654au", "qcom,spmi-pmic";
+> > +             reg =3D <0x4 SPMI_USID>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +     };
+> > +
+> > +     pmk8775_3: pmic@6 {
+> > +             compatible =3D "qcom,pmm8654au", "qcom,spmi-pmic";
+> > +             reg =3D <0x6 SPMI_USID>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +     };
+> > +};
