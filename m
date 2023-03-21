@@ -2,119 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 362686C3EC9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 00:52:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B2896C3EE1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 00:58:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbjCUXwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 19:52:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43862 "EHLO
+        id S229639AbjCUX6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 19:58:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbjCUXwi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 19:52:38 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5022958B65
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 16:52:36 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id l27so7043414wrb.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 16:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679442755;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zv291RLqrvxioxJX0RVTeF2Z5czhUbpRp3iyyUP2rZE=;
-        b=l5W4fM/Vl6k8l4CrD0lxkEpheMeo4XDxKHxYW0xM2VN86RonThDeFET7if3a3n12No
-         UddaRadbnbdM7iMX9D3shY0v61wYJLsgZqGcdKLr13c/2QphthGH1AB0RoZGy+aDEr9T
-         cNKN7mTHGfjzgEQMrRmUDkE6e95SyJviUnnc2FR4qY4Gly/b42OZmsXDpGrDPX2u/J2k
-         /6/CFFCTdHYr+S/02x57vY79uSEvogi1GdsYKgoiTL134untpUI2rWGouIuV3rvHfKQH
-         OV8C+1OfpedfduOdHRZcaZk3iDD4+pz6ARbgSH0YxukB6/zepf7+2AI0SfT0+GxXVA0G
-         K60Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679442755;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zv291RLqrvxioxJX0RVTeF2Z5czhUbpRp3iyyUP2rZE=;
-        b=zcxXnfpb3OZt3/gd6RKJscUsQxL1lddFjDyoF5aUomECmkxAIOu34f6D8R8aTucP0F
-         Y8LrWV8e2bLyva/+ZYXohP0MIG1lnqseHibEqFoEmotPAyvx8Nr4nMpfyvax1urQiMiJ
-         OMV6IuD7mFWiBzT4Vxl7qYPtsZ0gh1/nP2UR2pCgjMDcvlOovL6OEdJXpKDfr74EY5QX
-         6BlOg0gYoEJiyt4WaQRpTdkQNBur+PbT7pb2hn+fq8t7fFSMEyx3LZEX+WFzLiZuN8+f
-         nODteoq/yXTkNL9SsHrhB5CumE1B+JOxwN7g9tj/upp5xJJ04lv3pzG5HQDkdyxGcOaP
-         acFw==
-X-Gm-Message-State: AO0yUKUAVxb9U4fvhLrLVcdshre746xU18KnRhvJ2v3bZriSB1RaLA9v
-        dDBuxDSc+/UqzjjmmJ3dGKmEjw==
-X-Google-Smtp-Source: AK7set8Tbju7lmyp7KNRw4+1RjB7OwLCd/Ql/YeCyg7aWDQJV6lTSLynwbHAvjT8HzoBkRi9ORGRBw==
-X-Received: by 2002:adf:e987:0:b0:2d2:3b59:cbd4 with SMTP id h7-20020adfe987000000b002d23b59cbd4mr3923227wrm.12.1679442754789;
-        Tue, 21 Mar 2023 16:52:34 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id j6-20020a5d5646000000b002d2f0e23acbsm12432127wrw.12.2023.03.21.16.52.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 16:52:33 -0700 (PDT)
-Message-ID: <701e1b8c-7f71-ca8f-ad22-e86dedf3d7be@linaro.org>
-Date:   Tue, 21 Mar 2023 23:52:32 +0000
+        with ESMTP id S229459AbjCUX57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 19:57:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18C08D;
+        Tue, 21 Mar 2023 16:57:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 825A361E74;
+        Tue, 21 Mar 2023 23:57:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2664C433D2;
+        Tue, 21 Mar 2023 23:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679443074;
+        bh=UyBZQu//dK6YIN2Hhik6aydJiVU1mQzZJsoluwZgzgY=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=X1ywQzClIA/IIy6qrMSpj8zqk1nF2fQRr/gMkCbpxrrYNeXGA/BvmRvpoPC0Pe94H
+         b9sIBM4N6fli1D/xyntONk4da7U+sNXVA1VtTzRWjD1hTlN/bgd4VL4nx+IC7ClX88
+         d3mWHNOyBXBTGKCbFI++EormE7xMP8qDWYYj95Rq2J648rBKpv822K1C2mz+7RLgh4
+         ZeJ8Eh+e4+hy61RGxbFsolDjevVYKIH58AIWOwVx2gqe/h5hY2G2i1+Y5NJ72jOuE0
+         ex2gyko8ZDtJlKLgaWEBPEPN3QGXLFmRMIcvz5nKPb4is5WUmoNCb4eiG6Hfwx0xm/
+         NJYXPRUgN3uZw==
+Message-ID: <62b766cef78d95793af95f428693c359.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v4 10/18] dt-bindings: mfd: qcom,spmi-pmic: Add pdphy to
- SPMI device types
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        wcheng@codeaurora.org, caleb.connolly@linaro.org,
-        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-11-bryan.odonoghue@linaro.org>
- <88ccb21c-4370-7132-b2c1-c74b1f865cec@linaro.org>
- <20230321205802.GA1540152-robh@kernel.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230321205802.GA1540152-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <95f11f7c-611f-49a9-97e8-0de89846e430@spud>
+References: <20230320103750.60295-1-hal.feng@starfivetech.com> <95f11f7c-611f-49a9-97e8-0de89846e430@spud>
+Subject: Re: [PATCH v6 00/21] Basic clock, reset & device tree support for StarFive JH7110 RISC-V SoC
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+To:     Conor Dooley <conor@kernel.org>,
+        Hal Feng <hal.feng@starfivetech.com>, kernel@esmil.dk
+Date:   Tue, 21 Mar 2023 16:57:52 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 20:58, Rob Herring wrote:
-> On Sun, Mar 19, 2023 at 12:58:48PM +0100, Krzysztof Kozlowski wrote:
->> On 18/03/2023 13:18, Bryan O'Donoghue wrote:
->>> The PDPHY sits inside of the PMIC SPMI block providing register-level
->>> ability to read/write USB Type-C Power Delivery protocol packets over the
->>> SBU pins.
->>>
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> ---
->>>   Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
->>>   1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->>> index 8f076bb622b15..111aec53caeb5 100644
->>> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
->>> @@ -140,6 +140,10 @@ patternProperties:
->>>       type: object
->>>       $ref: /schemas/power/reset/qcom,pon.yaml#
->>>   
->>> +  "pdphy@[0-9a-f]+$":
->>
->> phy@
-> 
-> But it is not a phy which I would define as something doing digital to
-> analog (or vice-versa) signal conversion/encoding. Sounds like an SBU
-> controller or something...
-> 
-> Rob
+Quoting Conor Dooley (2023-03-21 16:03:54)
+>=20
+> If you're happy on the driver side of things, do you want to pick those
+> patches up on top of the bindings and send a PR to Stephen?
 
-Its an SBU controller.
-
----
-bod
+This sounds fine to me. Let me know if you plan to send a PR with the
+starfive clk bits.
