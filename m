@@ -2,124 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B236C3859
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 18:35:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFCBF6C3867
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 18:38:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbjCURfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 13:35:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
+        id S230294AbjCURik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 13:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbjCURfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 13:35:01 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D855507D;
-        Tue, 21 Mar 2023 10:34:27 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id i9so14537769wrp.3;
-        Tue, 21 Mar 2023 10:34:27 -0700 (PDT)
+        with ESMTP id S230351AbjCURif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 13:38:35 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081825372B
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 10:37:37 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id b20so29855939edd.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 10:37:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679420066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=asmFs22xWYwR1Ql9m/IrNv+MPUNDn8hSjmwDRYvO7mE=;
-        b=Cqj2C6aG5vEOlhh9N3ybvDA0CV38nhQODnfdnr7utNddd323iDagoJty1Wmi3MAzj1
-         5ORmYT5fQvUnild7C4RhcCNTBn+MoYZ+wDZwZYelu6BKHkW11YFK949ax5B50by+ASR2
-         z+rGI3wR5fVXd4VDgmcsT6zF5x69wKyhbhqIfrhG9BVFTctfaBgDS/l+bX1C56kSqv82
-         bQkKSSAehSLGpFoCU3q62OGoZVi3jDe6HDb5M1Dp2mgHhqsW19otZpJ57DjtZ1CmtPai
-         o7T/ew6WoIYSl6whBmV36jeNaDJ3TItOBrKc4nMJBDWaCg4DNzUSe0ei5Xz7Oik5lb3p
-         y9ew==
+        d=linaro.org; s=google; t=1679420247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NSFN+vcAKBFw9CRrOYxwC+q3dw6MZ4zFCC9rNy3oZWA=;
+        b=mB4V1KsAyRBedrHItqtzDgzZDsCtyU5w9IhYM+dAykklkQa0yAz+MMLvf94MYlP2g+
+         h1AtfqvglvgRcnv4NrxkHxQ7rUqoHxCi1bTM4F8yXSdmeLmWUsvajReSsHHoAIYUhhcZ
+         o7DERoqWNC7h2iO5IUORsDN9G8O0tH5g9NxLvMyL9Boej8KVKlP0orYNimYxHBtgLZkh
+         Rm21t5ti8Ii49KzGtrGjclCKLDRz0++odTj0tgOtqwlwq5/dhtXzqM9nJIEuWHQfJVFJ
+         P9MCWKSh0O4LyUBfE66V5awrIBFLQtCq5tJUnkVW8U/TGWvjkXlibG36M+EirAmjJa52
+         KEfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679420066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=asmFs22xWYwR1Ql9m/IrNv+MPUNDn8hSjmwDRYvO7mE=;
-        b=UdI2iQNBYwRf40ivf3ROR132t95BU/p3RUzXdZLCyz6c6JWtECQ5byyGeEwoX10n5u
-         HlepoNTJxMFLYrAHGvNLDPpWPuLXMa645S1mCVZ7NyWp8W96XzSynNZPeXHuJdb464QU
-         A7UTRSW3mlvKe9OR3EcB2CfBZv0yHWR0ldbnxcxGUFw8z78PNqpOVnITtjBdfpGesJ9c
-         VJw+fiM6hCcahor4nk9LLcAryPm8xmhDLxBKaLILO8wyTUiHY8G9hsXnFCtcpetnF5wS
-         pW13beAE+odb7ZZaXZUYpWGYhCe/hLzNjbo8YpgzHwadZthxPrT5YvNIYwyrvoViLM0n
-         KDRQ==
-X-Gm-Message-State: AO0yUKW+9H/kqcAUyWeZhZJhiJjsBcYn1THmZaSDrPrk/pNuGXJXGtJd
-        NgsGZW8iSqLEv81yK+U5Os8=
-X-Google-Smtp-Source: AK7set/lzQZwCSxVaOe5dZ+7TR3xaQty/vg5xvZDpRW8TwTiPQblIbw5kJJTPLp67RySehrPIlCqSg==
-X-Received: by 2002:a5d:65c9:0:b0:2ce:ac31:54ff with SMTP id e9-20020a5d65c9000000b002ceac3154ffmr2776515wrw.2.1679420066191;
-        Tue, 21 Mar 2023 10:34:26 -0700 (PDT)
-Received: from atlantis.lan (255.red-79-146-124.dynamicip.rima-tde.net. [79.146.124.255])
-        by smtp.gmail.com with ESMTPSA id b13-20020a056000054d00b002da1261aa44sm184775wrf.48.2023.03.21.10.34.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 10:34:25 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     f.fainelli@gmail.com, jonas.gorski@gmail.com, andrew@lunn.ch,
-        olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>, Simon Horman <simon.horman@corigine.com>
-Subject: [PATCH v2 4/4] net: dsa: b53: add BCM63268 RGMII configuration
-Date:   Tue, 21 Mar 2023 18:33:59 +0100
-Message-Id: <20230321173359.251778-5-noltari@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230321173359.251778-1-noltari@gmail.com>
-References: <20230320155024.164523-1-noltari@gmail.com>
- <20230321173359.251778-1-noltari@gmail.com>
+        d=1e100.net; s=20210112; t=1679420247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NSFN+vcAKBFw9CRrOYxwC+q3dw6MZ4zFCC9rNy3oZWA=;
+        b=I0BZpod+rzCJJllpDkEQk9Pw/qyj92fgR0CLcD1TMSUwGmyF8bRrBMEL/hi6ZGZnMe
+         ApU5/hGgy2/R06QmlrDl7A7cIJug7r6Ma/8UmVfK5cyxcQsylL1PGC8Md7CeiTB2NFRC
+         Tv3sNk1ExMNd0TVvY1Aeqi+Ov3yMXosXucTP9wD/37HjXU2vTpARgabbUIVjRfA2pkQP
+         S54TjmGiSpEFVe1BMLr4yHNNKbJogzlT83EO1Ifbc6Z6GAv1JHiq2dKdGtBNnYXr/OG6
+         j/vlrqsfHATdenXCjdnm9Y4sCn6GVNIEgmPSA68WfBSktHE8Qjy6Z4ZUCoOUXHgV7Qsj
+         XOXA==
+X-Gm-Message-State: AO0yUKVKNgF15wZ6QenRyxsx0B8izXqqeEy5vTcy1Q7dKIRAhjc3K6LH
+        +CmdYaz2qaQ14putKowntiXY5Q==
+X-Google-Smtp-Source: AK7set8Uy9OaFw50NEy/nbItPw+/m/3jWKl13WeHGIOpVaMRPYTcSXDoBlgcKw3lU2R9ULIJw5BTTQ==
+X-Received: by 2002:a17:907:a074:b0:923:c199:dab1 with SMTP id ia20-20020a170907a07400b00923c199dab1mr3530925ejc.55.1679420247526;
+        Tue, 21 Mar 2023 10:37:27 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id w29-20020a50d79d000000b004bf5981ef3dsm6216731edi.94.2023.03.21.10.37.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 10:37:27 -0700 (PDT)
+Message-ID: <611ea918-64a6-f306-b5ec-db55e41abda2@linaro.org>
+Date:   Tue, 21 Mar 2023 18:37:25 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V1 3/4] soc: qcom: boot_stat: Add Driver Support for Boot
+ Stats
+Content-Language: en-US
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1679403696.git.quic_schowdhu@quicinc.com>
+ <3f385562845ae26d519940ca8098fde89282991b.1679403696.git.quic_schowdhu@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3f385562845ae26d519940ca8098fde89282991b.1679403696.git.quic_schowdhu@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM63268 requires special RGMII configuration to work.
+On 21/03/2023 14:51, Souradeep Chowdhury wrote:
+> All of Qualcomm's proprietary Android boot-loaders capture boot time
+> stats, like the time when the bootloader started execution and at what
+> point the bootloader handed over control to the kernel etc. in the IMEM
+> region. This information is captured in a specific format by this driver
+> by mapping a structure to the IMEM memory region and then accessing the
+> members of the structure to print the information. This information is
+> useful in verifying if the existing boot KPIs have regre
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Simon Horman <simon.horman@corigine.com>
----
- v2: no changes.
 
- drivers/net/dsa/b53/b53_common.c | 6 +++++-
- drivers/net/dsa/b53/b53_regs.h   | 1 +
- 2 files changed, 6 insertions(+), 1 deletion(-)
+> +/**
+> + *  struct boot_stats - timestamp information related to boot stats
+> + *  @bootloader_start:	Time for the starting point of the abl bootloader
+> + *  @bootloader_end:	Time when the kernel starts loading from abl bootloader
+> + */
+> +struct boot_stats {
+> +	u32 bootloader_start;
+> +	u32 bootloader_end;
+> +} __packed;
+> +
+> +static struct boot_stats __iomem *boot_stats;
+> +static void __iomem *mpm_counter_base;
+> +static u32 mpm_counter_freq;
 
-diff --git a/drivers/net/dsa/b53/b53_common.c b/drivers/net/dsa/b53/b53_common.c
-index 97327d7a6760..1f9b251a5452 100644
---- a/drivers/net/dsa/b53/b53_common.c
-+++ b/drivers/net/dsa/b53/b53_common.c
-@@ -1240,8 +1240,12 @@ static void b53_adjust_63xx_rgmii(struct dsa_switch *ds, int port,
- 		break;
- 	}
- 
--	if (port != dev->imp_port)
-+	if (port != dev->imp_port) {
-+		if (is63268(dev))
-+			rgmii_ctrl |= RGMII_CTRL_MII_OVERRIDE;
-+
- 		rgmii_ctrl |= RGMII_CTRL_ENABLE_GMII;
-+	}
- 
- 	b53_write8(dev, B53_CTRL_PAGE, off, rgmii_ctrl);
- 
-diff --git a/drivers/net/dsa/b53/b53_regs.h b/drivers/net/dsa/b53/b53_regs.h
-index b2c539a42154..bfbcb66bef66 100644
---- a/drivers/net/dsa/b53/b53_regs.h
-+++ b/drivers/net/dsa/b53/b53_regs.h
-@@ -138,6 +138,7 @@
- 
- #define B53_RGMII_CTRL_IMP		0x60
- #define   RGMII_CTRL_ENABLE_GMII	BIT(7)
-+#define   RGMII_CTRL_MII_OVERRIDE	BIT(6)
- #define   RGMII_CTRL_TIMING_SEL		BIT(2)
- #define   RGMII_CTRL_DLL_RXC		BIT(1)
- #define   RGMII_CTRL_DLL_TXC		BIT(0)
--- 
-2.30.2
+No file-scope variables. Does not scale, not easy for review and
+maintenance. Avoid such code.
+
+> +
+> +static int mpm_parse_dt(void)
+> +{
+> +	struct device_node *np_imem, *np_mpm2;
+> +
+> +	np_imem = of_find_compatible_node(NULL, NULL,
+> +					  "qcom,imem-boot_stats");
+> +	if (!np_imem) {
+> +		pr_err("can't find qcom,imem node\n");
+
+So you are printing errors everywhere, on every soc and with compile
+test on every platform there is in the world... sorry, it does not work
+like that.
+
+> +		return -ENODEV;
+> +	}
+> +	boot_stats = of_iomap(np_imem, 0);
+> +	if (!boot_stats) {
+> +		pr_err("boot_stats: Can't map imem\n");
+> +		goto err1;
+> +	}
+
+
+> +
+> +static void __exit boot_stats_exit(void)
+> +{
+> +}
+> +module_exit(boot_stats_exit)
+
+
+I don't think this is some special code which deserves init calls. Make
+it module_platform_driver().
+
+
+Best regards,
+Krzysztof
 
