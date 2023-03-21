@@ -2,283 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF4A6C2E4C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:55:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA6DD6C2E71
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:12:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbjCUJzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 05:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
+        id S229872AbjCUKMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 06:12:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjCUJzJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:55:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800C642BD1;
-        Tue, 21 Mar 2023 02:54:57 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 35C4F66030DA;
-        Tue, 21 Mar 2023 09:54:54 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679392495;
-        bh=1JltmLgRNV4IHmYEsNUnZUzP3ExsG4axYz1jkhP27SY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Owh7RWhB7Db/pjY5RqGj1SkTPYKhoygsU7DooP1X/gCOchYEMhLFV/Uf88sVaShzh
-         leEbyY5ujLEw9bBnOrQ2DGZvSI9bnX0JDvQFCb3AfqKBO7xzJZUSU1anJsD3YRTHdI
-         in2uy0sTPQEjMPv9OyT030GpbpkQESfRo4zjqOuTDzYIQrQ0USzlrY3XQeFisjCKq7
-         AYWUu68nxWsP44n2mIPqXfmMaHBCDtlJW2UmDNITmMRth6N9D+K7g0VM2v7sBniZJP
-         TCuWeTQinerSBuHT2+PKepMLfAYmmo9N7W9nm/pCV1SSJq56wqhp6ZR7GkuuPM/5VN
-         tlJiaAiAXHSgQ==
-Message-ID: <cac08caf-a5ef-08d7-ac90-cd852cd63e3c@collabora.com>
-Date:   Tue, 21 Mar 2023 10:54:51 +0100
+        with ESMTP id S229804AbjCUKMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:12:51 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27EEB37701
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:12:48 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id eh3so57434680edb.11
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:12:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679393566;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MBblg6ouqKODHyX877fXDi2urk7+HMZmQEWvK4N+5xA=;
+        b=cyDchbnmi/K2X12VsJrtHmzOjhrjENPwu2ileUBtV/RR8kgrZ0leVFpzOYCfij+f8s
+         +j0bZQSRs/xu91acp5PQGXNgAyIDjwcpuExswfSxzVRjnvoiryoQqjxckO02RX9RZUwE
+         Uyz4OfHVdkj2VLarrKqf4fzVEd9lh5y2GPMzm3nnByYCs7FmDLUTw/uzJPuT+m5NUSkF
+         FHrzc2YTyAYiXxW4nsBVVBpeddlVENEZ8XQvNE6RXkAZHCtOqvAQBAsyl7kw9ONLHFkT
+         3fZwrtBB3WppLix8HvgVD9jWpWM3/6BDfqmkPmssj0pcorizhIN0+KD8P5ok8DVg/GP7
+         Z8nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679393566;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MBblg6ouqKODHyX877fXDi2urk7+HMZmQEWvK4N+5xA=;
+        b=5ytEqeGdk5wnaY5d+YThCKSCriUZfFwdBGNe6pg6HIlKrHrY1ykGfsZcqtLciH3RXm
+         weBLNneo5bBAIktJpeqX7JU6I2XHwngI+GOyW1NVCq3Gj+yC5uMB0PXk0cG6o8ThFV6t
+         /YJm63ejzc8EwvI5IpDwLD3ocqQGP9HIByFftCQAAaLRvWlpIozRqPxjPgRAuUakWDhR
+         LRIYVzXCq/bnmR65fbjx45tWnoZTuGoZX5qNYjas8PFDISY1KKn6FwTW83m0FVg2s1YE
+         CBf/E1TA3TZdWx6IMuTYN1ijEv1sZYq4UpBjZJE8feGJ26yjwefQT/uTHoJ48ihHD8gQ
+         X0Dw==
+X-Gm-Message-State: AO0yUKV4IB/9TTkeF7s+QW5URgxzZWFBG7WhY2494/uXG27wcgY2oUG1
+        vLM0D8/GYdxmq8ptP0AxBfINAA==
+X-Google-Smtp-Source: AK7set9y91HFCneDKUYOtGWZfa4sI4vIRE5C0iaFvRabDlbD7NgNvD8qB02c9rR0uphL/1AlejObbA==
+X-Received: by 2002:aa7:d317:0:b0:4fb:5795:b7e0 with SMTP id p23-20020aa7d317000000b004fb5795b7e0mr2523640edq.31.1679393566673;
+        Tue, 21 Mar 2023 03:12:46 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id g9-20020a056402320900b004fd219242a5sm5983006eda.7.2023.03.21.03.12.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 03:12:46 -0700 (PDT)
+Message-ID: <c4d67c22-6953-0f2c-4b80-cc9ab2ab5e8b@linaro.org>
+Date:   Tue, 21 Mar 2023 11:12:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
- mt8195
+Subject: Re: [PATCH v2 1/2] dt-bindings: wireless: add ath11k pcie bindings
 Content-Language: en-US
-To:     =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "nathan@kernel.org" <nathan@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "clang-built-linux@googlegroups.com" 
-        <clang-built-linux@googlegroups.com>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>
-References: <20221227081011.6426-1-nancy.lin@mediatek.com>
- <20221227081011.6426-2-nancy.lin@mediatek.com>
- <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
- <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
- <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
- <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
- <e5ceec9e-d51b-2aeb-1db7-b79b151bd44c@collabora.com>
- <0ebf187d-972e-4228-d8a0-8c0ce02f642d@linaro.org>
- <72cf6344a1c5942bff0872d05dce82b787b49b76.camel@mediatek.com>
- <4027714e-b4e8-953b-68e2-f74f7a7f0e8e@linaro.org>
- <fdd0a157-eedb-bf21-c632-79b02a4cd6b0@collabora.com>
- <5695b8e5ab8339764c646ee581529cb6cee04346.camel@mediatek.com>
- <34c758c0-cbbb-da11-6263-e7b084040ed6@collabora.com>
- <74dca3fa90d5cd78286281e2ced45842bee21f91.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <74dca3fa90d5cd78286281e2ced45842bee21f91.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230321094011.9759-1-johan+linaro@kernel.org>
+ <20230321094011.9759-2-johan+linaro@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230321094011.9759-2-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/03/23 06:33, Nancy Lin (林欣螢) ha scritto:
-> Dear Angelo,
+On 21/03/2023 10:40, Johan Hovold wrote:
+> Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6855
+> for which the calibration data variant may need to be described.
 > 
-> Sorry for late reply.
-> 
-> On Fri, 2023-03-17 at 10:58 +0100, AngeloGioacchino Del Regno wrote:
->> Il 17/03/23 10:52, Nancy Lin (林欣螢) ha scritto:
->>> On Fri, 2023-03-17 at 10:37 +0100, AngeloGioacchino Del Regno
->>> wrote:
->>>> Il 17/03/23 10:03, Krzysztof Kozlowski ha scritto:
->>>>> On 17/03/2023 08:55, Nancy Lin (林欣螢) wrote:
->>>>>> On Thu, 2023-03-16 at 12:36 +0100, Krzysztof Kozlowski wrote:
->>>>>>> On 16/03/2023 10:53, AngeloGioacchino Del Regno wrote:
->>>>>>>
->>>>>>>> Hello Krzysztof, Nancy,
->>>>>>>>
->>>>>>>> Since this series has reached v29, can we please reach an
->>>>>>>> agreement
->>>>>>>> on the bindings
->>>>>>>> to use here, so that we can get this finally upstreamed?
->>>>>>>>
->>>>>>>> I will put some examples to try to get this issue
->>>>>>>> resolved.
->>>>>>>>
->>>>>>>> ### Example 1: Constrain the number of GCE entries to
->>>>>>>> *seven*
->>>>>>>> array
->>>>>>>> elements (7x4!)
->>>>>>>>
->>>>>>>>       mediatek,gce-client-reg:
->>>>>>>>         $ref: /schemas/types.yaml#/definitions/phandle-
->>>>>>>> array
->>>>>>>>         maxItems: 1
->>>>>>>>         description: The register of display function
->>>>>>>> block to
->>>>>>>> be set
->>>>>>>> by gce.
->>>>>>>>           There are 4 arguments in this property, gce
->>>>>>>> node,
->>>>>>>> subsys id,
->>>>>>>> offset and
->>>>>>>>           register size. The subsys id is defined in the
->>>>>>>> gce
->>>>>>>> header of
->>>>>>>> each chips
->>>>>>>>           include/dt-bindings/gce/<chip>-gce.h, mapping to
->>>>>>>> the
->>>>>>>> register of display
->>>>>>>>           function block.
->>>>>>>>         items:
->>>>>>>>           minItems: 28
->>>>>>>>           maxItems: 28
->>>>>>>>           items:                     <----- this block
->>>>>>>> doesn't
->>>>>>>> seem to
->>>>>>>> get checked :\
->>>>>>>>             - description: phandle of GCE
->>>>>>>>             - description: GCE subsys id
->>>>>>>>             - description: register offset
->>>>>>>>             - description: register size
->>>>>>>
->>>>>>> This is what we would like to have but it requires
->>>>>>> exception in
->>>>>>> dtschema. Thus:
->>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> ### Example 2: Don't care about constraining the number
->>>>>>>> of
->>>>>>>> arguments
->>>>>>>>
->>>>>>>>       mediatek,gce-client-reg:
->>>>>>>>         $ref: /schemas/types.yaml#/definitions/phandle-
->>>>>>>> array
->>>>>>>>         maxItems: 1
->>>>>>>>         description: The register of display function
->>>>>>>> block to
->>>>>>>> be set
->>>>>>>> by gce.
->>>>>>>>           There are 4 arguments in this property, gce
->>>>>>>> node,
->>>>>>>> subsys id,
->>>>>>>> offset and
->>>>>>>>           register size. The subsys id is defined in the
->>>>>>>> gce
->>>>>>>> header of
->>>>>>>> each chips
->>>>>>>>           include/dt-bindings/gce/<chip>-gce.h, mapping to
->>>>>>>> the
->>>>>>>> register of display
->>>>>>>>           function block.
->>>>>>>
->>>>>>> use this.
->>>>>>>
->>>>>>> Best regards,
->>>>>>> Krzysztof
->>>>>>
->>>>>>
->>>>>> Hi Krzysztof, Angelo,
->>>>>>
->>>>>> Thanks for the comment.
->>>>>> The Example 2 can pass dt_binding_check.
->>>>>>
->>>>>> But the example in the binding has 7 items [1] and dts [2].
->>>>>> Does
->>>>>> the
->>>>>> "maxItems: 1" affect any other schema or dts check?
->>>>>
->>>>> Ah, then it should be maxItems: 7, not 1.
->>>>>
->>>>
->>>> Keep in mind for your v30:
->>>>
->>>> maxItems: 7 will pass - but only if minItems is *not* 7 :-)
->>>>
->>>> -> (so, do not declare minItems, as default is 1) <-
->>>>
->>>> Regards,
->>>> Angelo
->>>>
->>>
->>> Hi Angelo,
->>>
->>> I still have one message [1] when runing dt_binding_check for
->>> "example
->>> 2 + maxItems: 7" [2].
->>>
->>> [1]
->>> /proj/mtk19347/cros/src/third_party/kernel/v5.10/Documentation/devi
->>> cetr
->>> ee/bindings/display/mediatek/mediatek,ethdr.example.dtb:
->>> hdr-engine@1c114000: mediatek,gce-client-reg: [[4294967295, 7,
->>> 16384,
->>> 4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
->>> 4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295,
->>> 7,
->>> 45056, 4096, 4294967295, 7, 49152, 4096]] is too short
->>>
->>>
->>> [2]
->>>      mediatek,gce-client-reg:
->>>        $ref: /schemas/types.yaml#/definitions/phandle-array
->>>        maxItems: 7
->>>        description: The register of display function block to be set
->>> by
->>> gce.
->>>          There are 4 arguments in this property, gce node, subsys
->>> id,
->>> offset and
->>>          register size. The subsys id is defined in the gce header
->>> of
->>> each chips
->>>          include/dt-bindings/gce/<chip>-gce.h, mapping to the
->>> register of
->>> display
->>>          function block.
->>>
->>
->> Maybe I'm wrong about the "do not declare minItems"... try with
->>
->> minItems: 1
->> maxItems: 7
->>
->>
->> ...does it work now?
->>
-> 
-> Yes, It works well with "example2 + minItems:1 + maxItems: 7" [1]
-> 
-> [1]
->    mediatek,gce-client-reg:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      minItems: 1
->      maxItems: 7
->      description: The register of display function block to be set by
-> gce.
->        There are 4 arguments in this property, gce node, subsys id,
-> offset and
->        register size. The subsys id is defined in the gce header of each
-> chips
->        include/dt-bindings/gce/<chip>-gce.h, mapping to the register of
-> display
->        function block.
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  .../net/wireless/qcom,ath11k-pci.yaml         | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
 > 
 
-Please send a v30 with that solution ASAP then, so that we may perhaps *finally*
-get it in for v6.4.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards,
-Angelo
+Best regards,
+Krzysztof
+
