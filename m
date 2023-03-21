@@ -2,169 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA6CD6C2EAC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 446606C2ECB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:27:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230122AbjCUKYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 06:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42288 "EHLO
+        id S230193AbjCUK1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 06:27:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbjCUKYo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:24:44 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F541A663;
-        Tue, 21 Mar 2023 03:24:30 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id t11so18465585lfr.1;
-        Tue, 21 Mar 2023 03:24:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679394268;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aWn/7mbklD+A+VP8Q0o9PMepwQzDExkOlaUCk9c90go=;
-        b=iquuKDMl6Sqaw/4fFi35QnrEmF2ISe0CqEPGKCaT2wkhZo/3Yz10fW2lj6LbTbJymI
-         bdxwZ4WL3jPu8LAnQQa08mrHlhJ7VTpicEm/DuObAWhtOFTiU07Upmk5Sdw6Wk1r9+7m
-         5YLoSxx4zCZ3IqIu4es5M2p05CPoScm4iH2Pz7QEFiyrzCVctSVdsT/viItWjJrhv7fi
-         zYV0KK1ACS9w+6/SoEVz8zouJZPqndunovcm82iQVZ6Kgu3xbuSjUarTTbuPekjzCR7Z
-         jKpTmL5DWjmERKHOSYfcZzSDX0f7X69xk2x3PUPpwODw9qC2cB3ab/Y1UDpnA3rw99Ft
-         e77Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679394268;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aWn/7mbklD+A+VP8Q0o9PMepwQzDExkOlaUCk9c90go=;
-        b=4pB18e+OUD232VBcLkxhZiu2dDASgvDC4lOyfx9k3ck/kWGNM7ZGjFqsJv7hkiQVDW
-         YsV/a7yS04NKr0m5J9ChaY/iDw7lS6EbD4fNgwITGi6wozuISEzY2Xc6RfGNmW9WDQlB
-         je2Fv0FzHLLxLrRyKG2Uw7yIQvEKnqZvSwf/NGJ9pVyC5Nv589pkX/81zLm5NgpT7QOQ
-         OdVgddg5cEhsdu1mMt/p9SuKOQJElWFhgcA+16BvHYc1AZWFST0iVWU1E48BCZkeGP+6
-         bK5WsNy/IKwn8eB+umZAaQrE1ZXirujs4lQQaB+4WPs+vuFP3Z65ylCUCIDjpxzHXTyy
-         Jf5Q==
-X-Gm-Message-State: AO0yUKWfyJ14lC//UsA9LgG5hGOlw6BS92za7kjT4fC3hOSXdEh66OdK
-        nsTJD4uAHOAFjt8oZE+cvmo=
-X-Google-Smtp-Source: AK7set93b9KqwqqM62J0DlhGRHnZZnYDPOjuVLEwX5LJ42AC3bEXCYrx2vBUX/maekAuvfP/Gvo5PQ==
-X-Received: by 2002:ac2:4ac8:0:b0:4e0:2455:3ade with SMTP id m8-20020ac24ac8000000b004e024553ademr603297lfp.60.1679394268654;
-        Tue, 21 Mar 2023 03:24:28 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e904c000000b00299f0194108sm2163069ljg.31.2023.03.21.03.24.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 03:24:28 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V5 3/3] nvmem: core: add support for fixed cells *layout*
-Date:   Tue, 21 Mar 2023 11:24:18 +0100
-Message-Id: <20230321102418.4190-4-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230321102418.4190-1-zajec5@gmail.com>
-References: <20230321102418.4190-1-zajec5@gmail.com>
+        with ESMTP id S230219AbjCUK1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:27:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6200D1C5BA;
+        Tue, 21 Mar 2023 03:26:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7D6D8B8159F;
+        Tue, 21 Mar 2023 10:26:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03AF1C433EF;
+        Tue, 21 Mar 2023 10:26:11 +0000 (UTC)
+Message-ID: <9cf2736e-2b82-6dd2-7c08-dfe4705fa210@xs4all.nl>
+Date:   Tue, 21 Mar 2023 11:26:10 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 01/10] media: Add P012 and P012M video format
+Content-Language: en-US
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        mirela.rabulea@oss.nxp.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1678788305.git.ming.qian@nxp.com>
+ <42a8e54f01ae62a36ca51eeb6652cee91baf20f3.1678788305.git.ming.qian@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <42a8e54f01ae62a36ca51eeb6652cee91baf20f3.1678788305.git.ming.qian@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 14/03/2023 11:08, Ming Qian wrote:
+> P012 is a YUV format with 12-bits per component with interleaved UV,
+> like NV12, expanded to 16 bits.
+> Data in the 12 high bits, zeros in the 4 low bits,
+> arranged in little endian order.
+> And P012M has two non contiguous planes.
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> ---
+>  .../media/v4l/pixfmt-yuv-planar.rst           | 94 +++++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-common.c         |  2 +
+>  drivers/media/v4l2-core/v4l2-ioctl.c          |  2 +
+>  include/uapi/linux/videodev2.h                |  2 +
+>  4 files changed, 100 insertions(+)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> index f1d5bb7b806d..aa37c3de8808 100644
+> --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> @@ -123,6 +123,20 @@ All components are stored with the same number of bits per component.
+>        - Cb, Cr
+>        - Yes
+>        - 4x4 tiles
+> +    * - V4L2_PIX_FMT_P012
+> +      - 'P012'
+> +      - 12
+> +      - 4:2:0
+> +      - Cb, Cr
+> +      - Yes
+> +      - Linear
+> +    * - V4L2_PIX_FMT_P012M
+> +      - 'PM12'
+> +      - 12
+> +      - 4:2:0
+> +      - Cb, Cr
+> +      - Yes
 
-This adds support for the "fixed-layout" NVMEM layout binding. It allows
-defining NVMEM cells in a layout DT node named "nvmem-layout".
+Shouldn't this be 'No'?
 
-While NVMEM subsystem supports layout drivers it has been discussed that
-"fixed-layout" may actually be supperted internally. It's because:
-1. It's a very basic layout
-2. It allows sharing code with legacy syntax parsing
-3. It's safer for soc_device_match() due to -EPROBE_DEFER
-4. This will make the syntax transition easier
+Looks good otherwise.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/core.c | 32 +++++++++++++++++++++++++++++---
- 1 file changed, 29 insertions(+), 3 deletions(-)
+Regards,
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 212c5ba5789f..591b640f53dd 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -694,7 +694,7 @@ static int nvmem_validate_keepouts(struct nvmem_device *nvmem)
- 	return 0;
- }
- 
--static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
-+static int nvmem_add_cells_from_dt(struct nvmem_device *nvmem, struct device_node *np)
- {
- 	struct nvmem_layout *layout = nvmem->layout;
- 	struct device *dev = &nvmem->dev;
-@@ -702,7 +702,7 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
- 	const __be32 *addr;
- 	int len, ret;
- 
--	for_each_child_of_node(dev->of_node, child) {
-+	for_each_child_of_node(np, child) {
- 		struct nvmem_cell_info info = {0};
- 
- 		addr = of_get_property(child, "reg", &len);
-@@ -740,6 +740,28 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
- 	return 0;
- }
- 
-+static int nvmem_add_cells_from_legacy_of(struct nvmem_device *nvmem)
-+{
-+	return nvmem_add_cells_from_dt(nvmem, nvmem->dev.of_node);
-+}
-+
-+static int nvmem_add_cells_fixed(struct nvmem_device *nvmem)
-+{
-+	struct device_node *layout_np;
-+	int err = 0;
-+
-+	layout_np = of_nvmem_layout_get_container(nvmem);
-+	if (!layout_np)
-+		return 0;
-+
-+	if (of_device_is_compatible(layout_np, "fixed-layout"))
-+		err = nvmem_add_cells_from_dt(nvmem, layout_np);
-+
-+	of_node_put(layout_np);
-+
-+	return err;
-+}
-+
- int __nvmem_layout_register(struct nvmem_layout *layout, struct module *owner)
- {
- 	layout->owner = owner;
-@@ -970,7 +992,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 	if (rval)
- 		goto err_remove_cells;
- 
--	rval = nvmem_add_cells_from_of(nvmem);
-+	rval = nvmem_add_cells_from_legacy_of(nvmem);
- 	if (rval)
- 		goto err_remove_cells;
- 
-@@ -980,6 +1002,10 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 	if (rval)
- 		goto err_remove_cells;
- 
-+	rval = nvmem_add_cells_fixed(nvmem);
-+	if (rval)
-+		goto err_remove_cells;
-+
- 	rval = nvmem_add_cells_from_layout(nvmem);
- 	if (rval)
- 		goto err_remove_cells;
--- 
-2.34.1
+	Hans
+
+> +      - Linear
+>      * - V4L2_PIX_FMT_NV16
+>        - 'NV16'
+>        - 8
+> @@ -586,6 +600,86 @@ Data in the 10 high bits, zeros in the 6 low bits, arranged in little endian ord
+>        - Cb\ :sub:`11`
+>        - Cr\ :sub:`11`
+>  
+> +.. _V4L2-PIX-FMT-P012:
+> +.. _V4L2-PIX-FMT-P012M:
+> +
+> +P012 and P012M
+> +--------------
+> +
+> +P012 is like NV12 with 12 bits per component, expanded to 16 bits.
+> +Data in the 12 high bits, zeros in the 4 low bits, arranged in little endian order.
+> +
+> +.. flat-table:: Sample 4x4 P012 Image
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - start + 0:
+> +      - Y'\ :sub:`00`
+> +      - Y'\ :sub:`01`
+> +      - Y'\ :sub:`02`
+> +      - Y'\ :sub:`03`
+> +    * - start + 8:
+> +      - Y'\ :sub:`10`
+> +      - Y'\ :sub:`11`
+> +      - Y'\ :sub:`12`
+> +      - Y'\ :sub:`13`
+> +    * - start + 16:
+> +      - Y'\ :sub:`20`
+> +      - Y'\ :sub:`21`
+> +      - Y'\ :sub:`22`
+> +      - Y'\ :sub:`23`
+> +    * - start + 24:
+> +      - Y'\ :sub:`30`
+> +      - Y'\ :sub:`31`
+> +      - Y'\ :sub:`32`
+> +      - Y'\ :sub:`33`
+> +    * - start + 32:
+> +      - Cb\ :sub:`00`
+> +      - Cr\ :sub:`00`
+> +      - Cb\ :sub:`01`
+> +      - Cr\ :sub:`01`
+> +    * - start + 40:
+> +      - Cb\ :sub:`10`
+> +      - Cr\ :sub:`10`
+> +      - Cb\ :sub:`11`
+> +      - Cr\ :sub:`11`
+> +
+> +.. flat-table:: Sample 4x4 P012M Image
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - start0 + 0:
+> +      - Y'\ :sub:`00`
+> +      - Y'\ :sub:`01`
+> +      - Y'\ :sub:`02`
+> +      - Y'\ :sub:`03`
+> +    * - start0 + 8:
+> +      - Y'\ :sub:`10`
+> +      - Y'\ :sub:`11`
+> +      - Y'\ :sub:`12`
+> +      - Y'\ :sub:`13`
+> +    * - start0 + 16:
+> +      - Y'\ :sub:`20`
+> +      - Y'\ :sub:`21`
+> +      - Y'\ :sub:`22`
+> +      - Y'\ :sub:`23`
+> +    * - start0 + 24:
+> +      - Y'\ :sub:`30`
+> +      - Y'\ :sub:`31`
+> +      - Y'\ :sub:`32`
+> +      - Y'\ :sub:`33`
+> +    * -
+> +    * - start1 + 0:
+> +      - Cb\ :sub:`00`
+> +      - Cr\ :sub:`00`
+> +      - Cb\ :sub:`01`
+> +      - Cr\ :sub:`01`
+> +    * - start1 + 8:
+> +      - Cb\ :sub:`10`
+> +      - Cr\ :sub:`10`
+> +      - Cb\ :sub:`11`
+> +      - Cr\ :sub:`11`
+> +
+>  
+>  Fully Planar YUV Formats
+>  ========================
+> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-core/v4l2-common.c
+> index 40f56e044640..a5e8ba370d33 100644
+> --- a/drivers/media/v4l2-core/v4l2-common.c
+> +++ b/drivers/media/v4l2-core/v4l2-common.c
+> @@ -267,6 +267,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
+>  		{ .format = V4L2_PIX_FMT_NV24,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 1, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_NV42,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 1, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_P010,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 2, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+> +		{ .format = V4L2_PIX_FMT_P012,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 2, 4, 0, 0 }, .hdiv = 2, .vdiv = 2 },
+>  
+>  		{ .format = V4L2_PIX_FMT_YUV410,  .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 4 },
+>  		{ .format = V4L2_PIX_FMT_YVU410,  .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 3, .bpp = { 1, 1, 1, 0 }, .hdiv = 4, .vdiv = 4 },
+> @@ -292,6 +293,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
+>  		{ .format = V4L2_PIX_FMT_NV21M,   .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
+>  		{ .format = V4L2_PIX_FMT_NV16M,   .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_NV61M,   .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+> +		{ .format = V4L2_PIX_FMT_P012M,   .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 2, .comp_planes = 2, .bpp = { 2, 4, 0, 0 }, .hdiv = 2, .vdiv = 2 },
+>  
+>  		/* Bayer RGB formats */
+>  		{ .format = V4L2_PIX_FMT_SBGGR8,	.pixel_enc = V4L2_PIXEL_ENC_BAYER, .mem_planes = 1, .comp_planes = 1, .bpp = { 1, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
+> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+> index 87f163a89c80..6489b67babfa 100644
+> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> @@ -1352,6 +1352,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+>  	case V4L2_PIX_FMT_NV24:		descr = "Y/UV 4:4:4"; break;
+>  	case V4L2_PIX_FMT_NV42:		descr = "Y/VU 4:4:4"; break;
+>  	case V4L2_PIX_FMT_P010:		descr = "10-bit Y/UV 4:2:0"; break;
+> +	case V4L2_PIX_FMT_P012:		descr = "12-bit Y/UV 4:2:0"; break;
+>  	case V4L2_PIX_FMT_NV12_4L4:	descr = "Y/UV 4:2:0 (4x4 Linear)"; break;
+>  	case V4L2_PIX_FMT_NV12_16L16:	descr = "Y/UV 4:2:0 (16x16 Linear)"; break;
+>  	case V4L2_PIX_FMT_NV12_32L32:   descr = "Y/UV 4:2:0 (32x32 Linear)"; break;
+> @@ -1362,6 +1363,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+>  	case V4L2_PIX_FMT_NV61M:	descr = "Y/VU 4:2:2 (N-C)"; break;
+>  	case V4L2_PIX_FMT_NV12MT:	descr = "Y/UV 4:2:0 (64x32 MB, N-C)"; break;
+>  	case V4L2_PIX_FMT_NV12MT_16X16:	descr = "Y/UV 4:2:0 (16x16 MB, N-C)"; break;
+> +	case V4L2_PIX_FMT_P012M:	descr = "12-bit Y/UV 4:2:0 (N-C)"; break;
+>  	case V4L2_PIX_FMT_YUV420M:	descr = "Planar YUV 4:2:0 (N-C)"; break;
+>  	case V4L2_PIX_FMT_YVU420M:	descr = "Planar YVU 4:2:0 (N-C)"; break;
+>  	case V4L2_PIX_FMT_YUV422M:	descr = "Planar YUV 4:2:2 (N-C)"; break;
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index 17a9b975177a..f83a9d1210fb 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -637,12 +637,14 @@ struct v4l2_pix_format {
+>  #define V4L2_PIX_FMT_NV24    v4l2_fourcc('N', 'V', '2', '4') /* 24  Y/CbCr 4:4:4  */
+>  #define V4L2_PIX_FMT_NV42    v4l2_fourcc('N', 'V', '4', '2') /* 24  Y/CrCb 4:4:4  */
+>  #define V4L2_PIX_FMT_P010    v4l2_fourcc('P', '0', '1', '0') /* 24  Y/CbCr 4:2:0 10-bit per component */
+> +#define V4L2_PIX_FMT_P012    v4l2_fourcc('P', '0', '1', '2') /* 24  Y/CbCr 4:2:0 12-bit per component */
+>  
+>  /* two non contiguous planes - one Y, one Cr + Cb interleaved  */
+>  #define V4L2_PIX_FMT_NV12M   v4l2_fourcc('N', 'M', '1', '2') /* 12  Y/CbCr 4:2:0  */
+>  #define V4L2_PIX_FMT_NV21M   v4l2_fourcc('N', 'M', '2', '1') /* 21  Y/CrCb 4:2:0  */
+>  #define V4L2_PIX_FMT_NV16M   v4l2_fourcc('N', 'M', '1', '6') /* 16  Y/CbCr 4:2:2  */
+>  #define V4L2_PIX_FMT_NV61M   v4l2_fourcc('N', 'M', '6', '1') /* 16  Y/CrCb 4:2:2  */
+> +#define V4L2_PIX_FMT_P012M   v4l2_fourcc('P', 'M', '1', '2') /* 24  Y/CbCr 4:2:0 12-bit per component */
+>  
+>  /* three planes - Y Cb, Cr */
+>  #define V4L2_PIX_FMT_YUV410  v4l2_fourcc('Y', 'U', 'V', '9') /*  9  YUV 4:1:0     */
 
