@@ -2,86 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E235F6C28A9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 04:42:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 836306C2906
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 05:12:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbjCUDmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 23:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
+        id S229889AbjCUEMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 00:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjCUDmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 23:42:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8102932E56;
-        Mon, 20 Mar 2023 20:41:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EA38EB81235;
-        Tue, 21 Mar 2023 03:41:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17888C433EF;
-        Tue, 21 Mar 2023 03:41:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679370116;
-        bh=Jk2T8KzAk6AYQ1kjo+O7hUQbaKhmKLsFTuvlYvwxK/A=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oLf3l/0yU8YpuM7jfKUSyIKeoRoUdovOG9TYbeB30Wm8DCFIhnaL6MV24hkWZyeUi
-         6zntvyKAunOQIffo2oeilPDVtH4aJAV0jofS/FBZkNcRE+rIbye/YZnJ1A3rnj/G9N
-         rIvBgzbrwLPBn3WT5EBKLRtM/fCUT4srAorE1TX+XroTG2dxAn3sjDnSNVzrDn63Z5
-         4U0YEr+xP21vy0nzcmFci9MHCHCEsBP903MTQ5c275B9i8ZSY9Kn6uHYE4A5RvCkBX
-         CL+b8t1GpWaKooO9pIVDpcC21GnX3+ZTBEVLVQcqcQUApDiAeDVzcATDiDvffwRsiR
-         wQjxtHPocjnNg==
-Date:   Mon, 20 Mar 2023 20:41:53 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, bhupesh.sharma@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
-Subject: Re: [PATCH net-next v2 09/12] net: stmmac: Add EMAC3 variant of
- dwmac4
-Message-ID: <20230320204153.21736840@kernel.org>
-In-Reply-To: <20230320221617.236323-10-ahalaney@redhat.com>
-References: <20230320221617.236323-1-ahalaney@redhat.com>
-        <20230320221617.236323-10-ahalaney@redhat.com>
+        with ESMTP id S230225AbjCUEMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 00:12:25 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7BE3B0DD;
+        Mon, 20 Mar 2023 21:10:29 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32L49nWN035452;
+        Mon, 20 Mar 2023 23:09:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679371789;
+        bh=9/6jC/J1n3PyWbO7FcVOrORzNo8BISKcwWaH9PypUBA=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Ez1Nd6lSYlIHMnka1DQjVRizMQii0ShFjQ0Tl1LzYmaxRGaHAf9sEFSkN0uJXulLl
+         wLm/wmi79KvUXu57OiIylEvRRdsynBp0JikiCwonPLjD7vhapRazJ3aop/8Fy9zERa
+         IC33PSI+CDjGwzUK8BPhRAh8vSvRN73VHntfhKec=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32L49n28008930
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Mar 2023 23:09:49 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
+ Mar 2023 23:09:49 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 20 Mar 2023 23:09:49 -0500
+Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32L49kbx009701;
+        Mon, 20 Mar 2023 23:09:46 -0500
+Message-ID: <647f6bc0-ea2a-7026-d5c8-148fb4bb8c04@ti.com>
+Date:   Tue, 21 Mar 2023 09:39:45 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: k3: Add compatible for AM62x LP
+ SK
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230320051304.2730692-1-vigneshr@ti.com>
+ <20230320051304.2730692-2-vigneshr@ti.com>
+ <06cbcd7d-bc83-bfeb-0821-72c7caf9a5e7@linaro.org>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <06cbcd7d-bc83-bfeb-0821-72c7caf9a5e7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Mar 2023 17:16:14 -0500 Andrew Halaney wrote:
-> The next approach that was checked was to have a function pointer
-> embedded inside a structure that does the appropriate conversion based
-> on the variant that's in use. However, some of the function definitions
-> are like the following:
+
+
+On 20/03/23 20:50, Krzysztof Kozlowski wrote:
+> On 20/03/2023 06:13, Vignesh Raghavendra wrote:
+>> Add compatible for AM62x SoC based Low Power Starter Kit board[1]
+>>
+>> [1] https://www.ti.com/tool/SK-AM62-LP
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+>> index a60a4065caa8..56fdd94bf899 100644
+>> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+>> @@ -29,6 +29,7 @@ properties:
+>>          items:
+>>            - enum:
+>>                - ti,am625-sk
+>> +              - ti,am62x-lp-sk
 > 
->     void emac3_set_rx_ring_len(void __iomem *ioaddr, u32 len, u32 chan)
+> Don't use wildcards in compatibles... but judging by
+> https://www.ti.com/tool/SK-AM62 it looks like model name. If it is truly
+> model name, not wildcard, then:
 
-I checked a couple of callbacks and they seem to all be called with
-priv->iomem as an arg, so there is no strong reason to pass iomem
-instead of priv / hw. Or at least not to pass both..
+I used the name on the EVM's silk screen. But I think its better to drop
+the wildcard. Will respin with that fixed.
 
-I think that's a better approach than adding the wrappers :(
+FWIW Correct URL is https://www.ti.com/tool/SK-AM62-LP (Boards look very
+identical though ;) )
 
-Are you familiar with coccinelle / spatch? It's often better than 
-just regexps for refactoring, maybe it can help?
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+
+Thanks
+
+-- 
+Regards
+Vignesh
