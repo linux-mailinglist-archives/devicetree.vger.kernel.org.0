@@ -2,161 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A2B6C3D3E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 22:58:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 881F76C3D66
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 23:08:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbjCUV6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 17:58:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
+        id S229648AbjCUWI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 18:08:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbjCUV6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 17:58:05 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9671F59435;
-        Tue, 21 Mar 2023 14:57:04 -0700 (PDT)
-Received: from localhost (unknown [188.24.179.102])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8B35566030F1;
-        Tue, 21 Mar 2023 21:57:02 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679435822;
-        bh=GwkI7NvsahRI9WNBHxkf1so8O+1ehcR5/nTJjj5XqyE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=byK0mMTEq51+ezXCzHTz6KzNJ+w0ZC98Udl6/zMTpEEzpptMWt0laFhQVm9j1S0i3
-         8JR0X4E5elQRvtodxqrAT7dKFxnYdOYtF+t2dv9nbKN4xr/cN5pwY7abSPfc8sNtXo
-         HZih93oHeVNx2y9TGHx3B9vBC+NC+5gqDrhKM6y2zVJg4FmGyoPn7joqmw+/WO28q4
-         CtuTsX9UXuzPF/btdDE0fR7pQQq/vj7dVglw8NsrcI5G8hFwOh0Jis770zceqqOqpP
-         UJgYfRxWfYcZO6psUdBNBir+QOL4SDEwiTeP2lvM3z+GBTkQ2DIP9zz5dpYXeIcc+i
-         QMKLnbo2dhhiA==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229675AbjCUWI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 18:08:29 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D696ACC20;
+        Tue, 21 Mar 2023 15:08:27 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id p20-20020a056830319400b0069f914e5c74so1117048ots.3;
+        Tue, 21 Mar 2023 15:08:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679436507;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZpDMWU1r+Zt8jZrtXFc2D2tco7/VMKbA4jzzKhsFGCA=;
+        b=WBya72RTjhbb7R5dPkjv+WPWNTE2xUJDKvVoZmX78LOaNMI9eMb4mN7u0N7W+5sRVA
+         T4kRpnpV/FGv+U6Y5tmGvJe3lVKzp87DqRXi29e3EteLXTrODt8+BPeI4CbuzXcwQkJ0
+         GuWW5o/iHmGQFsKjZhOrYq/9yJqIYz3btl7kWFdHTWOhMQ0khvxwJ6jg1uNNotjIjp6w
+         168UcYdRoXlvizhFjmKMz4OgQF1zMB35/jjX7smzL7ZTRT8Nhj2SscNv2stx9gjVoZzH
+         a9AMFM2hojnV3FsxgZrfuOsflgsQhatXXi+y2Chi3KhNS3jPQt8FBXu9Q/Qu0cY1zOPy
+         iisg==
+X-Gm-Message-State: AO0yUKVy+rS1nFvAP4sNrAlAu2KwKbW2Z+HTLG7dNmfuOeZ5zXnrsN8i
+        /zPAIWFi0OgCyB85FM2lyWAXyyOSZw==
+X-Google-Smtp-Source: AK7set+96sV7YUNKjhPVEomctIU42GJayDjjb8XCwvoVE0twKuMLd+lcSJ8FKJwNdgf4/oaqvJA4uQ==
+X-Received: by 2002:a05:6830:2009:b0:69f:2774:b60 with SMTP id e9-20020a056830200900b0069f27740b60mr408963otp.8.1679436507024;
+        Tue, 21 Mar 2023 15:08:27 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t26-20020a05683014da00b0068d752f1870sm5626034otq.5.2023.03.21.15.08.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 15:08:26 -0700 (PDT)
+Received: (nullmailer pid 1740280 invoked by uid 1000);
+        Tue, 21 Mar 2023 22:08:25 -0000
+Date:   Tue, 21 Mar 2023 17:08:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org, kernel@collabora.com
-Subject: [PATCH v2 10/10] arm64: dts: rockchip: rk3588-rock-5b: Add analog audio
-Date:   Tue, 21 Mar 2023 23:56:24 +0200
-Message-Id: <20230321215624.78383-11-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
-References: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
+        Nikita Travkin <nikita@trvn.ru>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: aw2013: Document vddio-supply
+Message-ID: <20230321220825.GA1685482-robh@kernel.org>
+References: <20230320174949.174600-1-linmengbo0689@protonmail.com>
+ <20230320175131.174657-1-linmengbo0689@protonmail.com>
+ <922eab51-6931-8533-db51-51cd911a36b3@linaro.org>
+ <ZBitAGOmF/hyxDYP@gerhold.net>
+ <94cdb512-b168-6ffe-73c1-caf23bb79d6f@linaro.org>
+ <ZBoR0DPQ+AufzKHk@gerhold.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZBoR0DPQ+AufzKHk@gerhold.net>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary DT nodes for the Rock 5B board to enable the analog
-audio support provided by the Everest Semi ES8316 codec.
+On Tue, Mar 21, 2023 at 09:21:36PM +0100, Stephan Gerhold wrote:
+> On Tue, Mar 21, 2023 at 07:42:37AM +0100, Krzysztof Kozlowski wrote:
+> > On 20/03/2023 19:59, Stephan Gerhold wrote:
+> > > On Mon, Mar 20, 2023 at 07:04:22PM +0100, Krzysztof Kozlowski wrote:
+> > >> On 20/03/2023 18:55, Lin, Meng-Bo wrote:
+> > >>> Some LEDs controllers are used with external pull-up for the interrupt
+> > >>> line and the I2C lines, so we might need to enable a regulator to bring
+> > >>> the lines into usable state.
+> > >>
+> > >> Not a property of this device.
+> > >>
+> > >>> Otherwise, this might cause spurious
+> > >>> interrupts and reading from I2C will fail.
+> > >>>
+> > >>> Document support for "vddio-supply" that is enabled by the aw2013 driver
+> > >>> so that the regulator gets enabled when needed.
+> > >>>
+> > >>> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/leds/leds-aw2013.yaml | 5 +++++
+> > >>>  1 file changed, 5 insertions(+)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> > >>> index 08f3e1cfc1b1..79b69cf1d1fe 100644
+> > >>> --- a/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> > >>> @@ -23,6 +23,11 @@ properties:
+> > >>>    vcc-supply:
+> > >>>      description: Regulator providing power to the "VCC" pin.
+> > >>>  
+> > >>> +  vddio-supply:
+> > >>> +    description: |
+> > >>> +      Optional regulator that provides digital I/O voltage,
+> > >>
+> > >> NAK. I responded to your patch and you just send a v2 without explanation.
+> > >>
+> > >> The device does not have VDDIO pin, either.
+> > >>
+> > > 
+> > > The power supply Lin is trying to add here is basically the "VIO1"
+> > > example in "Figure 1 AW2013 Typical Application Circuit" on page 1 of
+> > > the AW2013 datasheet [1]. The I2C pins and the interrupt output are both
+> > > open-drain and therefore require external pull-up resistors, connected
+> > > to a power supply that might not be always on.
+> > > 
+> > > Because of the open-drain pins AW2013 does indeed not have a dedicated
+> > > input pin for the I/O supply voltage. However, it is still necessary to
+> > > describe the power supply _somewhere_, to ensure that it is enabled when
+> > > needed.
+> > > 
+> > > It is hard to model this properly but it's generally easiest to handle
+> > > this inside the peripheral driver since it knows exactly when I2C and/or
+> > > interrupt lines are currently needed or not. This situation is fairly
+> > > common for I2C devices so there are several precedents, e.g.:
+> > > 
+> > >   1. cypress,tm2-touchkey.yaml: "vddio-supply"
+> > >      https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=3e730ec11d51283ad62a98436967c01b718132ab
+> > >   2. goodix,gt7375p.yaml: "mainboard-vddio-supply"
+> > >      https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1d18c1f3b7d938bdefc44289d137b4e6c7a3d502
+> > 
+> > Both are mistaken. How can you enumerate or autodetect a device if its
+> > regulator pulling up I2C are not on?
+> 
+> You don't. By design I2C does not support enumeration or autodetection.
+> Nothing we implement in software can change that.
+> 
+> I2C devices have all sorts of requirements before they show up on the
+> bus at all (power supplies, enable GPIOs, clocks, ...). All these are
+> currently modelled as part of the consumer IC.
+> 
+> > What's more, on I2C lines you could have more devices, so you expect
+> > each of them having the supply?
+> 
+> Yes, I don't think this is a problem since it's typical for regulators
+> to be shared. If at least one of the I2C devices is active, the bus will
+> be active as well.
+> 
+> > These are properties of I2C controller, not the consumer. I2C controller
+> > should enable any regulators necessary for the IO pins.
+> 
+> In general I agree with you here. But as I mentioned already there is
+> usually more than just the I2C I/O lines. For AW2013 there is at least
+> also the open-drain interrupt line. On other ICs there could also be
+> arbitrary GPIO lines that are used in open-drain mode. Those are
+> completely unrelated to the I2C controller.
+> 
+> Do you have any suggestions how to handle the power supply for those?
+> 
+> IMO for interrupts lines the pull-up I/O supply is hardly a property of
+> the interrupt controller. It just cares that a line switches from high
+> to low. It's not exactly a property of the consumer IC either. However,
+> since operating the interrupt line in open-drain mode is part of the
+> consumer IC specification I would say that the I/O supply for interrupt
+> lines is better described on the consumer side.
+> 
+> For sake of completeness we could additionally describe the supply for
+> the I2C lines on the I2C controller, but then we still need this patch
+> or something else for the interrupt lines.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
+I think a supply on the device side is fine here. Just be clear in the 
+description about its purpose. We have much worse abuses than this 
+(random bus clocks added to SoC devices).
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 95805cb0adfa..945eac304766 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -2,6 +2,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "rk3588.dtsi"
- 
- / {
-@@ -25,6 +26,59 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 	};
-+
-+	sound {
-+		compatible = "audio-graph-card";
-+		label = "Analog";
-+
-+		widgets = "Microphone", "Mic Jack",
-+			  "Headphone", "Headphones";
-+
-+		routing = "MIC2", "Mic Jack",
-+			  "Headphones", "HPOL",
-+			  "Headphones", "HPOR";
-+
-+		dais = <&i2s0_8ch_p0>;
-+		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+
-+	es8316: es8316@11 {
-+		compatible = "everest,es8316";
-+		reg = <0x11>;
-+		clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			es8316_p0_0: endpoint {
-+				remote-endpoint = <&i2s0_8ch_p0_0>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2s0_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s0_lrck
-+		     &i2s0_mclk
-+		     &i2s0_sclk
-+		     &i2s0_sdi0
-+		     &i2s0_sdo0>;
-+	status = "okay";
-+
-+	i2s0_8ch_p0: port {
-+		i2s0_8ch_p0_0: endpoint {
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+			remote-endpoint = <&es8316_p0_0>;
-+		};
-+	};
- };
- 
- &sdhci {
-@@ -42,3 +96,11 @@ &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
- };
-+
-+&pinctrl {
-+	sound {
-+		hp_detect: hp-detect {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
--- 
-2.40.0
+Rob
 
