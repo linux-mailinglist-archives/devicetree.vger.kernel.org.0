@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A6A56C27A2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 02:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C2E6C27E1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 03:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjCUB4z convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Mar 2023 21:56:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39450 "EHLO
+        id S229715AbjCUCKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 22:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjCUB4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 21:56:53 -0400
+        with ESMTP id S229497AbjCUCKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 22:10:04 -0400
 Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1E91F92F;
-        Mon, 20 Mar 2023 18:56:49 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A07D2B9E8;
+        Mon, 20 Mar 2023 19:10:02 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 7830324E231;
-        Tue, 21 Mar 2023 09:56:42 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
- 2023 09:56:42 +0800
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 8748F24E1FB;
+        Tue, 21 Mar 2023 10:10:00 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
+ 2023 10:10:00 +0800
 Received: from [192.168.125.82] (183.27.97.64) by EXMBX162.cuchost.com
  (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
- 2023 09:56:41 +0800
-Message-ID: <c2a42311-1e26-f2be-6945-df45b1d81b70@starfivetech.com>
-Date:   Tue, 21 Mar 2023 09:56:39 +0800
+ 2023 10:09:59 +0800
+Message-ID: <7f38d366-f3da-7441-3400-7719b0f33326@starfivetech.com>
+Date:   Tue, 21 Mar 2023 10:09:57 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
+Subject: Re: [PATCH v2 0/3] Add JH7110 MIPI DPHY RX support
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Emil Renner Berthing <kernel@esmil.dk>,
         Conor Dooley <conor@kernel.org>,
@@ -45,17 +45,17 @@ CC:     Vinod Koul <vkoul@kernel.org>,
         Jack Zhu <jack.zhu@starfivetech.com>,
         <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-References: <20230315100421.133428-1-changhuang.liang@starfivetech.com>
- <20230315100421.133428-2-changhuang.liang@starfivetech.com>
- <20230320151437.GA1709620-robh@kernel.org>
+References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+ <7e525c7d-d534-adba-4aea-a485ba37bcc7@starfivetech.com>
+ <ZBhT8tpBhdFugurm@matsya>
 From:   Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20230320151437.GA1709620-robh@kernel.org>
+In-Reply-To: <ZBhT8tpBhdFugurm@matsya>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-Originating-IP: [183.27.97.64]
 X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
  (172.16.6.72)
 X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,47 +66,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/3/20 23:14, Rob Herring wrote:
-> On Wed, Mar 15, 2023 at 03:04:19AM -0700, Changhuang Liang wrote:
->> [...]
->> +  resets:
->> +    items:
->> +      - description: DPHY_HW reset
->> +      - description: DPHY_B09_ALWAYS_ON reset
->> +
->> +  starfive,aon-syscon:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      - items:
->> +          - description: phandle of AON SYSCON
->> +          - description: register offset
->> +    description: The power of dphy rx is configured by AON SYSCON
->> +      in this property.
-> 
-> Sounds like AON SYSCON should be a power-domains provider. Custom 
-> phandle links are for things which don't fit standard bindings.
-> 
-Hi, Rob
-
-In starfive jh7110 SoC，we have achieved the power-domains provider as follow:
-https://patchwork.kernel.org/project/linux-pm/cover/20230119094447.21939-1-walker.chen@starfivetech.com/
-
-But this AON SYSCON is a miscellaneous register. It different offsets configure the different functions 
-of the different modules. So we don't make a framework fot it. What do you think?
-
-Thanks
-
->> +
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - starfive,aon-syscon
->> +  - "#phy-cells"
->> [...]
+On 2023/3/20 20:39, Vinod Koul wrote:
+> On 03-03-23, 14:05, Changhuang Liang wrote:
 >>
+>>
+>> On 2023/2/23 9:59, Changhuang Liang wrote:
+>>> This patchset adds mipi dphy rx driver for the StarFive JH7110 SoC.
+>>> It is used to transfer CSI camera data. The series has been tested on
+>>> the VisionFive 2 board.
+>>>
+>>> This patchset should be applied after the patchset [1] and patch [2]:
+>>> [1] https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
+>>> [2] https://lore.kernel.org/all/20230215113249.47727-4-william.qiu@starfivetech.com/
+>>>
+>> Hi, Vinod and Kishon
+>>
+>> Could you please help to review and give me some suggestions
+>> for this patch series? Thank you for your time.
+> 
+> There are already comments on dt-binding, please address them!
+> 
+
+I have address them on v3, and I am really looking forward to your comments. 
+Thank you so much for wasting your time.
+
+>>
+>> Best regards,
+>> Changhuang
+> 
