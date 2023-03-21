@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 704FB6C31F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:43:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC8F6C3220
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:59:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230231AbjCUMna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 08:43:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41942 "EHLO
+        id S229816AbjCUM7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 08:59:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230321AbjCUMn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:43:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CA64D42E;
-        Tue, 21 Mar 2023 05:42:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A2D7361B80;
-        Tue, 21 Mar 2023 12:42:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 123B6C433AC;
-        Tue, 21 Mar 2023 12:42:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679402557;
-        bh=J20LlY5TbVnPM0z5FlTNCPp5ZAh4UVG6euTTWc5LkUw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FdVixEWY/0QvALciIzaXMuyjtTuctDu5uQnZAkKUVwbR8UBXJtwUnyxQtT/p/30ic
-         zpl55Nm+hUpZq5XJiO53LWzTvqQltae2LMbqInH9aGehkHNAgTJ164pX4YQxll3KMy
-         TD2ug+AYx3+44yAUcXSFocaJgG/jig0Jy18j4H5xsbdoMjB9gU+8MwEJ0DkP5ks6eT
-         KCLNhOoO34XSRvOPyEnyvii8NdivuEDpea1bCdkez29ZJqdilkcKgnBSN/Qfu6vbBe
-         soG30ERWWcrojAZnMfrIwsqxFHO8VOzwjVm6uKlK0AbKWOD4M/k7pMnLwbWFhV/Dwd
-         V04BWarn/LWkw==
-Received: by mail-yb1-f176.google.com with SMTP id z83so16892638ybb.2;
-        Tue, 21 Mar 2023 05:42:37 -0700 (PDT)
-X-Gm-Message-State: AAQBX9eJgFzaDRWA/HkJoeYF2lRLHj0ex4B7hgaaPRfdZAOYUyvoqJes
-        kVYWAKeEJJrMj9fRTSB3udSDF1XTBsnP2A9ybw==
-X-Google-Smtp-Source: AKy350ZhCPEnnrwloI2VYkVonvOVRbKLguR0+fCqDHc7mDqtOx67pDwKgadHRUXyovXV1023X8BMqxVSAgSWqc8/Yn8=
-X-Received: by 2002:a05:6902:150c:b0:b6c:f26c:e5b0 with SMTP id
- q12-20020a056902150c00b00b6cf26ce5b0mr1453538ybu.1.1679402556021; Tue, 21 Mar
- 2023 05:42:36 -0700 (PDT)
+        with ESMTP id S229671AbjCUM7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:59:38 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C026646B9;
+        Tue, 21 Mar 2023 05:59:36 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32LCxPu7124173;
+        Tue, 21 Mar 2023 07:59:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679403565;
+        bh=HmNO1EvDbS3Z0FvWRgk/ZP+c0DvWRB/BSf5vOIxflVc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=DT99aL3Am1a/Bx7aO8mdurXCdyUf9Qr4NHPT9Dznz7l8SnK8O2NdFd203GeUWZ4/Z
+         Cv75kFUGHZzVsyv3gtGQl/tikGd6cwhmbn/rctmvgzON2Tukzzut3TDrGTYXIPsNJo
+         mio7bkEVG7AnPIblXvVQ2IShrxbd0Nu5Sg02rCso=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32LCxPg3012435
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 21 Mar 2023 07:59:25 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
+ Mar 2023 07:59:24 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 21 Mar 2023 07:59:24 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32LCxO5P050755;
+        Tue, 21 Mar 2023 07:59:24 -0500
+Date:   Tue, 21 Mar 2023 07:59:24 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Dhruva Gole <d-gole@ti.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Julien Panis <jpanis@baylibre.com>, <bb@ti.com>
+Subject: Re: [PATCH V3 1/2] arm64: dts: ti: k3-am62-wakeup: Introduce RTC node
+Message-ID: <20230321125924.23ythtji67y66hsi@satisfied>
+References: <20230320165123.80561-1-nm@ti.com>
+ <20230320165123.80561-2-nm@ti.com>
+ <4a1f33bb-882a-ed49-9e0e-b463203e0ea9@ti.com>
 MIME-Version: 1.0
-References: <20230320233904.2920197-1-robh@kernel.org> <ZBlTJbdAmh5H3PD0@kroah.com>
-In-Reply-To: <ZBlTJbdAmh5H3PD0@kroah.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 21 Mar 2023 07:42:24 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL9LYOpk88RCBJcsX5DnroOUdvXXtpwDPoabt3A1S7SVQ@mail.gmail.com>
-Message-ID: <CAL_JsqL9LYOpk88RCBJcsX5DnroOUdvXXtpwDPoabt3A1S7SVQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: Drop unneeded quotes
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        Al Cooper <alcooperx@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <4a1f33bb-882a-ed49-9e0e-b463203e0ea9@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 1:48=E2=80=AFAM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Mon, Mar 20, 2023 at 06:39:02PM -0500, Rob Herring wrote:
-> > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> > checking for this can be enabled in yamllint.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->
-> Or do you want me to take this through the USB tree?  if so, just let me
-> know.
+On 10:07-20230321, Dhruva Gole wrote:
+[...]
 
-You can take it.
+> 
+> I was just wondering why some of the rtctests show failures on this platform:
+> 
+> https://gist.github.com/DhruvaG2000/5c6d8bb99b087308b916985d70f0c440
+> 
+> pass:5 fail:2
+> 
+> the test is compiled from tools/testing/selftests/rtc/rtctest.c for arm64 target
+> 
+> Is this expected?
 
-Rob
+I used the standard defconfig and [1] on beagleplay and
+cross verified on 6.3-rc3 as well. It works fine. See logs below.
+
+NOTE: BeaglePlay has a external 32k crystal that drives RTC and other
+32k clock sources internal to the SoC. This helps maintain accurate
+time. If your platform does'nt have an external 32k crystal OR AM62
+does'nt enable 32k using MCU_CTRL_LFXOSC_CTRL[2], then default 32k RC
+osc inside the SoC triggers. This internal clock is very variable.
+There are a ton of stuff inside the SoC that depends on 32k, so this
+wont be just a RTC specific behavior.
+
+ti-next: (6.3-rc1)
+ti-next + 6.3-rc3: (dirty is because of a rtctest Makefile mod to build
+static)
+https://gist.github.com/nmenon/e1b300652ac452ad55fa4cf936fc3e63
+
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git/log/
+[2] https://git.beagleboard.org/beagleplay/u-boot/-/blob/lc-ti-u-boot-2021.01/board/ti/am62x/evm.c#L243
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
