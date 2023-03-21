@@ -2,231 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D53286C2C60
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D806C2C66
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:30:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbjCUI3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 04:29:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53900 "EHLO
+        id S231270AbjCUIaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 04:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231221AbjCUI2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:28:47 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 359DA3C3C;
-        Tue, 21 Mar 2023 01:28:45 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32L8Sa7j069742;
-        Tue, 21 Mar 2023 03:28:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679387316;
-        bh=fPWWg7+iwrb/0eu92g15O3qnylPqBBWBHeXdc+SXMcE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=bqMKMxfUFoGAIGBQ+Z7TzumoCEOXLoyaeY9UlM0uumphhe1/cWRmkuDwPw3aZWRC0
-         DShIj7UedA8KMQ1ZNObcOqytqXh3bxsylO41TxyQBVAg9g7SS2eBPAtRO2XPtET4Ka
-         qJgw9wpjp+33+H17gcITjBFQMcKjXEM/JZczHkm8=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32L8SapN045180
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Mar 2023 03:28:36 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Mar 2023 03:28:36 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Mar 2023 03:28:35 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32L8SZ9i008172;
-        Tue, 21 Mar 2023 03:28:35 -0500
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-keerthy@ti.com>, <u-kumar1@ti.com>, <j-luthra@ti.com>,
-        <vaishnav.a@ti.com>
-Subject: [PATCH v3 4/4] arm64: dts: ti: k3-j784s4: Add MCSPI nodes
-Date:   Tue, 21 Mar 2023 13:58:27 +0530
-Message-ID: <20230321082827.14274-5-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230321082827.14274-1-vaishnav.a@ti.com>
-References: <20230321082827.14274-1-vaishnav.a@ti.com>
+        with ESMTP id S231252AbjCUI3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:29:20 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1B0C15CAF
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:29:06 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id y4so56552674edo.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:29:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679387345;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cIK8tv9ks6psHuZhE+GzBiUGzc6Fhss7rZzNhUXOnf4=;
+        b=Ae/xed2e5w/AOlmf4k4cDuATbvbOp0NJ00/8+LVG+jogPyl/6k/vn+ip8s7HYa8pyv
+         OcYXENl/PV48g+zhsC7XHuZCpIniPYxethZnjG+h1cLEjHnFbqvZyCCWHf8c12fUyHiI
+         nLNj9VVx6gs5K22rofdJ93F2WSg7Qn/0ZnSPzX4YogbqTii4+ItDJKkNe/N9IlDKTObe
+         8qvoWFqyE9UdV7aKsVmhIrk644QxfL7lZRVGMCrceVAL+9Yr8RtoTIG47SgWqHF95oN4
+         jB5UaEBpRfposD90if/TlcwR5M1mhX8ZAFyll7xt3RtWa1pY8hJfw6fSh9u7At4HdHGd
+         TtLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679387345;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cIK8tv9ks6psHuZhE+GzBiUGzc6Fhss7rZzNhUXOnf4=;
+        b=2fsJ93tp/1SI7l7beBNyAUv2jUhpkK3JgM4UPPAKDaNQh+Mr9y4zumFftTb6g0yLYX
+         eT4X9nr5slSzvJboCKUG1VWpaj9/OeYqYWASrZGUgQlGXGB26zLqV1HJHRq6z6JBw816
+         CbHnTDuTJP6SoR7DvB+/6gOzh9kgMHZm4Q/D8REdLtupFZOfZcvNVHR7R5uAJh8PK0dG
+         VKGC+R2d2uKUD/hs59DIJuEw2wV2vjQu0q1CuyXUSePkkwhoL+7wF5HeUbCQu0/OQZU/
+         NqRj2kuforPumaSVFFTPS19s9bmd74srZ7Whq54jcvjUjNeDIs+NHdV67JrdmsUgK/4G
+         Kecg==
+X-Gm-Message-State: AO0yUKWoTNyywxwxBMZJroUIdtg6u/svv79/kE//ECIsSyv6EX0Aogz2
+        NjOdJ8lN8SFobNll/glfAhMD6Q==
+X-Google-Smtp-Source: AK7set83ywsPDbcH3aooNJOf1IUCiM3mFiJBZY8OcdwvX6MHn9leW47hD5YXFkg/k7EoJls7Mfcz9w==
+X-Received: by 2002:a17:906:c9c6:b0:902:874:9c31 with SMTP id hk6-20020a170906c9c600b0090208749c31mr11361569ejb.35.1679387345095;
+        Tue, 21 Mar 2023 01:29:05 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id c21-20020a50f615000000b004fce9ff4830sm5934109edn.88.2023.03.21.01.29.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 01:29:04 -0700 (PDT)
+Message-ID: <ffbc4b70-03bf-a475-d7d9-076c02e85c42@linaro.org>
+Date:   Tue, 21 Mar 2023 09:29:03 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230320104658.22186-1-johan+linaro@kernel.org>
+ <20230320104658.22186-2-johan+linaro@kernel.org>
+ <a8356f76-189d-928b-1a1c-f4171de1e2d0@linaro.org>
+ <ZBlqZLHwqLLZhtTi@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZBlqZLHwqLLZhtTi@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J784S4 has 8 MCSPI instances in the main domain and 3 instances
-in the MCU domain. Add the DT nodes for all the 11 instances and
-keep them disabled. MAIN_MCSPI4 is connected as a slave to MCU_MCSPI2
-by default at power-up, MAIN_MCSPI4 and MCU_MCSPI2 are not pinned out
-externally.
+On 21/03/2023 09:27, Johan Hovold wrote:
+> 
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    description: calibration data variant
+>>
+>> Your description copies the name of property. Instead say something more...
+> 
+> Yeah, I was actively avoiding trying to say too much (e.g. mentioning
+> the name of the current firmware file). See the definition in
+> qcom,ath11k.yaml.
+> 
+> I can try to find some middle ground unless you prefer copying the
+> current definition.
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-Reviewed-by: Keerthy <j-keerthy@ti.com>
----
+So just copy the description or its parts.
 
-V2->V3:
- * Add Keerthy's Reviewed-by.
-
-V1->V2: 
-  * Combine main, mcu domain, MCSPI node addition changes
-  to single commit.
-
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 88 +++++++++++++++++++
- .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 33 +++++++
- 2 files changed, 121 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 80a1b08c51a8..432592ef3bc4 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -1005,4 +1005,92 @@
- 		bosch,mram-cfg = <0x00 128 64 64 64 64 32 32>;
- 		status = "disabled";
- 	};
-+
-+	main_spi0: spi@2100000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02100000 0x00 0x400>;
-+		interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 376 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 376 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi1: spi@2110000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02110000 0x00 0x400>;
-+		interrupts = <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 377 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 377 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi2: spi@2120000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02120000 0x00 0x400>;
-+		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 378 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 378 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi3: spi@2130000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02130000 0x00 0x400>;
-+		interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 379 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 379 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi4: spi@2140000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02140000 0x00 0x400>;
-+		interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 380 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 380 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi5: spi@2150000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02150000 0x00 0x400>;
-+		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 381 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 381 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi6: spi@2160000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02160000 0x00 0x400>;
-+		interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 382 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 382 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi7: spi@2170000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02170000 0x00 0x400>;
-+		interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 383 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 383 1>;
-+		status = "disabled";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 64bd3dee14aa..f04fcb614cbe 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -204,6 +204,39 @@
- 		status = "disabled";
- 	};
- 
-+	mcu_spi0: spi@40300000 {
-+		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-+		reg = <0x00 0x040300000 0x00 0x400>;
-+		interrupts = <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 384 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 384 0>;
-+		status = "disabled";
-+	};
-+
-+	mcu_spi1: spi@40310000 {
-+		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-+		reg = <0x00 0x040310000 0x00 0x400>;
-+		interrupts = <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 385 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 385 0>;
-+		status = "disabled";
-+	};
-+
-+	mcu_spi2: spi@40320000 {
-+		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-+		reg = <0x00 0x040320000 0x00 0x400>;
-+		interrupts = <GIC_SPI 850 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 386 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 386 0>;
-+		status = "disabled";
-+	};
-+
- 	mcu_navss: bus@28380000{
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
--- 
-2.17.1
+Best regards,
+Krzysztof
 
