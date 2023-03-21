@@ -2,102 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65F7F6C344F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:34:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB54C6C3495
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:43:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231139AbjCUOeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 10:34:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59262 "EHLO
+        id S231409AbjCUOn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 10:43:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbjCUOeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:34:03 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 77FA02CFF7;
-        Tue, 21 Mar 2023 07:34:01 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2734F2F4;
-        Tue, 21 Mar 2023 07:34:45 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 018383F6C4;
-        Tue, 21 Mar 2023 07:33:58 -0700 (PDT)
-Date:   Tue, 21 Mar 2023 14:33:56 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        suzuki.poulose@arm.com, scclevenger@os.amperecomputing.com,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] coresight: etm4x: Migrate AMBA devices to platform
- driver
-Message-ID: <20230321143356.w5era7et6lzxpte3@bogus>
-References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
- <CAL_JsqKsnq0d-x3m3xQe8m0pnk_Jeh9J1oFBtPAn3LV8-MFH0w@mail.gmail.com>
+        with ESMTP id S231196AbjCUOn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:43:26 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E312A10CA;
+        Tue, 21 Mar 2023 07:43:23 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id ek18so60643103edb.6;
+        Tue, 21 Mar 2023 07:43:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679409802;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=O7ubpTBwCGfHItDX77/xDDLQ0Emp6svnzclBDAs6qyE=;
+        b=T1s8Ngl+RkVIvxNZpvZnMH7cqodpqineB22YWtIv/fCGFj7joV/a1TjSRUm2pJJHHt
+         MUKxqDn5xKWt1O5LBWVnUBgDu7rGLfa03O5Y9FcuEHowG/SlkK7LqP23ZwmrwM0e7Teq
+         QIWIwFG8FsQIjgobJ5zpK1KmBtp960ybNTL2lY/5bEB4xvS7cnm3kjiyyk9z2xzet73f
+         gBH4RPumKKnXgn8OfdTuNLjHTY1ctiMA2fIGN5fpsiI7phP1firJvEgcgRL6RMRFv9B6
+         rxvXVlonIb+2hM/XbpELgBCHVQG3Fb65I6yc1FlE/etUE3C5BrDKrCvP1Dd5HFv5cDVd
+         3S5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679409802;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O7ubpTBwCGfHItDX77/xDDLQ0Emp6svnzclBDAs6qyE=;
+        b=r3q6DEz2yV4hDn8IYZKPxexbnrH/9JtKp0BLERREVGhrjc3icgIU/1/JQXcKkwmqvd
+         yJG5L5xDQ/oCCQBMHCQg4Zv5fBrncgztfXS0Se5wkvvLdQ3NRUGw8vrM8Ubqm4IA+eg1
+         aprKVEFSrqZueWnnrWZwJepo+WVgfg7EJphSGksJ5kz9B0SddH91aD4ctut+Dr1IYOkK
+         YPLNqun9TchVtSfFH+IAC/idGqrK0Gya/r5K55z3U4aqEm7niU7LNGquQ3h+LzMgoTmu
+         CRoFl4CNWnH7YaTPQ4jVkhQENVp7rquab4h95n6L6KBMu8+LwAFZFZh+boO4kVI8fLq9
+         P/pg==
+X-Gm-Message-State: AO0yUKVDcwfyVLBQ4ocxPaK78o7bFUjtKZdfG5wST1ES/yoFdKJP+48E
+        qUTywqM1D2uEnpeALTxga58=
+X-Google-Smtp-Source: AK7set96Is0TLe0fndXxjNYCDYYIIwKDzHB+KNPQfBa3bfvxoMA0iLVPglnQVrqgXhUacHz1wyNEXg==
+X-Received: by 2002:a05:6402:1116:b0:4ac:b528:5727 with SMTP id u22-20020a056402111600b004acb5285727mr3772779edv.1.1679409802207;
+        Tue, 21 Mar 2023 07:43:22 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation ([5.170.200.163])
+        by smtp.gmail.com with ESMTPSA id q28-20020a50aa9c000000b004fb556e905fsm6386755edc.49.2023.03.21.07.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 07:43:21 -0700 (PDT)
+Date:   Tue, 21 Mar 2023 15:43:18 +0100
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Paul Elder <paul.elder@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, Dafna Hirschfeld <dafna@fastmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/14] media: rkisp1: Add support for i.MX8MP
+Message-ID: <ZBnChlWq5RTI8U8h@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqKsnq0d-x3m3xQe8m0pnk_Jeh9J1oFBtPAn3LV8-MFH0w@mail.gmail.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 09:17:16AM -0500, Rob Herring wrote:
->
-> This sounds like an issue for any amba driver. If this is an issue,
-> solve it for everyone, not just work around it in one driver.
->
+Hello Paul,
 
-Well it is an issue in general for power management. ACPI has specific
-methods that can be executed for entering specific states.
+On Fri, Nov 18, 2022 at 06:39:17PM +0900, Paul Elder wrote:
+> This series depends on v3 of "dt-bindings: media: Add macros for video
+> interface bus types" [1].
+> 
+> This series extends the rkisp1 driver to support the ISP found in the
+> NXP i.MX8MP SoC.
+> 
+> The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
+> and in the NXP i.MX8MP have the same origin, and have slightly diverged
+> over time as they are now independently developed (afaik) by Rockchip
+> and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
+> and is close enough to the RK3399 ISP that it can easily be supported by
+> the same driver.
+> 
+> The last two patches add support for UYVY output format, which can be
+> implemented on the ISP version in the i.MX8MP but not in the one in the
+> RK3399.
+> 
+> This version of the series specifically has been tested on a Polyhex
+> Debix model A with an imx219 (Raspberry Pi cam v2).
+> 
+> [1] https://lore.kernel.org/linux-media/20220615221410.27459-2-laurent.pinchart@ideasonboard.com/
 
-The way AMBA was glue into ACPI bus scan IMO was a hack and PM wasn't
-considered at the time. It was just hack to get AMBA drivers to work
-with ACPI without any consideration about runtime PM or any methods that
-comes as part of ACPI device. There is even some dummy clock handler to
-deal with AMBA requesting APB clocks. AMBA device is added as companion
-to the ACPI device created as part of the normal bus scan in ACPI which
-adds its own PM callbacks and rely on clocks and power domains independent
-of the ACPI standard methods(_ON/_OFF).
+I tested your series on imx274 on imx8mp-evk csi0.
+All looks good on my side.
+Thanks for your work!
 
-The default enumeration adds platform devices which adds no extra PM
-callbacks and allows normal acpi_device probe flow.
+Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
 
-> When someone puts another primecell device into an ACPI system, are we
-> going to go do the same one-off change in that driver too? (We kind of
-> already did with SBSA UART...)
->
-
-I would prefer to move all the existing users of ACPI + AMBA to move away
-from it and just use platform device. This list is not big today, bunch
-of coresight, PL061/GPIO and PL330/DMA. And all these are assumed to be
-working or actually working if there is no need for any power management.
-E.g. on juno coresight needs PM to turn on before probing and AMBA fails
-as dummy clocks are added but no power domains attached as ACPI doesn't
-need deal with power domains in the OSPM if it is all well abstracted in
-methods like _ON/_OFF. They are dealt with explicit power domain in the
-DT which needs to be turned on and AMBA relies on that.
-
-One possible further hacky solution is to add dummy genpd to satisfy AMBA
-but not sure if we can guarantee ordering between ACPI device calling ON
-and its companion AMBA device probing so that the power domain is ON before
-AMBA uses the dummy clock and power domains in its pm callback hooks.
-
-Even the UART would fail if it needed any PM methods, we just don't happen
-to need that for SBSA and may be we could have made it work as amba device
-(can't recollect the exact reason for not doing so now).
-
---
 Regards,
-Sudeep
+Tommaso
+
+> 
+> Laurent Pinchart (3):
+>   dt-bindings: media: rkisp1: Add i.MX8MP ISP example
+>   media: rkisp1: Add and use rkisp1_has_feature() macro
+>   media: rkisp1: Configure gasket on i.MX8MP
+> 
+> Paul Elder (11):
+>   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
+>   media: rkisp1: Add match data for i.MX8MP ISP
+>   media: rkisp1: Add and set registers for crop for i.MX8MP
+>   media: rkisp1: Add and set registers for output size config on i.MX8MP
+>   media: rkisp1: Add i.MX8MP-specific registers for MI and resizer
+>   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
+>   media: rkisp1: Add register definitions for the test pattern generator
+>   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
+>   media: rkisp1: Support devices without self path
+>   media: rkisp1: Add YC swap capability
+>   media: rkisp1: Add UYVY as an output format
+> 
+>  .../bindings/media/rockchip-isp1.yaml         |  79 ++++++++++-
+>  .../platform/rockchip/rkisp1/rkisp1-capture.c | 102 +++++++++++---
+>  .../platform/rockchip/rkisp1/rkisp1-common.h  |  32 +++++
+>  .../platform/rockchip/rkisp1/rkisp1-debug.c   |  14 +-
+>  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  67 +++++++--
+>  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 128 +++++++++++++++++-
+>  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  90 ++++++++++++
+>  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  35 ++++-
+>  include/uapi/linux/rkisp1-config.h            |   2 +
+>  9 files changed, 509 insertions(+), 40 deletions(-)
+> 
+> -- 
+> 2.35.1
+>
