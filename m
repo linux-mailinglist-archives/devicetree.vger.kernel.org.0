@@ -2,132 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D016C2F65
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDEF76C2F73
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:49:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230373AbjCUKsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 06:48:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
+        id S230391AbjCUKtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 06:49:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbjCUKsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:48:18 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C191AD33
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:48:10 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id o7so13162715wrg.5
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:48:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679395689;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9fr4s/NbgFwlXaB/kT+wdNGLIVroo3XSqt3IGTfKlrw=;
-        b=XpxtA4gxBxKDJ+qVj87Lm+nPdo9mRsPb9+gYYIOIqGAHVmtPw9Xws+tHNBVkr1HrMe
-         KNw1h8gFTV68arDcGIVtYPpY9Z8mio8vMDw+jTo6BWD3wyTCCPWjF+EHtmKdMG/+c41f
-         kz2Thg/wBZGzM3WGDsRfNjQdKFKwBawispP30fYPXblSeCtauxrT0p3XZqawGxwx2YHa
-         2m9uWuLQ1+E0u0vnC0tG4bRnwKj6dfb7Qy7W8K+I0f2oy/QprtKkMEbWji4nzWsqPSF6
-         6ibDObDfCxIdrlKzN/vM2WiNFTYdPp+GOLbZG9Ktk7WNe+nM8Cq8B2np38QurauyySPd
-         GqVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679395689;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9fr4s/NbgFwlXaB/kT+wdNGLIVroo3XSqt3IGTfKlrw=;
-        b=E9MznE/qO8HwW36RUNdCnvYTsJkhj2XGYfrtPPK8QmYEEviizDZLoCmPoTVqJEV31g
-         0rr7LyJQyQfdZeATwMhypb5aUvzO2tuWj1Ma82qwf+yj+H6L6TJ77dCt/74Hy8gOATNh
-         zBvktwf0mu5QZFE/L+bjL8SN8x9QVajbgwODIbQJN9qtUl55uuRyTRbhfKyErmOordhC
-         h3PT91tk5uM9M08O8FPwxNbx9/ztD5n/xwL64HagxQ3bDfQtF1iOdzVyG3ReuUiil9wn
-         9FxgL0tUC1yfuksES2WaOgUiCvYy49jqD4Hq3jWAuVOX1EFXAkWyyUzN7nybK1A7ynjo
-         JEBQ==
-X-Gm-Message-State: AO0yUKV3hi+8Oitt6JvXbRPQRvFy1e+6uLiWJs1cRDRJjrMVnSgYeC9v
-        X+1UGvj0KGrSGLvTV6naLcB75g==
-X-Google-Smtp-Source: AK7set+Dx2bqwbuauE+ZNG0b4IJ0siP/A/tIE+bC6HdEArLrXCBXSI/i2Tk8rfNS7MbnYwY37Ql4ug==
-X-Received: by 2002:adf:edc9:0:b0:2d1:5698:3f6e with SMTP id v9-20020adfedc9000000b002d156983f6emr1913160wro.58.1679395688892;
-        Tue, 21 Mar 2023 03:48:08 -0700 (PDT)
-Received: from [192.168.1.70] (151.31.102.84.rev.sfr.net. [84.102.31.151])
-        by smtp.gmail.com with ESMTPSA id a4-20020adffb84000000b002d322b9a7f5sm11010756wrr.88.2023.03.21.03.48.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 03:48:08 -0700 (PDT)
-Message-ID: <5845f51e-5d87-c98e-77a1-0f9b6365e6c1@baylibre.com>
-Date:   Tue, 21 Mar 2023 11:48:06 +0100
+        with ESMTP id S230390AbjCUKtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:49:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFEAA61B6;
+        Tue, 21 Mar 2023 03:49:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6B39E61AB6;
+        Tue, 21 Mar 2023 10:49:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E709C433D2;
+        Tue, 21 Mar 2023 10:49:05 +0000 (UTC)
+Message-ID: <c4e73432-4758-6ad3-415b-80ca898c19a9@xs4all.nl>
+Date:   Tue, 21 Mar 2023 11:49:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
+Subject: Re: [PATCH v4 04/10] media: Add YUV48_12 video format
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-References: <20230315110736.35506-1-jpanis@baylibre.com>
- <20230315110736.35506-2-jpanis@baylibre.com>
- <20230320155354.GB1733616-robh@kernel.org>
- <04914464-2bc2-9d86-e9e2-8a716b929f28@baylibre.com>
- <2dcfd9dc-6c43-20b7-e27b-8ec2883be237@linaro.org>
- <887d5e71-334c-b206-08e6-2cc822df9eda@baylibre.com>
- <2aeb47d6-0577-f8e4-6070-331af15b1f83@linaro.org>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <2aeb47d6-0577-f8e4-6070-331af15b1f83@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        mirela.rabulea@oss.nxp.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1678788305.git.ming.qian@nxp.com>
+ <44bfcc0f57f0eae6d2a94914e40a902556f6eb02.1678788305.git.ming.qian@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <44bfcc0f57f0eae6d2a94914e40a902556f6eb02.1678788305.git.ming.qian@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/03/2023 11:08, Ming Qian wrote:
+> YUV48_12 is a YUV format with 12-bits per component like YUV24,
+> expanded to 16bits.
+> Data in the 12 high bits, zeros in the 4 low bits,
+> arranged in little endian order.
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> ---
+>  .../media/v4l/pixfmt-packed-yuv.rst           | 28 +++++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-common.c         |  1 +
+>  drivers/media/v4l2-core/v4l2-ioctl.c          |  1 +
+>  include/uapi/linux/videodev2.h                |  1 +
+>  4 files changed, 31 insertions(+)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst b/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst
+> index 24a771542059..ed998d8341ff 100644
+> --- a/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst
+> +++ b/Documentation/userspace-api/media/v4l/pixfmt-packed-yuv.rst
+> @@ -257,6 +257,34 @@ the second byte and Y'\ :sub:`7-0` in the third byte.
+>      - The padding bits contain undefined values that must be ignored by all
+>        applications and drivers.
+>  
+> +The next lists the packed YUV 4:4:4 formats with 12 bits per component.
 
+next -> next table
 
-On 3/21/23 11:32, Krzysztof Kozlowski wrote:
-> On 21/03/2023 10:03, Julien Panis wrote:
->>
->> On 3/21/23 08:36, Krzysztof Kozlowski wrote:
->>> On 20/03/2023 17:35, Julien Panis wrote:
->>>> On 3/20/23 16:53, Rob Herring wrote:
->>>>> On Wed, Mar 15, 2023 at 12:07:33PM +0100, Julien Panis wrote:
->>>>>> TPS6594 is a Power Management IC which provides regulators and others
->>>>>> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->>>>>> PFSM (Pre-configurable Finite State Machine) managing the state of the
->>>>>> device.
->>>>>> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
->>>>> As mentioned, the binding needs to be complete. It's missing GPIO at
->>>>> least. RTC and watchdog may or may not need binding changes.
->>>> Thank you for your feedback.
->>>>
->>>> About GPIO, do you speak about 'gpio-controller'
->>>> and/or '#gpio-cells' properties ?
->>> Yes.
->>>
->>>> For RTC (and for watchdog, once the driver will be
->>>> implemented), our driver do not require any node
->>>> to work. What could make an explicit instantiation
->>>> necessary in DT ?
->>> Properties from RTC schema, e.g. start-year, wakeup etc.
->> TPS6594 RTC driver is being reviewed (this is another patch
->> series, not merged yet). These properties are not used by our
->> driver, that's why we did not have to add some RTC node in
->> the DT (until now, using such properties in our driver was not
->> requested by RTC sub-system maintainers).
-> Bindings should be complete, regardless whether you now need this in
-> driver or not. Does your comment mean that you will never need these,
-> because hardware does not support them, and never going to add?
-> Otherwise I don't get why you refer to driver when we talk about bindings...
+> +expand the bits per component to 16 bits, data in the high bits, zeros in the low bits,
 
-OK, I understand now (I misinterpreted "RTC and watchdog may or may not
-need binding changes").
+expand -> Expand
 
-> Best regards,
-> Krzysztof
->
+> +arranged in little endian order. storing 1 pixels in 6 bytes.
 
+pixels -> pixel
+
+> +
+> +.. flat-table:: Packed YUV 4:4:4 Image Formats (12bpc)
+> +    :header-rows: 1
+> +    :stub-columns: 0
+> +
+> +    * - Identifier
+> +      - Code
+> +      - Byte 1-0
+> +      - Byte 3-2
+> +      - Byte 5-4
+> +      - Byte 7-6
+> +      - Byte 9-8
+> +      - Byte 11-10
+> +
+> +    * .. _V4L2-PIX-FMT-YUV48-12:
+> +
+> +      - ``V4L2_PIX_FMT_YUV48_12``
+> +      - 'Y312'
+> +
+> +      - Y'\ :sub:`0`
+> +      - Cb\ :sub:`0`
+> +      - Cr\ :sub:`0`
+> +      - Y'\ :sub:`1`
+> +      - Cb\ :sub:`1`
+> +      - Cr\ :sub:`1`
+>  
+>  4:2:2 Subsampling
+>  =================
+> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-core/v4l2-common.c
+> index 21ace56fac04..da313a0637de 100644
+> --- a/drivers/media/v4l2-core/v4l2-common.c
+> +++ b/drivers/media/v4l2-core/v4l2-common.c
+> @@ -259,6 +259,7 @@ const struct v4l2_format_info *v4l2_format_info(u32 format)
+>  		{ .format = V4L2_PIX_FMT_UYVY,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_VYUY,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 2, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+>  		{ .format = V4L2_PIX_FMT_Y212,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 4, 0, 0, 0 }, .hdiv = 2, .vdiv = 1 },
+> +		{ .format = V4L2_PIX_FMT_YUV48_12, .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 1, .bpp = { 6, 0, 0, 0 }, .hdiv = 1, .vdiv = 1 },
+>  
+>  		/* YUV planar formats */
+>  		{ .format = V4L2_PIX_FMT_NV12,    .pixel_enc = V4L2_PIXEL_ENC_YUV, .mem_planes = 1, .comp_planes = 2, .bpp = { 1, 2, 0, 0 }, .hdiv = 2, .vdiv = 2 },
+> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+> index 2cb485643562..6543cda5815f 100644
+> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> @@ -1346,6 +1346,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+>  	case V4L2_PIX_FMT_YUV420:	descr = "Planar YUV 4:2:0"; break;
+>  	case V4L2_PIX_FMT_HI240:	descr = "8-bit Dithered RGB (BTTV)"; break;
+>  	case V4L2_PIX_FMT_M420:		descr = "YUV 4:2:0 (M420)"; break;
+> +	case V4L2_PIX_FMT_YUV48_12:	descr = "12-bit Depth YUV 4:4:4"; break;
+
+How about: "12-bit YUYV 4:4:4 Packed"
+
+By the way, I think these existing formats:
+
+        case V4L2_PIX_FMT_Y210:         descr = "10-bit YUYV Packed"; break;
+        case V4L2_PIX_FMT_Y212:         descr = "12-bit YUYV Packed"; break;
+        case V4L2_PIX_FMT_Y216:         descr = "16-bit YUYV Packed"; break;
+
+should be renamed to "10-bit YUYV 4:2:2 Packed"
+
+>  	case V4L2_PIX_FMT_NV12:		descr = "Y/UV 4:2:0"; break;
+>  	case V4L2_PIX_FMT_NV21:		descr = "Y/VU 4:2:0"; break;
+>  	case V4L2_PIX_FMT_NV16:		descr = "Y/UV 4:2:2"; break;
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index db06d4c4f008..8a6430bc4a00 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -621,6 +621,7 @@ struct v4l2_pix_format {
+>  #define V4L2_PIX_FMT_YUVA32  v4l2_fourcc('Y', 'U', 'V', 'A') /* 32  YUVA-8-8-8-8  */
+>  #define V4L2_PIX_FMT_YUVX32  v4l2_fourcc('Y', 'U', 'V', 'X') /* 32  YUVX-8-8-8-8  */
+>  #define V4L2_PIX_FMT_M420    v4l2_fourcc('M', '4', '2', '0') /* 12  YUV 4:2:0 2 lines y, 1 line uv interleaved */
+> +#define V4L2_PIX_FMT_YUV48_12    v4l2_fourcc('Y', '3', '1', '2') /* 48  YUV 4:4:4 12-bit per component */
+>  
+>  /*
+>   * YCbCr packed format. For each Y2xx format, xx bits of valid data occupy the MSBs
+
+Regards,
+
+	Hans
