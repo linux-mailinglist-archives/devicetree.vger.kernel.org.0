@@ -2,129 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BF76C2F0B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C98DA6C2F27
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:36:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbjCUKc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 06:32:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
+        id S229527AbjCUKgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 06:36:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjCUKc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:32:57 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647B626866
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:32:26 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id w9so57729034edc.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:32:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679394743;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aM4pMbd9h+3fIjUzyTPRMWqM3P8Ga6/igv7ENNsFFog=;
-        b=EYxGPFIIMxiCXWI/mEd7m/ehNebVcC2dyioRpdXbL/OmnKz90GKfT1Unb3HDim+QHG
-         FaMYLF6JjzSZtRqyYBBPZyG7BA3pSF4EKLnPwZf0tKRNrIoEE4UI0qng9tz71RYxezAM
-         4yUaLfDgzLi9aavAXPyLDeSIWfqUSNYhC3sGtt74weOp5gKdiDLnlSrKVA1b2x57ybtW
-         I/Xl+IFpw5Ijihrj9Liyzd/ieeOuF4x9Pz12KA9JNxbmy7MeEkyqR7IEMW+q3ewAYNDQ
-         oJpOb2BtanT970Ke56ROtHePygR1/0KkesMhUAyoIxZaRuZV3hfTSAQ66hNY0pGTolxE
-         Axqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679394743;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aM4pMbd9h+3fIjUzyTPRMWqM3P8Ga6/igv7ENNsFFog=;
-        b=t09j6qIn/D6i1DW1+eCRK+Ts9jyz3uncC6d6y0/8XHd6G6cxN3hqTgfU7c1fYAXs8H
-         21Id1Hbg+1LC82WuYcvKzVRbBNHiEbWkTEVwCoWHNQZAY0js8fZIH4REp1UOIwHjpD2L
-         KOzao9pMvLY6MnnKEqIqWEXoL8RQPktl2zbUs1idGNK9R56iqg0eL8qMTWxZX8zOikwj
-         F+ZFbHm7y6FRzN6zYJ9hCal3FpHuzf24ftS2rt+wcK7m1FdniBu7ogvWFUSD0FZLIANI
-         5hEU7acyWaUJBmc/yxP/U+KvtnXQMobemMkFFZ2eUJ9kI/EryGWycEMFLhVUzm7/Oksb
-         oubg==
-X-Gm-Message-State: AO0yUKUTWmxqONJGtdwEYpfhGODEgvLEIXyz6XIROXjXxzq2Ue4mpwDC
-        nn59+HVtas93dLhkR3oOwp37mQ==
-X-Google-Smtp-Source: AK7set/hfAAEy8OKfBMea9CyBR/XCE2LmXd/fOMAlwfdbQAwHsc+rxmMel4Tjo+wXxAliWG8CWwHvg==
-X-Received: by 2002:a17:906:7ccf:b0:8f4:809e:faee with SMTP id h15-20020a1709067ccf00b008f4809efaeemr11116908ejp.19.1679394742958;
-        Tue, 21 Mar 2023 03:32:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id lz24-20020a170906fb1800b009334309eda5sm3774000ejb.196.2023.03.21.03.32.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 03:32:22 -0700 (PDT)
-Message-ID: <2aeb47d6-0577-f8e4-6070-331af15b1f83@linaro.org>
-Date:   Tue, 21 Mar 2023 11:32:21 +0100
+        with ESMTP id S230008AbjCUKgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:36:47 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCCD193C8;
+        Tue, 21 Mar 2023 03:36:10 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 2D1131343;
+        Tue, 21 Mar 2023 11:36:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1679394966;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=E0MuSZFY8OGr+b15UxWX+eX6mHT3AIP15MrknYT0oDo=;
+        b=SYUR6h5ShloAmYOjykyuNNESDI6xZ92J1NZljaxgdIBboeWcWErdhkrNePPyKYGro2kE4k
+        HVFfr/+/dNP+X0ckUs7pomi7/cIU9ga7I9I/FmZSnFsSJvs5/HOvS/Zu6+em3AbjFv1rG7
+        5oJxDEN6Y74ByO7vPdtHskc1yqIwdM60BnPuw/S5IqG92SAUl3ExnlXZebl8H7E3Kvyb/w
+        /eIs57oU4z8whxiCJPeK+tJ1VU6A2xzhfv4HnsjidOl2rJDAEjbrALVIdRYOhOxZioqEdx
+        rEOyYgFeHk41EWZDnXLL3FIj5JLy9uO+4DrTXvfe8no37uaLyOFBgiihuGOzaQ==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, Rob Herring <robh@kernel.org>
-Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
-        arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
+Date:   Tue, 21 Mar 2023 11:36:05 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-References: <20230315110736.35506-1-jpanis@baylibre.com>
- <20230315110736.35506-2-jpanis@baylibre.com>
- <20230320155354.GB1733616-robh@kernel.org>
- <04914464-2bc2-9d86-e9e2-8a716b929f28@baylibre.com>
- <2dcfd9dc-6c43-20b7-e27b-8ec2883be237@linaro.org>
- <887d5e71-334c-b206-08e6-2cc822df9eda@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <887d5e71-334c-b206-08e6-2cc822df9eda@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        =?UTF-8?Q?Ra?= =?UTF-8?Q?fa=C5=82_Mi=C5=82ecki?= 
+        <rafal@milecki.pl>
+Subject: Re: [PATCH V5 3/3] nvmem: core: add support for fixed cells *layout*
+In-Reply-To: <20230321102418.4190-4-zajec5@gmail.com>
+References: <20230321102418.4190-1-zajec5@gmail.com>
+ <20230321102418.4190-4-zajec5@gmail.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <024fd4500089d479b60580449d3567b8@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 10:03, Julien Panis wrote:
+Am 2023-03-21 11:24, schrieb Rafał Miłecki:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
+> This adds support for the "fixed-layout" NVMEM layout binding. It 
+> allows
+> defining NVMEM cells in a layout DT node named "nvmem-layout".
 > 
-> On 3/21/23 08:36, Krzysztof Kozlowski wrote:
->> On 20/03/2023 17:35, Julien Panis wrote:
->>>
->>> On 3/20/23 16:53, Rob Herring wrote:
->>>> On Wed, Mar 15, 2023 at 12:07:33PM +0100, Julien Panis wrote:
->>>>> TPS6594 is a Power Management IC which provides regulators and others
->>>>> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->>>>> PFSM (Pre-configurable Finite State Machine) managing the state of the
->>>>> device.
->>>>> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
->>>> As mentioned, the binding needs to be complete. It's missing GPIO at
->>>> least. RTC and watchdog may or may not need binding changes.
->>> Thank you for your feedback.
->>>
->>> About GPIO, do you speak about 'gpio-controller'
->>> and/or '#gpio-cells' properties ?
->> Yes.
->>
->>> For RTC (and for watchdog, once the driver will be
->>> implemented), our driver do not require any node
->>> to work. What could make an explicit instantiation
->>> necessary in DT ?
->> Properties from RTC schema, e.g. start-year, wakeup etc.
+> While NVMEM subsystem supports layout drivers it has been discussed 
+> that
+> "fixed-layout" may actually be supperted internally. It's because:
+> 1. It's a very basic layout
+> 2. It allows sharing code with legacy syntax parsing
+> 3. It's safer for soc_device_match() due to -EPROBE_DEFER
+> 4. This will make the syntax transition easier
 > 
-> TPS6594 RTC driver is being reviewed (this is another patch
-> series, not merged yet). These properties are not used by our
-> driver, that's why we did not have to add some RTC node in
-> the DT (until now, using such properties in our driver was not
-> requested by RTC sub-system maintainers).
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  drivers/nvmem/core.c | 32 +++++++++++++++++++++++++++++---
+>  1 file changed, 29 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index 212c5ba5789f..591b640f53dd 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -694,7 +694,7 @@ static int nvmem_validate_keepouts(struct
+> nvmem_device *nvmem)
+>  	return 0;
+>  }
+> 
+> -static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
+> +static int nvmem_add_cells_from_dt(struct nvmem_device *nvmem, struct
+> device_node *np)
+>  {
+>  	struct nvmem_layout *layout = nvmem->layout;
+>  	struct device *dev = &nvmem->dev;
+> @@ -702,7 +702,7 @@ static int nvmem_add_cells_from_of(struct
+> nvmem_device *nvmem)
+>  	const __be32 *addr;
+>  	int len, ret;
+> 
+> -	for_each_child_of_node(dev->of_node, child) {
+> +	for_each_child_of_node(np, child) {
+>  		struct nvmem_cell_info info = {0};
+> 
+>  		addr = of_get_property(child, "reg", &len);
+> @@ -740,6 +740,28 @@ static int nvmem_add_cells_from_of(struct
+> nvmem_device *nvmem)
+>  	return 0;
+>  }
+> 
+> +static int nvmem_add_cells_from_legacy_of(struct nvmem_device *nvmem)
+> +{
+> +	return nvmem_add_cells_from_dt(nvmem, nvmem->dev.of_node);
+> +}
+> +
+> +static int nvmem_add_cells_fixed(struct nvmem_device *nvmem)
+> +{
+> +	struct device_node *layout_np;
+> +	int err = 0;
+> +
+> +	layout_np = of_nvmem_layout_get_container(nvmem);
+> +	if (!layout_np)
+> +		return 0;
+> +
+> +	if (of_device_is_compatible(layout_np, "fixed-layout"))
+> +		err = nvmem_add_cells_from_dt(nvmem, layout_np);
+> +
+> +	of_node_put(layout_np);
+> +
+> +	return err;
+> +}
+> +
+>  int __nvmem_layout_register(struct nvmem_layout *layout, struct module 
+> *owner)
+>  {
+>  	layout->owner = owner;
+> @@ -970,7 +992,7 @@ struct nvmem_device *nvmem_register(const struct
+> nvmem_config *config)
+>  	if (rval)
+>  		goto err_remove_cells;
+> 
+> -	rval = nvmem_add_cells_from_of(nvmem);
+> +	rval = nvmem_add_cells_from_legacy_of(nvmem);
+>  	if (rval)
+>  		goto err_remove_cells;
+> 
+> @@ -980,6 +1002,10 @@ struct nvmem_device *nvmem_register(const struct
+> nvmem_config *config)
+>  	if (rval)
+>  		goto err_remove_cells;
+> 
+> +	rval = nvmem_add_cells_fixed(nvmem);
 
-Bindings should be complete, regardless whether you now need this in
-driver or not. Does your comment mean that you will never need these,
-because hardware does not support them, and never going to add?
-Otherwise I don't get why you refer to driver when we talk about bindings...
+nvmem_add_cells_from_fixed_layout()?
 
+Reviewed-by: Michael Walle <michael@walle.cc>
 
-Best regards,
-Krzysztof
-
+> +	if (rval)
+> +		goto err_remove_cells;
+> +
+>  	rval = nvmem_add_cells_from_layout(nvmem);
+>  	if (rval)
+>  		goto err_remove_cells;
