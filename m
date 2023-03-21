@@ -2,118 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F40366C2A63
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD0636C2A6F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:33:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbjCUGa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 02:30:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
+        id S230239AbjCUGd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 02:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjCUGa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:30:27 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C846A40F9
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:30:21 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id cy23so55484844edb.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:30:21 -0700 (PDT)
+        with ESMTP id S229887AbjCUGd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:33:28 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 808DE3B22A
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:33:01 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id cn12so9974778edb.4
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:33:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679380220;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679380380;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n1ju9SHjn0EjnX+WJqAHc/qHXQe1M1fQAhQ9irmoRLI=;
-        b=mr0vXSG40cowcVbTWCszpsULDay3AkUTvIQNoxE/6Cjdl1xcl62ZeQlMkGQvvXsDrk
-         s4fxDaxslwg5/yMeL9Ig8LjT0F7SmaOuNm65fwSM2bZe5ypr3cel0Ym+RHZioMD/nru5
-         mMy6+NbhCnExJz0K0P+hxhwIn0NkAa4h4MZxQgBzN6hTWdEbIq57nKVhxXhzIB42Oay3
-         Gx67k8oY5N18LvZkJWFuaADFe/nYmF39zpxfXmBPtyLWan8sSBohpvoxtAOGBJVJH9CZ
-         2v+cmkV/91ZdgOLSTGAfnMkrBAWuXHXaYvxR640AZPv1BnGpo6zztRbBxugYNMnk9t0j
-         FvzA==
+        bh=+HtQTr70p9g0PFqB21eWyfcsMG//fwSOn6c9K2QaLZg=;
+        b=U0naptLlEpIIIPIujtsOPbCXgtUTGWKYTvhXhVRe0+VrDYAC1jzdgU8unYp+1fWM+a
+         K4s9mQWcd9Fn1xPdQhA70P6yAMxmkXr0MKWS/Aeq6WaKV4Xd0zWw+6FaZMyDHg2IjdgI
+         xvin3/erA8RN5zf2AGuo20nWq7ptInWL+iZC1Q5WBsSFzunxx8rhuySAhR5YoXqBZ0+q
+         xiWd4wr9EGF7jEJRyzJp5ziCZNdy94gtKLqGjvzamsH4wIJFQlZ3DxYWuKrmYz8cGCjp
+         Kht/hVbxz/6z0EpfI+bDtXVah7uiYbSF7kNK8IFD6EtVE2vZU05bF6x9RkVkLZISNlFr
+         Xy2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679380220;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679380380;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n1ju9SHjn0EjnX+WJqAHc/qHXQe1M1fQAhQ9irmoRLI=;
-        b=ETedWv5PI9UbX06w2x9295LEnU90eIJ7F7zzeIKpvqrg2d898v/Gvfqdp3Fyu5kZvY
-         Ly/0r7mSqwqSM5laCMHo+5yg6cKtpyEIPPdix/I+D1+WquASzvnUcv6oYphv1KIbSMlu
-         E6UIxWiAM5Mmu3b9julprOi82DTHOEtrjSsCARRRYwl9YzlC/8ZAwetj5hbDlYf9ui/O
-         kV8Y77pp/Ym5EbeGYP3w/t90vLKXy+dVc0x9a5nsd+zZ1VZBu6/QF3B/PFI9j5RFmHKf
-         aEmBXOABhD9A2rxXv5b48mSqe37Kh5eD0vW8YNG97jGMP8ngwQdjysxgm1YghLNpB6T3
-         5Tng==
-X-Gm-Message-State: AO0yUKVGMeQ+nHHbLdNm/A1fD3cTxgeQN1zZIIXT1pfG5glaC4lsrSYg
-        2ydSFCuxsNIwUZGzIXBsmAgdaA==
-X-Google-Smtp-Source: AK7set/mnHhzkLfQ6NWBr4tgSxgW7U8c3Ph5LCp/K+YZdlpgbxJUDmtb0MS2Ksnkrt0SN/5/D3IQvQ==
-X-Received: by 2002:a17:906:391b:b0:92b:eca6:43fc with SMTP id f27-20020a170906391b00b0092beca643fcmr1611701eje.64.1679380220208;
-        Mon, 20 Mar 2023 23:30:20 -0700 (PDT)
+        bh=+HtQTr70p9g0PFqB21eWyfcsMG//fwSOn6c9K2QaLZg=;
+        b=iIICgrHCp2z2Wmiznopi/2vd3tp7X2Kb0pbbClbwD7toZdr2sZQpRuYO2oQOuMcqln
+         THLNgvFi2W9ZZ34awvHog1xIE6oFWdzY8V7LyDxVrvmFoTiEXnQRXR6T+4K65o1E7oKb
+         LdSYf/aOD+99hkp8bERk51gMWaan6uvDfeauL4v8aVxGt3B6fkX9hOItEKMSNOYWuru0
+         bLy9TPiuA2L10Vx/2WOYnVP4Q7bC+zuxGoGLr2or7ZmluYIis0Xp9lcNjGMhriCiVu/O
+         MyGLMZ8C2GRTCd+2YQOa1VGj4Xd7CqF+O3YLmVgjrymEJmZdGLJV/Ox4TEpqlqcTWrEx
+         55Ow==
+X-Gm-Message-State: AO0yUKXlaS+0Xz5IJDDSlYjlWy2EinKqFDy5ogcW6hQQrKWbdEDop2A4
+        whqonsu7mwAHYlRiEzs1AHxDFA==
+X-Google-Smtp-Source: AK7set+X26OM3FXuIWXm2jm5XGPMTjCpHNvsswvRWpweqJQXypouCjDAycl742Es0v6RCKzFZmHJAw==
+X-Received: by 2002:a17:906:86cd:b0:878:545b:e540 with SMTP id j13-20020a17090686cd00b00878545be540mr1633577ejy.51.1679380379982;
+        Mon, 20 Mar 2023 23:32:59 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id hy14-20020a1709068a6e00b009351546fb54sm1717874ejc.28.2023.03.20.23.30.18
+        by smtp.gmail.com with ESMTPSA id a11-20020a17090680cb00b00930d22474dbsm5358277ejx.97.2023.03.20.23.32.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 23:30:19 -0700 (PDT)
-Message-ID: <35359dee-5803-0cbb-b3d2-89aa6461f6a5@linaro.org>
-Date:   Tue, 21 Mar 2023 07:30:17 +0100
+        Mon, 20 Mar 2023 23:32:59 -0700 (PDT)
+Message-ID: <39ba681e-5bab-cffc-edf7-4bf86387987c@linaro.org>
+Date:   Tue, 21 Mar 2023 07:32:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: phy: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Vincent Shih <vincent.sunplus@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-usb@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-can@vger.kernel.org
-References: <20230320233955.2921179-1-robh@kernel.org>
+Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
+ tree binding documentation
 Content-Language: en-US
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+ <20230320161823.1424278-2-sergio.paracuellos@gmail.com>
+ <1e2f67b4-3bfb-d394-4f60-e6f63ce6a2fd@linaro.org>
+ <CAMhs-H8OQ9gJLsifLuHD2GN8rYwnY=Zmdb0kMEfX4UUHhjMUyQ@mail.gmail.com>
+ <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
+ <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+ <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org>
+ <525a6388-a4b8-3052-fe81-5aa21d8f424a@arinc9.com>
+ <507f79cf-acd8-5238-031a-fd71024e0c6a@linaro.org>
+ <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320233955.2921179-1-robh@kernel.org>
+In-Reply-To: <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 00:39, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 21/03/2023 05:34, Sergio Paracuellos wrote:
+> On Mon, Mar 20, 2023 at 7:15 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 20/03/2023 19:09, Arınç ÜNAL wrote:
+>>>>> Would mediatek,mtmips-clock.yaml make sense?
+>>>>
+>>>> More, except:
+>>>> 1. This is not clock, but sysc.
+>>>
+>>> Sergio, beware.
+>>
+>> I meant, that's what I understood from what Sergio said. :)
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Yes, you understood properly. I will use 'sysc' instead.
+> 
+>>
+>>>
+>>>> 2. mips sounds redundant. Do you have rt2xxx and mt7xxx chips which are ARM?
+>>>
+>>> All of the SoCs, RTXXXX, MT7620, MT7621, MT7628, MT7688 are MIPS. So I
+>>> decided to call this platform MTMIPS as I've seen MediaTek use this on
+>>> other projects like U-Boot. This is what I did on my pinctrl patch
+>>> series as well.
+>>
+>> Ah, but indeed there are newer Mediatek MT6xxx and MT8xxx SoCs which are
+>> ARM, so mediatek,mtmips-sysc would work.
+> 
+> I can use 'mediatek,mtmips-sysc.yaml' as the name but compatibles will
+> start with ralink. There are already some existent compatibles for
+> mt762x already having ralink as prefix, so to be coherent ralink
+> should be maintained as prefix.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The compatibles I mentioned start already with mediatek, so why do you
+want to introduce incorrect vendor name for these?
 
 Best regards,
 Krzysztof
