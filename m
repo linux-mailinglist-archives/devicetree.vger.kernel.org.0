@@ -2,77 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B8C6C30F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 12:54:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBF406C3127
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:02:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231158AbjCULyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 07:54:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59996 "EHLO
+        id S229552AbjCUMCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 08:02:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbjCULyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 07:54:15 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6573C01
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 04:53:45 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id z42so15179612ljq.13
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 04:53:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679399623;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PHYicZCpX9e/ECtMpq+W+0vzy+duTC7O8lXBsVndLUw=;
-        b=tIbCAi3++wdGvgilnSs/W2RaKDtbmB1bkE2JN4k4nUD9diudsq0XhOFrM1/wzjoQ6s
-         HXpRpc/MGxO8eZF4oPuYoAhoDhyRY20NFe/xtt21zORiVScFZdluRKBemi8nJzq2LS/G
-         D4pDWFDHv4y9GgHXGzdjP4m1jfJKHSWre78eQ9I/zDsoejLf5NB3rlPomePj6JWdsMsu
-         wx+epJ9SbGBbaXYSnzp51/yMPoXCXl1HsWJT95Kd5P+q5r8sHkBR/uJ9UypLGVsvRoRD
-         3yBTbT6Y8DTi8JgFZ7mmkLH2cCVn6tPgE7LWufhrZk0C/Xr+lHElJMWStUADhsFXxKGr
-         juGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679399623;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PHYicZCpX9e/ECtMpq+W+0vzy+duTC7O8lXBsVndLUw=;
-        b=RRCGpgGKYMPEYcMaaRYhLeg5bMGizTOG0svLoXATqYNFT7evzQ+YOw/U8FRUwmQuEO
-         9HOnK63//GTZmWUX3DbSu6qKd/n0hKpj4VW1AuPUClhc8F+pOO6QVIOwJ+9m2C016MLB
-         KkAFc6weK3fZ/ZCxHr+GXmSQP6Y+Z/pgUy4u0UF2xC4ndpOpt5nNB9o+XLCGCwCLElQG
-         tTGt/2rpjhUuE8PfwB3Q286ii6luLARDteEPSX3Sxn9ZvDpDdK3CiGMEoAYpdo+jhvuG
-         oPAtDPVFKhqDcIxFcDKVTrK10OMjcMBJ7csQLiRX9QhyeeeXI4+D0QO+0bNh+kF3ciZO
-         3S8g==
-X-Gm-Message-State: AO0yUKUEky8g5vFnBdSFa9BKZPEshicWnZzrmPSff5ErG0P+yazlewvH
-        LN6NGjs38h3ubxHhc+7sxjUNIw==
-X-Google-Smtp-Source: AK7set8H8ztkokOQKVh1LA5viyxH684OEh2WsxmA1W5HeX5LBIFmqiZHmb3kb3SJZ2Jqe2771pVwJw==
-X-Received: by 2002:a2e:8699:0:b0:29b:7c49:a512 with SMTP id l25-20020a2e8699000000b0029b7c49a512mr811204lji.21.1679399623692;
-        Tue, 21 Mar 2023 04:53:43 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id l22-20020a2e8356000000b0029e967c1dfesm634385ljh.8.2023.03.21.04.53.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 04:53:43 -0700 (PDT)
-Message-ID: <1cb44e37-9881-3c71-816f-a492c917c494@linaro.org>
-Date:   Tue, 21 Mar 2023 12:53:41 +0100
+        with ESMTP id S229822AbjCUMCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:02:06 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9AAB3EB54;
+        Tue, 21 Mar 2023 05:02:03 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3BEF8AD7;
+        Tue, 21 Mar 2023 05:02:47 -0700 (PDT)
+Received: from [10.57.53.10] (unknown [10.57.53.10])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 993363F71E;
+        Tue, 21 Mar 2023 05:02:00 -0700 (PDT)
+Message-ID: <458b2a97-494b-7772-3499-4fba088b6a67@arm.com>
+Date:   Tue, 21 Mar 2023 12:01:59 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 0/8] Enable IPQ9754 USB
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, mturquette@baylibre.com,
-        sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1677749625.git.quic_varada@quicinc.com>
- <cover.1679388632.git.quic_varada@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <cover.1679388632.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH 0/7] coresight: etm4x: Migrate AMBA devices to platform
+ driver
+To:     Rob Herring <robh+dt@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        scclevenger@os.amperecomputing.com,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
+ <CAL_JsqKsnq0d-x3m3xQe8m0pnk_Jeh9J1oFBtPAn3LV8-MFH0w@mail.gmail.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <CAL_JsqKsnq0d-x3m3xQe8m0pnk_Jeh9J1oFBtPAn3LV8-MFH0w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,48 +57,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/03/2023 14:17, Rob Herring wrote:
+> On Thu, Mar 16, 2023 at 10:05 PM Anshuman Khandual
+> <anshuman.khandual@arm.com> wrote:
+>>
+>> CoreSight ETM4x devices could be accessed either via MMIO (handled via
+>> amba_driver) or CPU system instructions (handled via platform driver). But
+>> this has the following issues :
+>>
+>>    - Each new CPU comes up with its own PID and thus we need to keep on
+>>      adding the "known" PIDs to get it working with AMBA driver. While
+>>      the ETM4 architecture (and CoreSight architecture) defines way to
+>>      identify a device as ETM4. Thus older kernels  won't be able to
+>>      "discover" a newer CPU, unless we add the PIDs.
+> 
+> But v8.4 discourages MMIO access, so this problem will go away on its
+> own. Even if not, adding IDs to stable kernels is standard practice
+> whether it is PCI VID/PID, compatible string or AMBA PID.
+
+Yes, it would eventually go away. As for adding the PIDs, the
+fundamental issue is, unlike other drivers, except for the "PIDs"
+everything else is architected and each CPU has this PID alone
+different and we have plenty of CPUs implementaions out there.
+
+But all that said, since we added this as an AMBA driver in the first
+place (all for simply getting the apb_clk management), I am happy to
+choose the "Add PIDs to stable kernel approach" for this problem.
+
+> 
+>>    - With ACPI, the ETM4x devices have the same HID to identify the device
+>>      irrespective of the mode of access. This creates a problem where two
+>>      different drivers (both AMBA based driver and platform driver) would
+>>      hook into the "HID" and could conflict. e.g., if AMBA driver gets
+>>      hold of a non-MMIO device, the probe fails. If we have single driver
+>>      hooked into the given "HID", we could handle them seamlessly,
+>>      irrespective of the mode of access.
+> 
+> Why are we changing DT for ACPI? Just always use the platform driver
+> for ACPI and leave DT systems alone.
+
+This was mainly due to (1), given we have a platform driver anyway for
+ACPI. As mentioned above, we could leave the DT alone.
+
+> 
+>>    - CoreSight is heavily dependent on the runtime power management. With
+>>      ACPI, amba_driver doesn't get us anywhere with handling the power
+>>      and thus one need to always turn the power ON to use them. Moving to
+>>      platform driver gives us the power management for free.
+> 
+> This sounds like an issue for any amba driver. If this is an issue,
+> solve it for everyone, not just work around it in one driver.
+
+This alone wouldn't be sufficient. We need a platform driver anyway to
+handle the two different modes in  ACPI for ETMs. But this will be a
+an option for the other CoreSight components which are always MMIO.
+
+Thanks
+Suzuki
 
 
-On 21.03.2023 09:54, Varadarajan Narayanan wrote:
-> This patch series adds the relevant phy and controller
-> configurations for enabling USB on IPQ9754
-I got this as a reply to the v1 thread. Please don't do that
-and send it as a new mail thread the next time around.
+> 
+> When someone puts another primecell device into an ACPI system, are we
+> going to go do the same one-off change in that driver too? (We kind of
+> already did with SBSA UART...)
 
-Konrad
+
+
+
+
 > 
-> Depends on:
-> https://lore.kernel.org/all/20230217142030.16012-1-quic_devipriy@quicinc.com/
-> 
-> [v2]:
->         - Incorporated review comments regarding coding styler,
->           maintaining sorted order of entries and unused phy register
->           offsets
->         - Removed NOC clock entries from DT node (will be implemented
->           later with interconnect support)
->         - Fixed 'make dtbs_check' errors/warnings
-> 
-> [v1]:
->         https://lore.kernel.org/linux-arm-msm/5dac3aa4-8dc7-f9eb-5cf3-b361efdc9494@linaro.org/T/
-> 
-> Varadarajan Narayanan (8):
->   dt-bindings: phy: qcom,qusb2: Document IPQ9574 compatible
->   dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3 PHY
->   dt-bindings: usb: dwc3: Add IPQ9574 compatible
->   clk: qcom: gcc-ipq9574: Add USB related clocks
->   phy: qcom-qusb2: add QUSB2 support for IPQ9574
->   phy: qcom: qmp: Update IPQ9574 USB Phy initialization Sequence
->   arm64: dts: qcom: ipq9574: Add USB related nodes
->   arm64: dts: qcom: ipq9574: Enable USB
-> 
->  .../bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml    |  22 ++++
->  .../devicetree/bindings/phy/qcom,qusb2-phy.yaml    |   3 +-
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         |   1 +
->  arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts       |  12 +++
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  86 +++++++++++++++
->  drivers/clk/qcom/gcc-ipq9574.c                     |  37 +++++++
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c            | 119 +++++++++++++++++++++
->  drivers/phy/qualcomm/phy-qcom-qusb2.c              |   3 +
->  include/dt-bindings/clock/qcom,ipq9574-gcc.h       |   2 +
->  9 files changed, 284 insertions(+), 1 deletion(-)
-> 
+> Rob
+
