@@ -2,100 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3283A6C2D75
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:04:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA306C2D73
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:04:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjCUJE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 05:04:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51172 "EHLO
+        id S229662AbjCUJEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 05:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbjCUJEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:04:14 -0400
-Received: from sender3-op-o17.zoho.com (sender3-op-o17.zoho.com [136.143.184.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E5CE497CE;
-        Tue, 21 Mar 2023 02:03:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1679389375; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=WqRN3QzU/H7CaDpyz81HgDFIkuUMULXko1qK+O+0z29BUNDrIhGPK3QqY3tfkvJs0fEMjoY8lR8RtPbczIE9J87IdJn87deu4cme5ydsQavkHZU2us1W4Jfufj5ixCmx6xloQSdhIBGELL6SKgkNP26z1YwEYDcPgSErnnimVTA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1679389375; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=sB3XH7Ovi9XCs+7jQmmSOIgLMpgr0aqXAXi1VknrLAU=; 
-        b=h7/UY7O9kNpcsBI3wTGm9bh6zGM9SYpYrfK7cX0m4HhEaRSPiCFdYpwIrWgrjOFCEQw/IyLpnokvkAMvz9p1memBfVzWuORRh4Y0upaQvND86V+5NlWVKNpIjruybNt28hMvsYgTA2/Gyn+8pT6m3q0OI1wFpanfyVFY2s0JpCA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679389375;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=sB3XH7Ovi9XCs+7jQmmSOIgLMpgr0aqXAXi1VknrLAU=;
-        b=cWA94N13PqvOSF08RkF11GPjZqAX0mPMweYC254siqNGr7+QHGaKmvnb7TA9o4QV
-        Hh+2uuWV1+sx/jHM49gZzCj+dIXUU7sMdXl+L0NYe4t/tFnsEh12BoOvF84ctIgntd8
-        66sIdn8RAOsjFJa3FTOd+0BEZVfhNSu7VPMqT2Iw=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1679389372126149.2113472793228; Tue, 21 Mar 2023 02:02:52 -0700 (PDT)
-Message-ID: <6ed317bc-ce3a-2da2-1d96-f0ea8ff0b48c@arinc9.com>
-Date:   Tue, 21 Mar 2023 12:02:47 +0300
+        with ESMTP id S230408AbjCUJD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:03:56 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB62947828;
+        Tue, 21 Mar 2023 02:02:59 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id g17so18207292lfv.4;
+        Tue, 21 Mar 2023 02:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679389378;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zii/L8bydF2J5bZJFsBnJTDRUEK+gjfel/OiYtpVK6E=;
+        b=GrWhwbrqEvFoRYyXkUO5+jrN+zVkEK95a7DsrW1ZLC1hFa0fRLIiVSe/5dgQ7kQ3gl
+         ab0WtbTeb3JsZybEHDcUFugMdg5r2yWULyrHaEJlJRMSGJJyTUcLA0AQ+t6/JZBXvC8Y
+         R5moVIhDfgRyPZZ2/IZSPsVY+aE68X48SyOZihYtGISeiPPTdDTwetUBNIK2NNqRTMx2
+         ISBqtXu8Hh/0Bpqac6OKx3mZwisg46lweGlU5YSLJeWaUtorCeQotDV/QWGcmwRiCjjJ
+         KPCkPWNpsqMgEQAhiGcEOXKlMTptyCWNBB6DgX1bpu7ayyjxsjG8cHe89NMld0Gxf/R9
+         X6EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679389378;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zii/L8bydF2J5bZJFsBnJTDRUEK+gjfel/OiYtpVK6E=;
+        b=CmEpImSzaSGhfjlrZNhF0wlcT1qSfqHuoiidtxv0+JMEpThQY2Z5Jq30oTGp/4XHSq
+         qD2eXzgF9ZaPwcvaMM2TyAKt6q/a+3Yg1bw6kNoDJkhinXeo2/JcD94mPA4k2jfo4mPY
+         9l2aEuen1xjAc7eyA/545Nlcsgjk3RPKtcxxJ26OEbwOTO0zf6JN6VVLv5oDguGW5bH6
+         rHdQO+vmjAoawETefKrzXzSoHgkfadVQxPCUQorXhO370yLmusYEO203Lj2C/Sgd6pwZ
+         YLBzmgjXD6hmCugvYzgmCt3g2OF6ga8OGYNQpIc/O/JPGLoZN91B9pi7ltTgvOdnC8xV
+         bNJQ==
+X-Gm-Message-State: AO0yUKVC4Om57hz0jYF/el05/Rm7ul0IstSbraFN7fEMa6I743K0C4TO
+        p/RPhpyktQGNkeMdTF3ktm4=
+X-Google-Smtp-Source: AK7set/gQlTgRvutONqyBXlc5/sCs1gMiZSDxAeYXnLe40E7tACAbeI9H51AyXkVG3JZWDZsFIO8xA==
+X-Received: by 2002:ac2:5dfc:0:b0:4d6:d0a0:8313 with SMTP id z28-20020ac25dfc000000b004d6d0a08313mr682869lfq.10.1679389377633;
+        Tue, 21 Mar 2023 02:02:57 -0700 (PDT)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id p5-20020a19f005000000b004e856a4159bsm2092375lfc.20.2023.03.21.02.02.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 02:02:57 -0700 (PDT)
+Date:   Tue, 21 Mar 2023 12:02:55 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        Sergey.Semin@baikalelectronics.ru, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v11 01/13] PCI: dwc: Fix writing wrong value if
+ snps,enable-cdm-check
+Message-ID: <20230321090255.cca6xowea6k6fud4@mobilestation>
+References: <20230310123510.675685-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230310123510.675685-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
- tree binding documentation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        tsbogend@alpha.franken.de, john@phrozen.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org
-References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
- <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org>
- <525a6388-a4b8-3052-fe81-5aa21d8f424a@arinc9.com>
- <507f79cf-acd8-5238-031a-fd71024e0c6a@linaro.org>
- <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
- <39ba681e-5bab-cffc-edf7-4bf86387987c@linaro.org>
- <132de602-6467-536c-c66d-657f22a59bd5@arinc9.com>
- <40e3acac-b58a-7af8-b025-3678f84434da@linaro.org>
- <CAMhs-H9AWXvtbg=qz06HN3piUO0E5YF3RmrdRLC7qH2n6KjrSw@mail.gmail.com>
- <d598f5f8-f998-2a31-bb21-97e641793dda@linaro.org>
- <120663a9-aecf-4a43-d1fb-779cd52802c6@arinc9.com>
- <3d2b8a1a-99c9-f53e-4bb3-a8b938e2672f@linaro.org>
- <543ad00d-4171-ed02-0d31-676c6b003e54@arinc9.com>
- <82f517b5-6697-3379-8d71-163b0d17735d@linaro.org>
- <d640a929-b6a0-1552-e66a-3a7bbabbc69f@arinc9.com>
- <2150938b-5433-6f51-c404-2c0f6976f864@linaro.org>
- <1c279b0a-c814-2fe3-0432-2aa6b3dff16e@arinc9.com>
- <9f8e7a74-35c6-6db5-4960-1efa79a23983@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <9f8e7a74-35c6-6db5-4960-1efa79a23983@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230310123510.675685-2-yoshihiro.shimoda.uh@renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.03.2023 12:01, Krzysztof Kozlowski wrote:
-> On 21/03/2023 09:53, Arınç ÜNAL wrote:
->>>
->>> I do not see how choosing one variant for compatibles having two
->>> variants of prefixes, complicates things. Following this argument
->>> choosing "ralink" also complicates!
->>
->> The idea is to make every compatible string of MTMIPS to have the ralink
->> prefix so it's not mediatek on some schemas and ralink on others. Simpler.
+On Fri, Mar 10, 2023 at 09:34:58PM +0900, Yoshihiro Shimoda wrote:
+> The "val" of PCIE_PORT_LINK_CONTROL will be reused on the
+> "Set the number of lanes". But, if snps,enable-cdm-check" exists,
+> the "val" will be set to PCIE_PL_CHK_REG_CONTROL_STATUS.
+> Therefore, unexpected register value is possible to be used
+> to PCIE_PORT_LINK_CONTROL register if snps,enable-cdm-check" exists.
+> So, change reading timing of PCIE_PORT_LINK_CONTROL register to fix
+> the issue.
+
+My version of the commit log:
+< If CDM_CHECK capability is set then the local variable 'val' will be
+< overwritten in the dw_pcie_setup() method in the PL_CHK register
+< initialization procedure. Thus further variable usage in the framework of
+< the PCIE_PORT_LINK_CONTROL register initialization at the very least must
+< imply the variable re-initialization. Alas it hasn't been taken into
+< account in the commit ec7b952f453c ("PCI: dwc: Always enable CDM check if
+< "snps,enable-cdm-check" exists"). Due to that the PCIE_PORT_LINK_CONTROL
+< register will be written with an improper value in case if the CDM-check
+< is enabled. Let's fix this by moving the PCIE_PORT_LINK_CONTROL CSR
+< updated to be fully performed after the PL_CHK register
+< initialization.
+
 > 
-> Which is an ABI break, so you cannot do it.
+> Fixes: ec7b952f453c ("PCI: dwc: Always enable CDM check if "snps,enable-cdm-check" exists")
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-No, both strings stay on the driver, it's the schemas that will only 
-keep ralink.
+Looks good. Thanks.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-Arınç
+@Bjorn, if it's possible could you please take this patch to a
+fixes(-ish) branch of your tree and merge it in the next rc-cycle?
+It definitely fixes a bug in the DW PCIe core driver.
+
+-Serge(y)
+
+> ---
+>  drivers/pci/controller/dwc/pcie-designware.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 53a16b8b6ac2..8e33e6e59e68 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -1001,11 +1001,6 @@ void dw_pcie_setup(struct dw_pcie *pci)
+>  		dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
+>  	}
+>  
+> -	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
+> -	val &= ~PORT_LINK_FAST_LINK_MODE;
+> -	val |= PORT_LINK_DLL_LINK_EN;
+> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> -
+>  	if (dw_pcie_cap_is(pci, CDM_CHECK)) {
+>  		val = dw_pcie_readl_dbi(pci, PCIE_PL_CHK_REG_CONTROL_STATUS);
+>  		val |= PCIE_PL_CHK_REG_CHK_REG_CONTINUOUS |
+> @@ -1013,6 +1008,11 @@ void dw_pcie_setup(struct dw_pcie *pci)
+>  		dw_pcie_writel_dbi(pci, PCIE_PL_CHK_REG_CONTROL_STATUS, val);
+>  	}
+>  
+> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
+> +	val &= ~PORT_LINK_FAST_LINK_MODE;
+> +	val |= PORT_LINK_DLL_LINK_EN;
+> +	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
+> +
+>  	if (!pci->num_lanes) {
+>  		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
+>  		return;
+> -- 
+> 2.25.1
+> 
+> 
