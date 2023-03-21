@@ -2,89 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CCB46C2BE0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC4B6C2C17
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:15:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229751AbjCUIEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 04:04:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47862 "EHLO
+        id S230518AbjCUIPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 04:15:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbjCUIEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:04:33 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFAA3BC7C
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:04:29 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id x3so56209018edb.10
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:04:29 -0700 (PDT)
+        with ESMTP id S230523AbjCUIOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:14:21 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5DFD30D
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:14:18 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id h8so56338829ede.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679385868;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679386456;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=a6kAibFtUmFQRuVkt3XyxH7xyFCW8XFyaXNZx8x1cuQ=;
-        b=HG5ouOwSztWyCZxl76s5Quolbu30q6mLAxcu6SGpRSP14LBk69oEa0EEO0Ab2rKvEk
-         zQgWel7OBNYZB8z6ozJV7H9a2NXXFQPtnFd2d3XpJRpX0OLWHvpVKXi6eQGfL5/ZYN8q
-         camPhUVeWtUx6nbtBjLdeHBlfytWZ4Gf5xHvmXo3INfq9d4LsiC1sDvv+ZK1vaxtE9oF
-         WSCYHpOVlu70n5F10jM3Jh/Od2/V+tvbxJjJFiUt1Q6ZEF2EoD3djskiHQpWcgTzSMpU
-         nboV4Yd0+tnZ06ELFNe3xS0EMDkQ3xlrXy26wJF9eR+zvRHIERRKr5ljO4EQW97lExiG
-         NvSA==
+        bh=/GlY80fVC6uH/ZqU7yXSUIACPGr/6fR1rzfz7PKIC1U=;
+        b=XTHClEkFj9/GzezOJiRBJAo+Tywih9fsnGLCx2EvfPO7EkU3qr0lhvujZ4rV/hC0bA
+         AQzYjyLPOMFzqaZRQNA1Hxz63j2WJ92NwAyEG19ijt2gJb1h1nT92mk7a+ADJpaLc2e7
+         jFytPhvYu6J1WM7YTxzs57YNFmKYVV2BWBRBjnOwgUHjAuopWFAQUVCrzb1Wb5KZnHrY
+         VelFH6I+KLmKhYtvQdVPZca5ss7DQZTbQ2Z6wf1VUAasYPb848o2f3kJqWRkWA/7vJxa
+         xXaYt68thkNcW5U3sUxorS9a6d+oVSnF1fyvyTfSyWb5H8c9CClCTZuj2H3xTQNJFAV9
+         IonQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679385868;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679386456;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a6kAibFtUmFQRuVkt3XyxH7xyFCW8XFyaXNZx8x1cuQ=;
-        b=NORz62DUf7wUz4KHximqcUpl8IqXLWk2iOcl2fCRPOLSEyWIBMbciHXBA8DmWZeuP7
-         tWWKlMHzjS91C+Gcidto+/mD7f16M3Mrkkjj40wKy9WgH3Zo9Oti28XTirA/fbHVjlyb
-         53PgBwT7fTQuG189dZT2DLIghD+Y7OmNTAv8L/5epeJygN2qKzQldfiXTfwc/1VUe9mM
-         lTVKDKeMZgxeMW2ZbHKNjD7AcVFVts3UVNc9kUF5wkoUwF2VLhgx1m/sJ5K2OqBsA51T
-         SleBEaEE0or5d1CAjQQwTpad5rAovJrHCEpT1IRsErFRjTh3bGp013AlzAsNUouaA1dm
-         Hmaw==
-X-Gm-Message-State: AO0yUKV5ystGEMsyeFzXPyHff/gYstLyadyGe3/77ltKoLsF4iQLkQF/
-        TS84vd6KwVZtUBeiIj31Z6ev+g==
-X-Google-Smtp-Source: AK7set8lwvGGzgiMVMHsy9OSuBQEMrKIN0ffIGRRRzlKyRPmOzc7GpCN0/I7GVJb4jCVeLD1qiD2Yw==
-X-Received: by 2002:a17:906:8a62:b0:920:7827:302 with SMTP id hy2-20020a1709068a6200b0092078270302mr2618185ejc.18.1679385868234;
-        Tue, 21 Mar 2023 01:04:28 -0700 (PDT)
+        bh=/GlY80fVC6uH/ZqU7yXSUIACPGr/6fR1rzfz7PKIC1U=;
+        b=Alm08lPHBAJfxAcjK9/jFXTlJM7YVcCaODu/Elw+EVeC0Q0c+9p6QWGIyRbYmF/Hu/
+         w0AERFK2f3SaK+cWoCQY1S2e6Wf0DNYqyXwidpUbSMLvEYjNSySeEQa1BCe04D35CsP+
+         Lp9Tup/g9mSUMi2Syx+/eLCHmMECwfUD5/lPcU4DKTgNOBf2dI/jl3AlKoUGGu27Vdsq
+         7NxLvKKFETb4hXnp0eUV2kfTxAnPyvXXDfvW+fvZ3Ql/bv26mg8bDl5+zlWasZ7yJokH
+         cBEQZCr8rETaYOhxLdQkX50xQHtszEPeu44cf09OfwWgOnqhk+zKaQXbl4XKCACIaND4
+         KMMw==
+X-Gm-Message-State: AO0yUKU63qYbd91V241xBNgoOjYJvNN/rtRZhhRy/Kv4PG6pNYviFm1R
+        qspAjiYnuu1eWRlbp62L9mwKrw==
+X-Google-Smtp-Source: AK7set+KavFTi/5gL3fFGZNK4zqO5JayQgZGCYyegKnxMgWSDSLPf/Gpn9hgDWKSYK0FTrdYRdNBLA==
+X-Received: by 2002:a17:906:2756:b0:931:d350:9aef with SMTP id a22-20020a170906275600b00931d3509aefmr2159037ejd.25.1679386456630;
+        Tue, 21 Mar 2023 01:14:16 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id p13-20020a1709066a8d00b00932ab7699ffsm4615372ejr.148.2023.03.21.01.04.27
+        by smtp.gmail.com with ESMTPSA id m20-20020a170906259400b0092b8c1f41ebsm5411140ejb.24.2023.03.21.01.14.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 01:04:27 -0700 (PDT)
-Message-ID: <3d2b8a1a-99c9-f53e-4bb3-a8b938e2672f@linaro.org>
-Date:   Tue, 21 Mar 2023 09:04:26 +0100
+        Tue, 21 Mar 2023 01:14:16 -0700 (PDT)
+Message-ID: <a8356f76-189d-928b-1a1c-f4171de1e2d0@linaro.org>
+Date:   Tue, 21 Mar 2023 09:14:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
- tree binding documentation
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        tsbogend@alpha.franken.de, john@phrozen.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org
-References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
- <20230320161823.1424278-2-sergio.paracuellos@gmail.com>
- <1e2f67b4-3bfb-d394-4f60-e6f63ce6a2fd@linaro.org>
- <CAMhs-H8OQ9gJLsifLuHD2GN8rYwnY=Zmdb0kMEfX4UUHhjMUyQ@mail.gmail.com>
- <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
- <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
- <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org>
- <525a6388-a4b8-3052-fe81-5aa21d8f424a@arinc9.com>
- <507f79cf-acd8-5238-031a-fd71024e0c6a@linaro.org>
- <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
- <39ba681e-5bab-cffc-edf7-4bf86387987c@linaro.org>
- <132de602-6467-536c-c66d-657f22a59bd5@arinc9.com>
- <40e3acac-b58a-7af8-b025-3678f84434da@linaro.org>
- <CAMhs-H9AWXvtbg=qz06HN3piUO0E5YF3RmrdRLC7qH2n6KjrSw@mail.gmail.com>
- <d598f5f8-f998-2a31-bb21-97e641793dda@linaro.org>
- <120663a9-aecf-4a43-d1fb-779cd52802c6@arinc9.com>
+Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
 Content-Language: en-US
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230320104658.22186-1-johan+linaro@kernel.org>
+ <20230320104658.22186-2-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <120663a9-aecf-4a43-d1fb-779cd52802c6@arinc9.com>
+In-Reply-To: <20230320104658.22186-2-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
@@ -95,52 +86,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 08:39, Arınç ÜNAL wrote:
->>>
->>> arch/mips/ralink/mt7620.c:      rt_sysc_membase =
->>> plat_of_remap_node("ralink,mt7620a-sysc");
->>>
->>> That's the reason I also used prefix ralink for the rest.
->>>
->>> Does it make sense to you to maintain this one as ralink,mt7620a-sysc
->>> and add the following with mediatek prefix?
->>>
->>> mediatek,mt7620-sysc
->>> mediatek,mt7628-sysc
->>> mediatek,mt7688-sysc
->>>
->>> That would be weird IMHO.
->>
->> What exactly would be weird? Did you read the discussion about vendor
->> prefix from Arinc? mt7620 is not a Ralink product, so what would be
->> weird is to use "ralink" vendor prefix. This was never a Ralink. However
->> since there are compatibles using "ralink" for non-ralink devices, we
->> agreed not to change them.
->>
->> These though use at least in one place mediatek, so the above argument
->> does not apply. (and before you say "but they also use ralink and
->> mediatek", it does not matter - it is already inconsistent thus we can
->> choose whatever we want and ralink is not correct).
+On 20/03/2023 11:46, Johan Hovold wrote:
+> Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6856
+> for which the calibration data variant may need to be described.
 > 
-> My argument was that your point being Ralink is now Mediatek, thus there 
-> is no conflict and no issues with different vendor used. It's the next 
-> best thing to be able to address the inconsistency, call everything of 
-> the MTMIPS platform ralink on the compatible strings.
-
-And how does it help consistency? The mt7620 is used also with mediatek
-prefix and adding more variants of realtek does not make the
-inconsistency smaller. It's still inconsistent.
-
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  .../bindings/net/wireless/pci17cb,1103.yaml   | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
 > 
-> If we take the calling new things mediatek route, we will never get to 
-> the bottom of fixing the naming inconsistency.
+> diff --git a/Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml b/Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
+> new file mode 100644
+> index 000000000000..df67013822c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
 
-All new things, so new SoCs, should be called mediatek, because there is
-no ralink and mediatek is already used for them. So why some new
-Mediatek SoCs are "mediatek" but some other also new SoCs are "ralink"?
+PCI devices are kind of exception in the naming, so this should be
+qcom,ath11k-pci.yaml or qcom,wcn6856.yaml (or something similar)
 
-You can do nothing (and no actual need) about existing inconsistency...
 
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023 Linaro Limited
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/wireless/pci17cb,1103.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies ath11k wireless devices (PCIe)
+> +
+> +maintainers:
+> +  - Kalle Valo <kvalo@kernel.org>
+> +
+> +description: |
+> +  Qualcomm Technologies IEEE 802.11ax PCIe devices.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - pci17cb,1103  # WCN6856
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  qcom,ath11k-calibration-variant:
+
+qcom,calibration-variant
+
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: calibration data variant
+
+Your description copies the name of property. Instead say something more...
+
+> +
 
 Best regards,
 Krzysztof
