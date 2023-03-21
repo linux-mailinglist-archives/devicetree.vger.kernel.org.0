@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 905246C2AA6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F336C2AAD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:47:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230373AbjCUGqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 02:46:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
+        id S230369AbjCUGre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 02:47:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229944AbjCUGqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:46:50 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221853C2F
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:46:48 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id b20so22759189edd.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:46:48 -0700 (PDT)
+        with ESMTP id S230135AbjCUGre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:47:34 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E9019C40
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:47:31 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id i5so8798488eda.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:47:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679381206;
+        d=linaro.org; s=google; t=1679381249;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LbW6WAMhZTX7WnxINd+j72LPEfzo1MLGZ6GMQv17NLo=;
-        b=nd2EUf30Ha8guzZQeguGoOZ1uxedJlSDmM3C/DHeLd0pnss0I1EeRH94/e1glqS7ak
-         7DTyb2vLUUWZlnRnUESGrKTw03BiXFv8cN/BjW3bifRXsr+MJhnM5mxqDrJhmO9FwuXg
-         cks5cLJXSzsA9yFFlClT/AQy6L9ysIif5fG5oTczicCWIgI4uk7MIPHgr9RxLGLBnoqZ
-         yBR9UtZF4d+BY3WmowQlf8h83zqsU7ynaF8r1JtE33mdQ90id+c9fiE0I0RdT/6/JtVA
-         j4z6wexc+r+5GA/dd/1XMlLXEb2pYsJ/Zp9Ib8WvouBd8B/A25KhefWSN2q5AEJxPLw+
-         TlMQ==
+        bh=Vud8OdanTIVE8CKcTMVQ4gPfhnpd++tLAO321wwmVqE=;
+        b=WU4xX6kjc3o/CIHowPEa/CpBbEe85Iy5kyudkFpNiMq8oQuLVFC0LR45eT7xOc1nPn
+         B+CPR33JLOvMNdVhWOaAqIBhWBs6eY9zkPEwPKYJDaNnfiaskWZAzwagHGG55FUuWdfk
+         LLq4YteSf4JjlnoFe2v3Q4DxhOqnmlUM+sJzI6xp0FoIsld4WOCuhQrLucf4o/W1gUfQ
+         QUX/RuxPad5JQzpuT0JHaT/Y1qhiGNQOqiZ44ivhz2fI+8byWRgZRA35vqHeOWQHnE9r
+         Por4lmFx6lu6DhXzZCMkhvxHhCN6KhHYida25CxBS8IUeAv7WjbxOo7seBcmFsV9T1PI
+         RrZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679381206;
+        d=1e100.net; s=20210112; t=1679381249;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LbW6WAMhZTX7WnxINd+j72LPEfzo1MLGZ6GMQv17NLo=;
-        b=6CatmPGJVjGJCNJx8bWuGVSqe9lq6VVIKY8Rjw150sQHlgshwF8VxMpxVXIH8sLQgD
-         japCUKVeZZkyqL1o7gYQMXkBL5QSJQtnykOAy9jaOePYqKTPJb245ZDnC48RwIjmvjaZ
-         xSC7oMaeW1a6VRaZX+6C1miLzPw8sjqvJfmQn4rpbFEEyub2ImAdD+QkynMrv8ZQdmmc
-         tXFnZcQs4N/vDvQ8TvlvLWNadgDaDQJgyzLtqhtmmMiz+wCNZnUigbf1WzPgwPjumFoA
-         zz3e7K8jublg0IxPkeKScBmvHnxxF+BjQcryGZWoJs5GSB5Lktiogvq9Ox2i8rhM5psf
-         Jo2g==
-X-Gm-Message-State: AO0yUKVWvYItu7211+ge171Gb2fc9jaA479xxz7+/V2kJ21HGx+y+JBL
-        yuTBSBsiqM8Lzd7nfrO2xXx7ow==
-X-Google-Smtp-Source: AK7set+GNJOQMSqsHpsaDD+hA45a1SCbSDj2lMuArq2m8zTO2J7rS3eLvgQt/d/gPzLHoo0PsaGV0Q==
-X-Received: by 2002:a17:906:4ec8:b0:931:95a1:a05a with SMTP id i8-20020a1709064ec800b0093195a1a05amr1837229ejv.62.1679381206457;
-        Mon, 20 Mar 2023 23:46:46 -0700 (PDT)
+        bh=Vud8OdanTIVE8CKcTMVQ4gPfhnpd++tLAO321wwmVqE=;
+        b=XPwis5YuKxpeOwr+hHaye3lZvx5DL/eKJfj4DnXSlROf7vdTO1Cdi/oByFAzNw27uX
+         ByL8eNouN8QQ2smVTwvcgxXCOM00ObkBQi8CaXJMhMKlwDRteKMNtPtqBoC9rSZUcoSG
+         0LbZmEshbmlBhm2KTCjxl/ldxdCJG8Uk72XhYpuR8Kz6N7PeLonZHjRd/hlcMLqcPHi4
+         obeYPCV63zWUBxNbGxRrMc4nGMX0WR8rCcZ+g3p+XtE8UnIRt4yAuKF5lVYwFg9NGoDr
+         1i7M51NkJAMpEWjH2FJGT7M/1kJwToYWAkkr8bn5UDvvAts5UL2Z+/2OR09TGYzTGd3i
+         9ozg==
+X-Gm-Message-State: AO0yUKWYZzi5fzaUfTRVl4zvS/XploYSc5iQwQGG8qnFpWXB7U1LrnhX
+        TTBjCBz0QuNRJO2xUPhVg9qtfQ==
+X-Google-Smtp-Source: AK7set/mHtnHjY2cm9ymS5lUjnyMD7P05cMdzN8twXG3Yom40qNsZwuqvW6/nCj/jJdo9I6WMLGfsw==
+X-Received: by 2002:a17:906:848e:b0:931:88e8:d470 with SMTP id m14-20020a170906848e00b0093188e8d470mr1907064ejx.23.1679381249526;
+        Mon, 20 Mar 2023 23:47:29 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id b26-20020a170906195a00b00930a4e5b46bsm5310855eje.211.2023.03.20.23.46.44
+        by smtp.gmail.com with ESMTPSA id b7-20020a1709063f8700b008eddbd46d7esm5375770ejj.31.2023.03.20.23.47.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Mar 2023 23:46:46 -0700 (PDT)
-Message-ID: <68b68812-7317-bc55-7449-18912438eb46@linaro.org>
-Date:   Tue, 21 Mar 2023 07:46:44 +0100
+        Mon, 20 Mar 2023 23:47:29 -0700 (PDT)
+Message-ID: <88368e85-3d1b-63b2-1f31-3a41df1632c9@linaro.org>
+Date:   Tue, 21 Mar 2023 07:47:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH net-next v2 01/12] dt-bindings: net: snps,dwmac: Update
- interrupt-names
+Subject: Re: [PATCH net-next v2 03/12] dt-bindings: net: qcom,ethqos: Convert
+ bindings to yaml
 Content-Language: en-US
 To:     Andrew Halaney <ahalaney@redhat.com>, linux-kernel@vger.kernel.org
 Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -76,15 +76,15 @@ Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
         jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
 References: <20230320221617.236323-1-ahalaney@redhat.com>
- <20230320221617.236323-2-ahalaney@redhat.com>
+ <20230320221617.236323-4-ahalaney@redhat.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230320221617.236323-2-ahalaney@redhat.com>
+In-Reply-To: <20230320221617.236323-4-ahalaney@redhat.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -94,16 +94,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 20/03/2023 23:16, Andrew Halaney wrote:
 > From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > 
-> As commit fc191af1bb0d ("net: stmmac: platform: Fix misleading
-> interrupt error msg") noted, not every stmmac based platform
-> makes use of the 'eth_wake_irq' or 'eth_lpi' interrupts.
+> Convert Qualcomm ETHQOS Ethernet devicetree binding to YAML.
+> In doing so add a new property for iommus since newer platforms support
+> using one, and without such make dtbs_check fails on them.
 > 
-> So, update the 'interrupt-names' inside 'snps,dwmac' YAML
-> bindings to reflect the same.
+> While at it, also update the MAINTAINERS file to point to the yaml
+> version of the bindings.
 > 
 > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> [halaney: Remove duplicated properties, add MAINTAINERS and iommus]
 > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 > ---
+> 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
