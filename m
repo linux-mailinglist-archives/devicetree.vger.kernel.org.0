@@ -2,133 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 978516C2B3A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 08:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9AC26C2B3D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 08:18:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbjCUHRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 03:17:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40998 "EHLO
+        id S229767AbjCUHSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 03:18:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbjCUHRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 03:17:18 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3214527D65
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 00:16:54 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id b20so22969639edd.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 00:16:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679383012;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GD9sWoGachnVcnj7BiD284LKFFQ2JluoRM5HPqQ7YTQ=;
-        b=XYOn21GvwINhYxCcRgPUmrD7vtp46gwQAWmpOq1R54xEtk8Y6GvWpfoUIoO2X+3nLz
-         WNGrxF9rZi0xnIotOO3PStbgvqK0hQ62BOOKx2lgmJdGD70ay3riYFIIwHqZl15c/TR0
-         dm7NM8MU1ap1yAITcZmEgYWXogP/FVrE0QoAmVGcW/9WvJMgHOK/lqkWeSI6g3mKLQCU
-         cGDMO/ifAWqdAw+D0BjXFVTXF1fPlFQaNtbn9qS54U9fO/mtfnIClZYVoI6+gmeomW0Q
-         oRZa+oMDVaCybu5hkz3mzc7X21MZpUzgRgfOZjetuFTT22nRk1SHRriN/Fs8kI2QhpnW
-         iAYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679383012;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GD9sWoGachnVcnj7BiD284LKFFQ2JluoRM5HPqQ7YTQ=;
-        b=o8EU0DzCL1+thE8VJFCz0upmi4ERy75laEyR6CN2/ZLSg30VKpbHKN/3VglUkArNwd
-         K9eIGdAqKuUxarJfhmBS1cbZ+s1V8ay/97Eu8WrgzpLFXmacDbj3NRhJnyYIkjODfbhh
-         TIpfWAYuFYEy3pSISUEhikWIPZ3cEuGLWnP+aNAZS/fxbyRWYo0/suH2Gu3GnkkDDo84
-         tlq+u37R/lUkXhuHY/KRtBze0dikkh6u5DLsblGLHmA3yMj4++VHnUAbg2Kgji4w2Dwq
-         0oiI7SehNofwYldKq4ICPRv8XxLgR98kt5RfVPF39SVR7bCP4wQWRDcJF1nKn2YmHSSb
-         wWyw==
-X-Gm-Message-State: AO0yUKW4FHtvBtulJl1gRgTsYaML/xxGQokkuyO/fb2yN+65tr15N9qi
-        UcJW7efkRJaHalwkqnsKwRB8UQ==
-X-Google-Smtp-Source: AK7set8Gbxjh1zagzPuehxDmVk/F28LJB4nNhEO+htLGAF1/Jf5T1CQyEoPitbT9G8mBMwfU8TMvgA==
-X-Received: by 2002:a17:906:2286:b0:931:1ccb:7360 with SMTP id p6-20020a170906228600b009311ccb7360mr1894222eja.39.1679383011716;
-        Tue, 21 Mar 2023 00:16:51 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id g20-20020a1709061e1400b00930f5ecbd8fsm5418454ejj.219.2023.03.21.00.16.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 00:16:51 -0700 (PDT)
-Message-ID: <0ece990e-fd81-856a-bd0e-8a2572448aa3@linaro.org>
-Date:   Tue, 21 Mar 2023 08:16:50 +0100
+        with ESMTP id S230400AbjCUHSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 03:18:03 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60D83CE28;
+        Tue, 21 Mar 2023 00:17:43 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id DA7A324E20C;
+        Tue, 21 Mar 2023 15:17:30 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
+ 2023 15:17:30 +0800
+Received: from [192.168.125.128] (183.27.97.64) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
+ 2023 15:17:30 +0800
+Message-ID: <42189f4f-14ca-1cfc-5602-334d0b696e67@starfivetech.com>
+Date:   Tue, 21 Mar 2023 15:17:20 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/9] dt-bindings: clock: add mtmips SoCs system
- controller
+Subject: Re: [PATCH v2 1/3] dt-bindings: timer: Add timer for StarFive JH7110
+ SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+References: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
+ <20230320135433.144832-2-xingyu.wu@starfivetech.com>
+ <3f5e01bd-24ee-66cc-1a5d-b3fc09c2a96d@linaro.org>
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        tsbogend@alpha.franken.de, john@phrozen.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org, arinc.unal@arinc9.com
-References: <20230321050034.1431379-1-sergio.paracuellos@gmail.com>
- <20230321050034.1431379-2-sergio.paracuellos@gmail.com>
- <5f295438-8334-d374-2ae6-2a385ffb317d@linaro.org>
- <CAMhs-H_dSgcPNQVusHWVvztYHptOxSJ_o7G0eU9=M1C7RXdsVw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H_dSgcPNQVusHWVvztYHptOxSJ_o7G0eU9=M1C7RXdsVw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <3f5e01bd-24ee-66cc-1a5d-b3fc09c2a96d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [183.27.97.64]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 08:00, Sergio Paracuellos wrote:
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - ralink,mt7620-sysc
->>
->> Since you decided to send it before we finish discussion:
->> NAK - this is already used as mediatek
+On 2023/3/21 15:14, Krzysztof Kozlowski wrote:
+> On 20/03/2023 14:54, Xingyu Wu wrote:
+>> Add bindings for the timer on the JH7110 RISC-V SoC
+>> by StarFive Technology Ltd.
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> ---
+>>  .../bindings/timer/starfive,jh7110-timer.yaml | 95 +++++++++++++++++++
+>>  1 file changed, 95 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml b/Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+>> new file mode 100644
+>> index 000000000000..24b34618f2c8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+>> @@ -0,0 +1,95 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/timer/starfive,jh7110-timer.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH7110 Timer
 > 
-> Sorry, there was too much stuff commented so I preferred to clean up
-> all of them while maintaining the compatibles with the ralink prefix
-> instead since that was where the current discussion was at that point.
-
-You did not even wait for me to send feedback on this, in old thread.
-
+> Actually one change is needed - missing blank line.
 > 
->>
->>> +          - ralink,mt7620a-sysc
-> 
-> As I have said, this one exists:
-> 
-> arch/mips/ralink/mt7620.c:      rt_sysc_membase =
-> plat_of_remap_node("ralink,mt7620a-sysc");
 
-And why do you ignore others which have mediatek?
-
-> 
-> 
->>> +          - ralink,mt7628-sysc
->>
->> Same here.
-
-Same problem.
-
->>
->>> +          - ralink,mt7688-sysc
->>
->> I expect you to check the others.
-> 
-> I can change others to mediatek but that would be a bit weird, don't you think?
-
-No, I expect to have mediatek where the model is already used with
-mediatek prefix.
-
-
+Will fix. Thanks.
 
 Best regards,
-Krzysztof
+Xingyu Wu
 
