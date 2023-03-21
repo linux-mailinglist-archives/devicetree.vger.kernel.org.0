@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 389196C2F56
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:45:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D016C2F65
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:48:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbjCUKpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 06:45:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
+        id S230373AbjCUKsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 06:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbjCUKpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:45:41 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41217A86;
-        Tue, 21 Mar 2023 03:45:36 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32LAjQv7021809;
-        Tue, 21 Mar 2023 05:45:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679395526;
-        bh=RRpojhEr2Xe9nVJ0oJ+9jQQkzpZoouG8ozS4yyriaoI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=gk06te091a69OQbqojahbU4hRkkgu9ElLRONB9DgvdsPKM2DDM9jL6fPKZK5BpevQ
-         /+PecGgILYzOVbcpRl56YCPeNLw5copqjRNGfKm1rKTiTa9fJBlWZRFFG07bq4YkWo
-         /cWAxg1sjGDdZuzGV4P8BVBbgXvLOEt5QIIY7xsc=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32LAjQNo128719
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Mar 2023 05:45:26 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Mar 2023 05:45:25 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Mar 2023 05:45:25 -0500
-Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32LAjKow031381;
-        Tue, 21 Mar 2023 05:45:21 -0500
-Message-ID: <845c264b-17c8-ccd5-efa4-f8f73df0e6a7@ti.com>
-Date:   Tue, 21 Mar 2023 16:15:20 +0530
+        with ESMTP id S230385AbjCUKsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:48:18 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C191AD33
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:48:10 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id o7so13162715wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 03:48:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679395689;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9fr4s/NbgFwlXaB/kT+wdNGLIVroo3XSqt3IGTfKlrw=;
+        b=XpxtA4gxBxKDJ+qVj87Lm+nPdo9mRsPb9+gYYIOIqGAHVmtPw9Xws+tHNBVkr1HrMe
+         KNw1h8gFTV68arDcGIVtYPpY9Z8mio8vMDw+jTo6BWD3wyTCCPWjF+EHtmKdMG/+c41f
+         kz2Thg/wBZGzM3WGDsRfNjQdKFKwBawispP30fYPXblSeCtauxrT0p3XZqawGxwx2YHa
+         2m9uWuLQ1+E0u0vnC0tG4bRnwKj6dfb7Qy7W8K+I0f2oy/QprtKkMEbWji4nzWsqPSF6
+         6ibDObDfCxIdrlKzN/vM2WiNFTYdPp+GOLbZG9Ktk7WNe+nM8Cq8B2np38QurauyySPd
+         GqVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679395689;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9fr4s/NbgFwlXaB/kT+wdNGLIVroo3XSqt3IGTfKlrw=;
+        b=E9MznE/qO8HwW36RUNdCnvYTsJkhj2XGYfrtPPK8QmYEEviizDZLoCmPoTVqJEV31g
+         0rr7LyJQyQfdZeATwMhypb5aUvzO2tuWj1Ma82qwf+yj+H6L6TJ77dCt/74Hy8gOATNh
+         zBvktwf0mu5QZFE/L+bjL8SN8x9QVajbgwODIbQJN9qtUl55uuRyTRbhfKyErmOordhC
+         h3PT91tk5uM9M08O8FPwxNbx9/ztD5n/xwL64HagxQ3bDfQtF1iOdzVyG3ReuUiil9wn
+         9FxgL0tUC1yfuksES2WaOgUiCvYy49jqD4Hq3jWAuVOX1EFXAkWyyUzN7nybK1A7ynjo
+         JEBQ==
+X-Gm-Message-State: AO0yUKV3hi+8Oitt6JvXbRPQRvFy1e+6uLiWJs1cRDRJjrMVnSgYeC9v
+        X+1UGvj0KGrSGLvTV6naLcB75g==
+X-Google-Smtp-Source: AK7set+Dx2bqwbuauE+ZNG0b4IJ0siP/A/tIE+bC6HdEArLrXCBXSI/i2Tk8rfNS7MbnYwY37Ql4ug==
+X-Received: by 2002:adf:edc9:0:b0:2d1:5698:3f6e with SMTP id v9-20020adfedc9000000b002d156983f6emr1913160wro.58.1679395688892;
+        Tue, 21 Mar 2023 03:48:08 -0700 (PDT)
+Received: from [192.168.1.70] (151.31.102.84.rev.sfr.net. [84.102.31.151])
+        by smtp.gmail.com with ESMTPSA id a4-20020adffb84000000b002d322b9a7f5sm11010756wrr.88.2023.03.21.03.48.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 03:48:08 -0700 (PDT)
+Message-ID: <5845f51e-5d87-c98e-77a1-0f9b6365e6c1@baylibre.com>
+Date:   Tue, 21 Mar 2023 11:48:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v4 2/5] soc: ti: pruss: Add
- pruss_{request,release}_mem_region() API
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, Andrew Davis <afd@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC:     <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <srk@ti.com>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <20230313111127.1229187-1-danishanwar@ti.com>
- <20230313111127.1229187-3-danishanwar@ti.com>
- <3f26b194-287c-074d-8e78-572875f9a734@kernel.org>
- <52aeb13f-1fe4-825f-9d28-ba64860ae76d@ti.com>
- <13048b01-641a-1d92-178c-02b87c5fa1b9@ti.com>
- <5b936f1b-3c5b-30ab-7074-e202fd6555b6@ti.com>
- <67dd1d04-147d-0e40-c06b-6e1e0dd05f13@kernel.org>
- <e4cdd295-d292-255a-fbd0-b1728aaca155@ti.com>
- <b532eb5b-3313-859a-e2f0-fc6ce49224f4@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <b532eb5b-3313-859a-e2f0-fc6ce49224f4@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+        arnd@arndb.de, gregkh@linuxfoundation.org,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
+        stephen@networkplumber.org, davem@davemloft.net,
+        christian.koenig@amd.com, contact@emersion.fr,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
+        eblanc@baylibre.com, jneanne@baylibre.com
+References: <20230315110736.35506-1-jpanis@baylibre.com>
+ <20230315110736.35506-2-jpanis@baylibre.com>
+ <20230320155354.GB1733616-robh@kernel.org>
+ <04914464-2bc2-9d86-e9e2-8a716b929f28@baylibre.com>
+ <2dcfd9dc-6c43-20b7-e27b-8ec2883be237@linaro.org>
+ <887d5e71-334c-b206-08e6-2cc822df9eda@baylibre.com>
+ <2aeb47d6-0577-f8e4-6070-331af15b1f83@linaro.org>
+From:   Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <2aeb47d6-0577-f8e4-6070-331af15b1f83@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,335 +89,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 21/03/23 15:53, Roger Quadros wrote:
-> 
-> 
-> On 21/03/2023 11:48, Md Danish Anwar wrote:
->> Hi Roger,
+On 3/21/23 11:32, Krzysztof Kozlowski wrote:
+> On 21/03/2023 10:03, Julien Panis wrote:
 >>
->> On 21/03/23 14:54, Roger Quadros wrote:
->>> Hi,
+>> On 3/21/23 08:36, Krzysztof Kozlowski wrote:
+>>> On 20/03/2023 17:35, Julien Panis wrote:
+>>>> On 3/20/23 16:53, Rob Herring wrote:
+>>>>> On Wed, Mar 15, 2023 at 12:07:33PM +0100, Julien Panis wrote:
+>>>>>> TPS6594 is a Power Management IC which provides regulators and others
+>>>>>> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+>>>>>> PFSM (Pre-configurable Finite State Machine) managing the state of the
+>>>>>> device.
+>>>>>> TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
+>>>>> As mentioned, the binding needs to be complete. It's missing GPIO at
+>>>>> least. RTC and watchdog may or may not need binding changes.
+>>>> Thank you for your feedback.
+>>>>
+>>>> About GPIO, do you speak about 'gpio-controller'
+>>>> and/or '#gpio-cells' properties ?
+>>> Yes.
 >>>
->>> On 21/03/2023 07:23, Md Danish Anwar wrote:
->>>> Hi Andrew, Roger,
->>>>
->>>> On 20/03/23 21:48, Andrew Davis wrote:
->>>>> On 3/20/23 12:11 AM, Md Danish Anwar wrote:
->>>>>> Hi Roger,
->>>>>>
->>>>>> On 17/03/23 14:26, Roger Quadros wrote:
->>>>>>> Hi Andrew & Danish,
->>>>>>>
->>>>>>>
->>>>>>> On 13/03/2023 13:11, MD Danish Anwar wrote:
->>>>>>>> From: "Andrew F. Davis" <afd@ti.com>
->>>>>>>>
->>>>>>>> Add two new API - pruss_request_mem_region() & pruss_release_mem_region(),
->>>>>>>> to the PRUSS platform driver to allow client drivers to acquire and release
->>>>>>>> the common memory resources present within a PRU-ICSS subsystem. This
->>>>>>>> allows the client drivers to directly manipulate the respective memories,
->>>>>>>> as per their design contract with the associated firmware.
->>>>>>>>
->>>>>>>> Co-developed-by: Suman Anna <s-anna@ti.com>
->>>>>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>>>>>>> Signed-off-by: Andrew F. Davis <afd@ti.com>
->>>>>>>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>>>>>>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>>>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>>>>>> Reviewed-by: Roger Quadros <rogerq@kernel.org>
->>>>>>>> ---
->>>>>>>>   drivers/soc/ti/pruss.c           | 77 ++++++++++++++++++++++++++++++++
->>>>>>>>   include/linux/pruss_driver.h     | 27 +++--------
->>>>>>>>   include/linux/remoteproc/pruss.h | 39 ++++++++++++++++
->>>>>>>
->>>>>>>
->>>>>>> We have these 2 header files and I think anything that deals with
->>>>>>> 'struct pruss' should go in include/linux/pruss_driver.h
->>>>>>>
->>>>>>> Anything that deals with pru_rproc (i.e. struct rproc) should go in
->>>>>>> include/linux/remoteproc/pruss.h
->>>>>>>
->>>>>>> Do you agree?
->>>>>>>
->>>>>>
->>>>>> I agree with you Roger but Andrew is the right person to comment here as he is
->>>>>> the author of this and several other patches.
->>>>>>
->>>>>> Hi Andrew, Can you please comment on this?
->>>>>>
->>>>>
->>>>> Original idea was a consumer driver (like "ICSSG Ethernet Driver" in your other
->>>>> series) could just
->>>>>
->>>>> #include <linux/remoteproc/pruss.h>
->>>>>
->>>>> and get everything they need, and nothing they do not.
->>>>>
->>>>
->>>> If we plan on continuing the original idea, then I think keeping the header
->>>> files as it is will be the best. Because if we move anything that deals with
->>>> 'struct pruss' to include/linux/pruss_driver.h and anything that deals with
->>>> pru_rproc (i.e. struct rproc) to include/linux/remoteproc/pruss.h, then the
->>>> consumer drivers will need to do,
->>>>
->>>> #include <linux/remoteproc/pruss.h>
->>>> #include <linux/pruss_driver.h>
->>>>
->>>> Roger, should I keep the header files arrangement as it is?
->>>>
->>>
->>> OK but can we please rename one of them to something else so they don't
->>> sound very similar. Maybe you could use Andrew's suggestion below.
->>>
->>
->> Yes sure, I'll rename the header files to reduce confusion. The pruss_driver.h
->> is located in include/linux, implying it's not internal to PRUSS. So I will
->> keep this header file name as it is.
->>
->> There are total 3 pruss related header files.
->>
->> 1. include/linux/pruss_driver.h (Public header file, not internal to PRUSS,
->> will keep it as it is. This exists to allow communication between the pruss
->> core and the pru rproc driver which live in different subsystems.)
-> 
-> Andrew asked you to rename this to pruss_internal.h
+>>>> For RTC (and for watchdog, once the driver will be
+>>>> implemented), our driver do not require any node
+>>>> to work. What could make an explicit instantiation
+>>>> necessary in DT ?
+>>> Properties from RTC schema, e.g. start-year, wakeup etc.
+>> TPS6594 RTC driver is being reviewed (this is another patch
+>> series, not merged yet). These properties are not used by our
+>> driver, that's why we did not have to add some RTC node in
+>> the DT (until now, using such properties in our driver was not
+>> requested by RTC sub-system maintainers).
+> Bindings should be complete, regardless whether you now need this in
+> driver or not. Does your comment mean that you will never need these,
+> because hardware does not support them, and never going to add?
+> Otherwise I don't get why you refer to driver when we talk about bindings...
 
-OK, I will change pruss_driver.h to pruss_internal.h
+OK, I understand now (I misinterpreted "RTC and watchdog may or may not
+need binding changes").
 
-> 
->> 2. include/linux/remoteproc/pruss.h (Public header file, not internal to PRUSS,
->> will keep it as it is. Only this header file needs to be included by client
->> drivers.)
->> 3. drivers/soc/ti/pruss.h (Internal to PRUSS, I will rename this to
->> pruss_internal.h, this file has private definitions and APIs to modify PRUSS
->> CFG space. This file is private to pruss.c)
-> 
-> No point in changing this file's name as this is not visible elsewhere.
-> 
+> Best regards,
+> Krzysztof
+>
 
-OK, I will keep drivers/soc/ti/pruss.h and include/linux/remoteproc/pruss.h as
-it is.
-
->>
->> Please let me know if the above looks OK.
->>
->>>>> pruss_driver.h (which could be renamed pruss_internal.h) exists to allow
->>>>> comunication between the pruss core and the pru rproc driver which live
->>>>> in different subsystems.
->>>>>
->>>>> Andrew
->>>>>
->>>>>>>>   3 files changed, 121 insertions(+), 22 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
->>>>>>>> index a169aa1ed044..c8053c0d735f 100644
->>>>>>>> --- a/drivers/soc/ti/pruss.c
->>>>>>>> +++ b/drivers/soc/ti/pruss.c
->>>>>>>> @@ -88,6 +88,82 @@ void pruss_put(struct pruss *pruss)
->>>>>>>>   }
->>>>>>>>   EXPORT_SYMBOL_GPL(pruss_put);
->>>>>>>>   +/**
->>>>>>>> + * pruss_request_mem_region() - request a memory resource
->>>>>>>> + * @pruss: the pruss instance
->>>>>>>> + * @mem_id: the memory resource id
->>>>>>>> + * @region: pointer to memory region structure to be filled in
->>>>>>>> + *
->>>>>>>> + * This function allows a client driver to request a memory resource,
->>>>>>>> + * and if successful, will let the client driver own the particular
->>>>>>>> + * memory region until released using the pruss_release_mem_region()
->>>>>>>> + * API.
->>>>>>>> + *
->>>>>>>> + * Return: 0 if requested memory region is available (in such case pointer to
->>>>>>>> + * memory region is returned via @region), an error otherwise
->>>>>>>> + */
->>>>>>>> +int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->>>>>>>> +                 struct pruss_mem_region *region)
->>>>>>>> +{
->>>>>>>> +    if (!pruss || !region || mem_id >= PRUSS_MEM_MAX)
->>>>>>>> +        return -EINVAL;
->>>>>>>> +
->>>>>>>> +    mutex_lock(&pruss->lock);
->>>>>>>> +
->>>>>>>> +    if (pruss->mem_in_use[mem_id]) {
->>>>>>>> +        mutex_unlock(&pruss->lock);
->>>>>>>> +        return -EBUSY;
->>>>>>>> +    }
->>>>>>>> +
->>>>>>>> +    *region = pruss->mem_regions[mem_id];
->>>>>>>> +    pruss->mem_in_use[mem_id] = region;
->>>>>>>> +
->>>>>>>> +    mutex_unlock(&pruss->lock);
->>>>>>>> +
->>>>>>>> +    return 0;
->>>>>>>> +}
->>>>>>>> +EXPORT_SYMBOL_GPL(pruss_request_mem_region);
->>>>>>>> +
->>>>>>>> +/**
->>>>>>>> + * pruss_release_mem_region() - release a memory resource
->>>>>>>> + * @pruss: the pruss instance
->>>>>>>> + * @region: the memory region to release
->>>>>>>> + *
->>>>>>>> + * This function is the complimentary function to
->>>>>>>> + * pruss_request_mem_region(), and allows the client drivers to
->>>>>>>> + * release back a memory resource.
->>>>>>>> + *
->>>>>>>> + * Return: 0 on success, an error code otherwise
->>>>>>>> + */
->>>>>>>> +int pruss_release_mem_region(struct pruss *pruss,
->>>>>>>> +                 struct pruss_mem_region *region)
->>>>>>>> +{
->>>>>>>> +    int id;
->>>>>>>> +
->>>>>>>> +    if (!pruss || !region)
->>>>>>>> +        return -EINVAL;
->>>>>>>> +
->>>>>>>> +    mutex_lock(&pruss->lock);
->>>>>>>> +
->>>>>>>> +    /* find out the memory region being released */
->>>>>>>> +    for (id = 0; id < PRUSS_MEM_MAX; id++) {
->>>>>>>> +        if (pruss->mem_in_use[id] == region)
->>>>>>>> +            break;
->>>>>>>> +    }
->>>>>>>> +
->>>>>>>> +    if (id == PRUSS_MEM_MAX) {
->>>>>>>> +        mutex_unlock(&pruss->lock);
->>>>>>>> +        return -EINVAL;
->>>>>>>> +    }
->>>>>>>> +
->>>>>>>> +    pruss->mem_in_use[id] = NULL;
->>>>>>>> +
->>>>>>>> +    mutex_unlock(&pruss->lock);
->>>>>>>> +
->>>>>>>> +    return 0;
->>>>>>>> +}
->>>>>>>> +EXPORT_SYMBOL_GPL(pruss_release_mem_region);
->>>>>>>> +
->>>>>>>>   static void pruss_of_free_clk_provider(void *data)
->>>>>>>>   {
->>>>>>>>       struct device_node *clk_mux_np = data;
->>>>>>>> @@ -290,6 +366,7 @@ static int pruss_probe(struct platform_device *pdev)
->>>>>>>>           return -ENOMEM;
->>>>>>>>         pruss->dev = dev;
->>>>>>>> +    mutex_init(&pruss->lock);
->>>>>>>>         child = of_get_child_by_name(np, "memories");
->>>>>>>>       if (!child) {
->>>>>>>> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
->>>>>>>> index 86242fb5a64a..22b4b37d2536 100644
->>>>>>>> --- a/include/linux/pruss_driver.h
->>>>>>>> +++ b/include/linux/pruss_driver.h
->>>>>>>> @@ -9,37 +9,18 @@
->>>>>>>>   #ifndef _PRUSS_DRIVER_H_
->>>>>>>>   #define _PRUSS_DRIVER_H_
->>>>>>>>   +#include <linux/mutex.h>
->>>>>>>>   #include <linux/remoteproc/pruss.h>
->>>>>>>>   #include <linux/types.h>
->>>>>>>>   -/*
->>>>>>>> - * enum pruss_mem - PRUSS memory range identifiers
->>>>>>>> - */
->>>>>>>> -enum pruss_mem {
->>>>>>>> -    PRUSS_MEM_DRAM0 = 0,
->>>>>>>> -    PRUSS_MEM_DRAM1,
->>>>>>>> -    PRUSS_MEM_SHRD_RAM2,
->>>>>>>> -    PRUSS_MEM_MAX,
->>>>>>>> -};
->>>>>>>> -
->>>>>>>> -/**
->>>>>>>> - * struct pruss_mem_region - PRUSS memory region structure
->>>>>>>> - * @va: kernel virtual address of the PRUSS memory region
->>>>>>>> - * @pa: physical (bus) address of the PRUSS memory region
->>>>>>>> - * @size: size of the PRUSS memory region
->>>>>>>> - */
->>>>>>>> -struct pruss_mem_region {
->>>>>>>> -    void __iomem *va;
->>>>>>>> -    phys_addr_t pa;
->>>>>>>> -    size_t size;
->>>>>>>> -};
->>>>>>>> -
->>>>>>>>   /**
->>>>>>>>    * struct pruss - PRUSS parent structure
->>>>>>>>    * @dev: pruss device pointer
->>>>>>>>    * @cfg_base: base iomap for CFG region
->>>>>>>>    * @cfg_regmap: regmap for config region
->>>>>>>>    * @mem_regions: data for each of the PRUSS memory regions
->>>>>>>> + * @mem_in_use: to indicate if memory resource is in use
->>>>>>>> + * @lock: mutex to serialize access to resources
->>>>>>>>    * @core_clk_mux: clk handle for PRUSS CORE_CLK_MUX
->>>>>>>>    * @iep_clk_mux: clk handle for PRUSS IEP_CLK_MUX
->>>>>>>>    */
->>>>>>>> @@ -48,6 +29,8 @@ struct pruss {
->>>>>>>>       void __iomem *cfg_base;
->>>>>>>>       struct regmap *cfg_regmap;
->>>>>>>>       struct pruss_mem_region mem_regions[PRUSS_MEM_MAX];
->>>>>>>> +    struct pruss_mem_region *mem_in_use[PRUSS_MEM_MAX];
->>>>>>>> +    struct mutex lock; /* PRU resource lock */
->>>>>>>>       struct clk *core_clk_mux;
->>>>>>>>       struct clk *iep_clk_mux;
->>>>>>>>   };
->>>>>>>> diff --git a/include/linux/remoteproc/pruss.h
->>>>>>>> b/include/linux/remoteproc/pruss.h
->>>>>>>> index 93a98cac7829..33f930e0a0ce 100644
->>>>>>>> --- a/include/linux/remoteproc/pruss.h
->>>>>>>> +++ b/include/linux/remoteproc/pruss.h
->>>>>>>> @@ -44,6 +44,28 @@ enum pru_ctable_idx {
->>>>>>>>       PRU_C31,
->>>>>>>>   };
->>>>>>>>   +/*
->>>>>>>> + * enum pruss_mem - PRUSS memory range identifiers
->>>>>>>> + */
->>>>>>>> +enum pruss_mem {
->>>>>>>> +    PRUSS_MEM_DRAM0 = 0,
->>>>>>>> +    PRUSS_MEM_DRAM1,
->>>>>>>> +    PRUSS_MEM_SHRD_RAM2,
->>>>>>>> +    PRUSS_MEM_MAX,
->>>>>>>> +};
->>>>>>>> +
->>>>>>>> +/**
->>>>>>>> + * struct pruss_mem_region - PRUSS memory region structure
->>>>>>>> + * @va: kernel virtual address of the PRUSS memory region
->>>>>>>> + * @pa: physical (bus) address of the PRUSS memory region
->>>>>>>> + * @size: size of the PRUSS memory region
->>>>>>>> + */
->>>>>>>> +struct pruss_mem_region {
->>>>>>>> +    void __iomem *va;
->>>>>>>> +    phys_addr_t pa;
->>>>>>>> +    size_t size;
->>>>>>>> +};
->>>>>>>> +
->>>>>>>>   struct device_node;
->>>>>>>>   struct rproc;
->>>>>>>>   struct pruss;
->>>>>>>> @@ -52,6 +74,10 @@ struct pruss;
->>>>>>>>     struct pruss *pruss_get(struct rproc *rproc);
->>>>>>>>   void pruss_put(struct pruss *pruss);
->>>>>>>> +int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->>>>>>>> +                 struct pruss_mem_region *region);
->>>>>>>> +int pruss_release_mem_region(struct pruss *pruss,
->>>>>>>> +                 struct pruss_mem_region *region);
->>>>>>>>     #else
->>>>>>>>   @@ -62,6 +88,19 @@ static inline struct pruss *pruss_get(struct rproc
->>>>>>>> *rproc)
->>>>>>>>     static inline void pruss_put(struct pruss *pruss) { }
->>>>>>>>   +static inline int pruss_request_mem_region(struct pruss *pruss,
->>>>>>>> +                       enum pruss_mem mem_id,
->>>>>>>> +                       struct pruss_mem_region *region)
->>>>>>>> +{
->>>>>>>> +    return -EOPNOTSUPP;
->>>>>>>> +}
->>>>>>>> +
->>>>>>>> +static inline int pruss_release_mem_region(struct pruss *pruss,
->>>>>>>> +                       struct pruss_mem_region *region)
->>>>>>>> +{
->>>>>>>> +    return -EOPNOTSUPP;
->>>>>>>> +}
->>>>>>>> +
->>>>>>>>   #endif /* CONFIG_TI_PRUSS */
->>>>>>>>     #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
->>>>>>>
-> 
-> 
-> cheers,
-> -roger
-
--- 
-Thanks and Regards,
-Danish.
