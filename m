@@ -2,111 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BCA16C2E0F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:39:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 175236C2E27
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbjCUJjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 05:39:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
+        id S229456AbjCUJo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 05:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjCUJjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:39:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0D433668D;
-        Tue, 21 Mar 2023 02:39:11 -0700 (PDT)
+        with ESMTP id S229619AbjCUJov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:44:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B19FC39296;
+        Tue, 21 Mar 2023 02:44:42 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 59BADB8133B;
-        Tue, 21 Mar 2023 09:39:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5B11C4339B;
-        Tue, 21 Mar 2023 09:39:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BB01961AAD;
+        Tue, 21 Mar 2023 09:44:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E331EC433D2;
+        Tue, 21 Mar 2023 09:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679391548;
-        bh=y4DQQgqTeIOp+QSV53CC0j5id0oCyBXkdp89zbwqiMA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=R5Z9G5RhRob13EVQTljJZCAmCEYyyM9fYBf+rNjtCNqM+iL+MxJ1+MujMcRZjZTjr
-         xhhPd4QD5t4ElLlkVFsDLYb7I341Y4aXnl3zQvTDyUxVTQn5l92Y9fk8AW2n4qMHDQ
-         Ejjc8Y8rkqkOYZsNTJ3BN2Lt69j6rVDwMCO3gMNdcsdg5wzs54qUT/56B6ywxM3nLo
-         TLHeUenQTUE6+PBT1FfrIBbc1OMamsmaFeq1zx24yEkc1KAKMs0xkOZyrmycKQIOZO
-         xPSi/PbZuEset6GkJzTHqUw90m8nOr0CIcWhxYqZFU1Y7yDsPu3hFFto6M9ADEy2dg
-         Ymd2iQIXqNicg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1peYTo-0002Y0-DN; Tue, 21 Mar 2023 10:40:32 +0100
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Kalle Valo <kvalo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sc8280xp-x13s: add wifi calibration variant
-Date:   Tue, 21 Mar 2023 10:40:11 +0100
-Message-Id: <20230321094011.9759-3-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230321094011.9759-1-johan+linaro@kernel.org>
-References: <20230321094011.9759-1-johan+linaro@kernel.org>
+        s=k20201202; t=1679391881;
+        bh=4y+jXrbZ1bwtYeyd/jWXn/dcnAO7cq768MGFDANWHkc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=L6HCpffsLA9OJA1sfIuIL7YvwpZ91R8vkJr4iPuvRfYbUFjlCO+r3fp4TQ1qHtnu6
+         9eE2cOWxhtweB7phbEkyScFa69OavRx3HHRhP3vbYPYbmxPBxkOZQR67snvduKArMX
+         p30idcwiMDOfSPE2+DDYCaJEi5vYpQxH4WxGWUZIKLOnedd6e0X2LpIxr06vJIPq7D
+         EEpo7f1J3MAbxUzBAZVgwBvO8D3Y93r14BpX1sRmGhCBfhb8XIiRE5BD0Sz7ZgQOmI
+         bxJIoi4yIzDBFdRq6WoUHy35RWE+yg2cTEghwngWIYHCm505V/3bSLLX6CURfSNkLC
+         tdqqTpE2jnJcQ==
+Message-ID: <0f0382f0-26d0-c217-93d2-c436c5209a2b@kernel.org>
+Date:   Tue, 21 Mar 2023 11:44:36 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [RFC PATCH 1/2] dt-bindings: usb: snps,dwc3: Add
+ 'snps,gadget-keep-connect-sys-sleep'
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thinh.Nguyen@synopsys.com, stern@rowland.harvard.edu,
+        gregkh@linuxfoundation.org, vigneshr@ti.com, srk@ti.com,
+        r-gunasekaran@ti.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230320093447.32105-1-rogerq@kernel.org>
+ <20230320093447.32105-2-rogerq@kernel.org>
+ <20230320132252.GA1440894-robh@kernel.org>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230320132252.GA1440894-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the bus topology for PCIe domain 6 and add the ath11k
-calibration variant so that the board file (calibration data) can be
-loaded.
 
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=216246
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Tested-by: Steev Klimaszewski <steev@kali.org>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 150f51f1db37..0051025e0aa8 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -711,6 +711,23 @@ &pcie4 {
- 	pinctrl-0 = <&pcie4_default>;
- 
- 	status = "okay";
-+
-+	pcie@0 {
-+		device_type = "pci";
-+		reg = <0x0 0x0 0x0 0x0 0x0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		bus-range = <0x01 0xff>;
-+
-+		wifi@0 {
-+			compatible = "pci17cb,1103";
-+			reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+			qcom,ath11k-calibration-variant = "LE_X13S";
-+		};
-+	};
- };
- 
- &pcie4_phy {
--- 
-2.39.2
+On 20/03/2023 15:22, Rob Herring wrote:
+> On Mon, Mar 20, 2023 at 11:34:46AM +0200, Roger Quadros wrote:
+>> The current USB gadget driver behaviour is to stop the controller
+>> and disconnect from the bus during System sleep.
+> 
+> What's USB gadget? ;)
 
+:)
+
+> 
+>> The 'snps,gadget-keep-connect-sys-sleep' property can be used to
+>> change this behaviour and keep the controller active and connected
+>> to the bus during System sleep. This is useful for applications
+>> that want to enter a low power state when USB is suspended but
+>> remain connected so they can resume activity on USB resume.
+>>
+>> This feature introduces a new constraint if Gadget driver is connected
+>> to USB host: i.e.  the gadget must be in USB suspend state to allow
+>> a System sleep as we cannot process any USB transactions
+>> when in System sleep.
+>>
+>> The system hardware is responsible to detect the end of USB suspend
+>> and wake up the system so we can begin processing the USB transactions
+>> as soon as possible.
+> 
+> Sounds like something the user/OS would want to choose rather than fixed 
+> by your board's firmware.
+
+Yes.
+
+> 
+> Is this somehow DWC3 specific? If not, why a DWC3 specific property?
+
+This is not DWC3 specific. 
+
+Should we make this a UDC class device's sysfs attribute instead?
+Only concern is that in dual-role case, if a role switch from
+device mode to host mode and back to device mode happens, we loose
+the UDC device's attributes as we re-init the UDC device.
+
+Or should we make it a udc_core module parameter? This should be
+persistent between role switches.
+
+> 
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>> ---
+>>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> index be36956af53b..1ce8008e7fef 100644
+>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> @@ -262,6 +262,11 @@ properties:
+>>        asserts utmi_sleep_n.
+>>      type: boolean
+>>  
+>> +  snps,gadget-keep-connect-sys-sleep:
+>> +    description:
+>> +      If True then gadget driver will not disconnect during system sleep.
+>> +      System sleep will not be allowed if gadget is not already in USB suspend.
+> 
+> 'gadget' is a Linuxism.
+
+Got it. Will avoid using it ;)
+
+> 
+>> +
+>>    snps,hird-threshold:
+>>      description: HIRD threshold
+>>      $ref: /schemas/types.yaml#/definitions/uint8
+>> -- 
+>> 2.34.1
+>>
+
+cheers,
+-roger
