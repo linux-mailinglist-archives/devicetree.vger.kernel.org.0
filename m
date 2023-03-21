@@ -2,431 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC8D6C33FE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14FAB6C3406
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:23:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231469AbjCUOWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 10:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36996 "EHLO
+        id S230436AbjCUOXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 10:23:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231426AbjCUOWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:22:39 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0FEB4FF3E
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 07:22:34 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id o12so60346505edb.9
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 07:22:34 -0700 (PDT)
+        with ESMTP id S230095AbjCUOXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:23:45 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3234E5073A;
+        Tue, 21 Mar 2023 07:23:10 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id a16so11362908pjs.4;
+        Tue, 21 Mar 2023 07:23:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679408554;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112; t=1679408589;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OGKf/bwUIhQJbNE7MnDKtDmc+fZ9KusV2VL+zuxxDJg=;
-        b=UgDYL2YCW7rr3KubGCX+45+BQITw86OSiwe/oBOJmWvfQLYgF/yvyBDyAUKgficUZ7
-         yz89KSX2RssfpzXCt/2hrigQwxJo6oajBQ3mprnwmK22v/Brp8zW+WaTu0//JjnGKNgg
-         kbxhYumhltmgk8DsZy+Wu1oenLCYxE5BPzm0BL241XWC4d+CzmjUV89ThQ9NY/G9cwfy
-         hRylNuD0VEdS1hMZXI/PhJbw+Nsrk0DXfxXANpdTXyfmyAvSwcj7QtvjHm4X/bz3uY4E
-         dPpRt12K61evS2MulWXR3WFYnx0CaRZQ0N6WB3VOfEuS/mp8rgLmKw8YcMSJMLq8hBJz
-         +4NQ==
+        bh=dPJqVRgz3gFdhUtg1OsnDcJUeKLu470USkIcRL0Wcsg=;
+        b=fPEdcR6B6OVZ0D5Qi9y4wojlJiISCDdrorjgCxBnx2PWjUt2TzxTsH99RZtfVT7t4q
+         gevoloZ1bMyUDTdfGfKTbVUGD2yICUalezQCLsyne/7a6IkcM8cHdukCUqVVg/L1lJyZ
+         C+oALAcw+fp9UmPpIZdGVs/FSkkd6fL7t4GfvcujDC/noIbUxtgwBrVIO0A7+KpcMkqG
+         6AuueUG/zzM/LLBCIcF7Y+6qIXl7b1BngdsdSj9IylFmE/2LWYg36IYdsz2/K55UJWNd
+         mncbcd+rx6vjrqzDiEyF/NK7/SxFzT6CM6rAGTHJNvVZQiv03hTQVP59s9mAqTMCjEMX
+         uyAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679408554;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679408589;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OGKf/bwUIhQJbNE7MnDKtDmc+fZ9KusV2VL+zuxxDJg=;
-        b=BrkJmLmK6rwQ1T75UNdYNNKFCthNTT4LE5Ku9erFwCPbt+qKJZriixESOJW58MKZWo
-         DcQ0W7BRbfZSwXANo1ZeP3r8GopTAt3C8poOEe9tSsV/8VO16kjx9xG6C+XehVdgldwQ
-         sxBSXL4fq6hqgUYwr2X3kZOIB8Xcixbip5fguZ9p/wreLM9qTK/EKVnjR1sv05JHxSuK
-         PqoE8YA18736pfnUKr9lggDJQa0zsqnLVmijgwhuDMABGDHPZ2ct+7IFIHdTk4b2vABB
-         +Wy8NI5TO5WnhR2JCjQtlGp8/VNHWUjxTyHiK6x0ueF4JD7bDV6dbthg8Tm6oto8vGO6
-         13Uw==
-X-Gm-Message-State: AO0yUKVQOpnu4bowr/CvzdywBDRNfoQg5XVWfW2BwAQkumCy4q90hPZ1
-        G7cF9VgWuje5YZ1IFdxikWKanw==
-X-Google-Smtp-Source: AK7set/ZvxKDbSsxLEggYS9GG9SafcIE2NKqxC6aaj5tAsIo3U3O02hFjk0x191mVt1UwfR11vGD0Q==
-X-Received: by 2002:a05:6402:408:b0:4fb:8f07:edbd with SMTP id q8-20020a056402040800b004fb8f07edbdmr3338384edv.10.1679408554256;
-        Tue, 21 Mar 2023 07:22:34 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id j30-20020a508a9e000000b004af5968cb3bsm6297676edj.17.2023.03.21.07.22.32
+        bh=dPJqVRgz3gFdhUtg1OsnDcJUeKLu470USkIcRL0Wcsg=;
+        b=nPCrk7V9ov92RhzOfN3fSjdrk+MSPH8lTVQj5XuKOarOm/dQLhgf9cPAckucMiBKZl
+         dy/Q2/8eAA3xvLOvyRWxuZV6NlZfryjvi8qlB8YHFw6Ggo5/DEa6+SPiK7EI5d7sxt2q
+         XgqsV48yWq6y1NxldNsRp24XnbxS6xBkT9MTkaIWmmJ8Hf/iOFLVL66rWJE1YfrM4yPb
+         4symOgnwxDgVtc51DVoOVqQFODFQcBtnumhygy3WGgKcMMP4FrYX1Gx2JuRb/3qXHso8
+         Yg56jYJ+x6HdDKWka3Zk57y4f1nhMgtA/TaW+DkMOLlrjAZK17iW3O0ktSWuhJtBKghg
+         pBIw==
+X-Gm-Message-State: AO0yUKV/Q9mDHnLFrW9TAAB+HTjQRSlH99xdOkrjdqjRPfon/O1c3mrH
+        QnNEhR0A4PDjFeEIoUPEjAU=
+X-Google-Smtp-Source: AK7set8lL25IFZZW4wDy69YzSLrHnsslSLBhUp+/akavxGrrTybSVthUFyKRvY3xxyL2GQSFmXo4Zg==
+X-Received: by 2002:a17:903:33c5:b0:1a0:6a47:184e with SMTP id kc5-20020a17090333c500b001a06a47184emr2496512plb.42.1679408589537;
+        Tue, 21 Mar 2023 07:23:09 -0700 (PDT)
+Received: from [192.168.1.101] (1-160-162-168.dynamic-ip.hinet.net. [1.160.162.168])
+        by smtp.gmail.com with ESMTPSA id bc11-20020a170902930b00b001a1a0db7f50sm8764050plb.90.2023.03.21.07.23.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 07:22:33 -0700 (PDT)
-Message-ID: <1f928177-9535-af12-a25f-d4cc2a7e5d85@linaro.org>
-Date:   Tue, 21 Mar 2023 14:22:32 +0000
+        Tue, 21 Mar 2023 07:23:09 -0700 (PDT)
+Message-ID: <fff88562-2bb4-fe7f-8963-c9da4e7017b2@gmail.com>
+Date:   Tue, 21 Mar 2023 22:23:04 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v11 07/26] mailbox: Add Gunyah message queue mailbox
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 14/15] tty: serial: Add Nuvoton ma35d1 serial driver
+ support
+To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
- <20230304010632.2127470-8-quic_eberman@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230304010632.2127470-8-quic_eberman@quicinc.com>
+        Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>, mjchen@nuvoton.com
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-15-ychuang570808@gmail.com>
+ <24ce3334-b535-f6d5-70dd-3ba9be991252@linux.intel.com>
+ <c755e596-9187-8de1-5769-9c67c1f01c48@gmail.com>
+ <b6995749-4b54-59d1-99d2-6b64b438f22f@linux.intel.com>
+Content-Language: en-US
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <b6995749-4b54-59d1-99d2-6b64b438f22f@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear Ilpo,
 
 
-On 04/03/2023 01:06, Elliot Berman wrote:
-> Gunyah message queues are a unidirectional inter-VM pipe for messages up
-> to 1024 bytes. This driver supports pairing a receiver message queue and
-> a transmitter message queue to expose a single mailbox channel.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+On 2023/3/20 下午 06:04, Ilpo Järvinen wrote:
+> On Mon, 20 Mar 2023, Jacky Huang wrote:
+>
+>> Dear Ilpo,
+>>
+>>
+>> Thanks for your advice.
+>>
+>> On 2023/3/16 下午 10:54, Ilpo Järvinen wrote:
+>>> Hi,
+>>>
+>>> I'll not note all things below because others have already seemingly
+>>> commented many things.
+>>>
+>>> On Wed, 15 Mar 2023, Jacky Huang wrote:
+>>>
+>>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>>
+>>>> This adds UART and console driver for Nuvoton ma35d1 Soc.
+>>>> +		}
+>>>> +		ch = (u8)serial_in(up, UART_REG_RBR);
+>>> Drop the case.
+>> I  will fix it.
+> I meant "cast" in case it wasn't obvious.
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-> ---
->   Documentation/virt/gunyah/message-queue.rst |   8 +
->   drivers/mailbox/Makefile                    |   2 +
->   drivers/mailbox/gunyah-msgq.c               | 209 ++++++++++++++++++++
->   include/linux/gunyah.h                      |  57 ++++++
->   4 files changed, 276 insertions(+)
->   create mode 100644 drivers/mailbox/gunyah-msgq.c
-> 
-> diff --git a/Documentation/virt/gunyah/message-queue.rst b/Documentation/virt/gunyah/message-queue.rst
-> index b352918ae54b..70d82a4ef32d 100644
-> --- a/Documentation/virt/gunyah/message-queue.rst
-> +++ b/Documentation/virt/gunyah/message-queue.rst
-> @@ -61,3 +61,11 @@ vIRQ: two TX message queues will have two vIRQs (and two capability IDs).
->         |               |         |                 |         |               |
->         |               |         |                 |         |               |
->         +---------------+         +-----------------+         +---------------+
-> +
-> +Gunyah message queues are exposed as mailboxes. To create the mailbox, create
-> +a mbox_client and call `gh_msgq_init()`. On receipt of the RX_READY interrupt,
-> +all messages in the RX message queue are read and pushed via the `rx_callback`
-> +of the registered mbox_client.
-> +
-> +.. kernel-doc:: drivers/mailbox/gunyah-msgq.c
-> +   :identifiers: gh_msgq_init
-> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-> index fc9376117111..5f929bb55e9a 100644
-> --- a/drivers/mailbox/Makefile
-> +++ b/drivers/mailbox/Makefile
-> @@ -55,6 +55,8 @@ obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
->   
->   obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
->   
-> +obj-$(CONFIG_GUNYAH)		+= gunyah-msgq.o
-> +
->   obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
->   
->   obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
-> diff --git a/drivers/mailbox/gunyah-msgq.c b/drivers/mailbox/gunyah-msgq.c
-> new file mode 100644
-> index 000000000000..1989298653f9
-> --- /dev/null
-> +++ b/drivers/mailbox/gunyah-msgq.c
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/module.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/gunyah.h>
-> +#include <linux/printk.h>
-> +#include <linux/init.h>
-> +#include <linux/slab.h>
-> +#include <linux/wait.h>
-> +
-> +#define mbox_chan_to_msgq(chan) (container_of(chan->mbox, struct gh_msgq, mbox))
-> +
-> +static irqreturn_t gh_msgq_rx_irq_handler(int irq, void *data)
-> +{
-> +	struct gh_msgq *msgq = data;
-> +	struct gh_msgq_rx_data rx_data;
-> +	enum gh_error gh_error;
-> +	bool ready = true;
-> +
-> +	while (ready) {
-> +		gh_error = gh_hypercall_msgq_recv(msgq->rx_ghrsc->capid,
-> +				&rx_data.data, sizeof(rx_data.data),
-> +				&rx_data.length, &ready);
-> +		if (gh_error != GH_ERROR_OK) {
-> +			if (gh_error != GH_ERROR_MSGQUEUE_EMPTY)
-> +				dev_warn(msgq->mbox.dev, "Failed to receive data: %d\n", gh_error);
-> +			break;
-> +		}
-> +		mbox_chan_received_data(gh_msgq_chan(msgq), &rx_data);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +/* Fired when message queue transitions from "full" to "space available" to send messages */
-> +static irqreturn_t gh_msgq_tx_irq_handler(int irq, void *data)
-> +{
-> +	struct gh_msgq *msgq = data;
-> +
-> +	mbox_chan_txdone(gh_msgq_chan(msgq), 0);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +/* Fired after sending message and hypercall told us there was more space available. */
-> +static void gh_msgq_txdone_tasklet(struct tasklet_struct *tasklet)
-> +{
-> +	struct gh_msgq *msgq = container_of(tasklet, struct gh_msgq, txdone_tasklet);
-> +
-> +	mbox_chan_txdone(gh_msgq_chan(msgq), msgq->last_ret);
-> +}
-> +
-> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +	struct gh_msgq *msgq = mbox_chan_to_msgq(chan);
-> +	struct gh_msgq_tx_data *msgq_data = data;
-> +	u64 tx_flags = 0;
-> +	enum gh_error gh_error;
-> +	bool ready;
-> +
-> +	if (msgq_data->push)
-> +		tx_flags |= GH_HYPERCALL_MSGQ_TX_FLAGS_PUSH;
-> +
-> +	gh_error = gh_hypercall_msgq_send(msgq->tx_ghrsc->capid, msgq_data->length, msgq_data->data,
-> +						tx_flags, &ready);
-> +
-> +	/**
-> +	 * unlikely because Linux tracks state of msgq and should not try to
-> +	 * send message when msgq is full.
-> +	 */
-> +	if (unlikely(gh_error == GH_ERROR_MSGQUEUE_FULL))
-> +		return -EAGAIN;
-> +
-> +	/**
-> +	 * Propagate all other errors to client. If we return error to mailbox
-> +	 * framework, then no other messages can be sent and nobody will know
-> +	 * to retry this message.
-> +	 */
-> +	msgq->last_ret = gh_remap_error(gh_error);
-> +
-> +	/**
-> +	 * This message was successfully sent, but message queue isn't ready to
-> +	 * accept more messages because it's now full. Mailbox framework
-> +	 * requires that we only report that message was transmitted when
-> +	 * we're ready to transmit another message. We'll get that in the form
-> +	 * of tx IRQ once the other side starts to drain the msgq.
-> +	 */
-> +	if (gh_error == GH_ERROR_OK) {
-> +		if (!ready)
-> +			return 0;
-> +	} else
-> +		dev_err(msgq->mbox.dev, "Failed to send data: %d (%d)\n", gh_error, msgq->last_ret);
-> +
-> +	/**
-> +	 * We can send more messages. Mailbox framework requires that tx done
-> +	 * happens asynchronously to sending the message. Gunyah message queues
-> +	 * tell us right away on the hypercall return whether we can send more
-> +	 * messages. To work around this, defer the txdone to a tasklet.
-> +	 */
-> +	tasklet_schedule(&msgq->txdone_tasklet);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct mbox_chan_ops gh_msgq_ops = {
-> +	.send_data = gh_msgq_send_data,
-> +};
-> +
-> +/**
-> + * gh_msgq_init() - Initialize a Gunyah message queue with an mbox_client
-> + * @parent: optional, device parent used for the mailbox controller
-> + * @msgq: Pointer to the gh_msgq to initialize
-> + * @cl: A mailbox client to bind to the mailbox channel that the message queue creates
-> + * @tx_ghrsc: optional, the transmission side of the message queue
-> + * @rx_ghrsc: optional, the receiving side of the message queue
-> + *
-> + * At least one of tx_ghrsc and rx_ghrsc must be not NULL. Most message queue use cases come with
-> + * a pair of message queues to facilitate bidirectional communication. When tx_ghrsc is set,
-> + * the client can send messages with mbox_send_message(gh_msgq_chan(msgq), msg). When rx_ghrsc
-> + * is set, the mbox_client must register an .rx_callback() and the message queue driver will
-> + * deliver all available messages upon receiving the RX ready interrupt. The messages should be
-> + * consumed or copied by the client right away as the gh_msgq_rx_data will be replaced/destroyed
-> + * after the callback.
-> + *
-> + * Returns - 0 on success, negative otherwise
-> + */
-> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct mbox_client *cl,
-> +		 struct gh_resource *tx_ghrsc, struct gh_resource *rx_ghrsc)
-> +{
-> +	int ret;
-> +
-> +	/* Must have at least a tx_ghrsc or rx_ghrsc and that they are the right device types */
-> +	if ((!tx_ghrsc && !rx_ghrsc) ||
-> +	    (tx_ghrsc && tx_ghrsc->type != GH_RESOURCE_TYPE_MSGQ_TX) ||
-> +	    (rx_ghrsc && rx_ghrsc->type != GH_RESOURCE_TYPE_MSGQ_RX))
-> +		return -EINVAL;
-> +
-> +	if (!gh_api_has_feature(GH_FEATURE_MSGQUEUE))
-> +		return -EOPNOTSUPP;
-> +
-> +	msgq->tx_ghrsc = tx_ghrsc;
-> +	msgq->rx_ghrsc = rx_ghrsc;
-> +
-> +	msgq->mbox.dev = parent;
-> +	msgq->mbox.ops = &gh_msgq_ops;
-> +	msgq->mbox.num_chans = 1;
-> +	msgq->mbox.txdone_irq = true;
-> +	msgq->mbox.chans = &msgq->mbox_chan;
-> +
-> +	if (msgq->tx_ghrsc) {
-> +		ret = request_irq(msgq->tx_ghrsc->irq, gh_msgq_tx_irq_handler, 0, "gh_msgq_tx",
-> +				msgq);
-> +		if (ret)
-> +			goto err_chans;
-> +	}
-> +
-> +	if (msgq->rx_ghrsc) {
-> +		ret = request_threaded_irq(msgq->rx_ghrsc->irq, NULL, gh_msgq_rx_irq_handler,
-> +						IRQF_ONESHOT, "gh_msgq_rx", msgq);
-> +		if (ret)
-> +			goto err_tx_irq;
-> +	}
-> +
-> +	tasklet_setup(&msgq->txdone_tasklet, gh_msgq_txdone_tasklet);
-> +
-> +	ret = mbox_controller_register(&msgq->mbox);
-> +	if (ret)
-> +		goto err_rx_irq;
-> +
-> +	ret = mbox_bind_client(gh_msgq_chan(msgq), cl);
-> +	if (ret)
-> +		goto err_mbox;
-> +
-> +	return 0;
-> +err_mbox:
-> +	mbox_controller_unregister(&msgq->mbox);
-> +err_rx_irq:
-> +	if (msgq->rx_ghrsc)
-> +		free_irq(msgq->rx_ghrsc->irq, msgq);
-> +err_tx_irq:
-> +	if (msgq->tx_ghrsc)
-> +		free_irq(msgq->tx_ghrsc->irq, msgq);
-> +err_chans:
-> +	kfree(msgq->mbox.chans);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(gh_msgq_init);
-> +
-> +void gh_msgq_remove(struct gh_msgq *msgq)
-> +{
-> +	tasklet_kill(&msgq->txdone_tasklet);
-> +	mbox_controller_unregister(&msgq->mbox);
-> +
-> +	if (msgq->rx_ghrsc)
-> +		free_irq(msgq->rx_ghrsc->irq, msgq);
-> +
-> +	if (msgq->tx_ghrsc)
-> +		free_irq(msgq->tx_ghrsc->irq, msgq);
-> +
-> +	kfree(msgq->mbox.chans);
-> +}
-> +EXPORT_SYMBOL_GPL(gh_msgq_remove);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Gunyah Message Queue Driver");
-> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
-> index 18cfbf5ee48b..378bec0f2ce1 100644
-> --- a/include/linux/gunyah.h
-> +++ b/include/linux/gunyah.h
-> @@ -8,11 +8,68 @@
->   
->   #include <linux/bitfield.h>
->   #include <linux/errno.h>
-> +#include <linux/interrupt.h>
->   #include <linux/limits.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/mailbox_client.h>
->   #include <linux/types.h>
->   
-> +/* Follows resource manager's resource types for VM_GET_HYP_RESOURCES */
-> +enum gh_resource_type {
-> +	GH_RESOURCE_TYPE_BELL_TX	= 0,
-> +	GH_RESOURCE_TYPE_BELL_RX	= 1,
-> +	GH_RESOURCE_TYPE_MSGQ_TX	= 2,
-> +	GH_RESOURCE_TYPE_MSGQ_RX	= 3,
-> +	GH_RESOURCE_TYPE_VCPU	= 4,
-> +};
-> +
-> +struct gh_resource {
-> +	enum gh_resource_type type;
-> +	u64 capid;
-> +	unsigned int irq;
-> +};
-> +
-> +/**
-> + * Gunyah Message Queues
-> + */
-> +
-> +#define GH_MSGQ_MAX_MSG_SIZE	240
-> +
-> +struct gh_msgq_tx_data {
-> +	size_t length;
-> +	bool push;
-> +	char data[];
-> +};
-> +
-> +struct gh_msgq_rx_data {
-> +	size_t length;
-> +	char data[GH_MSGQ_MAX_MSG_SIZE];
-> +};
-> +
-> +struct gh_msgq {
-> +	struct gh_resource *tx_ghrsc;
-> +	struct gh_resource *rx_ghrsc;
-> +
-> +	/* msgq private */
-> +	int last_ret; /* Linux error, not GH_STATUS_* */
-> +	struct mbox_chan mbox_chan;
-> +	struct mbox_controller mbox;
-> +	struct tasklet_struct txdone_tasklet;
-> +};
-> +
-> +
-> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct mbox_client *cl,
-> +		     struct gh_resource *tx_ghrsc, struct gh_resource *rx_ghrsc);
-> +void gh_msgq_remove(struct gh_msgq *msgq);
-> +
-> +static inline struct mbox_chan *gh_msgq_chan(struct gh_msgq *msgq)
-> +{
-> +	return &msgq->mbox.chans[0];
-> +}
-> +
->   /******************************************************************************/
->   /* Common arch-independent definitions for Gunyah hypercalls                  */
-> +
->   #define GH_CAPID_INVAL	U64_MAX
->   #define GH_VMID_ROOT_VM	0xff
->   
+I know that, thank you.
+
+
+>>>> +/* Enable or disable the rs485 support */
+>>>> +static int ma35d1serial_config_rs485(struct uart_port *port,
+>>>> +				     struct ktermios *termios,
+>>>> +				     struct serial_rs485 *rs485conf)
+>>>> +{
+>>>> +	struct uart_ma35d1_port *p = to_ma35d1_uart_port(port);
+>>>> +
+>>>> +	p->rs485 = *rs485conf;
+>>>> +
+>>>> +	if (p->rs485.delay_rts_before_send >= 1000)
+>>>> +		p->rs485.delay_rts_before_send = 1000;
+>>> Don't do this in driver, the core handles the delay limits. You don't seem
+>>> to be using the value anyway for anything???
+>>>
+>>> Please separate the RS485 support into its own patch.
+>>
+>> OK, we will remove RS485 support from this initial patch.
+>> Once this initial patch was merged, we will submit the patch for RS485
+>> support.
+> You could do that but you could just as well include it into the same
+> series as another patch after the main patch.
+>>>> +	serial_out(p, UART_FUN_SEL,
+>>>> +		   (serial_in(p, UART_FUN_SEL) & ~FUN_SEL_MASK));
+>>>> +
+>>>> +	if (rs485conf->flags & SER_RS485_ENABLED) {
+>>>> +		serial_out(p, UART_FUN_SEL,
+>>>> +			   (serial_in(p, UART_FUN_SEL) | FUN_SEL_RS485));
+>>> Does this pair of serial_out()s glitch the RS485 line if ->rs485_config()
+>>> is called while RS485 mode is already set?
+>>>
+>>> Why you need to do serial_in() from the UART_FUN_SEL twice?
+>> UART_FUN_SEL (2 bits) definition:
+>> 00 - UART function
+>> 01 - IrDA function
+>> 11 - RS485 function
+>>
+>> The first searial_in() is used to clear set as UART function.
+>> The second one is used to set RS485 function if SER_RS485_ENABLED is true.
+> I got that, but it doesn't answer either of my questions which are:
+>
+> Can you clear the UART function without causing a glitch in the RS485?
+> ->rs485_config() can be called while already in RS485 mode so does it
+> cause the UART to temporarily switch away from RS485 mode to "UART
+> function" until the second write.
+>
+> Also, you didn't explain why you need to read the register again, does
+> the HW play with other bits when you do the clearing or to they remain
+> the same (in which case you can just use a temporary variable to store
+> the value)? ...It would be better to just write once too so this question
+> might not matter in the end.
+
+
+Thank you for the detailed explanation.
+
+OK, the register won't change. I will modify the code to read once and 
+write once only.
+
+
+>>>> +	if (pdev->dev.of_node) {
+>>>> +		ret = of_alias_get_id(pdev->dev.of_node, "serial");
+>>>> +		if (ret < 0) {
+>>>> +			dev_err(&pdev->dev,
+>>>> +				"failed to get alias/pdev id, errno %d\n",
+>>>> +				ret);
+>>> Just put error prints to one line if you don't break 100 chars limit.
+>> But the checkpatch limitation is 80 characters.
+> No, it isn't. It was changed years ago already.
+
+
+I have a test on the checkpatch script.
+
+You are right. It won't complain about over 80 characters now.
+
+
+>>>> +++ b/drivers/tty/serial/ma35d1_serial.h
+>>>> @@ -0,0 +1,93 @@
+>>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>>> +/*
+>>>> + *  MA35D1 serial driver header file
+>>>> + *  Copyright (C) 2023 Nuvoton Technology Corp.
+>>>> + */
+>>>> +#ifndef __MA35D1_SERIAL_H__
+>>>> +#define __MA35D1_SERIAL_H__
+>>>> +
+>>>> +/* UART Receive/Transmit Buffer Register */
+>>>> +#define UART_REG_RBR	0x00
+>>>> +#define UART_REG_THR	0x00
+>>>> +
+>>>> +/* UART Interrupt Enable Register */
+>>>> +#define UART_REG_IER	0x04
+>>>> +#define RDA_IEN		0x00000001 /* RBR Available Interrupt Enable
+>>>> */
+>>>> +#define THRE_IEN	0x00000002 /* THR Empty Interrupt Enable */
+>>>> +#define RLS_IEN		0x00000004 /* RX Line Status Interrupt Enable
+>>>> */
+>>>> +#define RTO_IEN		0x00000010 /* RX Time-out Interrupt Enable */
+>>>> +#define BUFERR_IEN	0x00000020 /* Buffer Error Interrupt Enable */
+>>>> +#define TIME_OUT_EN	0x00000800 /* RX Buffer Time-out Counter
+>>>> Enable */
+>>>> +
+>>>> +/* UART FIFO Control Register */
+>>>> +#define UART_REG_FCR	0x08
+>>>> +#define RFR		0x00000002 /* RX Field Software Reset */
+>>>> +#define TFR		0x00000004 /* TX Field Software Reset */
+>>>> +
+>>>> +/* UART Line Control Register */
+>>>> +#define UART_REG_LCR	0x0C
+>>>> +#define	NSB		0x00000004 /* Number of “STOP Bit” */
+>>>> +#define PBE		0x00000008 /* Parity Bit Enable */
+>>>> +#define EPE		0x00000010 /* Even Parity Enable */
+>>>> +#define SPE		0x00000020 /* Stick Parity Enable */
+>>>> +#define BCB		0x00000040 /* Break Control */
+>>>> +
+>>>> +/* UART Modem Control Register */
+>>>> +#define UART_REG_MCR	0x10
+>>>> +#define RTS		0x00000020 /* nRTS Signal Control */
+>>>> +#define RTSACTLV	0x00000200 /* nRTS Pin Active Level */
+>>>> +#define RTSSTS		0x00002000 /* nRTS Pin Status (Read Only) */
+>>>> +
+>>>> +/* UART Modem Status Register */
+>>>> +#define UART_REG_MSR	0x14
+>>>> +#define CTSDETF		0x00000001 /* Detect nCTS State Change Flag */
+>>>> +#define CTSSTS		0x00000010 /* nCTS Pin Status (Read Only) */
+>>>> +#define CTSACTLV	0x00000100 /* nCTS Pin Active Level */
+>>>> +
+>>>> +/* UART FIFO Status Register */
+>>>> +#define UART_REG_FSR	0x18
+>>>> +#define RX_OVER_IF	0x00000001 /* RX Overflow Error Interrupt Flag */
+>>>> +#define PEF		0x00000010 /* Parity Error Flag*/
+>>>> +#define FEF		0x00000020 /* Framing Error Flag */
+>>>> +#define BIF		0x00000040 /* Break Interrupt Flag */
+>>>> +#define RX_EMPTY	0x00004000 /* Receiver FIFO Empty (Read Only) */
+>>>> +#define RX_FULL		0x00008000 /* Receiver FIFO Full (Read Only)
+>>>> */
+>>>> +#define TX_EMPTY	0x00400000 /* Transmitter FIFO Empty (Read Only) */
+>>>> +#define TX_FULL		0x00800000 /* Transmitter FIFO Full (Read
+>>>> Only) */
+>>>> +#define TX_OVER_IF	0x01000000 /* TX Overflow Error Interrupt Flag */
+>>>> +#define TE_FLAG		0x10000000 /* Transmitter Empty Flag (Read
+>>>> Only) */
+>>>> +
+>>>> +/* UART Interrupt Status Register */
+>>>> +#define UART_REG_ISR	0x1C
+>>>> +#define RDA_IF		0x00000001 /* RBR Available Interrupt Flag */
+>>>> +#define THRE_IF		0x00000002 /* THR Empty Interrupt Flag */
+>>>> +#define RLSIF		0x00000004 /* Receive Line Interrupt Flag */
+>>>> +#define MODEMIF		0x00000008 /* MODEM Interrupt Flag */
+>>>> +#define RXTO_IF		0x00000010 /* RX Time-out Interrupt Flag */
+>>>> +#define BUFEIF		0x00000020 /* Buffer Error Interrupt Flag */
+>>>> +#define WK_IF		0x00000040 /* UART Wake-up Interrupt Flag */
+>>>> +#define RDAINT		0x00000100 /* RBR Available Interrupt
+>>>> Indicator */
+>>>> +#define THRE_INT	0x00000200 /* THR Empty Interrupt Indicator */
+> I forgot to mention earlier, there are many defines above which should use
+> BIT().
+>
+Sure we will fix them all.
+
+
+Best regards,
+
+Jacky Huang
+
+
