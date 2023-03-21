@@ -2,171 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED0D26C3448
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:33:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65F7F6C344F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:34:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231142AbjCUOdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 10:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
+        id S231139AbjCUOeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 10:34:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230025AbjCUOdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:33:06 -0400
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B13A4C0A;
-        Tue, 21 Mar 2023 07:33:03 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 2F777582194;
-        Tue, 21 Mar 2023 10:33:00 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Tue, 21 Mar 2023 10:33:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1679409180; x=1679416380; bh=T/
-        lq0wdl5waDK7GJCv2ptAX5Xsg9I9oRktyonRsh2Ok=; b=nSQeM/hAbtbjunm3+l
-        9m0ACRX5pcJaI4mDgqc3K84iYdrOkpWyhiivRFGddhBnNafT5tIoYwX0pOKg2/r2
-        d0AREqYUPBAnPjyugOIN8SdCGJ5DLL7KISvulndfWgfqsEsKKKArdTJ72QG0ezyJ
-        4oMmHbQYFFK3UhUvVy9evNiYJrAY+iPwA1HL6OOwMtIYq4msJtNrcR3o4PKPsIHj
-        Kty9Csv3mzjyUMehWpPB5RriaZ77gwU5fVLJXT3wRu4YMMkNNeDWM/IXnWO9RCMn
-        rZERZ4TDdS8g5Ux/IOJR3oXbPFCyXkWOJEQ1+b3x+gvYXHz+KzM/vFSAqzBpPlfe
-        AKCw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1679409180; x=1679416380; bh=T/lq0wdl5waDK
-        7GJCv2ptAX5Xsg9I9oRktyonRsh2Ok=; b=WkTdIj36fxYe9ZB98EK6mienufLrF
-        qeZoTxB5+dougAHWFmQH32QWx12UioQ12q5M2JLS2WS1Kr7xwhBRKkQR2QpqVrw2
-        hiMqLBUR1Plzw97VXOJOPMeUjY03KWodhVVRlHatQmFQ2WezHqtoZI4h6YPwMKZH
-        ZPbf5C2KfjpCXB1Fyu2SsJ0TaD9YSTVdYsgGB+5Ebz03LHezG1LKtF5yQb6CjTmN
-        4jUvzz0B/Lj2B0i7vPJujZbH8yGXsEawU7ZPc1Rpc4yWK+WcfEHSHweiP0S6CbI8
-        /gKKIQe7ZeUgg18lTzYQQxnZ11jXsJT9aPRjoSpd2uzOxkUXgoK6elABg==
-X-ME-Sender: <xms:G8AZZLgSQPHKhlV50q8TO3b-YscRkC9yQ7lc6TnjJh3KXHLYTAIoBw>
-    <xme:G8AZZIBkr2JChgYJTsTYbi8KEuTIK3nbfoAys_uyDwo6kwBEqioF6pJqiS6PK0GA7
-    LGno9h1qEJDq5duAws>
-X-ME-Received: <xmr:G8AZZLEiWTYxlKntBJX_Dbfee0v_Ar8edQcJPjs3c9Cl_2MWZ1WJrd3s9dB2l-8aAeOCNJ10YVlIV2qs9a2EOTRy_d9uno0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdegtddgieehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
-    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:G8AZZIQ3LvdGLv99ngFCGTO6-hTz02yJFTBVzDt_NQDAqd12r6Cx-A>
-    <xmx:G8AZZIz_gaZiOALKNSZFvA5p-bS7GlshX4IHWG3o1ksbDtqfeafejg>
-    <xmx:G8AZZO4y6C4PkPoN8Zjyt2N7JuF9PlRNG7idrZua3C8HEm9UgYCm4w>
-    <xmx:HMAZZIEv6AY65hhQlNCWwIlZEXqiIg197-nyQfcGi_cisbYAWFZd0A>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 21 Mar 2023 10:32:58 -0400 (EDT)
-Date:   Tue, 21 Mar 2023 15:32:56 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     David Gow <davidgow@google.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@lists.linux.dev,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230399AbjCUOeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:34:03 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 77FA02CFF7;
+        Tue, 21 Mar 2023 07:34:01 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2734F2F4;
+        Tue, 21 Mar 2023 07:34:45 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 018383F6C4;
+        Tue, 21 Mar 2023 07:33:58 -0700 (PDT)
+Date:   Tue, 21 Mar 2023 14:33:56 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        suzuki.poulose@arm.com, scclevenger@os.amperecomputing.com,
         Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
-        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
-Subject: Re: [PATCH 4/8] clk: Add test managed clk provider/consumer APIs
-Message-ID: <20230321143256.ybr6c6kstcv5lnbk@houat>
-References: <20230302013822.1808711-1-sboyd@kernel.org>
- <20230302013822.1808711-5-sboyd@kernel.org>
- <CABVgOSkahumU6T+rCVx+k7Y9=iMszveseVYE0wfKjXwkNJpFxQ@mail.gmail.com>
- <77b315f6b89eb256c516ee08b1c17312.sboyd@kernel.org>
- <CABVgOSk4gEob3rokKF_p2Bcd_Sj3ikUN4R-HPHyTR0Eoo==85g@mail.gmail.com>
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/7] coresight: etm4x: Migrate AMBA devices to platform
+ driver
+Message-ID: <20230321143356.w5era7et6lzxpte3@bogus>
+References: <20230317030501.1811905-1-anshuman.khandual@arm.com>
+ <CAL_JsqKsnq0d-x3m3xQe8m0pnk_Jeh9J1oFBtPAn3LV8-MFH0w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kn4g64rogn4yrwmy"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CABVgOSk4gEob3rokKF_p2Bcd_Sj3ikUN4R-HPHyTR0Eoo==85g@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAL_JsqKsnq0d-x3m3xQe8m0pnk_Jeh9J1oFBtPAn3LV8-MFH0w@mail.gmail.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 20, 2023 at 09:17:16AM -0500, Rob Herring wrote:
+>
+> This sounds like an issue for any amba driver. If this is an issue,
+> solve it for everyone, not just work around it in one driver.
+>
 
---kn4g64rogn4yrwmy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Well it is an issue in general for power management. ACPI has specific
+methods that can be executed for entering specific states.
 
-On Sat, Mar 11, 2023 at 02:32:04PM +0800, David Gow wrote:
-> > > > diff --git a/drivers/clk/clk-kunit.c b/drivers/clk/clk-kunit.c
-> > > > new file mode 100644
-> > > > index 000000000000..78d85b3a7a4a
-> > > > --- /dev/null
-> > > > +++ b/drivers/clk/clk-kunit.c
-> > > > @@ -0,0 +1,204 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > +/*
-> > > > + * KUnit helpers for clk tests
-> > > > + */
-> > > > +#include <linux/clk.h>
-> > > > +#include <linux/clk-provider.h>
-> > > > +#include <linux/err.h>
-> > > > +#include <linux/kernel.h>
-> > > > +#include <linux/slab.h>
-> > > > +
-> > > > +#include <kunit/resource.h>
-> > > > +
-> > > > +#include "clk-kunit.h"
-> > > > +
-> > > > +static void kunit_clk_disable_unprepare(struct kunit_resource *res)
-> > >
-> > > We need to decide on the naming scheme of these, and in particular if
-> > > they should be kunit_clk or clk_kunit (or something else).
-> > >
-> > > I'd lean to clk_kunit, if only to match DRM's KUnit helpers being
-> > > drm_kunit_helper better, and so that these are more tightly bound to
-> > > the subsystem being tested.
-> > > (i.e., so I don't have to scroll through every subsystem's helpers
-> > > when autocompleting kunit_).
-> >
-> > Ok, got it. I was trying to match kunit_kzalloc() style. It makes it
-> > easy to slap the 'kunit_' prefix on existing auto-completed function
-> > names like kzalloc() or clk_prepare_enable().
->=20
-> Yeah: my rule of thumb at the moment is to keep the kunit_ prefix for
-> things which are generic across the whole kernel (and tend to be
-> implemented in lib/kunit), and to use suffixes or infixes (whichever
-> works best) for things which are subsystem-specific.
+The way AMBA was glue into ACPI bus scan IMO was a hack and PM wasn't
+considered at the time. It was just hack to get AMBA drivers to work
+with ACPI without any consideration about runtime PM or any methods that
+comes as part of ACPI device. There is even some dummy clock handler to
+deal with AMBA requesting APB clocks. AMBA device is added as companion
+to the ACPI device created as part of the normal bus scan in ACPI which
+adds its own PM callbacks and rely on clocks and power domains independent
+of the ACPI standard methods(_ON/_OFF).
 
-A suffix is kind of weird though when any other managed call is using a
-prefix: devm is always using a prefix including for clocks, kunit for
-some calls too (like kzalloc).
+The default enumeration adds platform devices which adds no extra PM
+callbacks and allows normal acpi_device probe flow.
 
-Having clk_get vs devm_clk_get vs clk_get_kunit would be very
-inconsistent and throws me off completely :)
+> When someone puts another primecell device into an ACPI system, are we
+> going to go do the same one-off change in that driver too? (We kind of
+> already did with SBSA UART...)
+>
 
-Maxime
+I would prefer to move all the existing users of ACPI + AMBA to move away
+from it and just use platform device. This list is not big today, bunch
+of coresight, PL061/GPIO and PL330/DMA. And all these are assumed to be
+working or actually working if there is no need for any power management.
+E.g. on juno coresight needs PM to turn on before probing and AMBA fails
+as dummy clocks are added but no power domains attached as ACPI doesn't
+need deal with power domains in the OSPM if it is all well abstracted in
+methods like _ON/_OFF. They are dealt with explicit power domain in the
+DT which needs to be turned on and AMBA relies on that.
 
---kn4g64rogn4yrwmy
-Content-Type: application/pgp-signature; name="signature.asc"
+One possible further hacky solution is to add dummy genpd to satisfy AMBA
+but not sure if we can guarantee ordering between ACPI device calling ON
+and its companion AMBA device probing so that the power domain is ON before
+AMBA uses the dummy clock and power domains in its pm callback hooks.
 
------BEGIN PGP SIGNATURE-----
+Even the UART would fail if it needed any PM methods, we just don't happen
+to need that for SBSA and may be we could have made it work as amba device
+(can't recollect the exact reason for not doing so now).
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZBnAGAAKCRDj7w1vZxhR
-xcCXAPwJeWrqE0jAwByKsB4bICizCU+z39K0DcfRrOCvNgqcfwD8DHaZSDnzz/ky
-XhKIRMR9Jm58Oeu5HdXIKxO3zDFyWQU=
-=1Uxg
------END PGP SIGNATURE-----
-
---kn4g64rogn4yrwmy--
+--
+Regards,
+Sudeep
