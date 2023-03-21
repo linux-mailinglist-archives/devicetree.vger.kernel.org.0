@@ -2,70 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 888C66C3AD7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9086C3B07
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:53:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbjCUTkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 15:40:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59302 "EHLO
+        id S229783AbjCUTxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 15:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230418AbjCUTkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:40:17 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE73C132F5;
-        Tue, 21 Mar 2023 12:39:48 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 600B420002;
-        Tue, 21 Mar 2023 19:39:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1679427559;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=yBHkU6tb5xg5smOIlShgBtygMh+FM3sL86bax3a5bDo=;
-        b=Gqqu81VcF0q1VsN48gRKkyeZZ3R6+UANTWm2J0WaavxgBCkF8PFF1FerT5b2POxH1Hq7s9
-        1Qv0wA5bBLGiB1yBLatCXEeo/olRqMhkC5dE4arA3WU73R7BIuzPPg4vfFc1u/sVLYaKUn
-        m2OghwcQmLKpja/d6gy4765C02hTkInW1+wBxz83j1dyTKQe4ZMhwBitXC40IKLdqmfHTU
-        BAMM0YHBvatH/VDQ67MXVxu7s73gDTtd4aJxEGXc5aVBqOchr9VzbdyawWSJcaBYaQZlD0
-        VbHpWvQhmbAASjUzsLZ8sIYPYNcy9pB0mKubjbE0R6u2nurh6F5U/M0+ADg2EA==
-Date:   Tue, 21 Mar 2023 20:39:15 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
+        with ESMTP id S229525AbjCUTxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:53:46 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 734754D2B5;
+        Tue, 21 Mar 2023 12:53:20 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id w133so12051526oib.1;
+        Tue, 21 Mar 2023 12:53:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679428365;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FvDUHb9mHZ3H5XBG9Qrw/6yfPAcHbkJRtRTB2OtceZM=;
+        b=tK9Z0gugaA9MPcQccz8kmhVo0GzaA977v6nf+JcBNXcU/WWKkq89a4A/qBBn1rRqJk
+         bToMdnLMeGXSth/3os0HAOgs4WokXWN+ptkRDZ+ZEyNsPKTL2r8+FeiYFCOp+78TYTYU
+         I7js7IetaA6BcFeVduSv+usDpoftqNyeBFKP1kXYDOCd2fxeCxQfPJBVo4z3RBk5xh7U
+         +NRh0F5NAag4lPIjOFjIsiDXAOjVYay+m4clX2aerErC6DGjdk2YOOH4YBH8P2/UIEgI
+         vBbornGooVChOOd/0paj3+GAPf5uB8L5Pr5R4QUcLkXLu2kQwra3wlX5U9z2PFv6/7pr
+         a//w==
+X-Gm-Message-State: AO0yUKX8TmvlS8Jwp4gjXAH19VP5c+Q78/71D3grL0AEhDAwVRJwFasN
+        1NWhAfhSgT46306y4HouaA==
+X-Google-Smtp-Source: AK7set+PfrlzdyluKEri9dVWtlLQhA8KJm7p7kcuU0BFcw4do2Hy3yuEnq27AVzW/6YAJxI0m7sxSA==
+X-Received: by 2002:a05:6808:9a6:b0:387:e06:6602 with SMTP id e6-20020a05680809a600b003870e066602mr132316oig.49.1679428365120;
+        Tue, 21 Mar 2023 12:52:45 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q132-20020acac08a000000b0037fa035f4f3sm5160147oif.53.2023.03.21.12.52.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 12:52:44 -0700 (PDT)
+Received: (nullmailer pid 1341754 invoked by uid 1000);
+        Tue, 21 Mar 2023 19:52:44 -0000
+Date:   Tue, 21 Mar 2023 14:52:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] dt-bindings: rtc: Drop unneeded quotes
-Message-ID: <167942752119.675121.3470511868063129229.b4-ty@bootlin.com>
-References: <20230317233634.3968656-1-robh@kernel.org>
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: qcom,spmi-pmic: add nvram function
+Message-ID: <167942836356.1341699.17699410680064353553.robh@kernel.org>
+References: <20230320135710.1989-1-johan+linaro@kernel.org>
+ <20230320135710.1989-4-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230317233634.3968656-1-robh@kernel.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230320135710.1989-4-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,20 +69,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 17 Mar 2023 18:36:33 -0500, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On Mon, 20 Mar 2023 14:57:10 +0100, Johan Hovold wrote:
+> Add an 'nvram' pattern property and a reference to the corresponding
+> SDAM DT schema.
 > 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
 
-[1/1] dt-bindings: rtc: Drop unneeded quotes
-      commit: ab0fccc373d505c9a09bf459557768ab3177e0d2
-
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
