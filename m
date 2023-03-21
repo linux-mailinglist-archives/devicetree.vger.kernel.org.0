@@ -2,98 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F36B6C3C53
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 21:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E81516C3C56
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 21:59:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbjCUU6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 16:58:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33224 "EHLO
+        id S229829AbjCUU7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 16:59:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbjCUU6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 16:58:05 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CFB5574CF;
-        Tue, 21 Mar 2023 13:58:04 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id w21-20020a9d6755000000b00698853a52c7so9269997otm.11;
-        Tue, 21 Mar 2023 13:58:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679432284;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6ikSdl+v2RbMsn+hZZxLLeEtGyU0+iDujgEBGvs/Jx4=;
-        b=hIoWJ+EMMewQ7C7b9yprzx9sqQBtNML+H06guE4L+ADQvhrN0YRsTkFyILAvt13cS+
-         BkwzUXxaV6Kfd2uxqMGFxvMwXgjs6zWzDzTzrRZmC0CjL9BUxJBTlDnnc/Ec+FXG+j62
-         J/kkDoCWqlBzNuAy1U964SAVb7iAl11KfxhB7ZKYElHrwXpAG6eRP5wIlqOosNrzgd31
-         tCTjpmMdmOUk9u2MD9b3KZBkjRCevSLP5Cmg+2AF1bjM/i1tqoSKdTegVFnRrhOQbA5O
-         J0mP2PlxwE2vjeKeE/Att4InqUPmD8gaM5Vf81WGJj7IqXg+mq75+qdxUnDPjKyWefCZ
-         cvLA==
-X-Gm-Message-State: AO0yUKXzk88Axvxv60UbW4Y5ii4Vgmpnu60QAcKJslY5Ic0budQvdKu2
-        JM+j6VHr3ic/z0CYC/pAOQ==
-X-Google-Smtp-Source: AK7set8Rigax0lfu3Um3InrtQw2+nhx4GbZh1CaC1L9vY4pFglZ8MG3FKRE6UtnjveBVO810k6sRPg==
-X-Received: by 2002:a9d:6acc:0:b0:69e:e2bb:788c with SMTP id m12-20020a9d6acc000000b0069ee2bb788cmr328484otq.0.1679432283730;
-        Tue, 21 Mar 2023 13:58:03 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s10-20020a9d758a000000b0069f509ad088sm1919840otk.65.2023.03.21.13.58.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 13:58:03 -0700 (PDT)
-Received: (nullmailer pid 1544151 invoked by uid 1000);
-        Tue, 21 Mar 2023 20:58:02 -0000
-Date:   Tue, 21 Mar 2023 15:58:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, wcheng@codeaurora.org,
-        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-Subject: Re: [PATCH v4 10/18] dt-bindings: mfd: qcom,spmi-pmic: Add pdphy to
- SPMI device types
-Message-ID: <20230321205802.GA1540152-robh@kernel.org>
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-11-bryan.odonoghue@linaro.org>
- <88ccb21c-4370-7132-b2c1-c74b1f865cec@linaro.org>
+        with ESMTP id S229651AbjCUU7O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 16:59:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B64170E;
+        Tue, 21 Mar 2023 13:59:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2AC04B81A06;
+        Tue, 21 Mar 2023 20:59:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95C9FC433EF;
+        Tue, 21 Mar 2023 20:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679432350;
+        bh=U2nlH3LUzDvD9qs2WLh0pyrk82Sg3pNDNbGG12XhlYI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=SYNv6yt/XGQnYUI14pSX9O9P3lkJxNUfXDWzEt25/zjAKgOzR0zg8tAUwrYuonUpH
+         ag/wmz2lIsdyWQFCViGxmv64iivY0CKmNZsV00vSAfYWGHQm2/I10US3YajAWbTMHr
+         1jhuAaL5tHB//Q0acQNbXQClTlL6KE3LaGXipefr/PwKRZsPSSo4XbUK++Dd2tQOIh
+         5FdGdDNviZG0R0duoaJJw9A5iicviRdSauQFUHpp6eaGavy54oBRZkvIqj7x+qr+DH
+         h3cPwAdInFSggA5JDkzXc8X4rw2lENFhW2HvjPtumKVLBEeHdpuaO2W/EiM5Kethk5
+         8Qfx8NKsWHthg==
+Date:   Tue, 21 Mar 2023 15:59:09 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     bhelgaas@google.com, leoyang.li@nxp.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        kw@linux.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, minghuan.lian@nxp.com,
+        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
+        shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v2 1/1] PCI: layerscape: Add power management support
+Message-ID: <20230321205909.GA2409982@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <88ccb21c-4370-7132-b2c1-c74b1f865cec@linaro.org>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230321160220.2785909-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 19, 2023 at 12:58:48PM +0100, Krzysztof Kozlowski wrote:
-> On 18/03/2023 13:18, Bryan O'Donoghue wrote:
-> > The PDPHY sits inside of the PMIC SPMI block providing register-level
-> > ability to read/write USB Type-C Power Delivery protocol packets over the
-> > SBU pins.
-> > 
-> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> > index 8f076bb622b15..111aec53caeb5 100644
-> > --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> > @@ -140,6 +140,10 @@ patternProperties:
-> >      type: object
-> >      $ref: /schemas/power/reset/qcom,pon.yaml#
-> >  
-> > +  "pdphy@[0-9a-f]+$":
+On Tue, Mar 21, 2023 at 12:02:20PM -0400, Frank Li wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 > 
-> phy@
+> Add PME_Turn_Off/PME_TO_Ack handshake sequence to PCIe devices, such as
+> NVME or wifi module, and finally put the PCIe controller into D3 state
+> after the L2/L3 ready state transition process completion.
+> 
+> However, it's important to note that not all devices may be able to
+> tolerate the PME_Turn_Off command. In general, fixed PCIe devices
+> connected to Layerscape, such as NXP wifi devices, are able to handle
+> this command.
 
-But it is not a phy which I would define as something doing digital to 
-analog (or vice-versa) signal conversion/encoding. Sounds like an SBU 
-controller or something...
+I know this paragraph is here because I asked whether all PCIe devices
+could tolerate PME_Turn_Off.  I don't know much about that level of
+the protocol, but it does look to me like PME_Turn_Off is required,
+e.g., PCIe r6.0, sec 5.3.3.2.1, 5.3.3.4.
 
-Rob
+So I'm not sure this paragraph adds anything useful.  If the spec
+requires it, this paragraph is like saying "it's important to note
+that some PCIe devices may not follow the spec," which is pointless.
+
+This functionality results in any downstream devices being put in
+D3cold, right?  I think that *would* be worth mentioning.  There are a
+few cases where we try to avoid putting devices in D3cold, e.g.,
+no_d3cold, and I suspect this functionality would put them in D3cold
+regardless of no_d3cold.  Those are corner cases that you would
+probably never see on your platform, so a brief mention here is
+probably enough.
+
+> +static void ls_pcie_set_dstate(struct ls_pcie *pcie, u32 dstate)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_PM);
+> +	u32 val;
+> +
+> +	val = dw_pcie_readw_dbi(pci, offset + PCI_PM_CTRL);
+> +	val &= ~PCI_PM_CTRL_STATE_MASK;
+> +	val |= dstate;
+> +	dw_pcie_writew_dbi(pci, offset + PCI_PM_CTRL, val);
+
+Is this a power management register for the *Root Port*, i.e., as
+defined by PCIe r6.0 sec 7.5.2?
+
+Or is it a similar register for the *Root Complex* as a whole that is
+defined by a Layerscape or DesignWare spec and coincidentally uses the
+same Capability ID and control register layout as the PCIe one?
+
+The Root Port programming model is defined by the PCIe spec.  Things
+like .send_turn_off_message() and .exit_from_l2() are clearly part of
+the Root *Complex* programming model that is device-specific and not
+defined by the PCIe spec.
+
+I'm asking about ls_pcie_set_dstate() because it's written using the
+PCIe constants (PCI_CAP_ID_PM, PCI_PM_CTRL, etc) but it's mixed in
+with these Root Complex things that are *not* part of the PCIe spec.
+
+> +static bool ls_pcie_pm_supported(struct ls_pcie *pcie)
+> +{
+> +	if (!dw_pcie_link_up(pcie->pci)) {
+> +		dev_dbg(pcie->pci->dev, "Endpoint isn't present\n");
+> +		return false;
+> +	}
+> +
+> +	return pcie->pm_support;
+> +}
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int ls_pcie_suspend_noirq(struct device *dev)
+> +{
+> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> +	struct dw_pcie *pci = pcie->pci;
+> +	u32 val;
+> +	int ret;
+> +
+> +	if (!ls_pcie_pm_supported(pcie))
+> +		return 0;
+> +
+> +	pcie->drvdata->pm_ops->send_turn_off_message(pcie);
+> +
+> +	/* 10ms timeout to check L2 ready */
+> +	ret = readl_poll_timeout(pci->dbi_base + PCIE_PORT_DEBUG0,
+> +				 val, LS_PCIE_IS_L2(val), 100, 10000);
+> +	if (ret) {
+> +		dev_err(dev, "PCIe link enter L2 timeout! ltssm = 0x%x\n", val);
+> +		return ret;
+> +	}
+> +
+> +	ls_pcie_set_dstate(pcie, 0x3);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ls_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> +	struct dw_pcie *pci = pcie->pci;
+> +	int ret;
+> +
+> +	if (!ls_pcie_pm_supported(pcie))
+> +		return 0;
+
+How does this work?  You're checking whether the link is up *here*,
+and if it's already up, you go on below to (I guess) set the PCIe
+controller to D0, call dw_pcie_setup_rc() and dw_pcie_wait_for_link().
+Most drivers call dw_pcie_setup_rc() *before* starting the link.
+
+It looks like when you call ls_pcie_pm_supported() here,
+dw_pcie_link_up() should always return false because the link isn't up
+so it looks like there's no downstream device.  But I must be missing
+something because if that were the case you would never wake anything
+up below.
+
+> +	ls_pcie_set_dstate(pcie, 0x0);
+> +
+> +	pcie->drvdata->pm_ops->exit_from_l2(pcie);
+> +
+> +	ret = ls_pcie_host_init(&pci->pp);
+> +	if (ret) {
+> +		dev_err(dev, "PCIe host init failed! ret = 0x%x\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	dw_pcie_setup_rc(&pci->pp);
+> +
+> +	ret = dw_pcie_wait_for_link(pci);
+> +	if (ret) {
+> +		dev_err(dev, "Wait link up timeout! ret = 0x%x\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
