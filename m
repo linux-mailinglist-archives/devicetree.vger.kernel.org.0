@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0376A6C35D2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:38:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B84E6C35E1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:39:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbjCUPiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 11:38:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
+        id S231800AbjCUPjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 11:39:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230270AbjCUPiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:38:13 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28FA2469E
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:38:10 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id y20so19680996lfj.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:38:09 -0700 (PDT)
+        with ESMTP id S231750AbjCUPjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:39:08 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E24FE385
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:39:01 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id t14so15951424ljd.5
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:39:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679413087;
+        d=linaro.org; s=google; t=1679413140;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q/hHAe5iawN3skZzVZDnwhhdvLIa9hx/rH3tuAV1a/Y=;
-        b=nl+cB0MrV4ln5nxojPnc/K4a0UCvfGjtmVhygVZpD7PVa/igo4qoW/bWhyN58nE345
-         sOcsidbdyQelA0q5yyb9CKK/7Vdshos6+YQWgiK6za7PZtTRs9l2JhRNFtr6F58VsC3o
-         S/rBGzfytaeT4LmmjvNV+ZFZjYV5vQOzTmLE2zmjJBni0QbfsVsemeBI8eF5EtzZw285
-         lthQRCX/7kOEOvH+7gtdT2tVdw892MHQ+A4eeK3Tk4Baa1cKXWyZIxE5TVjGxsP7ArPG
-         ZWQc1ymC0IKKpOvNebI4KA1kF/jgmkC0wft0eIjYAlPVZpO2wPPcK+ED2RtpBZXfIQiE
-         njcg==
+        bh=dWP2ph0M6Dxxe0lHeRqTKQNZfKUBhP+hcSeJ9cU6CPo=;
+        b=DCNUeJyRJ2l2Nmh6vR+vyB7WWJiHnYGRKcjvtDrr9CC3h5qMhBXRXx+q9XOW6k8uH0
+         JPHHCxTYNBQzUbknECCjrABMKkO9fMWID+kSC1Sx9oHbwILtFyYpoizP+kqjHuDlRyAC
+         NNEqyUErOUZB9wnn5kv2iVWEq5pQrOpOGJBDn/vXOIhKPh/0oSo5Dgv2clrZ+wdeY06j
+         iZS1R3E1hF8qQX9X4gBxKZiNcY/UqDGy0jcMc3mJRnVc421TpR9Vy6cU2T+IaUIYLiOx
+         QEHNOMQgKgv62tEN7XzOdP2XyAyHr5c3WoR+JFms8U6rg3WjEdF8vvGY0L6nCV9BWTyI
+         aBig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679413087;
+        d=1e100.net; s=20210112; t=1679413140;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q/hHAe5iawN3skZzVZDnwhhdvLIa9hx/rH3tuAV1a/Y=;
-        b=wmnitRbZG4/aqMe+0Ub8lGOW5TZi2PJNnfLQuAcnScXW8Mw1UYS8MwQQhtXAm3LxWP
-         pod/Lys4pNTjPGK/v1RtWyn7jxZy7lmH+i6UZA+Cq+xezYcXo1TLgYteGMq/1pbAhfWC
-         j1NkRxq1l7t5iMqUTpBpI9RkeybIhBehiD52WQ6Ron4ozkcWVOrU1wzy20ECvvgTLj74
-         FwHWDqRIsjWmot7a8sxSu5Soo54FLjM1IshbId13NEAEkt4KgSOQDj/EUIMEQVhnN7f0
-         htDSwSKPDo/zsSrvNZ4v1/Taubh4VgQWzxgx3NpULDPoiptFWeP7uXaB50o5GA4foDz+
-         JKgQ==
-X-Gm-Message-State: AO0yUKWJBmlMBWD+RQkKQUIHIomdtUR9DJl5aJ29v6VNCQkbX7kOox4Z
-        /+YCVhJ4CUpII+bJDgGpH01Wnw==
-X-Google-Smtp-Source: AK7set+STU3G9QvNmNnVmdGOtK+qF7WbPNGCp2TWURDMZxtNtpOd5g+l+wav4QS+f2Wk7N556My/8Q==
-X-Received: by 2002:ac2:424e:0:b0:4db:3e56:55c8 with SMTP id m14-20020ac2424e000000b004db3e5655c8mr1010770lfl.59.1679413087349;
-        Tue, 21 Mar 2023 08:38:07 -0700 (PDT)
+        bh=dWP2ph0M6Dxxe0lHeRqTKQNZfKUBhP+hcSeJ9cU6CPo=;
+        b=VLZV6C8njqKNWgVRZ34hs5GaXWhOFJghEUeTduW8X6t5bEnpFf/91EyukcjpIjVkkz
+         1Tu8iwxc+icYyeHbVKj1uTllfLAGP9kRemmMK/FzHmXaadJhNFL20q9zaqMkqn6l2xLe
+         8427euQQeQ1sl25A9CR9x65To4Or9uAKX9EITzU3NFSrOU48LXzp2hYFsyKcgvXtlj/U
+         SzzUZmqkdob29/ghVD1ayYnAUr67OJLZMqAizjyPgaOWFvJH2NimD/vwnL3H05h0UDM5
+         hnmZ3/sIKKJNoouXq/RkYm7Ns8EVqx+ZNjbezD2VQ32LRur4QgEEaKn/3b9UCRFSySLl
+         Qh/g==
+X-Gm-Message-State: AO0yUKWEd6B5ye8uCzJ0WkyDwc/3PsKatLivq8JIkUs9dj1rua0yDpTT
+        qN657ZQA8QQ+blBPOO1n8eVILg==
+X-Google-Smtp-Source: AK7set+QouC4Xlc0D6msR+OSNNKaFzzruJKD2vBpGM+q9GQ03WlvV0NxqoCzKXG8twHpGrxssN3FUQ==
+X-Received: by 2002:a2e:3516:0:b0:299:cf0a:bf8 with SMTP id z22-20020a2e3516000000b00299cf0a0bf8mr1043784ljz.17.1679413140003;
+        Tue, 21 Mar 2023 08:39:00 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v5-20020a056512048500b004db513b0175sm2208560lfq.136.2023.03.21.08.38.06
+        by smtp.gmail.com with ESMTPSA id o22-20020a2e9456000000b0029caabd3c7asm1031027ljh.54.2023.03.21.08.38.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 08:38:06 -0700 (PDT)
-Message-ID: <7ef646e0-388e-b2ef-a28c-f1fcce486203@linaro.org>
-Date:   Tue, 21 Mar 2023 17:38:05 +0200
+        Tue, 21 Mar 2023 08:38:59 -0700 (PDT)
+Message-ID: <4e8357fd-233b-5d4d-6153-433c52e703d0@linaro.org>
+Date:   Tue, 21 Mar 2023 17:38:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v5 04/12] soc: qcom: pmic_glink: register ucsi aux device
+Subject: Re: [PATCH v5 09/12] arm64: dts: qcom: sm8350-hdk: add pmic glink
+ node
 Content-Language: en-GB
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Heikki Krogerus <heikki.krogerus@linux.intel.com>,
@@ -70,9 +71,9 @@ Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230130-topic-sm8450-upstream-pmic-glink-v5-0-552f3b721f9e@linaro.org>
- <20230130-topic-sm8450-upstream-pmic-glink-v5-4-552f3b721f9e@linaro.org>
+ <20230130-topic-sm8450-upstream-pmic-glink-v5-9-552f3b721f9e@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v5-4-552f3b721f9e@linaro.org>
+In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v5-9-552f3b721f9e@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,152 +87,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/03/2023 15:21, Neil Armstrong wrote:
-> Only register UCSI on know working devices, like on the SM8450
-> or SM8550 which requires UCSI to get USB mode switch events.
+> Add the pmic glink node linked with the DWC3 USB controller
+> switched to OTG mode and tagged with usb-role-switch.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 46 +++++++++++++++++++++++++++++++--
+>   1 file changed, 44 insertions(+), 2 deletions(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-Two nits below:
-
-> ---
->   drivers/soc/qcom/pmic_glink.c | 65 +++++++++++++++++++++++++++++++++++--------
->   1 file changed, 54 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
-> index bb3fb57abcc6..8bf95df0a56a 100644
-> --- a/drivers/soc/qcom/pmic_glink.c
-> +++ b/drivers/soc/qcom/pmic_glink.c
-> @@ -4,6 +4,7 @@
->    * Copyright (c) 2022, Linaro Ltd
->    */
->   #include <linux/auxiliary_bus.h>
-> +#include <linux/of_device.h>
->   #include <linux/module.h>
->   #include <linux/platform_device.h>
->   #include <linux/rpmsg.h>
-> @@ -11,12 +12,23 @@
->   #include <linux/soc/qcom/pdr.h>
->   #include <linux/soc/qcom/pmic_glink.h>
->   
-> +enum {
-> +	PMIC_GLINK_CLIENT_BATT = 0,
-> +	PMIC_GLINK_CLIENT_ALTMODE,
-> +	PMIC_GLINK_CLIENT_UCSI,
-> +};
-> +
-> +#define PMIC_GLINK_CLIENT_DEFAULT	(BIT(PMIC_GLINK_CLIENT_BATT) |	\
-> +					 BIT(PMIC_GLINK_CLIENT_ALTMODE))
-> +
->   struct pmic_glink {
->   	struct device *dev;
->   	struct pdr_handle *pdr;
->   
->   	struct rpmsg_endpoint *ept;
->   
-> +	unsigned long client_mask;
-> +
->   	struct auxiliary_device altmode_aux;
->   	struct auxiliary_device ps_aux;
->   	struct auxiliary_device ucsi_aux;
-> @@ -233,6 +245,7 @@ static struct rpmsg_driver pmic_glink_rpmsg_driver = {
->   
->   static int pmic_glink_probe(struct platform_device *pdev)
->   {
-> +	const unsigned long *match_data;
->   	struct pdr_service *service;
->   	struct pmic_glink *pg;
->   	int ret;
-> @@ -249,12 +262,27 @@ static int pmic_glink_probe(struct platform_device *pdev)
->   	mutex_init(&pg->client_lock);
->   	mutex_init(&pg->state_lock);
->   
-> -	ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
-> -	if (ret)
-> -		return ret;
-> -	ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
-> -	if (ret)
-> -		goto out_release_altmode_aux;
-> +	match_data = (unsigned long *)of_device_get_match_data(&pdev->dev);
-
-Nit: type cast should not be necessary here.
-
-> +	if (match_data)
-> +		pg->client_mask = *match_data;
-> +	else
-> +		pg->client_mask = PMIC_GLINK_CLIENT_DEFAULT;
-> +
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
-> +		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
-> +		if (ret)
-> +			return ret;
-> +	}
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
-> +		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
-> +		if (ret)
-> +			goto out_release_ucsi_aux;
-> +	}
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
-> +		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
-> +		if (ret)
-> +			goto out_release_altmode_aux;
-> +	}
->   
->   	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
->   	if (IS_ERR(pg->pdr)) {
-> @@ -278,9 +306,14 @@ static int pmic_glink_probe(struct platform_device *pdev)
->   out_release_pdr_handle:
->   	pdr_handle_release(pg->pdr);
->   out_release_aux_devices:
-> -	pmic_glink_del_aux_device(pg, &pg->ps_aux);
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
-> +		pmic_glink_del_aux_device(pg, &pg->ps_aux);
->   out_release_altmode_aux:
-> -	pmic_glink_del_aux_device(pg, &pg->altmode_aux);
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
-> +		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
-> +out_release_ucsi_aux:
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
-> +		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
->   
->   	return ret;
->   }
-> @@ -291,8 +324,12 @@ static int pmic_glink_remove(struct platform_device *pdev)
->   
->   	pdr_handle_release(pg->pdr);
->   
-> -	pmic_glink_del_aux_device(pg, &pg->ps_aux);
-> -	pmic_glink_del_aux_device(pg, &pg->altmode_aux);
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
-> +		pmic_glink_del_aux_device(pg, &pg->ps_aux);
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
-> +		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
-> +	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
-> +		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
->   
->   	mutex_lock(&__pmic_glink_lock);
->   	__pmic_glink = NULL;
-> @@ -301,8 +338,14 @@ static int pmic_glink_remove(struct platform_device *pdev)
->   	return 0;
->   }
->   
-> +/* Do not handle altmode for now on those platforms */
-> +static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
-> +							   BIT(PMIC_GLINK_CLIENT_UCSI);
-> +
->   static const struct of_device_id pmic_glink_of_match[] = {
-> -	{ .compatible = "qcom,pmic-glink", },
-
-Nit: one can leave comma in place to remove noise.
-
-> +	{ .compatible = "qcom,sm8450-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
-> +	{ .compatible = "qcom,sm8550-pmic-glink", .data = &pmic_glink_sm8450_client_mask },
-> +	{ .compatible = "qcom,pmic-glink" },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, pmic_glink_of_match);
-> 
 
 -- 
 With best wishes
