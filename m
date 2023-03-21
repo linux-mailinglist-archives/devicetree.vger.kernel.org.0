@@ -2,610 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D6A6C2632
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 01:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51A636C2723
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 02:15:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229617AbjCUAFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 20:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
+        id S229794AbjCUBPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 21:15:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbjCUAFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 20:05:50 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C111A4B2
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 17:05:26 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C1CD2496;
-        Tue, 21 Mar 2023 01:05:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1679357124;
-        bh=GPbRInuiNoKCViki/gXJjaRKzLTSK8FT2Wt3b7Xz0e8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JwWxx9H4VxsZgYJLPrQmqg9XPRD1f7Z6//rYuqXAI67sPMz/jigcC2u8QqNaKRTET
-         Ek5wY7EZ1drw1q5Yrbw2wUomPcT9Qfus0rff7jgE4CEMFZCJvCXhFVdBwnXoV5sXuJ
-         YdSahenRXsiys5Gma4rDxUwlunfFwEa/yeWvLmH4=
-Date:   Tue, 21 Mar 2023 02:05:29 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Marco Contenti <marco.c@variscite.com>,
-        Nate Drude <nate.d@variscite.com>,
-        FrancescoFerraro <francesco.f@variscite.com>,
-        Harshesh Valera <harshesh.v@variscite.com>
-Subject: Re: [PATCH v1 3/4] arm64: dts: freescale: Add support for the
- Variscite i.MX8MP DART8MCustomBoard
-Message-ID: <20230321000529.GX20234@pendragon.ideasonboard.com>
-References: <20230219031126.19372-1-laurent.pinchart@ideasonboard.com>
- <20230219031126.19372-4-laurent.pinchart@ideasonboard.com>
- <20230314023647.GG143566@dragon>
+        with ESMTP id S229670AbjCUBO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 21:14:28 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F025591;
+        Mon, 20 Mar 2023 18:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679361239; x=1710897239;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=neqS0div3l2OFqQ/6+ZJIu3ELpcYXAtz90xTmt6fo7Y=;
+  b=i8e/TicJ5jmwwAHNB5nmIL7ERCq+APBIXd+FxSQ9GVBBy0uTapUyMVHH
+   bzVD87DfJXJoQQheVUCXBNa3s0yVbRhCSiUKWjYGYDjiG0Q6+btrE7XoF
+   J6NaBZD7BT9/vRdWPVJPvINjEKwIi5kjN7TnU7xe7yzwccQyCFg36CqXv
+   bZUBusu0FmfNQIDDKMURdjCM/kLrvyG+jBHMB5cm+FI9nM7CKYRV2ukjm
+   sxp9Mug/8DXRk/sFSHmGnAyXASBjVUbvBbJo51uuLS5K7RPyBg9Gbp/jz
+   7TEI2OsGU0M7QOvBcg7m3373m9fDOF7esNXBQga6TXIhemxiU5HYEGQQV
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="337535817"
+X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; 
+   d="scan'208";a="337535817"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 18:06:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="674630692"
+X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; 
+   d="scan'208";a="674630692"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 20 Mar 2023 18:06:05 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1peQRw-000BSQ-2r;
+        Tue, 21 Mar 2023 01:06:04 +0000
+Date:   Tue, 21 Mar 2023 09:05:09 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org,
+        mazziesaccount@gmail.com
+Cc:     oe-kbuild-all@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mehdi Djait <mehdi.djait.k@gmail.com>
+Subject: Re: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+Message-ID: <202303210809.RAQ7nfl7-lkp@intel.com>
+References: <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230314023647.GG143566@dragon>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+Hi Mehdi,
 
-On Tue, Mar 14, 2023 at 10:36:47AM +0800, Shawn Guo wrote:
-> On Sun, Feb 19, 2023 at 05:11:25AM +0200, Laurent Pinchart wrote:
-> > The DT8MCustomBoard is a carrier board for DART i.MX8-based modules.
-> > This device tree file adds support for the DT8MCustomBoard v2.0 with a
-> > connected DART-MX8M-PLUS module.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> >  .../imx8mp-var-dart-dt8mcustomboard-v2.dts    | 499 ++++++++++++++++++
-> >  2 files changed, 500 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > index ef6f364eaa18..4e6cfcd22e86 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-dt8mcustomboard-v2.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
-> > new file mode 100644
-> > index 000000000000..5677236e0ef1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
-> > @@ -0,0 +1,499 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> > +/*
-> > + * Copyright 2019 NXP
-> > + * Copyright 2020-2021 Variscite Ltd.
-> > + * Copyright 2023 Ideas on Board Oy
-> > + */
-> > +
-> > +#include "imx8mp-var-dart.dtsi"
-> > +
-> > +/ {
-> > +	compatible = "variscite,dart-mx8mp-dt8mcustomboard-v2",
-> > +		     "variscite,dart-mx8mp",
-> > +		     "fsl,imx8mp";
-> > +	model = "Variscite DART-MX8M-PLUS on DT8MCustomBoard 2.x";
-> > +
-> > +	chosen {
-> > +		stdout-path = &uart1;
-> > +	};
-> > +
-> > +	can0_osc: can0-osc {
-> 
-> Maybe have a generic node name, something in pattern of clock-xxx?
+Thank you for the patch! Perhaps something to improve:
 
-I'll rename this to clock-can0.
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on next-20230320]
+[cannot apply to linus/master v6.3-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> > +		compatible = "fixed-clock";
-> > +		#clock-cells = <0>;
-> > +		clock-frequency = <40000000>;
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		status = "okay";
-> > +
-> > +		key-back {
-> > +			label = "BACK";
-> > +			linux,code = <KEY_BACK>;
-> > +			gpios = <&gpio_exp_1 7 GPIO_ACTIVE_LOW>;
-> > +			wakeup-source;
-> > +		};
-> > +
-> > +		key-up {
-> > +			label = "UP";
-> > +			linux,code = <KEY_UP>;
-> > +			gpios = <&gpio_exp_1 5 GPIO_ACTIVE_LOW>;
-> > +			wakeup-source;
-> > +		};
-> > +
-> > +		key-home {
-> > +			label = "HOME";
-> > +			linux,code = <KEY_HOME>;
-> > +			gpios = <&gpio_exp_1 4 GPIO_ACTIVE_LOW>;
-> > +			wakeup-source;
-> > +		};
-> > +
-> > +		key-down {
-> > +			label = "DOWN";
-> > +			linux,code = <KEY_DOWN>;
-> > +			gpios = <&gpio_exp_1 6 GPIO_ACTIVE_LOW>;
-> > +			wakeup-source;
-> > +		};
-> > +	};
-> > +
-> > +	gpio-leds {
-> > +		compatible = "gpio-leds";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpio_leds>;
-> > +		status = "okay";
-> > +
-> > +		led1 {
-> > +			label = "LED1";
-> > +			gpios = <&gpio_exp_2 7 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "heartbeat";
-> > +		};
-> > +
-> > +		led2 {
-> > +			label = "LED2";
-> > +			gpios = <&gpio_exp_2 6 GPIO_ACTIVE_HIGH>;
-> > +		};
-> > +
-> > +		led3 {
-> > +			label = "LED3";
-> > +			gpios = <&gpio_exp_2 5 GPIO_ACTIVE_HIGH>;
-> > +		};
-> > +
-> > +		led4 {
-> > +			label = "LED4";
-> > +			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "mmc2";
-> > +		};
-> > +	};
-> > +
-> > +	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "VSD_3V3";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> > +		enable-active-high;
-> > +		startup-delay-us = <100>;
-> > +		off-on-delay-us = <12000>;
-> > +	};
-> > +};
-> > +
-> > +&ecspi1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_ecspi1>;
-> > +	cs-gpios = <&gpio5  9 GPIO_ACTIVE_LOW>,
-> > +		   <&gpio1 12 GPIO_ACTIVE_LOW>;
-> > +	status = "okay";
-> > +
-> > +	touch@0 {
-> > +		compatible = "ti,tsc2046";
-> > +		spi-max-frequency = <1500000>;
-> > +		reg = <0>;
-> > +		status = "disabled";
-> 
-> We usually have 'status' at the end of property list.
+url:    https://github.com/intel-lab-lkp/linux/commits/Mehdi-Djait/dt-bindings-iio-Add-KX132-accelerometer/20230317-075056
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k%40gmail.com
+patch subject: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+config: loongarch-randconfig-s032-20230319 (https://download.01.org/0day-ci/archive/20230321/202303210809.RAQ7nfl7-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 12.1.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-39-gce1a6720-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/40c75341c42d0e5bea5d73961202978a4be41cd2
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mehdi-Djait/dt-bindings-iio-Add-KX132-accelerometer/20230317-075056
+        git checkout 40c75341c42d0e5bea5d73961202978a4be41cd2
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=loongarch olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=loongarch SHELL=/bin/bash drivers/iio/accel/
 
-I'll drop this, there's no reason to keep the
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303210809.RAQ7nfl7-lkp@intel.com/
 
-> > +
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_restouch>;
-> > +
-> 
-> Nitpick: we expect newlines at certain places like among nodes, or
-> between properties and child node, but not in middle of property list.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/accel/kionix-kx022a-spi.c:27:19: sparse: sparse: incorrect type in assignment (different modifiers) @@     expected struct kx022a_chip_info *chip_info @@     got void const * @@
+   drivers/iio/accel/kionix-kx022a-spi.c:27:19: sparse:     expected struct kx022a_chip_info *chip_info
+   drivers/iio/accel/kionix-kx022a-spi.c:27:19: sparse:     got void const *
+>> drivers/iio/accel/kionix-kx022a-spi.c:29:27: sparse: sparse: incorrect type in assignment (different modifiers) @@     expected struct kx022a_chip_info *chip_info @@     got struct kx022a_chip_info const * @@
+   drivers/iio/accel/kionix-kx022a-spi.c:29:27: sparse:     expected struct kx022a_chip_info *chip_info
+   drivers/iio/accel/kionix-kx022a-spi.c:29:27: sparse:     got struct kx022a_chip_info const *
 
-There are lots of device tree files in mainline where blank lines are
-used to separate groups of properties. I personally find this more
-readable than a large wall of text.
+vim +27 drivers/iio/accel/kionix-kx022a-spi.c
 
-> > +		interrupt-parent = <&gpio1>;
-> > +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-> > +
-> > +		pendown-gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
-> > +		wakeup-source;
-> > +
-> > +		touchscreen-min-x = <125>;
-> > +		touchscreen-min-y = <282>;
-> > +		touchscreen-size-x = <4009>;
-> > +		touchscreen-size-y = <3865>;
-> > +		touchscreen-max-pressure = <255>;
-> > +		touchscreen-average-samples = <10>;
-> > +
-> > +		ti,keep-vref-on;
-> > +		ti,settle-delay-usec = /bits/ 16 <150>;
-> > +		ti,x-plate-ohms = /bits/ 16 <180>;
-> > +		ti,debounce-tol = /bits/ 16 <3>;
-> > +		ti,debounce-rep = /bits/ 16 <1>;
-> > +	};
-> > +
-> > +	can@1 {
-> > +		compatible = "microchip,mcp2518fd";
-> > +		spi-max-frequency = <20000000>;
-> > +		reg = <1>;
-> > +		clocks = <&can0_osc>;
-> > +
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_can>;
-> > +
-> > +		interrupt-parent = <&gpio1>;
-> > +		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-> > +
-> > +		microchip,rx-int-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
-> > +	};
-> > +};
-> > +
-> > +&eqos {
-> > +	mdio {
-> > +		ethphy1: ethernet-phy@1 {
-> > +			compatible = "ethernet-phy-ieee802.3-c22";
-> > +			reg = <1>;
-> > +			eee-broken-1000t;
-> > +			reset-gpios = <&gpio_exp_2 0 GPIO_ACTIVE_LOW>;
-> > +			reset-assert-us = <10000>;
-> > +			reset-deassert-us = <20000>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&fec {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_fec>;
-> > +	phy-mode = "rgmii";
-> > +	phy-handle = <&ethphy1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&flexcan1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_flexcan1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&flexcan2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_flexcan2>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&i2c2 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default", "gpio";
-> > +	pinctrl-0 = <&pinctrl_i2c2>;
-> > +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-> > +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > +	status = "okay";
-> > +
-> > +	eeprom@54 {
-> > +		compatible = "rohm,24c04", "atmel,24c04";
-> > +		reg = <0x54>;
-> > +		pagesize = <16>;
-> > +	};
-> > +
-> > +	rtc@68 {
-> > +		compatible = "isil,isl12057";	/* dallas,ds1337 on v3.0 */
-> > +		reg = <0x68>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_rtc>;
-> > +		interrupt-parent = <&gpio1>;
-> > +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> > +		wakeup-source;
-> > +	};
-> > +};
-> > +
-> > +&i2c3 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default", "gpio";
-> > +	pinctrl-0 = <&pinctrl_i2c3>;
-> > +	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-> > +	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > +	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&i2c4 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default", "gpio";
-> > +	pinctrl-0 = <&pinctrl_i2c4>;
-> > +	pinctrl-1 = <&pinctrl_i2c4_gpio>;
-> > +	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > +	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > +	status = "okay";
-> > +
-> > +	gpio_exp_1: gpio@20 {
-> > +		compatible = "ti,tca6408";	/* nxp,pcal6408 on v3.0 */
-> > +		reg = <0x20>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_pca6408>;
-> > +		interrupt-parent = <&gpio1>;
-> > +		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +	};
-> > +
-> > +	gpio_exp_2: gpio@21 {
-> > +		compatible = "ti,tca6408";	/* nxp,pcal6408 on v3.0 */
-> > +		reg = <0x21>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +	};
-> > +};
-> > +
-> > +/* Reference voltage for eQOS PHY */
-> > +&ldo4 {
-> > +	regulator-min-microvolt = <1800000>;
-> > +	regulator-max-microvolt = <1800000>;
-> > +};
-> > +
-> > +&pwm1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_pwm1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* Console */
-> > +&uart1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_uart1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* Header */
-> > +&uart2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_uart2>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* Header */
-> > +&uart3 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_uart3>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb3_phy1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb3_1 {
-> > +	fsl,permanently-attached;
-> > +	fsl,disable-port-power-control;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_dwc3_1 {
-> > +	dr_mode = "host";
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* SD card connector */
-> > +&usdhc2 {
-> > +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> > +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> > +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> > +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> > +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> > +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> > +	bus-width = <4>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&iomuxc {
-> > +	pinctrl_can: cangrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06				0x1c6
-> > +			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04				0x16
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_ecspi1: ecspi1grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK				0x12
-> > +			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI				0x12
-> > +			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO				0x12
-> > +			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09				0x12
-> > +			MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12				0x12
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_fec: fecgrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x90
-> > +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x90
-> > +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x90
-> > +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x90
-> > +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x90
-> > +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x90
-> > +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x00
-> > +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x00
-> > +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x00
-> > +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x00
-> > +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x00
-> > +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x00
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_flexcan1: flexcan1grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SAI2_RXC__CAN1_TX					0x154
-> > +			MX8MP_IOMUXC_SAI2_TXC__CAN1_RX					0x154
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_flexcan2: flexcan2grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SAI2_MCLK__CAN2_RX					0x154
-> > +			MX8MP_IOMUXC_SAI2_TXD0__CAN2_TX					0x154
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_gpio_leds: ledgrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0xc6
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c2: i2c2grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
-> > +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c3: i2c3grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
-> > +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA					0x400001c2
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c4: i2c4grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c2
-> > +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c2
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c2_gpio: i2c2gpiogrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16				0x1c2
-> > +			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17				0x1c2
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c3_gpio: i2c3gpiogrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_I2C3_SCL__GPIO5_IO18				0x1c2
-> > +			MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19				0x1c2
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c4_gpio: i2c4gpiogrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_I2C4_SCL__GPIO5_IO20				0x1c2
-> > +			MX8MP_IOMUXC_I2C4_SDA__GPIO5_IO21				0x1c2
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_pca6408: pca6408grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05				0x1c6
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_pwm1: pwm1grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_GPIO1_IO01__PWM1_OUT				0x116
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_restouch: restouchgrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_GPIO1_IO07__GPIO1_IO07				0xc0
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_rtc: rtcgrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15				0x1c0
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_uart1: uart1grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX				0x40
-> > +			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX				0x40
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_uart2: uart2grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x40
-> > +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x40
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_uart3: uart3grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x40
-> > +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x40
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_usb0: usb0grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC				0x1c0
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12				0x1c4
-> > +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x40
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_usdhc2: usdhc2grp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
-> > +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
-> > +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
-> > +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
-> > +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
-> > +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
-> > +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc0
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x194
-> > +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d4
-> > +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d4
-> > +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d4
-> > +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d4
-> > +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d4
-> > +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc0
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> > +		fsl,pins = <
-> > +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x196
-> > +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d6
-> > +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d6
-> > +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d6
-> > +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d6
-> > +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d6
-> > +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc0
-> > +		>;
-> > +	};
-> > +};
+    14	
+    15	static int kx022a_spi_probe(struct spi_device *spi)
+    16	{
+    17		struct device *dev = &spi->dev;
+    18		struct kx022a_chip_info *chip_info;
+    19		struct regmap *regmap;
+    20		const struct spi_device_id *id = spi_get_device_id(spi);
+    21	
+    22		if (!spi->irq) {
+    23			dev_err(dev, "No IRQ configured\n");
+    24			return -EINVAL;
+    25		}
+    26	
+  > 27		chip_info = device_get_match_data(&spi->dev);
+    28		if (!chip_info)
+  > 29			chip_info = (const struct kx022a_chip_info *) id->driver_data;
+    30	
+    31		regmap = devm_regmap_init_spi(spi, chip_info->regmap_config);
+    32		if (IS_ERR(regmap))
+    33			return dev_err_probe(dev, PTR_ERR(regmap),
+    34					     "Failed to initialize Regmap\n");
+    35	
+    36		return kx022a_probe_internal(dev, chip_info);
+    37	}
+    38	
 
 -- 
-Regards,
-
-Laurent Pinchart
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
