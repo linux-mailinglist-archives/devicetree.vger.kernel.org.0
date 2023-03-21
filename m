@@ -2,145 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB54C6C3495
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:43:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED1096C34FD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231409AbjCUOn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 10:43:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42490 "EHLO
+        id S231511AbjCUPDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 11:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjCUOn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:43:26 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E312A10CA;
-        Tue, 21 Mar 2023 07:43:23 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id ek18so60643103edb.6;
-        Tue, 21 Mar 2023 07:43:23 -0700 (PDT)
+        with ESMTP id S229964AbjCUPDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:03:19 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E782596C;
+        Tue, 21 Mar 2023 08:03:17 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id p13-20020a17090a284d00b0023d2e945aebso1929870pjf.0;
+        Tue, 21 Mar 2023 08:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679409802;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O7ubpTBwCGfHItDX77/xDDLQ0Emp6svnzclBDAs6qyE=;
-        b=T1s8Ngl+RkVIvxNZpvZnMH7cqodpqineB22YWtIv/fCGFj7joV/a1TjSRUm2pJJHHt
-         MUKxqDn5xKWt1O5LBWVnUBgDu7rGLfa03O5Y9FcuEHowG/SlkK7LqP23ZwmrwM0e7Teq
-         QIWIwFG8FsQIjgobJ5zpK1KmBtp960ybNTL2lY/5bEB4xvS7cnm3kjiyyk9z2xzet73f
-         gBH4RPumKKnXgn8OfdTuNLjHTY1ctiMA2fIGN5fpsiI7phP1firJvEgcgRL6RMRFv9B6
-         rxvXVlonIb+2hM/XbpELgBCHVQG3Fb65I6yc1FlE/etUE3C5BrDKrCvP1Dd5HFv5cDVd
-         3S5g==
+        d=gmail.com; s=20210112; t=1679410997;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K4P7a0/rXTyc57id8CDTnxqxhaZ2GzBVxFhFkoIR7uk=;
+        b=j0uZLcvL7n5o9c8Kh7uq/gnpjJ7g2Y48whQ6tE8UruQFrEmushobctNeWdOTkqKZbW
+         sZX6fcP/Gp2jP9ryQDTIYzK8JD491Ym+Q8HYztA3nQwOq21sgXCuftBGYSQSYOvgqW22
+         rvJ4QdtPkIZ3qKsC+r6qZyIWRdXP3Uacc9b+wWZnEJw7eQMBcd1CgTglmvb1VnZQa18R
+         Wqt9GYcu0VAs/QG6bYBANPa2et5//XCUB2n81LvoUzszRwDWOiAPpMVa4ms4gVBl22xO
+         QVOfyu2k9B6pnWS8lAGwfEHLObFIupo7+lttCTDMgWU5DXwiBN3wyreROYD9M37Y7kB1
+         oobw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679409802;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O7ubpTBwCGfHItDX77/xDDLQ0Emp6svnzclBDAs6qyE=;
-        b=r3q6DEz2yV4hDn8IYZKPxexbnrH/9JtKp0BLERREVGhrjc3icgIU/1/JQXcKkwmqvd
-         yJG5L5xDQ/oCCQBMHCQg4Zv5fBrncgztfXS0Se5wkvvLdQ3NRUGw8vrM8Ubqm4IA+eg1
-         aprKVEFSrqZueWnnrWZwJepo+WVgfg7EJphSGksJ5kz9B0SddH91aD4ctut+Dr1IYOkK
-         YPLNqun9TchVtSfFH+IAC/idGqrK0Gya/r5K55z3U4aqEm7niU7LNGquQ3h+LzMgoTmu
-         CRoFl4CNWnH7YaTPQ4jVkhQENVp7rquab4h95n6L6KBMu8+LwAFZFZh+boO4kVI8fLq9
-         P/pg==
-X-Gm-Message-State: AO0yUKVDcwfyVLBQ4ocxPaK78o7bFUjtKZdfG5wST1ES/yoFdKJP+48E
-        qUTywqM1D2uEnpeALTxga58=
-X-Google-Smtp-Source: AK7set96Is0TLe0fndXxjNYCDYYIIwKDzHB+KNPQfBa3bfvxoMA0iLVPglnQVrqgXhUacHz1wyNEXg==
-X-Received: by 2002:a05:6402:1116:b0:4ac:b528:5727 with SMTP id u22-20020a056402111600b004acb5285727mr3772779edv.1.1679409802207;
-        Tue, 21 Mar 2023 07:43:22 -0700 (PDT)
-Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation ([5.170.200.163])
-        by smtp.gmail.com with ESMTPSA id q28-20020a50aa9c000000b004fb556e905fsm6386755edc.49.2023.03.21.07.43.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 07:43:21 -0700 (PDT)
-Date:   Tue, 21 Mar 2023 15:43:18 +0100
-From:   Tommaso Merciai <tomm.merciai@gmail.com>
-To:     Paul Elder <paul.elder@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, Dafna Hirschfeld <dafna@fastmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/14] media: rkisp1: Add support for i.MX8MP
-Message-ID: <ZBnChlWq5RTI8U8h@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
+        d=1e100.net; s=20210112; t=1679410997;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K4P7a0/rXTyc57id8CDTnxqxhaZ2GzBVxFhFkoIR7uk=;
+        b=tHPUqT7wZgG0rLLWyUCR29rG8pMRIHsQTFgcGruE6zSv9kF8yFAcE93HE11lapBStm
+         BIrbEasMOWD+8pRe7ADaTGv+NDHEg8BhI+Ogy4iayBQnRqbNfoT1jrvtDelN7oy26y+W
+         3oZETEJIa8WhSLcv90oKlIx7mrYUgfXxvTJoeYEJVpA7K52SoG+tH3VphJpJdK3oqIr8
+         71HpUge7BL4htjXMHITS0e/0/tRaHFKFMDIvvcjeGSY61hX46ythbCvDqNodQmYJ2xhr
+         e95UNTsphLV8yXxTuu4d466lb5bx+egWneLDc9vIqnwpGd6+5e8nXKHI0dOt6aSFnlX/
+         BRwA==
+X-Gm-Message-State: AO0yUKW7b3UCQLxUEEi2M8yrf2inm/omOeJEjZxf6G6FwPL2MHlJ8Ixi
+        MYXYpiXDDfYzYN3YQDHWVkv/fhX5mQ8=
+X-Google-Smtp-Source: AK7set99Pc5eg5pmBA+wYuNn07qDtLUwAn/dSaqIvVkGyhs+4JyZ/kfNWOZkFp0QMhUA4h2baD0WxA==
+X-Received: by 2002:a05:6a20:8c02:b0:d6:ba0b:c82c with SMTP id j2-20020a056a208c0200b000d6ba0bc82cmr2140408pzh.38.1679410996661;
+        Tue, 21 Mar 2023 08:03:16 -0700 (PDT)
+Received: from [192.168.1.101] (1-160-162-168.dynamic-ip.hinet.net. [1.160.162.168])
+        by smtp.gmail.com with ESMTPSA id c8-20020a62e808000000b005cdbd9c8825sm8325299pfi.195.2023.03.21.08.03.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 08:03:16 -0700 (PDT)
+Message-ID: <d59489d2-e801-a4a9-7bb4-bc80ffd0469a@gmail.com>
+Date:   Tue, 21 Mar 2023 23:03:12 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 12/15] clk: nuvoton: Add clock driver for ma35d1 clock
+ controller
+Content-Language: en-US
+To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230315072902.9298-1-ychuang570808@gmail.com>
+ <20230315072902.9298-13-ychuang570808@gmail.com>
+ <8b5854d3-2793-bc33-137e-5a2673d72329@linux.intel.com>
+ <00c3748b-61fa-f14b-f92c-b60fd9d6b4ee@gmail.com>
+ <9115473c-2e88-da76-9631-ca19b9129be4@linux.intel.com>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <9115473c-2e88-da76-9631-ca19b9129be4@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Paul,
+Dear Ilpo,
 
-On Fri, Nov 18, 2022 at 06:39:17PM +0900, Paul Elder wrote:
-> This series depends on v3 of "dt-bindings: media: Add macros for video
-> interface bus types" [1].
-> 
-> This series extends the rkisp1 driver to support the ISP found in the
-> NXP i.MX8MP SoC.
-> 
-> The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
-> and in the NXP i.MX8MP have the same origin, and have slightly diverged
-> over time as they are now independently developed (afaik) by Rockchip
-> and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
-> and is close enough to the RK3399 ISP that it can easily be supported by
-> the same driver.
-> 
-> The last two patches add support for UYVY output format, which can be
-> implemented on the ISP version in the i.MX8MP but not in the one in the
-> RK3399.
-> 
-> This version of the series specifically has been tested on a Polyhex
-> Debix model A with an imx219 (Raspberry Pi cam v2).
-> 
-> [1] https://lore.kernel.org/linux-media/20220615221410.27459-2-laurent.pinchart@ideasonboard.com/
 
-I tested your series on imx274 on imx8mp-evk csi0.
-All looks good on my side.
-Thanks for your work!
-
-Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
-
-Regards,
-Tommaso
-
-> 
-> Laurent Pinchart (3):
->   dt-bindings: media: rkisp1: Add i.MX8MP ISP example
->   media: rkisp1: Add and use rkisp1_has_feature() macro
->   media: rkisp1: Configure gasket on i.MX8MP
-> 
-> Paul Elder (11):
->   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
->   media: rkisp1: Add match data for i.MX8MP ISP
->   media: rkisp1: Add and set registers for crop for i.MX8MP
->   media: rkisp1: Add and set registers for output size config on i.MX8MP
->   media: rkisp1: Add i.MX8MP-specific registers for MI and resizer
->   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
->   media: rkisp1: Add register definitions for the test pattern generator
->   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
->   media: rkisp1: Support devices without self path
->   media: rkisp1: Add YC swap capability
->   media: rkisp1: Add UYVY as an output format
-> 
->  .../bindings/media/rockchip-isp1.yaml         |  79 ++++++++++-
->  .../platform/rockchip/rkisp1/rkisp1-capture.c | 102 +++++++++++---
->  .../platform/rockchip/rkisp1/rkisp1-common.h  |  32 +++++
->  .../platform/rockchip/rkisp1/rkisp1-debug.c   |  14 +-
->  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  67 +++++++--
->  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 128 +++++++++++++++++-
->  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  90 ++++++++++++
->  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  35 ++++-
->  include/uapi/linux/rkisp1-config.h            |   2 +
->  9 files changed, 509 insertions(+), 40 deletions(-)
-> 
-> -- 
-> 2.35.1
+On 2023/3/20 下午 06:31, Ilpo Järvinen wrote:
+> On Sun, 19 Mar 2023, Jacky Huang wrote:
 >
+>> On 2023/3/16 下午 11:56, Ilpo Järvinen wrote:
+>>> On Wed, 15 Mar 2023, Jacky Huang wrote:
+>>>
+>>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>>
+>>>> The clock controller generates clocks for the whole chip, including
+>>>> system clocks and all peripheral clocks. This driver support ma35d1
+>>>> clock gating, divider, and individual PLL configuration.
+>>>>
+>>>> There are 6 PLLs in ma35d1 SoC:
+>>>>     - CA-PLL for the two Cortex-A35 CPU clock
+>>>>     - SYS-PLL for system bus, which comes from the companion MCU
+>>>>       and cannot be programmed by clock controller.
+>>>>     - DDR-PLL for DDR
+>>>>     - EPLL for GMAC and GFX, Display, and VDEC IPs.
+>>>>     - VPLL for video output pixel clock
+>>>>     - APLL for SDHC, I2S audio, and other IPs.
+>>>> CA-PLL has only one operation mode.
+>>>> DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
+>>>> operation modes: integer mode, fraction mode, and spread specturm mode.
+>>>>
+>>>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>>>> ---
+>>>> +};
+>>>> +
+>>>> +#define to_ma35d1_adc_clk_divider(_hw)	\
+>>>> +	container_of(_hw, struct ma35d1_adc_clk_divider, hw)
+>>> static inline
+>>
+>> I will modify these "static" functions as "static inline".
+> No, that's not what I meant. Make the container_of define static inline
+> function instead, no other functions. (Or if you have more than one of
+> such, all of them of course).
+>
+>>>> +}
+>>>> diff --git a/drivers/clk/nuvoton/clk-ma35d1-pll.c
+>>>> b/drivers/clk/nuvoton/clk-ma35d1-pll.c
+>>>> new file mode 100644
+>>>> index 000000000000..79e724b148fa
+>>>> --- /dev/null
+>>>> +++ b/drivers/clk/nuvoton/clk-ma35d1-pll.c
+>>>> @@ -0,0 +1,534 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>> +/*
+>>>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>>>> + * Author: Chi-Fang Li <cfli0@nuvoton.com>
+>>>> + */
+>>>> +
+>>>> +#include <linux/clk.h>
+>>>> +#include <linux/clk-provider.h>
+>>>> +#include <linux/io.h>
+>>>> +#include <linux/slab.h>
+>>>> +#include <linux/bitfield.h>
+>>>> +
+>>>> +#include "clk-ma35d1.h"
+>>>> +
+>>>> +#define to_ma35d1_clk_pll(clk) \
+>>>> +	(container_of(clk, struct ma35d1_clk_pll, clk))
+>>> static inline
+>>
+>> I am sorry cannot get "static inline" refer to which one.
+>>
+>> Would you give more advice here?
+>>
+>> Thank you.
+> static inline struct ...type_here... *to_ma35d1_clk_pll(struct ...type_here... *clk)
+> {
+> 	return container_of(clk, struct ma35d1_clk_pll, clk);
+> }
+>
+
+OK, I got it. Thank you very much.
+
+
+>>>> +	} else {
+>>>> +		pr_err("Failed to set rate %ld\n", u64PllFreq);
+>>>> +		return 0;
+>>>> +	}
+>>>> +
+>>>> +	u64P = (u64FCLKO >= VSIPLL_FCLK_MIN_FREQ) ? 1 :
+>>>> +	       ((VSIPLL_FCLK_MIN_FREQ / u64FCLKO) +
+>>>> +		((VSIPLL_FCLK_MIN_FREQ % u64FCLKO) ? 1 : 0));
+>>> Ditto.
+>>>
+>>> Is here some ...ROUND_UP() trick hidden too?
+>>
+>> This follows the description of PLL spec.
+> Right but I was looking into what the math does. To me this looks like
+> rounding up:
+>   VSIPLL_FCLK_MIN_FREQ / u64FCLKO + (VSIPLL_FCLK_MIN_FREQ % u64FCLKO ? 1 : 0)
+>
+> When modulo is > 0, add one, which is round up, no?
+>
+> There are helpers which you should use for rounding up, search for
+> *_ROUND_UP. I think math64.h had one 64-bit one.
+
+
+Yes, it is a round up. We will find out all the occurrence and use 
+ROUND_UP() macro instead.
+
+
+>>>> +	u64X = u64tmp % 1000;
+>>>> +	u32FRAC = ((u64X << 24) + 500) / 1000;
+> I missed this earlier, is this rounding? ...Use a helper if it is.
+> Otherwise define what 500 is. (No need to answer despite question mark,
+> just do the change).
+>
+>>>> +
+>>>> +	u64SSRATE = ((PllSrcClk >> 1) / (u32Fmod * 2)) - 1;
+>>>> +	u64SLOPE = ((u64tmp * u32SR / u64SSRATE) << 24) / 100 / 1000;
+>>>> +
+>>>> +	u64PllClk = (PllSrcClk * u64tmp) / u64P / u64M / 1000;
+>>> Is some *SEC_PER_*SEC define relevant for 1000 ?
+>>>
+>>> Or some other units, e.g., HZ related?
+>>
+>> 1000 is for kHz to MHz, and 100 is for percentage.
+> Okay, then use KHZ_PER_MHZ from linux/units.h.
+>
+> We don't have anything for percents under include/ I think so that can be
+> left as literal.
+
+
+Sure, we are rewriting the pll calculation routine and add formula 
+comments to make it more readable.
+
+
+>>>> +	switch (pll->mode) {
+>>>> +	case VSIPLL_INTEGER_MODE:
+>>>> +		u64PllClk = CLK_CalPLLFreq_Mode0(PllSrcClk, u64PllFreq,
+>>>> +						 u32Reg);
+>>> One line.
+>>
+>> It will exceed 80 characters in one line.
+> Yeah, the semicolon won't fit to 80 chars :-) which means there won't be
+> significant information loss even on 80 chars terminal. This kind of cases
+> is why checkpatch won't complain until 100 chars. Use common sense (don't
+> hide most of the logic to 80-100 but don't be afraid of breaking the 80
+> chars where the information loss is not significant issue).
+>
+> Besides, once you removed the types from variable names, it will be
+> shorter anyway.
+>
+Got it. Thanks for your kind help and detailed explanation.
+
+
+Best regards,
+
+Jacky Huang
+
+
