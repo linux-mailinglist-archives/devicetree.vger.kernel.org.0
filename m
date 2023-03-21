@@ -2,77 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67CE26C343A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED0D26C3448
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231169AbjCUO3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 10:29:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51382 "EHLO
+        id S231142AbjCUOdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 10:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231195AbjCUO3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:29:35 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E140A24C97;
-        Tue, 21 Mar 2023 07:29:00 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32LESQ3k015761;
-        Tue, 21 Mar 2023 09:28:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679408906;
-        bh=turgaoA9Ps4HYc5Mt71Um0EHMFBvj+SVE4LLMNT2DvA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Na8LYsDCy7RuAmRlYZtcLqN7GyZVuXDfCqqy4G/VWVV+/YzCXGOLGNUTlqGHMhy3J
-         SKi7nn7XLeJRuYuJ0Lapk0WqdxR8l4nQvHez1hJQojpn2PLlNXH2j2cCceIYf68tjq
-         gcBzxA9t/f8IpzhnKuLMXmx4E9+hgNXlTxE0K0/A=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32LESQqO130105
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Mar 2023 09:28:26 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Mar 2023 09:28:26 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Mar 2023 09:28:26 -0500
-Received: from [172.24.145.160] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32LESJH6002836;
-        Tue, 21 Mar 2023 09:28:19 -0500
-Message-ID: <d72bf0df-28d7-6419-56a5-58e04dcb30f2@ti.com>
-Date:   Tue, 21 Mar 2023 19:58:18 +0530
+        with ESMTP id S230025AbjCUOdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:33:06 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B13A4C0A;
+        Tue, 21 Mar 2023 07:33:03 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2F777582194;
+        Tue, 21 Mar 2023 10:33:00 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 21 Mar 2023 10:33:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1679409180; x=1679416380; bh=T/
+        lq0wdl5waDK7GJCv2ptAX5Xsg9I9oRktyonRsh2Ok=; b=nSQeM/hAbtbjunm3+l
+        9m0ACRX5pcJaI4mDgqc3K84iYdrOkpWyhiivRFGddhBnNafT5tIoYwX0pOKg2/r2
+        d0AREqYUPBAnPjyugOIN8SdCGJ5DLL7KISvulndfWgfqsEsKKKArdTJ72QG0ezyJ
+        4oMmHbQYFFK3UhUvVy9evNiYJrAY+iPwA1HL6OOwMtIYq4msJtNrcR3o4PKPsIHj
+        Kty9Csv3mzjyUMehWpPB5RriaZ77gwU5fVLJXT3wRu4YMMkNNeDWM/IXnWO9RCMn
+        rZERZ4TDdS8g5Ux/IOJR3oXbPFCyXkWOJEQ1+b3x+gvYXHz+KzM/vFSAqzBpPlfe
+        AKCw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1679409180; x=1679416380; bh=T/lq0wdl5waDK
+        7GJCv2ptAX5Xsg9I9oRktyonRsh2Ok=; b=WkTdIj36fxYe9ZB98EK6mienufLrF
+        qeZoTxB5+dougAHWFmQH32QWx12UioQ12q5M2JLS2WS1Kr7xwhBRKkQR2QpqVrw2
+        hiMqLBUR1Plzw97VXOJOPMeUjY03KWodhVVRlHatQmFQ2WezHqtoZI4h6YPwMKZH
+        ZPbf5C2KfjpCXB1Fyu2SsJ0TaD9YSTVdYsgGB+5Ebz03LHezG1LKtF5yQb6CjTmN
+        4jUvzz0B/Lj2B0i7vPJujZbH8yGXsEawU7ZPc1Rpc4yWK+WcfEHSHweiP0S6CbI8
+        /gKKIQe7ZeUgg18lTzYQQxnZ11jXsJT9aPRjoSpd2uzOxkUXgoK6elABg==
+X-ME-Sender: <xms:G8AZZLgSQPHKhlV50q8TO3b-YscRkC9yQ7lc6TnjJh3KXHLYTAIoBw>
+    <xme:G8AZZIBkr2JChgYJTsTYbi8KEuTIK3nbfoAys_uyDwo6kwBEqioF6pJqiS6PK0GA7
+    LGno9h1qEJDq5duAws>
+X-ME-Received: <xmr:G8AZZLEiWTYxlKntBJX_Dbfee0v_Ar8edQcJPjs3c9Cl_2MWZ1WJrd3s9dB2l-8aAeOCNJ10YVlIV2qs9a2EOTRy_d9uno0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdegtddgieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
+    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:G8AZZIQ3LvdGLv99ngFCGTO6-hTz02yJFTBVzDt_NQDAqd12r6Cx-A>
+    <xmx:G8AZZIz_gaZiOALKNSZFvA5p-bS7GlshX4IHWG3o1ksbDtqfeafejg>
+    <xmx:G8AZZO4y6C4PkPoN8Zjyt2N7JuF9PlRNG7idrZua3C8HEm9UgYCm4w>
+    <xmx:HMAZZIEv6AY65hhQlNCWwIlZEXqiIg197-nyQfcGi_cisbYAWFZd0A>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 21 Mar 2023 10:32:58 -0400 (EDT)
+Date:   Tue, 21 Mar 2023 15:32:56 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     David Gow <davidgow@google.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+Subject: Re: [PATCH 4/8] clk: Add test managed clk provider/consumer APIs
+Message-ID: <20230321143256.ybr6c6kstcv5lnbk@houat>
+References: <20230302013822.1808711-1-sboyd@kernel.org>
+ <20230302013822.1808711-5-sboyd@kernel.org>
+ <CABVgOSkahumU6T+rCVx+k7Y9=iMszveseVYE0wfKjXwkNJpFxQ@mail.gmail.com>
+ <77b315f6b89eb256c516ee08b1c17312.sboyd@kernel.org>
+ <CABVgOSk4gEob3rokKF_p2Bcd_Sj3ikUN4R-HPHyTR0Eoo==85g@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>, <airlied@gmail.com>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
-        <jani.nikula@intel.com>, <tzimmermann@suse.de>,
-        <javierm@redhat.com>, <ville.syrjala@linux.intel.com>,
-        <r-ravikumar@ti.com>, <lyude@redhat.com>,
-        <alexander.deucher@amd.com>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>, <a-bhatia1@ti.com>
-References: <20230316140823.234263-1-j-choudhary@ti.com>
- <20230316140823.234263-2-j-choudhary@ti.com>
- <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
- <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
- <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kn4g64rogn4yrwmy"
+Content-Disposition: inline
+In-Reply-To: <CABVgOSk4gEob3rokKF_p2Bcd_Sj3ikUN4R-HPHyTR0Eoo==85g@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,39 +103,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--kn4g64rogn4yrwmy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 21/03/23 18:08, Krzysztof Kozlowski wrote:
-> On 21/03/2023 13:02, Jayesh Choudhary wrote:
->>>
->>>> +    type: boolean
->>>> +    description:
->>>> +      Set if the HPD line on the bridge isn't hooked up to anything or is
->>>> +      otherwise unusable.
->>>
->>> It's the property of the panel, not bridge. Unless you want to say that
->>> bridge physically does not have HPD? Does it follow the standard in such
->>> case?
->>
->> MHDP does have hpd. But the mhdp driver should handle the cases when the
-> 
-> This is about bindings, not driver. Your driver can still handle this as
-> it wishes.
-> 
->> hpd pin of bridge is not connected to that of the DP-connector. This is
->> to add support for that. (optional property)
-> 
-> Which is indicated by panel no-hpd, right?
+On Sat, Mar 11, 2023 at 02:32:04PM +0800, David Gow wrote:
+> > > > diff --git a/drivers/clk/clk-kunit.c b/drivers/clk/clk-kunit.c
+> > > > new file mode 100644
+> > > > index 000000000000..78d85b3a7a4a
+> > > > --- /dev/null
+> > > > +++ b/drivers/clk/clk-kunit.c
+> > > > @@ -0,0 +1,204 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * KUnit helpers for clk tests
+> > > > + */
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/clk-provider.h>
+> > > > +#include <linux/err.h>
+> > > > +#include <linux/kernel.h>
+> > > > +#include <linux/slab.h>
+> > > > +
+> > > > +#include <kunit/resource.h>
+> > > > +
+> > > > +#include "clk-kunit.h"
+> > > > +
+> > > > +static void kunit_clk_disable_unprepare(struct kunit_resource *res)
+> > >
+> > > We need to decide on the naming scheme of these, and in particular if
+> > > they should be kunit_clk or clk_kunit (or something else).
+> > >
+> > > I'd lean to clk_kunit, if only to match DRM's KUnit helpers being
+> > > drm_kunit_helper better, and so that these are more tightly bound to
+> > > the subsystem being tested.
+> > > (i.e., so I don't have to scroll through every subsystem's helpers
+> > > when autocompleting kunit_).
+> >
+> > Ok, got it. I was trying to match kunit_kzalloc() style. It makes it
+> > easy to slap the 'kunit_' prefix on existing auto-completed function
+> > names like kzalloc() or clk_prepare_enable().
+>=20
+> Yeah: my rule of thumb at the moment is to keep the kunit_ prefix for
+> things which are generic across the whole kernel (and tend to be
+> implemented in lib/kunit), and to use suffixes or infixes (whichever
+> works best) for things which are subsystem-specific.
 
-Actually no panel is involved in this. For TI SoC J721S2, the data 
-pipeline involves the bridge whose endpoint is directly the DP connector 
-with compatible 'dp-connector'. And in the binding dp-connector.yaml, 
-there isn't any 'no-hpd' property for this indication.
+A suffix is kind of weird though when any other managed call is using a
+prefix: devm is always using a prefix including for clocks, kunit for
+some calls too (like kzalloc).
 
-Does this clarifies the issue? Or did I misinterpret your comment?
+Having clk_get vs devm_clk_get vs clk_get_kunit would be very
+inconsistent and throws me off completely :)
 
-> Or you mean now that HPD
-> physically cannot go to panel because it is cut on the bridge side? But
-> isn't this the same case (from hardware/bindings point, not driver) as
-> panel would not have HPD?
-Warm Regards,
--Jayesh
+Maxime
+
+--kn4g64rogn4yrwmy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZBnAGAAKCRDj7w1vZxhR
+xcCXAPwJeWrqE0jAwByKsB4bICizCU+z39K0DcfRrOCvNgqcfwD8DHaZSDnzz/ky
+XhKIRMR9Jm58Oeu5HdXIKxO3zDFyWQU=
+=1Uxg
+-----END PGP SIGNATURE-----
+
+--kn4g64rogn4yrwmy--
