@@ -2,88 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BEB6C361C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C20A96C362F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:49:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231264AbjCUPrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 11:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58684 "EHLO
+        id S231862AbjCUPtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 11:49:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231270AbjCUPrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:47:01 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8380650991;
-        Tue, 21 Mar 2023 08:46:59 -0700 (PDT)
-Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32LEgnAr000634;
-        Tue, 21 Mar 2023 15:46:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=mDGXDVU2C3HSFzQ1Pxmq4HXPZhrMWbS2e7aCSFHT8bc=;
- b=cZTn17EjUFI3hfyCfH33B8Af+9MzkjqYW3CE6EA8uhq3GW5gceF4yKFHCQ4Y3K6l/dfe
- W/NKa48kkILB40jorhWVNlkLfgdtqnki2XzUtw7sPDIl6x8yB7X/dxthDn553Okc9txX
- uDoGifHe7QjJIX5mp5cb9u/rH5i5qoMizET4YLm38fKyN4fVJ/oVW9OzrhZDPxNPdczM
- evL3C6f0oXhTDIwl6jPsVQ/q0z6a50lELx8JAHNgpQSQl2aefE7r9wDDTaB5HgASOrlg
- iZB61fgrHrLZ9eosVBZKeUo3jdFHD1f8XzFR5aDYzfejyu9kXNfTOGxUBL+6CCzlpj3r cQ== 
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pf3ruhfje-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Mar 2023 15:46:46 +0000
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32LFUJQa020574;
-        Tue, 21 Mar 2023 15:46:45 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([9.208.129.119])
-        by ppma02wdc.us.ibm.com (PPS) with ESMTPS id 3pd4x73bfe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Mar 2023 15:46:45 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-        by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32LFkiHN37093672
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 21 Mar 2023 15:46:44 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id DE9B15805D;
-        Tue, 21 Mar 2023 15:46:43 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D0AFD58062;
-        Tue, 21 Mar 2023 15:46:42 +0000 (GMT)
-Received: from [9.160.111.39] (unknown [9.160.111.39])
-        by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-        Tue, 21 Mar 2023 15:46:42 +0000 (GMT)
-Message-ID: <baf7ad36-0410-3063-7960-8dd7040fb8fd@linux.ibm.com>
-Date:   Tue, 21 Mar 2023 10:46:42 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 2/4] doc: Add Atmel AT30TSE serial eeprom
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org
-Cc:     linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        andrew@aj.id.au, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org
-References: <20230321151642.461618-1-eajames@linux.ibm.com>
- <20230321151642.461618-3-eajames@linux.ibm.com>
- <6d4cf513-0787-6b39-8d38-30484be7ddff@linaro.org>
-Content-Language: en-US
-From:   Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <6d4cf513-0787-6b39-8d38-30484be7ddff@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: LepCtECvJPy7TmQStdzOD8-FrTSvSg3v
-X-Proofpoint-ORIG-GUID: LepCtECvJPy7TmQStdzOD8-FrTSvSg3v
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        with ESMTP id S231807AbjCUPtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:49:03 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281D34DBEC
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:49:01 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id cy23so61375412edb.12
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:49:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679413739;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SzDFIymbRjbLhmlcc42BiXxJve1ZLr1cxA94sUeeuDQ=;
+        b=xOT3dQErkNbyGneftJFjSnjdfjvRXh/wgUVE5YAfSTsdLMTa+oockgRQBPsMclLUqB
+         U4IIkytzklFq3jHOSyH/KRiUUMWFL904rv+e2yYFdLIGSSxwYfEn66IwA+O/FKnkH9iK
+         OJK3kwJMjNqVkvLoIjBC6FS9mNN4Ll7JAfWxkUWqChVcMIXFTR5NbWlFd0yD13vIyBxI
+         uAKdjSajzGq8sZ6BxflLceYT/1OTdUELaqxWhf+6s70Re59N2OD/PhlyfVbBfXF4GO6g
+         nH4567gpkoZS/JXECrwQYFmnNnPF7Aat07MoTwnRh/gCm8hQ+LrxqJqlp9XGSbdaAFlx
+         NpRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679413739;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SzDFIymbRjbLhmlcc42BiXxJve1ZLr1cxA94sUeeuDQ=;
+        b=ED6/jELhQV+N0sC/sql7EuW8qZXbkW722HxftEqNyQuSfmeMFA1cb+4y/cV6SGu5v1
+         o+TXyyV7go4uxy4sJ9AxmvGrSu7fBoo/VpymaRdnBIAycSCDTfugUCtiBFd0kDa9Jimd
+         Uhj9DJhyjGmQtUtN4OoFm5ajfhdyime/A7w+ajosKsUS8z/76/XI/Qvk4Vq4pXnQ4Wni
+         8U46wUsyzTPcykBhgUbbHN/bwuhp9j4UQkdx3gBVItaJc2OzfuTzNe7j9PDu3xVLbBg1
+         DGx8wSjsb7UlZQH09NWgD9VJ3ZE/f2uFqozTVVMNgE/kTCgEu6o1PFEoK2Eyz+D8zK/A
+         eMhA==
+X-Gm-Message-State: AO0yUKWaLxS+0ssepAaEimb7C8lDSzUq+A+JSIvMyzpPP/L7liblQdlq
+        E8RNiJxWHS2cuvZbIkvY5YzNRQ==
+X-Google-Smtp-Source: AK7set9vvgE0/AZT5nETWstzcgB/WJjjvy5BXgYV3f+XN39lD7CIun132siBk0Fq/T5DQE94TJZWlQ==
+X-Received: by 2002:a17:906:6d13:b0:925:f542:1a3d with SMTP id m19-20020a1709066d1300b00925f5421a3dmr3383284ejr.25.1679413739616;
+        Tue, 21 Mar 2023 08:48:59 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id s9-20020a170906454900b008f89953b761sm5958260ejq.3.2023.03.21.08.48.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 08:48:58 -0700 (PDT)
+Message-ID: <fcffc785-42b0-0312-daa3-f927f18cd43e@linaro.org>
+Date:   Tue, 21 Mar 2023 15:48:54 +0000
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-21_11,2023-03-21_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
- adultscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
- mlxscore=0 spamscore=0 priorityscore=1501 mlxlogscore=999 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303150002
- definitions=main-2303210121
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v11 05/26] virt: gunyah: Identify hypervisor version
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Alex Elder <elder@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
+ <20230304010632.2127470-6-quic_eberman@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230304010632.2127470-6-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -91,54 +95,106 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 3/21/23 10:19, Krzysztof Kozlowski wrote:
-> On 21/03/2023 16:16, Eddie James wrote:
->> The AT30TSE is compatible with the JEDEC EE1004 standard. Document it
->> as a trivial I2C device.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> Use subject prefixes matching the subsystem (which you can get for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching).
 
+On 04/03/2023 01:06, Elliot Berman wrote:
+> Export the version of Gunyah which is reported via the hyp_identify
+> hypercall. Increments of the major API version indicate possibly
+> backwards incompatible changes.
+> 
+> Export the hypervisor identity so that Gunyah drivers can act according
+> to the major API version.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 
-Oops, sorry, will fix.
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-
->
->> ---
->>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index 6f482a254a1d..43e26c73a95f 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -47,6 +47,8 @@ properties:
->>             - ams,iaq-core
->>               # i2c serial eeprom (24cxx)
->>             - at,24c08
->> +            # i2c serial eeprom (EE1004 standard)
-> AT30TSE?
->
->> +          - atmel,at30tse
-> Microchip does not find anything on AT30TSE. Are you sure this is the
-> model name?
-
-
-Yes: 
-https://www.microchip.com/content/dam/mchp/documents/OTH/ProductDocuments/DataSheets/Atmel-8868-DTS-AT30TSE004A-Datasheet.pdf
-
-
-Maybe it's actually an 8868? Or should I include the 004A as well?
-
-Thanks,
-
-Eddie
-
-
->
->
-> Best regards,
-> Krzysztof
->
+--srini
+> ---
+>   drivers/virt/Makefile        |  1 +
+>   drivers/virt/gunyah/Makefile |  3 ++
+>   drivers/virt/gunyah/gunyah.c | 57 ++++++++++++++++++++++++++++++++++++
+>   3 files changed, 61 insertions(+)
+>   create mode 100644 drivers/virt/gunyah/Makefile
+>   create mode 100644 drivers/virt/gunyah/gunyah.c
+> 
+> diff --git a/drivers/virt/Makefile b/drivers/virt/Makefile
+> index e9aa6fc96fab..a5817e2d7d71 100644
+> --- a/drivers/virt/Makefile
+> +++ b/drivers/virt/Makefile
+> @@ -12,3 +12,4 @@ obj-$(CONFIG_ACRN_HSM)		+= acrn/
+>   obj-$(CONFIG_EFI_SECRET)	+= coco/efi_secret/
+>   obj-$(CONFIG_SEV_GUEST)		+= coco/sev-guest/
+>   obj-$(CONFIG_INTEL_TDX_GUEST)	+= coco/tdx-guest/
+> +obj-y				+= gunyah/
+> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+> new file mode 100644
+> index 000000000000..34f32110faf9
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +obj-$(CONFIG_GUNYAH) += gunyah.o
+> diff --git a/drivers/virt/gunyah/gunyah.c b/drivers/virt/gunyah/gunyah.c
+> new file mode 100644
+> index 000000000000..4b7e6f3edaff
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/gunyah.c
+> @@ -0,0 +1,57 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#define pr_fmt(fmt) "gunyah: " fmt
+> +
+> +#include <linux/gunyah.h>
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/printk.h>
+> +
+> +static struct gh_hypercall_hyp_identify_resp gh_api;
+> +
+> +u16 gh_api_version(void)
+> +{
+> +	return FIELD_GET(GH_API_INFO_API_VERSION_MASK, gh_api.api_info);
+> +}
+> +EXPORT_SYMBOL_GPL(gh_api_version);
+> +
+> +bool gh_api_has_feature(enum gh_api_feature feature)
+> +{
+> +	switch (feature) {
+> +	case GH_FEATURE_DOORBELL:
+> +	case GH_FEATURE_MSGQUEUE:
+> +	case GH_FEATURE_VCPU:
+> +	case GH_FEATURE_MEMEXTENT:
+> +		return !!(gh_api.flags[0] & BIT_ULL(feature));
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +EXPORT_SYMBOL_GPL(gh_api_has_feature);
+> +
+> +static int __init gh_init(void)
+> +{
+> +	if (!arch_is_gh_guest())
+> +		return -ENODEV;
+> +
+> +	gh_hypercall_hyp_identify(&gh_api);
+> +
+> +	pr_info("Running under Gunyah hypervisor %llx/v%u\n",
+> +		FIELD_GET(GH_API_INFO_VARIANT_MASK, gh_api.api_info),
+> +		gh_api_version());
+> +
+> +	/* We might move this out to individual drivers if there's ever an API version bump */
+> +	if (gh_api_version() != GH_API_V1) {
+> +		pr_info("Unsupported Gunyah version: %u\n", gh_api_version());
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +arch_initcall(gh_init);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Gunyah Hypervisor Driver");
