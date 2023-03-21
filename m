@@ -2,82 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E2A96C3D82
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 23:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 064C66C3D95
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 23:17:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbjCUWM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 18:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32852 "EHLO
+        id S229667AbjCUWRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 18:17:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbjCUWMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 18:12:53 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329A2574D6
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 15:12:52 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id bi9so20960532lfb.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 15:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679436770;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=13Zv1FUEwXx4yLngj7RFNjjKZHhiuq0qCRERwhQpaHM=;
-        b=TVuYpJX2h2hgxrXCaQvHejEwvzDdasb9KPUcqB5a+pdXGkqtqaByqa3QRdPSRyYrC1
-         yvH/dpUOZk3mt0XFCIEicnwR9snV7o3ElME2ErKL93QqZmBywIfyZxeshol3k3RBVKBa
-         ZWGXn3pmJm+5XGoKFvH/JnrHBIHKQoN4vaYYKGniIDJxq2okgkoxLH4uYicHOgx331mV
-         SOmApg7Vymy+iR8Q4EKrvV0+FcCwzFTUEUPPVwWr5ioCNbZubO3ffdDqXpV2UkHKpOGR
-         kiB+Nh8qD7r0NXNGoW5cxb2mvihMkXHDMMsUu7F9br4Tj6TjfwZ/ycBXuJ3SSfJeGqA4
-         qIuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679436770;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=13Zv1FUEwXx4yLngj7RFNjjKZHhiuq0qCRERwhQpaHM=;
-        b=HqQlGMRX/uyGp/MiZDjQt7rQKZ1cLfyZ2fFvNSMXNeizkPxCUNIDMTnP2it2RZRVh6
-         KHoEBE7WMbRxavWuPiJ0bFs5eAyx3ttRub76zYxrg0atDc++RJZCIIg7aYJ54vfSInbM
-         J7qa2OQJPeUgvIp3kQMbu5/3qAnUDFu3hNtp9z2eZvE+s9s16Rj2PCF7if9revHtsfnb
-         W7KxEsPE8KHIVi4+HlFoqXVz8b1QiB7RjsBq9WP4wFjJfp+KQ7t4YXqJLdgOAXOaNoB/
-         6cvJiXzCgvXlfPu6F3Mj/L9tHEB+r3AywJEo9vWMGBGe0ZUOmBO10N7IjUvCZ9QIM7Hg
-         9PAA==
-X-Gm-Message-State: AO0yUKWrl1zxo2U4nEdDyzQMU62AZl+Ow83feI6lvbO1q+WcIQq5aXUb
-        x+inJqT9ry0KBde6zzU2iqMFDw==
-X-Google-Smtp-Source: AK7set/HbvRs2o8GvFlrB1PxbxWzkQeDfHexsDnns6zywGT0jmSu8t9oRMx+73W4owCg686i1/pKJg==
-X-Received: by 2002:a05:6512:11e1:b0:4e9:6033:20d3 with SMTP id p1-20020a05651211e100b004e9603320d3mr1313142lfs.24.1679436770366;
-        Tue, 21 Mar 2023 15:12:50 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id o15-20020a056512050f00b004e9c983a007sm1220344lfb.289.2023.03.21.15.12.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 15:12:50 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 21 Mar 2023 23:12:31 +0100
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8350-nagara: Unify status property
- placement
+        with ESMTP id S229639AbjCUWRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 18:17:35 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41E081717E;
+        Tue, 21 Mar 2023 15:17:34 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.179.102])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A31A866030D8;
+        Tue, 21 Mar 2023 22:17:31 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679437052;
+        bh=kISYc8jF93sURnyHntnC1OZ2p4p1sWgcPPfEJiI3pho=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DAlF+kqBJ+TEevV3l2dvq4UP4emcgYVVXEzpExVl2nEEZQG5wPo/gPGRhrebUJ4jB
+         6UuwSHDZL7gQadG/0pX/QwT7ZZZFuhysxpycz/tYEs+BX1pZC9hNMfwaFnJ8FI718S
+         HX3dybyqVznpzuASOX/4MQKrkzxdElPKo0R0J7/oCJbOGQbBgfu15V3g2EEsCgKg3O
+         I7C7YYalHMeiFiBzzMhgrgJqZtMzR9T1ai92Kz63OL3ffXAXSla6rJHdZbhEmEzNB6
+         EftcQErQx9ncAjS18lQI5SGVnMHuwCrZxx0b1cCZ3EZvTR5On2hyhy1IxBeDicRKnm
+         r++47+MMC+UQA==
+Message-ID: <7cd34af7-94e7-b5e2-053c-4cc831e4cfc4@collabora.com>
+Date:   Wed, 22 Mar 2023 00:17:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230321-topic-sagami_dp-v1-4-340c8bce4276@linaro.org>
-References: <20230321-topic-sagami_dp-v1-0-340c8bce4276@linaro.org>
-In-Reply-To: <20230321-topic-sagami_dp-v1-0-340c8bce4276@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 01/10] dt-bindings: serial: snps-dw-apb-uart: Switch
+ dma-names order
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1679436764; l=3059;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=PVuMTdifNqJ5Z9yoopYhHdxk90HwveOlTjYOQjYaiCQ=;
- b=a/DZcv2drxELLeAnMNRTKju2/lidHG2b/fLv1uCpGms/QwtibA0s5OuDX897ZdRKlqSiUSqgwWF3
- etA5Tt2uDugI33oTmOXhkdCWx2vAtUeB8BBlDdvG6ULSUfDSBXxH
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kernel@collabora.com
+References: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
+ <20230321215624.78383-2-cristian.ciocaltea@collabora.com>
+ <5287504e-c0f7-4964-8a61-fd49b7ee9547@spud>
+Content-Language: en-US
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <5287504e-c0f7-4964-8a61-fd49b7ee9547@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
         URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,146 +71,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As we're heading towards getting the status property last everywhere,
-take care of it for SM8350 SONY Sagami.
+On 3/22/23 00:09, Conor Dooley wrote:
+> On Tue, Mar 21, 2023 at 11:56:15PM +0200, Cristian Ciocaltea wrote:
+>> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
+>> dma-names properties") documented dma-names property to handle Allwinner
+>> D1 dtbs_check warnings, but relies on the rx->tx ordering, which is the
+>> reverse of what a different board expects:
+>>
+>>    rk3326-odroid-go2.dtb: serial@ff030000: dma-names:0: 'rx' was expected
+>>
+>> A quick and incomplete check shows the inconsistency is present in many
+>> other DTS files:
+> 
+>> The initial proposed solution was to allow a flexible dma-names order in
+>> the binding, due to potential ABI breakage concerns after fixing the DTS
+>> files. But luckily the Allwinner boards are not really affected, since
+>> all of them are using a shared DMA channel for rx and tx:
+> 
+>> Switch dma-names order to tx->rx as the first step in fixing the
+>> inconsistency. The remaining DTS fixes will be handled by separate
+>> patches.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Thanks for doing all of the switch overs too. I should've probably
+> broadened my searching beyond the allwinner platforms when I initially
+> added this, so yeah, thanks.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 30 ++++++++++------------
- 1 file changed, 14 insertions(+), 16 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-index b2baa81baf5e..95b1ba4ce470 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-@@ -189,8 +189,8 @@ vph_pwr: vph-pwr-regulator {
- };
- 
- &adsp {
--	status = "okay";
- 	firmware-name = "qcom/sm8350/Sony/sagami/adsp.mbn";
-+	status = "okay";
- };
- 
- &apps_rsc {
-@@ -542,27 +542,27 @@ pmr735a_l7: ldo7 {
- };
- 
- &cdsp {
--	status = "okay";
- 	firmware-name = "qcom/sm8350/Sony/sagami/cdsp.mbn";
-+	status = "okay";
- };
- 
- &i2c1 {
--	status = "okay";
- 	clock-frequency = <1000000>;
-+	status = "okay";
- 
- 	/* Some subset of SONY IMX663 camera sensor @ 38 */
- };
- 
- &i2c4 {
--	status = "okay";
- 	clock-frequency = <400000>;
-+	status = "okay";
- 
- 	/* Samsung Touchscreen (needs I2C GPI DMA) @ 48 */
- };
- 
- &i2c11 {
--	status = "okay";
- 	clock-frequency = <1000000>;
-+	status = "okay";
- 
- 	cs35l41_l: speaker-amp@40 {
- 		compatible = "cirrus,cs35l41";
-@@ -596,31 +596,31 @@ cs35l41_r: speaker-amp@41 {
- };
- 
- &i2c12 {
--	status = "okay";
- 	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
- 	clock-frequency = <100000>;
-+	status = "okay";
- 
- 	/* AMS TCS3490 RGB+IR color sensor @ 72 */
- };
- 
- &i2c13 {
--	status = "okay";
- 	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
- 	clock-frequency = <100000>;
-+	status = "okay";
- 
- 	/* Qualcomm PM8008i/PM8008j (?) @ 8, 9, c, d */
- };
- 
- &i2c15 {
--	status = "okay";
- 	clock-frequency = <400000>;
-+	status = "okay";
- 
- 	/* NXP SN1X0 NFC @ 28 */
- };
- 
- &i2c17 {
--	status = "okay";
- 	clock-frequency = <1000000>;
-+	status = "okay";
- 
- 	/* Cirrus Logic CS40L25A boosted haptics driver @ 40 */
- };
-@@ -652,8 +652,8 @@ mdss_dp_altmode: endpoint {
- };
- 
- &mpss {
--	status = "okay";
- 	firmware-name = "qcom/sm8350/Sony/sagami/modem.mbn";
-+	status = "okay";
- };
- 
- &pm8350_gpios {
-@@ -719,8 +719,8 @@ &pon_pwrkey {
- };
- 
- &pon_resin {
--	status = "okay";
- 	linux,code = <KEY_VOLUMEUP>;
-+	status = "okay";
- };
- 
- &qupv3_id_0 {
-@@ -748,8 +748,8 @@ &sdhc_2 {
- };
- 
- &slpi {
--	status = "okay";
- 	firmware-name = "qcom/sm8350/Sony/sagami/slpi.mbn";
-+	status = "okay";
- };
- 
- &spi14 {
-@@ -1038,16 +1038,14 @@ usb_1_dwc3_ss: endpoint {
- };
- 
- &usb_1_hsphy {
--	status = "okay";
--
- 	vdda-pll-supply = <&pm8350_l5>;
- 	vdda18-supply = <&pm8350c_l1>;
- 	vdda33-supply = <&pm8350_l2>;
-+	status = "okay";
- };
- 
- &usb_1_qmpphy {
--	status = "okay";
--
- 	vdda-phy-supply = <&pm8350_l6>;
- 	vdda-pll-supply = <&pm8350_l1>;
-+	status = "okay";
- };
-
--- 
-2.40.0
-
+Thanks for the quick review! And no worries, I'm glad I could help, 
+hopefully I didn't miss anything..
