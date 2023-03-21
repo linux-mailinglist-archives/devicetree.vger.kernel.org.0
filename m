@@ -2,107 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 295346C2A79
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D076C2A86
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:38:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjCUGfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 02:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
+        id S230313AbjCUGiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 02:38:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbjCUGfG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:35:06 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3F2DBF3
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:34:58 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id t17-20020a05600c451100b003edc906aeeaso250332wmo.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:34:58 -0700 (PDT)
+        with ESMTP id S229928AbjCUGiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:38:12 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0429B3B66F
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:37:38 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id ek18so55653354edb.6
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 23:37:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679380496;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aeU98+5k4UNo0IIDP5TmbAbzIZvq5NwXU7mw30mcFh4=;
-        b=my2o52HZ/sptlkDCPPrA12lnhy9kS2Xor6aihSPfCLGPAGYWnbaq5wsjIxLFRrx0Pb
-         1VwwZQmHVeIj8h/l3dJ+WtznDT6vtKV9Z7SgFiboHZ0MHkQxnWHInQlme3CkswRXZ8LT
-         39a/jWfDqoK4XjlyVVv2XnRL4BJLIM9OjhXrLFRsJSDuKWPYMfZkICKrhCPvJ3X9XyGZ
-         Jm6VR/WURvQKeHHy4IfIOidTpGijPOqS2FYmkcqchrw3fxHn33FyWnK4lQ9DygAIU7c/
-         eJbmffZoXUMSM+n0bbxErHrPoxcIOdeKQOKgyx1PieCXB0yxMmOLTHOeSjHwQmq05GoQ
-         vX7g==
+        d=linaro.org; s=google; t=1679380654;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Cx+KGeUp/wxOIZjrDPkHjblyuhe5J5nJa9fCaHcyiZw=;
+        b=BCi0uaCvv0+js1ecGX2/NRV5aUU6/IiNSTvSB4IiiLLJGg7DhzHLMBfwqoTXl+d5qB
+         O3m7iLjMOxi3eTn9Nx7+fU7M5PXE48TLcl5bn/feaRAEKYqYaWMwa8oU2FysPGejYS6j
+         SFtaEIyCHf/ct/pw3lXJP57bH9Fqh4RSD5XDFD6Q11dAjj+Xz1pbMFfvA2VbREGenwRE
+         4SVfJTB7+jnQ9wjYMnAbpfeSS3cNj81DlR2IQwR3Vjj5TKWkQdQek967Kr6kFtlWXiXz
+         sVSOe9Ywpg93cmPXy3vfpPosmOWjhuel+sR7beCS86CtU5VzQ9QuZyP1xAxruciHIL0r
+         hrUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679380496;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aeU98+5k4UNo0IIDP5TmbAbzIZvq5NwXU7mw30mcFh4=;
-        b=NtgKXEmn103fiKTHuEj9/Bq7RgKg7QBiq7NCkZvdprY62hITx3sbFAPzD7yxTo0h3F
-         lTIsGTIW9jnja5b9so7LmM81lQ6VjT2VGycesQrgeAqxd9P8yixcNE0jWOPbCDAASSZE
-         Z7LVDQxAD8GL1VRfdQb91YjRs93YuB07tBbeoQPP5DmkhkMAC/TVSmjMmncGxvbpReT8
-         tmV9DUjyrDzGAXXZ7SinAZWIVS0omiK6XVJXQsJ2KwXJa9dCc8hEHgVi/sr8D+OHKi84
-         PF/vF57mWJ3Fpp5pSPQ0hCHMFM55OKzuaHO8+C4cj1utsxAKjiyXzZemQUY27ehAfV5X
-         YRHQ==
-X-Gm-Message-State: AO0yUKWfzhLSWiX/sEqPr0ZDM/5gKVpmhSfkHjPtEiARqQwCWu2D1v2y
-        tLrHS0nd50RQBBdlSMjjYRA/fFBPJxEN02PFjukarw==
-X-Google-Smtp-Source: AK7set+MTESzG510vY+KY7o33JEhtbA90pqbzZCqd1mGorBUpd1yfT2SUq/gLkeSmm1CWVVo0WzGsrlZxkxO34q3690=
-X-Received: by 2002:a7b:c444:0:b0:3ed:779c:4063 with SMTP id
- l4-20020a7bc444000000b003ed779c4063mr453053wmi.8.1679380496252; Mon, 20 Mar
- 2023 23:34:56 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679380654;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cx+KGeUp/wxOIZjrDPkHjblyuhe5J5nJa9fCaHcyiZw=;
+        b=cZ41t9li96XsEUlO1VyNJzwFgd7BeN8Btj0BdHGXxW6ZP8SR3Kq/8iChk5JAi0eXm5
+         DWH5nhpl0ALGRLuViQmT2gStk6QkvcbdQpyjxLgfcfiIztlNMB+0zE7OJ+KKDYLTs1+h
+         X+8TUS3BXkfZ5QLTLQ1dHhH1rdunlaOtWNXJY/ahHPLMiwGUOdhmM21+dwnnYXGXRTYQ
+         Ac+PxNnii39FTp2OOYzplj2xpzCFzvpXx2NjN545AAFxwvp0X2yaUD8N4OIzsK0kEoux
+         Ili3jmWjm2P4LXNEYyFP8WYRGhuChQ3Ehd4WzTlwPgB65qeWfaXzPZM0b5f75PgJv4EW
+         xYHg==
+X-Gm-Message-State: AO0yUKWHaicir8SvVyrIp1/v2ckWwTIq14I/zkLnqyZnUETEfwZb5FKA
+        Pojynuphu+ybs27BXMg0GIfMtw==
+X-Google-Smtp-Source: AK7set/T00OguACk3viJY9WGs6qdtUM6xsHRWD3xyJzjHRX/K4nsguPr/BBF2Vtic1IdmXJWJVDqUQ==
+X-Received: by 2002:a17:906:39da:b0:92c:a80e:225f with SMTP id i26-20020a17090639da00b0092ca80e225fmr1794550eje.52.1679380654368;
+        Mon, 20 Mar 2023 23:37:34 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id la18-20020a170907781200b00914001c91fcsm5332603ejc.86.2023.03.20.23.37.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Mar 2023 23:37:33 -0700 (PDT)
+Message-ID: <48bdca7a-e4ec-a2e4-ff0d-dc9a08bf799e@linaro.org>
+Date:   Tue, 21 Mar 2023 07:37:33 +0100
 MIME-Version: 1.0
-References: <20230320071211.3005769-1-bhupesh.sharma@linaro.org>
- <20230320071211.3005769-2-bhupesh.sharma@linaro.org> <0a8fcd57-94dc-61e6-0ba0-b1591e05e6f2@linaro.org>
-In-Reply-To: <0a8fcd57-94dc-61e6-0ba0-b1591e05e6f2@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 21 Mar 2023 12:04:45 +0530
-Message-ID: <CAH=2Ntxj6RyEtrxCZmg6gKR_RSxX-wnkoEqjQ9CGQXM0zuATKQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dmaengine: qcom: bam_dma: Add support for BAM engine v1.7.4
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     dmaengine@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, vkoul@kernel.org,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        vladimir.zapolskiy@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [EXT] Re: [PATCH v2 1/3] dt-bindings: usb: cdns-imx8qm: add
+ imx8qm cdns3 glue bindings
+Content-Language: en-US
+To:     Frank Li <frank.li@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+References: <20230316212712.2426542-1-Frank.Li@nxp.com>
+ <20230316212712.2426542-2-Frank.Li@nxp.com>
+ <e6935c0c-375e-b763-ea91-3b8bbc906ebc@linaro.org>
+ <AM6PR04MB4838D1958A029701E1601BA588BD9@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <1fd1fe42-3da6-1598-a04d-cb99a9b4b145@linaro.org>
+ <AM6PR04MB483800D7CDCC7AF48F88BF9688809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <b8801c83-f2dc-f144-de58-03e5c24436fd@linaro.org>
+ <AM6PR04MB4838F5C9EF13A588E799D5C488809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <fc5c76d1-51cd-5992-9bfa-06f57874fc03@linaro.org>
+ <AM6PR04MB4838C6B05F46AD94153DDC8388809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <614fa099-e666-03da-1b11-29cc804bf847@linaro.org>
+ <AM6PR04MB4838FC9492065F4DBCABE60D88809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AM6PR04MB4838FC9492065F4DBCABE60D88809@AM6PR04MB4838.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Mar 2023 at 16:12, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 20.03.2023 08:12, Bhupesh Sharma wrote:
-> > Qualcomm SoCs SM6115 and  QRB2290 support BAM engine version
-> > v1.7.4.
-> >
-> > Add the support for the same in driver. Since the reg info of
-> > this version is similar to version v1.7.0, so reuse the same.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  drivers/dma/qcom/bam_dma.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
-> > index 1e47d27e1f81..153d189de7d2 100644
-> > --- a/drivers/dma/qcom/bam_dma.c
-> > +++ b/drivers/dma/qcom/bam_dma.c
-> > @@ -1228,6 +1228,7 @@ static const struct of_device_id bam_of_match[] = {
-> >       { .compatible = "qcom,bam-v1.3.0", .data = &bam_v1_3_reg_info },
-> >       { .compatible = "qcom,bam-v1.4.0", .data = &bam_v1_4_reg_info },
-> >       { .compatible = "qcom,bam-v1.7.0", .data = &bam_v1_7_reg_info },
-> > +     { .compatible = "qcom,bam-v1.7.4", .data = &bam_v1_7_reg_info },
-> The compatible is meaningless as of today (it uses the exact same driver
-> data as v1.7.0), so I'd say going with:
->
-> compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
->
-> is what we want.
+On 20/03/2023 20:59, Frank Li wrote:
+>>
+>> The second is a good example - as you can see, there is a choice of
+>> values, so they are not exactly fixed.
+>>
+>>>
+>>> Such frequency information is necessary.  We can put to dts or clock drivers.
+>> The clock driver
+>>
+>> If this is the argument, then the answer is NAK. Sorry, but DTS is not
+>> for offloading fixed stuff just because you do not want to work on
+>> drivers. The same for discoverable stuff.
+>>
+>>> Become bigger, or dts become bigger.  I think the key point is if property to
+>> descript hardware information.
+>>
+>> You have to understand that with your binding you are not allowing to
+>> any changes of these frequencies.
+> 
+> Do you means it should be okay if one of  clocks is not fixed?
 
-Ok, will send a v2.
+We have here long discussion why does your binding require fixed
+frequencies, because this is something unusual and not recommended. And
+if they are really fixed, then device driver probably should make the
+choice of frequencies.
 
-Thanks.
+> 
+> Previous owner already left nxp.  I double checked our documents and scfw source code. 
+> I miss understood a clock SC_PM_CLK_MST_BUS, which actually mapped to IP's aclk, which
+> ware 100Mhz to 600Mhz. 
+> 
+>>
+>> Best regards,
+>> Krzysztof
+> 
+
+Best regards,
+Krzysztof
+
