@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3E696C3295
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 14:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B9116C328B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 14:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbjCUNWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 09:22:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37074 "EHLO
+        id S230510AbjCUNWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 09:22:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbjCUNWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 09:22:13 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB5728E78
+        with ESMTP id S230447AbjCUNWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 09:22:12 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A52128E69
         for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 06:21:51 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id w11so8494742wmo.2
+Received: by mail-wm1-x336.google.com with SMTP id o40-20020a05600c512800b003eddedc47aeso3992978wms.3
         for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 06:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679404909;
+        d=linaro.org; s=google; t=1679404910;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6rVvABTU02+Rtyy/Qih7T8rgJ/JIJYUn4nN2d26Tjag=;
-        b=D1e3kjwRbremSTztqTEK2Nl78e3myPW+4NVxMGR79Yl7w968hDavd5+nrdY1GP3XM5
-         J5+d56RZGhgCUUoyT1uSvgsJ9wLHlNAcVpVZWpP/xQQt7wQ+R+tnauB0NFNNjQr64kT5
-         gJ+MR3TtH2lHN0l0wabndvVkA8+82CvK+Juc+nDGAFhHRlnVQWDd9NnTpBx0ITy8irYA
-         kECUZiobzUBfqDPnFHNHy4Wq7ODsUL54y3eR4AurqCncF6EaJabKbBsHq63O0lcGg2Lk
-         aFNA9Amq3P+b1C8oMSEmYri88EhSbP/Ej8OQKxZTb0S4YAPyrj4iakmUB4AbkGBrKCXy
-         Y57g==
+        bh=81l551VcpX1M6mk9/O5MVJii8ShKhy56jAQgidl0DwY=;
+        b=u5wDvnU5hACTBtCn6dC2jd1UHQoxB55D3g1UTJkb2mQo85TrOLuN8+Y9MG9f8pzJ6n
+         ECeRasH6lSZbGr0Gh1oPH/LCqGHZvYzXKi6+MW3zyHC5xcBsus/Yujnund5Px0X86qZF
+         BBB/iWukaUm3XIFbvu37wjiqfJ03jZmVRdIJnMTIzqyL5V/Cft78vSO233UmABcgBMdu
+         kUYZLYy2tOv5VdgcRs7Pdz1AlMrd+VqF3BF/8Q7EBydukqBZ1tIcwhKsQbBNjSoSwoZ7
+         YEtDGjZQzH88Su+UWSVQ7KFLH0HEC8j9BXiZ+OzIj9PF/mCH+ncSr9wTDlDBHOw+LwYg
+         Y4Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679404909;
+        d=1e100.net; s=20210112; t=1679404910;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6rVvABTU02+Rtyy/Qih7T8rgJ/JIJYUn4nN2d26Tjag=;
-        b=wxWO4y0Idi6DW+LRFH5nMOBQ4rpM2iaY17W84pEEzYJQDsY0PB65UKGaQDnXNskOds
-         AwSKHBs8pMAVPx4KoPFo3bJbDeOi0IkANMRhAMW4xBnGNuJAqUg72EKZ+GLBVtnFBrxO
-         Qxojpd9nhZUMQNtDb6upUGkgUli9xeye+cfUuGHeveUOU/kC5xYIlFI3mO+dOjzoQucM
-         zhyjVU7O5+UbLn5Xtr4yKN09kZoPBeizkncV+IysLy+oK2641xRiDpPGO/11z6VF+Eqs
-         tXN3DbSqWHsD+nV/tAyqwMvfLhcD85cKp2pC0f4rd6VsVNtYBVBK99NEM3Qf2KKUzHl3
-         cCRA==
-X-Gm-Message-State: AO0yUKVi8ZqpwkUcSxVkL2SpYJzV6UpQulMV5nSLfJrAc0HKTU/KRj4y
-        zySprShF+CtyhqGRzwkldR2N3Q==
-X-Google-Smtp-Source: AK7set8hpDUckQt0l9ZezyB1CBBV8hWR73J365gkooeRbnkTI/4tGwhHhuEQs2jzhA62Ih86jmeI0w==
-X-Received: by 2002:a05:600c:4e09:b0:3df:9858:c039 with SMTP id b9-20020a05600c4e0900b003df9858c039mr10837822wmq.14.1679404909067;
+        bh=81l551VcpX1M6mk9/O5MVJii8ShKhy56jAQgidl0DwY=;
+        b=hpe3Iec7+n7CLM28F9jQmQpJlYutXM1FowTn99RmpQvDasIfh0xG6twTZsZ5VfzeEe
+         GW2hk6x8Um4/1t5CAk9NhJGaQ20zo6A0EOsuFmXhFwDw2NbAIMN2EecX2OPhhZQNwY3J
+         S2BJ56zAiXIAaxLQ3tKUmawBhRwjR/lhI/imgU+/Z2cApIiC1sPXDzPHkWJFS5X/oTul
+         1qHk9DHi59OasDOrXtS2Fr0Gwm5niWXWv0jtH3KgJQBo47fltkkTnjzOmp2ZnC92WofJ
+         x2NNKr6lXkY+PlG0BS1cuQF4BKPdefoYhul/zhUjludwT1NBtzJB849NNUH/FSMsebTS
+         IX7A==
+X-Gm-Message-State: AO0yUKVEbyJoP4b+FrVkXQtGMZtUf0DT6BrHVSTuvwKdjmNoAFra2ght
+        zO0I8Nt7EbzETdUZxg6Cw9QdYQ==
+X-Google-Smtp-Source: AK7set8fXSHZo1jW0ghJmwoQ9sG7rO22LtuTYhu9jFFbSKHxpMa32xCW0roGXPzhEi9NnV+HI39rDA==
+X-Received: by 2002:a7b:cb57:0:b0:3ee:2bed:222d with SMTP id v23-20020a7bcb57000000b003ee2bed222dmr1862432wmj.3.1679404909927;
         Tue, 21 Mar 2023 06:21:49 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v26-20020a05600c215a00b003eafc47eb09sm13393016wml.43.2023.03.21.06.21.48
+        by smtp.gmail.com with ESMTPSA id v26-20020a05600c215a00b003eafc47eb09sm13393016wml.43.2023.03.21.06.21.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 06:21:48 -0700 (PDT)
+        Tue, 21 Mar 2023 06:21:49 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 21 Mar 2023 14:21:47 +0100
-Subject: [PATCH v5 07/12] arm64: dts: qcom: sm8450: add port subnodes in
+Date:   Tue, 21 Mar 2023 14:21:48 +0100
+Subject: [PATCH v5 08/12] arm64: dts: qcom: sm8550: add port subnodes in
  dwc3 node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v5-7-552f3b721f9e@linaro.org>
+Message-Id: <20230130-topic-sm8450-upstream-pmic-glink-v5-8-552f3b721f9e@linaro.org>
 References: <20230130-topic-sm8450-upstream-pmic-glink-v5-0-552f3b721f9e@linaro.org>
 In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v5-0-552f3b721f9e@linaro.org>
 To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
@@ -75,8 +75,8 @@ Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
 X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,16 +89,16 @@ same description in each board DT.
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 19 +++++++++++++++++++
  1 file changed, 19 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 69695eb83897..d92d49a1ca2c 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -4170,6 +4170,25 @@ usb_1_dwc3: usb@a600000 {
- 				snps,dis_enblslpm_quirk;
- 				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 6af4079c9a35..da32f6bc34ab 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -2460,6 +2460,25 @@ usb_1_dwc3: usb@a600000 {
+ 				phys = <&usb_1_hsphy>,
+ 				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
  				phy-names = "usb2-phy", "usb3-phy";
 +
 +				ports {
