@@ -2,103 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EB36C3765
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 17:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC646C377C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 17:58:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbjCUQvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 12:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41320 "EHLO
+        id S229670AbjCUQ57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 12:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbjCUQvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 12:51:17 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF6D279AE;
-        Tue, 21 Mar 2023 09:51:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DAB6FB818E7;
-        Tue, 21 Mar 2023 16:51:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D963DC4339B;
-        Tue, 21 Mar 2023 16:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679417466;
-        bh=JtUlGAZMXgUNcqufA6J7cwV2ToEYYL5jW3Tbh1xClAc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=tOzkW1uNUz1v7Go4gsYwSzpYycomUajHGJIl3lGZelBbAe8TZo6TQTxapIiWJfLO8
-         SutzO7dH/M/pPQhsQovO4TeBJSUSqZj5m53q2/INCFKcOAPUtIkTyU9SLDd+stfnti
-         TSYiK/Ql8hrWS8LrE4Hq+HQNy8OFA0Vuiv+3ShLxVW6qHrqNv9puJxc4Sz7db9jyLM
-         pAQHFjhA+xHJgKAUF/Tuudq+cjPnCQERU1AKRVlB5EJWbIv4LVODb6NdH0lPZie8cD
-         h6OV6+nSDFsRX6sCl47QgBzCpFiEreaqQ4bg/H+qSIgz3M6wgHGggcLLOVPzibwK8U
-         FhinZRHsORQGQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-Cc:     alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20230315154722.3911463-1-vkarpovi@opensource.cirrus.com>
-References: <20230315154722.3911463-1-vkarpovi@opensource.cirrus.com>
-Subject: Re: [PATCH v3 1/5] ASoC: cs35l45: Support for GPIO pins
- configuration.
-Message-Id: <167941746356.67241.8098477595420536001.b4-ty@kernel.org>
-Date:   Tue, 21 Mar 2023 16:51:03 +0000
+        with ESMTP id S229531AbjCUQ56 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 12:57:58 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC4F1BF8;
+        Tue, 21 Mar 2023 09:57:57 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id v17so1828538oic.5;
+        Tue, 21 Mar 2023 09:57:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679417876;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+NYT6/BKIUKBpZUikL9i2eT/s0p9j2M6TmaP9t/4zBo=;
+        b=QdMxpTg61XD1B+W0s08IKfPvfrE8EFjfNeGQyQ7GA1eJnD0q6Co3E8QXzNRCpN+hZA
+         HK5IQPfnTtY8kQDkG2q9ytG0cRtQAlSshk84ZC1Q6WtsQLZJ78V2704N3CLzYN6phBxZ
+         YVesjTFNvp/OYP7yxUlKcQ4Q+iEONRsUXnO3SmfBmCBhfuXDoWGfFfw0GSfPHfnuNGLT
+         u2jBWyQJzBBhJ9+6B8qZJUF7hYXHBhnwZSlXgjg3S9GsLiZVEVtPjwUnwzC62ZnDU6RU
+         JGoIVXBqm9DNRKivufnYCDFo+1Azk2+UuspZj5unsLSud2R5bELTvkWv3SG734JsPnip
+         ipfQ==
+X-Gm-Message-State: AO0yUKVjqPSYY+qoNEko8UKwrkxMFYZQGpQa/iTpCjR9W5pMKjt6csI2
+        Yka4bRPjCNHyGcjD+LIyDw==
+X-Google-Smtp-Source: AK7set88VFMo3gqa89T6gYa1MXGYZmfk0qMNlofc1ibiXSiDOEWA9mj49rVetrklI2BsjqBMuC9iNA==
+X-Received: by 2002:a05:6808:688:b0:387:262c:ef4f with SMTP id k8-20020a056808068800b00387262cef4fmr1030253oig.0.1679417876421;
+        Tue, 21 Mar 2023 09:57:56 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a14-20020a9d6e8e000000b00670679748f9sm5404900otr.49.2023.03.21.09.57.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 09:57:56 -0700 (PDT)
+Received: (nullmailer pid 950146 invoked by uid 1000);
+        Tue, 21 Mar 2023 16:57:55 -0000
+Date:   Tue, 21 Mar 2023 11:57:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jian Yang <jian.yang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        chuanjia.liu@mediatek.com, jieyy.yang@mediatek.com,
+        qizhong.cheng@mediatek.com
+Subject: Re: [PATCH v2 2/2] PCI: mediatek-gen3: Add power and reset control
+ feature for downstream component
+Message-ID: <20230321165755.GA942823-robh@kernel.org>
+References: <20230306064059.7239-1-jian.yang@mediatek.com>
+ <20230306064059.7239-3-jian.yang@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bd1bf
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230306064059.7239-3-jian.yang@mediatek.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Mar 2023 10:47:18 -0500, Vlad Karpovich wrote:
-> Adds device tree configuration for cs35l45 GPIOs
+On Mon, Mar 06, 2023 at 02:40:59PM +0800, Jian Yang wrote:
+> From: "jian.yang" <jian.yang@mediatek.com>
 > 
+> Make MediaTek's controller driver capable of controlling power
+> supplies and reset pin of a downstream component in power-on and
+> power-off flow.
 > 
+> Some downstream components (e.g., a WIFI chip) may need an extra
+> reset other than PERST# and their power supplies, depending on
+> the requirements of platform, may need to controlled by their
+> parent's driver. To meet the requirements described above, I add this
+> feature to MediaTek's PCIe controller driver as a optional feature.
 
-Applied to
+If you have PCI devices with extra stuff that's not standard PCI stuff 
+(i.e. what's on a standard connector), then you should be describing 
+the PCI device in the DT.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+The standard stuff should really be in the root port node rather than 
+the host bridge node. That's often omitted too because many host bridges 
+only have a single root port.
 
-Thanks!
+> 
+> Signed-off-by: jian.yang <jian.yang@mediatek.com>
+> ---
+>  drivers/pci/controller/pcie-mediatek-gen3.c | 86 ++++++++++++++++++++-
+>  1 file changed, 85 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
+> index b8612ce5f4d0..45e368b03ed2 100644
+> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> @@ -8,6 +8,8 @@
+>  
+>  #include <linux/clk.h>
+>  #include <linux/delay.h>
+> +#include <linux/gpio.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/irq.h>
+>  #include <linux/irqchip/chained_irq.h>
+> @@ -15,11 +17,14 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/msi.h>
+> +#include <linux/of_gpio.h>
 
-[1/5] ASoC: cs35l45: Support for GPIO pins configuration.
-      commit: fa8c052b4c614aa1d2d60e5c9f40e9d885bf9511
-[2/5] ASoC: dt-bindings: cs35l45: GPIOs configuration
-      commit: c6cec088ab037b57e08e0694e2b150b1b034826c
-[3/5] ASoC: cs35l45: IRQ support
-      commit: 6085f9e6dc1973cf98ee7f5dcf629939e50f1b84
-[4/5] ASoC: cs35l45: DSP Support
-      commit: 74b14e2850a34740c121cf2758d4181063d4c77c
-[5/5] ASoC: cs35l45: Hibernation support
-      commit: 6c07be8fe92c6b0c24ee1c599601dce3506b83c7
+This header is getting removed. You shouldn't depend on it.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Rob
