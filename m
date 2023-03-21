@@ -2,115 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D856C31D1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 961EE6C31D6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:39:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbjCUMiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 08:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34250 "EHLO
+        id S230250AbjCUMjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 08:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbjCUMiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:38:16 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD36C146
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 05:38:09 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id t5so22241186edd.7
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 05:38:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679402288;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fAHU5kqXRYKOLBxaAoswUkMHVemnT1L6PZ6oDpy10Og=;
-        b=MpW1PxAiokgthWrvl0fAhVprwNnKMOzVF5kPm8DWuvwwuYdC/IZu/5/sJlhOcR9MLL
-         9k1Ll2OzrGnEPdO12o5Not8Ij7zDVDNULBaQaI3oLJxXf2EEFoAci7QfsNB158/P96JH
-         O894ra4J1L+2MIi4pJg2BCEkV1QSvMEX0wdZJXlYbdhn1byEljr/2jAxvgUEwCZa3qy5
-         LFA8eWEXe4WrJ5nGq9RiIFQnPHsbPqWR9XHxiUhl+iWqAsUffZvXR1y9z9dLbMBcwSnm
-         DSKF0EI8mkgjeaREKfVET7gFLUD4JOU54ASbSsUejmCTAtO058LNyXEntJM07Ao3Upmt
-         wa5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679402288;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fAHU5kqXRYKOLBxaAoswUkMHVemnT1L6PZ6oDpy10Og=;
-        b=SZLiMCLeNyGWw/14yiq33WgWS8gTINadanzIYOFFSbdMmaL4rycjzahkv4Xs04bqad
-         mE/j7H/k+AYRnOoTwRo1gz2+7dtUPds/1zIeLUsv3gCaM2vLEOH935wWOT3DhzvHmcLq
-         WR6TtWo21mycWnBAplC6ylzJbCtNlW2vSJMvCr4/jhnedWqK6P9e4RumhcLrCtGtcNGW
-         BzqQyzCnjoKpArNVFC4txdw3c+Qy7QBDrZ72cdGH6W82GuunnHv2Z5eDQoezgsfu/tjX
-         9bH7fgH8w5ZQEb87LmNjJEhTJZRkuz8DV6CbETvXJZNPNRBFhm5GFdxUfcRxK9fTdIGm
-         Laiw==
-X-Gm-Message-State: AO0yUKXptt1+rXrryE6ggucEbDWjtGfM0S0ZiiDp0bK3U6JXSS+eoQ2u
-        JZjb/oTdO6Lwup3EQV2BGfEjpg==
-X-Google-Smtp-Source: AK7set+vNaEbl3l1Z6hbghc31W3om2GAvq3BZt9/SEGY2N7Ry7e+QAITpS/ixh1bfJlmj1UWuz7y3Q==
-X-Received: by 2002:a17:906:7249:b0:895:58be:957 with SMTP id n9-20020a170906724900b0089558be0957mr2691044ejk.2.1679402287907;
-        Tue, 21 Mar 2023 05:38:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id v14-20020a1709063bce00b0093344ef3764sm3865240ejf.57.2023.03.21.05.38.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 05:38:07 -0700 (PDT)
-Message-ID: <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
-Date:   Tue, 21 Mar 2023 13:38:06 +0100
+        with ESMTP id S229611AbjCUMjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:39:00 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2067.outbound.protection.outlook.com [40.107.220.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A01F3A89;
+        Tue, 21 Mar 2023 05:38:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MawnTCdOopxh4mRgpQWW9QEgwEhHfdHTB8BqZtK6iHCmkfxvNxSU4fUdT7x5+Z3ArGIOJm6lNzP3SZrrmhYe6bKujA/SPJDrNszoBK0s7W32PJoUNwPtHHd0zZjnozNUbq1MXGaGcU/RAtYsAxm3ekniDSvy/WRL7kBgWtwuwEIOQHb3rDjn7EOqLVEgX4N1I8uym7A9AnXD37q46m5wgmjs3ifI53w1JQzKVafTALOrV4CfvWyFNsqYTg5ynTI4N3GkafXnAot7agFDcmrK4E73U+lKB/Oi68fNjYz+G/FJIbhYCc0zjHUaGGVoU12FTKtaQa7xdUYiuPVSidVuIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jbRoW6+D7/O7l/79tpnWPBKbEQ9EHSjRvBSvgdbmFG8=;
+ b=LpfRstEfNxj+qaxbwFmWtItxxfWJNBjMGmlZSp0kvpUKdrvXspxZ9WSR7yRSdrJqvg8g78lzgJLuwwgNam2vp+GAhiW0aiO9dpgeoIKlYCj9DhTjgRnSPpGkubPo5UH2U9GD4lXqBpT24UFItyZW4iYZ3Nvti9MYzflw5D+dqvS1ZJ5gfNQIOPRdM5i7lv1SdvShbufvpDVbUAaiQz1LkHM8UNWEQVv5Vew4r0Z+R+9LhVmSGamIVNrHP1yPnX/gtNVhWoeiTlhKeH8TIDtKYrWNhbwSMpoDDBZQ2Luqs8CoRKVS95dUluXBsVRK8yHQmNX7kV+H0iL2NiXaJaDFVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jbRoW6+D7/O7l/79tpnWPBKbEQ9EHSjRvBSvgdbmFG8=;
+ b=t0nRSzOhO3fK9aqHvZCTlQM9ZuWEvKbXrqfXIny6Ic+2nalw2vqq2giilgIIUsZ89NDYgH1XIQl2LDlM3ZZZetGxpJq79ziyps8wamkhnRGEVJIgAgt4Fnr0WIty8ogWBr2pZwUUZbbE3C+lA6w4InE3zxD9PSoRh521o3KTV90=
+Received: from CY5PR14CA0007.namprd14.prod.outlook.com (2603:10b6:930:2::8) by
+ MW3PR12MB4425.namprd12.prod.outlook.com (2603:10b6:303:5e::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.37; Tue, 21 Mar 2023 12:38:44 +0000
+Received: from CY4PEPF0000C97B.namprd02.prod.outlook.com
+ (2603:10b6:930:2:cafe::c5) by CY5PR14CA0007.outlook.office365.com
+ (2603:10b6:930:2::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37 via Frontend
+ Transport; Tue, 21 Mar 2023 12:38:44 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.204.84.17)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=amd.com;
+Received-SPF: Fail (protection.outlook.com: domain of xilinx.com does not
+ designate 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000C97B.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6178.30 via Frontend Transport; Tue, 21 Mar 2023 12:38:41 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 21 Mar
+ 2023 07:38:41 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 21 Mar
+ 2023 05:38:41 -0700
+Received: from xhdharinik40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Tue, 21 Mar 2023 07:38:37 -0500
+From:   Harini Katakam <harini.katakam@amd.com>
+To:     <robh+dt@kernel.org>, <andrew@lunn.ch>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
+        <steen.hegelund@microchip.com>, <bjarni.jonasson@microchip.com>,
+        <ioana.ciornei@nxp.com>, <likaige@loongson.cn>,
+        <harini.katakam@xilinx.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <harinikatakamlinux@gmail.com>,
+        <michal.simek@xilinx.com>, <radhey.shyam.pandey@xilinx.com>
+Subject: [PATCH net-next v2 0/2] Macb PTP minor updates
+Date:   Tue, 21 Mar 2023 18:08:34 +0530
+Message-ID: <20230321123836.6906-1-harini.katakam@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
-        jani.nikula@intel.com, tzimmermann@suse.de, javierm@redhat.com,
-        ville.syrjala@linux.intel.com, r-ravikumar@ti.com,
-        lyude@redhat.com, alexander.deucher@amd.com, sjakhade@cadence.com,
-        yamonkar@cadence.com, a-bhatia1@ti.com
-References: <20230316140823.234263-1-j-choudhary@ti.com>
- <20230316140823.234263-2-j-choudhary@ti.com>
- <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
- <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000C97B:EE_|MW3PR12MB4425:EE_
+X-MS-Office365-Filtering-Correlation-Id: 60b58eab-539a-4c00-b0fb-08db2a093422
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YDxxiNC/XmAXB+1x+ZLPQZEsGr7oC/eisATrUZcmUk4blCYmMvl2C9tjHX+hakIwTLQKSoMPxFYAgoBjSf7NV14BcwJjeGuG5bFV9U7YvDZZrH0llupMPil6tAjHyAj6dZl0JpNUG5fbw4AMAJUeQQw04xhX1BmsGn0ufY9ceE3m9F4Enr3WCsdSzUOdqkIl1JEQXl1ma9Ki9s9w3SEk+QPojWhHuviLSrMROHui2Xr4yPek4O+D9Pt7p/BV/yLrKLQZNj2Eua4PO3GNiOjWdPFqlYdRFVOgxFd0KnoawPuR4QcoBnsvtVHNk/uRu+t3Fpt3O/8Ga15JQQhPJpUdExC2HEWvCF8CMeGKjS2fOh65qy5ptYgoKsmLur7lpUms6d6HarK+knpETcfnZlHj/ky5tdXkivNlsuaGUyMUQn7ZzCWwJQENmurYInZ9Hh52FTmv+dH1nj2W24Jmb0YTt9WNivipIfDVJXP1w0gnlnqYTazMlcm17l4CiQaR0OCIQ9GwsU6JdiJMMkXdu7DQ98SXUnn51ENd6mYKgcvL+W/PiJv6igTHDZemQdNdNfRoGmhVnCzcUi2I4bRcJ13iXl+qV7wbm6X/iJw30drpLF5fJ4WSb28bGaFrbiXcrn0ff4YzpDUfw59PfE+jPRu6jxg0k7idr2ozU/AF7gPQp4CX3nW/6i+OTtVqgmpsFgJUIwW71tOKucXFXQrF7gPRMaS51honc+Oq9IoPlkLcVr8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199018)(46966006)(40470700004)(2906002)(5660300002)(15650500001)(8936002)(2616005)(7416002)(4744005)(44832011)(36756003)(40480700001)(356005)(82310400005)(921005)(83170400001)(82740400003)(81166007)(426003)(35950700001)(42882007)(336012)(47076005)(83380400001)(40460700003)(8676002)(4326008)(70586007)(70206006)(6666004)(110136005)(498600001)(316002)(54906003)(26005)(41300700001)(1076003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2023 12:38:41.9560
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60b58eab-539a-4c00-b0fb-08db2a093422
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C97B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4425
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 13:02, Jayesh Choudhary wrote:
->>
->>> +    type: boolean
->>> +    description:
->>> +      Set if the HPD line on the bridge isn't hooked up to anything or is
->>> +      otherwise unusable.
->>
->> It's the property of the panel, not bridge. Unless you want to say that
->> bridge physically does not have HPD? Does it follow the standard in such
->> case?
-> 
-> MHDP does have hpd. But the mhdp driver should handle the cases when the
+- Enable PTP unicast
+- Optimize HW timestamp reading
 
-This is about bindings, not driver. Your driver can still handle this as
-it wishes.
+v2:
+- Handle unicast setting with one register R/W operation
+- Update HW timestamp logic to remove sec_rollover variable
+- Removed Richard Cochran's ACK as patch 2/2 changed
 
-> hpd pin of bridge is not connected to that of the DP-connector. This is 
-> to add support for that. (optional property)
+Harini Katakam (2):
+  net: macb: Enable PTP unicast
+  net: macb: Optimize reading HW timestamp
 
-Which is indicated by panel no-hpd, right? Or you mean now that HPD
-physically cannot go to panel because it is cut on the bridge side? But
-isn't this the same case (from hardware/bindings point, not driver) as
-panel would not have HPD?
+ drivers/net/ethernet/cadence/macb.h      |  4 ++++
+ drivers/net/ethernet/cadence/macb_main.c | 15 +++++++++++++--
+ drivers/net/ethernet/cadence/macb_ptp.c  |  4 ++--
+ 3 files changed, 19 insertions(+), 4 deletions(-)
 
-
-Best regards,
-Krzysztof
+-- 
+2.17.1
 
