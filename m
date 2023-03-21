@@ -2,439 +2,532 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CB7A6C3A44
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 300D16C3A5A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:25:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbjCUTUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 15:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56202 "EHLO
+        id S229896AbjCUTY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 15:24:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjCUTUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:20:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843802A990;
-        Tue, 21 Mar 2023 12:19:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B1EA8B8197B;
-        Tue, 21 Mar 2023 19:19:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52E8AC433D2;
-        Tue, 21 Mar 2023 19:19:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679426378;
-        bh=fokQFCcGEjTKHVOnKS2r59adxdabwlzu7buQyS9QEQM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=r6C4wN8aX/5/D6NqATJe5i//siaLxPW3jM1aoRCV4BDZGOzrzdxarM/C+A4HHXWhF
-         KgtvDlERJ+rAXCin4zXs0+xqx+6yiTh+94AasKOrdpIBobFF1BnRTgnc9oU6HTgGQX
-         FB4Q60SfYYq/pkS202AnteZ8kSaoMU9ZG7+6cCROcIQNQWlVNJ/qP3I4wPrBiZPuqO
-         x9x2BA1AoFBXThSUekIcEyZXOzORo8YtXbQub551FqB3NRqiOQD3IXj9oR2aMuzuLF
-         lqzrWAgQ0Gp/jNHRFjoB6+Aul2G32OvT+9IOipulNuqaVm3uOMMdOVjv73DmYm3azP
-         HDfdOVrT0QUJw==
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5416698e889so298175657b3.2;
-        Tue, 21 Mar 2023 12:19:38 -0700 (PDT)
-X-Gm-Message-State: AAQBX9e70aDZH1gKrulkLChm0o6CaBMyeJlTl5/rO53Bd04EYlU9Qi24
-        T2qNF+iJrLRyp65KvB9x5rI1d0Via4uwzfU3lw==
-X-Google-Smtp-Source: AKy350auLbvsTaEY90S+/uSdhiF4Pr/+ML10MRVWJ/g6N+SK2M2eI1KXes7bz5zQnfSPVM8Ou6Ko5vxhCt1Hnh/93eQ=
-X-Received: by 2002:a81:7e4a:0:b0:533:99bb:c296 with SMTP id
- p10-20020a817e4a000000b0053399bbc296mr1720735ywn.5.1679426377094; Tue, 21 Mar
- 2023 12:19:37 -0700 (PDT)
+        with ESMTP id S229825AbjCUTY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:24:58 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8169227B9
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 12:24:55 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id h25so8827643lfv.6
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 12:24:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679426694;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NwQBE2MYCQF1v4SYWqw5fgn23Mz+rAnsm7yXsaxMFlI=;
+        b=RCx7d1GM/F9upQOB7cEaANvqutDnYI09t83fwsfVtvRlktKeGXM9sn5n/rKSGL9eJI
+         8OjR8s0ChXJ/T/ZPTTbsrt0BqlLFsUmZcLVDGHpQxAkFYRYri4J0EbnMOL/x7jf350GA
+         92lEh9snB4I05owxQR35JwEhffJ33XdRRFzGUG6kg19WntqdBk3H6s99Z3OQTjGiyls8
+         J3K6aNrUF3J9W+vvnYAtMNVm4JklzgISLPr1PPGRdDDUWmkPcGnoj9fl/W1fkwLpprMW
+         skg4c4a9h9QC2I25XeBzX4pweAQeUkuExdmWScrn/LkNbDyrCJ/CKzy0P03TG7SUHziG
+         hA1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679426694;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NwQBE2MYCQF1v4SYWqw5fgn23Mz+rAnsm7yXsaxMFlI=;
+        b=UsRjSzqJcXKOaq+eV1sesUueFJ4GzkH1A3yWguohu4/6YLLFHjmOLnAZQVRcJEIEhx
+         VNtH5MoSN2suWq68k+lYnkPj0RgbRDUi5GMgAHAgESLGIx3W2Cca3FG442u1iTQn8lXB
+         OaAtX+9ypjnUyvG7QIVAkXima+/OGo92mNWhB7zsntyTzhH9A/d2RA3wkt0HQqe3k86/
+         5wac+UFPOEF6U0xPlt+jke3Lq8cjKVAOoPQgsQqFFJohb0plZfk3I6dkrSr27qp+WuqN
+         D/ptQfXiDzEJZCs13Xi+xstfuQHFo63C5LwuBjZMI5yODQX5mDcJlAcgOfD6Cm5YoFZV
+         0Jsg==
+X-Gm-Message-State: AO0yUKVC7S1IV4Mo/xsXY8O0zoSWYJSSyqzty7pYWv6InLqEn3JpWrGV
+        C3MFCxO97uNtpzp+4ORJqWPxGQ==
+X-Google-Smtp-Source: AK7set/PQvxO4sL67uyAbVu8tO6ZDGiQLVN7nj9+2j2Zbs1sGvZodzuY4FAwq5wN5MbVJoeZhKkvvQ==
+X-Received: by 2002:ac2:5939:0:b0:4e8:50e8:b96d with SMTP id v25-20020ac25939000000b004e850e8b96dmr1192449lfi.39.1679426693567;
+        Tue, 21 Mar 2023 12:24:53 -0700 (PDT)
+Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
+        by smtp.gmail.com with ESMTPSA id z2-20020ac24182000000b004dc4bb2f4bcsm2263657lfh.276.2023.03.21.12.24.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 12:24:53 -0700 (PDT)
+Message-ID: <0a029829-1663-4302-bef8-ed6636387d5e@linaro.org>
+Date:   Tue, 21 Mar 2023 20:24:46 +0100
 MIME-Version: 1.0
-References: <20230321160220.2785909-1-Frank.Li@nxp.com>
-In-Reply-To: <20230321160220.2785909-1-Frank.Li@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 21 Mar 2023 14:19:25 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLVSWuoexY+pE5K5bKPz7j1GZugcc5cD73sJW5cEipphQ@mail.gmail.com>
-Message-ID: <CAL_JsqLVSWuoexY+pE5K5bKPz7j1GZugcc5cD73sJW5cEipphQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] PCI: layerscape: Add power management support
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     bhelgaas@google.com, leoyang.li@nxp.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
-        helgaas@kernel.org, kw@linux.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        minghuan.lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 02/15] arm64: dts: qcom: sa8775p: sort soc nodes by reg
+ property
+Content-Language: en-US
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230320154841.327908-1-brgl@bgdev.pl>
+ <20230320154841.327908-3-brgl@bgdev.pl>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230320154841.327908-3-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 11:02=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
->
-> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
->
-> Add PME_Turn_Off/PME_TO_Ack handshake sequence to PCIe devices, such as
-> NVME or wifi module, and finally put the PCIe controller into D3 state
-> after the L2/L3 ready state transition process completion.
->
-> However, it's important to note that not all devices may be able to
-> tolerate the PME_Turn_Off command. In general, fixed PCIe devices
-> connected to Layerscape, such as NXP wifi devices, are able to handle
-> this command.
->
-> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+
+On 20.03.2023 16:48, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Sort all children of the soc node by the first address in their reg
+> property. This was mostly already the case but there were some nodes
+> that didn't follow it so fix it now for consistency.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
-> Change from v1 to v2
-> - fixed Bjorn Helgaas's comments
-> - remove ls1043 and ls1021, which PME is not self cleaned. After check
-> spec, there are PME interrupt to indicate PEM_TO_ACK command. but I
-> have not these platform to debug it.  I just can test ls1028 platform
-> now.
->
->  drivers/pci/controller/dwc/pci-layerscape.c  | 219 ++++++++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h |   1 +
->  2 files changed, 211 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/co=
-ntroller/dwc/pci-layerscape.c
-> index ed5fb492fe08..5fbc9151ff82 100644
-> --- a/drivers/pci/controller/dwc/pci-layerscape.c
-> +++ b/drivers/pci/controller/dwc/pci-layerscape.c
-> @@ -8,9 +8,11 @@
->   * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
->   */
->
-> +#include <linux/delay.h>
->  #include <linux/kernel.h>
->  #include <linux/interrupt.h>
->  #include <linux/init.h>
-> +#include <linux/iopoll.h>
->  #include <linux/of_pci.h>
->  #include <linux/of_platform.h>
->  #include <linux/of_address.h>
-> @@ -29,10 +31,40 @@
->
->  #define PCIE_IATU_NUM          6
->
-> +/* PF Message Command Register */
-> +#define LS_PCIE_PF_MCR         0x2c
-> +#define PF_MCR_PTOMR           BIT(0)
-> +#define PF_MCR_EXL2S           BIT(1)
-> +
-> +#define LS_PCIE_IS_L2(v)       \
-> +       (((v) & PORT_LOGIC_LTSSM_STATE_MASK) =3D=3D PORT_LOGIC_LTSSM_STAT=
-E_L2)
-> +
-> +struct ls_pcie;
-> +
-> +struct ls_pcie_host_pm_ops {
-> +       int (*pm_init)(struct ls_pcie *pcie);
-> +       void (*send_turn_off_message)(struct ls_pcie *pcie);
-> +       void (*exit_from_l2)(struct ls_pcie *pcie);
-> +};
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Please don't create your own private layer of ops. Especially since
-there is only 1 implementation.
-
-Almost every driver has some function to set LTSSM states. Usually
-that's in .start_link(). We probably need some more general DWC op
-function control this.
-
+Konrad
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 394 +++++++++++++-------------
+>  1 file changed, 197 insertions(+), 197 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 5aa28a3b12ae..296ba69b81ab 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -471,50 +471,6 @@ ipcc: mailbox@408000 {
+>  			#mbox-cells = <2>;
+>  		};
+>  
+> -		qupv3_id_1: geniqup@ac0000 {
+> -			compatible = "qcom,geni-se-qup";
+> -			reg = <0x0 0x00ac0000 0x0 0x6000>;
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+> -			clock-names = "m-ahb", "s-ahb";
+> -			clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
+> -				 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
+> -			iommus = <&apps_smmu 0x443 0x0>;
+> -			status = "disabled";
+> -
+> -			uart10: serial@a8c000 {
+> -				compatible = "qcom,geni-uart";
+> -				reg = <0x0 0x00a8c000 0x0 0x4000>;
+> -				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+> -				clock-names = "se";
+> -				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
+> -				interconnect-names = "qup-core", "qup-config";
+> -				interconnects = <&clk_virt MASTER_QUP_CORE_1 0
+> -						 &clk_virt SLAVE_QUP_CORE_1 0>,
+> -						<&gem_noc MASTER_APPSS_PROC 0
+> -						 &config_noc SLAVE_QUP_1 0>;
+> -				power-domains = <&rpmhpd SA8775P_CX>;
+> -				operating-points-v2 = <&qup_opp_table_100mhz>;
+> -				status = "disabled";
+> -			};
+> -
+> -			uart12: serial@a94000 {
+> -				compatible = "qcom,geni-uart";
+> -				reg = <0x0 0x00a94000 0x0 0x4000>;
+> -				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+> -				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+> -				clock-names = "se";
+> -				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+> -						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+> -						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> -						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
+> -				interconnect-names = "qup-core", "qup-config";
+> -				power-domains = <&rpmhpd SA8775P_CX>;
+> -				status = "disabled";
+> -			};
+> -		};
+> -
+>  		qupv3_id_2: geniqup@8c0000 {
+>  			compatible = "qcom,geni-se-qup";
+>  			reg = <0x0 0x008c0000 0x0 0x6000>;
+> @@ -585,173 +541,56 @@ &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
+>  			};
+>  		};
+>  
+> -		intc: interrupt-controller@17a00000 {
+> -			compatible = "arm,gic-v3";
+> -			reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
+> -			      <0x0 0x17a60000 0x0 0x100000>;    /* GICR * 8 */
+> -			interrupt-controller;
+> -			#interrupt-cells = <3>;
+> -			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> -			#redistributor-regions = <1>;
+> -			redistributor-stride = <0x0 0x20000>;
+> -		};
+> -
+> -		memtimer: timer@17c20000 {
+> -			compatible = "arm,armv7-timer-mem";
+> -			reg = <0x0 0x17c20000 0x0 0x1000>;
+> -			ranges = <0x0 0x0 0x0 0x20000000>;
+> -			#address-cells = <1>;
+> -			#size-cells = <1>;
+> -
+> -			frame@17c21000 {
+> -				reg = <0x17c21000 0x1000>,
+> -				      <0x17c22000 0x1000>;
+> -				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> -					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <0>;
+> -			};
+> -
+> -			frame@17c23000 {
+> -				reg = <0x17c23000 0x1000>;
+> -				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <1>;
+> -				status = "disabled";
+> -			};
+> -
+> -			frame@17c25000 {
+> -				reg = <0x17c25000 0x1000>;
+> -				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <2>;
+> -				status = "disabled";
+> -			};
+> -
+> -			frame@17c27000 {
+> -				reg = <0x17c27000 0x1000>;
+> -				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <3>;
+> -				status = "disabled";
+> -			};
+> -
+> -			frame@17c29000 {
+> -				reg = <0x17c29000 0x1000>;
+> -				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <4>;
+> -				status = "disabled";
+> -			};
+> +		qupv3_id_1: geniqup@ac0000 {
+> +			compatible = "qcom,geni-se-qup";
+> +			reg = <0x0 0x00ac0000 0x0 0x6000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			clock-names = "m-ahb", "s-ahb";
+> +			clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
+> +				 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
+> +			iommus = <&apps_smmu 0x443 0x0>;
+> +			status = "disabled";
+>  
+> -			frame@17c2b000 {
+> -				reg = <0x17c2b000 0x1000>;
+> -				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <5>;
+> +			uart10: serial@a8c000 {
+> +				compatible = "qcom,geni-uart";
+> +				reg = <0x0 0x00a8c000 0x0 0x4000>;
+> +				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+> +				clock-names = "se";
+> +				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
+> +				interconnect-names = "qup-core", "qup-config";
+> +				interconnects = <&clk_virt MASTER_QUP_CORE_1 0
+> +						 &clk_virt SLAVE_QUP_CORE_1 0>,
+> +						<&gem_noc MASTER_APPSS_PROC 0
+> +						 &config_noc SLAVE_QUP_1 0>;
+> +				power-domains = <&rpmhpd SA8775P_CX>;
+> +				operating-points-v2 = <&qup_opp_table_100mhz>;
+>  				status = "disabled";
+>  			};
+>  
+> -			frame@17c2d000 {
+> -				reg = <0x17c2d000 0x1000>;
+> -				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> -				frame-number = <6>;
+> +			uart12: serial@a94000 {
+> +				compatible = "qcom,geni-uart";
+> +				reg = <0x0 0x00a94000 0x0 0x4000>;
+> +				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+> +				clock-names = "se";
+> +				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+> +						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+> +						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
+> +				interconnect-names = "qup-core", "qup-config";
+> +				power-domains = <&rpmhpd SA8775P_CX>;
+>  				status = "disabled";
+>  			};
+>  		};
+>  
+> -		apps_rsc: rsc@18200000 {
+> -			compatible = "qcom,rpmh-rsc";
+> -			reg = <0x0 0x18200000 0x0 0x10000>,
+> -			      <0x0 0x18210000 0x0 0x10000>,
+> -			      <0x0 0x18220000 0x0 0x10000>;
+> -			reg-names = "drv-0", "drv-1", "drv-2";
+> -			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> -			      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> -			      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> -			qcom,tcs-offset = <0xd00>;
+> -			qcom,drv-id = <2>;
+> -			qcom,tcs-config = <ACTIVE_TCS 2>,
+> -					  <SLEEP_TCS 3>,
+> -					  <WAKE_TCS 3>,
+> -					  <CONTROL_TCS 0>;
+> -			label = "apps_rsc";
+> -
+> -			apps_bcm_voter: bcm-voter {
+> -				compatible = "qcom,bcm-voter";
+> -			};
+> -
+> -			rpmhcc: clock-controller {
+> -				compatible = "qcom,sa8775p-rpmh-clk";
+> -				#clock-cells = <1>;
+> -				clock-names = "xo";
+> -				clocks = <&xo_board_clk>;
+> -			};
+> -
+> -			rpmhpd: power-controller {
+> -				compatible = "qcom,sa8775p-rpmhpd";
+> -				#power-domain-cells = <1>;
+> -				operating-points-v2 = <&rpmhpd_opp_table>;
+> -
+> -				rpmhpd_opp_table: opp-table {
+> -					compatible = "operating-points-v2";
+> -
+> -					rpmhpd_opp_ret: opp-0 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
+> -					};
+> -
+> -					rpmhpd_opp_min_svs: opp-1 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+> -					};
+> -
+> -					rpmhpd_opp_low_svs: opp2 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> -					};
+> -
+> -					rpmhpd_opp_svs: opp3 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+> -					};
+> -
+> -					rpmhpd_opp_svs_l1: opp-4 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> -					};
+> -
+> -					rpmhpd_opp_nom: opp-5 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+> -					};
+> -
+> -					rpmhpd_opp_nom_l1: opp-6 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
+> -					};
+> -
+> -					rpmhpd_opp_nom_l2: opp-7 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L2>;
+> -					};
+> -
+> -					rpmhpd_opp_turbo: opp-8 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+> -					};
+> -
+> -					rpmhpd_opp_turbo_l1: opp-9 {
+> -						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+>  		tcsr_mutex: hwlock@1f40000 {
+>  			compatible = "qcom,tcsr-mutex";
+>  			reg = <0x0 0x01f40000 0x0 0x20000>;
+>  			#hwlock-cells = <1>;
+>  		};
+>  
+> -		cpufreq_hw: cpufreq@18591000 {
+> -			compatible = "qcom,sa8775p-cpufreq-epss",
+> -				     "qcom,cpufreq-epss";
+> -			reg = <0x0 0x18591000 0x0 0x1000>,
+> -			      <0x0 0x18593000 0x0 0x1000>;
+> -			reg-names = "freq-domain0", "freq-domain1";
+> -
+> -			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+> -			clock-names = "xo", "alternate";
+> -
+> -			#freq-domain-cells = <1>;
+> -		};
+> -
+>  		tlmm: pinctrl@f000000 {
+>  			compatible = "qcom,sa8775p-tlmm";
+>  			reg = <0x0 0x0f000000 0x0 0x1000000>;
+> @@ -900,6 +739,167 @@ apps_smmu: iommu@15000000 {
+>  				     <GIC_SPI 892 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 891 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
 > +
-> +struct ls_pcie_drvdata {
-> +       const u32 pf_off;
-> +       const u32 lut_off;
-> +       const struct ls_pcie_host_pm_ops *pm_ops;
-> +};
+> +		intc: interrupt-controller@17a00000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
+> +			      <0x0 0x17a60000 0x0 0x100000>;    /* GICR * 8 */
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +			#redistributor-regions = <1>;
+> +			redistributor-stride = <0x0 0x20000>;
+> +		};
 > +
->  struct ls_pcie {
->         struct dw_pcie *pci;
-> +       const struct ls_pcie_drvdata *drvdata;
-> +       void __iomem *pf_base;
-> +       void __iomem *lut_base;
-> +       bool big_endian;
-> +       bool pm_support;
-> +       struct regmap *scfg;
-> +       int index;
->  };
->
-> +#define ls_pcie_pf_readl_addr(addr)    ls_pcie_pf_readl(pcie, addr)
->  #define to_ls_pcie(x)  dev_get_drvdata((x)->dev)
->
->  static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
-> @@ -73,6 +105,69 @@ static void ls_pcie_fix_error_response(struct ls_pcie=
- *pcie)
->         iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
->  }
->
-> +static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
-> +{
-> +       if (pcie->big_endian)
-
-You set 'big-endian' for the node, but it's only these PF registers
-that are big endian?
-
-> +               return ioread32be(pcie->pf_base + off);
+> +		memtimer: timer@17c20000 {
+> +			compatible = "arm,armv7-timer-mem";
+> +			reg = <0x0 0x17c20000 0x0 0x1000>;
+> +			ranges = <0x0 0x0 0x0 0x20000000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
 > +
-> +       return ioread32(pcie->pf_base + off);
-> +}
+> +			frame@17c21000 {
+> +				reg = <0x17c21000 0x1000>,
+> +				      <0x17c22000 0x1000>;
+> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <0>;
+> +			};
 > +
-> +static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
-> +{
-> +       if (pcie->big_endian)
-> +               return iowrite32be(val, pcie->pf_base + off);
+> +			frame@17c23000 {
+> +				reg = <0x17c23000 0x1000>;
+> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <1>;
+> +				status = "disabled";
+> +			};
 > +
-> +       return iowrite32(val, pcie->pf_base + off);
-> +}
+> +			frame@17c25000 {
+> +				reg = <0x17c25000 0x1000>;
+> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <2>;
+> +				status = "disabled";
+> +			};
 > +
-> +static void ls_pcie_send_turnoff_msg(struct ls_pcie *pcie)
-> +{
-> +       u32 val;
-> +       int ret;
+> +			frame@17c27000 {
+> +				reg = <0x17c27000 0x1000>;
+> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <3>;
+> +				status = "disabled";
+> +			};
 > +
-> +       val =3D ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-> +       val |=3D PF_MCR_PTOMR;
-> +       ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> +			frame@17c29000 {
+> +				reg = <0x17c29000 0x1000>;
+> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <4>;
+> +				status = "disabled";
+> +			};
 > +
-> +       ret =3D readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-> +                                val, !(val & PF_MCR_PTOMR), 100, 10000);
-> +       if (ret)
-> +               dev_warn(pcie->pci->dev, "poll turn off message timeout\n=
-");
-> +}
+> +			frame@17c2b000 {
+> +				reg = <0x17c2b000 0x1000>;
+> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <5>;
+> +				status = "disabled";
+> +			};
 > +
-> +static void ls_pcie_exit_from_l2(struct ls_pcie *pcie)
-> +{
-> +       u32 val;
-> +       int ret;
+> +			frame@17c2d000 {
+> +				reg = <0x17c2d000 0x1000>;
+> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> +				frame-number = <6>;
+> +				status = "disabled";
+> +			};
+> +		};
 > +
-> +       val =3D ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-> +       val |=3D PF_MCR_EXL2S;
-> +       ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> +		apps_rsc: rsc@18200000 {
+> +			compatible = "qcom,rpmh-rsc";
+> +			reg = <0x0 0x18200000 0x0 0x10000>,
+> +			      <0x0 0x18210000 0x0 0x10000>,
+> +			      <0x0 0x18220000 0x0 0x10000>;
+> +			reg-names = "drv-0", "drv-1", "drv-2";
+> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +			      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +			      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> +			qcom,tcs-offset = <0xd00>;
+> +			qcom,drv-id = <2>;
+> +			qcom,tcs-config = <ACTIVE_TCS 2>,
+> +					  <SLEEP_TCS 3>,
+> +					  <WAKE_TCS 3>,
+> +					  <CONTROL_TCS 0>;
+> +			label = "apps_rsc";
 > +
-> +       ret =3D readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-> +                                val, !(val & PF_MCR_EXL2S), 100, 10000);
-> +       if (ret)
-> +               dev_warn(pcie->pci->dev, "poll exit L2 state timeout\n");
-> +}
+> +			apps_bcm_voter: bcm-voter {
+> +				compatible = "qcom,bcm-voter";
+> +			};
 > +
-> +static int ls_pcie_pm_init(struct ls_pcie *pcie)
-> +{
-> +       return 0;
-> +}
+> +			rpmhcc: clock-controller {
+> +				compatible = "qcom,sa8775p-rpmh-clk";
+> +				#clock-cells = <1>;
+> +				clock-names = "xo";
+> +				clocks = <&xo_board_clk>;
+> +			};
 > +
-> +static void ls_pcie_set_dstate(struct ls_pcie *pcie, u32 dstate)
-> +{
-> +       struct dw_pcie *pci =3D pcie->pci;
-> +       u8 offset =3D dw_pcie_find_capability(pci, PCI_CAP_ID_PM);
-> +       u32 val;
+> +			rpmhpd: power-controller {
+> +				compatible = "qcom,sa8775p-rpmhpd";
+> +				#power-domain-cells = <1>;
+> +				operating-points-v2 = <&rpmhpd_opp_table>;
 > +
-> +       val =3D dw_pcie_readw_dbi(pci, offset + PCI_PM_CTRL);
-> +       val &=3D ~PCI_PM_CTRL_STATE_MASK;
-> +       val |=3D dstate;
-> +       dw_pcie_writew_dbi(pci, offset + PCI_PM_CTRL, val);
-> +}
+> +				rpmhpd_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
 > +
->  static int ls_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->         struct dw_pcie *pci =3D to_dw_pcie_from_pp(pp);
-> @@ -86,23 +181,46 @@ static int ls_pcie_host_init(struct dw_pcie_rp *pp)
->
->         ls_pcie_drop_msg_tlp(pcie);
->
-> +       if (pcie->drvdata->pm_ops && pcie->drvdata->pm_ops->pm_init &&
-> +           !pcie->drvdata->pm_ops->pm_init(pcie))
-> +               pcie->pm_support =3D true;
-
-Just define 'pm_support' in the match data.
-
+> +					rpmhpd_opp_ret: opp-0 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
+> +					};
 > +
->         return 0;
->  }
->
-> +static struct ls_pcie_host_pm_ops ls_pcie_host_pm_ops =3D {
-> +       .pm_init =3D &ls_pcie_pm_init,
-> +       .send_turn_off_message =3D &ls_pcie_send_turnoff_msg,
-> +       .exit_from_l2 =3D &ls_pcie_exit_from_l2,
-> +};
+> +					rpmhpd_opp_min_svs: opp-1 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+> +					};
 > +
->  static const struct dw_pcie_host_ops ls_pcie_host_ops =3D {
->         .host_init =3D ls_pcie_host_init,
->  };
->
-> +static const struct ls_pcie_drvdata ls1021a_drvdata =3D {
-> +};
+> +					rpmhpd_opp_low_svs: opp2 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +					};
 > +
-> +static const struct ls_pcie_drvdata ls1043a_drvdata =3D {
-> +       .lut_off =3D 0x10000,
-> +};
+> +					rpmhpd_opp_svs: opp3 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+> +					};
 > +
-> +static const struct ls_pcie_drvdata layerscape_drvdata =3D {
-> +       .lut_off =3D 0x80000,
-> +       .pf_off =3D 0xc0000,
-> +       .pm_ops =3D &ls_pcie_host_pm_ops,
-> +};
+> +					rpmhpd_opp_svs_l1: opp-4 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> +					};
 > +
->  static const struct of_device_id ls_pcie_of_match[] =3D {
-> -       { .compatible =3D "fsl,ls1012a-pcie", },
-> -       { .compatible =3D "fsl,ls1021a-pcie", },
-> -       { .compatible =3D "fsl,ls1028a-pcie", },
-> -       { .compatible =3D "fsl,ls1043a-pcie", },
-> -       { .compatible =3D "fsl,ls1046a-pcie", },
-> -       { .compatible =3D "fsl,ls2080a-pcie", },
-> -       { .compatible =3D "fsl,ls2085a-pcie", },
-> -       { .compatible =3D "fsl,ls2088a-pcie", },
-> -       { .compatible =3D "fsl,ls1088a-pcie", },
-> +       { .compatible =3D "fsl,ls1012a-pcie", .data =3D &layerscape_drvda=
-ta },
-> +       { .compatible =3D "fsl,ls1021a-pcie", .data =3D &ls1021a_drvdata =
-},
-> +       { .compatible =3D "fsl,ls1028a-pcie", .data =3D &layerscape_drvda=
-ta },
-> +       { .compatible =3D "fsl,ls1043a-pcie", .data =3D &ls1043a_drvdata =
-},
-> +       { .compatible =3D "fsl,ls1046a-pcie", .data =3D &layerscape_drvda=
-ta },
-> +       { .compatible =3D "fsl,ls2080a-pcie", .data =3D &layerscape_drvda=
-ta },
-> +       { .compatible =3D "fsl,ls2085a-pcie", .data =3D &layerscape_drvda=
-ta },
-> +       { .compatible =3D "fsl,ls2088a-pcie", .data =3D &layerscape_drvda=
-ta },
-> +       { .compatible =3D "fsl,ls1088a-pcie", .data =3D &layerscape_drvda=
-ta },
->         { },
->  };
->
-> @@ -121,6 +239,8 @@ static int ls_pcie_probe(struct platform_device *pdev=
-)
->         if (!pci)
->                 return -ENOMEM;
->
-> +       pcie->drvdata =3D of_device_get_match_data(dev);
+> +					rpmhpd_opp_nom: opp-5 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+> +					};
 > +
->         pci->dev =3D dev;
->         pci->pp.ops =3D &ls_pcie_host_ops;
->
-> @@ -131,6 +251,14 @@ static int ls_pcie_probe(struct platform_device *pde=
-v)
->         if (IS_ERR(pci->dbi_base))
->                 return PTR_ERR(pci->dbi_base);
->
-> +       pcie->big_endian =3D of_property_read_bool(dev->of_node, "big-end=
-ian");
+> +					rpmhpd_opp_nom_l1: opp-6 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
+> +					};
 > +
-> +       if (pcie->drvdata->lut_off)
-> +               pcie->lut_base =3D pci->dbi_base + pcie->drvdata->lut_off=
-;
+> +					rpmhpd_opp_nom_l2: opp-7 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L2>;
+> +					};
 > +
-> +       if (pcie->drvdata->pf_off)
-> +               pcie->pf_base =3D pci->dbi_base + pcie->drvdata->pf_off;
+> +					rpmhpd_opp_turbo: opp-8 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+> +					};
 > +
->         if (!ls_pcie_is_bridge(pcie))
->                 return -ENODEV;
->
-> @@ -139,12 +267,85 @@ static int ls_pcie_probe(struct platform_device *pd=
-ev)
->         return dw_pcie_host_init(&pci->pp);
->  }
->
-> +static bool ls_pcie_pm_supported(struct ls_pcie *pcie)
-> +{
-> +       if (!dw_pcie_link_up(pcie->pci)) {
-> +               dev_dbg(pcie->pci->dev, "Endpoint isn't present\n");
-> +               return false;
-> +       }
+> +					rpmhpd_opp_turbo_l1: opp-9 {
+> +						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+> +					};
+> +				};
+> +			};
+> +		};
 > +
-> +       return pcie->pm_support;
-> +}
+> +		cpufreq_hw: cpufreq@18591000 {
+> +			compatible = "qcom,sa8775p-cpufreq-epss",
+> +				     "qcom,cpufreq-epss";
+> +			reg = <0x0 0x18591000 0x0 0x1000>,
+> +			      <0x0 0x18593000 0x0 0x1000>;
+> +			reg-names = "freq-domain0", "freq-domain1";
 > +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int ls_pcie_suspend_noirq(struct device *dev)
-> +{
-> +       struct ls_pcie *pcie =3D dev_get_drvdata(dev);
-> +       struct dw_pcie *pci =3D pcie->pci;
-> +       u32 val;
-> +       int ret;
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+> +			clock-names = "xo", "alternate";
 > +
-> +       if (!ls_pcie_pm_supported(pcie))
-> +               return 0;
-> +
-> +       pcie->drvdata->pm_ops->send_turn_off_message(pcie);
-> +
-> +       /* 10ms timeout to check L2 ready */
-> +       ret =3D readl_poll_timeout(pci->dbi_base + PCIE_PORT_DEBUG0,
-> +                                val, LS_PCIE_IS_L2(val), 100, 10000);
-> +       if (ret) {
-> +               dev_err(dev, "PCIe link enter L2 timeout! ltssm =3D 0x%x\=
-n", val);
-> +               return ret;
-> +       }
-> +
-> +       ls_pcie_set_dstate(pcie, 0x3);
-> +
-> +       return 0;
-> +}
-> +
-> +static int ls_pcie_resume_noirq(struct device *dev)
-> +{
-> +       struct ls_pcie *pcie =3D dev_get_drvdata(dev);
-> +       struct dw_pcie *pci =3D pcie->pci;
-> +       int ret;
-> +
-> +       if (!ls_pcie_pm_supported(pcie))
-> +               return 0;
-> +
-> +       ls_pcie_set_dstate(pcie, 0x0);
-> +
-> +       pcie->drvdata->pm_ops->exit_from_l2(pcie);
-> +
-> +       ret =3D ls_pcie_host_init(&pci->pp);
-> +       if (ret) {
-> +               dev_err(dev, "PCIe host init failed! ret =3D 0x%x\n", ret=
-);
-> +               return ret;
-> +       }
-> +
-> +       dw_pcie_setup_rc(&pci->pp);
-> +
-> +       ret =3D dw_pcie_wait_for_link(pci);
-> +       if (ret) {
-> +               dev_err(dev, "Wait link up timeout! ret =3D 0x%x\n", ret)=
-;
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +#endif /* CONFIG_PM_SLEEP */
-> +
-> +static const struct dev_pm_ops ls_pcie_pm_ops =3D {
-> +       SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq,
-> +                                     ls_pcie_resume_noirq)
-> +};
-> +
->  static struct platform_driver ls_pcie_driver =3D {
->         .probe =3D ls_pcie_probe,
->         .driver =3D {
->                 .name =3D "layerscape-pcie",
->                 .of_match_table =3D ls_pcie_of_match,
->                 .suppress_bind_attrs =3D true,
-> +               .pm =3D &ls_pcie_pm_ops,
->         },
->  };
->  builtin_platform_driver(ls_pcie_driver);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/c=
-ontroller/dwc/pcie-designware.h
-> index 79713ce075cc..7de8409e2433 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -94,6 +94,7 @@
->  #define PCIE_PORT_DEBUG0               0x728
->  #define PORT_LOGIC_LTSSM_STATE_MASK    0x1f
->  #define PORT_LOGIC_LTSSM_STATE_L0      0x11
-> +#define PORT_LOGIC_LTSSM_STATE_L2      0x15
->  #define PCIE_PORT_DEBUG1               0x72C
->  #define PCIE_PORT_DEBUG1_LINK_UP               BIT(4)
->  #define PCIE_PORT_DEBUG1_LINK_IN_TRAINING      BIT(29)
-> --
-> 2.34.1
->
+> +			#freq-domain-cells = <1>;
+> +		};
+>  	};
+>  
+>  	arch_timer: timer {
