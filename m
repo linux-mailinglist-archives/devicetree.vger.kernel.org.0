@@ -2,138 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 823316C2C44
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3256C2C50
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:28:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231179AbjCUI0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 04:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49844 "EHLO
+        id S231204AbjCUI2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 04:28:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbjCUIZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:25:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBA02CC5B;
-        Tue, 21 Mar 2023 01:25:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7144AB81252;
-        Tue, 21 Mar 2023 08:25:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB65FC433D2;
-        Tue, 21 Mar 2023 08:25:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679387153;
-        bh=8GPiMzbN7BmXPyIzz0Qw60XVpxo4kSSqd4BTGmy3AlA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OZRB44LFEQYJBDh3/ETp0fAJtAFrIfUIZw8BfDyFQb45eTLV1shnqldjlcpL7R4PV
-         kQv1VW7/0ZDSudqTWBvFo9UpFVin9rUMixEC5b50BKHffW4eOHc9j20wTowSTVpsz9
-         NHCiVoU94+dYFTZvEJWCYtydZ92oOcva2ArbYTJVi9x5e1BjjZcc4wDPudZ9d+7Hrc
-         pglakWLnRAIlljeSqYERD/BuZ18rBrmxK0aYMU/mnBh+3i5vTm5BInFfWiVrqSan5f
-         /ICplHQsfLqF+2gu3HY1UA82jVADZd+twDQNKOI349ENKDMfJSH5NLb2ttbXV5mJw0
-         YqzR2W7as7Wwg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1peXKu-00008b-6A; Tue, 21 Mar 2023 09:27:16 +0100
-Date:   Tue, 21 Mar 2023 09:27:16 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Kalle Valo <kvalo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
-Message-ID: <ZBlqZLHwqLLZhtTi@hovoldconsulting.com>
-References: <20230320104658.22186-1-johan+linaro@kernel.org>
- <20230320104658.22186-2-johan+linaro@kernel.org>
- <a8356f76-189d-928b-1a1c-f4171de1e2d0@linaro.org>
+        with ESMTP id S231234AbjCUI1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:27:51 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D23B43456
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:27:46 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id r11so56482705edd.5
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 01:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679387264;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/TEoac3zeVJgrljfVa3qI82OfUIQHCkP0Xt4a5FiT+o=;
+        b=yoCa7/aGur2BAdLJ0k075LI38fAA5uW/39Bida5ARuhbJngZpq4KmgzY4307Ut8mcl
+         5+KBSkPEzkhMAwVC2vJ0La0j1YcVqBeAsxgBRRLyNbnfUihAUfAwg9KJ2SKX/+mmcyBH
+         hsxEZrPQyY8MUSaIW44hGOF//5Fz62bZsZINgIUp1HMH0rv86LKAwuVYsB7oanw7OZe7
+         EB2/+hQ49iUSD89pX8kSyNdsN/GdaAIRJQ9+i2uojH8Mpy6qRk4E5k8knP27e/ETahjy
+         4EcIE96IsWZWZWSWZnCPCz0rTrt4u0mEZOEu7sqJoAWDrYti8/2rKmXD4z1+SoRCjYzh
+         Mf/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679387264;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/TEoac3zeVJgrljfVa3qI82OfUIQHCkP0Xt4a5FiT+o=;
+        b=tbxfyGEDsFierNPVON+0rVPY2s666LBh05Z8+EvFKumVt27tRWqntaNeBC7G6CXmi3
+         x0xlZRkr2x+C27cegcq2tvygHuQKe/ThBZsqJcqpQigTFopv2/zengru/hR9uW9HtIB8
+         W68ln8YR09ZaItj3U6vApCmjep88zEbOBPkYKf3BeUemw4/ItiOSbJikpdK4nONvSzYO
+         y1SUd+m1/P3zCyaUhHMC8YG5TglhqPJciNC8//YCLxxCfoBq8kP0+Gbnprpg0B3oILBa
+         weUy3UEDr/VeEtA3WWlveBas+Iap2OkTXVoGCTcoV+WMl10kdA19AR4XV6y3VXSKfEPS
+         /Leg==
+X-Gm-Message-State: AO0yUKVvWjYCiltRbo2e+FgmGHZqwRCWRWyCx+KMxXFucSJQZRKX6swW
+        4EFgeboTBerCBOv0kuTJasWeWQ==
+X-Google-Smtp-Source: AK7set/otTGERTl499ZirD8V+i4JpJed1Ipr6PSjOnjMebniqJYVuGKY9sgR9QOB04aOlA+Bn+URmg==
+X-Received: by 2002:aa7:c858:0:b0:4fe:9bb7:73a2 with SMTP id g24-20020aa7c858000000b004fe9bb773a2mr2092978edt.38.1679387264161;
+        Tue, 21 Mar 2023 01:27:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id x23-20020a50d617000000b004fa268da13esm5985814edi.56.2023.03.21.01.27.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 01:27:43 -0700 (PDT)
+Message-ID: <82f517b5-6697-3379-8d71-163b0d17735d@linaro.org>
+Date:   Tue, 21 Mar 2023 09:27:42 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a8356f76-189d-928b-1a1c-f4171de1e2d0@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
+ tree binding documentation
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+ <20230320161823.1424278-2-sergio.paracuellos@gmail.com>
+ <1e2f67b4-3bfb-d394-4f60-e6f63ce6a2fd@linaro.org>
+ <CAMhs-H8OQ9gJLsifLuHD2GN8rYwnY=Zmdb0kMEfX4UUHhjMUyQ@mail.gmail.com>
+ <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
+ <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+ <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org>
+ <525a6388-a4b8-3052-fe81-5aa21d8f424a@arinc9.com>
+ <507f79cf-acd8-5238-031a-fd71024e0c6a@linaro.org>
+ <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
+ <39ba681e-5bab-cffc-edf7-4bf86387987c@linaro.org>
+ <132de602-6467-536c-c66d-657f22a59bd5@arinc9.com>
+ <40e3acac-b58a-7af8-b025-3678f84434da@linaro.org>
+ <CAMhs-H9AWXvtbg=qz06HN3piUO0E5YF3RmrdRLC7qH2n6KjrSw@mail.gmail.com>
+ <d598f5f8-f998-2a31-bb21-97e641793dda@linaro.org>
+ <120663a9-aecf-4a43-d1fb-779cd52802c6@arinc9.com>
+ <3d2b8a1a-99c9-f53e-4bb3-a8b938e2672f@linaro.org>
+ <543ad00d-4171-ed02-0d31-676c6b003e54@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <543ad00d-4171-ed02-0d31-676c6b003e54@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 09:14:15AM +0100, Krzysztof Kozlowski wrote:
-> On 20/03/2023 11:46, Johan Hovold wrote:
-> > Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6856
-> > for which the calibration data variant may need to be described.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  .../bindings/net/wireless/pci17cb,1103.yaml   | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml b/Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
-> > new file mode 100644
-> > index 000000000000..df67013822c6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
+On 21/03/2023 09:24, Arınç ÜNAL wrote:
+>>>
+>>> If we take the calling new things mediatek route, we will never get to
+>>> the bottom of fixing the naming inconsistency.
+>>
+>> All new things, so new SoCs, should be called mediatek, because there is
+>> no ralink and mediatek is already used for them. So why some new
+>> Mediatek SoCs are "mediatek" but some other also new SoCs are "ralink"?
+>>
+>> You can do nothing (and no actual need) about existing inconsistency...
 > 
-> PCI devices are kind of exception in the naming, so this should be
-> qcom,ath11k-pci.yaml or qcom,wcn6856.yaml (or something similar)
+> I couldn't change ralink -> mediatek because company acquisitions don't 
+> grant the change. I don't see any reason to prevent changing mediatek -> 
+> ralink without breaking the ABI on the existing schemas.
 
-Heh, I suggested something similar in my reply to Kalle. Let's go with
-'qcom,ath11k-pci.yaml' then as he first suggested (and keeping the
-current schema file unchanged?).
+You cannot change mediatek->ralink without breaking the ABI for the same
+reasons.
 
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (c) 2023 Linaro Limited
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/wireless/pci17cb,1103.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Technologies ath11k wireless devices (PCIe)
-> > +
-> > +maintainers:
-> > +  - Kalle Valo <kvalo@kernel.org>
-> > +
-> > +description: |
-> > +  Qualcomm Technologies IEEE 802.11ax PCIe devices.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - pci17cb,1103  # WCN6856
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  qcom,ath11k-calibration-variant:
-> 
-> qcom,calibration-variant
+Best regards,
+Krzysztof
 
-This one is already in use as you noticed.
-
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: calibration data variant
-> 
-> Your description copies the name of property. Instead say something more...
-
-Yeah, I was actively avoiding trying to say too much (e.g. mentioning
-the name of the current firmware file). See the definition in
-qcom,ath11k.yaml.
-
-I can try to find some middle ground unless you prefer copying the
-current definition.
-
-Johan
