@@ -2,168 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 097256C38E7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 19:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B63E26C38F9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 19:15:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjCUSIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 14:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41084 "EHLO
+        id S229592AbjCUSP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 14:15:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbjCUSIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 14:08:23 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF8037F00;
-        Tue, 21 Mar 2023 11:08:22 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id y35so7935365pgl.4;
-        Tue, 21 Mar 2023 11:08:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679422101;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/rMnDzTtzdcuKbx17fhDdJNMf1h2Fo2LL02Vb+CLhM=;
-        b=V6AhfyZ51y2qPm+yKR8DM2g0Jq0GoidDfLpWizKuMgFMzA0XWVkgTp0MoZNW5r5HoL
-         PU8ENnUvZdXNJBgyOgTvLeQYj4CwZob5eET0wvQjIou9+jdmJWrJvwOkX7codPxd6+bc
-         bj8mnRj/bZR+ilrbv8GACzV6xAuRmlXowjHHwEH0BKpwvO3MxqIT51C2y3b136V9jEaQ
-         UIE3HjyZFUu/0+aHIWOpfv/GZaaWjvmfOjMA+LgCC2nt2ubGPtntdsbZWkSwNsHPZYJC
-         SmRBW11b3hhOsgW9brRov0AoeyGWDgurAw61HPKlWl1KpUN3pg11NJRajLizT4i1OS8N
-         AcgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679422101;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2/rMnDzTtzdcuKbx17fhDdJNMf1h2Fo2LL02Vb+CLhM=;
-        b=0OPbqWNwEPVQdhOH/ToE9ySrIr6mNu+ZW4g9xsnYq9x78xHEBBou9X3o0wSDC+jM75
-         xbsoum0J/cUCRQfo/n0f7VSFkPhzfbbI2gQNXkc8ziZH4mYUyqKNWPGYAOy96aoq0fI3
-         pQkSpYpVQhM/oqrAmJHzGwUEXAuSqzfnTa72PPvAC57P6WgL5mnJXYtatHi9p9S8Cq6D
-         7mz5UHnpgt+J4+s5jgIsCaxl0EWjB8Wu7Ip98RdmNmVfRUCuPV9gPLEdWtJ0nZ4i9EcO
-         SNul4SUIgvubjKaiYTX8iH8WqESjvjvcE4KpU3/4URDBKOPGGIqb74GjnoUF+NxY8PQW
-         rXhw==
-X-Gm-Message-State: AO0yUKXObq0NlbD1ajckQ8aP6vnkWT/4tJyELPzmp4s0H8lUmbImLOmw
-        Va7VPNUhzrdnWcEFzFNHD+k=
-X-Google-Smtp-Source: AK7set8Y5LDotwJmgDk9x8Q5w4bKASWDV6/0OiAfBWqilwxolMKj/ewwXe85vIJsjNQ8JOrk8MgXag==
-X-Received: by 2002:aa7:98db:0:b0:628:cff:1440 with SMTP id e27-20020aa798db000000b006280cff1440mr545007pfm.28.1679422101460;
-        Tue, 21 Mar 2023 11:08:21 -0700 (PDT)
-Received: from pavilion.. ([2402:e280:2146:a9a:1776:b945:875a:a34])
-        by smtp.gmail.com with ESMTPSA id a21-20020a62bd15000000b005895f9657ebsm8522918pff.70.2023.03.21.11.08.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 11:08:21 -0700 (PDT)
-From:   Saalim Quadri <danascape@gmail.com>
-To:     broonie@kernel.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Saalim Quadri <danascape@gmail.com>
-Subject: [PATCH] ASoC: dt-bindings: ak5558: Convert to dtschema
-Date:   Tue, 21 Mar 2023 23:38:09 +0530
-Message-Id: <20230321180809.9215-1-danascape@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229606AbjCUSP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 14:15:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E308A7E;
+        Tue, 21 Mar 2023 11:15:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 931F361D98;
+        Tue, 21 Mar 2023 18:15:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCBAAC433D2;
+        Tue, 21 Mar 2023 18:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679422522;
+        bh=hIOq5dDkrg3sXzDPPJvDRD1aVZ39RpNjhbDlFV9Te8Y=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=VXR6MyBIQLcC8YRSmkoxYqeuBl0N5nxmb5pljge76AYMMBt06x6XPyEkUfUq8+CgE
+         /UJvLCkPg1ufseDOQ7g3lE3e3koPsvUqBsGzDRfdtt+NbCNebgoNN0vwd1PzHQH9Zg
+         BQrraxC6CKNk1e7Du3u3NXpB76OASsBLcXNWL46DRFeyNGMLfDicYrLoJZ2pYa8Y1d
+         Dc2c3nZvtgVhwcVngiUik37zhPF+BmQR+xLwN9sUCHA+FtI6n/vBkdhzO1Pt6uFssT
+         EcrtKrFlFeRFrijmpiuLlvkMCoL4tBk3K/EFXtEALyRKDXU7bqniMG8dPLroz8GaZn
+         VAuDCcjT/fhgw==
+Message-ID: <12903a61f64206be837c1f0744632f29.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230321173303.GA950598-robh@kernel.org>
+References: <20230315183729.2376178-1-sboyd@kernel.org> <20230315183729.2376178-2-sboyd@kernel.org> <20230321173303.GA950598-robh@kernel.org>
+Subject: Re: [PATCH v2 01/11] of: Load KUnit DTB from of_core_init()
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        patches@lists.linux.dev,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Gow <davidgow@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        kunit-dev@googlegroups.com, Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh@kernel.org>
+Date:   Tue, 21 Mar 2023 11:15:19 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the AK5558 ADC audio codec bindings to DT schema.
+Quoting Rob Herring (2023-03-21 10:33:03)
+> On Wed, Mar 15, 2023 at 11:37:18AM -0700, Stephen Boyd wrote:
+> > diff --git a/drivers/of/of_test.c b/drivers/of/of_test.c
+> > new file mode 100644
+> > index 000000000000..a4d70ac344ad
+> > --- /dev/null
+> > +++ b/drivers/of/of_test.c
+> > @@ -0,0 +1,43 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * KUnit tests for OF APIs
+> > + */
+> > +#include <linux/kconfig.h>
+> > +#include <linux/of.h>
+> > +
+> > +#include <kunit/test.h>
+> > +
+> > +/*
+> > + * Test that the root node / exists.
+> > + */
+> > +static void dtb_root_node_exists(struct kunit *test)
+> > +{
+> > +     KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/"));
+> > +}
+> > +
+> > +/*
+> > + * Test that the /__symbols__ node exists.
+> > + */
+> > +static void dtb_symbols_node_exists(struct kunit *test)
+> > +{
+> > +     KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/__symbo=
+ls__"));
+> > +}
+>=20
+> Many base DTs will not have this. And the kunit tests themselves=20
+> shouldn't need it because they should be independent of the base tree.
+>=20
 
-Signed-off-by: Saalim Quadri <danascape@gmail.com>
----
- .../devicetree/bindings/sound/ak5558.txt      | 24 ---------
- .../devicetree/bindings/sound/ak5558.yaml     | 49 +++++++++++++++++++
- 2 files changed, 49 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/ak5558.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ak5558.yaml
+When I try to apply an overlay it fails=20
 
-diff --git a/Documentation/devicetree/bindings/sound/ak5558.txt b/Documentation/devicetree/bindings/sound/ak5558.txt
-deleted file mode 100644
-index e28708db6686..000000000000
---- a/Documentation/devicetree/bindings/sound/ak5558.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--AK5558 8 channel differential 32-bit delta-sigma ADC
--
--This device supports I2C mode only.
--
--Required properties:
--
--- compatible : "asahi-kasei,ak5558" or "asahi-kasei,ak5552".
--- reg : The I2C address of the device.
--
--Optional properties:
--
--- reset-gpios: A GPIO specifier for the power down & reset pin.
--- AVDD-supply: Analog power supply
--- DVDD-supply: Digital power supply
--
--Example:
--
--&i2c {
--	ak5558: adc@10 {
--		compatible = "asahi-kasei,ak5558";
--		reg = <0x10>;
--		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/ak5558.yaml b/Documentation/devicetree/bindings/sound/ak5558.yaml
-new file mode 100644
-index 000000000000..90fd734daeec
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ak5558.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ak5558.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AK5558 ADC Device Tree Bindings
-+
-+maintainers:
-+  - Junichi Wakasugi <wakasugi.jb@om.asahi-kasei.co.jp>
-+  - Mihai Serban <mihai.serban@nxp.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - asahi-kasei,ak5558
-+      - asahi-kasei,ak5552
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C address of the device.
-+
-+  avdd-supply:
-+    description: A 1.8V supply that powers up the AVDD pin.
-+
-+  dvdd-supply:
-+    description: A 1.2V supply that powers up the DVDD pin.
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        ak5558: codec@10 {
-+            compatible = "asahi-kasei,ak5558";
-+            reg = <0x10>;
-+            reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+        };
-+    };
--- 
-2.34.1
+ OF: overlay: no fragments or symbols in overlay
+ OF: overlay: init_overlay_changeset() failed, ret =3D -22
+     # of_overlay_apply_kunit_apply: ASSERTION FAILED at drivers/of/overlay=
+_test.c:18
+     Expected 0 =3D=3D ({ extern uint8_t __dtbo_kunit_overlay_test_begin[];=
+ extern uint8_t __dtbo_kunit_overlay_test_end[]; __of_overlay_apply_kunit((=
+test), __dtbo_kunit_overlay_test_begin, __dtbo_kunit_overlay_test_end); }),=
+ but
+         ({ extern uint8_t __dtbo_kunit_overlay_test_begin[]; extern uint8_=
+t __dtbo_kunit_overlay_test_end[]; __of_overlay_apply_kunit((test), __dtbo_=
+kunit_overlay_test_begin, __dtbo_kunit_overlay_test_end); }) =3D=3D -12 (0x=
+fffffffffffffff4)
+ [FAILED] of_overlay_apply_kunit_apply
 
+Now I'm trying to hack on the fake root node to see if I can make it work.
+
+---8<---
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 090c5d7925e4..12c44c86b8ae 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -166,7 +166,7 @@ void __of_phandle_cache_inv_entry(phandle handle)
+ 		phandle_cache[handle_hash] =3D NULL;
+ }
+=20
+-#ifdef CONFIG_OF_KUNIT
++#if 0
+ static int __init of_kunit_add_data(void)
+ {
+ 	void *kunit_fdt;
+diff --git a/drivers/of/kunit_overlay_test.dtso b/drivers/of/kunit_overlay_=
+test.dtso
+index 6e70e2f8cd90..e3ced1467dd9 100644
+--- a/drivers/of/kunit_overlay_test.dtso
++++ b/drivers/of/kunit_overlay_test.dtso
+@@ -2,7 +2,7 @@
+ /dts-v1/;
+ /plugin/;
+=20
+-&kunit_bus {
++/ {
+ 	test-kunit {
+ 		compatible =3D "test,kunit-empty";
+ 	};
+diff --git a/drivers/of/of_test.c b/drivers/of/of_test.c
+index 543fdf0936f6..08b670aee083 100644
+--- a/drivers/of/of_test.c
++++ b/drivers/of/of_test.c
+@@ -15,17 +15,8 @@ static void dtb_root_node_exists(struct kunit *test)
+ 	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/"));
+ }
+=20
+-/*
+- * Test that the /__symbols__ node exists.
+- */
+-static void dtb_symbols_node_exists(struct kunit *test)
+-{
+-	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/__symbols__"));
+-}
+-
+ static struct kunit_case dtb_test_cases[] =3D {
+ 	KUNIT_CASE(dtb_root_node_exists),
+-	KUNIT_CASE(dtb_symbols_node_exists),
+ 	{}
+ };
