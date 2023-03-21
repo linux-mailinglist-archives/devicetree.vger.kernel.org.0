@@ -2,402 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB166C2E31
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CF4A6C2E4C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 10:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbjCUJtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 05:49:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58228 "EHLO
+        id S229915AbjCUJzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 05:55:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjCUJtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:49:10 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C8CBF954;
-        Tue, 21 Mar 2023 02:49:06 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32L9msi0037365;
-        Tue, 21 Mar 2023 04:48:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679392134;
-        bh=JJIYrcey46uy+S3AUzULE5SHPkG70JA9TDTd6IjyWNw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=onWV1zrmtM6rWiMG74/F8iknw9yrrTiJrZuCkPgvScMJGGBwoDtqlboYdYckJYDCH
-         ZLQfpG3KsiG/jL8XCg40VZNZKi/ZZI+NOnXOgh29x79loOGHyMB9Wp3YY2bh4TWyfE
-         ymu85u/8ZCpSxc3Ax3I6zery9CbMJ423TA5EBQ74=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32L9msAO096312
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Mar 2023 04:48:54 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Mar 2023 04:48:53 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Mar 2023 04:48:53 -0500
-Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32L9mmPr021899;
-        Tue, 21 Mar 2023 04:48:49 -0500
-Message-ID: <e4cdd295-d292-255a-fbd0-b1728aaca155@ti.com>
-Date:   Tue, 21 Mar 2023 15:18:48 +0530
+        with ESMTP id S229904AbjCUJzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 05:55:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 800C642BD1;
+        Tue, 21 Mar 2023 02:54:57 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 35C4F66030DA;
+        Tue, 21 Mar 2023 09:54:54 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679392495;
+        bh=1JltmLgRNV4IHmYEsNUnZUzP3ExsG4axYz1jkhP27SY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Owh7RWhB7Db/pjY5RqGj1SkTPYKhoygsU7DooP1X/gCOchYEMhLFV/Uf88sVaShzh
+         leEbyY5ujLEw9bBnOrQ2DGZvSI9bnX0JDvQFCb3AfqKBO7xzJZUSU1anJsD3YRTHdI
+         in2uy0sTPQEjMPv9OyT030GpbpkQESfRo4zjqOuTDzYIQrQ0USzlrY3XQeFisjCKq7
+         AYWUu68nxWsP44n2mIPqXfmMaHBCDtlJW2UmDNITmMRth6N9D+K7g0VM2v7sBniZJP
+         TCuWeTQinerSBuHT2+PKepMLfAYmmo9N7W9nm/pCV1SSJq56wqhp6ZR7GkuuPM/5VN
+         tlJiaAiAXHSgQ==
+Message-ID: <cac08caf-a5ef-08d7-ac90-cd852cd63e3c@collabora.com>
+Date:   Tue, 21 Mar 2023 10:54:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v4 2/5] soc: ti: pruss: Add
- pruss_{request,release}_mem_region() API
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v29 1/7] dt-bindings: mediatek: add ethdr definition for
+ mt8195
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, Andrew Davis <afd@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC:     <linux-remoteproc@vger.kernel.org>,
+To:     =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        "nathan@kernel.org" <nathan@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <srk@ti.com>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <20230313111127.1229187-1-danishanwar@ti.com>
- <20230313111127.1229187-3-danishanwar@ti.com>
- <3f26b194-287c-074d-8e78-572875f9a734@kernel.org>
- <52aeb13f-1fe4-825f-9d28-ba64860ae76d@ti.com>
- <13048b01-641a-1d92-178c-02b87c5fa1b9@ti.com>
- <5b936f1b-3c5b-30ab-7074-e202fd6555b6@ti.com>
- <67dd1d04-147d-0e40-c06b-6e1e0dd05f13@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <67dd1d04-147d-0e40-c06b-6e1e0dd05f13@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "clang-built-linux@googlegroups.com" 
+        <clang-built-linux@googlegroups.com>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>
+References: <20221227081011.6426-1-nancy.lin@mediatek.com>
+ <20221227081011.6426-2-nancy.lin@mediatek.com>
+ <4aff6a7a3b606f26ec793192d9c75774276935e0.camel@mediatek.com>
+ <2700bd6c-f00d-fa99-b730-2fcdf89089fa@linaro.org>
+ <1d65e8b2de708db18b5f7a0faaa53834e1002d9f.camel@mediatek.com>
+ <b04eb48e-c9aa-0404-33ec-bef623b8282f@linaro.org>
+ <e5ceec9e-d51b-2aeb-1db7-b79b151bd44c@collabora.com>
+ <0ebf187d-972e-4228-d8a0-8c0ce02f642d@linaro.org>
+ <72cf6344a1c5942bff0872d05dce82b787b49b76.camel@mediatek.com>
+ <4027714e-b4e8-953b-68e2-f74f7a7f0e8e@linaro.org>
+ <fdd0a157-eedb-bf21-c632-79b02a4cd6b0@collabora.com>
+ <5695b8e5ab8339764c646ee581529cb6cee04346.camel@mediatek.com>
+ <34c758c0-cbbb-da11-6263-e7b084040ed6@collabora.com>
+ <74dca3fa90d5cd78286281e2ced45842bee21f91.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <74dca3fa90d5cd78286281e2ced45842bee21f91.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
-
-On 21/03/23 14:54, Roger Quadros wrote:
-> Hi,
+Il 21/03/23 06:33, Nancy Lin (林欣螢) ha scritto:
+> Dear Angelo,
 > 
-> On 21/03/2023 07:23, Md Danish Anwar wrote:
->> Hi Andrew, Roger,
->>
->> On 20/03/23 21:48, Andrew Davis wrote:
->>> On 3/20/23 12:11 AM, Md Danish Anwar wrote:
->>>> Hi Roger,
->>>>
->>>> On 17/03/23 14:26, Roger Quadros wrote:
->>>>> Hi Andrew & Danish,
->>>>>
->>>>>
->>>>> On 13/03/2023 13:11, MD Danish Anwar wrote:
->>>>>> From: "Andrew F. Davis" <afd@ti.com>
+> Sorry for late reply.
+> 
+> On Fri, 2023-03-17 at 10:58 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 17/03/23 10:52, Nancy Lin (林欣螢) ha scritto:
+>>> On Fri, 2023-03-17 at 10:37 +0100, AngeloGioacchino Del Regno
+>>> wrote:
+>>>> Il 17/03/23 10:03, Krzysztof Kozlowski ha scritto:
+>>>>> On 17/03/2023 08:55, Nancy Lin (林欣螢) wrote:
+>>>>>> On Thu, 2023-03-16 at 12:36 +0100, Krzysztof Kozlowski wrote:
+>>>>>>> On 16/03/2023 10:53, AngeloGioacchino Del Regno wrote:
+>>>>>>>
+>>>>>>>> Hello Krzysztof, Nancy,
+>>>>>>>>
+>>>>>>>> Since this series has reached v29, can we please reach an
+>>>>>>>> agreement
+>>>>>>>> on the bindings
+>>>>>>>> to use here, so that we can get this finally upstreamed?
+>>>>>>>>
+>>>>>>>> I will put some examples to try to get this issue
+>>>>>>>> resolved.
+>>>>>>>>
+>>>>>>>> ### Example 1: Constrain the number of GCE entries to
+>>>>>>>> *seven*
+>>>>>>>> array
+>>>>>>>> elements (7x4!)
+>>>>>>>>
+>>>>>>>>       mediatek,gce-client-reg:
+>>>>>>>>         $ref: /schemas/types.yaml#/definitions/phandle-
+>>>>>>>> array
+>>>>>>>>         maxItems: 1
+>>>>>>>>         description: The register of display function
+>>>>>>>> block to
+>>>>>>>> be set
+>>>>>>>> by gce.
+>>>>>>>>           There are 4 arguments in this property, gce
+>>>>>>>> node,
+>>>>>>>> subsys id,
+>>>>>>>> offset and
+>>>>>>>>           register size. The subsys id is defined in the
+>>>>>>>> gce
+>>>>>>>> header of
+>>>>>>>> each chips
+>>>>>>>>           include/dt-bindings/gce/<chip>-gce.h, mapping to
+>>>>>>>> the
+>>>>>>>> register of display
+>>>>>>>>           function block.
+>>>>>>>>         items:
+>>>>>>>>           minItems: 28
+>>>>>>>>           maxItems: 28
+>>>>>>>>           items:                     <----- this block
+>>>>>>>> doesn't
+>>>>>>>> seem to
+>>>>>>>> get checked :\
+>>>>>>>>             - description: phandle of GCE
+>>>>>>>>             - description: GCE subsys id
+>>>>>>>>             - description: register offset
+>>>>>>>>             - description: register size
+>>>>>>>
+>>>>>>> This is what we would like to have but it requires
+>>>>>>> exception in
+>>>>>>> dtschema. Thus:
+>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> ### Example 2: Don't care about constraining the number
+>>>>>>>> of
+>>>>>>>> arguments
+>>>>>>>>
+>>>>>>>>       mediatek,gce-client-reg:
+>>>>>>>>         $ref: /schemas/types.yaml#/definitions/phandle-
+>>>>>>>> array
+>>>>>>>>         maxItems: 1
+>>>>>>>>         description: The register of display function
+>>>>>>>> block to
+>>>>>>>> be set
+>>>>>>>> by gce.
+>>>>>>>>           There are 4 arguments in this property, gce
+>>>>>>>> node,
+>>>>>>>> subsys id,
+>>>>>>>> offset and
+>>>>>>>>           register size. The subsys id is defined in the
+>>>>>>>> gce
+>>>>>>>> header of
+>>>>>>>> each chips
+>>>>>>>>           include/dt-bindings/gce/<chip>-gce.h, mapping to
+>>>>>>>> the
+>>>>>>>> register of display
+>>>>>>>>           function block.
+>>>>>>>
+>>>>>>> use this.
+>>>>>>>
+>>>>>>> Best regards,
+>>>>>>> Krzysztof
 >>>>>>
->>>>>> Add two new API - pruss_request_mem_region() & pruss_release_mem_region(),
->>>>>> to the PRUSS platform driver to allow client drivers to acquire and release
->>>>>> the common memory resources present within a PRU-ICSS subsystem. This
->>>>>> allows the client drivers to directly manipulate the respective memories,
->>>>>> as per their design contract with the associated firmware.
 >>>>>>
->>>>>> Co-developed-by: Suman Anna <s-anna@ti.com>
->>>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>>>>> Signed-off-by: Andrew F. Davis <afd@ti.com>
->>>>>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>>>>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>>>> Reviewed-by: Roger Quadros <rogerq@kernel.org>
->>>>>> ---
->>>>>>   drivers/soc/ti/pruss.c           | 77 ++++++++++++++++++++++++++++++++
->>>>>>   include/linux/pruss_driver.h     | 27 +++--------
->>>>>>   include/linux/remoteproc/pruss.h | 39 ++++++++++++++++
->>>>>
->>>>>
->>>>> We have these 2 header files and I think anything that deals with
->>>>> 'struct pruss' should go in include/linux/pruss_driver.h
->>>>>
->>>>> Anything that deals with pru_rproc (i.e. struct rproc) should go in
->>>>> include/linux/remoteproc/pruss.h
->>>>>
->>>>> Do you agree?
->>>>>
->>>>
->>>> I agree with you Roger but Andrew is the right person to comment here as he is
->>>> the author of this and several other patches.
->>>>
->>>> Hi Andrew, Can you please comment on this?
->>>>
->>>
->>> Original idea was a consumer driver (like "ICSSG Ethernet Driver" in your other
->>> series) could just
->>>
->>> #include <linux/remoteproc/pruss.h>
->>>
->>> and get everything they need, and nothing they do not.
->>>
->>
->> If we plan on continuing the original idea, then I think keeping the header
->> files as it is will be the best. Because if we move anything that deals with
->> 'struct pruss' to include/linux/pruss_driver.h and anything that deals with
->> pru_rproc (i.e. struct rproc) to include/linux/remoteproc/pruss.h, then the
->> consumer drivers will need to do,
->>
->> #include <linux/remoteproc/pruss.h>
->> #include <linux/pruss_driver.h>
->>
->> Roger, should I keep the header files arrangement as it is?
->>
-> 
-> OK but can we please rename one of them to something else so they don't
-> sound very similar. Maybe you could use Andrew's suggestion below.
-> 
-
-Yes sure, I'll rename the header files to reduce confusion. The pruss_driver.h
-is located in include/linux, implying it's not internal to PRUSS. So I will
-keep this header file name as it is.
-
-There are total 3 pruss related header files.
-
-1. include/linux/pruss_driver.h (Public header file, not internal to PRUSS,
-will keep it as it is. This exists to allow communication between the pruss
-core and the pru rproc driver which live in different subsystems.)
-2. include/linux/remoteproc/pruss.h (Public header file, not internal to PRUSS,
-will keep it as it is. Only this header file needs to be included by client
-drivers.)
-3. drivers/soc/ti/pruss.h (Internal to PRUSS, I will rename this to
-pruss_internal.h, this file has private definitions and APIs to modify PRUSS
-CFG space. This file is private to pruss.c)
-
-Please let me know if the above looks OK.
-
->>> pruss_driver.h (which could be renamed pruss_internal.h) exists to allow
->>> comunication between the pruss core and the pru rproc driver which live
->>> in different subsystems.
->>>
->>> Andrew
->>>
->>>>>>   3 files changed, 121 insertions(+), 22 deletions(-)
+>>>>>> Hi Krzysztof, Angelo,
 >>>>>>
->>>>>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
->>>>>> index a169aa1ed044..c8053c0d735f 100644
->>>>>> --- a/drivers/soc/ti/pruss.c
->>>>>> +++ b/drivers/soc/ti/pruss.c
->>>>>> @@ -88,6 +88,82 @@ void pruss_put(struct pruss *pruss)
->>>>>>   }
->>>>>>   EXPORT_SYMBOL_GPL(pruss_put);
->>>>>>   +/**
->>>>>> + * pruss_request_mem_region() - request a memory resource
->>>>>> + * @pruss: the pruss instance
->>>>>> + * @mem_id: the memory resource id
->>>>>> + * @region: pointer to memory region structure to be filled in
->>>>>> + *
->>>>>> + * This function allows a client driver to request a memory resource,
->>>>>> + * and if successful, will let the client driver own the particular
->>>>>> + * memory region until released using the pruss_release_mem_region()
->>>>>> + * API.
->>>>>> + *
->>>>>> + * Return: 0 if requested memory region is available (in such case pointer to
->>>>>> + * memory region is returned via @region), an error otherwise
->>>>>> + */
->>>>>> +int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->>>>>> +                 struct pruss_mem_region *region)
->>>>>> +{
->>>>>> +    if (!pruss || !region || mem_id >= PRUSS_MEM_MAX)
->>>>>> +        return -EINVAL;
->>>>>> +
->>>>>> +    mutex_lock(&pruss->lock);
->>>>>> +
->>>>>> +    if (pruss->mem_in_use[mem_id]) {
->>>>>> +        mutex_unlock(&pruss->lock);
->>>>>> +        return -EBUSY;
->>>>>> +    }
->>>>>> +
->>>>>> +    *region = pruss->mem_regions[mem_id];
->>>>>> +    pruss->mem_in_use[mem_id] = region;
->>>>>> +
->>>>>> +    mutex_unlock(&pruss->lock);
->>>>>> +
->>>>>> +    return 0;
->>>>>> +}
->>>>>> +EXPORT_SYMBOL_GPL(pruss_request_mem_region);
->>>>>> +
->>>>>> +/**
->>>>>> + * pruss_release_mem_region() - release a memory resource
->>>>>> + * @pruss: the pruss instance
->>>>>> + * @region: the memory region to release
->>>>>> + *
->>>>>> + * This function is the complimentary function to
->>>>>> + * pruss_request_mem_region(), and allows the client drivers to
->>>>>> + * release back a memory resource.
->>>>>> + *
->>>>>> + * Return: 0 on success, an error code otherwise
->>>>>> + */
->>>>>> +int pruss_release_mem_region(struct pruss *pruss,
->>>>>> +                 struct pruss_mem_region *region)
->>>>>> +{
->>>>>> +    int id;
->>>>>> +
->>>>>> +    if (!pruss || !region)
->>>>>> +        return -EINVAL;
->>>>>> +
->>>>>> +    mutex_lock(&pruss->lock);
->>>>>> +
->>>>>> +    /* find out the memory region being released */
->>>>>> +    for (id = 0; id < PRUSS_MEM_MAX; id++) {
->>>>>> +        if (pruss->mem_in_use[id] == region)
->>>>>> +            break;
->>>>>> +    }
->>>>>> +
->>>>>> +    if (id == PRUSS_MEM_MAX) {
->>>>>> +        mutex_unlock(&pruss->lock);
->>>>>> +        return -EINVAL;
->>>>>> +    }
->>>>>> +
->>>>>> +    pruss->mem_in_use[id] = NULL;
->>>>>> +
->>>>>> +    mutex_unlock(&pruss->lock);
->>>>>> +
->>>>>> +    return 0;
->>>>>> +}
->>>>>> +EXPORT_SYMBOL_GPL(pruss_release_mem_region);
->>>>>> +
->>>>>>   static void pruss_of_free_clk_provider(void *data)
->>>>>>   {
->>>>>>       struct device_node *clk_mux_np = data;
->>>>>> @@ -290,6 +366,7 @@ static int pruss_probe(struct platform_device *pdev)
->>>>>>           return -ENOMEM;
->>>>>>         pruss->dev = dev;
->>>>>> +    mutex_init(&pruss->lock);
->>>>>>         child = of_get_child_by_name(np, "memories");
->>>>>>       if (!child) {
->>>>>> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
->>>>>> index 86242fb5a64a..22b4b37d2536 100644
->>>>>> --- a/include/linux/pruss_driver.h
->>>>>> +++ b/include/linux/pruss_driver.h
->>>>>> @@ -9,37 +9,18 @@
->>>>>>   #ifndef _PRUSS_DRIVER_H_
->>>>>>   #define _PRUSS_DRIVER_H_
->>>>>>   +#include <linux/mutex.h>
->>>>>>   #include <linux/remoteproc/pruss.h>
->>>>>>   #include <linux/types.h>
->>>>>>   -/*
->>>>>> - * enum pruss_mem - PRUSS memory range identifiers
->>>>>> - */
->>>>>> -enum pruss_mem {
->>>>>> -    PRUSS_MEM_DRAM0 = 0,
->>>>>> -    PRUSS_MEM_DRAM1,
->>>>>> -    PRUSS_MEM_SHRD_RAM2,
->>>>>> -    PRUSS_MEM_MAX,
->>>>>> -};
->>>>>> -
->>>>>> -/**
->>>>>> - * struct pruss_mem_region - PRUSS memory region structure
->>>>>> - * @va: kernel virtual address of the PRUSS memory region
->>>>>> - * @pa: physical (bus) address of the PRUSS memory region
->>>>>> - * @size: size of the PRUSS memory region
->>>>>> - */
->>>>>> -struct pruss_mem_region {
->>>>>> -    void __iomem *va;
->>>>>> -    phys_addr_t pa;
->>>>>> -    size_t size;
->>>>>> -};
->>>>>> -
->>>>>>   /**
->>>>>>    * struct pruss - PRUSS parent structure
->>>>>>    * @dev: pruss device pointer
->>>>>>    * @cfg_base: base iomap for CFG region
->>>>>>    * @cfg_regmap: regmap for config region
->>>>>>    * @mem_regions: data for each of the PRUSS memory regions
->>>>>> + * @mem_in_use: to indicate if memory resource is in use
->>>>>> + * @lock: mutex to serialize access to resources
->>>>>>    * @core_clk_mux: clk handle for PRUSS CORE_CLK_MUX
->>>>>>    * @iep_clk_mux: clk handle for PRUSS IEP_CLK_MUX
->>>>>>    */
->>>>>> @@ -48,6 +29,8 @@ struct pruss {
->>>>>>       void __iomem *cfg_base;
->>>>>>       struct regmap *cfg_regmap;
->>>>>>       struct pruss_mem_region mem_regions[PRUSS_MEM_MAX];
->>>>>> +    struct pruss_mem_region *mem_in_use[PRUSS_MEM_MAX];
->>>>>> +    struct mutex lock; /* PRU resource lock */
->>>>>>       struct clk *core_clk_mux;
->>>>>>       struct clk *iep_clk_mux;
->>>>>>   };
->>>>>> diff --git a/include/linux/remoteproc/pruss.h
->>>>>> b/include/linux/remoteproc/pruss.h
->>>>>> index 93a98cac7829..33f930e0a0ce 100644
->>>>>> --- a/include/linux/remoteproc/pruss.h
->>>>>> +++ b/include/linux/remoteproc/pruss.h
->>>>>> @@ -44,6 +44,28 @@ enum pru_ctable_idx {
->>>>>>       PRU_C31,
->>>>>>   };
->>>>>>   +/*
->>>>>> + * enum pruss_mem - PRUSS memory range identifiers
->>>>>> + */
->>>>>> +enum pruss_mem {
->>>>>> +    PRUSS_MEM_DRAM0 = 0,
->>>>>> +    PRUSS_MEM_DRAM1,
->>>>>> +    PRUSS_MEM_SHRD_RAM2,
->>>>>> +    PRUSS_MEM_MAX,
->>>>>> +};
->>>>>> +
->>>>>> +/**
->>>>>> + * struct pruss_mem_region - PRUSS memory region structure
->>>>>> + * @va: kernel virtual address of the PRUSS memory region
->>>>>> + * @pa: physical (bus) address of the PRUSS memory region
->>>>>> + * @size: size of the PRUSS memory region
->>>>>> + */
->>>>>> +struct pruss_mem_region {
->>>>>> +    void __iomem *va;
->>>>>> +    phys_addr_t pa;
->>>>>> +    size_t size;
->>>>>> +};
->>>>>> +
->>>>>>   struct device_node;
->>>>>>   struct rproc;
->>>>>>   struct pruss;
->>>>>> @@ -52,6 +74,10 @@ struct pruss;
->>>>>>     struct pruss *pruss_get(struct rproc *rproc);
->>>>>>   void pruss_put(struct pruss *pruss);
->>>>>> +int pruss_request_mem_region(struct pruss *pruss, enum pruss_mem mem_id,
->>>>>> +                 struct pruss_mem_region *region);
->>>>>> +int pruss_release_mem_region(struct pruss *pruss,
->>>>>> +                 struct pruss_mem_region *region);
->>>>>>     #else
->>>>>>   @@ -62,6 +88,19 @@ static inline struct pruss *pruss_get(struct rproc
->>>>>> *rproc)
->>>>>>     static inline void pruss_put(struct pruss *pruss) { }
->>>>>>   +static inline int pruss_request_mem_region(struct pruss *pruss,
->>>>>> +                       enum pruss_mem mem_id,
->>>>>> +                       struct pruss_mem_region *region)
->>>>>> +{
->>>>>> +    return -EOPNOTSUPP;
->>>>>> +}
->>>>>> +
->>>>>> +static inline int pruss_release_mem_region(struct pruss *pruss,
->>>>>> +                       struct pruss_mem_region *region)
->>>>>> +{
->>>>>> +    return -EOPNOTSUPP;
->>>>>> +}
->>>>>> +
->>>>>>   #endif /* CONFIG_TI_PRUSS */
->>>>>>     #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>>>>>> Thanks for the comment.
+>>>>>> The Example 2 can pass dt_binding_check.
+>>>>>>
+>>>>>> But the example in the binding has 7 items [1] and dts [2].
+>>>>>> Does
+>>>>>> the
+>>>>>> "maxItems: 1" affect any other schema or dts check?
 >>>>>
->>>>> cheers,
->>>>> -roger
+>>>>> Ah, then it should be maxItems: 7, not 1.
+>>>>>
 >>>>
+>>>> Keep in mind for your v30:
+>>>>
+>>>> maxItems: 7 will pass - but only if minItems is *not* 7 :-)
+>>>>
+>>>> -> (so, do not declare minItems, as default is 1) <-
+>>>>
+>>>> Regards,
+>>>> Angelo
+>>>>
+>>>
+>>> Hi Angelo,
+>>>
+>>> I still have one message [1] when runing dt_binding_check for
+>>> "example
+>>> 2 + maxItems: 7" [2].
+>>>
+>>> [1]
+>>> /proj/mtk19347/cros/src/third_party/kernel/v5.10/Documentation/devi
+>>> cetr
+>>> ee/bindings/display/mediatek/mediatek,ethdr.example.dtb:
+>>> hdr-engine@1c114000: mediatek,gce-client-reg: [[4294967295, 7,
+>>> 16384,
+>>> 4096, 4294967295, 7, 20480, 4096, 4294967295, 7, 28672, 4096,
+>>> 4294967295, 7, 36864, 4096, 4294967295, 7, 40960, 4096, 4294967295,
+>>> 7,
+>>> 45056, 4096, 4294967295, 7, 49152, 4096]] is too short
+>>>
+>>>
+>>> [2]
+>>>      mediatek,gce-client-reg:
+>>>        $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>        maxItems: 7
+>>>        description: The register of display function block to be set
+>>> by
+>>> gce.
+>>>          There are 4 arguments in this property, gce node, subsys
+>>> id,
+>>> offset and
+>>>          register size. The subsys id is defined in the gce header
+>>> of
+>>> each chips
+>>>          include/dt-bindings/gce/<chip>-gce.h, mapping to the
+>>> register of
+>>> display
+>>>          function block.
+>>>
+>>
+>> Maybe I'm wrong about the "do not declare minItems"... try with
+>>
+>> minItems: 1
+>> maxItems: 7
+>>
+>>
+>> ...does it work now?
 >>
 > 
-> cheers,
-> -roger
+> Yes, It works well with "example2 + minItems:1 + maxItems: 7" [1]
+> 
+> [1]
+>    mediatek,gce-client-reg:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      minItems: 1
+>      maxItems: 7
+>      description: The register of display function block to be set by
+> gce.
+>        There are 4 arguments in this property, gce node, subsys id,
+> offset and
+>        register size. The subsys id is defined in the gce header of each
+> chips
+>        include/dt-bindings/gce/<chip>-gce.h, mapping to the register of
+> display
+>        function block.
+> 
 
--- 
-Thanks and Regards,
-Danish.
+Please send a v30 with that solution ASAP then, so that we may perhaps *finally*
+get it in for v6.4.
+
+Regards,
+Angelo
