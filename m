@@ -2,168 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B63E26C38F9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 19:15:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 128196C390B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 19:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229592AbjCUSP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 14:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
+        id S230378AbjCUSTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 14:19:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbjCUSP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 14:15:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E308A7E;
-        Tue, 21 Mar 2023 11:15:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 931F361D98;
-        Tue, 21 Mar 2023 18:15:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCBAAC433D2;
-        Tue, 21 Mar 2023 18:15:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679422522;
-        bh=hIOq5dDkrg3sXzDPPJvDRD1aVZ39RpNjhbDlFV9Te8Y=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=VXR6MyBIQLcC8YRSmkoxYqeuBl0N5nxmb5pljge76AYMMBt06x6XPyEkUfUq8+CgE
-         /UJvLCkPg1ufseDOQ7g3lE3e3koPsvUqBsGzDRfdtt+NbCNebgoNN0vwd1PzHQH9Zg
-         BQrraxC6CKNk1e7Du3u3NXpB76OASsBLcXNWL46DRFeyNGMLfDicYrLoJZ2pYa8Y1d
-         Dc2c3nZvtgVhwcVngiUik37zhPF+BmQR+xLwN9sUCHA+FtI6n/vBkdhzO1Pt6uFssT
-         EcrtKrFlFeRFrijmpiuLlvkMCoL4tBk3K/EFXtEALyRKDXU7bqniMG8dPLroz8GaZn
-         VAuDCcjT/fhgw==
-Message-ID: <12903a61f64206be837c1f0744632f29.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229836AbjCUSTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 14:19:44 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EC74108A;
+        Tue, 21 Mar 2023 11:19:36 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id q102so1847989pjq.3;
+        Tue, 21 Mar 2023 11:19:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679422776;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Pu282+aQJwtC+GAeyAgjzP398aBlyHrNiFe0GOpAoEA=;
+        b=OWSDnUPCsvxXPKl+q+lS1G24fNXoV4TgUw5Qo9RKtyJCGGh9HpL+9XjfUPUMlljUGu
+         oNXABXk4MblrHt4YylCNhHFsGCutzpBu+HOUhIuJ3sOHooJ8OgEVC6W6BB7pW03iuJ2D
+         Pu8jkVezJzJwfVQBYhAWWL4fSA3NLzVs7ZSOYxSH/QECpAsFzGixI+WUScjWs8vMqjFN
+         Lto6KI+hCB36wg7+ic2yMn7lUDC5DlccM3s1EglsrU9Zz1hQGTQ7j321qIZS+Q37U8eE
+         cV6R8H6EFVeiSyM/TMNBbsl8PGAdJ1bUeMiQZy9r97hWlNNij+LfN4klZr05P9n4ygqr
+         notw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679422776;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pu282+aQJwtC+GAeyAgjzP398aBlyHrNiFe0GOpAoEA=;
+        b=hT8QBiEjwWkfA16xNbvqRd62VBu+nFSsclA/tx/y1jkxEAM+20MDrusA3bKSnCmpOQ
+         iDa8ThinyKqB27Luvq36s7nBCu0YmqlJC7NH285mdDIQSZf811u8vnGI0I6UcneZYlrq
+         EHblqd+ipls5FW44e92Tm9+uwz7euSNojzc3WsP37+lnWGXqcTjH8N39CYEOfHoWbclN
+         wisxo6UuPvMUUCB5auHAjd/dZLWd1YighCS+VSceUqFyl03pF4eor262zNnRhhDn4PMM
+         WPSHhuYscZTG0aJGmAXXb6l4PkXDAEM1Zb3iXkpRsB9VCEfIoGgiExgC1JuFjF/sYV/W
+         sPrA==
+X-Gm-Message-State: AO0yUKWSG0SmG+Sn6sHmq5JWGi6b4hw1Ec19jzFUh69VNexQAkEH17bg
+        afHVS8xiRcKBPMxWS51owrHjFk97RUw=
+X-Google-Smtp-Source: AK7set9BG9OjV49kzNpQ1wtKsUCpWqgNAO/QtZKAx9JmpNFQp1FpuDwENCKCrBKzdA2qI5yqCPdbHQ==
+X-Received: by 2002:a17:90b:3ece:b0:229:f4f3:e904 with SMTP id rm14-20020a17090b3ece00b00229f4f3e904mr720928pjb.11.1679422776042;
+        Tue, 21 Mar 2023 11:19:36 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id pc2-20020a17090b3b8200b00229b00cc8desm3638866pjb.0.2023.03.21.11.19.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 11:19:35 -0700 (PDT)
+Message-ID: <7e6e6e3a-cad9-0b05-9fd3-2adc99f655a1@gmail.com>
+Date:   Tue, 21 Mar 2023 11:19:27 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230321173303.GA950598-robh@kernel.org>
-References: <20230315183729.2376178-1-sboyd@kernel.org> <20230315183729.2376178-2-sboyd@kernel.org> <20230321173303.GA950598-robh@kernel.org>
-Subject: Re: [PATCH v2 01/11] of: Load KUnit DTB from of_core_init()
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        patches@lists.linux.dev,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        David Gow <davidgow@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        kunit-dev@googlegroups.com, Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Date:   Tue, 21 Mar 2023 11:15:19 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v2 3/4] net: dsa: b53: mmap: allow passing a chip ID
+Content-Language: en-US
+To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        jonas.gorski@gmail.com, andrew@lunn.ch, olteanv@gmail.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230320155024.164523-1-noltari@gmail.com>
+ <20230321173359.251778-1-noltari@gmail.com>
+ <20230321173359.251778-4-noltari@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230321173359.251778-4-noltari@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2023-03-21 10:33:03)
-> On Wed, Mar 15, 2023 at 11:37:18AM -0700, Stephen Boyd wrote:
-> > diff --git a/drivers/of/of_test.c b/drivers/of/of_test.c
-> > new file mode 100644
-> > index 000000000000..a4d70ac344ad
-> > --- /dev/null
-> > +++ b/drivers/of/of_test.c
-> > @@ -0,0 +1,43 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * KUnit tests for OF APIs
-> > + */
-> > +#include <linux/kconfig.h>
-> > +#include <linux/of.h>
-> > +
-> > +#include <kunit/test.h>
-> > +
-> > +/*
-> > + * Test that the root node / exists.
-> > + */
-> > +static void dtb_root_node_exists(struct kunit *test)
-> > +{
-> > +     KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/"));
-> > +}
-> > +
-> > +/*
-> > + * Test that the /__symbols__ node exists.
-> > + */
-> > +static void dtb_symbols_node_exists(struct kunit *test)
-> > +{
-> > +     KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/__symbo=
-ls__"));
-> > +}
->=20
-> Many base DTs will not have this. And the kunit tests themselves=20
-> shouldn't need it because they should be independent of the base tree.
->=20
+On 3/21/23 10:33, Álvaro Fernández Rojas wrote:
+> BCM6318 and BCM63268 SoCs require a special handling for their RGMIIs, so we
+> should be able to identify them as a special BCM63xx switch.
+> 
+> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
 
-When I try to apply an overlay it fails=20
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
 
- OF: overlay: no fragments or symbols in overlay
- OF: overlay: init_overlay_changeset() failed, ret =3D -22
-     # of_overlay_apply_kunit_apply: ASSERTION FAILED at drivers/of/overlay=
-_test.c:18
-     Expected 0 =3D=3D ({ extern uint8_t __dtbo_kunit_overlay_test_begin[];=
- extern uint8_t __dtbo_kunit_overlay_test_end[]; __of_overlay_apply_kunit((=
-test), __dtbo_kunit_overlay_test_begin, __dtbo_kunit_overlay_test_end); }),=
- but
-         ({ extern uint8_t __dtbo_kunit_overlay_test_begin[]; extern uint8_=
-t __dtbo_kunit_overlay_test_end[]; __of_overlay_apply_kunit((test), __dtbo_=
-kunit_overlay_test_begin, __dtbo_kunit_overlay_test_end); }) =3D=3D -12 (0x=
-fffffffffffffff4)
- [FAILED] of_overlay_apply_kunit_apply
-
-Now I'm trying to hack on the fake root node to see if I can make it work.
-
----8<---
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 090c5d7925e4..12c44c86b8ae 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -166,7 +166,7 @@ void __of_phandle_cache_inv_entry(phandle handle)
- 		phandle_cache[handle_hash] =3D NULL;
- }
-=20
--#ifdef CONFIG_OF_KUNIT
-+#if 0
- static int __init of_kunit_add_data(void)
- {
- 	void *kunit_fdt;
-diff --git a/drivers/of/kunit_overlay_test.dtso b/drivers/of/kunit_overlay_=
-test.dtso
-index 6e70e2f8cd90..e3ced1467dd9 100644
---- a/drivers/of/kunit_overlay_test.dtso
-+++ b/drivers/of/kunit_overlay_test.dtso
-@@ -2,7 +2,7 @@
- /dts-v1/;
- /plugin/;
-=20
--&kunit_bus {
-+/ {
- 	test-kunit {
- 		compatible =3D "test,kunit-empty";
- 	};
-diff --git a/drivers/of/of_test.c b/drivers/of/of_test.c
-index 543fdf0936f6..08b670aee083 100644
---- a/drivers/of/of_test.c
-+++ b/drivers/of/of_test.c
-@@ -15,17 +15,8 @@ static void dtb_root_node_exists(struct kunit *test)
- 	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/"));
- }
-=20
--/*
-- * Test that the /__symbols__ node exists.
-- */
--static void dtb_symbols_node_exists(struct kunit *test)
--{
--	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, of_find_node_by_path("/__symbols__"));
--}
--
- static struct kunit_case dtb_test_cases[] =3D {
- 	KUNIT_CASE(dtb_root_node_exists),
--	KUNIT_CASE(dtb_symbols_node_exists),
- 	{}
- };
