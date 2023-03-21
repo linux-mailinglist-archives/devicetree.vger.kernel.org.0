@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 509536C355C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EC66C3570
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:18:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230408AbjCUPRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 11:17:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S231683AbjCUPSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 11:18:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231597AbjCUPRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:17:17 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51200231F8;
-        Tue, 21 Mar 2023 08:17:13 -0700 (PDT)
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32LEfHcX031372;
-        Tue, 21 Mar 2023 15:17:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=dhhNXJsGDiYrFRftxc7OOljCn824ZAzW6LGRuHROY7M=;
- b=UNkxUlo7RrrMKtKByKTmuwSRd+b6JPnz5pTKXY+J7MIpCFMcU4r0gLB5bs4zmkVVumYz
- 6o6X02kQbFZjj2I4FKUXAAgKe4bz4tbsUGgtu/U1+wfoF8ljQxDCNEHPuAHYZfo+1MWX
- ZCZgivIVNwYYrDvgVlTTXFQKIm8uSQtulsLrd9YgJIZG8glV+9KtJFbdKFLDUCkogPiS
- k1RkogLtTB1FBrtTAQ4n9O9IxbnILSkrjMok6GoEbEfGOPFWebQKrPyfi+e2yV//C+6o
- X5wA5p3pgIVEaTHi0zW9R8wsim76ehpYG0ZZaRRh6xOtNyZ+dAEvz2w2gPF2+5DQP43N 2Q== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pfat97mem-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Mar 2023 15:17:01 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32LFEa3X029517;
-        Tue, 21 Mar 2023 15:17:00 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([9.208.129.119])
-        by ppma03dal.us.ibm.com (PPS) with ESMTPS id 3pd4x77y42-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Mar 2023 15:17:00 +0000
-Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
-        by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32LFGwgX34406890
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 21 Mar 2023 15:16:58 GMT
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 784D858067;
-        Tue, 21 Mar 2023 15:16:58 +0000 (GMT)
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id F112C58063;
-        Tue, 21 Mar 2023 15:16:56 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.111.39])
-        by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-        Tue, 21 Mar 2023 15:16:56 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        andrew@aj.id.au, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
-        Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH v2 4/4] ARM: dts: aspeed: bonnell: Add DIMM SPD
-Date:   Tue, 21 Mar 2023 10:16:42 -0500
-Message-Id: <20230321151642.461618-5-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20230321151642.461618-1-eajames@linux.ibm.com>
-References: <20230321151642.461618-1-eajames@linux.ibm.com>
+        with ESMTP id S231685AbjCUPRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:17:50 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D704451CBD
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:17:32 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id h8so61065853ede.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:17:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679411850;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KRub14cDWG5bsjeqlDtuRXP1mPBZqqoGfHwZXBK5HUk=;
+        b=OvgzDawIBNnP9ueDqbC65uGM7q56iUrMFqKIPmRSKSkHJpm2oPZJrsY9PVMGTN6gl5
+         nJmDED42S7gxY2YLmGI5cPzsVCuv3UG5L2bqV1IcHBnPiuUuLv3+7SNkkq3BUuZMvsq0
+         GWorI81yONU6xxrTD8HsVqOAPGSoqDxrdfm7h0K8JdDnElV68+TsVRN4eVxOkwsa9x41
+         61lE9oS6jlra9UTznRs5YGHsrNbing2iK6/whL/7dm7bUFr+bsF6WrGrVl16ACGdqU8l
+         rFiErKP/oLf7j9XfDG/6zztIermG+1zER6jItH49fV0MY0iPsDxyGvY7Ti6HJ1FhmiHX
+         Q4Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679411850;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KRub14cDWG5bsjeqlDtuRXP1mPBZqqoGfHwZXBK5HUk=;
+        b=F3hk1hn/Mlf//2KYSHD0dr5JQXPTIjP9Dni9GJwzR2v842QmBoiYxkp2xLQMYkVrN6
+         r6nTNq2I+YrwKQES1sucad6KP6r8u25nUtzBOMebWqATNcy0BkeQAzak8aAjwwKQZO+V
+         L4LmKDXnb6jhf4A8kgix80gk1C/lCCTAaKZ6Ohpxf4MD3tyy9/VwRY6n2V/NOflTSUtK
+         KItSQrEHZ9EW4ouxF9eHmY4TiQw+PY/HRfSqsQkMz/1kerlNUjx+awbvQEgPD2E341kr
+         i+6YWUDyt8O8BbaXtvvZq6b7cb7bumb/PeU1V07TUHIiq6Wu5wUARJniUz1iJHO1VlBu
+         C8KA==
+X-Gm-Message-State: AO0yUKW1SaKMLI6P+f9k2xDI/Ont4LUWGtnYWecmfY49mT3oE8o7Fcl8
+        6XxEUiI3T+YcVsromuH7AiMEz4V18GOh3v/532k=
+X-Google-Smtp-Source: AK7set8JY/HRGtAap5oncPC8OXGjI+/H213uczbb25qb6iUWBoNSy7O1cmIlZg+GOkn3cuww2XIewg==
+X-Received: by 2002:a17:906:720f:b0:8f2:62a9:6159 with SMTP id m15-20020a170906720f00b008f262a96159mr2980463ejk.2.1679411850687;
+        Tue, 21 Mar 2023 08:17:30 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id k9-20020a17090666c900b0092b606cb803sm6033076ejp.140.2023.03.21.08.17.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 08:17:30 -0700 (PDT)
+Message-ID: <d8be08b9-3043-d517-b5b8-86ea7a602e0b@linaro.org>
+Date:   Tue, 21 Mar 2023 16:17:28 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 3j_M-v25EPzmbn1EcklvNePnDon_0Bi3
-X-Proofpoint-GUID: 3j_M-v25EPzmbn1EcklvNePnDon_0Bi3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-21_10,2023-03-21_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- lowpriorityscore=0 clxscore=1015 mlxlogscore=653 bulkscore=0
- suspectscore=0 priorityscore=1501 phishscore=0 adultscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303210118
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
+To:     Jayesh Choudhary <j-choudhary@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
+        jani.nikula@intel.com, tzimmermann@suse.de, javierm@redhat.com,
+        ville.syrjala@linux.intel.com, r-ravikumar@ti.com,
+        lyude@redhat.com, alexander.deucher@amd.com, sjakhade@cadence.com,
+        yamonkar@cadence.com, a-bhatia1@ti.com
+References: <20230316140823.234263-1-j-choudhary@ti.com>
+ <20230316140823.234263-2-j-choudhary@ti.com>
+ <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
+ <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
+ <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
+ <d72bf0df-28d7-6419-56a5-58e04dcb30f2@ti.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d72bf0df-28d7-6419-56a5-58e04dcb30f2@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,56 +88,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DIMM SPD to the processor I2C busses.
+On 21/03/2023 15:28, Jayesh Choudhary wrote:
+> 
+> 
+> On 21/03/23 18:08, Krzysztof Kozlowski wrote:
+>> On 21/03/2023 13:02, Jayesh Choudhary wrote:
+>>>>
+>>>>> +    type: boolean
+>>>>> +    description:
+>>>>> +      Set if the HPD line on the bridge isn't hooked up to anything or is
+>>>>> +      otherwise unusable.
+>>>>
+>>>> It's the property of the panel, not bridge. Unless you want to say that
+>>>> bridge physically does not have HPD? Does it follow the standard in such
+>>>> case?
+>>>
+>>> MHDP does have hpd. But the mhdp driver should handle the cases when the
+>>
+>> This is about bindings, not driver. Your driver can still handle this as
+>> it wishes.
+>>
+>>> hpd pin of bridge is not connected to that of the DP-connector. This is
+>>> to add support for that. (optional property)
+>>
+>> Which is indicated by panel no-hpd, right?
+> 
+> Actually no panel is involved in this. For TI SoC J721S2, the data 
+> pipeline involves the bridge whose endpoint is directly the DP connector 
+> with compatible 'dp-connector'. And in the binding dp-connector.yaml, 
+> there isn't any 'no-hpd' property for this indication.
+> 
+> Does this clarifies the issue? Or did I misinterpret your comment?
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Yes, then you only need to narrow which hardware does not have HPD
+hooked up. Or at least clarify that it is not about driver having or not
+having HPD control...
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-index 79516dc21c01..72186020e75a 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-@@ -232,18 +232,38 @@ cfam0_i2c1: i2c-bus@1 {
- 
- 			cfam0_i2c10: i2c-bus@a {
- 				reg = <10>;	/* OP3A */
-+
-+				eeprom@50 {
-+					compatible = "atmel,at30tse";
-+					reg = <0x50>;
-+				};
- 			};
- 
- 			cfam0_i2c11: i2c-bus@b {
- 				reg = <11>;	/* OP3B */
-+
-+				eeprom@50 {
-+					compatible = "atmel,at30tse";
-+					reg = <0x50>;
-+				};
- 			};
- 
- 			cfam0_i2c12: i2c-bus@c {
- 				reg = <12>;	/* OP4A */
-+
-+				eeprom@50 {
-+					compatible = "atmel,at30tse";
-+					reg = <0x50>;
-+				};
- 			};
- 
- 			cfam0_i2c13: i2c-bus@d {
- 				reg = <13>;	/* OP4B */
-+
-+				eeprom@50 {
-+					compatible = "atmel,at30tse";
-+					reg = <0x50>;
-+				};
- 			};
- 
- 			cfam0_i2c14: i2c-bus@e {
--- 
-2.31.1
+
+Best regards,
+Krzysztof
 
