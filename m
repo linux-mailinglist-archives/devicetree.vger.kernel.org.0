@@ -2,201 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21E26C3098
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 12:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE2D6C30B2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 12:48:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbjCULoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 07:44:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44512 "EHLO
+        id S229611AbjCULsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 07:48:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbjCULoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 07:44:01 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA0937B69;
-        Tue, 21 Mar 2023 04:44:00 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id t14so15173070ljd.5;
-        Tue, 21 Mar 2023 04:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679399038;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mDK2iODbrnq6YMBT3iaeyX6/L7OVDYUqM483wwscgWU=;
-        b=Gh11hzeSAUAKPJid7JAGxc/qccHUrZGHz9Sh4sKMqiadjoc7dBXZxPM8Y7gqqGEPHg
-         rmVTRNQHYA9hXwvde6wHeabche2Lvu37BxtdBOSCe55yRw7p6du7MI6uW6gwrGaAXFCA
-         wVvQwNriQE1QQFz+RRRWYpvUphQHTXJoKGGexD/1vPvIMlr81NAtx4Hf+QsOWQMErKFS
-         1REOqwCoBPuvzjGQCIbrmaoLkudx2kEbWpYXwnodDydAmhcVK7yQieDXoyRtwIRKw4Gl
-         98wAykqvBEK/3/+Wit/hq7jQXJZT8cvxcHo9N85Vph5UHlDEg6PC1mW78V488VteVcsQ
-         GW2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679399038;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mDK2iODbrnq6YMBT3iaeyX6/L7OVDYUqM483wwscgWU=;
-        b=ax3fjuIrNtLTde3pUpyurtfLnJ3FNAqRsusHixj9fgVT2wRhkC7Gw3/aK69S/Q9q7R
-         I/HYhNB4oC1WO1Z5zOvZrFhPbeBawpjpgaB/psOzjflBxLVOaypFFgCYR/AhsZJqusTH
-         +EtzonL/Igm0i2Vgouck9BZ//QJxl+YH5FB9gSJbFNVvaCKIBthGWFAyTPQRlrubPj6Y
-         NIdrm8Q78RMU5w2OgJzI51U1NU5B+qejiWSCZCwFL/48skQCtnuO862jv6adHpnHYwQg
-         O3EA79Q2DXNUCFjAnRnmaG/mdfYMqCoHpFzRX4dswqnFLK9NeccctQdIge51TQq51uSB
-         Nz0Q==
-X-Gm-Message-State: AO0yUKXgeVkEhiF6eZKjEG5iEqark+aV+Z0/32wDbLMNbr1OhovGumVo
-        Gt/jhbwtNkI0xJPEAzRbYUJK6ylWGz4=
-X-Google-Smtp-Source: AK7set/S73W2wIokE855gLh8TE6Yo6ajOelA7I3ecutWdGLYRd1DIcIExGunC4IfrGQOuafYVGtCbw==
-X-Received: by 2002:a2e:860c:0:b0:29f:7c5b:8795 with SMTP id a12-20020a2e860c000000b0029f7c5b8795mr497660lji.9.1679399038645;
-        Tue, 21 Mar 2023 04:43:58 -0700 (PDT)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id y22-20020a2e3216000000b0029e84187ce2sm647143ljy.139.2023.03.21.04.43.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 04:43:58 -0700 (PDT)
-Date:   Tue, 21 Mar 2023 14:43:56 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, Sergey.Semin@baikalelectronics.ru,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v11 04/13] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe
- Endpoint
-Message-ID: <20230321114356.qnecn2kcaoxldka5@mobilestation>
-References: <20230310123510.675685-1-yoshihiro.shimoda.uh@renesas.com>
- <20230310123510.675685-5-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S230491AbjCULsC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 07:48:02 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 96AD2273E;
+        Tue, 21 Mar 2023 04:48:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.98,278,1673881200"; 
+   d="scan'208";a="156652119"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 21 Mar 2023 20:48:00 +0900
+Received: from localhost.localdomain (unknown [10.226.93.140])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7001241E3338;
+        Tue, 21 Mar 2023 20:47:56 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        linux-serial@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v4 0/5] Renesas SCI fixes
+Date:   Tue, 21 Mar 2023 11:47:48 +0000
+Message-Id: <20230321114753.75038-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230310123510.675685-5-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.4 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 10, 2023 at 09:35:01PM +0900, Yoshihiro Shimoda wrote:
-> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-> PCIe endpoint module.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+RZ/G2UL SMARC EVK has sci pins exposed through PMOD1 interface.
+On testing, found that irq handler, tx and rx is broken.
 
-Looking good now. Thanks.
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+This series fixes these issues.
 
--Serge(y)
+v3->v4:
+ * Updated the fixes tag for patch#2 and patch#3
+ * Replaced sci_port->is_rz_sci with dev->dev.of_node as regshift are only needed
+   for sh770x/sh7750/sh7760, which don't use DT yet.
+ * Dropped is_rz_sci variable from struct sci_port.
+ * Removed fixes tag from patch#4, as it is a feature enhancement to make tx
+   fully functional on RZ/G2L alike SOCs. With previous patch#3, eventhough
+   we get tx interrupts, still it is broken as characters entered on
+   uart terminal is not visible except for the first character.
+ * Updated commit header sci0 nodes->sci0 node for patch#5 
+ * Removed PMOD USBUART reference and connection details as user can connect
+   anything on that PMOD1 pins.
+ * Renamed r9a07g043-smarc.dtso->r9a07g043-smarc-pmod.dtso
+ * Dropped unused header file dt-bindings/gpio/gpio.h
+v2->v3:
+ * Cced stable@vger.kernel.org
+ * Added Rx, Tx and Tx end interrupt handler patch.
+v1->v2:
+ * Replaced the wrong fixes tag
+ * Added a simpler check in sci_init_single() and added a check in
+   probe to catch invalid interrupt count.
+Tested the SCI0 interface on RZ/G2UL by connecting to PMOD USBUART.
+ 39:          0     GICv3 437 Level     1004d000.serial:rx err
+ 40:         12     GICv3 438 Edge      1004d000.serial:rx full
+ 41:         70     GICv3 439 Edge      1004d000.serial:tx empty
+ 42:         18     GICv3 440 Level     1004d000.serial:tx end
 
-> ---
->  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> new file mode 100644
-> index 000000000000..12d779a4ce8d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/rcar-gen4-pci-ep.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas R-Car Gen4 PCIe Endpoint
-> +
-> +maintainers:
-> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> +
-> +allOf:
-> +  - $ref: snps,dw-pcie-ep.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: renesas,r8a779f0-pcie-ep   # R-Car S4-8
-> +      - const: renesas,rcar-gen4-pcie-ep  # R-Car Gen4
-> +
-> +  reg:
-> +    maxItems: 5
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: atu
-> +      - const: dma
-> +      - const: app
-> +      - const: addr_space
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: dma
-> +      - const: sft_ce
-> +      - const: app
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  max-functions:
-> +    maximum: 2
-> +
-> +  max-link-speed:
-> +    maximum: 4
-> +
-> +  num-lanes:
-> +    maximum: 4
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - resets
-> +  - power-domains
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a779f0-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a779f0-sysc.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie0_ep: pcie-ep@e65d0000 {
-> +            compatible = "renesas,r8a779f0-pcie-ep", "renesas,rcar-gen4-pcie-ep";
-> +            reg = <0 0xe65d0000 0 0x3000>, <0 0xe65d3000 0 0x2000>,
-> +                  <0 0xe65d5000 0 0x1200>, <0 0xe65d6200 0 0x0e00>,
-> +                  <0 0xfe000000 0 0x400000>;
-> +            reg-names = "dbi", "atu", "dma", "app", "addr_space";
-> +            interrupts = <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "dma", "sft_ce", "app";
-> +            clocks = <&cpg CPG_MOD 624>;
-> +            power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
-> +            resets = <&cpg 624>;
-> +            num-lanes = <2>;
-> +            max-link-speed = <2>;
-> +        };
-> +    };
-> -- 
-> 2.25.1
-> 
-> 
+Biju Das (5):
+  tty: serial: sh-sci: Fix transmit end interrupt handler
+  tty: serial: sh-sci: Fix Rx on RZ/G2L SCI
+  tty: serial: sh-sci: Fix Tx on SCI IP
+  tty: serial: sh-sci: Add support for tx end interrupt handling
+  arm64: dts: renesas: r9a07g044: Enable sci0 node using dt overlay
+
+ arch/arm64/boot/dts/renesas/Makefile          |  1 +
+ .../dts/renesas/r9a07g043-smarc-pmod.dtso     | 42 ++++++++++++
+ drivers/tty/serial/sh-sci.c                   | 66 +++++++++++++++++--
+ drivers/tty/serial/sh-sci.h                   |  3 +
+ 4 files changed, 106 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043-smarc-pmod.dtso
+
+-- 
+2.25.1
+
