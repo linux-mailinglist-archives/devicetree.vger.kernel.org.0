@@ -2,145 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 533106C34E6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 15:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD1D96C3246
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 14:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231373AbjCUO62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 10:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36548 "EHLO
+        id S229958AbjCUNHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 09:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbjCUO61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 10:58:27 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF45231CD;
-        Tue, 21 Mar 2023 07:58:24 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id l27so5687298wrb.2;
-        Tue, 21 Mar 2023 07:58:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679410703;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bgXEnYwzn/S6BlOb++Eaqru+i6YXyzKGwwPJBmaxtD4=;
-        b=ga4YMD0irqHN4ilQrJ2QMVEbWHArwcWv2PG1FGLGI3et3uRUC94zk6BZpYLXtYwFfq
-         Ww9fw7+pA7jFvc7QMMl9umhdWEA/kXceI4gCT4ZS+u6cf5+k8wZDH1mBjOQF2IZwG0eP
-         BbF2RgvFUaLtqL8bqcA2Zc3372cO+99MGl3tVQ4B1oDiwwkK2/0cyJ9S8MYkfaLa2oaM
-         7HxJWl67A3Jb7WSMyAi9EIoCBfiTwvWCOacUirjCW8pP1pNszz6QJU7mkI3miHldqUgt
-         Enrh0ZOQr8wcVepDFsJOkm3WoNuy9MeBo+P0WBP6DG/Eu1lLdMhF71YyTtIOzp8Xc7lc
-         HGpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679410703;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bgXEnYwzn/S6BlOb++Eaqru+i6YXyzKGwwPJBmaxtD4=;
-        b=a9+x/9qzfIRngLeOzY0OOHw89nWNN+4oMrkdQvKAF5yUi7l1bg19op5s0SYepETJje
-         WjHnneGUlA8BmvxJJe8wqu2ieCTcT4vIAltxMS/ltRpPiV4aaaBSSJ1JJGGTvCGNLRoZ
-         VayF6L6FRRHAn9UKu53tpC5Ah48XHQZsZhGjTNuRaOHFVYnogAbTgQeZEhYXnl9osOMC
-         uMcNCgHHyeM1fMrkv2OU/GQzSXF+B1ML31ODcf9L3/Vb1/NBecwYoYl3G4iLber+i7Ns
-         TMlM9lGg2OLx5kEjfYvI+B0rOw8iAE5N84xI3bFNhgyFy6kvo2QcszpVol6YWDwoiFD9
-         ylDw==
-X-Gm-Message-State: AO0yUKXtikfmCn0WNPInC3gW7PD0+wszW8t7AYz7KrNxzyxvU3o+IJBA
-        ieZ6m2SVz+bOw18eECYPDZ8=
-X-Google-Smtp-Source: AK7set+K7ppr5kVHCtHkrUaYjB+7uxp7G1eEctUkA+c9/tYtmX8WRNtLlnpL/VsrO7ZBl1mm/ABfEA==
-X-Received: by 2002:adf:f2c8:0:b0:2d2:22eb:824a with SMTP id d8-20020adff2c8000000b002d222eb824amr2419295wrp.34.1679410702538;
-        Tue, 21 Mar 2023 07:58:22 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
-        by smtp.gmail.com with ESMTPSA id d5-20020adfef85000000b002cfed482e9asm11556989wro.61.2023.03.21.07.58.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 07:58:22 -0700 (PDT)
-Message-ID: <6419c60e.df0a0220.1949a.c432@mx.google.com>
-X-Google-Original-Message-ID: <ZBli4hn6oPZzQZk0@Ansuel-xps.>
-Date:   Tue, 21 Mar 2023 08:55:14 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229743AbjCUNHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 09:07:21 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E892D392B0;
+        Tue, 21 Mar 2023 06:07:15 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8CxhdgCrBlkFWwPAA--.23194S3;
+        Tue, 21 Mar 2023 21:07:14 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxMuX_qxlke6AIAA--.36902S2;
+        Tue, 21 Mar 2023 21:07:14 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v5 04/15] leds: Provide stubs for when CLASS_LED
- is disabled
-References: <20230319191814.22067-1-ansuelsmth@gmail.com>
- <20230319191814.22067-5-ansuelsmth@gmail.com>
- <aa2d0a8b-b98b-4821-9413-158be578e8e0@lunn.ch>
- <64189d72.190a0220.8d965.4a1c@mx.google.com>
- <5ee3c2cf-8100-4f35-a2df-b379846a8736@lunn.ch>
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v15 1/2] dt-bindings: clock: add loongson-2 boot clock index
+Date:   Tue, 21 Mar 2023 21:07:09 +0800
+Message-Id: <20230321130710.20236-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ee3c2cf-8100-4f35-a2df-b379846a8736@lunn.ch>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxMuX_qxlke6AIAA--.36902S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7GFWkCF18GF17KryxGF4Uurg_yoW8Jrykpr
+        sYkrykGFWjyFWSkF4qvr1xGrn5Za17JwnrAayjkF1UAr43Jw1kXrs7Ja4UAr90qrW3AFW7
+        ZF17Cw4rZF4Uu3DanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bVxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8I
+        j28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2
+        WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkE
+        bVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6c
+        x26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG
+        67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MI
+        IYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E
+        14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JV
+        WxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUcOJ5
+        UUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 08:31:36PM +0100, Andrew Lunn wrote:
-> On Mon, Mar 20, 2023 at 06:52:47PM +0100, Christian Marangi wrote:
-> > On Sun, Mar 19, 2023 at 11:49:02PM +0100, Andrew Lunn wrote:
-> > > > +#if IS_ENABLED(CONFIG_LEDS_CLASS)
-> > > >  enum led_default_state led_init_default_state_get(struct fwnode_handle *fwnode);
-> > > > +#else
-> > > > +static inline enum led_default_state
-> > > > +led_init_default_state_get(struct fwnode_handle *fwnode)
-> > > > +{
-> > > > +	return LEDS_DEFSTATE_OFF;
-> > > > +}
-> > > > +#endif
-> > > 
-> > > 0-day is telling me i have this wrong. The function is in led-core.c,
-> > > so this should be CONFIG_NEW_LEDS, not CONFIG_LEDS_CLASS.
-> > > 
-> > 
-> > Any idea why? NEW_LEDS just enable LEDS_CLASS selection so why we need
-> > to use that? Should not make a difference (in theory)
-> 
-> 0-day came up with a configuration which resulted in NEW_LEDS enabled
-> but LEDS_CLASS disabled. That then resulted in multiple definitions of 
-> led_init_default_state_get() when linking.
-> 
-> I _guess_ this is because select is used, which is not mandatory. So
-> randconfig can turn off something which is enabled by select.
-> 
-> I updated my tree, and so far 0-day has not complained, but it can
-> take a few days when it is busy.
-> 
+The Loongson-2 boot clock was used to spi and lio peripheral and
+this patch was to add boot clock index number.
 
-BTW yes I repro the problem.
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Change in v15:
+		1. Add the acked-by for review information.
+Change in v14:
+		1. Add the history changelog for this patch.
+		2. Move the boot clock index in ending.
+Change in v13:
+		1. Add this patch as new patch and the clock driver patch need
+		   depend on this patch so add this patch as a series and set
+		   version number was v13.
+Change in v2 to v12:
+		1. This patch doesn't exit, so no changelog. 
 
-Checked the makefile and led-core.c is compiled with NEW_LEDS and
-led-class is compiled with LEDS_CLASS.
+ include/dt-bindings/clock/loongson,ls2k-clk.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-led_init_default_state_get is in led-core.c and this is the problem with
-using LEDS_CLASS instead of NEW_LEDS...
-
-But actually why we are putting led_init_default_state_get behind a
-config? IMHO we should compile it anyway.
-
-So my suggestion is to keep the LEDS_CLASS and just remove the part for 
-led_init_default_state_get.
-
-Also why IS_ENABLED instead of a simple ifdef? (in leds.h there is a mix
-of both so I wonder if we should use one or the other)
-
+diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
+index db1e27e792ff..3bc4dfc193c2 100644
+--- a/include/dt-bindings/clock/loongson,ls2k-clk.h
++++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
+@@ -24,6 +24,7 @@
+ #define LOONGSON2_SATA_CLK				14
+ #define LOONGSON2_PIX0_CLK				15
+ #define LOONGSON2_PIX1_CLK				16
+-#define LOONGSON2_CLK_END				17
++#define LOONGSON2_BOOT_CLK				17
++#define LOONGSON2_CLK_END				18
+ 
+ #endif
 -- 
-	Ansuel
+2.20.1
+
