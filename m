@@ -2,225 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3306C2AD9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6ED96C2AE7
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjCUGzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 02:55:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40832 "EHLO
+        id S230462AbjCUG5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 02:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbjCUGzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:55:05 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F15AD2F;
-        Mon, 20 Mar 2023 23:55:03 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32L6suvN069928;
-        Tue, 21 Mar 2023 01:54:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679381696;
-        bh=vh9bxu0G3DnVYUFcXgl/1jVScKuNjH1dp3xz6scAKvs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=lBkryeyYCJhaXigQ+KodvCY56YwmM8fN3VoCNYiN+ESAgcPXuLBEPO5HTFzTbpjWf
-         bKE48nLkFDJkByUfnTbY25nWFzPOZDgUxj1LcEY742T0Hex6yCPbIAMwZ1bH49rvi9
-         wpwcf+9w5JrR3k3bmUOMh5QxAHKddBcXZ6vpexZI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32L6subF016593
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Mar 2023 01:54:56 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 21
- Mar 2023 01:54:56 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 21 Mar 2023 01:54:56 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32L6st3M000989;
-        Tue, 21 Mar 2023 01:54:55 -0500
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-keerthy@ti.com>, <u-kumar1@ti.com>, <j-luthra@ti.com>,
-        <vaishnav.a@ti.com>
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-j784s4: Add MCSPI nodes
-Date:   Tue, 21 Mar 2023 12:24:47 +0530
-Message-ID: <20230321065447.6997-5-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230321065447.6997-1-vaishnav.a@ti.com>
-References: <20230321065447.6997-1-vaishnav.a@ti.com>
+        with ESMTP id S230363AbjCUG5H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:57:07 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF0824BED;
+        Mon, 20 Mar 2023 23:56:38 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id bf30so3877685oib.12;
+        Mon, 20 Mar 2023 23:56:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679381798;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7CB30YBR/unG1rtVrj/VEIoIIDqVdeb6HobkvOGdOhs=;
+        b=ljEyPQ/miVXVu+ZkXp99IVFxim/tHSNUWMN+4y6JRzkUykqZhmcnNntq5viRLU26lW
+         3+BbBMyvpE1sPre6zjo+lrT/+JDUo1yl1O4FblkNIaUquGngGNjiyX6U2URmgXv5gMAk
+         vU0VrR1p/ostCdOeelGYLa/sAyRBmtkDFZdOv5wAkn11p3M0VIfT8EDuj9KWM2FmXGJr
+         SAOlEMjX/r9JnXWKZFx2ngdrJowL4QiRsJdfNnESe5wGxPqOWAEpVKOjXWD5WBcpzYW2
+         pMKGsXI/PL9kpKOFNH9b+dOQO+YAQ1vbxXPijZG1T6z/uawYtBCb2M5BdD9j++O/8ykx
+         oY3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679381798;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7CB30YBR/unG1rtVrj/VEIoIIDqVdeb6HobkvOGdOhs=;
+        b=bS+zGYvnWGl8dFobnOa9JMVP2WIW7H061c4TLa7Xp4Pvj8TqqCOWgoE9yQwbPhgpjL
+         eP+Bw1ucK5tcn5ZCB2YLXg7C98dzgBByuya9qCyW36dmlRWYdBfBHnF2pxMD5wux4ars
+         Z3b6gutQ9iRZPAc3Cbmkwf3azfrNZjyXubjRkjFNmOEJnn5StokRyAZFH3S/Vint74UX
+         SZ0ZFM+jj4IoXo2JfzVQ9ru64AQJOX+YZq92nL7CzC4Rt7M2QuE3B4xSE5PDYMybi2It
+         QnGp2LnRzwkaw9jk6kHssG7VQuDADrk6U/WfyjKrb7iplMFaIenJAguI/4G4Q7VwAwSy
+         SFoA==
+X-Gm-Message-State: AO0yUKVyeJ1uVxB5e4KB3M/f9Z8T6nYuuZmwYzQFigeTXR19FVTldOBE
+        PzGrQX4GJ/b57gSN5wKXrqyotzzcmPIfPvVaXEk=
+X-Google-Smtp-Source: AK7set8XAb32jOcG6ctlGx42mqM8SUCZhdbCzSCOqkbYwbN4WIQyCH/Ly80MQgmj1MEHdFvG6xKhBB0Rd57/AHcSI5g=
+X-Received: by 2002:a05:6808:199f:b0:384:21dd:2793 with SMTP id
+ bj31-20020a056808199f00b0038421dd2793mr313020oib.0.1679381798025; Mon, 20 Mar
+ 2023 23:56:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+ <20230320161823.1424278-2-sergio.paracuellos@gmail.com> <1e2f67b4-3bfb-d394-4f60-e6f63ce6a2fd@linaro.org>
+ <CAMhs-H8OQ9gJLsifLuHD2GN8rYwnY=Zmdb0kMEfX4UUHhjMUyQ@mail.gmail.com>
+ <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org> <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+ <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org> <525a6388-a4b8-3052-fe81-5aa21d8f424a@arinc9.com>
+ <507f79cf-acd8-5238-031a-fd71024e0c6a@linaro.org> <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
+ <39ba681e-5bab-cffc-edf7-4bf86387987c@linaro.org> <132de602-6467-536c-c66d-657f22a59bd5@arinc9.com>
+ <40e3acac-b58a-7af8-b025-3678f84434da@linaro.org>
+In-Reply-To: <40e3acac-b58a-7af8-b025-3678f84434da@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 21 Mar 2023 07:56:25 +0100
+Message-ID: <CAMhs-H9AWXvtbg=qz06HN3piUO0E5YF3RmrdRLC7qH2n6KjrSw@mail.gmail.com>
+Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
+ tree binding documentation
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J784S4 has 8 MCSPI instances in the main domain and 3 instances
-in the MCU domain. Add the DT nodes for all the 11 instances and
-keep them disabled.
+On Tue, Mar 21, 2023 at 7:43=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/03/2023 07:38, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote:
+> >>>>
+> >>>> Ah, but indeed there are newer Mediatek MT6xxx and MT8xxx SoCs which=
+ are
+> >>>> ARM, so mediatek,mtmips-sysc would work.
+> >>>
+> >>> I can use 'mediatek,mtmips-sysc.yaml' as the name but compatibles wil=
+l
+> >>> start with ralink. There are already some existent compatibles for
+> >>> mt762x already having ralink as prefix, so to be coherent ralink
+> >>> should be maintained as prefix.
+> >>
+> >> The compatibles I mentioned start already with mediatek, so why do you
+> >> want to introduce incorrect vendor name for these?
+> >
+> > Can you point out where these compatible strings for mt7620 and mt7628 =
+are?
+>
+> git grep
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
----
+Not for *-sysc nodes. The only current one in use (from git grep):
 
-V1->V2: 
-  * Combine main, mcu domain, MCSPI node addition changes
-  to single commit.
+arch/mips/ralink/mt7620.c:      rt_sysc_membase =3D
+plat_of_remap_node("ralink,mt7620a-sysc");
 
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 88 +++++++++++++++++++
- .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 33 +++++++
- 2 files changed, 121 insertions(+)
+That's the reason I also used prefix ralink for the rest.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 80a1b08c51a8..432592ef3bc4 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -1005,4 +1005,92 @@
- 		bosch,mram-cfg = <0x00 128 64 64 64 64 32 32>;
- 		status = "disabled";
- 	};
-+
-+	main_spi0: spi@2100000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02100000 0x00 0x400>;
-+		interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 376 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 376 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi1: spi@2110000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02110000 0x00 0x400>;
-+		interrupts = <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 377 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 377 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi2: spi@2120000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02120000 0x00 0x400>;
-+		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 378 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 378 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi3: spi@2130000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02130000 0x00 0x400>;
-+		interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 379 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 379 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi4: spi@2140000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02140000 0x00 0x400>;
-+		interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 380 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 380 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi5: spi@2150000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02150000 0x00 0x400>;
-+		interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 381 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 381 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi6: spi@2160000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02160000 0x00 0x400>;
-+		interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 382 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 382 1>;
-+		status = "disabled";
-+	};
-+
-+	main_spi7: spi@2170000 {
-+		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-+		reg = <0x00 0x02170000 0x00 0x400>;
-+		interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 383 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 383 1>;
-+		status = "disabled";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 64bd3dee14aa..f04fcb614cbe 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -204,6 +204,39 @@
- 		status = "disabled";
- 	};
- 
-+	mcu_spi0: spi@40300000 {
-+		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-+		reg = <0x00 0x040300000 0x00 0x400>;
-+		interrupts = <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 384 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 384 0>;
-+		status = "disabled";
-+	};
-+
-+	mcu_spi1: spi@40310000 {
-+		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-+		reg = <0x00 0x040310000 0x00 0x400>;
-+		interrupts = <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 385 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 385 0>;
-+		status = "disabled";
-+	};
-+
-+	mcu_spi2: spi@40320000 {
-+		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-+		reg = <0x00 0x040320000 0x00 0x400>;
-+		interrupts = <GIC_SPI 850 IRQ_TYPE_LEVEL_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		power-domains = <&k3_pds 386 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 386 0>;
-+		status = "disabled";
-+	};
-+
- 	mcu_navss: bus@28380000{
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
--- 
-2.17.1
+Does it make sense to you to maintain this one as ralink,mt7620a-sysc
+and add the following with mediatek prefix?
 
+mediatek,mt7620-sysc
+mediatek,mt7628-sysc
+mediatek,mt7688-sysc
+
+That would be weird IMHO.
+
+> Best regards,
+> Krzysztof
+
+Thanks,
+    Sergio Paracuellos
