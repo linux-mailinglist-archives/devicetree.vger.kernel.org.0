@@ -2,145 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 705E46C2D1C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:55:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B646C2D1F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 09:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjCUIzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 04:55:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39146 "EHLO
+        id S231165AbjCUI4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 04:56:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231226AbjCUIzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:55:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ECDE136D9;
-        Tue, 21 Mar 2023 01:54:23 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1F74A6602FA0;
-        Tue, 21 Mar 2023 08:53:01 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679388781;
-        bh=m8krUlfEMzWvYG3Z7812/SraCrcFCYtiocAiyGHHk50=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=odF+CO0D/NjEfMrngDbx4lrjRMM8eYnCD5bRYAqzygx6g1eisJAG8QrJixU868bYP
-         Sg90JXu87V/cgunFX+wAmkj8LeVtXjofOrXwGOuOHWbmm6rANrgxomdVjIf6S+RI/I
-         4DQLVuPQi2yn5Vot4PNkUmi2a6nLhCAegprNr8FHvs9FyXlwFMXL2ruLg+ovwKmr1n
-         C8rjGtKm2MndGIqfbeeggEe+MRMpnY1UdHoQCMyYbLzPtDS2B8vrQBBW/O2JO+vH6a
-         zhsHcymVgn5LzMsBjvqF5eRPg7uaHgg5Sx63Aeidofs49TwH1C47/4RRPzjwRtXpEP
-         jCvOHRXVf77Aw==
-Message-ID: <287bb13f-5a4b-7769-7f3f-a94ee7ca645d@collabora.com>
-Date:   Tue, 21 Mar 2023 09:52:58 +0100
+        with ESMTP id S231280AbjCUIzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 04:55:39 -0400
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D884A1DF;
+        Tue, 21 Mar 2023 01:54:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1679388805; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=Swv/m0J4JYRMHxlqM6ECwP2kon4rJ/HJj6ZqQTKYLCJjehL8CFkZkel6SFhlGnrkdtA5SjtM/bYVLjqBk+kFu0mCbvUhpIfJqPybu0qIB6oj+ZVgC8pw0BYEpsSSoMjLsLI8OXRl1pBTS419m2go0YpzspJ7hopFd0mQToyvm5g=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1679388805; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=SYr/ERVf7CLgKo8BYU40SJ/s8dnmY3Et/To78+kiaok=; 
+        b=eHBdWAI5BgOe/8uphh4rutUaT+O44LX4h4qV4H0LYJR7RwEh4Q9KJKBqJSh1tM3uBVvmXfK3YGJ4sQLCjlNKKLHX9LhsLS2U8nynBfsTR9X4b69omsCVb/CC461wqESh2llULs59pUmj5sTvzN2GBLyCYbIHcuSh8YbHde7SmKg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679388805;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=SYr/ERVf7CLgKo8BYU40SJ/s8dnmY3Et/To78+kiaok=;
+        b=AZG9H+sEfYbUlUJydeJ22rxDPL7HTLtPG5JIm+EbEmhf4mmhlumVDD2OweH3MFIN
+        YefnygVFBezJwLdGvKtTKoeXh+7qvq5CEYzK9mASpII99TqQZUMLJ4bo+8Bvaik6C7/
+        VwLSay/6mUZlLLMs7Lv7xGX8WWQAqRYiXPrRkdqw=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1679388803856160.0109146913502; Tue, 21 Mar 2023 01:53:23 -0700 (PDT)
+Message-ID: <1c279b0a-c814-2fe3-0432-2aa6b3dff16e@arinc9.com>
+Date:   Tue, 21 Mar 2023 11:53:18 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v9 2/7] iommu/mediatek: Fix two IOMMU share pagetable
- issue
-To:     =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
-Cc:     "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?= 
-        <Jianjiao.Zeng@mediatek.com>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        =?UTF-8?B?Q2hlbmdjaSBYdSAo6K645om/6LWQKQ==?= 
-        <Chengci.Xu@mediatek.com>,
-        =?UTF-8?B?WUYgV2FuZyAo546L5LqR6aOeKQ==?= <YF.Wang@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        =?UTF-8?B?TWluZ3l1YW4gTWEgKOmprOm4o+i/nCk=?= 
-        <Mingyuan.Ma@mediatek.com>, "will@kernel.org" <will@kernel.org>
-References: <20230317085541.20447-1-yong.wu@mediatek.com>
- <20230317085541.20447-3-yong.wu@mediatek.com>
- <47cac7a6-c069-64a2-7979-b879b075058f@collabora.com>
- <e724eb4b63901fd2ba9f7957d1a3cd6fdd234bf4.camel@mediatek.com>
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 01/10] dt: bindings: clock: add mtmips SoCs clock device
+ tree binding documentation
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <e724eb4b63901fd2ba9f7957d1a3cd6fdd234bf4.camel@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org
+References: <20230320161823.1424278-1-sergio.paracuellos@gmail.com>
+ <d0f74721-bf5a-62de-53dc-62e7e735e2dc@linaro.org>
+ <bdc82b4a-f1a9-0372-5a57-200a422b1b70@arinc9.com>
+ <21a90597-78c9-4d46-7b01-257702e7afca@linaro.org>
+ <525a6388-a4b8-3052-fe81-5aa21d8f424a@arinc9.com>
+ <507f79cf-acd8-5238-031a-fd71024e0c6a@linaro.org>
+ <CAMhs-H8_S5eO7B+dZ7jeq7Jjnw71QBmSo4M+woe3U5sH7dCADg@mail.gmail.com>
+ <39ba681e-5bab-cffc-edf7-4bf86387987c@linaro.org>
+ <132de602-6467-536c-c66d-657f22a59bd5@arinc9.com>
+ <40e3acac-b58a-7af8-b025-3678f84434da@linaro.org>
+ <CAMhs-H9AWXvtbg=qz06HN3piUO0E5YF3RmrdRLC7qH2n6KjrSw@mail.gmail.com>
+ <d598f5f8-f998-2a31-bb21-97e641793dda@linaro.org>
+ <120663a9-aecf-4a43-d1fb-779cd52802c6@arinc9.com>
+ <3d2b8a1a-99c9-f53e-4bb3-a8b938e2672f@linaro.org>
+ <543ad00d-4171-ed02-0d31-676c6b003e54@arinc9.com>
+ <82f517b5-6697-3379-8d71-163b0d17735d@linaro.org>
+ <d640a929-b6a0-1552-e66a-3a7bbabbc69f@arinc9.com>
+ <2150938b-5433-6f51-c404-2c0f6976f864@linaro.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <2150938b-5433-6f51-c404-2c0f6976f864@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        T_SPF_TEMPERROR,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/03/23 07:50, Yong Wu (吴勇) ha scritto:
-> On Fri, 2023-03-17 at 10:34 +0100, AngeloGioacchino Del Regno wrote:
->> Il 17/03/23 09:55, Yong Wu ha scritto:
->>> From: "Chengci.Xu" <chengci.xu@mediatek.com>
+On 21.03.2023 11:39, Krzysztof Kozlowski wrote:
+> On 21/03/2023 09:33, Arınç ÜNAL wrote:
+>> On 21.03.2023 11:27, Krzysztof Kozlowski wrote:
+>>> On 21/03/2023 09:24, Arınç ÜNAL wrote:
+>>>>>>
+>>>>>> If we take the calling new things mediatek route, we will never get to
+>>>>>> the bottom of fixing the naming inconsistency.
+>>>>>
+>>>>> All new things, so new SoCs, should be called mediatek, because there is
+>>>>> no ralink and mediatek is already used for them. So why some new
+>>>>> Mediatek SoCs are "mediatek" but some other also new SoCs are "ralink"?
+>>>>>
+>>>>> You can do nothing (and no actual need) about existing inconsistency...
+>>>>
+>>>> I couldn't change ralink -> mediatek because company acquisitions don't
+>>>> grant the change. I don't see any reason to prevent changing mediatek ->
+>>>> ralink without breaking the ABI on the existing schemas.
 >>>
->>> Prepare for mt8188 to fix a two IOMMU HWs share pagetable issue.
->>>
->>> We have two MM IOMMU HWs in mt8188, one is VPP-IOMMU, another is
->>> VDO-IOMMU.
->>> The 2 MM IOMMU HWs share pagetable don't work in this case:
->>>    a) VPP-IOMMU probe firstly.
->>>    b) VDO-IOMMU probe.
->>>    c) The master for VDO-IOMMU probe (means frstdata is vpp-iommu).
->>>    d) The master in another domain probe. No matter it is vdo or
->>> vpp.
->>> Then it still create a new pagetable in step d). The problem is
->>> "frstdata->bank[0]->m4u_dom" was not initialized. Then when d)
->>> enter, it
->>> still create a new one.
->>>
->>> In this patch, we create a new variable "share_dom" for this share
->>> pgtable case, it should be helpful for readable. and put all the
->>> share
->>> pgtable logic in the mtk_iommu_domain_finalise.
->>>
->>> In mt8195, the master of VPP-IOMMU probes before than VDO-IOMMU
->>> from its dtsi node sequence, we don't see this issue in it. Prepare
->>> for
->>> mt8188.
->>>
->>> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>> You cannot change mediatek->ralink without breaking the ABI for the same
+>>> reasons.
 >>
->> I'm not sure whether this is *not* a fix... if a specific platform
->> wasn't
->> affected, this may still be a logic mistake... to be cautious, I
->> would
->> still add a Fixes tag to this one.
+>> Then this is where I ask for an exception.
+>>
+>> The current solution only complicates things more.
+>>
+>> https://github.com/paraka/linux/pull/1/files#diff-0ae6c456898d08536ce987c32f23f2eb6f4a0f7c38bff9a61bdf3d0daa3f6549R21
 > 
-> I think you are right. If we need add the Fixes tag, it should fix this
-> one: 645b87c190c9 ("iommu/mediatek: Fix 2 HW sharing pgtable issue").
-> 
-> Before I thought the code flow was changed a lot. I added the bank
-> structure and removed the mtk_iommu.h, I'm a bit afraid that this fix
-> patch can not be applied clean, then it will introduce confuse when
-> applying to the previous version for the maintainers.
-> 
-> Meanwhile, After mt8195, mt8186/mt6795/m8365/6795 were merged in
-> upstream. All of them don't have this sharing case, thus I thought this
-> fix it is not so necessary.
-> 
-> What's your opinion? and should I send this one separately if I add the
-> fixes tag?
-> 
+> Sorry, I don't understand what's under this link and how some Github
+> repo pull helps in this discussion. I don't see there any text, which
+> could help.
 
-Well, it would be nicer to send it separately but, realistically, the
-described issue does *not* happen on the previous kernel releases for
-the supported SoCs... so it's not necessary to split this.
+That's Sergio's current branch, before he sends out a new version of the 
+patch series. So that's the current solution, having 
+mediatek,mt7620-sysc and ralink,mt7620a-sysc on the schema.
 
-Add the Fixes tag and send this again inside of this series, that's
-going to be fine.
+> 
+> I also do not understand why this pull proves that you can change
+> existing mediatek compatibles (we talk also about ARM, which is shipped
+> to million of devices) to ralink without breaking the ABI.
 
-Thanks!
-Angelo
+No no, I only want to do this on schemas that concern the MTMIPS 
+platform. It doesn't concern the MediaTek ARM schemas.
 
+> 
+> I do not see how choosing one variant for compatibles having two
+> variants of prefixes, complicates things. Following this argument
+> choosing "ralink" also complicates!
+
+The idea is to make every compatible string of MTMIPS to have the ralink 
+prefix so it's not mediatek on some schemas and ralink on others. Simpler.
+
+Arınç
