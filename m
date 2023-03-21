@@ -2,217 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4106C2FA0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8154A6C2FAE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 11:58:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbjCUK42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 06:56:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        id S230450AbjCUK6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 06:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbjCUK42 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:56:28 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00CC82A9B0;
-        Tue, 21 Mar 2023 03:56:23 -0700 (PDT)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8E771C000A;
-        Tue, 21 Mar 2023 10:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1679396181;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=uU/xF/1XZaDXYdbp4Nthi/pqeMyjnaY9h5BAhcgysyw=;
-        b=RTOccEmAp1Y/S3bE0KFB5fzMQRdCwfDehknR5CtMxifBTR+f7DjvXHLT9B+9ZH9+OFihHE
-        GCkMCJxuSlUU8NkMSlqucCaDtjQlk82C/TvXTiBbprCbQYNm7ZxMVNe2ueEBrACk+z+H26
-        8DFM2NfjIyuNeS/XMeDbbT1ZqUuw6421W38YV+9lYN2n8p+/fnfWZIi6rnYxWy7vmNFfBf
-        0fUjpW+kYgj7xvwEYzx9MilcnQH6roXFKBuF0Ct/Bjm8BtDQk/m3a0QuZDTFaEb91Z8Wsv
-        Oiim80QuGcc05dPGBL2qBWunEDC2TLq7uZ7MqeEF0ZMIzTvl7qHja6c9aFDbmw==
-Date:   Tue, 21 Mar 2023 11:56:15 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     zzam@gentoo.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v10 1/8] i2c: add I2C Address Translator (ATR) support
-Message-ID: <20230321115615.0145124b@booty>
-In-Reply-To: <a21fcab7-aa80-0228-7bd3-236fb4203d36@ideasonboard.com>
-References: <20230222132907.594690-1-tomi.valkeinen@ideasonboard.com>
-        <20230222132907.594690-2-tomi.valkeinen@ideasonboard.com>
-        <70323408-b823-1f1a-0202-434e6243b2af@gentoo.org>
-        <20230320092830.0431d042@booty>
-        <a21fcab7-aa80-0228-7bd3-236fb4203d36@ideasonboard.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S230451AbjCUK6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 06:58:36 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84CC42366E;
+        Tue, 21 Mar 2023 03:58:33 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id o12so57942119edb.9;
+        Tue, 21 Mar 2023 03:58:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679396312;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+xlekolJZJNpYqeRZP2jE+3o7E56WL7sl6ehOjJfpv8=;
+        b=h6ShNJs3ppB1oKzTgjzc7MAp2E1KgvjVgCoQPdAJrMR1poEuCuPf+HWYJUsikwwQSz
+         VpTZyJLNecrlMrnece1Pdy/yh61uw34J9QoTGgWppJFHaofTnD4780CMU4zB5mSy7mSs
+         AlKD/xhvsBxxmWo9/dDnpUOz1Bm9qVcF9QJbK/Lap/rhM2wCSko9zc6uxWyW9JVAD7PG
+         ApyU2Oede9idH1ghPuah3+TA1XuAJbO8/MsgawYGzqACX7BGeIARsosZQnJjITmPmA0S
+         5D/lxO0QZzlVzJqZ2hwOU8xMcJ82Kr8s3weydfOcK75YcZ/kvYPF0osEILfAE3FCAKD9
+         KdfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679396312;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+xlekolJZJNpYqeRZP2jE+3o7E56WL7sl6ehOjJfpv8=;
+        b=yE+Ek6nK3PUFRotQHjWuJXdFoOfpi9mH2e+vtjSqxP7DqJSIEu8HiCfzNOjpeEDlQ6
+         OzTWduG4AcC0Y/WKCwjyaXATcfEtvxJ/WPNXxY4rTezZqBeYfNLOgCbi1tiW502eTkaS
+         w8o4xJLJ09g0VBP4IICZYMPlqYKUBRLgGzh6aFypofcUD9tVnxZKs8V+6m7+7BuBQh3y
+         fKUk9bqNjmev5NJFo1YoIrg3ZY8tqN7jRxmxJHs858j80lfVey+DE1Ofc7P0YVM9LMyl
+         wEgUWhJ1hG5mNl7n79zeztF+3uI6PBhXQ0o+Jfr5YcqYfx59C2bzmvY8kdaebubvvlhN
+         btmg==
+X-Gm-Message-State: AO0yUKW92dIPFS+Uwk2Umdw6f0PfmKmeQia3fwrmnMbnMXv4M2nVcFUI
+        5tCYECooMh4/+i9nAIajL8igyndyyjFfWWJbC/0=
+X-Google-Smtp-Source: AK7set+6s92yKhF8P7ciNAdRReIw2l1D6bnTwlkstvWmOS0XOu11vT/w2cyLDcHtnC10WTyzOr7wfAE3UCqGjxZsCsM=
+X-Received: by 2002:a50:bb2d:0:b0:501:d3a2:b4b3 with SMTP id
+ y42-20020a50bb2d000000b00501d3a2b4b3mr1419083ede.0.1679396311722; Tue, 21 Mar
+ 2023 03:58:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230320104003.407844-1-keguang.zhang@gmail.com>
+ <20230320104003.407844-4-keguang.zhang@gmail.com> <591123c5b80d12cf861cc5392688da41.sboyd@kernel.org>
+In-Reply-To: <591123c5b80d12cf861cc5392688da41.sboyd@kernel.org>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Tue, 21 Mar 2023 18:58:15 +0800
+Message-ID: <CAJhJPsWhwSzCMMaox6VoKZL7NGretnrYb+YS8pvg9BH1hip8Yw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] clk: loongson1: Re-implement the clock driver
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
+On Tue, Mar 21, 2023 at 4:07=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wro=
+te:
+>
+> Quoting Keguang Zhang (2023-03-20 03:40:02)
+> > Re-implement the clock driver for Loongson-1 to
+> > add devicetree support and fit into the clock framework.
+> >
+> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > ---
+> > V3 -> V4: Fix the build error of missing linux/module.h
+>
+> Most of my review on v3 still applies. This needs a resend.
 
-On Mon, 20 Mar 2023 14:12:32 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+Will send v5 along with the modifications suggested on v3.
+Thanks for your time!
 
-> On 20/03/2023 10:28, Luca Ceresoli wrote:
-> > Hello Matthias,
-> > 
-> > thanks for the in-depth review!
-> > 
-> > On Mon, 20 Mar 2023 07:34:34 +0100
-> > zzam@gentoo.org wrote:
-> >   
-> >> Some inline comments below.
-> >>
-> >> Regards
-> >> Matthias
-> >>
-> >> Am 22.02.23 um 14:29 schrieb Tomi Valkeinen:  
-> >>> From: Luca Ceresoli <luca@lucaceresoli.net>
-> >>>
-> >>> An ATR is a device that looks similar to an i2c-mux: it has an I2C
-> >>> slave "upstream" port and N master "downstream" ports, and forwards
-> >>> transactions from upstream to the appropriate downstream port. But it
-> >>> is different in that the forwarded transaction has a different slave
-> >>> address. The address used on the upstream bus is called the "alias"
-> >>> and is (potentially) different from the physical slave address of the
-> >>> downstream chip.
-> >>>
-> >>> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
-> >>> implementing ATR features in a device driver. The helper takes care or
-> >>> adapter creation/destruction and translates addresses at each transaction.
-> >>>
-> >>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> >>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> >>> ---
-> >>>    Documentation/i2c/index.rst         |   1 +
-> >>>    Documentation/i2c/muxes/i2c-atr.rst |  97 +++++
-> >>>    MAINTAINERS                         |   8 +
-> >>>    drivers/i2c/Kconfig                 |   9 +
-> >>>    drivers/i2c/Makefile                |   1 +
-> >>>    drivers/i2c/i2c-atr.c               | 548 ++++++++++++++++++++++++++++
-> >>>    include/linux/i2c-atr.h             | 116 ++++++
-> >>>    7 files changed, 780 insertions(+)
-> >>>    create mode 100644 Documentation/i2c/muxes/i2c-atr.rst
-> >>>    create mode 100644 drivers/i2c/i2c-atr.c
-> >>>    create mode 100644 include/linux/i2c-atr.h
-> >>>      
-> >> [...]  
-> >>> diff --git a/drivers/i2c/i2c-atr.c b/drivers/i2c/i2c-atr.c
-> >>> new file mode 100644
-> >>> index 000000000000..5ab890b83670
-> >>> --- /dev/null
-> >>> +++ b/drivers/i2c/i2c-atr.c
-> >>> @@ -0,0 +1,548 @@  
-> >> [...]  
-> >>> +
-> >>> +/*
-> >>> + * Replace all message addresses with their aliases, saving the original
-> >>> + * addresses.
-> >>> + *
-> >>> + * This function is internal for use in i2c_atr_master_xfer(). It must be
-> >>> + * followed by i2c_atr_unmap_msgs() to restore the original addresses.
-> >>> + */
-> >>> +static int i2c_atr_map_msgs(struct i2c_atr_chan *chan, struct i2c_msg *msgs,
-> >>> +			    int num)
-> >>> +{
-> >>> +	struct i2c_atr *atr = chan->atr;
-> >>> +	static struct i2c_atr_cli2alias_pair *c2a;
-> >>> +	int i;
-> >>> +
-> >>> +	/* Ensure we have enough room to save the original addresses */
-> >>> +	if (unlikely(chan->orig_addrs_size < num)) {
-> >>> +		u16 *new_buf;
-> >>> +
-> >>> +		/* We don't care about old data, hence no realloc() */
-> >>> +		new_buf = kmalloc_array(num, sizeof(*new_buf), GFP_KERNEL);
-> >>> +		if (!new_buf)
-> >>> +			return -ENOMEM;
-> >>> +
-> >>> +		kfree(chan->orig_addrs);
-> >>> +		chan->orig_addrs = new_buf;
-> >>> +		chan->orig_addrs_size = num;
-> >>> +	}
-> >>> +
-> >>> +	for (i = 0; i < num; i++) {
-> >>> +		chan->orig_addrs[i] = msgs[i].addr;
-> >>> +
-> >>> +		c2a = i2c_atr_find_mapping_by_addr(&chan->alias_list,
-> >>> +						   msgs[i].addr);
-> >>> +		if (!c2a) {
-> >>> +			dev_err(atr->dev, "client 0x%02x not mapped!\n",
-> >>> +				msgs[i].addr);
-> >>> +			return -ENXIO;  
-> >> I miss the roll-back of previously modified msgs[].addr values.  
-> > 
-> > Indeed you have a point. There is a subtle error in case all of the
-> > following happen in a single i2c_atr_master_xfer() call:
-> > 
-> >   * there are 2+ messages, having different addresses
-> >   * msg[0] is mapped correctly
-> >   * msg[n] (n > 0) fails mapping
-> > 
-> > It's very unlikely, but in this case we'd get back to the caller with
-> > an error and modified addresses for the first n messages. Which in turn
-> > is unlikely to create any problems, but it could.
-> > 
-> > Tomi, do you agree?
-> > 
-> > This looks like a simple solution:
-> > 
-> >     if (!c2a) {
-> > +    i2c_atr_unmap_msgs(chan, msgs, i);
-> >       ...
-> >     }  
-> 
-> Wouldn't that possibly restore the address from orig_addrs[x] also for 
-> messages we haven't handled yet?
+--=20
+Best regards,
 
-No, because there is  'i' as the 3rd argument, not 'num'. But...
-
-> 
-> I think a simple
-> 
-> while (i--)
-> 	msgs[i].addr = chan->orig_addrs[i];
-> 
-> should do here. It is also, perhaps, a bit more clear this way, as you 
-> can see the assignments to msgs[i].addr nearby, and the rollback here 
-> with the above code. Instead of seeing a call to an unmap function, 
-> having to go and see what exactly it will do.
-
-...sure, this would work. If I had connected my brain at the
-appropriate time I would have realized it's two lines only. And
-definitely less spaghetti-coded that what I had suggested.
-
-Luca
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Keguang Zhang
