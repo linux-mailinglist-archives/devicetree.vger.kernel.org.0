@@ -2,167 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0AD76C383D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 18:33:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB766C384B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 18:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbjCURd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 13:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45294 "EHLO
+        id S229571AbjCURez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 13:34:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbjCURd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 13:33:26 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FDB52928
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 10:33:21 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id h8so62740626ede.8
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 10:33:21 -0700 (PDT)
+        with ESMTP id S229510AbjCURev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 13:34:51 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9655505C;
+        Tue, 21 Mar 2023 10:34:21 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id j24so5643662wrd.0;
+        Tue, 21 Mar 2023 10:34:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679420000;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ochp5U/z+JPJ/YorY5MT0cSwY1Sw+z1CDqsaJ+qW2jU=;
-        b=xeo1rt1i/Xy2YmniokvFRCzHeMIAub0jrdV+Ou2OsopQ7Sx0W9xBotcgFRZ4VnBH/G
-         2JAJBkYP1rpDPBNIErbDLhNLdX56BwjhubSL+Zdjsr+Kgo7psncK5VmkbNEOjMxlcONp
-         ewZ+1KlwinjdvLlWoMn+2Gpp63T0xvWjjGGMT6DiHIuKdUJOaPBj1Xc41DEeaM++/QmL
-         Z3fir6JozYswMIGIAnts48g2SQHx9wJLSnF39oI5FUx+5WvabIjNHH4KXqgBfquLCS7x
-         OFq2zt2zYVIrWqNF3F05qma6e7v/HIvd2Wf9SNVzUPCJY1XsXnMs0bmUQ0OBaGQLKpdL
-         ItFA==
+        d=gmail.com; s=20210112; t=1679420057;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=smJRVW/FrnuNdUD8cl2fR53KDB/Y49Fg7o55MfQn18I=;
+        b=okE/S97qVRKsRy5os7SLORRU5OGGTC124JaJcFqYmezLMUzBZTWmPb/PXD3i51jvTl
+         Wus9Lb3ndeS7AD4Ot8+8V7eso0AkNA3YtE+3kFWs/HA4XHDriMkfx75YTuvvGXx025b1
+         9SIWTIQ7ePidnbSURXPTogR8ft6GWnB00HLOHGmxuTO7tbzudfQXken+tepVUvSmTo8b
+         QNaAWJngOcp6V5PVud1wr6wNqM0WS423zAjEJc4HpnBf6gUY5oDJ3DaPMdgtWV/IT6rr
+         b4bO3G/xqtOTJufWgI3pP2rXQqNNyEgG8DCk1bjc5f/LIzzCdV5eP+aI+G3gu4M2hLI2
+         /W5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679420000;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ochp5U/z+JPJ/YorY5MT0cSwY1Sw+z1CDqsaJ+qW2jU=;
-        b=BigHnegqp1FKLv/Gq+zNPy9qcHtimgTI8m6gDHuiSwxh9HfUWp5DKnnbuQZcVMzrND
-         IWBU2WMXk1iMbB+efJRU5ts63ceB96M3Pdz8pN9SdQTJzwtulLZZe2UbIr68Ky0SiS4z
-         Ekpzf54uMMMc9WEn7hmCJN5z28i9NaAz3sOT+WSJNF6ZPC7Fweo9kMjQa0Eeow2YiyAv
-         oy94nftEAw7FJBDZ7jFqWytx++1pcri63jJGXGxBW7f+6idvTRJWYXT4MeD8WBDLkKDT
-         tCDC7BLqH/mjKWI3dhmlD5FTXzcM1nuMTPhZiP94uRuQ8p8HKHMrT4gsU/FoAcOIC3fM
-         aObw==
-X-Gm-Message-State: AO0yUKWtq7dM7dTKygva5K0mIh8Ze9KGddbg3Ww1HaPVUXWwY4KiTl9o
-        mcAJHNqi2U2CGLFsxTSSf24ntg==
-X-Google-Smtp-Source: AK7set/v/ZVk5N7EL089HA1rFs0IQ+7797TjgYvJfWP5FuppUeBwgImPuQRLLhQvRVpAJCuZMYTb1A==
-X-Received: by 2002:a17:906:4a0d:b0:88f:a236:69e6 with SMTP id w13-20020a1709064a0d00b0088fa23669e6mr3428975eju.7.1679420000035;
-        Tue, 21 Mar 2023 10:33:20 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id o7-20020a1709062e8700b00933356c681esm4552255eji.150.2023.03.21.10.33.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 10:33:19 -0700 (PDT)
-Message-ID: <fc46c48d-2de0-ba3a-08b0-a09526bd9e26@linaro.org>
-Date:   Tue, 21 Mar 2023 18:33:18 +0100
+        d=1e100.net; s=20210112; t=1679420057;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=smJRVW/FrnuNdUD8cl2fR53KDB/Y49Fg7o55MfQn18I=;
+        b=oy69jKOLuovBKZzTN2KOy/dwM+6Mokf9TlH37PY0EJcgZ8uW+PKlTXxu56YQgKcA7V
+         nu8L6YDPGzd81Kb2KRPf2O7robVJIWL8EmKOezbxaSCTJvDdQf1SfAtQmQ2cUdJQ+ya2
+         wn2nmbPojfsrcRetx/5woCAGX+eUlNMyEcvx+O82otMhVW1iOal3WuRmOqKv3C/QBOG9
+         0aqOJ6hpwRnvorWPjGQXVjS5HQ0VhhWcJOhMub+cgYRv+sCPZAjzcRHQaOwHo3Rfm9cL
+         0PPbM2VnJ8t54u9CGmaDp9gvPFx5IGLJHNU8DH3ugXL2NLY48T7oVqJuwYUirN4UUD4c
+         p+ZQ==
+X-Gm-Message-State: AO0yUKWThv/bZuf1mMg1aMmYO48GX5bbx1SrzQFfsfXUkFlBrH8uEmkf
+        rWOVkpz8Ir+6Q5J3aoQWNvM=
+X-Google-Smtp-Source: AK7set/C04ryg0NorzhacJUWhL7vs6/KZ3lU5EbnosyNfsNkrZxMsTsuQX7tFXCFAvfGMOz1Favxfw==
+X-Received: by 2002:adf:ead0:0:b0:2cf:e710:a4b9 with SMTP id o16-20020adfead0000000b002cfe710a4b9mr2725892wrn.32.1679420056462;
+        Tue, 21 Mar 2023 10:34:16 -0700 (PDT)
+Received: from atlantis.lan (255.red-79-146-124.dynamicip.rima-tde.net. [79.146.124.255])
+        by smtp.gmail.com with ESMTPSA id b13-20020a056000054d00b002da1261aa44sm184775wrf.48.2023.03.21.10.34.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Mar 2023 10:34:13 -0700 (PDT)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     f.fainelli@gmail.com, jonas.gorski@gmail.com, andrew@lunn.ch,
+        olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+Subject: [PATCH v2 0/4] net: dsa: b53: configure 6318 and 63268 RGMII ports
+Date:   Tue, 21 Mar 2023 18:33:55 +0100
+Message-Id: <20230321173359.251778-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230320155024.164523-1-noltari@gmail.com>
+References: <20230320155024.164523-1-noltari@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V1 2/4] dt-bindings: soc: qcom,mpm-sleep-counter: Add the
- dtschema
-Content-Language: en-US
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1679403696.git.quic_schowdhu@quicinc.com>
- <576e53a1d0ef218536da976102b4cc207436ec1d.1679403696.git.quic_schowdhu@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <576e53a1d0ef218536da976102b4cc207436ec1d.1679403696.git.quic_schowdhu@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 14:51, Souradeep Chowdhury wrote:
-> Add the device tree bindings for the module power manager sleep
-> counter.
-> 
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> ---
->  .../bindings/soc/qcom/qcom,mpm-sleep-counter.yaml  | 40 ++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mpm-sleep-counter.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,mpm-sleep-counter.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,mpm-sleep-counter.yaml
-> new file mode 100644
-> index 0000000..f9f46b7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,mpm-sleep-counter.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,mpm-sleep-counter.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MPM Sleep Counter
-> +
-> +maintainers:
-> +  - Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> +
-> +description: |
-> +    MPM(Module Power Manager) has a sleep counter which is used to track
+BCM6318 and BCM63268 need special configuration for their RGMII ports, so we
+need to be able to identify them as a special BCM63xx switch.
+In the meantime, let's add some missing BCM63xx SoCs to B53 MMAP device table.
 
-Missing space:
-MPM (Module
+This should be applied after "net: dsa: b53: add support for BCM63xx RGMIIs":
+https://patchwork.kernel.org/project/netdevbpf/patch/20230319220805.124024-1-noltari@gmail.com/
 
-> +    various stages of the boot process in Qualcomm.
+Álvaro Fernández Rojas (4):
+  dt-bindings: net: dsa: b53: add more 63xx SoCs
+  net: dsa: b53: mmap: add more 63xx SoCs
+  net: dsa: b53: mmap: allow passing a chip ID
+  net: dsa: b53: add BCM63268 RGMII configuration
 
-in Qualcomm SoC. Because you do not track it in the company...
+ .../devicetree/bindings/net/dsa/brcm,b53.yaml |  3 ++
+ drivers/net/dsa/b53/b53_common.c              | 19 +++++++++++-
+ drivers/net/dsa/b53/b53_mmap.c                | 29 +++++++++++++++----
+ drivers/net/dsa/b53/b53_priv.h                |  9 +++++-
+ drivers/net/dsa/b53/b53_regs.h                |  1 +
+ 5 files changed, 53 insertions(+), 8 deletions(-)
 
-> +
-> +properties:
-> +  compatible:
-> +    items:
-
-Drop items.
-
-> +      - const: qcom,mpm2-sleep-counter
-
-SoC specific compatible.
-
-> +
-> +  reg:
-> +    items:
-> +      - description: MPM Sleep Counter Base
-
-just maxItems: 1
-
-> +
-> +  clock-frequency:
-> +    description: Frequency for the sleep counter
-
-Since this does not have clocks, what frequency you are setting here?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mpm2-sleep-counter@c221000{
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +       compatible = "qcom,mpm2-sleep-counter";
-> +       reg = <0xc221000 0x1000>;
-> +       clock-frequency = <32768>;
-> +    };
-
-Best regards,
-Krzysztof
+-- 
+2.30.2
 
