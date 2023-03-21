@@ -2,129 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C20A76C3B29
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 21:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A466C3B36
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 21:05:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbjCUUCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 16:02:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37488 "EHLO
+        id S229645AbjCUUFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 16:05:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230044AbjCUUCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 16:02:00 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3754955048;
-        Tue, 21 Mar 2023 13:01:37 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id iw3so17244228plb.6;
-        Tue, 21 Mar 2023 13:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679428895;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
-        b=CjACuUfhyvhaIzXzGcaoe9QWTR5Jz/iqQtv6C0/yrMk5u1TKxx1Hk8JipBXNwxq/yL
-         +jG8sep1y3TnQmNSC9tbOb9zRT2iZwO9qRh/jq2wt4KRfjDY+Gnj09wX6WPfKw/kLxnH
-         xN5/fUxqNoOLk3AMr4hcD2jP7wdNwEzzzlABLMLONUXXCieDyctkiFJk5Q1JC9NRT4US
-         +SKLhetuSId8aiAjAmVqWCZG+Oc4zXKkOEgo2YP97ZOvE+7H5bi1IcrL8LVV+RGaxX+8
-         CNhikD0yxRDCeUt7B73EQe6qCMzv4J89zmd/jypGKleLXslt4l9cCVkXMS7t2zacC/MH
-         XCiw==
+        with ESMTP id S229496AbjCUUFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 16:05:22 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D76D55527;
+        Tue, 21 Mar 2023 13:04:46 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-17aa62d0a4aso17426454fac.4;
+        Tue, 21 Mar 2023 13:04:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679428895;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
-        b=nqjkygd0poQHRLuwgn4FJfXPE3tvzbqppUjetLw2ogI5OHtIrtY/aln6CHgFIsG76U
-         S//oF2Nh3udF5isQvTm8hrSjTy+j1yxpUY/orItyIUah0fR0FzsO2hb5vbRTsW0E8gRG
-         DQgjikt/0jpPD/3LdKyWOyJOOrxZyVLWGQmHt9vQJOvVDuZzZsuL8vBcR3ImjYNLJsZU
-         tPOSqngq79cSihfOEMQYNMyYwX9M+8ErEi4DVg9Wj9LPlWCzR7UgG/swJk+mf/LFr9BI
-         gYezlvjB/SXVDHjDWXc0Q63WJbylfAOJmZAc1JunsyiNGtBK33p9kq8bCicniJblvjrj
-         doiA==
-X-Gm-Message-State: AO0yUKW/xOmb2dvwJGnFGqx8gevQXKu9aEOXOVQqofJQoAu1k2+61tQD
-        nxURSa+9U1xr6ltRMUjtcVU=
-X-Google-Smtp-Source: AK7set8F65JGe3wLTlK+YBdnlSnoz0RsDKfPXUc5L9bSgdAL4Lckyv6SQkMu6m0vj+U87dovplxOuQ==
-X-Received: by 2002:a17:90b:1b42:b0:23d:2532:ae34 with SMTP id nv2-20020a17090b1b4200b0023d2532ae34mr885924pjb.2.1679428894863;
-        Tue, 21 Mar 2023 13:01:34 -0700 (PDT)
-Received: from d.home.yangfl.dn42 ([104.28.245.199])
-        by smtp.gmail.com with ESMTPSA id mt19-20020a17090b231300b0023b5528b8d4sm930557pjb.19.2023.03.21.13.01.29
+        d=1e100.net; s=20210112; t=1679429063;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5N90XyIxbKyLkJXYLM1vAYGNvhjgTfxNeBEga+2DXaA=;
+        b=07F25SpFCfYytMM8uDjkzinSRctowGoEbGRSu5gf81WAKQ5ApHXv3Nqjh3v+b6Fqu4
+         7j5LVgjoVs1wiirvc4dm+oYMAEE+N2wnbBdTfsQLXHnH93io7lsAjSxRBgZ022q+PFSS
+         XALUWuYaCKiwgpJuvQ0cVyPoi0hUr0gvD2GXsNXqH2QqSp7g7O/s/LiTwVGQnAliOxlE
+         AK+pSyhpZhUQ8cjmw1e27MSYG5PSplc4s8nVPkGjvbnidNlye/oQKRH9kGP+tiHxhHFK
+         sorXis+rgq37ebIANkTQ87tRCAzU2fGctNug6UCTaXzoUvlgzGjnAJOGIgKnc3206ww0
+         Wt0w==
+X-Gm-Message-State: AO0yUKXABoYfOyiK139wgn6pCQYfB6tdwND2Buv9yMDCeaevYY7ALk1Z
+        rmRwRN8b+8V0roRpn7uvUl8qijpuOQ==
+X-Google-Smtp-Source: AK7set+BujNjHzku3uTLqRhdbQ+UDuw1QKFffw3xfZjiNEaXc46GCjn96WH6hYU2jdnpwijCR3OXKw==
+X-Received: by 2002:a05:6870:7085:b0:17d:22f3:244e with SMTP id v5-20020a056870708500b0017d22f3244emr162900oae.14.1679429062848;
+        Tue, 21 Mar 2023 13:04:22 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bp8-20020a056808238800b0037d8c2ff0acsm5106802oib.12.2023.03.21.13.04.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 13:01:34 -0700 (PDT)
-From:   David Yang <mmyangfl@gmail.com>
-Cc:     David Yang <mmyangfl@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 5/6] dt-bindings: clock: Add Hi3798MV100 CRG
-Date:   Wed, 22 Mar 2023 04:00:26 +0800
-Message-Id: <20230321200031.1812026-6-mmyangfl@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230321200031.1812026-1-mmyangfl@gmail.com>
-References: <20230321200031.1812026-1-mmyangfl@gmail.com>
+        Tue, 21 Mar 2023 13:04:22 -0700 (PDT)
+Received: (nullmailer pid 1362413 invoked by uid 1000);
+        Tue, 21 Mar 2023 20:04:21 -0000
+Date:   Tue, 21 Mar 2023 15:04:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        joro@8bytes.org, robh+dt@kernel.org, geert+renesas@glider.be,
+        robin.murphy@arm.com, iommu@lists.linux.dev,
+        linux-renesas-soc@vger.kernel.org, will@kernel.org
+Subject: Re: [PATCH v4] dt-bindings: iommu: renesas, ipmmu-vmsa: Update for
+ R-Car Gen4
+Message-ID: <167942906116.1362361.13221797709558007164.robh@kernel.org>
+References: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230313124026.954514-1-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CRG bindings for Hi3798MV100 SoC. CRG (Clock and Reset Generator)
-module generates clock and reset signals used by other module blocks on
-SoC.
 
-Signed-off-by: David Yang <mmyangfl@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/clock/hisi-crg.txt          |  2 ++
- include/dt-bindings/clock/histb-clock.h             | 13 +++++++++++++
- 2 files changed, 15 insertions(+)
+On Mon, 13 Mar 2023 21:40:26 +0900, Yoshihiro Shimoda wrote:
+> Since R-Car Gen4 does not have the main IPMMU IMSSTR register, update
+> the bindings to drop the interrupt bit number from the
+> renesas,ipmmu-main property.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> [geert: Re-add removed items level, add minItems/maxItems constraints]
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Changes from v3:
+> https://lore.kernel.org/all/20230209133440.2643228-1-yoshihiro.shimoda.uh@renesas.com/
+>  - Revise the dt-bindings by Geert-san (Thanks a lot!).
+> 
+>  .../bindings/iommu/renesas,ipmmu-vmsa.yaml    | 32 ++++++++++++++-----
+>  1 file changed, 24 insertions(+), 8 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/clock/hisi-crg.txt b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-index cc60b3d42..972c038c8 100644
---- a/Documentation/devicetree/bindings/clock/hisi-crg.txt
-+++ b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-@@ -13,6 +13,8 @@ Required Properties:
-   - "hisilicon,hi3516cv300-crg"
-   - "hisilicon,hi3516cv300-sysctrl"
-   - "hisilicon,hi3519-crg"
-+  - "hisilicon,hi3798mv100-crg"
-+  - "hisilicon,hi3798mv100-sysctrl"
-   - "hisilicon,hi3798cv200-crg"
-   - "hisilicon,hi3798cv200-sysctrl"
- 
-diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
-index e64e5770a..126b1f839 100644
---- a/include/dt-bindings/clock/histb-clock.h
-+++ b/include/dt-bindings/clock/histb-clock.h
-@@ -58,6 +58,19 @@
- #define HISTB_USB3_UTMI_CLK1		48
- #define HISTB_USB3_PIPE_CLK1		49
- #define HISTB_USB3_SUSPEND_CLK1		50
-+#define HISTB_USB2_UTMI_CLK1		51
-+#define HISTB_USB2_2_BUS_CLK		52
-+#define HISTB_USB2_2_PHY_CLK		53
-+#define HISTB_USB2_2_UTMI_CLK		54
-+#define HISTB_USB2_2_UTMI_CLK1		55
-+#define HISTB_USB2_2_12M_CLK		56
-+#define HISTB_USB2_2_48M_CLK		57
-+#define HISTB_USB2_2_OTG_UTMI_CLK	58
-+#define HISTB_USB2_2_PHY1_REF_CLK	59
-+#define HISTB_USB2_2_PHY2_REF_CLK	60
-+#define HISTB_FEPHY_CLK			61
-+#define HISTB_GPU_BUS_CLK		62
-+#define HISTB_GPU_CORE_CLK		63
- 
- /* clocks provided by mcu CRG */
- #define HISTB_MCE_CLK			1
--- 
-2.39.2
+Acked-by: Rob Herring <robh@kernel.org>
 
