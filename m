@@ -2,374 +2,468 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F34D6C2A0F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 06:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C1E86C2A36
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 07:09:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbjCUFwj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Mar 2023 01:52:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
+        id S230017AbjCUGJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 02:09:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbjCUFwh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 01:52:37 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A236023679;
-        Mon, 20 Mar 2023 22:52:33 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        with ESMTP id S230041AbjCUGJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 02:09:03 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA8811E83;
+        Mon, 20 Mar 2023 23:08:55 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 83EE924E206;
-        Tue, 21 Mar 2023 13:52:31 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
- 2023 13:52:32 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Tue, 21 Mar 2023 13:52:31 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-Subject: [RESEND v3 2/2] pwm: starfive: Add PWM driver support
-Date:   Tue, 21 Mar 2023 13:52:28 +0800
-Message-ID: <20230321055228.105945-3-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230321055228.105945-1-william.qiu@starfivetech.com>
-References: <20230321055228.105945-1-william.qiu@starfivetech.com>
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2267424DFE2;
+        Tue, 21 Mar 2023 14:08:54 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
+ 2023 14:08:54 +0800
+Received: from [192.168.125.82] (183.27.97.64) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
+ 2023 14:08:53 +0800
+Message-ID: <2aa1bdbd-e37e-941a-9422-0908545c14f7@starfivetech.com>
+Date:   Tue, 21 Mar 2023 14:08:51 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
- (172.16.6.78)
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/3] phy: starfive: Add mipi dphy rx support
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230223015952.201841-1-changhuang.liang@starfivetech.com>
+ <20230223015952.201841-3-changhuang.liang@starfivetech.com>
+ <ZBhTmTEcrV59oaw3@matsya>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <ZBhTmTEcrV59oaw3@matsya>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.64]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
+ (172.16.6.72)
 X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Pulse Width Modulation driver support for StarFive
-JH7110 soc.
 
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- MAINTAINERS                    |   7 +
- drivers/pwm/Kconfig            |  10 ++
- drivers/pwm/Makefile           |   1 +
- drivers/pwm/pwm-starfive-ptc.c | 245 +++++++++++++++++++++++++++++++++
- 4 files changed, 263 insertions(+)
- create mode 100644 drivers/pwm/pwm-starfive-ptc.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ac151975d0d3..efe1811f9501 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19929,6 +19929,13 @@ F:	drivers/pinctrl/starfive/pinctrl-starfive-jh71*
- F:	include/dt-bindings/pinctrl/pinctrl-starfive-jh7100.h
- F:	include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
+On 2023/3/20 20:37, Vinod Koul wrote:
+> On 22-02-23, 17:59, Changhuang Liang wrote:
+>> [...]
+>> +++ b/drivers/phy/starfive/phy-starfive-dphy-rx.c
+>> @@ -0,0 +1,362 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * DPHY driver for the StarFive JH7110 SoC
+>> + *
+>> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+>> + */
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <linux/bitops.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/io.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_address.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/phy/phy.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/reset.h>
+>> +
+>> +#define STF_DPHY_APBCFGSAIF__SYSCFG(x)		(x)
+> 
+> What is the purpose of this? also whats with __ ?
+> 
 
-+STARFIVE JH71X0 PWM DRIVERS
-+M:	William Qiu <william.qiu@starfivetech.com>
-+M:	Hal Feng <hal.feng@starfivetech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/pwm/starfive,jh7110-pwm.yaml
-+F:	drivers/pwm/pwm-starfive-ptc.c
-+
- STARFIVE JH71X0 RESET CONTROLLER DRIVERS
- M:	Emil Renner Berthing <kernel@esmil.dk>
- M:	Hal Feng <hal.feng@starfivetech.com>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index dae023d783a2..2307a0099994 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -536,6 +536,16 @@ config PWM_SPRD
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-sprd.
+In starfive jh7110 SoC, Dphy rx module register's name is called such as
+STF_DPHY_APBCFGSAIF__SYSCFG_4, STF_DPHY_APBCFGSAIF__SYSCFG_8, STF_DPHY_APBCFGSAIF__SYSCFG_12...
+so I merge them to use a marco STF_DPHY_APBCFGSAIF__SYSCFG(x).
 
-+config PWM_STARFIVE_PTC
-+	tristate "StarFive PWM PTC support"
-+	depends on OF
-+	depends on COMMON_CLK
-+	help
-+	  Generic PWM framework driver for StarFive SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-starfive-ptc.
-+
- config PWM_STI
- 	tristate "STiH4xx PWM support"
- 	depends on ARCH_STI || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 7bf1a29f02b8..577f69904baa 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
- obj-$(CONFIG_PWM_SL28CPLD)	+= pwm-sl28cpld.o
- obj-$(CONFIG_PWM_SPEAR)		+= pwm-spear.o
- obj-$(CONFIG_PWM_SPRD)		+= pwm-sprd.o
-+obj-$(CONFIG_PWM_STARFIVE_PTC)	+= pwm-starfive-ptc.o
- obj-$(CONFIG_PWM_STI)		+= pwm-sti.o
- obj-$(CONFIG_PWM_STM32)		+= pwm-stm32.o
- obj-$(CONFIG_PWM_STM32_LP)	+= pwm-stm32-lp.o
-diff --git a/drivers/pwm/pwm-starfive-ptc.c b/drivers/pwm/pwm-starfive-ptc.c
-new file mode 100644
-index 000000000000..239df796d240
---- /dev/null
-+++ b/drivers/pwm/pwm-starfive-ptc.c
-@@ -0,0 +1,245 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PWM driver for the StarFive JH7110 SoC
-+ *
-+ * Copyright (C) 2018 StarFive Technology Co., Ltd.
-+ */
-+
-+#include <dt-bindings/pwm/pwm.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/slab.h>
-+#include <linux/clk.h>
-+#include <linux/reset.h>
-+#include <linux/io.h>
-+
-+/* how many parameters can be transferred to ptc */
-+#define OF_PWM_N_CELLS			3
-+
-+/* PTC Register offsets */
-+#define REG_RPTC_CNTR			0x0
-+#define REG_RPTC_HRC			0x4
-+#define REG_RPTC_LRC			0x8
-+#define REG_RPTC_CTRL			0xC
-+
-+/* Bit for PWM clock */
-+#define BIT_PWM_CLOCK_EN		31
-+
-+/* Bit for clock gen soft reset */
-+#define BIT_CLK_GEN_SOFT_RESET		13
-+
-+#define NS_PER_SECOND			1000000000
-+
-+/*
-+ * Access PTC register (cntr hrc lrc and ctrl),
-+ * need to replace PWM_BASE_ADDR
-+ */
-+#define REG_PTC_BASE_ADDR_SUB(base, N)	\
-+((base) + (((N) > 3) ? (((N) % 4) * 0x10 + (1 << 15)) : ((N) * 0x10)))
-+#define REG_PTC_RPTC_CNTR(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N))
-+#define REG_PTC_RPTC_HRC(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N) + 0x4)
-+#define REG_PTC_RPTC_LRC(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N) + 0x8)
-+#define REG_PTC_RPTC_CTRL(base, N)	(REG_PTC_BASE_ADDR_SUB(base, N) + 0xC)
-+
-+/* PTC_RPTC_CTRL */
-+#define PTC_EN      BIT(0)
-+#define PTC_ECLK    BIT(1)
-+#define PTC_NEC     BIT(2)
-+#define PTC_OE      BIT(3)
-+#define PTC_SIGNLE  BIT(4)
-+#define PTC_INTE    BIT(5)
-+#define PTC_INT     BIT(6)
-+#define PTC_CNTRRST BIT(7)
-+#define PTC_CAPTE   BIT(8)
-+
-+struct starfive_pwm_ptc_device {
-+	struct pwm_chip		chip;
-+	struct clk		*clk;
-+	struct reset_control	*rst;
-+	void __iomem		*regs;
-+	int			irq;
-+	unsigned int		approx_freq;/*pwm apb clock frequency*/
-+};
-+
-+static inline
-+struct starfive_pwm_ptc_device *chip_to_starfive_ptc(struct pwm_chip *c)
-+{
-+	return container_of(c, struct starfive_pwm_ptc_device, chip);
-+}
-+
-+static int starfive_pwm_ptc_get_state(struct pwm_chip *chip,
-+				       struct pwm_device *dev,
-+				       struct pwm_state *state)
-+{
-+	struct starfive_pwm_ptc_device *pwm = chip_to_starfive_ptc(chip);
-+	u32 data_lrc, data_hrc;
-+	u32 pwm_clk_ns = 0;
-+
-+	data_lrc = ioread32(REG_PTC_RPTC_LRC(pwm->regs, dev->hwpwm));
-+	data_hrc = ioread32(REG_PTC_RPTC_HRC(pwm->regs, dev->hwpwm));
-+
-+	pwm_clk_ns = NS_PER_SECOND / pwm->approx_freq;
-+
-+	state->period = data_lrc * pwm_clk_ns;
-+	state->duty_cycle = data_hrc * pwm_clk_ns;
-+	state->polarity = PWM_POLARITY_NORMAL;
-+	state->enabled = 1;
-+
-+	return 0;
-+}
-+
-+static int starfive_pwm_ptc_apply(struct pwm_chip *chip,
-+				  struct pwm_device *dev,
-+				  struct pwm_state *state)
-+{
-+	struct starfive_pwm_ptc_device *pwm = chip_to_starfive_ptc(chip);
-+	u32 data_hrc = 0;
-+	u32 data_lrc = 0;
-+	u32 period_data = 0;
-+	u32 duty_data = 0;
-+	s64 multi = pwm->approx_freq;
-+	s64 div = NS_PER_SECOND;
-+	void __iomem *reg_addr;
-+
-+	if (state->duty_cycle > state->period)
-+		state->duty_cycle = state->period;
-+
-+	while (multi % 10 == 0 && div % 10 == 0 && multi > 0 && div > 0) {
-+		multi /= 10;
-+		div /= 10;
-+	}
-+
-+	period_data = (u32)(state->period * multi / div);
-+	if (abs(period_data * div / multi - state->period)
-+	    > abs((period_data + 1) * div / multi - state->period) ||
-+	    (state->period > 0 && period_data == 0))
-+		period_data += 1;
-+
-+	if (state->enabled) {
-+		duty_data = (u32)(state->duty_cycle * multi / div);
-+		if (abs(duty_data * div / multi - state->duty_cycle)
-+			> abs((duty_data + 1) * div / multi - state->duty_cycle) ||
-+			(state->duty_cycle > 0 && duty_data == 0))
-+			duty_data += 1;
-+	} else {
-+		duty_data = 0;
-+	}
-+
-+	if (state->polarity == PWM_POLARITY_NORMAL)
-+		data_hrc = period_data - duty_data;
-+	else
-+		data_hrc = duty_data;
-+
-+	data_lrc = period_data;
-+
-+	reg_addr = REG_PTC_RPTC_HRC(pwm->regs, dev->hwpwm);
-+	iowrite32(data_hrc, reg_addr);
-+
-+	reg_addr = REG_PTC_RPTC_LRC(pwm->regs, dev->hwpwm);
-+	iowrite32(data_lrc, reg_addr);
-+
-+	reg_addr = REG_PTC_RPTC_CNTR(pwm->regs, dev->hwpwm);
-+	iowrite32(0, reg_addr);
-+
-+	reg_addr = REG_PTC_RPTC_CTRL(pwm->regs, dev->hwpwm);
-+	iowrite32(PTC_EN | PTC_OE, reg_addr);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops starfive_pwm_ptc_ops = {
-+	.get_state	= starfive_pwm_ptc_get_state,
-+	.apply		= (void *)starfive_pwm_ptc_apply,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int starfive_pwm_ptc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct starfive_pwm_ptc_device *pwm;
-+	struct pwm_chip *chip;
-+	int ret;
-+
-+	pwm = devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
-+	if (!pwm)
-+		return -ENOMEM;
-+
-+	chip = &pwm->chip;
-+	chip->dev = dev;
-+	chip->ops = &starfive_pwm_ptc_ops;
-+	chip->npwm = 8;
-+
-+	chip->of_pwm_n_cells = OF_PWM_N_CELLS;
-+	chip->base = -1;
-+
-+	pwm->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pwm->regs))
-+		return dev_err_probe(dev, PTR_ERR(pwm->regs),
-+					"Unable to map IO resources\n");
-+
-+	pwm->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(pwm->clk))
-+		return dev_err_probe(dev, PTR_ERR(pwm->clk),
-+					"Unable to get pwm clock\n");
-+
-+	pwm->rst = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(pwm->rst))
-+		return dev_err_probe(dev, PTR_ERR(pwm->rst),
-+					"Unable to get pwm reset\n");
-+
-+	ret = clk_prepare_enable(pwm->clk);
-+	if (ret) {
-+		dev_err(dev,
-+			"Failed to enable pwm clock, %d\n", ret);
-+		return ret;
-+	}
-+
-+	reset_control_deassert(pwm->rst);
-+
-+	pwm->approx_freq = (unsigned int)clk_get_rate(pwm->clk);
-+	if (!pwm->approx_freq)
-+		dev_err(dev, "get pwm apb clock rate failed.\n");
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret < 0) {
-+		dev_err(dev, "cannot register PTC: %d\n", ret);
-+		clk_disable_unprepare(pwm->clk);
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, pwm);
-+
-+	return 0;
-+}
-+
-+static int starfive_pwm_ptc_remove(struct platform_device *dev)
-+{
-+	struct starfive_pwm_ptc_device *pwm = platform_get_drvdata(dev);
-+	struct pwm_chip *chip = &pwm->chip;
-+
-+	pwmchip_remove(chip);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id starfive_pwm_ptc_of_match[] = {
-+	{ .compatible = "starfive,jh7110-pwm" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, starfive_pwm_ptc_of_match);
-+
-+static struct platform_driver starfive_pwm_ptc_driver = {
-+	.probe = starfive_pwm_ptc_probe,
-+	.remove = starfive_pwm_ptc_remove,
-+	.driver = {
-+		.name = "pwm-starfive-ptc",
-+		.of_match_table = starfive_pwm_ptc_of_match,
-+	},
-+};
-+module_platform_driver(starfive_pwm_ptc_driver);
-+
-+MODULE_AUTHOR("Jenny Zhang <jenny.zhang@starfivetech.com>");
-+MODULE_AUTHOR("Hal Feng <hal.feng@starfivetech.com>");
-+MODULE_DESCRIPTION("StarFive PWM PTC driver");
-+MODULE_LICENSE("GPL");
---
-2.34.1
+Should I use one "_" is enoughed?
 
+>> +
+>> +#define STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_EN BIT(6)
+>> +#define STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_IN GENMASK(12, 7)
+>> +#define STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_EN BIT(19)
+>> +#define STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_IN GENMASK(25, 20)
+>> +
+>> +#define STF_DPHY_DATA_BUS16_8			BIT(8)
+>> +#define STF_DPHY_DEBUG_MODE_SEL			GENMASK(15, 9)
+>> +
+>> +#define STF_DPHY_ENABLE_CLK			BIT(6)
+>> +#define STF_DPHY_ENABLE_CLK1			BIT(7)
+>> +#define STF_DPHY_ENABLE_LAN0			BIT(8)
+>> +#define STF_DPHY_ENABLE_LAN1			BIT(9)
+>> +#define STF_DPHY_ENABLE_LAN2			BIT(10)
+>> +#define STF_DPHY_ENABLE_LAN3			BIT(11)
+>> +#define STF_DPHY_GPI_EN				GENMASK(17, 12)
+>> +#define STF_DPHY_HS_FREQ_CHANGE_CLK		BIT(18)
+>> +#define STF_DPHY_HS_FREQ_CHANGE_CLK1		BIT(19)
+>> +#define STF_DPHY_LANE_SWAP_CLK			GENMASK(22, 20)
+>> +#define STF_DPHY_LANE_SWAP_CLK1			GENMASK(25, 23)
+>> +#define STF_DPHY_LANE_SWAP_LAN0			GENMASK(28, 26)
+>> +#define STF_DPHY_LANE_SWAP_LAN1			GENMASK(31, 29)
+>> +
+>> +#define STF_DPHY_LANE_SWAP_LAN2			GENMASK(2, 0)
+>> +#define STF_DPHY_LANE_SWAP_LAN3			GENMASK(5, 3)
+>> +#define STF_DPHY_MP_TEST_EN			BIT(6)
+>> +#define STF_DPHY_MP_TEST_MODE_SEL		GENMASK(11, 7)
+>> +#define STF_DPHY_PLL_CLK_SEL			GENMASK(21, 12)
+>> +#define STF_DPHY_PRECOUNTER_IN_CLK		GENMASK(29, 22)
+>> +
+>> +#define STF_DPHY_PRECOUNTER_IN_CLK1		GENMASK(7, 0)
+>> +#define STF_DPHY_PRECOUNTER_IN_LAN0		GENMASK(15, 8)
+>> +#define STF_DPHY_PRECOUNTER_IN_LAN1		GENMASK(23, 16)
+>> +#define STF_DPHY_PRECOUNTER_IN_LAN2		GENMASK(31, 24)
+>> +
+>> +#define STF_DPHY_PRECOUNTER_IN_LAN3		GENMASK(7, 0)
+>> +#define STF_DPHY_RX_1C2C_SEL			BIT(8)
+>> +
+>> +struct regval_t {
+> 
+> regval should be okay, no?
+> 
+
+OK, will change to regval
+
+>> +	u32 addr;
+>> +	u32 val;
+>> +};
+>> +
+>> +struct stf_dphy {
+>> +	struct device *dev;
+>> +	void __iomem *regs;
+>> +	struct clk *cfg_clk;
+>> +	struct clk *ref_clk;
+>> +	struct clk *tx_clk;
+>> +	struct reset_control *rstc;
+>> +	struct regulator *mipi_0p9;
+>> +	struct phy *phy;
+>> +	struct regmap *stf_aon_syscon;
+>> +	unsigned int aon_gp_reg;
+>> +};
+>> +
+>> +struct stf_dphy_info {
+>> +	bool external_support;
+>> +	int (*external_get)(struct stf_dphy *dphy);
+>> +	void (*external_init)(struct stf_dphy *dphy);
+>> +	void (*external_exit)(struct stf_dphy *dphy);
+>> +};
+>> +
+>> +static const struct stf_dphy_info *stf_dphy_info;
+>> +
+>> +static const struct regval_t stf_dphy_init_list[] = {
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(4), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(8), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(12), 0x0000fff0 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(16), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(20), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(24), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(28), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(32), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(36), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(40), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(40), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(48), 0x24000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(52), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(56), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(60), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(64), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(68), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(72), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(76), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(80), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(84), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(88), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(92), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(96), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(100), 0x02000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(104), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(108), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(112), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(116), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(120), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(124), 0x0000000c },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(128), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(132), 0xcc500000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(136), 0x000000cc },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(140), 0x00000000 },
+>> +	{ STF_DPHY_APBCFGSAIF__SYSCFG(144), 0x00000000 },
+>> +};
+>> +
+>> +static int stf_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
+>> +{
+>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+>> +	int map[6] = {4, 0, 1, 2, 3, 5};
+> 
+> what does this mean?
+> 
+
+This is the physical lane and logical lane mapping table, should I add a note for it?
+
+>> +	int i;
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(stf_dphy_init_list); i++)
+>> +		writel(stf_dphy_init_list[i].val,
+>> +		       dphy->regs + stf_dphy_init_list[i].addr);
+>> +
+>> +	writel(FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_EN, 1) |
+>> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_IN, 0x1b) |
+>> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_EN, 1) |
+>> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_IN, 0x1b),
+>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(0));
+>> +
+>> +	writel(FIELD_PREP(STF_DPHY_DATA_BUS16_8, 0) |
+>> +	       FIELD_PREP(STF_DPHY_DEBUG_MODE_SEL, 0x5a),
+>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(184));
+>> +
+>> +	writel(FIELD_PREP(STF_DPHY_ENABLE_CLK, 1) |
+>> +	       FIELD_PREP(STF_DPHY_ENABLE_CLK1, 1) |
+>> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN0, 1) |
+>> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN1, 1) |
+>> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN2, 1) |
+>> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN3, 1) |
+>> +	       FIELD_PREP(STF_DPHY_GPI_EN, 0) |
+>> +	       FIELD_PREP(STF_DPHY_HS_FREQ_CHANGE_CLK, 0) |
+>> +	       FIELD_PREP(STF_DPHY_HS_FREQ_CHANGE_CLK1, 0) |
+>> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_CLK, map[0]) |
+>> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_CLK1, map[5]) |
+>> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_LAN0, map[1]) |
+>> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_LAN1, map[2]),
+>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(188));
+>> +
+>> +	writel(FIELD_PREP(STF_DPHY_LANE_SWAP_LAN2, map[3]) |
+>> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_LAN3, map[4]) |
+>> +	       FIELD_PREP(STF_DPHY_MP_TEST_EN, 0) |
+>> +	       FIELD_PREP(STF_DPHY_MP_TEST_MODE_SEL, 0) |
+>> +	       FIELD_PREP(STF_DPHY_PLL_CLK_SEL, 0x37c) |
+>> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_CLK, 8),
+>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(192));
+>> +
+>> +	writel(FIELD_PREP(STF_DPHY_PRECOUNTER_IN_CLK1, 8) |
+>> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN0, 7) |
+>> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN1, 7) |
+>> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN2, 7),
+>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(196));
+>> +
+>> +	writel(FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN3, 7) |
+>> +	       FIELD_PREP(STF_DPHY_RX_1C2C_SEL, 0),
+>> +	       dphy->regs + STF_DPHY_APBCFGSAIF__SYSCFG(200));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int stf_dphy_init(struct phy *phy)
+>> +{
+>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+>> +	int ret;
+>> +
+>> +	ret = regulator_enable(dphy->mipi_0p9);
+>> +	if (ret)
+>> +		goto err_0p9;
+>> +
+>> +	if (stf_dphy_info->external_support && stf_dphy_info->external_init)
+>> +		stf_dphy_info->external_init(dphy);
+>> +
+>> +	return 0;
+>> +
+>> +err_0p9:
+>> +	return ret;
+>> +}
+>> +
+>> +static int stf_dphy_exit(struct phy *phy)
+>> +{
+>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+>> +
+>> +	if (stf_dphy_info->external_support && stf_dphy_info->external_exit)
+>> +		stf_dphy_info->external_exit(dphy);
+>> +
+>> +	regulator_disable(dphy->mipi_0p9);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int stf_dphy_power_on(struct phy *phy)
+>> +{
+>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+>> +
+>> +	clk_set_rate(dphy->cfg_clk, 99000000);
+>> +	clk_set_rate(dphy->ref_clk, 49500000);
+>> +	clk_set_rate(dphy->tx_clk, 19800000);
+>> +	reset_control_deassert(dphy->rstc);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int stf_dphy_power_off(struct phy *phy)
+>> +{
+>> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
+>> +
+>> +	reset_control_assert(dphy->rstc);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct phy_ops stf_dphy_ops = {
+>> +	.init      = stf_dphy_init,
+>> +	.exit      = stf_dphy_exit,
+>> +	.configure = stf_dphy_configure,
+>> +	.power_on  = stf_dphy_power_on,
+>> +	.power_off = stf_dphy_power_off,
+>> +};
+>> +
+>> +static int stf_dphy_probe(struct platform_device *pdev)
+>> +{
+>> +	struct phy_provider *phy_provider;
+>> +	struct stf_dphy *dphy;
+>> +	int ret;
+>> +
+>> +	dphy = devm_kzalloc(&pdev->dev, sizeof(*dphy), GFP_KERNEL);
+>> +	if (!dphy)
+>> +		return -ENOMEM;
+>> +	stf_dphy_info = of_device_get_match_data(&pdev->dev);
+>> +	dev_set_drvdata(&pdev->dev, dphy);
+>> +	dphy->dev = &pdev->dev;
+>> +
+>> +	dphy->regs = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(dphy->regs))
+>> +		return PTR_ERR(dphy->regs);
+>> +
+>> +	dphy->cfg_clk = devm_clk_get(&pdev->dev, "cfg");
+>> +	if (IS_ERR(dphy->cfg_clk))
+>> +		return PTR_ERR(dphy->cfg_clk);
+>> +
+>> +	dphy->ref_clk = devm_clk_get(&pdev->dev, "ref");
+>> +	if (IS_ERR(dphy->ref_clk))
+>> +		return PTR_ERR(dphy->ref_clk);
+>> +
+>> +	dphy->tx_clk = devm_clk_get(&pdev->dev, "tx");
+>> +	if (IS_ERR(dphy->tx_clk))
+>> +		return PTR_ERR(dphy->tx_clk);
+>> +
+>> +	dphy->rstc = devm_reset_control_array_get_exclusive(&pdev->dev);
+>> +	if (IS_ERR(dphy->rstc))
+>> +		return PTR_ERR(dphy->rstc);
+>> +
+>> +	dphy->mipi_0p9 = devm_regulator_get(&pdev->dev, "mipi_0p9");
+>> +	if (IS_ERR(dphy->mipi_0p9))
+>> +		return PTR_ERR(dphy->mipi_0p9);
+>> +
+>> +	if (stf_dphy_info->external_support && stf_dphy_info->external_get) {
+>> +		ret = stf_dphy_info->external_get(dphy);
+>> +		if (ret < 0) {
+>> +			dev_err(&pdev->dev, "Failed to get PHY external info\n");
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	dphy->phy = devm_phy_create(&pdev->dev, NULL, &stf_dphy_ops);
+>> +	if (IS_ERR(dphy->phy)) {
+>> +		dev_err(&pdev->dev, "Failed to create PHY\n");
+>> +		return PTR_ERR(dphy->phy);
+>> +	}
+>> +
+>> +	phy_set_drvdata(dphy->phy, dphy);
+>> +	phy_provider = devm_of_phy_provider_register(&pdev->dev,
+>> +						     of_phy_simple_xlate);
+>> +
+>> +	return PTR_ERR_OR_ZERO(phy_provider);
+>> +}
+>> +
+>> +static int stf_external_get(struct stf_dphy *dphy)
+>> +{
+>> +	struct of_phandle_args args;
+>> +	int ret;
+>> +
+>> +	ret = of_parse_phandle_with_fixed_args(dphy->dev->of_node,
+>> +					       "starfive,aon-syscon",
+>> +					       1, 0, &args);
+>> +	if (ret < 0) {
+>> +		dev_err(dphy->dev, "Failed to parse starfive,aon-syscon\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	dphy->stf_aon_syscon = syscon_node_to_regmap(args.np);
+>> +	of_node_put(args.np);
+>> +	if (IS_ERR(dphy->stf_aon_syscon))
+>> +		return PTR_ERR(dphy->stf_aon_syscon);
+>> +
+>> +	dphy->aon_gp_reg = args.args[0];
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void stf_external_init(struct stf_dphy *dphy)
+>> +{
+>> +	regmap_update_bits(dphy->stf_aon_syscon, dphy->aon_gp_reg,
+>> +			   BIT(31), BIT(31));
+>> +}
+>> +
+>> +static void stf_external_exit(struct stf_dphy *dphy)
+>> +{
+>> +	regmap_update_bits(dphy->stf_aon_syscon, dphy->aon_gp_reg,
+>> +			   BIT(31), 0);
+>> +}
+>> +
+>> +static const struct stf_dphy_info starfive_dphy_info = {
+>> +	.external_support = true,
+>> +	.external_get = stf_external_get,
+>> +	.external_init = stf_external_init,
+>> +	.external_exit = stf_external_exit,
+>> +};
+>> +
+>> +static const struct of_device_id stf_dphy_dt_ids[] = {
+>> +	{
+>> +		.compatible = "starfive,jh7110-dphy-rx",
+>> +		.data = &starfive_dphy_info,
+> 
+> is there a plan to support multiple versions which need different
+> get/init/exit methods?
+> 
+
+There is no plan to support multiple versions. So this different methods
+interface can cancel?
+
+>> +	},
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, stf_dphy_dt_ids);
+>> +
+>> +static struct platform_driver stf_dphy_driver = {
+>> +	.probe = stf_dphy_probe,
+>> +	.driver = {
+>> +		.name	= "starfive-dphy-rx",
+>> +		.of_match_table = stf_dphy_dt_ids,
+>> +	},
+>> +};
+>> +module_platform_driver(stf_dphy_driver);
+>> +
+>> +MODULE_AUTHOR("Jack Zhu <jack.zhu@starfivetech.com>");
+>> +MODULE_AUTHOR("Changhuang Liang <changhuang.liang@starfivetech.com>");
+>> +MODULE_DESCRIPTION("Starfive DPHY RX driver");
+>> +MODULE_LICENSE("GPL");
+>> -- 
+>> 2.25.1
+> 
