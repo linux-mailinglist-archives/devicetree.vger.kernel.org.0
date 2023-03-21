@@ -2,220 +2,610 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BED2D6C260F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 00:50:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D6A6C2632
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 01:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjCTXuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 19:50:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
+        id S229617AbjCUAFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 20:05:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbjCTXuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 19:50:02 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067A02D5E;
-        Mon, 20 Mar 2023 16:49:21 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id s8so83939ois.2;
-        Mon, 20 Mar 2023 16:49:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679356047;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=09zhwGZdslyyy0wEVjKWFObTfJyiv32GzYkmakn90gk=;
-        b=MA/T70/CCgY7qQ/VDG+SBiDLHMmSuHrL4gVP3joV7QRe0tFBI/oVCJhj9xkn2Fc/Ec
-         2CWRscpjLn07BQGtFUUimQr1vpCOOrorwY5sq2KRbiGZtoKfcgPcpHH1MzfHV7y0/CX0
-         DlE8PHV+iu6FuxG8qSs0bIShrfNln9pajG694+35xr9CHBWh6bvYiHPcE5HCWxdoqBbq
-         cb0/yKHBvslt2Ig1/+juny1QWV4X43CaNBM4G2UVy3BraJ0gc84TD3TGpIUHRVPBadAk
-         +Q2SH/+u73pZebLad6Ep0sXVpHk/NhEBf2J4NXC45mk7fO0I+zyVLskf2VIwx/TwDwal
-         KPvQ==
-X-Gm-Message-State: AO0yUKVHhjmtYKN62BfSuC2mvJB3REKjweCncGSuyOGzR5VS+qeXnLDj
-        pFxYy/XQaEr3h5at7xDB3Q==
-X-Google-Smtp-Source: AK7set9WTfaJXM41TJy22yCuZh1qIWa2bJcddNw/957CohV/gMvQrnK7rg84XkJp//b3oWasSQ68WQ==
-X-Received: by 2002:a05:6808:656:b0:383:e7c8:4000 with SMTP id z22-20020a056808065600b00383e7c84000mr129044oih.13.1679356047370;
-        Mon, 20 Mar 2023 16:47:27 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b66-20020aca3445000000b0037d7c3cfac7sm4263116oia.15.2023.03.20.16.47.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Mar 2023 16:47:27 -0700 (PDT)
-Received: (nullmailer pid 2930320 invoked by uid 1000);
-        Mon, 20 Mar 2023 23:47:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S229666AbjCUAFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 20:05:50 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C111A4B2
+        for <devicetree@vger.kernel.org>; Mon, 20 Mar 2023 17:05:26 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C1CD2496;
+        Tue, 21 Mar 2023 01:05:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1679357124;
+        bh=GPbRInuiNoKCViki/gXJjaRKzLTSK8FT2Wt3b7Xz0e8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JwWxx9H4VxsZgYJLPrQmqg9XPRD1f7Z6//rYuqXAI67sPMz/jigcC2u8QqNaKRTET
+         Ek5wY7EZ1drw1q5Yrbw2wUomPcT9Qfus0rff7jgE4CEMFZCJvCXhFVdBwnXoV5sXuJ
+         YdSahenRXsiys5Gma4rDxUwlunfFwEa/yeWvLmH4=
+Date:   Tue, 21 Mar 2023 02:05:29 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: input: Drop unneeded quotes
-Date:   Mon, 20 Mar 2023 18:47:18 -0500
-Message-Id: <20230320234718.2930154-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        Li Yang <leoyang.li@nxp.com>,
+        Marco Contenti <marco.c@variscite.com>,
+        Nate Drude <nate.d@variscite.com>,
+        FrancescoFerraro <francesco.f@variscite.com>,
+        Harshesh Valera <harshesh.v@variscite.com>
+Subject: Re: [PATCH v1 3/4] arm64: dts: freescale: Add support for the
+ Variscite i.MX8MP DART8MCustomBoard
+Message-ID: <20230321000529.GX20234@pendragon.ideasonboard.com>
+References: <20230219031126.19372-1-laurent.pinchart@ideasonboard.com>
+ <20230219031126.19372-4-laurent.pinchart@ideasonboard.com>
+ <20230314023647.GG143566@dragon>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230314023647.GG143566@dragon>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-checking for this can be enabled in yamllint.
+Hi Shawn,
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/input/adc-joystick.yaml     | 4 ++--
- .../devicetree/bindings/input/google,cros-ec-keyb.yaml        | 2 +-
- Documentation/devicetree/bindings/input/imx-keypad.yaml       | 2 +-
- Documentation/devicetree/bindings/input/matrix-keymap.yaml    | 2 +-
- .../devicetree/bindings/input/mediatek,mt6779-keypad.yaml     | 2 +-
- .../devicetree/bindings/input/microchip,cap11xx.yaml          | 4 ++--
- Documentation/devicetree/bindings/input/pwm-vibrator.yaml     | 4 ++--
- Documentation/devicetree/bindings/input/regulator-haptic.yaml | 4 ++--
- .../bindings/input/touchscreen/elan,elants_i2c.yaml           | 4 ++--
- 9 files changed, 14 insertions(+), 14 deletions(-)
+On Tue, Mar 14, 2023 at 10:36:47AM +0800, Shawn Guo wrote:
+> On Sun, Feb 19, 2023 at 05:11:25AM +0200, Laurent Pinchart wrote:
+> > The DT8MCustomBoard is a carrier board for DART i.MX8-based modules.
+> > This device tree file adds support for the DT8MCustomBoard v2.0 with a
+> > connected DART-MX8M-PLUS module.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> >  .../imx8mp-var-dart-dt8mcustomboard-v2.dts    | 499 ++++++++++++++++++
+> >  2 files changed, 500 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > index ef6f364eaa18..4e6cfcd22e86 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-dt8mcustomboard-v2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
+> > new file mode 100644
+> > index 000000000000..5677236e0ef1
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
+> > @@ -0,0 +1,499 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > +/*
+> > + * Copyright 2019 NXP
+> > + * Copyright 2020-2021 Variscite Ltd.
+> > + * Copyright 2023 Ideas on Board Oy
+> > + */
+> > +
+> > +#include "imx8mp-var-dart.dtsi"
+> > +
+> > +/ {
+> > +	compatible = "variscite,dart-mx8mp-dt8mcustomboard-v2",
+> > +		     "variscite,dart-mx8mp",
+> > +		     "fsl,imx8mp";
+> > +	model = "Variscite DART-MX8M-PLUS on DT8MCustomBoard 2.x";
+> > +
+> > +	chosen {
+> > +		stdout-path = &uart1;
+> > +	};
+> > +
+> > +	can0_osc: can0-osc {
+> 
+> Maybe have a generic node name, something in pattern of clock-xxx?
 
-diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-index da0f8dfca8bf..6c244d66f8ce 100644
---- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-+++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-@@ -2,8 +2,8 @@
- # Copyright 2019-2020 Artur Rojek
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/input/adc-joystick.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/input/adc-joystick.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: ADC attached joystick
- 
-diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-index e05690b3e963..3486c81699a8 100644
---- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-+++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-@@ -57,7 +57,7 @@ if:
-       contains:
-         const: google,cros-ec-keyb
- then:
--  $ref: "/schemas/input/matrix-keymap.yaml#"
-+  $ref: /schemas/input/matrix-keymap.yaml#
-   required:
-     - keypad,num-rows
-     - keypad,num-columns
-diff --git a/Documentation/devicetree/bindings/input/imx-keypad.yaml b/Documentation/devicetree/bindings/input/imx-keypad.yaml
-index 7514df62b592..b110eb1f3358 100644
---- a/Documentation/devicetree/bindings/input/imx-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/imx-keypad.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Liu Ying <gnuiyl@gmail.com>
- 
- allOf:
--  - $ref: "/schemas/input/matrix-keymap.yaml#"
-+  - $ref: /schemas/input/matrix-keymap.yaml#
- 
- description: |
-   The KPP is designed to interface with a keypad matrix with 2-point contact
-diff --git a/Documentation/devicetree/bindings/input/matrix-keymap.yaml b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
-index 4d6dbe91646d..a715c2a773fe 100644
---- a/Documentation/devicetree/bindings/input/matrix-keymap.yaml
-+++ b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
-@@ -21,7 +21,7 @@ description: |
- 
- properties:
-   linux,keymap:
--    $ref: '/schemas/types.yaml#/definitions/uint32-array'
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-     description: |
-       An array of packed 1-cell entries containing the equivalent of row,
-       column and linux key-code. The 32-bit big endian cell is packed as:
-diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-index d768c30f48fb..47aac8794b68 100644
---- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Mattijs Korpershoek <mkorpershoek@baylibre.com>
- 
- allOf:
--  - $ref: "/schemas/input/matrix-keymap.yaml#"
-+  - $ref: /schemas/input/matrix-keymap.yaml#
- 
- description: |
-   Mediatek's Keypad controller is used to interface a SoC with a matrix-type
-diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-index 5fa625b5c5fb..5b5d4f7d3482 100644
---- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-+++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/input/microchip,cap11xx.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/input/microchip,cap11xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Microchip CAP11xx based capacitive touch sensors
- 
-diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-index a70a636ee112..d32716c604fe 100644
---- a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-+++ b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/input/pwm-vibrator.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/input/pwm-vibrator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: PWM vibrator
- 
-diff --git a/Documentation/devicetree/bindings/input/regulator-haptic.yaml b/Documentation/devicetree/bindings/input/regulator-haptic.yaml
-index 627891e1ef55..cf63f834dd7d 100644
---- a/Documentation/devicetree/bindings/input/regulator-haptic.yaml
-+++ b/Documentation/devicetree/bindings/input/regulator-haptic.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/input/regulator-haptic.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/input/regulator-haptic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Regulator Haptic
- 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
-index f9053e5e9b24..3255c2c8951a 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/input/touchscreen/elan,elants_i2c.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/input/touchscreen/elan,elants_i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Elantech I2C Touchscreen
- 
+I'll rename this to clock-can0.
+
+> > +		compatible = "fixed-clock";
+> > +		#clock-cells = <0>;
+> > +		clock-frequency = <40000000>;
+> > +	};
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		status = "okay";
+> > +
+> > +		key-back {
+> > +			label = "BACK";
+> > +			linux,code = <KEY_BACK>;
+> > +			gpios = <&gpio_exp_1 7 GPIO_ACTIVE_LOW>;
+> > +			wakeup-source;
+> > +		};
+> > +
+> > +		key-up {
+> > +			label = "UP";
+> > +			linux,code = <KEY_UP>;
+> > +			gpios = <&gpio_exp_1 5 GPIO_ACTIVE_LOW>;
+> > +			wakeup-source;
+> > +		};
+> > +
+> > +		key-home {
+> > +			label = "HOME";
+> > +			linux,code = <KEY_HOME>;
+> > +			gpios = <&gpio_exp_1 4 GPIO_ACTIVE_LOW>;
+> > +			wakeup-source;
+> > +		};
+> > +
+> > +		key-down {
+> > +			label = "DOWN";
+> > +			linux,code = <KEY_DOWN>;
+> > +			gpios = <&gpio_exp_1 6 GPIO_ACTIVE_LOW>;
+> > +			wakeup-source;
+> > +		};
+> > +	};
+> > +
+> > +	gpio-leds {
+> > +		compatible = "gpio-leds";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_leds>;
+> > +		status = "okay";
+> > +
+> > +		led1 {
+> > +			label = "LED1";
+> > +			gpios = <&gpio_exp_2 7 GPIO_ACTIVE_HIGH>;
+> > +			linux,default-trigger = "heartbeat";
+> > +		};
+> > +
+> > +		led2 {
+> > +			label = "LED2";
+> > +			gpios = <&gpio_exp_2 6 GPIO_ACTIVE_HIGH>;
+> > +		};
+> > +
+> > +		led3 {
+> > +			label = "LED3";
+> > +			gpios = <&gpio_exp_2 5 GPIO_ACTIVE_HIGH>;
+> > +		};
+> > +
+> > +		led4 {
+> > +			label = "LED4";
+> > +			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
+> > +			linux,default-trigger = "mmc2";
+> > +		};
+> > +	};
+> > +
+> > +	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "VSD_3V3";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +		startup-delay-us = <100>;
+> > +		off-on-delay-us = <12000>;
+> > +	};
+> > +};
+> > +
+> > +&ecspi1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_ecspi1>;
+> > +	cs-gpios = <&gpio5  9 GPIO_ACTIVE_LOW>,
+> > +		   <&gpio1 12 GPIO_ACTIVE_LOW>;
+> > +	status = "okay";
+> > +
+> > +	touch@0 {
+> > +		compatible = "ti,tsc2046";
+> > +		spi-max-frequency = <1500000>;
+> > +		reg = <0>;
+> > +		status = "disabled";
+> 
+> We usually have 'status' at the end of property list.
+
+I'll drop this, there's no reason to keep the
+
+> > +
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_restouch>;
+> > +
+> 
+> Nitpick: we expect newlines at certain places like among nodes, or
+> between properties and child node, but not in middle of property list.
+
+There are lots of device tree files in mainline where blank lines are
+used to separate groups of properties. I personally find this more
+readable than a large wall of text.
+
+> > +		interrupt-parent = <&gpio1>;
+> > +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+> > +
+> > +		pendown-gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
+> > +		wakeup-source;
+> > +
+> > +		touchscreen-min-x = <125>;
+> > +		touchscreen-min-y = <282>;
+> > +		touchscreen-size-x = <4009>;
+> > +		touchscreen-size-y = <3865>;
+> > +		touchscreen-max-pressure = <255>;
+> > +		touchscreen-average-samples = <10>;
+> > +
+> > +		ti,keep-vref-on;
+> > +		ti,settle-delay-usec = /bits/ 16 <150>;
+> > +		ti,x-plate-ohms = /bits/ 16 <180>;
+> > +		ti,debounce-tol = /bits/ 16 <3>;
+> > +		ti,debounce-rep = /bits/ 16 <1>;
+> > +	};
+> > +
+> > +	can@1 {
+> > +		compatible = "microchip,mcp2518fd";
+> > +		spi-max-frequency = <20000000>;
+> > +		reg = <1>;
+> > +		clocks = <&can0_osc>;
+> > +
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_can>;
+> > +
+> > +		interrupt-parent = <&gpio1>;
+> > +		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
+> > +
+> > +		microchip,rx-int-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
+> > +	};
+> > +};
+> > +
+> > +&eqos {
+> > +	mdio {
+> > +		ethphy1: ethernet-phy@1 {
+> > +			compatible = "ethernet-phy-ieee802.3-c22";
+> > +			reg = <1>;
+> > +			eee-broken-1000t;
+> > +			reset-gpios = <&gpio_exp_2 0 GPIO_ACTIVE_LOW>;
+> > +			reset-assert-us = <10000>;
+> > +			reset-deassert-us = <20000>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&fec {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_fec>;
+> > +	phy-mode = "rgmii";
+> > +	phy-handle = <&ethphy1>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&flexcan1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_flexcan1>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&flexcan2 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_flexcan2>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c2 {
+> > +	clock-frequency = <400000>;
+> > +	pinctrl-names = "default", "gpio";
+> > +	pinctrl-0 = <&pinctrl_i2c2>;
+> > +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
+> > +	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	status = "okay";
+> > +
+> > +	eeprom@54 {
+> > +		compatible = "rohm,24c04", "atmel,24c04";
+> > +		reg = <0x54>;
+> > +		pagesize = <16>;
+> > +	};
+> > +
+> > +	rtc@68 {
+> > +		compatible = "isil,isl12057";	/* dallas,ds1337 on v3.0 */
+> > +		reg = <0x68>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_rtc>;
+> > +		interrupt-parent = <&gpio1>;
+> > +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
+> > +		wakeup-source;
+> > +	};
+> > +};
+> > +
+> > +&i2c3 {
+> > +	clock-frequency = <400000>;
+> > +	pinctrl-names = "default", "gpio";
+> > +	pinctrl-0 = <&pinctrl_i2c3>;
+> > +	pinctrl-1 = <&pinctrl_i2c3_gpio>;
+> > +	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c4 {
+> > +	clock-frequency = <400000>;
+> > +	pinctrl-names = "default", "gpio";
+> > +	pinctrl-0 = <&pinctrl_i2c4>;
+> > +	pinctrl-1 = <&pinctrl_i2c4_gpio>;
+> > +	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > +	status = "okay";
+> > +
+> > +	gpio_exp_1: gpio@20 {
+> > +		compatible = "ti,tca6408";	/* nxp,pcal6408 on v3.0 */
+> > +		reg = <0x20>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_pca6408>;
+> > +		interrupt-parent = <&gpio1>;
+> > +		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +	};
+> > +
+> > +	gpio_exp_2: gpio@21 {
+> > +		compatible = "ti,tca6408";	/* nxp,pcal6408 on v3.0 */
+> > +		reg = <0x21>;
+> > +		gpio-controller;
+> > +		#gpio-cells = <2>;
+> > +	};
+> > +};
+> > +
+> > +/* Reference voltage for eQOS PHY */
+> > +&ldo4 {
+> > +	regulator-min-microvolt = <1800000>;
+> > +	regulator-max-microvolt = <1800000>;
+> > +};
+> > +
+> > +&pwm1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_pwm1>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +/* Console */
+> > +&uart1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_uart1>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +/* Header */
+> > +&uart2 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_uart2>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +/* Header */
+> > +&uart3 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_uart3>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb3_phy1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb3_1 {
+> > +	fsl,permanently-attached;
+> > +	fsl,disable-port-power-control;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb_dwc3_1 {
+> > +	dr_mode = "host";
+> > +	status = "okay";
+> > +};
+> > +
+> > +/* SD card connector */
+> > +&usdhc2 {
+> > +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+> > +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
+> > +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+> > +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> > +	vmmc-supply = <&reg_usdhc2_vmmc>;
+> > +	bus-width = <4>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&iomuxc {
+> > +	pinctrl_can: cangrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06				0x1c6
+> > +			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04				0x16
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_ecspi1: ecspi1grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK				0x12
+> > +			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI				0x12
+> > +			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO				0x12
+> > +			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09				0x12
+> > +			MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12				0x12
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_fec: fecgrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x90
+> > +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x90
+> > +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x90
+> > +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x90
+> > +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x90
+> > +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x90
+> > +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x00
+> > +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x00
+> > +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x00
+> > +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x00
+> > +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x00
+> > +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x00
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_flexcan1: flexcan1grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SAI2_RXC__CAN1_TX					0x154
+> > +			MX8MP_IOMUXC_SAI2_TXC__CAN1_RX					0x154
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_flexcan2: flexcan2grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SAI2_MCLK__CAN2_RX					0x154
+> > +			MX8MP_IOMUXC_SAI2_TXD0__CAN2_TX					0x154
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_gpio_leds: ledgrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0xc6
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c2: i2c2grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
+> > +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c3: i2c3grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
+> > +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA					0x400001c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c4: i2c4grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c2
+> > +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c2_gpio: i2c2gpiogrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16				0x1c2
+> > +			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17				0x1c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c3_gpio: i2c3gpiogrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C3_SCL__GPIO5_IO18				0x1c2
+> > +			MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19				0x1c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_i2c4_gpio: i2c4gpiogrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_I2C4_SCL__GPIO5_IO20				0x1c2
+> > +			MX8MP_IOMUXC_I2C4_SDA__GPIO5_IO21				0x1c2
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_pca6408: pca6408grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05				0x1c6
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_pwm1: pwm1grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_GPIO1_IO01__PWM1_OUT				0x116
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_restouch: restouchgrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_GPIO1_IO07__GPIO1_IO07				0xc0
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_rtc: rtcgrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15				0x1c0
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_uart1: uart1grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX				0x40
+> > +			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX				0x40
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_uart2: uart2grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x40
+> > +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x40
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_uart3: uart3grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x40
+> > +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x40
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_usb0: usb0grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC				0x1c0
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12				0x1c4
+> > +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x40
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_usdhc2: usdhc2grp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
+> > +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
+> > +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
+> > +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
+> > +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
+> > +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
+> > +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc0
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x194
+> > +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d4
+> > +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d4
+> > +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d4
+> > +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d4
+> > +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d4
+> > +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc0
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+> > +		fsl,pins = <
+> > +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x196
+> > +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d6
+> > +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d6
+> > +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d6
+> > +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d6
+> > +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d6
+> > +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc0
+> > +		>;
+> > +	};
+> > +};
+
 -- 
-2.39.2
+Regards,
 
+Laurent Pinchart
