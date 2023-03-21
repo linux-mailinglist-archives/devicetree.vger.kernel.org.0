@@ -2,125 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F256C39B9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C62C26C39F6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbjCUTCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 15:02:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54596 "EHLO
+        id S230098AbjCUTKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 15:10:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230356AbjCUTCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:02:06 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4AE05651C
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 12:01:52 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id c18so17053841ple.11
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 12:01:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679425311;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JRSyezpsA/5MPMXpkL0qmxlQpxlVtCBZd4yM2HAk9OA=;
-        b=XdWS0wBdxLITpiS+chZm91jPxIc6HduEnOERlKtXXabZiNKLX5wZCWg75H/R4Ipt2G
-         OCTDDPD6szBHEJjUefEGvyofsrm8rNANbHB8b9XpbsSBrZ3XebAcQ+gpqgc2M15ylFce
-         XtWBMwQSb2uzqLI4/N6UZ6grcZdAkh283RChSLi+9aVF9m7iFN0ExYS9hfOmMq/qf0jZ
-         dc64CtkDqlZ1n8qTmFLBlxVczdx0ZUno6W8RjC+z3TbUZ+oxH3IY7BxWale7V6+ZRHTK
-         le5kbsG0qhGZqNvTNRkY7TYt/uwO/evsm/YrozLFKbkkWr8TbuVaRGSONGoNgI33Dnkh
-         t8Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679425311;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JRSyezpsA/5MPMXpkL0qmxlQpxlVtCBZd4yM2HAk9OA=;
-        b=lau1CWNLxxvE2c0uR3vrc/y5Qh9cvi/BLUDlpKVHe26sPT4+F4SsbpLGPtZgy7B3zR
-         LJ8oK8V0IZe87njuGEirsTG1ohfme+CmRv4us6Q6HjbTZTBCTsJd0auFw42WJXDgM5A4
-         EmEMO2+huj7sY9t5p/hE51USigoTBPJ3yoeJO+ZOEsm4pijdiMXw6HC5Eqsr69n+eY/W
-         y6AgN8RETSkiTC/8c6ZC1j3oT6OxEcYLwqcNYr4r+ZU9AejjajkMN9CZheg+c73Fe+Us
-         Am7kwQEN4F8Y9Eld3YhOwbB63TTQzr/sPNFIx4C+SounzUCuChXIckdJxgWM6//8NARq
-         VCJg==
-X-Gm-Message-State: AO0yUKW4df6f9OjoF1D8FPRZv2ANCXYLAJR0X7+aWrreCwfYK4rKur65
-        z2eiiMyOvpQXJ/5sORRf9vOYdQ==
-X-Google-Smtp-Source: AK7set92lLEuVEiMisk8/j/vcnrmnGYW+efsTxYStkvNp4Edk3lJBjAX0H8nxnNqVImR+2fj93nfuQ==
-X-Received: by 2002:a17:90b:3b84:b0:23f:63d5:c10f with SMTP id pc4-20020a17090b3b8400b0023f63d5c10fmr660178pjb.25.1679425310756;
-        Tue, 21 Mar 2023 12:01:50 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c60:d4c3:8671:83c0:33ae:5a96])
-        by smtp.gmail.com with ESMTPSA id v9-20020a1709028d8900b001964c8164aasm9043453plo.129.2023.03.21.12.01.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 12:01:50 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, andersson@kernel.org,
-        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org
-Subject: [PATCH 5/5] arm64: dts: qcom: sm8350: Add Crypto Engine support
-Date:   Wed, 22 Mar 2023 00:31:18 +0530
-Message-Id: <20230321190118.3327360-6-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230321190118.3327360-1-bhupesh.sharma@linaro.org>
-References: <20230321190118.3327360-1-bhupesh.sharma@linaro.org>
+        with ESMTP id S229717AbjCUTJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:09:59 -0400
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AAC1EBF5;
+        Tue, 21 Mar 2023 12:09:57 -0700 (PDT)
+Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32LIxbq4008225;
+        Tue, 21 Mar 2023 19:09:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=L1Qe1vNPvKWd5cR+Cfarcd9j1YdNXKNpcIxzLqrIqts=;
+ b=mt0doSB2R08g8sgloVaEeMWHNhlgiKxvJ9PcMa+ciR8unJ7Jc1VS+ViGAd5Gzmw6acrB
+ fTaOoRpFzC9uFIJgvv6kP0taPwumOAvQLUjniAesqFYuQ8i8osx3KEkp0QwhLLhP604r
+ 3Y4x4FxUIs8hT9K0x4wXrt7qsgGmyi9k78Iw56nmLt+AJvu6G/1xvlQH13Cs+7fn7erR
+ mUFY4GxzfGZwvuAhIVFNu8wQEovJGJxysg/okPo2iULjOZ86NPWBdcSi9OPODxQw7ifW
+ JSTrLH0YB6ZLEvDqbb7+wrRgIwikc4eRR0F9vEcU7AddZFNcr6a0+C+WcO876Fbr3ino xw== 
+Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pfjbn07av-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Mar 2023 19:09:33 +0000
+Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
+        by ppma05wdc.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32LHKu7C021504;
+        Tue, 21 Mar 2023 19:09:32 GMT
+Received: from smtprelay05.wdc07v.mail.ibm.com ([9.208.129.117])
+        by ppma05wdc.us.ibm.com (PPS) with ESMTPS id 3pd4x74abc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Mar 2023 19:09:32 +0000
+Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
+        by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32LJ9ULV31457854
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 21 Mar 2023 19:09:30 GMT
+Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 760CE58052;
+        Tue, 21 Mar 2023 19:09:30 +0000 (GMT)
+Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 66BCB58067;
+        Tue, 21 Mar 2023 19:09:30 +0000 (GMT)
+Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
+        by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTPS;
+        Tue, 21 Mar 2023 19:09:30 +0000 (GMT)
+Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
+        id 0DE1674A47B; Tue, 21 Mar 2023 14:09:30 -0500 (CDT)
+From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+To:     robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Subject: [PATCH v3 0/5] hwmon: (pmbus/acbel-fsg032) Add Acbel power supply
+Date:   Tue, 21 Mar 2023 14:09:09 -0500
+Message-Id: <20230321190914.2266216-1-lakshmiy@us.ibm.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: i4UyQuLvflPLCObpkFja6jGsAdcxruSO
+X-Proofpoint-ORIG-GUID: i4UyQuLvflPLCObpkFja6jGsAdcxruSO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-21_11,2023-03-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ adultscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0
+ priorityscore=1501 mlxlogscore=772 phishscore=0 bulkscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303150002
+ definitions=main-2303210152
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add crypto engine (CE) and CE BAM related nodes and definitions to
-'sm8350.dtsi'.
+Adding new acbel,fsg032 driver and documentation updates.
 
-Co-developed-by and Signed-off-by: Robert Foss <rfoss@kernel.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Changes since V2:
+- Changed the driver name to acbel-fsg032.
+- Fix warnings in acbel-fsg032 driver.
+- Fix warnings in acbel-fsg032.rst and updated the index.
+- Fix comments in trivial-devices.yaml.
+- Fix commit message for dts changes.
+- Updated the commit messages with new driver name.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index b2f1ea4b671e..d017a0a11fcb 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1730,6 +1730,32 @@ ufs_mem_phy_lanes: phy@1d87400 {
- 			};
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-+			reg = <0 0x01dc4000 0 0x24000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			iommus = <&apps_smmu 0x584 0x0011>,
-+				 <&apps_smmu 0x586 0x0011>,
-+				 <&apps_smmu 0x594 0x0011>,
-+				 <&apps_smmu 0x596 0x0011>;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sm8350-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0 0x01dfa000 0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x584 0x0011>,
-+				 <&apps_smmu 0x586 0x0011>,
-+				 <&apps_smmu 0x594 0x0011>,
-+				 <&apps_smmu 0x596 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO &mc_virt SLAVE_EBI1>;
-+			interconnect-names = "memory";
-+		};
-+
- 		ipa: ipa@1e40000 {
- 			compatible = "qcom,sm8350-ipa";
- 
+Lakshmi Yadlapati (5):
+  dt-bindings: vendor-prefixes: Add prefix for acbel
+  dt-bindings: trivial-devices: Add acbel,fsg032
+  hwmon: (pmbus/acbel-fsg032) Add Acbel power supply
+  docs: hwmon: Add documentaion for acbel-fsg032 PSU
+  ARM: dts: aspeed: p10bmc: Change power supply info
+
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ Documentation/hwmon/acbel-fsg032.rst          | 80 ++++++++++++++++
+ Documentation/hwmon/index.rst                 |  1 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts  | 12 +--
+ drivers/hwmon/pmbus/Kconfig                   |  9 ++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/acbel-fsg032.c            | 96 +++++++++++++++++++
+ 8 files changed, 197 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/hwmon/acbel-fsg032.rst
+ create mode 100644 drivers/hwmon/pmbus/acbel-fsg032.c
+
 -- 
-2.38.1
+2.37.2
 
