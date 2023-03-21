@@ -2,177 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1846C3B0C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:54:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D55086C3B1B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 20:59:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229691AbjCUTyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 15:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55210 "EHLO
+        id S229496AbjCUT72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 15:59:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbjCUTyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:54:39 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3E21B303;
-        Tue, 21 Mar 2023 12:54:34 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id bm2so3129309oib.4;
-        Tue, 21 Mar 2023 12:54:34 -0700 (PDT)
+        with ESMTP id S229484AbjCUT71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 15:59:27 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAA08A46;
+        Tue, 21 Mar 2023 12:59:26 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id m20-20020a9d6094000000b0069caf591747so9208465otj.2;
+        Tue, 21 Mar 2023 12:59:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679428474;
+        d=1e100.net; s=20210112; t=1679428765;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dzGK/1K3jXeb2RXo8eG0lU4LCzC1yzSP/KWzYe+eVbw=;
-        b=ampEM2Qqk1H70egvD3eBZLcrBlFXjpLe550jasdSe+QWVnFdeNtCiqLBJIz/zx7BWx
-         2CzQS3JqL1YWryGObLYzuKlpjMTvMyw88VdiYMVCZqpVoYda+321SxO80HceSZdh4QV3
-         uHWft12Q8bOwSjCvh+J6lGejWe9UAvLrZEedQqqTNGsp3frw2cqsWnTcu+I0R2rFWOXp
-         aA1JpRY/aVcfNn3rfx1zUy+LMr4CcDPg1oRNnCpuMclNODMQEx01fwWd0zBmkIuSUJPl
-         CusJXiR7ViMEJ+x9bD8h5mPb0fC47zidv03z7gm+qmmYnBg+lo6OcjA5AIAgzajyizTy
-         D7yw==
-X-Gm-Message-State: AO0yUKUxvrS9TUkL82xo77MoIULLRvfYRic8hMRD7HPqDKYIeXgom8Cb
-        QYLE5TXJTJHdYG/E28n+4w==
-X-Google-Smtp-Source: AK7set+KMmtZUupNTDW8y48dmb0Nsic39+Iea4GTnkiEhCiarvZbLd4wCMKv+ZkisvmMY1Q1UFvy2Q==
-X-Received: by 2002:a05:6808:19a:b0:383:fb18:aa7d with SMTP id w26-20020a056808019a00b00383fb18aa7dmr156495oic.35.1679428470893;
-        Tue, 21 Mar 2023 12:54:30 -0700 (PDT)
+        bh=ROP4DRR/+tYjzmqeO5vCsVTkmmIBiGALSgi3SPQadn4=;
+        b=8ANzfsYIQO9Igtwf43WaeERobPPQ5+55j2XroazxWsQB8LPmCkHK5D5sZw5Uahh7cn
+         2v9vsouag/vlTo1BFRYt1kdGOL+4qcgdPxwOTWitqjDH9WglkDrPp+cDGOSErEKERlHq
+         M2tJS74U18E4O3AP4UcESqHCMoOSp+yh7zfhn94WeeS4Hjnr/bUMbAFBYDiFSXubw+hG
+         mHfQNC85aJFJIdauCB+ZarN0chBVWTAUc+qj5jJipryF8906PEkZPvlX+QWe2jU5n7fX
+         Qz6iB8l9OM2KhUmMu4PTM6c1Rj40QXSdhv5UJZon2g0ksDlKosHY6S11O4T/KF372W7R
+         JLKQ==
+X-Gm-Message-State: AO0yUKUZVd8Dyu8g3yy6RuSmH1iY1wIiC2KlHah0GmLYoDOdO6b3G49B
+        xd/iLf91eJZnEqCn+DqogQ==
+X-Google-Smtp-Source: AK7set+H+vIh3Lr0z8ak+Tuxg2q8VFXzxPrPC9CkKAfZfFwsF3osaXyOzEeU8ueS/6FbBgFaRAghwg==
+X-Received: by 2002:a9d:7d16:0:b0:69c:639b:330e with SMTP id v22-20020a9d7d16000000b0069c639b330emr252747otn.3.1679428765524;
+        Tue, 21 Mar 2023 12:59:25 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q132-20020acac08a000000b0037fa035f4f3sm5161798oif.53.2023.03.21.12.54.29
+        by smtp.gmail.com with ESMTPSA id t2-20020a9d7482000000b00690f6d9a737sm5488723otk.8.2023.03.21.12.59.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 12:54:30 -0700 (PDT)
-Received: (nullmailer pid 1344021 invoked by uid 1000);
-        Tue, 21 Mar 2023 19:54:29 -0000
-Date:   Tue, 21 Mar 2023 14:54:29 -0500
+        Tue, 21 Mar 2023 12:59:25 -0700 (PDT)
+Received: (nullmailer pid 1351594 invoked by uid 1000);
+        Tue, 21 Mar 2023 19:59:24 -0000
+Date:   Tue, 21 Mar 2023 14:59:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linux-usb@vger.kernel.org, xu.yang_2@nxp.com, linux-imx@nxp.com,
+        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, devicetree@vger.kernel.org,
+        shawnguo@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [RESEND PATCH v9 1/2] dt-bindings: PCI: qcom: Add SM8550
- compatible
-Message-ID: <20230321195429.GA1341884-robh@kernel.org>
-References: <20230320144658.1794991-1-abel.vesa@linaro.org>
+        s.hauer@pengutronix.de, jun.li@nxp.com, festevam@gmail.com,
+        robh+dt@kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V6 01/10] dt-bindings: usb: usbmisc-imx: convert to DT
+ schema
+Message-ID: <167942876351.1351542.3404764451729965603.robh@kernel.org>
+References: <20230321085213.1624216-1-peng.fan@oss.nxp.com>
+ <20230321085213.1624216-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230320144658.1794991-1-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20230321085213.1624216-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 04:46:57PM +0200, Abel Vesa wrote:
-> Add the SM8550 platform to the binding.
+
+On Tue, 21 Mar 2023 16:52:04 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Convert usbmisc-imx to DT schema format, add missing compatibles
+> 
 > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
+>  .../devicetree/bindings/usb/fsl,usbmisc.yaml  | 68 +++++++++++++++++++
+>  .../devicetree/bindings/usb/usbmisc-imx.txt   | 19 ------
+>  2 files changed, 68 insertions(+), 19 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/usb/usbmisc-imx.txt
 > 
-> This patch is a resend of the following:
-> https://lore.kernel.org/all/20230208180020.2761766-10-abel.vesa@linaro.org/
-> 
-> No changes since then.
-> 
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index fb32c43dd12d..be7b4b805291 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -38,6 +38,7 @@ properties:
->            - qcom,pcie-sm8350
->            - qcom,pcie-sm8450-pcie0
->            - qcom,pcie-sm8450-pcie1
-> +          - qcom,pcie-sm8550
->        - items:
->            - const: qcom,pcie-msm8998
->            - const: qcom,pcie-msm8996
-> @@ -58,6 +59,12 @@ properties:
->      minItems: 1
->      maxItems: 8
->  
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  iommu-map:
-> +    maxItems: 2
 
-I think this will conflict with a series from Mani. 'iommus' use is also 
-wrong here.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> +
->    # Common definitions for clocks, clock-names and reset.
->    # Platform constraints are described later.
->    clocks:
-> @@ -205,6 +212,7 @@ allOf:
->                - qcom,pcie-sm8350
->                - qcom,pcie-sm8450-pcie0
->                - qcom,pcie-sm8450-pcie1
-> +              - qcom,pcie-sm8550
->      then:
->        properties:
->          reg:
-> @@ -639,6 +647,37 @@ allOf:
->            items:
->              - const: pci # PCIe core reset
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-sm8550
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 7
-> +          maxItems: 8
-> +        clock-names:
-> +          minItems: 7
-> +          items:
-> +            - const: aux # Auxiliary clock
-> +            - const: cfg # Configuration clock
-> +            - const: bus_master # Master AXI clock
-> +            - const: bus_slave # Slave AXI clock
-> +            - const: slave_q2a # Slave Q2A clock
-> +            - const: ddrss_sf_tbu # PCIe SF TBU clock
-> +            - const: noc_aggr # Aggre NoC PCIe AXI clock
-> +            - const: cnoc_sf_axi # Config NoC PCIe1 AXI clock
-> +        resets:
-> +          minItems: 1
-> +          maxItems: 2
-> +        reset-names:
-> +          minItems: 1
-> +          items:
-> +            - const: pci # PCIe core reset
-> +            - const: link_down # PCIe link down reset
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -724,6 +763,7 @@ allOf:
->                - qcom,pcie-sm8350
->                - qcom,pcie-sm8450-pcie0
->                - qcom,pcie-sm8450-pcie1
-> +              - qcom,pcie-sm8550
->      then:
->        oneOf:
->          - properties:
-> -- 
-> 2.34.1
-> 
