@@ -2,94 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D860C6C2859
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 03:54:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04E136C286F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 04:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjCUCyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Mar 2023 22:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50342 "EHLO
+        id S229511AbjCUDAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Mar 2023 23:00:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjCUCyi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 22:54:38 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A7C74F946;
-        Mon, 20 Mar 2023 19:54:35 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8CxTNpqHBlkXjAPAA--.11015S3;
-        Tue, 21 Mar 2023 10:54:34 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxIL9oHBlkhBIIAA--.33655S3;
-        Tue, 21 Mar 2023 10:54:33 +0800 (CST)
-Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson spi
- controller
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        zhuyinbo@loongson.cn, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
- <20230317082950.12738-3-zhuyinbo@loongson.cn>
- <68b6034f-8305-4854-a4c9-962be988ade7@sirena.org.uk>
- <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
- <9917d619-1104-4040-bb6f-c564fcf72806@sirena.org.uk>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <5c281b1a-b6a7-c62e-6247-5d82ebd5e0d6@loongson.cn>
-Date:   Tue, 21 Mar 2023 10:54:32 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229821AbjCUDAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Mar 2023 23:00:31 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E798D2F7BF;
+        Mon, 20 Mar 2023 20:00:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 18406CE17A9;
+        Tue, 21 Mar 2023 03:00:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7627CC4339B;
+        Tue, 21 Mar 2023 03:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679367620;
+        bh=tG3nR/BNTPFfBhbWT130BlqQjCEkjCYaupmLUe7Z3KI=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=dmZSXPC0b0Pe5MUZDeqoGnap4EwddUaBK0H6Bruu+VpCVi/QApHbCre8vsOmXOGb5
+         YNEeUd++DZ73hql8rXVqB7S10mBPjV8e602/6OykY8OIRMKljxfiNRSopfMyRuQioj
+         /cdle9VRRBnt3nCCqSfN/qf0X5owMUw9EnsOAYgmL4yIthCBKfTyz28UQSUQYn/D/R
+         HHEuFU49olOKVeGq09Z0WJmcq2kIzh1dCw7hc/HJqJgsFQplAaNq6620K64FN6KkDf
+         Ob5sG1eMkW/EgOf175qSBNWj3Jrz5JeTDQUES2UWAuXII6RS/1HvVz7+Cn7PjC8ecI
+         dJgKkpmP546RQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 545C9E68C18;
+        Tue, 21 Mar 2023 03:00:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <9917d619-1104-4040-bb6f-c564fcf72806@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID: AQAAf8AxIL9oHBlkhBIIAA--.33655S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoWrtFyDGF4rZrykKr4fuFyUJrb_yoWDGFg_uF
-        1rZa1DGw4UtrZaqwn2kws5ta47CFyUJry7Gw1kK3srW3WUWF97CF95Ca9Fv3W8GFs8tFy3
-        GF12qFWFk34agjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        27CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
-        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-        vE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF04k20xvE74
-        AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
-        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
-        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
-        Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07Uio7NUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH net-next v14 0/9] net: ethernet: mtk_eth_soc: various
+ enhancements
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167936762033.19471.10695862996613870183.git-patchwork-notify@kernel.org>
+Date:   Tue, 21 Mar 2023 03:00:20 +0000
+References: <cover.1679230025.git.daniel@makrotopia.org>
+In-Reply-To: <cover.1679230025.git.daniel@makrotopia.org>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk, hkallweit1@gmail.com, lorenzo@kernel.org,
+        Mark-MC.Lee@mediatek.com, john@phrozen.org, nbd@nbd.name,
+        angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
+        dqfext@gmail.com, Landen.Chao@mediatek.com, sean.wang@mediatek.com,
+        pabeni@redhat.com, kuba@kernel.org, edumazet@google.com,
+        davem@davemloft.net, olteanv@gmail.com, f.fainelli@gmail.com,
+        andrew@lunn.ch, vladimir.oltean@nxp.com, bjorn@mork.no,
+        frank-w@public-files.de, lynxis@fe80.eu
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
-在 2023/3/20 下午8:52, Mark Brown 写道:
-> On Sat, Mar 18, 2023 at 02:07:16PM +0800, zhuyinbo wrote:
->> 在 2023/3/18 上午12:26, Mark Brown 写道:
->>> On Fri, Mar 17, 2023 at 04:29:50PM +0800, Yinbo Zhu wrote:
->>> As IIRC I mentioned last time setup() might be called while other
->>> transfers are happening and therefore shouldn't affect parallel
->>> operations on other devices.
->> I think add spin_lock in  transfer_one interface that should be to fix this
->> issue, Do you think so?
-> No, that doesn't help if setup() reconfigures the controller while it's
-> doing a transfer.  The issue is that the controller might be put into
-> the wrong mode or run at the wrong speed.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-sorry, I don't got that why cpu still can call setup's critical region 
-when cpu call transfer_one to  transfer spi data.
+On Sun, 19 Mar 2023 12:56:07 +0000 you wrote:
+> This series brings a variety of fixes and enhancements for mtk_eth_soc,
+> adds support for the MT7981 SoC and facilitates sharing the SGMII PCS
+> code between mtk_eth_soc and mt7530.
+> 
+> The whole series has been tested on MT7622+MT7531 (BPi-R64),
+> MT7623+MT7530 (BPi-R2), MT7981+GPY211 (GL.iNet GL-MT3000) and
+> MT7986+MT7531 (BPi-R3). On the BananaPi R3 a variete of SFP modules
+> have been tested, all of them (some SGMII with PHY, others 2500Base-X
+> or 1000Base-X without PHY) are working well now, however, some of them
+> need manually disabling of autonegotiation for the link to come up.
+> 
+> [...]
 
-when I added a spin_lock for setup and transfer_one then setup and 
-transfer_one's critical region cann't be called
+Here is the summary with links:
+  - [net-next,v14,1/9] net: ethernet: mtk_eth_soc: add support for MT7981 SoC
+    https://git.kernel.org/netdev/net-next/c/f5d43ddd334b
+  - [net-next,v14,2/9] dt-bindings: net: mediatek,net: add mt7981-eth binding
+    https://git.kernel.org/netdev/net-next/c/e3ac1c270466
+  - [net-next,v14,3/9] dt-bindings: arm: mediatek: sgmiisys: Convert to DT schema
+    https://git.kernel.org/netdev/net-next/c/d4f08a703565
+  - [net-next,v14,4/9] dt-bindings: net: pcs: mediatek,sgmiisys: add MT7981 SoC
+    https://git.kernel.org/netdev/net-next/c/4f7eb19c4f44
+  - [net-next,v14,5/9] net: ethernet: mtk_eth_soc: set MDIO bus clock frequency
+    https://git.kernel.org/netdev/net-next/c/c0a440031d43
+  - [net-next,v14,6/9] net: ethernet: mtk_eth_soc: ppe: add support for flow accounting
+    https://git.kernel.org/netdev/net-next/c/3fbe4d8c0e53
+  - [net-next,v14,7/9] net: pcs: add driver for MediaTek SGMII PCS
+    https://git.kernel.org/netdev/net-next/c/4765a9722e09
+  - [net-next,v14,8/9] net: ethernet: mtk_eth_soc: switch to external PCS driver
+    https://git.kernel.org/netdev/net-next/c/2a3ec7ae3133
+  - [net-next,v14,9/9] net: dsa: mt7530: use external PCS driver
+    https://git.kernel.org/netdev/net-next/c/5b89aeae6e00
 
-simultaneously as I know, because the their lock was same lock.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
