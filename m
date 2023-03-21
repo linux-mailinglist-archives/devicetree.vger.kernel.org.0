@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4286C357C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:20:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 071256C35A3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:28:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231313AbjCUPUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 11:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43578 "EHLO
+        id S231350AbjCUP2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 11:28:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231680AbjCUPU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:20:29 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BAA23C66
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:20:26 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id eg48so61008013edb.13
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:20:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679412025;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5Da2jxuDTdjMSjUZ5oJaHx1frHV9AyEaeWV3IO9K8Rs=;
-        b=RIZhyIZ9n0aS3DStByjSKQu/175aENkML4VQIuqDuR3TrTGuDi59cBsHTE2ZhqcIwd
-         rTx4kVX5fZoY9GU7W/OPKD4Rps8U1hUsSqnzkkytb/5KH95gWW8BVcSC1Y4Kv3oCY7bM
-         H4QUrxopAbXaCgr5BGAc+kmUs3WyY+ufwfnGEzXYIt22mDWF0WnoIaWKsm+GjRT9uwIO
-         KKwlC0CEdTABkp5bZcBCE1AxjjQXhIWG3gW8DNVYBgLBL4u1XzgFA4T5uCijk9yP7oWs
-         skNsxpAnAmm4Vj0yN8ZHUUcZv8mLj6rvLxWbnj7u2KrLMtdJSitv58VRNhVpfUdRatzm
-         dgbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679412025;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Da2jxuDTdjMSjUZ5oJaHx1frHV9AyEaeWV3IO9K8Rs=;
-        b=v3Ga7G6D5Tx4VGLUNGb207tc+8thMHO/dDG49LO4L7np+uwo6pZsVRI0jdM8sk+Drz
-         CcvUpgTDqV9b1qwSeTknJQz/RBaD6foqWbfRHVd7MHwOZtlXgNjCb8yS9KSl4fSTG7LG
-         K2osO8SQcfMr8BEg/ZmT5s6K0ve9nb2fe3OvALMrWDU98gVbrA0JSBSKYsygnrBCPOte
-         ys0vutI3Akw75ub7keN4Ro8YvLI4pvY+aQ+SWlmH2vVoEpEX61dK2LBhMJLkpaUhBrgj
-         vqxy7G5V+k4/agrd6NYfoUZ6680UXhWKqB8nRygbyjJKaX+FjHohzkU7JCbVXXqGN6aa
-         UsYQ==
-X-Gm-Message-State: AO0yUKVKqaBzyXzIiF5IPmGiAQSdbiFJbDEg39GniAMWL87jrUnqLWnJ
-        5pDbx0Muv839iIeL7ayTq7oXhbJHfgMNA5kBTsU=
-X-Google-Smtp-Source: AK7set93GdFlp6UxzAJRhP+TpVPdJfQCztzCBUEZMkFY2nmybXMPfjIo0Fvf6G9cxJLVi/gEQ8Umdg==
-X-Received: by 2002:aa7:d84d:0:b0:4ef:9bf0:7177 with SMTP id f13-20020aa7d84d000000b004ef9bf07177mr3338986eds.9.1679412025077;
-        Tue, 21 Mar 2023 08:20:25 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
-        by smtp.gmail.com with ESMTPSA id y2-20020a50ce02000000b004c0057b478bsm6493930edi.34.2023.03.21.08.20.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Mar 2023 08:20:24 -0700 (PDT)
-Message-ID: <bad282d5-9e40-a99d-0abb-d04163dcf080@linaro.org>
-Date:   Tue, 21 Mar 2023 16:20:23 +0100
+        with ESMTP id S230451AbjCUP2L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:28:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED2F349D5;
+        Tue, 21 Mar 2023 08:28:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0179261CE1;
+        Tue, 21 Mar 2023 15:28:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6944FC433EF;
+        Tue, 21 Mar 2023 15:28:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679412488;
+        bh=iH3z298JWSvq6k/cW7wC07iImWkkHlsSWa287nIZg8U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nGK3SBNBQV2mkoMnGp+g/dvfYHN5AfgYASxOxSNftFLOFTczeg+Poi9xL3zyDLSPV
+         sj2SiNpZRJvioRIzW6xvcHIR4a7K0y0DhtRNCCsK6OeBrhV67YSy/0N7DoCoPYPUyt
+         WfjdlVBWg+CupB5LV1TdlvbfuSCMfQoc0Izn0n2B9TEZgZ0JBf79FYtD1Kf8BdeLbZ
+         IufmyJXUEeg4pFNX+Kb3Vn+usCxOF8COf/Cs34OXb/eMEwJbK5wkRLLR+i5ysfzMkj
+         opJpNwf2NOl5ge+MHWWjICKXEy6YdfMcbXiUT3JDy13xsIULU6bRh0ZC8UGArjGwW5
+         Cf/G/u7+/Lccg==
+Received: by mail-yb1-f171.google.com with SMTP id l16so8033375ybe.6;
+        Tue, 21 Mar 2023 08:28:08 -0700 (PDT)
+X-Gm-Message-State: AAQBX9fcRKNuLozi45DqHKDW2QhfRJYOkYk+m+PGb3OxD/876SK9oXFf
+        xoadswsR/OKpI9/NEw+ee4H87x5Gryoxnvpt+Q==
+X-Google-Smtp-Source: AKy350YcjYxKGk56fFGmnrWvtKLcXfaPTWtsdZipY3tK2gi+/vlECx3Lb/W8tjJZZABLM1tgylwuJZTT51Jt6KkswGM=
+X-Received: by 2002:a05:6902:18c7:b0:b6a:9ef0:2060 with SMTP id
+ ck7-20020a05690218c700b00b6a9ef02060mr1882988ybb.1.1679412487464; Tue, 21 Mar
+ 2023 08:28:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 3/4] eeprom: ee1004: Add devicetree binding
-Content-Language: en-US
-To:     Eddie James <eajames@linux.ibm.com>, linux-kernel@vger.kernel.org
-Cc:     linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        andrew@aj.id.au, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org
-References: <20230321151642.461618-1-eajames@linux.ibm.com>
- <20230321151642.461618-4-eajames@linux.ibm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230321151642.461618-4-eajames@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230320135710.1989-1-johan+linaro@kernel.org>
+ <20230320135710.1989-4-johan+linaro@kernel.org> <167940239018.531701.12929244936825953214.robh@kernel.org>
+ <CAL_JsqKvAxvYsuUtkPerp0aVuEQ7xUrCH2twAm42DLcpvjEKqA@mail.gmail.com> <ZBmzZBYUFXlTX08i@hovoldconsulting.com>
+In-Reply-To: <ZBmzZBYUFXlTX08i@hovoldconsulting.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 21 Mar 2023 10:27:55 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKOSQJBVAaDVrAze6VZe9XHaY7AMs_pM=f3Pgto6UDDqA@mail.gmail.com>
+Message-ID: <CAL_JsqKOSQJBVAaDVrAze6VZe9XHaY7AMs_pM=f3Pgto6UDDqA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: qcom,spmi-pmic: add nvram function
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>, devicetree@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,19 +71,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 16:16, Eddie James wrote:
-> Add an OF match table for devicetree instantiation of EE1004
-> devices.
+On Tue, Mar 21, 2023 at 8:37=E2=80=AFAM Johan Hovold <johan@kernel.org> wro=
+te:
+>
+> On Tue, Mar 21, 2023 at 08:20:55AM -0500, Rob Herring wrote:
+> > On Tue, Mar 21, 2023 at 8:17=E2=80=AFAM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > >
+> > > On Mon, 20 Mar 2023 14:57:10 +0100, Johan Hovold wrote:
+> > > > Add an 'nvram' pattern property and a reference to the correspondin=
+g
+> > > > SDAM DT schema.
+> > > >
+> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > >
+> > >
+> > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > following warnings. Consider if they are expected or the schema is
+> > > incorrect. These may not be new warnings.
+> > >
+> > > Note that it is not yet a requirement to have 0 warnings for dtbs_che=
+ck.
+> > > This will change in the future.
+> > >
+> > > Full log is available here: https://patchwork.ozlabs.org/project/devi=
+cetree-bindings/patch/20230320135710.1989-4-johan+linaro@kernel.org
+> > >
+> >
+> > This is a long list of warnings. Can you all fix some of them before
+> > adding on to this binding.
+>
+> Note that this patch is only making the list of warnings shorter so I
+> don't think addressing the remaining issues should block this one.
 
-Subject: There is no device tree binding here. You add OF matching (or
-support) to the driver.
+How can you tell sorting thru the 100s of warnings? It sounded like a
+new feature to me, not a fix for something missing. Anyways, I've
+gotten 2 patches today for this binding and I don't see patches for
+fixes. Which is a bit surprising because you all generally are fixing
+warnings on the QCom stuff.
 
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  drivers/misc/eeprom/ee1004.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+I didn't really mean to block this one, but I don't really want to see more=
+.
 
-Best regards,
-Krzysztof
-
+Rob
