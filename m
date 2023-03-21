@@ -2,194 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F396C31C5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D856C31D1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 13:38:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbjCUMgJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Mar 2023 08:36:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
+        id S230463AbjCUMiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 08:38:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjCUMgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:36:08 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31A2241B61;
-        Tue, 21 Mar 2023 05:36:03 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id E093424E30A;
-        Tue, 21 Mar 2023 20:36:00 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
- 2023 20:36:00 +0800
-Received: from [192.168.125.108] (183.27.97.64) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 21 Mar
- 2023 20:35:59 +0800
-Message-ID: <2311a888-8861-ade6-d46f-caff4fc3ec73@starfivetech.com>
-Date:   Tue, 21 Mar 2023 20:35:59 +0800
+        with ESMTP id S230183AbjCUMiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 08:38:16 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD36C146
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 05:38:09 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id t5so22241186edd.7
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 05:38:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679402288;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fAHU5kqXRYKOLBxaAoswUkMHVemnT1L6PZ6oDpy10Og=;
+        b=MpW1PxAiokgthWrvl0fAhVprwNnKMOzVF5kPm8DWuvwwuYdC/IZu/5/sJlhOcR9MLL
+         9k1Ll2OzrGnEPdO12o5Not8Ij7zDVDNULBaQaI3oLJxXf2EEFoAci7QfsNB158/P96JH
+         O894ra4J1L+2MIi4pJg2BCEkV1QSvMEX0wdZJXlYbdhn1byEljr/2jAxvgUEwCZa3qy5
+         LFA8eWEXe4WrJ5nGq9RiIFQnPHsbPqWR9XHxiUhl+iWqAsUffZvXR1y9z9dLbMBcwSnm
+         DSKF0EI8mkgjeaREKfVET7gFLUD4JOU54ASbSsUejmCTAtO058LNyXEntJM07Ao3Upmt
+         wa5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679402288;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fAHU5kqXRYKOLBxaAoswUkMHVemnT1L6PZ6oDpy10Og=;
+        b=SZLiMCLeNyGWw/14yiq33WgWS8gTINadanzIYOFFSbdMmaL4rycjzahkv4Xs04bqad
+         mE/j7H/k+AYRnOoTwRo1gz2+7dtUPds/1zIeLUsv3gCaM2vLEOH935wWOT3DhzvHmcLq
+         WR6TtWo21mycWnBAplC6ylzJbCtNlW2vSJMvCr4/jhnedWqK6P9e4RumhcLrCtGtcNGW
+         BzqQyzCnjoKpArNVFC4txdw3c+Qy7QBDrZ72cdGH6W82GuunnHv2Z5eDQoezgsfu/tjX
+         9bH7fgH8w5ZQEb87LmNjJEhTJZRkuz8DV6CbETvXJZNPNRBFhm5GFdxUfcRxK9fTdIGm
+         Laiw==
+X-Gm-Message-State: AO0yUKXptt1+rXrryE6ggucEbDWjtGfM0S0ZiiDp0bK3U6JXSS+eoQ2u
+        JZjb/oTdO6Lwup3EQV2BGfEjpg==
+X-Google-Smtp-Source: AK7set+vNaEbl3l1Z6hbghc31W3om2GAvq3BZt9/SEGY2N7Ry7e+QAITpS/ixh1bfJlmj1UWuz7y3Q==
+X-Received: by 2002:a17:906:7249:b0:895:58be:957 with SMTP id n9-20020a170906724900b0089558be0957mr2691044ejk.2.1679402287907;
+        Tue, 21 Mar 2023 05:38:07 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id v14-20020a1709063bce00b0093344ef3764sm3865240ejf.57.2023.03.21.05.38.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 05:38:07 -0700 (PDT)
+Message-ID: <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
+Date:   Tue, 21 Mar 2023 13:38:06 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts
- configuration.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        "Roger Quadros" <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
- <20230315104411.73614-6-minda.chen@starfivetech.com>
- <20230320153419.GB1713196-robh@kernel.org>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <20230320153419.GB1713196-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [183.27.97.64]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Jayesh Choudhary <j-choudhary@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
+        jani.nikula@intel.com, tzimmermann@suse.de, javierm@redhat.com,
+        ville.syrjala@linux.intel.com, r-ravikumar@ti.com,
+        lyude@redhat.com, alexander.deucher@amd.com, sjakhade@cadence.com,
+        yamonkar@cadence.com, a-bhatia1@ti.com
+References: <20230316140823.234263-1-j-choudhary@ti.com>
+ <20230316140823.234263-2-j-choudhary@ti.com>
+ <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
+ <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/3/20 23:34, Rob Herring wrote:
-> On Wed, Mar 15, 2023 at 06:44:11PM +0800, Minda Chen wrote:
->> USB Glue layer and Cadence USB subnode configuration,
->> also includes USB and PCIe phy dts configuration.
->> 
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> ---
->>  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
->>  2 files changed, 61 insertions(+)
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> index a132debb9b53..c64476aebc1a 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> @@ -236,3 +236,10 @@
->>  	pinctrl-0 = <&uart0_pins>;
->>  	status = "okay";
->>  };
->> +
->> +&usb0 {
->> +	status = "okay";
->> +	usbdrd_cdns3: usb@0 {
->> +		dr_mode = "peripheral";
->> +	};
->> +};
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> index f70a4ed47eb4..17722fd1be62 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -362,6 +362,60 @@
->>  			status = "disabled";
->>  		};
->>  
->> +		usb0: usb@10100000 {
->> +			compatible = "starfive,jh7110-usb";
->> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
->> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
->> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
->> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
->> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
->> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
->> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
->> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
->> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
->> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
->> +			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
->> +			starfive,sys-syscon = <&sys_syscon 0x18>;
->> +			status = "disabled";
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			ranges = <0x0 0x0 0x10100000 0x100000>;
->> +
->> +			usbdrd_cdns3: usb@0 {
->> +				compatible = "cdns,usb3";
+On 21/03/2023 13:02, Jayesh Choudhary wrote:
+>>
+>>> +    type: boolean
+>>> +    description:
+>>> +      Set if the HPD line on the bridge isn't hooked up to anything or is
+>>> +      otherwise unusable.
+>>
+>> It's the property of the panel, not bridge. Unless you want to say that
+>> bridge physically does not have HPD? Does it follow the standard in such
+>> case?
 > 
-> This pattern of USB wrapper and then a "generic" IP node is discouraged 
-> if it is just clocks, resets, power-domains, etc. IOW, unless there's an 
-> actual wrapper h/w block with its own registers, then don't do this 
-> split. Merge it all into a single node.
-> 
-I am afraid it is difficult to merge in one single node. 
+> MHDP does have hpd. But the mhdp driver should handle the cases when the
 
-1.If cadence3 usb device is still the sub device. All the dts setting are in
-StarFive node. This can not work.
-StarFive driver code Using platform_device_add generate cadenc3 usb platform device. 
-Even IO memory space setting can be passed to cadence3 USB, PHY setting can not be passed.
-For the PHY driver using dts now. But in this case, Cadence3 USB no dts configure.
+This is about bindings, not driver. Your driver can still handle this as
+it wishes.
 
-2. Just one USB Cadence platform device.
-Maybe this can work. But Cadence USB driver code cdns3-plat.c required to changed.
+> hpd pin of bridge is not connected to that of the DP-connector. This is 
+> to add support for that. (optional property)
 
-Hi Peter Pawel and Roger
-   There is a "platform_suspend" function pointer in "struct cdns3_platform_data"，
-   Add "platform_init" and "platform_exit" for our JH7110 platform. Maybe it can work.
-   Is it OK?   
->> +				reg = <0x0 0x10000>,
->> +				      <0x10000 0x10000>,
->> +				      <0x20000 0x10000>;
->> +				reg-names = "otg", "xhci", "dev";
->> +				interrupts = <100>, <108>, <110>;
->> +				interrupt-names = "host", "peripheral", "otg";
->> +				phys = <&usbphy0>;
->> +				phy-names = "cdns3,usb2-phy";
-> 
-> No need for *-names when there is only 1 entry. Names are local to the 
-> device and only to distinguish entries, so 'usb2' would be sufficient 
-> here.
-> 
-The PHY name 'cdns3,usb2-phy'  is defined in cadence3 usb driver code.
-Cadence USB3 driver code using this name to get PHY instance.
-And all the PHY ops used in Cadence3 USB sub device. 
->> +				maximum-speed = "super-speed";
->> +			};
->> +		};
->> +
->> +		usbphy0: phy@10200000 {
->> +			compatible = "starfive,jh7110-usb-phy";
->> +			reg = <0x0 0x10200000 0x0 0x10000>;
->> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
->> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
->> +			clock-names = "125m", "app_125";
->> +			#phy-cells = <0>;
->> +		};
->> +
->> +		pciephy0: phy@10210000 {
->> +			compatible = "starfive,jh7110-pcie-phy";
->> +			reg = <0x0 0x10210000 0x0 0x10000>;
->> +			#phy-cells = <0>;
->> +		};
->> +
->> +		pciephy1: phy@10220000 {
->> +			compatible = "starfive,jh7110-pcie-phy";
->> +			reg = <0x0 0x10220000 0x0 0x10000>;
->> +			#phy-cells = <0>;
->> +		};
->> +
->>  		stgcrg: clock-controller@10230000 {
->>  			compatible = "starfive,jh7110-stgcrg";
->>  			reg = <0x0 0x10230000 0x0 0x10000>;
->> -- 
->> 2.17.1
->> 
+Which is indicated by panel no-hpd, right? Or you mean now that HPD
+physically cannot go to panel because it is cut on the bridge side? But
+isn't this the same case (from hardware/bindings point, not driver) as
+panel would not have HPD?
+
+
+Best regards,
+Krzysztof
+
