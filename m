@@ -2,96 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EE2D6C30B2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 12:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A7E16C30C4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 12:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbjCULsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 07:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48614 "EHLO
+        id S230401AbjCULsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 07:48:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbjCULsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 07:48:02 -0400
+        with ESMTP id S230387AbjCULsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 07:48:22 -0400
 Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 96AD2273E;
-        Tue, 21 Mar 2023 04:48:00 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 94D104AD25;
+        Tue, 21 Mar 2023 04:48:16 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="5.98,278,1673881200"; 
-   d="scan'208";a="156652119"
+   d="scan'208";a="156652151"
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Mar 2023 20:48:00 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 21 Mar 2023 20:48:16 +0900
 Received: from localhost.localdomain (unknown [10.226.93.140])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7001241E3338;
-        Tue, 21 Mar 2023 20:47:56 +0900 (JST)
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9224F41E3338;
+        Tue, 21 Mar 2023 20:48:13 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        linux-serial@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 0/5] Renesas SCI fixes
-Date:   Tue, 21 Mar 2023 11:47:48 +0000
-Message-Id: <20230321114753.75038-1-biju.das.jz@bp.renesas.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 5/5] arm64: dts: renesas: r9a07g044: Enable sci0 node using dt overlay
+Date:   Tue, 21 Mar 2023 11:47:53 +0000
+Message-Id: <20230321114753.75038-6-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230321114753.75038-1-biju.das.jz@bp.renesas.com>
+References: <20230321114753.75038-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.4 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RZ/G2UL SMARC EVK has sci pins exposed through PMOD1 interface.
-On testing, found that irq handler, tx and rx is broken.
+Enable sci0 node using dt overlay and disable can{0,1}-stb-hog
+nodes in dt overlay as its pins are shared with sci0 pins.
 
-This series fixes these issues.
-
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
 v3->v4:
- * Updated the fixes tag for patch#2 and patch#3
- * Replaced sci_port->is_rz_sci with dev->dev.of_node as regshift are only needed
-   for sh770x/sh7750/sh7760, which don't use DT yet.
- * Dropped is_rz_sci variable from struct sci_port.
- * Removed fixes tag from patch#4, as it is a feature enhancement to make tx
-   fully functional on RZ/G2L alike SOCs. With previous patch#3, eventhough
-   we get tx interrupts, still it is broken as characters entered on
-   uart terminal is not visible except for the first character.
- * Updated commit header sci0 nodes->sci0 node for patch#5 
+ * Updated commit header sci0 nodes->sci0 node
  * Removed PMOD USBUART reference and connection details as user can connect
    anything on that PMOD1 pins.
  * Renamed r9a07g043-smarc.dtso->r9a07g043-smarc-pmod.dtso
  * Dropped unused header file dt-bindings/gpio/gpio.h
-v2->v3:
- * Cced stable@vger.kernel.org
- * Added Rx, Tx and Tx end interrupt handler patch.
-v1->v2:
- * Replaced the wrong fixes tag
- * Added a simpler check in sci_init_single() and added a check in
-   probe to catch invalid interrupt count.
-Tested the SCI0 interface on RZ/G2UL by connecting to PMOD USBUART.
- 39:          0     GICv3 437 Level     1004d000.serial:rx err
- 40:         12     GICv3 438 Edge      1004d000.serial:rx full
- 41:         70     GICv3 439 Edge      1004d000.serial:tx empty
- 42:         18     GICv3 440 Level     1004d000.serial:tx end
-
-Biju Das (5):
-  tty: serial: sh-sci: Fix transmit end interrupt handler
-  tty: serial: sh-sci: Fix Rx on RZ/G2L SCI
-  tty: serial: sh-sci: Fix Tx on SCI IP
-  tty: serial: sh-sci: Add support for tx end interrupt handling
-  arm64: dts: renesas: r9a07g044: Enable sci0 node using dt overlay
-
+v3:
+ * New patch
+---
  arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../dts/renesas/r9a07g043-smarc-pmod.dtso     | 42 ++++++++++++
- drivers/tty/serial/sh-sci.c                   | 66 +++++++++++++++++--
- drivers/tty/serial/sh-sci.h                   |  3 +
- 4 files changed, 106 insertions(+), 6 deletions(-)
+ .../dts/renesas/r9a07g043-smarc-pmod.dtso     | 42 +++++++++++++++++++
+ 2 files changed, 43 insertions(+)
  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043-smarc-pmod.dtso
 
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 23b10c03091c..d1f10ae85f9f 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-ulcb-kf.dtb
+ dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
+ 
+ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc.dtb
++dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043-smarc-pmod.dtbo
+ 
+ dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
+ dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g043-smarc-pmod.dtso b/arch/arm64/boot/dts/renesas/r9a07g043-smarc-pmod.dtso
+new file mode 100644
+index 000000000000..b125a1152982
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a07g043-smarc-pmod.dtso
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Source for the RZ/{G2UL, Five} SMARC EVK PMOD parts
++ *
++ * Copyright (C) 2023 Renesas Electronics Corp.
++ *
++ *
++ * [Connection]
++ *
++ * SMARC EVK
++ * +----------------------------+
++ * |CN7 (PMOD1 PIN HEADER)      |
++ * |	SCI0_TXD	  pin7  |
++ * |	SCI0_RXD	  pin8  |
++ * +----------------------------+
++ *
++ */
++
++/dts-v1/;
++/plugin/;
++#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
++
++&pinctrl {
++	can0-stb-hog {
++		status = "disabled";
++	};
++
++	can1-stb-hog {
++		status = "disabled";
++	};
++
++	sci0_pins: sci0-pins {
++		pinmux = <RZG2L_PORT_PINMUX(2, 2, 5)>, /* TxD */
++			 <RZG2L_PORT_PINMUX(2, 3, 5)>; /* RxD */
++	};
++};
++
++&sci0 {
++	pinctrl-0 = <&sci0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
 -- 
 2.25.1
 
