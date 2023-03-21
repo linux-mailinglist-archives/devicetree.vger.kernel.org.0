@@ -2,232 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7E9C6C351C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E54E86C3559
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 16:17:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231580AbjCUPIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 11:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48028 "EHLO
+        id S231598AbjCUPRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 11:17:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbjCUPIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:08:09 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05FB74FF38
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:07:46 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id m2so14050180wrh.6
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 08:07:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679411264;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iFyWXWqsoSrr2n/nr5WFH4+XCUi3HeyHPmJXflcFG4M=;
-        b=BkQC5wUD4CWB2PJ4wIBzixl/nv2bZ/wbBAXgWZZBoB7CPKElqOeL7pFUsAo8WyLasZ
-         Jk8ZoxGEZke4a2oxpZG9QCWIwNaYzub2IogYm1zDpaGaAF7AxcOvlzdgqWkxcI30/EV0
-         CItrJgAVwwUf9XiGhNvVA9DBIvM47GPVrzm6Z/04/pDDR634UO4mgcxXh9Yq9KsMJc8G
-         0GjVOjqZAoZUTr4aeCb0Yh30eN9ajC6lmP6ioYSj9Sr8AtxTKDo7pR2NHAdPC2SC844a
-         z32CGoa1C7I2uMynCUxep9zr5N6h3lu1RPDx14JyxzjPfB17oOuhFnVItnGm4nKEJxXk
-         y/ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679411264;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iFyWXWqsoSrr2n/nr5WFH4+XCUi3HeyHPmJXflcFG4M=;
-        b=nE0LjTzZtAfQWfAM94M3A9dBCo2VI7nSzq4YiPDlu0kQKaRa/bJMaFoBVvLlQIW6kl
-         ZCXIiasAGYyAc6zRQwgFlrLYUYCqEbiWYZPrbW3lbZWDLCV7X6GotjJytLeKmcYhIn82
-         bSct/9GNhaJqOTJIT52z2yvaI9JWZqpx/c6ShqhXNZOlyLvBHUHUE83Dzdd0WVZ74srQ
-         OwMBCJOniemubw1YRO9UMExuqZoyri2+A27EBwnDoQton7tLTuQ8x4JNSxSBj5lvuDWp
-         KXt6AyBkjQ6IBMmOJ3hwXwoZBT6lHLT0L15VUCSu0y/6Y1v3RrZ+aWP+qF2eHgP7+qNx
-         G09g==
-X-Gm-Message-State: AO0yUKVsh7Csq4p7mwtximkxbcR+bSN+8a6ZXkHDZLfDPhFYdSqhwTRb
-        GPoyqPYf9cNKMzodm4hosQL5CQ==
-X-Google-Smtp-Source: AK7set84LPqCUYf6yhhlDvPsISDuuO8P7FciRBhYMTb88p9jq1jWKFXiaxN9uhODbTmEO9zz5pAljw==
-X-Received: by 2002:a5d:528f:0:b0:2d2:ac99:a72 with SMTP id c15-20020a5d528f000000b002d2ac990a72mr2379240wrv.46.1679411264305;
-        Tue, 21 Mar 2023 08:07:44 -0700 (PDT)
-Received: from localhost ([82.66.159.240])
-        by smtp.gmail.com with ESMTPSA id g9-20020a5d4889000000b002c559843748sm11573794wrq.10.2023.03.21.08.07.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 08:07:43 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Rob Herring <robh@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: input: Drop unneeded quotes
-In-Reply-To: <20230320234718.2930154-1-robh@kernel.org>
-References: <20230320234718.2930154-1-robh@kernel.org>
-Date:   Tue, 21 Mar 2023 16:07:42 +0100
-Message-ID: <87lejqkurl.fsf@baylibre.com>
+        with ESMTP id S231607AbjCUPRQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 11:17:16 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8FB22DE75;
+        Tue, 21 Mar 2023 08:17:09 -0700 (PDT)
+Received: from pps.filterd (m0098396.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32LEgR3l030268;
+        Tue, 21 Mar 2023 15:16:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=QTxotmzrlXNRr8X9T7oj76bVx52qD66MadcVuPYWFSk=;
+ b=tgAhISlZUuQl7jb6ePP5Ao1QCLF+FIpTo8MCQm4Yj5YA8ycncVK7Bz4t/nCsEi/Q/ipN
+ Y1PgdpjKVOp4MOk5anstUVpLndCW92xOq0rG5U49XXA8zMdqmg26PX7KavlHSRpmVEEs
+ E9P/6Cq9uk/4bV03TW/IMZNz1OvbsbMn2cg6h/Iz1osSVE3fUq7U2daofSSaPKpwfVdo
+ /RU6Ttz/6SF6NKPnaG8I8tko25p+rNhCjer2b8Tl4OKMEwvzfUuOwARLzZRxxItzgIH2
+ X05I/RmQj9ZjJt4PgvYVvm+rwhiTEvZgqiPHs4TahlRv1XFhOwBQahs9CnYX8yCq3S0+ mg== 
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3pf85y394n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Mar 2023 15:16:50 +0000
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 32LE1a17000573;
+        Tue, 21 Mar 2023 15:16:49 GMT
+Received: from smtprelay03.wdc07v.mail.ibm.com ([9.208.129.113])
+        by ppma02dal.us.ibm.com (PPS) with ESMTPS id 3pd4x7fync-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Mar 2023 15:16:49 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+        by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 32LFGlaf25559754
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 21 Mar 2023 15:16:47 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 989DE5804B;
+        Tue, 21 Mar 2023 15:16:47 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1B26558068;
+        Tue, 21 Mar 2023 15:16:46 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.111.39])
+        by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+        Tue, 21 Mar 2023 15:16:45 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        andrew@aj.id.au, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v2 0/4] eeprom: ee1004: Enable devices on multiple busses
+Date:   Tue, 21 Mar 2023 10:16:38 -0500
+Message-Id: <20230321151642.461618-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: mnS2_M6JxjQXPDdoywMzQCEA4PKjviAa
+X-Proofpoint-GUID: mnS2_M6JxjQXPDdoywMzQCEA4PKjviAa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-21_11,2023-03-21_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ mlxlogscore=737 adultscore=0 phishscore=0 lowpriorityscore=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303210118
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On lun., mars 20, 2023 at 18:47, Rob Herring <robh@kernel.org> wrote:
+The driver previously prevented probing devices on more than one
+bus due to locking constraints with the special page addresses. This
+constraint can be removed by allocating a reference-counted bus
+structure containing the lock, rather than using global variables.
+In addition, add devicetree bindings for the EE1004 driver for the
+AT30TSE device and add the devices to the Bonnell BMC system.
 
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+ - Add the devicetree changes
 
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com> # for mediatek,mt6779-keypad.yaml
+Eddie James (4):
+  eeprom: ee1004: Enable devices on multiple busses
+  doc: Add Atmel AT30TSE serial eeprom
+  eeprom: ee1004: Add devicetree binding
+  ARM: dts: aspeed: bonnell: Add DIMM SPD
 
-> ---
->  Documentation/devicetree/bindings/input/adc-joystick.yaml     | 4 ++--
->  .../devicetree/bindings/input/google,cros-ec-keyb.yaml        | 2 +-
->  Documentation/devicetree/bindings/input/imx-keypad.yaml       | 2 +-
->  Documentation/devicetree/bindings/input/matrix-keymap.yaml    | 2 +-
->  .../devicetree/bindings/input/mediatek,mt6779-keypad.yaml     | 2 +-
->  .../devicetree/bindings/input/microchip,cap11xx.yaml          | 4 ++--
->  Documentation/devicetree/bindings/input/pwm-vibrator.yaml     | 4 ++--
->  Documentation/devicetree/bindings/input/regulator-haptic.yaml | 4 ++--
->  .../bindings/input/touchscreen/elan,elants_i2c.yaml           | 4 ++--
->  9 files changed, 14 insertions(+), 14 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> index da0f8dfca8bf..6c244d66f8ce 100644
-> --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> @@ -2,8 +2,8 @@
->  # Copyright 2019-2020 Artur Rojek
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/input/adc-joystick.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/input/adc-joystick.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: ADC attached joystick
->  
-> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> index e05690b3e963..3486c81699a8 100644
-> --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> @@ -57,7 +57,7 @@ if:
->        contains:
->          const: google,cros-ec-keyb
->  then:
-> -  $ref: "/schemas/input/matrix-keymap.yaml#"
-> +  $ref: /schemas/input/matrix-keymap.yaml#
->    required:
->      - keypad,num-rows
->      - keypad,num-columns
-> diff --git a/Documentation/devicetree/bindings/input/imx-keypad.yaml b/Documentation/devicetree/bindings/input/imx-keypad.yaml
-> index 7514df62b592..b110eb1f3358 100644
-> --- a/Documentation/devicetree/bindings/input/imx-keypad.yaml
-> +++ b/Documentation/devicetree/bindings/input/imx-keypad.yaml
-> @@ -10,7 +10,7 @@ maintainers:
->    - Liu Ying <gnuiyl@gmail.com>
->  
->  allOf:
-> -  - $ref: "/schemas/input/matrix-keymap.yaml#"
-> +  - $ref: /schemas/input/matrix-keymap.yaml#
->  
->  description: |
->    The KPP is designed to interface with a keypad matrix with 2-point contact
-> diff --git a/Documentation/devicetree/bindings/input/matrix-keymap.yaml b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
-> index 4d6dbe91646d..a715c2a773fe 100644
-> --- a/Documentation/devicetree/bindings/input/matrix-keymap.yaml
-> +++ b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
-> @@ -21,7 +21,7 @@ description: |
->  
->  properties:
->    linux,keymap:
-> -    $ref: '/schemas/types.yaml#/definitions/uint32-array'
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->      description: |
->        An array of packed 1-cell entries containing the equivalent of row,
->        column and linux key-code. The 32-bit big endian cell is packed as:
-> diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-> index d768c30f48fb..47aac8794b68 100644
-> --- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-> +++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-> @@ -10,7 +10,7 @@ maintainers:
->    - Mattijs Korpershoek <mkorpershoek@baylibre.com>
->  
->  allOf:
-> -  - $ref: "/schemas/input/matrix-keymap.yaml#"
-> +  - $ref: /schemas/input/matrix-keymap.yaml#
->  
->  description: |
->    Mediatek's Keypad controller is used to interface a SoC with a matrix-type
-> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> index 5fa625b5c5fb..5b5d4f7d3482 100644
-> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/input/microchip,cap11xx.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/input/microchip,cap11xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Microchip CAP11xx based capacitive touch sensors
->  
-> diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-> index a70a636ee112..d32716c604fe 100644
-> --- a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-> +++ b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/input/pwm-vibrator.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/input/pwm-vibrator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: PWM vibrator
->  
-> diff --git a/Documentation/devicetree/bindings/input/regulator-haptic.yaml b/Documentation/devicetree/bindings/input/regulator-haptic.yaml
-> index 627891e1ef55..cf63f834dd7d 100644
-> --- a/Documentation/devicetree/bindings/input/regulator-haptic.yaml
-> +++ b/Documentation/devicetree/bindings/input/regulator-haptic.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: GPL-2.0
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/input/regulator-haptic.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/input/regulator-haptic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Regulator Haptic
->  
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
-> index f9053e5e9b24..3255c2c8951a 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/input/touchscreen/elan,elants_i2c.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/input/touchscreen/elan,elants_i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Elantech I2C Touchscreen
->  
-> -- 
-> 2.39.2
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts  |  20 ++
+ drivers/misc/eeprom/ee1004.c                  | 182 +++++++++++-------
+ 3 files changed, 135 insertions(+), 69 deletions(-)
+
+-- 
+2.31.1
+
