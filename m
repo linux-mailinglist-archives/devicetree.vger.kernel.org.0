@@ -2,137 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0836C3960
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 19:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA0B6C3982
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 19:48:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbjCUSpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 14:45:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59842 "EHLO
+        id S229896AbjCUSs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 14:48:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbjCUSph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 14:45:37 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5549559E9
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 11:44:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1679424283;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fuPq/q/n2UQFDBdFIY9AeffBgLt18anlB8x0yQm2Zg0=;
-        b=BZgE2B46G9Gxs4lLcjOXpV+YQbsuZkzjSfAEJa2IDrrZbAakfWCHK/+Iyf5Rd9tOYHoILJ
-        LhM3xxyGErrT6tMxbCo2J5caXCoMJrGGo1f7hXUUdajy98aX3Q7mAfr9byCksue/hcDLOa
-        IqEbUumWZIfELC5GdW+t6CwMsHUO7Ss=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-637-EAP0PS4AMuqkd5OFe_9WlA-1; Tue, 21 Mar 2023 14:44:40 -0400
-X-MC-Unique: EAP0PS4AMuqkd5OFe_9WlA-1
-Received: by mail-qv1-f71.google.com with SMTP id v8-20020a0ccd88000000b005c1927d1609so5355024qvm.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 11:44:39 -0700 (PDT)
+        with ESMTP id S230450AbjCUSsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 14:48:54 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CA656506
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 11:48:22 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id iw3so17022831plb.6
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 11:48:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679424501;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OU2TpmTbkt/6hvSTm+PPEoXU/hSqJlv3qM+jLeXgjsM=;
+        b=OVw0ECtyo2lDexPfAB5v+xW9q4bqZYx4ZfJqU2SL5kXXnye4/lrm/ei4i+2v4vBE70
+         5lQb1OCAoRw8sN4zTYaaR0isVYdumbxVJQLLwe9hQvmcq8R/g9l0Bs3NyBkvFfslZmUA
+         4n2Hh8fqXkOGJeVfvZuoh1KkaZRFXyaONmAhQefe9xb/sNJrdGApo26vdhUnxorrgjNq
+         9GWI7d12jnIS+TqpVA200Zdmeu/lAGY9WQ1qZhNVlPfUkSQyDU73ANsjwWZ9R6vnrgjI
+         UqR9/hVdy9PEhsC0sYoGn0wZg/NfjqPKFHpEjUktqegt2qR1HUSjDqISD5j4a+q7TOqL
+         Va1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679424279;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fuPq/q/n2UQFDBdFIY9AeffBgLt18anlB8x0yQm2Zg0=;
-        b=bcnRj3AQdlv/hXDoGzBbXtTIMepPXXC2PGmfwHC1QMMX6q5JqrqU4FJQ2x+LRKR+vE
-         PEzPZBeZ2WkOXEjtjZZcfUazfEyGaHplXVjCAACkpmPsGGllewBQlbOEOwzTPszp4o3B
-         3gKxf4A/ymy2ajKq9Idz/B20mw8SIGjCOtODm40N/X7ojiCEPOagPf2KprUXTWpdfQFm
-         B4wLBYPXYPsQjjSSm3VJTo4+iT1NsEAM5uYInRQdLYkYBShvAt5alabLUGCfWg8t/OEv
-         4ThwNXeEZ4vsHnrq83OKELSS34ijU0lv6yTKEgxEwHD1/CX86Z6y+RyqwwQtwBRQNZkQ
-         RV0A==
-X-Gm-Message-State: AO0yUKWC10zIw0BLjbzIKjQVLiPp6oceTi6KY81CtyjNUSmBy7ioIaB0
-        meJRTDX+WQPBGQyvld9CcNdDK7P8yxJKbrlLUIsQXk1UA6/4nt0YTXYEu/lEJ1W5wCaBDAmpEfH
-        UV6uBO8X2HH1gwWPdHffD1A==
-X-Received: by 2002:a05:622a:314:b0:3db:9289:6946 with SMTP id q20-20020a05622a031400b003db92896946mr1944731qtw.0.1679424279507;
-        Tue, 21 Mar 2023 11:44:39 -0700 (PDT)
-X-Google-Smtp-Source: AK7set90RizWeWzAQuOQOBvfTCwkzx+74B8QQPTScDsieskr674HwVX05tKIvLoFJq5kExR+Z/9F5w==
-X-Received: by 2002:a05:622a:314:b0:3db:9289:6946 with SMTP id q20-20020a05622a031400b003db92896946mr1944696qtw.0.1679424279210;
-        Tue, 21 Mar 2023 11:44:39 -0700 (PDT)
-Received: from halaney-x13s (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
-        by smtp.gmail.com with ESMTPSA id 2-20020a05620a040200b006f9f3c0c63csm9793316qkp.32.2023.03.21.11.44.37
+        d=1e100.net; s=20210112; t=1679424501;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OU2TpmTbkt/6hvSTm+PPEoXU/hSqJlv3qM+jLeXgjsM=;
+        b=iT77ktB5Vi33NxM41jmyKFRIC/04uYVTQXVGd4UauW1QZt4lXdl9AwaAmPDY8Lhv+V
+         PnG8spcFrnXonlB8LqgfbzPgJKw2NpD+rNKqTG/LwhsN4Ee6+/ovHsd/v8AX22/LGAk/
+         LgAPmtPS6AJiGmzrbm3jGuXdUnPrYHfTbDtVnkbzG3EeUZjbl6fRERGJk6BaVD6XYNGk
+         NHkvUB85mO64Rh8K2BUUaU1VaidBk4Z5zD/40PSn/mFJgr6P6v91b79nncsBS/spZcnR
+         x/LmydL/VKl4Ei/lFSMjYq/RqMk8MH6bkCAkMj1CHffkgwuoiyv7zJW2HN1yAbAxEtGA
+         1mTQ==
+X-Gm-Message-State: AO0yUKU9VMbdbRJDwyw+fvW8Ws65BnMH57v7rSQxR+0S+1Sh+ZF+Duob
+        dM8ioV5HVFfJQm0VGz5fH/9fLw==
+X-Google-Smtp-Source: AK7set8XEqG4QjXF0VsgxuBGSQjsXwO402XZCIkV0X3tEjleTYEVr/x82XLGqxVgbgCGh5vDIOLbsA==
+X-Received: by 2002:a05:6a20:baa1:b0:d5:b3d1:bff9 with SMTP id fb33-20020a056a20baa100b000d5b3d1bff9mr2305721pzb.52.1679424500498;
+        Tue, 21 Mar 2023 11:48:20 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:d4c3:8671:83c0:33ae:5a96])
+        by smtp.gmail.com with ESMTPSA id s24-20020aa78298000000b005d4360ed2bbsm8590817pfm.197.2023.03.21.11.48.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Mar 2023 11:44:38 -0700 (PDT)
-Date:   Tue, 21 Mar 2023 13:44:35 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, bhupesh.sharma@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
-        linux@armlinux.org.uk, veekhee@apple.com,
-        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
-        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
-        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
-        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com
-Subject: Re: [PATCH net-next v2 00/12] Add EMAC3 support for sa8540p-ride
-Message-ID: <20230321184435.5pqkjp4adgn6cpxy@halaney-x13s>
-References: <20230320221617.236323-1-ahalaney@redhat.com>
- <20230320202802.4e7dc54c@kernel.org>
+        Tue, 21 Mar 2023 11:48:20 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     dmaengine@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, vkoul@kernel.org,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org
+Subject: [PATCH v2 1/1] dt-bindings: dma: Add support for SM6115 and QCS2290 SoCs
+Date:   Wed, 22 Mar 2023 00:18:11 +0530
+Message-Id: <20230321184811.3325725-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230320202802.4e7dc54c@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 08:28:02PM -0700, Jakub Kicinski wrote:
-> On Mon, 20 Mar 2023 17:16:05 -0500 Andrew Halaney wrote:
-> > This is a forward port / upstream refactor of code delivered
-> > downstream by Qualcomm over at [0] to enable the DWMAC5 based
-> > implementation called EMAC3 on the sa8540p-ride dev board.
-> > 
-> > From what I can tell with the board schematic in hand,
-> > as well as the code delivered, the main changes needed are:
-> > 
-> >     1. A new address space layout for /dwmac5/EMAC3 MTL/DMA regs
-> >     2. A new programming sequence required for the EMAC3 base platforms
-> > 
-> > This series makes those adaptations as well as other housekeeping items
-> > such as converting dt-bindings to yaml, adding clock descriptions, etc.
-> > 
-> > [0] https://git.codelinaro.org/clo/la/kernel/ark-5.14/-/commit/510235ad02d7f0df478146fb00d7a4ba74821b17
-> > 
-> > v1: https://lore.kernel.org/netdev/20230313165620.128463-1-ahalaney@redhat.com/
-> 
-> At a glance 1-4,8-12 need to go via networking, 5 via clock tree,
-> and 6,7 via ARM/Qualcomm.
-> 
-> AFAICT there are no strong (compile) dependencies so we can each merge
-> our chunk and they will meet in Linus's tree? If so please repost just
-> the networking stuff for net-next, and the other bits to respective
-> trees, as separate series.
-> 
+Add new compatible for BAM DMA engine version v1.7.4 which is
+found on Qualcomm SM6115 and QCS2290 SoCs. Since its very similar
+to v1.7.0 used on SM8150 like SoCs, mark the comptible scheme
+accordingly.
 
-That makes sense to me, thanks for the advice.
+While at it, also update qcom,bam-dma bindings to add comments
+which describe the BAM DMA versions used in SM8150 and SM8250 SoCs.
+This provides an easy reference for identifying the actual BAM DMA
+version available on Qualcomm SoCs.
 
-The only note is that 5 (the clk patch) is depended on by 6/7 to
-compile (they use the header value in 5)... So I'll keep those together!
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
 
-So all in all it will be the dt-binding changes + stmmac changes in one
-series for networking, and the clock + devicetree changes via
-ARM/Qualcomm if I am following properly.
+Changes since v1:
+ ~ v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230320071211.3005769-1-bhupesh.sharma@linaro.org/
+ ~ Addressed Konrad's comments on v1, where he suggested how compatibles
+   should be used for SoCs which support BAM DMA engine v1.7.4
+ ~ Dropped v1's [PATCH 2/2] in v2.
 
-I'll go that route for v3 and link here (just to make finding the split
-easier) unless someone objects (got some time as I need to refactor
-based on series feedback)!
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 22 +++++++++++++------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
 
-Thanks,
-Andrew
+diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+index f1ddcf672261..bed966fa7653 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+@@ -15,13 +15,21 @@ allOf:
+ 
+ properties:
+   compatible:
+-    enum:
+-        # APQ8064, IPQ8064 and MSM8960
+-      - qcom,bam-v1.3.0
+-        # MSM8974, APQ8074 and APQ8084
+-      - qcom,bam-v1.4.0
+-        # MSM8916 and SDM845
+-      - qcom,bam-v1.7.0
++    oneOf:
++      - items:
++          - enum:
++              # APQ8064, IPQ8064 and MSM8960
++              - qcom,bam-v1.3.0
++              # MSM8974, APQ8074 and APQ8084
++              - qcom,bam-v1.4.0
++              # MSM8916
++              - qcom,bam-v1.7.0
++
++      - items:
++          - enum:
++              # SDM845, SM6115, SM8150, SM8250 and QRB2290
++              - qcom,bam-v1.7.4
++          - const: qcom,bam-v1.7.0
+ 
+   clocks:
+     maxItems: 1
+-- 
+2.38.1
 
