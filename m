@@ -2,63 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB516C2B0F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 08:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 618C36C2B17
+	for <lists+devicetree@lfdr.de>; Tue, 21 Mar 2023 08:12:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbjCUHLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 03:11:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
+        id S230041AbjCUHM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 03:12:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbjCUHLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 03:11:41 -0400
-Received: from sender3-op-o19.zoho.com (sender3-op-o19.zoho.com [136.143.184.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049052DE42;
-        Tue, 21 Mar 2023 00:11:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1679382607; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=jKiYHmnT/1oQR0lFFM9Grz5tnBSinuTPzUW9Os1OB1w3LGHcOIpbxCWnlO1JFk6HCGaguTjcahJuO0qcxyvEOb5wqRUh6qXAqkELJQiiY5G6KNM7ckkGBGx6cCasJJkjN4B9V4u6Yjs2+7J4wM0KDSE7W+wXCX9KJrWSGDVEskU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1679382607; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=6r7CEoWGlm/FW5Ca7KLtdVvy2JmZRZfZ3jR92dzn4tw=; 
-        b=k6aKLyvS4bnh9K49M3ER63H5Xdkh4v5maIxvIVWED7yFp+oQxVyqpN5B96tbVD0lO+XXjWsi+t0LNfCKs70DoO/XwSadwf9YqKYbUmOmSUbKmikZR4Y87aiGjq54QqVevNbJyp2U/R4/FTTMMWkC0YXUECOtUGev8TRU0iFo/cw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1679382607;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=6r7CEoWGlm/FW5Ca7KLtdVvy2JmZRZfZ3jR92dzn4tw=;
-        b=a0R7PdAJqhPbmUmwYVlGrpk8kkgKQ7jE6BPi2/uho1pM6WvJXpUTfTEWD4Va1OU5
-        +9QMcuyuOX/AEGQlbXTMfiWueHojDR4K8Htg2sFg5R/dsWkwvI9AyRyk8tM7ZmK9xku
-        Xhw3i13eDG/o6IHsxq5tr3A/l4bRLpyvWqmU7IxI=
-Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
-        with SMTPS id 1679382604472959.5512918109764; Tue, 21 Mar 2023 00:10:04 -0700 (PDT)
-Message-ID: <ce13ca6c-e61a-d31e-2626-d818a5d0e15e@arinc9.com>
-Date:   Tue, 21 Mar 2023 10:09:59 +0300
+        with ESMTP id S230057AbjCUHM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 03:12:56 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B26BE39CE9
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 00:12:35 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id i5so8975903eda.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Mar 2023 00:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679382753;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dQDpM642Q7hh+JU6LrA9OjsR/cxj5kDzAwWOZcWdIbA=;
+        b=aQrcQgyo11wxnnw3d2eAgZ89uaAIlZ++7g1L/eFVF190EH3F4piD9wWL7Vb2XIroHC
+         41XYuHVmRxEODlVYCa+JlRTPAY8Q59zt7FmDTd6/h6gGueI3F0ZpxNyhfrVw/1Uo5s3b
+         NEW/cocSysXhyWTk6bGvZ9W6lRpM0gPDY47WSdvhV4LPAQ/4s+X9UDoV0IAokhpp9MGB
+         DrLonGdwBkY+qJiRkwhMZPzdW4y5Lu3WC/YqKDyG75YhPK+RYFJvyZoOYuCNazsKVXjO
+         kWBegtKb7SbKDZl3n5EBwSPz6/fhA8/RGgfnMKQWtgjtXnqzID3u42bh4hxwuheuY1pk
+         kbfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679382753;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dQDpM642Q7hh+JU6LrA9OjsR/cxj5kDzAwWOZcWdIbA=;
+        b=q72QzBxVMDVwxt93ehtMVGwcZBJddvokec4dG8lvbQyIjXzNQlFh4s7pr686+JT7u3
+         mMxJl/UVaGPIBwpFfdmF9bWOgXoz38ws5NHt99gD26BVByMBYdyP3a9ttlm74oygR6FB
+         BhiIrBCA7IwI2wzw74jZPel10+M0lrayG6lZOghUo7+c8/w/tm8lbawmzwll5zMnhgb9
+         k+yP8dmC8g6+G9TwSoflEYbelBOcI4Wlob2mdxPuI9e67eJBZtneCYTQ5SjIs2NNq+2h
+         ue9M88RprWeVsjMZQ2HUcs5sGXeg094nx5/fVJr0IVPjQOPhIrfoBf+sqgw+UyXzbUBE
+         c7+Q==
+X-Gm-Message-State: AO0yUKVZvKfNNZpfEBAOVHAe7y7wc8I454ph2SWSVk/J+O9Axd9vC2mN
+        DCld57GBwlDU+g5ylBvXHLbtqA==
+X-Google-Smtp-Source: AK7set/PS7SqaShaVg8CYnFcSB8qQVtfJLlDmBlSv3yu/1LJQBxNneLuUdR681oROTjjAhpE4BSueA==
+X-Received: by 2002:a17:906:5d0d:b0:931:9cd2:c214 with SMTP id g13-20020a1709065d0d00b009319cd2c214mr2276084ejt.66.1679382753642;
+        Tue, 21 Mar 2023 00:12:33 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:2142:d8da:5ae4:d817? ([2a02:810d:15c0:828:2142:d8da:5ae4:d817])
+        by smtp.gmail.com with ESMTPSA id d8-20020a170906c20800b0093a2160168esm282129ejz.35.2023.03.21.00.12.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 00:12:33 -0700 (PDT)
+Message-ID: <8569e185-f49f-5095-ad87-f09c0a5719e2@linaro.org>
+Date:   Tue, 21 Mar 2023 08:12:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 1/9] dt-bindings: clock: add mtmips SoCs system
- controller
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: timer: Add timer for StarFive JH7110
+ SoC
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        tsbogend@alpha.franken.de, john@phrozen.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org
-References: <20230321050034.1431379-1-sergio.paracuellos@gmail.com>
- <20230321050034.1431379-2-sergio.paracuellos@gmail.com>
- <5f295438-8334-d374-2ae6-2a385ffb317d@linaro.org>
- <CAMhs-H_dSgcPNQVusHWVvztYHptOxSJ_o7G0eU9=M1C7RXdsVw@mail.gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <CAMhs-H_dSgcPNQVusHWVvztYHptOxSJ_o7G0eU9=M1C7RXdsVw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
+References: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
+ <20230320135433.144832-2-xingyu.wu@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230320135433.144832-2-xingyu.wu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -69,89 +85,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.03.2023 10:00, Sergio Paracuellos wrote:
-> On Tue, Mar 21, 2023 at 7:45 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 21/03/2023 06:00, Sergio Paracuellos wrote:
->>> Adds device tree binding documentation for system controller node present
->>> in Mediatek MIPS and Ralink SOCs. This node is a clock and reset provider
->>> for the rest of the world. This covers RT2880, RT3050, RT3052, RT3350,
->>> RT3883, RT5350, MT7620, MT7628 and MT7688 SoCs.
->>>
->>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->>> ---
->>>   .../bindings/clock/mediatek,mtmips-sysc.yaml  | 65 +++++++++++++++++++
->>>   1 file changed, 65 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
->>> new file mode 100644
->>> index 000000000000..f07e1652723b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mtmips-sysc.yaml
->>> @@ -0,0 +1,65 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/mediatek,mtmips-sysc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MTMIPS SoCs System Controller
->>> +
->>> +maintainers:
->>> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
->>> +
->>> +description: |
->>> +  MediaTek MIPS and Ralink SoCs provides a system controller to allow
->>> +  to access to system control registers. These registers include clock
->>> +  and reset related ones so this node is both clock and reset provider
->>> +  for the rest of the world.
->>> +
->>> +  These SoCs have an XTAL from where the cpu clock is
->>> +  provided as well as derived clocks for the bus and the peripherals.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - ralink,mt7620-sysc
->>
->> Since you decided to send it before we finish discussion:
->> NAK - this is already used as mediatek
+On 20/03/2023 14:54, Xingyu Wu wrote:
+> Add bindings for the timer on the JH7110 RISC-V SoC
+> by StarFive Technology Ltd.
 > 
-> Sorry, there was too much stuff commented so I preferred to clean up
-> all of them while maintaining the compatibles with the ralink prefix
-> instead since that was where the current discussion was at that point.
-> 
->>
->>> +          - ralink,mt7620a-sysc
-> 
-> As I have said, this one exists:
-> 
-> arch/mips/ralink/mt7620.c:      rt_sysc_membase =
-> plat_of_remap_node("ralink,mt7620a-sysc");
-> 
-> 
->>> +          - ralink,mt7628-sysc
->>
->> Same here.
->>
->>> +          - ralink,mt7688-sysc
->>
->> I expect you to check the others.
-> 
-> I can change others to mediatek but that would be a bit weird, don't you think?
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> ---
 
-I've seen some parts of the MTMIPS platform use mediatek compatible 
-strings thanks to Krzysztof pointing them out. I don't like having some 
-parts of the MTMIPS platform (pci, mmc, usbphy, etc.) with mediatek 
-compatible string while others are ralink.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Like Krzysztof said [0], Ralink is now Mediatek, thus there is no 
-conflict and no issues with different vendor used. So I'd rather keep 
-new things Ralink and gradually change these mediatek strings to ralink.
+Best regards,
+Krzysztof
 
-[0] https://patchwork.kernel.org/comment/25232828/
-
-Arınç
