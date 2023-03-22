@@ -2,127 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90FD36C593A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 23:02:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8DCB6C593E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 23:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229600AbjCVWCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 18:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
+        id S229726AbjCVWE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 18:04:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjCVWCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 18:02:54 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 075BCEC4B;
-        Wed, 22 Mar 2023 15:02:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9C87CB81E05;
-        Wed, 22 Mar 2023 22:02:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF116C433D2;
-        Wed, 22 Mar 2023 22:02:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679522566;
-        bh=hcMZNp9Ksh0riZoo4Yt+LZltGdkzddZrrKlsdq6SSFs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SBeFLN+n+5IqXTMSRZF99iAhYSZN0+Ozu3ryCbzt6WCEDt4I+X1bWCEK/0N548dPQ
-         x70PHNbkMmZBHS9Hod1NOld73/3AJcpG4jEN41y1wfIkwYBF0MbM0XLBdpXDdxEkyv
-         LIzhWK4RML4OZXokBhd2Dydd3S+qwp2M9QvP/wnZs4XGvvV4tSqkRyij7RiY2fey4N
-         y736dbmlQE9Bx8Iv+qSoyI7QDMJIxNxZXQiVZIPV+9d5Dm5+dh+eAqYZcym6yT16A3
-         lvou2VM80uY7v66X9hwQt2qOeNua8XA5P6Lht/1sYQXgGpFL5RwQtQiZvukk9IsJkI
-         IMSy7dvbzwppw==
-Date:   Wed, 22 Mar 2023 22:02:40 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 19/21] riscv: dts: starfive: Add initial StarFive
- JH7110 device tree
-Message-ID: <60359574-8bce-40f2-99db-6d81f6e6c5c3@spud>
-References: <20230320103750.60295-1-hal.feng@starfivetech.com>
- <20230320103750.60295-20-hal.feng@starfivetech.com>
+        with ESMTP id S229656AbjCVWEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 18:04:25 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFEFF77D
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 15:04:23 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id cy23so78787722edb.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 15:04:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679522662;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rrRk+gaJjYLT5/E0PnsUAhp4KDn0wBS9o7C6buEtHBc=;
+        b=yvTFowc16cu1PU/l7kVOfvBxkEFcpqrpWd+oVqsU6zzN3acJq+3HrI4Aufymz5620e
+         SrWDJHzWPth67Ae8o4r4so7Xs65xetVeeWFN8DPafaaFWzcoB7PvkJN+9g8uDmyg6JcB
+         /88lg18inP6h8lYc3aGFbBkTxYaGms403ZWz5T0W4a/BdWS0fiQk5dHW5o4GJ7oT//uZ
+         oOmRNLX2e3fDdG5cnWAcmA/VkoGln4I8gwgAQAFQjih5mwjpLTtKSXeke1/kexURJEak
+         st5m00Yz2ZmADh+4Gb/WOhDHwfpMc7zwB86lG96vccQj27+svMS2+87Q+9YYSvAodCFB
+         OrLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679522662;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrRk+gaJjYLT5/E0PnsUAhp4KDn0wBS9o7C6buEtHBc=;
+        b=KTsZBt8Oo0hAo+skHbnHmqO4Rko28pScteMEwpTqXPhcCggT9+4ZOsksHh30DfWbzQ
+         Z7wzq7lcaNM6qTAS6RTeJ4qcmxgJzb3qnBe14LqXc7cGv9rQHyO8cDr+Oa2bRDvbYrxA
+         B/a9kaw0/F6sfygdBH5SjwVFSeRBFH3NA9RlmOjV6FHjmcZLaYSmZZXCqsUzUjDFtnIl
+         UZL57KAduBiPCHpQhY5pVXu6LgZjEM6KgmP7mSH0T7dyIgEhAqc6Uj89DSSqBr9vYl0e
+         nPX50R00KsId+q7OTidORBbWCfPsmE1ng0aqA5helHaT13lEy6W18CNHcqJIISwv4eEl
+         A2IA==
+X-Gm-Message-State: AO0yUKWqO9jrrO2DSQv///mhKndBFGqeskauuKSSBhwTDnG8lyeeKPYw
+        S1XFebgCw2C4ykd59aUFPbCp4w==
+X-Google-Smtp-Source: AK7set9DmUAygXVMqWsEQS/8hyYS5W4WJtg8t7pcvflJhNmmgfo0zg1SyiSdx3q14rcGziO/AWr3wQ==
+X-Received: by 2002:a17:907:33c5:b0:878:66bc:2280 with SMTP id zk5-20020a17090733c500b0087866bc2280mr8959235ejb.12.1679522661994;
+        Wed, 22 Mar 2023 15:04:21 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:626d:5729:6e71:4c22? ([2a02:810d:15c0:828:626d:5729:6e71:4c22])
+        by smtp.gmail.com with ESMTPSA id g17-20020a170906c19100b00921c608b737sm7721409ejz.126.2023.03.22.15.04.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 15:04:21 -0700 (PDT)
+Message-ID: <12e898d4-e83a-3f08-53bd-f4990af97104@linaro.org>
+Date:   Wed, 22 Mar 2023 23:04:20 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="LDF26h45g5RnUqDq"
-Content-Disposition: inline
-In-Reply-To: <20230320103750.60295-20-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH linux-next V2] dt-bindings: usb: snps,dwc3: correct
+ i.MX8MQ support
+Content-Language: en-US
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, xu.yang_2@nxp.com
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20230322125618.3402577-1-peng.fan@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230322125618.3402577-1-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---LDF26h45g5RnUqDq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Mar 20, 2023 at 06:37:48PM +0800, Hal Feng wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
->=20
-> Add initial device tree for the JH7110 RISC-V SoC by StarFive
-> Technology Ltd.
->=20
-> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+On 22/03/2023 13:56, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> The previous i.MX8MQ support breaks rockchip,dwc3 support,
+> so use select to restrict i.MX8MQ support and avoid break others.
+> 
+> Fixes: 3754c41c7686 ("dt-bindings: usb: snps,dwc3: support i.MX8MQ")
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
+> 
+> V2:
+>  Add a new yaml file for i.MX8MQ DWC3. I am not sure whether this is right,
+>  still meet dtbs error:
+>  arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb: usb@38100000:
+>  Unevaluated properties are not allowed ('phys', 'phy-names', 'maximum-speed'
+>  were unexpected)
+>  But there is already ref to snps,dwc3.yaml and dwc3 yaml ref to usb-x.yaml
 
-> +		S7_0: cpu@0 {
-> +			compatible =3D "sifive,s7", "riscv";
-> +			reg =3D <0>;
-> +			d-cache-block-size =3D <64>;
-> +			d-cache-sets =3D <64>;
-> +			d-cache-size =3D <8192>;
-> +			d-tlb-sets =3D <1>;
-> +			d-tlb-size =3D <40>;
-> +			device_type =3D "cpu";
-> +			i-cache-block-size =3D <64>;
-> +			i-cache-sets =3D <64>;
-> +			i-cache-size =3D <16384>;
-> +			i-tlb-sets =3D <1>;
-> +			i-tlb-size =3D <40>;
-> +			mmu-type =3D "riscv,sv39";
-> +			next-level-cache =3D <&ccache>;
-> +			riscv,isa =3D "rv64imac_zba_zbb";
-> +			tlb-split;
-> +			status =3D "disabled";
+Because your DTS has invalid properties, like usb3-resume-missing-cas
+and others. Drop all properties which are not allowed by snps,dwc3.yaml.
 
-Jess pointed out on IRC that this S7 entry looks wrong as it is claiming
-that the S7 has an mmu. I didn't go looking back in the history of
-u74-mc core complex manuals, but the latest version does not show an mmu
-for the S7.
+Best regards,
+Krzysztof
 
---LDF26h45g5RnUqDq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZBt7AAAKCRB4tDGHoIJi
-0qDMAQCIGeIN/1mCb1Q1snEUZqE//3UatgEEoP8CxHntNWLrTQD/XTmZpvTZFpwX
-3ByenbwoM1VkdniTFBdF5mZUoMNZQgY=
-=8Oss
------END PGP SIGNATURE-----
-
---LDF26h45g5RnUqDq--
