@@ -2,93 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90BFB6C511F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:47:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FDF96C512B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:48:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbjCVQrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:47:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46012 "EHLO
+        id S230375AbjCVQsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:48:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230195AbjCVQrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:47:37 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8D164272;
-        Wed, 22 Mar 2023 09:47:27 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id mp3-20020a17090b190300b0023fcc8ce113so9205610pjb.4;
-        Wed, 22 Mar 2023 09:47:27 -0700 (PDT)
+        with ESMTP id S230440AbjCVQss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:48:48 -0400
+Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0BF3D0A5
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:48:42 -0700 (PDT)
+Received: by mail-ua1-x92a.google.com with SMTP id 89so13127925uao.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679503647;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LpONkzfOzhTH79tK5TxGy1m6Rwb93Q8fXC1hWk39Vlo=;
-        b=QZ74OaqlkD8zv1ghDdRVHqbYtIVJxdWOejZN3IRVc13BcoaHHu7WOc16YXD2zQyV4B
-         0cl2WTs0ldoNqvchBYj/ZDanw7IADbQreZVGvrxPUym5lhoZh+ukrIhiQOkfjN1A1rUM
-         nrx/3BYXbRlP4rM5hQzWYD8kkPCCICAKQAB5YQ+jLRxoPiB9beaNbkTHjwnqTqVq2kO/
-         23NmQs6x5Mgut3EqSh/88uXcqkjuB/cdu2wvdBss+jRRDtNv83ihe9YzvjEff/dnof05
-         FJxbqL24n7birT6QRqMAQGRhMWlQZ4nga1QxdO77PGtAdgQpqh8DnNvdkXh6yYnuOF6j
-         hDDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679503647;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679503721;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LpONkzfOzhTH79tK5TxGy1m6Rwb93Q8fXC1hWk39Vlo=;
-        b=hfTnapF/1yHlaCasPizoKb7C9rQ+4rfoWGWULYU/18FQX+pPP9N7w0/dkR2M5sZ4Eq
-         gCO44T6LEYTtG09BJapzwxDtDB4SCxZ5g9flVlmnjwxRoHK/vkU2EYy2tDTRb2c12ZZz
-         n1DkikSZ5x/gr1+XfRlOT9bMQ823gUVajURKwQ6KY1x8Kia0J+WHEz8C5BaiHOA/T6Oy
-         qw3VKrwSw9Yrn2EsmoDgXtU0rvSEd+1tdCgdIFDm5jICfjACVXBNaAID4mqWO+90b4IS
-         jeWVmdJorP4xi+j53hHp2qQ5XFU/cfVY4mhmUFjfQ0EI7qtjcKtOVPNtUzBlExA7SyO9
-         //LA==
-X-Gm-Message-State: AO0yUKVR7oDE7iJVIxNbLHzPKNW4VmA4DpI+r5Pu33n2Hk1qP3RwQ8LD
-        fQ+bOvxPmuEyGnMRPF3i95A=
-X-Google-Smtp-Source: AK7set/mhxHpN1/DAuFzM8ChAXJD4RHuoL4I8fCe6g1mrgeIZ6Qdiok4c8utR0sUrA90kIXjfOLgwA==
-X-Received: by 2002:a17:903:2301:b0:1a1:8fd4:251 with SMTP id d1-20020a170903230100b001a18fd40251mr3487080plh.55.1679503647254;
-        Wed, 22 Mar 2023 09:47:27 -0700 (PDT)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id 6-20020a170902c20600b0019b089bc8d7sm10898239pll.78.2023.03.22.09.47.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 09:47:26 -0700 (PDT)
-Date:   Thu, 23 Mar 2023 00:47:18 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: move elish dts to common dtsi
-Message-ID: <ZBsxFh2qH6hv2Wo1@Gentoo>
-References: <20230322150320.31787-1-lujianhua000@gmail.com>
- <2cb5fca2-56bc-c706-912b-2b8eaf7b3b94@linaro.org>
+        bh=2w0LAtw9cPfSNM4qX5A/16NLh+XxymxwSqd/uu1gfQU=;
+        b=RyjBxDPR9Gaa2RWhPtZwOgt/F7XlwPMCS9VUiT2DPq+iirNmsZnpWZUIFrFJo7YSid
+         OTI4uancfUSnhPkwaehBVH+XRm32vttS69BLXU/wY/gWONf+Wxr1HdQoJmRmBLepuIMG
+         c3B9YgQTrYX9KGhqMlwANDi8yY5dJVd4cf6zFbtg91qD8/0tTA87NAAbaXBQOjwHeFaS
+         i1ZlwAWQ40NjAlIDGmBcKdym3nD79WlUE8ZRSvfu6N7l1numhTv/q8SxQow1kmRetpm1
+         pkk4gx35heDUY/1HkanuMYR3dqdBfSzdIiWVBJvVNDrJ3fApnCjTNSqxxefzkZZQlrlE
+         z1HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679503721;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2w0LAtw9cPfSNM4qX5A/16NLh+XxymxwSqd/uu1gfQU=;
+        b=ToesNTjVaxcBoTOURgykv2mc1FCCl6x5xKJtcBvGO6DtXq9HqZpn5PShoNrJa+zVed
+         OJc+Syb0QXYtgdyRaGocEimezAcJQI/ZCr2VlqRYzOw0WRQi7pbguyYSELLwFeiAH3Xy
+         ef5uIsd8sk9IWbtQ4Fd7JxOKxpb6eOM3maM9YV2hw86CUX/RziNaEFO5+fnldI1Ri/PV
+         ypVv9fst7t816YNrMDqJHHhr+UScKCFMPD/MGi9gfFgzp/xVnHvZrl0dzuHN0qmo75vj
+         tB2SJn/dGgQkcLjE++o2Zte2a7VzyoGCyOSjJTd6OaM6p0eao5uF9+OKfzNtkb05zcf1
+         64eA==
+X-Gm-Message-State: AAQBX9flgorP/+p6pB5TOvxn6TIlWn4NCWVCi/e71JKobC+BBZtG3wDx
+        Z194t7Rsk5/ij1qohun1GZxp2LyoqLPNITVNAeqLzhJekVtIp1Yh
+X-Google-Smtp-Source: AKy350ZLZo/F6L7OujzYN41ze3NYo682Vo6dkHIwnotz4DMq72LZxaPffaxLlojXIZ4FO8//leYaf4FE/3yOtteccKU=
+X-Received: by 2002:a05:6130:290:b0:688:d612:2024 with SMTP id
+ q16-20020a056130029000b00688d6122024mr3518649uac.2.1679503721140; Wed, 22 Mar
+ 2023 09:48:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2cb5fca2-56bc-c706-912b-2b8eaf7b3b94@linaro.org>
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230315110650.142577-1-keguang.zhang@gmail.com> <20230315110650.142577-4-keguang.zhang@gmail.com>
+In-Reply-To: <20230315110650.142577-4-keguang.zhang@gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 22 Mar 2023 17:48:30 +0100
+Message-ID: <CAMRc=MezbVO93WYw2PPV-0qTFid5BE01dfPptNWS4Kc9AXL+fA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] gpio: loongson1: Add DT support
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 05:32:06PM +0100, Krzysztof Kozlowski wrote:
-> On 22/03/2023 16:03, Jianhua Lu wrote:
-> > There are two panel variants of xiaomi-elish, BOE and CSOT panel.
-> > In order to support both panels, so move elish dts to common dtsi.
-> > 
-> > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> > ---
-> >  ...m8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} | 4 ----
-> 
-> This breaks the build.
-Thanks for spotting it. I will fix it in v2.
-> 
-> Best regards,
-> Krzysztof
-> 
+On Wed, Mar 15, 2023 at 12:07=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail=
+.com> wrote:
+>
+> This patch adds DT support for Loongson-1 GPIO driver.
+>
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+> V2 -> V3: None
+> V1 -> V2: Let gpiolib parse ngpios property
+>           Remove unnecessary alias id parsing
+>           Remove superfluous initialization done by bgpio_init()
+>           Add MODULE_DEVICE_TABLE()
+>           Other minor fixes
+> ---
+>  drivers/gpio/gpio-loongson1.c | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-loongson1.c b/drivers/gpio/gpio-loongson1.=
+c
+> index dddfc71f0e10..6ca3b969db4d 100644
+> --- a/drivers/gpio/gpio-loongson1.c
+> +++ b/drivers/gpio/gpio-loongson1.c
+> @@ -68,25 +68,38 @@ static int ls1x_gpio_probe(struct platform_device *pd=
+ev)
+>         ls1x_gc->gc.owner =3D THIS_MODULE;
+>         ls1x_gc->gc.request =3D ls1x_gpio_request;
+>         ls1x_gc->gc.free =3D ls1x_gpio_free;
+> -       ls1x_gc->gc.base =3D pdev->id * 32;
+> +       /*
+> +        * Clear ngpio to let gpiolib get the correct number
+> +        * by reading ngpios property
+> +        */
+> +       ls1x_gc->gc.ngpio =3D 0;
+>
+>         ret =3D devm_gpiochip_add_data(dev, &ls1x_gc->gc, ls1x_gc);
+>         if (ret)
+>                 goto err;
+>
+>         platform_set_drvdata(pdev, ls1x_gc);
+> -       dev_info(dev, "Loongson1 GPIO driver registered\n");
+> +
+> +       dev_info(dev, "GPIO controller registered with %d pins\n",
+> +                ls1x_gc->gc.ngpio);
+>
+>         return 0;
+>  err:
+> -       dev_err(dev, "failed to register GPIO device\n");
+> +       dev_err(dev, "failed to register GPIO controller\n");
+>         return ret;
+>  }
+>
+> +static const struct of_device_id ls1x_gpio_dt_ids[] =3D {
+> +       { .compatible =3D "loongson,ls1x-gpio" },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ls1x_gpio_dt_ids);
+> +
+>  static struct platform_driver ls1x_gpio_driver =3D {
+>         .probe  =3D ls1x_gpio_probe,
+>         .driver =3D {
+>                 .name   =3D "ls1x-gpio",
+> +               .of_match_table =3D ls1x_gpio_dt_ids,
+>         },
+>  };
+>
+> --
+> 2.34.1
+>
+
+I applied this and the last one but switched patches 3 and 4 as it's
+customary to have bindings in the tree before DT support.
+
+Bart
