@@ -2,240 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D17D56C401C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 03:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39E8B6C4028
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 03:07:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjCVCEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 22:04:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39922 "EHLO
+        id S229922AbjCVCHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Mar 2023 22:07:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbjCVCEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 22:04:36 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F334D29E07;
-        Tue, 21 Mar 2023 19:04:29 -0700 (PDT)
-X-UUID: dd43935cc85511edb6b9f13eb10bd0fe-20230322
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=48xjlslr+K9LAZitTjOcQoXZ8givnaoqxXqX8CkBdAg=;
-        b=elyibMTayOaE3I/BH4c4Xkg9DUdY9LPN+CWDZjf2ri97g3uV7dmwegUZ0Jo+pRLuTpQ5Y0UbLL3mozvdXCuLLDo03K432+HR+nLlBNmBfzbzDuW0+v1gKh5IjqVv2O6+8E49p4E6Pkpsd1UBgPZWtxCWCGTk5Xk1gxCQJICPgu4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22,REQID:f3dfd6ca-d06d-4faa-a9ef-685999537c36,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-INFO: VERSION:1.1.22,REQID:f3dfd6ca-d06d-4faa-a9ef-685999537c36,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:-5,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:-5
-X-CID-META: VersionHash:120426c,CLOUDID:fc301529-564d-42d9-9875-7c868ee415ec,B
-        ulkID:2303220142460NPY7QQN,BulkQuantity:9,Recheck:0,SF:38|17|19|102,TC:nil
-        ,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0,OSI:0
-        ,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: dd43935cc85511edb6b9f13eb10bd0fe-20230322
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <nancy.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1689417027; Wed, 22 Mar 2023 10:04:22 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.25; Wed, 22 Mar 2023 10:04:21 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.25 via Frontend Transport; Wed, 22 Mar 2023 10:04:21 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RbC8DU8HDRjjfjVIv8vMsY4qKXGtUuQ6uuPmtCckRfd/du7yZZcNDAnOc+6zTm85iudtMVNVInGjqjd5JzYQVCnfgZhx9iD6Fd7dNw5MwOqOiIgESjYkkX4aCXbWa03eSLbaLFrlWQ2fSnCMYSYeb+QrISSPkouOxxm0sTkPxfDAEZxiAjz4tpvIHqNDbHuGVEStbJfoDnW91w+yLxeWX3xe+jpHn4Kgzmy+CKf3/UHhNEM6kXCTIbS5VsOofUok2d7q12batfoH6zMr8RMdYjfavQoy9GKy+ltqCt5BCUhmgo9Q0O5nGQeh0qXmKtfgiJQyvLKGa81IoQjMbjvIKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=48xjlslr+K9LAZitTjOcQoXZ8givnaoqxXqX8CkBdAg=;
- b=MoujJxvqs5xjxugZR4HYLJmYJxi0tPcJjKKQDdkLPvuCEHrKcpv9NWyLKhpSN6R8P4GwdDf0CtUlGVE9LargIAnGWNEuEvEDCcPdTw0aTQ4OT7niC+Lu3nzET4wr4SnTgchBoM12UJLaWN2e3hf8/ENMmMRiLMUxga/lZ1asIVC3WMrz+w3szFToBvSOqX8eC7Z43++4WsE8Ix5UTciO0JvkTp3+P/sE9SiZSXUK2o48X8aO76hIpdw504jPnY9qsxWLIiitESG7yS/Hv6ywlr1tLepOOzBKhEJ4Uq+tAELinvheHJQz3lPfHrOVTCG/24d6/eHBg5LLtV4q1PBBIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=48xjlslr+K9LAZitTjOcQoXZ8givnaoqxXqX8CkBdAg=;
- b=JuFSgF1Rwuu/uAf3+5OkxYh8/5JeQd+N/0HTpsyiCW83kfHBFkAYGcU4PYYJaEMzhTePNhbwxksVUCa4/2IHpO/uVLUUi7zW7GfkmCxd906fv24S/AnVXxXA17i/Be+rxLSt3q0gN5p9OqY9/v4NvWiUI5Up+xF7I6cKUxVfj+0=
-Received: from KL1PR03MB5175.apcprd03.prod.outlook.com (2603:1096:820:8::11)
- by KL1PR0302MB5202.apcprd03.prod.outlook.com (2603:1096:820:4d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Wed, 22 Mar
- 2023 02:04:19 +0000
-Received: from KL1PR03MB5175.apcprd03.prod.outlook.com
- ([fe80::dd54:60c1:df32:bc65]) by KL1PR03MB5175.apcprd03.prod.outlook.com
- ([fe80::dd54:60c1:df32:bc65%4]) with mapi id 15.20.6178.037; Wed, 22 Mar 2023
- 02:04:19 +0000
-From:   =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>
-To:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: Re: [PATCH v1] arm64: dts: mt8195: add display node for vdosys1
-Thread-Topic: [PATCH v1] arm64: dts: mt8195: add display node for vdosys1
-Thread-Index: AQHZW/b5t+PXgbFooU2dsjWlbTyiga8FgSGAgACMJgA=
-Date:   Wed, 22 Mar 2023 02:04:17 +0000
-Message-ID: <f5eea6b4e12dbd7e1570e5d1cfce81ba7e672186.camel@mediatek.com>
-References: <20230321131251.3351-1-nancy.lin@mediatek.com>
-         <67b73929-ac8b-0e41-1940-89dcd1090da0@linaro.org>
-In-Reply-To: <67b73929-ac8b-0e41-1940-89dcd1090da0@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: KL1PR03MB5175:EE_|KL1PR0302MB5202:EE_
-x-ms-office365-filtering-correlation-id: baa442bf-f2d7-4a2b-af70-08db2a79be8e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cdlpsE3gbItmk38En1M8vnYeLfjI+yN8huLaL+Y7SqOGlG28hoM6CgSMmUnarOhABB2L6KeVZ22wpMgKd8UbmJSZ6Vmy34GSpsYZyuoqV6Qw8sHSs1Tg6KxYolBzqMa+xTaZoex2v8km1Bx8rU96EuMsm9RVOauG91ucdZ2h9oI+B7RTrbTeaTTEeaiB0BlTE1GsqAs1eapsimAyiRC6VjTw//m4FQB2L5Luztnd9NDKjU2o581cAu69a5WWAM9HpKEfOBVsTUfsHGAn20XY0CLocK8PvG1xXzNVlhzxzJImd16ajHO+TkkP3V0ISbX3jXZHQ77JLKhX5bvm2taI14xNvCdJ0uUHOz2dINeOwjJ+m7uaBMjlyjyUH1/5eBynuiNZYJSg3DFIlm0rrqjxqfwLHWlLxdDqkN1bdI61ajT5x3rCFhcsLKOgugjoLf0cD8eKnJo/KXMu3HvbaRajlkZAJKeTeXPrkq7h9fl6vHqyP7iLEbIARJjMA/09zAjUTPDLXR1fP43msBdMRb7EKMBwg6VnG8cHhX0QjFzYLLZbYlMswexf+2i+mAXkN5DbMuBp+BWHHybqSRiZVPOKyfdvn3B6J3N7iiHOe/+AWQtgZwPJyGH40ciajgSRoED12ixOoTSXlog1RL2G5kNwD5c3umkY/A1QazJGAeVCIrDoPVSnsW4LQxPCqBqga2kxk3jVbAenHKtiwyIzO5llBITL676hqrQ+yZd1OvyOB3UYBUiiB6bi7J6BzsLWWOH+UhGYHHjtbL3GEhF/Z/FJ5Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5175.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(346002)(376002)(136003)(396003)(39860400002)(451199018)(66556008)(86362001)(85182001)(36756003)(316002)(64756008)(4326008)(54906003)(83380400001)(66946007)(8676002)(478600001)(66446008)(91956017)(186003)(26005)(53546011)(66476007)(2616005)(6506007)(6486002)(107886003)(966005)(110136005)(6512007)(76116006)(71200400001)(38100700002)(38070700005)(8936002)(7416002)(5660300002)(41300700001)(2906002)(122000001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZlJkTU8xdHB0MzJXMkJIcUo1aG1oRHZFNFVkV3hVZGFNZmVRM2xPVEZjWVRR?=
- =?utf-8?B?TzBKaFVSamJINWJoT1RjZ0xkaWtNajdqN2dCdGROVHNDQlR0cjhkVGZmR0NO?=
- =?utf-8?B?aFRMbW5yTnBDNmtxUE5zT0psZkx0aWZHZjhwUjFCTDBnN0JXbVNIVCtQYmZY?=
- =?utf-8?B?OFU0RUF6YnFoYTJOTk9mM1Fhd003NzZzVk5sZmtJd3pWelgrRlBiNE1Lbk9M?=
- =?utf-8?B?VXZEK0ExNStPTmt4ZERrNk44ejVqT2JXR0xhZUhnWUplUWJaVmxKbXdhUzh5?=
- =?utf-8?B?OCtjOWxlTVNuUmpiZzN1cTZqamNjUlkxMVJ6VjM2TEJWaXF2NnpjRnRTbUZU?=
- =?utf-8?B?c0wrYUh0SU80LzVaNEFxTmMwVmE3VGpVRzYva2JOYTVLejRvTDdESENwMFEw?=
- =?utf-8?B?c3g5azczSlY1TEFBeEx5SmllZm9Kblh3V1ZadFVHNEN3WkFyQ0dZTVFHVzVQ?=
- =?utf-8?B?TUxEbkpFMncyT21jOW1WOGNGeFpKMjlvaFdDMUl2aDViY1diaEh5SGd0c0xk?=
- =?utf-8?B?M1pjKzZtRjVMdVVFdXlIZks5b3hBWk5va3E3SEkyZGdqREJVRjcxSStXdHF6?=
- =?utf-8?B?OFRHdkNneTVUaTBiL29Ib1VxaitOUzQyUm5GL3lWODlqS0hseFdkMkJYbEZF?=
- =?utf-8?B?a0Jrc21XdmozMW5pK3VUTTJ3andxb0NTc082S2F6UXRwNjFTNzl4RDF6ZXli?=
- =?utf-8?B?clg3NStITXdFQjZRRTVlSWtCR0pqUW1aUllWV3FPMHoxejY2MGxkcmlRMWMx?=
- =?utf-8?B?enVpNS91ZEtmQW9nbkxaaFV2NnhCLzRFVWNJOEg0cjN5M3c5WVlsNnRkQ09E?=
- =?utf-8?B?YkxVT2h2WDM4Sk9QMTNqSW1RNCtFQkt3ZDNHV1A3MUMwaGtYQ3J4MlZSSG42?=
- =?utf-8?B?MDBWaFJiSlBObWYzZlh1VlFoSEZoSVo2SFJmbXk3SnZVUWMyYVViM2lpeUNE?=
- =?utf-8?B?YU5rRCtpZzIrQWpNRmh3U0dTb1dLTE5hckMxc01XcmlxWCtUcFNwRmZ6T3ZR?=
- =?utf-8?B?RzVXZS90amNCTFB3K2tYKzZFREQ0dFpwVW9VNTN3dmZRcnNabnpvV1BKbm8x?=
- =?utf-8?B?RjBWTzNCTTR3Z3RFMzRyQ04zTTVMaHQ4K1VzdndjVVFjWFBTaWRjcytVVVZs?=
- =?utf-8?B?dDZSTTg2RlJBR1hpVll2NDR1Q3BtY1RPeXRlSUN1QkxrTEJFZXZCaHBRUXRB?=
- =?utf-8?B?Y3kxUzhvYWN1RGxyV1hmQWZhMkpvZFRoMFBPUzl2TzBJWjlCOENQVVpneC9p?=
- =?utf-8?B?Q0dtaTFKK1c3YmpiYi9aTEVncXBJNXV2a05xQnliWTh5QU4xRXZ6Q29uK3ZS?=
- =?utf-8?B?QjRDODhZcE5HUmRMUmdkYzkxbHBXVVBmcHN6V2wzODJYQmtROHBFdml5dmJN?=
- =?utf-8?B?cXRCYk5lYnFFdS9qNXpQd1huSU90cXVFUjVNbWZZU3hDMG9DMUJaL0NWbmda?=
- =?utf-8?B?NWdjVU01ZnBPVjhMNkk3OVJKZjhxOGZUbSt5amJJQVZtK0l2VFVVU0lpVFFG?=
- =?utf-8?B?ZW5iejUxNno0UzRUeTAzT1NRd1pjOGp6T3pFODdrZG9KYjBNREdoSTlvSGox?=
- =?utf-8?B?MG94UEppdGptZXcrdjEwSVNrTHhnSTl2VUozVUUrVzh2RTRlNzJvenFXblZ5?=
- =?utf-8?B?L0FVbTd5MG1NQkxHMHFWR0YwcFV1RG5FSXhURW9tNncxalhURVYwK0ZqeG5L?=
- =?utf-8?B?amsrN3lIWlJRbjROeTVVVkt0Tjg2L1JqWTg3TDl5dVM1aTkvRVM4SEdXZzZk?=
- =?utf-8?B?NU1BZU40TlVBbU42VHZmaVFoa21EOVpDazhUZzdSYmFrYlpmUDA5S05PS1VQ?=
- =?utf-8?B?ZTl0Vk1sREdqSktObjdPb0dpNHJKajcrdTlLcGduY3RYazhUZzNPWEt4TFBr?=
- =?utf-8?B?UjJpZW5lbHRnMEt5UmNlZHFCb1hQSDRQUUdmZVFJTkhWaHplV1ZlZTJac2dn?=
- =?utf-8?B?Q1JEbFE2TzNyeFlGT0svYTU2RERyTmFVMDJrN1NrU0V4SnZiZUtxbFVQUVpw?=
- =?utf-8?B?YnJSaENqV2V5c2lsRDBWS3ErWU5kcnlQSnU1U3ROdGFyNmlWY3grYlMzNDN3?=
- =?utf-8?B?WkRwd0duWkc5eUphd04wVnhUUUJkbTJmVmdtY1hUalowYnhnUG1IaXpTTnVF?=
- =?utf-8?B?amROanVMa0h2dEJRMjJvVmNYSldRRUlxNXcxSDJLNEZSWTU5UTAvdGJicEZm?=
- =?utf-8?B?YlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <43CF2CE759124142BA34C5CDD661EFD3@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229464AbjCVCHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 22:07:35 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 66F8546157;
+        Tue, 21 Mar 2023 19:07:32 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxPNriYhpkk8sPAA--.12190S3;
+        Wed, 22 Mar 2023 10:07:30 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxSL3eYhpkL0kJAA--.381S3;
+        Wed, 22 Mar 2023 10:07:29 +0800 (CST)
+Subject: Re: [PATCH v15 2/2] clk: clk-loongson2: add clock controller driver
+ support
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230321130710.20236-1-zhuyinbo@loongson.cn>
+ <20230321130710.20236-2-zhuyinbo@loongson.cn>
+ <26c4712672de6c4f70f88c6846bc892f.sboyd@kernel.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <79ceb9c5-2657-ca9b-e017-5ec14acfcda1@loongson.cn>
+Date:   Wed, 22 Mar 2023 10:07:26 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5175.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: baa442bf-f2d7-4a2b-af70-08db2a79be8e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2023 02:04:17.9176
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VT69EKMcJhKzV1yt+OOa9uP8DhBOfFaPLERtl7pdlNFNDOyiK9VlQuc+x4LPr1TejcCNFRCjbEcOUxOc0cjX/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0302MB5202
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <26c4712672de6c4f70f88c6846bc892f.sboyd@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-CM-TRANSID: AQAAf8DxSL3eYhpkL0kJAA--.381S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3Jr1DWr4kJFyfGFykZFWkWFg_yoW3XryxpF
+        yfAay7Wa4jqr429rnIqFyDGFn8AryfK3W7CF43Jryjkr92v3s3Wr48CFyfC3Z5ZrWkCa42
+        vrWDurZ8uFs0grJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bTAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCj
+        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64
+        vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E
+        14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4
+        CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1x
+        MIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
+        4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnI
+        WIevJa73UjIFyTuYvjxU7J3vUUUUU
+X-Spam-Status: No, score=3.6 required=5.0 tests=NICE_REPLY_A,RCVD_IN_SBL_CSS,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQpUaGFua3MgZm9yIHRoZSByZXZpZXcuDQoNCk9uIFR1ZSwgMjAyMy0w
-My0yMSBhdCAxODo0MiArMDEwMCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gRXh0ZXJu
-YWwgZW1haWwgOiBQbGVhc2UgZG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMg
-dW50aWwNCj4geW91IGhhdmUgdmVyaWZpZWQgdGhlIHNlbmRlciBvciB0aGUgY29udGVudC4NCj4g
-DQo+IA0KPiBPbiAyMS8wMy8yMDIzIDE0OjEyLCBOYW5jeS5MaW4gd3JvdGU6DQo+ID4gQWRkIGRp
-c3BsYXkgbm9kZSBmb3IgdmRvc3lzMS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBOYW5jeS5M
-aW4gPG5hbmN5LmxpbkBtZWRpYXRlay5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IEFuZ2Vsb0dpb2Fj
-Y2hpbm8gRGVsIFJlZ25vIDwNCj4gPiBhbmdlbG9naW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9y
-YS5jb20+DQo+ID4gDQo+ID4gLS0tDQo+ID4gMS4gVGhlIGR0cyBwYXRjaCBpcyBzZXBhcmF0ZWQg
-ZnJvbSB0aGUgZm9sbG93aW5nIHBhdGNoOg0KPiA+ICAtIFt2MjEsMjUvMjVdIGFybTY0OiBkdHM6
-IG10ODE5NTogYWRkIGRpc3BsYXkgbm9kZSBmb3IgdmRvc3lzMQ0KPiA+ICAgIDIwMjIwNTEyMDUz
-MTI4LjMxNDE1LTI2LW5hbmN5LmxpbkBtZWRpYXRlay5jb20NCj4gPiANCj4gPiAyLiBUaGlzIHBh
-dGNoIGlzIGJhc2VkIG9uIHRoZSBmb2xsb3dpbmcgc2VyaWVzOg0KPiA+ICAtIEFkZCBNZWRpYVRl
-ayBTb0MgRFJNICh2ZG9zeXMxKSBzdXBwb3J0IGZvciBtdDgxOTUNCj4gPiAgICAyMDIzMDMyMTEy
-MTg1OS4yMzU1LTEtbmFuY3kubGluQG1lZGlhdGVrLmNvbQ0KPiA+IC0tLQ0KPiA+ICBhcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5NS5kdHNpIHwgMjIzDQo+ID4gKysrKysrKysrKysr
-KysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDIyMyBpbnNlcnRpb25zKCspDQo+ID4g
-DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTk1LmR0
-c2kNCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTk1LmR0c2kNCj4gPiBp
-bmRleCA4ZmM1Mjc1NzA3OTEuLmM2YjYyNTM1MDU4MyAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5NS5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm02NC9i
-b290L2R0cy9tZWRpYXRlay9tdDgxOTUuZHRzaQ0KPiA+IEBAIC0yNCw2ICsyNCwyMiBAQA0KPiA+
-ICAgICAgIGFsaWFzZXMgew0KPiA+ICAgICAgICAgICAgICAgZ2NlMCA9ICZnY2UwOw0KPiA+ICAg
-ICAgICAgICAgICAgZ2NlMSA9ICZnY2UxOw0KPiA+ICsgICAgICAgICAgICAgZXRoZHIwID0gJmV0
-aGRyMDsNCj4gPiArICAgICAgICAgICAgIG11dGV4MCA9ICZtdXRleDsNCj4gPiArICAgICAgICAg
-ICAgIG11dGV4MSA9ICZtdXRleDE7DQo+ID4gKyAgICAgICAgICAgICBtZXJnZTEgPSAmbWVyZ2Ux
-Ow0KPiA+ICsgICAgICAgICAgICAgbWVyZ2UyID0gJm1lcmdlMjsNCj4gPiArICAgICAgICAgICAg
-IG1lcmdlMyA9ICZtZXJnZTM7DQo+ID4gKyAgICAgICAgICAgICBtZXJnZTQgPSAmbWVyZ2U0Ow0K
-PiA+ICsgICAgICAgICAgICAgbWVyZ2U1ID0gJm1lcmdlNTsNCj4gPiArICAgICAgICAgICAgIHZk
-bzEtcmRtYTAgPSAmdmRvMV9yZG1hMDsNCj4gPiArICAgICAgICAgICAgIHZkbzEtcmRtYTEgPSAm
-dmRvMV9yZG1hMTsNCj4gPiArICAgICAgICAgICAgIHZkbzEtcmRtYTIgPSAmdmRvMV9yZG1hMjsN
-Cj4gPiArICAgICAgICAgICAgIHZkbzEtcmRtYTMgPSAmdmRvMV9yZG1hMzsNCj4gPiArICAgICAg
-ICAgICAgIHZkbzEtcmRtYTQgPSAmdmRvMV9yZG1hNDsNCj4gPiArICAgICAgICAgICAgIHZkbzEt
-cmRtYTUgPSAmdmRvMV9yZG1hNTsNCj4gPiArICAgICAgICAgICAgIHZkbzEtcmRtYTYgPSAmdmRv
-MV9yZG1hNjsNCj4gPiArICAgICAgICAgICAgIHZkbzEtcmRtYTcgPSAmdmRvMV9yZG1hNzsNCj4g
-PiAgICAgICB9Ow0KPiA+IA0KPiA+ICAgICAgIGNwdXMgew0KPiA+IEBAIC0yNTc1LDcgKzI1OTEs
-MTAgQEANCj4gPiAgICAgICAgICAgICAgIHZkb3N5czE6IHN5c2NvbkAxYzEwMDAwMCB7DQo+ID4g
-ICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTk1LXZkb3N5
-czEiLA0KPiA+ICJzeXNjb24iOw0KPiA+ICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MCAw
-eDFjMTAwMDAwIDAgMHgxMDAwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgbWJveGVzID0g
-PCZnY2UwIDEgQ01EUV9USFJfUFJJT180PjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgbWVk
-aWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8JmdjZTANCj4gPiBTVUJTWVNfMWMxMFhYWFggMHgwMDAw
-IDB4MTAwMD47DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICNjbG9jay1jZWxscyA9IDwxPjsN
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgI3Jlc2V0LWNlbGxzID0gPDE+Ow0KPiA+ICAgICAg
-ICAgICAgICAgfTsNCj4gPiANCj4gPiAgICAgICAgICAgICAgIHNtaV9jb21tb25fdmRvOiBzbWlA
-MWMwMWIwMDAgew0KPiA+IEBAIC0yNjA0LDYgKzI2MjMsMTcgQEANCj4gPiAgICAgICAgICAgICAg
-ICAgICAgICAgcG93ZXItZG9tYWlucyA9IDwmc3BtDQo+ID4gTVQ4MTk1X1BPV0VSX0RPTUFJTl9W
-RE9TWVMwPjsNCj4gPiAgICAgICAgICAgICAgIH07DQo+ID4gDQo+ID4gKyAgICAgICAgICAgICBt
-dXRleDE6IG11dGV4MEAxYzEwMTAwMCB7DQo+IA0KPiBTbyBpcyBpdCBtdXRleDEgb3IgbXV0ZXgw
-PyBPciBtYXliZSBod2xvY2s/DQo+IA0KPiBOb2RlIG5hbWVzIHNob3VsZCBiZSBnZW5lcmljLg0K
-PiANCmh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczovL2RldmljZXRyZWUtc3BlY2lm
-aWNhdGlvbi5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvY2hhcHRlcjItZGV2aWNldHJlZS1iYXNp
-Y3MuaHRtbCpnZW5lcmljLW5hbWVzLXJlY29tbWVuZGF0aW9uX187SXchIUNUUk5LQTl3TWcwQVJi
-dyFrVFRQSFZrUlNLeUlfbHpKTHBUQUFEcjJkXzBPQ3pIMDgzQU1UVHFzRU03bGdUN1ItMEVTMllQ
-ZWplSlVicUdTUFI3Q1lMQUxyNkZzTlotVkxPaklwTUFGa09zdiQNCj4gDQo+IA0KPiANCj4gQmVz
-dCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0KDQpNdXRleCBpcyB1c2VkIHRvIHNlbmQgdGhlIHRy
-aWdnZXJzIHNpZ25hbHMgY2FsbGVkIFN0YXIgT2YNCkZyYW1lKFNPRikvRW5kIE9mIEZyYW1lKEVP
-RikgdG8gZWFjaCBzdWItbW9kdWxlcyBvbiB0aGUgZGlzcGxheSBkYXRhDQpwYXRoWzFdLiBNVDgx
-OTUgaGF2ZSB0d28gbXV0ZXgsIG9uZSBpcyBmb3IgdmRvc3lzMFsyXSBhbmQgdGhlIG90aGVyIGlz
-DQpmb3IgdmRvc3lzMS4NCg0KVGhpcyBpcyB0eXBvLCB0aGUgbm9kZSBuYW1lIGlzIG11dGV4LiBJ
-IHdpbGwgY2hhbmdlIHRvDQo9PiAgbXV0ZXgxOiBtdXRleEAxYzEwMTAwMCB7DQoNCg0KWzFdbXV0
-ZXggYmluZGluZyB5YW1sDQogDQpodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgv
-a2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvdHJlZS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3Mvc29jL21lZGlhdGVrL21lZGlhdGVrLG11dGV4LnlhbWwNCg0KWzJdIGFybTY0
-OiBkdHM6IG10ODE5NTogQWRkIGRpc3BsYXkgbm9kZSBmb3IgdmRvc3lzMA0KDQpodHRwczovL2dp
-dC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQv
-Y29tbWl0L2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTk1LmR0c2k/aWQ9Yjg1MmVl
-NjhmZDcyMjI5NDE0NWQ4NmJiNGQzODNkNGFkNGFlMjcwZg0KDQoNClJlZ2FyZHMsDQpOYW5jeQ0K
-DQoNCg0KPiANCg==
+
+在 2023/3/22 上午7:42, Stephen Boyd 写道:
+> Quoting Yinbo Zhu (2023-03-21 06:07:10)
+>> diff --git a/drivers/clk/clk-loongson2.c b/drivers/clk/clk-loongson2.c
+>> new file mode 100644
+>> index 000000000000..090810655511
+>> --- /dev/null
+>> +++ b/drivers/clk/clk-loongson2.c
+>> @@ -0,0 +1,344 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+>> + */
+>> +
+>> +#include <linux/err.h>
+>> +#include <linux/init.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/io-64-nonatomic-lo-hi.h>
+>> +#include <dt-bindings/clock/loongson,ls2k-clk.h>
+>> +
+>> +#define LOONGSON2_PLL_MULT_SHIFT               32
+>> +#define LOONGSON2_PLL_MULT_WIDTH               10
+>> +#define LOONGSON2_PLL_DIV_SHIFT                        26
+>> +#define LOONGSON2_PLL_DIV_WIDTH                        6
+>> +#define LOONGSON2_APB_FREQSCALE_SHIFT          20
+>> +#define LOONGSON2_APB_FREQSCALE_WIDTH          3
+>> +#define LOONGSON2_USB_FREQSCALE_SHIFT          16
+>> +#define LOONGSON2_USB_FREQSCALE_WIDTH          3
+>> +#define LOONGSON2_SATA_FREQSCALE_SHIFT         12
+>> +#define LOONGSON2_SATA_FREQSCALE_WIDTH         3
+>> +#define LOONGSON2_BOOT_FREQSCALE_SHIFT         8
+>> +#define LOONGSON2_BOOT_FREQSCALE_WIDTH         3
+>> +
+>> +static void __iomem *loongson2_pll_base;
+> Why is this a global?
+
+Normally, this should be an element in the structure, but since there is 
+only one
+
+element, It is directly defined as a global variable for use by other 
+function.
+
+>
+>> +
+>> +static const struct clk_parent_data pdata[] = {
+>> +       { .fw_name = "ref_100m",},
+>> +};
+>> +
+>> +static struct clk_hw *loongson2_clk_register(struct device *dev,
+>> +                                         const char *name,
+>> +                                         const char *parent_name,
+>> +                                         const struct clk_ops *ops,
+>> +                                         unsigned long flags)
+>> +{
+>> +       int ret;
+>> +       struct clk_hw *hw;
+>> +       struct clk_init_data init;
+>> +
+>> +       /* allocate the divider */
+> Remove useless comment.
+okay , I will remove it.
+>
+>> +       hw = devm_kzalloc(dev, sizeof(*hw), GFP_KERNEL);
+>> +       if (!hw)
+>> +               return ERR_PTR(-ENOMEM);
+>> +
+>> +       init.name = name;
+>> +       init.ops = ops;
+>> +       init.flags = flags;
+>> +       init.num_parents = 1;
+>> +
+>> +       if (!parent_name)
+>> +               init.parent_data = pdata;
+>> +       else
+>> +               init.parent_names = &parent_name;
+>> +
+>> +       hw->init = &init;
+>> +
+>> +       /* register the clock */
+> Remove useless comment.
+okay, I will remove it.
+>
+>> +       ret = devm_clk_hw_register(dev, hw);
+>> +       if (ret)
+>> +               hw = ERR_PTR(ret);
+>> +
+>> +       return hw;
+>> +}
+>> +
+> [....]
+>> +
+>> +static const struct clk_ops loongson2_sata_clk_ops = {
+>> +       .recalc_rate = loongson2_sata_recalc_rate,
+>> +};
+>> +
+>> +static inline void loongson2_check_clk_hws(struct clk_hw *clks[], unsigned int count)
+> This needs to return an error instead of be void.
+okay, I got it.
+>
+>> +{
+>> +       unsigned int i;
+>> +
+>> +       for (i = 0; i < count; i++)
+>> +               if (IS_ERR(clks[i]))
+>> +                       pr_err("Loongson2 clk %u: register failed with %ld\n",
+>> +                               i, PTR_ERR(clks[i]));
+>> +}
+>> +
+>> +static inline void loongson2_clocks_init(struct device *dev)
+>> +{
+>> +       struct clk_hw **hws;
+>> +       struct clk_hw_onecell_data *clk_hw_data;
+>> +       spinlock_t loongson2_clk_lock;
+>> +
+>> +       clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws, LOONGSON2_CLK_END),
+>> +                                       GFP_KERNEL);
+>> +       if (WARN_ON(!clk_hw_data))
+>> +               return;
+>> +
+>> +       clk_hw_data->num = LOONGSON2_CLK_END;
+>> +       hws = clk_hw_data->hws;
+>> +
+>> +       hws[LOONGSON2_NODE_PLL] = loongson2_clk_register(dev, "node_pll",
+>> +                                               NULL,
+>> +                                               &loongson2_node_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_DDR_PLL] = loongson2_clk_register(dev, "ddr_pll",
+>> +                                               NULL,
+>> +                                               &loongson2_ddr_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_DC_PLL] = loongson2_clk_register(dev, "dc_pll",
+>> +                                               NULL,
+>> +                                               &loongson2_dc_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_PIX0_PLL] = loongson2_clk_register(dev, "pix0_pll",
+>> +                                               NULL,
+>> +                                               &loongson2_pix0_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_PIX1_PLL] = loongson2_clk_register(dev, "pix1_pll",
+>> +                                               NULL,
+>> +                                               &loongson2_pix1_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_BOOT_CLK] = loongson2_clk_register(dev, "boot",
+>> +                                               NULL,
+>> +                                               &loongson2_boot_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_NODE_CLK] = clk_hw_register_divider(NULL, "node",
+> These should be devm_ variants so they're undone on failure.
+okay , I will use devm_clk_hw_register_divider
+>
+>> +                                               "node_pll", 0,
+>> +                                               loongson2_pll_base + 0x8, 0,
+>> +                                               6, CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       /*
+>> +        * The hda clk divisor in the upper 32bits and the clk-prodiver
+>> +        * layer code doesn't support 64bit io operation thus a conversion
+>> +        * is required that subtract shift by 32 and add 4byte to the hda
+>> +        * address
+>> +        */
+>> +       hws[LOONGSON2_HDA_CLK] = clk_hw_register_divider(NULL, "hda",
+>> +                                               "ddr_pll", 0,
+>> +                                               loongson2_pll_base + 0x22, 12,
+>> +                                               7, CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       hws[LOONGSON2_GPU_CLK] = clk_hw_register_divider(NULL, "gpu",
+>> +                                               "ddr_pll", 0,
+>> +                                               loongson2_pll_base + 0x18, 22,
+>> +                                               6, CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       hws[LOONGSON2_DDR_CLK] = clk_hw_register_divider(NULL, "ddr",
+>> +                                               "ddr_pll", 0,
+>> +                                               loongson2_pll_base + 0x18, 0,
+>> +                                               6, CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       hws[LOONGSON2_GMAC_CLK] = clk_hw_register_divider(NULL, "gmac",
+>> +                                               "dc_pll", 0,
+>> +                                               loongson2_pll_base + 0x28, 22,
+>> +                                               6, CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       hws[LOONGSON2_DC_CLK] = clk_hw_register_divider(NULL, "dc",
+>> +                                               "dc_pll", 0,
+>> +                                               loongson2_pll_base + 0x28, 0,
+>> +                                               6, CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       hws[LOONGSON2_APB_CLK] = loongson2_clk_register(dev, "apb",
+>> +                                               "gmac",
+>> +                                               &loongson2_apb_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_USB_CLK] = loongson2_clk_register(dev, "usb",
+>> +                                               "gmac",
+>> +                                               &loongson2_usb_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_SATA_CLK] = loongson2_clk_register(dev, "sata",
+>> +                                               "gmac",
+>> +                                               &loongson2_sata_clk_ops, 0);
+>> +
+>> +       hws[LOONGSON2_PIX0_CLK] = clk_hw_register_divider(NULL, "pix0",
+>> +                                               "pix0_pll", 0,
+>> +                                               loongson2_pll_base + 0x38, 0, 6,
+>> +                                               CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       hws[LOONGSON2_PIX1_CLK] = clk_hw_register_divider(NULL, "pix1",
+>> +                                               "pix1_pll", 0,
+>> +                                               loongson2_pll_base + 0x48, 0, 6,
+>> +                                               CLK_DIVIDER_ONE_BASED,
+>> +                                               &loongson2_clk_lock);
+>> +
+>> +       loongson2_check_clk_hws(hws, LOONGSON2_CLK_END);
+>> +
+>> +       devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_hw_data);
+> Return this error code.
+okay, I got it.
+>
+>> +}
+>> +
+>> +static const struct of_device_id loongson2_clk_match_table[] = {
+>> +       { .compatible = "loongson,ls2k-clk" },
+>> +       { }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, loongson2_clk_match_table);
+> This table can go next to the driver instead of be above probe.
+okay, I will move it above loongson2_clk_driver.
+>
+>> +
+>> +static int loongson2_clk_probe(struct platform_device *pdev)
+>> +{
+>> +       struct device *dev = &pdev->dev;
+>> +
+>> +       loongson2_pll_base = devm_platform_ioremap_resource(pdev, 0);
+>> +       if (!loongson2_pll_base)
+> Should be IS_ERR(loongson2_pll_base)
+okay, I got it.
+>
+>> +               return PTR_ERR(loongson2_pll_base);
+>> +
+>> +       loongson2_clocks_init(dev);
+> Please inline this function here.
+
+The loongson2_clocks_init had inline in this version, or do you mean something else ? Need to inline the probe?
+
