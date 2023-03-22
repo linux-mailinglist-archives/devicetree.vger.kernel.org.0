@@ -2,59 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 628076C4E41
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 15:44:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A66596C4E60
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 15:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231874AbjCVOoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 10:44:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
+        id S231845AbjCVOor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 10:44:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbjCVOnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 10:43:21 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B6D64B27;
-        Wed, 22 Mar 2023 07:42:33 -0700 (PDT)
+        with ESMTP id S231695AbjCVOoB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 10:44:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35D1664D9;
+        Wed, 22 Mar 2023 07:42:43 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A4466CE1DC9;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD9E86217C;
+        Wed, 22 Mar 2023 14:42:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77D98C433D2;
         Wed, 22 Mar 2023 14:42:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 148AAC4339B;
-        Wed, 22 Mar 2023 14:42:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679496148;
-        bh=xEyKZaa1+RXFhK2lv1wKEyVPh8wrA5Ghs6WICLxgLV0=;
+        s=k20201202; t=1679496150;
+        bh=7oZmRM7OFO/FuWohS7k0V74nm+3Qny+p7t/M7GzkTrQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OY3q2++VOzzMH6fqxfOsljPG6l24QjRnR+9K8/S82zW08s/JAhM3aPbJFXU6uV2hf
-         huK2Nk6a0PSFE4cj9j4GWXhti50cSa7zHrpesi3mr1vgsRo14y7lo1VPWhv2WfIisS
-         I55nklUs0bqiWu2aaPCzQqV51sOKJbPeAeMlmx0a78N9dr/e0yxaUomftRNFMeQUq6
-         +RJrPlS1bgd58ehFfVCuJP1YchvK01AylBSENvV+g2D70hg1yvUYj6g42lvCtEZ5JK
-         WuLtpI+tFKABHJGB338MHO4ELGsRP6sFZfC+Xukep/2qxMm1mUb+ecWVV2NCC6PP3s
-         5t7r362NXxv+g==
+        b=LW5Oyc6rUcynJ9IRuTw2lwDTCoXMoUd5yBjKzYsEQnjzc8laalPNeyn0GVmDjTCdb
+         eUgzqS/LNcb8IOguJF+FomOfLtvKP1wsd6keA9EFVYPI6Br1TA93+H5Jm/NOuMfDww
+         l6ZqYa49PtjbD7RRaQKZp1jlfMP8oQanKmgqobeHH5brsjQnV+mrU4q1zovl8XCI7z
+         zQ/34H3VXxr3nhVyBXHvjgxuFks8JdFD4s2dYAm/yeHAZuUDzi7dUO9etabyi14Mxb
+         pFXmsrSkDJkikYGf+y14Q8ueocoCRo3Qcl3QHs8avQlhWhFnaO9dKc2LzuEWuM47DK
+         aJNpYwx0FNuoQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: (subset) [PATCH v5 00/12] soc: qcom: add UCSI function to PMIC GLINK
-Date:   Wed, 22 Mar 2023 07:45:20 -0700
-Message-Id: <167949631651.1081726.4846765935793443746.b4-ty@kernel.org>
+        Rob Herring <robh+dt@kernel.org>, Gergo Koteles <soyer@irl.hu>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus-common: add Hall sensor
+Date:   Wed, 22 Mar 2023 07:45:23 -0700
+Message-Id: <167949631653.1081726.6096488505993355745.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230130-topic-sm8450-upstream-pmic-glink-v5-0-552f3b721f9e@linaro.org>
-References: <20230130-topic-sm8450-upstream-pmic-glink-v5-0-552f3b721f9e@linaro.org>
+In-Reply-To: <20230306174147.185239-1-soyer@irl.hu>
+References: <20230306174147.185239-1-soyer@irl.hu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,20 +56,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Mar 2023 14:21:40 +0100, Neil Armstrong wrote:
-> The PMIC GLINK interface offers an UCSI endpoint for newer
-> SoCs, the UCSI exchange is necessary to configure the USB-C
-> port USB role and altmode on the SM8450 HDK and SM8550 MTP
-> boards.
-> Since the DT description is the same, support for SM8350 HDK
-> is also added.
+On Mon, 6 Mar 2023 18:41:47 +0100, Gergo Koteles wrote:
+> Enable the Hall effect sensor (flip cover) for OnePlus 6/6T.
+> The GPIO is mapped to SW_LID events as in msm8916, msm8994,
+> msm8998 devices.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[12/12] arm64: defconfig: add PMIC GLINK modules
-        commit: 4ffd0b0019560a52b46b9ebd8127be3fdc157f16
+[1/1] arm64: dts: qcom: sdm845-oneplus-common: add Hall sensor
+      commit: 80dc42d9facc9232072855340c2285682c0c3b19
 
 Best regards,
 -- 
