@@ -2,351 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE6B6C5213
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 581386C521B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:16:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbjCVRQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 13:16:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58942 "EHLO
+        id S231545AbjCVRQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 13:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbjCVRP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:15:57 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DDB36487D;
-        Wed, 22 Mar 2023 10:15:27 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id i5-20020a05600c354500b003edd24054e0so6717370wmq.4;
-        Wed, 22 Mar 2023 10:15:27 -0700 (PDT)
+        with ESMTP id S231469AbjCVRQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:16:31 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E003867022;
+        Wed, 22 Mar 2023 10:16:03 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id kc4so5294800plb.10;
+        Wed, 22 Mar 2023 10:16:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679505325;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rkv/eZYA1ncHp5FnV2ZWc3hgYnAx28S86QA9vmcXFCY=;
-        b=Y1mva2Bt3sUbKxLgEUS331CJbGxUc4z8kTQW8qiHWGhYlFKtm+d5z4sT40E5BeZAnU
-         zmTbCI7jbroe9NYBxGUmSli6LNVDPjND80ChbhWTqbqMQTmeQFWut9KmeBWK6Oze2lC/
-         XMSOorUzowjcU2xtHNrzoq2KH2pstW573lsB8WnzFVfhMaRkE9DfRr6WNyA7zC8DyxM5
-         ezxlCQtCmgPfCqlyksbIDKrgrRf3GiUR0yUd6xRU+MssyvH1FkYGDCerPctDto6lGHBz
-         8Y15jT3l6OnQMT6dkekgpPF5/XrSUY93u9g0B4U8+0dhNj+K7vmDen+jqdess+tpLnq/
-         gFrA==
+        d=gmail.com; s=20210112; t=1679505363;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v5Lu9OAJ6YsotRRIx5xX4C7y7EyPhqOmAF4dQrNJsFU=;
+        b=C85fvvarLU3Ogwuk7AJV59+o/hrYbhNNlrLot/DDOX9oVLnpJYHOCa0JKsxGhw8XwQ
+         qb8YKAEoxyfpOaPgz1tJ82Ln+iNgYjpxXI4PRsPFwaL3Jh+390R+jvPIza3Uvifem45I
+         aSHip6GR8ds7gmMzGCyUqWKHnHxbxWpkBC0fMC9dOdkawzLTaFWEEW3NIn5goysg0hih
+         dedDZugNFm7T8EYltA6XuW+57UWsjDXAN3xr2dqxHzHGgm7ha8Zs+XCtqk+IfMT+/NjL
+         2mI4bjYWbUfdiLPma8CFv0p5673CecMQHsQeF1SwhF3z9YKzM08vd4k6I+rH6SCaYptX
+         OFVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679505325;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rkv/eZYA1ncHp5FnV2ZWc3hgYnAx28S86QA9vmcXFCY=;
-        b=Ym4+u8bbTQGNkewUBrLf+89vE0EFJBQp2f1crwUxZFboKTROF9ltZonY1CGepo7b0B
-         fkx3TbWQy5X65g3ScuieqtClCI8WanPeNBJ48+JipJYO3ODVNBxnVaTuW/0FOIcahfqe
-         sG5GvggHhzRz+Yeybsbnupmzxnw8Ez0BpMl3p7zcjHL7BGZDdOOX2Zbw3zfyYa5sg2nX
-         UXYJT36zy2h39gxUsy9QkhQ76CG3w6omniohZpYidpojpiDjbOy0nKFky4kUe+YyA1fF
-         4IBhjAm6mH+uh6wHSG1qj+NAXHs0xDDJps16PbJwAgL7Qt9K5WW+R/UAYPmHFgaRIHOw
-         /seA==
-X-Gm-Message-State: AO0yUKXRtoYO8Nfus6Ca8lhM39P1Xn6TGkhatEfoISd1YNOkTJJN2hW+
-        xRphLgxlzNfCLcVPlpGK9dk=
-X-Google-Smtp-Source: AK7set9VnMEykugk8ZYnkXuqK41bX1dzlvKsAXHEjr8i2NZBld0buKhQLcGYEcwxnBgVTtC7eRGfXw==
-X-Received: by 2002:a1c:7c0b:0:b0:3e2:1dac:b071 with SMTP id x11-20020a1c7c0b000000b003e21dacb071mr178053wmc.13.1679505325582;
-        Wed, 22 Mar 2023 10:15:25 -0700 (PDT)
-Received: from atlantis.lan (255.red-79-146-124.dynamicip.rima-tde.net. [79.146.124.255])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b003ee11ac2288sm8414333wmo.21.2023.03.22.10.15.24
+        d=1e100.net; s=20210112; t=1679505363;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v5Lu9OAJ6YsotRRIx5xX4C7y7EyPhqOmAF4dQrNJsFU=;
+        b=Vdq0baU1CLVLNu1HgARwfeizcAQQdfPgjik+fe3CrFoK3yFUQnGX1bJoVz9KCuU06v
+         ku+JY4ehAWRenHBn8fy9MTPfGtIrCfAIqS01r/pChF05L+bVFVXjVjGSW9it728fzbvt
+         /fGEZpy0SqkgbENLVRI+Cpu5742FJJxxBD7tr6ucUBZOFa+ABmagwzMbMOBBsmsB9NTe
+         BmIUCU8b3g0QWJhX1+w/dcEuYhc9zA1JJX9zociRm0aQJcweF4ueugTLaNe9GOVB6sdA
+         mzDBucP5J7zJ/+lR6H1ePIqbzTqU/Pm6rWA/vl+vOYPuXL0xBKDvQqu9Sjx5XW6WxDAc
+         bD7w==
+X-Gm-Message-State: AAQBX9df7BYcrRQijBFu+sv/WyDe85gnvL5wqpj7BVcLkiOZydSZBA99
+        FL/fYWLeY2tPgJAkxFpRDcA=
+X-Google-Smtp-Source: AKy350YNO4UIxw70VOrky+hJnmB189eJUNoIWY5OMBbWpoA9Wc6C3KpjBzRS2hX2LVpEKxKWeVW84Q==
+X-Received: by 2002:a17:90b:1c84:b0:23b:4438:e9ee with SMTP id oo4-20020a17090b1c8400b0023b4438e9eemr2750750pjb.12.1679505362625;
+        Wed, 22 Mar 2023 10:16:02 -0700 (PDT)
+Received: from localhost.localdomain (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id b1-20020a6567c1000000b005023496e339sm10097353pgs.63.2023.03.22.10.15.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 10:15:25 -0700 (PDT)
-From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, p.zabel@pengutronix.de,
-        f.fainelli@gmail.com, jonas.gorski@gmail.com,
-        william.zhang@broadcom.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>
-Subject: [PATCH v4 4/4] clk: bcm: Add BCM63268 timer clock and reset driver
-Date:   Wed, 22 Mar 2023 18:15:15 +0100
-Message-Id: <20230322171515.120353-5-noltari@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230322171515.120353-1-noltari@gmail.com>
-References: <20230322171515.120353-1-noltari@gmail.com>
+        Wed, 22 Mar 2023 10:16:02 -0700 (PDT)
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Jianhua Lu <lujianhua000@gmail.com>
+Subject: [PATCH v2 1/4] arm64: dts: qcom: Move elish dts to common dtsi
+Date:   Thu, 23 Mar 2023 01:15:52 +0800
+Message-Id: <20230322171555.2154-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for BCM63268 timer clock and reset controller.
+There are two panel variants of xiaomi-elish, BOE and CSOT panels.
+In order to support both panels, so move elish dts to common dtsi.
 
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 ---
- v4: add changes suggested by Stephen Boyd:
-  - Usage of of_device_get_match_data() isn't needed.
-  - Use devm_clk_hw_register_gate().
-  - Drop clk_hw_unregister_gate().
- v3: add missing <linux/io.h> include to fix build warning
- v2: add changes suggested by Stephen Boyd
+Changes in v2:
+  - Remove sm8250-xiaomi-elish.dtb to avoid build failure.
 
- drivers/clk/bcm/Kconfig              |   9 ++
- drivers/clk/bcm/Makefile             |   1 +
- drivers/clk/bcm/clk-bcm63268-timer.c | 215 +++++++++++++++++++++++++++
- 3 files changed, 225 insertions(+)
- create mode 100644 drivers/clk/bcm/clk-bcm63268-timer.c
+ arch/arm64/boot/dts/qcom/Makefile                             | 1 -
+ ...m8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} | 4 ----
+ 2 files changed, 5 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{sm8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} (99%)
 
-diff --git a/drivers/clk/bcm/Kconfig b/drivers/clk/bcm/Kconfig
-index 77266afb1c79..a972d763eb77 100644
---- a/drivers/clk/bcm/Kconfig
-+++ b/drivers/clk/bcm/Kconfig
-@@ -37,6 +37,15 @@ config CLK_BCM_63XX_GATE
- 	  Enable common clock framework support for Broadcom BCM63xx DSL SoCs
- 	  based on the MIPS architecture
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 1a29403400b7..8d2b3c57a4a8 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -183,7 +183,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
+-dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-microsoft-surface-duo2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+similarity index 99%
+rename from arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
+rename to arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+index dd79671f5614..a43d4b73ffca 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+@@ -3,8 +3,6 @@
+  * Copyright (c) 2022, 2023 Jianhua Lu <lujianhua000@gmail.com>
+  */
  
-+config CLK_BCM63268_TIMER
-+	bool "Broadcom BCM63268 timer clock and reset support"
-+	depends on BMIPS_GENERIC || COMPILE_TEST
-+	default BMIPS_GENERIC
-+	select RESET_CONTROLLER
-+	help
-+	  Enable timer clock and reset support for Broadcom BCM63268 DSL SoCs
-+	  based on the MIPS architecture.
-+
- config CLK_BCM_KONA
- 	bool "Broadcom Kona CCU clock support"
- 	depends on ARCH_BCM_MOBILE || COMPILE_TEST
-diff --git a/drivers/clk/bcm/Makefile b/drivers/clk/bcm/Makefile
-index edb66b44cb27..d0b6f4b1fb08 100644
---- a/drivers/clk/bcm/Makefile
-+++ b/drivers/clk/bcm/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_CLK_BCM_63XX)	+= clk-bcm63xx.o
- obj-$(CONFIG_CLK_BCM_63XX_GATE)	+= clk-bcm63xx-gate.o
-+obj-$(CONFIG_CLK_BCM63268_TIMER) += clk-bcm63268-timer.o
- obj-$(CONFIG_CLK_BCM_KONA)	+= clk-kona.o
- obj-$(CONFIG_CLK_BCM_KONA)	+= clk-kona-setup.o
- obj-$(CONFIG_CLK_BCM_KONA)	+= clk-bcm281xx.o
-diff --git a/drivers/clk/bcm/clk-bcm63268-timer.c b/drivers/clk/bcm/clk-bcm63268-timer.c
-new file mode 100644
-index 000000000000..3631a343f0a4
---- /dev/null
-+++ b/drivers/clk/bcm/clk-bcm63268-timer.c
-@@ -0,0 +1,215 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * BCM63268 Timer Clock and Reset Controller Driver
-+ *
-+ * Copyright (C) 2023 Álvaro Fernández Rojas <noltari@gmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+
-+#include <dt-bindings/clock/bcm63268-clock.h>
-+
-+#define BCM63268_TIMER_RESET_SLEEP_MIN_US	10000
-+#define BCM63268_TIMER_RESET_SLEEP_MAX_US	20000
-+
-+struct bcm63268_tclkrst_hw {
-+	void __iomem *regs;
-+	spinlock_t lock;
-+
-+	struct reset_controller_dev rcdev;
-+	struct clk_hw_onecell_data data;
-+};
-+
-+struct bcm63268_tclk_table_entry {
-+	const char * const name;
-+	u8 bit;
-+};
-+
-+static const struct bcm63268_tclk_table_entry bcm63268_timer_clocks[] = {
-+	{
-+		.name = "ephy1",
-+		.bit = BCM63268_TCLK_EPHY1,
-+	}, {
-+		.name = "ephy2",
-+		.bit = BCM63268_TCLK_EPHY2,
-+	}, {
-+		.name = "ephy3",
-+		.bit = BCM63268_TCLK_EPHY3,
-+	}, {
-+		.name = "gphy1",
-+		.bit = BCM63268_TCLK_GPHY1,
-+	}, {
-+		.name = "dsl",
-+		.bit = BCM63268_TCLK_DSL,
-+	}, {
-+		.name = "wakeon_ephy",
-+		.bit = BCM63268_TCLK_WAKEON_EPHY,
-+	}, {
-+		.name = "wakeon_dsl",
-+		.bit = BCM63268_TCLK_WAKEON_DSL,
-+	}, {
-+		.name = "fap1_pll",
-+		.bit = BCM63268_TCLK_FAP1,
-+	}, {
-+		.name = "fap2_pll",
-+		.bit = BCM63268_TCLK_FAP2,
-+	}, {
-+		.name = "uto_50",
-+		.bit = BCM63268_TCLK_UTO_50,
-+	}, {
-+		.name = "uto_extin",
-+		.bit = BCM63268_TCLK_UTO_EXTIN,
-+	}, {
-+		.name = "usb_ref",
-+		.bit = BCM63268_TCLK_USB_REF,
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+
-+static inline struct bcm63268_tclkrst_hw *
-+to_bcm63268_timer_reset(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct bcm63268_tclkrst_hw, rcdev);
-+}
-+
-+static int bcm63268_timer_reset_update(struct reset_controller_dev *rcdev,
-+				unsigned long id, bool assert)
-+{
-+	struct bcm63268_tclkrst_hw *reset = to_bcm63268_timer_reset(rcdev);
-+	unsigned long flags;
-+	uint32_t val;
-+
-+	spin_lock_irqsave(&reset->lock, flags);
-+	val = __raw_readl(reset->regs);
-+	if (assert)
-+		val &= ~BIT(id);
-+	else
-+		val |= BIT(id);
-+	__raw_writel(val, reset->regs);
-+	spin_unlock_irqrestore(&reset->lock, flags);
-+
-+	return 0;
-+}
-+
-+static int bcm63268_timer_reset_assert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	return bcm63268_timer_reset_update(rcdev, id, true);
-+}
-+
-+static int bcm63268_timer_reset_deassert(struct reset_controller_dev *rcdev,
-+				  unsigned long id)
-+{
-+	return bcm63268_timer_reset_update(rcdev, id, false);
-+}
-+
-+static int bcm63268_timer_reset_reset(struct reset_controller_dev *rcdev,
-+			       unsigned long id)
-+{
-+	bcm63268_timer_reset_update(rcdev, id, true);
-+	usleep_range(BCM63268_TIMER_RESET_SLEEP_MIN_US,
-+		     BCM63268_TIMER_RESET_SLEEP_MAX_US);
-+
-+	bcm63268_timer_reset_update(rcdev, id, false);
-+	/*
-+	 * Ensure component is taken out reset state by sleeping also after
-+	 * deasserting the reset. Otherwise, the component may not be ready
-+	 * for operation.
-+	 */
-+	usleep_range(BCM63268_TIMER_RESET_SLEEP_MIN_US,
-+		     BCM63268_TIMER_RESET_SLEEP_MAX_US);
-+
-+	return 0;
-+}
-+
-+static int bcm63268_timer_reset_status(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	struct bcm63268_tclkrst_hw *reset = to_bcm63268_timer_reset(rcdev);
-+
-+	return !(__raw_readl(reset->regs) & BIT(id));
-+}
-+
-+static struct reset_control_ops bcm63268_timer_reset_ops = {
-+	.assert = bcm63268_timer_reset_assert,
-+	.deassert = bcm63268_timer_reset_deassert,
-+	.reset = bcm63268_timer_reset_reset,
-+	.status = bcm63268_timer_reset_status,
-+};
-+
-+static int bcm63268_tclk_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct bcm63268_tclk_table_entry *entry;
-+	struct bcm63268_tclkrst_hw *hw;
-+	struct clk_hw *clk;
-+	u8 maxbit = 0;
-+	int i, ret;
-+
-+	for (entry = bcm63268_timer_clocks; entry->name; entry++)
-+		maxbit = max(maxbit, entry->bit);
-+	maxbit++;
-+
-+	hw = devm_kzalloc(&pdev->dev, struct_size(hw, data.hws, maxbit),
-+			  GFP_KERNEL);
-+	if (!hw)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, hw);
-+
-+	spin_lock_init(&hw->lock);
-+
-+	hw->data.num = maxbit;
-+	for (i = 0; i < maxbit; i++)
-+		hw->data.hws[i] = ERR_PTR(-ENODEV);
-+
-+	hw->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(hw->regs))
-+		return PTR_ERR(hw->regs);
-+
-+	for (entry = bcm63268_timer_clocks; entry->name; entry++) {
-+		clk = devm_clk_hw_register_gate(dev, entry->name, NULL, 0,
-+						hw->regs, entry->bit,
-+						CLK_GATE_BIG_ENDIAN,
-+						&hw->lock);
-+		if (IS_ERR(clk))
-+			return PTR_ERR(clk);
-+
-+		hw->data.hws[entry->bit] = clk;
-+	}
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					  &hw->data);
-+	if (ret)
-+		return ret;
-+
-+	hw->rcdev.of_node = dev->of_node;
-+	hw->rcdev.ops = &bcm63268_timer_reset_ops;
-+
-+	ret = devm_reset_controller_register(dev, &hw->rcdev);
-+	if (ret)
-+		dev_err(dev, "Failed to register reset controller\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id bcm63268_tclk_dt_ids[] = {
-+	{ .compatible = "brcm,bcm63268-timer-clocks" },
-+	{ /* sentinel */ }
-+};
-+
-+static struct platform_driver bcm63268_tclk = {
-+	.probe = bcm63268_tclk_probe,
-+	.driver = {
-+		.name = "bcm63268-timer-clock",
-+		.of_match_table = bcm63268_tclk_dt_ids,
-+	},
-+};
-+builtin_platform_driver(bcm63268_tclk);
+-/dts-v1/;
+-
+ #include <dt-bindings/arm/qcom,ids.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sm8250.dtsi"
+@@ -24,8 +22,6 @@
+ /delete-node/ &xbl_aop_mem;
+ 
+ / {
+-	model = "Xiaomi Mi Pad 5 Pro";
+-	compatible = "xiaomi,elish", "qcom,sm8250";
+ 	classis-type = "tablet";
+ 
+ 	/* required for bootloader to select correct board */
 -- 
-2.30.2
+2.39.2
 
