@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC656C5349
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 19:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 332856C5363
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 19:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbjCVSI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 14:08:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51748 "EHLO
+        id S230389AbjCVSO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 14:14:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230330AbjCVSI5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 14:08:57 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB3E464266
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:08:55 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id r11so76483743edd.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:08:55 -0700 (PDT)
+        with ESMTP id S230283AbjCVSO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 14:14:59 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F6262334
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:14:57 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id hf2so19619057qtb.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:14:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679508534;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=efy9PKfpLxHwXoRkKT9c57jf502aS45DWUwaYChmv3M=;
-        b=nMjZUipw4m+UfTlCL+89LSz3JAzS5Irv8WcL80yEquTb9hhz46TjiSg3fLytI5ZUNG
-         BxMdeDuOH0DUt0QnqpEA+vkbqfKDqfcJsdFsCwWhlfv3o0Z93kniOzoZT1M6Ci55ERYY
-         K3f3ToaHpBL4dFxe02pc/8vBg1tXHFMBEjD0AEH1kHMAGWRYznNmTFhWqkeaRSUaYQv5
-         +Jqr7fIvyhtLXdgWg05ncPsr9oXxUE1ZSdUHiDUJJg58Bc+/qgRm+B6V9lEczCOI36oc
-         vzyw54/mZQmkfRH6tj2y2dDXh5hQytiSYCDditzT+G7FF6jLLckI3SQFxkCd2H3Ix1lL
-         efWA==
+        d=chromium.org; s=google; t=1679508896;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mv/fhOOQ5K5aUx1ATfnJVpvBsiQzQ1dAgrwhuKG15KE=;
+        b=JPaYTWYPShpC7YBN55hC2xNu5ZwkVWGDWMzLWemCp02wGcvGE/9X5imOGV8xe/OhGW
+         74lYjAGxXM0WuLbKK2BajbfYlcbtMT0iBq0+RUFpHUtLK7wTECFUS2NTJM4e8mJTfvWG
+         TjLEGOI0edERLvhBq4ZorAUTWZ10cXcoSKVjo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679508534;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=efy9PKfpLxHwXoRkKT9c57jf502aS45DWUwaYChmv3M=;
-        b=0PUcKtVxCAW1VcMtUXZOCZ9ZWpXaVDb2UyLEsnptDxQ15t7xFR0FX68kpC9T4ZDF9d
-         2AWARpzD+Yz0i6UA7wwYI9irHIk4YrclwrYH9BkyR+U1InnAO0sHQa6mrmbkjM8kA6WH
-         7x3O5EMVM8c6kr1TR/O0W6M04GAeiPyjxIdLxYp+kvRHAG4Nz5xw1CrVnop8fmgcJQ7l
-         UzH62nrfwAYSzZfguL0LdqmjSZNQfsG8+eGMc35GPGa6GK+ag9mrsuRJgiKN9NPJ3dd2
-         1KAwHot6upToLcWGTrmkVOMHsJVD/bKVF/yWpD85ff/U9/i4mbMCgNpTQV0NJNCmwTpQ
-         CEgg==
-X-Gm-Message-State: AO0yUKVp3mvbVNFvCznUdu4PbeFj2MiTAn7/RTQryIQpkDsDBGNxxle0
-        8p2sJjD/HJuQAn6+wkZZknCf6g==
-X-Google-Smtp-Source: AK7set806QR7cYKaw2c+3n3tISo/rS4EKSg4WQqQEe/dhW2HTKlRrJw8XEoyvVzndwghnytWpcr9Sg==
-X-Received: by 2002:a17:907:6ea9:b0:93b:2d0b:b60e with SMTP id sh41-20020a1709076ea900b0093b2d0bb60emr4396480ejc.74.1679508534368;
-        Wed, 22 Mar 2023 11:08:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id v19-20020a17090651d300b0092b86d41dbasm7561738ejk.114.2023.03.22.11.08.53
+        d=1e100.net; s=20210112; t=1679508896;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mv/fhOOQ5K5aUx1ATfnJVpvBsiQzQ1dAgrwhuKG15KE=;
+        b=rTyx4iYoK8YlGLZyuLwj1rtGaDUO2b8cCCliUjr2kcJF9d4D/FNLS9zkurkNW4rp0t
+         wHXb9W+dhmG1vig41BPsMc1AYy8I7jZV1FTtAWcGS6ptbKRcXnKVObz+0FKcu8HLnShK
+         ZjPCfltksfbMW64DueT7hqg20zptz04E250gBC6Ij0Y5/bVPJ2dUNczl09S86H+HtizD
+         gtVM+y5mF9vake8DrlZ11eQ2kV6yrgk1bwpm03cAl25MxoiTUgEIkCST2Jj3ksOc5p5t
+         UEKtvFr+TEuzX7Nh7Ze4y/S7sNr6DgIy8ezdX3d/wukUeCH+0WqZo9KP8UHPdHehtFsR
+         sFZw==
+X-Gm-Message-State: AO0yUKUR25MKbB/J+wdAXbC8EwidsH8x3gZrYnU+rQzCWhoAxK/gNZNK
+        iuITwJW8425aYbZSTskuqKj6IqyZsjnoqOjj+FQ=
+X-Google-Smtp-Source: AK7set9WBgKKKlEX8GBDSRP477vr2F17fZsz/urTFl2yBatn//0gWCeEhr34u+DfrvD1GwX1C9duuw==
+X-Received: by 2002:a05:622a:83:b0:3bf:cfaa:737e with SMTP id o3-20020a05622a008300b003bfcfaa737emr8799684qtw.23.1679508896298;
+        Wed, 22 Mar 2023 11:14:56 -0700 (PDT)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id x14-20020ac8538e000000b003e38d6c013dsm1068796qtp.60.2023.03.22.11.14.53
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 11:08:53 -0700 (PDT)
-Message-ID: <ad39709b-5e1a-8659-8bbd-cb28e2e6366a@linaro.org>
-Date:   Wed, 22 Mar 2023 19:08:52 +0100
+        Wed, 22 Mar 2023 11:14:53 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id e71so22126037ybc.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:14:52 -0700 (PDT)
+X-Received: by 2002:a05:6902:1083:b0:b69:ca6f:452c with SMTP id
+ v3-20020a056902108300b00b69ca6f452cmr531063ybu.0.1679508892480; Wed, 22 Mar
+ 2023 11:14:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: Move elish dts to common dtsi
-Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>,
-        Andy Gross <agross@kernel.org>,
+References: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230217155838.848403-1-krzysztof.kozlowski@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 22 Mar 2023 11:14:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XTJsrnPszQ6GHMqYm0hUedA+N126jDSm2uVyVZ+L1e1Q@mail.gmail.com>
+Message-ID: <CAD=FV=XTJsrnPszQ6GHMqYm0hUedA+N126jDSm2uVyVZ+L1e1Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc7180-trogdor-pazquel360: drop
+ incorrect RT5682S VBAT-supply
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230322171555.2154-1-lujianhua000@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322171555.2154-1-lujianhua000@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,33 +82,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 18:15, Jianhua Lu wrote:
-> There are two panel variants of xiaomi-elish, BOE and CSOT panels.
-> In order to support both panels, so move elish dts to common dtsi.
-> 
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+Hi,
+
+On Fri, Feb 17, 2023 at 7:58=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> It seems that the RT5682S codec does not use VBAT-supply:
+>
+>   sc7180-trogdor-pazquel360-lte.dtb: codec@1a: Unevaluated properties are=
+ not allowed ('VBAT-supply' was unexpected)
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
 > ---
-> Changes in v2:
->   - Remove sm8250-xiaomi-elish.dtb to avoid build failure.
-> 
->  arch/arm64/boot/dts/qcom/Makefile                             | 1 -
->  ...m8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} | 4 ----
->  2 files changed, 5 deletions(-)
->  rename arch/arm64/boot/dts/qcom/{sm8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} (99%)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 1a29403400b7..8d2b3c57a4a8 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -183,7 +183,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
-> -dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish.dtb
+>
+> I don't have access to datasheet. Driver still requests VBAT-supply but
+> other boards simply remove this property for RT5682S.
 
-This builds, but it is a loss of functionality. Instead the board should
-be renamed here to one of your final namings, e.g. boe.
+I checked and I don't see the driver requesting VBAT. Specifically
+note that this is the "s" variant which seems to share no code with
+the old variants (the "i" variant and the SDW variant).
 
-Best regards,
-Krzysztof
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 
+This seems right to me.
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
