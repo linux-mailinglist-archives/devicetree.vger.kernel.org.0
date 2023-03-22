@@ -2,140 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA32F6C5827
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 21:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8039D6C5872
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 22:06:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbjCVUwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 16:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56424 "EHLO
+        id S229754AbjCVVGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 17:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231226AbjCVUwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 16:52:07 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443E0421B;
-        Wed, 22 Mar 2023 13:50:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679518259; x=1711054259;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uabzrRActvWORDWX39WS5JMj9IpucxbkVMI4llVLkMk=;
-  b=QDUuHIcinZyJ+EKMBTc2stcun2bu8PRtBXq7zNZQ36WoZv+ewx1OQhB2
-   wJb+6LbK3YYcSTvlmCyc86hIoyn5ldC/bVho4/23aZc8NEHrDrKYDRHc3
-   WEOFTDrD2w3wfadUl9oIDl7fu7VD5AvJTFi6aAU6LfrC7c4kAK5JYNwb7
-   Q4vp2C84Lysp9Yf/zSpsYhFz0HGbgsGVO3+VkhjJC+XKRfG33Vn6Zb8H+
-   4cJRgSWdkTaxioaERShIcDfhV/1QyFnS65FYxMD9BcTfpzdf8qIR37d6r
-   w0ZfJDKU1mIomwp2dFqbNt/HUWuNdKlNIEAMAb1KcBb7OfcvuckcC/hTH
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="341688257"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; 
-   d="scan'208";a="341688257"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2023 13:50:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="682055417"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; 
-   d="scan'208";a="682055417"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 22 Mar 2023 13:50:54 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pf5Q6-000DeK-02;
-        Wed, 22 Mar 2023 20:50:54 +0000
-Date:   Thu, 23 Mar 2023 04:50:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229691AbjCVVGg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 17:06:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EAEE8A76;
+        Wed, 22 Mar 2023 14:06:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 255C6622DB;
+        Wed, 22 Mar 2023 21:06:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8BEBC433D2;
+        Wed, 22 Mar 2023 21:06:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679519166;
+        bh=IwqcGZUb+JAwQ49B5qlPxqjaSl7Z1L+y305zKBfg5xk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IPpZBwRMbkG1hrPfdnOcabVKfBq9aOmy9U0hxbSGokCQcO0A8voh1JNXTo9Ui92e7
+         +oAT/mkzC3IcamAvCYtXv0yTUIfBeDgEbC1MtOWfzRWSdLSQnaSLHdaV4FSCSe0TaZ
+         MgWIkW/D5X8HBrSCyZyol0h6+jAai0ufW/Qz0HupiQKtpHtQhG8C2btGprgZi5lbFX
+         XEETgsDVJW0AEOVdeeiRlES75/Q25qQBvRYyGWVWpeLAuCmv6YHGGG+PhdExIvkXaA
+         j5UADPATWWUwZYM8aOmlJMFlGbHg83GJ9xvkYI1IpGGjzsIqtCCV8lEJLLkmdqBKb6
+         dOtDrHnzD9i/g==
+Date:   Wed, 22 Mar 2023 21:06:00 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Hal Feng <hal.feng@starfivetech.com>, kernel@esmil.dk,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@sberdevices.ru, Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Subject: Re: [PATCH v1 2/2] spi: add support for Meson A1 SPI Flash Controller
-Message-ID: <202303230442.lGIrV8PZ-lkp@intel.com>
-References: <20230322150458.783901-3-mmkurbanov@sberdevices.ru>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 00/21] Basic clock, reset & device tree support for
+ StarFive JH7110 RISC-V SoC
+Message-ID: <a6358a5f-bbfd-4a14-a828-a3c28f82709a@spud>
+References: <20230320103750.60295-1-hal.feng@starfivetech.com>
+ <95f11f7c-611f-49a9-97e8-0de89846e430@spud>
+ <62b766cef78d95793af95f428693c359.sboyd@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qDgrhF5nMeMRIFyO"
 Content-Disposition: inline
-In-Reply-To: <20230322150458.783901-3-mmkurbanov@sberdevices.ru>
+In-Reply-To: <62b766cef78d95793af95f428693c359.sboyd@kernel.org>
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
 
-Thank you for the patch! Yet something to improve:
+--qDgrhF5nMeMRIFyO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test ERROR on broonie-spi/for-next]
-[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.3-rc3 next-20230322]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Tue, Mar 21, 2023 at 04:57:52PM -0700, Stephen Boyd wrote:
+> Quoting Conor Dooley (2023-03-21 16:03:54)
+> >=20
+> > If you're happy on the driver side of things, do you want to pick those
+> > patches up on top of the bindings and send a PR to Stephen?
+>=20
+> This sounds fine to me. Let me know if you plan to send a PR with the
+> starfive clk bits.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Martin-Kurbanov/dt-bindings-spi-add-binding-for-meson-spifc-a1/20230322-230744
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-patch link:    https://lore.kernel.org/r/20230322150458.783901-3-mmkurbanov%40sberdevices.ru
-patch subject: [PATCH v1 2/2] spi: add support for Meson A1 SPI Flash Controller
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230323/202303230442.lGIrV8PZ-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7d8d54cc0b563efb979caf17507b29c0bb3efde0
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Martin-Kurbanov/dt-bindings-spi-add-binding-for-meson-spifc-a1/20230322-230744
-        git checkout 7d8d54cc0b563efb979caf17507b29c0bb3efde0
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/
+Since it was off-list:
+Emil and I spoke about this briefly today at the weekly linux-riscv
+meeting, the upshot of which is that it is likely to be me, rather than
+him, sending you a PR as he's pretty busy at the moment.
+That said, Emil mentioned that he has some doubts as to whether the
+bindings are correct, and from taking a look - he's right, so there'll
+likely not be a PR just yet! I'll go leave a comment about that...
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303230442.lGIrV8PZ-lkp@intel.com/
+I've got no real desire to maintain these drivers going forward though,
+so perhaps Hal, or one of the other StarFive folks, can get themselves
+set up to send them to you going forwards?
 
-All errors (new ones prefixed by >>):
+Cheers,
+Conor.
 
-   drivers/spi/spi-meson-spifc-a1.c: In function 'a1_spifc_read':
->> drivers/spi/spi-meson-spifc-a1.c:204:16: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
-     204 |         val |= FIELD_PREP(A1_SPIFC_USER_DIN_MODE, mode);
-         |                ^~~~~~~~~~
-   cc1: some warnings being treated as errors
+--qDgrhF5nMeMRIFyO
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-vim +/FIELD_PREP +204 drivers/spi/spi-meson-spifc-a1.c
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZBttuAAKCRB4tDGHoIJi
+0ov6AQCours97BTI/h1YoGjIRSzsJumk9V2x34rQsvT3HtmqjwEAsc+9b9pMzD1r
+LJ0vwnpZibKnjwdjkP9faV1TdgSO7Ac=
+=SQwY
+-----END PGP SIGNATURE-----
 
-   196	
-   197	static int a1_spifc_read(struct a1_spifc *spifc, void *buf, u32 size, u32 mode)
-   198	{
-   199		u32 val = readl(spifc->base + A1_SPIFC_USER_CTRL3_REG);
-   200		int ret;
-   201	
-   202		val &= ~(A1_SPIFC_USER_DIN_MODE | A1_SPIFC_USER_DIN_BYTES);
-   203		val |= A1_SPIFC_USER_DIN_ENABLE;
- > 204		val |= FIELD_PREP(A1_SPIFC_USER_DIN_MODE, mode);
-   205		val |= FIELD_PREP(A1_SPIFC_USER_DIN_BYTES, size);
-   206		writel(val, spifc->base + A1_SPIFC_USER_CTRL3_REG);
-   207	
-   208		ret = a1_spifc_request(spifc, true);
-   209		if (!ret)
-   210			a1_spifc_drain_buffer(spifc, buf, size);
-   211	
-   212		return ret;
-   213	}
-   214	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+--qDgrhF5nMeMRIFyO--
