@@ -2,260 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 747006C40F3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 04:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 781216C41D5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 06:13:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbjCVDYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Mar 2023 23:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54482 "EHLO
+        id S229555AbjCVFNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 01:13:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbjCVDXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Mar 2023 23:23:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF014212;
-        Tue, 21 Mar 2023 20:23:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7886C61F2A;
-        Wed, 22 Mar 2023 03:23:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4149BC433D2;
-        Wed, 22 Mar 2023 03:23:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679455415;
-        bh=je02Z/TKE4O/HgMdaU8V9uRRkmAivYuVWu2gWGWp1iY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pZohNQV81zh/odMAFQ1lh/YKhqGwqhCliPbJZHaxK6C0p+2vuVOirQLTjTN6n7siK
-         FObABQf+U6hSlL634tN7kaWDthxXjBJBaXcF+3u9iHM3cUdPe4GYQax3liHVkZ14cu
-         G96xJnbnf78ILgy1oaeqmlDdVidgFPU9qCfAtGuGkpK3rYdY9YWp0PGpIpp7nkgmEK
-         Z6cEia9o68cIvdtVDAr9CWGB3sYHCYXNLD35h4Tr5S6BmtJlLZSHddgj/Hh0U+qPWg
-         g9JcPpN7NXmoECO2wuTYYQMbhZU4Zi1GrN0IWlztMLDWGtsRXDPcfU3UvorHxumBaM
-         ycJ12UdfF9sjQ==
-Date:   Tue, 21 Mar 2023 20:26:48 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: Remove "iommus" property from PCIe
- nodes
-Message-ID: <20230322032648.ti6v47cos65h3jey@ripper>
-References: <20230308075648.134119-1-manivannan.sadhasivam@linaro.org>
- <20230316023155.avkvmqrsrys22lge@ripper>
- <20230316055206.GA4386@thinkpad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        with ESMTP id S229452AbjCVFNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 01:13:47 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2052.outbound.protection.outlook.com [40.107.20.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472E850712;
+        Tue, 21 Mar 2023 22:13:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=d/bZKmhiJMrs8WXJMfp/76PWnh/glgMcIJr6ky6y3lDUtDVC8Yjy2zSY//Uns0K3cPHR8aGlKp1p55CvTxXZu6iZxbRI4hY8JVYSCU/6+kx1Nga7hgSqm+UxwOMSSztqWLo7+t6NtP2v775Kazw6Mqe52WFOBGzyf7hPqJImAVA56F4PIM3POKg462zxfzCqkmT4xbyWPgRHO22a17VDPJFRCY+g2+HYZqv81Yjy8KcZPoiYRxwa56xHW5BSfw/Oh+OmqruQibMLFpPRJB/MjbM8BJLGUW+jWS6BoHMM2Q4UkARWnv8wySeEEG18iiazYSqgefGjarnkn1oserTTCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wDH1mR+VhMofVtQNpd6NYflG2LChnMqq8vRh2iszNHo=;
+ b=WXnrfhmGgfR11lZ29u01fTOh2+boh1Q3e3oR8viKxxLPQqGEHFECxEZHX0+CSnZ0EoBKQ2Z/foRSsFNeEnAtaxCL+gV96aiki7R9przRCWLxSHxr+cDxSp3mwWjsD/J+Od+chuQ6cYR1ymEKM7w0/PRXQlZx1nOb45hE14o08laBLUB3PGBhfH84n2LNwrrA9ev6nSWUvRegtHbwsdQLuhhEkLMPJVlsUbw3LESfucvxWNmOsI2HNuun0a+TP89eM1kfIHF9JJjku27etD1sPft5V9jRlBcbMAGyZwqMlEgDgVOn/p6k/FaVJ56hpaKplPEmkbOSPiJo4nyiYEnVEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wDH1mR+VhMofVtQNpd6NYflG2LChnMqq8vRh2iszNHo=;
+ b=Ojm4Gf1grQvqw3pwsTv+A0Tex71NLmpbxY14w1j2ZnN10RJZ0O7ZuL8sT/87J1owkaN0BBMOMiZvxQaFUw4ePULaamOg1bgb+5XDte4QP9QntGYKvaejaOjF4a5A6Rf0L/AiGi7gWyBfnzKdFzlbbmsIQvQrgYTqJhw1wWiEeNY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM9PR04MB8100.eurprd04.prod.outlook.com (2603:10a6:20b:3e3::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Wed, 22 Mar
+ 2023 05:13:43 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::89aa:9204:790d:e46b]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::89aa:9204:790d:e46b%5]) with mapi id 15.20.6178.037; Wed, 22 Mar 2023
+ 05:13:42 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
+        hverkuil-cisco@xs4all.nl
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 00/10] media: imx-jpeg: Add support for 12 bit extended jpeg
+Date:   Wed, 22 Mar 2023 13:13:03 +0800
+Message-Id: <cover.1679461709.git.ming.qian@nxp.com>
+X-Mailer: git-send-email 2.38.1
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230316055206.GA4386@thinkpad>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0021.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::14) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6341:EE_|AM9PR04MB8100:EE_
+X-MS-Office365-Filtering-Correlation-Id: 717cf8da-5d9d-4f4a-7dde-08db2a943474
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yPvFmWlIT8EMpZM1X7Wk6MlDTzRFMucrtwhmbD3gvS2SC/S9QLT+z09BtJYr62otSmtKvfUb/DpA9xnjlq6fVfM2wbRHkYtOWcFiMLZlLp+BbIF7nt2W4CjGHWdlJBEsObf0MveEyPm4XvfR3xlbqFTCTW8Bhv91v9JwTO5HFUJhs2hwX7y8TZB+z96LNQWqA3n3etSEedsuEFt74fC1GY7stY6XlEx3q2O2zHAJ5EQmcj2ncOPVCItIHoxLqJEVPjQMKD1uX8x6zmxAFUWsT4S/JLM5+dUUzvnVyRhTSqKR4MbENR0J184gtKY+Obv5ihvZuY2V0qULW1JptRWWVCiuNl9HxE5IaNY7lsMqE99KqXgYtccwrBgNYN2V5oaPKpTyemby0831LB1SMLfjmLwYAnj7h0UEeHntJPb8P7uPzb0gea2gNgX9jpgNuHD6nMhB7au8ZkSk2S2FfZ0TjkKNhJhRtQblZlrxOYS2WU+YmqIMxo+L7BksRI179NyeFP12VrPoEEP8Txqdvx5r8v/ukpyCypL1F+Z5EtgO/SS/V7xphWhfKQZXCyLit8kYCUomdz49qX1hLhOlmLcfwFxEkLPNSBSIGBx3xAnUoE1Fp9eONJ9FmPnOAI/yzfgUXq/T9UumXcbaCx0FSwpB9vjiwKUCD6Dl4ymY/9tqGw0IrnV+WEsDV28FyhbDLRT90zhM6snJ0V05VewlewDMsA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(346002)(366004)(136003)(39860400002)(376002)(396003)(451199018)(6486002)(66556008)(41300700001)(52116002)(66476007)(7416002)(478600001)(66946007)(5660300002)(8936002)(8676002)(316002)(44832011)(4326008)(36756003)(86362001)(6506007)(6512007)(186003)(26005)(6666004)(2616005)(2906002)(38350700002)(38100700002)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yjj1C8xhzRrXKH6OcZhTSzqtMpDQqkmOqG6FHr9Jy0J+UN+gOSLAJKGyVzAg?=
+ =?us-ascii?Q?+pWB3KnFQP2ye59IFcXLSNgvkoWSiz20SFGFVcZ23YbNAINn0SjdC8s/Hdz7?=
+ =?us-ascii?Q?IyLGloD72JmfbAppAKGnxFH6QLpRoxEHIe/2GVVpu4vVAUAU/xfLBpazzp9a?=
+ =?us-ascii?Q?Tgi6kJWOF1WXndAt6wmCe8s19sUgUKE+hA+CY32A44npBvXoW2JmdOBuPxGU?=
+ =?us-ascii?Q?80uZAd248wDWAMd4kZlhN2fDiQY0129YZQe8cPphRKvogOWuOlGB1OGbZxZu?=
+ =?us-ascii?Q?8QpVtZW3b/rwH23Om77E8nDITGexQ0wuT4BE5z1nlUGG6jUDqbteeCSLGqkM?=
+ =?us-ascii?Q?TSEW1DGFokeTuUqxt8lofJFMcF9TA2ip4l13VpmYcBB7+Kn2UjCWPQwPLX10?=
+ =?us-ascii?Q?r6/QoTC49vl9CJIl6TuPypb0qBU1KgwueSO/nDGJEbGDP/TWz4DxFnPkeY0U?=
+ =?us-ascii?Q?I82x4te1vVw2tac6Kd8PYzt1uD0+mZLVue5ln/AEjl+Sm9vt6NDkR5n6p0IX?=
+ =?us-ascii?Q?7Xer7bTb4RU872xK+VrHk6143zKdERxDpSystsBkOHS+448PpromNrMjdd1r?=
+ =?us-ascii?Q?rPvS8sfwbfp27RNQUXQXZxhWxbabVjVAnd4IO7ChR4eg0hfFLYCOH2dxqkUE?=
+ =?us-ascii?Q?7YioWH0GFVmfqtYUi/cllmo/aNlk8pEspsbpmAvpKMtu7xjKUdpG6lCmtlKd?=
+ =?us-ascii?Q?MuTjaXsvyjZsdA7l8LgPRH+l3xhoawoaCfXQW/wNPZPHOA96ILNiObmKQevH?=
+ =?us-ascii?Q?WCn6jqPpktPPU/42EZxKX5cSllz5mTLqDFYxa8sDc8pOi2T63oVXljJ/ETP6?=
+ =?us-ascii?Q?DkiB2TediXVuSNNbdIwhJVWkPOA9zvbe0a8/HXCyUMwAkUGSnIfr6kYCW8Vg?=
+ =?us-ascii?Q?G8lZAEwMEdbqRN2gqqRUV5OFZZ+6+u9stkzFCR6aPFtikIbxJWMOu8JH1KRF?=
+ =?us-ascii?Q?95tJ7Hty6l+9CCeh6LO5AT8ZjaFMjBdMtqe5moLkwCj7R0fosUFQfzToKQuE?=
+ =?us-ascii?Q?ZDBF8r5+uvpbHMf/Xeqj4R94ra04AluqUh3jFSeO/3wysdL6JFaM2hwISi1t?=
+ =?us-ascii?Q?2MeCG9G5m1HI56Rybua4O9LRp0PetoatOuDfH8UBi6PmoXaWNai4Xjwe1JBr?=
+ =?us-ascii?Q?MyirQGfjPaqTH1Of+L3n8fr5TKJGTYnp11dUSmghnpdnZZJGP+2VjY3+Rssq?=
+ =?us-ascii?Q?VHSDqw66e1+MPnQXPEd3E6kOB0HYoRwCrs6tYoeoCUTe+MHpGFEdon/pnV6i?=
+ =?us-ascii?Q?IgI9envHt3GL4ZDvjVtTrsbnRhh74sRrbaC54JhuLYS+Zy+0/GWNkwY4Olad?=
+ =?us-ascii?Q?8bL5WXtEGVMWdAv8/72j05+o5uosCMAWSrBfUD3YUIyCsATU/Cpl3z0qIidK?=
+ =?us-ascii?Q?a4J/6wlKiDdOX/rapaWPXt9E3CJn7DWAzTy9uMQOk1gUjqBab21REUfsFNjT?=
+ =?us-ascii?Q?dAtbP6rq8OBe4svbEJobqE64/qAy6Z4G3ZS1+c3n2DoOqhZqDhuPv13Aw7T6?=
+ =?us-ascii?Q?D8njUeWj1CmD7dk5bl1DPCB5ZiTvXbpkvNC58avJhthCrvAl/+GC1eIkWGOV?=
+ =?us-ascii?Q?fvch6ElfqNmiX0ztFKl2QAcUKWQB7OBP4fCw2iff?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 717cf8da-5d9d-4f4a-7dde-08db2a943474
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 05:13:42.8508
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NwxsIm+fvibYCMVJiY7z0K/14S7lL8tufKw9960pAygzpQNTFO2edZH4u/nUB/nf9bXo6KHVLsfq+wyUuECYTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8100
+X-Spam-Status: No, score=1.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 16, 2023 at 11:22:06AM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Mar 15, 2023 at 07:31:55PM -0700, Bjorn Andersson wrote:
-> > On Wed, Mar 08, 2023 at 01:26:48PM +0530, Manivannan Sadhasivam wrote:
-> > > Currently, most of the Qualcomm SoCs specify both "iommus" and "iommu-map"
-> > > properties for the PCIe nodes. First one passes the SMR mask to the iommu
-> > > driver and the latter specifies the SID for each PCIe device.
-> > > 
-> > > But with "iommus" property, the PCIe controller will be added to the
-> > > iommu group along with the devices. This makes no sense because the
-> > > controller will not initiate any DMA transaction on its own. And moreover,
-> > > it is not strictly required to pass the SMR mask to the iommu driver. If
-> > > the "iommus" property is not present, then the default mask of "0" would be
-> > > used which should work for all PCIe devices.
-> > > 
-> > > On the other side, if the SMR mask specified doesn't match the one expected
-> > > by the hypervisor, then all the PCIe transactions will end up triggering
-> > > "Unidentified Stream Fault" by the SMMU.
-> > > 
-> > > So to get rid of these hassles and also prohibit PCIe controllers from
-> > > adding to the iommu group, let's remove the "iommus" property from PCIe
-> > > nodes.
-> > > 
-> > > Reported-by: Rob Herring <robh@kernel.org>
-> > > Link: https://lore.kernel.org/linux-arm-msm/20230227195535.GA749409-robh@kernel.org
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > 
-> > Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> > 
-> 
-> I believe you are waiting for me to respin this patch on top of -next?
-> 
+the imx8 jpeg codec support ISO/IEC 10918-1 Standard Baseline and
+Extended Sequential DCT modes.
+it can support 8-bit and 12-bit per color samples.
+Currently we only enable the 8-bit jpeg,
+and we can enable the 12-bit extended jpeg
+with the new defined 12 bit pixel format.
 
-No that's fine, the conflict is trivial.
+v5
+- fix some description typo according to Hans's comments
 
-It caused a merge conflict with the sm8150 change in my fixes branch, so
-I was just going to propagate that change and merge it back before
-picking this up...
+v4
+- drop format yuyv64_12, use Y212 directly
 
-Regards,
-Bjorn
+v3
+- correct the new 12-bit format naming according to Nicolas's comments
 
-> Thanks,
-> Mani
-> 
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
-> > >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
-> > >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 --
-> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ---
-> > >  arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 --
-> > >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 --
-> > >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 --
-> > >  7 files changed, 15 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index 8f4ab6bd2886..9f7269029a02 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -2133,8 +2133,6 @@ pcie1: pci@1c08000 {
-> > >  
-> > >  			dma-coherent;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c80 0x1>;
-> > > -
-> > >  			iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c81 0x1>;
-> > >  
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > index 479859bd8ab3..5f110b0062d9 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > @@ -2319,7 +2319,6 @@ pcie0: pci@1c00000 {
-> > >  				      "slave_q2a",
-> > >  				      "tbu";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c10 0xf>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c10 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c11 0x1>,
-> > >  				    <0x200 &apps_smmu 0x1c12 0x1>,
-> > > @@ -2429,7 +2428,6 @@ pcie1: pci@1c08000 {
-> > >  			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
-> > >  			assigned-clock-rates = <19200000>;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c00 0xf>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c01 0x1>,
-> > >  				    <0x200 &apps_smmu 0x1c02 0x1>,
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > index 13e0ce828606..6a383e918329 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > @@ -1826,7 +1826,6 @@ pcie0: pci@1c00000 {
-> > >  				      "slave_q2a",
-> > >  				      "tbu";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1d80 0x3f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1d80 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1d81 0x1>;
-> > >  
-> > > @@ -1925,7 +1924,6 @@ pcie1: pci@1c08000 {
-> > >  			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
-> > >  			assigned-clock-rates = <19200000>;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1e00 0x3f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1e00 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1e01 0x1>;
-> > >  
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > index 2f0e460acccd..c7682fda9d8c 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > @@ -1871,7 +1871,6 @@ pcie0: pci@1c00000 {
-> > >  				      "tbu",
-> > >  				      "ddrss_sf_tbu";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c00 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c01 0x1>;
-> > >  
-> > > @@ -1977,7 +1976,6 @@ pcie1: pci@1c08000 {
-> > >  			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
-> > >  			assigned-clock-rates = <19200000>;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c80 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c81 0x1>;
-> > >  
-> > > @@ -2085,7 +2083,6 @@ pcie2: pci@1c10000 {
-> > >  			assigned-clocks = <&gcc GCC_PCIE_2_AUX_CLK>;
-> > >  			assigned-clock-rates = <19200000>;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1d00 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1d00 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1d01 0x1>;
-> > >  
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> > > index 1c97e28da6ad..365b9d773b5c 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> > > @@ -1526,7 +1526,6 @@ pcie0: pci@1c00000 {
-> > >  				      "aggre1",
-> > >  				      "aggre0";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c00 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c01 0x1>;
-> > >  
-> > > @@ -1610,7 +1609,6 @@ pcie1: pci@1c08000 {
-> > >  				      "ddrss_sf_tbu",
-> > >  				      "aggre1";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c80 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c81 0x1>;
-> > >  
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > index 1a744a33bcf4..e3201b1b07a5 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > > @@ -1790,7 +1790,6 @@ pcie0: pci@1c00000 {
-> > >  				      "aggre0",
-> > >  				      "aggre1";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c00 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c01 0x1>;
-> > >  
-> > > @@ -1904,7 +1903,6 @@ pcie1: pci@1c08000 {
-> > >  				      "ddrss_sf_tbu",
-> > >  				      "aggre1";
-> > >  
-> > > -			iommus = <&apps_smmu 0x1c80 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1c81 0x1>;
-> > >  
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > index 25f51245fe9b..6edb3acb91ef 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> > > @@ -1692,7 +1692,6 @@ pcie0: pci@1c00000 {
-> > >  			interconnect-names = "pcie-mem";
-> > >  			interconnects = <&pcie_noc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1400 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1401 0x1>;
-> > >  
-> > > @@ -1796,7 +1795,6 @@ pcie1: pci@1c08000 {
-> > >  			interconnect-names = "pcie-mem";
-> > >  			interconnects = <&pcie_noc MASTER_PCIE_1 0 &mc_virt SLAVE_EBI1 0>;
-> > >  
-> > > -			iommus = <&apps_smmu 0x1480 0x7f>;
-> > >  			iommu-map = <0x0   &apps_smmu 0x1480 0x1>,
-> > >  				    <0x100 &apps_smmu 0x1481 0x1>;
-> > >  
-> > > -- 
-> > > 2.25.1
-> > > 
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+v2
+- correct the new 12-bit format naming according to Hans's comments
+
+Ming Qian (10):
+  media: Add P012 and P012M video format
+  media: Add Y012 video format
+  media: Add Y212 v4l2 format info
+  media: Add YUV48_12 video format
+  media: Add BGR48_12 video format
+  media: Add ABGR64_12 video format
+  media: imx-jpeg: Refine the function mxc_jpeg_find_format
+  media: imx-jpeg: Clear slot next desc ptr if config error
+  media: imx-jpeg: Decoder add support for 12bit jpeg
+  media: imx-jpeg: Encoder add support for 12bit jpeg
+
+ .../media/v4l/pixfmt-packed-yuv.rst           |  28 ++
+ .../userspace-api/media/v4l/pixfmt-rgb.rst    |  42 +++
+ .../media/v4l/pixfmt-yuv-luma.rst             |  15 +
+ .../media/v4l/pixfmt-yuv-planar.rst           |  94 +++++
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c |  19 +-
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h |   5 +-
+ .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 326 ++++++++++++++++--
+ drivers/media/v4l2-core/v4l2-common.c         |   6 +
+ drivers/media/v4l2-core/v4l2-ioctl.c          |   6 +
+ include/uapi/linux/videodev2.h                |   8 +
+ 10 files changed, 523 insertions(+), 26 deletions(-)
+
+-- 
+2.38.1
+
