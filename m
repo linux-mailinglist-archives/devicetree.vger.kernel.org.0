@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA12D6C44B2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BF656C44D9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:25:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229813AbjCVIQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 04:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36162 "EHLO
+        id S229973AbjCVIZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 04:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbjCVIQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:16:51 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A66165C123
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:16:49 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id cn12so23761152edb.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:16:49 -0700 (PDT)
+        with ESMTP id S229789AbjCVIZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:25:02 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F026D51F
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:24:59 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id h8so69455072ede.8
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:24:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679473008;
+        d=linaro.org; s=google; t=1679473498;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qXeMOsufe8hSFgTPxUltIiAHXtjsyiMFaKXE2Z0rVtc=;
-        b=UOQ3t5C0nu5cx0SLEhSzRiJDhCU4o1AERxtqslmrrJ0Msz/J5gwFEFw5SPNfDf3KQn
-         xE8TZAAVZ8fS3liTuyv0ta/JFMbECbDkvvkyz88nO55zspV8ldwXdmtnd3sN66Anfx//
-         gT+LLvfMCH+yZTQ/5XFkNhajC1H4ZNKSin80mFepu6TT2IFc9ZmxJKNz8mTJQXk03Apb
-         Z1Iv9Fn1f1r66Sn/4Gnr4CtInurCPgbAvi2SGHK05g3CSGYqv7VCKsyRop5hQvTeDV41
-         9cI7oU9hpyLQniI6w3SbChM03RVI5NJIrFBUM5Wf2WvH4m3n/o6tJK8CvmFWJsMlB9gi
-         T+Bw==
+        bh=szoZw3xvlaA8/xVMQ7gPUlc6BTRG3JxqG4Ue5578gh8=;
+        b=D8ixaQuHPM1so5P6msuMk3k2tOzaWMpYyFyf6dSVUmxV7RgYiqUd8Mxlif2f8zI+Mf
+         Wng3clmtwujrvveIwUo1d91T7dAdMWnkQ9W3lVWnX+TB70HbuHYHovpZkIz5vp0Jp+pR
+         s68+VJPftQdJUsTdZhVc2NzC80bxC1sI2R//FZKffVn3+tRrBy03W/35uJpZmfMzNm9I
+         K7scbA1RKZ04H6dVBI+vjCFkALFx44GtA1qs1WR5ywYMa740uHZS8nb1K4IKNUqLLQ4X
+         +0+BXV33JgeEpgQ/bpD94QFqcrGlUL2Q7kWNbEPWNZa7aAuupqITyZB99CchT59ECmwK
+         JQYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679473008;
+        d=1e100.net; s=20210112; t=1679473498;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qXeMOsufe8hSFgTPxUltIiAHXtjsyiMFaKXE2Z0rVtc=;
-        b=LRNEoC54IxEdWbaF6dMQwXrLRnlcr6krOddlC55PzILrPufbCMODoOLVP+hpcXX7ek
-         tXQJfcgtfPiextCZ1k5PqsL40xccr2g4xBY156U2FhN3JtZaLZzhkF49synmQ1XCO1yS
-         YUdd93He7FTtZIuLs9jOid+VZCjrE5drbkkw6ufeCeOuk8IASgdzqz03P/yzdyLsiy4b
-         cb0sEGmccgVsu0Gdr07L56eeSOl/G+PQ6myJDJwNfVgjlbESIKtDj4ivw//LyjOtr/qt
-         hRsktMeCME/eg31JALww+BAlseU0zHdC+yHfp2YqwC8akNMbp2T5hPXRpgfvo0yoeqMO
-         mE+A==
-X-Gm-Message-State: AO0yUKUY8Q2fXx9nZVN5EnsvaiqKwz2TVrkk4TvnsIC9OMAusuChFJ9i
-        Ro1L+tg3NefvSywYoZRZYR4sHw==
-X-Google-Smtp-Source: AK7set9oGvfx3eMarIqqmx9cPnLmWTpEBMNaUrGWEQhYU1E1qPNKxTTukOWaBgC8HsULh/3229R/Jg==
-X-Received: by 2002:a17:906:4ad1:b0:8e3:74ad:94ce with SMTP id u17-20020a1709064ad100b008e374ad94cemr1376556ejt.8.1679473008210;
-        Wed, 22 Mar 2023 01:16:48 -0700 (PDT)
+        bh=szoZw3xvlaA8/xVMQ7gPUlc6BTRG3JxqG4Ue5578gh8=;
+        b=dpHZwiyI02PRqyoaEoTriWz4OkCfmFBh0Lu2LX45RWde23crPOHJKEGUKcCRj1+CEf
+         dx2KWDCekGGW7c6qws+Erdq4d6+FzsCmxSO/nObf8Qm4ZoI4EhGFlA++DPC7/DFsFwDd
+         4xE5q82Ke1XwWPK8vHCiq+E1fThFJvGqsKOpPr7hzYK2zlWXS/JDo1pkT/Tcz0VfDniW
+         c4ySoGDhGsZ/88bsdqnAoJqt+AKqpbtPiNqzcGklQpgqK8bLdMmqNqk5EZgIS39E8QEg
+         /+Yhzik7o1gXx75K7dGX7iSYzgRoYnZ1XAwb+iQueHl1g4L9UMyvk4ep6T/RYARqsaiA
+         l2kA==
+X-Gm-Message-State: AO0yUKWU/y6bipIufwsgq0ypMPFb2yaA2HvdXtOuTSbNaH0C/KjzK2u+
+        DUcBkGUMhSkRRD1P92QfRyYRoQ==
+X-Google-Smtp-Source: AK7set/z+TPpqbhYmWlz7QK/AKzno5EuRw2/ZLLKTKC0bmmMzcrOImyCU4d6DttsufEOay4I2ShZxA==
+X-Received: by 2002:a17:907:c306:b0:8b1:fc1a:7d21 with SMTP id tl6-20020a170907c30600b008b1fc1a7d21mr7716808ejc.5.1679473498053;
+        Wed, 22 Mar 2023 01:24:58 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id i22-20020a17090671d600b0093348be32cfsm4838527ejk.90.2023.03.22.01.16.47
+        by smtp.gmail.com with ESMTPSA id v15-20020a170906858f00b0093229e527cdsm6393171ejx.42.2023.03.22.01.24.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 01:16:47 -0700 (PDT)
-Message-ID: <de3acab7-cf76-3135-9ff8-a0e5537a434b@linaro.org>
-Date:   Wed, 22 Mar 2023 09:16:46 +0100
+        Wed, 22 Mar 2023 01:24:57 -0700 (PDT)
+Message-ID: <9f5a7213-8a31-afed-f4aa-b45b6e277be4@linaro.org>
+Date:   Wed, 22 Mar 2023 09:24:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
+Subject: Re: [PATCH v2 1/8] dt-bindings: regulator: max77658: Add ADI
+ MAX77643/54/58/59 Regulator
 Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        corbet@lwn.net, arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com
-Cc:     eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-References: <20230321171020.74736-1-jpanis@baylibre.com>
- <20230321171020.74736-2-jpanis@baylibre.com>
- <88a6856e-c766-d4a5-1882-5350fd0e248a@linaro.org>
- <bffba580-e737-8996-4812-3c76c880acc9@baylibre.com>
+To:     Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sre@kernel.org,
+        lgirdwood@gmail.com, broonie@kernel.org
+Cc:     Nurettin.Bolucu@analog.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230322055628.4441-1-Zeynep.Arslanbenzer@analog.com>
+ <20230322055628.4441-2-Zeynep.Arslanbenzer@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bffba580-e737-8996-4812-3c76c880acc9@baylibre.com>
+In-Reply-To: <20230322055628.4441-2-Zeynep.Arslanbenzer@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,20 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 09:01, Julien Panis wrote:
->>> +  ti,multi-phase-id:
->>> +    description: |
->>> +      Describes buck multi-phase configuration, if any. For instance, XY id means
->>> +      that outputs of buck converters X and Y are combined in multi-phase mode.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> No improvements here. As Rob pointed out, this looks like coupled
->> regulators.
+On 22/03/2023 06:56, Zeynep Arslanbenzer wrote:
+> Add ADI MAX77643/MAX77654/MAX77658/MAX77659 Regulator devicetree document.
 > 
-> I used 'oneOf' logic to handle mutual exclusion. But it seems that I did not
-> understand what you and Rob expected.
-> Does some generic property already exist for 'coupled regulators' ?
+> Signed-off-by: Nurettin Bolucu <Nurettin.Bolucu@analog.com>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> ---
+>  .../regulator/adi,max77658-regulator.yaml     | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77658-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/adi,max77658-regulator.yaml b/Documentation/devicetree/bindings/regulator/adi,max77658-regulator.yaml
+> new file mode 100644
+> index 000000000000..1d097eddcd98
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/adi,max77658-regulator.yaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/adi,max77658-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator for MAX77658 PMICs family from ADI
+> +
+> +maintainers:
+> +  - Nurettin Bolucu <Nurettin.Bolucu@analog.com>
+> +  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> +
+> +description: |
+> +  This is part of the MAX77658 MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/adi,max77658.yaml.
+> +
+> +  The regulators is represented as a sub-node of the PMIC node on the device tree.
 
-Yes, see regulator.yaml binding.
+There is no select/compatible here, so this makes little sense as
+separate binding. Make it part of parent schema instead.
 
 Best regards,
 Krzysztof
