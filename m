@@ -2,205 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AEB26C44FD
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 006366C4504
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjCVIdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 04:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33480 "EHLO
+        id S230209AbjCVIeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 04:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230208AbjCVIdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:33:18 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D972C671
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:33:13 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id ek18so69569274edb.6
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:33:13 -0700 (PDT)
+        with ESMTP id S230216AbjCVIeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:34:03 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98ACA3019B
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:33:59 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v25so12646800wra.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:33:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679473991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ivtJ17SntBidQVkbcFjsY9yFoBVm7miDvhKcewrMLjc=;
-        b=tcV0JQhU7AvOb77j4GXs7g7T2t/Rfg5n/93Am0kLkPiZishIGYx+7eDt7cNSsK5UlZ
-         UhkXDQ4Bk5uA1ZXMFxe/xcY5VY4n03jUazDpfNUCCdu5O+GJ3xlpKxHS03+qCK14TKf4
-         qrTOyVf8ddJah+gkUXs/K+HUJ3e/3SH13WXOFCW2EgOGYn2KwgR45mIHz1O8Xro7Lot6
-         aiuJaj4uosmTdK4KGl6IkPgIocQ8syBMrpfsdLn6I4bOE6Xd4ikFmb1xTMWXCFyso2qy
-         0bOKb+ayZ/8jWELoOLSRnVxkNoP7BzxxXVECy2R73MBwExTDblRZLEfxOIItiush8hwQ
-         rw0A==
+        d=linaro.org; s=google; t=1679474038;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PZZ78qLp77yZoHhc/roP4UrIg6dM+0qsSNFGhIMKyP0=;
+        b=YJJP9ac7wXjfi7ytsNM1BSAKsLI/SpNopxFSWAdGM5+JooSMQ7SeazRpAvRUz/HD7j
+         qXvP5sLiat6jy36Gf3FhW8dt+wPQ0pzVCzq5zYSfIDlVBG3h2nqEDHmzTl4WM+XXYLpc
+         v4fUhLvjSXsSRkLpoEUA2Cb5wcUwQrbnqCwl1F5cY3U46dGUqJ/tPjZcBwdJmDHhmv70
+         ToPVYhD9VAnPzc6V1zIhXImcPVKxlMSe1BTjqPUGBiL5XNGIvEfCGAqwMY0fw2udCnI7
+         PH6F9PM/e8NXYSHdx/LPOY9J/ES2klqKNCySglb55ft9DjCt3T++xJkT1fXhoDuWoKOP
+         po+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679473991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ivtJ17SntBidQVkbcFjsY9yFoBVm7miDvhKcewrMLjc=;
-        b=Luk6LbSB8X6z6ppFX6YVJ+HwbMuDyDfNuPr7EJ2ebin+I/u9n/MCKair4uch6+weXc
-         uPY3ZwGvnsdY6wI/CLW+ZHMRsKmKeRtTG/v1MJhp73l/EHJ7Hyc6BBfAqezbuSsLGmXZ
-         +R79NywUmRyrEcxlw6ydDVEov66ndNZ7fcMDtpFFg5fYN5RjQ8xSMDZvITwIyI9Zoh4C
-         ABi6nxsBJ/LrrYwjDyLSQhGljQX+UbfpoNuTRyDg6BD2yJsyE2P//hOVZCim3dWO5RZP
-         oU94eDWIyyN92yryS1X+DWvbl47Rj7It4jqT3GfPoVSr+497jY+FKmMImysy+a0wy1ha
-         4YfA==
-X-Gm-Message-State: AO0yUKV8ip8nTP/qnXEIAP9Rxx6lNATCYRtI/s38FQLUY3532UUeyTSa
-        TUYQtDj/VAZ/CGTko7vt8WKpfg==
-X-Google-Smtp-Source: AK7set8iZr+rJsRD1W2LuqUuGK3/1SRsoc0lc7QCOzTHtqZ2RaPZ0AERgD8nfqF4UPk2ssYZKZU3bg==
-X-Received: by 2002:a05:6402:c2:b0:501:c120:6e90 with SMTP id i2-20020a05640200c200b00501c1206e90mr5809096edu.3.1679473991638;
-        Wed, 22 Mar 2023 01:33:11 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id e23-20020a50d4d7000000b004bf28bfc9absm7198839edj.11.2023.03.22.01.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 01:33:11 -0700 (PDT)
-Message-ID: <86d56386-fe9e-320d-edd3-5b288520e92a@linaro.org>
-Date:   Wed, 22 Mar 2023 09:33:10 +0100
+        d=1e100.net; s=20210112; t=1679474038;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PZZ78qLp77yZoHhc/roP4UrIg6dM+0qsSNFGhIMKyP0=;
+        b=JtE5k28hgt1aQuuKciIRwm9XBZ+ilzTD/2tF44wySgMgyZHc3HPJh4NlafQD5fbA2F
+         byyiwTxZew/2tqjdGUooQTPvXvnqeGcKGu1LLoCc0etHgF4gRNWEYeeY3RNjuOTQkajf
+         5t+/YbCJbLQLMi3KZ1f2/5dDXCicmAHL94QIeFdjMixN1zC2+alhzXofRxCHbafydngz
+         SoJUBdf9ygD9US4xouU0pxdOJYukPXOrWoe3vDABmpn2BUQ3510P8v0CzLNdCPoKH2Aj
+         k9OuCk5U3O/fI2GThqtFOtRume9nrS9v3+xPKWeOo24ydBRetSnYnEAcQP+iFg4E6TQV
+         moOw==
+X-Gm-Message-State: AO0yUKXwcYTtj94Dv1cCZ3uFtUUFG8m7QX87RUMQs4n1z3RyL+fGxr45
+        ybfZiMUV0aM3t3VJ1BIqzHPfCYLPDpTTPZwlpYdTng==
+X-Google-Smtp-Source: AK7set+5Zdn6gWTvLWW6oktF+3IL7CkLsWSf8Iyrda182XSE94va2C+0pzBgjcZBral6xYkOEYXDlTtVS+p8GsHmHeM=
+X-Received: by 2002:a5d:5445:0:b0:2d1:b0df:c027 with SMTP id
+ w5-20020a5d5445000000b002d1b0dfc027mr1259547wrv.4.1679474037963; Wed, 22 Mar
+ 2023 01:33:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 7/8] dt-bindings: mfd: max77658: Add ADI MAX77658
-Content-Language: en-US
-To:     Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sre@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org
-Cc:     Nurettin.Bolucu@analog.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230322055628.4441-1-Zeynep.Arslanbenzer@analog.com>
- <20230322055628.4441-8-Zeynep.Arslanbenzer@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322055628.4441-8-Zeynep.Arslanbenzer@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230321190118.3327360-1-bhupesh.sharma@linaro.org> <41111f93-ef02-0e57-98af-01327213d854@linaro.org>
+In-Reply-To: <41111f93-ef02-0e57-98af-01327213d854@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Wed, 22 Mar 2023 14:03:46 +0530
+Message-ID: <CAH=2NtziWx2g_4K92iH+9DLo8XV0P32NNnEpxy6f0G_dQOVs+Q@mail.gmail.com>
+Subject: Re: [PATCH 0/5] arm64: dts: qcom: Enable Crypto Engine for a few
+ Qualcomm SoCs
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        vladimir.zapolskiy@linaro.org, rfoss@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 06:56, Zeynep Arslanbenzer wrote:
-> Add ADI MAX77658 devicetree document.
-> 
-> Signed-off-by: Nurettin Bolucu <Nurettin.Bolucu@analog.com>
-> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-> ---
->  .../devicetree/bindings/mfd/adi,max77658.yaml | 199 ++++++++++++++++++
->  1 file changed, 199 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/adi,max77658.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/adi,max77658.yaml b/Documentation/devicetree/bindings/mfd/adi,max77658.yaml
-> new file mode 100644
-> index 000000000000..6edb59e8f446
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/adi,max77658.yaml
-> @@ -0,0 +1,199 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/adi,max77658.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MAX77643/MAX77654/MAX77658/MAX77659 PMIC from ADI
-> +
-> +maintainers:
-> +  - Nurettin Bolucu <Nurettin.Bolucu@analog.com>
-> +  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-> +
-> +description: |
-> +  MAX77643, MAX77654, MAX77658 and MAX77659 devices are a family of ADI PMICs
-> +  providing battery charging and power supply solutions for
-> +  low-power applications.
-> +
-> +  MAX77643 is a Power Management IC with 1 LDO regulator.
-> +
-> +  MAX77654 is a Power Management IC with 2 LDO regulators and 1 charger.
-> +
-> +  MAX77658 is a Power Management IC with 2 LDO regulators, 1 charger
-> +  and 1 fuel gauge.
-> +
-> +  MAX77659 is a Power Management IC with 1 LDO regulator and 1 charger.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max77643
-> +      - adi,max77654
-> +      - adi,max77658
-> +      - adi,max77659
-> +
-> +  reg:
-> +    description: I2C address of the PMIC
-> +    items:
-> +      - enum: [0x40, 0x48]
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  charger:
-> +    $ref: /schemas/power/supply/adi,max77658-charger.yaml
-> +
-> +  fuel-gauge:
-> +    $ref: /schemas/power/supply/adi,max77658-battery.yaml
-> +
-> +  regulators:
-> +    $ref: /schemas/regulator/adi,max77658-regulator.yaml
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,max77643
-> +              - adi,max77654
-> +              - adi,max77658
-> +
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - const: 0x48
-> +
-> +    else:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - const: 0x40
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    battery: battery-cell {
-> +      compatible = "simple-battery";
-> +      alert-celsius = <0 100>;
-> +      constant-charge-current-max-microamp = <15000>;
-> +    };
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      pmic@48 {
-> +        compatible = "adi,max77643";
-> +        reg = <0x48>;
-> +        interrupt-parent = <&gpio>;
-> +        interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-> +        regulators {
-> +          LDO0 {
-> +            regulator-boot-on;
-> +            regulator-always-on;
-> +          };
-> +        };
-> +      };
-> +    };
+On Wed, 22 Mar 2023 at 00:57, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 21.03.2023 20:01, Bhupesh Sharma wrote:
+> > This patchset enables Crypto Engine support for Qualcomm SoCs like
+> > SM6115, SM8150, SM8250 and SM8350.
+> >
+> > While at it, also fix the compatible string for BAM DMA engine
+> > used in sdm845.dtsi
+> >
+> > Note that:
+> > - SM8250 crypto engine patch utilizes the work already done by myself and
+> >   Vladimir.
+> > - SM8350 crypto engine patch utilizes the work already done by Robert.
+> >
+> > This patchset depends on the dt-bindings patch which added support for
+> > SM6115 and QCS2290 SoCs:
+> > https://lore.kernel.org/linux-arm-msm/20230321184811.3325725-1-bhupesh.sharma@linaro.org/
+> You could have included that one here for easier tracking!
 
-Four examples is too much. Keep only some relevant one or two.
+Err.. the dt-binding maintainers have been asking to split the
+dt-binding patches from
+the dts ones in the past. So, let's stick to that for now :)
 
-Best regards,
-Krzysztof
+Thanks.
 
+> > Also this patchset is rebased on linux-next/master.
+> >
+> > Bhupesh Sharma (5):
+> >   arm64: dts: qcom: sdm845: Fix the BAM DMA engine compatible string
+> >   arm64: dts: qcom: sm6115: Add Crypto Engine support
+> >   arm64: dts: qcom: sm8150: Add Crypto Engine support
+> >   arm64: dts: qcom: sm8250: Add Crypto Engine support
+> >   arm64: dts: qcom: sm8350: Add Crypto Engine support
+> >
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi |  2 +-
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 26 ++++++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 26 ++++++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 26 ++++++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/sm8350.dtsi | 26 ++++++++++++++++++++++++++
+> >  5 files changed, 105 insertions(+), 1 deletion(-)
+> >
