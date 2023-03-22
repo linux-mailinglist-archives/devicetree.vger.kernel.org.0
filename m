@@ -2,200 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C75376C4F77
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 16:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E99C76C4F84
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 16:35:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231673AbjCVPbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 11:31:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
+        id S231300AbjCVPfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 11:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231616AbjCVPbM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 11:31:12 -0400
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF0C66D07
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:31:10 -0700 (PDT)
-Received: by mail-ua1-x92e.google.com with SMTP id s23so12910670uae.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:31:10 -0700 (PDT)
+        with ESMTP id S230272AbjCVPfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 11:35:19 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5CD3B0C7
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:35:16 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id cy23so74501697edb.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:35:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679499069;
+        d=kali.org; s=google; t=1679499315;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0JTo8jph/aEjP08QKbcmScKBA9sBPX+GiZwkKubY1Gk=;
-        b=eauVrq3lCS2jOzGbplgI8zdDDffe6LpWln3OvKIInQDiOix8KTpVLFGH8+AQ0TdRo8
-         F4xd74EfYHgpAkeccXwraHZ5ytlfu/C0mX4ktGEarHhyxUnbgyvdi6ExPEjngzOWjnah
-         FUOIg7Imp5Yh3y/ba1zTCNBvH5Pr1xp6Vs1XXN7XpXs3rddczEPODsYOPyIVlwK0lhxG
-         LGsEyFttuQOQm+B/UJEViFBMojvgEgWcLnE7KzvsRKz5m8eNdAqxdf+uSKDxoiuGsqRi
-         SD0fPbnaouPtIHo9ZELWnjqSBwMpPF0hIvNHTZ0+4+hI7Rc20uxdM1HHuW2W3/2aRzeJ
-         skIA==
+        bh=NAXNJjlL2o5XEbhFXFeTRkQ4rqR7tfyx01Kl+xPl+TQ=;
+        b=M0hMymF57cLJVxIdanY67+ipTZUSyJ3BFUpfOvk/wnSt7sM0FFQsFGPv/FVPXt52b1
+         cnAhBA5HNVemraej7KO70E9DC+lETcqc0P6H6H0sNpELYliTovlfXP5CTPj/RiHWCtkr
+         Y6Vv4fYzyzO+90/A/5PW6uu4QyCSZoUYRD/NTdvJxLi0NcIlG/zRR6iFM4HZjpmq1h/6
+         M2gGOe9XJN7gpkBVHoC3Y9BlkMwASlLZkoKz28XwRstuNng39JeYI2e+bjOi63A1nMfz
+         TWA6DD8EnfR3tHdqewHTP7mx8cyMFTGEvyJ92YLNR85pWBZhzUcEZEzs/pRO9ivusoS3
+         bgbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679499069;
+        d=1e100.net; s=20210112; t=1679499315;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0JTo8jph/aEjP08QKbcmScKBA9sBPX+GiZwkKubY1Gk=;
-        b=hlPnilRh1NV7ChyNG4INc+SmVH20kCIPbzrHXeIatLzwtlDSoZh0a2s9Fre4KPoWIX
-         EbtTE9znbCHflSGlxjexRDxUu2YNwrc/+NK4uGTdQ9V7fx3H+RVaQEdffRg8sIvM7sz6
-         q8RBasXa4+g6eHYE1zj3X37ZPbCvA9XBrbnO+ju6fdz5W70G2gln5upPyK+2EKWIFNY7
-         JLpNagbWnZ3qTVRR7zFwjzm7W5C+Eik+HUjwYrsdXU1M+tCHWemLwXxtW9PixkG4xX/i
-         1zjovpFHf5q5xWUs8aGXg4HHYZ+8TONspWK0o3D7pWrCYrRCqGWDYKqnY+ALBkejTwEG
-         zhNA==
-X-Gm-Message-State: AAQBX9cwTo3b7ontAX+EPLv3jIIZTlQnSMkd18VwHQaxy0LeRbK3h3e+
-        LyzPVRP+ATJvXCPHLKN/lbZCHYGlSD4FjJ6RqRUuMw==
-X-Google-Smtp-Source: AKy350bgPvOaa5GVQyfGusKzp7YCG85tu9N7HftX4ULnuhznxfaZFYV1rSSglte4O1kEw+RW+KtprQo8LzYWDFTtwz8=
-X-Received: by 2002:ab0:3c4a:0:b0:68e:2dce:3162 with SMTP id
- u10-20020ab03c4a000000b0068e2dce3162mr3757083uaw.2.1679499069601; Wed, 22 Mar
- 2023 08:31:09 -0700 (PDT)
+        bh=NAXNJjlL2o5XEbhFXFeTRkQ4rqR7tfyx01Kl+xPl+TQ=;
+        b=46LToywEiH/EEgrNtWxc/MbAy2tm5gcJKw1HWsV508VzkKo4dyZjkqcFzA6bJSF9WT
+         q1Pe3yx94toU8/SJ6U6+65DCulRDEaCBUt+Br7pk98dNm+LtxcdmUVXE8SRm8+CwOYGs
+         B1nvTqVF87a72lfzQ84fYIaurheFPLetsC76iPfCK4cJccwmSn+PmQTCBIi0pxvpr90z
+         NclOSnSgQXCBaN3EumZBQ+ol+7KunUrDj/AWE+qSAiw2CxZBNuDWn6oM0fyr2v1RFhfG
+         5+YAmRywWNytG4i2haIBXj3vOwGB+toCH4/569c1bIvnwGtAJ7nLRjX8QCUjkD3giICU
+         FZZw==
+X-Gm-Message-State: AO0yUKUT8YQ1xG6EpQcTydAHn1Le483tKD/pYAtFXgnRV+8LLeBQU7K6
+        zncPT0f7YVBLbxKoojtWZhKLWtyNNshFm9ZaQxFbMg==
+X-Google-Smtp-Source: AK7set8SffFuNnYkrvWB6Eb908721d12R6KonUYzgbvCyu0975Xi0mo/lbA4HGtuAA7aH+JolnhFoF5Y8bLRxqw9mZc=
+X-Received: by 2002:a50:d61a:0:b0:4fb:9735:f913 with SMTP id
+ x26-20020a50d61a000000b004fb9735f913mr3812066edi.8.1679499314957; Wed, 22 Mar
+ 2023 08:35:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230320154841.327908-1-brgl@bgdev.pl> <20230320154841.327908-13-brgl@bgdev.pl>
- <a215c54b-c12e-4463-f9fe-588053f74300@linaro.org> <20230322025047.gvo252mh2flcbzuc@ripper>
-In-Reply-To: <20230322025047.gvo252mh2flcbzuc@ripper>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 22 Mar 2023 16:30:58 +0100
-Message-ID: <CAMRc=MeVaMaQMsLUPH0QDjuOBt3TjVofbj7SgA5zMg3sQGBh=w@mail.gmail.com>
-Subject: Re: [PATCH v2 12/15] arm64: dts: qcom: sa8775p: pmic: add thermal zones
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+References: <20230322011442.34475-1-steev@kali.org> <20230322011442.34475-5-steev@kali.org>
+ <ZBrpyXrkHDTQ6Z+l@hovoldconsulting.com>
+In-Reply-To: <ZBrpyXrkHDTQ6Z+l@hovoldconsulting.com>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Wed, 22 Mar 2023 10:35:03 -0500
+Message-ID: <CAKXuJqiirOEuvhHUtqeGvFjxkTR21SxKXe8Hysayx5UXFpukUQ@mail.gmail.com>
+Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
+To:     Johan Hovold <johan@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 3:47=E2=80=AFAM Bjorn Andersson <andersson@kernel.o=
-rg> wrote:
+Hi Johan,
+
+Thanks again for your time in reviewing things, it's greatly appreciated!
+
+On Wed, Mar 22, 2023 at 6:41=E2=80=AFAM Johan Hovold <johan@kernel.org> wro=
+te:
 >
-> On Mon, Mar 20, 2023 at 06:28:20PM +0100, Konrad Dybcio wrote:
+> On Tue, Mar 21, 2023 at 08:14:42PM -0500, Steev Klimaszewski wrote:
+> > The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
+> > add this.
 > >
+> > Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> > ---
+> > Changes since v6:
+> >  * Remove allowed-modes as they aren't needed
+> >  * Remove regulator-allow-set-load
+> >  * Set regulator-always-on because the wifi chip also uses the regulato=
+r
+> >  * cts pin uses bias-bus-hold
+> >  * Alphabetize uart2 pins
 > >
-> > On 20.03.2023 16:48, Bartosz Golaszewski wrote:
-> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >
-> > > Add the thermal zones and associated alarm nodes for the PMICs that h=
-ave
-> > > them hooked up on sa8775p-ride.
-> > >
-> > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 58 +++++++++++++++++++=
-++
-> > >  1 file changed, 58 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64=
-/boot/dts/qcom/sa8775p-pmics.dtsi
-> > > index 8616ead3daf5..276070b62ccd 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> > > @@ -6,6 +6,50 @@
-> > >  #include <dt-bindings/input/input.h>
-> > >  #include <dt-bindings/spmi/spmi.h>
-> > >
-> > > +/ {
-> > > +   thermal-zones {
-> > > +           pmm8654au_1_thermal: pm8775-1-thermal {
-> > Please reindex this, downstream uses _1 for pmic@0, but this
-> > makes little sense. Make it match the SID.
+> > Changes since v5:
+> >  * Update patch subject
+> >  * Specify initial mode (via guess) for vreg_s1c
+> >  * Drop uart17 definition
+> >  * Rename bt_en to bt_default because configuring more than one pin
+> >  * Correct (maybe) bias configurations
+> >  * Correct cts gpio
+> >  * Split rts-tx into two nodes
+> >  * Drop incorrect link in the commit message
 > >
+> > Changes since v4:
+> >  * Address Konrad's review comments.
+> >
+> > Changes since v3:
+> >  * Add vreg_s1c
+> >  * Add regulators and not dead code
+> >  * Fix commit message changelog
+> >
+> > Changes since v2:
+> >  * Remove dead code and add TODO comment
+> >  * Make dtbs_check happy with the pin definitions
+> >  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 78 +++++++++++++++++++
+> >  1 file changed, 78 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts=
+ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > index 92d365519546..05e66505e5cc 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > @@ -24,6 +24,7 @@ / {
+> >       aliases {
+> >               i2c4 =3D &i2c4;
+> >               i2c21 =3D &i2c21;
+> > +             serial1 =3D &uart2;
+> >       };
+> >
+> >       wcd938x: audio-codec {
+> > @@ -431,6 +432,14 @@ regulators-1 {
+> >               qcom,pmic-id =3D "c";
+> >               vdd-bob-supply =3D <&vreg_vph_pwr>;
+> >
+> > +             vreg_s1c: smps1 {
+> > +                     regulator-name =3D "vreg_s1c";
+> > +                     regulator-min-microvolt =3D <1880000>;
+> > +                     regulator-max-microvolt =3D <1900000>;
+> > +                     regulator-initial-mode =3D <RPMH_REGULATOR_MODE_H=
+PM>;
+> > +                     regulator-always-on;
+> > +             };
 >
-> Please use the naming from the schematics for these things, rather than
-> just an iterator (which might be what Bartosz is doing here).
+> I went through the schematics to check for further problems with
+> consumers that are not yet described and found a few more bugs:
+>
+>         https://lore.kernel.org/lkml/20230322113318.17908-1-johan+linaro@=
+kernel.org
+>
+> Note that that series is now adding the s1c supply as it also used by
+> some of the pmics.
+>
+> I'm assuming those fixes may get merged before this patch is, in which
+> case the above hunk should be dropped.
 >
 
-Not sure how to approach that. All currently existing
-"qcom,spmi-temp-alarm" nodes use the PMIC name for the label.
-Otherwise it would have to go into the board file and be replicated
-for each board using the same PMIC?
+I can spin up v8 dropping this hunk and mention the dependency on that seri=
+es.
 
-Bart
-
-> Regards,
-> Bjorn
+> > +
+> >               vreg_l1c: ldo1 {
+> >                       regulator-name =3D "vreg_l1c";
+> >                       regulator-min-microvolt =3D <1800000>;
+> > @@ -918,6 +927,32 @@ &qup0 {
+> >       status =3D "okay";
+> >  };
+> >
+> > +&uart2 {
 >
-> > > +                   polling-delay-passive =3D <100>;
-> > > +                   polling-delay =3D <0>;
-> > > +                   thermal-sensors =3D <&pmm8654au_1_temp_alarm>;
-> > > +
-> > > +                   trips {
-> > > +                           trip0 {
-> > > +                                   temperature =3D <105000>;
-> > > +                                   hysteresis =3D <0>;
-> > > +                                   type =3D "passive";
-> > > +                           };
-> > > +
-> > > +                           trip1 {
-> > > +                                   temperature =3D <125000>;
-> > > +                                   hysteresis =3D <0>;
-> > > +                                   type =3D "critical";
-> > > +                           };
-> > > +                   };
-> > > +           };
-> > > +
-> > What happened to the downstream _2 (pmic@2) one and _4 (pmic@6)?
+> This node in no longer in alphabetical order and needs to be moved
+> further down (above &usb_0).
+>
+Ack
+
+> > +     pinctrl-0 =3D <&uart2_default>;
+> > +     pinctrl-names =3D "default";
+> > +
+> > +     status =3D "okay";
+> > +
+> > +     bluetooth {
+> > +             compatible =3D "qcom,wcn6855-bt";
+> > +
+> > +             vddio-supply =3D <&vreg_s10b>;
+> > +             vddbtcxmx-supply =3D <&vreg_s12b>;
+> > +             vddrfacmn-supply =3D <&vreg_s12b>;
+> > +             vddrfa0p8-supply =3D <&vreg_s12b>;
+> > +             vddrfa1p2-supply =3D <&vreg_s11b>;
+> > +             vddrfa1p7-supply =3D <&vreg_s1c>;
+> > +
+> > +             max-speed =3D <3200000>;
+> > +
+> > +             enable-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
+> > +             swctrl-gpios =3D <&tlmm 132 GPIO_ACTIVE_HIGH>;
+> > +
+> > +             pinctrl-0 =3D <&bt_default>;
+> > +             pinctrl-names =3D "default";
+> > +     };
+> > +};
+> > +
+> >  &qup1 {
+> >       status =3D "okay";
+> >  };
+> > @@ -1192,6 +1227,21 @@ hastings_reg_en: hastings-reg-en-state {
+> >  &tlmm {
+> >       gpio-reserved-ranges =3D <70 2>, <74 6>, <83 4>, <125 2>, <128 2>=
+, <154 7>;
 > >
-> > Konrad
+> > +     bt_default: bt-default-state {
+> > +             hstp-sw-ctrl-pins {
+> > +                     pins =3D "gpio132";
+> > +                     function =3D "gpio";
+> > +                     bias-pull-down;
+> > +             };
+>
+> Similarly, this one should go after hstp-bt-en-pins.
+>
+Ack
+> > +
+> > +             hstp-bt-en-pins {
+> > +                     pins =3D "gpio133";
+> > +                     function =3D "gpio";
+> > +                     drive-strength =3D <16>;
+> > +                     bias-disable;
+> > +             };
+> > +     };
+> > +
+> >       edp_reg_en: edp-reg-en-state {
+> >               pins =3D "gpio25";
+> >               function =3D "gpio";
+> > @@ -1213,6 +1263,34 @@ i2c4_default: i2c4-default-state {
+> >               bias-disable;
+> >       };
 > >
-> > > +           pmm8654au_3_thermal: pm8775-3-thermal {
-> > > +                   polling-delay-passive =3D <100>;
-> > > +                   polling-delay =3D <0>;
-> > > +                   thermal-sensors =3D <&pmm8654au_3_temp_alarm>;
-> > > +
-> > > +                   trips {
-> > > +                           trip0 {
-> > > +                                   temperature =3D <105000>;
-> > > +                                   hysteresis =3D <0>;
-> > > +                                   type =3D "passive";
-> > > +                           };
-> > > +
-> > > +                           trip1 {
-> > > +                                   temperature =3D <125000>;
-> > > +                                   hysteresis =3D <0>;
-> > > +                                   type =3D "critical";
-> > > +                           };
-> > > +                   };
-> > > +           };
-> > > +   };
-> > > +};
-> > > +
-> > >  &spmi_bus {
-> > >     pmm8654au_0: pmic@0 {
-> > >             compatible =3D "qcom,pmm8654au", "qcom,spmi-pmic";
-> > > @@ -41,6 +85,13 @@ pmm8654au_1: pmic@2 {
-> > >             reg =3D <0x2 SPMI_USID>;
-> > >             #address-cells =3D <1>;
-> > >             #size-cells =3D <0>;
-> > > +
-> > > +           pmm8654au_1_temp_alarm: temp-alarm@a00 {
-> > > +                   compatible =3D "qcom,spmi-temp-alarm";
-> > > +                   reg =3D <0xa00>;
-> > > +                   interrupts-extended =3D <&spmi_bus 0x2 0xa 0x0 IR=
-Q_TYPE_EDGE_BOTH>;
-> > > +                   #thermal-sensor-cells =3D <0>;
-> > > +           };
-> > >     };
-> > >
-> > >     pmm8654au_2: pmic@4 {
-> > > @@ -55,5 +106,12 @@ pmm8654au_3: pmic@6 {
-> > >             reg =3D <0x6 SPMI_USID>;
-> > >             #address-cells =3D <1>;
-> > >             #size-cells =3D <0>;
-> > > +
-> > > +           pmm8654au_3_temp_alarm: temp-alarm@a00 {
-> > > +                   compatible =3D "qcom,spmi-temp-alarm";
-> > > +                   reg =3D <0xa00>;
-> > > +                   interrupts-extended =3D <&spmi_bus 0x6 0xa 0x0 IR=
-Q_TYPE_EDGE_BOTH>;
-> > > +                   #thermal-sensor-cells =3D <0>;
-> > > +           };
-> > >     };
-> > >  };
+> > +     uart2_default: uart2-default-state {
+>
+> And this one is also not ordered correctly.
+>
+Ack
+> > +     };
+> > +
+> >       i2c21_default: i2c21-default-state {
+> >               pins =3D "gpio81", "gpio82";
+> >               function =3D "qup21";
+>
+> Johan
+-- steev
