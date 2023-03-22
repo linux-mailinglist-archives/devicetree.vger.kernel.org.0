@@ -2,395 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CC2C6C4835
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:49:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D676C4839
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:51:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbjCVKtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 06:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42420 "EHLO
+        id S229835AbjCVKvn convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Mar 2023 06:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjCVKs0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:48:26 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E3062B5F
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:47:46 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id iw3so18876894plb.6
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679482063;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+FF2ESmiiihfdUKZ1gHccbyU50W0AbxwPHMUw+YJ4po=;
-        b=nfLgwSYCb6c8k79DrPtmV/SnDKXeLf/SKbimoDCIuB9DzO+ChXJZp0SJ7NLDZL6aes
-         PCUUEnUHd8ePkTydG75UrPkpsXgNp9vW5OAGozkn4XjPWoyrEhEaqx+nnscCaLNN2q/O
-         nMZMU0IOrkSM7450xgpev38xoUB/TVGcA1HeE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679482063;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+FF2ESmiiihfdUKZ1gHccbyU50W0AbxwPHMUw+YJ4po=;
-        b=6try4xW1assGX+ex9tMo54pfdnowNuzaMf2bj6uwb9yG/nihbmwTY0t8LXHQlLJ0Ll
-         BZrPiwRzYVpLMm5K0ENkqZ90ZXK+k8VLYF5Z876nRY5B2oNZF02kmhSCMc7Xw+CnLX5s
-         jhoCSsJl8aQU6MBCTFYCusPFOCWTDuTTxlETawwU8KhRr3o6SI86d7bjl3yvN0IoWyr7
-         4fmVxK4kx2QlJCRKdn76B+J8Ntd7ZX6O2HpFiEu2CBHFmlf3rLQ88Ftg6QDeQQlczrgi
-         5De7U7jEP0yzmV1Gs2jtEqwbgNWaxygQ2eg8GSe48N1sVlAIuTrTMfTyYY64O7A5Eiij
-         ndyw==
-X-Gm-Message-State: AO0yUKUUANtdl0rvkNGWOqC/k8T/LAJbYUgK5I+eTpna6v5bW7Roxhi+
-        6jiSDyrWDvTv6EVD1noGbmz4kQ==
-X-Google-Smtp-Source: AK7set95cBQsa0keVL6mVamcmGVinLOyF+09EHb16w+HRk9NSY7l9YPI2xwhYoVj3l1Hu5DSdYYBAA==
-X-Received: by 2002:a17:90a:56:b0:23f:ebf2:d3de with SMTP id 22-20020a17090a005600b0023febf2d3demr3016122pjb.27.1679482063289;
-        Wed, 22 Mar 2023 03:47:43 -0700 (PDT)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:343d:79bf:55f9:1da5])
-        by smtp.gmail.com with ESMTPSA id hg4-20020a17090b300400b002340d317f3esm9508742pjb.52.2023.03.22.03.47.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 03:47:43 -0700 (PDT)
-From:   Pin-yen Lin <treapking@chromium.org>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Xin Ji <xji@analogixsemi.com>, linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-acpi@vger.kernel.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Stephen Boyd <swboyd@chromium.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v14 10/10] drm/bridge: it6505: Register Type C mode switches
-Date:   Wed, 22 Mar 2023 18:46:39 +0800
-Message-Id: <20230322104639.221402-11-treapking@chromium.org>
-X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
-In-Reply-To: <20230322104639.221402-1-treapking@chromium.org>
-References: <20230322104639.221402-1-treapking@chromium.org>
+        with ESMTP id S229807AbjCVKvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:51:35 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEBBD5FA71;
+        Wed, 22 Mar 2023 03:51:15 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id ADB2F24E1FE;
+        Wed, 22 Mar 2023 18:50:39 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 22 Mar
+ 2023 18:50:39 +0800
+Received: from [192.168.125.108] (183.27.97.64) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 22 Mar
+ 2023 18:50:38 +0800
+Message-ID: <6a223f1c-8c8b-8d07-1cf5-9a83949d0fd3@starfivetech.com>
+Date:   Wed, 22 Mar 2023 18:50:38 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts
+ configuration.
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Pawel Laszczak" <pawell@cadence.com>
+CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+References: <20230315104411.73614-1-minda.chen@starfivetech.com>
+ <20230315104411.73614-6-minda.chen@starfivetech.com>
+ <20230320153419.GB1713196-robh@kernel.org>
+ <2311a888-8861-ade6-d46f-caff4fc3ec73@starfivetech.com>
+ <c3d32c0c-43e0-ee62-d372-27cb09feb82e@kernel.org>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <c3d32c0c-43e0-ee62-d372-27cb09feb82e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [183.27.97.64]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register USB Type-C mode switches when the "mode-switch" property and
-relevant port are available in Device Tree. Configure the "lane_swap"
-state based on the entered alternate mode for a specific Type-C
-connector, which ends up updating the lane swap registers of the it6505
-chip.
 
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
----
-
-Changes in v14:
-- Fix style issues
-
-Changes in v13:
-- Fix style issues
-
-Changes in v12:
-- Fixes style issues in it6505 driver
-- Replaced &it6505->client->dev with it6505->dev
-- Updated the error logs when parsing data-lanes property
-
-Changes in v11:
-- Added back "data-lanes" parsing logics
-- Removed Kconfig dependency
-- Updated the usage of the private data
-
-Changes in v7:
-- Fixed style issues in it6505 driver
-- Removed the redundant sleep in it6505 driver
-- Removed DT property validation in it6505 driver
-- Rebased to drm-misc-next
-- Extracted common codes to another commit
-
-Changes in v6:
-- Changed it6505_typec_mux_set callback function to accommodate with
-  the latest drm-misc patches
-- Changed the driver implementation to accommodate with the new binding
-- Squashed to a single patch
-
- drivers/gpu/drm/bridge/ite-it6505.c | 190 +++++++++++++++++++++++++++-
- 1 file changed, 183 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/ite-it6505.c b/drivers/gpu/drm/bridge/ite-it6505.c
-index d4bc388b68ac..28d07fd7486b 100644
---- a/drivers/gpu/drm/bridge/ite-it6505.c
-+++ b/drivers/gpu/drm/bridge/ite-it6505.c
-@@ -17,6 +17,8 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/types.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
- #include <linux/wait.h>
- 
- #include <crypto/hash.h>
-@@ -27,6 +29,7 @@
- #include <drm/drm_bridge.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_of.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
-@@ -401,6 +404,11 @@ struct debugfs_entries {
- 	const struct file_operations *fops;
- };
- 
-+struct it6505_typec_port_data {
-+	bool dp_connected;
-+	bool lane_swap;
-+};
-+
- struct it6505 {
- 	struct drm_dp_aux aux;
- 	struct drm_bridge bridge;
-@@ -454,6 +462,9 @@ struct it6505 {
- 	struct delayed_work delayed_audio;
- 	struct it6505_audio_data audio;
- 	struct dentry *debugfs;
-+	struct completion mux_register;
-+	struct drm_dp_typec_switch_desc switch_desc;
-+	struct it6505_typec_port_data *port_data;
- 
- 	/* it6505 driver hold option */
- 	bool enable_drv_hold;
-@@ -3345,12 +3356,162 @@ static void it6505_shutdown(struct i2c_client *client)
- 		it6505_lane_off(it6505);
- }
- 
-+static void it6505_typec_ports_update(struct it6505 *it6505)
-+{
-+	unsigned int i;
-+
-+	/* Check if both ports available and do nothing to retain the current one */
-+	if (it6505->port_data[0].dp_connected && it6505->port_data[1].dp_connected)
-+		return;
-+
-+	for (i = 0; i < 2; i++) {
-+		if (it6505->port_data[i].dp_connected)
-+			it6505->lane_swap = it6505->port_data[i].lane_swap;
-+	}
-+}
-+
-+static int it6505_typec_mux_set(struct typec_mux_dev *mux,
-+				struct typec_mux_state *state)
-+{
-+	struct drm_dp_typec_port_data *port = typec_mux_get_drvdata(mux);
-+	struct it6505 *it6505 = port->data;
-+	struct device *dev = it6505->dev;
-+	struct drm_dp_typec_switch_desc switch_desc = it6505->switch_desc;
-+	bool old_dp_connected, new_dp_connected;
-+
-+	if (switch_desc.num_typec_switches == 1)
-+		return 0;
-+
-+	mutex_lock(&it6505->extcon_lock);
-+	wait_for_completion(&it6505->mux_register);
-+
-+	old_dp_connected = it6505->port_data[0].dp_connected ||
-+			   it6505->port_data[1].dp_connected;
-+
-+	it6505->port_data[port->port_num].dp_connected =
-+		state->alt &&
-+		state->alt->svid == USB_TYPEC_DP_SID &&
-+		state->alt->mode == USB_TYPEC_DP_MODE;
-+
-+	dev_dbg(dev, "mux_set dp_connected: c0=%d, c1=%d\n",
-+		it6505->port_data[0].dp_connected, it6505->port_data[1].dp_connected);
-+
-+	new_dp_connected = it6505->port_data[0].dp_connected ||
-+			   it6505->port_data[1].dp_connected;
-+
-+	if (it6505->enable_drv_hold) {
-+		dev_dbg(dev, "enable driver hold\n");
-+		goto unlock;
-+	}
-+
-+	it6505_typec_ports_update(it6505);
-+
-+	if (!old_dp_connected && new_dp_connected) {
-+		int ret = pm_runtime_get_sync(dev);
-+
-+		/*
-+		 * pm_runtime_force_suspend() disables runtime PM when the
-+		 * system enters suspend state. But on system resume, mux_set
-+		 * can be triggered before pm_runtime_force_resume() re-enables
-+		 * runtime PM. This makes the bridge stay powered off if the
-+		 * downstream display is connected when the system is suspended.
-+		 * Handling the error here to make sure the bridge is powered
-+		 * on, and leave the PM runtime usage count incremented so
-+		 * the future runtime PM calls is balanced.
-+		 */
-+		if (ret < 0)
-+			it6505_poweron(it6505);
-+
-+		complete_all(&it6505->extcon_completion);
-+	}
-+
-+	if (old_dp_connected && !new_dp_connected) {
-+		reinit_completion(&it6505->extcon_completion);
-+		pm_runtime_put_sync(dev);
-+		if (it6505->bridge.dev)
-+			drm_helper_hpd_irq_event(it6505->bridge.dev);
-+		memset(it6505->dpcd, 0, sizeof(it6505->dpcd));
-+	}
-+
-+unlock:
-+	mutex_unlock(&it6505->extcon_lock);
-+	return 0;
-+}
-+
-+static void it6505_unregister_typec_switches(struct it6505 *it6505)
-+{
-+	drm_dp_unregister_typec_switches(&it6505->switch_desc);
-+}
-+
-+static int it6505_register_typec_switches(struct device *dev, struct it6505 *it6505)
-+{
-+	struct device_node *port_node = of_graph_get_port_by_id(dev->of_node, 1);
-+	struct drm_dp_typec_switch_desc *switch_desc = &it6505->switch_desc;
-+	int ret;
-+	u32 dp_lanes[4];
-+	unsigned int i, num_lanes;
-+
-+	ret = drm_dp_register_typec_switches(dev, &port_node->fwnode,
-+					     &it6505->switch_desc, it6505,
-+					     it6505_typec_mux_set);
-+	if (ret)
-+		return ret;
-+
-+	it6505->port_data = devm_kcalloc(dev, switch_desc->num_typec_switches,
-+					 sizeof(struct it6505_typec_port_data),
-+					 GFP_KERNEL);
-+	if (!it6505->port_data) {
-+		ret = -ENOMEM;
-+		goto unregister_mux;
-+	}
-+
-+	for (i = 0; i < switch_desc->num_typec_switches; i++) {
-+		struct drm_dp_typec_port_data *port = &switch_desc->typec_ports[i];
-+		struct fwnode_handle *fwnode = port->fwnode;
-+
-+		ret = fwnode_property_count_u32(fwnode, "data-lanes");
-+		if (ret < 0) {
-+			dev_err(dev,
-+				"Error on getting data lanes count from %pfwP: %d\n",
-+				fwnode, ret);
-+			goto unregister_mux;
-+		}
-+		if (ret > 2) {
-+			dev_err(dev,
-+				"Invalid data lanes count for mode switches from %pfwP: %d\n",
-+				fwnode, ret);
-+			ret = -EINVAL;
-+			goto unregister_mux;
-+		}
-+		num_lanes = ret;
-+
-+		ret = fwnode_property_read_u32_array(fwnode, "data-lanes",
-+						     dp_lanes, num_lanes);
-+		if (ret) {
-+			dev_err(dev,
-+				"Failed to read the data-lanes variable: %d\n",
-+				ret);
-+			goto unregister_mux;
-+		}
-+
-+		it6505->port_data[i].lane_swap = (dp_lanes[0] >= 2);
-+	}
-+	complete_all(&it6505->mux_register);
-+
-+	return 0;
-+
-+unregister_mux:
-+	complete_all(&it6505->mux_register);
-+	it6505_unregister_typec_switches(it6505);
-+	return ret;
-+}
-+
- static int it6505_i2c_probe(struct i2c_client *client)
- {
- 	struct it6505 *it6505;
- 	struct device *dev = &client->dev;
- 	struct extcon_dev *extcon;
--	int err, intp_irq;
-+	int err, intp_irq, ret;
- 
- 	it6505 = devm_kzalloc(&client->dev, sizeof(*it6505), GFP_KERNEL);
- 	if (!it6505)
-@@ -3367,14 +3528,28 @@ static int it6505_i2c_probe(struct i2c_client *client)
- 
- 	/* get extcon device from DTS */
- 	extcon = extcon_get_edev_by_phandle(dev, 0);
--	if (PTR_ERR(extcon) == -EPROBE_DEFER)
--		return -EPROBE_DEFER;
--	if (IS_ERR(extcon)) {
--		dev_err(dev, "can not get extcon device!");
--		return PTR_ERR(extcon);
-+	ret = PTR_ERR_OR_ZERO(extcon);
-+	if (ret == -EPROBE_DEFER)
-+		return ret;
-+
-+	if (ret) {
-+		if (ret != -ENODEV)
-+			dev_warn(dev, "Cannot get extcon device: %d\n", ret);
-+
-+		it6505->extcon = NULL;
-+	} else {
-+		it6505->extcon = extcon;
- 	}
- 
--	it6505->extcon = extcon;
-+	init_completion(&it6505->mux_register);
-+	ret = it6505_register_typec_switches(dev, it6505);
-+	if (ret != -ENODEV)
-+		dev_warn(dev, "Didn't register Type-C switches, err: %d\n", ret);
-+
-+	if (ret && !it6505->extcon) {
-+		dev_err(dev, "Both extcon and Type-C switch are not registered.\n");
-+		return -EINVAL;
-+	}
- 
- 	it6505->regmap = devm_regmap_init_i2c(client, &it6505_regmap_config);
- 	if (IS_ERR(it6505->regmap)) {
-@@ -3446,6 +3621,7 @@ static void it6505_i2c_remove(struct i2c_client *client)
- 	it6505_debugfs_remove(it6505);
- 	it6505_poweroff(it6505);
- 	it6505_remove_edid(it6505);
-+	it6505_unregister_typec_switches(it6505);
- }
- 
- static const struct i2c_device_id it6505_id[] = {
--- 
-2.40.0.rc1.284.g88254d51c5-goog
-
+On 2023/3/22 16:00, Roger Quadros wrote:
+> Hi Minda,
+> 
+> On 21/03/2023 14:35, Minda Chen wrote:
+>> 
+>> 
+>> On 2023/3/20 23:34, Rob Herring wrote:
+>>> On Wed, Mar 15, 2023 at 06:44:11PM +0800, Minda Chen wrote:
+>>>> USB Glue layer and Cadence USB subnode configuration,
+>>>> also includes USB and PCIe phy dts configuration.
+>>>>
+>>>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>>>> ---
+>>>>  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
+>>>>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
+>>>>  2 files changed, 61 insertions(+)
+>>>>
+>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>>>> index a132debb9b53..c64476aebc1a 100644
+>>>> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+>>>> @@ -236,3 +236,10 @@
+>>>>  	pinctrl-0 = <&uart0_pins>;
+>>>>  	status = "okay";
+>>>>  };
+>>>> +
+>>>> +&usb0 {
+>>>> +	status = "okay";
+>>>> +	usbdrd_cdns3: usb@0 {
+>>>> +		dr_mode = "peripheral";
+>>>> +	};
+>>>> +};
+>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> index f70a4ed47eb4..17722fd1be62 100644
+>>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>>>> @@ -362,6 +362,60 @@
+>>>>  			status = "disabled";
+>>>>  		};
+>>>>  
+>>>> +		usb0: usb@10100000 {
+>>>> +			compatible = "starfive,jh7110-usb";
+>>>> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
+>>>> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
+>>>> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
+>>>> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
+>>>> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
+>>>> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
+>>>> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
+>>>> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
+>>>> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
+>>>> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
+>>>> +			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
+>>>> +			starfive,sys-syscon = <&sys_syscon 0x18>;
+>>>> +			status = "disabled";
+>>>> +			#address-cells = <1>;
+>>>> +			#size-cells = <1>;
+>>>> +			ranges = <0x0 0x0 0x10100000 0x100000>;
+>>>> +
+>>>> +			usbdrd_cdns3: usb@0 {
+>>>> +				compatible = "cdns,usb3";
+>>>
+>>> This pattern of USB wrapper and then a "generic" IP node is discouraged 
+>>> if it is just clocks, resets, power-domains, etc. IOW, unless there's an 
+>>> actual wrapper h/w block with its own registers, then don't do this 
+>>> split. Merge it all into a single node.
+>>>
+>> I am afraid it is difficult to merge in one single node. 
+>> 
+>> 1.If cadence3 usb device is still the sub device. All the dts setting are in
+>> StarFive node. This can not work.
+>> StarFive driver code Using platform_device_add generate cadenc3 usb platform device. 
+>> Even IO memory space setting can be passed to cadence3 USB, PHY setting can not be passed.
+>> For the PHY driver using dts now. But in this case, Cadence3 USB no dts configure.
+>> 
+>> 2. Just one USB Cadence platform device.
+>> Maybe this can work. But Cadence USB driver code cdns3-plat.c required to changed.
+>> 
+>> Hi Peter Pawel and Roger
+>>    There is a "platform_suspend" function pointer in "struct cdns3_platform_data"，
+>>    Add "platform_init" and "platform_exit" for our JH7110 platform. Maybe it can work.
+>>    Is it OK?   
+> 
+> Once you move all the syscon register modifications from your wrapper driver
+> to your PHY driver, only clock and reset control are left in your wrapper driver.
+> This is generic enough to be done in the cdns3,usb driver itself so you don't need a
+> wrapper node.
+> 
+> Pawel, do you agree?
+>  
+move all the syscon codes to PHY driver is ok. I found dwc3/dwc3-of-simple.c is public codes
+and contain just clock and reset control codes. I can change the residual codes to public codes.
+But I found rockchip 3399 usb dts which is one of dwc3 simple platform still contain two nodes.
+See Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+>>>> +				reg = <0x0 0x10000>,
+>>>> +				      <0x10000 0x10000>,
+>>>> +				      <0x20000 0x10000>;
+>>>> +				reg-names = "otg", "xhci", "dev";
+>>>> +				interrupts = <100>, <108>, <110>;
+>>>> +				interrupt-names = "host", "peripheral", "otg";
+>>>> +				phys = <&usbphy0>;
+>>>> +				phy-names = "cdns3,usb2-phy";
+>>>
+>>> No need for *-names when there is only 1 entry. Names are local to the 
+>>> device and only to distinguish entries, so 'usb2' would be sufficient 
+>>> here.
+>>>
+>> The PHY name 'cdns3,usb2-phy'  is defined in cadence3 usb driver code.
+>> Cadence USB3 driver code using this name to get PHY instance.
+>> And all the PHY ops used in Cadence3 USB sub device. 
+>>>> +				maximum-speed = "super-speed";
+>>>> +			};
+>>>> +		};
+>>>> +
+>>>> +		usbphy0: phy@10200000 {
+>>>> +			compatible = "starfive,jh7110-usb-phy";
+>>>> +			reg = <0x0 0x10200000 0x0 0x10000>;
+>>>> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
+>>>> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
+>>>> +			clock-names = "125m", "app_125";
+>>>> +			#phy-cells = <0>;
+>>>> +		};
+>>>> +
+>>>> +		pciephy0: phy@10210000 {
+>>>> +			compatible = "starfive,jh7110-pcie-phy";
+>>>> +			reg = <0x0 0x10210000 0x0 0x10000>;
+>>>> +			#phy-cells = <0>;
+>>>> +		};
+>>>> +
+>>>> +		pciephy1: phy@10220000 {
+>>>> +			compatible = "starfive,jh7110-pcie-phy";
+>>>> +			reg = <0x0 0x10220000 0x0 0x10000>;
+>>>> +			#phy-cells = <0>;
+>>>> +		};
+>>>> +
+>>>>  		stgcrg: clock-controller@10230000 {
+>>>>  			compatible = "starfive,jh7110-stgcrg";
+>>>>  			reg = <0x0 0x10230000 0x0 0x10000>;
+>>>> -- 
+>>>> 2.17.1
+>>>>
+> 
+> cheers,
+> -roger
