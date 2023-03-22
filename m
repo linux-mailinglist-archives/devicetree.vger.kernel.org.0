@@ -2,94 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4B46C50CA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:32:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCDC6C510E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:44:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbjCVQcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40376 "EHLO
+        id S230250AbjCVQoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:44:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbjCVQcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:32:24 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62626547B
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:32:09 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id r11so75383402edd.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:32:09 -0700 (PDT)
+        with ESMTP id S231129AbjCVQnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:43:53 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA7AC64218;
+        Wed, 22 Mar 2023 09:43:33 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id u38so6710957pfg.10;
+        Wed, 22 Mar 2023 09:43:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679502728;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V+i6i0olRP38jt/sd5KbM3b2NTrDoLmJjG7X2O9x6AE=;
-        b=hnBxt8ZvhRt67vRmkSRcuWkFQm0Bs4hZ9L16icEdFCpm6D3xwV9sGtrA+qBbNqLIYn
-         Bg3N7/fOofWcYpAuWywDU7kMjeFq2xK/dBXWzq6nN50HKLFvqipcFR/O5GSM9kSn1f+i
-         nTFqS+A5tSac37wtmCYXCdd7Q1OynZjoEygzsinp+yIRMdoQSP5NeQAYie3RLR+xtlmz
-         FjASOGVBKCchvHOmEEMEkawK3d1+eJic2ygesLrA0SJMxcCHBndOfJuRl/sqAQ9RW2Cb
-         AW+8VD8opKzp1OjWW0BqDDeZv/shxr8A/sSUw2qhUNPMQYWOQXa7VNEBVOQI351s7Qjw
-         xOUA==
+        d=gmail.com; s=20210112; t=1679503412;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
+        b=V0EKSYZIC9FkSe8GbuaSY3APPPQpgWUoWtgg+WIZJiUIQO7w0pRIzHbTXp+MYKKRmT
+         4RXjX8la9khETyIjcM4rxZ+/PkVHmtXjsWzCL7wW6sA82Fgmg7DQSOoyGiZoC+P2ERVG
+         UzVffFvJcQo0LB4Gt4GEpdSmYWm8tbsVQ0/MoblSj53UBEXknLRN/NegufSI0ruU4HGN
+         nZxNwdmrNz8m9kouwR22QNCjmhxlVfDM5kQwvuXDyQqX3cAKIviaElO60WjbXaAyG5jy
+         yiSlwRRgF0uw3ENRkjSg1emtGfufHHkDqmOC4Auk12wd2lWvMcUHkVEudqn/nnqvLk/q
+         9cdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679502728;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V+i6i0olRP38jt/sd5KbM3b2NTrDoLmJjG7X2O9x6AE=;
-        b=3orHwSD+WbelkSrP3hIN7p3g/OkvUbvCAXdGilNaEMhZxQEdmWGvO8jJfhNaIw3LAS
-         LXycibdoFst55kyObxZwAfUao4dKMHFn+pMFtkY583xSxMLBnEvPNVTTUKRxtKzhwJ6S
-         FOjfAqkAaNAvp5t9htgwK24XlLUcCfbQ3NAvl3dLes14EDaxkLyBD5/Y+1kx1kjxYm/8
-         sWUFFSQSA0WzhFOnyFoSmXBsWS00lfhEqEyl1uG7v6DdRLPglbPrwEduqBbr7HUxw74H
-         I/K1X3yKTMBTBEgyGR9QEzOECSJY7J1+z/2amEknfCUMMIbJOIe/pEKgaC0U8Nz3LsgG
-         S9OQ==
-X-Gm-Message-State: AO0yUKXsT4UvaUMQFrXapNjE5NftXr9RuxHxwjPXTLYwXQHCsUEzKD8N
-        UqorLn4B8KaHgOUvLwpRO7pUCQ==
-X-Google-Smtp-Source: AK7set8/kyHn3yaWx8aQ/JRJFCUYw7PEPwsszRJF7DuXmqkwnUHS2rwonarvwlHh++PzsO0WpZ1yjw==
-X-Received: by 2002:aa7:dac8:0:b0:4fd:2007:d40b with SMTP id x8-20020aa7dac8000000b004fd2007d40bmr7484771eds.9.1679502727997;
-        Wed, 22 Mar 2023 09:32:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id i20-20020a508714000000b004fc649481basm8099908edb.58.2023.03.22.09.32.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 09:32:07 -0700 (PDT)
-Message-ID: <2cb5fca2-56bc-c706-912b-2b8eaf7b3b94@linaro.org>
-Date:   Wed, 22 Mar 2023 17:32:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: move elish dts to common dtsi
-Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20210112; t=1679503412;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
+        b=2/7aGkeW9rFoBVFwZkebWEDzIaN33+4LauEflCq2hpeC+6RcHXDWeb8C/vl5roOP6c
+         3cXRr3A6k7pRIfYi8b86IUFjSyvyzzOU4eoZ19h0kYWket1R1xNOylB1M4z3/y7RJsBD
+         R9O0XlNsjVIHhVFnCw+dO9aZRbOdbnrnScvk43sbRKpEcXeluoC8z6zZNHbYL8SruW3O
+         +tr3EC7JhhtKddqQ/a4qDNoFi+P5mEFqzpkJE/y1BuO2CZLSbuMAIJZVrf/AanNQOuPv
+         7GHLOWROk6l4lWGjRniuhKtVxDATnI+iK6qQxPeEhgKc16UyQpjHVEGfMbJ/Ne9JXIuD
+         pWKg==
+X-Gm-Message-State: AO0yUKV6uxuSvcqYsUbnD9jJ2zOLQzC7RUPT50o8IEbtYtvSA6sV0chq
+        y2lQinJYmsyUFxFAexoP7UT9E8hpZhwYLI3zX2I=
+X-Google-Smtp-Source: AK7set878e0TqrgGmu7WR2arqbldMx0Lis8xvmtncUtfD0g3yw1Sx9IhgqiDXib9zjHjcmZQ5IUo+A==
+X-Received: by 2002:a62:17c9:0:b0:625:ce21:3b1b with SMTP id 192-20020a6217c9000000b00625ce213b1bmr3871105pfx.3.1679503412638;
+        Wed, 22 Mar 2023 09:43:32 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([104.28.213.202])
+        by smtp.gmail.com with ESMTPSA id g6-20020a62e306000000b005a8bf239f5csm10300830pfh.193.2023.03.22.09.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Mar 2023 09:43:32 -0700 (PDT)
+From:   David Yang <mmyangfl@gmail.com>
+To:     linux-clk@vger.kernel.org
+Cc:     David Yang <mmyangfl@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230322150320.31787-1-lujianhua000@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322150320.31787-1-lujianhua000@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v7 8/9] dt-bindings: clock: Add Hi3798MV100 CRG
+Date:   Thu, 23 Mar 2023 00:41:56 +0800
+Message-Id: <20230322164201.2454771-9-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230322164201.2454771-1-mmyangfl@gmail.com>
+References: <20230322164201.2454771-1-mmyangfl@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 16:03, Jianhua Lu wrote:
-> There are two panel variants of xiaomi-elish, BOE and CSOT panel.
-> In order to support both panels, so move elish dts to common dtsi.
-> 
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-> ---
->  ...m8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} | 4 ----
+Add CRG bindings for Hi3798MV100 SoC. CRG (Clock and Reset Generator)
+module generates clock and reset signals used by other module blocks on
+SoC.
 
-This breaks the build.
+Signed-off-by: David Yang <mmyangfl@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/clock/hisi-crg.txt          |  2 ++
+ include/dt-bindings/clock/histb-clock.h             | 13 +++++++++++++
+ 2 files changed, 15 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/clock/hisi-crg.txt b/Documentation/devicetree/bindings/clock/hisi-crg.txt
+index cc60b3d42..972c038c8 100644
+--- a/Documentation/devicetree/bindings/clock/hisi-crg.txt
++++ b/Documentation/devicetree/bindings/clock/hisi-crg.txt
+@@ -13,6 +13,8 @@ Required Properties:
+   - "hisilicon,hi3516cv300-crg"
+   - "hisilicon,hi3516cv300-sysctrl"
+   - "hisilicon,hi3519-crg"
++  - "hisilicon,hi3798mv100-crg"
++  - "hisilicon,hi3798mv100-sysctrl"
+   - "hisilicon,hi3798cv200-crg"
+   - "hisilicon,hi3798cv200-sysctrl"
+ 
+diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
+index e64e5770a..126b1f839 100644
+--- a/include/dt-bindings/clock/histb-clock.h
++++ b/include/dt-bindings/clock/histb-clock.h
+@@ -58,6 +58,19 @@
+ #define HISTB_USB3_UTMI_CLK1		48
+ #define HISTB_USB3_PIPE_CLK1		49
+ #define HISTB_USB3_SUSPEND_CLK1		50
++#define HISTB_USB2_UTMI_CLK1		51
++#define HISTB_USB2_2_BUS_CLK		52
++#define HISTB_USB2_2_PHY_CLK		53
++#define HISTB_USB2_2_UTMI_CLK		54
++#define HISTB_USB2_2_UTMI_CLK1		55
++#define HISTB_USB2_2_12M_CLK		56
++#define HISTB_USB2_2_48M_CLK		57
++#define HISTB_USB2_2_OTG_UTMI_CLK	58
++#define HISTB_USB2_2_PHY1_REF_CLK	59
++#define HISTB_USB2_2_PHY2_REF_CLK	60
++#define HISTB_FEPHY_CLK			61
++#define HISTB_GPU_BUS_CLK		62
++#define HISTB_GPU_CORE_CLK		63
+ 
+ /* clocks provided by mcu CRG */
+ #define HISTB_MCE_CLK			1
+-- 
+2.39.2
 
