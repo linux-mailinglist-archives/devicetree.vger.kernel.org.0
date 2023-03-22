@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C036C44E3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:26:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A856C44EC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:30:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjCVI0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 04:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52780 "EHLO
+        id S229975AbjCVIah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 04:30:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjCVI0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:26:53 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4A35CC0D
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:26:51 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id x3so69427814edb.10
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:26:51 -0700 (PDT)
+        with ESMTP id S229784AbjCVIag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:30:36 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ED65C9DF
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:30:34 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id o12so69499581edb.9
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:30:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679473610;
+        d=linaro.org; s=google; t=1679473833;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CAm2veKDXnaGeAZs5U8h5RukZe7XAVK9RQkbxxKLv34=;
-        b=r8/Pipy5QlNEsDFHQD4BrpB73OBERqn3qtdPUGj8l7lSpV55RMdCoWheyyi4Qhr0KQ
-         WJYSv44eAzVgl6OwoyQcLhG7ubWxeobVfPRra/Aajsp9XM+u7OrFHHobt8QwQCAk/h6N
-         JpOxoX4Eyh8JQs9YfrRYJwBx02Jr4UhgX1Femc6LrFz7zMz/f6CKSog9nVqsRPsKsHzT
-         giP+VXYLdfnERJnGi3xBdGOX9jvxUigvTlyXLK3Qc6Qtsz1/lEpbwKNWwT739gNoDq2t
-         5gq/XagguaqS/pk0ukYTso4e4LffzDPBp0oFGPWYmMqEprqr/hfrYNmtcbUd5qHbTu6a
-         5iEQ==
+        bh=OdUQKUhhiP/AHFjE5Cg++X9BxgvEq6Ybodm+73BF1Fw=;
+        b=ZHmz7QEujqa25/gVodDyMAQAUXp9Sq/gc3xuQvmLY4G/iF1suO/4B3EYadt3zZRSsQ
+         oNtlOdEmUQxaHReUhUXnAGBpikHd+BULuuWXgRSsmjW0zWJq7LPff8oS4VjqQlcAmK37
+         oNdTdwKBTtIe5BEz2eD+tqLpBlT29sFwx/PFFVFkTaZyDFeHaKGio8EEN9VZIoYUqfRm
+         jCncRJBglQOyvitQLDtYPuCPW0IzmSbWJxKFJzl9OgpEciXUcCxH6Xl0mT9RmelvNNCO
+         2qm3S1vB7eNMbxciqnr2TLafjots2Anfi0V9IXFQoTzNWANthtcPYAGuufpaykyZo3IP
+         gSNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679473610;
+        d=1e100.net; s=20210112; t=1679473833;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CAm2veKDXnaGeAZs5U8h5RukZe7XAVK9RQkbxxKLv34=;
-        b=rltyJqJsq1lc8rtZtAwigiLJV5lulTOAHIdr8rxLMC8tD7GLdEeJEY4RGFyasWh4p8
-         iVPv04bn0n9+0HxJt9zYTe7/i/8bD0VxGg/QY0oSvEMRmtQfM/aSUGD1Pjj7Og632/rC
-         7mdPtIhUoIt8B8sTZTpys9qs9epp62pnxcOBknQGwU3NI+gbKUbocBeqtop9Cu8O1cc2
-         JEZntoQBY+0+5kjw2rWUXSI33mwBoupNZMIROA8a1nPAZbZEj0roxS6rRT4zo12jHPWs
-         7BtgcqBKCc9/RryXUJxkUlTEwBVdvJCTn7+PjyzN6SYxyXp9cZxEvVZ25WH/SbSTihao
-         8KVw==
-X-Gm-Message-State: AO0yUKW4NVYqIPDstCMDTrGbN9DEvMhnLDs8OTPyaPQL8peLrK7dTSVR
-        OQ8L6RbRHhiTxXAjcOaLLnpn8w==
-X-Google-Smtp-Source: AK7set9KukcOzPQVlVPh/m1MkqNeqsUvYJeekT3EgmcO6WBovtGPoHfm9Rnb5pcgppW3G3aRSH3mWw==
-X-Received: by 2002:a17:906:9bd8:b0:879:ab3:93d1 with SMTP id de24-20020a1709069bd800b008790ab393d1mr5833860ejc.4.1679473610508;
-        Wed, 22 Mar 2023 01:26:50 -0700 (PDT)
+        bh=OdUQKUhhiP/AHFjE5Cg++X9BxgvEq6Ybodm+73BF1Fw=;
+        b=gsSKJbaE6nKlRX8Nb5ecJeaIXXlWT+W1zWZKmz2YtLxtL7sbgv5t8dAoOTn/g+3CP0
+         SBwFa9aQcIr6bZ5Irdq0SITp9gBYdbCLsKQfjORncV12a+Ncadgci+ekrhHrkm7euOS2
+         bPxxQPICy+EQLAj9xkXGyoB1hYhJZst9RxdF2rjVnUaM3y8HmR4tgWJM2PN/B4Sldp22
+         wpaaS8ZD4kzfVkcq3fOgxmi+hLw5MA2546zUnbsPndXL06LkLXovzI/GrSLLXa+Tn5ZP
+         d5JAU/HI2dXqHv8LE07DMgtMbWr2TwWVN9rD1arq3W4/lZuNN8HhRl/a6qZrYJWwgHnT
+         NozA==
+X-Gm-Message-State: AO0yUKWauqEvYMhsDakwef+mfAY07wD325YtuoM4yVC6bwPveysE5Q+K
+        TUwaFJbF2Zo65qHuFsqGpsZMQQ==
+X-Google-Smtp-Source: AK7set8Iw48FCrfKo8mQ85Q2EkmWhTMQeVAiK+kQDGWX8UOpGZtycm/zegmmRF91tp4VF2dnVVk0Yg==
+X-Received: by 2002:a17:906:1501:b0:932:853c:c958 with SMTP id b1-20020a170906150100b00932853cc958mr4847233ejd.25.1679473832832;
+        Wed, 22 Mar 2023 01:30:32 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id 21-20020a170906319500b008d68d018153sm6783591ejy.23.2023.03.22.01.26.49
+        by smtp.gmail.com with ESMTPSA id md12-20020a170906ae8c00b008e68d2c11d8sm6862203ejb.218.2023.03.22.01.30.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 01:26:50 -0700 (PDT)
-Message-ID: <a44e363c-c8c3-341d-d794-df2bc1a3d20d@linaro.org>
-Date:   Wed, 22 Mar 2023 09:26:49 +0100
+        Wed, 22 Mar 2023 01:30:32 -0700 (PDT)
+Message-ID: <afeecd42-ecda-4d92-bbb5-6dcff84fca7d@linaro.org>
+Date:   Wed, 22 Mar 2023 09:30:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 3/8] dt-bindings: power: supply: max77658: Add ADI
- MAX77654/58/59 Charger
+Subject: Re: [PATCH v2 5/8] dt-bindings: power: supply: max77658: Add ADI
+ MAX77658 Battery
 Content-Language: en-US
 To:     Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
         lee@kernel.org, robh+dt@kernel.org,
@@ -64,9 +64,9 @@ To:     Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
 Cc:     Nurettin.Bolucu@analog.com, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-pm@vger.kernel.org
 References: <20230322055628.4441-1-Zeynep.Arslanbenzer@analog.com>
- <20230322055628.4441-4-Zeynep.Arslanbenzer@analog.com>
+ <20230322055628.4441-6-Zeynep.Arslanbenzer@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322055628.4441-4-Zeynep.Arslanbenzer@analog.com>
+In-Reply-To: <20230322055628.4441-6-Zeynep.Arslanbenzer@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -80,38 +80,94 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/03/2023 06:56, Zeynep Arslanbenzer wrote:
-> Add ADI MAX77654/MAX77658/MAX77659 power supply devicetree document.
+> Add ADI MAX77658 power supply devicetree document.
 > 
 > Signed-off-by: Nurettin Bolucu <Nurettin.Bolucu@analog.com>
 > Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
 > ---
->  .../power/supply/adi,max77658-charger.yaml    | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/adi,max77658-charger.yaml
+>  .../power/supply/adi,max77658-battery.yaml    | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/adi,max77658-battery.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/adi,max77658-charger.yaml b/Documentation/devicetree/bindings/power/supply/adi,max77658-charger.yaml
+> diff --git a/Documentation/devicetree/bindings/power/supply/adi,max77658-battery.yaml b/Documentation/devicetree/bindings/power/supply/adi,max77658-battery.yaml
 > new file mode 100644
-> index 000000000000..f140abab969c
+> index 000000000000..0b696f7c4d1b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/adi,max77658-charger.yaml
-> @@ -0,0 +1,65 @@
+> +++ b/Documentation/devicetree/bindings/power/supply/adi,max77658-battery.yaml
+> @@ -0,0 +1,58 @@
 > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/power/supply/adi,max77658-charger.yaml#
+> +$id: http://devicetree.org/schemas/power/supply/adi,max77658-battery.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Battery charger for MAX77658 PMICs family from ADI.
+> +title: Battery for MAX77658 PMIC from ADI.
 
-This is a friendly reminder during the review process.
+Implement all previous comments, not just some.
 
-It seems my previous comments were not fully addressed. Actually you
-ignored all of them. Maybe my feedback got lost between the quotes,
-maybe you just forgot to apply it. Please go back to the previous
-discussion and either implement all requested changes or keep discussing
-them.
 
-Thank you.
+> +
+> +maintainers:
+> +  - Nurettin Bolucu <Nurettin.Bolucu@analog.com>
+> +  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> +
+> +description: |
+> +  This module is part of the MAX77658 MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/adi,max77658.yaml.
+> +
+> +  The fuel gauge is represented as a sub-node of the PMIC node on the device tree.
+> +
+> +properties:
+> +  compatible:
+> +    const:
+> +      adi,max77658-battery
+
+It's one line.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  adi,valrt-min-microvolt:
+> +    description: Minimum voltage value that triggers the alarm.
+> +
+> +  adi,valrt-max-microvolt:
+> +    description: Maximum voltage value that triggers the alarm.
+
+Use the same syntax as battery.yaml
+
+> +
+> +  adi,salrt-min-percent:
+> +    description: Minimum percentage of battery that triggers the alarm.
+> +
+> +  adi,salrt-max-percent:
+> +    description: Maximum percentage of battery that triggers the alarm.
+
+That's not suitable for DT. Do not encode policies into DT.
+
+> +
+> +  adi,ialrt-min-microamp:
+> +    description: Minimum current value that triggers the alarm.
+> +
+> +  adi,ialrt-max-microamp:
+> +    description: Maximum current value that triggers the alarm.
+> +
+> +  monitored-battery:
+> +    description: >
+> +      phandle to a "simple-battery" compatible node.
+> +
+> +      This property must be a phandle to a node using the format described
+
+You already said it above.
+
+> +      in battery.yaml, with the following properties being required:
+> +      - alert-celsius
+> +
+> +required:
+> +  - compatible
+
+Why reg and monitored-batter are not required?
+
 
 Best regards,
 Krzysztof
