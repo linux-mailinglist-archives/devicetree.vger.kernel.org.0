@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B1D36C511A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:47:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BFB6C511F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:47:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbjCVQrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46652 "EHLO
+        id S230350AbjCVQrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:47:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbjCVQrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:47:17 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2636424F
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:47:15 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id e19so16737409vsu.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:47:15 -0700 (PDT)
+        with ESMTP id S230195AbjCVQrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:47:37 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8D164272;
+        Wed, 22 Mar 2023 09:47:27 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id mp3-20020a17090b190300b0023fcc8ce113so9205610pjb.4;
+        Wed, 22 Mar 2023 09:47:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679503635;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0Ib6VfeXa68H/3MBI+KE+ZwchZA/KZsXvDAWGzf55Bc=;
-        b=P5SORmGmujjl3O+PRMLtDezEMBh9Enj2y2OpO+le8+3Dy6UUfwDdVvZ4jQlYqf67GW
-         +eSEpcm85Cuhl8NL7k22rbofJmeZzdZI8f4g2enylohcMsfAahGrkDMRlw8zIYLj6qTR
-         LOBXLPj5I02mrVIKA6sM37S2QeBU52PbCLTB74T0icSUUdfAMoAVD+Md+eQBUKipZGsR
-         XTPvHTezhQwf+yi4bF0PoqBab+07mzrkg+QAM6NjYvq1kTCbvTZWh3xV6/AobwgEfyxA
-         i67ihK7KR0hGIJnizwwf+oIxfaYTS8zNXErEPJ41ZAWniLJAuJ9wxhJOhBwGUg0agG6x
-         93KQ==
+        d=gmail.com; s=20210112; t=1679503647;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LpONkzfOzhTH79tK5TxGy1m6Rwb93Q8fXC1hWk39Vlo=;
+        b=QZ74OaqlkD8zv1ghDdRVHqbYtIVJxdWOejZN3IRVc13BcoaHHu7WOc16YXD2zQyV4B
+         0cl2WTs0ldoNqvchBYj/ZDanw7IADbQreZVGvrxPUym5lhoZh+ukrIhiQOkfjN1A1rUM
+         nrx/3BYXbRlP4rM5hQzWYD8kkPCCICAKQAB5YQ+jLRxoPiB9beaNbkTHjwnqTqVq2kO/
+         23NmQs6x5Mgut3EqSh/88uXcqkjuB/cdu2wvdBss+jRRDtNv83ihe9YzvjEff/dnof05
+         FJxbqL24n7birT6QRqMAQGRhMWlQZ4nga1QxdO77PGtAdgQpqh8DnNvdkXh6yYnuOF6j
+         hDDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679503635;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0Ib6VfeXa68H/3MBI+KE+ZwchZA/KZsXvDAWGzf55Bc=;
-        b=IopsHEzEoKuc1BZMoXdsFvHAoZOwEAEHvYom9fPAM0xc8tlyACmuIvvcvWDXOzbIAA
-         Ve7BBZFRQj5Az8AfNz1h2I0YgS1b7/17D0PTHvDQnVAfsR1NyrTFe9QyEoampS8jjAh/
-         JVAOfw4B2+NIRArts5G7JQ3O98hV1ogqpE5BOPnkDN9fF+Zt2+AZ2pYC84sxb0jSa0BY
-         AclFyyXUVW4S07XjXe92QfdZ9MdvdkUItMcFMlFAksNs5NKYxXzUUcUEdDfNAOmtWNxw
-         r1kbSViU+g3eAQRHbU5tw349AemebzQkoDJIA3oEW7rvCSgeE8jlkLbskMQTCpFsDrjc
-         8NqA==
-X-Gm-Message-State: AO0yUKXyiO3fHHvsWpXfugSwbEMdZlzBQjvTtXBMlF4evjGurMIhgV3x
-        j/mt/PAiUU8lfkyw7GvFGEESHRMIRAC6NCDd5Finxw==
-X-Google-Smtp-Source: AK7set9fXX+H3LN7L7ST6XtAsF/I0m2AM8+pKlr7JkCCp/CNXLdab5JAFYd1YlqA9ddlJmcaSkzNMQzlTYjdu8CIzak=
-X-Received: by 2002:a67:c38b:0:b0:411:b4c2:c6c0 with SMTP id
- s11-20020a67c38b000000b00411b4c2c6c0mr93240vsj.0.1679503634802; Wed, 22 Mar
- 2023 09:47:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230315110650.142577-1-keguang.zhang@gmail.com> <20230315110650.142577-3-keguang.zhang@gmail.com>
-In-Reply-To: <20230315110650.142577-3-keguang.zhang@gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 22 Mar 2023 17:47:03 +0100
-Message-ID: <CAMRc=McFvYk6uPqmsnES5Bt5vBSb2Af3-wSXY5-EeZ6ZGf3=sw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] gpio: loongson1: Introduce ls1x_gpio_chip struct
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
+        d=1e100.net; s=20210112; t=1679503647;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LpONkzfOzhTH79tK5TxGy1m6Rwb93Q8fXC1hWk39Vlo=;
+        b=hfTnapF/1yHlaCasPizoKb7C9rQ+4rfoWGWULYU/18FQX+pPP9N7w0/dkR2M5sZ4Eq
+         gCO44T6LEYTtG09BJapzwxDtDB4SCxZ5g9flVlmnjwxRoHK/vkU2EYy2tDTRb2c12ZZz
+         n1DkikSZ5x/gr1+XfRlOT9bMQ823gUVajURKwQ6KY1x8Kia0J+WHEz8C5BaiHOA/T6Oy
+         qw3VKrwSw9Yrn2EsmoDgXtU0rvSEd+1tdCgdIFDm5jICfjACVXBNaAID4mqWO+90b4IS
+         jeWVmdJorP4xi+j53hHp2qQ5XFU/cfVY4mhmUFjfQ0EI7qtjcKtOVPNtUzBlExA7SyO9
+         //LA==
+X-Gm-Message-State: AO0yUKVR7oDE7iJVIxNbLHzPKNW4VmA4DpI+r5Pu33n2Hk1qP3RwQ8LD
+        fQ+bOvxPmuEyGnMRPF3i95A=
+X-Google-Smtp-Source: AK7set/mhxHpN1/DAuFzM8ChAXJD4RHuoL4I8fCe6g1mrgeIZ6Qdiok4c8utR0sUrA90kIXjfOLgwA==
+X-Received: by 2002:a17:903:2301:b0:1a1:8fd4:251 with SMTP id d1-20020a170903230100b001a18fd40251mr3487080plh.55.1679503647254;
+        Wed, 22 Mar 2023 09:47:27 -0700 (PDT)
+Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id 6-20020a170902c20600b0019b089bc8d7sm10898239pll.78.2023.03.22.09.47.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Mar 2023 09:47:26 -0700 (PDT)
+Date:   Thu, 23 Mar 2023 00:47:18 +0800
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: move elish dts to common dtsi
+Message-ID: <ZBsxFh2qH6hv2Wo1@Gentoo>
+References: <20230322150320.31787-1-lujianhua000@gmail.com>
+ <2cb5fca2-56bc-c706-912b-2b8eaf7b3b94@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2cb5fca2-56bc-c706-912b-2b8eaf7b3b94@linaro.org>
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,18 +77,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 12:07=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail=
-.com> wrote:
->
-> This patch introduces and allocates ls1x_gpio_chip struct containing
-> gpio_chip and reg_base to avoid global gpio_reg_base.
->
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
-> V2 -> V3: Restore the calling of __raw_readl() & __raw_writel()
-> V1 -> V2: Split this change to a separate patch
-> ---
-
-Applied, thanks!
-
-Bart
+On Wed, Mar 22, 2023 at 05:32:06PM +0100, Krzysztof Kozlowski wrote:
+> On 22/03/2023 16:03, Jianhua Lu wrote:
+> > There are two panel variants of xiaomi-elish, BOE and CSOT panel.
+> > In order to support both panels, so move elish dts to common dtsi.
+> > 
+> > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> > ---
+> >  ...m8250-xiaomi-elish.dts => sm8250-xiaomi-elish-common.dtsi} | 4 ----
+> 
+> This breaks the build.
+Thanks for spotting it. I will fix it in v2.
+> 
+> Best regards,
+> Krzysztof
+> 
