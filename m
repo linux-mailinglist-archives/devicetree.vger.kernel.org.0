@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 741956C4A2B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 13:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37E56C4AD9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 13:40:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbjCVMRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 08:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45366 "EHLO
+        id S230303AbjCVMkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 08:40:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbjCVMRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 08:17:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50EA60AA9;
-        Wed, 22 Mar 2023 05:17:42 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 389CE66030ED;
-        Wed, 22 Mar 2023 12:17:39 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679487461;
-        bh=Y/ViFHF+5ivXcB2oIYzIPVmCLMqimwaue47WFt0l5lw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=U0BpYf8r5D1sTxdz4HbVYYErfotKO7ueqc1imuNp+BqvyZDaWF8+vpYvHJokG7ljz
-         +3CrIcyBy8Gy1l1Mvu9+8cy3QDyYvIXcnPSKOQ4sJeTqskA6mCp1BjuW4trXxY3Yfi
-         jq9nE7z2GMHpLzrNs/kwLgddTznBTwGtMwoAXm4a+OBE8V3ez8McJzXLpiCe5BnfTB
-         Of4cHHPBMDS5Ix2/Iv2TY/SWSj6tZIMCFtizNF3j+/s0WbgrVucDVRe7nPxIBZhDif
-         AhQZfjji55lsLtf7CF4ksmE9pmxQ7vzGc+tf05UvLEZ4W1IolvsVTjPJ7eYMQmvaru
-         xetIjb87blQWA==
-Message-ID: <4607ead5-66c2-ab43-5053-6dfbbac7feef@collabora.com>
-Date:   Wed, 22 Mar 2023 13:17:36 +0100
+        with ESMTP id S229607AbjCVMkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 08:40:02 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82FA4DE15;
+        Wed, 22 Mar 2023 05:39:59 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32MCdglT122562;
+        Wed, 22 Mar 2023 07:39:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679488782;
+        bh=N+WOksGlwcM4nkoCKu/DS0IXriJ6erCaExgqr/mPfQw=;
+        h=From:Subject:Date:To:CC;
+        b=KrI8WOaL9gr8C5obxzys18vjBmVHZYLuM6XZoSEGCvppnFmv/WgGB6ayzwG/4scgY
+         OndaogTOdnsqWvTnTRrRooeeWPrJ8q3/gmI72/jRn7x0f3xYHEDJOZtCGnz4hmo/IA
+         JuCzLDiYDoforlxw6mG0hE2VL7ppZtemJP/GEad4=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32MCdgv3006959
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Mar 2023 07:39:42 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 22
+ Mar 2023 07:39:42 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 22 Mar 2023 07:39:41 -0500
+Received: from [127.0.1.1] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32MCdcnX098356;
+        Wed, 22 Mar 2023 07:39:39 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH v2 0/3] arm64: dts: ti: Introduce AM62x LP SK board support
+Date:   Wed, 22 Mar 2023 18:09:19 +0530
+Message-ID: <20230321-am62-lp-sk-v2-0-0a56e1694804@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v14 02/10] platform/chrome: cros_ec_typec: Purge blocking
- switch devlinks
-Content-Language: en-US
-To:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Xin Ji <xji@analogixsemi.com>, linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-acpi@vger.kernel.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Stephen Boyd <swboyd@chromium.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20230322104639.221402-1-treapking@chromium.org>
- <20230322104639.221402-3-treapking@chromium.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230322104639.221402-3-treapking@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAPf2GmQC/02Nyw6CMBBFf8V07ZA+sERX/odxMeBAJ0ghU0QTw
+ r9bXLk8uffkrCqRMCV1OaxKaOHEY8xgjwfVBIwdAT8yK6ut084awMFbeE6QeqDKVx49Yl0alYU
+ aE0EtGJuwK/sT4Y09vaZ9noRa/vxat3vmVsYB5iCE/wWtT8bpsrCV0/5swcDCXaQU5Dpz0YyD2
+ rYvW9Kk+bYAAAA=
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        "Tero Kristo" <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lore.kernel.org/r/20230320051304.2730692-1-vigneshr@ti.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        Anand Gadiyar <gadiyar@ti.com>
+X-Mailer: b4 0.12.2
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 22/03/23 11:46, Pin-yen Lin ha scritto:
-> From: Prashant Malani <pmalani@chromium.org>
-> 
-> When using OF graph, the fw_devlink code will create links between the
-> individual port driver (cros-ec-typec here) and the parent device for
-> a Type-C switch (like mode-switch). Since the mode-switch will in turn
-> have the usb-c-connector (i.e the child of the port driver) as a
-> supplier, fw_devlink will not be able to resolve the cyclic dependency
-> correctly.
-> 
-> As a result, the mode-switch driver probe() never runs, so mode-switches
-> are never registered. Because of that, the port driver probe constantly
-> fails with -EPROBE_DEFER, because the Type-C connector class requires all
-> switch devices to be registered prior to port registration.
-> 
-> To break this deadlock and allow the mode-switch registration to occur,
-> purge all the usb-c-connector nodes' absent suppliers. This eliminates
-> the connector as a supplier for a switch and allows it to be probed.
-> 
-> Signed-off-by: Prashant Malani <pmalani@chromium.org>
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+This add DT support for AM62x LP SK board which has Automotive package
+variant of AM62x SoC with LPDDR4 and OSPI NAND
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Product link: https://www.ti.com/tool/SK-AM62-LP
+Logs: https://gist.github.com/r-vignesh/0ad701f3df614cc5f90b6de775f2584e
 
+Since v1:
+Drop wild card 'x' and rename compatible and dts file to am62-lp-sk.dts
+as suggested by Krzysztof.
+
+v1: lore.kernel.org/r/20230320051304.2730692-1-vigneshr@ti.com
+
+--
+2.40.0
+
+---
+Anand Gadiyar (2):
+      arm64: dts: ti: Refractor AM625 SK dts
+      arm64: ti: dts: Add support for AM62x LP SK
+
+Vignesh Raghavendra (1):
+      dt-bindings: arm: ti: k3: Add compatible for AM62x LP SK
+
+ Documentation/devicetree/bindings/arm/ti/k3.yaml |   1 +
+ arch/arm64/boot/dts/ti/Makefile                  |   1 +
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts         | 227 ++++++++
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts           | 237 +-------
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi   | 274 ++++++++++
+ 5 files changed, 504 insertions(+), 236 deletions(-)
+---
+base-commit: f3594f0204b756638267242e26d9de611435c3ba
+change-id: 20230321-am62-lp-sk-e7676a6aab41
+
+Best regards,
+-- 
+Vignesh
 
