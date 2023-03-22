@@ -2,108 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CF456C5232
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:19:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0746C5284
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:35:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbjCVRTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 13:19:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39926 "EHLO
+        id S229798AbjCVRfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 13:35:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjCVRTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:19:02 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C682CC63;
-        Wed, 22 Mar 2023 10:18:43 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-53d277c1834so350367177b3.10;
-        Wed, 22 Mar 2023 10:18:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679505518;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E5/aVehBsgh0kzDWGWqpxifEfBtyQggusoaHEV8RT/M=;
-        b=fTnHzZ+vROjiscjk5DTXVVgaqhY5LcEvflX3LkNzqg5LrJbZOhuT/8gG1mZYC3Dg44
-         rZbTiyNFhHgMyancDn019aeLQzbaTvhgbkoBBVVg8l8vJ1IBIY7E7sOBVzFHQ0njxClC
-         YQCuU+ROgb3B6FuT5crCquG5FNDrEuzGzhEIeHUccgvlygWIeyXL6yoyCZwo7o44CG2A
-         p/ZQ+YUlneZZZuWZK8rUO8ILIdrqXuw7oEvqfrEydaMqh+9pLP7Wt9w/gFiSawDiNBEu
-         dlpualbfDcQCKf2MgZSy1Z2/yBhiGPsbXRgb2RMh3ZsjBsCX0eGRAAw4nn4jFA3oRhoS
-         IeUg==
+        with ESMTP id S229691AbjCVRfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:35:05 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EA5442F7;
+        Wed, 22 Mar 2023 10:35:03 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id m20-20020a9d6094000000b0069caf591747so10792937otj.2;
+        Wed, 22 Mar 2023 10:35:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679505518;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E5/aVehBsgh0kzDWGWqpxifEfBtyQggusoaHEV8RT/M=;
-        b=JuJJqQXarWk0sztRL3JN2B0JmKirqBEyY7TXUdr0uto/8VOFjCBORvGDMQL3iErtKV
-         dKIJPftywp4jz2OBuJopon0+xoWBNvMTeq/isETGYCaci6V0cd7osJphiUxY+0k9MpUr
-         ScuAiCAk4bGl1lL3IBzXNYCCG6xXvtmAgdiB6/H05I2Kcc3RaqejyWkDuwZxx4lECfI2
-         HPnmYTXSLOjClV/r8R5GmIW2z06U5muVpWcHIxOqNTSpU5Pr/zedaKKlrAuYF83aY1/m
-         8kw9dtXbzsRZNiPLCmUWPT+J8sapj5/7N9zoW1Wm46HhcACDAbj7wZMX5IjKOicbR1Rv
-         bzJg==
-X-Gm-Message-State: AAQBX9dUSaRDBkafC/eAaOwUlXbMyqnbMUa6MtAHmejCS8lhzFfiXkkh
-        GfUeqwUI/hAM+vH4PWZY8DIChlrxVrwCPBnmmfM=
-X-Google-Smtp-Source: AKy350aJ8+5bIapFVS2V7Xlh6Fx35AQq+ZxlQkFE9XnIFYFz+3BqwQOvw7YXnSl+EBHR0JTaw+qhUBvq/a2f3kxUYkM=
-X-Received: by 2002:a81:b149:0:b0:544:b7ff:b0df with SMTP id
- p70-20020a81b149000000b00544b7ffb0dfmr344866ywh.2.1679505518520; Wed, 22 Mar
- 2023 10:18:38 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679506503;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4iBFMrGCXs7aCaesF7jmbgEDqOsWeQiS1SA88xm+gP4=;
+        b=imDww5pmXMMgcLK5+/NoK5x002oQhkFKrWjKCCNDNWkkfA4RFSUSu7LgNAzX6Q3OZa
+         qzpOp4WJmIAiR5NeLQ1JEl4n4KMyZFRn/Lxg/wS40nVdhc1qqjA46XS6lWzo9CzXE+40
+         rkl+ZmIguZOzwdygGeae8CKKvGIJmmaba/L4CFXPMxV55fIJhBGIifzXwnC3L8gBc3Ak
+         KcbrI0iU7WdLonRO/Qszmiw7XumhpuYehDwjAbtl1CiJw9pPx7twloKYlT5RMdnOuzLq
+         PATb5pEOEnDHQ4qObC6f7b5ez/AdejYJxM4YffANtAmPFY3hhCGPGenQl9EATeBtiqx+
+         +n5A==
+X-Gm-Message-State: AO0yUKWZYNtgzwH+fM9mtG0dK4hcKjyFOs3l70Z731nXHX90Q+fuqwAS
+        xzUtK7qpkoLuRA07F9QbQg==
+X-Google-Smtp-Source: AK7set8m4syrOCyuvx0eJfcZmRDih7NX1pwJMSBfADgJk63vKLPYr43ZCbmjV3U24/oNGz5bTTge9g==
+X-Received: by 2002:a05:6830:129a:b0:69f:289:1fe9 with SMTP id z26-20020a056830129a00b0069f02891fe9mr2058230otp.17.1679506502895;
+        Wed, 22 Mar 2023 10:35:02 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l26-20020a0568301d7a00b0069fa776d3c2sm162320oti.18.2023.03.22.10.34.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Mar 2023 10:34:58 -0700 (PDT)
+Received: (nullmailer pid 3970918 invoked by uid 1000);
+        Wed, 22 Mar 2023 17:34:56 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] dt-bindings: mailbox: Drop unneeded quotes
+Date:   Wed, 22 Mar 2023 12:34:48 -0500
+Message-Id: <20230322173449.3970718-1-robh@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20210315122605.28437-1-noltari@gmail.com> <20230321201022.1052743-1-noltari@gmail.com>
- <62d8aff43456051cb607999a7db0b5cd.sboyd@kernel.org>
-In-Reply-To: <62d8aff43456051cb607999a7db0b5cd.sboyd@kernel.org>
-From:   =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Date:   Wed, 22 Mar 2023 18:18:27 +0100
-Message-ID: <CAKR-sGfzV0MXY_qGZCepZxXc3uWzWYb3v9fsJdAhoqOA6ikiTw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] clk: add BCM63268 timer clock and reset
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, f.fainelli@gmail.com,
-        jonas.gorski@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, william.zhang@broadcom.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-El mar, 21 mar 2023 a las 23:54, Stephen Boyd (<sboyd@kernel.org>) escribi=
-=C3=B3:
->
-> Quoting =C3=81lvaro Fern=C3=A1ndez Rojas (2023-03-21 13:10:18)
-> > Broadcom BCM63268 has a timer clock and reset controller which has the
-> > following layout:
-> >   #define POR_RESET_STATUS            (1 << 31)
-> >   #define HW_RESET_STATUS             (1 << 30)
-> >   #define SW_RESET_STATUS             (1 << 29)
-> >   #define USB_REF_CLKEN               (1 << 18)
-> >   #define UTO_EXTIN_CLKEN             (1 << 17)
-> >   #define UTO_CLK50_SEL               (1 << 16)
-> >   #define FAP2_PLL_CLKEN              (1 << 15)
-> >   #define FAP2_PLL_FREQ_SHIFT         12
-> >   #define FAP1_PLL_CLKEN              (1 << 11)
-> >   #define FAP1_PLL_FREQ_SHIFT         8
-> >   #define WAKEON_DSL                  (1 << 7)
-> >   #define WAKEON_EPHY                 (1 << 6)
-> >   #define DSL_ENERGY_DETECT_ENABLE    (1 << 4)
-> >   #define GPHY_1_ENERGY_DETECT_ENABLE (1 << 3)
-> >   #define EPHY_3_ENERGY_DETECT_ENABLE (1 << 2)
-> >   #define EPHY_2_ENERGY_DETECT_ENABLE (1 << 1)
-> >   #define EPHY_1_ENERGY_DETECT_ENABLE (1 << 0)
-> >
-> > Also excuse me for the delay in the v3, but I totally forgot about this=
-...
->
-> Please don't send as a reply to a previous round. It makes applying the
-> patch series more difficult and buries the new series deep down in the
-> mail thread.
+Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+checking for this can be enabled in yamllint.
 
-Excuse me for that, but other kernel maintainers prefer it this way.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml   | 4 ++--
+ .../devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml   | 4 ++--
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml    | 4 ++--
+ Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml   | 4 ++--
+ Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml  | 4 ++--
+ .../devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml  | 4 ++--
+ 6 files changed, 12 insertions(+), 12 deletions(-)
 
---
-=C3=81lvaro
+diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+index dfd26b998189..385809ed1569 100644
+--- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 BayLibre, SAS
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/amlogic,meson-gxbb-mhu.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/amlogic,meson-gxbb-mhu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Amlogic Meson Message-Handling-Unit Controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
+index 935937c67133..404477910f02 100644
+--- a/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/microchip,mpfs-mailbox.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/microchip,mpfs-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Microchip PolarFire SoC (MPFS) MSS (microprocessor subsystem) mailbox controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index d888ead09282..7f18fb10435d 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/qcom,apcs-kpss-global.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/qcom,apcs-kpss-global.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm APCS global block
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
+index bdfb4a8220c5..b526f9c0c272 100644
+--- a/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/sprd-mailbox.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/sprd-mailbox.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/sprd-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Spreadtrum mailbox controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
+index 0dfe05a04dd0..134fd223a02b 100644
+--- a/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
++++ b/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/st,stm32-ipcc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/st,stm32-ipcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics STM32 IPC controller
+ 
+diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+index 2193141dd7fd..45df46343f6a 100644
+--- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/mailbox/xlnx,zynqmp-ipi-mailbox.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/mailbox/xlnx,zynqmp-ipi-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Xilinx IPI(Inter Processor Interrupt) mailbox controller
+ 
+-- 
+2.39.2
+
