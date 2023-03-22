@@ -2,257 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E99C76C4F84
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 16:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BCD56C4FBF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 16:55:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231300AbjCVPfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 11:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50806 "EHLO
+        id S230171AbjCVPzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 11:55:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbjCVPfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 11:35:19 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5CD3B0C7
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:35:16 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id cy23so74501697edb.12
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:35:16 -0700 (PDT)
+        with ESMTP id S230335AbjCVPzW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 11:55:22 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428164781A
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:55:20 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso2008391wms.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 08:55:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1679499315;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NAXNJjlL2o5XEbhFXFeTRkQ4rqR7tfyx01Kl+xPl+TQ=;
-        b=M0hMymF57cLJVxIdanY67+ipTZUSyJ3BFUpfOvk/wnSt7sM0FFQsFGPv/FVPXt52b1
-         cnAhBA5HNVemraej7KO70E9DC+lETcqc0P6H6H0sNpELYliTovlfXP5CTPj/RiHWCtkr
-         Y6Vv4fYzyzO+90/A/5PW6uu4QyCSZoUYRD/NTdvJxLi0NcIlG/zRR6iFM4HZjpmq1h/6
-         M2gGOe9XJN7gpkBVHoC3Y9BlkMwASlLZkoKz28XwRstuNng39JeYI2e+bjOi63A1nMfz
-         TWA6DD8EnfR3tHdqewHTP7mx8cyMFTGEvyJ92YLNR85pWBZhzUcEZEzs/pRO9ivusoS3
-         bgbw==
+        d=linaro.org; s=google; t=1679500519;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zJTqUefxnpBvO7DIOSS6rnsCqCeH+NolRi/V2K9dxfM=;
+        b=NCdIIOqHzKpbcNsSqbp4T0Wbx9wgB5qslNsVyTS+nBnFKE6zMSOj+9hr19VTdzAoBN
+         RtGV0jlb29PXpNCILxAVWsF159DMzBZZOgdWk1LMJFUs2yNiR+Q9J6VitcqrUMhuotsM
+         1hz1KSf7VIa8OELwy7ZhfATew9lxeSaYmM0mKdpLokGKVUTDO5zADqClO6gGqmlYtGy6
+         PuFA2CgSujK4sqgFPI9EdFX3nXDg8l42rdXgk9dxY8Ryb+b53InDYL7NKLqM+LhW7fb8
+         20IMV2mcBND+7Af5GCKNQn8XVdDmbj8o0PZTcaO+NiV5fA+tazO5oHLYyFybQDjZMB8S
+         wa0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679499315;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NAXNJjlL2o5XEbhFXFeTRkQ4rqR7tfyx01Kl+xPl+TQ=;
-        b=46LToywEiH/EEgrNtWxc/MbAy2tm5gcJKw1HWsV508VzkKo4dyZjkqcFzA6bJSF9WT
-         q1Pe3yx94toU8/SJ6U6+65DCulRDEaCBUt+Br7pk98dNm+LtxcdmUVXE8SRm8+CwOYGs
-         B1nvTqVF87a72lfzQ84fYIaurheFPLetsC76iPfCK4cJccwmSn+PmQTCBIi0pxvpr90z
-         NclOSnSgQXCBaN3EumZBQ+ol+7KunUrDj/AWE+qSAiw2CxZBNuDWn6oM0fyr2v1RFhfG
-         5+YAmRywWNytG4i2haIBXj3vOwGB+toCH4/569c1bIvnwGtAJ7nLRjX8QCUjkD3giICU
-         FZZw==
-X-Gm-Message-State: AO0yUKUT8YQ1xG6EpQcTydAHn1Le483tKD/pYAtFXgnRV+8LLeBQU7K6
-        zncPT0f7YVBLbxKoojtWZhKLWtyNNshFm9ZaQxFbMg==
-X-Google-Smtp-Source: AK7set8SffFuNnYkrvWB6Eb908721d12R6KonUYzgbvCyu0975Xi0mo/lbA4HGtuAA7aH+JolnhFoF5Y8bLRxqw9mZc=
-X-Received: by 2002:a50:d61a:0:b0:4fb:9735:f913 with SMTP id
- x26-20020a50d61a000000b004fb9735f913mr3812066edi.8.1679499314957; Wed, 22 Mar
- 2023 08:35:14 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679500519;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zJTqUefxnpBvO7DIOSS6rnsCqCeH+NolRi/V2K9dxfM=;
+        b=dOBU/mNnrpphXKxxuGdfse+CUCWQ3/h19QyCCpQ8AtZJDx+PUyCh7IXwGunAvWUXDo
+         A8bu7EUA0Tnd0m/84JtKo/G/JLC84Z7WgXmzCtF/17t1k7YFvWorn4C68KDQJ+By0a5A
+         s25cI7Ydo3DW+Bvd1XQmSHhSGP3L3eC67G7H2Vn61NEmLPvQ22ut3NS1Bx+Gd6r7DfYI
+         +IA89SDckwM8eOuMjmX2wC+z1s3oujkOIV53PsQzVXFCap2E7X40tJK8V0TRE0g/azyN
+         kA4IkS1GTPXGXFjkxk3HeFxTu54dblW+euVtv9/plBiDeMZDV5i8EplQpI8HvT5QMwTd
+         sWlw==
+X-Gm-Message-State: AO0yUKVmNsROGelr23JUd4L1tim6+8XxKkl2dzh/1p17ro+LXhrkQ2fB
+        L5c4d34O1KV8bhraGdlQhktrtQ==
+X-Google-Smtp-Source: AK7set/A6xCnkrsudKHQ0e0Y5/lirw38lluwjAT3qhc34uN8OF92RHjxAc1J1NYlLdOJYFUFgLjP0Q==
+X-Received: by 2002:a1c:f311:0:b0:3ed:2a8f:e6dd with SMTP id q17-20020a1cf311000000b003ed2a8fe6ddmr31355wmq.6.1679500518772;
+        Wed, 22 Mar 2023 08:55:18 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3606:a601:f273:994a? ([2a01:e0a:982:cbb0:3606:a601:f273:994a])
+        by smtp.gmail.com with ESMTPSA id m16-20020a7bcb90000000b003edf2dc7ca3sm9906939wmi.34.2023.03.22.08.55.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 08:55:18 -0700 (PDT)
+Message-ID: <f173b241-5efd-24a3-de06-647e33a62417@linaro.org>
+Date:   Wed, 22 Mar 2023 16:55:16 +0100
 MIME-Version: 1.0
-References: <20230322011442.34475-1-steev@kali.org> <20230322011442.34475-5-steev@kali.org>
- <ZBrpyXrkHDTQ6Z+l@hovoldconsulting.com>
-In-Reply-To: <ZBrpyXrkHDTQ6Z+l@hovoldconsulting.com>
-From:   Steev Klimaszewski <steev@kali.org>
-Date:   Wed, 22 Mar 2023 10:35:03 -0500
-Message-ID: <CAKXuJqiirOEuvhHUtqeGvFjxkTR21SxKXe8Hysayx5UXFpukUQ@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-To:     Johan Hovold <johan@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add binding for meson-spifc-a1
+To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@sberdevices.ru
+References: <20230322150458.783901-1-mmkurbanov@sberdevices.ru>
+ <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
+Content-Language: en-US
+Organization: Linaro Developer Services
+In-Reply-To: <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan,
+Hi,
 
-Thanks again for your time in reviewing things, it's greatly appreciated!
+On 22/03/2023 16:04, Martin Kurbanov wrote:
+> Add YAML devicetree binding for Amlogic Meson A113L (A1 family)
+> SPIFC Driver.
+> 
+> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
+> ---
+>   .../bindings/spi/amlogic,meson-a1-spifc.yaml  | 42 +++++++++++++++++++
+>   1 file changed, 42 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+> new file mode 100644
+> index 000000000000..5f84063b01f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/amlogic,meson-a1-spifc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson A113L SPI Flash Controller
 
-On Wed, Mar 22, 2023 at 6:41=E2=80=AFAM Johan Hovold <johan@kernel.org> wro=
-te:
->
-> On Tue, Mar 21, 2023 at 08:14:42PM -0500, Steev Klimaszewski wrote:
-> > The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-> > add this.
-> >
-> > Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> > ---
-> > Changes since v6:
-> >  * Remove allowed-modes as they aren't needed
-> >  * Remove regulator-allow-set-load
-> >  * Set regulator-always-on because the wifi chip also uses the regulato=
-r
-> >  * cts pin uses bias-bus-hold
-> >  * Alphabetize uart2 pins
-> >
-> > Changes since v5:
-> >  * Update patch subject
-> >  * Specify initial mode (via guess) for vreg_s1c
-> >  * Drop uart17 definition
-> >  * Rename bt_en to bt_default because configuring more than one pin
-> >  * Correct (maybe) bias configurations
-> >  * Correct cts gpio
-> >  * Split rts-tx into two nodes
-> >  * Drop incorrect link in the commit message
-> >
-> > Changes since v4:
-> >  * Address Konrad's review comments.
-> >
-> > Changes since v3:
-> >  * Add vreg_s1c
-> >  * Add regulators and not dead code
-> >  * Fix commit message changelog
-> >
-> > Changes since v2:
-> >  * Remove dead code and add TODO comment
-> >  * Make dtbs_check happy with the pin definitions
-> >  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 78 +++++++++++++++++++
-> >  1 file changed, 78 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts=
- b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > index 92d365519546..05e66505e5cc 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > @@ -24,6 +24,7 @@ / {
-> >       aliases {
-> >               i2c4 =3D &i2c4;
-> >               i2c21 =3D &i2c21;
-> > +             serial1 =3D &uart2;
-> >       };
-> >
-> >       wcd938x: audio-codec {
-> > @@ -431,6 +432,14 @@ regulators-1 {
-> >               qcom,pmic-id =3D "c";
-> >               vdd-bob-supply =3D <&vreg_vph_pwr>;
-> >
-> > +             vreg_s1c: smps1 {
-> > +                     regulator-name =3D "vreg_s1c";
-> > +                     regulator-min-microvolt =3D <1880000>;
-> > +                     regulator-max-microvolt =3D <1900000>;
-> > +                     regulator-initial-mode =3D <RPMH_REGULATOR_MODE_H=
-PM>;
-> > +                     regulator-always-on;
-> > +             };
->
-> I went through the schematics to check for further problems with
-> consumers that are not yet described and found a few more bugs:
->
->         https://lore.kernel.org/lkml/20230322113318.17908-1-johan+linaro@=
-kernel.org
->
-> Note that that series is now adding the s1c supply as it also used by
-> some of the pmics.
->
-> I'm assuming those fixes may get merged before this patch is, in which
-> case the above hunk should be dropped.
->
+I think it should be "A1 SPI Flash Controller" to be more coherent
 
-I can spin up v8 dropping this hunk and mention the dependency on that seri=
-es.
+Neil
 
-> > +
-> >               vreg_l1c: ldo1 {
-> >                       regulator-name =3D "vreg_l1c";
-> >                       regulator-min-microvolt =3D <1800000>;
-> > @@ -918,6 +927,32 @@ &qup0 {
-> >       status =3D "okay";
-> >  };
-> >
-> > +&uart2 {
->
-> This node in no longer in alphabetical order and needs to be moved
-> further down (above &usb_0).
->
-Ack
+> +
+> +maintainers:
+> +  - Martin Kurbanov <mmkurbanov@sberdevices.ru>
+> +
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-spifc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,a1-clkc.h>
+> +    spi@fd000400 {
+> +          compatible = "amlogic,meson-a1-spifc";
+> +          reg = <0xfd000400 0x290>;
+> +          clocks = <&clkc_periphs CLKID_SPIFC>;
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +    };
 
-> > +     pinctrl-0 =3D <&uart2_default>;
-> > +     pinctrl-names =3D "default";
-> > +
-> > +     status =3D "okay";
-> > +
-> > +     bluetooth {
-> > +             compatible =3D "qcom,wcn6855-bt";
-> > +
-> > +             vddio-supply =3D <&vreg_s10b>;
-> > +             vddbtcxmx-supply =3D <&vreg_s12b>;
-> > +             vddrfacmn-supply =3D <&vreg_s12b>;
-> > +             vddrfa0p8-supply =3D <&vreg_s12b>;
-> > +             vddrfa1p2-supply =3D <&vreg_s11b>;
-> > +             vddrfa1p7-supply =3D <&vreg_s1c>;
-> > +
-> > +             max-speed =3D <3200000>;
-> > +
-> > +             enable-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> > +             swctrl-gpios =3D <&tlmm 132 GPIO_ACTIVE_HIGH>;
-> > +
-> > +             pinctrl-0 =3D <&bt_default>;
-> > +             pinctrl-names =3D "default";
-> > +     };
-> > +};
-> > +
-> >  &qup1 {
-> >       status =3D "okay";
-> >  };
-> > @@ -1192,6 +1227,21 @@ hastings_reg_en: hastings-reg-en-state {
-> >  &tlmm {
-> >       gpio-reserved-ranges =3D <70 2>, <74 6>, <83 4>, <125 2>, <128 2>=
-, <154 7>;
-> >
-> > +     bt_default: bt-default-state {
-> > +             hstp-sw-ctrl-pins {
-> > +                     pins =3D "gpio132";
-> > +                     function =3D "gpio";
-> > +                     bias-pull-down;
-> > +             };
->
-> Similarly, this one should go after hstp-bt-en-pins.
->
-Ack
-> > +
-> > +             hstp-bt-en-pins {
-> > +                     pins =3D "gpio133";
-> > +                     function =3D "gpio";
-> > +                     drive-strength =3D <16>;
-> > +                     bias-disable;
-> > +             };
-> > +     };
-> > +
-> >       edp_reg_en: edp-reg-en-state {
-> >               pins =3D "gpio25";
-> >               function =3D "gpio";
-> > @@ -1213,6 +1263,34 @@ i2c4_default: i2c4-default-state {
-> >               bias-disable;
-> >       };
-> >
-> > +     uart2_default: uart2-default-state {
->
-> And this one is also not ordered correctly.
->
-Ack
-> > +     };
-> > +
-> >       i2c21_default: i2c21-default-state {
-> >               pins =3D "gpio81", "gpio82";
-> >               function =3D "qup21";
->
-> Johan
--- steev
