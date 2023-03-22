@@ -2,67 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D676C4839
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 245F16C483F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:52:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbjCVKvn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Mar 2023 06:51:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42128 "EHLO
+        id S229524AbjCVKw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 06:52:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbjCVKvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:51:35 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEBBD5FA71;
-        Wed, 22 Mar 2023 03:51:15 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id ADB2F24E1FE;
-        Wed, 22 Mar 2023 18:50:39 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 22 Mar
- 2023 18:50:39 +0800
-Received: from [192.168.125.108] (183.27.97.64) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 22 Mar
- 2023 18:50:38 +0800
-Message-ID: <6a223f1c-8c8b-8d07-1cf5-9a83949d0fd3@starfivetech.com>
-Date:   Wed, 22 Mar 2023 18:50:38 +0800
+        with ESMTP id S229464AbjCVKw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:52:26 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD6E18E;
+        Wed, 22 Mar 2023 03:52:26 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32MAf2P0012721;
+        Wed, 22 Mar 2023 10:52:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=60OWNRlXe0ot3c5VCrZO3+DqCLYnw5ggCs4T1AjOR4c=;
+ b=X034lWNt0wmToGtCeYtj6BdGtrpxaQxmjROeN70x+2BaCcdla+nSU03MWaGtIWA5WECB
+ 6zXS7SBKuxLolX2US57pkDARzbf1fBdh+DYc+Z/QmHaJXUv9biNjOZFQ+aoyElceTyEp
+ i88c0/T029HIedIvMyZvfbwpQ+6T2uBA9duRebTdTyHQQg5nuZDvldrtLJtSxgOACXTV
+ 0oIdJIphHLp09vYqXdlcs4DUAqs/W3fg+1SSu8F3GFrYXKPEh6DyOrGgq7IYB+ytUXCG
+ 4EvrUFmFYcLSr8d3IzqsxvN/59AWLhWwd3/xMi2tf3P0LVZdeupUa1ZMXeHhxR5/Nf9w IA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pfrk0s3x5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Mar 2023 10:52:21 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32MAqKoA027963
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Mar 2023 10:52:20 GMT
+Received: from [10.242.243.187] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 22 Mar
+ 2023 03:52:11 -0700
+Message-ID: <0bad147f-46b6-c52f-536f-92eeba8896ec@quicinc.com>
+Date:   Wed, 22 Mar 2023 16:21:54 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3 5/5] dts: usb: add StarFive JH7110 USB dts
- configuration.
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 08/11] remoteproc: qcom: Add Hexagon based multipd rproc
+ driver
+To:     Robert Marko <robimarko@gmail.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
+        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
+        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <quic_srichara@quicinc.com>,
+        <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
+ <059bec3f-0c77-fc16-83a3-d78cf82d543f@linaro.org>
+ <bb56bbb7-7b08-79f9-ad1b-a2de63eca5f6@quicinc.com>
+ <CAOX2RU5H=fmxjAE+Er8n7qzrvUZmOpYwgqFox-RLc2C7BqJyjQ@mail.gmail.com>
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Pawel Laszczak" <pawell@cadence.com>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
- <20230315104411.73614-6-minda.chen@starfivetech.com>
- <20230320153419.GB1713196-robh@kernel.org>
- <2311a888-8861-ade6-d46f-caff4fc3ec73@starfivetech.com>
- <c3d32c0c-43e0-ee62-d372-27cb09feb82e@kernel.org>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <c3d32c0c-43e0-ee62-d372-27cb09feb82e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [183.27.97.64]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <CAOX2RU5H=fmxjAE+Er8n7qzrvUZmOpYwgqFox-RLc2C7BqJyjQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: oax87b87NmZ1kh2Zb7s1o8l7ww_iyI7b
+X-Proofpoint-ORIG-GUID: oax87b87NmZ1kh2Zb7s1o8l7ww_iyI7b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-22_07,2023-03-22_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 adultscore=0
+ lowpriorityscore=0 spamscore=0 mlxlogscore=549 phishscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303150002
+ definitions=main-2303220077
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,147 +95,41 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/3/22 16:00, Roger Quadros wrote:
-> Hi Minda,
+On 3/22/2023 3:51 PM, Robert Marko wrote:
+> On Wed, 22 Mar 2023 at 11:19, Manikanta Mylavarapu
+> <quic_mmanikan@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 3/7/2023 9:09 PM, Krzysztof Kozlowski wrote:
+>>> Why exactly do you need a new driver for this instead of extending
+>>> existing PIL? I feel all this is growing because no one wants to touch
+>>> existing code and merge with it...
+>>
+>> Previously we raised patch to add secure-pil to existing rproc driver.
+>> Bjorn suggested to introduce a new secure-pil driver.
+>>
+>> https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
+>>
+>>
+>> Also IPQ5018, IPQ9574 soc's follows multipd model. So we decided to
+>> have new driver which consists 'secure-pil + multi pd' in one
+>> place.
 > 
-> On 21/03/2023 14:35, Minda Chen wrote:
->> 
->> 
->> On 2023/3/20 23:34, Rob Herring wrote:
->>> On Wed, Mar 15, 2023 at 06:44:11PM +0800, Minda Chen wrote:
->>>> USB Glue layer and Cadence USB subnode configuration,
->>>> also includes USB and PCIe phy dts configuration.
->>>>
->>>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->>>> ---
->>>>  .../jh7110-starfive-visionfive-2.dtsi         |  7 +++
->>>>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 54 +++++++++++++++++++
->>>>  2 files changed, 61 insertions(+)
->>>>
->>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->>>> index a132debb9b53..c64476aebc1a 100644
->>>> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->>>> @@ -236,3 +236,10 @@
->>>>  	pinctrl-0 = <&uart0_pins>;
->>>>  	status = "okay";
->>>>  };
->>>> +
->>>> +&usb0 {
->>>> +	status = "okay";
->>>> +	usbdrd_cdns3: usb@0 {
->>>> +		dr_mode = "peripheral";
->>>> +	};
->>>> +};
->>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> index f70a4ed47eb4..17722fd1be62 100644
->>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>> @@ -362,6 +362,60 @@
->>>>  			status = "disabled";
->>>>  		};
->>>>  
->>>> +		usb0: usb@10100000 {
->>>> +			compatible = "starfive,jh7110-usb";
->>>> +			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
->>>> +				 <&stgcrg JH7110_STGCLK_USB0_STB>,
->>>> +				 <&stgcrg JH7110_STGCLK_USB0_APB>,
->>>> +				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
->>>> +				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
->>>> +			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
->>>> +			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
->>>> +				 <&stgcrg JH7110_STGRST_USB0_APB>,
->>>> +				 <&stgcrg JH7110_STGRST_USB0_AXI>,
->>>> +				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
->>>> +			starfive,stg-syscon = <&stg_syscon 0x4 0xc4 0x148 0x1f4>;
->>>> +			starfive,sys-syscon = <&sys_syscon 0x18>;
->>>> +			status = "disabled";
->>>> +			#address-cells = <1>;
->>>> +			#size-cells = <1>;
->>>> +			ranges = <0x0 0x0 0x10100000 0x100000>;
->>>> +
->>>> +			usbdrd_cdns3: usb@0 {
->>>> +				compatible = "cdns,usb3";
->>>
->>> This pattern of USB wrapper and then a "generic" IP node is discouraged 
->>> if it is just clocks, resets, power-domains, etc. IOW, unless there's an 
->>> actual wrapper h/w block with its own registers, then don't do this 
->>> split. Merge it all into a single node.
->>>
->> I am afraid it is difficult to merge in one single node. 
->> 
->> 1.If cadence3 usb device is still the sub device. All the dts setting are in
->> StarFive node. This can not work.
->> StarFive driver code Using platform_device_add generate cadenc3 usb platform device. 
->> Even IO memory space setting can be passed to cadence3 USB, PHY setting can not be passed.
->> For the PHY driver using dts now. But in this case, Cadence3 USB no dts configure.
->> 
->> 2. Just one USB Cadence platform device.
->> Maybe this can work. But Cadence USB driver code cdns3-plat.c required to changed.
->> 
->> Hi Peter Pawel and Roger
->>    There is a "platform_suspend" function pointer in "struct cdns3_platform_data"，
->>    Add "platform_init" and "platform_exit" for our JH7110 platform. Maybe it can work.
->>    Is it OK?   
+> Would it be possible to have IPQ8074 and IPQ6018 support in it as well?
+> Cause, those are supported by ath11k but remoteproc support is missing,
+> I have been upstreaming parts for IPQ8074 for years now and it is usable but
+> we are still missing remoteproc.
 > 
-> Once you move all the syscon register modifications from your wrapper driver
-> to your PHY driver, only clock and reset control are left in your wrapper driver.
-> This is generic enough to be done in the cdns3,usb driver itself so you don't need a
-> wrapper node.
-> 
-> Pawel, do you agree?
->  
-move all the syscon codes to PHY driver is ok. I found dwc3/dwc3-of-simple.c is public codes
-and contain just clock and reset control codes. I can change the residual codes to public codes.
-But I found rockchip 3399 usb dts which is one of dwc3 simple platform still contain two nodes.
-See Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
->>>> +				reg = <0x0 0x10000>,
->>>> +				      <0x10000 0x10000>,
->>>> +				      <0x20000 0x10000>;
->>>> +				reg-names = "otg", "xhci", "dev";
->>>> +				interrupts = <100>, <108>, <110>;
->>>> +				interrupt-names = "host", "peripheral", "otg";
->>>> +				phys = <&usbphy0>;
->>>> +				phy-names = "cdns3,usb2-phy";
->>>
->>> No need for *-names when there is only 1 entry. Names are local to the 
->>> device and only to distinguish entries, so 'usb2' would be sufficient 
->>> here.
->>>
->> The PHY name 'cdns3,usb2-phy'  is defined in cadence3 usb driver code.
->> Cadence USB3 driver code using this name to get PHY instance.
->> And all the PHY ops used in Cadence3 USB sub device. 
->>>> +				maximum-speed = "super-speed";
->>>> +			};
->>>> +		};
->>>> +
->>>> +		usbphy0: phy@10200000 {
->>>> +			compatible = "starfive,jh7110-usb-phy";
->>>> +			reg = <0x0 0x10200000 0x0 0x10000>;
->>>> +			clocks = <&syscrg JH7110_SYSCLK_USB_125M>,
->>>> +				 <&stgcrg JH7110_STGCLK_USB0_APP_125>;
->>>> +			clock-names = "125m", "app_125";
->>>> +			#phy-cells = <0>;
->>>> +		};
->>>> +
->>>> +		pciephy0: phy@10210000 {
->>>> +			compatible = "starfive,jh7110-pcie-phy";
->>>> +			reg = <0x0 0x10210000 0x0 0x10000>;
->>>> +			#phy-cells = <0>;
->>>> +		};
->>>> +
->>>> +		pciephy1: phy@10220000 {
->>>> +			compatible = "starfive,jh7110-pcie-phy";
->>>> +			reg = <0x0 0x10220000 0x0 0x10000>;
->>>> +			#phy-cells = <0>;
->>>> +		};
->>>> +
->>>>  		stgcrg: clock-controller@10230000 {
->>>>  			compatible = "starfive,jh7110-stgcrg";
->>>>  			reg = <0x0 0x10230000 0x0 0x10000>;
->>>> -- 
->>>> 2.17.1
->>>>
-> 
-> cheers,
-> -roger
+> Regards,
+> Robert
+> >>
+>> Thanks & Regards,
+>> Manikanta.
+
+Yes. It's possible. Currently we added support for IPQ5018, IPQ9574.
+In subsequent patches, we will add IPQ8074, IPQ6018 & IPQ5332 support
+as well.
+
+Regards,
+Manikanta.
