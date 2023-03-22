@@ -2,128 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FCDC6C510E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C5F86C50FC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:42:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbjCVQoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:44:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38668 "EHLO
+        id S229820AbjCVQmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:42:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231129AbjCVQnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:43:53 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA7AC64218;
-        Wed, 22 Mar 2023 09:43:33 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id u38so6710957pfg.10;
-        Wed, 22 Mar 2023 09:43:33 -0700 (PDT)
+        with ESMTP id S229693AbjCVQme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:42:34 -0400
+Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DF564245
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:42:32 -0700 (PDT)
+Received: by mail-vs1-xe2e.google.com with SMTP id h15so5513304vsh.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:42:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679503412;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679503351;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
-        b=V0EKSYZIC9FkSe8GbuaSY3APPPQpgWUoWtgg+WIZJiUIQO7w0pRIzHbTXp+MYKKRmT
-         4RXjX8la9khETyIjcM4rxZ+/PkVHmtXjsWzCL7wW6sA82Fgmg7DQSOoyGiZoC+P2ERVG
-         UzVffFvJcQo0LB4Gt4GEpdSmYWm8tbsVQ0/MoblSj53UBEXknLRN/NegufSI0ruU4HGN
-         nZxNwdmrNz8m9kouwR22QNCjmhxlVfDM5kQwvuXDyQqX3cAKIviaElO60WjbXaAyG5jy
-         yiSlwRRgF0uw3ENRkjSg1emtGfufHHkDqmOC4Auk12wd2lWvMcUHkVEudqn/nnqvLk/q
-         9cdQ==
+        bh=VmnnMMvSLOdA65bN5I8O3X2sjkCjbZFK9esp/HZ4bO0=;
+        b=K1X5LlHD1KTJx0CtsGxmvT1jE0SyIa+A1BAiMv9cuDnLDanH5SXhjPHHh9Xtr5jp6F
+         nVHCZPDozIw3JZGlsg++BV692DK6olE41R2lKzV2VJHsbav2rzbmnS4ippdZ4czCAOTU
+         DsoN4AIA5q2ltgI9R3GWi5nS59j9fC54oVN1ukEXlnsw/ecAq1BTY+b2EhsxT7YaV7+R
+         ACL+wGuTiYlkUacdKR2fB6rtRYC6WAWZAiPoAExnbRgfzDIn+9xmNUmJgO6fMa7JAKY7
+         PVxN0Jpfrrlwu9OCzuEhOwDUqv0CYGtGqFGhUwlCu9h0rCrpK808feWrv8akmGxgohTP
+         oHrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679503412;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679503351;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=P1nihvRARKpi6tkVd5cEgKMlSNEP4XWbbAUmPmevZWQ=;
-        b=2/7aGkeW9rFoBVFwZkebWEDzIaN33+4LauEflCq2hpeC+6RcHXDWeb8C/vl5roOP6c
-         3cXRr3A6k7pRIfYi8b86IUFjSyvyzzOU4eoZ19h0kYWket1R1xNOylB1M4z3/y7RJsBD
-         R9O0XlNsjVIHhVFnCw+dO9aZRbOdbnrnScvk43sbRKpEcXeluoC8z6zZNHbYL8SruW3O
-         +tr3EC7JhhtKddqQ/a4qDNoFi+P5mEFqzpkJE/y1BuO2CZLSbuMAIJZVrf/AanNQOuPv
-         7GHLOWROk6l4lWGjRniuhKtVxDATnI+iK6qQxPeEhgKc16UyQpjHVEGfMbJ/Ne9JXIuD
-         pWKg==
-X-Gm-Message-State: AO0yUKV6uxuSvcqYsUbnD9jJ2zOLQzC7RUPT50o8IEbtYtvSA6sV0chq
-        y2lQinJYmsyUFxFAexoP7UT9E8hpZhwYLI3zX2I=
-X-Google-Smtp-Source: AK7set878e0TqrgGmu7WR2arqbldMx0Lis8xvmtncUtfD0g3yw1Sx9IhgqiDXib9zjHjcmZQ5IUo+A==
-X-Received: by 2002:a62:17c9:0:b0:625:ce21:3b1b with SMTP id 192-20020a6217c9000000b00625ce213b1bmr3871105pfx.3.1679503412638;
-        Wed, 22 Mar 2023 09:43:32 -0700 (PDT)
-Received: from d.home.yangfl.dn42 ([104.28.213.202])
-        by smtp.gmail.com with ESMTPSA id g6-20020a62e306000000b005a8bf239f5csm10300830pfh.193.2023.03.22.09.43.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 09:43:32 -0700 (PDT)
-From:   David Yang <mmyangfl@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     David Yang <mmyangfl@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v7 8/9] dt-bindings: clock: Add Hi3798MV100 CRG
-Date:   Thu, 23 Mar 2023 00:41:56 +0800
-Message-Id: <20230322164201.2454771-9-mmyangfl@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230322164201.2454771-1-mmyangfl@gmail.com>
-References: <20230322164201.2454771-1-mmyangfl@gmail.com>
+        bh=VmnnMMvSLOdA65bN5I8O3X2sjkCjbZFK9esp/HZ4bO0=;
+        b=CwGjpE6kIcFt/Ww6Ly+eceJpx9SJrcgHPvNOrt7PSLebhESKcq7Eq2gdg2bWGSUXLp
+         WIu+kIR7X0al8poiC5ZXFpmM7SHlsRTCJn0hx800XxNqI6o0tMTphHyhhWIGDLW9pYpB
+         5bqlNSOOLOt4Qu1obM03THFr3vj9XADn6r+6SVy59nGkprTUylewIis5unfaSSX7PBnC
+         Dsg+S1ietROd2vac2hq+yCoGwl3tr+XJFdEYorPewaxePNlSKqhVtOu/I40eTEjCW6ic
+         E4YwOUwExarpWQ3dtGqFF47SzOzW0cUBqDdz1d+z6YaX71f4m+0f74P4SA2grivMG++J
+         p4Hw==
+X-Gm-Message-State: AO0yUKUeMjLwR1gNERCkJeGe4tnQ1t1ywh6Lpkh6uTSLFIKCW5F+P7x1
+        jpmaCVECMJ2znb9EN6pCURmwnpOPIqPf6i8oTrdHFA==
+X-Google-Smtp-Source: AK7set/RWj8MjG2qYfMV5NINsPkCRSFEKkqgR6XZHjCzh22PdBgdXg7kYsGksZ26QMzp8O/PYzJ6qyyWSjXqVS6WxWQ=
+X-Received: by 2002:a05:6102:4751:b0:425:dd2d:1c0 with SMTP id
+ ej17-20020a056102475100b00425dd2d01c0mr75732vsb.0.1679503351764; Wed, 22 Mar
+ 2023 09:42:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230315110650.142577-1-keguang.zhang@gmail.com> <20230315110650.142577-2-keguang.zhang@gmail.com>
+In-Reply-To: <20230315110650.142577-2-keguang.zhang@gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 22 Mar 2023 17:42:21 +0100
+Message-ID: <CAMRc=Megxi64KcDsaj+FEtzbLK8ohT9D8g_p-kWrKjXc89t5yQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] gpio: loongson1: Convert to SPDX identifier
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CRG bindings for Hi3798MV100 SoC. CRG (Clock and Reset Generator)
-module generates clock and reset signals used by other module blocks on
-SoC.
+On Wed, Mar 15, 2023 at 12:07=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail=
+.com> wrote:
+>
+> Use SPDX-License-Identifier instead of the license text.
+>
+> The current author name is unofficial, change it to my real name.
+>
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+> V2 -> V3: Explain the reason for changing the author name in commit messa=
+ge
+> V1 -> V2: Keep GPLv2, just convert to SPDX identifier
+> ---
+>  drivers/gpio/gpio-loongson1.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-loongson1.c b/drivers/gpio/gpio-loongson1.=
+c
+> index 5d90b3bc5a25..8862c9ea0d41 100644
+> --- a/drivers/gpio/gpio-loongson1.c
+> +++ b/drivers/gpio/gpio-loongson1.c
+> @@ -1,11 +1,8 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * GPIO Driver for Loongson 1 SoC
+>   *
+> - * Copyright (C) 2015-2016 Zhang, Keguang <keguang.zhang@gmail.com>
+> - *
+> - * This file is licensed under the terms of the GNU General Public
+> - * License version 2. This program is licensed "as is" without any
+> - * warranty of any kind, whether express or implied.
+> + * Copyright (C) 2015-2023 Keguang Zhang <keguang.zhang@gmail.com>
+>   */
+>
+>  #include <linux/module.h>
+> @@ -90,6 +87,6 @@ static struct platform_driver ls1x_gpio_driver =3D {
+>
+>  module_platform_driver(ls1x_gpio_driver);
+>
+> -MODULE_AUTHOR("Kelvin Cheung <keguang.zhang@gmail.com>");
+> +MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+>  MODULE_DESCRIPTION("Loongson1 GPIO driver");
+>  MODULE_LICENSE("GPL");
+> --
+> 2.34.1
+>
 
-Signed-off-by: David Yang <mmyangfl@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/clock/hisi-crg.txt          |  2 ++
- include/dt-bindings/clock/histb-clock.h             | 13 +++++++++++++
- 2 files changed, 15 insertions(+)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/clock/hisi-crg.txt b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-index cc60b3d42..972c038c8 100644
---- a/Documentation/devicetree/bindings/clock/hisi-crg.txt
-+++ b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-@@ -13,6 +13,8 @@ Required Properties:
-   - "hisilicon,hi3516cv300-crg"
-   - "hisilicon,hi3516cv300-sysctrl"
-   - "hisilicon,hi3519-crg"
-+  - "hisilicon,hi3798mv100-crg"
-+  - "hisilicon,hi3798mv100-sysctrl"
-   - "hisilicon,hi3798cv200-crg"
-   - "hisilicon,hi3798cv200-sysctrl"
- 
-diff --git a/include/dt-bindings/clock/histb-clock.h b/include/dt-bindings/clock/histb-clock.h
-index e64e5770a..126b1f839 100644
---- a/include/dt-bindings/clock/histb-clock.h
-+++ b/include/dt-bindings/clock/histb-clock.h
-@@ -58,6 +58,19 @@
- #define HISTB_USB3_UTMI_CLK1		48
- #define HISTB_USB3_PIPE_CLK1		49
- #define HISTB_USB3_SUSPEND_CLK1		50
-+#define HISTB_USB2_UTMI_CLK1		51
-+#define HISTB_USB2_2_BUS_CLK		52
-+#define HISTB_USB2_2_PHY_CLK		53
-+#define HISTB_USB2_2_UTMI_CLK		54
-+#define HISTB_USB2_2_UTMI_CLK1		55
-+#define HISTB_USB2_2_12M_CLK		56
-+#define HISTB_USB2_2_48M_CLK		57
-+#define HISTB_USB2_2_OTG_UTMI_CLK	58
-+#define HISTB_USB2_2_PHY1_REF_CLK	59
-+#define HISTB_USB2_2_PHY2_REF_CLK	60
-+#define HISTB_FEPHY_CLK			61
-+#define HISTB_GPU_BUS_CLK		62
-+#define HISTB_GPU_CORE_CLK		63
- 
- /* clocks provided by mcu CRG */
- #define HISTB_MCE_CLK			1
--- 
-2.39.2
-
+Bart
