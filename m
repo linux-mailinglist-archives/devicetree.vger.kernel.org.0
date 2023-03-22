@@ -2,192 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A32FB6C4FD5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 542CB6C4FDF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbjCVQA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32780 "EHLO
+        id S230409AbjCVQBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:01:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229986AbjCVQA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:00:27 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D816C65468
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:00:24 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id l27so9305085wrb.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679500823;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=b1A56twIdd4XdlBDQ/o8uz6vaFh0/U1CPyi1UN3+GrI=;
-        b=ziXK8E/wvSN6p/5FBJRC6CeiEKqO6RkykeFO/BFCiquAcE1xwEpmgdBsP0b9k9LkGe
-         MJLn8PdV/rIj6jeU7DkN9FICKLG5P7nSYucrtEw3UUo0iVyzjsuk0Xe4CNKMWfhlsTvv
-         alfKa4MrwfRxcdT+XVy8cIxUN6FBl1Z3elzCSi3EKqXlmVS+ZCB5OhSbUw7e0whuxGAv
-         4vBx8T7V4eEfNyiwZJ8/JvRv2FxCYPyy3nSZjcmw98qwImaZ1uEgfBaWvpvQZOPhrBi0
-         dFqvicKLRZg9sBRzzbW3lHrxmOciOjKjZ5Uqp2OJ/Vtj0e5L2em0MYotmU5QKoDBWSZe
-         ePIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679500823;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=b1A56twIdd4XdlBDQ/o8uz6vaFh0/U1CPyi1UN3+GrI=;
-        b=IIqlHMcNSfDwop/ArKYLD8SWOFQdz8J2sZnjkVcKjvAIB3SOn5TL+uGjtXAMpCdvsa
-         sOcBJP5qQGpV5BaUNIVENTwq8+AhztqVcXha0yIN55ATKStesAVD853qwg1SFohDKNQP
-         1ytuxtMfqldXEv499zDU3WgDoEs2H41t+xgywG90xdoBt8bdX28DgYrNyue5TnqffHzX
-         whz+JSHY99Tq4yyUBikfaa3NYmMAM6ju3z4RGtk552IbHZ62Rgi2ew1/0He2WLWQJZZ3
-         1EJ66oQZX/nRr9b4ufoQNJesNBtS4R8on1B2nKSbzZbbJNR3pXTCMKrI5lUg6V/tgmi3
-         2qgw==
-X-Gm-Message-State: AAQBX9eRTd873rD4XMnYovKj6OTc4TwYdqcd9gAB4/eoQDWpkIn7Ed8t
-        ztXANRtejILMu0ovljw0svQKOg==
-X-Google-Smtp-Source: AKy350bPd3r7zDh6GA3RkT4KF6T12j2TXmukQIC7PsSb5x/WiuAQyTCvWTHYGJRvcxGKZ+SHhO2Esw==
-X-Received: by 2002:adf:e70c:0:b0:2cf:efc7:19ad with SMTP id c12-20020adfe70c000000b002cfefc719admr210428wrm.53.1679500823327;
-        Wed, 22 Mar 2023 09:00:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:3606:a601:f273:994a? ([2a01:e0a:982:cbb0:3606:a601:f273:994a])
-        by smtp.gmail.com with ESMTPSA id f9-20020a05600c154900b003ede03e4369sm11749524wmg.33.2023.03.22.09.00.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 09:00:22 -0700 (PDT)
-Message-ID: <e3f5751a-9a24-3902-cf31-e621b4cb21ab@linaro.org>
-Date:   Wed, 22 Mar 2023 17:00:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 2/2] spi: add support for Meson A1 SPI Flash Controller
-Content-Language: en-US
-To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S230302AbjCVQBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:01:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EEBC65C5A;
+        Wed, 22 Mar 2023 09:01:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CEBC2B81D43;
+        Wed, 22 Mar 2023 16:01:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73D1EC4339B;
+        Wed, 22 Mar 2023 16:01:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679500902;
+        bh=K3bCYBTQOn4c0hzSgPQwLYUkrJbrk5PNnqW5DdmlM+g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DJLiyvN9dxs4Y03eDaOYkXHdoCshS9bKS4kXrhlIFgHn0lOsuHs3JOMAXEndJ8vms
+         JyqJ/rqsVm/7Yq/4bUYC+Wpysn7+9i1aUCoybxa/4m3hVLtE6UI2N58vfT1YL7Dhhp
+         5IrBQb7JURYwt1dS8EE6U3eEG5g4QY8yWg4VZY75vL0DUKrAVoe0E18kCVugfpdTCN
+         nEgvn25PmJ7/zmXmTJ0TYTqrE9CSWfjkRULcaL4Qttd+g9+qk3fxJgP7c480u4xqGS
+         bCQjFChhTk+4tb1hAujPOov9P883sI8SsIE1H6tRuUKIMYPkwf/NsT/qTy0P9cW2jJ
+         tda1usOk15KoQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pf0vc-000687-Re; Wed, 22 Mar 2023 17:03:08 +0100
+Date:   Wed, 22 Mar 2023 17:03:08 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@sberdevices.ru
-References: <20230322150458.783901-1-mmkurbanov@sberdevices.ru>
- <20230322150458.783901-3-mmkurbanov@sberdevices.ru>
-Organization: Linaro Developer Services
-In-Reply-To: <20230322150458.783901-3-mmkurbanov@sberdevices.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>
+Subject: Re: [PATCH v7 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
+Message-ID: <ZBsmvGylo+yghiFG@hovoldconsulting.com>
+References: <20230322011442.34475-1-steev@kali.org>
+ <20230322011442.34475-5-steev@kali.org>
+ <ZBrpyXrkHDTQ6Z+l@hovoldconsulting.com>
+ <CAKXuJqiirOEuvhHUtqeGvFjxkTR21SxKXe8Hysayx5UXFpukUQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKXuJqiirOEuvhHUtqeGvFjxkTR21SxKXe8Hysayx5UXFpukUQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Mar 22, 2023 at 10:35:03AM -0500, Steev Klimaszewski wrote:
+> On Wed, Mar 22, 2023 at 6:41 AM Johan Hovold <johan@kernel.org> wrote:
 
-On 22/03/2023 16:04, Martin Kurbanov wrote:
-> This is a driver for the Amlogic Meson SPI flash controller support
-> on A113L SoC.
+> > I went through the schematics to check for further problems with
+> > consumers that are not yet described and found a few more bugs:
+> >
+> >         https://lore.kernel.org/lkml/20230322113318.17908-1-johan+linaro@kernel.org
+> >
+> > Note that that series is now adding the s1c supply as it also used by
+> > some of the pmics.
+> >
+> > I'm assuming those fixes may get merged before this patch is, in which
+> > case the above hunk should be dropped.
+> >
 > 
-> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-> ---
->   drivers/spi/Kconfig              |   7 +
->   drivers/spi/Makefile             |   1 +
->   drivers/spi/spi-meson-spifc-a1.c | 444 +++++++++++++++++++++++++++++++
->   3 files changed, 452 insertions(+)
->   create mode 100644 drivers/spi/spi-meson-spifc-a1.c
-> 
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index 3b1c0878bb85..a12452bd1e0c 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -582,6 +582,13 @@ config SPI_MESON_SPIFC
->   	  This enables master mode support for the SPIFC (SPI flash
->   	  controller) available in Amlogic Meson SoCs.
->   
-> +config SPI_MESON_SPIFC_A1
-> +	tristate "Amlogic Meson A113L SPIFC controller"
+> I can spin up v8 dropping this hunk and mention the dependency on that
+> series.
 
-The title should be "Amlogic Meson A1 SPIFC controller" for coherency.
+Sounds good. Bjorn has even merged the above series now.
 
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	help
-> +	  This enables master mode support for the SPIFC (SPI flash
-> +	  controller) available in Amlogic Meson A113L (A1 family) SoC.
-
-You should write the reverse: available in Amlogic Meson A1 Family (A113L SoC).
-
-> +
->   config SPI_MICROCHIP_CORE
->   	tristate "Microchip FPGA SPI controllers"
->   	depends on SPI_MASTER
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index be9ba40ef8d0..702053970967 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -72,6 +72,7 @@ obj-$(CONFIG_SPI_LM70_LLP)		+= spi-lm70llp.o
->   obj-$(CONFIG_SPI_LP8841_RTC)		+= spi-lp8841-rtc.o
->   obj-$(CONFIG_SPI_MESON_SPICC)		+= spi-meson-spicc.o
->   obj-$(CONFIG_SPI_MESON_SPIFC)		+= spi-meson-spifc.o
-> +obj-$(CONFIG_SPI_MESON_SPIFC_A1)	+= spi-meson-spifc-a1.o
->   obj-$(CONFIG_SPI_MICROCHIP_CORE)	+= spi-microchip-core.o
->   obj-$(CONFIG_SPI_MICROCHIP_CORE_QSPI)	+= spi-microchip-core-qspi.o
->   obj-$(CONFIG_SPI_MPC512x_PSC)		+= spi-mpc512x-psc.o
-> diff --git a/drivers/spi/spi-meson-spifc-a1.c b/drivers/spi/spi-meson-spifc-a1.c
-> new file mode 100644
-> index 000000000000..213c8b692675
-> --- /dev/null
-> +++ b/drivers/spi/spi-meson-spifc-a1.c
-> @@ -0,0 +1,444 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for Amlogic Meson A113L SPI flash controller (SPIFC)
-
-Same here
-
-> + *
-> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
-> + *
-> + * Author: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/spi/spi-mem.h>
-> +#include <linux/types.h>
-> +
-> +#define A1_SPIFC_AHB_CTRL_REG		0x0
-> +#define A1_SPIFC_AHB_BUS_EN		BIT(31)
-
-I find the "A1_SPIFC" hard to read, I think you should reverse
-it in all the file into :
-#define SPIFC_A1_...
-and
-static XXX meson_spifc_a1_request to be coherent with the legacy spifc
-driver and spicc driver.
-
-
-<snip>
-
-> +
-> +MODULE_AUTHOR("Martin Kurbanov <mmkurbanov@sberdevices.ru>");
-> +MODULE_DESCRIPTION("Amlogic Meson A113L SPIFC driver");
-
-Same here "Meson A1 SPIFC driver"
-
-> +MODULE_LICENSE("GPL");
-
-Thanks,
-Neil
-
+Johan
