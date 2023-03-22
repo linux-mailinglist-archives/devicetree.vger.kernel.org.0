@@ -2,90 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C132C6C466D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 10:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE0B6C46CD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 10:46:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbjCVJaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 05:30:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52552 "EHLO
+        id S231140AbjCVJqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 05:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231151AbjCVJ34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 05:29:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A2F59E5E;
-        Wed, 22 Mar 2023 02:29:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1B1FEB81BF0;
-        Wed, 22 Mar 2023 09:29:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64136C4339B;
-        Wed, 22 Mar 2023 09:29:46 +0000 (UTC)
-Message-ID: <eb09f4a7-f923-3f5f-ec95-0d07668ee275@xs4all.nl>
-Date:   Wed, 22 Mar 2023 10:29:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [RESEND PATCH v4 00/21] Add Tegra20 parallel video input capture
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
+        with ESMTP id S230408AbjCVJqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 05:46:30 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A73B15DC96;
+        Wed, 22 Mar 2023 02:46:27 -0700 (PDT)
+X-UUID: 66e7b2f6c89611edb6b9f13eb10bd0fe-20230322
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=akEC/GZ73xx89vSNdUnfCjR2mWzHXFKUONd0W+l4ZME=;
+        b=gXmfC4jZSk2qNK666eY1qIeMKtOT5U66kzsPwVTTB1uaBcVbARyayb2tjP6jtxxBVmxKIkCp8Z8D6QCZU8pJJXm2fdRqIQIdOM4+Qccdw0N43ghtJC1Ue4gcynQdjEfjRCIdGuTtMmjaWXD/q7q+rnD9RUFLorYpcrSyV7h3drw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:ce7fd9a2-6c27-4056-b835-2d26b7d43ef8,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:120426c,CLOUDID:5b812429-564d-42d9-9875-7c868ee415ec,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: 66e7b2f6c89611edb6b9f13eb10bd0fe-20230322
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 383714623; Wed, 22 Mar 2023 17:46:21 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Wed, 22 Mar 2023 17:46:20 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Wed, 22 Mar 2023 17:46:19 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
- <20230322101417.4561a7ae@booty>
-Content-Language: en-US
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230322101417.4561a7ae@booty>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2,0/7] media: mediatek: vcodec: Add debugfs file for decode and encode
+Date:   Wed, 22 Mar 2023 17:46:10 +0800
+Message-ID: <20230322094617.19410-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 10:14, Luca Ceresoli wrote:
-> Hello,
-> 
-> On Thu,  9 Mar 2023 15:42:59 +0100
-> Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
-> 
->> TL;DR: Resending this series with Rob's review tag added. Now all DT
->> patches have at least a reviewed-by tag from Rob or Krzysztof, all the
->> driver patches have one from Dmitry.
-> 
-> This is a gentle ping about this series. All patches have a
-> reviewed-by, there are no major changes since v2, and it's touching a
-> staging driver anyway.
-> 
-> I don't think there is more I can do at the moment besides pinging, but
-> should there be anything, I'd be glad to know! :-)
+Need to change kernel driver to open decode and encode debug log at current period,
+it's very unreasonable. Adding debugfs common interface to support decode and encode,
+using echo command to control debug log level and getting useful information for each
+instance.
 
-I actually started on this last week, but now I am abroad again with no
-hardware access.
+patch 1 add dbgfs common interface.
+patch 2~5 support decode.
+patch 6~7 support encode
+---
+changed with v1:
+- add new patch 4 and 5.
+- using cmd 'cat vdec' to show debug information instead of pr_info directly.
+---
+Yunfei Dong (7):
+  media: mediatek: vcodec: Add debugfs interface to get debug
+    information
+  media: mediatek: vcodec: Add debug params to control different log
+    level
+  media: mediatek: vcodec: Add a debugfs file to get different useful
+    information
+  media: mediatek: vcodec: Get each context resolution information
+  media: mediatek: vcodec: Get get each instance format type
+  media: mediatek: vcodec: Change dbgfs interface to support encode
+  media: mediatek: vcodec: Add encode to support dbgfs
 
-I hope I can resume work on it next week, because after that I am again
-abroad for 10 days or so.
+ .../media/platform/mediatek/vcodec/Makefile   |   6 +
+ .../mediatek/vcodec/mtk_vcodec_dbgfs.c        | 196 ++++++++++++++++++
+ .../mediatek/vcodec/mtk_vcodec_dbgfs.h        |  73 +++++++
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   4 +
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |   4 +
+ .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |   2 +
+ .../mediatek/vcodec/mtk_vcodec_util.c         |   8 +
+ .../mediatek/vcodec/mtk_vcodec_util.h         |  25 ++-
+ 8 files changed, 315 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.h
 
-It's currently very high on my todo list, so I really hope I will be able
-to make progress on it next week.
+-- 
+2.18.0
 
-Regards,
-
-	Hans
