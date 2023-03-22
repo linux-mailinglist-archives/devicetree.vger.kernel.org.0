@@ -2,221 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8836C4E06
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 15:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE8D6C4E10
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 15:42:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231713AbjCVOmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 10:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41170 "EHLO
+        id S231648AbjCVOmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 10:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231717AbjCVOls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 10:41:48 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A370365448
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 07:41:19 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id e71so21311039ybc.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 07:41:19 -0700 (PDT)
+        with ESMTP id S231654AbjCVOly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 10:41:54 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96CFC64B34;
+        Wed, 22 Mar 2023 07:41:28 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id t15so17318925wrz.7;
+        Wed, 22 Mar 2023 07:41:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679496072;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dwrWFBfwB9kGIHdKOm9I7XrkyLQMCrqtoZsi4Z0QdbM=;
-        b=F0w5e6ZMX4ejR5QsVQiqxR3dcGhYhLoC0lZNvEZOA0Q7DL2mOy3SrO7dbV15fGayLP
-         OyXmKujQ0zcDkkemYCGNsyf75hLK6LlpbxIh5GVqde2o0sjQo2lRTFwIGGSvLk/nvdTr
-         lkuNFvcuE+FNrR6LuFS5EuCM4/ZRCbnvpW7opbAWoh13a9QP8sFpw36WEdUMsREEIpK1
-         adCs+5hzP7cWPvxU5pwPwkG1I6W24jY2fEoKgMWEPbDVIJVbGAWAbRg3G3t/ua30bcE2
-         Bp3nUoo3S5yMaczrYsbO+6tNLgweA9mdFDVwZwLvJGeb/9kGlJVSb/ZNdehyTelgUAc2
-         gNTA==
+        d=gmail.com; s=20210112; t=1679496087;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ml/8rgHxnh/Rcizr/HTKMeYH4wxYvAVSv7sbApQZNB8=;
+        b=XtAadWtr79aVV3gfVOVZS5A7aLvnPaZTy8EJEW+i7VzFaja/BFTha8SWE9A5XVQGky
+         /06tFDul6XXHZNW0UXWggE9j/BrfU9CFumViSPVXEglGdEhf3Xn06+4HLUObE1Ak19Lh
+         oYMLYyDEddYkJ0l6/9d6UQRanmmR56HdSjjzuVHvcAcyKvuCzk3Cq3AWOlqE3nRJMPe3
+         yTBQ/BIlAqulEWcs2oyeGL89UxCrmJ3mTYMw6DkjLip3s1AX+Lp45E0dVOh4oZ9QodpH
+         lwk/bIWJ+f7s1iDG4iB/9twuAISYsmVOaQKTjsOdMghMsyNcfiJsdmWoJK6d9xL1HHOb
+         dNXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679496072;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dwrWFBfwB9kGIHdKOm9I7XrkyLQMCrqtoZsi4Z0QdbM=;
-        b=XNvcL2WTW6F2g+ju/z9I7IdC8iFQeWdvBQVy5lSPFYe4s9eBdPQ3Ibf2YmaCo8T9b9
-         0s5vr8N3AfwZgKIxNk++tKgH746MhVCfKzMdzyzPiyV3digT5elq1wyMwCXGvxnCw1Bn
-         KhS436rGyYxRD2joUCqSYuzWVjDxNKyNmOHDn//MRJGLD3Xl3/Rh1lWb5jtsDcWh+Hpx
-         TRL0UTrfLMSN0P15KgriQ/kQ7C3ngWGrNXuh2AmOMpocORNNenQg8b6h01ebVyPweov8
-         4+++95s71QSR+Avmb0/plhY5d78TUHzd77WwPPO7te136weG/iV9bsUiEMMxQWF1WWuM
-         kMEw==
-X-Gm-Message-State: AAQBX9cRnXl4hRus1frguRzWBrFl0cn4RZ858ONX+YZ/z4gZS6hy2/tm
-        xHGG0lVvJYzI8Drd21APcDWvMgN0kjEHlKbzfUtW6A==
-X-Google-Smtp-Source: AKy350brfn7Z6o8S2/0vpnavmEx1927OK55K5Jv3TrdYOcq2VC9PIKusWzICyXRr17lUOcIb7jQf8MvaL8LUkwY93es=
-X-Received: by 2002:a25:7456:0:b0:b6b:79a2:8cff with SMTP id
- p83-20020a257456000000b00b6b79a28cffmr12890ybc.9.1679496072367; Wed, 22 Mar
- 2023 07:41:12 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679496087;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ml/8rgHxnh/Rcizr/HTKMeYH4wxYvAVSv7sbApQZNB8=;
+        b=pPcl/VL2Br2hqNtcwf+pnD/gCm/r7ojXmbguECesZDfyJsUBh1fRg+tBzmsFjm7Qbk
+         BCraq5k81Nl5cVvJt5CwQlX5GEJmHoiQYoMzac2xHyfXi9sjrHprUfuUugLgf+j+lahu
+         7+fJrtUIKc9l1U1K7IzkgNIN4ugGZN4J7Owv5ex2sOrGKQoiem/pdPqzfXedbqHJPGIm
+         R0VKLUTcvuc1FFbj+m4Xk70VMhSsBnHAskGC0JfZo0fWabs3YfSLAdwQYckXm8DPHeXD
+         8SxAxEtS3G7kHLgKsBBASz5hPgjjZjwp/+3VTzrTNjFyIOqyrRfmA5wnImOY6OJXRgq2
+         DIzg==
+X-Gm-Message-State: AAQBX9dVWFHh1xyWfmSM0jNCRbtg7ZzPBXv5F3svzrySc4thuuFawvUj
+        d+UcUCZBJHkLEINszCKbR5M=
+X-Google-Smtp-Source: AKy350awk2lLLkW6dcFjDzGAIqtfddOFvqewsAvecdc1km7DwkYiRTaHdnj8Boip9ea1915tUxvCvA==
+X-Received: by 2002:adf:f043:0:b0:2c7:70d:cc36 with SMTP id t3-20020adff043000000b002c7070dcc36mr69865wro.5.1679496086739;
+        Wed, 22 Mar 2023 07:41:26 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id v7-20020a5d4b07000000b002c56af32e8csm13896207wrq.35.2023.03.22.07.41.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 07:41:26 -0700 (PDT)
+Message-ID: <ed1f9faf-cb4f-9ff1-ab6b-813035a051bd@gmail.com>
+Date:   Wed, 22 Mar 2023 15:41:23 +0100
 MIME-Version: 1.0
-References: <cover.1679479634.git.quic_varada@quicinc.com> <5b7213a4c402ee334ff48f2efe2b920858637ac5.1679479634.git.quic_varada@quicinc.com>
-In-Reply-To: <5b7213a4c402ee334ff48f2efe2b920858637ac5.1679479634.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 22 Mar 2023 16:41:01 +0200
-Message-ID: <CAA8EJppXuaGx4VhZ9fOBUkD8fECngzJ8pubNC4bm_0M9+64ZqQ@mail.gmail.com>
-Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v11 3/3] arm64: dts: mediatek: Initial mt8365-evk support
+Content-Language: en-US
+To:     Kevin Hilman <khilman@kernel.org>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        angelogioacchino.delregno@collabora.com,
+        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, maz@kernel.org, tglx@linutronix.de
+References: <20230309213501.794764-1-bero@baylibre.com>
+ <20230309213501.794764-4-bero@baylibre.com> <7h8rfqwf5u.fsf@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <7h8rfqwf5u.fsf@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Mar 2023 at 12:46, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> Add USB phy and controller related nodes
->
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  Changes in v3:
->         - Insert the nodes at proper location
->
->  Changes in v2:
->         - Fixed issues flagged by Krzysztof
->         - Fix issues reported by make dtbs_check
->         - Remove NOC related clocks (to be added with proper
->           interconnect support)
-> ---
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 86 +++++++++++++++++++++++++++++++++++
->  1 file changed, 86 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 2bb4053..0943901 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -215,6 +215,48 @@
->                 #size-cells = <1>;
->                 ranges = <0 0 0 0xffffffff>;
->
-> +               qusb_phy_0: phy@7b000 {
-> +                       compatible = "qcom,ipq9574-qusb2-phy";
-> +                       reg = <0x07b000 0x180>;
-
-Please pad addresses to 8 hex digits.
 
 
-> +                       #phy-cells = <0>;
-> +
-> +                       clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> +                               <&xo_board_clk>;
-> +                       clock-names = "cfg_ahb", "ref";
-> +
-> +                       resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +                       status = "disabled";
-> +               };
-> +
-> +               ssphy_0: phy@7d000 {
-> +                       compatible = "qcom,ipq9574-qmp-usb3-phy";
-> +                       reg = <0x7d000 0x1c4>;
-> +                       #clock-cells = <1>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges;
-> +
-> +                       clocks = <&gcc GCC_USB0_AUX_CLK>,
-> +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
+On 21/03/2023 11:51, Kevin Hilman wrote:
+> Bernhard Rosenkränzer <bero@baylibre.com> writes:
+> 
+>> From: Fabien Parent <fparent@baylibre.com>
+>>
+>> This adds minimal support for the Mediatek 8365 SOC and the EVK reference
+>> board, allowing the board to boot to initramfs with serial port I/O.
+>>
+>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>> [bero@baylibre.com: Removed parts depending on drivers that aren't upstream yet, cleanups, add CPU cache layout, add systimer, fix GIC]
+>> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+>> [aouledameur@baylibre.com: Fix systimer properties]
+>> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> Tested-by: Kevin Hilman <khilman@baylibre.com>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Tested (again) and things are working well.  This is the last patch
+> remaining to be merged.  As soon as this lands in linux-next, I'll add
+> this board to my KernelCI lab.
+> 
 
-Could you please check the indentation here? Vertical lists should be aligned
+Applied now, thanks for testing. This should show up in linux-next in the next 
+couple of days.
 
-> +                       clock-names = "aux", "cfg_ahb";
-
-One item per line
-
-> +
-> +                       resets =  <&gcc GCC_USB0_PHY_BCR>,
-> +                                <&gcc GCC_USB3PHY_0_PHY_BCR>;
-> +                       reset-names = "phy","common";
-> +                       status = "disabled";
-> +
-> +                       usb0_ssphy: phy@7d200 {
-
-Newer bindings please, without subnodes.
-
-> +                               reg = <0x0007d200 0x130>,       /* tx */
-> +                                     <0x0007d400 0x200>,       /* rx */
-> +                                     <0x0007d800 0x1f8>,       /* pcs  */
-> +                                     <0x0007d600 0x044>;       /* pcs misc */
-> +                               #phy-cells = <0>;
-> +                               clocks = <&gcc GCC_USB0_PIPE_CLK>;
-> +                               clock-names = "pipe0";
-> +                               clock-output-names = "usb0_pipe_clk";
-> +                       };
-> +               };
-> +
->                 pcie0_phy: phy@84000 {
->                         compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
->                         reg = <0x00084000 0x1bc>; /* Serdes PLL */
-> @@ -436,6 +478,50 @@
->                         status = "disabled";
->                 };
->
-> +               usb3: usb3@8a00000 {
-> +                       compatible = "qcom,ipq9574-dwc3", "qcom,dwc3";
-> +                       reg = <0x8af8800 0x400>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges;
-> +
-> +                       clocks = <&gcc GCC_SNOC_USB_CLK>,
-> +                                <&gcc GCC_ANOC_USB_AXI_CLK>,
-> +                                <&gcc GCC_USB0_MASTER_CLK>,
-> +                                <&gcc GCC_USB0_SLEEP_CLK>,
-> +                                <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +
-> +                       clock-names = "sys_noc_axi",
-> +                                     "anoc_axi",
-> +                                     "master",
-> +                                     "sleep",
-> +                                     "mock_utmi";
-> +
-> +                       assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
-> +                                         <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +                       assigned-clock-rates = <200000000>,
-> +                                              <24000000>;
-
-Indentation?
-
-> +
-> +                       resets = <&gcc GCC_USB_BCR>;
-> +                       status = "disabled";
-> +
-> +                       dwc_0: usb@8a00000 {
-> +                               compatible = "snps,dwc3";
-> +                               reg = <0x8a00000 0xcd00>;
-> +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +                               clock-names = "ref";
-> +                               interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> +                               phys = <&qusb_phy_0>, <&usb0_ssphy>;
-> +                               phy-names = "usb2-phy", "usb3-phy";
-> +                               tx-fifo-resize;
-> +                               snps,is-utmi-l1-suspend;
-> +                               snps,hird-threshold = /bits/ 8 <0x0>;
-> +                               snps,dis_u2_susphy_quirk;
-> +                               snps,dis_u3_susphy_quirk;
-> +                               dr_mode = "host";
-
-Is dr_mode a property of the host or of the board?
-
-> +                       };
-> +               };
-> +
->                 intc: interrupt-controller@b000000 {
->                         compatible = "qcom,msm-qgic2";
->                         reg = <0x0b000000 0x1000>,  /* GICD */
-> --
-> 2.7.4
->
-
-
---
-With best wishes
-Dmitry
+Regards,
+Matthias
