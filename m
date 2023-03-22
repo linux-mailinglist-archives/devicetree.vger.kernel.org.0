@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD236C4430
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 08:36:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F1E6C4435
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 08:38:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbjCVHgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 03:36:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
+        id S229842AbjCVHiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 03:38:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjCVHgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 03:36:19 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD7F5CC3D
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:36:13 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id r11so69099911edd.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:36:13 -0700 (PDT)
+        with ESMTP id S229584AbjCVHiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 03:38:06 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD9A14E9F
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:38:04 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id b20so36154351edd.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:38:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679470572;
+        d=linaro.org; s=google; t=1679470683;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uV97OTONSxnGEyV7uO8OnMJG0g0QG+ETuEfWA/XgJlc=;
-        b=PGSo4SIkDysijZW+Nb0UtNdfJBM6YH+rR5SG3c21IjzKSh4MGWnrr9YkU/SDC5POk3
-         jQltAPsr2pcOlhSACMu5bVLiitpiqT8JSv2ciEWwUttYxEg5I5m4EmLMmAnctcIlRSPX
-         72qFxluE6ZdM1FBgos9TBMDKEvc4MgyEcS5B4Wlres9EC7nO+4XOM7VtZRSBwlu+fang
-         JqwTwKeRY9hTWzc0vcc67VQUYCih31Q/BNXzsm7Ekene6GpgSIBlJ1mT8tO7+gIZ8MkH
-         PR2aH1kOB5SJuMk2NYb2S0GG7IL1XAi5/tCLpECL2iq2YVyFyHoAJxKvtu2kn1zRJEMk
-         yIkg==
+        bh=fIlFrePZXbAkRU2ELLJPQAlw9IYOtHNm0vNBQivbWPw=;
+        b=Ovk6gx9LBcuOvIdpF+utI2+huZW2TwdhnKy6VxEQRwDCZA9TY4mdwyiqUaV/Q0Ue4i
+         t6IQatnKJOtNRArp68GUTKweCl0MlKdRfog2LEAolB4T7hzD70haB7PLcvCCN85tjkG4
+         Ffd3aNS8kKC1a3YTllsPUi64p+SQbAKjB89v0mexDiB0guMTeC6Wuyk503iTcsh+Rv/m
+         e0bAZnP3FxV4ktpIDfsRFBoPOauLZJM7zoaWTj9ZRQtq6faWDENs04KxRhFVdiqtiwAb
+         pI2vcKOq5KKoCWZREkNLl+6B6AOS7uDTBO7viKCZcHMHZ8sbbw7yPndR6ciO6jVrTeSu
+         Pnvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679470572;
+        d=1e100.net; s=20210112; t=1679470683;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uV97OTONSxnGEyV7uO8OnMJG0g0QG+ETuEfWA/XgJlc=;
-        b=DIT/9tZj5I8nYxJAza5BspEdCyf8Oes67gDZJ8GhlQioaRAO1lwpCxOgjB44i47q7W
-         1oJP5FgSLt+Gy25VgENYndjWZymWAotq1oqpNYP8YAC/i0lvlzDLSC4JCpFnhYz5VViq
-         Z0WK3J9XtQJkQscHD6794UpGT6bQppVKppM64esmAy5NglOgJL5IHd+GtpTepTIOzMkz
-         rhn03rUdAeNlZi5RH5LZbRRwznZ7G/ltYXL82ZYne7SFCumx1HOATmDnwDTiqnM/eN9s
-         EVTROrhnds6I7opfz7oQuYy5e/IgXkaFxZ7BWjFJs3oCLu9IPuFWEQoQzjte+KREMt7I
-         O6ew==
-X-Gm-Message-State: AO0yUKW+F1LAyhrpebFk/YedXI2XXUgcSuhhMoRuPkfQLXcO0x0BX1sC
-        xn3xvvzD396gdxlo20i39hyNwopsILFst5r/Oqw=
-X-Google-Smtp-Source: AK7set9zlFgHEYh7EBKB/Bq2zpzCToe8YappDSA+j6UYFnxOE7JXrPRmTTfy3WKchUJ4BYgi5XUEQA==
-X-Received: by 2002:a17:906:ece4:b0:930:9385:ce51 with SMTP id qt4-20020a170906ece400b009309385ce51mr5666192ejb.68.1679470571686;
-        Wed, 22 Mar 2023 00:36:11 -0700 (PDT)
+        bh=fIlFrePZXbAkRU2ELLJPQAlw9IYOtHNm0vNBQivbWPw=;
+        b=uoxiorDWDD0JxQ2vRLDmIJkM8k781DtS4AsaqGNK8qRhMkXcvpei7aFWGiUbdsU5+S
+         luXXqX6bcJEpfNkKxcCLogca6vyL02EHHpVK1de+ydchp1Xe7JvlwqOZJNNEnxoS6Z0H
+         YfauVbAcVdb53D0W72b62qNhdJWNI4S5eZ/hApQ6/ix3AKjIzbVR72C8jjuRUC67szpt
+         Hy2rcIPF1SApNsOFtWKFcs4nMAqY1HwxE4sDBnXbHJvxmcNc/weovWWNq1WrJl1qhjdS
+         7ctaCEAa79kHn6c/RzBI84kx1Dj5/sqPMVbwf7ZsfCXs32/A4HpCxDXiZRrBo37LQ5u7
+         kQDQ==
+X-Gm-Message-State: AO0yUKWQIG/OKIbzGJWq+qDVlvSMQXb2ZmMaNULkfnN/+PD8CQxuaPfq
+        DCRSPiyFHnUiyynhC8dJcyReGzddj1tqLRsHs4k=
+X-Google-Smtp-Source: AK7set9uNqqqp+RTyy+Lsso2YFsulLEsLgbXC/U05maYZvjld3UjEALosJg2dArGoCc9ViY65hz1fA==
+X-Received: by 2002:aa7:c84e:0:b0:4fb:e9b8:ca5a with SMTP id g14-20020aa7c84e000000b004fbe9b8ca5amr5669909edt.40.1679470682958;
+        Wed, 22 Mar 2023 00:38:02 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id qh7-20020a170906eca700b0092bea699124sm6768128ejb.106.2023.03.22.00.36.10
+        by smtp.gmail.com with ESMTPSA id g4-20020a170906520400b0093a35f65a30sm1619990ejm.41.2023.03.22.00.38.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 00:36:11 -0700 (PDT)
-Message-ID: <a4e0a256-4db3-543a-f133-852beb4cf726@linaro.org>
-Date:   Wed, 22 Mar 2023 08:36:10 +0100
+        Wed, 22 Mar 2023 00:38:02 -0700 (PDT)
+Message-ID: <d1559192-8f6d-26e0-ef19-d14ac7987a74@linaro.org>
+Date:   Wed, 22 Mar 2023 08:38:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 2/3] media: dt-bindings: ov2685: convert to dtschema
+Subject: Re: [PATCH] ASoC: dt-bindings: ak5558: Convert to dtschema
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Saalim Quadri <danascape@gmail.com>, broonie@kernel.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230129-ov2685-improvements-v3-0-d9737d0707f6@z3ntu.xyz>
- <20230129-ov2685-improvements-v3-2-d9737d0707f6@z3ntu.xyz>
+References: <20230321180809.9215-1-danascape@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230129-ov2685-improvements-v3-2-d9737d0707f6@z3ntu.xyz>
+In-Reply-To: <20230321180809.9215-1-danascape@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -81,83 +76,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 19:03, Luca Weiss wrote:
-> Convert the text-based dt-bindings to yaml.
+On 21/03/2023 19:08, Saalim Quadri wrote:
+> Convert the AK5558 ADC audio codec bindings to DT schema.
 > 
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/ak5558.txt      | 24 ---------
+>  .../devicetree/bindings/sound/ak5558.yaml     | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/ak5558.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/ak5558.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ak5558.txt b/Documentation/devicetree/bindings/sound/ak5558.txt
+> deleted file mode 100644
+> index e28708db6686..000000000000
+> --- a/Documentation/devicetree/bindings/sound/ak5558.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -AK5558 8 channel differential 32-bit delta-sigma ADC
+> -
+> -This device supports I2C mode only.
+> -
+> -Required properties:
+> -
+> -- compatible : "asahi-kasei,ak5558" or "asahi-kasei,ak5552".
+> -- reg : The I2C address of the device.
+> -
+> -Optional properties:
+> -
+> -- reset-gpios: A GPIO specifier for the power down & reset pin.
+> -- AVDD-supply: Analog power supply
+> -- DVDD-supply: Digital power supply
+> -
+> -Example:
+> -
+> -&i2c {
+> -	ak5558: adc@10 {
+> -		compatible = "asahi-kasei,ak5558";
+> -		reg = <0x10>;
+> -		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/ak5558.yaml b/Documentation/devicetree/bindings/sound/ak5558.yaml
+> new file mode 100644
+> index 000000000000..90fd734daeec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ak5558.yaml
 
-Thank you for your patch. There is something to discuss/improve.
+Missing vendor prefix, so
+asahi-kasei,ak5558.yaml
 
-> +  - Shunqian Zheng <zhengsq@rock-chips.com>
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ak5558.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AK5558 ADC Device Tree Bindings
+
+drop "Device Tree Bindings"
+
+You dropped few pieces of device description. Why? Also ADC is very
+confusing.
+
+> +
+> +maintainers:
+> +  - Junichi Wakasugi <wakasugi.jb@om.asahi-kasei.co.jp>
+> +  - Mihai Serban <mihai.serban@nxp.com>
 > +
 > +properties:
 > +  compatible:
-> +    const: ovti,ov2685
+> +    enum:
+> +      - asahi-kasei,ak5558
+> +      - asahi-kasei,ak5552
+
+Keep them ordered by name.
+
 > +
 > +  reg:
 > +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: XVCLK clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xvclk
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
+> +    description: I2C address of the device.
+
+Drop description, obvious.
+
 > +
 > +  avdd-supply:
-> +    description: Analog Domain Power Supply
+> +    description: A 1.8V supply that powers up the AVDD pin.
 > +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
+> +  dvdd-supply:
+> +    description: A 1.2V supply that powers up the DVDD pin.
 > +
 > +  reset-gpios:
 > +    maxItems: 1
-> +    description: Reset Pin GPIO Control (active low)
 > +
-> +  port:
-> +    description: MIPI CSI-2 transmitter port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            maxItems: 1
-> +
-> +        required:
-> +          - data-lanes
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - dvdd-supply
-> +  - avdd-supply
-> +  - dovdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3399-cru.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c7 {
 
-i2c
-
-With above:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
