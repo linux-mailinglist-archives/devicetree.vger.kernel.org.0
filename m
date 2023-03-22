@@ -2,110 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A520D6C4776
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 149206C47BF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:35:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbjCVKVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 06:21:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
+        id S230281AbjCVKfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 06:35:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230116AbjCVKVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:21:39 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD7B5C9FE;
-        Wed, 22 Mar 2023 03:21:30 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id lr16-20020a17090b4b9000b0023f187954acso18653919pjb.2;
-        Wed, 22 Mar 2023 03:21:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679480490;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JHk6WrdRBOaXZfvy3sfCH7b75YTuvdgFdO1JgqgHyhk=;
-        b=ESLIyorCStnd6ZJLdkq6ShlIpDoTi1na7kkDyzFImBmWJXl514bkfA7+NlxO0FBoBj
-         fHOVfb9wP5/XFQ7slclalePoikPRCrD+4uEdKbXmFkxdXuHC1RW827Ka78NvU5iIXgxD
-         3EzrQouxwUi8eSVWiLvDcp3nCjH7Mdc/NLS0emVo9Dl1Nr5FtmMAf/L1IYLukoqBIEOp
-         wRTsGWYkv9CGlXr0iaShOu/mFDt4jKgXKb7sao+rzQSbGvj7fbwpxrch82tSgQAr3SJk
-         j8phLSWEpXcYPLvwslqbq9tbYfi6A1Q6+VH1yWJSEAhz6KptZ0YZhDORctOiDuu6gMyi
-         lqxg==
+        with ESMTP id S230128AbjCVKfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:35:30 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B2A52F57
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:34:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1679481282;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=sAw1kb+1MttUiaf7ZI4njfkrYYVFnkuOfRgsWc6OSNg=;
+        b=U6ADbOB4labQQJP4oCd8f2cIwF/qRaceJ4ZvcuhHtpEgp5WllQoiF+St++w+JgVfcsbvCE
+        02TNrKQBMf5SzTLRtdcmzhaV44UNtzPX4NCZ7LjiyDs0msxAf8E9xFInSeqwYFKohZ25ni
+        wKB8HQhsZlMQa/Bxqd7U/0J1dG/d/3I=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-443-PfMUzjwmOz-d-sD7wsfW4w-1; Wed, 22 Mar 2023 06:34:41 -0400
+X-MC-Unique: PfMUzjwmOz-d-sD7wsfW4w-1
+Received: by mail-wm1-f72.google.com with SMTP id o37-20020a05600c512500b003edd119ec9eso5105567wms.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:34:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679480490;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JHk6WrdRBOaXZfvy3sfCH7b75YTuvdgFdO1JgqgHyhk=;
-        b=nKMuhdzq60YDvLQWZFGLeyEH+noxU0du1ID8Bs7fbLMekY078uw8pqrKkGxLoomSPS
-         wpT4q48t6dOW3PNjh5rRFT86NmKPFQdTm0EniNLXAVGaKRgn3S1ySsrmzoCxJBrraJbk
-         RhXxz/lKWfKm032XvEM3h1Qex+tReghfvCc0w3OIxAm7WWDUeDQJrlY8of5OnV7K12/3
-         +sfzxczsB4BYxr5swPNCIicrZiRJKh2XbProKUwOA8rzxPpd9Wt/fQoTARi6yKe+YG4K
-         5nQfrXZrB07X3vxkE284zwuD5V/1KQFGBGV1oJPXycDyKEheb+x0ezmXo+RzsGiemkbl
-         DnkQ==
-X-Gm-Message-State: AO0yUKVellQy4vOFLof4W3Vv5iphB+AAdmvcMQFPGOi9eFX576cJ+eGt
-        37wsn3wUJkZ2y7pxOC79sENkk8kDXrWxBKjw10o=
-X-Google-Smtp-Source: AK7set+PZ4mznos49hq2OljDlTJRK/UrXGgXlPBhVsXZJlMLdmy24ZzPCXCYQpg7X+qYkMuhAAwcieb4L4j1EruC/Js=
-X-Received: by 2002:a17:902:e812:b0:1a1:add5:c35b with SMTP id
- u18-20020a170902e81200b001a1add5c35bmr913153plg.10.1679480490265; Wed, 22 Mar
- 2023 03:21:30 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679481280;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sAw1kb+1MttUiaf7ZI4njfkrYYVFnkuOfRgsWc6OSNg=;
+        b=RrvTREm/pOekxGPuBzf9jfnabSImTMrlIGqNt4qzUjasIWpZS1Do/aG+UhkTHalWTV
+         roFAc+a0vk4QPbM3c1nf4bAWtAZAY41BtSyKITODoshLIaSJyZNwUHCmScfy55jaAF17
+         bM/uiaM38j+kbM6udZ/FXddNzJLs8mvIs9QoJYGQi6j/t0DdBszTwSpU1Op82D1StWv1
+         3vOMo8g3+TFL9AnDAzJLmqhKMPeEug9alfPxxWgODWTIqyuY9y1iIz73GN/NLUTphOnP
+         axQgzSuA5UVsWb9dWtohYmsCtuOqa/7njpPX7XNBVPE3IThCjyPY1acS6ALuZSVsABL+
+         RKRw==
+X-Gm-Message-State: AO0yUKXN7dfU76Vu348yRNl5sfEpRif7jbhgR8mqOaLKfjD+uSYPACE0
+        iN5BZ7UenD6rMVPRHgRbMUlYbsO4Jv9STdRQIBRG4n4ZDjxS5AmQPZ51aWjwDCon2rowE4jQ6Fa
+        Sz8oK/zsnwAa+9OshUMe3wQ==
+X-Received: by 2002:a05:600c:ad3:b0:3eb:2b88:9adc with SMTP id c19-20020a05600c0ad300b003eb2b889adcmr4782452wmr.25.1679481280059;
+        Wed, 22 Mar 2023 03:34:40 -0700 (PDT)
+X-Google-Smtp-Source: AK7set9OJEunbX5gMc6MC+xeRbrZtBcXx8fDHwdAWSwBMT23hK8lYvS2ivGhxvkhzDa1tAAGkQFT7w==
+X-Received: by 2002:a05:600c:ad3:b0:3eb:2b88:9adc with SMTP id c19-20020a05600c0ad300b003eb2b889adcmr4782415wmr.25.1679481279722;
+        Wed, 22 Mar 2023 03:34:39 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id x33-20020a05600c18a100b003ede3f5c81fsm10182838wmp.41.2023.03.22.03.34.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Mar 2023 03:34:39 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        =?utf-8?Q?Ma=C3=ADra?= Canal <mcanal@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        Stephen Boyd <sboyd@kernel.org>, Emma Anholt <emma@anholt.net>,
+        Liam Beguin <liambeguin@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Gow <davidgow@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Airlie <airlied@gmail.com>,
+        linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v5 0/8] Support ROHM BU27034 ALS sensor
+In-Reply-To: <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
+References: <cover.1679474247.git.mazziesaccount@gmail.com>
+ <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
+Date:   Wed, 22 Mar 2023 11:34:38 +0100
+Message-ID: <87edphnkg1.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
- <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
- <059bec3f-0c77-fc16-83a3-d78cf82d543f@linaro.org> <bb56bbb7-7b08-79f9-ad1b-a2de63eca5f6@quicinc.com>
-In-Reply-To: <bb56bbb7-7b08-79f9-ad1b-a2de63eca5f6@quicinc.com>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Wed, 22 Mar 2023 11:21:19 +0100
-Message-ID: <CAOX2RU5H=fmxjAE+Er8n7qzrvUZmOpYwgqFox-RLc2C7BqJyjQ@mail.gmail.com>
-Subject: Re: [PATCH 08/11] remoteproc: qcom: Add Hexagon based multipd rproc driver
-To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, mathieu.poirier@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_gurus@quicinc.com,
-        loic.poulain@linaro.org, quic_eberman@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
-        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Mar 2023 at 11:19, Manikanta Mylavarapu
-<quic_mmanikan@quicinc.com> wrote:
->
->
->
-> On 3/7/2023 9:09 PM, Krzysztof Kozlowski wrote:
-> > Why exactly do you need a new driver for this instead of extending
-> > existing PIL? I feel all this is growing because no one wants to touch
-> > existing code and merge with it...
->
-> Previously we raised patch to add secure-pil to existing rproc driver.
-> Bjorn suggested to introduce a new secure-pil driver.
->
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
->
->
-> Also IPQ5018, IPQ9574 soc's follows multipd model. So we decided to
-> have new driver which consists 'secure-pil + multi pd' in one
-> place.
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> writes:
 
-Would it be possible to have IPQ8074 and IPQ6018 support in it as well?
-Cause, those are supported by ath11k but remoteproc support is missing,
-I have been upstreaming parts for IPQ8074 for years now and it is usable but
-we are still missing remoteproc.
+Hello Andy,
 
-Regards,
-Robert
-
+> On Wed, Mar 22, 2023 at 11:05:23AM +0200, Matti Vaittinen wrote:
 >
-> Thanks & Regards,
-> Manikanta.
+>> Revision history:
+>> v4 => v5: Mostly fixes to review comments from Andy and Jonathan.
+>> - more accurate change-log in individual patches
+>
+>> - copy code from DRM test helper instead of moving it to simplify
+>>   merging
+>
+> 1) Why do you think this is a problem?
+> 2) How would we avoid spreading more copies of the same code in the future?
+>
+>
+> 1) Merge conflicts is not a bad thing. It shows that people tested their code
+> in isolation and stabilized it before submitting to the upper maintainer.
+>
+> https://yarchive.net/comp/linux/git_merges_from_upstream.html
+>
+> 2) Spreading the same code when we _know_ this, should be very well justified.
+> Merge conflict is an administrative point, and not a technical obstacle to
+> avoid.
+>
+
+I believe this was suggested by Maxime and the rationale is that by just
+copying the helpers for now, that would make it easier to land instead of
+requiring coordination between different subystems.
+
+Otherwise the IIO tree will need to provide an inmutable branch for the
+DRM tree to merge and so on.
+
+I agree with Maxime that a little bit of duplication (that can be cleaned
+up by each subsystem at their own pace) is the path of least resistance.
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
