@@ -2,142 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D1946C4857
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:56:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CD56C4860
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:59:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230080AbjCVK4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 06:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59780 "EHLO
+        id S229524AbjCVK7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 06:59:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbjCVK4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:56:20 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E78018A85;
-        Wed, 22 Mar 2023 03:56:19 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id i5so24138938eda.0;
-        Wed, 22 Mar 2023 03:56:19 -0700 (PDT)
+        with ESMTP id S229645AbjCVK7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:59:38 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B29D60436;
+        Wed, 22 Mar 2023 03:59:37 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id q16so11955224lfe.10;
+        Wed, 22 Mar 2023 03:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679482578;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eribAeLlAZpM0sozfmroYZLd0JWUDJYfvoB2UDqzTlc=;
-        b=bDsGkBzybZ7XSWupknT9Ksnp8uRqhwlyXWzafjT0YGpQhD1CLATrzpugsITAAyk5GO
-         ROv0j73u+KWJofgT8KuUHvCeaob/Qmh26wKRHdBMgkuTtAMKtI84g+dqSqxiGu852Aw7
-         nhkaFQLhy3nylmWLPy2nkQ0ygs52Kuy5RQAValIP0GkeICWmxYljxy/S2SwO7C4kZ7jF
-         Vy4UvmS6AwpuitEa366FIXROYEzOe9+j22xsVfEq0mBTTct/h38E3LRshEPf7IUpgJ0q
-         141/IPr6haUvfTGIWqCYeu5pFX7oEPujtBaYTXXXqOd1zDZe/JehlEd7eBG245c6xGba
-         MbkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679482578;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=gmail.com; s=20210112; t=1679482776;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eribAeLlAZpM0sozfmroYZLd0JWUDJYfvoB2UDqzTlc=;
-        b=bNgfIzdW3U1o8wU5BAWZFGPJKCXY/vJGAjdrfwCMjGR0EmFeFFF5bENCSL7yEX7A6k
-         XIMOlFt5gMhkOyfX2/CkbFTJZXdd0DhyTDptwJh+Kgp8Axi2h5u8aKNe434vaEsGLSRQ
-         1+MNYkwo375BhU8L5pF77MRDAmRw+o/ahOXiLD0URYTeR9ZzXprz5dKMgPe6nEYj5byu
-         ZQqBmCvV+Uk6L32ymSTmQ9bgLMe6B70j5k/aQBUxLngv+Akrf5nEoJpXSfNrhZvYV8dA
-         a6kv6JKk9DBncySEnof3HjbjiTuLvn4TlhiPn7qPi2kvUgrub7IrklWmyax4MQ8spXNL
-         flmw==
-X-Gm-Message-State: AO0yUKXDFu53gaXjy7EhaghxEZvoLhWqyruS2CuPubQ1T5P/vJdC8rap
-        4hOuJn2YX0MhkkTHzgkwTknsRPluAGUfyrt9RSk=
-X-Google-Smtp-Source: AK7set8bTdcte9x03OjkSvsMixpWbUh5BMuJ76sBNCDUZEGwGaxof5QMGQfH8r7GG6JyIUFucpR+j1QZN+WW3boVZz4=
-X-Received: by 2002:a17:907:2c46:b0:92f:cf96:e1f6 with SMTP id
- hf6-20020a1709072c4600b0092fcf96e1f6mr3049751ejc.11.1679482577793; Wed, 22
- Mar 2023 03:56:17 -0700 (PDT)
+        bh=I9BZjSey1yXLeocjbsqhzGudA4US9Y+Kj5EuK+kqw+I=;
+        b=iroviQ2qk+WB3LQFiLTgKmubA8HEs+mHubO46x3Ly8/I+Bs6Rz4q3z+Lgq8w75uqKP
+         Trgd9UYL936dj6m0iAOw/e/9bv0RSYmMb9Ay7UPE+1gKYGZGZI5E4bQvZU00Vpb6nL9n
+         DcUCXcs1MFFO59G6/1oNLsHZhUd5HmngKuspimY2VsqEOJlh8GYmWskQbIARBLKI/paj
+         w+tzVq0/4XXswBgPDUBgLFYf++RJEwJA9+33RdZHbAV7VyxfA024QFI00asWH1iAym7p
+         qxG1Q9J3mGXL4Xo6giJn1+M6OeILbG7/KUwnx5K16pq+/tJ0nUeM3WyYmIdwKdcGq2Xd
+         l9VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679482776;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I9BZjSey1yXLeocjbsqhzGudA4US9Y+Kj5EuK+kqw+I=;
+        b=EjiSBsZb6CYrgX5zFnU0JfVgzROaXBLRTXIjPaa4/oCnscwgktlWzHBEiAO2BuOP8b
+         UkgvfXiKF8/4dqI6Sa+4MPI5X2MoJTiwjCIiozU4e3/Lv9dGfa2FiG2Ee413lILeQsA3
+         J5FO7bgGP+/u4puPDQbrBuzuUu96hJGh5wJsXwpemogGdXWJQp+bu44OXRQmDqI+Y/Dd
+         y0EJQdO97QAsphugTWPN49ph4Xbjsi1GpbkXiKNxphc6U9FzPAMwZp/ZCbzO4AmobvTf
+         hYPeTPul+vySlUP+oXK62NkQ98xtTHvvYD92cpFICsJy0n+zA+bEsJrrR3Os1hxP3r1Y
+         5w2g==
+X-Gm-Message-State: AO0yUKWxCIuX3rC5rJKjTbHw294+bmVn3neOACiUJ/VR+ubLlfOqrCf8
+        NMjfIcteTxkmY4KGIEqdpeA=
+X-Google-Smtp-Source: AK7set/TVDkgVYUfGLBTwIqfYMKesouuhxGnBDrXdWDSgQyhH7KWgvGgrqxxah6QLvJqbnMmj3pA7g==
+X-Received: by 2002:ac2:4c92:0:b0:4e9:d158:d56b with SMTP id d18-20020ac24c92000000b004e9d158d56bmr1940622lfl.62.1679482775745;
+        Wed, 22 Mar 2023 03:59:35 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id s1-20020a19ad41000000b004d023090504sm2543760lfd.84.2023.03.22.03.59.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 03:59:35 -0700 (PDT)
+Message-ID: <8fe9fea1-b7b8-ee46-9534-de7e2b1726f9@gmail.com>
+Date:   Wed, 22 Mar 2023 12:59:33 +0200
 MIME-Version: 1.0
-References: <20230308073502.5421-1-clamor95@gmail.com> <167933710348.198283.16107220354236772396.b4-ty@kernel.org>
-In-Reply-To: <167933710348.198283.16107220354236772396.b4-ty@kernel.org>
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-Date:   Wed, 22 Mar 2023 12:56:06 +0200
-Message-ID: <CAPVz0n2AuCb7fmLkzdimiZvqneQw7gXCfMTRvhp1n1zwRckfaA@mail.gmail.com>
-Subject: Re: (subset) [PATCH v2 0/8] Fix sound on ASUS Transformers
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US, en-GB
+To:     Javier Martinez Canillas <javierm@redhat.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-tegra@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Paul Gazzillo <paul@pgazz.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        =?UTF-8?Q?Ma=c3=adra_Canal?= <mcanal@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        Stephen Boyd <sboyd@kernel.org>, Emma Anholt <emma@anholt.net>,
+        Liam Beguin <liambeguin@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Gow <davidgow@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Airlie <airlied@gmail.com>,
+        linux-kselftest@vger.kernel.org
+References: <cover.1679474247.git.mazziesaccount@gmail.com>
+ <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
+ <87edphnkg1.fsf@minerva.mail-host-address-is-not-set>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v5 0/8] Support ROHM BU27034 ALS sensor
+In-Reply-To: <87edphnkg1.fsf@minerva.mail-host-address-is-not-set>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 20 =D0=B1=D0=B5=D1=80. 2023=E2=80=AF=D1=80. =D0=BE 20:31 Mark=
- Brown <broonie@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Wed, 08 Mar 2023 09:34:54 +0200, Svyatoslav Ryhel wrote:
-> > - add quirk for headset detection used by some T30 devices
-> >   (ASUS Transformers, LG Optimus 4X HD and Vu);
-> > - add RT5631 and MAX9808x machine drivers
-> > - update bindings
-> >
->
-> Applied to
->
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-=
-next
->
-> Thanks!
->
-> [1/8] dt-bindings: sound: nvidia,tegra-audio-common: add coupled-mic-hp-d=
-etect property
->       commit: 2a7a8ebe85e1fa7e929f6f986a61f10321093c43
-> [2/8] ASoC: tegra: Support coupled mic-hp detection
->       commit: eb0b8481c2e03a5ae01f6bea60b42109bd12b6fe
-> [4/8] dt-bindings: sound: nvidia,tegra-audio: add RT5631 CODEC
->       commit: 2060c9b8ae2a1f6abec483709f4209b6e3602b89
-> [5/8] ASoC: tegra: Support RT5631 by machine driver
->       commit: 44b2fc2edb61e956885b4305bddaaec7f05d93d2
-> [7/8] dt-bindings: sound: nvidia,tegra-audio: add MAX9808x CODEC
->       commit: 85a375fe8df906b2701346e03e71501e6861a75a
-> [8/8] ASoC: tegra: Support MAX9808x by machine driver
->       commit: d007a87bd7d181854b53b3e7fcbcf66c4bef86b2
->
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
->
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
->
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
->
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
->
+On 3/22/23 12:34, Javier Martinez Canillas wrote:
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> writes:
+> 
+> Hello Andy,
+> 
+>> On Wed, Mar 22, 2023 at 11:05:23AM +0200, Matti Vaittinen wrote:
+>>
+>>> Revision history:
+>>> v4 => v5: Mostly fixes to review comments from Andy and Jonathan.
+>>> - more accurate change-log in individual patches
+>>
+>>> - copy code from DRM test helper instead of moving it to simplify
+>>>    merging
+>>
+>> 1) Why do you think this is a problem?
+>> 2) How would we avoid spreading more copies of the same code in the future?
+>>
+>>
+>> 1) Merge conflicts is not a bad thing. It shows that people tested their code
+>> in isolation and stabilized it before submitting to the upper maintainer.
+>>
+>> https://yarchive.net/comp/linux/git_merges_from_upstream.html
+>>
+>> 2) Spreading the same code when we _know_ this, should be very well justified.
+>> Merge conflict is an administrative point, and not a technical obstacle to
+>> avoid.
 
-Thank you, Mark Brown! You have asked me to update commit name for
-codec machine dts schema commits (those, which contain CODEC in the
-subject), should I still update and resend them or you will handle those?
+I definitely agree. This is also why I did the renaming and not copying 
+in the first version. In this version I did still add the subsequent 
+patch 2/8 - which drops the duplicates from DRM tree.
 
-I still need v3 to update existing device bindings to the currently working
-scheme. Should I exclude commits you have picked?
+> I believe this was suggested by Maxime and the rationale is that by just
+> copying the helpers for now, that would make it easier to land instead of
+> requiring coordination between different subystems.
 
-I have DMIC fix for wm8903 codec driver required for tf101 and tf300t,
-should I add it into v3 or I have to send it separately?
+This is correct.
 
-Thanks in advance,
-Svyatoslav R.
+> Otherwise the IIO tree will need to provide an inmutable branch for the
+> DRM tree to merge and so on.
 
-> Thanks,
-> Mark
->
+Or, if we carry the patch 1/8 via self-test tree, then we get even more 
+players here.
+
+Still, I am not opposing immutable branch because that would allow fast 
+applying of the patch 2/8 as well. Longer that is delayed, more likely 
+we will see more users of the DRM helpers and harder it gets to remove 
+the duplicates later.
+
+> I agree with Maxime that a little bit of duplication (that can be cleaned
+> up by each subsystem at their own pace) is the path of least resistance.
+
+I'd say this depends. It probably is the path of least resistance for 
+people maintaining the trees. It can also be the path of least 
+resistance in general - but it depends on if there will be no new users 
+for those DRM helpers while waiting the new APIs being merged in DRM 
+tree. More users we see in DRM, more effort the clean-up requires.
+
+I have no strong opinion on this specific case. I'd just be happy to see 
+the IIO tests getting in preferably sooner than later - although 'soon' 
+and 'late' does also depend on other factors besides these helpers...
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
