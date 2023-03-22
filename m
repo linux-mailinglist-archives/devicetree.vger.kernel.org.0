@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38F1E6C4435
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 08:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7A56C443C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 08:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbjCVHiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 03:38:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43924 "EHLO
+        id S229692AbjCVHm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 03:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbjCVHiG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 03:38:06 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD9A14E9F
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:38:04 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id b20so36154351edd.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:38:04 -0700 (PDT)
+        with ESMTP id S229930AbjCVHm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 03:42:57 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32225A90F
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:42:54 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id eg48so69021911edb.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 00:42:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679470683;
+        d=linaro.org; s=google; t=1679470973;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fIlFrePZXbAkRU2ELLJPQAlw9IYOtHNm0vNBQivbWPw=;
-        b=Ovk6gx9LBcuOvIdpF+utI2+huZW2TwdhnKy6VxEQRwDCZA9TY4mdwyiqUaV/Q0Ue4i
-         t6IQatnKJOtNRArp68GUTKweCl0MlKdRfog2LEAolB4T7hzD70haB7PLcvCCN85tjkG4
-         Ffd3aNS8kKC1a3YTllsPUi64p+SQbAKjB89v0mexDiB0guMTeC6Wuyk503iTcsh+Rv/m
-         e0bAZnP3FxV4ktpIDfsRFBoPOauLZJM7zoaWTj9ZRQtq6faWDENs04KxRhFVdiqtiwAb
-         pI2vcKOq5KKoCWZREkNLl+6B6AOS7uDTBO7viKCZcHMHZ8sbbw7yPndR6ciO6jVrTeSu
-         Pnvw==
+        bh=wpO6nNgLNXXg/qI6ofUYW3qWPugMqrOA8y/Wn0MCQTk=;
+        b=vEcYMbrG82Rcclx8sJs4dO3o19gAYUoqBIQD4m9SNmTnrpn/5xRNqslRExRsG9Dxid
+         6iolGDu5ua++qw3MWKr4TXpRqyrI5eli3lNssyH9iTEXf468DLm2fjO1NGKRmv/XJ7ib
+         +0aQNleqbtWY/k094YWT2Kc1R7vUrXM0TE30F8ig1uXcq/so6TJb6g1ZeGQgbmNS8P48
+         MU1YycLGKjsCqgQ0ZyCIOfBl+c/W2/5/wIp/xxr8x0iHnPNo9REq1y4WGdwQJre5hTpy
+         xN4uPS2CfLUX/y+uM+tPUloYuP03kh78jQUSJktcDdAxEjhlmQ+MgrjTREXang+eY0Mt
+         2Dqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679470683;
+        d=1e100.net; s=20210112; t=1679470973;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fIlFrePZXbAkRU2ELLJPQAlw9IYOtHNm0vNBQivbWPw=;
-        b=uoxiorDWDD0JxQ2vRLDmIJkM8k781DtS4AsaqGNK8qRhMkXcvpei7aFWGiUbdsU5+S
-         luXXqX6bcJEpfNkKxcCLogca6vyL02EHHpVK1de+ydchp1Xe7JvlwqOZJNNEnxoS6Z0H
-         YfauVbAcVdb53D0W72b62qNhdJWNI4S5eZ/hApQ6/ix3AKjIzbVR72C8jjuRUC67szpt
-         Hy2rcIPF1SApNsOFtWKFcs4nMAqY1HwxE4sDBnXbHJvxmcNc/weovWWNq1WrJl1qhjdS
-         7ctaCEAa79kHn6c/RzBI84kx1Dj5/sqPMVbwf7ZsfCXs32/A4HpCxDXiZRrBo37LQ5u7
-         kQDQ==
-X-Gm-Message-State: AO0yUKWQIG/OKIbzGJWq+qDVlvSMQXb2ZmMaNULkfnN/+PD8CQxuaPfq
-        DCRSPiyFHnUiyynhC8dJcyReGzddj1tqLRsHs4k=
-X-Google-Smtp-Source: AK7set9uNqqqp+RTyy+Lsso2YFsulLEsLgbXC/U05maYZvjld3UjEALosJg2dArGoCc9ViY65hz1fA==
-X-Received: by 2002:aa7:c84e:0:b0:4fb:e9b8:ca5a with SMTP id g14-20020aa7c84e000000b004fbe9b8ca5amr5669909edt.40.1679470682958;
-        Wed, 22 Mar 2023 00:38:02 -0700 (PDT)
+        bh=wpO6nNgLNXXg/qI6ofUYW3qWPugMqrOA8y/Wn0MCQTk=;
+        b=VqCjG6cktRcR6+LLudSnnGAUNX7p6FjnfAD4gw+GQHivaxGT6sQAp+K7JtaArbamzW
+         7olDduxzTq4v4yO0/QCEaLssMIt3QJIhFanjVQvenJn1ngNndPFtStvVaCY5L06Wn4fZ
+         Uzl7P9x1J6oFvreohp3jJ4284/xQHpSlI/cwqU2fM3aOpYsNyWi3HIYaWqarGMTtvmSe
+         ObzvfCO1DqvoYqrffubuWtgKYtNKUEzJjt+xF1cIREI6fBPqtiZGx7LPICUXNlZ/7cnC
+         Sd77qKRaYH6RL0j1mC+oCV94h+0xrZX+YG9/du/SBg2btXOu4Kl8hp7kXwI+5b/Nz7Dk
+         VFaA==
+X-Gm-Message-State: AO0yUKVjyhPXU4GnBzZUm7np36Mg1mr5Hu6GyJZz6zSQ4JlRpyxIygBy
+        V39KGIxrQIJ2+5V8gsRjVvGqNw==
+X-Google-Smtp-Source: AK7set9/20qTWXfXUPdUzdez7x/H1H32b6vOzzlRWF9+rvKFKl/pHRXbIy5B17ybnCVOJtnvGkB4ow==
+X-Received: by 2002:aa7:d419:0:b0:4fc:3cd1:37c8 with SMTP id z25-20020aa7d419000000b004fc3cd137c8mr6144173edq.22.1679470973200;
+        Wed, 22 Mar 2023 00:42:53 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id g4-20020a170906520400b0093a35f65a30sm1619990ejm.41.2023.03.22.00.38.02
+        by smtp.gmail.com with ESMTPSA id l19-20020a170906079300b00932ed432475sm5597899ejc.124.2023.03.22.00.42.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 00:38:02 -0700 (PDT)
-Message-ID: <d1559192-8f6d-26e0-ef19-d14ac7987a74@linaro.org>
-Date:   Wed, 22 Mar 2023 08:38:01 +0100
+        Wed, 22 Mar 2023 00:42:52 -0700 (PDT)
+Message-ID: <7735c232-f1b3-dd5f-ca0b-be2078756d99@linaro.org>
+Date:   Wed, 22 Mar 2023 08:42:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] ASoC: dt-bindings: ak5558: Convert to dtschema
+Subject: Re: [PATCH v3 1/5] dt-bindings: vendor-prefixes: Add prefix for acbel
 Content-Language: en-US
-To:     Saalim Quadri <danascape@gmail.com>, broonie@kernel.org,
-        robh+dt@kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230321180809.9215-1-danascape@gmail.com>
+To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>, robh+dt@kernel.org,
+        linux@roeck-us.net, jdelvare@suse.com,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230321190914.2266216-1-lakshmiy@us.ibm.com>
+ <20230321190914.2266216-2-lakshmiy@us.ibm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230321180809.9215-1-danascape@gmail.com>
+In-Reply-To: <20230321190914.2266216-2-lakshmiy@us.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -76,101 +78,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 19:08, Saalim Quadri wrote:
-> Convert the AK5558 ADC audio codec bindings to DT schema.
+On 21/03/2023 20:09, Lakshmi Yadlapati wrote:
+> Add a vendor prefix entry for acbel (https://www.acbel.com)
 > 
-> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
 > ---
->  .../devicetree/bindings/sound/ak5558.txt      | 24 ---------
->  .../devicetree/bindings/sound/ak5558.yaml     | 49 +++++++++++++++++++
->  2 files changed, 49 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/ak5558.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/ak5558.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/ak5558.txt b/Documentation/devicetree/bindings/sound/ak5558.txt
-> deleted file mode 100644
-> index e28708db6686..000000000000
-> --- a/Documentation/devicetree/bindings/sound/ak5558.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -AK5558 8 channel differential 32-bit delta-sigma ADC
-> -
-> -This device supports I2C mode only.
-> -
-> -Required properties:
-> -
-> -- compatible : "asahi-kasei,ak5558" or "asahi-kasei,ak5552".
-> -- reg : The I2C address of the device.
-> -
-> -Optional properties:
-> -
-> -- reset-gpios: A GPIO specifier for the power down & reset pin.
-> -- AVDD-supply: Analog power supply
-> -- DVDD-supply: Digital power supply
-> -
-> -Example:
-> -
-> -&i2c {
-> -	ak5558: adc@10 {
-> -		compatible = "asahi-kasei,ak5558";
-> -		reg = <0x10>;
-> -		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/ak5558.yaml b/Documentation/devicetree/bindings/sound/ak5558.yaml
-> new file mode 100644
-> index 000000000000..90fd734daeec
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/ak5558.yaml
 
-Missing vendor prefix, so
-asahi-kasei,ak5558.yaml
-
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/ak5558.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AK5558 ADC Device Tree Bindings
-
-drop "Device Tree Bindings"
-
-You dropped few pieces of device description. Why? Also ADC is very
-confusing.
-
-> +
-> +maintainers:
-> +  - Junichi Wakasugi <wakasugi.jb@om.asahi-kasei.co.jp>
-> +  - Mihai Serban <mihai.serban@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - asahi-kasei,ak5558
-> +      - asahi-kasei,ak5552
-
-Keep them ordered by name.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the device.
-
-Drop description, obvious.
-
-> +
-> +  avdd-supply:
-> +    description: A 1.8V supply that powers up the AVDD pin.
-> +
-> +  dvdd-supply:
-> +    description: A 1.2V supply that powers up the DVDD pin.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
