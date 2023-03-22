@@ -2,76 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 790096C4520
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCE8B6C4531
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 09:39:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230287AbjCVIg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 04:36:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38872 "EHLO
+        id S229872AbjCVIj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 04:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbjCVIgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:36:10 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3135DEFD
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:35:38 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id b20so36629512edd.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 01:35:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679474137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8DntXGXvr8H/rQ6dM4/EUrhiL65qM60t+UtrrOzvHSo=;
-        b=GsJlggwAIG7TtATrtOuWrAS5Phb1YH+82ht27aTMSh6RvkGNQQtlWYuWM+Zk/1N75R
-         2ztnLRIIGzbFK++utgCU5OE7Eo1xNJAj7CS1jb+ihKNBaDdrXcoimJpq20zWyAnU8+sZ
-         Tb2XGt9XgDiD3od+z/d3EjJh+XUkprbgWT/9pzaDQGwuuplK1jD24KvCvf4Dzk407t9M
-         8g+4AKORzxllippydprSyUXSDKQ4SzHVvFWJyRubwTb02LS90kwZt6/9uM/d3pC8PEK6
-         Hz5/9HwzRyIRderXzulqMO+kPGO5/UgyajJ5wcX99zid+D8gSb7YJ5xxX5nfZKuno5HM
-         2/Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679474137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8DntXGXvr8H/rQ6dM4/EUrhiL65qM60t+UtrrOzvHSo=;
-        b=zAAUnwQqAycqYfmKZuo/qK+IqThYakpwo/g2Mgf8Rc0wMGrqA3NBcRAmWDQPKo0tuT
-         eZRrAgT8RW7yEVGq6mkR17EaEUylnNVYTQ0rQcndCW+zcPZrfXweonyui58BUkHkdgv2
-         zxosUttgSJ1UBodHJIEI7GZjHjs3MW2WbA9SSpmh53mWX++xJ9Py1huU1PFKDTrbhl7v
-         miVS+2FkW523ftkIPvx/G4BRr8Yx9FNzQ8ab60LXeTOSXozdT57a35kBmKC1rUYZrvET
-         XVEzu6GifFZ9EGdF8bo4Zq6BmsEztI3zsEIngliwWhriCd4ga5E1dRFaRLSOqSHW2NXy
-         IaiA==
-X-Gm-Message-State: AO0yUKW/VuihcmPXSfKtNVgbl4zxcpP1AjZQ+X1w3phpIht1hXf7tDOA
-        aryJDaahTVH7SOY35v4Br5pzCBY98LaTn8X+ZR0=
-X-Google-Smtp-Source: AK7set/YphAfz81YC4ks4tfTIhsNWkCbCmBVjJL/CegkBZNDsqvqDlYbhPGAzWIK8D5Ygyc2YoDi2g==
-X-Received: by 2002:aa7:c44d:0:b0:4fa:ac78:7f2a with SMTP id n13-20020aa7c44d000000b004faac787f2amr5186649edr.41.1679474137076;
-        Wed, 22 Mar 2023 01:35:37 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id e23-20020a50d4d7000000b004bf28bfc9absm7202223edj.11.2023.03.22.01.35.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 01:35:36 -0700 (PDT)
-Message-ID: <ea863eac-58bd-cd61-ce5c-a0393bb4e4a8@linaro.org>
-Date:   Wed, 22 Mar 2023 09:35:35 +0100
+        with ESMTP id S229656AbjCVIj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 04:39:26 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC4A3BC7D;
+        Wed, 22 Mar 2023 01:39:24 -0700 (PDT)
+Received: from booty (unknown [37.160.6.101])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EEB1020015;
+        Wed, 22 Mar 2023 08:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1679474363;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Wz9JRgOQIMXRFmXdLRwJEba3ig72shB4CQk5G3EPImk=;
+        b=TCL05enbOB0QJnuM/O0bDTeHVFDCWPFQScT6mHJu4nTz6/dUQs906scsp0TLqQ85+FDD4x
+        XNrsna6SBl6J1/PWHEKAFBDv+N4HkTEzjy141bAv1I2Nm1xopxBPUxQpoeQ4DeblVau+dL
+        VKDCvkcfGrlTUSd/W+LANUbrobDQK1r4PWQCTKNYakh8a8IPslfusYX636H+/jmYysgTas
+        EqidyXoTincrKoQ/HHQi6dtxJwA3FyRV1aAEVK2bGsr7fIfzRlojMzeAPJ1rBklMLd8aCk
+        bAGl+68yOgoDrmVHm3QwLvZV/WgDnaPO+dUw96lAIO2bRLlNlaLFIch2GR/w/w==
+Date:   Wed, 22 Mar 2023 09:39:18 +0100
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-reneas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clk: vc5: Make SD/OE pin configuration
+ properties not required
+Message-ID: <20230322093918.33690db3@booty>
+In-Reply-To: <83f4f33ebd3706ec7d35acd807b1e44b.sboyd@kernel.org>
+References: <68037ad181991fe0b792f6d003e3e9e538d5ffd7.1673452118.git.geert+renesas@glider.be>
+        <5da02a9b-3d42-a26f-0d18-29a6b5b181e5@seco.com>
+        <20230124091236.1bf8c6da@booty>
+        <CAMuHMdV8_+dF03VD6mST2zMDQ68cgsLLRQi6UeXK2jH-eWqWZg@mail.gmail.com>
+        <232f59aa-704b-a374-6a78-469156ccdbea@seco.com>
+        <83f4f33ebd3706ec7d35acd807b1e44b.sboyd@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 0/5] arm64: dts: qcom: Enable Crypto Engine for a few
- Qualcomm SoCs
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        andersson@kernel.org, bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        vladimir.zapolskiy@linaro.org, rfoss@kernel.org
-References: <20230321190118.3327360-1-bhupesh.sharma@linaro.org>
- <41111f93-ef02-0e57-98af-01327213d854@linaro.org>
- <CAH=2NtziWx2g_4K92iH+9DLo8XV0P32NNnEpxy6f0G_dQOVs+Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAH=2NtziWx2g_4K92iH+9DLo8XV0P32NNnEpxy6f0G_dQOVs+Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,34 +66,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 09:33, Bhupesh Sharma wrote:
-> On Wed, 22 Mar 2023 at 00:57, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->>
->> On 21.03.2023 20:01, Bhupesh Sharma wrote:
->>> This patchset enables Crypto Engine support for Qualcomm SoCs like
->>> SM6115, SM8150, SM8250 and SM8350.
->>>
->>> While at it, also fix the compatible string for BAM DMA engine
->>> used in sdm845.dtsi
->>>
->>> Note that:
->>> - SM8250 crypto engine patch utilizes the work already done by myself and
->>>   Vladimir.
->>> - SM8350 crypto engine patch utilizes the work already done by Robert.
->>>
->>> This patchset depends on the dt-bindings patch which added support for
->>> SM6115 and QCS2290 SoCs:
->>> https://lore.kernel.org/linux-arm-msm/20230321184811.3325725-1-bhupesh.sharma@linaro.org/
->> You could have included that one here for easier tracking!
+Hello Stephen,
+
+On Mon, 20 Mar 2023 14:27:56 -0700
+Stephen Boyd <sboyd@kernel.org> wrote:
+
+> Quoting Sean Anderson (2023-01-24 08:23:45)
+> > On 1/24/23 03:28, Geert Uytterhoeven wrote:  
+> > > Hi Luca,
+> > > 
+> > > On Tue, Jan 24, 2023 at 9:12 AM Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:  
+> > >> On Thu, 19 Jan 2023 14:27:43 -0500
+> > >> Sean Anderson <sean.anderson@seco.com> wrote:  
+> > >> > On 1/11/23 10:55, Geert Uytterhoeven wrote:  
+> > >  
+> > >> I'm wondering whether Geert has a practical example of a situation
+> > >> where it is better to have these properties optional.  
+> > > 
+> > > My issue was that these properties were introduced long after the
+> > > initial bindings, hence pre-existing DTS does not have them.
+> > > Yes, we can add them, but then we have to read out the OTP-programmed
+> > > settings first. If that's the way to go, I can look into that, though...  
+> > 
+> > FWIW I think there's no need to update existing bindings which don't
+> > have this property. The required aspect is mainly a reminder for new
+> > device trees.
+> >   
 > 
-> Err.. the dt-binding maintainers have been asking to split the
-> dt-binding patches from
-> the dts ones in the past. So, let's stick to that for now :)
+> Is there any resolution on this thread? I'm dropping this patch from my
+> queue.
 
-For submissions? No, we did not.
+IIRC Geert kind of accepted the idea that these properties should stay
+required. Which is a bit annoying but it's the safest option, so unless
+there are new complaints with solid use cases for making them optionalm,
+I think it's OK to drop the patch.
 
-Best regards,
-Krzysztof
-
+Luca
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
