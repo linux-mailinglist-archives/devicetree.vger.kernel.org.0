@@ -2,222 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA496C4B4E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 14:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EDFB6C4B72
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 14:15:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbjCVNJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 09:09:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36562 "EHLO
+        id S230410AbjCVNO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 09:14:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbjCVNJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 09:09:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0470F28D0A;
-        Wed, 22 Mar 2023 06:09:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8F6BE620D5;
-        Wed, 22 Mar 2023 13:09:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F02BEC4339B;
-        Wed, 22 Mar 2023 13:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679490567;
-        bh=TBdGtQ54byUD9JnpnLF1IHWZzgwVmaaUiTmEaB17BNY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GSMN++aLmdcyrK2u1+dw3CaK/7KYUnyl+TnsA5Ie3Ho3bJ5LzwUFD+QY74PVbc8Do
-         aQBr8wgQz1ODhmEnIIjcccHJU9XpWqGrFOez2DfE/UuySeZJtaNGqoIFC6njWt7ukQ
-         tbkKwrYHQLOxV9GEkg8rIhT6ev4FNJ7u5jc6eI6gABSoRU9R+LsonyBZsD+Ms2qtzd
-         ULVusf9VwukWXXTZdxo5OmUWjED5ypHYty17lmpXmX14I11x16wYyKv8zU96dQIVOF
-         8Wx+TCN8VV8C1G5oCHz6aKS+xSVBqy01jT4kqht/qh254RJ0FjKejWr0dz/A/o5MvA
-         2G/+x3H7Y2LQw==
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-541a05e4124so337716177b3.1;
-        Wed, 22 Mar 2023 06:09:26 -0700 (PDT)
-X-Gm-Message-State: AAQBX9eMtTra+xIb2xFgIB6RCGFoNJufq6VrQNk59FCXw22EiynncvMq
-        joLVlrPfBkQdAKTnEpsUw6gaaYJKj300084bkw==
-X-Google-Smtp-Source: AKy350Y7Te5CDRYMafjYeQhsKhCMmgull6VM9Zg3abMGLl1BV+ZjwcQhB/MCo7DW7c1AwmhZchmiOeZYp/sMRLkWwsg=
-X-Received: by 2002:a81:7e4a:0:b0:533:99bb:c296 with SMTP id
- p10-20020a817e4a000000b0053399bbc296mr3060086ywn.5.1679490565967; Wed, 22 Mar
- 2023 06:09:25 -0700 (PDT)
+        with ESMTP id S230401AbjCVNO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 09:14:57 -0400
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2139.outbound.protection.outlook.com [40.107.249.139])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9F37580C0;
+        Wed, 22 Mar 2023 06:14:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O18V8jpk7ncKeLurs7XF35/tyhEuamk+UV48MkV+lBNTk+oDBdqejN0I8arxFtQgVfFdlwy8mgp+Q/uQJiDACGNvxwltf4ilPwAZ4g+2OfCJdnfy1ZyPvafkCIdGxMEHoqWq4M4PxxdrXcOcaZKI/i7xp25ebJMgUVyM4kWU5qk4yedLo3tr0kXn+dZG5lYj6wIgs4TanDxccMg2N13CudY1Io2RRqGgrOxNZtEsWXldBlAlB+/3aKhRK1vuW/VOQdf/nB+BiuZmDm+rSMN9ED36/+hNcr+cJvMRZ8FdiVIVqwkVljMiyKUaruxpXg/wWlYK8Aehbv8cb6/ndjwE8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SUZSU1zIh6lqw41Re528v62AZuD/Zs0FmEsUv7M2Qls=;
+ b=SfzVDzBRCBK7qdGk0lI8B+3qRqLa3ISFCy1f3NrSMVd3nlWItoLYFB3ze1kXF9XLDGfYV3yb952y5HulPGo66aUVZSvnGcxCo0xbhDMUafR52Y/NS1J7/+3PvPyOFlZZNuC5gea15N8Mjse+H8/3rSYFFW4XndDKKsrFfvafqkk4MO60xNvgwYOO9FBqOzW3nY7s7Oo0LZRTenDWjN7NxmuxnAIRUGSYzI6Pnm9imy3GriAeFCl4hAzHcdWxyeVyZzb/14yxIX9vK0gk0bw7CXKs52z1allXz5ipthb5gyYM6MHFwXAmokJrAxKBkg3XxvqEU4tE9HvopfJsUD1m8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SUZSU1zIh6lqw41Re528v62AZuD/Zs0FmEsUv7M2Qls=;
+ b=l6jtvxyZzFK6KrUfwQpJOEgIHQ8l+quNCn4FTt/Yzs5w764Ej6PtSRrC/Bm00Ml2hmzCJdmPWwmxk8Izs9mPDwDLioQm8wVY6FdO3dByZ1346LwsAp7qfw0XNSqeM6yGE69EW8yIuF4tMusMpnyGsFw2DHM2wrYRBjf7v4h16HA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
+ by DU0PR10MB7997.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3b3::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.8; Wed, 22 Mar
+ 2023 13:14:53 +0000
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::914b:adde:72ff:b7c2]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::914b:adde:72ff:b7c2%3]) with mapi id 15.20.6222.010; Wed, 22 Mar 2023
+ 13:14:52 +0000
+Message-ID: <31b0a8b1-d027-d47a-e10d-614c09211734@kontron.de>
+Date:   Wed, 22 Mar 2023 14:14:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 0/7] Enable backup switch mode on RTCs via devicetree
+Content-Language: en-US
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Frieder Schrempf <frieder@fris.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20230201143431.863784-1-frieder@fris.de>
+ <Y9qQHpySbrFcBB0P@mail.local>
+ <b58f5e31-f13f-6d90-774c-2017ee3de121@kontron.de>
+ <7268b05b-bbb1-ec4d-6a05-f5ccbdfeed90@kontron.de>
+ <da83fdd0-9eae-09ce-ff6f-47cc012f9628@kontron.de>
+In-Reply-To: <da83fdd0-9eae-09ce-ff6f-47cc012f9628@kontron.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM4PR05CA0031.eurprd05.prod.outlook.com (2603:10a6:205::44)
+ To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
 MIME-Version: 1.0
-References: <20230316122741.577663-1-herve.codina@bootlin.com>
- <20230316122741.577663-2-herve.codina@bootlin.com> <96b01241-d57d-a460-4a8b-9e83eaab24ae@linaro.org>
- <167930560089.26.8624952010101991814@mailman-core.alsa-project.org>
- <20230320185127.GA2233912-robh@kernel.org> <20230322112056.7ffcd503@bootlin.com>
- <CAL_JsqK-=9BJEbEUji0ac=cXqBz3ijD5m33MBPyms-9O44gvag@mail.gmail.com>
-In-Reply-To: <CAL_JsqK-=9BJEbEUji0ac=cXqBz3ijD5m33MBPyms-9O44gvag@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 22 Mar 2023 08:09:15 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJD+sCFG_QeBo5xP7+K608=GmpJu+qbEaaZPKwMin99ng@mail.gmail.com>
-Message-ID: <CAL_JsqJD+sCFG_QeBo5xP7+K608=GmpJu+qbEaaZPKwMin99ng@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: misc: Add the Lantiq PEF2466 E1/T1/J1 framer
-To:     Herve Codina <herve.codina@bootlin.com>,
-        alsa-devel-owner@alsa-project.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|DU0PR10MB7997:EE_
+X-MS-Office365-Filtering-Correlation-Id: b399645c-2299-4e4d-897f-08db2ad76c3a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jxe6Naq/+jNOercSZV9z7Cwmit3/UlxGNsaWePUvua5/luVNg7wAMURNyxADyJu6eghaOscdEgBZShJbGT1gJG7q60D3rox9/YET9V4dw0RddF5/nMQGk/P3Qs1tosOVRmOZAFihQ7MPH/JLt0pZAbaUPVewZ49yzk3pwGekRH5jkUMQrc7c7RbJ2vdJawaqTJ4+lAuV8+8bQs1NTnwoOP1MnsirU1o0ZhLZ0jIXAosFAfxJiPQ6Om6aSEdGLovzFbbVvwTri+rnU2boS799ZQ9l/lHTFIxxoLf+IxJ7jb81jVNoOcSaJg70YxRuhVxJDYZK9Pzs8fLLU3AOOYxRuDwMzPlAzNtuA7UBgJu/Rx24Vh46dpp6F6IuQSQEvAMKkI+bOoCp/Ei9p9MkRKY9UpT2g0cJlT1aRdmxYlx5JUPtkedItw4tenpDFOZJ1eA6bbtviAGyeMMch9vCMcL/keiunxdw4AnFzirPG7hkMw/u34B6Hwe1TONlGUlVb6+nLRu8+WmdMbJH7K3Z3O2Cw9dinXnWyFyBUMcEkx5mCMm6RCgGqA7bHeL82H3930ADGfUUd+Z+vG1mSKt5a+cxnDRplqXLTozH4Sst6NUDDMXxG5L5k87dt8Gv5CzgKcfqNRJjgvSkw290iDrSUoPFWBMqtKdiai8WSebiKbfl18yKn7rjwnHMGu86jSTXV9J/R5gQB7FWZuQ+ez3XKtVwl7gAntUIvgAZWHV6NxFQGEo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(376002)(136003)(396003)(346002)(39860400002)(451199018)(41300700001)(31686004)(66899018)(31696002)(7416002)(8936002)(8676002)(2906002)(44832011)(5660300002)(36756003)(86362001)(38100700002)(478600001)(66556008)(66476007)(6486002)(66946007)(6512007)(54906003)(53546011)(110136005)(2616005)(316002)(186003)(6506007)(4326008)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnZhRzJ0blZncW9LVUNud1dZOCsrNGtYYWJiZE1ncWFBTXNWcHRKWXJXVGFP?=
+ =?utf-8?B?eFFWL0lOZ0VncWJKeHB6L1FSMmdqZjdmOGlXdU9YdFdQUkJWOTB6WkpsdFpi?=
+ =?utf-8?B?dkRudHc0Smx5a2VhVFphRmx0NmxCa09YSW1nTXpWQXNLL09wMUNzcVNZRmJO?=
+ =?utf-8?B?WDZ5M1ZsWElnZkxOM01iQkI1VlBCaGhqMUdwaHBRT0ZheFVtbUJlWlpnR2Q5?=
+ =?utf-8?B?M2lxNnlMNWZDKy9CeWVHN0t3L1I2RlQvSGxrbFI5QlZvLzZWNkJVK1IwMnVz?=
+ =?utf-8?B?d0NwMklSSG51S0hicWozNXNNTVIwdWVKRWFWZDRhTi9TZGFuQlFPamNQMXhn?=
+ =?utf-8?B?RzZOVmZmS1BmbTB2WkdxVTc1MEtVRjlBTlJ3U1dFREN2czduM2U1SGoxekhH?=
+ =?utf-8?B?Wmp2VnpuUVYyR2FuYnlVNDhMOExXNkVOZ2tMMjRadGNqOGF2RFd0eWpBYTRp?=
+ =?utf-8?B?U3Qyc3hHd1ZHdzVZaHBxODFWaGJ4cXlpMDhRYlZMSWJjRXpOdHhmcmhJM1pH?=
+ =?utf-8?B?UCtCdXZCWUhicXNtVng0djhwTElhb3UrWmlxKzVWNWp1UDZMQ0RGcTNxQ0k5?=
+ =?utf-8?B?em1nWG5MVC9aWHk1OVJ0ZDg4eFplMTZSWTJuaDVHRDI1T2IxYitwaEVINFFL?=
+ =?utf-8?B?SHQ0M0JlVXdqMmVCSmYxbUVtb1JMTHpvaUN0bGgzMXdtOFU5bjZtem8wT1lR?=
+ =?utf-8?B?b2dNcEtQTDUwakZDQXkrTXpiUTBqVjlqWmZFbUxkN3pkU2VPaXpibWs1Z1JV?=
+ =?utf-8?B?WlN0aWVSVlpqa1lOeWNIVTJyUHlHWUpralRyMm8yTnpSUk9JZzd0L1czWFFL?=
+ =?utf-8?B?SHN0b1J4aXNGbzZsZEVFM1NSUEdEVjZ1Y3Npd3lqOEs1L2p6ai8wYU96dFdr?=
+ =?utf-8?B?K05KbngzWUxVNnBuanpGRERoQlJkTzNOZXBWRU03c0N4VFF6YU9DakRJN1By?=
+ =?utf-8?B?ZUljNmZEMHppU1lsR29NUDlFeUhwUnRReTFSSllFd0tCcyt1ZS9aTWJFUjhI?=
+ =?utf-8?B?d1k4L0xEMkd5bDJIQmoyUGthMTIwRjE2bU54Ti9jcG5iSHplTzkwcmV3V24v?=
+ =?utf-8?B?OFNLODl4NlZiUnNPNmdEYjgyQXdpVGhMbWlpTEpudUZmamtpUHJnL3pyVTQ2?=
+ =?utf-8?B?bDdmQ1M3V1dEbG5IVlp2dXZENFBzWGpGVVdBcUhDVDN0ZHUxZ2Y5b0VOYUlH?=
+ =?utf-8?B?dnFxK1g4WHgrMUVHdTVLc2IzbUI1N2E0ZTZ1OEw4TzNrckdOdUNEVDBHRVdG?=
+ =?utf-8?B?QjB4Ym13dHJvNEM3cUxtZjlxK1c5UVFZRXVDNFBTSVlEU1ZVOEp2U0hiSGtz?=
+ =?utf-8?B?aklnajdPL1dnZ25iekdCTlY3UUtpN3czVWtGa1UxSHlscU9tTVN1WjZvUW9E?=
+ =?utf-8?B?SllwazFqNFAzdzhhSWs2a2JDWTNJUFNuZEljbTN6UDNhZWRwT0tld0pQa29W?=
+ =?utf-8?B?cytid2R6V1F5VEwxZFBnQlRWZVE5M1pjYXR1WUVQaWprb2o2RzBVWXlVWFJD?=
+ =?utf-8?B?NElVS1EyTlNpQWR1NFhwRTF1ajNtdVpldWlJWjYxVXVWTHhoY0RtWU55QzN6?=
+ =?utf-8?B?K09vUHJMK3ZSYmxzRWpERDBuRklTMHZtcVFUbklrQ1ZIWXhvWUFhc1dQQTVS?=
+ =?utf-8?B?K05YVXRkWTJzNEo3ZnJKNG1lUUNqcWhOM2tEN0xNajE1MVdGcktFeGdQMnVM?=
+ =?utf-8?B?NmR1STFqZDA4WnFuMXhpQXBWbGxITWhseVRFdVNUcGdzcUtvWlV5U0pMRUto?=
+ =?utf-8?B?M25lcUx5OXpqU0RDaTJiSXV4RnZ3a1F2V0t4aDJGZ2h2ZTJmUklic2d4UmxY?=
+ =?utf-8?B?WHZaWW53TTFkb2FROGVnUThIM2FiREszdE14bzJsOGpsQVFYVjVSUnRLZkxt?=
+ =?utf-8?B?eE9aZ0NYbUkvRkZMVUpQQ3orWHoxa2FJQ3hZZmwwSDRYb1Fnb3dYV1FZV3hR?=
+ =?utf-8?B?eGZZZnBSdVJjWmdOcStlQkFpZk5HZ2NtWm1DN3lqZW5FL0ozZ2FOSEh3VWJH?=
+ =?utf-8?B?aDZhOU9kVkYzVHM4NmNCaTY5ay9KaGxtN0RBL1ppOUwrWnMwYmZQS1hHUkNI?=
+ =?utf-8?B?N3pta055WHFHcmNGbmhnK2kwQTBXWWhlakRDVzI1NDIyMVpPNVZWSmRuOElV?=
+ =?utf-8?B?TTRNdVRxck5DM3laN3EyTWhURC9NYzE5MXdqRVJPU2xzTWg3dWpFMk4yMEdI?=
+ =?utf-8?Q?K30gmseLbzpPNhlc0c2ZNDGfkg+c3ajFIgV3wzR9r4oI?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: b399645c-2299-4e4d-897f-08db2ad76c3a
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 13:14:52.6628
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WPHjknMUALQ/Uo9Im6L4BLkuh7tJHnFfqlZhufQ+Ad7fCDJq+/0OYSTeiAcIjS4OLpe3fV32gvIQJwoxtxm2JGlO3ZRFjCHDrszSjUARWsE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7997
+X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 7:56=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Mar 22, 2023 at 5:21=E2=80=AFAM Herve Codina <herve.codina@bootli=
-n.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Mon, 20 Mar 2023 13:51:27 -0500
-> > Rob Herring <robh@kernel.org> wrote:
-> >
-> > > On Mon, Mar 20, 2023 at 10:46:19AM +0100, Herve Codina via Alsa-devel=
- wrote:
-> > > > Received: by alsa1.perex.cz (Postfix, from userid 50401) id 16494F8=
-027B;
-> > > >  Mon, 20 Mar 2023 10:46:37 +0100 (CET)
-> > > > X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on alsa1.pe=
-rex.cz
-> > > > X-Spam-Level:
-> > > > X-Spam-Status: No, score=3D-5.2 required=3D5.0 tests=3DDKIM_SIGNED,=
-DKIM_VALID,
-> > > >  DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PAS=
-S,
-> > > >  URIBL_BLOCKED shortcircuit=3Dno autolearn=3Dham autolearn_force=3D=
-no
-> > > >  version=3D3.4.6
-> > > > Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
-> > > >  [217.70.183.198]) (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384
-> > > >  (256/256 bits)) (No client certificate requested) by alsa1.perex.c=
-z
-> > > >  (Postfix) with ESMTPS id 3FF5FF80105 for <alsa-devel@alsa-project.=
-org>;
-> > > >  Mon, 20 Mar 2023 10:46:22 +0100 (CET)
-> > > > DKIM-Filter: OpenDKIM Filter v2.11.0 alsa1.perex.cz 3FF5FF80105
-> > > > Authentication-Results: alsa1.perex.cz; dkim=3Dpass (2048-bit key,
-> > > >  unprotected) header.d=3Dbootlin.com header.i=3D@bootlin.com
-> > > >  header.a=3Drsa-sha256 header.s=3Dgm1 header.b=3Dm4O7nLC1
-> > > > Received: (Authenticated sender: herve.codina@bootlin.com) by
-> > > >  mail.gandi.net (Postfix) with ESMTPSA id 40453C0009; Mon, 20 Mar 2=
-023
-> > > >  09:46:20 +0000 (UTC)
-> > > > DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dboo=
-tlin.com; s=3Dgm1;
-> > > >  t=3D1679305582;
-> > > >  h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:messag=
-e-id:
-> > > >   to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-> > > >   content-transfer-encoding:content-transfer-encoding:
-> > > >   in-reply-to:in-reply-to:references:references;
-> > > >  bh=3DIeu9Fv38se4lD4z/BVXUHLrVJL9Tx5iKWZgvO8X+VoY=3D;
-> > > >  b=3Dm4O7nLC1LPZDOI5eM/hmgqouxdkin2veA6CvJhT9kU9rGQALB3ya2fuybMfDvr=
-kTqqBjEd
-> > > >  j6DAxXMgOKgwuUfEsZsp3BFJpoii00hSaf0r2uIbnnGcUrDGVQqUQVEqv51O6VBqnr=
-ViQk
-> > > >  PstlJM0lcE9R/AFASd5D/HQGoYYyRY+NKT7xt8g1Ax23Yk/tUG59LXku/skn/4faSL=
-odnU
-> > > >  vV2ng3VMUcoLuvSMJtdYY3hrXEWqUrW1ZogxAFHJNiKuyOELmqZGmNo4B4yAFOEcqq=
-yano
-> > > >  /f4m/7BtT7X1wwPvGu29gg+0aOFrGQq5kb4UNrMoriSQyKnxPRha8zL3J2Jckw=3D=
-=3D
-> > > > Date: Mon, 20 Mar 2023 10:46:19 +0100
-> > > > From: Herve Codina <herve.codina@bootlin.com>
-> > > > To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > Subject: Re: [PATCH v2 1/7] dt-bindings: misc: Add the Lantiq PEF24=
-66
-> > > >  E1/T1/J1 framer
-> > > > Message-ID: <20230320104619.468a304b@bootlin.com>
-> > > > In-Reply-To: <96b01241-d57d-a460-4a8b-9e83eaab24ae@linaro.org>
-> > > > References: <20230316122741.577663-1-herve.codina@bootlin.com>
-> > > >  <20230316122741.577663-2-herve.codina@bootlin.com>
-> > > >  <96b01241-d57d-a460-4a8b-9e83eaab24ae@linaro.org>
-> > > > Organization: Bootlin
-> > > > X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
-> > > > MIME-Version: 1.0
-> > > > Content-Type: text/plain; charset=3DUTF-8
-> > > > Content-Transfer-Encoding: quoted-printable
-> > > > Message-ID-Hash: AJZF4VHU24ASVVBCPRMLJCDG4ZDX55LB
-> > > > X-Message-ID-Hash: AJZF4VHU24ASVVBCPRMLJCDG4ZDX55LB
-> > > > X-MailFrom: herve.codina@bootlin.com
-> > > > X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emer=
-gency;
-> > > >  loop; banned-address; member-moderation;
-> > > >  header-match-alsa-devel.alsa-project.org-0;
-> > > >  header-match-alsa-devel.alsa-project.org-1; nonmember-moderation;
-> > > >  administrivia; implicit-dest; max-recipients; max-size; news-moder=
-ation;
-> > > >  no-subject; digests; suspicious-header
-> > > > CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-> > > >  <krzysztof.kozlowski+dt@linaro.org>, Liam Girdwood <lgirdwood@gmai=
-l.com>,
-> > > >  Mark Brown <broonie@kernel.org>, Derek Kiernan <derek.kiernan@xili=
-nx.com>,
-> > > >  Dragan Cvetic <dragan.cvetic@xilinx.com>, Arnd Bergmann <arnd@arnd=
-b.de>,
-> > > >  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Takashi Iwai
-> > > >  <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-> > > >  devicetree@vger.kernel.org, alsa-devel@alsa-project.org, Christoph=
-e Leroy
-> > > >  <christophe.leroy@csgroup.eu>, Thomas Petazzoni
-> > > >  <thomas.petazzoni@bootlin.com>
-> > > > X-Mailman-Version: 3.3.8
-> > > > Precedence: list
-> > > > List-Id: "Alsa-devel mailing list for ALSA developers -
-> > > >  http://www.alsa-project.org" <alsa-devel.alsa-project.org>
-> > > > Archived-At: <https://mailman.alsa-project.org/hyperkitty/list/alsa=
--devel@alsa-project.org/message/AJZF4VHU24ASVVBCPRMLJCDG4ZDX55LB/>
-> > > > List-Archive: <https://mailman.alsa-project.org/hyperkitty/list/als=
-a-devel@alsa-project.org/>
-> > > > List-Help: <mailto:alsa-devel-request@alsa-project.org?subject=3Dhe=
-lp>
-> > > > List-Owner: <mailto:alsa-devel-owner@alsa-project.org>
-> > > > List-Post: <mailto:alsa-devel@alsa-project.org>
-> > > > List-Subscribe: <mailto:alsa-devel-join@alsa-project.org>
-> > > > List-Unsubscribe: <mailto:alsa-devel-leave@alsa-project.org>
-> > >
-> > > The alsa-devel list doesn't seem to like your emails. The archives
-> > > (lore) has 2 copies with the 2nd having the original headers in the
-> > > body. I'm seeing this recently on other senders too. Best I can tell =
-is
-> > > you sent this as quoted-printable.
-> > >
-> > > Rob
-> >
-> > I don't known what happened with alsa-devel list.
-> >
-> > For this answer, I tried to force '8bit' encoding instead of quoted-pri=
-ntable.
-> > Let me know if it is better.
->
-> Nope, still the same issue:
->
-> https://lore.kernel.org/all/167948048307.26.16805930109507404147@mailman-=
-core.alsa-project.org/
->
-> I added the alsa-devel owner. Maybe they know what's happening.
+Hi Alexandre,
 
-Here's the answer:
+On 06.03.23 14:27, Frieder Schrempf wrote:
+> On 13.02.23 10:18, Frieder Schrempf wrote:
+>> Hi Alexandre,
+>>
+>> On 01.02.23 17:26, Frieder Schrempf wrote:
+>>> On 01.02.23 17:15, Alexandre Belloni wrote:
+>>>> Hello,
+>>>>
+>>>> You can't do that, this breaks an important use case and it is the
+>>>> reason why I didn't use device tree in the beginning. What is wrong with
+>>>> setting BSM from userspace? You will anyway have to set the time and
+>>>> date from userspace for it to be saved.
+>>>
+>>> Ok, I was already afraid there is something I missed. Can you give a
+>>> short explanation of what use case this would break?
+>>>
+>>> There is nothing wrong with setting BSM from userspace. It's just the
+>>> fact that users expect BSM to be enabled in any case as there is a
+>>> battery on the board. It is much more effort to ensure that production,
+>>> user, etc. are aware of an extra step required than to let the kernel
+>>> deal with it behind the scenes.
+>>
+>> Would you mind elaborating on your argument that this would break stuff?
+>> I currently don't see how an additional optional devicetree property
+>> would break anything.
+> 
+> Ping!?
 
-https://lore.kernel.org/alsa-devel/6f003598-4cae-a521-233f-2c19eb439359@per=
-ex.cz/
+It seems like you decided to ignore me for whatever reasons there are.
+I'm sure we can sort it out in some way if you would respond, please.
 
-Something about DMARC and your domain. But some reason git-send-email
-doesn't have the issue sending.
-
-Rob
+Thanks
+Frieder
