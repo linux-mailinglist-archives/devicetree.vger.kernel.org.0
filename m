@@ -2,123 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD5D6C50B0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E946C50BE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:30:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjCVQ3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:29:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35882 "EHLO
+        id S229911AbjCVQaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:30:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbjCVQ3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:29:01 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9782453739;
-        Wed, 22 Mar 2023 09:28:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679502509; x=1711038509;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=KfUvgiz4DVLzFaYO7oEOLPOOhMl2JyBbYso8oKRbz/4=;
-  b=iBLxbnttfPgbBL+Hn6mJCMQwPWgQpUpPd8Hu1O9g9KJ3fRzidD/eoUsX
-   G1h8DhvoAZZGvVFzc4dLyYtAB1T87PHCnnsKqxkVCSJLHs0hWEJEkIu6b
-   3+YtPCHMfLH6JrboGeoay2c7wzI1E//R9skB6CHyUJ4zFpN+C2wzpnQhd
-   kXeMePv2JwUGsEoz5qvh54z8gevBFFuXb8VN9JKVp6iP64zyH6KqswbrL
-   v2wzPX5hLMAHaxYZwjlSfpZiErMoopSQJNbFdMkxZ4fJHKZUo+chgmWV+
-   QnvxLNVTIJg06YD+HFLMNg/M+F17ShfwMfZYgKLZBh71dlwb+6y5n4e8P
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="339300029"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; 
-   d="scan'208";a="339300029"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2023 09:28:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="771102926"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; 
-   d="scan'208";a="771102926"
-Received: from jprokopo-mobl2.ger.corp.intel.com (HELO localhost) ([10.252.61.221])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2023 09:27:59 -0700
-From:   Jani Nikula <jani.nikula@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>, linux-kernel@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-acpi@vger.kernel.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Lyude Paul <lyude@redhat.com>,
-        =?utf-8?Q?N=C3=ADco?= =?utf-8?Q?las_F_=2E_R_=2E_A_=2E_Prado?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
-        Stephen Boyd <swboyd@chromium.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        Andi Shyti <andi.shyti@linux.intel.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Imre Deak <imre.deak@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        YueHaibing <yuehaibing@huawei.com>
-Subject: Re: [PATCH v14 03/10] drm/display: Add Type-C switch helpers
-In-Reply-To: <ZBrgD61p/p17IOJL@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230322104639.221402-1-treapking@chromium.org>
- <20230322104639.221402-4-treapking@chromium.org>
- <ZBrgD61p/p17IOJL@smile.fi.intel.com>
-Date:   Wed, 22 Mar 2023 18:27:56 +0200
-Message-ID: <87edpg7nub.fsf@intel.com>
+        with ESMTP id S229757AbjCVQaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:30:13 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8D04570A4
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:29:54 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id y4so75411332edo.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:29:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679502592;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qDObnHO7h3AiOsFiaQoPm27eyvHc0YyhrJfDEIOmUpo=;
+        b=n7uTvip5e/M2Hue27wbFjuRarurQDkaEUYYqFgrs+QnGMmIDuZ0OToVqPahHQXOdEr
+         rebttzx6dP5uYC1EwTiQdyCC0Pm5b4RNv+RZGzFBqKuQadZ206vswqOI29jehPMnA7Jj
+         qDWy+dbOObf724XS7V9vuO96KmuWzUI94xNgPrvrhtZEwKmlKQRaHLrwOk8LETfa0tuN
+         gDPeCj/9vfP1nbIPYVorPPO43ugqJBRc0kw9cC/EZPK4R3HBhiUo6YXbhbHO3LCwblAw
+         4w3fnQI/XneXV80Wxs6vXRCKabym27x2lflCaoq6Y6dckX1XyJ5z1lJLcUMhUgNpMMkf
+         tLhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679502592;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qDObnHO7h3AiOsFiaQoPm27eyvHc0YyhrJfDEIOmUpo=;
+        b=JLNLKpdFrHIhWhZ3EcYj/dlYa3+tJAOaEmXrb0iqyVu6k2c3dwiX6Rycx72n6XgqKs
+         ColUOs9pyISUc5ixbsSUhfZN2WQIRWVC5Y7C+aAm446hdOhFQj8hW8lN9i6k1VGoTSSR
+         P3KLY68jCedQy4vKgeAy2wSvj8IND69JDWlMKvbB3SYIq2JuxfZ2IrZDVAC+ZY5IBbgC
+         gDhAPa8Y4GDw54bKKGFHOfTexfLRozaZN3hIKMqy7glqdiDRxhRPyRa+PnSXsBaLjIZR
+         Tq+gVe0co7vHvDR5gs7CPxs3/uxicR9kF41F9d8O7DFKPeJV9Ldwz0K+7FZZG9FMTXQa
+         qwcA==
+X-Gm-Message-State: AO0yUKUi4gtiR0oQxMIdbiy1wh4lf2x2xELZjySe+OpFZ+9aPN3zbklM
+        4E7OQtecVOiJ0JYd0IoaniVvOA==
+X-Google-Smtp-Source: AK7set/W5evUo2fY+lfa5NF96ktGzqiypbNLTYZMft3KXV3dKNOTAbvReEReqHIOweAoFSEYXNavIA==
+X-Received: by 2002:a17:907:c306:b0:930:800b:2803 with SMTP id tl6-20020a170907c30600b00930800b2803mr7154912ejc.76.1679502592667;
+        Wed, 22 Mar 2023 09:29:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
+        by smtp.gmail.com with ESMTPSA id e3-20020a170906504300b00930c6c01c9esm7611132ejk.143.2023.03.22.09.29.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 09:29:52 -0700 (PDT)
+Message-ID: <859ec5d4-4cb6-1d8a-33b6-91df071e07a1@linaro.org>
+Date:   Wed, 22 Mar 2023 17:29:51 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V1 2/4] dt-bindings: soc: qcom,mpm-sleep-counter: Add the
+ dtschema
+Content-Language: en-US
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1679403696.git.quic_schowdhu@quicinc.com>
+ <576e53a1d0ef218536da976102b4cc207436ec1d.1679403696.git.quic_schowdhu@quicinc.com>
+ <fc46c48d-2de0-ba3a-08b0-a09526bd9e26@linaro.org>
+ <e88d9482-4858-7042-7148-142ed9ebb6ad@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e88d9482-4858-7042-7148-142ed9ebb6ad@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Mar 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> On Wed, Mar 22, 2023 at 06:46:32PM +0800, Pin-yen Lin wrote:
->> +#ifdef CONFIG_DRM_DISPLAY_DP_TYPEC_HELPER
->
-> Ah, maybe this should use IS_REACHABLE() ?
+On 22/03/2023 14:46, Souradeep Chowdhury wrote:
+>>> +      - const: qcom,mpm2-sleep-counter
+>>
+>> SoC specific compatible.
+>>
+> 
+> This is a generic Module Power Manager Sleep Counter which is present in 
+> all Qcom Socs, so SoC specific compatible is not given here.
 
-Personally, I think IS_REACHABLE() is a build-time band-aid solution to
-a problem that should be solved in Kconfig. :p
+Not really a good reason and it is actually very difficult to verify
+this. If I understand correctly any moment FW can change and this will
+stop being valid, so no.
 
-I think it always means there's a configuration combo that shouldn't
-exist, and it's a surprise to the user when they've configured
-something, Kconfig has deemed it a valid configuration, but they don't
-get the feature they want.
+> 
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: MPM Sleep Counter Base
+>>
+>> just maxItems: 1
+>>
+> 
+> Ack
+>>> +
+>>> +  clock-frequency:
+>>> +    description: Frequency for the sleep counter
+>>
+>> Since this does not have clocks, what frequency you are setting here?
+> 
+> Module Power Manager(MPM) Sleep Counter is a clock that starts ticking 
+> from Primary Boot Loader(PBL) Stage. This is usually a 32 Khz clock and 
+> the frequency for the same is stored here.
 
-As a user, how would they even debug that case? Double check configs,
-don't see anything wrong.
+You just said all devices have the same MPM, so I would argue that all
+devices have the same clock.
 
+Anyway, this is a legacy property.
 
-BR,
-Jani.
+Best regards,
+Krzysztof
 
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
