@@ -2,115 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 413676C5180
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:00:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA366C5205
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbjCVRAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 13:00:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48406 "EHLO
+        id S230437AbjCVRPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 13:15:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbjCVQ7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:59:37 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D6828D33;
-        Wed, 22 Mar 2023 09:59:27 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id 103-20020a9d0870000000b0069f000acf40so8301375oty.1;
-        Wed, 22 Mar 2023 09:59:27 -0700 (PDT)
+        with ESMTP id S230505AbjCVRPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:15:49 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA0965C42;
+        Wed, 22 Mar 2023 10:15:23 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id p16so11981364wmq.5;
+        Wed, 22 Mar 2023 10:15:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679505321;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kIgxYOCHY5hpYpnaBL4KUYD99zfVheHS3DgjQH5qt3c=;
+        b=dQY5pOOKQlo1q5JREC81HNhiIEkO1mEpKC5WnzIZLsKI29QX/y5R2w6uZKcTVY8NOR
+         vYw4gBpLP6GT8wgEVGRMECN0x8dZHXD3m27ZBpGFFpscqwanoGTnfpjHARpfE4qIhlsk
+         6RjvKpCtGi7bnQpLFaTwcRTwH/Q+yEtFt74u+4CkG9qMNmp2SJzoYsP5FQjxv0YoFeP7
+         lIp1zm+RCi8GySTio4t34HplFJtoaiVilCvBquzaVzPKrP0K0oeEtJS04Gswf6iJBCDe
+         mZnvK/8g4G7Bc/Wq6dnGstmEJRQAftrK1yjp/Ih7N06iXS2qXOYgKRll9MCflhpeCkWV
+         6fZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679504366;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NWqyrfUQQCISr39NkQZ5Ma1o6AYL1xyxzggPNypbXQk=;
-        b=BVi+xQpifJKFndTzQl02cmq0ksKElOue2GKvfMGiRPqby9NeRNEDVM9Dj0ktA6ziRe
-         HIkXz17ONqxZtNeHRvZI6HMiuqEeOnAt2iejnJd22GA05tN3gjAar18Qf6NFA3KOxxPJ
-         sKQ7AIQYqKgpMpC+3IMJSLS97W6bUUBsqZsbHtEng3jDpCyM1xeW+x/q6XejARZseG+7
-         Qdye8jZfsqgV0H79KPv6gDm5i6s0C1aisFwAIPCoHp+WLAWX/nNu3NqaKHY0fdiUHXd0
-         baHGBUE1sYrSpiqQLqVySiTrC/+NvP6GEuvHNhocdgUcjdfClEUNwfYIwHm3dLt7YtnS
-         PDFA==
-X-Gm-Message-State: AO0yUKVLneZQb3cwHziJ205hV/3KTQVxCXJXijtw7r0poSIz+03xOM/I
-        D9jmwA/v15cs7FxF+XhkqfVBI/W0aw==
-X-Google-Smtp-Source: AK7set9pHTty/88AsdcNbe/96VYXZqDeFXpGdlF3m0B/sOmCD6PE7StmwAMdHsnvOsbVvW2GQIarqg==
-X-Received: by 2002:a9d:7544:0:b0:699:896e:c9e1 with SMTP id b4-20020a9d7544000000b00699896ec9e1mr1605607otl.34.1679504365842;
-        Wed, 22 Mar 2023 09:59:25 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a7-20020a056830008700b0069417e65acasm6669680oto.45.2023.03.22.09.59.24
+        d=1e100.net; s=20210112; t=1679505321;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kIgxYOCHY5hpYpnaBL4KUYD99zfVheHS3DgjQH5qt3c=;
+        b=vXupdqjvP74W3rS7NQGhV1QKD0x9tYmXvKmkpTiQfRF+wuMrcTt9+SB7S2m18DrATd
+         yknPcmX1RcfBdU5xB/gPLCMWd+G0TUe6iCNloRTyB9s9+orq9Sp9Y1Ny8yaQsWIBZwvS
+         Y+T15XmJvi8gSxnPaf3uC+OYj2W3ztNdIckuYSKqs3GmdZnt+aE8BUV/DBCngYYJxAdG
+         xg2K91cRmA7DPq6ktyJv80hv9ZdmO9kP2NQeGmM9v8k9bhV321cNIcknmuFGcMMhljkA
+         Xygy9120CKvJB76cZWRdCtnPO3hToymcY1E/85S3mJZlSSBRs0U8qJSHBrUXH7DCO9uh
+         TSXQ==
+X-Gm-Message-State: AO0yUKWAGYUKSa9l/IfbfL1PaEmOhsCIfbGLqLdl8pPZRnsHMBz2TPw+
+        +WfaUmSZXHtwphrL8+IZOV4=
+X-Google-Smtp-Source: AK7set/iqN8xEJjKarGcYm7XOUyyYBEzKJayk22TXhKsOQrtfmH0+q2ioC5+Q9j2H5en+lS7nNh3aA==
+X-Received: by 2002:a7b:cb53:0:b0:3ea:d620:570a with SMTP id v19-20020a7bcb53000000b003ead620570amr173400wmj.38.1679505321379;
+        Wed, 22 Mar 2023 10:15:21 -0700 (PDT)
+Received: from atlantis.lan (255.red-79-146-124.dynamicip.rima-tde.net. [79.146.124.255])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b003ee11ac2288sm8414333wmo.21.2023.03.22.10.15.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 09:59:25 -0700 (PDT)
-Received: (nullmailer pid 3916336 invoked by uid 1000);
-        Wed, 22 Mar 2023 16:59:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Wed, 22 Mar 2023 10:15:20 -0700 (PDT)
+From:   =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, p.zabel@pengutronix.de,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        william.zhang@broadcom.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>
+Subject: [PATCH v4 0/4] clk: add BCM63268 timer clock and reset
+Date:   Wed, 22 Mar 2023 18:15:11 +0100
+Message-Id: <20230322171515.120353-1-noltari@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Cc:     Mark Brown <broonie@kernel.org>, kernel@sberdevices.ru,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org
-In-Reply-To: <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
-References: <20230322150458.783901-1-mmkurbanov@sberdevices.ru>
- <20230322150458.783901-2-mmkurbanov@sberdevices.ru>
-Message-Id: <167950430158.3915000.3991863797525882649.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: spi: add binding for
- meson-spifc-a1
-Date:   Wed, 22 Mar 2023 11:59:24 -0500
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Broadcom BCM63268 has a timer clock and reset controller which has the
+following layout:
+  #define POR_RESET_STATUS            (1 << 31)
+  #define HW_RESET_STATUS             (1 << 30)
+  #define SW_RESET_STATUS             (1 << 29)
+  #define USB_REF_CLKEN               (1 << 18)
+  #define UTO_EXTIN_CLKEN             (1 << 17)
+  #define UTO_CLK50_SEL               (1 << 16)
+  #define FAP2_PLL_CLKEN              (1 << 15)
+  #define FAP2_PLL_FREQ_SHIFT         12
+  #define FAP1_PLL_CLKEN              (1 << 11)
+  #define FAP1_PLL_FREQ_SHIFT         8
+  #define WAKEON_DSL                  (1 << 7)
+  #define WAKEON_EPHY                 (1 << 6)
+  #define DSL_ENERGY_DETECT_ENABLE    (1 << 4)
+  #define GPHY_1_ENERGY_DETECT_ENABLE (1 << 3)
+  #define EPHY_3_ENERGY_DETECT_ENABLE (1 << 2)
+  #define EPHY_2_ENERGY_DETECT_ENABLE (1 << 1)
+  #define EPHY_1_ENERGY_DETECT_ENABLE (1 << 0)
 
-On Wed, 22 Mar 2023 18:04:57 +0300, Martin Kurbanov wrote:
-> Add YAML devicetree binding for Amlogic Meson A113L (A1 family)
-> SPIFC Driver.
-> 
-> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-> ---
->  .../bindings/spi/amlogic,meson-a1-spifc.yaml  | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
-> 
+v4: add changes suggested by Stephen Boyd.
+v3: add missing <linux/io.h> include to fix build warning
+v2: add changes suggested by Stephen Boyd.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Álvaro Fernández Rojas (4):
+  dt-bindings: clk: add BCM63268 timer clock definitions
+  dt-bindings: reset: add BCM63268 timer reset definitions
+  dt-bindings: clock: Add BCM63268 timer binding
+  clk: bcm: Add BCM63268 timer clock and reset driver
 
-yamllint warnings/errors:
+ .../clock/brcm,bcm63268-timer-clocks.yaml     |  40 ++++
+ drivers/clk/bcm/Kconfig                       |   9 +
+ drivers/clk/bcm/Makefile                      |   1 +
+ drivers/clk/bcm/clk-bcm63268-timer.c          | 215 ++++++++++++++++++
+ include/dt-bindings/clock/bcm63268-clock.h    |  13 ++
+ include/dt-bindings/reset/bcm63268-reset.h    |   4 +
+ 6 files changed, 282 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm63268-timer-clocks.yaml
+ create mode 100644 drivers/clk/bcm/clk-bcm63268-timer.c
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.example.dts:18:18: fatal error: dt-bindings/clock/amlogic,a1-clkc.h: No such file or directory
-   18 |         #include <dt-bindings/clock/amlogic,a1-clkc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230322150458.783901-2-mmkurbanov@sberdevices.ru
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.30.2
 
