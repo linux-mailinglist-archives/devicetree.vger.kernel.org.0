@@ -2,148 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 149206C47BF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:35:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C28E6C47D7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbjCVKfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 06:35:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48136 "EHLO
+        id S230341AbjCVKlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 06:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbjCVKfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:35:30 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B2A52F57
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:34:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1679481282;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=sAw1kb+1MttUiaf7ZI4njfkrYYVFnkuOfRgsWc6OSNg=;
-        b=U6ADbOB4labQQJP4oCd8f2cIwF/qRaceJ4ZvcuhHtpEgp5WllQoiF+St++w+JgVfcsbvCE
-        02TNrKQBMf5SzTLRtdcmzhaV44UNtzPX4NCZ7LjiyDs0msxAf8E9xFInSeqwYFKohZ25ni
-        wKB8HQhsZlMQa/Bxqd7U/0J1dG/d/3I=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-443-PfMUzjwmOz-d-sD7wsfW4w-1; Wed, 22 Mar 2023 06:34:41 -0400
-X-MC-Unique: PfMUzjwmOz-d-sD7wsfW4w-1
-Received: by mail-wm1-f72.google.com with SMTP id o37-20020a05600c512500b003edd119ec9eso5105567wms.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:34:41 -0700 (PDT)
+        with ESMTP id S230330AbjCVKls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:41:48 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD42461300
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:41:45 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id d17so8057242wrb.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:41:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679481704;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=skDnyQLe1JXdCg1sNQHqpeJHAlfAsnOpU7qQyP4hHOg=;
+        b=GSamitR5gd+/UzbyXSgYPJV7PmQ5ceiqB2gRsLSYfgDBbvjxo2QYvkSXKnM5bEzeSD
+         B7qXr4fCsv+cghc+QYyE/3ZBGrikeib607wQYkwUA47N5hn21hj8KNbODFSyOaowLCmt
+         HPHZBYlYCXTcUyVZ51+0NsjdpDgw7A/Tw/Y8OL9NlKo6n2sc0ETcGhA3FBmN7xAfKzNU
+         KUllCOt9xplQPWUCSboOZAIt8Hya1qLXR85iWUcCUu5sBpXnug3XV3C3hAgfzRUbLSQj
+         KJlYcQsLqyxICGLivSBKQIgkLAnul/X98QbqzEz7QGxQnLBuY/Vieh5YC+LIVRXfF01E
+         THBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679481280;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sAw1kb+1MttUiaf7ZI4njfkrYYVFnkuOfRgsWc6OSNg=;
-        b=RrvTREm/pOekxGPuBzf9jfnabSImTMrlIGqNt4qzUjasIWpZS1Do/aG+UhkTHalWTV
-         roFAc+a0vk4QPbM3c1nf4bAWtAZAY41BtSyKITODoshLIaSJyZNwUHCmScfy55jaAF17
-         bM/uiaM38j+kbM6udZ/FXddNzJLs8mvIs9QoJYGQi6j/t0DdBszTwSpU1Op82D1StWv1
-         3vOMo8g3+TFL9AnDAzJLmqhKMPeEug9alfPxxWgODWTIqyuY9y1iIz73GN/NLUTphOnP
-         axQgzSuA5UVsWb9dWtohYmsCtuOqa/7njpPX7XNBVPE3IThCjyPY1acS6ALuZSVsABL+
-         RKRw==
-X-Gm-Message-State: AO0yUKXN7dfU76Vu348yRNl5sfEpRif7jbhgR8mqOaLKfjD+uSYPACE0
-        iN5BZ7UenD6rMVPRHgRbMUlYbsO4Jv9STdRQIBRG4n4ZDjxS5AmQPZ51aWjwDCon2rowE4jQ6Fa
-        Sz8oK/zsnwAa+9OshUMe3wQ==
-X-Received: by 2002:a05:600c:ad3:b0:3eb:2b88:9adc with SMTP id c19-20020a05600c0ad300b003eb2b889adcmr4782452wmr.25.1679481280059;
-        Wed, 22 Mar 2023 03:34:40 -0700 (PDT)
-X-Google-Smtp-Source: AK7set9OJEunbX5gMc6MC+xeRbrZtBcXx8fDHwdAWSwBMT23hK8lYvS2ivGhxvkhzDa1tAAGkQFT7w==
-X-Received: by 2002:a05:600c:ad3:b0:3eb:2b88:9adc with SMTP id c19-20020a05600c0ad300b003eb2b889adcmr4782415wmr.25.1679481279722;
-        Wed, 22 Mar 2023 03:34:39 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id x33-20020a05600c18a100b003ede3f5c81fsm10182838wmp.41.2023.03.22.03.34.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 03:34:39 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        devicetree@vger.kernel.org, Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        =?utf-8?Q?Ma=C3=ADra?= Canal <mcanal@igalia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        Stephen Boyd <sboyd@kernel.org>, Emma Anholt <emma@anholt.net>,
-        Liam Beguin <liambeguin@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Gow <davidgow@google.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        David Airlie <airlied@gmail.com>,
-        linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v5 0/8] Support ROHM BU27034 ALS sensor
-In-Reply-To: <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
-References: <cover.1679474247.git.mazziesaccount@gmail.com>
- <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
-Date:   Wed, 22 Mar 2023 11:34:38 +0100
-Message-ID: <87edphnkg1.fsf@minerva.mail-host-address-is-not-set>
+        d=1e100.net; s=20210112; t=1679481704;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=skDnyQLe1JXdCg1sNQHqpeJHAlfAsnOpU7qQyP4hHOg=;
+        b=7h6dPCllRgVsqyab4ZBf2fBwGTIr6SpR7BIr4XBAtHYHsoXG8jbqhd0J6pbcX8v42h
+         TwODuYVY2Ftui6gXHtDqUnaB3chZ6Vc09UyCkmKdtoM0iMFK1I4PATY2DHhLidJKNADO
+         hPxjr0XITvG0Fgyk4YUa67xpZ3zmwN1lnIuOaMlOizSKH7IO4htVwOar9Q5CLqHPF86I
+         hq91rlHcubsJOeKaIn/4JxN915ojwJjV1MYJS8zzw8Jr7BKZ33HqwOqUDyrhkiwbxf+d
+         vsAG9f3HSGxrMLXgsN4Z+lC86376Shpze+OAhHshVG/nlPcA8lcxMzV+TGP4h0wiOgo8
+         +uAA==
+X-Gm-Message-State: AO0yUKVypRWTWLVYp/4+XSMykiaH2gVluqsmBnM3h7r5CRhplGyQgIKh
+        dhKNDVk0+0kcGS+Cri8mvuRvkSxfS16IE+GIMptMGg==
+X-Google-Smtp-Source: AK7set8wAPw5tK+KOLu3l95YMhBqfO34Pi6ONEtsWZgiwe84T8NwsFpmq2fBkotWjwqz/Ud4m6hn17Aj50DyVc2GhAM=
+X-Received: by 2002:a5d:6641:0:b0:2d0:58f9:a69 with SMTP id
+ f1-20020a5d6641000000b002d058f90a69mr1153282wrw.4.1679481704118; Wed, 22 Mar
+ 2023 03:41:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230321190118.3327360-1-bhupesh.sharma@linaro.org>
+ <20230321190118.3327360-3-bhupesh.sharma@linaro.org> <ZBoVzFTr8LBWsmrX@gerhold.net>
+In-Reply-To: <ZBoVzFTr8LBWsmrX@gerhold.net>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Wed, 22 Mar 2023 16:11:32 +0530
+Message-ID: <CAH=2NtyJHGcfhWMdUmJ=38kC-CjP7jznQEU7jX+983hdEJs4-A@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sm6115: Add Crypto Engine support
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> writes:
-
-Hello Andy,
-
-> On Wed, Mar 22, 2023 at 11:05:23AM +0200, Matti Vaittinen wrote:
+On Wed, 22 Mar 2023 at 02:09, Stephan Gerhold <stephan@gerhold.net> wrote:
 >
->> Revision history:
->> v4 => v5: Mostly fixes to review comments from Andy and Jonathan.
->> - more accurate change-log in individual patches
+> On Wed, Mar 22, 2023 at 12:31:15AM +0530, Bhupesh Sharma wrote:
+> > Add crypto engine (CE) and CE BAM related nodes and definitions to
+> > 'sm6115.dtsi'.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 26 ++++++++++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index c56738633431..b2d2cdde41fa 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -664,6 +664,32 @@ usb_1_hsphy: phy@1613000 {
+> >                       status = "disabled";
+> >               };
+> >
+> > +             cryptobam: dma-controller@1b04000 {
+> > +                     compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+> > +                     reg = <0x0 0x01b04000 0x0 0x24000>;
+> > +                     interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     #dma-cells = <1>;
+> > +                     qcom,ee = <0>;
+> > +                     qcom,controlled-remotely;
+> > +                     num-channels = <8>;
+> > +                     qcom,num-ees = <2>;
+> > +                     iommus = <&apps_smmu 0x84 0x11>,
+> > +                              <&apps_smmu 0x86 0x11>,
+> > +                              <&apps_smmu 0x94 0x11>,
+> > +                              <&apps_smmu 0x96 0x11>;
+> > +             };
+> > +
+> > +             crypto: crypto@1b3a000 {
+> > +                     compatible = "qcom,sm6115-qce", "qcom,sm8150-qce", "qcom,qce";
+> > +                     reg = <0x0 0x01b3a000 0x0 0x6000>;
+> > +                     dmas = <&cryptobam 6>, <&cryptobam 7>;
+> > +                     dma-names = "rx", "tx";
+> > +                     iommus = <&apps_smmu 0x84 0x11>,
+> > +                              <&apps_smmu 0x86 0x11>,
+> > +                              <&apps_smmu 0x94 0x11>,
+> > +                              <&apps_smmu 0x96 0x11>;
 >
->> - copy code from DRM test helper instead of moving it to simplify
->>   merging
->
-> 1) Why do you think this is a problem?
-> 2) How would we avoid spreading more copies of the same code in the future?
->
->
-> 1) Merge conflicts is not a bad thing. It shows that people tested their code
-> in isolation and stabilized it before submitting to the upper maintainer.
->
-> https://yarchive.net/comp/linux/git_merges_from_upstream.html
->
-> 2) Spreading the same code when we _know_ this, should be very well justified.
-> Merge conflict is an administrative point, and not a technical obstacle to
-> avoid.
->
+> If you apply the 0x11 mask to the stream ID then the last two items here
+> are identical to the first two (0x94 & ~0x11 = 0x84). Why are they
+> needed? They look redundant to me.
 
-I believe this was suggested by Maxime and the rationale is that by just
-copying the helpers for now, that would make it easier to land instead of
-requiring coordination between different subystems.
+Thanks, I will check them out and fix them in v2.
 
-Otherwise the IIO tree will need to provide an inmutable branch for the
-DRM tree to merge and so on.
-
-I agree with Maxime that a little bit of duplication (that can be cleaned
-up by each subsystem at their own pace) is the path of least resistance.
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Regards.
