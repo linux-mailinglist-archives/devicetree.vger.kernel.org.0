@@ -2,90 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94E0F6C4724
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C21C66C472E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbjCVKCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 06:02:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54152 "EHLO
+        id S229750AbjCVKE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 06:04:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbjCVKCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:02:03 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 627995073E;
-        Wed, 22 Mar 2023 03:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679479322; x=1711015322;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=b/pDjDAGBcg5WhI+AQMf4x0J3VeVkUcdJvmTMh6YlXI=;
-  b=h9KN667D9P1rjP6kl/StBDHidxPIvXCZrgUxr0ecYyE+NtWnnKNKn1DL
-   ZeUKop+uy31Ya8He6g+mvKKYsBDdWa5V0cw3PLkUijxJuWTkE737HK5XD
-   PaMHK8cYnC+VQ5E/ENcVvG5ze68OLvFv7yMBikfTnZUKgN2L3GXu9CwpV
-   UwvEo1K+hhKHhqZ46OHzQFcMj2vZkNlmAdR1T12wSvOoCrWbEe5wTn491
-   nnLhPmf5i8yfcNCkvFWwueYPYFI6zbiYk5+7MmfqTCuMzpNdUTFsZH3YS
-   3ZNUWSxcG+6krgiQjNWQcPWm17Ed0IWMS+PIp+5FMMVA8NNKcpSGW2uH8
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="339214454"
-X-IronPort-AV: E=Sophos;i="5.98,281,1673942400"; 
-   d="scan'208";a="339214454"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Mar 2023 03:01:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="750975537"
-X-IronPort-AV: E=Sophos;i="5.98,281,1673942400"; 
-   d="scan'208";a="750975537"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 22 Mar 2023 03:01:49 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1pevHt-0075cJ-2t;
-        Wed, 22 Mar 2023 12:01:45 +0200
-Date:   Wed, 22 Mar 2023 12:01:45 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        devicetree@vger.kernel.org, Zhigang Shi <Zhigang.Shi@liteon.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Paul Gazzillo <paul@pgazz.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        kunit-dev@googlegroups.com, Stephen Boyd <sboyd@kernel.org>,
-        Emma Anholt <emma@anholt.net>,
-        Liam Beguin <liambeguin@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Gow <davidgow@google.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Brendan Higgins <brendan.higgins@linux.dev>,
-        David Airlie <airlied@gmail.com>,
-        linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v5 0/8] Support ROHM BU27034 ALS sensor
-Message-ID: <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
-References: <cover.1679474247.git.mazziesaccount@gmail.com>
+        with ESMTP id S229691AbjCVKE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:04:56 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72E925B8F
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:04:54 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id o40-20020a05600c512800b003eddedc47aeso5551393wms.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679479493;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZnKv2/0pLj+u/2/hsOcIOqSmXG2xDHS6flq29wa6s2s=;
+        b=F8ELitklREwxk8RrLEx0O5NZULzdd7V4z/GmZO+bCtXw4VeQbSTAK/v+zUeW1350qv
+         ms/Mtufw3M80BA1WpJiegQoDnkhzUDoYFShFn1+Hn8qxLfAKrKAYVKRB03Nyoa3IxIHk
+         RwfO8wyvK38ZIoB17haxH1/TkrlziLhB2aqbFcfVuBxvWIoyL+tvyBZLW0w1FIya2mNe
+         YTvHrSKERFU+t5/YLivsXDAqpKpPhC3+fqV57IP+H9+EDEakqGMcrkxdvzA4f8K9Ehju
+         22COx57MVCZrc5MYklNuZHQPds7Ck9g7+Gl5LWZpO6M9cWpHeoC9P0tGDlWYYtm4Slb0
+         02UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679479493;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZnKv2/0pLj+u/2/hsOcIOqSmXG2xDHS6flq29wa6s2s=;
+        b=TPwshgGAsD6bc0FAketImlQXI10VyEAzlq47h64nNf2qZZ1PI5LH5g4umG1iztK0se
+         Wlr+jsK/AjciVTkVsSUnk86ekV2yPsWCpCQAr1ms70Y/fcHGWNlaE8m/1a7/xqIZ1rT5
+         62OO+TcKYKJTQwrrhqMmx7f7RW+OKl1BDlE41WURFirWr3amIAFRyjW7wVkofNCh9Af1
+         24UZOSltyILrVPJcnrpwEhAkucyMK0p7sr9hWR/afUAmWKmk8lhlPT5JMK/CwyAiPvkF
+         A4JJpvPG1ZTuFQJOd/MNHHvj8E/WcWc7NdBHB8FRBcg8VtZiIEuc42mK19INoVHWcBv+
+         B1LQ==
+X-Gm-Message-State: AO0yUKUoxsPVzpRsK8/jbk9KD2yinyQGMw2QRYfO36WOXLVrZg5ybSSA
+        tdRvImUSHKH+S2qsapGSPgH8Iw==
+X-Google-Smtp-Source: AK7set9clMY5GiOSQ04VrnVX2Tsg/u07bANE+4maY3IPCcdgGUhSgdNqwho4UFa7wQpOTy3QfObmIQ==
+X-Received: by 2002:a05:600c:d8:b0:3ed:3cec:d2ec with SMTP id u24-20020a05600c00d800b003ed3cecd2ecmr5320069wmm.15.1679479493211;
+        Wed, 22 Mar 2023 03:04:53 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id n5-20020a05600c4f8500b003b47b80cec3sm22551299wmq.42.2023.03.22.03.04.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Mar 2023 03:04:52 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 22 Mar 2023 11:04:51 +0100
+Subject: [PATCH] arm64: dts: qcom: sm8450: add crypto nodes
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1679474247.git.mazziesaccount@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230322-topic-sm8450-upstream-qce-v1-1-b76eaa1824ff@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAMLSGmQC/x2NywqDMBBFf0Vm3YEkWgj9ldJFHmMd0JjOqBTEf
+ 2/o8lw495ygJEwKj+4EoYOV19LA3jpIUyhvQs6NwRnXm9453NbKCXXxw93gXnUTCgt+EqEZchh
+ 99jZGC82PQQmjhJKm9lD2eW5jFRr5+w8+X9f1AzhK2VWAAAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.1
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,35 +76,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 11:05:23AM +0200, Matti Vaittinen wrote:
+Add crypto engine (CE) and CE BAM related nodes and definitions
+for the SM8450 SoC.
 
-> Revision history:
-> v4 => v5: Mostly fixes to review comments from Andy and Jonathan.
-> - more accurate change-log in individual patches
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-> - copy code from DRM test helper instead of moving it to simplify
->   merging
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 7c1d1464a1f8..d7e0a1993558 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -4084,6 +4084,34 @@ ufs_mem_phy_lanes: phy@1d87400 {
+ 			};
+ 		};
+ 
++		cryptobam: dma-controller@1dc4000 {
++			compatible = "qcom,bam-v1.7.0";
++			reg = <0 0x01dc4000 0 0x28000>;
++			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			qcom,ee = <0>;
++			qcom,controlled-remotely;
++			iommus = <&apps_smmu 0x584 0x11>,
++				 <&apps_smmu 0x588 0x0>,
++				 <&apps_smmu 0x598 0x5>,
++				 <&apps_smmu 0x59a 0x0>,
++				 <&apps_smmu 0x59f 0x0>;
++		};
++
++		crypto: crypto@1de0000 {
++			compatible = "qcom,sm8450-qce", "qcom,sm8150-qce", "qcom,qce";
++			reg = <0 0x01dfa000 0 0x6000>;
++			dmas = <&cryptobam 4>, <&cryptobam 5>;
++			dma-names = "rx", "tx";
++			iommus = <&apps_smmu 0x584 0x11>,
++				 <&apps_smmu 0x588 0x0>,
++				 <&apps_smmu 0x598 0x5>,
++				 <&apps_smmu 0x59a 0x0>,
++				 <&apps_smmu 0x59f 0x0>;
++			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "memory";
++		};
++
+ 		sdhc_2: mmc@8804000 {
+ 			compatible = "qcom,sm8450-sdhci", "qcom,sdhci-msm-v5";
+ 			reg = <0 0x08804000 0 0x1000>;
 
-1) Why do you think this is a problem?
-2) How would we avoid spreading more copies of the same code in the future?
+---
+base-commit: b12b871ec9079b0baefa69f8a869712682d16020
+change-id: 20230322-topic-sm8450-upstream-qce-04daf8d81bb1
 
-
-1) Merge conflicts is not a bad thing. It shows that people tested their code
-in isolation and stabilized it before submitting to the upper maintainer.
-
-https://yarchive.net/comp/linux/git_merges_from_upstream.html
-
-2) Spreading the same code when we _know_ this, should be very well justified.
-Merge conflict is an administrative point, and not a technical obstacle to
-avoid.
-
-> - document all exported GTS helpers.
-> - inline a few GTS helpers
-> - use again Milli lux for the bu27034 with RAW IIO_LIGHT channel and scale
-> - Fix bug from added in v4 bu27034 time setting.
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Neil Armstrong <neil.armstrong@linaro.org>
 
