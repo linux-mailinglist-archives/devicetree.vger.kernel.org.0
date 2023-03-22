@@ -2,153 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C085B6C5930
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 22:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90FD36C593A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 23:02:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbjCVV7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 17:59:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40978 "EHLO
+        id S229600AbjCVWCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 18:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbjCVV7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 17:59:42 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F4FEC53
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 14:59:40 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id eh3so78829222edb.11
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 14:59:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679522379;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EvQSRIdRv5c+y5ikJcDqBTw6V/+X5LVUwyAPQo8flXU=;
-        b=TViol1opIBVYgiZzibv+QeuWJpS7XEsNAEeA6AthKKfjIW6QQt1lv7Pma1f4QXsdXF
-         5TyN88oQA+Mt6kX0tFUGAPxoaZuKYqkuvrbV2o1/LuFhm674nnXJDvq9777FcmeJbGvf
-         lSdm9nYRMJZMN6q937AJcdGUiA366TsKqw7cinTjm82VqX0vh56Ci0TE2DzJB3QScdsl
-         QVcwzaGhQjZHGhac7qLwdySCdH1J3bTwBe36sD4rVMEfFEeh7DkYpTeaGZ6ANkD9eCiK
-         /B8X88eIw08Ot67aTYDqZltTvv8zEHEBIUlY/D8w+lsx6AoYztFyrZWdB88PGj64fb3u
-         q6rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679522379;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EvQSRIdRv5c+y5ikJcDqBTw6V/+X5LVUwyAPQo8flXU=;
-        b=1cyGn4kEtI60bFr/fI/SDE1mjK60D31tf3IoaT7XQC5DOzr2rRXMRyAmYjo0N1N7nR
-         AscwbJwQR9e6CyxqKP7NaDehfzFXabh5C3VRHfJtgDpmtgDyom0jcADzAKomHuwqG+dV
-         4xkVT9gDIIO0k/wFPfM7lqJT6WaZX5xLiLDkjYvFeABy21mjGuOUZ38fliWW/U8l4BiV
-         h8aP/Lq8wV0rSuWaSSUCon/SouAFjhM7eJ5FQzJMC/OYQ3etjCEwnniAxEjw3Gl6L+FH
-         bXRjLMrF4NHG6b/GxSUf0A6D4hQOQQrGxg1LE8k2G+88W8oA9CfXwz9slyhR7NGht2Lg
-         jjSg==
-X-Gm-Message-State: AO0yUKWvFSDx5QHMD6TBLOX3xz43GeNUkrEt0tnLGZEkfA8VlBmhHEtN
-        XgXxvYIWhDBj6aNo54xb0q/O+A==
-X-Google-Smtp-Source: AK7set88TbcnM/063JVFqc2VabiL6S//jkxBLWUWhSQKY5G4J0puIdYR1qJXou2K7kAYiGwtL5cXBQ==
-X-Received: by 2002:a17:906:e97:b0:8af:2a97:91d4 with SMTP id p23-20020a1709060e9700b008af2a9791d4mr8279561ejf.14.1679522379374;
-        Wed, 22 Mar 2023 14:59:39 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:626d:5729:6e71:4c22? ([2a02:810d:15c0:828:626d:5729:6e71:4c22])
-        by smtp.gmail.com with ESMTPSA id y12-20020a17090668cc00b008d044ede804sm5703652ejr.163.2023.03.22.14.59.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 14:59:39 -0700 (PDT)
-Message-ID: <cf87e7c0-b769-d1fc-0718-c5c2986993b8@linaro.org>
-Date:   Wed, 22 Mar 2023 22:59:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 4/6] dt-bindings: sound: Add support for the Lantiq
- PEF2256 codec
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229510AbjCVWCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 18:02:54 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 075BCEC4B;
+        Wed, 22 Mar 2023 15:02:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9C87CB81E05;
+        Wed, 22 Mar 2023 22:02:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF116C433D2;
+        Wed, 22 Mar 2023 22:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679522566;
+        bh=hcMZNp9Ksh0riZoo4Yt+LZltGdkzddZrrKlsdq6SSFs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SBeFLN+n+5IqXTMSRZF99iAhYSZN0+Ozu3ryCbzt6WCEDt4I+X1bWCEK/0N548dPQ
+         x70PHNbkMmZBHS9Hod1NOld73/3AJcpG4jEN41y1wfIkwYBF0MbM0XLBdpXDdxEkyv
+         LIzhWK4RML4OZXokBhd2Dydd3S+qwp2M9QvP/wnZs4XGvvV4tSqkRyij7RiY2fey4N
+         y736dbmlQE9Bx8Iv+qSoyI7QDMJIxNxZXQiVZIPV+9d5Dm5+dh+eAqYZcym6yT16A3
+         lvou2VM80uY7v66X9hwQt2qOeNua8XA5P6Lht/1sYQXgGpFL5RwQtQiZvukk9IsJkI
+         IMSy7dvbzwppw==
+Date:   Wed, 22 Mar 2023 22:02:40 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230322134654.219957-1-herve.codina@bootlin.com>
- <20230322134654.219957-5-herve.codina@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322134654.219957-5-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 19/21] riscv: dts: starfive: Add initial StarFive
+ JH7110 device tree
+Message-ID: <60359574-8bce-40f2-99db-6d81f6e6c5c3@spud>
+References: <20230320103750.60295-1-hal.feng@starfivetech.com>
+ <20230320103750.60295-20-hal.feng@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LDF26h45g5RnUqDq"
+Content-Disposition: inline
+In-Reply-To: <20230320103750.60295-20-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 14:46, Herve Codina wrote:
-> The Lantiq PEF2256 is a framer and line interface component designed to
-> fulfill all required interfacing between an analog E1/T1/J1 line and the
-> digital PCM system highway/H.100 bus.
-> 
-> The codec support allows to use some of the PCM system highway
-> time-slots as audio channels to transport audio data over the E1/T1/J1
-> lines.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+
+--LDF26h45g5RnUqDq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Mar 20, 2023 at 06:37:48PM +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
+>=20
+> Add initial device tree for the JH7110 RISC-V SoC by StarFive
+> Technology Ltd.
+>=20
+> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
->  .../bindings/sound/lantiq,pef2256-codec.yaml  | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml b/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
-> new file mode 100644
-> index 000000000000..da35b70cda99
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/lantiq,pef2256-codec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lantiq PEF2256 codec
-> +
-> +maintainers:
-> +  - Herve Codina <herve.codina@bootlin.com>
-> +
-> +description: |
-> +  Codec support for PEF2256.
-> +
-> +  The Lantiq PEF2256, also known as Infineon PEF2256 or FALC56, is a framer and
-> +  line interface component designed to fulfill all required interfacing between
-> +  an analog E1/T1/J1 line and the digital PCM system highway/H.100 bus.
-> +
-> +  The codec support allows to use some of the PCM system highway time-slots as
-> +  audio channels to transport audio data over the E1/T1/J1 lines.
-> +
-> +  The time-slots used by the codec must be set and so, the properties
-> +  'dai-tdm-slot-num', 'dai-tdm-slot-width', 'dai-tdm-slot-tx-mask' and
-> +  'dai-tdm-slot-rx-mask' must be present in the ALSA sound card node for
-> +  sub-nodes that involve the codec. The codec uses 8bit time-slots.
-> +  'dai-tdm-tdm-slot-with' must be set to 8.
-> +  The tx and rx masks define the PEF2256 time-slots assigned to the codec.
-> +
-> +  The PEF2256 codec node should be a child of a PEF2256 node.
-> +  Refer to the bindings described in
-> +  Documentation/devicetree/bindings/mfd/lantiq,pef2256.yaml
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: lantiq,pef2256-codec
-> +
-> +  '#sound-dai-cells':
-> +    const: 0
 
-You do not have here any resources, so the entire binding can be dropped
-and merged into the parent.
+> +		S7_0: cpu@0 {
+> +			compatible =3D "sifive,s7", "riscv";
+> +			reg =3D <0>;
+> +			d-cache-block-size =3D <64>;
+> +			d-cache-sets =3D <64>;
+> +			d-cache-size =3D <8192>;
+> +			d-tlb-sets =3D <1>;
+> +			d-tlb-size =3D <40>;
+> +			device_type =3D "cpu";
+> +			i-cache-block-size =3D <64>;
+> +			i-cache-sets =3D <64>;
+> +			i-cache-size =3D <16384>;
+> +			i-tlb-sets =3D <1>;
+> +			i-tlb-size =3D <40>;
+> +			mmu-type =3D "riscv,sv39";
+> +			next-level-cache =3D <&ccache>;
+> +			riscv,isa =3D "rv64imac_zba_zbb";
+> +			tlb-split;
+> +			status =3D "disabled";
 
-Best regards,
-Krzysztof
+Jess pointed out on IRC that this S7 entry looks wrong as it is claiming
+that the S7 has an mmu. I didn't go looking back in the history of
+u74-mc core complex manuals, but the latest version does not show an mmu
+for the S7.
 
+--LDF26h45g5RnUqDq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZBt7AAAKCRB4tDGHoIJi
+0qDMAQCIGeIN/1mCb1Q1snEUZqE//3UatgEEoP8CxHntNWLrTQD/XTmZpvTZFpwX
+3ByenbwoM1VkdniTFBdF5mZUoMNZQgY=
+=8Oss
+-----END PGP SIGNATURE-----
+
+--LDF26h45g5RnUqDq--
