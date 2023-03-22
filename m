@@ -2,144 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FDF96C512B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95CCD6C5140
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 17:51:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230375AbjCVQsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 12:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
+        id S231127AbjCVQvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 12:51:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbjCVQss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:48:48 -0400
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0BF3D0A5
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:48:42 -0700 (PDT)
-Received: by mail-ua1-x92a.google.com with SMTP id 89so13127925uao.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 09:48:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679503721;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2w0LAtw9cPfSNM4qX5A/16NLh+XxymxwSqd/uu1gfQU=;
-        b=RyjBxDPR9Gaa2RWhPtZwOgt/F7XlwPMCS9VUiT2DPq+iirNmsZnpWZUIFrFJo7YSid
-         OTI4uancfUSnhPkwaehBVH+XRm32vttS69BLXU/wY/gWONf+Wxr1HdQoJmRmBLepuIMG
-         c3B9YgQTrYX9KGhqMlwANDi8yY5dJVd4cf6zFbtg91qD8/0tTA87NAAbaXBQOjwHeFaS
-         i1ZlwAWQ40NjAlIDGmBcKdym3nD79WlUE8ZRSvfu6N7l1numhTv/q8SxQow1kmRetpm1
-         pkk4gx35heDUY/1HkanuMYR3dqdBfSzdIiWVBJvVNDrJ3fApnCjTNSqxxefzkZZQlrlE
-         z1HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679503721;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2w0LAtw9cPfSNM4qX5A/16NLh+XxymxwSqd/uu1gfQU=;
-        b=ToesNTjVaxcBoTOURgykv2mc1FCCl6x5xKJtcBvGO6DtXq9HqZpn5PShoNrJa+zVed
-         OJc+Syb0QXYtgdyRaGocEimezAcJQI/ZCr2VlqRYzOw0WRQi7pbguyYSELLwFeiAH3Xy
-         ef5uIsd8sk9IWbtQ4Fd7JxOKxpb6eOM3maM9YV2hw86CUX/RziNaEFO5+fnldI1Ri/PV
-         ypVv9fst7t816YNrMDqJHHhr+UScKCFMPD/MGi9gfFgzp/xVnHvZrl0dzuHN0qmo75vj
-         tB2SJn/dGgQkcLjE++o2Zte2a7VzyoGCyOSjJTd6OaM6p0eao5uF9+OKfzNtkb05zcf1
-         64eA==
-X-Gm-Message-State: AAQBX9flgorP/+p6pB5TOvxn6TIlWn4NCWVCi/e71JKobC+BBZtG3wDx
-        Z194t7Rsk5/ij1qohun1GZxp2LyoqLPNITVNAeqLzhJekVtIp1Yh
-X-Google-Smtp-Source: AKy350ZLZo/F6L7OujzYN41ze3NYo682Vo6dkHIwnotz4DMq72LZxaPffaxLlojXIZ4FO8//leYaf4FE/3yOtteccKU=
-X-Received: by 2002:a05:6130:290:b0:688:d612:2024 with SMTP id
- q16-20020a056130029000b00688d6122024mr3518649uac.2.1679503721140; Wed, 22 Mar
- 2023 09:48:41 -0700 (PDT)
+        with ESMTP id S230471AbjCVQvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 12:51:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFD715DC95;
+        Wed, 22 Mar 2023 09:51:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 645A1621E4;
+        Wed, 22 Mar 2023 16:51:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7B46C433B3;
+        Wed, 22 Mar 2023 16:51:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679503885;
+        bh=6GNEDWgr7VVRz7NPm97DxehnVfnk+0fq8yASr93HUOA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZE7hjmj2+QRS2dZjZsPm8jjIaRYkQ2pHY7E84wzEmDGUgfTQvHr3iAb2YvIRtfhf2
+         uCVnDTp9GOpyIeyysyzaiWkGNJLT4AA95TJW4fvdiIJIb8FP7yK04pODHQhqC2U4Hl
+         k9ezrKOcT5Wb/eyj62goNFkRFqIrskIHi8qbKGHc46xbMt/VJJhJMVP8WA0v9bUqAS
+         OtaSdtKd7NAMrAZLjNdNIvKG7WHlU3CJDwtOvbyB7KaRa0Psvg2WUEP4aS27fLZ/tJ
+         Jm2X8W2MN/IuuSDjqWRScWb8XY6AkTY9KY8K9fvS6zObIAeOoxQet1LuivQffQ46EM
+         bbTsOdSHwWIZw==
+Received: by mail-lj1-f177.google.com with SMTP id z42so19619406ljq.13;
+        Wed, 22 Mar 2023 09:51:25 -0700 (PDT)
+X-Gm-Message-State: AO0yUKXiQIdWoaIUm6D1LHWSs0rsHr4mhsfnW5/1AVIN4L9hRBSp9nGy
+        od28zQNWVI+kL/8T9b9xSaSlk4qPQFsS5lRw0Q==
+X-Google-Smtp-Source: AK7set/Nxa14TE9o0KQWv+emcZPWRAYwWy2WPZI53bEe9owida1TfXWTT2bMHIbAdLTtnJOH/QRwHHJ+in1FHkctNRU=
+X-Received: by 2002:a2e:901a:0:b0:299:aa7a:94c8 with SMTP id
+ h26-20020a2e901a000000b00299aa7a94c8mr2204792ljg.10.1679503883593; Wed, 22
+ Mar 2023 09:51:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230315110650.142577-1-keguang.zhang@gmail.com> <20230315110650.142577-4-keguang.zhang@gmail.com>
-In-Reply-To: <20230315110650.142577-4-keguang.zhang@gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 22 Mar 2023 17:48:30 +0100
-Message-ID: <CAMRc=MezbVO93WYw2PPV-0qTFid5BE01dfPptNWS4Kc9AXL+fA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] gpio: loongson1: Add DT support
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
+References: <20230321121859.2355-1-nancy.lin@mediatek.com>
+In-Reply-To: <20230321121859.2355-1-nancy.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 23 Mar 2023 00:51:11 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-XSBDZqo5jPgq+kP3sQrGnSR9Srhq5asu0QyDOeUoSOA@mail.gmail.com>
+Message-ID: <CAAOTY_-XSBDZqo5jPgq+kP3sQrGnSR9Srhq5asu0QyDOeUoSOA@mail.gmail.com>
+Subject: Re: [PATCH v30 0/7] Add MediaTek SoC DRM (vdosys1) support for mt8195
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        CK Hu <ck.hu@mediatek.com>, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        clang-built-linux@googlegroups.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        singo.chang@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 15, 2023 at 12:07=E2=80=AFPM Keguang Zhang <keguang.zhang@gmail=
-.com> wrote:
+Hi, Nancy:
+
+Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2023=E5=B9=B43=E6=9C=8821=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:19=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> This patch adds DT support for Loongson-1 GPIO driver.
+> The hardware path of vdosys1 with DPTx output need to go through by sever=
+al modules, such as, OVL_ADAPTOR and MERGE.
+
+For this series, applied to mediatek-drm-next [1], thanks.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
 >
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
-> V2 -> V3: None
-> V1 -> V2: Let gpiolib parse ngpios property
->           Remove unnecessary alias id parsing
->           Remove superfluous initialization done by bgpio_init()
->           Add MODULE_DEVICE_TABLE()
->           Other minor fixes
-> ---
->  drivers/gpio/gpio-loongson1.c | 19 ++++++++++++++++---
->  1 file changed, 16 insertions(+), 3 deletions(-)
+> Add DRM and these modules support by the patches below:
 >
-> diff --git a/drivers/gpio/gpio-loongson1.c b/drivers/gpio/gpio-loongson1.=
-c
-> index dddfc71f0e10..6ca3b969db4d 100644
-> --- a/drivers/gpio/gpio-loongson1.c
-> +++ b/drivers/gpio/gpio-loongson1.c
-> @@ -68,25 +68,38 @@ static int ls1x_gpio_probe(struct platform_device *pd=
-ev)
->         ls1x_gc->gc.owner =3D THIS_MODULE;
->         ls1x_gc->gc.request =3D ls1x_gpio_request;
->         ls1x_gc->gc.free =3D ls1x_gpio_free;
-> -       ls1x_gc->gc.base =3D pdev->id * 32;
-> +       /*
-> +        * Clear ngpio to let gpiolib get the correct number
-> +        * by reading ngpios property
-> +        */
-> +       ls1x_gc->gc.ngpio =3D 0;
+> Changes in v30:
+> - rebase to next-20230321
+> - fix ethdr dt_binding_check message
 >
->         ret =3D devm_gpiochip_add_data(dev, &ls1x_gc->gc, ls1x_gc);
->         if (ret)
->                 goto err;
+> Changes in v29:
+> - rebase to next-20221226
+> - fix reviewer comment in v28
+>   - keep original flow if comp node not found in mtk_drm_crtc_create()
 >
->         platform_set_drvdata(pdev, ls1x_gc);
-> -       dev_info(dev, "Loongson1 GPIO driver registered\n");
-> +
-> +       dev_info(dev, "GPIO controller registered with %d pins\n",
-> +                ls1x_gc->gc.ngpio);
+> Changes in v28:
+> - rebase to next-20221107
+> - fix reviewer comment in v27
+>   - extra new line at the end mtk_ethdr.h
 >
->         return 0;
->  err:
-> -       dev_err(dev, "failed to register GPIO device\n");
-> +       dev_err(dev, "failed to register GPIO controller\n");
->         return ret;
->  }
+> Changes in v27:
+> - rebase to next-20221102
+> - change mmsys compatible for mt8195 vdosys1
+>   - base on jason's series[ref 1]
+> - fix reviewer comment
+>   - add error return code if no ovl_adaptor's comp found
 >
-> +static const struct of_device_id ls1x_gpio_dt_ids[] =3D {
-> +       { .compatible =3D "loongson,ls1x-gpio" },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ls1x_gpio_dt_ids);
-> +
->  static struct platform_driver ls1x_gpio_driver =3D {
->         .probe  =3D ls1x_gpio_probe,
->         .driver =3D {
->                 .name   =3D "ls1x-gpio",
-> +               .of_match_table =3D ls1x_gpio_dt_ids,
->         },
->  };
+> Changes in v26:
+> - rebase to next-20220819
+> - resend for patch corrupted in v25
+>
+> Changes in v25:
+> - rebase to next-20220803
+>
+> Changes in v24:
+> - fix ovl_adaptor binding issue (mtk_disp_ovl_adaptor.c)
+>   - Since ovl_adaptor is an aggregated component, it should be bounded af=
+ter
+>     all its child components are bounded.
+> - rebase to next-20220708
+>
+> Changes in v23:
+> - separate[7] mmsys/mutex and drm patches into two series
+>
+> Changes in v22:
+> - rebase to next-20220525
+> - rebase to vdosys0 series v22
+> - separate dts to a new patch
+>
+> Changes in v21:
+> - fix reviewer comment
+>   - fix rdma and ethdr binding doc and dts
+>
+> Changes in v20:
+> - fix reviewer comment
+>   - update mmsys update bit api name
+>   - add mtk_mmsys_update_bits error message if lose gce property
+>   - list all mt8195 vdosys1 reset bits
+>
+> Changes in v19:
+> - fix reviewer comment
+>   - separate mt8195 mmsys component to a new patch
+>   - separate mt8195 vdo0 and vdo1 routing table
+>   - separate mmsys_write_reg api to a new patch and simplify write reg co=
+de
+>   - separate mmsys 64 bit reset to a new patch
+>   - separate mtk-mutex dp_intf1 component to a new patch
+>
+> Changes in v18:
+> - fix reviewer comment
+>   - fix rdma binding doc
+>   - fix ethdr binding doc
+>   - refine mmsys config cmdq support
+>   - refine merge reset control flow, get reset control in probe function
+>   - add ethdr reset control error handling and remove dbg log
+> - rebase to vdosys0 series v20 (ref [5])
+>
+> Changes in v17:
+> - fix reviewer comment in v16
+>   - separate ovl adaptor comp in mtk-mmsys and mtk-mutex
+>   - separate mmsys config API
+>   - move mdp_rdma binding yaml
+> - fix ovl adaptor pm runtime get sync timing issue
+> - rebase to vdosys0 series v19 (ref [5])
+> - rebase to [7] for modify vblank register change
+>
+> Changes in v16:
+> - fix reviewer comment in v 15
+>   - fix mtk_drm_ddp_comp.c alignment
+>   - fix vdosys0 mmsys num before adding vdosys1 patch
+>
+> Changes in v15:
+> - fix ethdr uppercase hex number in dts
+>
+> Changes in v14:
+> - remove MTK_MMSYS 64 bit dependency
+> - add ethdr.yaml back and fix dt_schema check fail
+>
+> Resend v13
+> - add related maintainer in maillist
+>
+> Changes in v13:
+> - fix reviewer comment in v12
+>   - fix rdma dt-binding format
+>   - fix dts node naming
+> - fix 32 bit build error
+>   - modify 64bit dependency for mtk-mmsys
+> - rebase to vdosys0 series v16. (ref [5])
+>
+> Changes in v12:
+> - fix reviewer comment in v11
+>   - modify mbox index
+>   - refine dma dev for ovl_adaptor sub driver
+>
+> Changes in v11:
+> - remove ethdr vblank spin lock
+> - refine ovl_adaptor print message
+>
+> Changes in v10:
+> - refine ethdr reset control using devm_reset_control_array_get_optional_=
+exclusive
+> - fix ovl_adaptor mtk_ovl_adaptor_clk_enable error handle issue
+>
+> Changes in v9:
+> - rebase on kernel-5.16-rc1
+> - rebase on vdosys0 series v13. (ref [5])
+> - fix ovl_adaptor sub driver is brought up unintentionally
+> - fix clang build test fail- duplicate ethdr/mdp_rdma init_module/cleanup=
+_module symbol issue
+>
+> Changes in v8:
+> - separate merge async reset to new patch.
+> - separate drm ovl_adaptor sub driver to new patch.
+> - fix reviewer comment in v7.
+>
+> Changes in v7:
+> - rebase on vdosys0 series v12 (ref[5])
+> - add dma description in ethdr binding document.
+> - refine vdosys1 bit definition of mmsys routing table.
+> - separate merge modification into 3 pathces.
+> - separate mutex modification into 2 patches.
+> - add plane color coding for mdp_rdma csc.
+> - move mdp_rdma pm control to ovl_adaptor.
+> - fix reviewer comment in v6.
+>
+> Changes in v6:
+> - rebase on kernel-5.15-rc1.
+> - change mbox label to gce0 for dts node of vdosys1.
+> - modify mmsys reset num for mt8195.
+> - rebase on vdosys0 series v10. (ref [5])
+> - use drm to bring up ovl_adaptor driver.
+> - move drm iommu/mutex check from kms init to drm bind.
+> - modify rdma binding doc location. (Documentation/devicetree/bindings/ar=
+m/)
+> - modify for reviewer's comment in v5.
+>
+> Changes in v5:
+> - add mmsys reset controller reference.
+>
+> Changes in v4:
+> - use merge common driver for merge1~4.
+> - refine ovl_adaptor rdma driver.
+> - use ovl_adaptor ddp_comp function instead of ethdr.
+> - modify for reviewer's comment in v3.
+>
+> Changes in v3:
+> - modify for reviewer's comment in v2.
+> - add vdosys1 2 pixels align limit.
+> - add mixer odd offset support.
+>
+> Changes in v2:
+> - Merge PSEUDO_OVL and ETHDR into one DRM component.
+> - Add mmsys config API for vdosys1 hardware setting.
+> - Add mmsys reset control using linux reset framework.
+>
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+>
+> This series are based on the following patch:
+> [1] Change mmsys compatible for mt8195 mediatek-drm
+>     20221126101220.18179-1-jason-jh.lin@mediatek.com
+>
+> Nancy.Lin (7):
+>   dt-bindings: mediatek: add ethdr definition for mt8195
+>   drm/mediatek: add ETHDR support for MT8195
+>   drm/mediatek: add ovl_adaptor support for MT8195
+>   drm/mediatek: add dma dev get function
+>   drm/mediatek: modify mediatek-drm for mt8195 multi mmsys support
+>   drm/mediatek: add drm ovl_adaptor sub driver for MT8195
+>   drm/mediatek: add mediatek-drm of vdosys1 support for MT8195
+>
+>  .../display/mediatek/mediatek,ethdr.yaml      | 182 ++++++
+>  drivers/gpu/drm/mediatek/Makefile             |   2 +
+>  drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  26 +
+>  .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   | 533 ++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c       |  85 ++-
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.h       |   6 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   | 129 +++--
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  58 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 366 ++++++++----
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |  24 +-
+>  drivers/gpu/drm/mediatek/mtk_ethdr.c          | 370 ++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_ethdr.h          |  25 +
+>  12 files changed, 1618 insertions(+), 188 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
+diatek,ethdr.yaml
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_ethdr.c
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_ethdr.h
 >
 > --
-> 2.34.1
+> 2.18.0
 >
-
-I applied this and the last one but switched patches 3 and 4 as it's
-customary to have bindings in the tree before DT support.
-
-Bart
