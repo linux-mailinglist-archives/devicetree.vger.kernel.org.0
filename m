@@ -2,135 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB83B6C42EA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 07:19:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9676C434A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 07:37:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjCVGTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 02:19:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49630 "EHLO
+        id S229800AbjCVGhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 02:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbjCVGTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 02:19:12 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0125D1FEE;
-        Tue, 21 Mar 2023 23:19:11 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32M5ODN6017443;
-        Wed, 22 Mar 2023 06:19:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=xi1R7lRkXD/lKHVkZ4mgBjQ8EbAACSsqoT+12EbXACg=;
- b=YbR8X4R60yAbBUwNcp4AyJtjm1PbDDOVcJe99BDVV1XUveuGn1MoKClGYJt5temubV0p
- 8NtcvUMieBjZISwPKQTmbex6EVQ4vwk2FWiEM9cjkvz1V8drXfv0hWUlK6eYKsbl7ZG4
- VBIj/6N+HEykKKW+xC5iYS4ttJTntZBir/dlJ+xUcQdgnVmBP51IRUpS9KkQBhmBfY+I
- XIczPyWim0UitKqRAxUmzxL57loEDoExibmq0tMKXV2FhOPc9pDCoZEjhULQQof9x1Nf
- UTbYTXN2J42QqlQyHvJHhoxCP+cKnNvWSFOk9GAxMjKUpsW/e9Hz2zbk67kRo5m8Yf1M Hg== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pfhnx19vr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 22 Mar 2023 06:19:05 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32M6J4XK002105
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 22 Mar 2023 06:19:04 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Tue, 21 Mar 2023 23:18:59 -0700
-Date:   Wed, 22 Mar 2023 11:48:55 +0530
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_wcheng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v2 0/8] Enable IPQ9754 USB
-Message-ID: <20230322061854.GD12808@varda-linux.qualcomm.com>
-References: <cover.1677749625.git.quic_varada@quicinc.com>
- <cover.1679388632.git.quic_varada@quicinc.com>
- <1cb44e37-9881-3c71-816f-a492c917c494@linaro.org>
+        with ESMTP id S229524AbjCVGhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 02:37:31 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6253D5B5C7;
+        Tue, 21 Mar 2023 23:37:30 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id f16so17801853ljq.10;
+        Tue, 21 Mar 2023 23:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679467048;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PyQWxUcj6eiH7pd+/4aargKQP3EMvN/nH0WVLFxLIMA=;
+        b=Sd8/yBAwwAcPyEcFJSTuStS1KB37qFKiKIFbz1NrU94QdM538nFKll/EwzxQnJ5XvV
+         nGmqr5C9ItBc43u4D0qFqoSvhR35A7jk5Lnwk4gL/pUx56zJQFgXqV6W15RrnEwvhxRe
+         Enq5lWRaswWF/mw675F8xZ+FP1otL/a99TBOHsyAVH7jhCaRNg0ou6efBlfmJ73VGYgR
+         bOruuZ9RPeWgS+knapaQZpwMoD3rE4F3/GcDTujaYGMHZL81duvblrtOFDRApKykaetZ
+         A6D7t8wLwo2uKkCTpiqxr1va62NJGvQjBpoof2oTvKrVWkWQ5p1Ae4sfFJ0CfwcsiDn6
+         sQGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679467048;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PyQWxUcj6eiH7pd+/4aargKQP3EMvN/nH0WVLFxLIMA=;
+        b=jzEh8t69Ebvs/n/MZgDBQn6gzTXJ3CgIO78GsMz75LIgjt8hrV190416hOuHoUADYH
+         EL2bO/p1KiDYq+FgzjZApuSxzfa/DsIlXsaBQnLMybS/BmMSdYycZ5wvSpSkSqNPeFVA
+         0eOp9FuIsU+CdGAZJQ3OrFXYHrJKNqgmkOwSxljMTKPlWVNaF7+wnBkQ2MZe+l8MLwo9
+         jUeqhnHRjflUOwecqBqHqPZwTy15ucQo5rYLCRbC8dhesnPsjWmdOo3lotGVgdQwAn62
+         PcUKIDDFqZd/+x4aG7qzLZej4NC8n4AEMFIWczPzrDNW22FkF6nLaCmz3x5BmIobrv3w
+         wulA==
+X-Gm-Message-State: AO0yUKXfInniX3EnQvhkAvmzTIOWSd/8du7+OL+sujuPj+i4uPK1jEpu
+        j4lJXnXpcXZjZi1m5Dmd1VTskzbTdzE=
+X-Google-Smtp-Source: AK7set/g2tYwuOjfjuGeQzU6s33MDSRQibUdK0ss+tfknJb9xTynEXYEfJpeI8DT7IxpdaCWYrPgMw==
+X-Received: by 2002:a2e:9896:0:b0:299:aa61:1a72 with SMTP id b22-20020a2e9896000000b00299aa611a72mr1779599ljj.15.1679467048459;
+        Tue, 21 Mar 2023 23:37:28 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id j2-20020a2e6e02000000b00295a8c68585sm2484209ljc.56.2023.03.21.23.37.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Mar 2023 23:37:27 -0700 (PDT)
+Message-ID: <4e4d527b-c323-4b21-bee5-f0745d67c903@gmail.com>
+Date:   Wed, 22 Mar 2023 08:37:27 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1cb44e37-9881-3c71-816f-a492c917c494@linaro.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RJQHagLzEj7Q8rT-BYhg-wMBxa2Aig2W
-X-Proofpoint-ORIG-GUID: RJQHagLzEj7Q8rT-BYhg-wMBxa2Aig2W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-21_11,2023-03-21_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 adultscore=0 mlxlogscore=631
- lowpriorityscore=0 impostorscore=0 clxscore=1015 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303220044
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US, en-GB
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>
+Cc:     jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1679009443.git.mehdi.djait.k@gmail.com>
+ <3ddca10a4c03c3a64afb831cc9dd1e01fe89d305.1679009443.git.mehdi.djait.k@gmail.com>
+ <4c28925d-c07c-61b7-8863-9c00e6846687@gmail.com> <ZBnTuykAqse5vBhO@carbian>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH 2/3] iio: accel: kionix-kx022a: Add chip_info structure
+In-Reply-To: <ZBnTuykAqse5vBhO@carbian>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 12:53:41PM +0100, Konrad Dybcio wrote:
->
->
-> On 21.03.2023 09:54, Varadarajan Narayanan wrote:
-> > This patch series adds the relevant phy and controller
-> > configurations for enabling USB on IPQ9754
-> I got this as a reply to the v1 thread. Please don't do that
-> and send it as a new mail thread the next time around.
->
-> Konrad
+On 3/21/23 17:56, Mehdi Djait wrote:
+> Hello Matti,
+> 
+>>> +static int kx022a_get_fifo_bytes(struct kx022a_data *data)
+>>> +{
+>>> +	struct device *dev = regmap_get_device(data->regmap);
+>>> +	__le16 buf_status;
+>>> +	int ret, fifo_bytes;
+>>> +
+>>> +	ret = regmap_bulk_read(data->regmap, data->chip_info->buf_status1, &buf_status, sizeof(buf_status));
+>>> +	if (ret) {
+>>> +		dev_err(dev, "Error reading buffer status\n");
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	buf_status &= data->chip_info->buf_smp_lvl_mask;
+>>> +	fifo_bytes = le16_to_cpu(buf_status);
+>>> +
+>>> +	/*
+>>> +	 * The KX022A has FIFO which can store 43 samples of HiRes data from 2
+>>> +	 * channels. This equals to 43 (samples) * 3 (channels) * 2 (bytes/sample) to
+>>> +	 * 258 bytes of sample data. The quirk to know is that the amount of bytes in
+>>> +	 * the FIFO is advertised via 8 bit register (max value 255). The thing to note
+>>> +	 * is that full 258 bytes of data is indicated using the max value 255.
+>>> +	 */
+>>> +	if (data->chip_info->type == KX022A && fifo_bytes == KX022A_FIFO_FULL_VALUE)
+>>> +		fifo_bytes = KX022A_FIFO_MAX_BYTES;
+>>> +
+>>> +	if (fifo_bytes % KX_FIFO_SAMPLES_SIZE_BYTES)
+>>> +		dev_warn(data->dev, "Bad FIFO alignment. Data may be corrupt\n");
+>>> +
+>>> +	return fifo_bytes;
+>>> +}
+>>
+>> I like adding this function. Here I agree with Jonathan - having a device
+>> specific functions would clarify this a bit. The KX022A "quirk" is a bit
+>> confusing. You could then get rid of the buf_smp_lvl_mask.
+> 
+> my bad here, I should have made a separate patch and explained more ...
+> buf_smp_lvl_mask is essential because kionix products use different
+> number of bits to report "the number of data bytes that have been stored in the
+> sample buffer" using the registers BUF_STATUS_1 and BUF_STATUS_2
 
-Sorry. Will take care next time.
+Yes, they have different size of FIFO, and the KX022A does also have the 
+nasty "FIFO FULL" quirk. Due to this quirk and other differences I was 
+suggesting you created own functions for kx022a and kx132. Eg something 
+along the lines:
 
-Thanks
-Varada
+static int kx022a_get_fifo_bytes(struct kx022a_data *data)
+{
+...
+}
+static int kx132_get_fifo_bytes(struct kx022a_data *data)
+{
+...
+}
 
-> >
-> > Depends on:
-> > https://lore.kernel.org/all/20230217142030.16012-1-quic_devipriy@quicinc.com/
-> >
-> > [v2]:
-> >         - Incorporated review comments regarding coding styler,
-> >           maintaining sorted order of entries and unused phy register
-> >           offsets
-> >         - Removed NOC clock entries from DT node (will be implemented
-> >           later with interconnect support)
-> >         - Fixed 'make dtbs_check' errors/warnings
-> >
-> > [v1]:
-> >         https://lore.kernel.org/linux-arm-msm/5dac3aa4-8dc7-f9eb-5cf3-b361efdc9494@linaro.org/T/
-> >
-> > Varadarajan Narayanan (8):
-> >   dt-bindings: phy: qcom,qusb2: Document IPQ9574 compatible
-> >   dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3 PHY
-> >   dt-bindings: usb: dwc3: Add IPQ9574 compatible
-> >   clk: qcom: gcc-ipq9574: Add USB related clocks
-> >   phy: qcom-qusb2: add QUSB2 support for IPQ9574
-> >   phy: qcom: qmp: Update IPQ9574 USB Phy initialization Sequence
-> >   arm64: dts: qcom: ipq9574: Add USB related nodes
-> >   arm64: dts: qcom: ipq9574: Enable USB
-> >
-> >  .../bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml    |  22 ++++
-> >  .../devicetree/bindings/phy/qcom,qusb2-phy.yaml    |   3 +-
-> >  .../devicetree/bindings/usb/qcom,dwc3.yaml         |   1 +
-> >  arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dts       |  12 +++
-> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  86 +++++++++++++++
-> >  drivers/clk/qcom/gcc-ipq9574.c                     |  37 +++++++
-> >  drivers/phy/qualcomm/phy-qcom-qmp-usb.c            | 119 +++++++++++++++++++++
-> >  drivers/phy/qualcomm/phy-qcom-qusb2.c              |   3 +
-> >  include/dt-bindings/clock/qcom,ipq9574-gcc.h       |   2 +
-> >  9 files changed, 284 insertions(+), 1 deletion(-)
-> >
+struct chip_info {
+	...
+	int (*fifo_bytes)(struct kx022a_data *);
+};
+
+and do the:
+fifo_bytes = kx022a_get_fifo_bytes;
+or
+fifo_bytes = kx132_get_fifo_bytes;
+
+in probe. That will also remove the need to check the IC variant for 
+each FIFO read.
+
+If you did that you could remove the buf_smp_lvl_mask and maybe also the 
+buf_statusX members from the chip_info struct (at least for now). You 
+could also do regular read for KX022A and drop the endianess conversion 
+for it. Bulk read is only needed for ICs with more than 8bits of FIFO 
+status. Furthermore, the IC-type check could then go away and the above 
+mentioned KX022A-specific handling would not be obfuscating the kx132 code.
+
+> 
+> kx022a: 8bits
+> kx132: 10bits
+> kx12x: 11bits
+> kx126: 12bits
+> 
+> I think this function is quite generic and can be used for different
+> kionix devices:
+> 
+> - It reads BUF_STATUS_1 and BUF_STATUS_2 and then uses a chip specific
+> mask
+> - It takes care of the quirk of kx022a which is just a simple if statement
+
+Yes. Your function definitely works. And I do like the fact that you did 
+own function for the "amount of data in fifo"-check. Still, the code 
+would be little simpler and perform a tiny bit better if you did two 
+functions instead of one.
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
