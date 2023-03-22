@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E73F46C482F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AB966C4830
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 11:49:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230507AbjCVKtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 06:49:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41520 "EHLO
+        id S230339AbjCVKtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 06:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbjCVKsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:48:10 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CFF62872
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:47:34 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id kq3so6478215plb.13
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:47:34 -0700 (PDT)
+        with ESMTP id S230431AbjCVKsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 06:48:15 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2D861885
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:47:39 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id w4so10801960plg.9
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 03:47:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679482053;
+        d=chromium.org; s=google; t=1679482058;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/8yfn2DmllskdKP/oOcQ9B405UmJOgHc+y1qZoocZy8=;
-        b=O5uKHQ9H+aO2fBv01xe8xdY7oBrreI5ewWbZElSXkWxkPzP2xScs0UAJKKrtPXCVg6
-         ZQ37l5vdd9fC5HuJgYpgMWtf4riT6buEa2xmSPyxgCnQhVMFSFKZpx8FbzokLNjyLWPu
-         +BCIGjv6+iRWIL/JaBAHVsuEQ+3TT/bJS6s94=
+        bh=oBJWqFf529bD8jjCDuA2KK02mIaG17tQPXtMSxF+r5U=;
+        b=Bs4oVb7r/GfydoLVRsXK6ciaCdAlCJGoVC0GBKWS1bTpRNwfiaabHTmJK2AHkPEPQX
+         RzQtwPyf7FxbsQDNZxOum0m7WE6xa2OuCyyognSZd0uLr+HNNiSVsc7B2e8CU0z0XajQ
+         9nmP92+emXT/ECYkmr+V9ptY/Dvk7M/yMynz0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679482053;
+        d=1e100.net; s=20210112; t=1679482058;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/8yfn2DmllskdKP/oOcQ9B405UmJOgHc+y1qZoocZy8=;
-        b=xaObqq3rhvwPE+RJFz9sQ3BgWjwlBN1+2g7R0CNJwUjq4wAITJiUyX9nPuDky14KNn
-         9ThVj82fwnSJdnMsP75QgrOaXDXrdVI8o5rCeGGScfUSpa9PhaHsDDRuw76YPCrJbCxo
-         WYdJq265ZGxCNKFrHIrCSXiQiHJyZIumDTSxdL2p16Loxon14lfRxSjItE7qm42JzMWP
-         KOFnC1B3hN9+U+dszhpANRMFMD+/k2cmDaamwgsOPETH7GejznnLfP21Z+1ykBnnOGXH
-         aPCP6S88Oi1+AqPCkvUUgwkclBqxreX84Typ/KeL+JWHecXnvEqWLOHuy48DlNrfTvkU
-         Kngg==
-X-Gm-Message-State: AO0yUKWkTOQu6VBNErOQg6I0eqtttWEGrBSvhgKOPeOE0NGNqnffBemY
-        Bh1p4BOfty73GC/MRnZSGkzOeQ==
-X-Google-Smtp-Source: AK7set/q0g0SgD5KxrTZbJCzBXxFDUxW3Rn/n92NryRdOtXJ6of3S1G0Y/QuG1AwOgmH0nrMVCMriw==
-X-Received: by 2002:a17:90a:bc85:b0:23f:d7ea:6212 with SMTP id x5-20020a17090abc8500b0023fd7ea6212mr2746126pjr.38.1679482052774;
-        Wed, 22 Mar 2023 03:47:32 -0700 (PDT)
+        bh=oBJWqFf529bD8jjCDuA2KK02mIaG17tQPXtMSxF+r5U=;
+        b=o602d2TXvzfBlbwsdwXnZtvIEwru3KnGtDfSXAXZ7SaHHpzPhBwWklRJ/s5UAOvsMI
+         PeztAzIqSYCMpPXWrm8TToNcjzTPUwBK1iQmPopm//0100ma2fe0fYmZoLegmaIbbOhg
+         EvXoDgqTLsSyFKHZne+tAWMRzu6Rz5jv6/FYBDSrN+5d8vgRilLe4HCgP71qxRkU2a+Y
+         o/BlRMaGWsz21JKGjDoS+H/f+eyC6H7KthSzrq1tq7hAeHlISceCCwEku9H15jpqxZwH
+         oDjVRx1ylqsKNqjDkldn5Htc9Gd+GDC7IArcrSeSCNut4ddIExqbQQFdJguzTsZ7Qwr9
+         fwBg==
+X-Gm-Message-State: AO0yUKUx04HT5XisW+q4YzyKCn5tUfMdbcbSQP9CJpj9k953Elvm8jee
+        gONBjNgXY+GwfrVOGeCMs1nCaw==
+X-Google-Smtp-Source: AK7set8Ei3DqOnokIBECX7S8i8g1KL2mbbHUechKS4aqr0RMz86pm38BSbfR/++b+hwW4t2FFU+JAg==
+X-Received: by 2002:a17:90b:4b44:b0:23d:39d5:f81e with SMTP id mi4-20020a17090b4b4400b0023d39d5f81emr3468217pjb.11.1679482058020;
+        Wed, 22 Mar 2023 03:47:38 -0700 (PDT)
 Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:343d:79bf:55f9:1da5])
-        by smtp.gmail.com with ESMTPSA id hg4-20020a17090b300400b002340d317f3esm9508742pjb.52.2023.03.22.03.47.27
+        by smtp.gmail.com with ESMTPSA id hg4-20020a17090b300400b002340d317f3esm9508742pjb.52.2023.03.22.03.47.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Mar 2023 03:47:32 -0700 (PDT)
+        Wed, 22 Mar 2023 03:47:37 -0700 (PDT)
 From:   Pin-yen Lin <treapking@chromium.org>
 To:     Andrzej Hajda <andrzej.hajda@intel.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
@@ -80,9 +80,9 @@ Cc:     Xin Ji <xji@analogixsemi.com>, linux-kernel@vger.kernel.org,
         dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
         Stephen Boyd <swboyd@chromium.org>,
         chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v14 08/10] dt-bindings: display: bridge: it6505: Add mode-switch support
-Date:   Wed, 22 Mar 2023 18:46:37 +0800
-Message-Id: <20230322104639.221402-9-treapking@chromium.org>
+Subject: [PATCH v14 09/10] drm/bridge: it6505: Fix Kconfig indentation
+Date:   Wed, 22 Mar 2023 18:46:38 +0800
+Message-Id: <20230322104639.221402-10-treapking@chromium.org>
 X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
 In-Reply-To: <20230322104639.221402-1-treapking@chromium.org>
 References: <20230322104639.221402-1-treapking@chromium.org>
@@ -98,184 +98,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ITE IT6505 can be used in systems to switch the DP traffic between
-two downstreams, which can be USB Type-C DisplayPort alternate mode
-lane or regular DisplayPort output ports.
-
-Update the binding to accommodate this usage by introducing a
-data-lanes and a mode-switch property on endpoints.
+Replace the spaces with tab characters in the Kconfig file.
 
 Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 ---
 
-(no changes since v12)
+(no changes since v10)
 
-Changes in v12:
-- Fixed the schema of "data-lanes" property for it6505
-- Reworded the description of the mode-switch property
-
-Changes in v11:
-- Updated the description of the endpoints in the bindings
-- Referenced video-interfaces.yaml instead for the endpoints binding
-- Removed duplicated definitions from inherited schema
-
-Changes in v9:
-- Fixed subject prefix again
-- Changed the naming of the example node for it6505
-
-Changes in v8:
-- Updated bindings for data-lanes property
-- Fixed subject prefix
+Changes in v10:
+- Collected Reviewed-by tag
 
 Changes in v7:
-- Fixed issues reported by dt_binding_check.
-- Updated the schema and the example dts for data-lanes.
-- Changed to generic naming for the example dts node.
+- New in v7
 
-Changes in v6:
-- Remove switches node and use endpoints and data-lanes property to
-  describe the connections.
+ drivers/gpu/drm/bridge/Kconfig | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
- .../bindings/display/bridge/ite,it6505.yaml   | 101 +++++++++++++++---
- 1 file changed, 88 insertions(+), 13 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-index c9a882ee6d98..348b02f26041 100644
---- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-@@ -75,22 +75,49 @@ properties:
-       port@1:
-         $ref: /schemas/graph.yaml#/$defs/port-base
-         unevaluatedProperties: false
--        description: Video port for DP output
-+        description:
-+          Video port for DP output. Each endpoint connects to a video output
-+          downstream, and the "data-lanes" property is used to describe the pin
-+          connections. 0, 1, 2, 3 in "data-lanes" maps to TX0, TX1, TX2, TX3,
-+          respectively.
+diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+index 12e8f30c65f7..28dc7711bf5f 100644
+--- a/drivers/gpu/drm/bridge/Kconfig
++++ b/drivers/gpu/drm/bridge/Kconfig
+@@ -74,19 +74,19 @@ config DRM_FSL_LDB
+ 	  Support for i.MX8MP DPI-to-LVDS on-SoC encoder.
  
--        properties:
--          endpoint:
--            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+
-+        patternProperties:
-+          "^endpoint@[01]$":
-+            $ref: /schemas/media/video-interfaces.yaml#
-             unevaluatedProperties: false
+ config DRM_ITE_IT6505
+-        tristate "ITE IT6505 DisplayPort bridge"
+-        depends on OF
++	tristate "ITE IT6505 DisplayPort bridge"
++	depends on OF
+ 	select DRM_DISPLAY_DP_HELPER
+ 	select DRM_DISPLAY_HDCP_HELPER
+ 	select DRM_DISPLAY_HELPER
+-        select DRM_DP_AUX_BUS
+-        select DRM_KMS_HELPER
+-        select DRM_DP_HELPER
+-        select EXTCON
+-        select CRYPTO
+-        select CRYPTO_HASH
+-        help
+-          ITE IT6505 DisplayPort bridge chip driver.
++	select DRM_DP_AUX_BUS
++	select DRM_KMS_HELPER
++	select DRM_DP_HELPER
++	select EXTCON
++	select CRYPTO
++	select CRYPTO_HASH
++	help
++	  ITE IT6505 DisplayPort bridge chip driver.
  
-             properties:
-+              reg: true
-+
-+              remote-endpoint: true
-+
-               data-lanes:
--                minItems: 1
--                uniqueItems: true
--                items:
--                  - enum: [ 0, 1 ]
--                  - const: 1
--                  - const: 2
--                  - const: 3
-+                oneOf:
-+                  - items:
-+                      - enum: [0, 3]
-+
-+                  - items:
-+                      - const: 0
-+                      - const: 1
-+
-+                  - items:
-+                      - const: 3
-+                      - const: 2
-+
-+                  - items:
-+                      - const: 0
-+                      - const: 1
-+                      - const: 2
-+                      - const: 3
-+
-+              mode-switch:
-+                type: boolean
-+                description: Serves as Type-C mode switch if present.
-+
-+            required:
-+              - reg
-+              - remote-endpoint
- 
-     required:
-       - port@0
-@@ -102,7 +129,6 @@ required:
-   - pwr18-supply
-   - interrupts
-   - reset-gpios
--  - extcon
-   - ports
- 
- additionalProperties: false
-@@ -139,8 +165,11 @@ examples:
-                 };
- 
-                 port@1 {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-                     reg = <1>;
--                    it6505_out: endpoint {
-+                    it6505_out: endpoint@0 {
-+                        reg = <0>;
-                         remote-endpoint = <&dp_in>;
-                         data-lanes = <0 1>;
-                     };
-@@ -148,3 +177,49 @@ examples:
-             };
-         };
-     };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        dp-bridge@5c {
-+            compatible = "ite,it6505";
-+            interrupts = <8 IRQ_TYPE_LEVEL_LOW 8 0>;
-+            reg = <0x5c>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&it6505_pins>;
-+            ovdd-supply = <&mt6366_vsim2_reg>;
-+            pwr18-supply = <&pp1800_dpbrdg_dx>;
-+            reset-gpios = <&pio 177 0>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                port@0 {
-+                    reg = <0>;
-+                    it6505_dpi_in: endpoint {
-+                        remote-endpoint = <&dpi_out>;
-+                    };
-+                };
-+                port@1 {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+                    reg = <1>;
-+                    ite_typec0: endpoint@0 {
-+                        reg = <0>;
-+                        mode-switch;
-+                        data-lanes = <0 1>;
-+                        remote-endpoint = <&typec_port0>;
-+                    };
-+                    ite_typec1: endpoint@1 {
-+                        reg = <1>;
-+                        mode-switch;
-+                        data-lanes = <3 2>;
-+                        remote-endpoint = <&typec_port1>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+ config DRM_LONTIUM_LT8912B
+ 	tristate "Lontium LT8912B DSI/HDMI bridge"
 -- 
 2.40.0.rc1.284.g88254d51c5-goog
 
