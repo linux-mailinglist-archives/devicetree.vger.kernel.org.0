@@ -2,56 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C9A6C4E2C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 15:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2D496C4E3E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 15:44:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbjCVOn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 10:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
+        id S231855AbjCVOoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 10:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231705AbjCVOnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 10:43:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC6A67035;
-        Wed, 22 Mar 2023 07:42:21 -0700 (PDT)
+        with ESMTP id S231707AbjCVOnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 10:43:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8326544C;
+        Wed, 22 Mar 2023 07:42:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5AF32620EE;
-        Wed, 22 Mar 2023 14:42:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A91C4339E;
-        Wed, 22 Mar 2023 14:42:17 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3E434B81D1C;
+        Wed, 22 Mar 2023 14:42:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64105C433EF;
+        Wed, 22 Mar 2023 14:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679496138;
-        bh=9nGt3/WFo0gBFq4dKIBfJ9CXZ+JxIv/UinhMJZkdmUw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vJDSTS1UzeRJzTrg0fZGKUmvOaQAHav/V0IHPlotKVcz49BsqD5hLajpWynCmogR/
-         dHQ3ubGodqmTv0lGQl1r2/kq9MQzL8r+i3uJHPDooU9JuTP4OCVvGrB4PcsegEemfC
-         1TpIZhtpc8qVG2Cz8lunauS4nQqeV34Ue7JjuqqQK0blXd4+SwdBBAXRdP7Nk37SKs
-         4OauB9iFHZf2uDS5o1f6RzgIXoNEfXYR4itcN56PYjhIfyh+Xr9mVFENQNZxwc3Gsd
-         Yqgi1YXgQZ6cWNfRJCDxPtmn9tuKaIMlm0yKw/Wwt4QbtREW2KphmNqcwNeTO5p7+7
-         nQWaqgF+wlUBA==
+        s=k20201202; t=1679496141;
+        bh=ZcC6DXyHmOiusRVaUJxCIxY87h35l1f0imd2AA4omSY=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=uRB7G93x3qAMkm2Xn/oa9G4n8bJSqCSCsWLKYryFpWGIsJthng80UliliGHvIHDZW
+         ZNjL6XS5XL0KXMBkhMBub9nxzFr9ruwlmUXsr4lVfkBF/IJje1UPs3G916zZkJvl9u
+         c3h3u9AfB6r6aFYC9Pn5W6VT8J1I+44iXyBDN1vgymHJm0UXBOkHACfUhKp46GZQao
+         1jhddGkwckVt1PrKkPT+nuJ5TsZ9ptueYNQ0Ql+bNJ33S3AwVE4+TfuZ/g0u3AKpmW
+         gXWcbnyWYnstiHT+HKgVeBgB+sidV1uE0HO4btUsd9cQO98CGNCXIJ5oR8RaAiMuLh
+         6/0+3H1Yd4Scg==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/8] qcom-cpufreq-hw binding improvements
-Date:   Wed, 22 Mar 2023 07:45:09 -0700
-Message-Id: <167949631653.1081726.15984867720732341048.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH 1/2] arm64: dts: qcom: sdm845-db845c: drop empty node override
+Date:   Wed, 22 Mar 2023 07:45:12 -0700
+Message-Id: <167949631653.1081726.12804733771037765657.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
-References: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
+In-Reply-To: <20230306081430.28491-1-krzysztof.kozlowski@linaro.org>
+References: <20230306081430.28491-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,25 +57,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Mar 2023 02:26:57 +0100, Konrad Dybcio wrote:
-> This series tries to better sanitize what's actually allowed on which
-> SoC and lowers the minimum frequency domain count to 1, as that's what's
-> present on at least QCM2290.
+On Mon, 6 Mar 2023 09:14:29 +0100, Krzysztof Kozlowski wrote:
+> Drop empty override of pm8998_gpios.
 > 
 > 
 
 Applied, thanks!
 
-[4/8] arm64: dts: qcom: sc7180: Add SoC-specific compatible to cpufreq_hw
-      commit: e4c17be956fbe133211c24b9fc9ba253ffc44db6
-[5/8] arm64: dts: qcom: sdm845: Add SoC-specific compatible to cpufreq_hw
-      commit: 236e7dd568ed4b839fb8abdf3ce7c77444e610e2
-[6/8] arm64: dts: qcom: sm6115: Add SoC-specific compatible to cpufreq_hw
-      commit: f33f95773e148cd0adbfc3135f2bfbf56a69f488
-[7/8] arm64: dts: qcom: sm6350: Add SoC-specific compatible to cpufreq_hw
-      commit: 64917707914f95fa5827f2cc5bea2d5febe3a01b
-[8/8] arm64: dts: qcom: sm8150: Add SoC-specific compatible to cpufreq_hw
-      commit: b2e1f87070ead06fb2918edeeed4329f58d1b2ee
+[1/2] arm64: dts: qcom: sdm845-db845c: drop empty node override
+      commit: e225d56042e3a02aa3ee60c96da687ac3c690a37
+[2/2] arm64: dts: qcom: drop redundant line breaks
+      commit: e18b829549793f706c6c8a39f24ba93b3213fb33
 
 Best regards,
 -- 
