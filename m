@@ -2,81 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5537B6C54C5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 20:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B8D86C54D3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 20:22:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjCVTS5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Mar 2023 15:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45124 "EHLO
+        id S231182AbjCVTWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 15:22:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230026AbjCVTS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 15:18:56 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA16E62317;
-        Wed, 22 Mar 2023 12:18:53 -0700 (PDT)
-Received: from p5b12767e.dip0.t-ipconnect.de ([91.18.118.126] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1pf3yd-0003yH-2U; Wed, 22 Mar 2023 20:18:27 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vincent Shih <vincent.sunplus@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: nvmem: Drop unneeded quotes
-Date:   Wed, 22 Mar 2023 20:18:25 +0100
-Message-ID: <3316420.tdWV9SEqCh@phil>
-In-Reply-To: <20230317233640.3968821-1-robh@kernel.org>
-References: <20230317233640.3968821-1-robh@kernel.org>
+        with ESMTP id S229812AbjCVTWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 15:22:49 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B5B637E9
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 12:22:48 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id ek18so77331503edb.6
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 12:22:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679512967;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nTKQ3ZygIopAvL2jDxWoG+gvCLOc1nUSNh2/VIjwflk=;
+        b=J6UrzSOxIfsSAGfarsx/7WV1cN3Zaa1DcTuRkrAgrG0P3yJdRq4UhEaC5Oo89PYqbe
+         Np//+H0K8YyWJ18GHp4Av68Eyr20MgiUMyOxJTjZxBImgvLcqmTFa7JmBTf2BauxGMux
+         Js55BxNFMNSgGHtyXeAB560pXWbksRF2TokLTY/N/HGkCjIzmz7VC4xJO/+h5Dyc1pR4
+         RoaS3Mi+MOhG9fFlqyLZntdPIlBajyujClXSlWZpQbULSEhJhUWtHo9lOz/ReaDuraHn
+         HJ/vAJXts2P0yrtl8khYdLjThO3iPUhASpzXDtODe7Df76ZTE5uvgm/JtzYqXWy4f3K2
+         YRjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679512967;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nTKQ3ZygIopAvL2jDxWoG+gvCLOc1nUSNh2/VIjwflk=;
+        b=Mdhn2LZcpG9dvvGrVP7pq2aJ81wHOZujOUYv8sL4xw218H9KywJaEyUPZYzV/yUNpP
+         GHvNYG+YvQEPATt2471pOGNZj7MpGY9QW0RYPQlDwOb4AvnoMUb0qqNOyQ1ntRwuv5Ao
+         0d+JXI2hoRXHVB6ZXGQt6NjtavL9LT9BIHNLcIAILP4zdiv1QRVBHr2aMAE5taFsxLTn
+         U/1QrACvGFwP7XdhBCxIDbQPxtu8/h4kTCYPi/RSJdbD/DPvQwckNLcsO2vHY8vE5ocU
+         PVsg3LHKXsFzKrhBjMIkXCIAfXq1L41sEP5FSIRn2K1JNeZYeTSbP1zY9jPxGeZ3DiTG
+         4+gw==
+X-Gm-Message-State: AO0yUKXjzvyzKG44sFmkcyPVPzuD+EqVJ6wNz81+J9GRqhxR5c7KbfsA
+        x26g/YVf1D3Y90q1QDKQZh9aCg==
+X-Google-Smtp-Source: AK7set+2geT/YIlyw08nwL32m20e6Y8ea7NV7M3LNBgLzXYsRty6f7SIjxzdEFic/yqzyAWm6zz2fA==
+X-Received: by 2002:a17:906:606:b0:88a:2e57:9813 with SMTP id s6-20020a170906060600b0088a2e579813mr8377898ejb.33.1679512966999;
+        Wed, 22 Mar 2023 12:22:46 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
+        by smtp.gmail.com with ESMTPSA id g5-20020a170906394500b0092fb818127dsm7681645eje.94.2023.03.22.12.22.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Mar 2023 12:22:46 -0700 (PDT)
+Message-ID: <affc7a51-c29f-968e-c15d-ccd13b0c530e@linaro.org>
+Date:   Wed, 22 Mar 2023 20:22:45 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_PASS,T_SPF_HELO_TEMPERROR
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] arm64: dts: tegra: drop serial clock-names and
+ reset-names
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230123151543.369724-1-krzysztof.kozlowski@linaro.org>
+ <cd9d9983-3dd5-70dd-8155-1b7d856bf35f@linaro.org>
+In-Reply-To: <cd9d9983-3dd5-70dd-8155-1b7d856bf35f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 18. März 2023, 00:36:39 CET schrieb Rob Herring:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 12/03/2023 17:59, Krzysztof Kozlowski wrote:
+> On 23/01/2023 16:15, Krzysztof Kozlowski wrote:
+>> The serial node does not use clock-names and reset-names:
+>>
+>>   tegra234-sim-vdk.dtb: serial@3100000: Unevaluated properties are not allowed ('clock-names', 'reset-names' were unexpected)
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> Thierry, any comments? Can you pick it up?
 
->  Documentation/devicetree/bindings/nvmem/rockchip-efuse.yaml     | 2 +-
+Hm, so I guess it is for me?
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de> #rockchip
-
+Best regards,
+Krzysztof
 
