@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2955A6C5384
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 19:18:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 643996C5394
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 19:20:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbjCVSSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 14:18:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37060 "EHLO
+        id S229541AbjCVSUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 14:20:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjCVSR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 14:17:59 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79BCF6905C
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:17:34 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id g18so19928955ljl.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:17:34 -0700 (PDT)
+        with ESMTP id S229747AbjCVSUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 14:20:31 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3BA264865
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:20:29 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id t13so12754983qvn.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:20:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679509052;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xEzaHOoXAhy7Py7zEUOXkN1OxIlV24r6VNZHwM/CBgc=;
-        b=hXyBV4H9Ds+DIoTj7YZ86LCFzvef2wpv5a1s8WEH+idX6tiBRYDbOQf8YmRulnTmNr
-         GLjFcrwYcsRJI3uqOyUiv0khrcIMe++eomMsdZgiQlbCVNVtV6I8KZNYRumdPjKzv2BS
-         xj+ZTcvgR7Cofr1Vd7SfLrL9dijJLlEfTUf6V5tjioZlL+H5BGOznGMoHpe2TblwnXQP
-         SwsolKH/PT46mFoCcz1Z0krPJDlGInpULQY67QowOTS+fXli/g9ny6Z/rqFxT4pR7JvU
-         ZdTW9P4MW6d13Kez/hRFYCfQ4vy76JppUjCceVusz0cEcxQbnXVSq/e7b97raWyzGAAU
-         9ftw==
+        d=chromium.org; s=google; t=1679509228;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Uh/hJeo7sTFkQ4LaRklYoR/MA7aBfNbUpjc0I8W6RK8=;
+        b=YwtR0IWJlaL5yBzbrTz3agLkUy6VZOXLut06qooO8CBVXQ1mNTMR9Qe0vwaMd8r6ql
+         RRKENs8cDI0bIcMlMz+4oZ/VBMEdMefyfP++UZP6jY2Z+MMofIHrhSi4JT2sDLLfuRTI
+         PDJoykgkHJaIr/JpRv5KmPSkWr8CeZ39OugRU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679509052;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xEzaHOoXAhy7Py7zEUOXkN1OxIlV24r6VNZHwM/CBgc=;
-        b=XQp8zI1yIX78ArS+JKWPB7wiBTKVLxobn7QlCI3GCbq210d36HgWdSFHxiITQeOJL4
-         cz5kWeYalFQAbbB+h7J1moof6m9VpQodDIKl0p5cQ3ePNeEJU0vsTyuYMEwTsyeIrJk3
-         v4/UxtpFYlmB7sfbURTqTisNX+kJdHaSZNtcgHPTc+qwRue1/TgytedSsu0uyQhjomAu
-         eWWRbdhJ0tOBvqpQhwVc79fdYU6pvE4YBN+pfYBdrwvKc4KYT+P8+9qAz5crO92fm5Im
-         L/+sR2uxsKmbdHX1mC7DkyJRxIS5INeN70Gzn9DN59U/nuXN6kpr+KIHwpSOnxF2N0Wa
-         bbjQ==
-X-Gm-Message-State: AO0yUKWs1jeVzWqGgQkEq6WBuDJra//LBnpH3VR5jKq0pnbldT0x+6zw
-        +FiBR1DcE1qYJ21P1kKuyZcJuQ==
-X-Google-Smtp-Source: AK7set/HehCfTXsidBXum81AxzNuLRbdINRXSSnWRmAmL6tioPdxJPspHLb991LYmugfJl3tCAsw4g==
-X-Received: by 2002:a2e:944b:0:b0:2a0:f395:cc4c with SMTP id o11-20020a2e944b000000b002a0f395cc4cmr906793ljh.49.1679509052724;
-        Wed, 22 Mar 2023 11:17:32 -0700 (PDT)
-Received: from [192.168.1.101] (abym238.neoplus.adsl.tpnet.pl. [83.9.32.238])
-        by smtp.gmail.com with ESMTPSA id t24-20020a2e9d18000000b00295b6bdfdfdsm2678594lji.4.2023.03.22.11.17.31
+        d=1e100.net; s=20210112; t=1679509228;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Uh/hJeo7sTFkQ4LaRklYoR/MA7aBfNbUpjc0I8W6RK8=;
+        b=mu+r9Iwfudgrtd+GH4mXSTusARx0PipUDnpRoiyrZaNMsCPohWDSIFqwjuCvP27RDT
+         lyO9GandRZcaRDCWf0CLapDjnQCnX7oHAVW4rIKLTetpC8+E6HTaPtToBtAPGcbatcHY
+         WVM10ejmt8DLG6mbSbHRDJyZWV0a30nnrgeB/vmT6D0B0poluQkXRP0j9aUAOXwLGjTP
+         6mdhZ8CUovz+SY3b62sDDeTeUiN8F2JgvNEvjtWS10S5jWY6E2T5hxCcfx+ptKB8U1SN
+         i6iJJ3DaAjZuha3c01NepZ8Nk91vdGxIHBnbgpz51O7bN1vvj/K0ZdbCbIIdEiqkPcgw
+         VFig==
+X-Gm-Message-State: AO0yUKV0swjcikj0emct8m941iClsNukLA+oiMOtHWL8Tbd0KmbSyNJD
+        LTXbaJ8dLjBiUSfmJZX9S+0DkvFjFgh7UNDTNgU=
+X-Google-Smtp-Source: AK7set+dReiH8PxgazFV0c9WSvUWaGhJFw6nvUjMl1pDBBdScWBuSBhwiDHnnhjDeN4Gmymgqlvk2Q==
+X-Received: by 2002:a05:6214:c29:b0:574:1822:a1bb with SMTP id a9-20020a0562140c2900b005741822a1bbmr7306411qvd.44.1679509227902;
+        Wed, 22 Mar 2023 11:20:27 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id w8-20020a05620a148800b0073bb0ef3a8esm11765296qkj.21.2023.03.22.11.20.27
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 11:17:32 -0700 (PDT)
-Message-ID: <3bda06b8-dc36-e986-4ad7-f7e223b8364a@linaro.org>
-Date:   Wed, 22 Mar 2023 19:17:31 +0100
+        Wed, 22 Mar 2023 11:20:27 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id p204so10992858ybc.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 11:20:27 -0700 (PDT)
+X-Received: by 2002:a05:6902:1546:b0:b74:6c88:7bff with SMTP id
+ r6-20020a056902154600b00b746c887bffmr357158ybu.0.1679509226666; Wed, 22 Mar
+ 2023 11:20:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8250-xiaomi-elish-csot: Add
- Xiaomi Mi Pad 5 Pro CSOT variant
-Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>,
-        Andy Gross <agross@kernel.org>,
+References: <20230220095401.64196-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230220095401.64196-1-krzysztof.kozlowski@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 22 Mar 2023 11:20:14 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XoSWOYuG5K9wcoPXC-490N9yP+JLkg3Nt+JEHvnRdwNg@mail.gmail.com>
+Message-ID: <CAD=FV=XoSWOYuG5K9wcoPXC-490N9yP+JLkg3Nt+JEHvnRdwNg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280-idp: drop incorrect
+ dai-cells from WCD938x SDW
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230322171555.2154-1-lujianhua000@gmail.com>
- <20230322171555.2154-4-lujianhua000@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230322171555.2154-4-lujianhua000@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,57 +85,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 22.03.2023 18:15, Jianhua Lu wrote:
-> Add support for the Xiaomi Mi Pad 5 Pro CSOT variant. The CSOT variant
-> uses China Star Optoelectronics Technology (CSOT) panel.
-> 
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+On Mon, Feb 20, 2023 at 1:54=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> The WCD938x audio codec Soundwire interface part is not a DAI and does
+> not allow sound-dai-cells:
+>
+>   sc7280-idp.dtb: codec@0,4: '#sound-dai-cells' does not match any of the=
+ regexes: 'pinctrl-[0-9]+'
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
 
-Konrad
-> No changes in v2
-> 
->  arch/arm64/boot/dts/qcom/Makefile              |  1 +
->  .../boot/dts/qcom/sm8250-xiaomi-elish-csot.dts | 18 ++++++++++++++++++
->  2 files changed, 19 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 808f46947661..b755b198cfb7 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -184,6 +184,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish-boe.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-xiaomi-elish-csot.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-microsoft-surface-duo2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts
-> new file mode 100644
-> index 000000000000..a4d5341495cf
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-csot.dts
-> @@ -0,0 +1,18 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023 Jianhua Lu <lujianhua000@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sm8250-xiaomi-elish-common.dtsi"
-> +
-> +/ {
-> +	model = "Xiaomi Mi Pad 5 Pro (CSOT)";
-> +	compatible = "xiaomi,elish", "qcom,sm8250";
-> +};
-> +
-> +&display_panel {
-> +	compatible = "xiaomi,elish-csot-nt36523";
-> +	status = "okay";
-> +};
+I'm pretty soundwire ignorant but this looks right to me.
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+Seems like folks who were involved in landing the patch that
+originally added those properties should be CCed on this, though.
+Adding them.
