@@ -2,76 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C02CC6C5306
-	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD736C5310
+	for <lists+devicetree@lfdr.de>; Wed, 22 Mar 2023 18:52:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbjCVRvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Mar 2023 13:51:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50932 "EHLO
+        id S230320AbjCVRwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Mar 2023 13:52:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbjCVRvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:51:54 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E53564B10
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 10:51:52 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id y4so76351881edo.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 10:51:52 -0700 (PDT)
+        with ESMTP id S230311AbjCVRwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Mar 2023 13:52:22 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08AE664D8
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 10:52:16 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id eg48so76168963edb.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 10:52:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679507511;
+        d=linaro.org; s=google; t=1679507534;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6WaOFED816blZdtFTuLdOx5OA9/TefZvQoaFn0cJ/KA=;
-        b=jOHVbMy/M29aXEQjfdczg4AdcZHm5jv7Ld4of6tCjFd0MHhBs/h3AfG3Qs2DtzBWOV
-         yNo7k5Br2YAWPuVQDHoGWgMMo+RO4olJc4dC3HOnVt8ZzxObOR+pKYwb/i5dOTxlBRKl
-         DvBVVBDr5H0DSLfBJABIkC9URe3/NGoWnT8zMPJGVJ/ZTOmGds1dEslEj4SDjzKm2Kfv
-         1t662CUWvvhnemKexrvYIXHN17rH/we4HmF749WVcoema9WgT5RYQQATEXy1YR52J9l8
-         9soyepfPuMS8HfCm6zUF+AIU5vJxCvRXyBQKyEvatFgQ3N6Byd7A2HI25jf/h6J+Dezl
-         uPbw==
+        bh=wh4Z1xlqDztZUH1w7IbXNlkUYB0pflLL3OVprobSnZc=;
+        b=WcgQoZMSV/a0eQ9pzfFJS6PJOkUq4BOxRnUsYi1tODvQhCM6XAVIzZ656d7dRAo45m
+         jkaqVR41zmD3Evi/JdVzZeSvpsycq/g8HfPdXGdmzr9IHdZ4ZYUYgWDA35WIKSb8qs3K
+         4GBwCIqYJvd3cfwJ5x7LEfjiVp+qyWH9wtr6wChbhNsNKvXjgYhh4zcK+vRgLQR26xTM
+         vlUm34N7H5q/KUnatolWI/y9cmvYTiN/H/0GTnQrgx0ot2jx13y5wzrOogaDdd4VVVD4
+         g0zGgYhpbxRwUZOUoELIh4LuhRgOf63m18hB+Av+4hLt4x54//xRNZQqSjygqbRAADne
+         KPpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679507511;
+        d=1e100.net; s=20210112; t=1679507534;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6WaOFED816blZdtFTuLdOx5OA9/TefZvQoaFn0cJ/KA=;
-        b=zP/bM3Q012feFjufI6TtUtOv30KkpKe/XBtYLFeSXIEnd4ccv/5wUaPUuKzWz59uCC
-         08Gde+i6O7toqVmRzwZrMPOdxXeUcr9VLatqJD80o5itfQ/wb9RWzs/sND4W7g+InYk0
-         Z4BYsOvqYY6e1Y8iXgzxzr8rJjogaM7PO4x8MkWM358FP9J85ph4VV7NvrFp7a0i5Tyu
-         FqJ4nSr7w+ghtkgsGm/A2VXl4EjxVLRIyDMEyLiBeuePO+jahBR6Pn8r3ZiyEwmVBHKa
-         Tz62fx7zuEdTXlF8yQ4dW2aEtC9hxHZff9nPtWd/a20uf/o9ZJIDQ1QVvPXwXFv3Hwlu
-         hU6A==
-X-Gm-Message-State: AO0yUKVaJdwXdLkrZIvkktg4lp+wxOuH34MhkGpSH6nhuSfdro7qIKpX
-        2+u/IdUFIfNPiF0PzBQK/tBC8g==
-X-Google-Smtp-Source: AK7set/N7Q+7f4YI9bhuXQvptgkRYPsxozTlHniZA5aQlpvAWkWgraP0KrP2K9r3QFpP9oXvTSDSmA==
-X-Received: by 2002:a17:906:28d5:b0:92c:6fbf:4d with SMTP id p21-20020a17090628d500b0092c6fbf004dmr6617678ejd.40.1679507510764;
-        Wed, 22 Mar 2023 10:51:50 -0700 (PDT)
+        bh=wh4Z1xlqDztZUH1w7IbXNlkUYB0pflLL3OVprobSnZc=;
+        b=llBWqXZWHfl9XvGVBZzL9omQfQoQGQJ1wZBzQX9ho1XeuvqM+Y2JWedaDQWBdQfHFJ
+         2MESQ7wR04KTVGDHnwTd9V09bYXDPImAmBu5eJ/5XNbW5hPSqGcWFSINaEILT4dE8thK
+         tc4DvIpPBW/cUzRGO9jG0HFMHaMHnX3QuJ7tLnkUcDvQzOurEOy3giU8xSgDMR7Y39Q7
+         +4Zeru3jd+QShQfBiJwn7CRw3qrHaFpvTuEzkKiv8LqUggSKyDdac6JEHSBdy8WN3ANm
+         5rHAMcxWyuTVVn1GJtGcz/KTiGhbpO2EnyvVqYCn9pMkMovlDf07MgzB0q8ZPa5ZoCfh
+         e+qA==
+X-Gm-Message-State: AO0yUKX/s6lnxu7iqO4J32EcnXHvHcO1bt1WKGmbtthv7o/niy5lN5Er
+        7PDoPFK2+Nyyih/8ZAJ5DYLS7Q==
+X-Google-Smtp-Source: AK7set/w/Af4r7ZkWY5/EYuLO7gRu4DNAGQ4mEA4NNMEcc/QIJ5nDOUWk6vdiJaM+ZJYjQJK7+8P1Q==
+X-Received: by 2002:aa7:c053:0:b0:4fc:6475:d249 with SMTP id k19-20020aa7c053000000b004fc6475d249mr6466295edo.3.1679507534645;
+        Wed, 22 Mar 2023 10:52:14 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:5050:151b:e755:1c6? ([2a02:810d:15c0:828:5050:151b:e755:1c6])
-        by smtp.gmail.com with ESMTPSA id gy15-20020a170906f24f00b00932bfab0fcesm6555595ejb.55.2023.03.22.10.51.49
+        by smtp.gmail.com with ESMTPSA id t22-20020a50d716000000b004af6163f845sm8115519edi.28.2023.03.22.10.52.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 10:51:50 -0700 (PDT)
-Message-ID: <5e0bb728-1cdd-6c16-b096-eb0934effe94@linaro.org>
-Date:   Wed, 22 Mar 2023 18:51:48 +0100
+        Wed, 22 Mar 2023 10:52:14 -0700 (PDT)
+Message-ID: <2087e394-afa6-f1c0-cfc1-df382b2d13d3@linaro.org>
+Date:   Wed, 22 Mar 2023 18:52:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [Patch v3 07/11] cpufreq: tegra194: add OPP support and set
- bandwidth
+Subject: Re: [PATCH] dt-bindings: clock: Drop unneeded quotes
 Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, kernel test robot <lkp@intel.com>,
-        treding@nvidia.com, dmitry.osipenko@collabora.com,
-        viresh.kumar@linaro.org, rafael@kernel.org, jonathanh@nvidia.com,
-        robh+dt@kernel.org, lpieralisi@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
-        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
-        ishah@nvidia.com, bbasu@nvidia.com
-References: <20230320182441.11904-8-sumitg@nvidia.com>
- <202303211551.eBLRqnv0-lkp@intel.com>
- <dcf8b1a9-d0e3-510f-8dc3-5ef9eebb0696@nvidia.com>
+To:     Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20230322173549.3972106-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dcf8b1a9-d0e3-510f-8dc3-5ef9eebb0696@nvidia.com>
+In-Reply-To: <20230322173549.3972106-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,62 +92,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2023 12:49, Sumit Gupta wrote:
+On 22/03/2023 18:35, Rob Herring wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> 
-> On 21/03/23 13:06, kernel test robot wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> Hi Sumit,
->>
->> Thank you for the patch! Perhaps something to improve:
->>
->> [auto build test WARNING on robh/for-next]
->> [also build test WARNING on krzk-mem-ctrl/for-next pci/next pci/for-linus]
->> [cannot apply to tegra/for-next rafael-pm/linux-next linus/master v6.3-rc3 next-20230321]
->> [If your patch is applied to the wrong git tree, kindly drop us a note.
->> And when submitting patch, we suggest to use '--base' as documented in
->> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->>
->> url:    https://github.com/intel-lab-lkp/linux/commits/Sumit-Gupta/firmware-tegra-add-function-to-get-BPMP-data/20230321-024112
->> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
->> patch link:    https://lore.kernel.org/r/20230320182441.11904-8-sumitg%40nvidia.com
->> patch subject: [Patch v3 07/11] cpufreq: tegra194: add OPP support and set bandwidth
->> config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230321/202303211551.eBLRqnv0-lkp@intel.com/config)
->> compiler: aarch64-linux-gcc (GCC) 12.1.0
->> reproduce (this is a W=1 build):
->>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->>          chmod +x ~/bin/make.cross
->>          # https://github.com/intel-lab-lkp/linux/commit/fa31f117302fc7c15b5d9deeefb8c650554f503d
->>          git remote add linux-review https://github.com/intel-lab-lkp/linux
->>          git fetch --no-tags linux-review Sumit-Gupta/firmware-tegra-add-function-to-get-BPMP-data/20230321-024112
->>          git checkout fa31f117302fc7c15b5d9deeefb8c650554f503d
->>          # save the config file
->>          mkdir build_dir && cp config build_dir/.config
->>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
->>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/cpufreq/
->>
->> If you fix the issue, kindly add following tag where applicable
->> | Reported-by: kernel test robot <lkp@intel.com>
->> | Link: https://lore.kernel.org/oe-kbuild-all/202303211551.eBLRqnv0-lkp@intel.com/
->>
->> All warnings (new ones prefixed by >>):
->>
->>>> drivers/cpufreq/tegra194-cpufreq.c:397:5: warning: no previous prototype for 'tegra_cpufreq_init_cpufreq_table' [-Wmissing-prototypes]
->>       397 | int tegra_cpufreq_init_cpufreq_table(struct cpufreq_policy *policy,
->>           |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>
-> 
-> Thank you for the report.
-> 
-> Adding static to the function prototype fixes the warning.
-> Can we please squash the below change (or) please let me know if i need 
-> to re-send the patch.
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-You must send new version which does not have warnings. The best if you
-also build test your code before sending (it's kind of obvious except
-that it is not).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
