@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3A516C7236
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 22:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0B76C723D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 22:21:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbjCWVRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 17:17:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47488 "EHLO
+        id S230382AbjCWVVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 17:21:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjCWVRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 17:17:18 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B282825BBA;
-        Thu, 23 Mar 2023 14:17:16 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id eg48so329378edb.13;
-        Thu, 23 Mar 2023 14:17:16 -0700 (PDT)
+        with ESMTP id S230078AbjCWVVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 17:21:13 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C8A2CC70;
+        Thu, 23 Mar 2023 14:21:12 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id s13so29254wmr.4;
+        Thu, 23 Mar 2023 14:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679606235;
+        d=gmail.com; s=20210112; t=1679606470;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3+99Id4vlxpRMOhGjaSB6bloNnr3EAmVVri5OUB3HI0=;
-        b=Z0OU4zaxuMlq76Gk4nh+Y3sS3l4JuzykQcrJRFgVcU4j3G99BBLVe5F8T31Hs1pnfF
-         hYPLX9iuFec7w3kEKsmgrOGm7M0dfAXgq0u6Tw2FglaTMif9h7HGqo306Nz6FSKUfdxs
-         /E8CtpxeTvNfOIVx8LcKy/9AU6GDQj6pOXr30TAad6lh0Qw7dNL+V3CC17p0hpWI1PyJ
-         JP+dWjVOA3cB6bETXZ+L4xHytwjWrUfnrcmTWlxCLf9N6fpPp2lsvVpEmoGzz4RtQw9c
-         OcTeKFFPxCbmCtyYq2tUArCpX7wefJwkmGb4fS18m3V5qswE+8F7KsDwk4+R3De956Ie
-         uSEw==
+        bh=OVc7Of+Ix0ryK/+RAH7Z4FzYtXWWON2rs5eqRA4tiWA=;
+        b=XEapRCAfRjQ3Vvhm/kfmQ20knSNfS4nyJ/DeNjhfKvWH2mP0mTbIUKHMGqzD4Cny7L
+         pnHGYrLZhiQ3qpg0UnAKWYhtQZymabZ89gHgA1UyPiUr4X7/ZucB76UM7P0gfnMvc6+w
+         N5ju5ShkPJ2UoqBR347f7Sp37dTkbdMKiUc9AA7vOWH0vKbb1W/v4qj5vn/YMqyPRi1U
+         lXEjFYiMa/v/g6AvU66r1/KY0L+P0QKdJTvenLQcUmsEoGVjxZlcqUlAN8BPK9i3oDcF
+         Xpqr43xWIu9Ae7F5+NEs5ALgrRlDuC7Rws/EFSWvlJeAFI8XZV9HC8BQB7pdZxSqO4ew
+         JX3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679606235;
+        d=1e100.net; s=20210112; t=1679606470;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3+99Id4vlxpRMOhGjaSB6bloNnr3EAmVVri5OUB3HI0=;
-        b=2UVf5vQsl8bJtbEJziUeNvTVNlzDAFYQUROSLKeFIbNnqOEeCFmRV7LphZ7w4m44vw
-         imkPlTZb4GTygD3JQ5RJ1UDZFrPSudq5I8kL7VONbQiaFu9XYthyk1tjaMXZ6Uc1MRGl
-         11PVYA5uCuTRJkEH810nBCWIr85RaWs2FW+FbFfllqYupOKz/Jj2CjmX6139HbLmcxe9
-         a1cZ2qNn8xUGgYDs9WA+lGpVkn0wGZ75n03KvG9QNcsasWCF90pEt8xji6YvIH6pPXR+
-         sTthZ6ZqPYDgdww682Su9zGHLjowVrU9LZmhvBAZ11p/Sv49gx5wd177Rt41E12bXOp+
-         NUEA==
-X-Gm-Message-State: AAQBX9epPhlsf0nE3dsePiW7+u/w+ge7T22eOiLoaowPcPxLESczy1Lj
-        fhNDmonbNOj+4P6IAodGL/o=
-X-Google-Smtp-Source: AKy350YXV7OnGGHypgylfPA7W/z5nJ+1x5GYw3D1Ob/zxZAWqv391Qz43ld0dBcs8lA0IxMw54UvSQ==
-X-Received: by 2002:a17:906:fa0b:b0:8b8:c06e:52d8 with SMTP id lo11-20020a170906fa0b00b008b8c06e52d8mr404362ejb.36.1679606234729;
-        Thu, 23 Mar 2023 14:17:14 -0700 (PDT)
+        bh=OVc7Of+Ix0ryK/+RAH7Z4FzYtXWWON2rs5eqRA4tiWA=;
+        b=YM9d2Qggeknso3Fxr0TgRERxPVOCI2tNQxJ84fNWzksZqwqXF3I2wcCu6Z/8H/4c8C
+         6QOVsiTgSNjP36Nk/Co/iolHGKR5Wi893+CnYgoKYBVFbRCTmXUkZIsKZ+mKWbVF/X+A
+         p3q0hqVAzp17uTDbiuIuzAUUmrz1TCI12UPYqP9LV4XfU/rSMtQ8LiNu25JdK07ExmST
+         fdcqW0xMH/AkRNAW8pyGMZ03JRBVucQ9DyUZh2RXH5iVSJNLC9wvyddnhPaYPFFY3/5w
+         DgFbh1DviPA6+JKUoBmpdnBDvYxc3nJqZpNa5XC7D1hehsQ0TRhcN9U4lV/puC86ebFT
+         sVXg==
+X-Gm-Message-State: AO0yUKWfzUCmol7Hjuf7jyPKoC4dKW4BO1Ah3IsBEs6AzXu34NTfE1XZ
+        WFEAoQJZeIimI/Hewey+DcI=
+X-Google-Smtp-Source: AK7set+7XkMQw//QRP6U0zw01ONMG6SisHKvyle8hz7Ra/I8s94s0O0zFWuYYD6E3TY5EKsJLVrbaA==
+X-Received: by 2002:a7b:cd10:0:b0:3ee:672d:caa4 with SMTP id f16-20020a7bcd10000000b003ee672dcaa4mr686528wmj.17.1679606470461;
+        Thu, 23 Mar 2023 14:21:10 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id r5-20020a1709064d0500b00923f05b2931sm9111409eju.118.2023.03.23.14.17.13
+        by smtp.gmail.com with ESMTPSA id t7-20020a05600c450700b003edddae1068sm3135457wmo.9.2023.03.23.14.21.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 14:17:14 -0700 (PDT)
+        Thu, 23 Mar 2023 14:21:10 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -66,12 +66,12 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
         Belisko Marek <marek.belisko@gmail.com>
-Subject: Re: [PATCH v2 2/4] ARM: dts: sunxi: add Allwinner T113-s SoC .dtsi
-Date:   Thu, 23 Mar 2023 22:17:13 +0100
-Message-ID: <13227090.uLZWGnKmhe@jernej-laptop>
-In-Reply-To: <20230320005249.13403-3-andre.przywara@arm.com>
+Subject: Re: [PATCH v2 4/4] ARM: dts: sunxi: add MangoPi MQ-R-T113 board
+Date:   Thu, 23 Mar 2023 22:21:08 +0100
+Message-ID: <3225657.44csPzL39Z@jernej-laptop>
+In-Reply-To: <20230320005249.13403-5-andre.przywara@arm.com>
 References: <20230320005249.13403-1-andre.przywara@arm.com>
- <20230320005249.13403-3-andre.przywara@arm.com>
+ <20230320005249.13403-5-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -85,14 +85,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 20. marec 2023 ob 01:52:47 CET je Andre Przywara napisal(a):
-> The Allwinner T113-s SoC is apparently using the same (or at least a very
-> similar) die as the D1/D1s, but replaces the single RISC-V core with
-> two Arm Cortex-A7 cores.
-> Since the D1 core .dtsi already describes all common peripherals, we
-> just need a DT describing the ARM specific peripherals: the CPU cores,
-> the Generic Timer, the GIC and the PMU.
-> We include the core .dtsi directly from the riscv DT directory.
+Dne ponedeljek, 20. marec 2023 ob 01:52:49 CET je Andre Przywara napisal(a):
+> The MangoPi MQ-R-T113 is a small SBC with the Allwinner T113-s3 SoC.
+> The SoC features two Arm Cortex-A7 cores and 128 MB of co-packaged DDR3
+> DRAM. The board adds mostly connectors and the required regulators, plus
+> a Realtek RTL8189FTV WiFi chip.
+> Power comes in via a USB-C connector wired as a peripheral, and there is
+> a second USB-C connector usable as a host port.
+> 
+> Add a .dtsi file describing most of the board's peripherals, and include
+> that from the actual board .dts file. This allows to re-use the .dtsi
+> for the MQ-R-F113 RISC-V variant of that board.
 > 
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
