@@ -2,67 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B09866C62C2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5980F6C62D2
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbjCWJGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 05:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44284 "EHLO
+        id S229529AbjCWJJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 05:09:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbjCWJGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:06:30 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 784B722103;
-        Thu, 23 Mar 2023 02:05:43 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S230436AbjCWJJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:09:17 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F201C304;
+        Thu, 23 Mar 2023 02:08:30 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0E43866030B7;
-        Thu, 23 Mar 2023 09:05:33 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7BEF066030B7;
+        Thu, 23 Mar 2023 09:08:28 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679562333;
-        bh=wwINqe29kiBtmq4po2HZOBPJxJovHBx9wl35mDz0eHA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=UEZnifG9ZX7v5DHzmaog9mbNJaM9MNnXyW5cYBM1yhc20gaYpj95pjQglnTVLKPkN
-         H7dr5DbBuw3EOBUP6hOvhMkd4sGhN7gSWRu/dh1ilMxGUyPwbR7dTJJzoZ2pWEJ5bv
-         OpJ89TPNAzNQDT2GvaDBqL4BW/6nRXrjMicFjFDjS0Ow3fb7i+WUrnzp9Bvl7alNuq
-         PeygCLTgOod7dR/hk2Hf2UTTJnapZ5aEuGvyAIt/DDKHYqhr8rmeOUgVwZMxdRk7iP
-         Tw2AZA3mV8+D40ZP+4evhb9q2xSchBLcAyZv4NA47rvzAx5wr6Jq4JLLXmFF8ZKKQ2
-         5UjCLVLIDCL7w==
-Message-ID: <99e1d5b2-509f-3291-f327-2050f1bd9aa3@collabora.com>
-Date:   Thu, 23 Mar 2023 10:05:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v30 0/7] Add MediaTek SoC DRM (vdosys1) support for mt8195
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        singo.chang@mediatek.com,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Nathan Chancellor <nathan@kernel.org>,
-        clang-built-linux@googlegroups.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230321121859.2355-1-nancy.lin@mediatek.com>
- <17831605-5c9d-9c92-d190-04f91060ace4@collabora.com>
- <CAGXv+5F82Ctz0pit4LsR5mQizPq-v2k3OVfiRhsGnG0a2J=Dyg@mail.gmail.com>
+        s=mail; t=1679562509;
+        bh=FrNqR4ku0iKICaEUucsD1iDyufd8gS7yQCcBq8NLjCk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=UoiSqZAJ+OsBLSjFthKrc7M9zBYhSaip5DgHe5wwELvBcjsM32KCPOrA7w212f/zV
+         BlHbVbKrvnqe//C/9LuPRrKo93J7AFcRskLwwtej/qr9N4VoFL4yUTIwiG94YmPiXz
+         u/1Hl805zVAVQ50Sttvq/9Ygojol5mFGMl9TNSPDpKTPJ129MGO+eYGCMbst4gX9wU
+         iCQRoUmBOpVW9+ff9ch3fszXBGR3rJ1OACE9joDeyGwgG7KVJa5Cz5M22dScnF+6mH
+         Pf+SDZWvLy1eq5txEGN17CAiCU0f8i5UlMQZuFmtV62lCgnruFJQOmLVllcLCmagLi
+         VmOZlujSTW9ig==
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5F82Ctz0pit4LsR5mQizPq-v2k3OVfiRhsGnG0a2J=Dyg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     airlied@gmail.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
+        steven.price@arm.com, alyssa.rosenzweig@collabora.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v1 RESEND 0/2] Panfrost: GPU Speed-binning support via OPP
+Date:   Thu, 23 Mar 2023 10:08:20 +0100
+Message-Id: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,26 +57,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/03/23 10:04, Chen-Yu Tsai ha scritto:
-> On Thu, Mar 23, 2023 at 4:58 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 21/03/23 13:18, Nancy.Lin ha scritto:
->>> The hardware path of vdosys1 with DPTx output need to go through by several modules, such as, OVL_ADAPTOR and MERGE.
->>>
->>> Add DRM and these modules support by the patches below:
->>>
->>
->> I've tested v30 again on MT8173, MT8192 and MT8195 based Chromebooks.
->> Green light from me.
->>
->> Chun-Kuang, can you please pick it?
-> 
-> It was picked up a few hours ago.
-> 
-> ChenYu
+The OPP framework supports binning through the 'opp-supported-hw'
+devicetree property and some of the SoCs that are using Panfrost,
+namely ... MediaTek, are actually binned.
+This is especially seen in MT8186, but some other models do actually
+support the same.
 
-Sorry, I didn't receive that email. Perfect!
+This series adds basic binning support by simply checking (and reading)
+speed-bin from NVMEM (eFuse arrays, usually) and *if and only if* that
+is provided, adds the read value with devm_pm_opp_set_supported_hw().
 
-Thanks!
-Angelo
+This code expects to receive a value that is compatible with how the
+supported_hw checks work in OPP and it should never contain any kind
+of platform (or SoC) specific code, since Panfrost is a driver for a
+GPU that may be tied to different SoCs... and this is what this series
+provides.
+
+Cheers!
+
+AngeloGioacchino Del Regno (2):
+  dt-bindings: gpu: mali-bifrost: Document nvmem for speedbin support
+  drm/panfrost: Add basic support for speed binning
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  7 +++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   | 30 +++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+
+-- 
+2.40.0
+
