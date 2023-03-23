@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 268156C6878
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A8C86C6889
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:38:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231783AbjCWMf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 08:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36352 "EHLO
+        id S231599AbjCWMiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 08:38:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbjCWMf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:35:57 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF671EFE7
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:35:55 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id b20so52897173edd.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:35:55 -0700 (PDT)
+        with ESMTP id S230154AbjCWMiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:38:14 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5C82726;
+        Thu, 23 Mar 2023 05:38:13 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id q6so9890741iot.2;
+        Thu, 23 Mar 2023 05:38:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679574954;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TcdcFW2o7lO4HSULvRwKJuKAN+ANvBzfqs/0VanCNtA=;
-        b=SKWgUpGw8QCzkIH0er3CYuYtajmychdMFo1YNnpHWm4cN3IEo4qhST6TCQxJcfR3p5
-         tHUmRH559dEWePF3/X7g2W1n7qeIi+ruBMx83ysMDLJJJt9+CSFpH5pvoIaxeq6h9SW9
-         kpf4m2otdltH1s5lzUaB3VpYPHLgZ9+oCreK6T6DWsunVGmMSFPD/0f6UXopMgUbt3mu
-         oHA/JgSVqksydQW4Aeu3DeTQg5EMz3e90db/xCVvrCOqdhxpx4aH1Y7mrPQwj3JX2mxh
-         wdlkEBaqRi6fPqVtVx3c0nLvsHzNgv9BQqZF9oC5ooyNXjYgNOCkwScoeX5Gj2lc9wPd
-         X+7w==
+        d=gmail.com; s=20210112; t=1679575092;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k0+bynfY00cSHIQkWQ+zWdlHvZK8vqNNp0Ky9kD5v54=;
+        b=mgMcflB5KA73/EKyNij7S3rJtq36/WSvZ2mvo02ncMPDNqVKryKSrou1ObzG6sV1dh
+         eYzOmo9sv9JS5FFNzhzMUKMDPIXGCWBZ2M4D+q86ql2CNuR2qu5ivZdTBoBw45A9si/j
+         Sqrfz0MmeFemZPXpSA5jW6+jBUyJsvTJ7FEK/iokV3RFLRA3mtYdKlOPQ4BzaWazrQsM
+         oLI8Q4TVIQ8jbmGZiaAUBtsmkZzcyaSEdgimcVWOz7LJn37E0BEV3XyocyHvp1MpDRSH
+         y+sLfB8KvtPrCcL1xHsqwA5u9eTdo2qGf/7rwFRj7iIYebsQ0X7uD6AapaV3XaUYvEoA
+         AKqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679574954;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TcdcFW2o7lO4HSULvRwKJuKAN+ANvBzfqs/0VanCNtA=;
-        b=Fgm96nL1ofQrAvkG3EtENCk0KtZGW2UDDx+2+NaqMC1mkDgF8fS8iLHdOk6vKxWFru
-         jHrtWEDkVGl55uvOu0PL+9Xr6NVNRZRoXq+kd8Z3SNbw9kpfvTcYoS2jU+zHMyjImF1v
-         fSAoz+WnlgoBmj/OT9UjTqehvuRKG6knJ2ZbBQOBkJT6J+yXc+QHp4iMTUKSUirR/Glh
-         6xVbgzwjFhBXCWzhLPHc2AYsLGV+jxyCMggYj49dp+S72I/gVWvdP/phHWqrXDlOqSsL
-         GFhue8lzfPlZGwi6IGQOizHrKk3AM2mP/niVXFDQxvuTs/UyzFya4z5Ure4bpMssxyjp
-         NUeA==
-X-Gm-Message-State: AO0yUKXUCX5buqKHlRDhItx+84ZfYjuh3pP0ZUYtUezHPTOUhHdgm9mg
-        TAg6tMMsGFz5Eq+yZqRyx6uxTA==
-X-Google-Smtp-Source: AK7set9gCzPMq6UzpYkoDzP8fIbA330Kh0INBz2+cqIjPHXz2lglBtuGncjUGTCTLGJjiHUP+ffU3Q==
-X-Received: by 2002:a17:906:4355:b0:92e:c4c9:7a43 with SMTP id z21-20020a170906435500b0092ec4c97a43mr9847521ejm.25.1679574954171;
-        Thu, 23 Mar 2023 05:35:54 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d350:23b1:cb94:f39d? ([2a02:810d:15c0:828:d350:23b1:cb94:f39d])
-        by smtp.gmail.com with ESMTPSA id k15-20020a50ce4f000000b004bef1187754sm9086863edj.95.2023.03.23.05.35.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Mar 2023 05:35:53 -0700 (PDT)
-Message-ID: <04876110-1dec-dafd-cf4e-a6ed7a8b40b0@linaro.org>
-Date:   Thu, 23 Mar 2023 13:35:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v10 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x
- variants
-Content-Language: en-US
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20210112; t=1679575092;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k0+bynfY00cSHIQkWQ+zWdlHvZK8vqNNp0Ky9kD5v54=;
+        b=V+g5gmG2OB+23kAkGaAkGTVgPgGHJcI9KkzLsRSBbeskvPIfa3nDZvzHhAx57A7m3t
+         35/oU+VkJF3SH1b91EyAt45h8nAj5IVVEK3BMmbKUuY97df/O2A18nhLmqehhqtAmikX
+         81HXsl2I63d080cpBZaHdIg30ympC8THWfZ9A55eKImOLU1wIBPG58ySka7Q4yF7cZS+
+         lChOZ3xVvB+2BOqZgwEwjo+flXyKwUjeIi04n+YrHP1o8/5/Y1nX4cYdv7tc01HRuU6+
+         fME19E4nFHhbOJC2DnF2/9vU1j/Fn7tQ+MgZkx77PUeyylHjlweqHbP3m+OFkDG4HqP8
+         kboA==
+X-Gm-Message-State: AO0yUKXxvcLZG9r5w8XlZ89vohMo+kxcE7+KiRYfJ7J+ZlNmq28tDan6
+        HXcv6uUQqMs9cvWx0LvS9cU=
+X-Google-Smtp-Source: AK7set/WWhepU+oqjkK7UqqkkawBKVSq+Np02Zli5m9hkZjc3hKS+f1QfT5zwOtJK1BWMNoa4aLFfA==
+X-Received: by 2002:a6b:ef04:0:b0:753:989:ebb5 with SMTP id k4-20020a6bef04000000b007530989ebb5mr4138339ioh.7.1679575092378;
+        Thu, 23 Mar 2023 05:38:12 -0700 (PDT)
+Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
+        by smtp.googlemail.com with ESMTPSA id n11-20020a6bed0b000000b00758993500f3sm1307608iog.7.2023.03.23.05.38.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Mar 2023 05:38:11 -0700 (PDT)
+From:   Tianling Shen <cnsztl@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230323115356.2602042-1-patrick.rudolph@9elements.com>
- <20230323115356.2602042-2-patrick.rudolph@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230323115356.2602042-2-patrick.rudolph@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Tianling Shen <cnsztl@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Add support for NanoPi R2C and OrangePi R1 Plus LTS
+Date:   Thu, 23 Mar 2023 20:38:03 +0800
+Message-Id: <20230323123807.11882-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,25 +78,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 12:53, Patrick Rudolph wrote:
-> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> chips. The functionality will be provided by the exisintg pca954x driver.
-> 
-> While on it make the interrupts support conditionally as not all of the
-> existing chips have interrupts.
-> 
-> For chips that are powered off by default add an optional regulator
-> called vdd-supply.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hi, this patchset adds two new boards using the Motorcomm NIC which
+got supported/fixed in kernel v6.3:
 
-I just received this patch sent twice - as 1/3 and 1/4 - without
-changelog, no cover letter, nothing more. Also other patches are
-missing, but that I could understand as intentional.
+* FriendlyARM NanoPi R2C - yt8521s
+* Xunlong OrangePi R1 Plus LTS - yt8531c
 
-This is confusing. New submission means new version. Attach changelog
-after --- explaining the changes.
+Tianling Shen (4):
+  dt-bindings: Add doc for FriendlyARM NanoPi R2C
+  arm64: dts: rockchip: Add FriendlyARM NanoPi R2C
+  dt-bindings: Add doc for Xunlong OrangePi R1 Plus LTS
+  arm64: dts: rockchip: Add Xunlong OrangePi R1 Plus LTS
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/arm/rockchip.yaml     | 12 ++++--
+ arch/arm64/boot/dts/rockchip/Makefile         |  2 +
+ .../boot/dts/rockchip/rk3328-nanopi-r2c.dts   | 40 +++++++++++++++++++
+ .../rockchip/rk3328-orangepi-r1-plus-lts.dts  | 40 +++++++++++++++++++
+ 4 files changed, 90 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2c.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+
+-- 
+2.40.0
 
