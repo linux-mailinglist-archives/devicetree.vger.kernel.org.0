@@ -2,69 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC7386C65B6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 11:52:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6156C65BE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 11:53:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231649AbjCWKwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 06:52:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57422 "EHLO
+        id S231678AbjCWKxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 06:53:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230498AbjCWKvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 06:51:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE32F36FEE;
-        Thu, 23 Mar 2023 03:50:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 39193625AD;
-        Thu, 23 Mar 2023 10:50:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 235A2C4339B;
-        Thu, 23 Mar 2023 10:50:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679568637;
-        bh=6bjS4jIxMl+j083BULXsAmGvEUpjTDQFOqlIa1PfSXk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rxegH0bb9kGbPsubd8HWExWGB4f5XxqpTBC/o8JxMpCXqMBChgjs55D3+PSXblCTY
-         wEpjtrvnXNn4O7M6hUuH1ImAE0E99YbFWFoH9g1Ilf5QwWHOuTLqqGIE7AHRpttFZf
-         APXvPbX8NmiZAMw0Y4qy6VQCqXkcZLeKir2/Y5Nog09M40NLguOAnrDZn7fhrbSnya
-         n83f0Ay8Ga4jufUXB9FbVuAvqgz95PwAsKQMMUlmeCa6IA+DucdX2/79bNUKt1BZzu
-         h8q97KKi3FNkpswN/SXmDk4sVL9eLs9rP8lbnuZkSF7DtwiPJi6QcYSsvhpL4UK4Ci
-         dkJXlODITnaFg==
-Date:   Thu, 23 Mar 2023 11:50:34 +0100
-From:   Andi Shyti <andi.shyti@kernel.org>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 0/4] Add support for Maxim MAX735x/MAX736x variants
-Message-ID: <20230323105034.zgrgnc35h3emad4o@intel.intel>
-References: <20230323074419.2494609-1-patrick.rudolph@9elements.com>
+        with ESMTP id S231181AbjCWKwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 06:52:39 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC3E1BF8
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:51:37 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id cy23so84441751edb.12
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:51:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679568696;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=djtaE/vDO9AshUny6zh2qbJYY96TbEf/QaEy8Z7dISo=;
+        b=SRYru7BV5FR7ta8lPrUIXW94emfeyPMudi/J/EMfbkFNYjvxPuuuCtIgIjTFppzt5J
+         h47JOMbYqxJEhXHDRhoDQZOi5LsuHzIa9xib2kjIEWEwzFDcQiinKOl6DhVxf2dlkUqk
+         cl2UiDVdkqTl3m4NONc0sYA4ZkpCf3KLz92O44Roa8oBCtRKjQKzHRwmd32u4h3jxMZF
+         AL44QCRcffkl+m18R1qNfbTMqd/NtCF04/yWSwKsF+ndBVZy1CHlUBeAccJmObux8Ql/
+         C91+8cHII8qrIIHnAA2R7Fmhi+ArI40unMmf8XVfCT/GB92O3kRBWbPhZFI54L18KOGb
+         YwKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679568696;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=djtaE/vDO9AshUny6zh2qbJYY96TbEf/QaEy8Z7dISo=;
+        b=Z6J1wN53wFe7rU+fz/7ILDMI/DjAOn76hVbbVcpHCLBJ3h7nTnhATRWQk3psA1sJNA
+         TK4FxXeRMkdYlJHzDU3nKor2lPc2uPcjO6XXr1yEZQfpQ6Qe+eqrC2kbDodnHXbzqsbH
+         ooqQ+7lfaPEg+crBVq2GF0EFXBOE+ICeCNUkATCf2VRty01wgLRZTPcwYhHdcp4SlkBu
+         VQHhM65Ns1zaWHn5TpWSR0xakOznh9ZRgt5Rug87ynv32tVI3rCJFeBIptN5jjVSoXNh
+         O01PfxpEuLgqpFtFxdw0Vk+ZI9/rpVH11lnf1da2diIjKYTJ0+kykn01kKJhNd/FCWs1
+         qu7A==
+X-Gm-Message-State: AAQBX9fAH3AkAioLgK11GGc/WomLzoz/vrSXOh3cz3bjjbMDxgGVfEOb
+        w5xKMRB7VtvXoL/9NOzj1DV+nw==
+X-Google-Smtp-Source: AKy350Yzr6pk7HTLyfZ07cA6Ohdh8rwBb3p/inRxryeP80LTyCA3RyLKk49pTM05/lxqV+Y/sTkmKw==
+X-Received: by 2002:aa7:d38f:0:b0:502:1299:5fa5 with SMTP id x15-20020aa7d38f000000b0050212995fa5mr1174047edq.16.1679568696138;
+        Thu, 23 Mar 2023 03:51:36 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a665:ed1e:3966:c991? ([2a02:810d:15c0:828:a665:ed1e:3966:c991])
+        by smtp.gmail.com with ESMTPSA id q30-20020a50aa9e000000b004fadc041e13sm8999033edc.42.2023.03.23.03.51.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 03:51:35 -0700 (PDT)
+Message-ID: <0bcad5cc-112f-386c-b70e-146530ac4898@linaro.org>
+Date:   Thu, 23 Mar 2023 11:51:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230323074419.2494609-1-patrick.rudolph@9elements.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 4/8] arm64: dts: qcom: sm8450: remove invalid properties
+ in cluster-sleep nodes
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-scsi@vger.kernel.org
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick,
+On 23/03/2023 11:25, Neil Armstrong wrote:
+> Fixes the following DT bindings check error:
+> domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes:
+> 'pinctrl-[0-9]+'
+> domain-idle-states: cluster-sleep-1: 'idle-state-name', 'local-timer-stop' do not match any of the regexes:
+> 'pinctrl-[0-9]+'
 
-> Patrick Rudolph (4):
->   dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
->   i2c: muxes: pca954x: Add MAX735x/MAX736x support
->   i2c: muxes: pca954x: Add regulator support
->   i2c: muxes: pca954x: Configure MAX7357 in enhanced mode
+I don't get from the commit msg why these properties are not correct
+here. The idle states allow them, so maybe something is missing in the
+binding? At least commit msg should explain this.
 
-this last patch did not come through as you can also see here[*].
+Best regards,
+Krzysztof
 
-Is it just me not receiving 4/4? If not, can you resend, please?
-
-Andi
-
-[*] https://lore.kernel.org/linux-i2c/?q=f%3Apatrick.rudolph%409elements.com
