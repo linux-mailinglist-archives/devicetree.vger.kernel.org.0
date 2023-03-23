@@ -2,119 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4289A6C7015
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 19:17:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00EB16C7024
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 19:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230059AbjCWSRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 14:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41056 "EHLO
+        id S230382AbjCWSVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 14:21:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231288AbjCWSR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 14:17:29 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BD6930EA
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:17:28 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id l7so5178672pjg.5
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679595448;
-        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PWjuUdddXVIX3wjRB5dWQS9F349qmdJdF939/C+mfBA=;
-        b=k4ZvL5BwPsQsBOWg04wsJF82VFRjv31uids7lz9tW/Z0lp5IcpXR76sdLUCfqWKc6p
-         TRntF/zBa4lKZTa1KxloTWd1EqPJXAlRpyYnUAdPBqp1SS86Mh5q9FWHHNUDxZLalZeO
-         gLZ9hNdfxu2NsDhUGciCtTX9nutKsAk2EbA35JD4TzHdZH9grDHn5HoC4q19ItB2mEIC
-         PY+cyxus50f/HThRD6llFDhLKznTnpBk5YWdUZxPEMzXdcCJulscOxMmLDObER+JAsaW
-         yadl7hFeqeATpZH1uGlnwKjKJse5sXg35dx10KJzJA9EryFTNsOR73Jf6+sAn/EgE+eI
-         HzlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679595448;
-        h=to:subject:message-id:date:from:sender:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PWjuUdddXVIX3wjRB5dWQS9F349qmdJdF939/C+mfBA=;
-        b=LoROfOOMy6i/XjKjYKKbSOiFuSPQ88OnxtgOJJvx4ytFwwkcpA44GYOYt7aUjUA+O/
-         9KEyss5fsD8q2NZvBgHPE07UwlXndUU72wCYw1sFdVK8WAPBzYwDRmPBNSOv72xYIaZd
-         2DjG21mseVkJlgYZy0yXHzkpoXcvodTiy3MBCtUqSLKkNbWdf3q71E2ANejxkaM5pJUR
-         uFqJFt4aONNVG7XAuMLzbPEpeBWBFU7LVEbEFHlaN9Qijr9zq521LXVxplK3qCCi4V5W
-         IZY6zoJniZOcNATevVg8qTsk6ESruZTftERKRxwEcSKUv2Mx7GfcQFJXe61Q0bPHvIq6
-         u8JA==
-X-Gm-Message-State: AO0yUKVp+UHDZdInfm6sudQxhyeVjxuAabkf0kpTtDf8T/2ll6LYnfPr
-        ZCbH/W+lH1GzP18g3r5XgSm17UeBWiQ5Il+U6GM=
-X-Google-Smtp-Source: AK7set/97yoX8AFCg3s5MpoHYIJvvTJc5wu1AsTRbZIInVC6axnqwYMwZolgtjRJX7D8Q5tP9x5KJ9RlIvNZGLXWqCE=
-X-Received: by 2002:a17:902:daca:b0:19f:3b0f:4d8d with SMTP id
- q10-20020a170902daca00b0019f3b0f4d8dmr3132662plx.7.1679595447560; Thu, 23 Mar
- 2023 11:17:27 -0700 (PDT)
+        with ESMTP id S229672AbjCWSVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 14:21:08 -0400
+Received: from mail-108-mta247.mxroute.com (mail-108-mta247.mxroute.com [136.175.108.247])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D892814E83
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:21:04 -0700 (PDT)
+Received: from mail-111-mta2.mxroute.com ([136.175.111.2] filter006.mxroute.com)
+ (Authenticated sender: mN4UYu2MZsgR)
+ by mail-108-mta247.mxroute.com (ZoneMTA) with ESMTPSA id 1870fb3e23b000edb4.005
+ for <devicetree@vger.kernel.org>
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
+ Thu, 23 Mar 2023 18:20:59 +0000
+X-Zone-Loop: 4f3bac634499c6fbf502ce0f21984769a7718528d5b8
+X-Originating-IP: [136.175.111.2]
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ahepp.dev;
+        s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:
+        Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=PwAQ2FqPkhYuKaw3PFrFV9jQAqQU/fJg4xycW+3dre0=; b=t19pnxjhD0zTWu4/eQcTOTFCfH
+        vZ3keIovVj03/1U/1GLyh528v+4Mm+H7c6XzJU4G/ihoRqbHP0M+TXtvjrEZPmISHjhqToWN8DT0T
+        h1NZ8wzCbYPD6NIJ7FzeZ5ZLQY49Y8epY0GmPheirRRmEXbwcSUiuLYH5vbSDmec0fBvX7ittvaiM
+        Q6NBld2xlvgwGYUfwAhQ+uxGM9Zwy5jTeccpF8+AULv74d4M6F6bR6/CPfNIIxxzmcleyOqT7Rzvw
+        5pR6tvCu0OHppcXtnraL82bUt4lpLVwsHp2souhGV2o2kLzDS+AAA4B9ims34yo8wWrwUBPJYrYSb
+        aq5aiubw==;
+Message-ID: <59c33dc5-bc97-8016-72cf-e56c73943eda@ahepp.dev>
+Date:   Thu, 23 Mar 2023 11:20:55 -0700
 MIME-Version: 1.0
-Sender: mrs.alicerobert@gmail.com
-Received: by 2002:a05:7022:2191:b0:60:97a8:441b with HTTP; Thu, 23 Mar 2023
- 11:17:27 -0700 (PDT)
-From:   Dina Mckenna <dinamckenna9@gmail.com>
-Date:   Thu, 23 Mar 2023 18:17:27 +0000
-X-Google-Sender-Auth: rjgXFMdlYw1yAOGWVW91m2_6KCk
-Message-ID: <CAGnJkm_Ghdiyo7390vborWy=XwfQJ0nt+wrtYNP=KtKjBfNTDg@mail.gmail.com>
-Subject: Hello,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.8 required=5.0 tests=ADVANCE_FEE_5_NEW_MONEY,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        LOTS_OF_MONEY,MONEY_FRAUD_8,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        UNDISC_MONEY,URG_BIZ autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:1032 listed in]
-        [list.dnswl.org]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [dinamckenna9[at]gmail.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.9 URG_BIZ Contains urgent matter
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  2.0 MONEY_FRAUD_8 Lots of money and very many fraud phrases
-        *  3.0 ADVANCE_FEE_5_NEW_MONEY Advance Fee fraud and lots of money
-        *  2.0 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: *******
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+From:   Andrew Hepp <andrew.hepp@ahepp.dev>
+Subject: Re: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF
+ converter
+To:     Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>
+References: <20230319184728.49232-1-andrew.hepp@ahepp.dev>
+ <20230319184728.49232-3-andrew.hepp@ahepp.dev>
+ <89271a29-5b02-34fe-409b-373e3b8044ef@metafoo.de>
+Content-Language: en-US
+In-Reply-To: <89271a29-5b02-34fe-409b-373e3b8044ef@metafoo.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: andrew.hepp@ahepp.dev
+X-Spam-Status: No, score=0.2 required=5.0 tests=DKIM_INVALID,DKIM_SIGNED,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello My Dear,
+On 3/19/23 11:59 AM, Lars-Peter Clausen wrote:
+> This looks really good. I have some small comments, and I apologize for 
+> only having them so late in the review cycle.
 
- I am sending the same message to you. My names are Mrs. Dina Mckenna
-Howley, a widow diagnosed with brain tumor disease which has gotten to
-a very bad stage, Please I want you to understand the most important
-reason why I am contacting you through this medium is because I need
-your sincerity and ability to carry out this transaction and fulfill
-my final wish in implementing the charitable investment project in
-your country as it requires absolute trust and devotion without any
-failure, which i believe that you will not expose this to anyone or
-betray this trust and confident that I am about to entrust on you for
-the mutual benefit of the orphans and the less privilege. I have some
-funds I inherited from my late husband, the sum of ( .$ 11,000,000.00
-). deposited with the Bank. Having known my present health condition,
-I decided to entrust this fund to you believing that you will utilize
-it the way i am going to instruct herein.
+No worries at all! I really appreciate the time and effort you, 
+Jonathan, and Krzysztof have put into reviewing this.
 
-It will be my pleasure to compensate you as my Investment
-Manager/Partner with 35 % percent of the total money for your effort
-in handling the transaction, 5% percent for any expenses or processing
-charges fee that will involve during this process while 60% of the
-fund will be Invested into the charity project there in your country.
-Therefore I am waiting for your prompt respond, if only you are
-interested in this humanitarian project for further details of the
-transaction and execution of this charitable project for the glory and
-honor of God the merciful compassionate.. Your urgent reply will be
-appreciated..
+> 
+> On 3/19/23 11:47, Andrew Hepp wrote:
+>> Add support for the MCP9600 thermocouple EMF converter.
+> 
+> Would be nice to have a very short description of the capabilities of 
+> the sensor in the commit message.
+> 
 
-God bless you.
-Sincerely Sister in Christ
-Mrs. Dina. Mckenna Howley.
+That seems like a good idea! Should the message be about the 
+capabilities of the sensor, or the capabilities of the driver? The 
+sensor supports a lot of advanced features that the driver currently 
+doesn't support.
+
+Currently I'm leaning towards
+
+"Add support for the MCP9600 thermocouple EMF converter. The sensor has 
+integrated cold junction compensation and a typical accuracy of 0.5 
+degrees Celsius. The driver supports a resolution of 0.0625 degrees 
+Celsius."
+
+>>
+>> Datasheet: 
+>> https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
+>> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
+>> ---
+>> [...]
+>> diff --git a/drivers/iio/temperature/mcp9600.c 
+>> b/drivers/iio/temperature/mcp9600.c
+>> new file mode 100644
+>> index 000000000000..b6d8ffb90c36
+>> --- /dev/null
+>> +++ b/drivers/iio/temperature/mcp9600.c
+>> @@ -0,0 +1,145 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> [...]
+>> +static const struct iio_chan_spec mcp9600_channels[] = {
+>> +    {
+>> +        .type = IIO_TEMP,
+>> +        .address = MCP9600_HOT_JUNCTION,
+>> +        .info_mask_separate =
+>> +            BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
+>> +    },
+>> +    {
+>> +        .type = IIO_TEMP,
+>> +        .address = MCP9600_COLD_JUNCTION,
+>> +        .channel2 = IIO_MOD_TEMP_AMBIENT,
+>> +        .modified = 1,
+>> +        .info_mask_separate =
+>> +            BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
+>> +    },
+>> +    IIO_CHAN_SOFT_TIMESTAMP(2),
+> If you do not have supported for buffered capture there is no need to 
+> include a timestamp in the channel spec. There is no way to read it 
+> without buffered support.
+
+Ack
+
+>> +};
+>> +
+>> +struct mcp9600_data {
+>> +    struct i2c_client *client;
+>> +    struct mutex read_lock; /* lock to prevent concurrent reads */
+>> +};
+>> +
+>> +static int mcp9600_read(struct mcp9600_data *data,
+>> +            struct iio_chan_spec const *chan, int *val)
+>> +{
+>> +    __be16 buf;
+> buf does not seem to be used.
+
+Oops, sorry about that, I'll make sure to build with warnings as errors 
+next submission. I tested the module after changing from 
+i2c_smbus_read_block_data but looks like I got a bit ahead of myself 
+submitting.
+
+>> +    int ret; >> +
+>> +    mutex_lock(&data->read_lock);
+> Do you actually need the custom lock? i2c_smbus_read_word_swapped itself 
+> should provide locking and there is only a single operation under your 
+> custom lock, which will already be atomic.
+
+That seems like a convincing argument to me. It certainly doesn't seem 
+like the lock is doing anything, since i2c_smbus_read_word_swapped 
+provides locking.
+
+>> +    ret = i2c_smbus_read_word_swapped(data->client, chan->address);
+>> +    mutex_unlock(&data->read_lock);
+>> +
+>> +    if (ret < 0)
+>> +        return ret;
+>> +    *val = ret;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> [...]
+>> +static int mcp9600_probe(struct i2c_client *client)
+>> +{
+>> +    struct iio_dev *indio_dev;
+>> +    struct mcp9600_data *data;
+>> +    int ret;
+>> +
+>> +    ret = i2c_smbus_read_byte_data(client, MCP9600_DEVICE_ID);
+>> +    if (ret < 0)
+>> +        return ret;
+> 
+> Might as well throw an error message in here for better diagnostics.
+> 
+>      return dev_err_probe(&client->dev, ret, "Failed to read device ID\n");
+> 
+> 
+
+I think this is how I did it in my original submission, but it sounds 
+like the preferred way of doing things is to warn without returning an 
+error, in order to support fallback compatibilities?
