@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62AB96C6F09
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 18:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 048096C6F11
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 18:32:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232546AbjCWRb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 13:31:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43988 "EHLO
+        id S232564AbjCWRcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 13:32:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232449AbjCWRbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 13:31:40 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9449A34018
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 10:31:30 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id o11so23005739ple.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 10:31:30 -0700 (PDT)
+        with ESMTP id S232489AbjCWRbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 13:31:48 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C651634C1A
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 10:31:32 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id h12-20020a17090aea8c00b0023d1311fab3so2792938pjz.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 10:31:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679592690;
+        d=chromium.org; s=google; t=1679592691;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UzgVWFKkQG0YRgZ5w6TjXBTOfYthe0uzWRC1HMbAqOY=;
-        b=X2o9knEsTKQQzx8gUX7pGP/FjrsVMIhOGp2uKJa+AGe9PxrgzMZdCJqPp5cq0yvbBt
-         l4lRBlXZT14PG0qFzIEQO5xtDafKJHZhf9fTZfMAWHVFQJ932srFyL1blt+2uieb9QTl
-         Nlq1T0lil2SQWsSAEJmaFlXjwl/k55JK9MK38=
+        bh=Dc1zQxQOlxvSPv0A2NTnsyCSg5q98+XxyGONS3dAKvA=;
+        b=clWzYxFdbsjAMyeObdN7chgEUWdefpw8mMcFLIi5kA9IjVTr+S1coqTXXi0/7EQrwB
+         kcu6xEE7wEMWUpgG3Dfkhz1MOlShemHzO13U4P4/GERa5IP3Dnr7OAFJmIqSaBdTd8VV
+         5Uor4aiKQsUtBQvZ/NclDLfD3Rx/Ip4/Gbj38=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679592690;
+        d=1e100.net; s=20210112; t=1679592691;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UzgVWFKkQG0YRgZ5w6TjXBTOfYthe0uzWRC1HMbAqOY=;
-        b=aJKcRMYd7ape7VYeQKkqblvICSpWwAgBkQAypn8GITmDyWSx/F4OZ0LFjb8B1pyDYP
-         Ld1d88/w8zgt3c8IAjIyYqjShID5HCfo6JagOSpxFUix0SRygCI2PLX0jsV5RtSt/Tq4
-         SJTNAZ7H17+T9z+/4/yond+k3wE2oc9pY8zh+eHSUAbZr5H/KRWajFV7Tqo3eE7CNsn4
-         J2MFdXPbwL6Qbz1ndU/OD89yK18wkaEESS2XBwNZ/znxt+Ie2D/8elpLJMNYxK6D4XS7
-         YHmB1bcwKqyFD3s4HbWZ06rpzc7oPGiUhyM63y/yOAupkNMNxB5skWmIn6/GKK4CEGml
-         K8ng==
-X-Gm-Message-State: AO0yUKXCkWZBRN3jN6PUV1onmjWf0kmdhVxwiovtNo0x0ceZCaftCNn3
-        R4Z4v8a3EXXQnYmaMDYIxmZhQg==
-X-Google-Smtp-Source: AK7set9Kd6/5HOTo2T6ATRK/d1+qZFgR+pYMVOMlgSvhzz9Dwm5JQDFYMgGojvaIfO5hah7gVDlN9A==
-X-Received: by 2002:a05:6a20:2d99:b0:d5:b3d1:bff9 with SMTP id bf25-20020a056a202d9900b000d5b3d1bff9mr250734pzb.52.1679592689791;
-        Thu, 23 Mar 2023 10:31:29 -0700 (PDT)
+        bh=Dc1zQxQOlxvSPv0A2NTnsyCSg5q98+XxyGONS3dAKvA=;
+        b=p1ebk4UNvicM0nqocL7mb0LufZxPp01Pvl3gNMCbomndyEkXuQJsHNt5sepdxHuQiq
+         WvSkxfUxX9R3RzwyTRvAM9pxXhTWVFN8vl3Paa7DbyLvLNTZDVj32g2PaiuLiRWBARhl
+         6/qTIIuCuHL/xF+nI44/KHC2wLTyJ5hw3u5MCU7KhB2ahU54bqe9dqIoCVnxjK3Ct7U0
+         LoQAonrJHXhsGivm92oOpYbVPysRoPpgo7dZEfgDvd9gYpvFnslXfzhuDUIFSZlAu5id
+         XPfKeQcaZW6/4U4H/Fva3CXePyzf/r1+6jSl/o7NMaKBH8F366zl7QAgEZDmUNOpBUPF
+         vc7A==
+X-Gm-Message-State: AO0yUKU1fbWfx9nsVS48wOi4U7x9shGaosQBgnhEewX7sEXCSdMr5aPj
+        l55oBT08/PiM/G2VRXbnG1EKDw==
+X-Google-Smtp-Source: AK7set8VWWD0uSxldfkCPMuvTPMAIF2F+8xHhK+xQgBVhEpb3rBHAYLNPfuyYRJXFm0dT4rVZLHsbQ==
+X-Received: by 2002:a05:6a20:c109:b0:d8:997f:b21c with SMTP id bh9-20020a056a20c10900b000d8997fb21cmr309546pzb.27.1679592691735;
+        Thu, 23 Mar 2023 10:31:31 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:16d3:ef20:206a:6521])
-        by smtp.gmail.com with ESMTPSA id x13-20020a62fb0d000000b0061a6f4c1b2bsm12613546pfm.171.2023.03.23.10.31.28
+        by smtp.gmail.com with ESMTPSA id x13-20020a62fb0d000000b0061a6f4c1b2bsm12613546pfm.171.2023.03.23.10.31.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 10:31:29 -0700 (PDT)
+        Thu, 23 Mar 2023 10:31:31 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ Cc:     Matthias Kaehlcke <mka@chromium.org>,
         linux-spi@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH 09/14] arm64: dts: qcom: sc7180: Remove superfluous "input-enable"s from trogdor
-Date:   Thu, 23 Mar 2023 10:30:13 -0700
-Message-Id: <20230323102605.9.I94dbc53176e8adb0d7673b7feb2368e85418f938@changeid>
+Subject: [PATCH 10/14] arm64: dts: qcom: sc7280: Remove superfluous "input-enable"s from idp-ec-h1
+Date:   Thu, 23 Mar 2023 10:30:14 -0700
+Message-Id: <20230323102605.10.I1343c20f4aaac8e2c1918b756f7ed66f6ceace9c@changeid>
 X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
 In-Reply-To: <20230323173019.3706069-1-dianders@chromium.org>
 References: <20230323173019.3706069-1-dianders@chromium.org>
@@ -82,68 +82,40 @@ use output-disable, not input-enable"), using "input-enable" in
 pinctrl states for Qualcomm TLMM pinctrl devices was either
 superfluous or there to disable a pin's output.
 
-Looking at trogdor:
-* ap_ec_int_l, fp_to_ap_irq_l, h1_ap_int_odl, p_sensor_int_l:
-  Superfluous. The pins will be configured as inputs automatically by
-  the Linux GPIO subsystem (presumably the reference for other OSes
-  using these device trees).
-* bios_flash_wp_l: Superfluous. This pin is exposed to userspace
-  through the kernel's GPIO API and will be configured automatically.
+Looking at the sc7280-idp-ec-h1.dtsi file:
+* ap_ec_int_l, h1_ap_int_odl: Superfluous. The pins will be configured
+  as inputs automatically by the Linux GPIO subsystem (presumably the
+  reference for other OSes using these device trees).
 
-That means that in none of the cases for trogdor did we need to change
-"input-enable" to "output-disable" and we can just remove these
-superfluous properties.
+That means that in none of the cases for sc7280-idp-ec-h1.dtsi did we
+need to change "input-enable" to "output-disable" and we can just
+remove these superfluous properties.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 5 -----
- 1 file changed, 5 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 1f2e1f701761..39100b0c1140 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -1206,7 +1206,6 @@ amp_en: amp-en-state {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
+index 3cfeb118d379..ebae545c587c 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
+@@ -82,14 +82,12 @@ &tlmm {
  	ap_ec_int_l: ap-ec-int-l-state {
- 		pins = "gpio94";
+ 		pins = "gpio18";
  		function = "gpio";
 -		input-enable;
  		bias-pull-up;
  	};
  
-@@ -1229,7 +1228,6 @@ ap_suspend_l_neuter: ap-suspend-l-neuter-state {
- 	bios_flash_wp_l: bios-flash-wp-l-state {
- 		pins = "gpio66";
- 		function = "gpio";
--		input-enable;
- 		bias-disable;
- 	};
- 
-@@ -1271,7 +1269,6 @@ fp_rst_l: fp-rst-l-state {
- 	fp_to_ap_irq_l: fp-to-ap-irq-l-state {
- 		pins = "gpio4";
- 		function = "gpio";
--		input-enable;
- 
- 		/* Has external pullup */
- 		bias-disable;
-@@ -1286,7 +1283,6 @@ fpmcu_boot0: fpmcu-boot0-state {
  	h1_ap_int_odl: h1-ap-int-odl-state {
- 		pins = "gpio42";
+ 		pins = "gpio104";
  		function = "gpio";
 -		input-enable;
  		bias-pull-up;
  	};
  
-@@ -1335,7 +1331,6 @@ pen_rst_odl: pen-rst-odl-state {
- 	p_sensor_int_l: p-sensor-int-l-state {
- 		pins = "gpio24";
- 		function = "gpio";
--		input-enable;
- 
- 		/* Has external pullup */
- 		bias-disable;
 -- 
 2.40.0.348.gf938b09366-goog
 
