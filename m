@@ -2,115 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37C576C6218
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 09:41:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 667416C6229
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 09:45:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231209AbjCWIle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 04:41:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56976 "EHLO
+        id S229964AbjCWIpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 04:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231210AbjCWIlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 04:41:19 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648F837738
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 01:40:09 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id e71so23936212ybc.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 01:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679560808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LVdvufZV56apmT3wmD9ncMcsijkg1/WCzRLjEqhYbYk=;
-        b=jt0T1kyTzkSVHHCl6C3RepTUHJHJMJwp3E7PBrhT2/xYa5EtksiTTG/c8wwIzIU4Z/
-         SP6qSrUD+NxMXZX1bTG8PCQpgfuHP59u0Np8wiu0KUJPXSqAJzXQDAgAhdBdm4ERqTZu
-         W1iU/UXMn4o+x12ZfA1TbzzlGle1mhqc6+pCFoTYeSycXLH0chaeh9w1eBTkD2vOP8sA
-         vAdlNnAtJbu1a1BYoccU9GKqHc2Cvh+aARoS6g2QyjguTZ3KI+BylBNheh9Xg9t4NtTd
-         2k3OHgvwLC4ljAJqFRZ+gv0eOvpjcGObjDM/uBGal3iyuErBjVTwBqdgO9KbDxL+mVt4
-         VMjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679560808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LVdvufZV56apmT3wmD9ncMcsijkg1/WCzRLjEqhYbYk=;
-        b=seFiWSGMUgNdQcmdvk5O5PLwM2Fp7A57+T/+72mUbeqiQDxDYDHNmipI/h6jMqyODI
-         XrdO9bP+wSiCUEDBa2/hFfCBTmaHdAMd+RmVV9c/zUf/iJdxC2fClk9yexNvqGBji5YC
-         5PtqnomzvYT2v5eLMjGAvVituQRDjMOf/xDeinmK8l7joOcUkXYSN2wHqTupkxn6IIUp
-         NqdhcU/2O3ZulOtZYvFAnjhju31aosu8LzsM4Fww/KdyVn2kVZ+xLdSRHpT1LYFh7fyQ
-         xUFNSeOqo+MlaKrsiI/5BtWdGqNoly6PfhxbP7mXgmH4rnUUi5REDs763RSgXzWOsKHr
-         byJw==
-X-Gm-Message-State: AAQBX9edQWW8BwFz0Rvzoxb7bPJ0AOxHFpek09FWcOU5meUT4qvK6Yta
-        nNg0121WxOEZJQMuRaPi0b1CPORiqFf17aWPcNWzOQ==
-X-Google-Smtp-Source: AKy350aSyoiWihVzfFCCUghPO+0y8OTXazqo59ZooJtguYITdbyYyykALVgXcFtgTaOhhPAE83rDbJuRGMjWP7pJT3I=
-X-Received: by 2002:a25:8712:0:b0:b26:47f3:6cb with SMTP id
- a18-20020a258712000000b00b2647f306cbmr1346675ybl.4.1679560808264; Thu, 23 Mar
- 2023 01:40:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230317233623.3968172-1-robh@kernel.org>
-In-Reply-To: <20230317233623.3968172-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Mar 2023 09:39:57 +0100
-Message-ID: <CACRpkdYq4jE7Qn1w8iPeGz7vxj_CeZ+H48B0TVYmeF4Tt=kHgA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        Dvorkin Dmitry <dvorkin@tibbo.com>,
-        Wells Lu <wellslutw@gmail.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-gpio@vger.kernel.org,
+        with ESMTP id S229526AbjCWIpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 04:45:30 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16D7A4;
+        Thu, 23 Mar 2023 01:45:29 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D84136602069;
+        Thu, 23 Mar 2023 08:45:27 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679561128;
+        bh=FrNqR4ku0iKICaEUucsD1iDyufd8gS7yQCcBq8NLjCk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mqChyF7uL/gStwWj9TpKjP+j5o71cY5OBZNebYPh7P6kwx34jMlD5WWtRVPN4XPb5
+         vfakks7HMRI6hy/JZKXbfXXXBshusLjntR9j4Pw43Doa6Sj/HriSxwf7zeWp9Fcz7A
+         k1231kzPIhLonp6/0snl1BdCWOXinPxY77i/XVIHhky2DALcw/P/PysaodQ2gg3k+/
+         0/eRh0Ms/e/hDadxdM57Qk+KLuTVpIrIqnjAlqg4Eo2qnodGbJ6CU5pRfOKTCaqEFt
+         marVDCgmt4vBalqXcXgRDYTax6a0gt5uyZAm6bi8pkOJGf8T1iGhj9SCTnmgMKEwde
+         ggdmJUHl/I+dg==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     airlied@gmail.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
+        steven.price@arm.com, alyssa.rosenzweig@collabora.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org, patches@opensource.cirrus.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v1 0/2] Panfrost: GPU Speed-binning support via OPP
+Date:   Thu, 23 Mar 2023 09:45:21 +0100
+Message-Id: <20230323084521.19689-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -118,16 +57,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 18, 2023 at 12:36=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
+The OPP framework supports binning through the 'opp-supported-hw'
+devicetree property and some of the SoCs that are using Panfrost,
+namely ... MediaTek, are actually binned.
+This is especially seen in MT8186, but some other models do actually
+support the same.
 
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This series adds basic binning support by simply checking (and reading)
+speed-bin from NVMEM (eFuse arrays, usually) and *if and only if* that
+is provided, adds the read value with devm_pm_opp_set_supported_hw().
 
-Should I queue this patch by the way, or do you need it to go into some
-DT-related tree?
+This code expects to receive a value that is compatible with how the
+supported_hw checks work in OPP and it should never contain any kind
+of platform (or SoC) specific code, since Panfrost is a driver for a
+GPU that may be tied to different SoCs... and this is what this series
+provides.
 
-Yours,
-Linus Walleij
+Cheers!
+
+AngeloGioacchino Del Regno (2):
+  dt-bindings: gpu: mali-bifrost: Document nvmem for speedbin support
+  drm/panfrost: Add basic support for speed binning
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  7 +++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   | 30 +++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+
+-- 
+2.40.0
+
