@@ -2,289 +2,503 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5F446C69FF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 14:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3317C6C6A44
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 14:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbjCWNw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 09:52:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41776 "EHLO
+        id S231667AbjCWN7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 09:59:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231681AbjCWNw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:52:56 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FB428E63;
-        Thu, 23 Mar 2023 06:52:52 -0700 (PDT)
-Received: from koko.localdomain ([89.1.213.94]) by mrelayeu.kundenserver.de
- (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1Mof1D-1qHA1O1nWz-00p4pQ; Thu, 23 Mar 2023 14:52:47 +0100
-From:   Maximilian Weigand <mweigand@mweigand.net>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Maximilian Weigand <mweigand@mweigand.net>,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH 6/6] Input: cyttsp5: implement proper sleep and wakeup procedures
-Date:   Thu, 23 Mar 2023 14:52:05 +0100
-Message-Id: <20230323135205.1160879-7-mweigand@mweigand.net>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230323135205.1160879-1-mweigand@mweigand.net>
-References: <20230323135205.1160879-1-mweigand@mweigand.net>
-MIME-Version: 1.0
+        with ESMTP id S231975AbjCWN6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:58:54 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BCF2A14B;
+        Thu, 23 Mar 2023 06:58:46 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17997ccf711so22831317fac.0;
+        Thu, 23 Mar 2023 06:58:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679579925;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SgjfEAnWY41f5fkLXCumSlVAx8CUNHqcQf+FKLmQIIA=;
+        b=45W+tkJGHRP3keTZ0LTM8RbIecnqzj6rlmdbLG6eHENqN3gl2M8JXbPJT8gy6gdt6q
+         Zh7v32IuJ7SC3eDGB4w8LV87wOFYxA2ZlVo6dcOWin1zEUzObzOk1PDn7Df8IE0cf0RM
+         4CrS+L2f29OJAyqsAqFGHSGEfUXZS1QqndeJBgeUnCGQoYyQ51gOn9hJYXDdmB1BYryI
+         Gtk06RVe4dEomkGe0NHArixhf5eehVEZKg5F/7mKeoVRF8FlO7LOMW5Y5Iz1dGdJWR0R
+         CtXdbbEs+8myvpZMMeffLjqqfxJCV3Z3vDM4+EV6rfkOC6A7Xc27ndObV/B6iZmitspa
+         19GA==
+X-Gm-Message-State: AAQBX9ccb/q6mmBsALf3RS6xySn3Emx/7CSVKfXkmgDO1TNXp9HMg4/a
+        o9suJodV/EsDJz05HiIkww==
+X-Google-Smtp-Source: AKy350aN/CIwe29eBM4pcs+gj6oe2TXbdpn8u7vD7SIzCadV+FVVou4++AJZJR3zf8eeJyDpdhNPww==
+X-Received: by 2002:a05:6870:1fcf:b0:177:9add:6513 with SMTP id gp15-20020a0568701fcf00b001779add6513mr2530774oac.58.1679579925271;
+        Thu, 23 Mar 2023 06:58:45 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id sz4-20020a056871860400b00172428894e0sm6180097oab.28.2023.03.23.06.58.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Mar 2023 06:58:44 -0700 (PDT)
+Received: (nullmailer pid 3103746 invoked by uid 1000);
+        Thu, 23 Mar 2023 13:58:37 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:zzLyeqflRm7UGravOHiW9xcOiaMBdEHtUyUJZy+G19EFiSvwZEy
- bB1uFk0Icuov9zFJw5z94J7ZfVW46ZVUEh2+9+1PwidmBZu2lsEzBiXsECNj43pGOJoR/14
- l6beIwi8usfnUL0JTV5KAP1rCOoJtFJu7WXVLgZgnlhcYtlRz0SMWIXOUxWBGT387o4bSAb
- S0CBmfK1ip2o7cuE13Ivg==
-UI-OutboundReport: notjunk:1;M01:P0:dbSg3Nw2nDA=;psUiAgzFxzslLiHCkMxlFn64goY
- wlu+imSNWjE1s6slWUg6OJns53Pe8gnVrUdYlaIHM/a6+q1xoSNcb/Zg0MGsvvGjDAN/Ps2Vt
- XNVmglUZeusYMtIZZyRviCz21ZyfKSQwU4SChKboc0yqTW1SiUkK3a+KXbSheaDn7KUcIsDry
- NomUVJsDZgWmHu03+IF9HoYKpNnvXeX7e6h7jn04ihq4twrKm075QBwfVeD+Txgo3Sews9YN1
- gtvLdwgKImv5AL9xx3PDJZq4zHlZA9cM96aZgWJoM0oqeK1kvieEAgvs6VVFHn4x6hP/mHMhg
- KUGEMGU/ru4Fj25l5ktJVLqBKOEjhknOSkES7Il46ctAOGfRJBUY1UyL8O9xQzpE43qVMfKc6
- j/ynA9I8ulQjbWs8W/AoGVT94WsuMBAzY2YST3XJyU/9hR68UDUkIaMmQaazlO0//fO9a8Slp
- 8w6n9fwPDvFFGOHF32WJuq6m09sRukTk2EkrFDmny6kVg/FSOH21AjikQRTdzw+5h1ktpALzz
- Tj7gQqBwOjFL2GkE9q7Yh7M8H6lDKU7MYmstQkNYBVsMeOVe0cY9SrmmbqO690DxyRethv1iY
- d8ou9y/kcN30787xFt9rBQMtvqe6TYkH0JOvUs9POsLhgHBU+2Ll6rwYrbHWyztna/EqoHdBm
- hqSXjZy1keh61fCDM4V9+zeDfaAfD/MQsmZuY/CjPQ==
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Sean Paul <sean@poorly.run>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Lee Jones <lee@kernel.org>, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Avri Altman <avri.altman@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-scsi@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>
+In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-2-3ead1e418fe4@linaro.org>
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-2-3ead1e418fe4@linaro.org>
+Message-Id: <167957966839.3096549.2217534591461775107.robh@kernel.org>
+Subject: Re: [PATCH 2/8] dt-bindings: mfd: qcom,spmi-pmic: document pm8450
+ pmic
+Date:   Thu, 23 Mar 2023 08:58:37 -0500
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The touchscreen can be put into a deep sleep state that prevents it from
-emitting touch irqs. Put the touchscreen into deep sleep during suspend
-if it is not marked as a wakeup source.
 
-This also fixes a problem with the touchscreen getting unresponsive after
-system resume because it pulled the interrupt line low during sleep in
-response to a touch event, thereby effectively disabling the interrupt
-handling (which triggers on the falling edge).
+On Thu, 23 Mar 2023 11:25:17 +0100, Neil Armstrong wrote:
+> Add a compatible for PM8450, commonly found with SM8450.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Maximilian Weigand <mweigand@mweigand.net>
-Reviewed-by: Alistair Francis <alistair@alistair23.me>
----
- drivers/input/touchscreen/cyttsp5.c | 129 +++++++++++++++++++++++++++-
- 1 file changed, 128 insertions(+), 1 deletion(-)
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-diff --git a/drivers/input/touchscreen/cyttsp5.c b/drivers/input/touchscreen/cyttsp5.c
-index 01dd10a596ab..3e8387f6347c 100644
---- a/drivers/input/touchscreen/cyttsp5.c
-+++ b/drivers/input/touchscreen/cyttsp5.c
-@@ -43,6 +43,7 @@
- #define HID_DESC_REG				0x1
- #define HID_INPUT_REG				0x3
- #define HID_OUTPUT_REG				0x4
-+#define HID_COMMAND_REG             0x5
- 
- #define REPORT_ID_TOUCH				0x1
- #define REPORT_ID_BTN				0x3
-@@ -68,6 +69,7 @@
- #define HID_APP_OUTPUT_REPORT_ID		0x2F
- #define HID_BL_RESPONSE_REPORT_ID		0x30
- #define HID_BL_OUTPUT_REPORT_ID			0x40
-+#define HID_RESPONSE_REPORT_ID      0xF0
- 
- #define HID_OUTPUT_RESPONSE_REPORT_OFFSET	2
- #define HID_OUTPUT_RESPONSE_CMD_OFFSET		4
-@@ -78,9 +80,15 @@
- #define HID_SYSINFO_BTN_MASK			GENMASK(7, 0)
- #define HID_SYSINFO_MAX_BTN			8
- 
-+#define HID_CMD_SET_POWER           0x8
-+
-+#define HID_POWER_ON                0x0
-+#define HID_POWER_SLEEP             0x1
-+
- #define CY_HID_OUTPUT_TIMEOUT_MS		200
- #define CY_HID_OUTPUT_GET_SYSINFO_TIMEOUT_MS	3000
- #define CY_HID_GET_HID_DESCRIPTOR_TIMEOUT_MS	4000
-+#define CY_HID_SET_POWER_TIMEOUT		500
- 
- /* maximum number of concurrent tracks */
- #define TOUCH_REPORT_SIZE			10
-@@ -100,6 +108,14 @@
- #define TOUCH_REPORT_USAGE_PG_MIN		0xFF010063
- #define TOUCH_COL_USAGE_PG			0x000D0022
- 
-+#define SET_CMD_LOW(byte, bits) \
-+	((byte) = (((byte) & 0xF0) | ((bits) & 0x0F)))
-+#define SET_CMD_HIGH(byte, bits)\
-+	((byte) = (((byte) & 0x0F) | ((bits) & 0xF0)))
-+#define SET_CMD_OPCODE(byte, opcode) SET_CMD_LOW(byte, opcode)
-+#define SET_CMD_REPORT_TYPE(byte, type) SET_CMD_HIGH(byte, ((type) << 4))
-+#define SET_CMD_REPORT_ID(byte, id) SET_CMD_LOW(byte, id)
-+
- /* System Information interface definitions */
- struct cyttsp5_sensing_conf_data_dev {
- 	u8 electrodes_x;
-@@ -179,6 +195,7 @@ struct cyttsp5_hid_desc {
- struct cyttsp5 {
- 	struct device *dev;
- 	struct completion cmd_done;
-+	struct completion cmd_command_done;
- 	struct cyttsp5_sysinfo sysinfo;
- 	struct cyttsp5_hid_desc hid_desc;
- 	u8 cmd_buf[CYTTSP5_PREALLOCATED_CMD_BUFFER];
-@@ -191,6 +208,7 @@ struct cyttsp5 {
- 	struct regmap *regmap;
- 	struct touchscreen_properties prop;
- 	struct regulator *vdd;
-+	bool is_wakeup_source;
- };
- 
- /*
-@@ -556,6 +574,84 @@ static int cyttsp5_hid_output_get_sysinfo(struct cyttsp5 *ts)
- 	return cyttsp5_get_sysinfo_regs(ts);
- }
- 
-+static int cyttsp5_enter_sleep(struct cyttsp5 *ts)
-+{
-+	int rc;
-+	u8 cmd[2];
-+	u16 crc;
-+
-+	memset(cmd, 0, sizeof(cmd));
-+
-+	SET_CMD_REPORT_TYPE(cmd[0], 0);
-+	SET_CMD_REPORT_ID(cmd[0], HID_POWER_SLEEP);
-+	SET_CMD_OPCODE(cmd[1], HID_CMD_SET_POWER);
-+
-+	rc = cyttsp5_write(ts, HID_COMMAND_REG, cmd, 2);
-+	if (rc) {
-+		dev_err(ts->dev, "Failed to write command %d", rc);
-+		return rc;
-+	}
-+
-+	rc = wait_for_completion_interruptible_timeout(&ts->cmd_command_done,
-+				msecs_to_jiffies(CY_HID_SET_POWER_TIMEOUT));
-+	if (rc <= 0) {
-+		dev_err(ts->dev, "HID output cmd execution timed out\n");
-+		rc = -ETIMEDOUT;
-+		return rc;
-+	}
-+
-+	/* validate */
-+	if ((ts->response_buf[2] != HID_RESPONSE_REPORT_ID)
-+			|| ((ts->response_buf[3] & 0x3) != HID_POWER_SLEEP)
-+			|| ((ts->response_buf[4] & 0xF) != HID_CMD_SET_POWER)) {
-+		rc = -EINVAL;
-+		dev_err(ts->dev, "Validation of the sleep response failed\n");
-+		return rc;
-+	}
-+
-+	return 0;
-+
-+}
-+
-+static int cyttsp5_wakeup(struct cyttsp5 *ts)
-+{
-+	int rc;
-+	u8 cmd[2];
-+	u16 crc;
-+
-+	memset(cmd, 0, sizeof(cmd));
-+
-+	SET_CMD_REPORT_TYPE(cmd[0], 0);
-+	SET_CMD_REPORT_ID(cmd[0], HID_POWER_ON);
-+	SET_CMD_OPCODE(cmd[1], HID_CMD_SET_POWER);
-+
-+	rc = cyttsp5_write(ts, HID_COMMAND_REG, cmd, 2);
-+	if (rc) {
-+		dev_err(ts->dev, "Failed to write command %d", rc);
-+		return rc;
-+	}
-+
-+	rc = wait_for_completion_interruptible_timeout(&ts->cmd_command_done,
-+				msecs_to_jiffies(CY_HID_SET_POWER_TIMEOUT));
-+	if (rc <= 0) {
-+		dev_err(ts->dev, "HID output cmd execution timed out\n");
-+		rc = -ETIMEDOUT;
-+		return rc;
-+	}
-+
-+	/* validate */
-+	if ((ts->response_buf[2] != HID_RESPONSE_REPORT_ID)
-+			|| ((ts->response_buf[3] & 0x3) != HID_POWER_ON)
-+			|| ((ts->response_buf[4] & 0xF) != HID_CMD_SET_POWER)) {
-+		rc = -EINVAL;
-+		dev_err(ts->dev, "Validation of the sleep response failed\n");
-+		return rc;
-+	}
-+
-+	return 0;
-+
-+}
-+
- static int cyttsp5_hid_output_bl_launch_app(struct cyttsp5 *ts)
- {
- 	int rc;
-@@ -670,6 +766,10 @@ static irqreturn_t cyttsp5_handle_irq(int irq, void *handle)
- 	case HID_BTN_REPORT_ID:
- 		cyttsp5_btn_attention(ts->dev);
- 		break;
-+	case HID_RESPONSE_REPORT_ID:
-+		memcpy(ts->response_buf, ts->input_buf, size);
-+		complete(&ts->cmd_command_done);
-+		break;
- 	default:
- 		/* It is not an input but a command response */
- 		memcpy(ts->response_buf, ts->input_buf, size);
-@@ -784,6 +884,7 @@ static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
- 	dev_set_drvdata(dev, ts);
- 
- 	init_completion(&ts->cmd_done);
-+	init_completion(&ts->cmd_command_done);
- 
- 	/* Power up the device */
- 	ts->vdd = devm_regulator_get(dev, "vdd");
-@@ -830,8 +931,11 @@ static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
- 		return error;
- 	}
- 
--	if (device_property_read_bool(dev, "wakeup-source"))
-+	if (device_property_read_bool(dev, "wakeup-source")) {
- 		device_init_wakeup(dev, true);
-+		ts->is_wakeup_source = true;
-+	} else
-+		ts->is_wakeup_source = false;
- 
- 	error = cyttsp5_startup(ts);
- 	if (error) {
-@@ -884,6 +988,29 @@ static const struct i2c_device_id cyttsp5_i2c_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, cyttsp5_i2c_id);
- 
-+static int __maybe_unused cyttsp5_suspend(struct device *dev)
-+{
-+	struct cyttsp5 *ts = dev_get_drvdata(dev);
-+
-+	if (!ts->is_wakeup_source)
-+		cyttsp5_enter_sleep(ts);
-+	return 0;
-+}
-+
-+static int __maybe_unused cyttsp5_resume(struct device *dev)
-+{
-+	struct cyttsp5 *ts = dev_get_drvdata(dev);
-+	struct i2c_client *client = to_i2c_client(dev);
-+	int error;
-+
-+	if (!ts->is_wakeup_source)
-+		cyttsp5_wakeup(ts);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(cyttsp5_pm, cyttsp5_suspend, cyttsp5_resume);
-+
- static struct i2c_driver cyttsp5_i2c_driver = {
- 	.driver = {
- 		.name = CYTTSP5_NAME,
--- 
-2.39.2
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-2-3ead1e418fe4@linaro.org
+
+
+pm8941@0: gpio@c000: 'otg' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dtb
+
+pm8941@0: 'pwrkey@800' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+	arch/arm/boot/dts/qcom-apq8074-dragonboard.dtb
+	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dtb
+	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
+	arch/arm/boot/dts/qcom-msm8974pro-oneplus-bacon.dtb
+	arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dtb
+	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-amami.dtb
+	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-honami.dtb
+
+pma8084@0: 'pwrkey@800' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+	arch/arm/boot/dts/qcom-apq8084-ifc6540.dtb
+	arch/arm/boot/dts/qcom-apq8084-mtp.dtb
+	arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dtb
+
+pmic@0: 'extcon@1300' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+	arch/arm64/boot/dts/qcom/apq8016-sbc.dtb
+	arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dtb
+	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dtb
+	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dtb
+	arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dtb
+	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dtb
+	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dtb
+	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dtb
+	arch/arm64/boot/dts/qcom/msm8916-mtp.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-e5.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-e7.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-grandmax.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-j5x.dtb
+	arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dtb
+	arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dtb
+	arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dtb
+	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dtb
+	arch/arm/boot/dts/qcom-apq8016-sbc.dtb
+	arch/arm/boot/dts/qcom-msm8916-samsung-e5.dtb
+	arch/arm/boot/dts/qcom-msm8916-samsung-e7.dtb
+	arch/arm/boot/dts/qcom-msm8916-samsung-grandmax.dtb
+	arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dtb
+
+pmic@2: adc@3100:adc-chan@8:qcom,pre-scaling: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb
+
+pmic@2: adc@3100: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb
+
+pmic@2: adc@4500:compatible: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
+	arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtb
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dtb
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dtb
+
+pmic@2: adc@4500: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dtb
+	arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtb
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dtb
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dtb
+
+pmic@2: gpio@c000:button-backlight-state: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb
+
+pmic@3: leds@d800:interrupt-names:0: 'ovp' was expected
+	arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dtb
+	arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dtb
+	arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-suzu.dtb
+	arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dtb
+
+pmic@3: leds@d800:interrupt-names: ['ovp'] is too short
+	arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
+	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
+	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
+	arch/arm64/boot/dts/qcom/sdm670-google-sargo.dtb
+
+pmic@3: leds@d800:interrupt-names: ['short'] is too short
+	arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dtb
+	arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dtb
+	arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-suzu.dtb
+	arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dtb
+
+pmic@3: leds@d800:interrupts: [[3, 216, 1, 1]] is too short
+	arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
+	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
+	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
+	arch/arm64/boot/dts/qcom/sdm670-google-sargo.dtb
+
+pmic@3: leds@d800:interrupts: [[3, 216, 2, 1]] is too short
+	arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dtb
+	arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dtb
+	arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-suzu.dtb
+	arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dtb
+
+pmic@3: leds@d800: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	arch/arm64/boot/dts/qcom/msm8953-motorola-potter.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dtb
+	arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dtb
+	arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dtb
+
+pmic@3: regulators: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 's2@1700' were unexpected)
+	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dtb
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
+	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dtb
+	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dtb
+
+pmic@3: regulators: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-101.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-10.dtb
+	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
+
+pmic@3: wled@d800:interrupt-names:0: 'ovp' was expected
+	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dtb
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
+	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-101.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-10.dtb
+	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dtb
+	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dtb
+	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
+
+pmic@3: wled@d800:interrupt-names: ['short'] is too short
+	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dtb
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
+	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-101.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-10.dtb
+	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dtb
+	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dtb
+	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
+
+pmic@3: wled@d800:interrupts: [[3, 216, 2, 1]] is too short
+	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dtb
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dtb
+	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-101.dtb
+	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-10.dtb
+	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dtb
+	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dtb
+	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dtb
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3.dtb
+	arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dtb
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-scorpio.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
+
+pmic@3: wled@d800: 'label' is a required property
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
+
+pmic@3: wled@d800: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dtb
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dtb
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dtb
+
+pmic@5: 'led-controller@d300' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'pinctrl-[0-9]+', 'pon@[0-9a-f]+$'
+	arch/arm64/boot/dts/qcom/sc7180-idp.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-wifi.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-ti.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-parade.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-ti.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
+	arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb
+
+pmic@5: leds@d800:interrupt-names: ['ovp'] is too short
+	arch/arm64/boot/dts/qcom/sc7180-idp.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-wifi.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-ti.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-parade.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-ti.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
+	arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb
+
+pmic@5: leds@d800:interrupts: [[5, 216, 1, 1]] is too short
+	arch/arm64/boot/dts/qcom/sc7180-idp.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360-wifi.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-ti.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-parade.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-ti.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dtb
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
+	arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb
 
