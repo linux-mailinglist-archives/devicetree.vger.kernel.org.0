@@ -2,74 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 554FC6C6A3A
+	by mail.lfdr.de (Postfix) with ESMTP id A17C66C6A3B
 	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 14:59:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231861AbjCWN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 09:59:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
+        id S231670AbjCWN7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 09:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231996AbjCWN6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:58:48 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FA82685E;
-        Thu, 23 Mar 2023 06:58:41 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-17ec8963db8so7375fac.8;
-        Thu, 23 Mar 2023 06:58:41 -0700 (PDT)
+        with ESMTP id S232004AbjCWN6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:58:53 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA419EC7E;
+        Thu, 23 Mar 2023 06:58:47 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id d22-20020a9d5e16000000b0069b5252ced7so12141507oti.13;
+        Thu, 23 Mar 2023 06:58:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679579921;
+        d=1e100.net; s=20210112; t=1679579927;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=3EdY5iCPNRdL2TyeF/Jo7q7w4WXQEC68Fw8bFxtFUC0=;
-        b=gw0l4X4Hg0CUQuBES4DYIfpSLSTLKqQNUwrGwFLFM0fRw0X7OqOaMkrCBwgmzwyPO1
-         5P+Jc8Dpwu3w7JxO/d3u6ylXkbaLNAfOoyVFL9j99Lmvg+lN3jVtXj8lNZvB0BucV1PP
-         qtDnfBm+gVrt2zR0qm/QeUdMt/iSkm9fnuz9e3SxB4WmmXTXZa/3mbpOa+YnsLSbAxZT
-         dlOxbfYjEtprhuCt6re/hp4iVfwpNn/UTUYdyu8vhN5ZBGViQR0WIVF7y2s7PDk+iB2e
-         0Pi9L7Tuco76T8ZhTOXTT1sHEOAod4G60kd18yxopnoiK84vqxbhTC8YHxKt+8gSIdE5
-         A9CQ==
-X-Gm-Message-State: AAQBX9c+hsF96kJwkjDSztIvowMSy0ME3fvt4iZ8n0BM2Kl8ZjJNvRhv
-        EspEDaSebfIr/+Yaux9Vxg==
-X-Google-Smtp-Source: AKy350ahvKVl/qTqdPvklQDydqu6nw60l4wULSmXqHKjZDmyQTqFM7vvOu4LY79a97GpbICq0EgPrQ==
-X-Received: by 2002:a05:6870:b006:b0:178:fe16:4e6c with SMTP id y6-20020a056870b00600b00178fe164e6cmr1979157oae.50.1679579921108;
-        Thu, 23 Mar 2023 06:58:41 -0700 (PDT)
+        bh=iftv/UVVJj/lSHrLqdwit449ySjt+SsZDKPn5SnNnGk=;
+        b=4HfNYiNIZS1avMpt3YUTkTkJNPuf67o2/xVxhmvRkYfnBAwmOfGwvVVZbOfUIB6ThQ
+         ijsTXfXL8vOrepXI9dpvS/7CvOTj4ueFo4mbmCQfFgHvMq3vu5r5jgxy6N5wPIzS/JWi
+         ZQH/+7V5jTMGpclJotKveqXnAuD1Gfz6Aoj/MEkBgnEoguFQJXED1/qCeND2Pa5NO/xn
+         xhKG4J/h/LPX4R/jhRXKUufqILLK3oylmy1QJkl0VISrykmefQtiWNGHDNr2+jnrqJL4
+         b9ZO9Fk2yDAwzcRscJRGHTvrthkzDXtDLz+em2++0XSBDUM7bZT5ZOhTokA1idyc6xi+
+         2USA==
+X-Gm-Message-State: AO0yUKU+xrr2d6s6Tjzchvr26IZR5TbkdxTgmmMhkg+iyvfzjU9QkrT1
+        INHneUtnEH85FJeT6uLwAGlR1uCorw==
+X-Google-Smtp-Source: AK7set+Mmtab+QowtbtUIs0AkQgw44ebIs/y/ueeb1Uidwvrh0fuWUUGHnR6wTLtq4V1opvclJ4LbQ==
+X-Received: by 2002:a9d:7b46:0:b0:69f:9036:bec9 with SMTP id f6-20020a9d7b46000000b0069f9036bec9mr3449148oto.30.1679579926956;
+        Thu, 23 Mar 2023 06:58:46 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id vd21-20020a0568708f9500b0017ae1aede32sm6104388oab.46.2023.03.23.06.58.39
+        by smtp.gmail.com with ESMTPSA id p24-20020a9d6958000000b0069f0794861asm6258216oto.63.2023.03.23.06.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 06:58:40 -0700 (PDT)
-Received: (nullmailer pid 3103740 invoked by uid 1000);
+        Thu, 23 Mar 2023 06:58:46 -0700 (PDT)
+Received: (nullmailer pid 3103744 invoked by uid 1000);
         Thu, 23 Mar 2023 13:58:37 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     linux-i2c@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, Peter Rosin <peda@axentia.se>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Avri Altman <avri.altman@wdc.com>, Sean Paul <sean@poorly.run>,
-        freedreno@lists.freedesktop.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-scsi@vger.kernel.org,
-        Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-1-3ead1e418fe4@linaro.org>
-References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
- <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-1-3ead1e418fe4@linaro.org>
-Message-Id: <167957963042.3095255.5445133387110199668.robh@kernel.org>
-Subject: Re: [PATCH 1/8] dt-bindings: display: msm: sm8450-mdss: Fix DSI
- compatible
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20230323115356.2602042-2-patrick.rudolph@9elements.com>
+References: <20230323115356.2602042-1-patrick.rudolph@9elements.com>
+ <20230323115356.2602042-2-patrick.rudolph@9elements.com>
+Message-Id: <167957963187.3095349.11637520534710691125.robh@kernel.org>
+Subject: Re: [PATCH v10 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x
+ variants
 Date:   Thu, 23 Mar 2023 08:58:37 -0500
 X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -82,15 +68,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 23 Mar 2023 11:25:16 +0100, Neil Armstrong wrote:
-> The DSI compatible changed between patchset revisions, but that wasn't
-> reflected in the bindings. Fix it.
+On Thu, 23 Mar 2023 12:53:53 +0100, Patrick Rudolph wrote:
+> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
+> chips. The functionality will be provided by the exisintg pca954x driver.
 > 
-> 0eda3c6cb1c5 ("dt-bindings: display/msm: add support for the display on SM8450")
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> While on it make the interrupts support conditionally as not all of the
+> existing chips have interrupts.
+> 
+> For chips that are powered off by default add an optional regulator
+> called vdd-supply.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/i2c/i2c-mux-pca954x.yaml         | 43 ++++++++++++++++---
+>  1 file changed, 38 insertions(+), 5 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -99,16 +90,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.example.dtb: display-subsystem@ae00000: phy@ae94400:compatible:0: 'qcom,sm8450-dsi-phy-5nm' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.example.dtb: display-subsystem@ae00000: phy@ae96400:compatible:0: 'qcom,sm8450-dsi-phy-5nm' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
-Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.example.dtb: /example-0/display-subsystem@ae00000/phy@ae94400: failed to match any schema with compatible: ['qcom,dsi-phy-5nm-8450']
-Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.example.dtb: /example-0/display-subsystem@ae00000/phy@ae96400: failed to match any schema with compatible: ['qcom,dsi-phy-5nm-8450']
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.example.dtb: i2c-mux@74: interrupts: False schema does not allow [[17, 8]]
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.example.dtb: i2c-mux@74: #interrupt-cells: False schema does not allow [[2]]
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.example.dtb: i2c-mux@74: interrupt-controller: False schema does not allow True
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-1-3ead1e418fe4@linaro.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230323115356.2602042-2-patrick.rudolph@9elements.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
