@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 776146C64ED
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 11:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62E346C64FA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 11:26:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjCWK0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 06:26:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43132 "EHLO
+        id S231405AbjCWK0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 06:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231363AbjCWKZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 06:25:55 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B371C31C
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:25:34 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id d17so11425330wrb.11
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:25:34 -0700 (PDT)
+        with ESMTP id S231327AbjCWK0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 06:26:07 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F921C7DB
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:25:35 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id y14so19866874wrq.4
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:25:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679567133;
+        d=linaro.org; s=google; t=1679567134;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JLUTPlE00BSnjiP+YKOutfDTs6tTX6QAssulhGKRHLM=;
-        b=R48HHx1wdjnhsHgZ4ALbYG0+8j5SMxooMuHnduChZHWwZ0OZgwykIJ+MkPtslt7r0N
-         /wF/FuDu1ONXfoH65B19fv9bddghDB7pFtm3bKCiTIXM5bFO67PiNTUphoTFh78n+Aji
-         st7CqyEQ014AMyKaW2V7iBNOgL/BDbCnnVnsZU3MnLSQct4Y6WEN8uVBA35bnY87IGV3
-         A1ZmLm3Z5MbuNfateEye6dFjAf1p2Sg1hZ/TOJ8hhZ418TCTE77tCkNqeKRG9SNih5HO
-         6QRbR6dIRE8+jVvZqg7fVfRpp5XmJqLydMorfJTPnBYb5h8y9L18rlhp2WLeKvgHr02z
-         Ho7Q==
+        bh=FaktxrHqSVBJvgr5m72rtimmU8b1rgEPNt97tFbcEsI=;
+        b=RA/Lgk4VwDZLxmXqWCBeVhDkzv9+CRUnqPoo9qv4UtG2XacS8baIy+fTIVEV82opdv
+         CAjK2Ah7Dy9KSx5k2zPAgeq2dxSnBLeGXdmEf6/8/VZU0eTtKhmridKEGg/n2wWxlFVF
+         pH68Xtcbv5kZXA82o/cTGLfrcXJIPqgeBLsOdGqziepgcUDnC0IlmjLXgsrIjUvujNKy
+         ATRzK4Chla46roFSYqSZ9kQ1tl1zVSDCzmU5m/eael73KeqBOf1HLH4Mlam0PHYF2S7s
+         MZj+/aYc1u6miyHQ4A6newI6jdqIkfLsMq0vtI8rqmqe7vJz2KYOzrcRo53ggOdnlW/a
+         QhQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679567133;
+        d=1e100.net; s=20210112; t=1679567134;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JLUTPlE00BSnjiP+YKOutfDTs6tTX6QAssulhGKRHLM=;
-        b=5rTTJd+Rd6aMfaMQA+P9Uy/hLzqd7aeyYIx9fVrawz706WO+DMQWvjCmm6vNCU5De+
-         885DhckuHk3gY2ZurZ2oS8P5ySj3E0cB5a4Jj6SJPVdJ7mPP5JgVpeV4eadXSMtudTjH
-         ThYQmImIiT3OyWxnUmJaQco0VLmJFucn2sb3yuoZQBez81j9VKvhCwqiaXT0NoNns/hH
-         kol7ScVQ1UeSQ71OicOOMIE1Q54lPDKoQ74eg6Ya85glH1q3jn+q5WaHCuAqhqzq5LUB
-         0NRlLYOMSGiNj7V32/Oju/4mRHIljqUyw/yLG8GRqDyR/A4gOouvOzQR5Bey1dR2VyH9
-         AJ5g==
-X-Gm-Message-State: AAQBX9f084emEJiwUOdQiWL1nPRCDELfs2Kj9uTQOxHDtBxM5iZzowiZ
-        4K0024/YGhgLIEf7w7BH+qBc3A==
-X-Google-Smtp-Source: AKy350ZmFe/sap13zmBOBFD0LzVyhIlb1i6EkPaP2YxaME1R9IuEZr2IyS123FR1V2zVbBWgDAb8MQ==
-X-Received: by 2002:a5d:6709:0:b0:2cf:e449:1a9e with SMTP id o9-20020a5d6709000000b002cfe4491a9emr1930821wru.30.1679567132966;
-        Thu, 23 Mar 2023 03:25:32 -0700 (PDT)
+        bh=FaktxrHqSVBJvgr5m72rtimmU8b1rgEPNt97tFbcEsI=;
+        b=q9NULXLzujsUGchtB3EMt3t0t8n2/u+XvOEy+nRQmjkrNDjUtgGWQW6ny+iC8HSmj6
+         fT+6otY2k8N0PuV7AebmlC87o6QaZ9/bNK1cTQAXvE2XifVBTbOkwlsVH5OsHodCbg2Y
+         YtJtNi+dHsuJ2VKYxwauzuiWBpDiUSKid0KjTuZt9by79s9uQUiXfAUdmixIWs4cwtK0
+         KbrH8RwaH3mZauV4fjeEWrBeSocRg1uQtTKUt7lUqo4tsko1CDC5uCUwJ0lf812W2eTy
+         b6+RpN/DR0O8AbEx/jRrdPWjKBkhmAzBjvPe3pF20vmSK5fXvHPRn6L2tZeb0kLMkM1q
+         4gTA==
+X-Gm-Message-State: AAQBX9euFsW3UhfEtWlfXr4P4097FfZll3+TaNJ0EjbL+v2SU0jAXiX5
+        tniuXjbZfxalWxqPuZ/DvdioDQ==
+X-Google-Smtp-Source: AKy350YQA+jMkbW6mQuuJtWYSx09at+iDrv03avXAv4uZ7HMAI6MrP6YJqgswmSR4K9JmG855UqLyA==
+X-Received: by 2002:adf:ff8f:0:b0:2da:53e3:57d1 with SMTP id j15-20020adfff8f000000b002da53e357d1mr2029999wrr.62.1679567134135;
+        Thu, 23 Mar 2023 03:25:34 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id e23-20020a5d5957000000b002cfefa50a8esm15753530wri.98.2023.03.23.03.25.31
+        by smtp.gmail.com with ESMTPSA id e23-20020a5d5957000000b002cfefa50a8esm15753530wri.98.2023.03.23.03.25.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 03:25:32 -0700 (PDT)
+        Thu, 23 Mar 2023 03:25:33 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 23 Mar 2023 11:25:21 +0100
-Subject: [PATCH 6/8] arm64: dts: qcom: sm8450: remove invalid npl clock in
- vamacro node
+Date:   Thu, 23 Mar 2023 11:25:22 +0100
+Subject: [PATCH 7/8] arm64: dts: qcom: sm8450: remove invalid reg-names
+ from ufs node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-6-3ead1e418fe4@linaro.org>
+Message-Id: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-7-3ead1e418fe4@linaro.org>
 References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
 In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -91,33 +91,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Fixes the following DT bindings check error:
-codec@33f0000: clocks: [[137, 57, 1], [137, 102, 1], [137, 103, 1], [137, 70, 1]] is too long
-codec@33f0000: clock-names: 'oneOf' conditional failed, one must be fixed:
-	        ['mclk', 'macro', 'dcodec', 'npl'] is too long
-
-The implementation was checked and this npl clock isn't used for the VA macro.
+ufshc@1d84000: Unevaluated properties are not allowed ('reg-names' was unexpected)
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index bcb51e612261..ef9bae2e6acc 100644
+index ef9bae2e6acc..8ecc48c7c5ef 100644
 --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2321,9 +2321,8 @@ vamacro: codec@33f0000 {
- 			reg = <0 0x033f0000 0 0x1000>;
- 			clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
- 				 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
--				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
--				 <&q6prmcc LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
--			clock-names = "mclk", "macro", "dcodec", "npl";
-+				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+			clock-names = "mclk", "macro", "dcodec";
- 			assigned-clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
- 			assigned-clock-rates = <19200000>;
- 
+@@ -3996,7 +3996,6 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				     "jedec,ufs-2.0";
+ 			reg = <0 0x01d84000 0 0x3000>,
+ 			      <0 0x01d88000 0 0x8000>;
+-			reg-names = "std", "ice";
+ 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&ufs_mem_phy_lanes>;
+ 			phy-names = "ufsphy";
 
 -- 
 2.34.1
