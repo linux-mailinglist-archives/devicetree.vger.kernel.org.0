@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BAA96C66C6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 12:38:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B72BF6C670F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 12:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbjCWLh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 07:37:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
+        id S229639AbjCWLtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 07:49:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbjCWLh4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 07:37:56 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215DD12BDE;
-        Thu, 23 Mar 2023 04:37:54 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id j11so27237078lfg.13;
-        Thu, 23 Mar 2023 04:37:54 -0700 (PDT)
+        with ESMTP id S229485AbjCWLtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 07:49:07 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14664305DF;
+        Thu, 23 Mar 2023 04:49:06 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id s8so27031956lfr.8;
+        Thu, 23 Mar 2023 04:49:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679571472;
+        d=gmail.com; s=20210112; t=1679572144;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9wqfCTQu6TpSkQBuufTN+FDVnW3u9zukJQMSdPwg2XI=;
-        b=Op0RbaHTvg7xYxUMJ5x37/ssOSmmCk314Ar6tZMsow7cQf4VpukR5WbwpoKvNPlu2w
-         qpLueWiBUoznP+bidlh55yerR8HD4zeejtChefwtTSe1QazWFMbdyGnY7mUCCXIN+C5p
-         UtnU1MO4sn6fjSneBxTpdUUWbf/OTjbDO2fQyhJFMTedWk4Q8Hz0fa2g4qKvUuPB0R0L
-         pOA5cNoFm5zLcVhgdJ0m8/KbohJNPJzBwmiyVYWwPrA/h+CvdZpyS1elXEd1H4aTKx2K
-         M5V9cImzOfpBDW+UvHUuaXJGB+wAOK6qAO5qwuxxINZy8nyW6mJW1jCqvnH/gYAcr4fB
-         81Lw==
+        bh=P98gCKiuXHcAXO0IW30QLmGZe+1zDOszgmMTppwep1Y=;
+        b=kOLDCZtRhvL2t2ixB4Ecmb2mYtVsQbpH9hOUXBtXyzSDEwmtf3LohWwaXB5dq2O2zw
+         Z6PX8n6kUNNZQAxIdWGhkryNkYVIJMNdbbkGSvKKJdrMbqgpZ68Iw+hpNL8N9hZ2ghlv
+         UMg9yh/qiaxJFDaHnrLOLMeFbRCKOLWUThRxhs95006FEWVpAxNVSlxPNPsDdXvp3LHP
+         9KIG35rbALoZAeyE03QVGRc8OPPQkXMkXoxr0uCRbOepeaI6PUowMtYrDYQDZR4uu8y1
+         e8WOM7sl8eXeFkrEA2OdFzPcaud8gkL2UgUkgv2iVthLNW+zTEA4biOipmqZ+8KroTg4
+         o4Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679571472;
+        d=1e100.net; s=20210112; t=1679572144;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9wqfCTQu6TpSkQBuufTN+FDVnW3u9zukJQMSdPwg2XI=;
-        b=Unbvszsm7eLglGA1LnP6fJu/N3jEBKeqP5T62uf83AX/NevSgXKkZgXRB70MSXoNLa
-         g6TkGur8DRXD2ZstJGHX/H9hSd2J96izAZVK46J+8sji6m6W44kO1LIOsMYTIvgiwDn9
-         N6Ku4cjlll3GwwIu/j9YOGTkDXbv7fUCOPXYfY1waxZzRKoweFsr4Gec1syTewcX23L5
-         O+ien4cHkO9n/UdYxjHYXBfAXr5xCyTCLUIaqQGK1CCOr16XSaiS9vid7Pk7j1HhTQQh
-         RrawrcCylXj3FcNDDdqasi4DcO6ImLmVtM3zHZdV8+OdIhltkQNX3U/Xj4/igpsUkcl+
-         Ma5Q==
-X-Gm-Message-State: AO0yUKUaKjsD5nuAIGWcDApTUoeyL5CevFZg3JC5uYBsyG/r/w4YMpUj
-        NHicp+w2woNCATJVLNoO1Yc=
-X-Google-Smtp-Source: AK7set/GwotgsUGGJrT8NBvp53IUC4qj6qO7Ly+8+IGCS8e+OHcK+s+ODAxaZ68ZV4PenA/B0IUpqw==
-X-Received: by 2002:a05:6512:102d:b0:4e7:fa8a:886e with SMTP id r13-20020a056512102d00b004e7fa8a886emr2704920lfr.51.1679571472098;
-        Thu, 23 Mar 2023 04:37:52 -0700 (PDT)
+        bh=P98gCKiuXHcAXO0IW30QLmGZe+1zDOszgmMTppwep1Y=;
+        b=adoiVxf81FB6/O47VQGHXyBAARA1p6UGR6EFJTEdPDMxvP8cy80UZXt78PfDSqepUK
+         g8pI6/TagvjbLFC/3Clav3KtGND1UelQKjGVLd63krKwrfYGH5U+DbJ6B+2o9O0iLIol
+         cnMDIVhcFhnumtBG8vUVpHJ32IwxkSOHD1SB/9IFRXhMszi99zW4M1VAS2nv2dJRDiHG
+         d5NHUMvYLM8CAgOaiyrTqol5CHEl2mOKyHFVX7H3HH0iByeKq0a2f2lokEy4SLnWugtg
+         9XO7h7aTpEda0UURga0a8+2csQLkAkh7Sh1DqsjtDV7usxoPWAD3AglWWkIuJp4woSL6
+         JAkQ==
+X-Gm-Message-State: AO0yUKXpJek34Ky2Jz9ljwKEC0oO9ZFB5F5WdvMqJKwhZwQH/5vPYE6c
+        2eaeslVWsJ8nVz3RW0iuhr8=
+X-Google-Smtp-Source: AK7set+OZ5RohXKrqoNxbr5LNz9IYAEZzXjD7ahv2qbaEU7/L9WaV1ILCB8rtLSxCgXFO6/YSbF/bA==
+X-Received: by 2002:ac2:43d3:0:b0:4a4:68b9:1a14 with SMTP id u19-20020ac243d3000000b004a468b91a14mr2636974lfl.60.1679572143721;
+        Thu, 23 Mar 2023 04:49:03 -0700 (PDT)
 Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id w9-20020ac254a9000000b004e845b49d81sm2898087lfk.140.2023.03.23.04.37.50
+        by smtp.gmail.com with ESMTPSA id c3-20020ac244a3000000b004e792045b3dsm2912464lfm.106.2023.03.23.04.49.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 04:37:51 -0700 (PDT)
-Date:   Thu, 23 Mar 2023 14:37:48 +0300
+        Thu, 23 Mar 2023 04:49:03 -0700 (PDT)
+Date:   Thu, 23 Mar 2023 14:49:00 +0300
 From:   Serge Semin <fancer.lancer@gmail.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
@@ -71,16 +71,16 @@ Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         devicetree@vger.kernel.org, netdev@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 09/16] dt-bindings: net: dwmac: Prohibit
- additional props in AXI-config
-Message-ID: <20230323113748.bj45qbvut2cthvyr@mobilestation>
+Subject: Re: [PATCH net-next 10/16] dt-bindings: net: dwmac: Add AXI-bus
+ properties constraints
+Message-ID: <20230323114900.l56bqiazkc5llvql@mobilestation>
 References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-10-Sergey.Semin@baikalelectronics.ru>
- <78224241-00a3-2e8e-4763-603b27ac3b83@linaro.org>
+ <20230313225103.30512-11-Sergey.Semin@baikalelectronics.ru>
+ <c9577e01-b6a0-48d9-173e-2eddffd8019c@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <78224241-00a3-2e8e-4763-603b27ac3b83@linaro.org>
+In-Reply-To: <c9577e01-b6a0-48d9-173e-2eddffd8019c@linaro.org>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -91,42 +91,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 16, 2023 at 09:06:04AM +0100, Krzysztof Kozlowski wrote:
+On Thu, Mar 16, 2023 at 09:06:32AM +0100, Krzysztof Kozlowski wrote:
 > On 13/03/2023 23:50, Serge Semin wrote:
-> > Currently DT-schema of the AXI-bus config sub-node prohibits to have
-> > unknown properties by using the unevaluatedProperties property. It's
-> > overkill for the sub-node which doesn't use any combining schemas
-> > keywords (allOf, anyOf, etc). Instead more natural is to use
-> > additionalProperties to prohibit for that.
+> > Currently none of the AXI-bus non-boolean DT-properties have constraints
+> > defined meanwhile they can be specified at least based on the
+> > corresponding device configs. Let's do that:
+> > + snps,wr_osr_lm/snps,rd_osr_lmt - maximum number of outstanding AXI-bus
+> > read/write requests is limited with the IP-core synthesize parameter
+> > AXI_MAX_{RD,WR}_REQ. DW MAC/GMAC: <= 16, DW Eth QoS: <= 32, DW xGMAC: <=
+> > 64. The least restrictive constraint is defined since the DT-schema is
+> > common for all IP-cores.
+> > + snps,blen - array of the burst lengths supported by the AXI-bus. Values
+> > are limited by the AXI3/4 bus standard, available AXI/System bus CSR flags
+> > and the AXI-bus IP-core synthesize config . All DW *MACs support setting
+> > the burst length within the set: 4, 8, 16, 32, 64, 128, 256. If some burst
+> > length is unsupported a zero value can be specified instead in the array.
 > > 
 > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index 89be67e55c3e..d1b2910b799b 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -466,7 +466,6 @@ properties:
-> >  
-> >    stmmac-axi-config:
-> >      type: object
-> > -    unevaluatedProperties: false
-> >      description:
-> >        AXI BUS Mode parameters.
-> >  
-> > @@ -518,6 +517,8 @@ properties:
-> >          description:
-> >            rebuild INCRx Burst
-> >  
-> > +    additionalProperties: false
 > 
-> But why moving it? Keep the same placement.
+> 
+> >  
+> >        snps,kbbe:
+> >          $ref: /schemas/types.yaml#/definitions/uint32
+> > @@ -501,6 +507,8 @@ properties:
+> >            this is a vector of supported burst length.
+> >          minItems: 7
+> >          maxItems: 7
+> > +        items:
+> > +          enum: [256, 128, 64, 32, 16, 8, 4, 0]
+> 
 
-No firm justification except that vast majority of DT bindings have
-that keyword placed at the tail of the schema body. Anyway I'll get
-the it back to the original line.
+> Increasing order.
+
+Ok.
 
 -Serge(y)
 
