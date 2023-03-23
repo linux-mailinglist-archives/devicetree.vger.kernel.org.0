@@ -2,100 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBB36C709F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 20:01:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFC776C70C3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 20:09:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbjCWTBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 15:01:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34808 "EHLO
+        id S229773AbjCWTJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 15:09:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230217AbjCWTBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 15:01:43 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7870F32CE4;
-        Thu, 23 Mar 2023 12:01:39 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id s13so1978194wmr.4;
-        Thu, 23 Mar 2023 12:01:39 -0700 (PDT)
+        with ESMTP id S231665AbjCWTJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 15:09:08 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23903F977
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 12:08:40 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id h8so91049340ede.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 12:08:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679598098;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eLv+OdWP2/q4icqUygxqdKy5WVqm1CK1qz/X+1uMQ6s=;
-        b=cu5m+OlbboTOC7NIqSEcp8iW3kmX+jLP0i9ZshSDb0YwwsjhG1UnGQihGdnCsHvzxT
-         E5fzMruGiyGXORVsaVQVBbyi7036u7U5L4qTaq5l56LuyOE9nazVT64HJCGkSLuVN93r
-         1B4AKbmo7E/IH5irUJwFpldHtDZ0+Orn/pNa9BAq9838vXVb3y7SkxG89vediufY01gv
-         iT/xH+JDL/vm8bbKhZUAcxrvBAsVgYJLNDWRSp5CWvQ6mQIAPqudwQWWgSduywYWAvd6
-         ICah9KqPXqaujDhUvMUhzr0TOCO/Cv+vmxBx11QIL752t6GbzmIoKJBQf+QxYLTe/Kgd
-         cVoA==
+        d=linaro.org; s=google; t=1679598515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wlaSHC/GZ40AJ+I7acfZOLrawxc/It03kMRHOBlNclw=;
+        b=XnCm8WzKPM6Z6XZq/Mgt1Yud70FHTvqpahg/keuOmzj7l3gAcX86bv6wdM7oRtuu5b
+         UxVqK299RuSTq4ZftJODgjJWyZz2h6apTDq5DCiZ3Dvv/TZvl8tkWuPGryeLbWsaxjsM
+         Xux7xyjvi870jVpfe6rInnmT8JaZ6Fab7hHDxk7ms7pvvkqCYclVYsFz/iPovhjGrBaH
+         dCYorRYY3iyTJnSiX7KJHn1+mrrlj6t8kP1DPOLfuTes/eRqL5FRZ7ll0DPYj+3q0Xuj
+         fyouncGtyozVprZgwYuRsi4ew3DTwXkjyfPh19uASDBp/KT7OykCk+RaXIfgl9YnGFk4
+         7irQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679598098;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eLv+OdWP2/q4icqUygxqdKy5WVqm1CK1qz/X+1uMQ6s=;
-        b=C6Hsij6utfA9CyJc46hfE7y/t5sMaQZCIkKIKHk1/bFyVl6wgRW1hVJJI0NTciOwyh
-         lLEbJci/8xIWLT8N2PluipkbxjECeH2S10PhFYG+e9iiZbuNtngqOT0jr4dy/tJRTeN7
-         +e3NS/2va/OvnKiW+Q64UoE6LavQ/Ym8mbQd+sT1XLJpxfJCtJDhCEUaHw4Ba6oqfwWj
-         sigV0rPS+37Q8HW8gz6WC7BN6qjkUifdxrlysrc8qJBRedO4NJnGTYXt4fKaAahDYAXE
-         FvqnkXCBV/wQrH/db5DupseVbjapukblrtrXuL2ZE0Q1NpMaCXKgDvJns8DjhMmIY55W
-         YZ5w==
-X-Gm-Message-State: AO0yUKW+l5licVpScYAPpG4bpB4txIuktVJuR1EXI1bIKmhILeUVJ16y
-        24PkFNW6DnAi9XOg0kDPC5M=
-X-Google-Smtp-Source: AK7set+rYnmeyHLDI8kRSWajUorF8AQNiBslvOhL1B8d1ZJbljrj8VFTESbYvCOCBRF9m/MSyyRPaw==
-X-Received: by 2002:a05:600c:22d4:b0:3ed:b56c:9496 with SMTP id 20-20020a05600c22d400b003edb56c9496mr523314wmg.31.1679598097756;
-        Thu, 23 Mar 2023 12:01:37 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id x11-20020a05600c21cb00b003ede3e54ed7sm2724420wmj.6.2023.03.23.12.01.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 12:01:37 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Vincent Shih <vincent.sunplus@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-usb@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-can@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: Drop unneeded quotes
-Date:   Thu, 23 Mar 2023 20:01:34 +0100
-Message-ID: <4814446.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20230320233955.2921179-1-robh@kernel.org>
-References: <20230320233955.2921179-1-robh@kernel.org>
+        d=1e100.net; s=20210112; t=1679598515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wlaSHC/GZ40AJ+I7acfZOLrawxc/It03kMRHOBlNclw=;
+        b=1N1MkEv4oLv6UbkQBQChIUj0U2PSmkasd5VYV87/ykQ2z7A1LGI7PfxAM2d8tRS4A0
+         SQ8EO6o3mL0jOS0TsqTTZr9duUUFAdkK/G7Amu09jvb0opcmtzFqUhrbfjtY0/9hnSyx
+         iX+UMKOICv8aKJ0dsto1Ezrl9URBUt58FFndNKI8B9bylAHt2ZCr8FPLyaBtLwiTo4jw
+         7n1WzScPUAnDQtAMnWkHLidD18poYkyogxoTxvsEHlV75xO9rm1AvlR5aIAwzAb1r7xS
+         MNumgPSDMHwmZ1nXBIxoq8cDpJPbAoLeS0t9PAxZ6NfJyy4MOKBZfGoyBBP+7tqycTxI
+         G6kg==
+X-Gm-Message-State: AAQBX9coEKMqZZG1qOMNyFPF1UtpU56vDXBDQvfn7kOvDmH6MXPXrrwp
+        smCx6Pph2kSrwbfzHV3/qkUExw==
+X-Google-Smtp-Source: AKy350ZkZxvsbKP4lr6Lm1syHYK4RwLTk/Fdc2KC/QE9jWsDL8boYFCHwOoH+RD52hzOd1U6dNPluA==
+X-Received: by 2002:a17:906:8486:b0:92b:2389:46bd with SMTP id m6-20020a170906848600b0092b238946bdmr115800ejx.21.1679598514822;
+        Thu, 23 Mar 2023 12:08:34 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d350:23b1:cb94:f39d? ([2a02:810d:15c0:828:d350:23b1:cb94:f39d])
+        by smtp.gmail.com with ESMTPSA id i11-20020a170906264b00b009255b14e91dsm9044614ejc.46.2023.03.23.12.08.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 12:08:34 -0700 (PDT)
+Message-ID: <5e0ca610-70b2-90fd-45b8-6b0da089eb4c@linaro.org>
+Date:   Thu, 23 Mar 2023 20:08:33 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] ASoC: dt-bindings: alc5632: Convert to dtschema
+Content-Language: en-US
+To:     Saalim Quadri <danascape@gmail.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+References: <1a2e0f7a-771f-5590-fc54-b9dbf059a925@linaro.org>
+ <20230323171111.17393-1-danascape@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323171111.17393-1-danascape@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -104,55 +77,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne torek, 21. marec 2023 ob 00:39:52 CET je Rob Herring napisal(a):
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 23/03/2023 18:11, Saalim Quadri wrote:
+> Hello,
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/phy/allwinner,sun50i-h6-usb3-phy.yaml          | 4 ++--
->  .../bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml         | 2 +-
+> This is my first time using the Linux Kernel Mailing List. I apologise if I commit any mistakes.
+> 
+>> This should not be subsystem maintainer but someone related to the
+>> device. It's maintainer or interested contributor. Unless that's the
+>> case here?
+> 
+> yes it is wrong, he is not the subsystem maintainer. I will send the updated patch.
+> 
+> I have a doubt, for the maintainers list, is it required to include all the names of the subsystem maintainer
+> in the yaml too? As for this codec, there are 4, shall I include the names of all of them or the one to whom the
+> module is authored to?
 
-For Allwinner:
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Depends, choose one or two names, maybe the most active.
 
 Best regards,
-Jernej
-
->  .../devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml      | 4 ++--
->  .../bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml         | 4 ++--
->  .../devicetree/bindings/phy/amlogic,g12a-usb2-phy.yaml      | 4 ++--
->  .../devicetree/bindings/phy/amlogic,g12a-usb3-pcie-phy.yaml | 4 ++--
->  .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml    | 4 ++--
->  .../devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml     | 4 ++--
->  .../devicetree/bindings/phy/amlogic,meson8-hdmi-tx-phy.yaml | 4 ++--
->  .../devicetree/bindings/phy/amlogic,meson8b-usb2-phy.yaml   | 4 ++--
->  .../devicetree/bindings/phy/brcm,bcm63xx-usbh-phy.yaml      | 4 ++--
->  Documentation/devicetree/bindings/phy/brcm,sata-phy.yaml    | 4 ++--
->  Documentation/devicetree/bindings/phy/cdns,salvo-phy.yaml   | 4 ++--
->  .../devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml      | 4 ++--
->  .../devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml      | 6 +++---
->  .../bindings/phy/marvell,armada-3700-utmi-phy.yaml          | 4 ++--
->  .../bindings/phy/marvell,armada-cp110-utmi-phy.yaml         | 4 ++--
->  .../devicetree/bindings/phy/marvell,mmp3-hsic-phy.yaml      | 4 ++--
->  .../devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml    | 4 ++--
->  .../devicetree/bindings/phy/phy-cadence-sierra.yaml         | 4 ++--
->  .../devicetree/bindings/phy/phy-cadence-torrent.yaml        | 4 ++--
->  Documentation/devicetree/bindings/phy/phy-tegra194-p2u.yaml | 4 ++--
->  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml     | 4 ++--
->  Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml   | 4 ++--
->  Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml | 4 ++--
->  .../devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml     | 4 ++--
->  Documentation/devicetree/bindings/phy/qcom,usb-ss.yaml      | 4 ++--
->  .../devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml       | 4 ++--
->  .../devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml    | 4 ++--
->  Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml  | 2 +-
->  .../devicetree/bindings/phy/sunplus,sp7021-usb2-phy.yaml    | 4 ++--
->  .../devicetree/bindings/phy/ti,phy-am654-serdes.yaml        | 4 ++--
->  Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml  | 4 ++--
->  Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml | 4 ++--
->  Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml  | 4 ++--
->  35 files changed, 69 insertions(+), 69 deletions(-)
-
-
+Krzysztof
 
