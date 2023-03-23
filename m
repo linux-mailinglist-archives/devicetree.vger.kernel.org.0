@@ -2,82 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DAA56C6DB8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 17:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A8056C6DC1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 17:36:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232312AbjCWQft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 12:35:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52548 "EHLO
+        id S230500AbjCWQgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 12:36:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbjCWQfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 12:35:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5921C2BECE;
-        Thu, 23 Mar 2023 09:34:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD6B7627F4;
-        Thu, 23 Mar 2023 16:33:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEEC4C433B4;
-        Thu, 23 Mar 2023 16:33:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1679589238;
-        bh=BClF/ebjW5Hky5VLt08yA80pi2zvmy7CU8/qtkRTawM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=v+7gQI9XqOjD1ty8RChnHb3vuki9n2rsw1SCKVVCTxODmC6qtWxzWM6al8FN9ebsO
-         CwP0DNFtmVYZGzBFt4AkKR5ojHfKQl8PjTECtJLffxAhXO4tLiQ01x9ALliIxz/Hih
-         gJn2Pd/q2X/26t4Uze+thGn0oBCslbmazPKkbGtU=
-Date:   Thu, 23 Mar 2023 17:33:55 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 01/12] usb: typec: ucsi: add PMIC Glink UCSI driver
-Message-ID: <ZBx/c4efiJ+6Kv9o@kroah.com>
-References: <20230130-topic-sm8450-upstream-pmic-glink-v5-0-552f3b721f9e@linaro.org>
- <20230130-topic-sm8450-upstream-pmic-glink-v5-1-552f3b721f9e@linaro.org>
- <20230322023102.nai4cru27tba56kx@ripper>
+        with ESMTP id S229708AbjCWQgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 12:36:23 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3781367E1;
+        Thu, 23 Mar 2023 09:34:58 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id t13so14459592qvn.2;
+        Thu, 23 Mar 2023 09:34:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679589294;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=stUzCFXiD8PEYBONMfjB7APazeCwrM/CiIh5xilJVJw=;
+        b=eKJLZ3Cdh0SSrcbVglElFiWgm8u8asgClu667oKe4dLR6pNXT1rg0Y14NS7rybTGKK
+         EVTsaQm5UYqpvKAY2z/7N5zVRmvQc9GTaJXpCSxQlexZ8TT2ZHsfVJNqDQF3yO4YIiLP
+         JzJO8TYDoEVC+gFK028z5Yb1F9S2D6+jwPEhWt43xXssMdOTlHaNu1z2awMv1F20vifC
+         DEeNJJOCuylD9doTvOI4S1UF2L+d02esoWjLRH9SDog4/E22ThyHFxMU+zwg6wrDdG8U
+         T8Lq1w27fYl6w6w8PRieIsmiA7Cb9ZI/GtQm6WqdtnZaUZhhbV9lVvpCDitRg5IncSt9
+         fw0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679589294;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=stUzCFXiD8PEYBONMfjB7APazeCwrM/CiIh5xilJVJw=;
+        b=qClwRTPSjqM7cpLu6kGK9yTEXJ3kQu2j2VqzibPnE7+x9lzPWP+6v7U3GhDzon/S1S
+         bgAoF71RqI/4iLUsILYtvEtlf+nexD2Y0WgsNbyWew24Rl1zdfdjE2pe6rNFfiVIcTzV
+         DUTzHT2/3f8uhGG/9sLXW2YOA/80p3QQNWWKulCyv1Uf5qMvMDmrS4rIcE0HX2tNkHyB
+         w/yObrFVmo9cIr3y5Hy8ifoL/JYLocAv2yZSUSpra5R3ixQApySXqgoVVYMmUDftdDjm
+         7K7jMo1171pvnI3QwAKcoICxiaSh3qvq9GII/hcTl+feDvk9TxgjbiUUO47rVhsawZtv
+         nPGA==
+X-Gm-Message-State: AO0yUKV5ZyA37wD5Q0BmFpaPoLZbc3rW4Acu9w9FGaliKMHEUoxwHyM9
+        //6KXIDEF1+rzBHXHTB8BhM=
+X-Google-Smtp-Source: AK7set8wSykQWhLKJW29Dr3h+aqlQ2XOZDHdJCbSAbjLfBqN9d1PUV6EBv7PR5nMwBVzXM49BB6C7A==
+X-Received: by 2002:a05:6214:2409:b0:5a7:a434:c307 with SMTP id fv9-20020a056214240900b005a7a434c307mr14968249qvb.24.1679589293908;
+        Thu, 23 Mar 2023 09:34:53 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id p11-20020a05620a22ab00b0074583bda590sm13401830qkh.10.2023.03.23.09.34.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 09:34:53 -0700 (PDT)
+Message-ID: <d9d3b20b-d288-8b6c-b8fd-77a24bf7aab2@gmail.com>
+Date:   Thu, 23 Mar 2023 09:34:45 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230322023102.nai4cru27tba56kx@ripper>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 1/2] dt-bindings: net: dsa: b53: add BCM53134 support
+Content-Language: en-US
+To:     =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        paul.geurts@prodrive-technologies.com, jonas.gorski@gmail.com,
+        andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230323121804.2249605-1-noltari@gmail.com>
+ <20230323121804.2249605-2-noltari@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230323121804.2249605-2-noltari@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 07:31:02PM -0700, Bjorn Andersson wrote:
-> On Tue, Mar 21, 2023 at 02:21:41PM +0100, Neil Armstrong wrote:
-> > Introduce the UCSI PMIC Glink aux driver that communicates
-> > with the aDSP firmware with the UCSI protocol which handles
-> > the USB-C Port(s) Power Delivery.
-> > 
-> > The UCSI messaging is necessary on newer Qualcomm SoCs to
-> > provide USB role switch and altmode notifications.
-> > 
-> > Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On 3/23/23 05:18, Álvaro Fernández Rojas wrote:
+> BCM53134 are B53 switches connected by MDIO.
 > 
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> 
-> 
-> Greg, this has no build time dependencies to the remainder of the
-> series, so can you pick this patch 1 and patch 5 (dt-bindings: usb:
-> snps,dwc3: document HS & SS OF graph ports) through your tree?
+> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
 
-Yes, will do so, thanks!
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
 
-greg k-h
