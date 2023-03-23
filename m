@@ -2,101 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE546C6AE3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 15:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E5206C6B28
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 15:36:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbjCWO0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 10:26:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
+        id S231504AbjCWOgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 10:36:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231395AbjCWO0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 10:26:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12931B327;
-        Thu, 23 Mar 2023 07:26:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D8E06275F;
-        Thu, 23 Mar 2023 14:26:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15EB9C433EF;
-        Thu, 23 Mar 2023 14:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679581562;
-        bh=BxUWwP+iAOQ+SG6kJMMOZXbIrO91BZemv4CMzp97bBY=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=EBJPfNebcNG1SWw2N37+UOwOGfeZwbuaR4LEdY2XXc20KCOFInxQigG9GThtjqdAc
-         V/1YSwRLvIbZd8o3rBKH8Rv/AcZJkriOJJmH/YgqLPJtIyyHYvf4rt1TXvBAzItBz6
-         rhO+O6ZJChcTLUa+FWQdwc08PraEJeu/6CPGPlv5GQqB5vegaplnnP1Gohen749GK0
-         funKXHdr9mjMdD5TdB9liAG5EZzj3IT7VP820u7KhzRe5tlqkFxa1UONz9J77YJD37
-         JFXBTXENwtFH9JMuub2RGt/Sd/dyDPg5PdJOUk2+jM3da1scblGDQ6JRE5usrR7Zzm
-         VgQO5iZN0ULQQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S231501AbjCWOg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 10:36:29 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CC02D75
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 07:36:20 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso1257686wmo.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 07:36:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679582179;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rEhytZxehTs3+RJ5GfT9s2lxvfEx0RYE515lvUYjdJ0=;
+        b=V5SDWIsRwgNllTO/1dZ8+2BeK8fbUIMrxlRp8YqiPNgzroz2Wbf42M22zyEjpuE2bY
+         qgqp/Io2hGg1kuOh6iNwhebtRd73evLzKIpwIV2tQVpC7RdEvmN59f6Ne5BM1a9AisYl
+         neiJw5JYJv3H2VxgaKHAVI6d/r+7tUHQh5i6jEiKm/quY1AMvH2/bNAG2s/oDxIQx74N
+         0R1yDBwYe8r+SVMvEtW21TLR03uQlcqzpGXVVQqbW4lde1BiTLehpjaH2zD+wVrDvolC
+         GfZ9Hf4iWQl5qSQc8JudkWgWuRZBt0PUJB0ngMPpmcuynMFqDC7PXWD8ICpDVXxTyaQZ
+         QrEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679582179;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rEhytZxehTs3+RJ5GfT9s2lxvfEx0RYE515lvUYjdJ0=;
+        b=TaGn2AIR9VeSOTU1ijmmdkwlMNr51amP2tn6JGTpw/cBE0CVDIijvsitZIEzbwHmh2
+         HQweFtjPX0a4A9GIICFlR8wbjxup+2M0g+c035gSKsSCchK4Kct+03uHysbWfWmq2aGW
+         l5L8+8SrTEX68XQDu8bjHRuhYGWP960whZm1fslLxarnl9Sjbc8mvYBInTyHkI3bTH29
+         GmaxrG+mSEiW0Vyt3BICm6RMvADRiF15pvPdGQ/U5bK6rLR2yY4aOLNzQX+EB5U9MzvB
+         RGGW3u1Z3zwVg+2jMdToPPcGyvRCQbV56Ygnyn3Q2P0w4pRqwGyu3VcLl3lu0MflyJQu
+         XEZg==
+X-Gm-Message-State: AO0yUKUK5xcSnuE9TUGGal/+ntCCvp4hVT3LrzRSMX+kdN2pJaOYxI7F
+        F1od19LqI9rJSuqhjNwoYasmvA==
+X-Google-Smtp-Source: AK7set+24+OLG2+h3jPdMAyZlS0SXJwCzS2t+JZk67f0y0qT5SVukxMnGLO7PUFJy2j1bri6RObmeg==
+X-Received: by 2002:a05:600c:365a:b0:3ee:5754:f139 with SMTP id y26-20020a05600c365a00b003ee5754f139mr2585793wmq.13.1679582179009;
+        Thu, 23 Mar 2023 07:36:19 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e25a:65de:379a:3899? ([2a01:e0a:982:cbb0:e25a:65de:379a:3899])
+        by smtp.gmail.com with ESMTPSA id o10-20020a05600c510a00b003edd2ec9f85sm2247944wms.6.2023.03.23.07.36.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 07:36:18 -0700 (PDT)
+Message-ID: <5ab0601c-5acd-ef49-419b-36f5a7679758@linaro.org>
+Date:   Thu, 23 Mar 2023 15:36:17 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 5/5] arm64: dts: qcom: sm8450: add dp controller
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>
-In-Reply-To: <20230322193541.827291-1-krzysztof.kozlowski@linaro.org>
-References: <20230322193541.827291-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [RESEND PATCH v2] ASoC: dt-bindings: wlf,wm8994: Convert to
- dtschema
-Message-Id: <167958156079.49176.4063439994475887186.b4-ty@kernel.org>
-Date:   Thu, 23 Mar 2023 14:26:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230206-topic-sm8450-upstream-dp-controller-v6-0-d78313cbc41d@linaro.org>
+ <20230206-topic-sm8450-upstream-dp-controller-v6-5-d78313cbc41d@linaro.org>
+ <b1e6ca00-348b-4d61-6e90-30bef756732c@linaro.org>
+ <20230323143814.cdfbgzlnlbnocx5z@ripper>
+Organization: Linaro Developer Services
+In-Reply-To: <20230323143814.cdfbgzlnlbnocx5z@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bd1bf
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Mar 2023 20:35:41 +0100, Krzysztof Kozlowski wrote:
-> Convert the Wolfson WM1811/WM8994/WM8958 audio codecs bindings to DT
-> schema.
+Hi,
+
+On 23/03/2023 15:38, Bjorn Andersson wrote:
+> On Tue, Mar 21, 2023 at 09:51:34PM +0100, Konrad Dybcio wrote:
+>> On 17.03.2023 16:06, Neil Armstrong wrote:
+>>> @@ -2783,6 +2790,78 @@ opp-500000000 {
+>>>   				};
+>>>   			};
+>>>   
+>>> +			mdss_dp0: displayport-controller@ae90000 {
+>>> +				compatible = "qcom,sm8450-dp", "qcom,sm8350-dp";
+>>> +				reg = <0 0xae90000 0 0x200>,
+>>> +				      <0 0xae90200 0 0x200>,
+>>> +				      <0 0xae90400 0 0xc00>,
+>>> +				      <0 0xae91000 0 0x400>,
+>>> +				      <0 0xae91400 0 0x400>;
+>>> +				interrupt-parent = <&mdss>;
+>>> +				interrupts = <12>;
+>>> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>>> +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
+>>> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
+>>> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+>>> +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+>>> +				clock-names = "core_iface",
+>>> +					      "core_aux",
+>>> +					      "ctrl_link",
+>>> +			                      "ctrl_link_iface",
+>> I applied this locally and noticed line has 2x 8 spaces.. Bjorn, could
+>> you please take care of that when applying?
+>>
 > 
-> Changes against original binding:
-> 1. Add missing LDO1VDD-supply and LDO2VDD-supply.
-> 2. Use "gpios" suffix for wlf,ldo1ena and wlf,ldo2ena (Linux kernel's
->    gpiolib already looks for both variants).
-> 3. Do not require AVDD1-supply and DCVDD-supply, because at least on
->    Arndale board with Exynos5250 these are being supplied by internal
->    LDOs.
+> Thanks for pointing it out. I did correct it, and I had to do the same
+> in sm8350.dtsi.
 > 
-> [...]
+> @Neil, please run checkpatch --strict, it will highlight these errors.
 
-Applied to
+Thx, sorry... usually I don't miss such errors, won't happen again.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Neil
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: wlf,wm8994: Convert to dtschema
-      commit: 80404e4e13882cf3037577e4a3451a61d54f58db
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> 
+> Thanks,
+> Bjorn
 
