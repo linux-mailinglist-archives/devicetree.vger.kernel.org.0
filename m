@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 764C76C5FE2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 07:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081096C5FF6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 07:51:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjCWGof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 02:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45940 "EHLO
+        id S230064AbjCWGvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 02:51:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbjCWGoL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 02:44:11 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5792DE5A
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:44:09 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id i5so35357999eda.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:44:09 -0700 (PDT)
+        with ESMTP id S230122AbjCWGvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 02:51:16 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2112F077
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:51:12 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id eh3so82293989edb.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679553847;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1679554271;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nM/3ywyvpAsiOiRY1HG3AOIo3FGoRoVm1IbIAeulEYo=;
-        b=xmy41Dff79qydbj9wKemr6aBQC0XKLClWYZ1/+XIZiVohdMkGZJ3QKWXtj7Oas6pAn
-         ldPX8vzbA8iht3C0HmibE5watwyMozHf0LmEN4iP2kI/b+Qtq05XzUA0kTEP17vPOmy9
-         5tVHC1kyAfrLGtjIWpY4P8gRjvj3HErA819f1QHu+QOcszwMScwZl5EPe+2pUx/a1Okk
-         mjedExTz7dM5edumDgRMTPZheLYzy//eor94c+ffp3c7KbJmJp23O2RowN7igR4mlAaO
-         ypmEGPtxEKgG2/TK15pKhCTwzMLKBPdimmQGskMRgXeZzSuLVD2YK6jCd8L4ZKRBS9E1
-         X1RA==
+        bh=tIZjWm9sKRagEPKjK84TsBRf7m9t25oj2pBtFrP5+ZQ=;
+        b=zyFOBBXWmTNAEnFt6lrv2U9OHERun2E94vudb2+b6UJUe5OfM2X1sb8K+ro9NS2xNn
+         ZW7Ue+MBY9mtc3oQ5YGOWUpOhM0Brr84KtXQD55vhr4rBPERlg2hVoTjOGkzH9NOC3aL
+         a/t5cgKEHxZXo/08j/ODUR+veSYFz1rG0yFbuOldfAMryQkkQ6sxIA5nd7kK1NbfmJsh
+         H+yOGL2QyvTGycQLSoVkQ8tXt+MqPnOIzMAxmYpZy39GOUV+jh6BXXOb9qV3fgwhccB+
+         CmXnfLjm9j7Vc4xLfqcoldO8C2cDXCzZVlCQtupV5I0aGppoLItge918mTj4NEDH2lSf
+         f3Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679553847;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1679554271;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nM/3ywyvpAsiOiRY1HG3AOIo3FGoRoVm1IbIAeulEYo=;
-        b=IfvrGFRXIiXJDrzoP/QEJbXlfbHtNBBB+NmDNEKPH0ytsk9l5/mwXD4AuNhaRjpOml
-         hh2pvhXdWpAcaZNbVn9SD5SkEgekNHBAjtEXpxFAtnpmvhoBof1LAP47n+348aP1JIZs
-         JcVaAcRrGiyjOHwD5eVc0bKupHDuuws1mHKoj1tzwHpJvUNa6gNdz0U4olzENw5dMrrW
-         IOzlcqIx+GSOueBzvggd49tN9sCasjwkwCyQjU5+Wk80JQH8iO8jXWyGHc7ipT/85egX
-         lKCxQPD6uKxlFPvxyIIMq1+W5UcdHEY9Y0p7MObn48ffyNpYYTlu0xeGmejKubFZSPOK
-         62HA==
-X-Gm-Message-State: AO0yUKXv1dWrGF7ofVJXCQ0Avx7UipZcZbXNQxQJTxI7jOL9NkTqwHzO
-        PsxDmNldA40lzS8eugFLsGyJiA==
-X-Google-Smtp-Source: AK7set99aCxB2NNu170LpJUYY1O9/A3/pVich1AlGKdGJ2lRlsdCiHActK9XKOraSg3Fw0G08QsM2g==
-X-Received: by 2002:a17:907:382:b0:921:412b:d8c1 with SMTP id ss2-20020a170907038200b00921412bd8c1mr9233255ejb.71.1679553847515;
-        Wed, 22 Mar 2023 23:44:07 -0700 (PDT)
+        bh=tIZjWm9sKRagEPKjK84TsBRf7m9t25oj2pBtFrP5+ZQ=;
+        b=lpiTxWn93pmXzP/uiffAp+RwzgVivEuIGNE3gEXRr1ZlRj/XwI1fSDSp2eJvPR9Dm5
+         iav+lF2amIDrixqtUG7hDl0N0A0/u7MVDAfUhAv2aM4Xp9YhlWlEEosFmUHd/btGb2cy
+         2mgVBYoE1XgO17wAcmpvLzsIkY+ZemqsvM832j2T308RpX1NRNu2fYgRC06KIJe775i0
+         RSM/HF5DuDKGCVx2Aee3ReDDBuXsvfCry+IM9frqfitgPDQL2Dn5vwtnvM+fULN49U1C
+         iQYgqZndQmU3c2ONyJYrh2a5fSnlqhP1BhkYICsyG4tKb/+mdPVYKUslwadaldyiyFUD
+         LpXw==
+X-Gm-Message-State: AO0yUKXugHmzTaHkVTLVISEbXq4SI+gFxSZd8N6P9ltMsdI/GJIcXGUY
+        r2J4ja4UGtDPOa1A5FIfpyuFQw==
+X-Google-Smtp-Source: AK7set9w6izJxDoWCAVzZyrLwnzk5zslYjDoRXmdNYTDOiT7pp9ccrmpDycIQek1EUAI2X+WxjZZPw==
+X-Received: by 2002:a17:906:9453:b0:931:7350:a4f3 with SMTP id z19-20020a170906945300b009317350a4f3mr10038240ejx.10.1679554270777;
+        Wed, 22 Mar 2023 23:51:10 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a665:ed1e:3966:c991? ([2a02:810d:15c0:828:a665:ed1e:3966:c991])
-        by smtp.gmail.com with ESMTPSA id ch19-20020a170906c2d300b00933d64cd447sm5552271ejb.121.2023.03.22.23.44.06
+        by smtp.gmail.com with ESMTPSA id e8-20020a170906c00800b008e1509dde19sm8139088ejz.205.2023.03.22.23.51.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 23:44:07 -0700 (PDT)
-Message-ID: <b50470b0-4062-5d2c-2eaf-29cef34fd2d4@linaro.org>
-Date:   Thu, 23 Mar 2023 07:44:06 +0100
+        Wed, 22 Mar 2023 23:51:10 -0700 (PDT)
+Message-ID: <149329da-e104-c0b0-0c26-ab01d6b2c25b@linaro.org>
+Date:   Thu, 23 Mar 2023 07:51:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq5332: add support for the RDP468
- variant
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: supply: bq256xx: Add
+ ti,no-thermistor property
 Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+To:     Hermes Zhang <chenhuiz@axis.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Davis <afd@ti.com>
+Cc:     kernel@axis.com, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230323044929.8694-1-quic_kathirav@quicinc.com>
- <20230323044929.8694-3-quic_kathirav@quicinc.com>
+References: <20230323033012.416953-1-chenhuiz@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230323044929.8694-3-quic_kathirav@quicinc.com>
+In-Reply-To: <20230323033012.416953-1-chenhuiz@axis.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -77,84 +79,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 05:49, Kathiravan T wrote:
-> Add the initial device tree support for the Reference Design
-> Platform(RDP) 468 based on IPQ5332 family of SoCs. This patch carries the
-> support for Console UART, SPI NOR, eMMC.
+On 23/03/2023 04:30, Hermes Zhang wrote:
+> Add a new property ti,no-thermistor to indicate that no thermistor is
+> connected to the TS pin of the chip.
 > 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile           |   1 +
->  arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 103 ++++++++++++++++++++
->  2 files changed, 104 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 1a29403400b7..79cf8373997f 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> new file mode 100644
-> index 000000000000..b2899f953aa4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> @@ -0,0 +1,103 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * IPQ5332 RDP468 board device tree source
-> + *
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq5332.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.6";
-> +	compatible = "qcom,ipq5332-ap-mi01.6", "qcom,ipq5332";
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +};
-> +
-> +&blsp1_uart0 {
-> +	pinctrl-0 = <&serial_0_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&blsp1_spi0 {
-> +	pinctrl-0 = <&spi_0_data_clk_pins &spi_0_cs_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	flash@0 {
-> +		compatible = "micron,n25q128a11", "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		reg = <0>;
+> Notes:
+>     v2: change property name to ti,no-thermistor
+> 
+>  .../bindings/power/supply/bq256xx.yaml        | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> index 82f382a7ffb3..ab9ae6ca7700 100644
+> --- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> @@ -68,11 +68,30 @@ properties:
+>        Interrupt sends an active low, 256 μs pulse to host to report the charger
+>        device status and faults.
+>  
+> +  ti,no-thermistor:
+> +    type: boolean
+> +    description: |
 
-reg is always second property, after compatible.
+You can drop '|'.
 
-> +		spi-max-frequency = <50000000>;
-> +	};
-> +};
-> +
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
