@@ -2,74 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94A116C62BA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:06:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 310846C62C5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:07:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231654AbjCWJFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 05:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42898 "EHLO
+        id S231596AbjCWJHG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Mar 2023 05:07:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231652AbjCWJFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:05:13 -0400
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44B202211E
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 02:04:56 -0700 (PDT)
-Received: by mail-ua1-x934.google.com with SMTP id g9so10005383uam.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 02:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679562295;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ER5BSCr9JV00PaqEK5UpQdMYow41x054A0NzdPKRFxo=;
-        b=cTjDYAWCMEbcsqF6rG9P/DV5MiBYk+2MTPuya2dk52/SvB4hjaQIL9hP5GxKBi3bxZ
-         rbu9QMoZoFYtR54ZOowHAVGIN5y+DPM8Ii8TGsN6q82qqKpx9K/0HwH0BLiB7wZvSv6Z
-         JOClzLV/+Zt8HBq0JiXVL450GKr5XKfuV0nX4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679562295;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ER5BSCr9JV00PaqEK5UpQdMYow41x054A0NzdPKRFxo=;
-        b=GO65TM64BM6616SAO+ZQqsQTw7UnQ5mUbhDsg0yiSfcKH/z/7mlMzVJB3rCJDzPNR3
-         kWexfkzsH3+tVKv6JM1Q0kXGR/tic8l7dDDCh9Ja7GVh+4y8b4GfkpTz+tNiGJJ2LToQ
-         I/5WCTRz0NFhIksfe84n6l86AZDDibh8+aevSbMSYImvCvlEWTo3o6gr21mPCiu6bsFu
-         9v6T6uXAd4sB/VVvfi0oKh5SbDWUsiIgCHozBWhLV2+Y1v39i2/rLwJf2rcSwoRbACXL
-         /K/Q/kselTlyFy3lMOmjgv+WmBKBCyoPBwfVoJf3nJtIWhQ09bahE0HG7Hz9bWs+sMbl
-         pF4A==
-X-Gm-Message-State: AAQBX9emngL9MCQTs7ULkhW8Ax7RQ19ISMdRAAmH5wxic2SkRJRir/b9
-        AHIl5gwEokpazQQF4tCL+qZ8r/CXE/u0NnCWBK07Wg==
-X-Google-Smtp-Source: AKy350aBwAARZFXCKTypUlkAy7+CkD3eOoHJIRlhaqu5olHys60B5m/DMcr9xhAwDThW+C/Sce5ce0an2hZ4w2+3tgE=
-X-Received: by 2002:a05:6130:913:b0:68e:33d7:7e6b with SMTP id
- bu19-20020a056130091300b0068e33d77e6bmr5361851uab.1.1679562294902; Thu, 23
- Mar 2023 02:04:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230321121859.2355-1-nancy.lin@mediatek.com> <17831605-5c9d-9c92-d190-04f91060ace4@collabora.com>
-In-Reply-To: <17831605-5c9d-9c92-d190-04f91060ace4@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 23 Mar 2023 17:04:43 +0800
-Message-ID: <CAGXv+5F82Ctz0pit4LsR5mQizPq-v2k3OVfiRhsGnG0a2J=Dyg@mail.gmail.com>
-Subject: Re: [PATCH v30 0/7] Add MediaTek SoC DRM (vdosys1) support for mt8195
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        singo.chang@mediatek.com,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Nathan Chancellor <nathan@kernel.org>,
-        clang-built-linux@googlegroups.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
+        with ESMTP id S231659AbjCWJGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:06:41 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87E737554
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 02:05:57 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1pfGsR-0000Sg-9T; Thu, 23 Mar 2023 10:04:55 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1pfGsM-0066qa-Rq; Thu, 23 Mar 2023 10:04:50 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1pfGsG-0001jK-IS; Thu, 23 Mar 2023 10:04:44 +0100
+Message-ID: <b5bf6c34b57fcfe1f6107e4c36e6198a78aaea79.camel@pengutronix.de>
+Subject: Re: [PATCH v12 14/15] mmc: sdhci-cadence: Support mmc hardware reset
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Brad Larson <blarson@amd.com>, linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-spi@vger.kernel.org, adrian.hunter@intel.com,
+        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        davidgow@google.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, piotrs@cadence.com, p.yadav@ti.com,
+        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
+        fancer.lancer@gmail.com, skhan@linuxfoundation.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
+        vaishnav.a@ti.com, will@kernel.org, devicetree@vger.kernel.org
+Date:   Thu, 23 Mar 2023 10:04:44 +0100
+In-Reply-To: <20230323000657.28664-15-blarson@amd.com>
+References: <20230323000657.28664-1-blarson@amd.com>
+         <20230323000657.28664-15-blarson@amd.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1+deb11u1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,21 +65,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 23, 2023 at 4:58=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 21/03/23 13:18, Nancy.Lin ha scritto:
-> > The hardware path of vdosys1 with DPTx output need to go through by sev=
-eral modules, such as, OVL_ADAPTOR and MERGE.
-> >
-> > Add DRM and these modules support by the patches below:
-> >
->
-> I've tested v30 again on MT8173, MT8192 and MT8195 based Chromebooks.
-> Green light from me.
->
-> Chun-Kuang, can you please pick it?
+On Mi, 2023-03-22 at 17:06 -0700, Brad Larson wrote:
+> Add support for mmc hardware reset using a reset-controller
+> that would need to be enabled in the device tree with
+> a supporting driver.  The default is disabled for all
+> existing designs.
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
-It was picked up a few hours ago.
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-ChenYu
+
+regards
+Philipp
