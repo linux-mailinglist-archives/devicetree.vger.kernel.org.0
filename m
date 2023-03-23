@@ -2,128 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0508D6C68E9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:55:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B85C16C6902
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 14:00:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbjCWMzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 08:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44176 "EHLO
+        id S231327AbjCWNAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 09:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbjCWMzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:55:18 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E7EF5;
-        Thu, 23 Mar 2023 05:55:17 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id r187so553320ybr.6;
-        Thu, 23 Mar 2023 05:55:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679576116;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ISNE15I6zaSxAQPnN0sxzeTcFnWMQ3qxrhuU6mm7D/g=;
-        b=obbXsD6Xkj43SRB5k8Hk63Wj2lWc99tg5p3t2mW3Znfk2VnMSCR3eUFGK0kfrMwksD
-         si6pMdZiJw+1YjpGX/mA241glVL/8ubNlEMZXQIaidsvyjo5i7kzwOOjCVF4C5B0HS6A
-         lnRYikqPcpPBFhyydCOQZ8zKaBH+PK5d2rzjrd+w+Wz5ob6A1ljdrCODDGfEbe0oRPFe
-         gBEIdHZIxmhqh+DL+9RHhnpdFt3Mu4Oz3CcfBpnlkA76LwSsDdUEJP0JXCb8jhWxCK3/
-         +ttnZnZt7uUz3by6HT2CCmvyVofvwWbcg2YjjW6q+qDK/sxv16jQUP52k1C3dW4D7C9b
-         W1gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679576116;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ISNE15I6zaSxAQPnN0sxzeTcFnWMQ3qxrhuU6mm7D/g=;
-        b=EB9l3UkG7MSXv7T6RjoUVV2EtPMFnZzh2L3++wOsuXDE4MEKuuj0k9SJykdEoooJTb
-         5USXHYkPk2sznEqUwjL1jwLMVbutPBwP/T1hPFQ8xfCbe03RRg+c8ywxbapLLQrwqptH
-         P7GDNZss88vsAJwpWEB8+JaJJFcPDCcbx1Eo7966S+q8zzFMQb821axrLRI2BrZeBXX0
-         dX5309zh8/V/VjAGczLkL6+whPvjTW4RcBB+hVidrONmpQtMS8u0cdIDTesfQMW5/HxM
-         fUBMofPJmo4BNJsL/0Qyaw/bdBKY8ib0Aa0/RtOlp1Dwwl9FDb+2u9z9bUFG/HVLQe3c
-         MQsw==
-X-Gm-Message-State: AAQBX9fGsAwvV+kYxrwsfjA66OZB//c6vhccgigey7DHsp0tnXGJbDz0
-        hHcqzfamNvCwBS2RO0KX06Y7wJpkfY/65QfTYfQ=
-X-Google-Smtp-Source: AKy350ajsSH3bjPX97LUk0SQpzJRBv6W0MBm7d3pkgLTNBNI2ud97ge35PAHVbP9tprvCQnq6q1iOAiH+rWW76PA/x4=
-X-Received: by 2002:a05:6902:1586:b0:b6c:a94:9bf3 with SMTP id
- k6-20020a056902158600b00b6c0a949bf3mr2200866ybu.9.1679576116524; Thu, 23 Mar
- 2023 05:55:16 -0700 (PDT)
+        with ESMTP id S229729AbjCWNAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:00:06 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2086.outbound.protection.outlook.com [40.107.94.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D982FCD8;
+        Thu, 23 Mar 2023 06:00:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kjr2kXQ3oPeyvz3gN27oxcBuwBDoplpTAE2WHyMAcUeCgIzO6+VT+hwzOISFMgfMZSlHEVhSDz80v4ByAG6p5745RB11vRcV1deTjloQT9SZJIHBveHwALLx59m2emcbojrumuAmZYkJ6EoalWproLQieyPMJngGMLg7npwDk26c5/NfDYmyYO7A1VSzFier70idKJGUuEvkFe5C8pyvfnSuu5HHtl5yYz/AuShZly02qnZkm5OR4kjFeOryPQNwiGV35Va/EaO0bgpoxdbidPolLeO/Yh5dS89YN486oX8ao8LYZyNAu7k/JQnUPydFVTbyrWw8SczzkBcQdOgk1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BTWUjc5IAUswz2wUrGyMauyczuDOVyRIkwq+Wl7Zla8=;
+ b=HPNRQwNryaVLcXNullXiHw6s0tlQTunQB2WLnH7tTnPZYns1prNxpctgwv+KbbRj+ksS3VVUdGEnvVsvuH0nxXLq6o31e+Qdc4cnxuyZf7R4SykroojOG57Gd81mNxKcpDEKv3HCzvCSwhajfBr6EIIH7gsTI5ZMLycJpCdi7QCSCDSd607epPS1e63PdObysmN2JZxWVF1LmzHmLSMH04ciHHZInAauskqs4pOql+e+mO0DE6vToMS0LUYJzx+IOoj70TVOZScj1fuNhHcLy52fFigTdBHXFDCldeKwdwzDaHkrC7Kp+MF52Ik8mmjWkVE7y2JI5fxELaAfx+t/kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BTWUjc5IAUswz2wUrGyMauyczuDOVyRIkwq+Wl7Zla8=;
+ b=t+Qby4sFpK+MRgYtODGMKr60QiJ2koJarXvVx8hh3lQhjczKaHt9VGO1hGLXMq37+tj2+uOHcdtOjMxIDCtASTiptXl3BqgMQnBi2JXNozQaY7fGvjcqGmEci6KLcjqIOJsUelEJVdcgKz31ROzinSNvRzbx0n0UnIaojFvAcVbYNNLVJPth8X828OXTpwub4NNRy0SpOUPhtRS9S1dkr6NMymS/wUPd72XC64tBxc2NDONM1EtGB4as06Khng4AQKHrRSXR7ITFOQSj4QUIyz4pdKmQxKRhhoAK8pwCL02H/Pq0GprbZmO2rbCpS7dWa2YI3Uh+hRnf+pn7zA9/tw==
+Received: from DM6PR10CA0009.namprd10.prod.outlook.com (2603:10b6:5:60::22) by
+ DS0PR12MB8453.namprd12.prod.outlook.com (2603:10b6:8:157::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.36; Thu, 23 Mar 2023 13:00:02 +0000
+Received: from DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:60:cafe::b7) by DM6PR10CA0009.outlook.office365.com
+ (2603:10b6:5:60::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38 via Frontend
+ Transport; Thu, 23 Mar 2023 13:00:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT003.mail.protection.outlook.com (10.13.173.162) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6222.21 via Frontend Transport; Thu, 23 Mar 2023 13:00:02 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 23 Mar 2023
+ 05:59:53 -0700
+Received: from [10.41.21.79] (10.126.230.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Thu, 23 Mar
+ 2023 05:59:47 -0700
+Message-ID: <c240eae7-8862-0589-d56d-f2e82e21569c@nvidia.com>
+Date:   Thu, 23 Mar 2023 18:29:44 +0530
 MIME-Version: 1.0
-References: <20230323124510.2484808-1-noltari@gmail.com> <20230323124510.2484808-3-noltari@gmail.com>
- <3e0fa788-173d-a014-20d5-0b4ca4d890b4@linaro.org>
-In-Reply-To: <3e0fa788-173d-a014-20d5-0b4ca4d890b4@linaro.org>
-From:   =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Date:   Thu, 23 Mar 2023 13:55:05 +0100
-Message-ID: <CAKR-sGfnKdWmbGwTSgu9qiuJF+qFS=AiwORFDMcKf1x1PpY4Ng@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mtd: nand: raw: macronix: allow disabling block protection
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        masonccyang@mxic.com.tw, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [Patch v3 01/11] firmware: tegra: add function to get BPMP data
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <treding@nvidia.com>, <krzysztof.kozlowski@linaro.org>,
+        <dmitry.osipenko@collabora.com>, <viresh.kumar@linaro.org>,
+        <rafael@kernel.org>, <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <lpieralisi@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <mmaddireddy@nvidia.com>, <kw@linux.com>, <bhelgaas@google.com>,
+        <vidyas@nvidia.com>, <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>,
+        <ishah@nvidia.com>, <bbasu@nvidia.com>,
+        Sumit Gupta <sumitg@nvidia.com>
+References: <20230320182441.11904-1-sumitg@nvidia.com>
+ <20230320182441.11904-2-sumitg@nvidia.com> <ZBwlLmPlBgC5tYTD@orome>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <ZBwlLmPlBgC5tYTD@orome>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.230.37]
+X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT003:EE_|DS0PR12MB8453:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a763006-29f7-4291-d329-08db2b9e83f9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KRXnL6wQ8BVttKldbHYwzo3hVSFyOekSIvYCr6xrFbeLitvzNU9MDn/5vTQeZsSdU2BGGnKCcDPKpQWaPmOecYUkTxONyEVNG0s1hkpkZuADmpA9g4E+NLqwTTj7P/0jaaCKjgIgwFnlcFhVvAFW4ok4ichVgu5/A+ZI+K3hcy2gadJHmCUR4DvGiaXfm11B2IRfmtZ2wTGjRMubwpLKRV1PXK1I1//62JhdZUUEwmctMxlSG1PlmQcaTJvmVWFUbk41QFbNG5BaD2ustWLii4uIFcpsHS0J1wsBsmuQ6lHpoNpnPmZuyyNILwatXQOHTyBfcjmgzrDeOZ003Ujrrt9ddGLUdOm7BQgPOX5N61tdQUTWjkWC+ioGFbc7HdclESdhGQVNiZSSnkMKtbhCDcyTFR21LnjxjUMzRq+aQgU4nFDIcK4+1Z/Fcr2Z1B23hv7VIUs721VTzFUeSLeoPQJ5PveJAt/xGtcTrtKORYDPhIRaUqrrWHMtOIyJOcbeiEdeiHi368dZK4gf38uIoh8Y+CLLTil+KASUR1DT1V7EwdWGpcSKC3d/uCFoRQE11XM4ayVOeVXCcjycV+iYDsuLs8qGR3PxhToP308UT8H79bwAGOye0/iy/AVs3qSC4JR6nyhnQINqCamCnpkNXZG79P+ywOM1ygGVsLPhwXyIygnR1OpnrBoopayHg8lifs6nXmSjmXLHAxBRZueKTZwMgD+5nu4jkw+792C7pjVU2Gg7CT10mlMEIjRdCsZTHcxYoFZz5WgdFyXvxv8z2g==
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230025)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199018)(46966006)(40470700004)(36840700001)(31686004)(41300700001)(4744005)(7416002)(5660300002)(8676002)(6916009)(4326008)(2906002)(40460700003)(36860700001)(82740400003)(356005)(86362001)(36756003)(31696002)(7636003)(26005)(107886003)(6666004)(70586007)(70206006)(478600001)(16576012)(316002)(8936002)(40480700001)(82310400005)(426003)(54906003)(47076005)(336012)(2616005)(16526019)(53546011)(186003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2023 13:00:02.0509
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a763006-29f7-4291-d329-08db2b9e83f9
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8453
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-El jue, 23 mar 2023 a las 13:47, Tudor Ambarus
-(<tudor.ambarus@linaro.org>) escribi=C3=B3:
->
-> Hi,
->
-> On 3/23/23 12:45, =C3=81lvaro Fern=C3=A1ndez Rojas wrote:
-> > Some devices hang when block protection is enabled, so let's add a bool=
-ean
-> > property to allow disabling it.
-> >
->
-> Why do they hang?
 
-At first I thought it would be due to the low level op not being
-supported on BCM63268 brcmnand controllers, but after debugging it
-seemed to be working...
 
-This is the log with block protection disabled:
-[    0.495831] bcm6368_nand 10000200.nand: there is not valid maps for
-state default
-[    0.504995] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
-[    0.511526] nand: Macronix MX30LF1G18AC
-[    0.515586] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-2048, OOB size: 64
-[    0.523516] bcm6368_nand 10000200.nand: detected 128MiB total,
-128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-[    0.535912] Bad block table found at page 65472, version 0x01
-[    0.544268] Bad block table found at page 65408, version 0x01
-[    0.954329] 9 fixed-partitions partitions found on MTD device brcmnand.0
-...
+On 23/03/23 15:38, Thierry Reding wrote:
+> On Mon, Mar 20, 2023 at 11:54:31PM +0530, Sumit Gupta wrote:
+>> Add new function 'of_tegra_bpmp_get()' which can be
+>> used by other drivers like MC to get BPMP data without
+>> adding any property in respective drivers DT node.
+>>
+>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+>> ---
+>>   drivers/firmware/tegra/bpmp.c | 38 +++++++++++++++++++++++++++++++++++
+>>   include/soc/tegra/bpmp.h      |  5 +++++
+>>   2 files changed, 43 insertions(+)
+> 
+> Sorry for not noticing this earlier, but can we not resolve the BPMP
+> using the existing tegra_bpmp_get()? That requires the presence of the
+> nvidia,bpmp property, but since we're adding new functionality here
+> that's not a problem.
+> 
+> Thierry
 
-This is the log with block protection enabled:
-[    0.495095] bcm6368_nand 10000200.nand: there is not valid maps for
-state default
-[    0.504249] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
-[    0.510772] nand: Macronix MX30LF1G18AC
-[    0.514874] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-2048, OOB size: 64
-[    0.522780] bcm6368_nand 10000200.nand: detected 128MiB total,
-128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-[    0.539687] Bad block table not found for chip 0
-[    0.550153] Bad block table not found for chip 0
-[    0.555069] Scanning device for bad blocks
-[    0.601213] CPU 1 Unable to handle kernel paging request at virtual
-address 10277f00, epc =3D=3D 8039ce70, ra =3D=3D 8016ad50
-*** Device hangs ***
+Ok, will add "nvidia,bpmp" property within mc node and cache the result 
+to use later instead of doing the lookup every time. Also, will drop 
+this patch in v4.
 
-As you can see, when block protection is enabled, the bad block table
-isn't found and when the device is scanned for bad blocks it just
-hangs...
+Thank you for suggesting.
 
-If you want me to debug something I would be happy to do it, but I
-need some guidance here...
 
-Best regards,
-=C3=81lvaro.
+Thank,
+Sumit
