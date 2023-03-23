@@ -2,254 +2,404 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C44A6C705E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 19:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1272E6C7063
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 19:41:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231470AbjCWSkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 14:40:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36546 "EHLO
+        id S231488AbjCWSla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 14:41:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231443AbjCWSkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 14:40:21 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45B9EC61
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:40:19 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id om3-20020a17090b3a8300b0023efab0e3bfso2825127pjb.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:40:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112; t=1679596819;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dc8t5la/S7SGwbqv/1OxMvtkFBHHlif98Df3jcSZzQk=;
-        b=OB2JolwMzeoHAbSUZXKopfoWmwARaGq4piT0qielQgnlD99zuyJuuartOvZ1bQy6bk
-         26wiVoB0tComv/4PXE3fRSXpRYvSAK8LOXXwrDpOOiNt+upjl0ZlMJdkljKdtJdMo8p8
-         Ooj+ZrUfhbh/4O/PnAZOdqW6pvM2sg4ZBquFJ9aLpYOoysNGCi0pc2kX82iDUy383VNV
-         ePXzDSYzgTzAAebznckJHy6HdzF8F7sn2VztbCnqwvm/p+r9jLKH36IiYJwHgn9dOX7J
-         PNUqfhDg6c7egkJ2YtFwimU71WiEgVUvXfvOxbpbo86Qh+uUO/E1bGQt6utCxnw+uL02
-         hDew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679596819;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dc8t5la/S7SGwbqv/1OxMvtkFBHHlif98Df3jcSZzQk=;
-        b=R4g/t4omeZmLDLVynsGJvsRKaoiOFwpUidfSbuipL26w6A/6plS+pR9iV4ZUDR7X63
-         H3UWYNnAD9y8fEDQLQxubXKFDnMplNJVuXjw5S+Z0lvSvbQZN8fyRFDi/j40jBwgExz1
-         Sn7EXSa0zuRV+lOmuy2/xfykrpEbAHU8pfBJHcXoA3QcdLhUXuRwzXq5jQY1QLINUaTL
-         /wl1VkZN/IHom0mMCmM0dy5eIKnSvDoGL3/iDj1mPta8zJT3LwPiUwrgplPmhqgDlaKO
-         M2f5x5qBS+5fJI4jzTzv9WETbA3dP62To0A8wP78NdiHlSOTSAPPS8KrZidwJ3mOAr7o
-         37Sw==
-X-Gm-Message-State: AO0yUKW+4LFPEW1rIQo0haedaYefaVId0WX/7vYdTzpZ56geiDj3riQu
-        ToAg16dSihpsxBeqbuFtZG+Bbf7KJef0zpwi9RO59Q==
-X-Google-Smtp-Source: AK7set8GTpjYj8eDq8ynIFChjo3qsZvvDfnt1sgQBbe8GDAGmFUzkI3oJLZHCiNHHCqkTN3OP5x4od1Wm1tFnHeRTf4=
-X-Received: by 2002:a17:902:a607:b0:1a0:763d:6c2a with SMTP id
- u7-20020a170902a60700b001a0763d6c2amr2826208plq.10.1679596819029; Thu, 23 Mar
- 2023 11:40:19 -0700 (PDT)
+        with ESMTP id S229885AbjCWSl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 14:41:29 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B692B12076;
+        Thu, 23 Mar 2023 11:41:27 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3F0BD2F4;
+        Thu, 23 Mar 2023 11:42:11 -0700 (PDT)
+Received: from [10.57.53.151] (unknown [10.57.53.151])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0890C3F766;
+        Thu, 23 Mar 2023 11:41:23 -0700 (PDT)
+Message-ID: <859dac2a-8b6b-ba55-f30f-3ac668433a35@arm.com>
+Date:   Thu, 23 Mar 2023 18:41:22 +0000
 MIME-Version: 1.0
-References: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
- <CAGETcx_oYrhjo0C3zJ57gt7HGuiY_=9xEq+TvQU8R5zW6OiQCw@mail.gmail.com>
-In-Reply-To: <CAGETcx_oYrhjo0C3zJ57gt7HGuiY_=9xEq+TvQU8R5zW6OiQCw@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 23 Mar 2023 11:39:42 -0700
-Message-ID: <CAGETcx9=LENzJUVorEKpoeMChFZHO-=M2jHBQmOo+x1ez9=b5A@mail.gmail.com>
-Subject: Re: [PATCH/RFC] treewide: Fix instantiation of devices in DT overlay
-To:     geert+renesas@glider.be
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH v3 09/11] coresight-tpdm: Add nodes for timestamp request
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-15.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org
+References: <1679551448-19160-1-git-send-email-quic_taozha@quicinc.com>
+ <1679551448-19160-10-git-send-email-quic_taozha@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1679551448-19160-10-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 5:36=E2=80=AFPM Saravana Kannan <saravanak@google.c=
-om> wrote:
->
-> On Fri, Mar 17, 2023 at 3:33=E2=80=AFAM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> >
-> > When loading a DT overlay that creates a device, the device is not
-> > instantiated, unless the DT overlay is unloaded and reloaded again.
-> >
-> > Saravana explains:
-> >   Basically for all overlays (I hope the function is only used for
-> >   overlays) we assume all nodes are NOT devices until they actually
-> >   get added as a device. Don't review the code, it's not meant to be :)
-> >
-> > Based on a hacky patch by Saravana Kannan, which covered only platform
-> > and spi devices.
-> >
-> > Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
-> > Link: https://lore.kernel.org/all/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=3DrW=
-YnkCZ6z5bGX-wj4w@mail.gmail.com
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > Marked RFC as Saravana said this is an ugly hack.
-> > Still, this is a regression in v6.3-rc1 that should be fixed.
->
-> Thanks for making sure this isn't forgotten.
->
-> I thought about this a bit more and I've decided what I gave earlier
-> isn't really too much of a hack. The other option is to handle the
-> clearing of the flag at the driver core level, but we incur these
-> additional instructions for all devices instead of just the overlay
-> case. But the benefit is that if more busses add overlay support in
-> the future, they won't need to remember to clear the flag in those
-> instances too. But they'll probably start off by looking at the
-> existing platform bus case, so they'll get it right.
->
-> I'll continue the pondering next week and maybe test it on my device
-> to make sure it's not doing anything weird for non-overlay cases.
->
+On 23/03/2023 06:04, Tao Zhang wrote:
+> Add nodes to configure the timestamp request based on input
+> pattern match. Each TPDM that support DSB subunit has maximum of
+> n(n<7) TPR registers to configure value for timestamp request
+> based on input pattern match. Eight 32 bit registers providing
+> DSB interface timestamp request  pattern match comparison. And
+> each TPDM that support DSB subunit has maximum of m(m<7) TPMR
+> registers to configure pattern mask for timestamp request. Eight
+> 32 bit registers providing DSB interface timestamp request
+> pattern match mask generation. Add nodes to enable/disable
+> pattern timestamp and set pattern timestamp type.
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  48 ++++++
+>   drivers/hwtracing/coresight/coresight-tpdm.c       | 172 +++++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-tpdm.h       |  14 ++
+>   3 files changed, 234 insertions(+)
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> index c06374f..60ff660 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> @@ -95,3 +95,51 @@ Description:
+>   		Accepts the following two values.
+>   		value 1: Index number of XPMR register
+>   		value 2: The value need to be written
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_val
+> +Date:		March 2023
+> +KernelVersion	6.3
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(Write) Set the pattern value of DSB tpdm. Read
+> +		the pattern value of DSB tpdm.
+> +
+> +		Accepts the following two values.
+> +		value 1: Index number of TPR register
+> +		value 2: The value need to be written
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_mask
+> +Date:		March 2023
+> +KernelVersion	6.3
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(Write) Set the pattern mask of DSB tpdm. Read
+> +		the pattern mask of DSB tpdm.
+> +
+> +		Accepts the following two values.
+> +		value 1: Index number of TPMR register
+> +		value 2: The value need to be written
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_ts
+> +Date:		March 2023
+> +KernelVersion	6.3
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(Write) Set the pattern timestamp of DSB tpdm. Read
+> +		the pattern timestamp of DSB tpdm.
+> +
+> +		Accepts only one of the 2 values -  0 or 1.
+> +		0 : Set the DSB pattern timestamp to false
+> +		1 : Set the DSB pattern timestamp to true
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_type
+> +Date:		March 2023
+> +KernelVersion	6.3
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(Write) Set the pattern type of DSB tpdm. Read
+> +		the pattern type of DSB tpdm.
+> +
 
-Geert,
+Sounds a bit strange for "pattern type" to be bool. What does this do ?
+Does it enable/disable something  ?
 
-I think we should stick with the original style of fix I suggested.
-So, basically your patch set. Are you planning on sending a non-RFC or
-do you want me to do it?
+> +		Accepts only one of the 2 values -  0 or 1.
+> +		0 : Set the DSB pattern type to false
+> +		1 : Set the DSB pattern type to true
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index d6cc6b5..c740681 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -98,6 +98,13 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   			   drvdata->base + TPDM_DSB_EDCMR(i));
+>   
+>   	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
+> +		writel_relaxed(drvdata->dsb->patt_val[i],
+> +			    drvdata->base + TPDM_DSB_TPR(i));
+> +		writel_relaxed(drvdata->dsb->patt_mask[i],
+> +			    drvdata->base + TPDM_DSB_TPMR(i));
+> +	}
+> +
+> +	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
 
--Saravana
+Why not do all the pattern related writing in one shot, instead
+of two loops ?
 
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -3611,6 +3611,15 @@ int device_add(struct device *dev)
->          */
->         if (dev->fwnode && !dev->fwnode->dev) {
->                 dev->fwnode->dev =3D dev;
-> +               /*
-> +                * If a fwnode was initially marked as not a device, but =
-we
-> +                * clearly have a device added for it that can probe, the=
-n clear
-> +                * the flag so fw_devlink will continue linking consumers=
- to
-> +                * this device. This code path is really expected to run =
-only
-> +                * for DT overlays.
-> +                */
-> +               if (dev->bus)
-> +                       dev->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE
->                 fw_devlink_link_device(dev);
->         }
->
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index 07d93753b12f..f715b59d9bf3 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -226,6 +226,11 @@ static void __of_attach_node(struct device_node *np)
->         np->sibling =3D np->parent->child;
->         np->parent->child =3D np;
->         of_node_clear_flag(np, OF_DETACHED);
-> +       /*
-> +        * Ask fw_devlink to assume any new node is not a device. Driver =
-core
-> +        * will clear this flag if the assumption turns out to be wrong.
-> +        */
-> +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
->  }
->
->
->
->
-> > ---
-> >  drivers/bus/imx-weim.c    | 1 +
-> >  drivers/i2c/i2c-core-of.c | 1 +
-> >  drivers/of/dynamic.c      | 1 +
-> >  drivers/of/platform.c     | 1 +
-> >  drivers/spi/spi.c         | 1 +
-> >  5 files changed, 5 insertions(+)
-> >
-> > diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-> > index 2a6b4f676458612e..71d8807170fa9f29 100644
-> > --- a/drivers/bus/imx-weim.c
-> > +++ b/drivers/bus/imx-weim.c
-> > @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb=
-, unsigned long action,
-> >                                  "Failed to setup timing for '%pOF'\n",=
- rd->dn);
-> >
-> >                 if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
-> > +                       rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVI=
-CE;
-> >                         if (!of_platform_device_create(rd->dn, NULL, &p=
-dev->dev)) {
-> >                                 dev_err(&pdev->dev,
-> >                                         "Failed to create child device =
-'%pOF'\n",
-> > diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-> > index bce6b796e04c2ca0..79a0d47010ba0b20 100644
-> > --- a/drivers/i2c/i2c-core-of.c
-> > +++ b/drivers/i2c/i2c-core-of.c
-> > @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb,=
- unsigned long action,
-> >                         return NOTIFY_OK;
-> >                 }
-> >
-> > +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
-> >                 client =3D of_i2c_register_device(adap, rd->dn);
-> >                 if (IS_ERR(client)) {
-> >                         dev_err(&adap->dev, "failed to create client fo=
-r '%pOF'\n",
-> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> > index 07d93753b12f5f4d..e311d406b1705306 100644
-> > --- a/drivers/of/dynamic.c
-> > +++ b/drivers/of/dynamic.c
-> > @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np=
-)
-> >         np->sibling =3D np->parent->child;
-> >         np->parent->child =3D np;
-> >         of_node_clear_flag(np, OF_DETACHED);
-> > +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
-> >  }
-> >
-> >  /**
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block=
- *nb,
-> >                 if (of_node_check_flag(rd->dn, OF_POPULATED))
-> >                         return NOTIFY_OK;
-> >
-> > +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
-> >                 /* pdev_parent may be NULL when no bus platform device =
-*/
-> >                 pdev_parent =3D of_find_device_by_node(rd->dn->parent);
-> >                 pdev =3D of_platform_device_create(rd->dn, NULL,
-> > diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> > index 1a65f96fe2aff591..7bd053a32fad1a3c 100644
-> > --- a/drivers/spi/spi.c
-> > +++ b/drivers/spi/spi.c
-> > @@ -4480,6 +4480,7 @@ static int of_spi_notify(struct notifier_block *n=
-b, unsigned long action,
-> >                         return NOTIFY_OK;
-> >                 }
-> >
-> > +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
-> >                 spi =3D of_register_spi_device(ctlr, rd->dn);
-> >                 put_device(&ctlr->dev);
-> >
-> > --
-> > 2.34.1
-> >
+>   		writel_relaxed(drvdata->dsb->trig_patt_val[i],
+>   			    drvdata->base + TPDM_DSB_XPR(i));
+>   		writel_relaxed(drvdata->dsb->trig_patt_mask[i],
+> @@ -105,6 +112,16 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   	}
+>   
+>   	val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
+> +	/* Set pattern timestamp type and enablement */
+> +	if (drvdata->dsb->patt_ts) {
+> +		val |= TPDM_DSB_TIER_PATT_TSENAB;
+> +		if (drvdata->dsb->patt_type)
+> +			val |= TPDM_DSB_TIER_PATT_TYPE;
+> +		else
+> +			val &= ~TPDM_DSB_TIER_PATT_TYPE;
+> +	} else {
+> +		val &= ~TPDM_DSB_TIER_PATT_TSENAB;
+> +	}
+
+set_dsb_pattern_ts() in line with the other helper functions ?
+Rest looks fine to me.
+
+Suzuki
+
+
+>   	/* Set trigger timestamp */
+>   	if (drvdata->dsb->trig_ts)
+>   		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
+> @@ -455,6 +472,157 @@ static ssize_t dsb_edge_ctrl_mask_store(struct device *dev,
+>   	return size;
+>   }
+>   static DEVICE_ATTR_RW(dsb_edge_ctrl_mask);
+> +
+> +static ssize_t dsb_patt_val_show(struct device *dev,
+> +				      struct device_attribute *attr,
+> +				      char *buf)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	ssize_t size = 0;
+> +	int i = 0;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
+> +		size += sysfs_emit_at(buf, size,
+> +				  "Index: 0x%x Value: 0x%x\n", i,
+> +				  drvdata->dsb->patt_val[i]);
+> +	}
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +
+> +/*
+> + * value 1: Index of TPR register
+> + * value 2: Value need to be written
+> + */
+> +static ssize_t dsb_patt_val_store(struct device *dev,
+> +				       struct device_attribute *attr,
+> +				       const char *buf,
+> +				       size_t size)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	unsigned long index, val;
+> +
+> +	if (sscanf(buf, "%lx %lx", &index, &val) != 2)
+> +		return -EINVAL;
+> +	if (index >= TPDM_DSB_MAX_PATT)
+> +		return -EPERM;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	drvdata->dsb->patt_val[index] = val;
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RW(dsb_patt_val);
+> +
+> +static ssize_t dsb_patt_mask_show(struct device *dev,
+> +				       struct device_attribute *attr,
+> +				       char *buf)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	ssize_t size = 0;
+> +	int i = 0;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
+> +		size += sysfs_emit_at(buf, size,
+> +				  "Index: 0x%x Value: 0x%x\n", i,
+> +				  drvdata->dsb->patt_mask[i]);
+> +	}
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +
+> +/*
+> + * value 1: Index of TPMR register
+> + * value 2: Value need to be written
+> + */
+> +static ssize_t dsb_patt_mask_store(struct device *dev,
+> +					struct device_attribute *attr,
+> +					const char *buf,
+> +					size_t size)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	unsigned long index, val;
+> +
+> +	if (sscanf(buf, "%lx %lx", &index, &val) != 2)
+> +		return -EINVAL;
+> +	if (index >= TPDM_DSB_MAX_PATT)
+> +		return -EPERM;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	drvdata->dsb->patt_mask[index] = val;
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RW(dsb_patt_mask);
+> +
+> +static ssize_t dsb_patt_ts_show(struct device *dev,
+> +				     struct device_attribute *attr,
+> +				     char *buf)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +
+> +	return sysfs_emit(buf, "%u\n",
+> +			 (unsigned int)drvdata->dsb->patt_ts);
+> +}
+> +
+> +/*
+> + * value 1: Enable/Disable DSB pattern timestamp
+> + */
+
+> +static ssize_t dsb_patt_ts_store(struct device *dev,
+> +				      struct device_attribute *attr,
+> +				      const char *buf,
+> +				      size_t size)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	unsigned long val;
+> +
+> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
+> +		return -EINVAL;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	if (val)
+> +		drvdata->dsb->patt_ts = true;
+> +	else
+> +		drvdata->dsb->patt_ts = false;
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RW(dsb_patt_ts);
+> +
+> +static ssize_t dsb_patt_type_show(struct device *dev,
+> +				       struct device_attribute *attr, char *buf)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +
+> +	return sysfs_emit(buf, "%u\n",
+> +			 (unsigned int)drvdata->dsb->patt_type);
+> +}
+> +
+> +/*
+> + * value 1: Set DSB pattern type
+
+
+> + */ > +static ssize_t dsb_patt_type_store(struct device *dev,
+> +					struct device_attribute *attr,
+> +					const char *buf, size_t size)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	unsigned long val;
+> +
+> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
+> +		return -EINVAL;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	if (val)
+> +		drvdata->dsb->patt_type = true;
+> +	else
+> +		drvdata->dsb->patt_type = false;
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RW(dsb_patt_type);
+> +
+>   static ssize_t dsb_trig_patt_val_show(struct device *dev,
+>   					   struct device_attribute *attr,
+>   					   char *buf)
+> @@ -605,6 +773,10 @@ static struct attribute *tpdm_dsb_attrs[] = {
+>   	&dev_attr_dsb_mode.attr,
+>   	&dev_attr_dsb_edge_ctrl.attr,
+>   	&dev_attr_dsb_edge_ctrl_mask.attr,
+> +	&dev_attr_dsb_patt_val.attr,
+> +	&dev_attr_dsb_patt_mask.attr,
+> +	&dev_attr_dsb_patt_ts.attr,
+> +	&dev_attr_dsb_patt_type.attr,
+>   	&dev_attr_dsb_trig_patt_val.attr,
+>   	&dev_attr_dsb_trig_patt_mask.attr,
+>   	&dev_attr_dsb_trig_ts.attr,
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
+> index 2e8020e..f9d4dd9 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+> @@ -12,6 +12,8 @@
+>   /* DSB Subunit Registers */
+>   #define TPDM_DSB_CR		(0x780)
+>   #define TPDM_DSB_TIER		(0x784)
+> +#define TPDM_DSB_TPR(n)		(0x788 + (n * 4))
+> +#define TPDM_DSB_TPMR(n)	(0x7A8 + (n * 4))
+>   #define TPDM_DSB_XPR(n)		(0x7C8 + (n * 4))
+>   #define TPDM_DSB_XPMR(n)	(0x7E8 + (n * 4))
+>   #define TPDM_DSB_EDCR(n)	(0x808 + (n * 4))
+> @@ -24,8 +26,12 @@
+>   /* Enable bit for DSB subunit trigger type */
+>   #define TPDM_DSB_CR_TRIG_TYPE		BIT(12)
+>   
+> +/* Enable bit for DSB subunit pattern timestamp */
+> +#define TPDM_DSB_TIER_PATT_TSENAB		BIT(0)
+>   /* Enable bit for DSB subunit trigger timestamp */
+>   #define TPDM_DSB_TIER_XTRIG_TSENAB		BIT(1)
+> +/* Bit for DSB subunit pattern type */
+> +#define TPDM_DSB_TIER_PATT_TYPE		BIT(2)
+>   
+>   /* DSB programming modes */
+>   #define TPDM_DSB_MODE_CYCACC(val)	(val & GENMASK(2, 0))
+> @@ -76,6 +82,10 @@
+>    * @mode:             DSB programming mode
+>    * @edge_ctrl:        Save value for edge control
+>    * @edge_ctrl_mask:   Save value for edge control mask
+> + * @patt_val:         Save value for pattern
+> + * @patt_mask:        Save value for pattern mask
+> + * @patt_ts:          Enable/Disable pattern timestamp
+> + * @patt_type:        Set pattern type
+>    * @trig_patt_val:    Save value for trigger pattern
+>    * @trig_patt_mask:   Save value for trigger pattern mask
+>    * @trig_ts:          Enable/Disable trigger timestamp.
+> @@ -85,6 +95,10 @@ struct dsb_dataset {
+>   	u32				mode;
+>   	u32				edge_ctrl[TPDM_DSB_MAX_EDCR];
+>   	u32				edge_ctrl_mask[TPDM_DSB_MAX_EDCMR];
+> +	u32				patt_val[TPDM_DSB_MAX_PATT];
+> +	u32				patt_mask[TPDM_DSB_MAX_PATT];
+> +	bool			patt_ts;
+> +	bool			patt_type;
+>   	u32				trig_patt_val[TPDM_DSB_MAX_PATT];
+>   	u32				trig_patt_mask[TPDM_DSB_MAX_PATT];
+>   	bool			trig_ts;
+
