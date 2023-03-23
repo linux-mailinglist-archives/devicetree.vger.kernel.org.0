@@ -2,126 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9676C6389
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:28:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 345A56C63CF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbjCWJ2R convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Mar 2023 05:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47272 "EHLO
+        id S229941AbjCWJiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 05:38:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231202AbjCWJ1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:27:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B5D2B9E1
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 02:24:34 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1pfHAs-0003uL-Og; Thu, 23 Mar 2023 10:23:58 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1pfHAm-0067Jh-Pk; Thu, 23 Mar 2023 10:23:52 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1pfHAm-0002Yl-3Q; Thu, 23 Mar 2023 10:23:52 +0100
-Message-ID: <7799e176e73d1385322e5efba8479e56544c664b.camel@pengutronix.de>
-Subject: Re: [PATCH v3 3/5] dt-binding: Add JH7110 USB wrapper layer doc.
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Minda Chen <minda.chen@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231150AbjCWJiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:38:00 -0400
+X-Greylist: delayed 440 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 23 Mar 2023 02:35:52 PDT
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com [64.147.123.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B7822036;
+        Thu, 23 Mar 2023 02:35:52 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id 85BD22B0681D;
+        Thu, 23 Mar 2023 05:28:22 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 23 Mar 2023 05:28:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1679563702; x=1679570902; bh=D+
+        6uZuc9G8Cokr6D/ZuPojKuYrWzIuh3IXwIRgnmVHA=; b=Grd14zRIvsJco7ab2/
+        EJppZ6ZNhgtslECuLaA5r9XEO8okGkzdmEuF1h4mkA7fvqNHyJbX1PMqYWo8Rtwx
+        X5ataRWTesx2mnefGO8VnZhl34tj9QLV6h4HBnhuC7VGeianQ5Vf6j8MpK0asBmu
+        LBg5t3uuwyzq/WkBCDRNIn77XW7mqFoZAe2rFL30HoSMFEUX/QNw6eCicRx+HMT2
+        4526yveHRgi1cryfZVVNV+L6gAwXfBpDWUdeGI9HtJYwc/BOkOKnFllfopMKKha9
+        XhcbeV+GTxShxnK9HxfMXvp0pejBmIcuSwUJjve96I2Nvsq0DlggDwPFwzJ3vuST
+        ku8Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1679563702; x=1679570902; bh=D+6uZuc9G8Cok
+        r6D/ZuPojKuYrWzIuh3IXwIRgnmVHA=; b=Ai0ccEckw5DnS+8GQfsYqpXuWpFGB
+        ttQLPWjSKlnP2tyns81XXlCFD0Q3xCeGff5rzdlC/6fX8JQ+4kiJDnn1U75c53bw
+        3N6GGfyyybi+Oc1hH+quCZw/v4mKnLiAwdLBGbsgKsp24nDseAFy6LSW9eugCmVb
+        +KWHJcUBGeH/Xl9DeNU/1942HFw577G7yPJsIuuQ1YmES20O/zI4WxZkMh2fgyvE
+        a++ZfjFMGS7aM9uIVZ7hwQRJ5mpW9rkPe/CqQE4TXKbCH/6yyeyeHBBofsebtprR
+        HWH8eNTjFX/5jiVQ+ZZg+2Wzp8v4NHUZ9+PfVsCpbk2QaiHtJw9Vu6qrg==
+X-ME-Sender: <xms:tBscZNYU0sYr-0l50Yk4duLxqaae1ei9hUNtbliJx9BdbCtXahbacg>
+    <xme:tBscZEY_aXclh9vdqLqnl4wru2s6kxPDvdXjMxVMjjpPUds2kh_VV4YfON44u9ijp
+    eN3I--qqDpHqT8kqb8>
+X-ME-Received: <xmr:tBscZP8skWawj0kRdUZp0NZnNW7iLg1bpc9apnCh3xEamIO3DRctlsv_Do8_iUT-3gjsZHLbhGlaCwh_7I23TS4fALDfcrQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdeggedgtdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
+    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:tBscZLquNPybogS3zNBGkVjdxMrFA_wmROPfMRKE76tl3-jPfie6VA>
+    <xmx:tBscZIpFJVMEV1zDSpLQ5e2Og2-mS-3BlS-BryqQYSpE93anFPLqpA>
+    <xmx:tBscZBQ0dyta-7zR6gLyviIlJ54-XWhFYU9iBu9fMXL9ozk-HdFNNg>
+    <xmx:thscZEeaobicffGMWazNsg-Qr4l9xbsovbY_2Ck1BEPfHDBnfTOBrqEaAAY>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 23 Mar 2023 05:28:19 -0400 (EDT)
+Date:   Thu, 23 Mar 2023 10:28:16 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Shreeya Patel <shreeya.patel@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, Zhigang Shi <Zhigang.Shi@liteon.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Paul Gazzillo <paul@pgazz.com>,
+        =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        Stephen Boyd <sboyd@kernel.org>, Emma Anholt <emma@anholt.net>,
+        Liam Beguin <liambeguin@gmail.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Date:   Thu, 23 Mar 2023 10:23:52 +0100
-In-Reply-To: <20230315104411.73614-4-minda.chen@starfivetech.com>
-References: <20230315104411.73614-1-minda.chen@starfivetech.com>
-         <20230315104411.73614-4-minda.chen@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1+deb11u1 
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Gow <davidgow@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        David Airlie <airlied@gmail.com>,
+        linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v5 0/8] Support ROHM BU27034 ALS sensor
+Message-ID: <20230323092816.eemjbfez6wxbumx7@houat>
+References: <cover.1679474247.git.mazziesaccount@gmail.com>
+ <ZBrSCYp+QrHK47dS@smile.fi.intel.com>
+ <87edphnkg1.fsf@minerva.mail-host-address-is-not-set>
+ <8fe9fea1-b7b8-ee46-9534-de7e2b1726f9@gmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ihwqacloxsmu5zbe"
+Content-Disposition: inline
+In-Reply-To: <8fe9fea1-b7b8-ee46-9534-de7e2b1726f9@gmail.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2023-03-15 at 18:44 +0800, Minda Chen wrote:
-> The dt-binding doc of Cadence USBSS-DRD controller wrapper
-> layer.
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> ---
->  .../bindings/usb/starfive,jh7110-usb.yaml     | 119 ++++++++++++++++++
->  1 file changed, 119 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> new file mode 100644
-> index 000000000000..b1a8dc6d7b4b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/starfive,jh7110-usb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controller
-> +
-> +maintainers:
-> +  - Minda Chen <minda.chen@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-usb
-> +
-> +  clocks:
-> +    items:
-> +      - description: lpm clock
-> +      - description: stb clock
-> +      - description: apb clock
-> +      - description: axi clock
-> +      - description: utmi apb clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: lpm
-> +      - const: stb
-> +      - const: apb
-> +      - const: axi
-> +      - const: utmi_apb
-> +
-> +  resets:
-> +    items:
-> +      - description: PWRUP reset
-> +      - description: APB reset
-> +      - description: AXI reset
-> +      - description: UTMI_APB reset
 
-I'd add a "reset-names" property, just in case there is ever a reason
-to trigger any of the resets independently from the others.
+--ihwqacloxsmu5zbe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-regards
-Philipp
+On Wed, Mar 22, 2023 at 12:59:33PM +0200, Matti Vaittinen wrote:
+> > I agree with Maxime that a little bit of duplication (that can be clean=
+ed
+> > up by each subsystem at their own pace) is the path of least resistance.
+>=20
+> I'd say this depends. It probably is the path of least resistance for peo=
+ple
+> maintaining the trees. It can also be the path of least resistance in
+> general - but it depends on if there will be no new users for those DRM
+> helpers while waiting the new APIs being merged in DRM tree. More users we
+> see in DRM, more effort the clean-up requires.
+
+So far there's one user in DRM, and I'm not aware of any current work
+using it at the moment. Even if some show up in the short-term future,
+it's not going to be overwhelming.
+
+Maxime
+
+--ihwqacloxsmu5zbe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZBwbsAAKCRDj7w1vZxhR
+xaHTAP0eX38oKDx4w+f18p920Z65wm1LMJZUsTQTKppqDXkAgAEA+oBatGCMd3iz
+2GkL2vZla5OIIAXWxReh2dxN+LliWA0=
+=5iWi
+-----END PGP SIGNATURE-----
+
+--ihwqacloxsmu5zbe--
