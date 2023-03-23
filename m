@@ -2,78 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3ABB6C5FBF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 07:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 112496C5FC2
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 07:33:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbjCWGdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 02:33:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36838 "EHLO
+        id S229836AbjCWGdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 02:33:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbjCWGdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 02:33:20 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE271E29D
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:33:14 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id ew6so19210773edb.7
-        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:33:14 -0700 (PDT)
+        with ESMTP id S229739AbjCWGdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 02:33:50 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7FC22278C
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:33:45 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id h8so82170113ede.8
+        for <devicetree@vger.kernel.org>; Wed, 22 Mar 2023 23:33:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679553193;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679553224;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P26M5F00UYnJITnW1PuJMXRSHcsZ7mkPrkAisDp/mcw=;
-        b=nSkaEW9HRcfQyhrDgk+uHc84d53HvzIkSPKGI2Cl7LALmspI9IIUK5GdPbuCxNHeXp
-         2L2lUZ3ZH0k6VzT3JNiO4ghSBM9piHaetxnUZg3GmxNNW7K0mx1fkHszTlL8elG+v5JJ
-         5xgP3JdFj7C+77gpteq64j+z/QJ30Un/dOOBNzyYaTOIpbaI9eLRNzdMDJhwAHQnHk9x
-         O/XZNSBTUt07jcocowui9LmubyUI1xgmSAyuE22lPwe3NQ3fVHEiQVlOQh8Z+9jGvE5f
-         AtWfKCoIt7Kyg7OHqhGm+PTgOyS9w+7SF1VV9ESo4ZGo7Es/mE9Lrve9sxM1+9CFPRdY
-         M83Q==
+        bh=eCemMeqwjMVzDE8wLEMLT09xBhWQ5v22MwjMcsbx1sU=;
+        b=PsqyKTLDetNlpt0ioowCO9i1kC460cyNFfDcJTUVpuwT/+woKSaTewkqDytEoVu3t1
+         NRXN5BEvRzQispLKUSgWLybXw5kJOtVT/2baPm0pRYWUoHx2crNLiZ4J6GK1vSeCadTu
+         X5N6agYVbG2niSiDwsC8B6TY0jt1qJn7VAKJwTtNkWQ0A1hOL1fQsEq6C22uZBrxf8EZ
+         TbYCJ8aJTD403hfPGa6dvjMie+bXVbz7D5TbdP6mpol/YawKl9PPMQUvgEuTg75YbvIz
+         1dCY1t2uicaWCSDWDeJrw8wWnWZUkX1GivJ1SRsJOOATyEFsEGX+491sD18+K4DUN5oD
+         xm4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679553193;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679553224;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P26M5F00UYnJITnW1PuJMXRSHcsZ7mkPrkAisDp/mcw=;
-        b=VUqLHFcX3MSRRsCJYiyZjFSJO5SNeL1uekhLdlXki9aeU/VH8mt/OIsul65gLb1EFG
-         dGV7VTjRwHE89FmEkAZXEz8USZgV6velW5iaY6p0pQAYMPgca4jhj+CDRWykUnEtvZJF
-         DslvT594lKPXzS6fjOhFT6mfefjxUYxI4u9d3Qm0aq/hijuNqzX9X6B8DIInzh+/2C3a
-         2VyoZG4a2Me8IMYZpjjaz96k4DJPBH/PhYbOnE+DqLmzYfQHOMMW6MZPB1o412fVoIHO
-         RbI+Rn8LtbTEK0DZRDF1lcNq5axtjxnsfecykh+K3gzxrwADevXArQgKXfXmNJpQ5Z15
-         0+5Q==
-X-Gm-Message-State: AO0yUKVTxxD37JxFZpZ92XjSDZR1AQZv62ZwhMsjn3GlmO/gXW4tn0ot
-        RpzsmCk7kcJ63YnPTrL5nRp15W6+gz0/A83Yxko=
-X-Google-Smtp-Source: AK7set++CB5WXkyCT+haZZtvv0tmdf8UJ7T93bBXXDjeTepZzJ/1CEozqGivphGI+xif2kpqiVsDLw==
-X-Received: by 2002:a17:906:698d:b0:930:28d6:4581 with SMTP id i13-20020a170906698d00b0093028d64581mr9280915ejr.59.1679553192931;
-        Wed, 22 Mar 2023 23:33:12 -0700 (PDT)
+        bh=eCemMeqwjMVzDE8wLEMLT09xBhWQ5v22MwjMcsbx1sU=;
+        b=5X2ykKt6eb2esXWy1SCYdWdcjkseq5gu/YnWemvE5gZ7s6UGl2G7zehkYS46NuMV6x
+         vHQqRgsd1h4erWuE4K4OGWIGzlUztAN9bzdwOYB9J/nLEq0ByB10VTr7G9uvma5Rp34Q
+         YcAEICoJKhZjv7nCqCrA6K3e/3Xvs5/xYSWtRXCLsnCmQyqkftfpTxEivFt5qMizLbhE
+         SPacCmEFX1C66y1a7bPh7G02q47FUuQLtKJ3CeOF2QUyurYVl+nwrcPHSE6VMVKQ5IDb
+         x5G0AXtY2PixGcZ4AbrXKd9+E6spnSb+a6HZ28MX4CLz6r2e1Z1hHBfMTcZkn7TzSdg5
+         Q58g==
+X-Gm-Message-State: AO0yUKXDmRClshH2wokO04rKEWDSOtpPL64iqcldXsKnUmaUYxcRGmHe
+        DLI/ZY5X4lj6Pw6Pm0xN5xsufA==
+X-Google-Smtp-Source: AK7set8RJB+DTjcD2EokLbHqFm7mMwV6VlW000RW9DWaB/UvoxAV3HiuakfE6JeUhHOVeryNXcJddg==
+X-Received: by 2002:a17:906:f6d9:b0:930:1391:da7c with SMTP id jo25-20020a170906f6d900b009301391da7cmr8831790ejb.60.1679553224138;
+        Wed, 22 Mar 2023 23:33:44 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a665:ed1e:3966:c991? ([2a02:810d:15c0:828:a665:ed1e:3966:c991])
-        by smtp.gmail.com with ESMTPSA id k8-20020a17090627c800b008d1693c212csm8138596ejc.8.2023.03.22.23.33.11
+        by smtp.gmail.com with ESMTPSA id i6-20020a170906250600b009306be6bed7sm8146661ejb.190.2023.03.22.23.33.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Mar 2023 23:33:12 -0700 (PDT)
-Message-ID: <554dd2ca-0514-dc1e-9add-d49a711bc1f2@linaro.org>
-Date:   Thu, 23 Mar 2023 07:33:11 +0100
+        Wed, 22 Mar 2023 23:33:43 -0700 (PDT)
+Message-ID: <10d3e045-9aba-6ceb-273c-4f23afec3b92@linaro.org>
+Date:   Thu, 23 Mar 2023 07:33:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 00/13] mailbox/arm64/ qcom: rework compatibles for
- fallback
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230314080917.68246-1-krzysztof.kozlowski@linaro.org>
- <c35fd641-12ff-beba-341c-4d0305bcaa40@linaro.org>
- <290b9b19-a320-38a1-4426-51f5725dd54f@linaro.org>
- <59a6ef88-758f-4ec4-f663-47e4caa552c5@linaro.org>
- <CAA8EJprqXVrXdBD6eBHoDGhvST2hViZUbMgdaeKEBohpv5_V3w@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH v3 1/3] dt-bindings: usb: cdns-imx8qm: add
+ imx8qm cdns3 glue bindings
 Content-Language: en-US
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+References: <20230321151951.2784286-1-Frank.Li@nxp.com>
+ <20230321151951.2784286-2-Frank.Li@nxp.com>
+ <1ce3bf91-6bef-b4c1-1ec9-3a345518efeb@linaro.org>
+ <AM6PR04MB483828FC1083E3C98930DF6488869@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <b5d67af0-ed08-e243-2c0c-92f1f002e552@linaro.org>
+ <AM6PR04MB483841E17BEEE4F9EC596DBA88869@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <835cda64-5d42-1ff3-aa8f-0802fe3d705f@linaro.org>
+ <AM6PR04MB48383C58EF1D9CFD8F7C401E88869@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <24767874-0b26-78c8-43c2-6cc3adb901f8@linaro.org>
+ <AM6PR04MB4838ECE2917EF132943830EA88869@AM6PR04MB4838.eurprd04.prod.outlook.com>
+ <6cf27e09-af76-34a5-1913-77165866480b@linaro.org>
+ <AM6PR04MB483887C7F652AD96F92D002488869@AM6PR04MB4838.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJprqXVrXdBD6eBHoDGhvST2hViZUbMgdaeKEBohpv5_V3w@mail.gmail.com>
+In-Reply-To: <AM6PR04MB483887C7F652AD96F92D002488869@AM6PR04MB4838.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -86,33 +97,177 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2023 23:28, Dmitry Baryshkov wrote:
-> On Wed, 22 Mar 2023 at 19:37, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 16/03/2023 07:52, Krzysztof Kozlowski wrote:
->>> On 14/03/2023 13:16, Dmitry Baryshkov wrote:
->>>> On 14/03/2023 10:09, Krzysztof Kozlowski wrote:
->>>>> Hi,
->>>>>
->>>>> Changes since v1
->>>>> ================
->>>>> 1. Rebase
->>>>> 2. Make msm8994 fallback for several variants, not msm8953, because the latter
->>>>>     actually might take some clocks.
->>>>
->>>> Although the approach looks correct, I think that in some cases it tries
->>>> to mark devices compatible judging from the current driver, not from the
->>>> hardware itself.
->>>
->>> Which is what compatibility is about...
+On 22/03/2023 23:15, Frank Li wrote:
 > 
-> Well, I was trying to say that once we update the driver, the devices
-> will not be compatible. But probably our definitions of being
-> compatible differ.
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Wednesday, March 22, 2023 5:09 PM
+>> To: Frank Li <frank.li@nxp.com>
+>> Cc: devicetree@vger.kernel.org; festevam@gmail.com; imx@lists.linux.dev;
+>> kernel@pengutronix.de; krzysztof.kozlowski+dt@linaro.org; linux-arm-
+>> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; linux-
+>> kernel@vger.kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de;
+>> shawnguo@kernel.org
+>> Subject: Re: [EXT] Re: [PATCH v3 1/3] dt-bindings: usb: cdns-imx8qm: add
+>> imx8qm cdns3 glue bindings
+>>
+>> Caution: EXT Email
+>>
+>> On 22/03/2023 22:57, Frank Li wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Wednesday, March 22, 2023 4:43 PM
+>>>> To: Frank Li <frank.li@nxp.com>
+>>>> Cc: devicetree@vger.kernel.org; festevam@gmail.com;
+>> imx@lists.linux.dev;
+>>>> kernel@pengutronix.de; krzysztof.kozlowski+dt@linaro.org; linux-arm-
+>>>> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; linux-
+>>>> kernel@vger.kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de;
+>>>> shawnguo@kernel.org
+>>>> Subject: Re: [EXT] Re: [PATCH v3 1/3] dt-bindings: usb: cdns-imx8qm: add
+>>>> imx8qm cdns3 glue bindings
+>>>>
+>>>> Caution: EXT Email
+>>>>
+>>>> On 22/03/2023 22:40, Frank Li wrote:
+>>>>>
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>> Sent: Wednesday, March 22, 2023 4:38 PM
+>>>>>> To: Frank Li <frank.li@nxp.com>
+>>>>>> Cc: devicetree@vger.kernel.org; festevam@gmail.com;
+>>>> imx@lists.linux.dev;
+>>>>>> kernel@pengutronix.de; krzysztof.kozlowski+dt@linaro.org; linux-arm-
+>>>>>> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; linux-
+>>>>>> kernel@vger.kernel.org; robh+dt@kernel.org;
+>> s.hauer@pengutronix.de;
+>>>>>> shawnguo@kernel.org
+>>>>>> Subject: Re: [EXT] Re: [PATCH v3 1/3] dt-bindings: usb: cdns-imx8qm:
+>> add
+>>>>>> imx8qm cdns3 glue bindings
+>>>>>>
+>>>>>> Caution: EXT Email
+>>>>>>
+>>>>>> On 22/03/2023 22:36, Frank Li wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>>> -----Original Message-----
+>>>>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>>> Sent: Wednesday, March 22, 2023 4:32 PM
+>>>>>>>> To: Frank Li <frank.li@nxp.com>
+>>>>>>>> Cc: devicetree@vger.kernel.org; festevam@gmail.com;
+>>>>>> imx@lists.linux.dev;
+>>>>>>>> kernel@pengutronix.de; krzysztof.kozlowski+dt@linaro.org; linux-
+>> arm-
+>>>>>>>> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>;
+>> linux-
+>>>>>>>> kernel@vger.kernel.org; robh+dt@kernel.org;
+>>>> s.hauer@pengutronix.de;
+>>>>>>>> shawnguo@kernel.org
+>>>>>>>> Subject: Re: [EXT] Re: [PATCH v3 1/3] dt-bindings: usb: cdns-imx8qm:
+>>>> add
+>>>>>>>> imx8qm cdns3 glue bindings
+>>>>>>>>
+>>>>>>>> Caution: EXT Email
+>>>>>>>>
+>>>>>>>> On 22/03/2023 15:34, Frank Li wrote:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>> -----Original Message-----
+>>>>>>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>>>>> Sent: Wednesday, March 22, 2023 2:32 AM
+>>>>>>>>>> To: Frank Li <frank.li@nxp.
+>>>>>>>>>>> +      - const: usb3_aclk
+>>>>>>>>>>> +      - const: usb3_ipg_clk
+>>>>>>>>>>> +      - const: usb3_core_pclk
+>>>>>>>>>>> +
+>>>>>>>>>>> +  assigned-clocks:
+>>>>>>>>>>> +    items:
+>>>>>>>>>>> +      - description: Phandle and clock specifoer of
+>>>>>>>>>> IMX_SC_PM_CLK_MST_BUS.
+>>>>>>>>>>
+>>>>>>>>>> Drop useless pieces so "Phandle and clock specifoer of " and
+>> name
+>>>> the
+>>>>>>>>>> hardware, not the syntax.
+>>>>>>>>>>
+>>>>>>>>>>> +
+>>>>>>>>>>> +  assigned-clock-rates:
+>>>>>>>>>>> +    items:
+>>>>>>>>>>> +      - description: Should be in Range 100 - 600 Mhz.
+>>>>>>>>>>
+>>>>>>>>>> That's better but I still do not understand why do you need it in
+>> the
+>>>>>>>>>> bindings. You never actually answered this question.
+>>>>>>>>>
+>>>>>>>>> I am not sure 100% sure the reason.
+>>>>>>>>> I think difference system target's  axi bus frequency is difference,
+>>>>>>>>> And just one time work, needn't software to manage it.
+>>>>>>>>> Following other driver's code style may be another reason.
+>>>>>>>>
+>>>>>>>> That's the reason of heaving it in DTS. But I am asking about bindings.
+>>>>>>>> You do understand you define here interface?
+>>>>>>>
+>>>>>>> I defined here is descript AXI frequency for usb controller. Supposed
+>>>>>> difference
+>>>>>>> Platform will have difference working frequency.
+>>>>>>
+>>>>>> I don't understand how does this answer my concerns of having it in DT
+>>>>>> bindings. If you do not add it, you "will have difference working
+>>>>>> frequency", so what's the point?
+>>>>>
+>>>>> For example: imx8qxp, it need set to 250Mhz,  i.MX8QM need set to
+>>>> 200Mhz.
+>>>>> Maybe future chip can set to 400Mhz.
+>>>>
+>>>> And? So as you can see you will still have different frequencies, so
+>>>> what's the point? What is the benefit? Dunno, maybe we do not
+>> understand
+>>>> each other, because I don't think you are answering my questions at all.
+>>>
+>>> Benefit: New chip just need change dts file for the same IP, like change
+>> base
+>>> Reg address and irq number.
+>>
+>> To remind - the question was:
+>> "That's better but I still do not understand why do you need it in the
+>> bindings."
+>> If you drop it from the bindings the benefit is still there, so what do
+>> you want to prove?
+>>
+>>>
+>>> Your question is:  "why need this assigned-clock-rates
+>> IMX_SC_PM_CLK_MST_BUS property?"
+>>
+>> This was the previous thread. Now, related but slightly different, why
+>> do you still need it in the bindings?
+>>
+>>
+>>> My answer: it is one of hardware property, like reg base address and irq
+>> number.
+>>
+>> Sure, it is, I know, and bindings already allow it. Just look at many
+>> DTS and their bindings. Do you see the bindings defining this property?
+>> No. So why do you think it is needed here? I am asking this since like 6
+>> emails and your answers are not related to bindings at all.
+>>
+>>>
+>>> If can't match your expectation, can you change another words or provide
+>> me an example?
+>>
+>> Yeah, just open several DTS and look for assigned-clock, then open their
+>> bindings and answer - why do you need to add it to the binding but all
+>> other bindings did not have to? If you have the answer, sure, bring
+>> these parts of bindings.
+> 
+> Do you means, Needn't add assigned-clock in binding *document* yaml file?
+> And dts file still can use assigned-clock property. 
 
-What do you want to update in the driver? What's going to happen with
-it? What is missing?
+Yes, I said it many times already...
 
 Best regards,
 Krzysztof
