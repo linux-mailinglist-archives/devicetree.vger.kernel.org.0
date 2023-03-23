@@ -2,53 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C20636C6865
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 268156C6878
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:36:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231459AbjCWMdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 08:33:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59626 "EHLO
+        id S231783AbjCWMf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 08:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbjCWMdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:33:05 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A7A12848
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:33:03 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1pfK7b-00081j-6X; Thu, 23 Mar 2023 13:32:47 +0100
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1pfK7Y-00699f-Aw; Thu, 23 Mar 2023 13:32:44 +0100
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1pfK7X-00Fn7U-Kh; Thu, 23 Mar 2023 13:32:43 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
-        <jerome.pouiller@silabs.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: [PATCH v1] ARM: dts: stm32: prtt1c: Add PoDL PSE regulator nodes
-Date:   Thu, 23 Mar 2023 13:32:42 +0100
-Message-Id: <20230323123242.3763673-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S231758AbjCWMf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:35:57 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF671EFE7
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:35:55 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id b20so52897173edd.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:35:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679574954;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TcdcFW2o7lO4HSULvRwKJuKAN+ANvBzfqs/0VanCNtA=;
+        b=SKWgUpGw8QCzkIH0er3CYuYtajmychdMFo1YNnpHWm4cN3IEo4qhST6TCQxJcfR3p5
+         tHUmRH559dEWePF3/X7g2W1n7qeIi+ruBMx83ysMDLJJJt9+CSFpH5pvoIaxeq6h9SW9
+         kpf4m2otdltH1s5lzUaB3VpYPHLgZ9+oCreK6T6DWsunVGmMSFPD/0f6UXopMgUbt3mu
+         oHA/JgSVqksydQW4Aeu3DeTQg5EMz3e90db/xCVvrCOqdhxpx4aH1Y7mrPQwj3JX2mxh
+         wdlkEBaqRi6fPqVtVx3c0nLvsHzNgv9BQqZF9oC5ooyNXjYgNOCkwScoeX5Gj2lc9wPd
+         X+7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679574954;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TcdcFW2o7lO4HSULvRwKJuKAN+ANvBzfqs/0VanCNtA=;
+        b=Fgm96nL1ofQrAvkG3EtENCk0KtZGW2UDDx+2+NaqMC1mkDgF8fS8iLHdOk6vKxWFru
+         jHrtWEDkVGl55uvOu0PL+9Xr6NVNRZRoXq+kd8Z3SNbw9kpfvTcYoS2jU+zHMyjImF1v
+         fSAoz+WnlgoBmj/OT9UjTqehvuRKG6knJ2ZbBQOBkJT6J+yXc+QHp4iMTUKSUirR/Glh
+         6xVbgzwjFhBXCWzhLPHc2AYsLGV+jxyCMggYj49dp+S72I/gVWvdP/phHWqrXDlOqSsL
+         GFhue8lzfPlZGwi6IGQOizHrKk3AM2mP/niVXFDQxvuTs/UyzFya4z5Ure4bpMssxyjp
+         NUeA==
+X-Gm-Message-State: AO0yUKXUCX5buqKHlRDhItx+84ZfYjuh3pP0ZUYtUezHPTOUhHdgm9mg
+        TAg6tMMsGFz5Eq+yZqRyx6uxTA==
+X-Google-Smtp-Source: AK7set9gCzPMq6UzpYkoDzP8fIbA330Kh0INBz2+cqIjPHXz2lglBtuGncjUGTCTLGJjiHUP+ffU3Q==
+X-Received: by 2002:a17:906:4355:b0:92e:c4c9:7a43 with SMTP id z21-20020a170906435500b0092ec4c97a43mr9847521ejm.25.1679574954171;
+        Thu, 23 Mar 2023 05:35:54 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d350:23b1:cb94:f39d? ([2a02:810d:15c0:828:d350:23b1:cb94:f39d])
+        by smtp.gmail.com with ESMTPSA id k15-20020a50ce4f000000b004bef1187754sm9086863edj.95.2023.03.23.05.35.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 05:35:53 -0700 (PDT)
+Message-ID: <04876110-1dec-dafd-cf4e-a6ed7a8b40b0@linaro.org>
+Date:   Thu, 23 Mar 2023 13:35:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v10 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x
+ variants
+Content-Language: en-US
+To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Peter Rosin <peda@axentia.se>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230323115356.2602042-1-patrick.rudolph@9elements.com>
+ <20230323115356.2602042-2-patrick.rudolph@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323115356.2602042-2-patrick.rudolph@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,101 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit introduces Power over Data Line (PoDL) Power Source
-Equipment (PSE) regulator nodes to the PRTT1C devicetree. The addition
-of these nodes enables support for PoDL in PRTT1C devices, allowing
-power delivery and data transmission over a single twisted pair.
+On 23/03/2023 12:53, Patrick Rudolph wrote:
+> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
+> chips. The functionality will be provided by the exisintg pca954x driver.
+> 
+> While on it make the interrupts support conditionally as not all of the
+> existing chips have interrupts.
+> 
+> For chips that are powered off by default add an optional regulator
+> called vdd-supply.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-The new PoDL PSE regulator nodes provide voltage capability information
-of the current board design, which can be used as a hint for system
-administrators when configuring and managing power settings. This
-update enhances the versatility and simplifies the power management of
-PRTT1C devices while ensuring compatibility with connected Powered
-Devices (PDs).
+I just received this patch sent twice - as 1/3 and 1/4 - without
+changelog, no cover letter, nothing more. Also other patches are
+missing, but that I could understand as intentional.
 
-After applying this patch, the power delivery can be controlled from
-user space with a patched [1] ethtool version using the following commands:
-  ethtool --set-pse t1l2 podl-pse-admin-control enable
-to enable power delivery, and
-  ethtool --show-pse t1l2
-to display the PoDL PSE settings.
+This is confusing. New submission means new version. Attach changelog
+after --- explaining the changes.
 
-By integrating PoDL PSE support into the PRTT1C devicetree, users can
-benefit from streamlined power and data connections in their
-deployments, improving overall system efficiency and reducing cabling
-complexity.
-
-[1] https://lore.kernel.org/all/20230317093024.1051999-1-o.rempel@pengutronix.de/
-
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/stm32mp151a-prtt1c.dts | 32 ++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
-
-diff --git a/arch/arm/boot/dts/stm32mp151a-prtt1c.dts b/arch/arm/boot/dts/stm32mp151a-prtt1c.dts
-index 58bb05a8c685..ca0d3329cfd7 100644
---- a/arch/arm/boot/dts/stm32mp151a-prtt1c.dts
-+++ b/arch/arm/boot/dts/stm32mp151a-prtt1c.dts
-@@ -23,6 +23,18 @@ clock_sja1105: clock-sja1105 {
- 		clock-frequency = <25000000>;
- 	};
- 
-+	pse_t1l1: ethernet-pse-1 {
-+		compatible = "podl-pse-regulator";
-+		pse-supply = <&reg_t1l1>;
-+		#pse-cells = <0>;
-+	};
-+
-+	pse_t1l2: ethernet-pse-2 {
-+		compatible = "podl-pse-regulator";
-+		pse-supply = <&reg_t1l2>;
-+		#pse-cells = <0>;
-+	};
-+
- 	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		#address-cells = <1>;
-@@ -32,6 +44,24 @@ mdio0: mdio {
- 
- 	};
- 
-+	reg_t1l1: regulator-pse-t1l1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pse-t1l1";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		gpio = <&gpiog 13 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_t1l2: regulator-pse-t1l2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pse-t1l2";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		gpio = <&gpiog 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	wifi_pwrseq: wifi-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&gpiod 8 GPIO_ACTIVE_LOW>;
-@@ -92,6 +122,7 @@ t1l1_phy: ethernet-phy@7 {
- 		reset-gpios = <&gpiog 12 GPIO_ACTIVE_LOW>;
- 		reset-assert-us = <10>;
- 		reset-deassert-us = <35>;
-+		pses = <&pse_t1l1>;
- 	};
- 
- 	/* TI DP83TD510E */
-@@ -102,6 +133,7 @@ t1l2_phy: ethernet-phy@10 {
- 		reset-gpios = <&gpiog 11 GPIO_ACTIVE_LOW>;
- 		reset-assert-us = <10>;
- 		reset-deassert-us = <35>;
-+		pses = <&pse_t1l2>;
- 	};
- 
- 	/* Micrel KSZ9031 */
--- 
-2.30.2
+Best regards,
+Krzysztof
 
