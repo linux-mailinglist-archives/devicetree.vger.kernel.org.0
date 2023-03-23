@@ -2,86 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8157D6C6BF5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 16:12:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0537A6C6C06
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 16:15:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232011AbjCWPMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 11:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54596 "EHLO
+        id S232018AbjCWPPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 11:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231524AbjCWPMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 11:12:07 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6979319C44;
-        Thu, 23 Mar 2023 08:11:35 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id k37so15252806lfv.0;
-        Thu, 23 Mar 2023 08:11:35 -0700 (PDT)
+        with ESMTP id S231699AbjCWPPJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 11:15:09 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB074D528
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 08:15:07 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id eh3so88071677edb.11
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 08:15:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679584291;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=09gF+ci4EZ7xKNHFBN4nQXrjScsnzrqt/YgXpgBpcd0=;
-        b=Mu76RFZOyAfrq9LEOuqynAliFMXq6UNacOyT2uAPTpnq5G3H+re0Cx4K/gGwiBMVIi
-         c/cB37JF5RoQfM4k+LLFb0flTYpNLJD1E9OqFxtJc9XNGb0f6Chyw3Ax/hYXAsgNQEmM
-         hPkLk/8WJgpOVjkfW2By4WK6f18UAW+IynBO9hIT17PcpBC79JaazKDFsOnZr2I104Mh
-         VSB05qI7RSyU3URsvUBR8qornl8zwj0iyQgPOIpbCqaq0vqoPbaClmMYGGUOgLuevuOT
-         kWOtDMygByiviB7puF3lgqpj2y4ovP3fvmPiV2jzjaRFe43U7jLJwRdZycaz7ztObeHH
-         B6Vw==
+        d=linaro.org; s=google; t=1679584506;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T0EIRlor9wN9UbhWdsh79YHQkDroJAzuUdmd2X+qriQ=;
+        b=a9yJXmVYDeK0NwIHu2IpvL74NnIG0899faHFGDMQlG8vSHbEOejUzIgt0eogbaoQiU
+         hlLIpsoKk6glSaVvbIf+Yj12Z6ycPS6erte8U77kqVNLYSVW/XRMb+4Qx33/gxDnknr2
+         dZIKgEEdP6APYawwVA0zOJCj0/oAhGazZ+ELnvidtKXj57Xwf2anyencQLxMpcDBtVlZ
+         LCDTVcJCpLDA79ilaf9E5z1hXRQOczmxdA2U8Hd+tlZ522QkWp1+cEpRozgb3Pmdq5i/
+         Q2eOGz89jQ1AHUNUgFL7FN2Hel1yuoS26IZhfm/m3ibo2OnWzIe1zK8PxNQMAO42oYCj
+         C5Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679584291;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=09gF+ci4EZ7xKNHFBN4nQXrjScsnzrqt/YgXpgBpcd0=;
-        b=jyklPVTD9e1NT+fbnv834QqdaGjqeJhnHEc2IdaXf1f1vThUcHZDqm4lH9ZNByDKuu
-         VGj3BTV5xb6M19zoUsaeLVZEZyz105QuA2Kq6Gtp0p4p8EBWtWqzsQagzUj4NfZV30br
-         FcWLEqjXnqO8nAdje1O5IaL0cG6EWWMhCjO5RT/mwNcs1K0jG1L2lSM/ebZZg4lmR4vQ
-         eGqGO8SHGG3JFDxoUSOqzKND6TiXrqmFQSMy4UHVhLg9cVCDqZo75mMfyxGyDaBq70O6
-         Y4rDLA2L69ImOw05ObZTuPxGqvVyQP13J5AzQMcdh5avxjcoKwKscd0iHucuoAp674DX
-         B92w==
-X-Gm-Message-State: AO0yUKUMh9fCpgAzme4oNJfcStit5L548xwiE3a/jd6xwHeY2zAht21a
-        7R2KYY6MHBNt9xtKpyb8lW8=
-X-Google-Smtp-Source: AK7set8+y6nFsaRhX1UdZartcuOV9lCKqA6Fzy/bfBfHkNjRTDXtDL4DUFOei4x0Jj1AQNWUtFdkzA==
-X-Received: by 2002:ac2:4c39:0:b0:4ea:e688:a04a with SMTP id u25-20020ac24c39000000b004eae688a04amr2864973lfq.66.1679584291452;
-        Thu, 23 Mar 2023 08:11:31 -0700 (PDT)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id w19-20020ac24433000000b004eb00c0d417sm150066lfl.130.2023.03.23.08.10.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 08:10:47 -0700 (PDT)
-Date:   Thu, 23 Mar 2023 18:10:22 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 15/16] dt-bindings: net: dwmac: Simplify MTL
- queue props dependencies
-Message-ID: <20230323151022.q5h6rf3azbncfid3@mobilestation>
-References: <20230313225103.30512-1-Sergey.Semin@baikalelectronics.ru>
- <20230313225103.30512-16-Sergey.Semin@baikalelectronics.ru>
- <20230317205604.GA2723387-robh@kernel.org>
+        d=1e100.net; s=20210112; t=1679584506;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T0EIRlor9wN9UbhWdsh79YHQkDroJAzuUdmd2X+qriQ=;
+        b=0tH+cXhCSujI5ovbZVNGbKUpPIQspkZnWBvm+lVn/1m0huHW5eGTS8cZdC1rBHefnu
+         t5aIzOjJN1+AvVDyeXCgI7YgqVxnGihCKt1bByc0EcBk4O72fEkdkftmr5c46u/OgU4V
+         ttId3iHDZZnCZ5BUE4BfnfPdBIEPkI5cvAlkACEg6u5a8GvuU1cDpt74qBC2P/Drow0g
+         um1SKRyifFVGkjBwBwVrDp8L+0gvo1LbImruAr6LA2W6CMdod3cQZQGyQnGENugzkzvc
+         o83+hbq6YOEjJXReAmQhaWd1ZCkfSOjhAlxdhTLCx54wncwfo6hqL+pzYQT671nvpOue
+         BSbQ==
+X-Gm-Message-State: AO0yUKWcBB6/x9ZmuTnhTQQH86RPhgLxY8cpEe9V7xfFaNLcFHw3cGtU
+        wqWvFq4nu44/lRw43MbzmVeHmg==
+X-Google-Smtp-Source: AK7set8gtYX838jmT3vkdbM6ajyzGH8Lai6OGJWibken05c+x+1ZWKC1tz/RH7h9iUeekgQDHZHt3g==
+X-Received: by 2002:a17:906:28c9:b0:934:8043:ebf8 with SMTP id p9-20020a17090628c900b009348043ebf8mr10909795ejd.26.1679584506221;
+        Thu, 23 Mar 2023 08:15:06 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d350:23b1:cb94:f39d? ([2a02:810d:15c0:828:d350:23b1:cb94:f39d])
+        by smtp.gmail.com with ESMTPSA id gz14-20020a170906f2ce00b00923221f4062sm8777740ejb.112.2023.03.23.08.15.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 08:15:05 -0700 (PDT)
+Message-ID: <1a2e0f7a-771f-5590-fc54-b9dbf059a925@linaro.org>
+Date:   Thu, 23 Mar 2023 16:15:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230317205604.GA2723387-robh@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] ASoC: dt-bindings: alc5632: Convert to dtschema
+To:     Saalim Quadri <danascape@gmail.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230323130511.16367-1-danascape@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323130511.16367-1-danascape@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,49 +76,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 03:56:04PM -0500, Rob Herring wrote:
-> On Tue, Mar 14, 2023 at 01:51:02AM +0300, Serge Semin wrote:
-> > Currently the Tx/Rx queues properties interdependencies are described by
-> > means of the pattern: "if: required: X, then: properties: Y: false, Z:
-> > false, etc". Due to very unfortunate MTL Tx/Rx queue DT-node design the
-> > resultant sub-nodes schemas look very bulky and thus hard to read. The
-> > situation can be improved by using the "allOf:/oneOf: required: X,
-> > required: Y, etc" pattern instead thus getting shorter and a bit easier to
-> > comprehend constructions.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
+On 23/03/2023 14:05, Saalim Quadri wrote:
+> Convert the ALC5632 audio codec bindings to DT schema.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> > 
-> > Note the solution can be shortened out a bit further by replacing the
-> > single-entry allOf statements with just the "not: required: etc" pattern.
-> > But in order to do that the DT-schema validation tool must be fixed like
-> > this:
-> > 
-> > --- a/meta-schemas/nodes.yaml	2021-02-08 14:20:56.732447780 +0300
-> > +++ b/meta-schemas/nodes.yaml	2021-02-08 14:21:00.736492245 +0300
-> > @@ -22,6 +22,7 @@
-> >      - unevaluatedProperties
-> >      - deprecated
-> >      - required
-> > +    - not
-> >      - allOf
-> >      - anyOf
-> >      - oneOf
-> 
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
 
-> This should be added regardless. Can you send a patch to devicetree-spec 
-> or a GH PR. But I'd skip using that here for now because then we require 
-> a new version of dtschema.
 
-Ok. I'll send the patch to the devicetree-spec mailing list.
+Thank you for your patch. There is something to discuss/improve.
 
-* Note meta-schemas/base.yaml will be fixed in the similar way.
 
--Serge(y)
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/realtek,alc5632.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ALC5632 audio CODEC
+> +
+> +description: |
+> +  Pins on the device (for linking into audio routes):
+> +      * SPK_OUTP
+> +      * SPK_OUTN
+> +      * HP_OUT_L
+> +      * HP_OUT_R
+> +      * AUX_OUT_P
+> +      * AUX_OUT_N
+> +      * LINE_IN_L
+> +      * LINE_IN_R
+> +      * PHONE_P
+> +      * PHONE_N
+> +      * MIC1_P
+> +      * MIC1_N
+> +      * MIC2_P
+> +      * MIC2_N
+> +      * MICBIAS1
+> +      * DMICDAT
+> +
+> +maintainers:
+> +  - Liam Girdwood <lgirdwood@gmail.com>
 
-> 
-> Rob
+This should not be subsystem maintainer but someone related to the
+device. It's maintainer or interested contributor. Unless that's the
+case here?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,alc5632
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#gpio-cells'
+> +  - gpio-controller
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        alc5632: alc5632@1a {
+
+Node name: codec
+and drop alc5632 label
+
+> +            compatible = "realtek,alc5632";
+> +            reg = <0x1a>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
+
