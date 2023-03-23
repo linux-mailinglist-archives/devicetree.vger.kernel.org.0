@@ -2,142 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7D1F6C70CD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 20:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C92C06C70EA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 20:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjCWTLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 15:11:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33760 "EHLO
+        id S230342AbjCWTRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 15:17:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjCWTLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 15:11:03 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D37171C;
-        Thu, 23 Mar 2023 12:11:02 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 6FE291C0E45; Thu, 23 Mar 2023 20:11:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1679598660;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=aRHbTBB+ZgSTv8KzTFw1avZ2sf6wVSfYjmXj3OLadfU=;
-        b=WUsbZMTdi1dQlK/4H3Xv9ArPjsuIMUxpSFwGMub4AZtfoYc0oMVOCdkbQ2YjKggzu6dMB1
-        8/6ydNZJvXxECORDcGhsUhgc71YQX105BVUfg1favqDeOxxfizoj39rK55mpyM+ncRrurM
-        7AuueYcYPNp8XcC2R2Lb0NBjGgM+2GI=
-Date:   Thu, 23 Mar 2023 20:11:00 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231221AbjCWTRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 15:17:12 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF6F9EEA
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 12:17:09 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id h17so21705216wrt.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 12:17:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679599028;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wD2pfR6a+QFkJUD1LZwOcKI2Fua3cr9bcJ10Kcm3zLA=;
+        b=qnXXXzNCoIXEQ6wOEeCqW/WZqBHnKQLvRQfR9H2JOK9xUFyYzxjrnD6R9IuVZ6HtjL
+         xiNyLpz3xXZUbWhjuaxyupx+2ZS33wpZ6LWFrVihxrXuYTl6S382fY4t053jIsGXaqXt
+         daQnXnG6cVPzkWg+2mjtapDfgpj8w7NhSIC/LI6KwMCmdBNg94fw43wNEBOkPQgr50+W
+         SMGgGeH0a4JbPB9UDMfknMj7qqBLgYA+kzs/dYb0pgQ1HmQf/3XcgzdmRKW5Q/pQXRpj
+         geVjnc2EHwBkFUo6o1/ldaGNiGMD3/Bu5XYhl/Pxptm78TkO+8nUvSEsLoeHFn86uNml
+         inPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679599028;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wD2pfR6a+QFkJUD1LZwOcKI2Fua3cr9bcJ10Kcm3zLA=;
+        b=LkkJjl4GFQSXerYYQN641K6KYkiOkqTd6HdT5NjLsd+x2gjAvzszgt3RZLct8JuyoL
+         Lco7B6+xReEsJQAafGR1ExlxOUf73uElhEaSfqeePVCtPQj9ykf7wTDKqya9lcIIBvI2
+         gMIIoOtn1mv1iBRxL8sTrPJG8gRUgTnD/+JLYD/r0YlQIkKacsfPgbD/y7bUO8G8NwyW
+         o3s9NHFQU6asUpdhZ5VEqqAvBfFjRDzT77fQZsp3q19RBg4pw2iDHTa8HCeWM29sc0AV
+         vmCZX+Wg53V6q57QK3bNB+I/ozAARBMJqdqS3P6cfXjjz80Ld1qdlsmk0niQGbX+pGGo
+         wh5g==
+X-Gm-Message-State: AAQBX9dkOeYEwup/K54kLKoz+YrAoW/2r10EDt+PsbXXH8N53iZ69Fm3
+        ZNpCqnDwa8LWH7w0Tr30UAs=
+X-Google-Smtp-Source: AKy350YRHwccofReqO7KMNu53kmkrUhXKNUEyMNpqFY9KG1erFeS8JTEci/WaxonV6iJnQofws3suQ==
+X-Received: by 2002:adf:f491:0:b0:2ce:da65:12d9 with SMTP id l17-20020adff491000000b002ceda6512d9mr237685wro.15.1679599027928;
+        Thu, 23 Mar 2023 12:17:07 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id e7-20020a5d5307000000b002c5a1bd5280sm16725043wrv.95.2023.03.23.12.17.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Mar 2023 12:17:07 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, John Crispin <john@phrozen.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [net-next PATCH v5 15/15] arm: mvebu: dt: Add PHY LED support
- for 370-rd WAN port
-Message-ID: <ZBykRJmkxF7zf8g8@duo.ucw.cz>
-References: <20230319191814.22067-1-ansuelsmth@gmail.com>
- <20230319191814.22067-16-ansuelsmth@gmail.com>
- <ZBxAZRcEBg4to132@duo.ucw.cz>
- <318f65ef-fd63-446d-bd08-1ba51b1d1f72@lunn.ch>
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v6 5/6] ARM: dts: suniv: add device tree for PopStick v1.1
+Date:   Thu, 23 Mar 2023 20:17:06 +0100
+Message-ID: <2274644.ElGaqSPkdT@jernej-laptop>
+In-Reply-To: <20230319212936.26649-6-andre.przywara@arm.com>
+References: <20230319212936.26649-1-andre.przywara@arm.com>
+ <20230319212936.26649-6-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="rI4G7utm2RBg+ik3"
-Content-Disposition: inline
-In-Reply-To: <318f65ef-fd63-446d-bd08-1ba51b1d1f72@lunn.ch>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne nedelja, 19. marec 2023 ob 22:29:35 CET je Andre Przywara napisal(a):
+> From: Icenowy Zheng <uwu@icenowy.me>
+> 
+> PopStick is a minimal Allwinner F1C200s dongle, with its USB controller
+> wired to a USB Type-A plug, a SD slot and a SPI NAND flash on board, and
+> an on-board CH340 USB-UART converted connected to F1C200s's UART0.
+> 
+> Add a device tree for it. As F1C200s is just F1C100s with a different
+> DRAM chip co-packaged, directly use F1C100s DTSI here.
+> 
+> This commit covers the v1.1 version of this board, which is now shipped.
+> v1.0 is some internal sample that have not been shipped at all.
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
---rI4G7utm2RBg+ik3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> > > The WAN port of the 370-RD has a Marvell PHY, with one LED on
-> > > the front panel. List this LED in the device tree.
-> > >=20
-> > > Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> >=20
-> > > @@ -135,6 +136,19 @@ &mdio {
-> > >  	pinctrl-names =3D "default";
-> > >  	phy0: ethernet-phy@0 {
-> > >  		reg =3D <0>;
-> > > +		leds {
-> > > +			#address-cells =3D <1>;
-> > > +			#size-cells =3D <0>;
-> > > +
-> > > +			led@0 {
-> > > +				reg =3D <0>;
-> > > +				label =3D "WAN";
-> > > +				color =3D <LED_COLOR_ID_WHITE>;
-> > > +				function =3D LED_FUNCTION_LAN;
-> > > +				function-enumerator =3D <1>;
-> > > +				linux,default-trigger =3D "netdev";
-> > > +			};
-> > > +		};
-> > >  	};
-> > > =20
-> >=20
-> > How will this end up looking in sysfs?
->=20
-> Hi Pavel
->=20
-> It is just a plain boring LED, so it will look like all other LEDs.
-> There is nothing special here.
-
-Well, AFAICT it will end up as /sys/class/leds/WAN, which is really
-not what we want. (Plus the netdev trigger should be tested; we'll
-need some kind of link to the ethernet device if we want this to work
-on multi-ethernet systems).
-
-> > Should documentation be added to Documentation/leds/leds-blinkm.rst
-> >  ?
->=20
-> This has nothing to do with blinkm, which appears to be an i2c LED
-> driver.
-
-Sorry, I meant
-
-Should documentation be added to Documentation/leds/well-known-leds.txt ?
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+Jernej
 
---rI4G7utm2RBg+ik3
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZBykRAAKCRAw5/Bqldv6
-8hYAAJ9Bvn10XxUIr7aK5MpezU9ojjLFBQCdGvLFTqwn12xC4aE58YdyoLAftHM=
-=uXc6
------END PGP SIGNATURE-----
-
---rI4G7utm2RBg+ik3--
