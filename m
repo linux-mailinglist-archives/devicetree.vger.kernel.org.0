@@ -2,187 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00EB16C7024
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 19:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C44A6C705E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 19:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbjCWSVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 14:21:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45800 "EHLO
+        id S231470AbjCWSkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 14:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbjCWSVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 14:21:08 -0400
-Received: from mail-108-mta247.mxroute.com (mail-108-mta247.mxroute.com [136.175.108.247])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D892814E83
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:21:04 -0700 (PDT)
-Received: from mail-111-mta2.mxroute.com ([136.175.111.2] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta247.mxroute.com (ZoneMTA) with ESMTPSA id 1870fb3e23b000edb4.005
- for <devicetree@vger.kernel.org>
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
- Thu, 23 Mar 2023 18:20:59 +0000
-X-Zone-Loop: 4f3bac634499c6fbf502ce0f21984769a7718528d5b8
-X-Originating-IP: [136.175.111.2]
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ahepp.dev;
-        s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:
-        Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=PwAQ2FqPkhYuKaw3PFrFV9jQAqQU/fJg4xycW+3dre0=; b=t19pnxjhD0zTWu4/eQcTOTFCfH
-        vZ3keIovVj03/1U/1GLyh528v+4Mm+H7c6XzJU4G/ihoRqbHP0M+TXtvjrEZPmISHjhqToWN8DT0T
-        h1NZ8wzCbYPD6NIJ7FzeZ5ZLQY49Y8epY0GmPheirRRmEXbwcSUiuLYH5vbSDmec0fBvX7ittvaiM
-        Q6NBld2xlvgwGYUfwAhQ+uxGM9Zwy5jTeccpF8+AULv74d4M6F6bR6/CPfNIIxxzmcleyOqT7Rzvw
-        5pR6tvCu0OHppcXtnraL82bUt4lpLVwsHp2souhGV2o2kLzDS+AAA4B9ims34yo8wWrwUBPJYrYSb
-        aq5aiubw==;
-Message-ID: <59c33dc5-bc97-8016-72cf-e56c73943eda@ahepp.dev>
-Date:   Thu, 23 Mar 2023 11:20:55 -0700
+        with ESMTP id S231443AbjCWSkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 14:40:21 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45B9EC61
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:40:19 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id om3-20020a17090b3a8300b0023efab0e3bfso2825127pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 11:40:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112; t=1679596819;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dc8t5la/S7SGwbqv/1OxMvtkFBHHlif98Df3jcSZzQk=;
+        b=OB2JolwMzeoHAbSUZXKopfoWmwARaGq4piT0qielQgnlD99zuyJuuartOvZ1bQy6bk
+         26wiVoB0tComv/4PXE3fRSXpRYvSAK8LOXXwrDpOOiNt+upjl0ZlMJdkljKdtJdMo8p8
+         Ooj+ZrUfhbh/4O/PnAZOdqW6pvM2sg4ZBquFJ9aLpYOoysNGCi0pc2kX82iDUy383VNV
+         ePXzDSYzgTzAAebznckJHy6HdzF8F7sn2VztbCnqwvm/p+r9jLKH36IiYJwHgn9dOX7J
+         PNUqfhDg6c7egkJ2YtFwimU71WiEgVUvXfvOxbpbo86Qh+uUO/E1bGQt6utCxnw+uL02
+         hDew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679596819;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dc8t5la/S7SGwbqv/1OxMvtkFBHHlif98Df3jcSZzQk=;
+        b=R4g/t4omeZmLDLVynsGJvsRKaoiOFwpUidfSbuipL26w6A/6plS+pR9iV4ZUDR7X63
+         H3UWYNnAD9y8fEDQLQxubXKFDnMplNJVuXjw5S+Z0lvSvbQZN8fyRFDi/j40jBwgExz1
+         Sn7EXSa0zuRV+lOmuy2/xfykrpEbAHU8pfBJHcXoA3QcdLhUXuRwzXq5jQY1QLINUaTL
+         /wl1VkZN/IHom0mMCmM0dy5eIKnSvDoGL3/iDj1mPta8zJT3LwPiUwrgplPmhqgDlaKO
+         M2f5x5qBS+5fJI4jzTzv9WETbA3dP62To0A8wP78NdiHlSOTSAPPS8KrZidwJ3mOAr7o
+         37Sw==
+X-Gm-Message-State: AO0yUKW+4LFPEW1rIQo0haedaYefaVId0WX/7vYdTzpZ56geiDj3riQu
+        ToAg16dSihpsxBeqbuFtZG+Bbf7KJef0zpwi9RO59Q==
+X-Google-Smtp-Source: AK7set8GTpjYj8eDq8ynIFChjo3qsZvvDfnt1sgQBbe8GDAGmFUzkI3oJLZHCiNHHCqkTN3OP5x4od1Wm1tFnHeRTf4=
+X-Received: by 2002:a17:902:a607:b0:1a0:763d:6c2a with SMTP id
+ u7-20020a170902a60700b001a0763d6c2amr2826208plq.10.1679596819029; Thu, 23 Mar
+ 2023 11:40:19 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.9.0
-From:   Andrew Hepp <andrew.hepp@ahepp.dev>
-Subject: Re: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF
- converter
-To:     Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>
-References: <20230319184728.49232-1-andrew.hepp@ahepp.dev>
- <20230319184728.49232-3-andrew.hepp@ahepp.dev>
- <89271a29-5b02-34fe-409b-373e3b8044ef@metafoo.de>
-Content-Language: en-US
-In-Reply-To: <89271a29-5b02-34fe-409b-373e3b8044ef@metafoo.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: andrew.hepp@ahepp.dev
-X-Spam-Status: No, score=0.2 required=5.0 tests=DKIM_INVALID,DKIM_SIGNED,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <328e557aaee9d3f5f1bcaf2b8ac2de0e04c4fbb8.1679049188.git.geert+renesas@glider.be>
+ <CAGETcx_oYrhjo0C3zJ57gt7HGuiY_=9xEq+TvQU8R5zW6OiQCw@mail.gmail.com>
+In-Reply-To: <CAGETcx_oYrhjo0C3zJ57gt7HGuiY_=9xEq+TvQU8R5zW6OiQCw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 23 Mar 2023 11:39:42 -0700
+Message-ID: <CAGETcx9=LENzJUVorEKpoeMChFZHO-=M2jHBQmOo+x1ez9=b5A@mail.gmail.com>
+Subject: Re: [PATCH/RFC] treewide: Fix instantiation of devices in DT overlay
+To:     geert+renesas@glider.be
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-15.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/19/23 11:59 AM, Lars-Peter Clausen wrote:
-> This looks really good. I have some small comments, and I apologize for 
-> only having them so late in the review cycle.
+On Fri, Mar 17, 2023 at 5:36=E2=80=AFPM Saravana Kannan <saravanak@google.c=
+om> wrote:
+>
+> On Fri, Mar 17, 2023 at 3:33=E2=80=AFAM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> >
+> > When loading a DT overlay that creates a device, the device is not
+> > instantiated, unless the DT overlay is unloaded and reloaded again.
+> >
+> > Saravana explains:
+> >   Basically for all overlays (I hope the function is only used for
+> >   overlays) we assume all nodes are NOT devices until they actually
+> >   get added as a device. Don't review the code, it's not meant to be :)
+> >
+> > Based on a hacky patch by Saravana Kannan, which covered only platform
+> > and spi devices.
+> >
+> > Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
+> > Link: https://lore.kernel.org/all/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=3DrW=
+YnkCZ6z5bGX-wj4w@mail.gmail.com
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > Marked RFC as Saravana said this is an ugly hack.
+> > Still, this is a regression in v6.3-rc1 that should be fixed.
+>
+> Thanks for making sure this isn't forgotten.
+>
+> I thought about this a bit more and I've decided what I gave earlier
+> isn't really too much of a hack. The other option is to handle the
+> clearing of the flag at the driver core level, but we incur these
+> additional instructions for all devices instead of just the overlay
+> case. But the benefit is that if more busses add overlay support in
+> the future, they won't need to remember to clear the flag in those
+> instances too. But they'll probably start off by looking at the
+> existing platform bus case, so they'll get it right.
+>
+> I'll continue the pondering next week and maybe test it on my device
+> to make sure it's not doing anything weird for non-overlay cases.
+>
 
-No worries at all! I really appreciate the time and effort you, 
-Jonathan, and Krzysztof have put into reviewing this.
+Geert,
 
-> 
-> On 3/19/23 11:47, Andrew Hepp wrote:
->> Add support for the MCP9600 thermocouple EMF converter.
-> 
-> Would be nice to have a very short description of the capabilities of 
-> the sensor in the commit message.
-> 
+I think we should stick with the original style of fix I suggested.
+So, basically your patch set. Are you planning on sending a non-RFC or
+do you want me to do it?
 
-That seems like a good idea! Should the message be about the 
-capabilities of the sensor, or the capabilities of the driver? The 
-sensor supports a lot of advanced features that the driver currently 
-doesn't support.
+-Saravana
 
-Currently I'm leaning towards
-
-"Add support for the MCP9600 thermocouple EMF converter. The sensor has 
-integrated cold junction compensation and a typical accuracy of 0.5 
-degrees Celsius. The driver supports a resolution of 0.0625 degrees 
-Celsius."
-
->>
->> Datasheet: 
->> https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
->> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
->> ---
->> [...]
->> diff --git a/drivers/iio/temperature/mcp9600.c 
->> b/drivers/iio/temperature/mcp9600.c
->> new file mode 100644
->> index 000000000000..b6d8ffb90c36
->> --- /dev/null
->> +++ b/drivers/iio/temperature/mcp9600.c
->> @@ -0,0 +1,145 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> [...]
->> +static const struct iio_chan_spec mcp9600_channels[] = {
->> +    {
->> +        .type = IIO_TEMP,
->> +        .address = MCP9600_HOT_JUNCTION,
->> +        .info_mask_separate =
->> +            BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
->> +    },
->> +    {
->> +        .type = IIO_TEMP,
->> +        .address = MCP9600_COLD_JUNCTION,
->> +        .channel2 = IIO_MOD_TEMP_AMBIENT,
->> +        .modified = 1,
->> +        .info_mask_separate =
->> +            BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
->> +    },
->> +    IIO_CHAN_SOFT_TIMESTAMP(2),
-> If you do not have supported for buffered capture there is no need to 
-> include a timestamp in the channel spec. There is no way to read it 
-> without buffered support.
-
-Ack
-
->> +};
->> +
->> +struct mcp9600_data {
->> +    struct i2c_client *client;
->> +    struct mutex read_lock; /* lock to prevent concurrent reads */
->> +};
->> +
->> +static int mcp9600_read(struct mcp9600_data *data,
->> +            struct iio_chan_spec const *chan, int *val)
->> +{
->> +    __be16 buf;
-> buf does not seem to be used.
-
-Oops, sorry about that, I'll make sure to build with warnings as errors 
-next submission. I tested the module after changing from 
-i2c_smbus_read_block_data but looks like I got a bit ahead of myself 
-submitting.
-
->> +    int ret; >> +
->> +    mutex_lock(&data->read_lock);
-> Do you actually need the custom lock? i2c_smbus_read_word_swapped itself 
-> should provide locking and there is only a single operation under your 
-> custom lock, which will already be atomic.
-
-That seems like a convincing argument to me. It certainly doesn't seem 
-like the lock is doing anything, since i2c_smbus_read_word_swapped 
-provides locking.
-
->> +    ret = i2c_smbus_read_word_swapped(data->client, chan->address);
->> +    mutex_unlock(&data->read_lock);
->> +
->> +    if (ret < 0)
->> +        return ret;
->> +    *val = ret;
->> +
->> +    return 0;
->> +}
->> +
->> [...]
->> +static int mcp9600_probe(struct i2c_client *client)
->> +{
->> +    struct iio_dev *indio_dev;
->> +    struct mcp9600_data *data;
->> +    int ret;
->> +
->> +    ret = i2c_smbus_read_byte_data(client, MCP9600_DEVICE_ID);
->> +    if (ret < 0)
->> +        return ret;
-> 
-> Might as well throw an error message in here for better diagnostics.
-> 
->      return dev_err_probe(&client->dev, ret, "Failed to read device ID\n");
-> 
-> 
-
-I think this is how I did it in my original submission, but it sounds 
-like the preferred way of doing things is to warn without returning an 
-error, in order to support fallback compatibilities?
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -3611,6 +3611,15 @@ int device_add(struct device *dev)
+>          */
+>         if (dev->fwnode && !dev->fwnode->dev) {
+>                 dev->fwnode->dev =3D dev;
+> +               /*
+> +                * If a fwnode was initially marked as not a device, but =
+we
+> +                * clearly have a device added for it that can probe, the=
+n clear
+> +                * the flag so fw_devlink will continue linking consumers=
+ to
+> +                * this device. This code path is really expected to run =
+only
+> +                * for DT overlays.
+> +                */
+> +               if (dev->bus)
+> +                       dev->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE
+>                 fw_devlink_link_device(dev);
+>         }
+>
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 07d93753b12f..f715b59d9bf3 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -226,6 +226,11 @@ static void __of_attach_node(struct device_node *np)
+>         np->sibling =3D np->parent->child;
+>         np->parent->child =3D np;
+>         of_node_clear_flag(np, OF_DETACHED);
+> +       /*
+> +        * Ask fw_devlink to assume any new node is not a device. Driver =
+core
+> +        * will clear this flag if the assumption turns out to be wrong.
+> +        */
+> +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
+>  }
+>
+>
+>
+>
+> > ---
+> >  drivers/bus/imx-weim.c    | 1 +
+> >  drivers/i2c/i2c-core-of.c | 1 +
+> >  drivers/of/dynamic.c      | 1 +
+> >  drivers/of/platform.c     | 1 +
+> >  drivers/spi/spi.c         | 1 +
+> >  5 files changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+> > index 2a6b4f676458612e..71d8807170fa9f29 100644
+> > --- a/drivers/bus/imx-weim.c
+> > +++ b/drivers/bus/imx-weim.c
+> > @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb=
+, unsigned long action,
+> >                                  "Failed to setup timing for '%pOF'\n",=
+ rd->dn);
+> >
+> >                 if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
+> > +                       rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVI=
+CE;
+> >                         if (!of_platform_device_create(rd->dn, NULL, &p=
+dev->dev)) {
+> >                                 dev_err(&pdev->dev,
+> >                                         "Failed to create child device =
+'%pOF'\n",
+> > diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+> > index bce6b796e04c2ca0..79a0d47010ba0b20 100644
+> > --- a/drivers/i2c/i2c-core-of.c
+> > +++ b/drivers/i2c/i2c-core-of.c
+> > @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb,=
+ unsigned long action,
+> >                         return NOTIFY_OK;
+> >                 }
+> >
+> > +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+> >                 client =3D of_i2c_register_device(adap, rd->dn);
+> >                 if (IS_ERR(client)) {
+> >                         dev_err(&adap->dev, "failed to create client fo=
+r '%pOF'\n",
+> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > index 07d93753b12f5f4d..e311d406b1705306 100644
+> > --- a/drivers/of/dynamic.c
+> > +++ b/drivers/of/dynamic.c
+> > @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np=
+)
+> >         np->sibling =3D np->parent->child;
+> >         np->parent->child =3D np;
+> >         of_node_clear_flag(np, OF_DETACHED);
+> > +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
+> >  }
+> >
+> >  /**
+> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
+> > --- a/drivers/of/platform.c
+> > +++ b/drivers/of/platform.c
+> > @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block=
+ *nb,
+> >                 if (of_node_check_flag(rd->dn, OF_POPULATED))
+> >                         return NOTIFY_OK;
+> >
+> > +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+> >                 /* pdev_parent may be NULL when no bus platform device =
+*/
+> >                 pdev_parent =3D of_find_device_by_node(rd->dn->parent);
+> >                 pdev =3D of_platform_device_create(rd->dn, NULL,
+> > diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> > index 1a65f96fe2aff591..7bd053a32fad1a3c 100644
+> > --- a/drivers/spi/spi.c
+> > +++ b/drivers/spi/spi.c
+> > @@ -4480,6 +4480,7 @@ static int of_spi_notify(struct notifier_block *n=
+b, unsigned long action,
+> >                         return NOTIFY_OK;
+> >                 }
+> >
+> > +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+> >                 spi =3D of_register_spi_device(ctlr, rd->dn);
+> >                 put_device(&ctlr->dev);
+> >
+> > --
+> > 2.34.1
+> >
