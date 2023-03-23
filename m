@@ -2,174 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 228206C6103
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 08:45:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 852846C60FD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 08:44:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230483AbjCWHpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 03:45:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60880 "EHLO
+        id S230393AbjCWHo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 03:44:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbjCWHo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 03:44:59 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80E6B19C50
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 00:44:57 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id x3so82674623edb.10
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 00:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1679557496;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9YULbMSYLxPrjOJbjLIiUT+ql5Bs2phIk+fP1mRdCa8=;
-        b=IgY45ZgJbzhRcouu9Xzgcyuo8jp/lH1gx8jc3DHY2SBGfcc+xg2actR2vmkO8ILUQh
-         HGJpn5gEZF+FXbiyCjQFxxMKBr15iT4z4Vx0EVSGGK0tGpEwzQIQ6C8SksNnq6qoI++5
-         VKSYCGc9197ahFeyT8hnMyokQRAN0txSMNk80Uc70H+tzu5U9S83bkd+TZUcJm2xtX72
-         zRq4EeV4QlMspo1LO75eLHzqlaXNlCtYBNhb1sxDxy98866LWvVPpFX4ndm5JDg5TZCw
-         z1n2kkC2tDxHnjaCX1nhIkVOBMRfhh7rcSC2PV3tZE9/7yfh49v2oFwlbxbAOA9n1Lig
-         PtaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679557496;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9YULbMSYLxPrjOJbjLIiUT+ql5Bs2phIk+fP1mRdCa8=;
-        b=5ARV/icZj4m9zfcSnONFWarGbT/GOcuYKhh9tKDMbOGcANCNd3ttAAax6Fc1stANtH
-         QjLrG7NwLXjhuDEyrgTTCjy2yy+BULz7urGwrZqv+ZhGc97HPfCHawAL7N90zV8MYJfu
-         UPqyuQGBXGLKzEm5tTm5Vbf6+Wd6SKYknGmkADbXaTs2P3pVzEHCG4Cju4BMnO+wiWYr
-         xb2KFGCVCvAp8Bs3VEaKCsFlgVtDW71BPKGWymA9Xe8truQGbu1gjEwHW5YhpTf9MsOg
-         nG3vbDUZmtlV+H7r+1/IdkEwKQg41f5ccV6FyU5tdN9Xmd883tNHIZ0Eos7uPPZNIfHW
-         PrBQ==
-X-Gm-Message-State: AO0yUKVu82f28Guj/vu5ES9fdVtemBNBz+GQBG3SV2kzVmpCQeZGvFIF
-        pl1t5G1kh7QvP8AMFXgvXHJn8g==
-X-Google-Smtp-Source: AK7set9Wow17nfNuYU7h+Mq5SWmj3ivpf4SuoLXpHKf+9t+uAqf+J3/NYIds/og+xyi0pqwqDxwsFQ==
-X-Received: by 2002:a17:906:dc4c:b0:92b:4f8e:dde1 with SMTP id yz12-20020a170906dc4c00b0092b4f8edde1mr8731016ejb.20.1679557495789;
-        Thu, 23 Mar 2023 00:44:55 -0700 (PDT)
-Received: from fedora.. (ip-095-222-150-251.um34.pools.vodafone-ip.de. [95.222.150.251])
-        by smtp.gmail.com with ESMTPSA id g1-20020a1709061c8100b0092669fb4ba1sm8255405ejh.130.2023.03.23.00.44.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 00:44:55 -0700 (PDT)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        with ESMTP id S229589AbjCWHoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 03:44:55 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C865719C4E;
+        Thu, 23 Mar 2023 00:44:50 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 0B5F324E1BE;
+        Thu, 23 Mar 2023 15:44:43 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Mar
+ 2023 15:44:43 +0800
+Received: from [192.168.125.74] (183.27.97.64) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Mar
+ 2023 15:44:42 +0800
+Message-ID: <5b75161e-3d0d-50e5-fd4e-af92edf62317@starfivetech.com>
+Date:   Thu, 23 Mar 2023 15:44:41 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v6 11/21] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v10 1/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Thu, 23 Mar 2023 08:44:16 +0100
-Message-Id: <20230323074419.2494609-2-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230323074419.2494609-1-patrick.rudolph@9elements.com>
-References: <20230323074419.2494609-1-patrick.rudolph@9elements.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230320103750.60295-1-hal.feng@starfivetech.com>
+ <20230320103750.60295-12-hal.feng@starfivetech.com>
+ <b4beb457-8581-4b2f-8655-2e3f82a94f75@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <b4beb457-8581-4b2f-8655-2e3f82a94f75@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.64]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the exisintg pca954x driver.
+On Wed, 22 Mar 2023 21:53:37 +0000, Conor Dooley wrote:
+> Hey Hal,
+> 
+> On Mon, Mar 20, 2023 at 06:37:40PM +0800, Hal Feng wrote:
+>> From: Emil Renner Berthing <kernel@esmil.dk>
+>> 
+>> Add bindings for the system clock and reset generator (SYSCRG) on the
+>> JH7110 RISC-V SoC by StarFive Ltd.
+>> 
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> ---
+>>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
+>>  MAINTAINERS                                   |   8 +-
+>>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
+>>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
+>>  4 files changed, 454 insertions(+), 3 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
+>>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
+>> 
+>> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> new file mode 100644
+>> index 000000000000..84373ae31644
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> @@ -0,0 +1,104 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-syscrg.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive JH7110 System Clock and Reset Generator
+>> +
+>> +maintainers:
+>> +  - Emil Renner Berthing <kernel@esmil.dk>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-syscrg
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    oneOf:
+>> +      - items:
+>> +          - description: Main Oscillator (24 MHz)
+>> +          - description: GMAC1 RMII reference or GMAC1 RGMII RX
+>> +          - description: External I2S TX bit clock
+>> +          - description: External I2S TX left/right channel clock
+>> +          - description: External I2S RX bit clock
+>> +          - description: External I2S RX left/right channel clock
+>> +          - description: External TDM clock
+>> +          - description: External audio master clock
+>> +
+>> +      - items:
+>> +          - description: Main Oscillator (24 MHz)
+>> +          - description: GMAC1 RMII reference
+>> +          - description: GMAC1 RGMII RX
+>> +          - description: External I2S TX bit clock
+>> +          - description: External I2S TX left/right channel clock
+>> +          - description: External I2S RX bit clock
+>> +          - description: External I2S RX left/right channel clock
+>> +          - description: External TDM clock
+>> +          - description: External audio master clock
+>> +
+>> +  clock-names:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: osc
+>> +          - enum:
+>> +              - gmac1_rmii_refin
+>> +              - gmac1_rgmii_rxin
+>> +          - const: i2stx_bclk_ext
+>> +          - const: i2stx_lrck_ext
+>> +          - const: i2srx_bclk_ext
+>> +          - const: i2srx_lrck_ext
+>> +          - const: tdm_ext
+>> +          - const: mclk_ext
+>> +
+>> +      - items:
+>> +          - const: osc
+>> +          - const: gmac1_rmii_refin
+>> +          - const: gmac1_rgmii_rxin
+>> +          - const: i2stx_bclk_ext
+>> +          - const: i2stx_lrck_ext
+>> +          - const: i2srx_bclk_ext
+>> +          - const: i2srx_lrck_ext
+>> +          - const: tdm_ext
+>> +          - const: mclk_ext
+> 
+> I'm sorry to be a bit of a bore about these bindings, but Emil mentioned
+> to me today that he had some doubts about whether any of these audio
+> clocks are actually required.
+> I've had a bit of a look at the driver, cos the TRM that I have doesn't
+> describe the clock tree (from what recall at least) and I think he is
+> right.
+> For example, the TDM clock:
+> +	JH71X0_GATE(JH7110_SYSCLK_TDM_AHB, "tdm_ahb", 0, JH7110_SYSCLK_AHB0),
+> +	JH71X0_GATE(JH7110_SYSCLK_TDM_APB, "tdm_apb", 0, JH7110_SYSCLK_APB0),
+> +	JH71X0_GDIV(JH7110_SYSCLK_TDM_INTERNAL, "tdm_internal", 0, 64, JH7110_SYSCLK_MCLK),
+> +	JH71X0__MUX(JH7110_SYSCLK_TDM_TDM, "tdm_tdm", 2,
+> +		    JH7110_SYSCLK_TDM_INTERNAL,
+> +		    JH7110_SYSCLK_TDM_EXT),
+> 
+> Hopefully, I'm not making a balls of something here, but it looks like I
+> can choose an internal TDM clock, that is based on JH7110_SYSCLK_MCLK,
+> which in turn comes from either an internal or external source.
+> If I am following correctly, that'd be:
+> +	JH71X0__DIV(JH7110_SYSCLK_MCLK_INNER, "mclk_inner", 64, JH7110_SYSCLK_AUDIO_ROOT),
+> 
+> Which in turn comes from:
+> +	JH71X0__DIV(JH7110_SYSCLK_AUDIO_ROOT, "audio_root", 8, JH7110_SYSCLK_PLL2_OUT),
+> 
+> This leaves me wondering which clocks are *actually* required for a
+> functioning system - is it actually just osc and one of gmac1_rmii_refin
+> or gmac1_rgmii_rxin.
 
-While on it make the interrupts support conditionally as not all of the
-existing chips have interrupts.
+As I had mentioned somewhere before, some audio clocks need to change their
+parents at different stages of work. I should explain in detail here.
 
-For chips that are powered off by default add an optional regulator
-called vdd-supply.
+For the i2s*_ext clocks, we should use these external clocks as parents when
+the I2S module is working in the slave mode, while we should use the internal
+clocks as parents when the I2S module is working in the master mode.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 43 ++++++++++++++++---
- 1 file changed, 38 insertions(+), 5 deletions(-)
+For the tdm_ext clock, we use it as the clock source for an accurate playback
+rate. If we use the internal clock as clock source, the TDM can't work
+normally, because it can't get a required rate from the internal divider.
+By the way, note that we need to use the internal clock as clock source when
+we try to reset the tdm clock, otherwise, the reset will fail.
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 9f1726d0356b..696fdb647f89 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,21 +4,29 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
--
--allOf:
--  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  The NXP PCA954x and compatible devices are I2C bus
-+  multiplexer/switches that share the same functionality
-+  and register layout.
-+  The devices usually have 4 or 8 child buses, which are
-+  attached to the parent bus by using the SMBus "Send Byte"
-+  command.
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -59,10 +67,33 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip.
-+
- required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - maxim,max7367
-+                - maxim,max7369
-+                - nxp,pca9542
-+                - nxp,pca9543
-+                - nxp,pca9544
-+                - nxp,pca9545
-+    then:
-+      properties:
-+        interrupts: false
-+        "#interrupt-cells": false
-+        interrupt-controller: false
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -79,6 +110,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
--- 
-2.39.1
+For the mclk_ext clock, which is 12.288MHz, it's used as the clock source
+through all the running time, otherwise, the daughter clocks can't get the
+required rate from the internal PLL2 clock (1188MHz) through dividers.
+
+So all these audio external clocks (i2s*_ext / tdm_ext / mclk_ext) are
+actually required.
+
+Best regards,
+Hal
+
+> 
+> I really don't want you to have to go and spell out every combination of
+> clocks to have some sort of validation here.
+> 
+> Stephen, Rob or Krzysztof, do you have any guidance on this situation
+> (assuming I've not made a fool of myself)? There's probably something
+> "obvious" that I'm missing, as I am sure this is not a unique problem.
+> 
+> Cheers,
+> Conor.
+> 
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +    description:
+>> +      See <dt-bindings/clock/starfive,jh7110-crg.h> for valid indices.
+>> +
+>> +  '#reset-cells':
+>> +    const: 1
+>> +    description:
+>> +      See <dt-bindings/reset/starfive,jh7110-crg.h> for valid indices.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - '#clock-cells'
+>> +  - '#reset-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clock-controller@13020000 {
+>> +        compatible = "starfive,jh7110-syscrg";
+>> +        reg = <0x13020000 0x10000>;
+>> +        clocks = <&osc>, <&gmac1_rmii_refin>,
+>> +                 <&gmac1_rgmii_rxin>,
+>> +                 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+>> +                 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+>> +                 <&tdm_ext>, <&mclk_ext>;
+>> +        clock-names = "osc", "gmac1_rmii_refin",
+>> +                      "gmac1_rgmii_rxin",
+>> +                      "i2stx_bclk_ext", "i2stx_lrck_ext",
+>> +                      "i2srx_bclk_ext", "i2srx_lrck_ext",
+>> +                      "tdm_ext", "mclk_ext";
+>> +        #clock-cells = <1>;
+>> +        #reset-cells = <1>;
+>> +    };
 
