@@ -2,80 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C32AC6C6843
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:27:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A6C6C6855
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:30:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbjCWM1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 08:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48772 "EHLO
+        id S230078AbjCWMae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 08:30:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231527AbjCWM1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:27:06 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CACE53C23;
-        Thu, 23 Mar 2023 05:27:03 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32NCQUZh104782;
-        Thu, 23 Mar 2023 07:26:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679574390;
-        bh=aKqINq5Ot9zplt5xAt4YKK+ybHwjeTQa8lKUsA3qixk=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=fyxuZrWH2Gwgs+Q69WsAEbi9lok+EwZV5LFFTy39ebtdnnI2VqaZQA/qr1hV3/nqP
-         aTSyWa1EoZotFEBH1yGm1ei7hA1pbSK5KAo92jYG/VEI/HRJ6O6PzLWbThAQvAOlwx
-         ugOo1e9s9stRrXpTQOMuE2zwdU6Z/RlG+UeVf3Yg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32NCQUjb118598
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Mar 2023 07:26:30 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 23
- Mar 2023 07:26:29 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 23 Mar 2023 07:26:29 -0500
-Received: from [172.24.145.176] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32NCQMRW009091;
-        Thu, 23 Mar 2023 07:26:23 -0500
-Message-ID: <5cae1874-9c10-a909-906c-160ce3f91286@ti.com>
-Date:   Thu, 23 Mar 2023 17:56:21 +0530
+        with ESMTP id S229996AbjCWMac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:30:32 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB291BBAB;
+        Thu, 23 Mar 2023 05:30:30 -0700 (PDT)
+Received: (Authenticated sender: alex@ghiti.fr)
+        by mail.gandi.net (Postfix) with ESMTPSA id D14AB40003;
+        Thu, 23 Mar 2023 12:30:25 +0000 (UTC)
+Message-ID: <5e3dec6d-c3a1-1fdb-7c5a-e9b81cfde2b5@ghiti.fr>
+Date:   Thu, 23 Mar 2023 13:30:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
+Subject: Re: [PATCH v8 2/4] mm: Introduce memblock_isolate_memory
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>, <airlied@gmail.com>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
-        <jani.nikula@intel.com>, <tzimmermann@suse.de>,
-        <javierm@redhat.com>, <ville.syrjala@linux.intel.com>,
-        <r-ravikumar@ti.com>, <lyude@redhat.com>,
-        <alexander.deucher@amd.com>, <sjakhade@cadence.com>,
-        <yamonkar@cadence.com>, <a-bhatia1@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>
-References: <20230316140823.234263-1-j-choudhary@ti.com>
- <20230316140823.234263-2-j-choudhary@ti.com>
- <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
- <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
- <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
- <d72bf0df-28d7-6419-56a5-58e04dcb30f2@ti.com>
- <d8be08b9-3043-d517-b5b8-86ea7a602e0b@linaro.org>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <d8be08b9-3043-d517-b5b8-86ea7a602e0b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Mike Rapoport <rppt@kernel.org>
+Cc:     Alexandre Ghiti <alexghiti@rivosinc.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Anup Patel <anup@brainfault.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org
+References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
+ <20230316131711.1284451-3-alexghiti@rivosinc.com>
+ <ZBN4Hoo99DNd5wKx@kernel.org> <efe1ef6b-b1c2-8d5b-82b7-3cd64053643e@ghiti.fr>
+ <ZBibYDR0h1UeL6L5@kernel.org> <67ba29ff-b03d-2d24-a844-7ae25ddca447@ghiti.fr>
+ <ZBxDDPnldPIgKngc@kernel.org>
+From:   Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <ZBxDDPnldPIgKngc@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.7 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,55 +57,117 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 21/03/23 20:47, Krzysztof Kozlowski wrote:
-> On 21/03/2023 15:28, Jayesh Choudhary wrote:
->>
->>
->> On 21/03/23 18:08, Krzysztof Kozlowski wrote:
->>> On 21/03/2023 13:02, Jayesh Choudhary wrote:
->>>>>
->>>>>> +    type: boolean
->>>>>> +    description:
->>>>>> +      Set if the HPD line on the bridge isn't hooked up to anything or is
->>>>>> +      otherwise unusable.
->>>>>
->>>>> It's the property of the panel, not bridge. Unless you want to say that
->>>>> bridge physically does not have HPD? Does it follow the standard in such
->>>>> case?
+On 3/23/23 13:16, Mike Rapoport wrote:
+> On Thu, Mar 23, 2023 at 12:52:36PM +0100, Alexandre Ghiti wrote:
+>> On 3/20/23 18:44, Mike Rapoport wrote:
+>>> On Mon, Mar 20, 2023 at 11:54:14AM +0100, Alexandre Ghiti wrote:
+>>>> Hi Mike,
 >>>>
->>>> MHDP does have hpd. But the mhdp driver should handle the cases when the
+>>>> On 3/16/23 21:12, Mike Rapoport wrote:
+>>>>> Hi Alexandre,
+>>>>>
+>>>>> On Thu, Mar 16, 2023 at 02:17:09PM +0100, Alexandre Ghiti wrote:
+>>>>>> This function allows to split a region in memblock.memory and will be
+>>>>>> useful when setting up the linear mapping with STRICT_KERNEL_RWX: it
+>>>>>> allows to isolate the kernel text/rodata and then avoid to map those
+>>>>>> regions with a PUD/P4D/PGD.
+>>>>> Sorry I've missed it last time. The changelog is fine in the context of
+>>>> No worries :)
+>>>>
+>>>>
+>>>>> this series, but if you look at it as a part of memblock changelog it
+>>>>> doesn't provide enough background on why memblock_isolate_memory() is
+>>>>> useful.
+>>>>>
+>>>>> Can you please add more context so it would be self explanatory?
+>>>> What about: "memblock.memory contains the list of memory regions and a
+>>>> memory region can cover memory that will be mapped with different
+>>>> permissions. So to ease the mapping process, allow to isolate those regions
+>>>> by introducing a new function called memblock_isolate_memory. This will be
+>>>> used in arch specific code to isolate the kernel text/rodata regions when
+>>>> STRICT_KERNEL_RWX is enabled so that we avoid mapping them with PUD/P4D/PGD
+>>>> mappings."
+>>> With this change
 >>>
->>> This is about bindings, not driver. Your driver can still handle this as
->>> it wishes.
->>>
->>>> hpd pin of bridge is not connected to that of the DP-connector. This is
->>>> to add support for that. (optional property)
->>>
->>> Which is indicated by panel no-hpd, right?
+>>> ... STRICT_KERNEL_RWX is enabled so that they can be mapped with base pages.
 >>
->> Actually no panel is involved in this. For TI SoC J721S2, the data
->> pipeline involves the bridge whose endpoint is directly the DP connector
->> with compatible 'dp-connector'. And in the binding dp-connector.yaml,
->> there isn't any 'no-hpd' property for this indication.
+>> Actually they will get mapped with PMD mappings :) I'll just append: "or PMD
+>> mapping" to your sentence above if that's ok with you.
+> Didn't read the rest of the patches :)
+>
+> .. STRICT_KERNEL_RWX is enabled so that they can be mapped with differently
+> than the rest of the memory.
+>
+> Does it cover the usescases?
+
+
+Yes, fine with me!
+
+Thanks again
+
+
+>
+>>> Acked-by: Mike Rapoport (IBM) <rppt@kernel.org>
 >>
->> Does this clarifies the issue? Or did I misinterpret your comment?
-> 
-> Yes, then you only need to narrow which hardware does not have HPD
-> hooked up. Or at least clarify that it is not about driver having or not
-> having HPD control...
-> 
-
-Okay. I will edit the commit message in v2. (after further review of the 
-driver changes for this series)
-
-I will mention that the mhdp bridge can work without its HPD pin hooked
-up to the connector, but the current bridge driver throws an error when
-hpd line is not connected to the connector. For such cases, using this 
-optional property, we can bypass the hpd detection and instead use the 
-auxiliary channels connected to the DP connector to confirm the connection.
-
-Thanks,
--Jayesh
-
-
+>> Thanks for your review,
+>>
+>> Alex
+>>
+>>
+>>>> Thanks,
+>>>>
+>>>> Alex
+>>>>
+>>>>
+>>>>>> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>>>>>> Reviewed-by: Anup Patel <anup@brainfault.org>
+>>>>>> Tested-by: Anup Patel <anup@brainfault.org>
+>>>>>> ---
+>>>>>>     include/linux/memblock.h |  1 +
+>>>>>>     mm/memblock.c            | 20 ++++++++++++++++++++
+>>>>>>     2 files changed, 21 insertions(+)
+>>>>>>
+>>>>>> diff --git a/include/linux/memblock.h b/include/linux/memblock.h
+>>>>>> index 50ad19662a32..2f7ef97c0da7 100644
+>>>>>> --- a/include/linux/memblock.h
+>>>>>> +++ b/include/linux/memblock.h
+>>>>>> @@ -125,6 +125,7 @@ int memblock_clear_hotplug(phys_addr_t base, phys_addr_t size);
+>>>>>>     int memblock_mark_mirror(phys_addr_t base, phys_addr_t size);
+>>>>>>     int memblock_mark_nomap(phys_addr_t base, phys_addr_t size);
+>>>>>>     int memblock_clear_nomap(phys_addr_t base, phys_addr_t size);
+>>>>>> +int memblock_isolate_memory(phys_addr_t base, phys_addr_t size);
+>>>>>>     void memblock_free_all(void);
+>>>>>>     void memblock_free(void *ptr, size_t size);
+>>>>>> diff --git a/mm/memblock.c b/mm/memblock.c
+>>>>>> index 25fd0626a9e7..e8c651a37012 100644
+>>>>>> --- a/mm/memblock.c
+>>>>>> +++ b/mm/memblock.c
+>>>>>> @@ -805,6 +805,26 @@ static int __init_memblock memblock_isolate_range(struct memblock_type *type,
+>>>>>>     	return 0;
+>>>>>>     }
+>>>>>> +/**
+>>>>>> + * memblock_isolate_memory - isolate given range in memblock.memory
+>>>>>> + * @base: base of range to isolate
+>>>>>> + * @size: size of range to isolate
+>>>>>> + *
+>>>>>> + * Isolates the given range in memblock.memory so that it does not share any
+>>>>>> + * region with other ranges.
+>>>>>> + *
+>>>>>> + * Return:
+>>>>>> + * 0 on success, -errno on failure.
+>>>>>> + */
+>>>>>> +
+>>>>>> +int __init_memblock memblock_isolate_memory(phys_addr_t base, phys_addr_t size)
+>>>>>> +{
+>>>>>> +	int start_rgn, end_rgn;
+>>>>>> +
+>>>>>> +	return memblock_isolate_range(&memblock.memory, base, size,
+>>>>>> +				      &start_rgn, &end_rgn);
+>>>>>> +}
+>>>>>> +
+>>>>>>     static int __init_memblock memblock_remove_range(struct memblock_type *type,
+>>>>>>     					  phys_addr_t base, phys_addr_t size)
+>>>>>>     {
+>>>>>> -- 
+>>>>>> 2.37.2
+>>>>>>
