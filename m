@@ -2,98 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC776C70C3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 20:09:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7D1F6C70CD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 20:11:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbjCWTJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 15:09:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48494 "EHLO
+        id S230137AbjCWTLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 15:11:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231665AbjCWTJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 15:09:08 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23903F977
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 12:08:40 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id h8so91049340ede.8
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 12:08:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679598515;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wlaSHC/GZ40AJ+I7acfZOLrawxc/It03kMRHOBlNclw=;
-        b=XnCm8WzKPM6Z6XZq/Mgt1Yud70FHTvqpahg/keuOmzj7l3gAcX86bv6wdM7oRtuu5b
-         UxVqK299RuSTq4ZftJODgjJWyZz2h6apTDq5DCiZ3Dvv/TZvl8tkWuPGryeLbWsaxjsM
-         Xux7xyjvi870jVpfe6rInnmT8JaZ6Fab7hHDxk7ms7pvvkqCYclVYsFz/iPovhjGrBaH
-         dCYorRYY3iyTJnSiX7KJHn1+mrrlj6t8kP1DPOLfuTes/eRqL5FRZ7ll0DPYj+3q0Xuj
-         fyouncGtyozVprZgwYuRsi4ew3DTwXkjyfPh19uASDBp/KT7OykCk+RaXIfgl9YnGFk4
-         7irQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679598515;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wlaSHC/GZ40AJ+I7acfZOLrawxc/It03kMRHOBlNclw=;
-        b=1N1MkEv4oLv6UbkQBQChIUj0U2PSmkasd5VYV87/ykQ2z7A1LGI7PfxAM2d8tRS4A0
-         SQ8EO6o3mL0jOS0TsqTTZr9duUUFAdkK/G7Amu09jvb0opcmtzFqUhrbfjtY0/9hnSyx
-         iX+UMKOICv8aKJ0dsto1Ezrl9URBUt58FFndNKI8B9bylAHt2ZCr8FPLyaBtLwiTo4jw
-         7n1WzScPUAnDQtAMnWkHLidD18poYkyogxoTxvsEHlV75xO9rm1AvlR5aIAwzAb1r7xS
-         MNumgPSDMHwmZ1nXBIxoq8cDpJPbAoLeS0t9PAxZ6NfJyy4MOKBZfGoyBBP+7tqycTxI
-         G6kg==
-X-Gm-Message-State: AAQBX9coEKMqZZG1qOMNyFPF1UtpU56vDXBDQvfn7kOvDmH6MXPXrrwp
-        smCx6Pph2kSrwbfzHV3/qkUExw==
-X-Google-Smtp-Source: AKy350ZkZxvsbKP4lr6Lm1syHYK4RwLTk/Fdc2KC/QE9jWsDL8boYFCHwOoH+RD52hzOd1U6dNPluA==
-X-Received: by 2002:a17:906:8486:b0:92b:2389:46bd with SMTP id m6-20020a170906848600b0092b238946bdmr115800ejx.21.1679598514822;
-        Thu, 23 Mar 2023 12:08:34 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d350:23b1:cb94:f39d? ([2a02:810d:15c0:828:d350:23b1:cb94:f39d])
-        by smtp.gmail.com with ESMTPSA id i11-20020a170906264b00b009255b14e91dsm9044614ejc.46.2023.03.23.12.08.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Mar 2023 12:08:34 -0700 (PDT)
-Message-ID: <5e0ca610-70b2-90fd-45b8-6b0da089eb4c@linaro.org>
-Date:   Thu, 23 Mar 2023 20:08:33 +0100
+        with ESMTP id S229823AbjCWTLD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 15:11:03 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D37171C;
+        Thu, 23 Mar 2023 12:11:02 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 6FE291C0E45; Thu, 23 Mar 2023 20:11:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1679598660;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=aRHbTBB+ZgSTv8KzTFw1avZ2sf6wVSfYjmXj3OLadfU=;
+        b=WUsbZMTdi1dQlK/4H3Xv9ArPjsuIMUxpSFwGMub4AZtfoYc0oMVOCdkbQ2YjKggzu6dMB1
+        8/6ydNZJvXxECORDcGhsUhgc71YQX105BVUfg1favqDeOxxfizoj39rK55mpyM+ncRrurM
+        7AuueYcYPNp8XcC2R2Lb0NBjGgM+2GI=
+Date:   Thu, 23 Mar 2023 20:11:00 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, John Crispin <john@phrozen.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [net-next PATCH v5 15/15] arm: mvebu: dt: Add PHY LED support
+ for 370-rd WAN port
+Message-ID: <ZBykRJmkxF7zf8g8@duo.ucw.cz>
+References: <20230319191814.22067-1-ansuelsmth@gmail.com>
+ <20230319191814.22067-16-ansuelsmth@gmail.com>
+ <ZBxAZRcEBg4to132@duo.ucw.cz>
+ <318f65ef-fd63-446d-bd08-1ba51b1d1f72@lunn.ch>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] ASoC: dt-bindings: alc5632: Convert to dtschema
-Content-Language: en-US
-To:     Saalim Quadri <danascape@gmail.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-References: <1a2e0f7a-771f-5590-fc54-b9dbf059a925@linaro.org>
- <20230323171111.17393-1-danascape@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230323171111.17393-1-danascape@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="rI4G7utm2RBg+ik3"
+Content-Disposition: inline
+In-Reply-To: <318f65ef-fd63-446d-bd08-1ba51b1d1f72@lunn.ch>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 18:11, Saalim Quadri wrote:
-> Hello,
-> 
-> This is my first time using the Linux Kernel Mailing List. I apologise if I commit any mistakes.
-> 
->> This should not be subsystem maintainer but someone related to the
->> device. It's maintainer or interested contributor. Unless that's the
->> case here?
-> 
-> yes it is wrong, he is not the subsystem maintainer. I will send the updated patch.
-> 
-> I have a doubt, for the maintainers list, is it required to include all the names of the subsystem maintainer
-> in the yaml too? As for this codec, there are 4, shall I include the names of all of them or the one to whom the
-> module is authored to?
 
-Depends, choose one or two names, maybe the most active.
+--rI4G7utm2RBg+ik3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+> > > The WAN port of the 370-RD has a Marvell PHY, with one LED on
+> > > the front panel. List this LED in the device tree.
+> > >=20
+> > > Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> >=20
+> > > @@ -135,6 +136,19 @@ &mdio {
+> > >  	pinctrl-names =3D "default";
+> > >  	phy0: ethernet-phy@0 {
+> > >  		reg =3D <0>;
+> > > +		leds {
+> > > +			#address-cells =3D <1>;
+> > > +			#size-cells =3D <0>;
+> > > +
+> > > +			led@0 {
+> > > +				reg =3D <0>;
+> > > +				label =3D "WAN";
+> > > +				color =3D <LED_COLOR_ID_WHITE>;
+> > > +				function =3D LED_FUNCTION_LAN;
+> > > +				function-enumerator =3D <1>;
+> > > +				linux,default-trigger =3D "netdev";
+> > > +			};
+> > > +		};
+> > >  	};
+> > > =20
+> >=20
+> > How will this end up looking in sysfs?
+>=20
+> Hi Pavel
+>=20
+> It is just a plain boring LED, so it will look like all other LEDs.
+> There is nothing special here.
+
+Well, AFAICT it will end up as /sys/class/leds/WAN, which is really
+not what we want. (Plus the netdev trigger should be tested; we'll
+need some kind of link to the ethernet device if we want this to work
+on multi-ethernet systems).
+
+> > Should documentation be added to Documentation/leds/leds-blinkm.rst
+> >  ?
+>=20
+> This has nothing to do with blinkm, which appears to be an i2c LED
+> driver.
+
+Sorry, I meant
+
+Should documentation be added to Documentation/leds/well-known-leds.txt ?
 
 Best regards,
-Krzysztof
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
+--rI4G7utm2RBg+ik3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZBykRAAKCRAw5/Bqldv6
+8hYAAJ9Bvn10XxUIr7aK5MpezU9ojjLFBQCdGvLFTqwn12xC4aE58YdyoLAftHM=
+=uXc6
+-----END PGP SIGNATURE-----
+
+--rI4G7utm2RBg+ik3--
