@@ -2,158 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A5266C720B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 22:00:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5E06C7214
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 22:02:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbjCWVAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 17:00:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54846 "EHLO
+        id S230157AbjCWVCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 17:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229963AbjCWVAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 17:00:23 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87C523A43
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 14:00:04 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id x3so230143edb.10
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 14:00:04 -0700 (PDT)
+        with ESMTP id S230484AbjCWVCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 17:02:25 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014C52311A;
+        Thu, 23 Mar 2023 14:02:21 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id cu12so31414pfb.13;
+        Thu, 23 Mar 2023 14:02:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679605203;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SXTHqUkgElHBBeFAVOcvTRAWbCAD12vtyPZ9oCoqefc=;
-        b=ERxCmRIR+vNEvKK4N2jZsiPXAmoEkSyBHwlSxj2gX1xZl0+Nyc9W8MwzWoIAJjdIT5
-         AsR/U8la1X8EZEHnPH3j2ju6QaSABn2oOYnSLXfBrGVYKIXiQd8giPiro31uSvnuc8Er
-         RyKqdjmj2kRtv2UaMs4909iAHNKH9T/XvSszAOI6M04sm60/DGqa6pantf3B/yvtorzt
-         I9wC0/gQFE9Y1SDQ8bZqvSwCJs6Ay3vOpXrE8ygcRb2hL2sFnCA8x3LK/JzjSG9BlBAM
-         xR9nI2VZz0TxuqJF3BNEVe1KdpwhcD5sn0uN6fPYbOsY0Ssp6qH60grGKc/KSsgrwJgz
-         mlfA==
+        d=gmail.com; s=20210112; t=1679605341;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p5uiJRroyVtf8LvtPinLAxBV2hvJ6FPnzSdm/G+aNVk=;
+        b=qAIyOJ3j8C80s4IAcmwxzYnJuHB9bJXHF0THG/5RRTv8Xt+k8gt1hR0PdCcqYwGx55
+         9Xs8oforUZ85JiZFHvFlCgbaiM83jiadZMLqbPayZfL8OKIwKapG+H+5uvqgkSLCEICD
+         m/Kg81x+SaTyRbxSt0cws7AslqQ7n4qkSfwFI/WqsLhoPYileXoCT85A+c7ZjCha1f08
+         Ojgvc91ftXCRGkPjXBzmH82i/baGMgb6XzcBT9O51D1PJ2yU2i6fcqsInrA8Sy3lcTI9
+         5/QJbWRuKumunRrnroPKJGAtniqMjhdjwsjxfm/xcdB8/9JsBRYWLic89TjFUBRLO+lW
+         SiPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679605203;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SXTHqUkgElHBBeFAVOcvTRAWbCAD12vtyPZ9oCoqefc=;
-        b=w6T0X/WcIn/pJFE9KvqaOH8vJIfrppN0drIoK0LehRlyOakJ90Hubmfc/LJsVNgCaC
-         rLRJFJcZuzuJ7PZowAh3HZswWMWQkScuKSNCj55pQDT2YxbILNBUzEgktoMDLyRe/qkh
-         iofZlgssjtAAIyS8wKHlK24f6tzw5z5GaerHMwYdHjnSgubabViI9BG6TDgQHbMvlUtN
-         98mzfWlkUFCgjoc1byGmfdK1O0ZgLcyqsj221XCrl1CujEFgvy4tIIxXDxFouvduqvjY
-         yCt/bf3J+eY9yPP7ynHPVANPeZx5ix4oKfSAVI6EgaG85PBp0yc3Q2IfOWsD2IvjBjek
-         5SRw==
-X-Gm-Message-State: AAQBX9dKUtc0VLwHtD7dqrW+D4AQAyaWSoENR9sZ7RZwCAD9QhuISPvM
-        H67CNVcfI6nneMQ53DWPWKA=
-X-Google-Smtp-Source: AKy350ba/GjYu/fl0aA5IPWcKXRbEYNMpKWfpBFDMdwHxkgH2tRThr48mohbUrUiNOunFYIRiewn+A==
-X-Received: by 2002:a05:6402:183:b0:4fa:dad6:4b63 with SMTP id r3-20020a056402018300b004fadad64b63mr584841edv.37.1679605203037;
-        Thu, 23 Mar 2023 14:00:03 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id e23-20020a50d4d7000000b004bf28bfc9absm9570284edj.11.2023.03.23.14.00.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 14:00:02 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v6 0/6] ARM: suniv: USB and two new boards support
-Date:   Thu, 23 Mar 2023 22:00:01 +0100
-Message-ID: <1845538.tdWV9SEqCh@jernej-laptop>
-In-Reply-To: <20230319212936.26649-1-andre.przywara@arm.com>
-References: <20230319212936.26649-1-andre.przywara@arm.com>
+        d=1e100.net; s=20210112; t=1679605341;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p5uiJRroyVtf8LvtPinLAxBV2hvJ6FPnzSdm/G+aNVk=;
+        b=PbbLHQuKKluilDLWjfsgIk8fYwDZKqs3mVuHQaoq6UIuZJHcmFZpUUraMjubSj6uFV
+         xW42v3Ap5nlA1nt2fV29nP2rMpAyK89VAMom0p2xodEyhXQd5XoMbBuA3xx60epIc0LO
+         8tjUIWbvPUVsUCy43pVk1T0TvyMXVTd0LsK51khIx+WZ42dbFpV+b1mFeAoDbh4M1V9Q
+         eV0KmmJpdM/OKCbvAI0/BTwFzeWoraMqHe5Bb3Nhxpfyp+cfM+5F/jtDbfG3C1J7WIkt
+         XgZeuZGWR3a+YU+649LQ4ueWKlOaUpxgZfk+mFvTv0L0htvnjQfDtixPSCEnVjwV+WY4
+         EwmA==
+X-Gm-Message-State: AAQBX9eZFNfy5yRjlx92qzyrTyfke7qEHOgxXChplL1fHdfqFd6WQAsP
+        TklAqLkW1HsaQldLQ/tw6Ps=
+X-Google-Smtp-Source: AKy350Yfk0MErpg+gVhnsJHb6rq7kKbSo9pCjlrflM80g06rzBtrQEFztYhhiNEehSaEE+MnuGDJ/Q==
+X-Received: by 2002:aa7:9f8f:0:b0:628:9b4:a6a2 with SMTP id z15-20020aa79f8f000000b0062809b4a6a2mr619923pfr.15.1679605340979;
+        Thu, 23 Mar 2023 14:02:20 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id r14-20020a62e40e000000b00627ee6dcb84sm8999710pfh.203.2023.03.23.14.02.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 14:02:20 -0700 (PDT)
+Message-ID: <c54fe984-371a-da06-6dcf-da239a26bd5f@gmail.com>
+Date:   Thu, 23 Mar 2023 14:02:11 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/2] net: dsa: b53: mdio: add support for BCM53134
+Content-Language: en-US
+To:     Paul Geurts <paul.geurts@prodrive-technologies.com>,
+        =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
+        "jonas.gorski@gmail.com" <jonas.gorski@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "olteanv@gmail.com" <olteanv@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230323121804.2249605-1-noltari@gmail.com>
+ <20230323121804.2249605-3-noltari@gmail.com>
+ <ee867960-91bb-659b-a87b-6c04613608c5@gmail.com>
+ <AM0PR02MB55242C94846EE5598CDA44A2BD879@AM0PR02MB5524.eurprd02.prod.outlook.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <AM0PR02MB55242C94846EE5598CDA44A2BD879@AM0PR02MB5524.eurprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne nedelja, 19. marec 2023 ob 22:29:30 CET je Andre Przywara napisal(a):
-> Hi,
+On 3/23/23 13:10, Paul Geurts wrote:
+>> -----Original Message-----
+>> From: Florian Fainelli <f.fainelli@gmail.com>
+>> Sent: donderdag 23 maart 2023 17:43
+>> To: Álvaro Fernández Rojas <noltari@gmail.com>; Paul Geurts
+>> <paul.geurts@prodrive-technologies.com>; jonas.gorski@gmail.com;
+>> andrew@lunn.ch; olteanv@gmail.com; davem@davemloft.net;
+>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
+>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: Re: [PATCH 2/2] net: dsa: b53: mdio: add support for BCM53134
+>>
+>> On 3/23/23 05:18, Álvaro Fernández Rojas wrote:
+>>> From: Paul Geurts <paul.geurts@prodrive-technologies.com>
+>>>
+>>> Add support for the BCM53134 Ethernet switch in the existing b53 dsa
+>> driver.
+>>> BCM53134 is very similar to the BCM58XX series.
+>>>
+>>> Signed-off-by: Paul Geurts <paul.geurts@prodrive-technologies.com>
+>>> Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
+>>> ---
+>>>    drivers/net/dsa/b53/b53_common.c | 53
+>> +++++++++++++++++++++++++++++++-
+>>>    drivers/net/dsa/b53/b53_mdio.c   |  5 ++-
+>>>    drivers/net/dsa/b53/b53_priv.h   |  9 +++++-
+>>>    3 files changed, 64 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/net/dsa/b53/b53_common.c
+>>> b/drivers/net/dsa/b53/b53_common.c
+>>> index 1f9b251a5452..aaa0813e6f59 100644
+>>> --- a/drivers/net/dsa/b53/b53_common.c
+>>> +++ b/drivers/net/dsa/b53/b53_common.c
+>>> @@ -1282,6 +1282,42 @@ static void b53_adjust_link(struct dsa_switch
+>> *ds, int port,
+>>>    	if (is63xx(dev) && port >= B53_63XX_RGMII0)
+>>>    		b53_adjust_63xx_rgmii(ds, port, phydev->interface);
+>>>
+>>> +	if (is53134(dev) && phy_interface_is_rgmii(phydev)) {
+>>
+>> Why is not this in the same code block as the one for the is531x5() device like
+>> this:
+>>
+>> diff --git a/drivers/net/dsa/b53/b53_common.c
+>> b/drivers/net/dsa/b53/b53_common.c
+>> index 59cdfc51ce06..1c64b6ce7e78 100644
+>> --- a/drivers/net/dsa/b53/b53_common.c
+>> +++ b/drivers/net/dsa/b53/b53_common.c
+>> @@ -1235,7 +1235,7 @@ static void b53_adjust_link(struct dsa_switch *ds,
+>> int port,
+>>                                 tx_pause, rx_pause);
+>>           b53_force_link(dev, port, phydev->link);
+>>
+>> -       if (is531x5(dev) && phy_interface_is_rgmii(phydev)) {
+>> +       if ((is531x5(dev) || is53134(dev)) &&
+>> phy_interface_is_rgmii(phydev)) {
+>>                   if (port == dev->imp_port)
+>>                           off = B53_RGMII_CTRL_IMP;
+>>                   else
+>>
+>> Other than that, LGTM!
+>> --
+>> Florian
 > 
-> This patchset introduces support for F1C100s' USB, and the SourceParts
-> PopStick and Lctech Pi boards.
-> 
-> These are the remaining (DT) patches, all driver and devicetree binding
-> patches for USB related devices, which were part of former versions of
-> this series, have now been merged (into v6.3-rc1).
-> What's left are just the DT bits: for the SoC .dtsi and LicheePi Nano
-> board .dts files. On top go patches that add support for two new boards.
-> 
-> There were no actual changes to the patches, they are merely resend,
-> with the vendor and DT board name binding patches combined for the two
-> boards.  All prerequisites are in the tree, so the tooling checks pass.
-> 
-> Cheers,
-> Andre
-> 
-> Changelog v5 ... v6:
-> - Drop all driver and USB DT binding patches (already merged separately)
-> - based on v6.3-rc2
-> 
-> Changelog v4 ... v5:
-> - Rebase on top to v6.2-rc1
-> 
-> Changelog v3 ... v4:
-> - Dropped the PHY patches, they go via a different tree and need a
->   different base
-> - rebased on top of linux-sunxi/sunxi/for-next (provides H616 USB)
-> - musb DT binding: use enum
-> - musb cleanup: use musb_hdrc_config config pointer directly
-> - musb cleanup: use const where possible
-> - drop partitions from Popstick DTS file
-> - clarify Popstick has a USB type-A *plug*
-> - add tags
-> 
-> Changelog v2 ... v3:
-> - remove redundant "Device Tree Bindings" suffix in DT binding doc title
-> - add BSD license to binding doc file (as per checkpatch)
-> - fix some commit message title prefixes
-> - use proper plural spelling for usb0_id_det-gpios
-> - popstick.dts: Reorder otg_sram node reference alphabetically
-> - popstick.dts: Add regulator- prefix to 3.3V regulator node name
-> - popstick.dts: Fix status, compatible and reg property order
-> - popstick.dts: Drop unneeded mmc0 and spi0 aliases
-> - add patch to clean up sunxi MUSB driver
-> - add Acks and Reviewed-by's
-> 
-> Changelog v1 ... v2:
-> - USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
-> - Add Popstick binding and .dts patches
-> 
-> 
-> Andre Przywara (1):
->   ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
-> 
-> Icenowy Zheng (5):
->   ARM: dts: suniv: add USB-related device nodes
->   ARM: dts: suniv: licheepi-nano: enable USB
->   dt-bindings: vendor-prefixes: add Source Parts and Lctech names
->   dt-binding: arm: sunxi: add two board compatible strings
->   ARM: dts: suniv: add device tree for PopStick v1.1
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        | 13 +++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  4 +
->  arch/arm/boot/dts/Makefile                    |  4 +-
->  .../boot/dts/suniv-f1c100s-licheepi-nano.dts  | 16 ++++
->  arch/arm/boot/dts/suniv-f1c100s.dtsi          | 32 ++++++++
->  arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 76 +++++++++++++++++
->  .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 81 +++++++++++++++++++
->  7 files changed, 225 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
->  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+> I think the only reason is that the BCM53134 does not support the
+> RGMII_CTRL_TIMING_SEL bit, which is set in the original block. I agree
+> Putting a if statement around
+> rgmii_ctrl |= RGMII_CTRL_TIMING_SEL;
+> would prevent a lot of code duplication. _however_, after looking at it again,
+> I don’t think the device does not support the bit. When looking at the datasheet,
+> The same bit in the this register is called BYPASS_2NS_DEL. It's very uncommon
+> For Broadcom to make such a change in the register interface, so maybe they
+> Just renamed it. Do you think this could be the same bit?
 
-Applied, thanks!
-
-Best regards,
-Jernej
-
-
+Yes, I think this is exactly the same bit, just named differently. What 
+strikes me as odd is that neither of the 53115, 53125 or 53128 which are 
+guarded by the is531x5() conditional have it defined.
+-- 
+Florian
 
