@@ -2,265 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 852846C60FD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 08:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CDA56C6152
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 09:10:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbjCWHo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 03:44:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
+        id S230459AbjCWIKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 04:10:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjCWHoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 03:44:55 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C865719C4E;
-        Thu, 23 Mar 2023 00:44:50 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0B5F324E1BE;
-        Thu, 23 Mar 2023 15:44:43 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Mar
- 2023 15:44:43 +0800
-Received: from [192.168.125.74] (183.27.97.64) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 23 Mar
- 2023 15:44:42 +0800
-Message-ID: <5b75161e-3d0d-50e5-fd4e-af92edf62317@starfivetech.com>
-Date:   Thu, 23 Mar 2023 15:44:41 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v6 11/21] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229500AbjCWIKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 04:10:10 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA75559F7;
+        Thu, 23 Mar 2023 01:10:07 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 79AE71BF212;
+        Thu, 23 Mar 2023 08:10:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1679559005;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bSFCW6jLRdKGSTRgBj+3w6Z50goS9OAkklgGnjMU3uc=;
+        b=Y4TDA/aHcoKPzG7DDAfcDeMKGbDnh6P7jwE53mGuYW17CT/uBplLfXZRzHxCCU/S/3g9Ux
+        ePo5Qdm7mYIGE/27ANu1JtRcg9n9FV97IFBG9XXFM8GTE0oTMLSvhOkDWoC0BTwqau72QF
+        d9uoYHuXL5XdZCN1nlvCLkJzW64Rzf5ZL+nX1111jC72V06lC7t1kLUwGIplbJBD3PHYmK
+        0Qa4yZM/0W81SSgA0CGyDCR9fKMgf09t6JuEMknkQtXJXNlJ5O1+M45Z5RP+h6fy8kxwgH
+        S5xasH9/0cFskVdUiTHsv26z84liAsQyGtY7zZ8e8MnYlDGwFvCjb+igsoZVww==
+Date:   Thu, 23 Mar 2023 09:10:01 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230320103750.60295-1-hal.feng@starfivetech.com>
- <20230320103750.60295-12-hal.feng@starfivetech.com>
- <b4beb457-8581-4b2f-8655-2e3f82a94f75@spud>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <b4beb457-8581-4b2f-8655-2e3f82a94f75@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.64]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 4/6] dt-bindings: sound: Add support for the Lantiq
+ PEF2256 codec
+Message-ID: <20230323091001.100ca343@bootlin.com>
+In-Reply-To: <5c82c731-3124-9eca-32a3-c974db95724a@linaro.org>
+References: <20230322134654.219957-1-herve.codina@bootlin.com>
+        <20230322134654.219957-5-herve.codina@bootlin.com>
+        <cf87e7c0-b769-d1fc-0718-c5c2986993b8@linaro.org>
+        <20230323082758.5e4385ff@bootlin.com>
+        <5c82c731-3124-9eca-32a3-c974db95724a@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Mar 2023 21:53:37 +0000, Conor Dooley wrote:
-> Hey Hal,
-> 
-> On Mon, Mar 20, 2023 at 06:37:40PM +0800, Hal Feng wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->> 
->> Add bindings for the system clock and reset generator (SYSCRG) on the
->> JH7110 RISC-V SoC by StarFive Ltd.
->> 
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  .../clock/starfive,jh7110-syscrg.yaml         | 104 +++++++++
->>  MAINTAINERS                                   |   8 +-
->>  .../dt-bindings/clock/starfive,jh7110-crg.h   | 203 ++++++++++++++++++
->>  .../dt-bindings/reset/starfive,jh7110-crg.h   | 142 ++++++++++++
->>  4 files changed, 454 insertions(+), 3 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->>  create mode 100644 include/dt-bindings/clock/starfive,jh7110-crg.h
->>  create mode 100644 include/dt-bindings/reset/starfive,jh7110-crg.h
->> 
->> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> new file mode 100644
->> index 000000000000..84373ae31644
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->> @@ -0,0 +1,104 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-syscrg.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 System Clock and Reset Generator
->> +
->> +maintainers:
->> +  - Emil Renner Berthing <kernel@esmil.dk>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-syscrg
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    oneOf:
->> +      - items:
->> +          - description: Main Oscillator (24 MHz)
->> +          - description: GMAC1 RMII reference or GMAC1 RGMII RX
->> +          - description: External I2S TX bit clock
->> +          - description: External I2S TX left/right channel clock
->> +          - description: External I2S RX bit clock
->> +          - description: External I2S RX left/right channel clock
->> +          - description: External TDM clock
->> +          - description: External audio master clock
->> +
->> +      - items:
->> +          - description: Main Oscillator (24 MHz)
->> +          - description: GMAC1 RMII reference
->> +          - description: GMAC1 RGMII RX
->> +          - description: External I2S TX bit clock
->> +          - description: External I2S TX left/right channel clock
->> +          - description: External I2S RX bit clock
->> +          - description: External I2S RX left/right channel clock
->> +          - description: External TDM clock
->> +          - description: External audio master clock
->> +
->> +  clock-names:
->> +    oneOf:
->> +      - items:
->> +          - const: osc
->> +          - enum:
->> +              - gmac1_rmii_refin
->> +              - gmac1_rgmii_rxin
->> +          - const: i2stx_bclk_ext
->> +          - const: i2stx_lrck_ext
->> +          - const: i2srx_bclk_ext
->> +          - const: i2srx_lrck_ext
->> +          - const: tdm_ext
->> +          - const: mclk_ext
->> +
->> +      - items:
->> +          - const: osc
->> +          - const: gmac1_rmii_refin
->> +          - const: gmac1_rgmii_rxin
->> +          - const: i2stx_bclk_ext
->> +          - const: i2stx_lrck_ext
->> +          - const: i2srx_bclk_ext
->> +          - const: i2srx_lrck_ext
->> +          - const: tdm_ext
->> +          - const: mclk_ext
-> 
-> I'm sorry to be a bit of a bore about these bindings, but Emil mentioned
-> to me today that he had some doubts about whether any of these audio
-> clocks are actually required.
-> I've had a bit of a look at the driver, cos the TRM that I have doesn't
-> describe the clock tree (from what recall at least) and I think he is
-> right.
-> For example, the TDM clock:
-> +	JH71X0_GATE(JH7110_SYSCLK_TDM_AHB, "tdm_ahb", 0, JH7110_SYSCLK_AHB0),
-> +	JH71X0_GATE(JH7110_SYSCLK_TDM_APB, "tdm_apb", 0, JH7110_SYSCLK_APB0),
-> +	JH71X0_GDIV(JH7110_SYSCLK_TDM_INTERNAL, "tdm_internal", 0, 64, JH7110_SYSCLK_MCLK),
-> +	JH71X0__MUX(JH7110_SYSCLK_TDM_TDM, "tdm_tdm", 2,
-> +		    JH7110_SYSCLK_TDM_INTERNAL,
-> +		    JH7110_SYSCLK_TDM_EXT),
-> 
-> Hopefully, I'm not making a balls of something here, but it looks like I
-> can choose an internal TDM clock, that is based on JH7110_SYSCLK_MCLK,
-> which in turn comes from either an internal or external source.
-> If I am following correctly, that'd be:
-> +	JH71X0__DIV(JH7110_SYSCLK_MCLK_INNER, "mclk_inner", 64, JH7110_SYSCLK_AUDIO_ROOT),
-> 
-> Which in turn comes from:
-> +	JH71X0__DIV(JH7110_SYSCLK_AUDIO_ROOT, "audio_root", 8, JH7110_SYSCLK_PLL2_OUT),
-> 
-> This leaves me wondering which clocks are *actually* required for a
-> functioning system - is it actually just osc and one of gmac1_rmii_refin
-> or gmac1_rgmii_rxin.
+On Thu, 23 Mar 2023 08:31:28 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-As I had mentioned somewhere before, some audio clocks need to change their
-parents at different stages of work. I should explain in detail here.
-
-For the i2s*_ext clocks, we should use these external clocks as parents when
-the I2S module is working in the slave mode, while we should use the internal
-clocks as parents when the I2S module is working in the master mode.
-
-For the tdm_ext clock, we use it as the clock source for an accurate playback
-rate. If we use the internal clock as clock source, the TDM can't work
-normally, because it can't get a required rate from the internal divider.
-By the way, note that we need to use the internal clock as clock source when
-we try to reset the tdm clock, otherwise, the reset will fail.
-
-For the mclk_ext clock, which is 12.288MHz, it's used as the clock source
-through all the running time, otherwise, the daughter clocks can't get the
-required rate from the internal PLL2 clock (1188MHz) through dividers.
-
-So all these audio external clocks (i2s*_ext / tdm_ext / mclk_ext) are
-actually required.
-
-Best regards,
-Hal
-
+> On 23/03/2023 08:27, Herve Codina wrote:
+> > Hi Krzysztof
+> > 
+> > On Wed, 22 Mar 2023 22:59:37 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >   
+> >> On 22/03/2023 14:46, Herve Codina wrote:  
+> >>> The Lantiq PEF2256 is a framer and line interface component designed to
+> >>> fulfill all required interfacing between an analog E1/T1/J1 line and the
+> >>> digital PCM system highway/H.100 bus.
+> >>>
+> >>> The codec support allows to use some of the PCM system highway
+> >>> time-slots as audio channels to transport audio data over the E1/T1/J1
+> >>> lines.
+> >>>
+> >>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> >>> ---
+> >>>  .../bindings/sound/lantiq,pef2256-codec.yaml  | 54 +++++++++++++++++++
+> >>>  1 file changed, 54 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml b/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..da35b70cda99
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+> >>> @@ -0,0 +1,54 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/sound/lantiq,pef2256-codec.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Lantiq PEF2256 codec
+> >>> +
+> >>> +maintainers:
+> >>> +  - Herve Codina <herve.codina@bootlin.com>
+> >>> +
+> >>> +description: |
+> >>> +  Codec support for PEF2256.
+> >>> +
+> >>> +  The Lantiq PEF2256, also known as Infineon PEF2256 or FALC56, is a framer and
+> >>> +  line interface component designed to fulfill all required interfacing between
+> >>> +  an analog E1/T1/J1 line and the digital PCM system highway/H.100 bus.
+> >>> +
+> >>> +  The codec support allows to use some of the PCM system highway time-slots as
+> >>> +  audio channels to transport audio data over the E1/T1/J1 lines.
+> >>> +
+> >>> +  The time-slots used by the codec must be set and so, the properties
+> >>> +  'dai-tdm-slot-num', 'dai-tdm-slot-width', 'dai-tdm-slot-tx-mask' and
+> >>> +  'dai-tdm-slot-rx-mask' must be present in the ALSA sound card node for
+> >>> +  sub-nodes that involve the codec. The codec uses 8bit time-slots.
+> >>> +  'dai-tdm-tdm-slot-with' must be set to 8.
+> >>> +  The tx and rx masks define the PEF2256 time-slots assigned to the codec.
+> >>> +
+> >>> +  The PEF2256 codec node should be a child of a PEF2256 node.
+> >>> +  Refer to the bindings described in
+> >>> +  Documentation/devicetree/bindings/mfd/lantiq,pef2256.yaml
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: dai-common.yaml#
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: lantiq,pef2256-codec
+> >>> +
+> >>> +  '#sound-dai-cells':
+> >>> +    const: 0    
+> >>
+> >> You do not have here any resources, so the entire binding can be dropped
+> >> and merged into the parent.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>  
+> > 
+> > Ok,
+> > Do you expect all these properties (except compatible) merged at the parent  
 > 
-> I really don't want you to have to go and spell out every combination of
-> clocks to have some sort of validation here.
+> You have only two properties here - dai cells and name-prefix...
 > 
-> Stephen, Rob or Krzysztof, do you have any guidance on this situation
-> (assuming I've not made a fool of myself)? There's probably something
-> "obvious" that I'm missing, as I am sure this is not a unique problem.
+> > level or may I keep a child node with these properties including the
+> > compatible property (ie. yaml file merge).  
 > 
-> Cheers,
-> Conor.
+> I was thinking that these should be merged into parent because usually
+> you do not need child node for this. However now I started to think how
+> the codec driver would look like. Essentially the parent MFD driver
+> would need to register dais...
 > 
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +    description:
->> +      See <dt-bindings/clock/starfive,jh7110-crg.h> for valid indices.
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +    description:
->> +      See <dt-bindings/reset/starfive,jh7110-crg.h> for valid indices.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - '#clock-cells'
->> +  - '#reset-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clock-controller@13020000 {
->> +        compatible = "starfive,jh7110-syscrg";
->> +        reg = <0x13020000 0x10000>;
->> +        clocks = <&osc>, <&gmac1_rmii_refin>,
->> +                 <&gmac1_rgmii_rxin>,
->> +                 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
->> +                 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
->> +                 <&tdm_ext>, <&mclk_ext>;
->> +        clock-names = "osc", "gmac1_rmii_refin",
->> +                      "gmac1_rgmii_rxin",
->> +                      "i2stx_bclk_ext", "i2stx_lrck_ext",
->> +                      "i2srx_bclk_ext", "i2srx_lrck_ext",
->> +                      "tdm_ext", "mclk_ext";
->> +        #clock-cells = <1>;
->> +        #reset-cells = <1>;
->> +    };
 
+There is also something specific to audio, the slots definition
+'dai-tdm-slot-tx-mask' and 'dai-tdm-slot-rx-mask'. These slots definitions
+are set at the ALSA sound card sub-nodes.
+So, I can have multiple codec in the PEF2256.
+
+For instance:
+  framer {
+    compatible = "lantiq,pef2256", "simple-mfd";
+    ...
+    pef2256_codec0: codec0 {
+      compatible = "lantiq,pef2256-codec";
+      #sound-dai-cells = <0>;
+    };
+    pef2256_codec1: codec1 {
+      compatible = "lantiq,pef2256-codec";
+      #sound-dai-cells = <0>;
+    };
+  };
+
+  sound {
+    compatible = "simple-audio-card";
+    #address-cells = <1>;
+    #size-cells = <0>;
+    simple-audio-card,dai-link@0 { /* CPU DAI1 - pef2256 codec 1 */
+      reg = <0>;
+      cpu {
+        sound-dai = <&cpu_dai1>;
+      };
+      codec {
+        sound-dai = <&pef2256_codec0>;
+	dai-tdm-slot-num = <4>;
+	dai-tdm-slot-width = <8>;
+	/* TS 2, 3, 4, 5 */
+	dai-tdm-slot-tx-mask = <0 1 1 1 1>;
+	dai-tdm-slot-rx-mask = <0 1 1 1 1>;
+      };
+    simple-audio-card,dai-link@1 { /* CPU DAI2 - pef2256 codec 2 */
+      reg = <1>;
+      cpu {
+        sound-dai = <&cpu_dai2>;
+      };
+      codec {
+	sound-dai = <&pef2256_codec1>;
+	dai-tdm-slot-num = <4>;
+	dai-tdm-slot-width = <8>;
+	/* TS 6, 7, 8, 9 */
+	dai-tdm-slot-tx-mask = <0 0 0 0 0 1 1 1 1>;
+	dai-tdm-slot-rx-mask = <0 0 0 0 0 1 1 1 1>;
+      };
+    };
+  };
+
+To solve this, I can use #sound-dai-cells = <1>; but this will complicate
+the driver itself and is it really needed ?
+Having "simple-mfd" dans sub-nodes keep all things simple.
+
+Regards,
+Hervé
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
