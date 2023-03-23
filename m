@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 461686C60D2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 08:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E526D6C60D1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 08:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbjCWHcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 03:32:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45262 "EHLO
+        id S229775AbjCWHcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 03:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231251AbjCWHb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 03:31:59 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3947419C4C
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 00:31:58 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id w9so82681919edc.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 00:31:58 -0700 (PDT)
+        with ESMTP id S231140AbjCWHcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 03:32:16 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585B81815A
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 00:32:14 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id b20so49673761edd.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 00:32:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679556716;
+        d=linaro.org; s=google; t=1679556732;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
         bh=ekZUPnt2Vozh7f2sOzqBtvIcIMLGfykVhoLT/YHh2xE=;
-        b=MxAap6yrlqQe+CS3DpDJfF5WuV4QamV9krsmqhN6cV++/4g87dcsgqDPv9l4+5jTSN
-         fpREq+ql5ZTsrvXKij5+szUYFIjJ0KrLkBQo4LjQ1Xb8NggiUvcGJK175r4xihf79DWH
-         T9KnIy/W0K7sT2bZN78BDTWH3LR1I9CbJ5kYRt9N0WwtKZTPt5K7HgBM2XmjXuODk0Fl
-         eyZrEpQKsNQcqJg8O8ItsV46io0ofcKBAqE9mSXi9A/p5D9UQd6ntvzQtllz758dL0dv
-         Np4e6EQf/FAiZDraFfnXffKia8k+jFmBUof/QJ6Bb3WX2KDSPFstWow9QJ3ylAscvjmg
-         zAYg==
+        b=pC6bEEtISpupKbooEnItYeOUxJJpkyUKbPbem4vpMOtx6RQac2zK/BBuPkaQwYGBn+
+         2gghiVMFqGQq6wLhQp7Wq6bTizLcjze5sAJ6PIEXBGpPFU8S1E+NrTFq2pbnJCJtOnL4
+         Sf5uGk32KUyZd5mpZGDcqco7zzaLNbCZohqhnSMddC0H7SeB5qH8WLxweIY5Slr7gZGU
+         XftvzlFKCePNt0fdNwKCNfa8qnSOHK50tPgcXkc/xLAJk37H25j+CyEuZX+K3R/17T+Q
+         YRhISXDaIPc5i9JJ2eL1c5NA2vjKeIc3i1MTeF1IyD4mfW1uuHX/SWG06F6A8cbnHV85
+         xtQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679556716;
+        d=1e100.net; s=20210112; t=1679556732;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
         bh=ekZUPnt2Vozh7f2sOzqBtvIcIMLGfykVhoLT/YHh2xE=;
-        b=Uja5VSZTrB4KP+TzQCULriWRRSJRcT6PWiAZwIAXsEytvaK1wgoFABnOE9N1Apx3+w
-         pxSU3SfQNfqTwg8SKSgF028gyzFvVE5YkaiJ2VF6DdHxTTJvjrOZcumHynpYIFd+w/QM
-         Zq65ipiWI3Z+nQYbtHATM0kzMCOAZ+PCI/A3ET6FiX0HxUiXfjeCGaPNuL1MYzSYvVSt
-         PdJD26m2t4MlOYcow2GXbFngvew5mhay52Lo27fMxD/EgtQ5Ob9lBJquKs2Xa1/EqOKP
-         RJ51727jsGdOPIYfaA33uV0Q72nVw0iwQHNM0krly68EoRGgFdJnLf89s2/loSkLdq84
-         unDA==
-X-Gm-Message-State: AO0yUKX1IyrRQyM7p4O4UJdPbuzZvpnakIDsEpGKNUHt1MT+5ZVABFzN
-        ug9KVXF+eVSoD5mCO0zDz/n5AA==
-X-Google-Smtp-Source: AK7set+iWZt444eNKE55ycB9BgkADqbdT5/QwpCrCYcQJ7NbBWuq6iqdS3q/l5rzTRalH/MtURCskw==
-X-Received: by 2002:a17:906:5cd:b0:8af:3b78:315d with SMTP id t13-20020a17090605cd00b008af3b78315dmr10894973ejt.23.1679556716702;
-        Thu, 23 Mar 2023 00:31:56 -0700 (PDT)
+        b=AcyWbkag+hGGEzCoQ3AErstlnmPVk1lBX8/5Sc5dO1XJCWMmUcqdQtkcMqBGqArLoT
+         67Dbon3Pz0gd/okCl7lzPgdxMWYe8lyaLf7ErpTbJxenGmopUSX5soEv4K3BQ83UYA2u
+         SfcxH17M6pqsM5RXGsOTrqgzXzCj6BSQsXBKOdfkO/07kNrJxpTstYmnP5YfEIme10Qq
+         rlkUEc8aqSXOL+9LYEEAgO2OUjA0WFP2otnMDmi2ylOyrKLr2/kjH7ILkjTHLpfoszYb
+         FnNLQDes6WWnRdjpa4e1SE3ovuFndll2/bE1477+U4Tg7DdIzqrjrPqa2JMlLpyp7cOO
+         8EpA==
+X-Gm-Message-State: AO0yUKVjB81etiTPhGPEEXmniNkQ7PBHInO3R/Bq6NCR+HhWQ8DjVj5N
+        jx0J1G20ib5JMGyWHtlfgs2KruVdeeDS61+u82Q=
+X-Google-Smtp-Source: AK7set+ARGwKmwALE+hH8XP9VbFZ7LM80o6ORUW/2+pvw7+8GvYyhjllDHLV73FEqd6Olano8ZNlsw==
+X-Received: by 2002:a17:907:7654:b0:8b1:7857:2331 with SMTP id kj20-20020a170907765400b008b178572331mr10035651ejc.65.1679556732624;
+        Thu, 23 Mar 2023 00:32:12 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a665:ed1e:3966:c991? ([2a02:810d:15c0:828:a665:ed1e:3966:c991])
-        by smtp.gmail.com with ESMTPSA id gv27-20020a1709072bdb00b008b9b4ab6ad1sm8235164ejc.102.2023.03.23.00.31.55
+        by smtp.gmail.com with ESMTPSA id c2-20020a170906694200b0092b546b57casm8249382ejs.195.2023.03.23.00.32.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Mar 2023 00:31:56 -0700 (PDT)
-Message-ID: <a767418b-1e2a-6d02-fc07-8caea8f877e2@linaro.org>
-Date:   Thu, 23 Mar 2023 08:31:55 +0100
+        Thu, 23 Mar 2023 00:32:12 -0700 (PDT)
+Message-ID: <b45401a5-89e9-16f4-1c58-50b465672e99@linaro.org>
+Date:   Thu, 23 Mar 2023 08:32:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: mfd: Drop unneeded quotes
+Subject: Re: [PATCH] dt-bindings: reset: Drop unneeded quotes
 Content-Language: en-US
 To:     Rob Herring <robh@kernel.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Lee Jones <lee@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-arm-msm@vger.kernel.org, patches@opensource.cirrus.com
-References: <20230322173519.3971434-1-robh@kernel.org>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Qin Jian <qinjian@cqplus1.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230322173508.3971182-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230322173519.3971434-1-robh@kernel.org>
+In-Reply-To: <20230322173508.3971182-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
