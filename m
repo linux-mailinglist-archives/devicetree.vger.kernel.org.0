@@ -2,146 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 541466C6C1F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 16:18:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC8D6C6C49
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 16:28:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232037AbjCWPSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 11:18:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37238 "EHLO
+        id S231455AbjCWP2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 11:28:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232068AbjCWPSq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 11:18:46 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954ED29405;
-        Thu, 23 Mar 2023 08:18:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679584720; x=1711120720;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fBTf1WFkxv6jpIw1EyUCMiRABvqdmGxDE71QRCONeqM=;
-  b=eJDy74BnaGJQV0FBpjM/Cb66TncNeNvpUzjafx6UYGAcYDUM37oWccS2
-   xFjmsttf3RmH2QzKAzKBDwR9R4XWQr9NoKRl5EZPBGpXtuq5NI8LT9Iao
-   hOZxBZBaoVbN0t9v9idt8VeBxe2GZOZG3Lm0ZHC9UeNqcw5wSqWcF5hcC
-   2uVHlIu8amNwkVKTgGb/CaJV97rHYzrlKyzl9l3WhH5jX5njcL/itAWGn
-   IRqvMhVWIgVTle+xH4y7e4GmFn5zRQAy40RPZ6d0SIRN/3s3OWQxRQYWj
-   hxq6zMz/Fed/Ux5Xz1J3h82ySyIEZEeeBm9C1SOnOkjMTAl8PhWpOav3J
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="319171900"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; 
-   d="scan'208";a="319171900"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2023 08:18:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="675745582"
-X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; 
-   d="scan'208";a="675745582"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 23 Mar 2023 08:18:31 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pfMhz-000ETr-0r;
-        Thu, 23 Mar 2023 15:18:31 +0000
-Date:   Thu, 23 Mar 2023 23:18:24 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Maximilian Weigand <mweigand@mweigand.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Maximilian Weigand <mweigand@mweigand.net>,
-        Alistair Francis <alistair@alistair23.me>
-Subject: Re: [PATCH 2/6] Input: cyttsp5: remove unused code
-Message-ID: <202303232302.FB64fi39-lkp@intel.com>
-References: <20230323135205.1160879-3-mweigand@mweigand.net>
+        with ESMTP id S230410AbjCWP2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 11:28:44 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675D832E4E;
+        Thu, 23 Mar 2023 08:28:43 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id 103-20020a9d0870000000b0069f000acf40so9893858oty.1;
+        Thu, 23 Mar 2023 08:28:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679585322;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2lMC9l9Xu+R4kY0unfw7S3jTRffsrFJM0dcw4eNt4L4=;
+        b=nlk/B+HieGujYOuOVgGs36Xhbm76oh3ubYH6RWTo0UNZJkdRrve9AGsjXOFJeoVQDo
+         9DBPaT5CsP7XAtaymO29WPAo+mGOVIX3Y4zJUaJYncgdalS1JwSrdsUwtkVkZB/wgth3
+         cOZawB6uJcqSd5w1gcZ3mfKeSxzBdru5Qw0gMalnI5uOH6/DTaz2oYw8IDNCB0Vj0z7C
+         iHY4GPTd+OOrLbcAM5Z9tYH5yczTJVCB0ePbJTVawJIYB/b38PrP4fwM9QXN+goHdGNc
+         KLfta5h6Q6KJIo2Mzf7b5ti8c5RqsK9CSfMfcf2iS6f1ZRCjSdHnBavuFXNgRblbcFaw
+         31mw==
+X-Gm-Message-State: AO0yUKVwszJ6NvQn69TyXLBQAwLQG0yDZ7kRqF+jeDE7Sq9KXb6ybWN0
+        qPm4SE83KTRl9PTpQL7J9A==
+X-Google-Smtp-Source: AK7set/TI9oZV8LrGVWiAqlaRR1tJHqqMU6cCKVVJ8hOeATVMGV7fOq4p/87Qdp/qx7+W40LEtpk7A==
+X-Received: by 2002:a05:6830:1b70:b0:69f:8f30:89b5 with SMTP id d16-20020a0568301b7000b0069f8f3089b5mr2810365ote.19.1679585322633;
+        Thu, 23 Mar 2023 08:28:42 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q3-20020a9d6303000000b0069f17869390sm5195536otk.2.2023.03.23.08.28.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Mar 2023 08:28:42 -0700 (PDT)
+Received: (nullmailer pid 3289654 invoked by uid 1000);
+        Thu, 23 Mar 2023 15:28:41 -0000
+Date:   Thu, 23 Mar 2023 10:28:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     gregkh@linuxfoundation.org, Peng Fan <peng.fan@nxp.com>,
+        s.hauer@pengutronix.de, linux-usb@vger.kernel.org,
+        shawnguo@kernel.org, xu.yang_2@nxp.com, linux-imx@nxp.com,
+        robh+dt@kernel.org, kernel@pengutronix.de, jun.li@nxp.com,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        festevam@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V7 02/10] dt-bindings: usb: ci-hdrc-usb2: convert to DT
+ schema format
+Message-ID: <167958532041.3289575.14742530117909404528.robh@kernel.org>
+References: <20230322052504.2629429-1-peng.fan@oss.nxp.com>
+ <20230322052504.2629429-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230323135205.1160879-3-mweigand@mweigand.net>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230322052504.2629429-3-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maximilian,
 
-Thank you for the patch! Perhaps something to improve:
+On Wed, 22 Mar 2023 13:24:56 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Convert the binding to DT schema format. To fix the dtbs_check
+> error, some properties were also added, such as nvidia,phy, reset-names
+> ulpi; missing compatibles are added.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/usb/ci-hdrc-usb2.txt  | 159 -------
+>  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml | 447 ++++++++++++++++++
+>  2 files changed, 447 insertions(+), 159 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/ci-hdrc-usb2.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+> 
 
-[auto build test WARNING on dtor-input/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maximilian-Weigand/Input-cyttsp5-fix-array-length/20230323-215957
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20230323135205.1160879-3-mweigand%40mweigand.net
-patch subject: [PATCH 2/6] Input: cyttsp5: remove unused code
-config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20230323/202303232302.FB64fi39-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/4358a60821eb8149dabed197c09d3c0eab63bf38
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Maximilian-Weigand/Input-cyttsp5-fix-array-length/20230323-215957
-        git checkout 4358a60821eb8149dabed197c09d3c0eab63bf38
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/input/touchscreen/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303232302.FB64fi39-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/input/touchscreen/cyttsp5.c: In function 'cyttsp5_get_hid_descriptor':
->> drivers/input/touchscreen/cyttsp5.c:604:12: warning: unused variable 'cmd' [-Wunused-variable]
-     604 |         u8 cmd[2];
-         |            ^~~
-
-
-vim +/cmd +604 drivers/input/touchscreen/cyttsp5.c
-
-5b0c03e24a061f Alistair Francis 2022-10-31  598  
-5b0c03e24a061f Alistair Francis 2022-10-31  599  static int cyttsp5_get_hid_descriptor(struct cyttsp5 *ts,
-5b0c03e24a061f Alistair Francis 2022-10-31  600  				      struct cyttsp5_hid_desc *desc)
-5b0c03e24a061f Alistair Francis 2022-10-31  601  {
-5b0c03e24a061f Alistair Francis 2022-10-31  602  	struct device *dev = ts->dev;
-5b0c03e24a061f Alistair Francis 2022-10-31  603  	int rc;
-5b0c03e24a061f Alistair Francis 2022-10-31 @604  	u8 cmd[2];
-5b0c03e24a061f Alistair Francis 2022-10-31  605  
-5b0c03e24a061f Alistair Francis 2022-10-31  606  	rc = cyttsp5_write(ts, HID_DESC_REG, NULL, 0);
-5b0c03e24a061f Alistair Francis 2022-10-31  607  	if (rc) {
-5b0c03e24a061f Alistair Francis 2022-10-31  608  		dev_err(dev, "Failed to get HID descriptor, rc=%d\n", rc);
-5b0c03e24a061f Alistair Francis 2022-10-31  609  		return rc;
-5b0c03e24a061f Alistair Francis 2022-10-31  610  	}
-5b0c03e24a061f Alistair Francis 2022-10-31  611  
-5b0c03e24a061f Alistair Francis 2022-10-31  612  	rc = wait_for_completion_interruptible_timeout(&ts->cmd_done,
-5b0c03e24a061f Alistair Francis 2022-10-31  613  			msecs_to_jiffies(CY_HID_GET_HID_DESCRIPTOR_TIMEOUT_MS));
-5b0c03e24a061f Alistair Francis 2022-10-31  614  	if (rc <= 0) {
-5b0c03e24a061f Alistair Francis 2022-10-31  615  		dev_err(ts->dev, "HID get descriptor timed out\n");
-5b0c03e24a061f Alistair Francis 2022-10-31  616  		rc = -ETIMEDOUT;
-5b0c03e24a061f Alistair Francis 2022-10-31  617  		return rc;
-5b0c03e24a061f Alistair Francis 2022-10-31  618  	}
-5b0c03e24a061f Alistair Francis 2022-10-31  619  
-5b0c03e24a061f Alistair Francis 2022-10-31  620  	memcpy(desc, ts->response_buf, sizeof(*desc));
-5b0c03e24a061f Alistair Francis 2022-10-31  621  
-5b0c03e24a061f Alistair Francis 2022-10-31  622  	/* Check HID descriptor length and version */
-5b0c03e24a061f Alistair Francis 2022-10-31  623  	if (le16_to_cpu(desc->hid_desc_len) != sizeof(*desc) ||
-5b0c03e24a061f Alistair Francis 2022-10-31  624  	    le16_to_cpu(desc->bcd_version) != HID_VERSION) {
-5b0c03e24a061f Alistair Francis 2022-10-31  625  		dev_err(dev, "Unsupported HID version\n");
-5b0c03e24a061f Alistair Francis 2022-10-31  626  		return -ENODEV;
-5b0c03e24a061f Alistair Francis 2022-10-31  627  	}
-5b0c03e24a061f Alistair Francis 2022-10-31  628  
-5b0c03e24a061f Alistair Francis 2022-10-31  629  	return 0;
-5b0c03e24a061f Alistair Francis 2022-10-31  630  }
-5b0c03e24a061f Alistair Francis 2022-10-31  631  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
