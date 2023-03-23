@@ -2,52 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADE546C63E2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C536C63E8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 10:44:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbjCWJl5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Mar 2023 05:41:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50956 "EHLO
+        id S229532AbjCWJoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 05:44:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbjCWJlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:41:23 -0400
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A9D8113DD;
-        Thu, 23 Mar 2023 02:41:08 -0700 (PDT)
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.95)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1pfHRQ-002zTH-Fy; Thu, 23 Mar 2023 10:41:04 +0100
-Received: from p57bd9952.dip0.t-ipconnect.de ([87.189.153.82] helo=[192.168.178.81])
-          by inpost2.zedat.fu-berlin.de (Exim 4.95)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1pfHRQ-000BqP-8k; Thu, 23 Mar 2023 10:41:04 +0100
-Message-ID: <075155911e5be40a7f74cc0d05003f8683d784e0.camel@physik.fu-berlin.de>
-Subject: Re: [PATCH 0/7 v4] sh: various doc, build, init fixes
-From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To:     Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
-Cc:     Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Hitoshi Mitake <mitake@dcl.info.waseda.ac.jp>,
-        linux-sh@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 23 Mar 2023 10:41:03 +0100
-In-Reply-To: <20230306040037.20350-1-rdunlap@infradead.org>
-References: <20230306040037.20350-1-rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4 
+        with ESMTP id S229791AbjCWJoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 05:44:19 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F32BE181
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 02:44:17 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id b18so5001681ybp.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 02:44:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679564656;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=i0CJdvpb8yQ5/UPQq3eqdF8V0b2VDfu62Lq2XgBdJoE=;
+        b=iOfz1k2QXlxMVkChIRX/Q6LEjm61VoKTWMzjmB+VNlmb4QFiAuXUushWMB9sAJWcOC
+         Gue4QqvkSWmYH1wu5XDtnEL9rFrBLPuitxJIc/Lcnnd3D4aLcmvx4472gVPdRzvnKuO7
+         WRC1MNDBl65bW0JBUqzPgtG4uewkfrQa6Whp2xYRKSPk/lSSC6jgV2mplSVKskrPH4QV
+         k/k/vZ3GC1IomjZORnsKWn3+0/hOQx75/5LrS8DwymX9FZtIaGpu5pQB+bEtyh4gpo7j
+         pDcKOvBYlapJPq3C10lT49Qv1wjzfzZGcBDWvjy4nBvpTmKdjZ9hurRg5j9v1wBYJ3q9
+         lXIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679564656;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i0CJdvpb8yQ5/UPQq3eqdF8V0b2VDfu62Lq2XgBdJoE=;
+        b=M391aVGIVGOlwchsmaNLzgYK/h1CGCHsmwCqkWuOA20aDdB2VOROvaduk2JWq0GP0o
+         jRAhNP/iU0yZ45slmCZD1hz5yj5lDIxj4c1oUoMiqR4jFTX6Qkoe5Y8Il7cTjuJQ0XTZ
+         waO3+j0IzQsZ9GeMt2dTAV02ep5Thxw6QoT6inLyWOwgCBDLT89A3SxjMEKpj2aSWr/Q
+         HAVYRUbBUeglO/Py9+y9FPcxVJaD3P7jaTDMxjUGGeQKQQ9u5fCdkwvy3kktg/z0SJlH
+         4cGGAxAzbgKoWXLGaIC+1E1Mjy63PIJhbD0lRNkya3FYKEPoOeHF9eCwwvvCFCHjTu4W
+         ECLA==
+X-Gm-Message-State: AAQBX9cEdFkh2meUyDmTDRBEzgrQnFSpRR7QYoZsUaVUQ83U6IJXxBW/
+        tabluhUHvwEsYYUytefPkW1ykpJCJ+nnduWS4ZOrlA==
+X-Google-Smtp-Source: AKy350b1NP6ZPxn4L6Wed0Ucwykk/ZsjRotiCdbdm938Sbe7iZvFXw+Kq68tz05lDs41Hx++zYytMWzfNgx5XB8hiXY=
+X-Received: by 2002:a05:6902:1502:b0:b75:8ac3:d5cf with SMTP id
+ q2-20020a056902150200b00b758ac3d5cfmr619723ybu.9.1679564656218; Thu, 23 Mar
+ 2023 02:44:16 -0700 (PDT)
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-Originating-IP: 87.189.153.82
-X-ZEDAT-Hint: PO
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+References: <20230314080917.68246-1-krzysztof.kozlowski@linaro.org>
+ <c35fd641-12ff-beba-341c-4d0305bcaa40@linaro.org> <290b9b19-a320-38a1-4426-51f5725dd54f@linaro.org>
+ <59a6ef88-758f-4ec4-f663-47e4caa552c5@linaro.org> <CAA8EJprqXVrXdBD6eBHoDGhvST2hViZUbMgdaeKEBohpv5_V3w@mail.gmail.com>
+ <554dd2ca-0514-dc1e-9add-d49a711bc1f2@linaro.org>
+In-Reply-To: <554dd2ca-0514-dc1e-9add-d49a711bc1f2@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 23 Mar 2023 11:44:04 +0200
+Message-ID: <CAA8EJpoj1OUtQv38CY6YWUjSLEXjRWNtuza7gWM5X=eEnd5XtQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/13] mailbox/arm64/ qcom: rework compatibles for fallback
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,58 +75,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Randy!
+On Thu, 23 Mar 2023 at 08:33, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 22/03/2023 23:28, Dmitry Baryshkov wrote:
+> > On Wed, 22 Mar 2023 at 19:37, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 16/03/2023 07:52, Krzysztof Kozlowski wrote:
+> >>> On 14/03/2023 13:16, Dmitry Baryshkov wrote:
+> >>>> On 14/03/2023 10:09, Krzysztof Kozlowski wrote:
+> >>>>> Hi,
+> >>>>>
+> >>>>> Changes since v1
+> >>>>> ================
+> >>>>> 1. Rebase
+> >>>>> 2. Make msm8994 fallback for several variants, not msm8953, because the latter
+> >>>>>     actually might take some clocks.
+> >>>>
+> >>>> Although the approach looks correct, I think that in some cases it tries
+> >>>> to mark devices compatible judging from the current driver, not from the
+> >>>> hardware itself.
+> >>>
+> >>> Which is what compatibility is about...
+> >
+> > Well, I was trying to say that once we update the driver, the devices
+> > will not be compatible. But probably our definitions of being
+> > compatible differ.
+>
+> What do you want to update in the driver? What's going to happen with
+> it? What is missing?
 
-On Sun, 2023-03-05 at 20:00 -0800, Randy Dunlap wrote:
-> All of these patches have been sent previously, anywhere from
-> one to 3 times.  All patches are now called "v4".
-> 
-> This refresh/resend is to assist the new SH maintainer.
-> 
->  [PATCH 1/7 v4] sh: SH2007: drop the bad URL info
->  [PATCH 2/7 v4] sh: nmi_debug: fix return value of __setup handler
->  [PATCH 3/7 v4] sh: init: use OF_EARLY_FLATTREE for early init
->  [PATCH 4/7 v4] sh: math-emu: fix macro redefined warning
->  [PATCH 5/7 v4] sh: remove sh5/sh64 last fragments
->  [PATCH 6/7 v4] sh: fix Kconfig entry for NUMA => SMP
->  [PATCH 7/7 v4] sh: mcount.S: fix build error when PRINTK is not enabled
-> 
-> diffstat:
->  Documentation/kbuild/kbuild.rst                           |    1 -
->  Documentation/scheduler/sched-arch.rst                    |    2 --
->  Documentation/translations/zh_CN/scheduler/sched-arch.rst |    2 --
->  arch/sh/Kconfig                                           |    4 ++++
->  arch/sh/Kconfig.debug                                     |    2 +-
->  arch/sh/boards/Kconfig                                    |    1 -
->  arch/sh/kernel/head_32.S                                  |    6 +++---
->  arch/sh/kernel/nmi_debug.c                                |    4 ++--
->  arch/sh/kernel/setup.c                                    |    4 ++--
->  arch/sh/math-emu/sfp-util.h                               |    4 ----
->  scripts/checkstack.pl                                     |    7 -------
->  tools/perf/arch/common.c                                  |    2 --
->  tools/scripts/Makefile.arch                               |    5 -----
->  tools/testing/selftests/mm/Makefile                       |    2 +-
->  tools/testing/selftests/mm/run_vmtests.sh                 |    2 +-
->  15 files changed, 14 insertions(+), 34 deletions(-)
-> 
-> Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-> Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-> Cc: Rich Felker <dalias@libc.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Hitoshi Mitake <mitake@dcl.info.waseda.ac.jp>
-> Cc: linux-sh@vger.kernel.org
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: Arnd Bergmann <arnd@arndb.de>
+Some of these platforms do not have CPUfreq support, which will most
+likely require programming of cluster and L2/L3 clocks being part of
+this region.
 
-All applied to sh-linux/for-next now except for patch number 6.
+For the reference, I think that sc7180/sm8150/other new platforms are
+proper examples of 'compatible' devices, so the patchset itself has a
+correct/good idea beneath. It's just that additional research might be
+required for the older platforms.
 
-Apologies that it took so long, I'm still learning :-).
 
-Adrian
-
--- 
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+--
+With best wishes
+Dmitry
