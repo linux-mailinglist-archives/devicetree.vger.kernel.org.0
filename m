@@ -2,126 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6806C68A4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41AF96C68B9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231615AbjCWMmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 08:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49160 "EHLO
+        id S231755AbjCWMp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 08:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231618AbjCWMmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:42:36 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30DD2BF15;
-        Thu, 23 Mar 2023 05:42:18 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32N4eBE5019609;
-        Thu, 23 Mar 2023 12:42:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=SbsVD/80xz/JO37vTt1xOkF2LWOi4tktkZ+StMmxalc=;
- b=acBRM5/I2bm/1mof/T0M1N0pLOiCzYkaaz7EKUBKbPcqb/pe6Jvfg/H1zJ5UvqCYOLrB
- QXzEjUV4zMgRUr1MKiIZQV28YdNbyMBpNa0KhTl66ctesMQtVgc4ABjttjLk2DaxCjAO
- N1PodY7E6o2uRh3TH9pYmkaX/DvzOfOevC3yv5jgUJOzRYykWPXj0dBDgWxoX1MRyFPn
- VveY/YaD9ZOvC7BVFF8V8UP8fZ//UT1ZgDaRZzkBlwvW0Ua4xKHxCC2xflCzaW4s69WM
- izhWH8y/KdUFf65lQ2H86YD58KrgqVfw3UXOrndimyms29oCDq/16mo6r8JcadWkAuRd 2w== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pg9nahs35-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 23 Mar 2023 12:42:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32NCgE8D003523
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 23 Mar 2023 12:42:14 GMT
-Received: from [10.50.17.125] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Thu, 23 Mar
- 2023 05:42:11 -0700
-Message-ID: <5e82e38e-502e-49ad-42d6-58f7aa1d70f7@quicinc.com>
-Date:   Thu, 23 Mar 2023 18:12:07 +0530
+        with ESMTP id S229990AbjCWMpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:45:22 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CBE298DF;
+        Thu, 23 Mar 2023 05:45:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679575521; x=1711111521;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z034CEWDZWzBHQVHZYtVHoLpxMyCoA3kXaDvrv1Q98w=;
+  b=XR4GbRRxOLhhGzwBKbILpOX2956u5kEKM+CllvviJ4Jy3MIGM93tW+TZ
+   mSkinGjVbUsmmlOF8Or0B+wAS0kdxXGh9OigJWr3C+UrE63ERJ79538Nt
+   hJczlBfMoR2s4il6/2qlHSll8Y8SXvoUq0g//i6PjhuyKr2VZ9UMZ+HJ0
+   LkQBmAOfb7uG5K1lsRJ9HFUO1SEz2mJZolQn8KdCyyuWVMXWoXHh8G3kg
+   t2Z0Bc7kiFCbnNPz9/wyrA/YxWexLzaedr5iinOnLE//A7O3rkPxkMVuD
+   TeO6DUipnZurcsVfb9HlHeEgjifMzkAXnClXpSYht2/X5cUHrrrNW3Ov7
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="338196404"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; 
+   d="scan'208";a="338196404"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2023 05:45:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="632383474"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; 
+   d="scan'208";a="632383474"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003.jf.intel.com with ESMTP; 23 Mar 2023 05:45:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pfKJU-007VlG-0v;
+        Thu, 23 Mar 2023 14:45:04 +0200
+Date:   Thu, 23 Mar 2023 14:45:03 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Jani Nikula <jani.nikula@intel.com>
+Cc:     Pin-yen Lin <treapking@chromium.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>, linux-kernel@vger.kernel.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-acpi@vger.kernel.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Lyude Paul <lyude@redhat.com>,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Stephen Boyd <swboyd@chromium.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        Andi Shyti <andi.shyti@linux.intel.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        YueHaibing <yuehaibing@huawei.com>
+Subject: Re: [PATCH v14 03/10] drm/display: Add Type-C switch helpers
+Message-ID: <ZBxJz4ESBocICA/L@smile.fi.intel.com>
+References: <20230322104639.221402-1-treapking@chromium.org>
+ <20230322104639.221402-4-treapking@chromium.org>
+ <ZBrgD61p/p17IOJL@smile.fi.intel.com>
+ <87edpg7nub.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V2 2/2] arm64: dts: qcom: ipq5332: add support for the
- RDP468 variant
-Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230323093120.20558-1-quic_kathirav@quicinc.com>
- <20230323093120.20558-3-quic_kathirav@quicinc.com>
- <3b2e7b07-7598-45af-0dce-a60310aa5d60@linaro.org>
- <c53ac749-0d19-b1ca-c5e9-0970a9e77106@quicinc.com>
-In-Reply-To: <c53ac749-0d19-b1ca-c5e9-0970a9e77106@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: dqrquTyGhu75P-S9Zz51Pc20djIrbteW
-X-Proofpoint-ORIG-GUID: dqrquTyGhu75P-S9Zz51Pc20djIrbteW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-22_21,2023-03-22_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=635 suspectscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 mlxscore=0 bulkscore=0
- spamscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303230095
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87edpg7nub.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Mar 22, 2023 at 06:27:56PM +0200, Jani Nikula wrote:
+> On Wed, 22 Mar 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > On Wed, Mar 22, 2023 at 06:46:32PM +0800, Pin-yen Lin wrote:
+> >> +#ifdef CONFIG_DRM_DISPLAY_DP_TYPEC_HELPER
+> >
+> > Ah, maybe this should use IS_REACHABLE() ?
+> 
+> Personally, I think IS_REACHABLE() is a build-time band-aid solution to
+> a problem that should be solved in Kconfig. :p
+> 
+> I think it always means there's a configuration combo that shouldn't
+> exist, and it's a surprise to the user when they've configured
+> something, Kconfig has deemed it a valid configuration, but they don't
+> get the feature they want.
+> 
+> As a user, how would they even debug that case? Double check configs,
+> don't see anything wrong.
 
-On 3/23/2023 4:47 PM, Kathiravan T wrote:
->
-> On 3/23/2023 4:26 PM, Krzysztof Kozlowski wrote:
->> On 23/03/2023 10:31, Kathiravan T wrote:
->>> Add the initial device tree support for the Reference Design
->>> Platform(RDP) 468 based on IPQ5332 family of SoCs. This patch 
->>> carries the
->>> support for Console UART, SPI NOR, eMMC.
->>>
->>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->>> ---
->>> Changes in V2:
->>>     - Moved the 'reg' property after 'compatible'
->>>
->>>   arch/arm64/boot/dts/qcom/Makefile           |   1 +
->>>   arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 103 
->>> ++++++++++++++++++++
->>>   2 files changed, 104 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
->> Hi,
->>
->> Your v1 was reported that it does not build. Does this patch build fine?
-> As mentioned in the cover letter,
->
-> This series depends on the below which adds support the SPI NOR
->
-> https://lore.kernel.org/linux-arm-msm/20230320104530.30411-1-quic_kathirav@quicinc.com/ 
->
+Usual pairing is 'imply FOO' in Kconfig & 'IS_REACHEABLE(CONFIG_FOO)' in the
+code. And I believe it's not an abnormal.
 
-
-Given that, this series and the dependent series has only DTS changes, 
-and also both series has V2, is it okay If I squash them into single 
-series and send it?
-
-
-Thanks, Kathiravan T.
-
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
