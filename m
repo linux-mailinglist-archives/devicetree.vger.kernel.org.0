@@ -2,243 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DB6F6C6816
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C32AC6C6843
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 13:27:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbjCWMVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 08:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58204 "EHLO
+        id S231515AbjCWM1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 08:27:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231237AbjCWMVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:21:37 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D2426CCE
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:20:34 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5418d54d77bso391022737b3.12
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 05:20:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679574033;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dsiewv1O2k8V1HgYXshp7MCoXkAGG/2ljcLy5V0fCAY=;
-        b=mD4LZLSVxLGUwCVQRPyUG/E+HpMJnL0y2QOvXPP7296TXuYBgqjoZFwnQxvfwLeBCt
-         nipNWIH5s9pTqZSUc2HrXRr+5vgSriF5mP8Pgjyz7Z9AnPsTQx0t5HrW5GcmlVUk0nxu
-         UPsLyOw5yk2zI1vJKb7KZ27uR7303Zd2XCF31W5zt7XpQE0R4vcMCVf6dGgSsplSOyxO
-         uzPO0CWwqZ+2+o89pRajm3cJ+i348IPgSezo9uHcJaPw4o8n22tcqOk7g+pbWPIxqPOn
-         WSgL7zwTIh8MS77uAU2BSh6YAH80f4aFhD6shByuuW0AVqE++cGc6qvwxhDl/OO/Ixoy
-         v6RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679574033;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dsiewv1O2k8V1HgYXshp7MCoXkAGG/2ljcLy5V0fCAY=;
-        b=OU+WrW2oSXDKZbXmq0UiipWrcQEHhCBidjQBKjxhoAN4u6jjWb+CtHuCHf7mRofgAs
-         XVDX8tcWSMxx676SfHw4tqT8M7eNUTk4rCaur1RABYfA3Jei+pQS8Nu5gvWbIGrRYkmR
-         x2+TDSPqmHGiNNlApMImVwuIlsX35nCplB1Qn2VMjBh2mNNclggAWZtbKNqIYXGETAKG
-         ceK6jyNlgIZTI4yvytU8e+6XQvmRbG6c6cF2xPL8h1+pO6uLXLvzgv0UrctTTdtU+Skc
-         O+m+ywm6VGb2FuHU/NbueRWZ64ehTBIZ6qHIjaHrOvM2SiZsUlep9kmNCTCjQGc4oIxe
-         Xb/g==
-X-Gm-Message-State: AAQBX9e7qKbX0cGRixegndR3PrtK5o0pir3eynrnbeFZG2CuR1x+rDN4
-        Fl0+3IPbuKpGUN+vDuZL7Db5wxd706MQCunQWnMNtA==
-X-Google-Smtp-Source: AKy350a9PgdqZyyRieSlRzFLQRJHBuDE7c080j8qkbym2YY5zeGq+1tmxcWFgg7px0mx8p5mR45XOCSaDat0z6T/8Ms=
-X-Received: by 2002:a81:b345:0:b0:53c:6fda:835f with SMTP id
- r66-20020a81b345000000b0053c6fda835fmr1699102ywh.0.1679574033577; Thu, 23 Mar
- 2023 05:20:33 -0700 (PDT)
+        with ESMTP id S231527AbjCWM1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 08:27:06 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CACE53C23;
+        Thu, 23 Mar 2023 05:27:03 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32NCQUZh104782;
+        Thu, 23 Mar 2023 07:26:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679574390;
+        bh=aKqINq5Ot9zplt5xAt4YKK+ybHwjeTQa8lKUsA3qixk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=fyxuZrWH2Gwgs+Q69WsAEbi9lok+EwZV5LFFTy39ebtdnnI2VqaZQA/qr1hV3/nqP
+         aTSyWa1EoZotFEBH1yGm1ei7hA1pbSK5KAo92jYG/VEI/HRJ6O6PzLWbThAQvAOlwx
+         ugOo1e9s9stRrXpTQOMuE2zwdU6Z/RlG+UeVf3Yg=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32NCQUjb118598
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Mar 2023 07:26:30 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 23
+ Mar 2023 07:26:29 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 23 Mar 2023 07:26:29 -0500
+Received: from [172.24.145.176] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32NCQMRW009091;
+        Thu, 23 Mar 2023 07:26:23 -0500
+Message-ID: <5cae1874-9c10-a909-906c-160ce3f91286@ti.com>
+Date:   Thu, 23 Mar 2023 17:56:21 +0530
 MIME-Version: 1.0
-References: <20221205085351.27566-1-tmaimon77@gmail.com> <20221205085351.27566-3-tmaimon77@gmail.com>
- <f28c7c34-077c-4c7e-afd8-c4180718d403@roeck-us.net>
-In-Reply-To: <f28c7c34-077c-4c7e-afd8-c4180718d403@roeck-us.net>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 23 Mar 2023 13:19:57 +0100
-Message-ID: <CAPDyKFo0d9Vz_8p_SEVznT2hzBZqnZsUnrp4T3mtRSnZZBEfFA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-To:     Tomer Maimon <tmaimon77@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        adrian.hunter@intel.com, skhan@linuxfoundation.org,
-        davidgow@google.com, pbrobinson@gmail.com, gsomlo@gmail.com,
-        briannorris@chromium.org, arnd@arndb.de, krakoczy@antmicro.com,
-        andy.shevchenko@gmail.com, openbmc@lists.ozlabs.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: Add no-hpd property
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <sam@ravnborg.org>,
+        <jani.nikula@intel.com>, <tzimmermann@suse.de>,
+        <javierm@redhat.com>, <ville.syrjala@linux.intel.com>,
+        <r-ravikumar@ti.com>, <lyude@redhat.com>,
+        <alexander.deucher@amd.com>, <sjakhade@cadence.com>,
+        <yamonkar@cadence.com>, <a-bhatia1@ti.com>,
+        <tomi.valkeinen@ideasonboard.com>
+References: <20230316140823.234263-1-j-choudhary@ti.com>
+ <20230316140823.234263-2-j-choudhary@ti.com>
+ <dbc43c09-f8ec-f877-598a-adff47d44b0e@linaro.org>
+ <79ce5fe8-9fb0-5caa-67a0-87dee7867856@ti.com>
+ <55cfacf6-03e0-b9bc-83f3-3e9f2d7b2d4d@linaro.org>
+ <d72bf0df-28d7-6419-56a5-58e04dcb30f2@ti.com>
+ <d8be08b9-3043-d517-b5b8-86ea7a602e0b@linaro.org>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <d8be08b9-3043-d517-b5b8-86ea7a602e0b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Mar 2023 at 15:16, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Mon, Dec 05, 2022 at 10:53:51AM +0200, Tomer Maimon wrote:
-> > Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->
-> I still don't see this driver in the upstream kernel, or in linux-next.
 
-Tomer, Guenter,
 
-Looks like I may have missed picking it up, probably because I thought
-the review was still ongoing.
+On 21/03/23 20:47, Krzysztof Kozlowski wrote:
+> On 21/03/2023 15:28, Jayesh Choudhary wrote:
+>>
+>>
+>> On 21/03/23 18:08, Krzysztof Kozlowski wrote:
+>>> On 21/03/2023 13:02, Jayesh Choudhary wrote:
+>>>>>
+>>>>>> +    type: boolean
+>>>>>> +    description:
+>>>>>> +      Set if the HPD line on the bridge isn't hooked up to anything or is
+>>>>>> +      otherwise unusable.
+>>>>>
+>>>>> It's the property of the panel, not bridge. Unless you want to say that
+>>>>> bridge physically does not have HPD? Does it follow the standard in such
+>>>>> case?
+>>>>
+>>>> MHDP does have hpd. But the mhdp driver should handle the cases when the
+>>>
+>>> This is about bindings, not driver. Your driver can still handle this as
+>>> it wishes.
+>>>
+>>>> hpd pin of bridge is not connected to that of the DP-connector. This is
+>>>> to add support for that. (optional property)
+>>>
+>>> Which is indicated by panel no-hpd, right?
+>>
+>> Actually no panel is involved in this. For TI SoC J721S2, the data
+>> pipeline involves the bridge whose endpoint is directly the DP connector
+>> with compatible 'dp-connector'. And in the binding dp-connector.yaml,
+>> there isn't any 'no-hpd' property for this indication.
+>>
+>> Does this clarifies the issue? Or did I misinterpret your comment?
+> 
+> Yes, then you only need to narrow which hardware does not have HPD
+> hooked up. Or at least clarify that it is not about driver having or not
+> having HPD control...
+> 
 
-Please re-submit and include the reviewed-by tags, etc.
+Okay. I will edit the commit message in v2. (after further review of the 
+driver changes for this series)
 
-Kind regards
-Uffe
+I will mention that the mhdp bridge can work without its HPD pin hooked
+up to the connector, but the current bridge driver throws an error when
+hpd line is not connected to the connector. For such cases, using this 
+optional property, we can bypass the hpd detection and instead use the 
+auxiliary channels connected to the DP connector to confirm the connection.
 
->
-> Couple of comments:
->
-> - devm ordering does not really matter here. The devm resource
->   is the clock, it does not depend on local data, and it will be
->   released last, so that is ok.
-> - sdhci_pltfm_unregister() calls clk_disable_unprepare(),
->   so there is no enabled clock floating around on driver removal.
->   Unfortunately, that also means that the more convenient
->   devm_clk_get_optional_enabled() can not be used.
->
-> Real problem inline below.
->
-> Guenter
->
-> > ---
-> >  drivers/mmc/host/Kconfig      |  8 ++++
-> >  drivers/mmc/host/Makefile     |  1 +
-> >  drivers/mmc/host/sdhci-npcm.c | 84 +++++++++++++++++++++++++++++++++++
-> >  3 files changed, 93 insertions(+)
-> >  create mode 100644 drivers/mmc/host/sdhci-npcm.c
-> >
-> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> > index fb1062a6394c..82ab6fc25dca 100644
-> > --- a/drivers/mmc/host/Kconfig
-> > +++ b/drivers/mmc/host/Kconfig
-> > @@ -415,6 +415,14 @@ config MMC_SDHCI_MILBEAUT
-> >
-> >         If unsure, say N.
-> >
-> > +config MMC_SDHCI_NPCM
-> > +     tristate "Secure Digital Host Controller Interface support for NPCM"
-> > +     depends on ARCH_NPCM || COMPILE_TEST
-> > +     depends on MMC_SDHCI_PLTFM
-> > +     help
-> > +       This provides support for the SD/eMMC controller found in
-> > +       NPCM BMC family SoCs.
-> > +
-> >  config MMC_SDHCI_IPROC
-> >       tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
-> >       depends on ARCH_BCM2835 || ARCH_BCM_IPROC || ARCH_BRCMSTB || COMPILE_TEST
-> > diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-> > index 4e4ceb32c4b4..a101f87a5f19 100644
-> > --- a/drivers/mmc/host/Makefile
-> > +++ b/drivers/mmc/host/Makefile
-> > @@ -97,6 +97,7 @@ obj-$(CONFIG_MMC_SDHCI_MICROCHIP_PIC32)     += sdhci-pic32.o
-> >  obj-$(CONFIG_MMC_SDHCI_BRCMSTB)              += sdhci-brcmstb.o
-> >  obj-$(CONFIG_MMC_SDHCI_OMAP)         += sdhci-omap.o
-> >  obj-$(CONFIG_MMC_SDHCI_SPRD)         += sdhci-sprd.o
-> > +obj-$(CONFIG_MMC_SDHCI_NPCM)         += sdhci-npcm.o
-> >  obj-$(CONFIG_MMC_CQHCI)                      += cqhci.o
-> >  cqhci-y                                      += cqhci-core.o
-> >  cqhci-$(CONFIG_MMC_CRYPTO)           += cqhci-crypto.o
-> > diff --git a/drivers/mmc/host/sdhci-npcm.c b/drivers/mmc/host/sdhci-npcm.c
-> > new file mode 100644
-> > index 000000000000..beace15b6c00
-> > --- /dev/null
-> > +++ b/drivers/mmc/host/sdhci-npcm.c
-> > @@ -0,0 +1,84 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * NPCM SDHC MMC host controller driver.
-> > + *
-> > + * Copyright (c) 2020 Nuvoton Technology corporation.
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/err.h>
-> > +#include <linux/io.h>
-> > +#include <linux/mmc/host.h>
-> > +#include <linux/mmc/mmc.h>
-> > +#include <linux/module.h>
-> > +
-> > +#include "sdhci-pltfm.h"
-> > +
-> > +static const struct sdhci_pltfm_data npcm_sdhci_pdata = {
-> > +     .quirks  = SDHCI_QUIRK_DELAY_AFTER_POWER,
-> > +     .quirks2 = SDHCI_QUIRK2_STOP_WITH_TC |
-> > +                SDHCI_QUIRK2_NO_1_8_V,
-> > +};
-> > +
-> > +static int npcm_sdhci_probe(struct platform_device *pdev)
-> > +{
-> > +     struct sdhci_pltfm_host *pltfm_host;
-> > +     struct sdhci_host *host;
-> > +     u32 caps;
-> > +     int ret;
-> > +
-> > +     host = sdhci_pltfm_init(pdev, &npcm_sdhci_pdata, 0);
-> > +     if (IS_ERR(host))
-> > +             return PTR_ERR(host);
-> > +
-> > +     pltfm_host = sdhci_priv(host);
-> > +
-> > +     pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
-> > +     if (IS_ERR(pltfm_host->clk))
-> > +             return PTR_ERR(pltfm_host->clk);
-> > +
-> > +     ret = clk_prepare_enable(pltfm_host->clk);
-> > +     if (ret)
-> > +             return ret;
-> > +
->
-> The two functions above should not return but goto the call
-> to sdhci_pltfm_free() to avoid a memory leak on error.
->
-> > +     caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-> > +     if (caps & SDHCI_CAN_DO_8BIT)
-> > +             host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-> > +
-> > +     ret = mmc_of_parse(host->mmc);
-> > +     if (ret)
-> > +             goto err_sdhci_add;
-> > +
-> > +     ret = sdhci_add_host(host);
-> > +     if (ret)
-> > +             goto err_sdhci_add;
-> > +
-> > +     return 0;
-> > +
-> > +err_sdhci_add:
-> > +     clk_disable_unprepare(pltfm_host->clk);
-> > +     sdhci_pltfm_free(pdev);
-> > +     return ret;
-> > +}
-> > +
-> > +static const struct of_device_id npcm_sdhci_of_match[] = {
-> > +     { .compatible = "nuvoton,npcm750-sdhci" },
-> > +     { .compatible = "nuvoton,npcm845-sdhci" },
-> > +     { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, npcm_sdhci_of_match);
-> > +
-> > +static struct platform_driver npcm_sdhci_driver = {
-> > +     .driver = {
-> > +             .name   = "npcm-sdhci",
-> > +             .of_match_table = npcm_sdhci_of_match,
-> > +             .pm     = &sdhci_pltfm_pmops,
-> > +     },
-> > +     .probe          = npcm_sdhci_probe,
-> > +     .remove         = sdhci_pltfm_unregister,
-> > +};
-> > +module_platform_driver(npcm_sdhci_driver);
-> > +
-> > +MODULE_DESCRIPTION("NPCM Secure Digital Host Controller Interface driver");
-> > +MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-> > +MODULE_LICENSE("GPL");
-> > --
-> > 2.33.0
-> >
+Thanks,
+-Jayesh
+
+
