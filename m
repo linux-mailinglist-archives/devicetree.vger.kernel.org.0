@@ -2,169 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 257556C6FB7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 18:53:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C70526C6FCC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 18:58:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjCWRxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 13:53:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55976 "EHLO
+        id S229644AbjCWR6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 13:58:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229877AbjCWRxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 13:53:04 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2F31993;
-        Thu, 23 Mar 2023 10:53:04 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id c4so13796946pfl.0;
-        Thu, 23 Mar 2023 10:53:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679593983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UNlU/dImMAR9PDxxI0s95TJ5dyS1Y5Lepeba170fA/o=;
-        b=L+NEcWGjZ/go6ert+EXlAxDJQnO06RSthhAMwsWd7rmvImymaL+4KN8NFxdrw8GLob
-         HHE9dKnnd8BKaQ0JZaAVkh7U0vAyOT9U0x8S0MSShwIbt6PJOimRhT2Dj98tbIOECiGl
-         5ZHFJJGF63W4PAzFhHvPr0e5soCYrCdWi6fx0GUuGvoe9zYMbRycvd+tk/NBnBPWPCh6
-         F7+zi3O5+ooxvsNQsXKlVI0Jm1w56HdPpk6qy6OdpLWEbdoeaphDQLSBK/dslMNSpmBe
-         +db93Fi9h7bq5eBCpiD3ngTAwAOkkh/KEb0R6TtJM+yrdMcwN2GlHv0ufT8vuDnDeXDU
-         pXwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679593983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UNlU/dImMAR9PDxxI0s95TJ5dyS1Y5Lepeba170fA/o=;
-        b=D3VYDTev6EQL6uCz72QpBa9YNfLKqfjNcf+zo6VVgqGqsetJawlje4DJe5QBmu96iJ
-         CGewOhhJrpy4crsc30co7RyTiWplIXhGcGbbAMZzISKYlAKnufUw8SFkxCGp4/zZrOch
-         qUk5RuIw20dPZWfAcqkD+8qA6Z39owF6P/akMtjWpOwfckg47sz6QRpvDJaP1JUZzk2w
-         v84LWe6Oys1ZOjkquzspJTP63LiYxIdtX1nbCqhEfEUKkoiilD3Bqh6T/infHuVwOSFh
-         iDROMWgvusVpKKcNj1B1h77WY/Sa3HY/N662Qe5Yo25OPDzavXJCwyoXr/X9NedGORVE
-         chPQ==
-X-Gm-Message-State: AO0yUKXM041giEHIVXFiq9H7VBKzkZFwzPbtCR9M3OrHBslupLkusIFu
-        UwHKIGJ60ClE5mQzBNmn/OI=
-X-Google-Smtp-Source: AK7set9IWYkq8vOqWDrw2argZnBJ+KtjvpJcDPy+i5/sNZPDv/rFGbOe/tskaGFQHckkuiBG3yNsmw==
-X-Received: by 2002:aa7:9e04:0:b0:625:500c:35bd with SMTP id y4-20020aa79e04000000b00625500c35bdmr6854610pfq.6.1679593983704;
-        Thu, 23 Mar 2023 10:53:03 -0700 (PDT)
-Received: from ryan-ThinkPad-T470.. (c-24-6-63-212.hsd1.ca.comcast.net. [24.6.63.212])
-        by smtp.gmail.com with ESMTPSA id k17-20020a63d111000000b004fbb4a55b64sm11761040pgg.86.2023.03.23.10.53.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 10:53:03 -0700 (PDT)
-From:   =?UTF-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, krzysztof.kozlowski@linaro.org,
-        rf@opensource.cirrus.com, ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-Subject: [PATCH V3 2/2] ASoC: dt-bindings: max98363: add soundwire amplifier
-Date:   Thu, 23 Mar 2023 10:52:56 -0700
-Message-Id: <20230323175256.2606939-2-ryan.lee.analog@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230323175256.2606939-1-ryan.lee.analog@gmail.com>
-References: <20230323175256.2606939-1-ryan.lee.analog@gmail.com>
+        with ESMTP id S229690AbjCWR6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 13:58:01 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C471BD8;
+        Thu, 23 Mar 2023 10:58:00 -0700 (PDT)
+Received: from [192.168.0.26] (2a02-8388-6582-fe80-0000-0000-0000-000c.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::c])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id DE51ED2580;
+        Thu, 23 Mar 2023 17:57:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1679594278; bh=1Vo0lWW8e+lgGTTGvxNP10JPaRio9OYS9Twy6U31giY=;
+        h=From:Subject:Date:To:Cc;
+        b=FwtEyJ56Yf1RJbBfUhqLwRdtWDR1pua461bbjyWW2dW7lWyMsIB0zcuJ//fSuNqy6
+         SPATdXdcEwpIoVWCUobXYVqqvlgaDtWB91vrjmWfOD33+T6UPF3vs/a9eIQM9QUJTe
+         LewntJTPSJPwXcYySErdPGTHwL3CqG5/y1/bRKvo=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH v4 0/3] Improvements for OmniVision OV2685
+Date:   Thu, 23 Mar 2023 18:57:48 +0100
+Message-Id: <20230129-ov2685-improvements-v4-0-e71985c5c848@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAByTHGQC/43OTW7DIBAF4KtErDsWDK4xXfUeVRf81iyABFwUJ
+ /Ldi7OquqiyfKN538ydVFeCq+TtdCfFtVBDTj2MLydiFpW+HATbM0GKnDKUkBtO8yuEeC65uej
+ SWkFTrq3xzKCkpDe1qg50UcksR/dicoRY4yzFCNPAhg2Miq4oPJbPxflwfbzw8dnzEuqay/b4q
+ LFj+v/xxoCCx5lpO0oupXm/8bR+D9ftRg6v4RMGdgMZHSn1qCfu/hr8CYN3w0rBhaWCCj/9NvZ
+ 9/wEu88nXawEAAA==
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1503; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=1Vo0lWW8e+lgGTTGvxNP10JPaRio9OYS9Twy6U31giY=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkHJMf8uNkHI8h75NQ5daXnHUBp1pxxM9YhxDg0
+ B0VZMWRJAiJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZByTHwAKCRBy2EO4nU3X
+ Vn6+D/wMbhnYPTwD2ytJ0HutTXYpv+Zncj0jjnUxtODvqly9m/SLcz45WkZwbYHhWa4QE2c2kTC
+ ltC2MZbzOYcsc9FoVbkyFiQtpcDGNS49UY/3mXuvDqmHTnpk8gwX3Q6gnL1AyzHhplrjvuSvcvT
+ z19gcFajGnF8ytgsZChWhJUT1Fpd1BoPKmTwMYbdxxa2P/MApX48mx9yIxb9D5PzpNqNtnP+aWg
+ DQra/AWSQzuhwRbHFlN+GHevRK+IhW+/3FG6gr7xc7V3BZkEjkSCyf/488pokmbgHYz4Gq7fSSM
+ j8o4N0IRlxdh+BVLn0iftnwJvpP6X3rNOCOX4Y8waRDp+qvOX2rcMOJuFMSuhF4hSrBmkAQwQer
+ FPmXtdO6glbhzWtM5rc6fJSBXIg2EziezTN4CPD3s0z4bCR0igO8VXIOpPdbFE0/O6+vwTiexqa
+ MARyTDIvjyh5vihuaWEwmivmy5bSeO9xz9C0VuskULUXF0TVQNwoH01bX50ifk3EHcllVyFcDRA
+ rJ4/iIH2DHC05kbBVptHLSHwU6k0imTPk1tQIESsWRf27qkD01YUSJEOsp5fQEHPTY5wWbcPtG3
+ DRqDfatJE/voytw2SVi9h1voh61UiHRTam0JVUMhwo1UZYvDwI74D74AJcgED4kYvwCYEn8MNzO
+ gLvHkEp3fEJbq4w==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Lee <ryans.lee@analog.com>
+Convert the bindings to dt-schema. Then make the reset gpio optional in
+the driver.
 
-This patch adds dt-bindings information for Analog Devices MAX98363
-SoundWire Amplifier.
-
-Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
-Changes from v1:
-  Fixed a syntax error for the 'dt_binding_check' build.
-  Removed unnecessary properties.
-  Added description about SoundWire device ID of MAX98363
-Changes from v2:
-  Removed the legacy from i2c/i2s driver and added SoundWire device ID info.
-  Added missing information about DAI.
+Changes in v4:
+- Change i2c7 to i2c in binding example
+- Pick up tags from Krzysztof
+- Link to v3: https://lore.kernel.org/r/20230129-ov2685-improvements-v3-0-d9737d0707f6@z3ntu.xyz
 
- .../bindings/sound/adi,max98363.yaml          | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
+Changes in v3:
+- Drop applied patches
+- Fix rockchip bindings example
+- Add dt-bindings patch from separate series
+- Link to v2: https://lore.kernel.org/r/20230129-ov2685-improvements-v2-0-210400f2b63e@z3ntu.xyz
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-new file mode 100644
-index 000000000000..92352a23e1cb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,max98363.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX98363 SoundWire Amplifier
-+
-+maintainers:
-+  - Ryan Lee <ryans.lee@analog.com>
-+
-+description:
-+  The MAX98363 is a SoundWire input Class D mono amplifier that
-+  supports MIPI SoundWire v1.2-compatible digital interface for
-+  audio and control data.
-+  SoundWire peripheral device ID of MAX98363 is 0x3X019F836300
-+  where X is the peripheral device unique ID decoded from pin.
-+  It supports up to 10 peripheral devices(0x0 to 0x9).
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: sdw3019F836300
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  sound-name-prefix: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soundwire-controller@3250000 {
-+        #address-cells = <2>;
-+        #size-cells = <0>;
-+        reg = <0x3250000 0x2000>;
-+
-+        speaker@0,0 {
-+            compatible = "sdw3019F836300";
-+            reg = <0 0>;
-+            #sound-dai-cells = <0>;
-+            sound-name-prefix = "Speaker Left";
-+        };
-+
-+        speaker@0,1 {
-+            compatible = "sdw3019F836300";
-+            reg = <0 1>;
-+            #sound-dai-cells = <0>;
-+            sound-name-prefix = "Speaker Right";
-+        };
-+    };
+Changes in v2:
+- 3/4: Reserve more space for v4l2 handler for the new controls (Jacopo)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230129-ov2685-improvements-v1-0-f281bd49399c@z3ntu.xyz
+
+---
+Luca Weiss (3):
+      media: dt-bindings: media: rkisp1: complete ov2685 example
+      media: dt-bindings: ov2685: convert to dtschema
+      media: i2c: ov2685: Make reset gpio optional
+
+ .../devicetree/bindings/media/i2c/ov2685.txt       |  41 ---------
+ .../devicetree/bindings/media/i2c/ovti,ov2685.yaml | 101 +++++++++++++++++++++
+ .../devicetree/bindings/media/rockchip-isp1.yaml   |  19 ++--
+ MAINTAINERS                                        |   1 +
+ drivers/media/i2c/ov2685.c                         |   2 +-
+ 5 files changed, 116 insertions(+), 48 deletions(-)
+---
+base-commit: f3594f0204b756638267242e26d9de611435c3ba
+change-id: 20230129-ov2685-improvements-b03bdcf1c290
+
+Best regards,
 -- 
-2.34.1
+Luca Weiss <luca@z3ntu.xyz>
 
