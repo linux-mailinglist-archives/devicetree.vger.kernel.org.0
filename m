@@ -2,101 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE3A6C61AB
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 09:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D266C61B7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 09:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231288AbjCWIaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 04:30:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33068 "EHLO
+        id S231419AbjCWIcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 04:32:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjCWIaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 04:30:01 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2644512F06
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 01:30:00 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-544f7c176easo238285817b3.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 01:30:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679560199;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ESqicvrtxMjgfv2DQ/MbAC2UcJgHBWQRNQuYleU6Lxc=;
-        b=auh9w4//9ZjxHavJWL3nkpB/8hz0Qp657Qd/SCGI99yNlonXV4rVy5V4S1re8qkcn1
-         wkHuP4yLqaLpr3BATeYTwZhpHFNYMfhfFvBhiaCPBw/43c/9AHaP5/WD1W6q26CxW/vS
-         lDzn2Qownfc29i6U6Qtbr59OzMfkO34zvh/5tfqdspVIwECXzBhf/LUIKt4b4RECX1wZ
-         0CNn004ZOkQV1DzcmtML/tSlFQkB2aeZRstUu/ubRvYRPMUI0u3BBd1ay5qU/mNNTDqk
-         sZdrN1sJgL8NQhS71hyQ6ktPfYar/qav4R/fpkO1+qUOzmGfL8gHp/MFV+mULzky+X56
-         ZOJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679560199;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ESqicvrtxMjgfv2DQ/MbAC2UcJgHBWQRNQuYleU6Lxc=;
-        b=1uYk+j1UB09Qp4JoH0uFssoy6zyizOswzVnRfKaTmWIcw4K2aaI2r+CqXUAgtaMCTs
-         y2Xh7shpLHzOs4dnb/1Oqeh9SaxFAS6h7g23rNJ+QApNU/QZeL8r017YwuPnwU+orGY6
-         301BzSLNc5PDZnnGQCJXZLdMYFXw7w+WO8YftMqDU28dEzKKkaSm4ufGXJXNaTTyodB2
-         hmcMINwcHEz2/9W8rVktDaexYj/2J/tpzmy1ZGRX0NTx0mntQU2qUyzP2PD+LB0em0EU
-         WWIjURigm4DjjHs94sXWI5NA1Kvvuln7ebde25evehjt5mu5Q+2Z8bAhW1jg30GS0fEp
-         F9Ig==
-X-Gm-Message-State: AAQBX9e2MdDYN1bqRwzLsz4nqMaVqemFE0kKO3HfRY2jXQlUxRMumcNd
-        DfRMc5Q8yFOYuZO8jQ5S1JluNGxUQLgT7DwEg9RP/Q==
-X-Google-Smtp-Source: AKy350ZNlg5R5/BZzQajdKFhT8TJ5d/EfLNOqmBrkrroUQh7Bq9HML1sAQV9tmcb+eMmwJWymvt43FU84C+ft7dowAo=
-X-Received: by 2002:a0d:ec4a:0:b0:541:753d:32f9 with SMTP id
- r10-20020a0dec4a000000b00541753d32f9mr1395590ywn.9.1679560199380; Thu, 23 Mar
- 2023 01:29:59 -0700 (PDT)
+        with ESMTP id S231429AbjCWIcA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 04:32:00 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4184E25BA6;
+        Thu, 23 Mar 2023 01:31:59 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E7332100005;
+        Thu, 23 Mar 2023 08:31:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1679560317;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=HDd1tQ/W5Z8aDygD3qGQ9dvWDUINrjV0N0N66+d7lpc=;
+        b=PzcT9o7ji9u/dXSGXb6PtP6CQzgcHhTT8zhGYCvtujxPxxKXBTaggDueOSiguXoX2aVL5l
+        31PPwc3OLu2pSDIlUnig5zhy7LCBDOpynVLazso+9YfV1tWvnmQmDWU45ebTgzX6JeZBMA
+        5JF/KUs5PvgRUZ8JQRkCx00/HczUmyvT5rUg1QmIg2TjSh2mxufeBLBGiPYIttQ0nQbCRg
+        evjwELvxhhf5oOOKkGbMRzqU+5KtKaaqIwfYnwq/U29or35s0wnWPrXjgSoDcjCYvSqyYA
+        QV07XU3erWsCTRpwPFliOzu8NDId3K4aJ+qu3R/ZVka3eUpzuOlPm/PdpaOkog==
+Date:   Thu, 23 Mar 2023 09:31:54 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/6] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <20230323093154.5852f81b@bootlin.com>
+In-Reply-To: <551fe9b4-4c99-74b8-af44-9f431c488af8@linaro.org>
+References: <20230322134654.219957-1-herve.codina@bootlin.com>
+        <20230322134654.219957-3-herve.codina@bootlin.com>
+        <551fe9b4-4c99-74b8-af44-9f431c488af8@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20230310144721.1544669-1-robh@kernel.org> <CAMuHMdUaeyHs9fQxS+16F62uHaifJYMXKJpL2-xi-SL5HCrTHQ@mail.gmail.com>
- <CAMuHMdX1=+WwWjfiWDYOjSzTjcYBEY+QR=XKuU+o5_SCyU7rag@mail.gmail.com>
- <CACRpkdaw7TodD0hr3vD8cGB80k0qtEiaC1ne-ivCj6YEefi44w@mail.gmail.com> <CAL_Jsq+pzQvsvk8KiyVZPrebMvV6-PfxFXFXcPOf0C21+-yo9A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+pzQvsvk8KiyVZPrebMvV6-PfxFXFXcPOf0C21+-yo9A@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Mar 2023 09:29:48 +0100
-Message-ID: <CACRpkdbaCX0Fdr5guWZqCO_iVQrnOMmN-FYMV=LfFDsz9cdULA@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: Use of_property_present() for testing DT
- property presence
-To:     Rob Herring <robh@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Sean Wang <sean.wang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-renesas-soc@vger.kernel.org, linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 20, 2023 at 7:18=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+On Thu, 23 Mar 2023 08:30:39 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> > So I need a new version of this patch before I can apply it
-> > I guess, or there will be conflict with Reseas stuff?
->
-> Can you just drop drivers/pinctrl/renesas/pinctrl.c from this patch?
+> On 22/03/2023 14:46, Herve Codina wrote:
+> > The Lantiq PEF2256 is a framer and line interface component designed to
+> > fulfill all required interfacing between an analog E1/T1/J1 line and the
+> > digital PCM system highway/H.100 bus.
+> > 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
+> 
+> 
+> > +static const struct of_device_id pef2256_id_table[] = {
+> > +	{ .compatible = "lantiq,pef2256" },
+> > +	{} /* sentinel */
+> > +};
+> > +MODULE_DEVICE_TABLE(of, pef2256_id_table);
+> > +
+> > +static struct platform_driver pef2256_driver = {
+> > +	.driver = {
+> > +		.name = "lantiq-pef2256",
+> > +		.of_match_table = of_match_ptr(pef2256_id_table),  
+> 
+> Drop of_match_ptr. This will case warnings with W=1 and !OF.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-You just exposed how lazy I am ;)
+Acked. Will be dropped in v4.
 
-OK I did that, patch applied sans the renesas hunk.
+Thanks.
+Hervé
 
-Yours,
-Linus Walleij
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
