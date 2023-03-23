@@ -2,65 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AB8B6C6995
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 14:34:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BCC86C69B0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 14:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231516AbjCWNea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 09:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
+        id S229600AbjCWNjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 09:39:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231742AbjCWNe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:34:28 -0400
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA3B28E70
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 06:34:27 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id x24-20020a4aca98000000b0053a9bbbe449so2453750ooq.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 06:34:27 -0700 (PDT)
+        with ESMTP id S230335AbjCWNjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 09:39:12 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81BF286B6
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 06:39:11 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id i9so20518169wrp.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 06:39:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679578466; x=1682170466;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8RyZAJc5BMnE79hcpQtiEO+k/dInqdtkEaO5MHpP+H0=;
-        b=dUCL+V+ZiSlLVYfSuXmC6MMvbnyX+TRtH9Q/gIjCkqFJZiFp3roRn5lgHXawza4+bQ
-         9cw/Lk2LoOeHGzHlXSNiCnxkbmscC6N5trizUQSSGu0dcS1YNKl7m21ygoGSiUTn4/+f
-         65/N8SO+WeRQq9i5v3yJ0RD4cC2np7jT32UzXxg1mUqmWZD4/LCq3EFz3MIjYz1n5wBF
-         z7DiI4+1Whavyn0txq7pALMa1ShxSovXScBXROsZus6YLRRuD/yxu4MMkKvzEv4tZ7OD
-         nUiG4if+GnHxxTTCtNDeZXlVn8E0p9odO12h5bvV1M7FAcTlci1sQJF8jakBB44w9krR
-         2hlQ==
+        d=linaro.org; s=google; t=1679578750;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RM9q1gOg+w9P+KOTUpQhHbIwGykNjShMOZzaKSyx1iQ=;
+        b=NjzgvKXkqc+RIM278bPTQrn1t9cI+t/3VL9jRA2piujrcHHZ+PmJYVyLOfbeDm++yz
+         aravUM37bMWMsTk9Eqd1dtSbnmxOO3Rl0Aee0YED+OYRFKvZzqu3mp+ghJtcyrBQRIYQ
+         G+a9645T+oNymG0ZQQL2XHM9Q4CGE25xaY3McGajW4mOtZxVtnf297M4fCR4gmIkbLqT
+         0xIy4WYFxf1a1cJnFbQqDPUCQ1ygCt1drUyTo9SjdM+8A3eYUUf1wWQkLM+Hkfx9KB/E
+         e+hBQ1D9fca3Uu+TnF/CAg+ICgiZ9bggFsu3gkKdmCzaSlw6MR0z2r+J7JfRVqvarPsQ
+         Akjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679578466; x=1682170466;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8RyZAJc5BMnE79hcpQtiEO+k/dInqdtkEaO5MHpP+H0=;
-        b=Qzpy60hkYU8aIgIsN2UfnlHmakbtJvAlH2be3pqlEOURIzipk5rsVB4sfFMbcWCyx2
-         kw89zOKVslze+3pkufPQ1tv46sEJLUbcT56jSlax02uG8gszD6qrS4icEEjIebuv9+dl
-         QpYV+HFyM3WK22S4gnzZywRwI7nnwxdC+AQbMSkDjavNumJbucV4SRSuIQxTQMCtpABc
-         chw5Nxo0/kWugFodTYxyp8fIM9emg5+d7QVQMLzebzC0AGRBKFf2m3ECXw/8/aqmqn5d
-         mjr18r9aNgsFVpepdWJb4RdVuawAb7Tq/cxEGPhL4erewK8kC79dZF3DIk5Tu4pxMaG5
-         zAzA==
-X-Gm-Message-State: AO0yUKXL4nvWgTRKXoYkdvr8VbxqP4zdiOrBtTOUdJarrVKAQ06fnZsx
-        FNMsdHahBLFJGHNazwwRf8Y=
-X-Google-Smtp-Source: AK7set9XiXDyob2o0Lq+VDDpUahZHU/0xXfrvHyVtwCY9cBex9oyETNCBznEOOROiNZT8UdpDypWUw==
-X-Received: by 2002:a4a:4348:0:b0:525:bdbb:2f94 with SMTP id l8-20020a4a4348000000b00525bdbb2f94mr4688172ooj.1.1679578465053;
-        Thu, 23 Mar 2023 06:34:25 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:4c56:116d:eccf:8809])
-        by smtp.gmail.com with ESMTPSA id bl31-20020a056808309f00b00384a45d3106sm6958857oib.58.2023.03.23.06.34.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 06:34:24 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     neil.armstrong@linaro.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, marcofrk@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: display: seiko,43wvf1g: Change the maintainer's email
-Date:   Thu, 23 Mar 2023 10:34:07 -0300
-Message-Id: <20230323133407.3378606-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20210112; t=1679578750;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RM9q1gOg+w9P+KOTUpQhHbIwGykNjShMOZzaKSyx1iQ=;
+        b=q5dkAIP4Fyn/PSKd3ugp57FKSuOalbqO1pN1BkqQZDTvtnhsXQ5dV8xDZUAq1EV74n
+         ZUmhZl12mtHjEJO4KhX9Ar8YoU0BBVBxqOMgHxX+L+UBt73cSMSHFjmOVvWioJXpAGGl
+         ezOunYUPOJvZDMfPNgDgKMDMKaTuHQ5lvJufh/nYMmzD+I1uuWEK2iggveus16UbyxXS
+         lSkUhTXV4//kWpTxKfmVhA1EQnmAoQmQPbLDwugQqIRfNF2WNfxcgqAlA2F415NQsjiC
+         Gi4bbrCkFSPfdnvobfxkW2AupQOBce++eky3w+4oe9pNib8hN5Tu60jLV9h2yL37BCId
+         ENeQ==
+X-Gm-Message-State: AAQBX9eg0E1kBWd92ZuZ0Vz79p//JFr2Xr/A/q1OQhcX4L3MgI3/TMwZ
+        FtUyQ724AzD7g//9zgGkOois0g==
+X-Google-Smtp-Source: AKy350ZH1FY7ePGhbwHzMl9bczzeia8SxVlSH9MAGINKEBJLiMhxMDk0jveY4X+zupWp9je4Jini9g==
+X-Received: by 2002:adf:f38d:0:b0:2cf:e023:5915 with SMTP id m13-20020adff38d000000b002cfe0235915mr2774593wro.61.1679578749981;
+        Thu, 23 Mar 2023 06:39:09 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id p5-20020adfce05000000b002d64fcb362dsm10922099wrn.111.2023.03.23.06.39.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Mar 2023 06:39:09 -0700 (PDT)
+Message-ID: <c9919fa7-3d5e-d560-0ece-c0d2afc97502@linaro.org>
+Date:   Thu, 23 Mar 2023 13:39:08 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 04/18] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy:
+ Add port as an optional
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        wcheng@codeaurora.org, caleb.connolly@linaro.org,
+        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-5-bryan.odonoghue@linaro.org>
+ <3f5efb36-f9be-0816-b9cc-dc87966552cc@linaro.org>
+ <20230321204935.GA1506038-robh@kernel.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230321204935.GA1506038-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,35 +84,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 21/03/2023 20:49, Rob Herring wrote:
+> On Sun, Mar 19, 2023 at 12:45:13PM +0100, Krzysztof Kozlowski wrote:
+>> On 18/03/2023 13:18, Bryan O'Donoghue wrote:
+>>> port is required to instantiate a remote-endpoint which can receive
+>>> orientation-switch messages from a Type-C mux.
+>>>
+>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> ---
+>>>   .../bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml           | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+>>> index 52886cdb0e506..1c887e34b1223 100644
+>>> --- a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+>>> @@ -65,6 +65,12 @@ properties:
+>>>       description: Flag the port as possible handler of orientation switching
+>>>       type: boolean
+>>>   
+>>> +  port:
+>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>> +    description:
+>>> +      A port node to link the PHY to a TypeC controller for the purpose of
+>>> +      handling altmode muxing and orientation switching.
+>>
+>> Please extend the example as well.
+>>
+>> Don't you have there two ports? USB and DP?
+> 
+> Or 3: USB, DP, and connector.
+> 
+> Please make sure this all aligns with what Bjorn and I discussed
+> recently. It was for glink specifically.
+> 
+> Rob
 
-Marco's NXP email is no longer valid.
+This is a PHY though, the DP, USB endpoints will go into the connector 
+or into the typec node itself.
 
-Change it to his Gmail account.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-Marco,
-
-If you are no longer interested in being listed as the maintainer contact
-for the seiko,43wvf1g.yaml, please let me know.
-
- .../devicetree/bindings/display/panel/seiko,43wvf1g.yaml        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/seiko,43wvf1g.yaml b/Documentation/devicetree/bindings/display/panel/seiko,43wvf1g.yaml
-index a5426586b473..7977e07e2f48 100644
---- a/Documentation/devicetree/bindings/display/panel/seiko,43wvf1g.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/seiko,43wvf1g.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Seiko Instruments Inc. 4.3" WVGA (800 x RGB x 480) TFT with Touch-Panel
- 
- maintainers:
--  - Marco Franchi <marco.franchi@nxp.com>
-+  - Marco Franchi <marcofrk@gmail.com>
- 
- allOf:
-   - $ref: panel-common.yaml#
--- 
-2.34.1
-
+bod
