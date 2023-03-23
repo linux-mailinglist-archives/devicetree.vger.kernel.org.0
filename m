@@ -2,87 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B48D06C64F8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 11:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D596C6531
+	for <lists+devicetree@lfdr.de>; Thu, 23 Mar 2023 11:35:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231500AbjCWK0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 06:26:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43430 "EHLO
+        id S231428AbjCWKfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 06:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231220AbjCWK0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 06:26:02 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D432D1C7F5
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:25:35 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id j24so10968130wrd.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 03:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679567135;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iaQACbxWFe/pP0PYdcE2NPjjd/o5GOPyZh6BOGAwiP8=;
-        b=EDK/OC2gr0VhTqb/8cfkz3D7WlMPMQM2ELils/2BJph5U5K9iidkuqoUxZlw2Rh4yY
-         bG9nXl3bN8p8ByXNnmUizw7VxwxiBMaFatQ+QWA25ecnX8/EvkWtD1qcL6FpEOZlvnYR
-         +xXKkFPGzURm1L4waqYLeX9UhOuOT3swffCfg/GmLq0qa1q7bk/Ng/0EV8WUnS+G8AXF
-         LfT0kd80T66ZOC5MG/60vWfd0UC2E2zAJ0zP1F9NUpF1IXB5ZbmaYYbC+YBQ7NEA1XMt
-         uFCH47IhPi3S2YE2gzbkBClbF/PAUwlHbpmJ1w+7vZSAOQStcKGGz+EZvu0JdKwZXyzX
-         sPug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679567135;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iaQACbxWFe/pP0PYdcE2NPjjd/o5GOPyZh6BOGAwiP8=;
-        b=bZQPiNbcAWYevNEBvojVAsrIyBINE0C1EF3Risa7JgcbRGnSblhefDI/qleaTEAeBU
-         rnbTGF7Ukttp7fyXZeRB7654aNiSyKSvrRFiUzty3Z77e6VoogZxtPjdx3A09o20GpMI
-         f6NK3XZ/JVouBdxL+EZEKQbO/Di+6o5TO3xO8ZG5RLk5UhR/Q+j1lbuLaACyM9qiz4Qi
-         vVNGtadKq6frlHY4xj/Lh1bhEaSePshpTPLwylrzYlgpWoWlmAsW2OPU9EGXiaQgNuL5
-         hDdM31fC9DY5nmroMyD5Q7F2lX9QXZ2Zfuzk5754b6q/JhBRBDYN55rPHr4l1QDUmBzF
-         i/YA==
-X-Gm-Message-State: AAQBX9c965LIFIJ7zMZNmU7pHjf6Zf5Dw3JYWfoXnjNQXC2Na4M3Bqyq
-        bCydD9IKC3MwLOgWf1IOoAoThg==
-X-Google-Smtp-Source: AKy350bCeDHpSVI8xLS6NQ/SiOOsVX2JYPYHUtQ3vn3tZY3Uc4D9P3VP7wUr81eOPMcUs86Lve47yw==
-X-Received: by 2002:a5d:49c3:0:b0:2d9:5608:ee0 with SMTP id t3-20020a5d49c3000000b002d956080ee0mr1808899wrs.69.1679567135399;
-        Thu, 23 Mar 2023 03:25:35 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id e23-20020a5d5957000000b002cfefa50a8esm15753530wri.98.2023.03.23.03.25.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 03:25:34 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 23 Mar 2023 11:25:23 +0100
-Subject: [PATCH 8/8] arm64: dts: qcom: sm8450: fix pcie1 gpios properties
- name
+        with ESMTP id S231217AbjCWKew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 06:34:52 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194543B23B;
+        Thu, 23 Mar 2023 03:31:17 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id F315B6600880;
+        Thu, 23 Mar 2023 10:31:12 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679567473;
+        bh=+nm2bNNzHBVf9VlMG8H7LfVJnc2HYpp4Jv5fZk9O/P0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=DmcXxUHsBgzcjkPlqCyk9JvYYX0h/4JWd1Yv3VEttg902d9MkJzptLUJji4fhsKOK
+         GncwT/heO9DpacKfQEdTh+6I8oRR17JiT9tIxPRO6fLHBYy+fUHzbnpbJq0XfU98Eb
+         laKTbSQhEboyfk3tJz8OC3Va5Pinz9gKnlXrGKWhHz9CFB9Kb5hiDK9KbY1plYATfg
+         i+ZasWGE7SUHph8GGuNbXY+2Psi9TNtsD2NEbe/4mw3MS9ZgDxDulvNupUDqPrxtbo
+         oEzpqLwF3n/2bqtJCo90JAWVMtqVlVa9Xmea6c5ER62ow71xaFs3DSglMmCViTPr29
+         Feulyon4prtOQ==
+Date:   Thu, 23 Mar 2023 11:31:09 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        steven.price@arm.com, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org,
+        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        wenst@chromium.org, matthias.bgg@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 00/12] Panfrost: Improve and add MediaTek SoCs
+ support
+Message-ID: <20230323113109.0a611095@collabora.com>
+In-Reply-To: <0800ffeb-c7c4-1671-173e-1529b8eeb12c@collabora.com>
+References: <20230316102041.210269-1-angelogioacchino.delregno@collabora.com>
+        <0800ffeb-c7c4-1671-173e-1529b8eeb12c@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-8-3ead1e418fe4@linaro.org>
-References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
-In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-scsi@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,31 +62,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the final "s" to the pgio properties and fix the invalid "enable"
-name to the correct "wake", checked against the HDK8450 schematics.
+On Thu, 23 Mar 2023 09:24:06 +0100
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+wrote:
 
-Fixes: bc6588bc25fb ("arm64: dts: qcom: sm8450: add PCIe1 root device")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> Il 16/03/23 11:20, AngeloGioacchino Del Regno ha scritto:
+> > Changes in v5:
+> >   - Changed minItems for power-domain-names in base schema as
+> >     suggested by Rob
+> > 
+> > Changes in v4:
+> >   - Refactored power-domains and power-domain-names exclusions as
+> >     suggested by Krzysztof
+> >   - Small changes in MT8192 bindings addition
+> > 
+> > Changes in v3:
+> >   - Changed MT8186 bindings to declare only two power domains
+> >   - Added a commit introducing MT8186 specific platform data to
+> >     panfrost_drv
+> > 
+> > Changes in v2:
+> >   - Add power-domain-names commit from Chen-Yu to the series
+> >   - Kept sram-supply in base schema, overridden for non-MediaTek
+> >   - Added Reviewed-by tags from Steven Price to the driver commits
+> >     (as released in reply to v1's cover letter - thanks!)
+> > 
+> > This series adds support for new MediaTek SoCs (MT8186/MT8192/MT8195)
+> > and improves MT8183 support: since the mtk-regulator-coupler driver
+> > was picked, it is now useless for Panfrost to look for, and manage,
+> > two regulators (GPU Vcore and GPU SRAM) on MediaTek;
+> > 
+> > The aforementioned driver will take care of keeping the voltage
+> > relation (/constraints) of the two regulators on its own when a
+> > voltage change request is sent to the Vcore, solving the old time
+> > issue with not working DVFS on Panfrost+MediaTek (due to devfreq
+> > supporting only single regulator).
+> > 
+> > In the specific case of MT8183, in order to not break the ABI, it
+> > was necessary to add a new compatible for enabling DVFS.
+> > 
+> > Alyssa Rosenzweig (3):
+> >    drm/panfrost: Increase MAX_PM_DOMAINS to 5
+> >    drm/panfrost: Add the MT8192 GPU ID
+> >    drm/panfrost: Add mediatek,mt8192-mali compatible
+> > 
+> > AngeloGioacchino Del Regno (9):
+> >    dt-bindings: gpu: mali-bifrost: Split out MediaTek power-domains
+> >      variation
+> >    dt-bindings: gpu: mali-bifrost: Set power-domains maxItems to 5
+> >    dt-bindings: gpu: mali-bifrost: Fix power-domain-names validation
+> >    dt-bindings: gpu: mali-bifrost: Add sub-schema for MT8192's power
+> >      domains
+> >    dt-bindings: gpu: mali-bifrost: Add new MT8183 compatible
+> >    dt-bindings: gpu: mali-bifrost: Add support for MediaTek MT8186
+> >    dt-bindings: gpu: mali-bifrost: Add compatible for MT8195 SoC
+> >    drm/panfrost: Add new compatible for Mali on the MT8183 SoC
+> >    drm/panfrost: Add support for Mali on the MT8186 SoC
+> > 
+> >   .../bindings/gpu/arm,mali-bifrost.yaml        | 80 ++++++++++++++++++-
+> >   drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
+> >   drivers/gpu/drm/panfrost/panfrost_drv.c       | 37 +++++++++
+> >   drivers/gpu/drm/panfrost/panfrost_gpu.c       |  8 ++
+> >   4 files changed, 123 insertions(+), 4 deletions(-)
+> >   
+> 
+> Hello maintainers,
+> 
+> this series is fully tested, fully reviewed and fully ready.
+> 
+> Can anyone please pick it ASAP, so that we can finally get GPU support
+> on MediaTek SoCs (including lots of Chromebooks)?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 8ecc48c7c5ef..d964d3fbe20c 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1908,8 +1908,8 @@ pcie1: pci@1c08000 {
- 			phys = <&pcie1_lane>;
- 			phy-names = "pciephy";
- 
--			perst-gpio = <&tlmm 97 GPIO_ACTIVE_LOW>;
--			enable-gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
-+			perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-+			wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
- 
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pcie1_default_state>;
+Queued to drm-misc-next.
 
--- 
-2.34.1
+Thanks,
 
+Boris
