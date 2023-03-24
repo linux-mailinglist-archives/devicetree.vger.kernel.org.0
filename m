@@ -2,141 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA7F66C7C75
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19DC26C7CA6
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:31:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230117AbjCXKZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 06:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41062 "EHLO
+        id S231794AbjCXKb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 06:31:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbjCXKZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:25:51 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E64F1E1DF;
-        Fri, 24 Mar 2023 03:25:48 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4FC82C0008;
-        Fri, 24 Mar 2023 10:25:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1679653546;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Xv+ASSzcWiUf7WB1UddjxDgaUpS6QjUv6DsxIIFvx1w=;
-        b=hl9OoFksAO9preOhRLTIo0SONnDHJIuXFwghucu/pBPo3zaA7osCDq9AyGtyOmgSyN7XUF
-        +XYru/MB6/vken94g5WLx5HB/V8xxCe3VeE7twcYrsqfHkcaExDaS26KALR2XI1mpvsl/K
-        SnbXosRs/KVijDPH3N1QMSg2pOhC7DPj3HIlBnPwiFoIWtrP5g58l/sQDDWQoizMoh5KIi
-        ZR+e4ZLGcvkR/rEbhkRnVjQ+p8dYyd8KHF0BnkvCJYfPy4TtSGtUPiuEEQA54LKByF3RwN
-        GHmrTJo2TrFW5uU0uHvpJUykvz4siTYpY1Ro4ty8npHV9HAV+5PvnZptqZg1pg==
-Date:   Fri, 24 Mar 2023 11:25:41 +0100
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org,
-        Michael Walle <michael@walle.cc>,
-        Richard Cochran <richardcochran@gmail.com>,
-        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jay Vosburgh <j.vosburgh@gmail.com>,
-        Veaceslav Falico <vfalico@gmail.com>,
-        Andy Gospodarek <andy@greyhouse.net>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com, Minghao Chi <chi.minghao@zte.com.cn>,
-        Jie Wang <wangjie125@huawei.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Sean Anderson <sean.anderson@seco.com>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Alexander Lobakin <alexandr.lobakin@intel.com>,
-        Marco Bonelli <marco@mebeim.net>
-Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
- selectable.
-Message-ID: <20230324112541.0b3dd38a@pc-7.home>
-In-Reply-To: <20230310113533.l7flaoli7y3bmlnr@skbuf>
-References: <20230308135936.761794-1-kory.maincent@bootlin.com>
-        <20230308135936.761794-1-kory.maincent@bootlin.com>
-        <20230308135936.761794-4-kory.maincent@bootlin.com>
-        <20230308135936.761794-4-kory.maincent@bootlin.com>
-        <20230308230321.liw3v255okrhxg6s@skbuf>
-        <20230310114852.3cef643d@kmaincent-XPS-13-7390>
-        <20230310113533.l7flaoli7y3bmlnr@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S231625AbjCXKbl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:31:41 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AEA2231E1;
+        Fri, 24 Mar 2023 03:31:28 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5456249756bso25159877b3.5;
+        Fri, 24 Mar 2023 03:31:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679653888;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i8LJ+2gNxDWzsoGiFhmZ/B/FieuTyyGjuau6AfS/ml8=;
+        b=oj4xmZQv8SdZ+QXoTWZ34SKWMeCxupNXfejiX3Lt0MOtSlOrvLNncbLNnnicWMpfzW
+         opwxxhtbTelWiTBteCkWzskVHcOMlBZmDy2GgtGSyjd3WWfLrnSLWzFf45dyzGVT985F
+         D5MvHp3xKPuRloSlE9Jt/mxSi+lBfJJOQZHGdv4eJ0stIOiI0Wo4JVeQPWlgDaK/ycRm
+         UARaWcMj+9odpEly9N/vjqgLgfp2J7bp7tjrvj8wLVGUglRJZMKCmn2WrIl+sW0fkZBj
+         DMJS6rPbmgxiOjpB9tfroqNrhRqLS1KCsoTCX0nCMn87RnMHQ4BX+FHbNOhepJwSl+7s
+         t4ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679653888;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i8LJ+2gNxDWzsoGiFhmZ/B/FieuTyyGjuau6AfS/ml8=;
+        b=pwAAAJ79slixTzc3qnzGUyC7s8xc+Ph5dIb5BFh6DWsTGpDbGNPIRUhf0AE7+JL5LZ
+         CgYqva8gqR7oSGQ4P+wMt6WEol0GBO5IjSEUGNjuUv8ubddVKp1iL98GEyIpCQSJ62QJ
+         q52yUtgQJ33JEeVG0ioGLzE46xEhEiKqF04Sz0+ZCEBxhnYLnictjGsJsiHNeOuOTDWQ
+         NBH0CPbnrCKFY7D5yfF2zZukUh4UZBWskRYUKHNUe41Ia3Ul1C7VkY/rd37cWrkv+VjL
+         VV/AXiEYw92zsUKBkeIvJBDR3fJnkE9G1xboRgkFgghWI2OUpNOUlJwM9U1V2I66nuRX
+         hDew==
+X-Gm-Message-State: AAQBX9dV9vZfQ0yWoLpiFQX34dYpmVZB9CbMjuF3gTF5qS+mkNZm/vIX
+        xR/+bv+XEDS4MyzRCF/IqFQADMCW+wATYHC6fyE=
+X-Google-Smtp-Source: AKy350YCwRIztWFByFXdBbQ4j7qQpWwm9DOJaxzeYjSi7RZPTo610GlaH1m9RBJrbiYZ/O/ilFrAh5cp9ZufQUGaVow=
+X-Received: by 2002:a81:ac67:0:b0:541:9063:8e9e with SMTP id
+ z39-20020a81ac67000000b0054190638e9emr790386ywj.2.1679653888027; Fri, 24 Mar
+ 2023 03:31:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20230323124510.2484808-1-noltari@gmail.com> <20230323124510.2484808-2-noltari@gmail.com>
+ <20230324104020.54754079@xps-13>
+In-Reply-To: <20230324104020.54754079@xps-13>
+From:   =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Date:   Fri, 24 Mar 2023 11:31:17 +0100
+Message-ID: <CAKR-sGcbRRjqt3raXHcvfCfKFDfFWsuu+C7XW3qFckawMsqe4w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: nand: Macronix: document new binding
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, masonccyang@mxic.com.tw,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello everyone,
+Hi Miqu=C3=A8l,
 
-I'm sorry to intervene late in this discussion, but since it looks like
-the discussion is converging towards the creation of a new API (though
-NDOs internally, and through netlink for userspace), I'd like to add a
-small other use-case to consider. Of course, this can be addressed
-later on.
+El vie, 24 mar 2023 a las 10:40, Miquel Raynal
+(<miquel.raynal@bootlin.com>) escribi=C3=B3:
+>
+> Hi =C3=81lvaro,
+>
+> noltari@gmail.com wrote on Thu, 23 Mar 2023 13:45:09 +0100:
+>
+> > Add new "mxic,disable-block-protection" binding documentation.
+> > This binding allows disabling block protection support for those device=
+s not
+> > supporting it.
+> >
+> > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/mtd/nand-macronix.txt | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.txt b/=
+Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> > index ffab28a2c4d1..03f65ca32cd3 100644
+> > --- a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> > +++ b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> > @@ -16,6 +16,9 @@ in children nodes.
+> >  Required NAND chip properties in children mode:
+> >  - randomizer enable: should be "mxic,enable-randomizer-otp"
+> >
+> > +Optional NAND chip properties in children mode:
+> > +- block protection disable: should be "mxic,disable-block-protection"
+> > +
+>
+> Besides the fact that nowadays we prefer to see binding conversions to
+> yaml before adding anything, I don't think this will fly.
+>
+> I'm not sure exactly what "disable block protection" means, we
+> already have similar properties like "lock" and "secure-regions", not
+> sure they will fit but I think it's worth checking.
 
-On Fri, 10 Mar 2023 13:35:33 +0200
-Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+As explained in 2/2, commit 03a539c7a118 introduced a regression on
+Sercomm H500-s (BCM63268) OpenWrt devices with Macronix MX30LF1G18AC
+which hangs the device.
 
-> On Fri, Mar 10, 2023 at 11:48:52AM +0100, K=C3=B6ry Maincent wrote:
-> > > From previous discussions, I believe that a device tree property
-> > > was added in order to prevent perceived performance regressions
-> > > when timestamping support is added to a PHY driver, correct? =20
-> >=20
-> > Yes, i.e. to select the default and better timestamp on a board. =20
->=20
-> Is there a way to unambiguously determine the "better" timestamping
-> on a board?
+This is the log with block protection disabled:
+[    0.495831] bcm6368_nand 10000200.nand: there is not valid maps for
+state default
+[    0.504995] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
+[    0.511526] nand: Macronix MX30LF1G18AC
+[    0.515586] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
+2048, OOB size: 64
+[    0.523516] bcm6368_nand 10000200.nand: detected 128MiB total,
+128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+[    0.535912] Bad block table found at page 65472, version 0x01
+[    0.544268] Bad block table found at page 65408, version 0x01
+[    0.954329] 9 fixed-partitions partitions found on MTD device brcmnand.0
+...
 
-I'd like to point out a series sent a while ago :
+This is the log with block protection enabled:
+[    0.495095] bcm6368_nand 10000200.nand: there is not valid maps for
+state default
+[    0.504249] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
+[    0.510772] nand: Macronix MX30LF1G18AC
+[    0.514874] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
+2048, OOB size: 64
+[    0.522780] bcm6368_nand 10000200.nand: detected 128MiB total,
+128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+[    0.539687] Bad block table not found for chip 0
+[    0.550153] Bad block table not found for chip 0
+[    0.555069] Scanning device for bad blocks
+[    0.601213] CPU 1 Unable to handle kernel paging request at virtual
+address 10277f00, epc =3D=3D 8039ce70, ra =3D=3D 8016ad50
+*** Device hangs ***
 
-https://lore.kernel.org/netdev/3a14f417-1ae1-9434-5532-4b3387f25d18@orolia.=
-com/
+Enabling macronix_nand_block_protection_support() makes the device
+unable to detect the bad block table and hangs it when trying to scan
+for bad blocks.
 
-Here, the MAC's timestamping unit can be configured in 2 ways, which
-boils down to either more accurate timestamps, or better accuracy in
-frequency adjustments for the clock.
+>
+> Otherwise, why would you disable the block protection? What does it
+> mean exactly? I'm not in favor of a Macronix-specific property here.
+>
+> Thanks,
+> Miqu=C3=A8l
 
-The need is to be able to change this mode at runtime, as we can change
-the clock source for the timestamping unit to a very precise-one,
-therefore using the "accurate timestamps mode" working as a
-grand-master, or switching to slave mode, where we would sacrifice a
-little bit the timestamping precision to get better frequency
-precision.
-
-So, we can consider here that not only the MAC's timestamping unit has
-a non-fixed precision, but if we go through the route a a new API,
-maybe we can also take this case into account, allowing for a bit of
-configuration of the timestamping unit from userspace?=20
-
-> Is it plausible that over time, when PTP timestamping matures and,
-> for example, MDIO devices get support for PTP_SYS_OFFSET_EXTENDED
-> (an attempt was here: https://lkml.org/lkml/2019/8/16/638), the
-> relationship between PTP clock qualities changes, and so does the
-> preference change?
-
-I'm not exactly familiar with PTP_SYS_OFFSET_EXTENDED, but it looks a
-bit similar in purpose to the above-mentionned use-case.
-
-Thanks,
-
-Maxime
+--
+=C3=81lvaro
