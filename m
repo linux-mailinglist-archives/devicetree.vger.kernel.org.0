@@ -2,59 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C816C81F2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 16:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D9CB6C8210
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 17:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232156AbjCXP4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 11:56:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48596 "EHLO
+        id S231575AbjCXQDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 12:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232138AbjCXP4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 11:56:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B802B227BF
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 08:56:43 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pfjmN-0004MT-Sc; Fri, 24 Mar 2023 16:56:35 +0100
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 884E219B9F1;
-        Fri, 24 Mar 2023 15:56:33 +0000 (UTC)
-Date:   Fri, 24 Mar 2023 16:56:32 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        michael@amarulasolutions.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [RESEND PATCH v7 0/5] can: bxcan: add support for ST bxCAN
- controller
-Message-ID: <20230324155632.24chi5ndo23awhhp@pengutronix.de>
-References: <20230315211040.2455855-1-dario.binacchi@amarulasolutions.com>
- <CABGWkvpHHLNzZHDMzWveoHtApmR3czVvoCOnuWBZt-UoLVU-6g@mail.gmail.com>
+        with ESMTP id S231274AbjCXQDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 12:03:19 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F78A46B1
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 09:03:18 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id e18so2322953wra.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 09:03:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679673796;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JejaCk6CyWSfdiQWhxpThu9OY9rNIrf2KzDX35z5Uyc=;
+        b=CnpTk8DJ0VZi6Qona+U0/XQDLXLLxcDigVDczGvL4PJf7hV1VMJoVaBs+wEdJLLWbv
+         rdS+AbWELW/LnNtzxHpq7PVSAU1YGmdGkkK3CvT+WdZ4xHmvGa8i7HWKGTAnMiS04uxO
+         kZb06EhuXvvKWDQeOFM2jrfdhA7IIWJmzyE4xhy21X3KklzgKxDbI9faeGyKfHWniXyd
+         oUAAlwZtFuQvDZV2WjHhkNFm28QfJLJlT4HmB7CEJGBcz1oEzUF6f/gcthitguW5NF+3
+         ZkviJKqi3YfsGCcwff3RoLKpYJneojzLxE7YfJCwmvK7nRThDl8NIWNvNR+fD33fPSuY
+         msmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679673796;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JejaCk6CyWSfdiQWhxpThu9OY9rNIrf2KzDX35z5Uyc=;
+        b=jX4BYMdiFfwujcF4c1DM4gaMn8x9HcSHPSh5flre8Nlds2WPuF3fFWzKYTk1BRsRpP
+         gYyYj5Y5slPD21AnmnucK3Kix+NBOUz0rOHfYxcAtQvlV5jx2sTMblM0wXL8r3Aeq4vk
+         O1e7D6tY47cA7lR4PKvlIxwsdUs6lsCX4ukAivWIb++6URAwiCymrnrVzzT4oEJoVIsq
+         E6XG8vOMz2vgmJnBgITKa1HnWFm4vm8CFZeCwl6iLtvGYDbs0lkil1K7A0qV4ZS0wsx8
+         YZitQEUIkjzNMwP7yYwrkQkv5Zs68PNCNfZbxGyfFFhHZwuC9OrGFRfrMWTGcUsaVBAe
+         QkXw==
+X-Gm-Message-State: AAQBX9d3dptaqTHgBKOs5F1h58GtvO3Prbj8cAX88o/29Ti77Qm16spU
+        kQ3wLVbt72ygOUDBTfQl2Op7rg==
+X-Google-Smtp-Source: AKy350YKmDxrUkZCYDWW3/RcuEzrMmBDH1zTRoX2kHjwHiAHKi9ulZM5d4yb8N1LUp7EwADLpgbt2w==
+X-Received: by 2002:adf:dbc5:0:b0:2d7:998c:5ad9 with SMTP id e5-20020adfdbc5000000b002d7998c5ad9mr2530229wrj.8.1679673796641;
+        Fri, 24 Mar 2023 09:03:16 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id m9-20020adffa09000000b002c70d97af78sm18781475wrr.85.2023.03.24.09.03.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 09:03:16 -0700 (PDT)
+Message-ID: <51c38884-fbbf-ae5e-781d-e32605f7ef5b@linaro.org>
+Date:   Fri, 24 Mar 2023 16:03:15 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cnvdke4jgm2e3ndt"
-Content-Disposition: inline
-In-Reply-To: <CABGWkvpHHLNzZHDMzWveoHtApmR3czVvoCOnuWBZt-UoLVU-6g@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 12/18] usb: typec: qcom: Add Qualcomm PMIC TCPM support
+Content-Language: en-US
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wcheng@codeaurora.org,
+        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-13-bryan.odonoghue@linaro.org>
+ <ZBxkB04KqY8WbeA1@Gentoo> <89bca327-a860-672c-b4ae-766698d38639@linaro.org>
+ <ZBzyK0ILtUDr986r@Gentoo> <37d14447-0f10-be88-9cd9-8ebd30f1d006@linaro.org>
+ <ZBz5OvauxQ2PWcHu@Gentoo> <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
+ <ZB14jJNUhHGBl7Az@Gentoo> <6bd08120-115e-5429-63da-32f8df52bc7f@linaro.org>
+ <ZB29J/7LI4PREmn6@Gentoo>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ZB29J/7LI4PREmn6@Gentoo>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,43 +85,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/03/2023 15:09, Jianhua Lu wrote:
+> I get schematics of same vendor's similar device, it shows usb vbus is
+> connected to charger pump. It can be the main reason that can't detect vbus, but
+> I don't know why type-c can work normally.
 
---cnvdke4jgm2e3ndt
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+oki doki that all makes sense - the "charger pump" is supplying vbus 
+most likely - you can confirm or invalidate this theory by connecting a 
+1.0/2.0 device to your external hub - making sure it is unpowered.
 
-On 21.03.2023 12:25:15, Dario Binacchi wrote:
-> A gentle ping to remind you of this series.
-> I have no idea why it hasn't deserved any response for quite some
-> time.
-> Is there anything I am still missing?
+vbus *should* flow through the Type-C port into your external hub and 
+into the 1.0/2.0 device, irrespective of vcon
 
-I wonder if we want to do a s/master/primary/ in the DT bindings and
-driver?
+Either way that's a 2x input on the VSafe5 - I'll downgrade this to a 
+dev_warn() or perhaps even a dev_dbg()
 
-regards,
-Marc
+thx
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129  |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---cnvdke4jgm2e3ndt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQdyC0ACgkQvlAcSiqK
-BOjDgggAgzBxnVVNE5XscW/qYXMVblL8TcW+JtgR2e6p+TtN0u7OioDJmlfvtl9q
-IlRl7/cJkB9uAyVo4dUILKfekHx18vxAqc0txekYY2KQRHAjv5jtuVzaIJylaJEA
-9EyCMp8t1jMBHK0irZ4q8xfzaON5deaFT2/rKyuWGfQA5650ZaTjoZYL9dHCSEiB
-I9KBbbOxVS2ILDPyMcmj5ESg/rbig4VhoDObjz1VeFwd3mrCTg4N74lCO9jvphiB
-tz0r/IX5oLQcwK++eafeLnPUywTnBL6nu09zhn9pz5EFSDScpmvasXZ0uSZigy26
-PE1s/CCS31M48DSu1689rSXu7SSI3A==
-=dNbz
------END PGP SIGNATURE-----
-
---cnvdke4jgm2e3ndt--
+---
+bod
