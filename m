@@ -2,80 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF7D56C7A7E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 725906C7A8F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:59:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231830AbjCXI5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 04:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
+        id S231830AbjCXI74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 04:59:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231979AbjCXI4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:56:55 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DFAE27D60
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:56:25 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id ek18so4998135edb.6
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:56:25 -0700 (PDT)
+        with ESMTP id S229830AbjCXI7z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:59:55 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0415410F9
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:59:54 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id s13so657606wmr.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:59:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679648177;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Um8TbgrwhTbkEwzBW9OgNTPHsSW0JHe7bi80kPf/8AM=;
-        b=tv9rIy9Uxu3qQtgXFh+rGg9UcyLX/MSBomBeUuea9AyNItUKVcnbXFLlYIaTPV0LDB
-         CQQugLqK7FP4jB7h+4rmxx5LAtCnyIpxToRHnyTKgJOrQW4OUHW9a4q5nQ2JdfnTYBJb
-         EsLCIF1w/ZBjnQD3Du69SsSYV2vCMp9LIUEiy2nHce7dBotl/YoYpxCrbQEp7fMwi4mO
-         cjS9PD/yx1wDYidaGNYm0jfQHbOQ224kh+Pdm08SgNvQEeXq/yIQndaa9wJ8wvmLshGf
-         TSYFnFj5kEUJUR55YMQ84OTOhr5K8XYpjB0mNaoGBOpcdsM/yXBnTxzDlByaF7Ju1pAS
-         Oeew==
+        d=linaro.org; s=google; t=1679648392;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=4h1y29ufgBdPBj0FinbulRj195jm8gHSccDSNysL7ng=;
+        b=RXGKhRMsOU+O1tqz6J/suUb0aU7VUqgtBJargaGNRHO4USwinGX4Q+o6F1N+3L2w1I
+         IvWNS7eL2Mq0WjlaGWdjqZcXoSMK/T0QMNwsmJFsOG8EOZPd73nIrMKCDkjY/McrjEt4
+         El++mpFcY/v6AmVH38u3nFhTLyp1GLdbgRMtyvhEvk98Pt717lCdKYIGPkPLogtqYwcq
+         mMaL1qfpq5O6vt+csqk1DCAwIxJroCgTYG0s1LW3gjgAWsRIXbZVSHRyZeKytvVMhmrz
+         byraSTt+tH/d4z/v/k+OIyK8gQ8JGLKXCrUgi2I9nf4VVRWdcafzGS/bK2673u6mhQhJ
+         ZZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679648177;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Um8TbgrwhTbkEwzBW9OgNTPHsSW0JHe7bi80kPf/8AM=;
-        b=KKFhflgSREuLHm52omWsO7PYvYHN9OBjpDEqq1ilkCML++8BktFBMc8By8YrmlOKP/
-         bHb5g82Qn8K+crETq2Sr26wVH2sU+MajtjltfTX/xcX2wS3myTmLEZztxfOlfSm40aeK
-         Jci0sXvnA2JF3/b8rGZZqv4+RdYAldUhSJJ7z4QZUaDJyzWHu1N0CRRkYoKwBUS81j+2
-         92rM/Syh1ISvcFYhRGWd8imlE2T6pZE085v+mxXezxRo4E1n/nUeFGyQfud14x3E1eay
-         u+znsxRRHUq9gsChlODw8oAAfTM/ylYR0XZJbX9lmfP9Am/9bZdPxHiwdr9efuDJ6mmH
-         jOtQ==
-X-Gm-Message-State: AAQBX9cXEuW1/m97XGz4ZvksPuREytyijJtlJ7TpoUgvfeR8CUgMw88k
-        dkx4hPgb2XXYzEYLHI3udcvSrA==
-X-Google-Smtp-Source: AKy350Z722g5hPv9Mo9UlX7Q2mEg4+ITEw0ynPSM2C2jUm30y/pXKOFomdKzmH7x/14WP6tJRKidxg==
-X-Received: by 2002:a17:906:3607:b0:92d:44ca:1137 with SMTP id q7-20020a170906360700b0092d44ca1137mr2162491ejb.43.1679648176715;
-        Fri, 24 Mar 2023 01:56:16 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ce50:243f:54cc:5373? ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
-        by smtp.gmail.com with ESMTPSA id wy8-20020a170906fe0800b0093e261cc8bcsm612167ejb.58.2023.03.24.01.56.15
+        d=1e100.net; s=20210112; t=1679648392;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4h1y29ufgBdPBj0FinbulRj195jm8gHSccDSNysL7ng=;
+        b=pz7YF9zh7p+M5F2B3nLvRD56gOetrC5Zly4ZtR15GnVSOJeo0/4E2cb9lvp91Oin2Y
+         lPLLZsBuxHmTILJebCNuEFIHtU6TCkffXIMxmyNgAYpJ/Jwk/gNzpbi7SNXlkNoZjSyR
+         LOd05BNbFHF3y7OgW7byzf3RRYncxH8IcAnohmSE+jV9X886afZBXEQcGDnQuoio8F60
+         KP+/qTF+ILAjdqWvDko/fiFFzkU7O5y32dW44z0hcCk/C7dF4rqM0Gb/ZKt2Cx9o09HJ
+         OvsMjPvwzxZROgty2/SsNWMOZDDB3fV3OV+Ua5cybvxthZWiM+APQcwZ6gEfLXiHdLzr
+         FrSg==
+X-Gm-Message-State: AO0yUKWAy+XuH6mRMc5i0iowhVq21vpX+0JVI26xLQ+uIBEdh8dwL0p6
+        lyeQDFGKnB8IInQ6UZA/lfwDbg==
+X-Google-Smtp-Source: AK7set9DG+XY29oWgPGOtByRIw0f/x7EReSCqkruYexEvZ/9XEyDyxvCA4c50AzdzXZSJ7vOBmBf6g==
+X-Received: by 2002:a05:600c:3b1b:b0:3ed:24f7:2b48 with SMTP id m27-20020a05600c3b1b00b003ed24f72b48mr4665100wms.8.1679648392490;
+        Fri, 24 Mar 2023 01:59:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:213f:a579:70af:e4a0? ([2a01:e0a:982:cbb0:213f:a579:70af:e4a0])
+        by smtp.gmail.com with ESMTPSA id y23-20020a7bcd97000000b003eb966d39desm4253441wmj.2.2023.03.24.01.59.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 01:56:16 -0700 (PDT)
-Message-ID: <58316fc3-1ee1-b530-e783-ccd8225e07d6@linaro.org>
-Date:   Fri, 24 Mar 2023 09:56:15 +0100
+        Fri, 24 Mar 2023 01:59:52 -0700 (PDT)
+Message-ID: <18ad8d98-b67a-894b-9f6f-efb0afc8321c@linaro.org>
+Date:   Fri, 24 Mar 2023 09:59:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V1 3/4] soc: qcom: boot_stat: Add Driver Support for Boot
- Stats
+ Thunderbird/102.8.0
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 6/8] arm64: dts: qcom: sm8450: remove invalid npl clock in
+ vamacro node
 Content-Language: en-US
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1679403696.git.quic_schowdhu@quicinc.com>
- <3f385562845ae26d519940ca8098fde89282991b.1679403696.git.quic_schowdhu@quicinc.com>
- <611ea918-64a6-f306-b5ec-db55e41abda2@linaro.org>
- <321005fc-1bfd-c04d-b2b5-d85d213ac00a@quicinc.com>
- <7b939818-993a-e849-e7e0-ae9ea74ea52b@linaro.org>
- <5c4df95e-fb44-e873-7ecc-dec381a42aff@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5c4df95e-fb44-e873-7ecc-dec381a42aff@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-scsi@vger.kernel.org
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-6-3ead1e418fe4@linaro.org>
+ <35e3aa8b-ccff-25fa-42da-d8934ef366c6@linaro.org>
+ <006bf3bf-ab9a-4a08-3ba5-fa23ff4ea05a@linaro.org>
+ <306b02e8-72bf-3eb7-f4cc-3cc5c598993b@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <306b02e8-72bf-3eb7-f4cc-3cc5c598993b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -87,94 +100,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 14:45, Souradeep Chowdhury wrote:
-> 
-> 
-> On 3/22/2023 8:23 PM, Krzysztof Kozlowski wrote:
->> On 22/03/2023 14:54, Souradeep Chowdhury wrote:
+On 24/03/2023 08:17, Krzysztof Kozlowski wrote:
+> On 23/03/2023 14:13, Neil Armstrong wrote:
+>> On 23/03/2023 11:47, Krzysztof Kozlowski wrote:
+>>> On 23/03/2023 11:25, Neil Armstrong wrote:
+>>>> Fixes the following DT bindings check error:
+>>>> codec@33f0000: clocks: [[137, 57, 1], [137, 102, 1], [137, 103, 1], [137, 70, 1]] is too long
+>>>> codec@33f0000: clock-names: 'oneOf' conditional failed, one must be fixed:
+>>>> 	        ['mclk', 'macro', 'dcodec', 'npl'] is too long
+>>>>
+>>>> The implementation was checked and this npl clock isn't used for the VA macro.
+>>>>
 >>>
->>>
->>> On 3/21/2023 11:07 PM, Krzysztof Kozlowski wrote:
->>>> On 21/03/2023 14:51, Souradeep Chowdhury wrote:
->>>>> All of Qualcomm's proprietary Android boot-loaders capture boot time
->>>>> stats, like the time when the bootloader started execution and at what
->>>>> point the bootloader handed over control to the kernel etc. in the IMEM
->>>>> region. This information is captured in a specific format by this driver
->>>>> by mapping a structure to the IMEM memory region and then accessing the
->>>>> members of the structure to print the information. This information is
->>>>> useful in verifying if the existing boot KPIs have regre
->>>>
->>>>
->>>>> +/**
->>>>> + *  struct boot_stats - timestamp information related to boot stats
->>>>> + *  @bootloader_start:	Time for the starting point of the abl bootloader
->>>>> + *  @bootloader_end:	Time when the kernel starts loading from abl bootloader
->>>>> + */
->>>>> +struct boot_stats {
->>>>> +	u32 bootloader_start;
->>>>> +	u32 bootloader_end;
->>>>> +} __packed;
->>>>> +
->>>>> +static struct boot_stats __iomem *boot_stats;
->>>>> +static void __iomem *mpm_counter_base;
->>>>> +static u32 mpm_counter_freq;
->>>>
->>>> No file-scope variables. Does not scale, not easy for review and
->>>> maintenance. Avoid such code.
->>>
->>> Ack
->>>>
->>>>> +
->>>>> +static int mpm_parse_dt(void)
->>>>> +{
->>>>> +	struct device_node *np_imem, *np_mpm2;
->>>>> +
->>>>> +	np_imem = of_find_compatible_node(NULL, NULL,
->>>>> +					  "qcom,imem-boot_stats");
->>>>> +	if (!np_imem) {
->>>>> +		pr_err("can't find qcom,imem node\n");
->>>>
->>>> So you are printing errors everywhere, on every soc and with compile
->>>> test on every platform there is in the world... sorry, it does not work
->>>> like that.
->>>
->>> Ack
->>>>
->>>>> +		return -ENODEV;
->>>>> +	}
->>>>> +	boot_stats = of_iomap(np_imem, 0);
->>>>> +	if (!boot_stats) {
->>>>> +		pr_err("boot_stats: Can't map imem\n");
->>>>> +		goto err1;
->>>>> +	}
->>>>
->>>>
->>>>> +
->>>>> +static void __exit boot_stats_exit(void)
->>>>> +{
->>>>> +}
->>>>> +module_exit(boot_stats_exit)
->>>>
->>>>
->>>> I don't think this is some special code which deserves init calls. Make
->>>> it module_platform_driver().
->>>
->>> Since this just reads some values from the Imem region and prints it to
->>> the user and doesn't have a specific device associated with it, a
+>>> This does not look correct. DTS looks good, you miss some patches in
+>>> your tree.
 >>
->> Which is not really an argument for such antipattern, but okay...
->>
->>> generic module code is written for it and not a module_platform_driver().
->>
->> ... so how do you handle deferred probe?
+>> I'm based on today's linux-next,
 > 
-> This has no dependency on other resources except that it parses some 
-> information from DT nodes, so deferred probe handling is not needed
-> in this case.
+> Which is unfortunately not enough. Several things were
+> fixed/added/changed and are pending. I brought the topic of pending
+> branch few times on IRC for that reason.
+> 
+>> while the other lpass macros uses the npl clock,
+>> the lpass vamacro bindings doesn't document the npl clock.
+>>
+>> And I found no fixes whatsover to add the npl clock to bindings.
+> 
+> Really? lore finds it easily:
+> 
+> https://lore.kernel.org/all/20221118071849.25506-2-srinivas.kandagatla@linaro.org/
 
-Yes, I know, but if we would ever add it how this driver can handle it?
-This is antipattern.
+You're better at lore than me... thx anyway...
 
-Best regards,
-Krzysztof
+Neil
+
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
