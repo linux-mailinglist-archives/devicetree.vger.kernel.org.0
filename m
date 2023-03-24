@@ -2,157 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0DD6C7920
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:41:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A2036C7950
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:03:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231706AbjCXHlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 03:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46680 "EHLO
+        id S230111AbjCXIDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 04:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbjCXHll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:41:41 -0400
+        with ESMTP id S229834AbjCXIDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:03:54 -0400
 Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D5D119C7C
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:41:38 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id ek18so4375981edb.6
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:41:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1EF23864;
+        Fri, 24 Mar 2023 01:03:53 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id eh3so4462702edb.11;
+        Fri, 24 Mar 2023 01:03:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1679643697;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HcxZofqIK3HRTdfpbgfEH068msVjQMhnD45KuQ5H/ms=;
-        b=UpxLxwfQ3V5dOLpYAxUHsBqOU/qL0dFRrAKzHeFjnL9i1MORE7bFusJ8QZhtRpJZBX
-         jdUFiNSk0OYHx2U8sI7pOR81D3o10pW9LMOIGqlecqAfJtI6N+kf0T59P7jS4AP7WLZp
-         I79gJy9W6BAKRgY1Q34popVJyDtTK/HQMF1cIOGufNPViWrIwy/bAq69zeg/wdh3v3qq
-         JAuMoRraWIQAkmPZCCOlvx7XeUq0/Z8ubjAiNE5CiE3Q3I5WIjPJMpqlwc57X2ts2V3m
-         JP5gfj7eQVHOj9FhFZ2FalYis5PCt5r0HMFnSf7TLUQVdqO5mT/xPqF4ykmEpPz/AtCu
-         Ef8A==
+        d=gmail.com; s=20210112; t=1679645032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xdPfVznn1+cmnWLd3joAMKzC5IL6oKT3yPikotdBwTo=;
+        b=ZDGfVVLCGkWZUzZiCRqGteeqkaKWetao4CofMCmxQWl+nVuqaKJ9Z853VpC11tQPrP
+         2fCpJLLFPKHOuevz60rn2UNBgDKrZhPrXTZYZFt8V/IG6gaDVo6ammZ4M0Cpo31pdqN8
+         macbIvU41vGNWiqA2gF89srr85ROsTkdx2G5I3l9Y/Wl8Q+zQrv+Y//lVTlMPr9M+Kux
+         sPAgl9D7dIpVwAkvszwIS2Le6nz22kiGcdOQjqIE9bM5d/64chSiaDtzcyGWKvSCbuEU
+         dai1mQ8ezO6sT40rNeh/MA652xJ3oJ055fWPXKu258MQcbAQq/eIYl2JRJBCmkimsFc+
+         J5uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679643697;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679645032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HcxZofqIK3HRTdfpbgfEH068msVjQMhnD45KuQ5H/ms=;
-        b=WXWzFtU/uh1s7dr64K0lVGmHZrfiWbNNpaFkWajZx/ktlEFSbVzIGnni1Tk6QQgOaf
-         9zJddOTA02Witj2fqGfUJgZZTQQiMo3QwBq/FhkbO+xn+DmkJMlOeGzfATPxzcwQRboK
-         a54nzqnR+7vyY+cJ7i7XB8Bnyu8yL+pQ5GioSDZKHQa6NePZyBxbGEb/X+13PTXyJvGH
-         2bR6ZuuXpuEiECehzhtOUAmL3LyDVedGahYE3BIANd24J8Ps21JSFLRoLQK+nvqQPTwU
-         xo2pGzabwKPMutzYVQAkJ2aH7cjSw9iH5nop12x5489sUUh9Pn+tc6a0yx+37ACLF3Mu
-         Mi/Q==
-X-Gm-Message-State: AAQBX9cq5M22hzBmNVZK08euaB0axfdKI7VAI/CeRFpVsloK/GfgUTqs
-        0tF6F6xOFiVcUEr1GHyYOnvUzQ==
-X-Google-Smtp-Source: AKy350bjHXtnBgON3ZW3HnBdpfI4Z4agAe97ZtevC+h3lL7GTKudFDLdnSm5AHY7pX49rQ77F85nJQ==
-X-Received: by 2002:a17:906:c11:b0:91f:17a5:b359 with SMTP id s17-20020a1709060c1100b0091f17a5b359mr1648648ejf.66.1679643696996;
-        Fri, 24 Mar 2023 00:41:36 -0700 (PDT)
-Received: from [192.168.0.29] (84-115-214-73.cable.dynamic.surfer.at. [84.115.214.73])
-        by smtp.gmail.com with ESMTPSA id d23-20020a50f697000000b004fd2a7aa1ecsm10271227edn.32.2023.03.24.00.41.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 00:41:36 -0700 (PDT)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-Date:   Fri, 24 Mar 2023 08:41:30 +0100
-Subject: [PATCH v3 3/3] dt-bindings: ufs: qcom: Fix sm8450 bindings
+        bh=xdPfVznn1+cmnWLd3joAMKzC5IL6oKT3yPikotdBwTo=;
+        b=gyxah4JIoXVfWAFFo0S/OsDuN/bxvvhCbJQYr/Rhl7qnqIl9stJ20gLggUkG0jVrWY
+         00WLcbPQ7DKK5hQx2CpRPYJhFPSYKGwHuQyAoFUEyALQTqfm3wkYPrylI7H/k1bxsc2T
+         diB6aFNPQ0q1hGs1L5b499koNfgj93zpyOPhgqJybbSqqb7uSUaOTg0hxjM9Fp8dd8s/
+         X2KMwYrHTiwjMrijmSImr76M/LksxrOz1YjtdNT1pyhaBajopaRM7WIFVWhpBfvnP3Dt
+         w3EpvwWO1wyweb1WPUw5X3RrmvzAoZDpn+kAAO5wFHSJUkMeMC7JNGGFByTTmVliGxyP
+         iCbQ==
+X-Gm-Message-State: AAQBX9e1oPj5w5+yNDrvkxXNvGpknJm5hYHnkJJcq3dEOOhpszVjqe/g
+        hAah/Z6p4DhzW95xJ3Db4Ki9c5Y7fWM4GTdB8YA=
+X-Google-Smtp-Source: AKy350ZsgN9BqoCkjFLRhe/ETXRYHC7790A78K2S00e9Slpv5Upu4pOEf20dq2DZFMQhGRN0grToelfSXDUJdHXvQlY=
+X-Received: by 2002:a17:906:1744:b0:930:4944:c2c with SMTP id
+ d4-20020a170906174400b0093049440c2cmr952299eje.12.1679645031882; Fri, 24 Mar
+ 2023 01:03:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20221209-dt-binding-ufs-v3-3-499dff23a03c@fairphone.com>
-References: <20221209-dt-binding-ufs-v3-0-499dff23a03c@fairphone.com>
-In-Reply-To: <20221209-dt-binding-ufs-v3-0-499dff23a03c@fairphone.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230323123807.11882-1-cnsztl@gmail.com> <20230323123807.11882-2-cnsztl@gmail.com>
+ <CAEwRq=pwWrXAuHMBaWzZE7cxmVMGuX=eqi5Esjxpe-jPXWF+0w@mail.gmail.com>
+In-Reply-To: <CAEwRq=pwWrXAuHMBaWzZE7cxmVMGuX=eqi5Esjxpe-jPXWF+0w@mail.gmail.com>
+From:   Tianling Shen <cnsztl@gmail.com>
+Date:   Fri, 24 Mar 2023 16:03:39 +0800
+Message-ID: <CAOP2_ThsN9O8su2MMFVZRMC6SQ-MQ6qxwXeGXmK2ySMxSGfMRw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: Add doc for FriendlyARM NanoPi R2C
+To:     Vincent Legoll <vincent.legoll@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Iskren Chernev <me@iskren.info>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.1
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andy Yan <andyshrk@163.com>, Peter Geis <pgwipeout@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM8450 actually supports ICE (Inline Crypto Engine) so adjust the
-bindings and the example to match.
+Hi Vincent,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+On Thu, Mar 23, 2023 at 8:44=E2=80=AFPM Vincent Legoll <vincent.legoll@gmai=
+l.com> wrote:
+>
+> Hello,
+>
+> On Thu, Mar 23, 2023 at 1:38=E2=80=AFPM Tianling Shen <cnsztl@gmail.com> =
+wrote:
+> > -      - description: FriendlyElec NanoPi R2S
+> > +      - description: FriendlyElec NanoPi R2C/S
+>
+> Maybe do like for the following one:
+>
+> >        - description: FriendlyElec NanoPi4 series boards
+>
+> - description: FriendlyElec NanoPi R2 series boards
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index ebc8e1adbc6f..3af786120fa5 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -113,7 +113,6 @@ allOf:
-               - qcom,sc8280xp-ufshc
-               - qcom,sm8250-ufshc
-               - qcom,sm8350-ufshc
--              - qcom,sm8450-ufshc
-               - qcom,sm8550-ufshc
-     then:
-       properties:
-@@ -144,6 +143,7 @@ allOf:
-               - qcom,sdm845-ufshc
-               - qcom,sm6350-ufshc
-               - qcom,sm8150-ufshc
-+              - qcom,sm8450-ufshc
-     then:
-       properties:
-         clocks:
-@@ -250,7 +250,9 @@ examples:
-         ufs@1d84000 {
-             compatible = "qcom,sm8450-ufshc", "qcom,ufshc",
-                          "jedec,ufs-2.0";
--            reg = <0 0x01d84000 0 0x3000>;
-+            reg = <0 0x01d84000 0 0x3000>,
-+                  <0 0x01d88000 0 0x8000>;
-+            reg-names = "std", "ice";
-             interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-             phys = <&ufs_mem_phy_lanes>;
-             phy-names = "ufsphy";
-@@ -278,7 +280,8 @@ examples:
-                           "ref_clk",
-                           "tx_lane0_sync_clk",
-                           "rx_lane0_sync_clk",
--                          "rx_lane1_sync_clk";
-+                          "rx_lane1_sync_clk",
-+                          "ice_core_clk";
-             clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-                      <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-                      <&gcc GCC_UFS_PHY_AHB_CLK>,
-@@ -286,7 +289,8 @@ examples:
-                      <&rpmhcc RPMH_CXO_CLK>,
-                      <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-                      <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
--                     <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-+                     <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
-+                     <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-             freq-table-hz = <75000000 300000000>,
-                             <0 0>,
-                             <0 0>,
-@@ -294,6 +298,7 @@ examples:
-                             <75000000 300000000>,
-                             <0 0>,
-                             <0 0>,
--                            <0 0>;
-+                            <0 0>,
-+                            <75000000 300000000>;
-         };
-     };
+Sounds good! I will apply your suggestion in v2.
 
--- 
-2.40.0
+Thanks,
+Tianling.
 
+>
+> Regards
+>
+> --
+> Vincent Legoll
