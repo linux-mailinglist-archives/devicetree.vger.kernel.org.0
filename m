@@ -2,223 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A06976C8562
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 19:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8414B6C8597
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 20:06:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbjCXSwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 14:52:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40158 "EHLO
+        id S231241AbjCXTGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 15:06:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231263AbjCXSwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 14:52:50 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49CBB2711
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 11:52:47 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id ew6so11566979edb.7
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 11:52:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679683966;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0NUsMoZ4vPDEoNGXohzk54SNbSs6g4GHYDuwJNIwkcc=;
-        b=Qw6N/yhpAPzyV2z5MzL5WKXBYCLiJd8CQP7otE2cL0zfhxFFLIky9FXF+iKKWLaF7p
-         L78JBlA3mzx9l7mBJgf6gcfIwMh+3Hj7Mr3DQRs5BIbz6FlxX963mHNHcv+U7B8xZ1oY
-         wyDUO4LPPVCegfifRqnwEJrAmB93QufJuLH0kcjFgtnoPb2lREdHbh+PhPvDTRun3Ib6
-         4fHCm8AS7fXNKdniXfEPKNhkzvRUFst50Ef5dUnTMtBQ5VF2dP/MbLgnZbu/VWSPNwjh
-         m4Se8gg3yHSwA4XrTMTSAeVltEoU1C22x8w7X6khkxpTG3iIOOcybvx90YZtxqIYOawc
-         N3yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679683966;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0NUsMoZ4vPDEoNGXohzk54SNbSs6g4GHYDuwJNIwkcc=;
-        b=igkuyreBvgDLnWxoSfPbyMQccDnj/D+2YprGS7CcUYdcuoehIs9OilEIpNY9USyGUV
-         z7krUBoNZj7KAq+cgrCp9fE1pj8gaLy4J68erDpmAuoDcDOVmdIpqcEU24+O1Q64nkjz
-         OlOrds0Muprps6rn+Ghxfj15RW/JtjUJW3iRObHx94kFhaPYAxoPJP0W/Ja3FeFEamEu
-         O+cmoPK9Wh1YYT3rumJgyLOxbEi39B6t088Eti8T+LjCSoPpv/zzUT0qJdftrksGVTRi
-         8zJk1X8I08r+r9wL4d8YobWXUTfjC0zdAe5od/9oTmuSCowIGJbpMr38bcr+pSYlLnxK
-         dO5A==
-X-Gm-Message-State: AO0yUKV8B2bTVWvQuIuiD9IAD8VyJ+t3GWFAurzQj4tOXTZfYxh8MKFO
-        ZacIPX1jEo43Ktab2Ha0AZAlQA==
-X-Google-Smtp-Source: AK7set8CLRlcaIJiT4m8UDQdlno7L+EJA7EXsQ41DcNtUX77qnq86VnfoStuTl26ufwdV6wCI+qZDA==
-X-Received: by 2002:a17:906:8297:b0:931:cd1b:3c0 with SMTP id h23-20020a170906829700b00931cd1b03c0mr9478205ejx.3.1679683965713;
-        Fri, 24 Mar 2023 11:52:45 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:3027:fb0b:ae08:588? ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
-        by smtp.gmail.com with ESMTPSA id vq11-20020a170907a4cb00b0093e6f40d124sm1049217ejc.139.2023.03.24.11.52.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 11:52:45 -0700 (PDT)
-Message-ID: <d287ca9f-b056-d39a-aa93-b0e2cb279f73@linaro.org>
-Date:   Fri, 24 Mar 2023 19:52:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 5/9] ARM: dts: exynos: move exynos-bus nodes out of soc in
- Exynos4412
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        with ESMTP id S231215AbjCXTGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 15:06:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C546A1ABE3;
+        Fri, 24 Mar 2023 12:05:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 464E6B822D8;
+        Fri, 24 Mar 2023 19:05:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E10FEC433EF;
+        Fri, 24 Mar 2023 19:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679684739;
+        bh=McKaNQzEbk0xTIOMEdajlR1Z4xozs8VyLrhP53addwA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=knZIVMw5PE0f38FQxhO/H2qZ9SlfUvGpoYT6je9qZqDcGO566VsxxbqdUSmFV+IoM
+         +W02Vis+mamyc/jIhA4q9/ubjwWA8TVwJncHgz7F9RFRnTFweg1w8CWah1ORB0iHPQ
+         MiScVR2neGJUkdQWVN47fAgdGNc2qEBAOykq1AAiQQEtA3RD3nZZC27cDV6+F+5i3I
+         N3MTA5M+vuuXp7kmUnYmM4ZCE71xmNG7Hlz1q6YSelCF8prqW8rVHaiaO79mYnF2Yc
+         OJCvL0vNEEMbfbsNSxaWSMkQkP6V3REab2Mv6d2jXCWOGq3iMJ4DvqRsYb5e+hFQAw
+         Y+kSa1yx8GoPw==
+Date:   Fri, 24 Mar 2023 19:05:34 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>
-References: <20230125094513.155063-1-krzysztof.kozlowski@linaro.org>
- <20230125094513.155063-5-krzysztof.kozlowski@linaro.org>
- <CGME20230129104220eucas1p15b70f73be86fa5600cfe170d22869836@eucas1p1.samsung.com>
- <29841f64-360b-1426-e1fd-dd4c64ee5455@linaro.org>
- <b3f31e71-fa1a-e0c0-fdfa-f65674ccc5cd@samsung.com>
- <d54792c5-2842-e5b9-26b8-1f52471211a9@linaro.org>
- <111f7364-0d7b-b4c5-721f-69c00d4619e2@samsung.com>
- <dc0c3fa9-a6d4-e1c1-7cc8-13b206e3b31f@linaro.org>
- <697aa7b5-9c9b-eb4f-8111-c9a396d9d191@linaro.org>
- <6a9fcdc9-3fe7-e8fc-3a51-385d516c6323@samsung.com>
- <a72f8b1a-1fcc-a090-69e7-f56072185e81@linaro.org>
- <9e5d9952-0295-40b2-5f4b-a1412cc933ce@samsung.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9e5d9952-0295-40b2-5f4b-a1412cc933ce@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] riscv: dts: starfive: jh7110: Correct the properties
+ of S7 core
+Message-ID: <225945e3-2610-4fec-8ee5-5893d26641b4@spud>
+References: <20230324064651.84670-1-hal.feng@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="WqfTepoKbm4XihPt"
+Content-Disposition: inline
+In-Reply-To: <20230324064651.84670-1-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 18:07, Marek Szyprowski wrote:
-> On 06.02.2023 17:12, Krzysztof Kozlowski wrote:
->> On 03/02/2023 23:50, Marek Szyprowski wrote:
->>> On 03.02.2023 22:12, Krzysztof Kozlowski wrote:
->>>> On 03/02/2023 21:34, Krzysztof Kozlowski wrote:
->>>>> On 03/02/2023 12:51, Marek Szyprowski wrote:
->>>>>> On 03.02.2023 12:46, Krzysztof Kozlowski wrote:
->>>>>>> On 03/02/2023 12:45, Marek Szyprowski wrote:
->>>>>>>> On 29.01.2023 11:42, Krzysztof Kozlowski wrote:
->>>>>>>>> On 25/01/2023 10:45, Krzysztof Kozlowski wrote:
->>>>>>>>>> The soc node is supposed to have only device nodes with MMIO addresses,
->>>>>>>>>> as reported by dtc W=1:
->>>>>>>>>>
->>>>>>>>>>       exynos4412.dtsi:407.20-413.5:
->>>>>>>>>>         Warning (simple_bus_reg): /soc/bus-acp: missing or empty reg/ranges property
->>>>>>>>>>
->>>>>>>>>> and dtbs_check:
->>>>>>>>>>
->>>>>>>>>>       exynos4412-i9300.dtb: soc: bus-acp:
->>>>>>>>>>         {'compatible': ['samsung,exynos-bus'], 'clocks': [[7, 456]], 'clock-names': ['bus'], 'operating-points-v2': [[132]], 'status': ['okay'], 'devfreq': [[117]]} should not be valid under {'type': 'object'}
->>>>>>>>>>
->>>>>>>>>> Move the bus nodes and their OPP tables out of SoC to fix this.
->>>>>>>>>> Re-order them alphabetically while moving and put some of the OPP tables
->>>>>>>>>> in device nodes (if they are not shared).
->>>>>>>>>>
->>>>>>>>> Applied.
->>>>>>>> I don't have a good news. It looks that this change is responsible for
->>>>>>>> breaking boards that were rock-stable so far, like Odroid U3. I didn't
->>>>>>>> manage to analyze what exactly causes the issue, but it looks that the
->>>>>>>> exynos-bus devfreq driver somehow depends on the order of the nodes:
->>>>>>>>
->>>>>>>> (before)
->>>>>>>>
->>>>>>>> # dmesg | grep exynos-bus
->>>>>>>> [    6.415266] exynos-bus: new bus device registered: soc:bus-dmc
->>>>>>>> (100000 KHz ~ 400000 KHz)
->>>>>>>> [    6.422717] exynos-bus: new bus device registered: soc:bus-acp
->>>>>>>> (100000 KHz ~ 267000 KHz)
->>>>>>>> [    6.454323] exynos-bus: new bus device registered: soc:bus-c2c
->>>>>>>> (100000 KHz ~ 400000 KHz)
->>>>>>>> [    6.489944] exynos-bus: new bus device registered: soc:bus-leftbus
->>>>>>>> (100000 KHz ~ 200000 KHz)
->>>>>>>> [    6.493990] exynos-bus: new bus device registered: soc:bus-rightbus
->>>>>>>> (100000 KHz ~ 200000 KHz)
->>>>>>>> [    6.494612] exynos-bus: new bus device registered: soc:bus-display
->>>>>>>> (160000 KHz ~ 200000 KHz)
->>>>>>>> [    6.494932] exynos-bus: new bus device registered: soc:bus-fsys
->>>>>>>> (100000 KHz ~ 134000 KHz)
->>>>>>>> [    6.495246] exynos-bus: new bus device registered: soc:bus-peri (
->>>>>>>> 50000 KHz ~ 100000 KHz)
->>>>>>>> [    6.495577] exynos-bus: new bus device registered: soc:bus-mfc
->>>>>>>> (100000 KHz ~ 200000 KHz)
->>>>>>>>
->>>>>>>> (after)
->>>>>>>>
->>>>>>>> # dmesg | grep exynos-bus
->>>>>>>>
->>>>>>>> [    6.082032] exynos-bus: new bus device registered: bus-dmc (100000
->>>>>>>> KHz ~ 400000 KHz)
->>>>>>>> [    6.122726] exynos-bus: new bus device registered: bus-leftbus
->>>>>>>> (100000 KHz ~ 200000 KHz)
->>>>>>>> [    6.146705] exynos-bus: new bus device registered: bus-mfc (100000
->>>>>>>> KHz ~ 200000 KHz)
->>>>>>>> [    6.181632] exynos-bus: new bus device registered: bus-peri ( 50000
->>>>>>>> KHz ~ 100000 KHz)
->>>>>>>> [    6.204770] exynos-bus: new bus device registered: bus-rightbus
->>>>>>>> (100000 KHz ~ 200000 KHz)
->>>>>>>> [    6.211087] exynos-bus: new bus device registered: bus-acp (100000
->>>>>>>> KHz ~ 267000 KHz)
->>>>>>>> [    6.216936] exynos-bus: new bus device registered: bus-c2c (100000
->>>>>>>> KHz ~ 400000 KHz)
->>>>>>>> [    6.225748] exynos-bus: new bus device registered: bus-display
->>>>>>>> (160000 KHz ~ 200000 KHz)
->>>>>>>> [    6.242978] exynos-bus: new bus device registered: bus-fsys (100000
->>>>>>>> KHz ~ 134000 KHz)
->>>>>>>>
->>>>>>>> This is definitely a driver bug, but so far it worked fine, so this is a
->>>>>>>> regression that need to be addressed somehow...
->>>>>>> Thanks for checking, but what is exactly the bug? The devices registered
->>>>>>> - just with different name.
->>>>>> The bug is that the board fails to boot from time to time, freezing
->>>>>> after registering PPMU counters...
->>>>> My U3 with and without this patch, reports several warnings:
->>>>> iommu_group_do_set_platform_dma()
->>>>> exynos_iommu_domain_free()
->>>>> clk_core_enable()
->>>>>
->>>>> and finally:
->>>>> rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
->>>>>
->>>>> and keeps stalling.
->>>>>
->>>>> At least on next-20230203. Except all these (which anyway make board
->>>>> unbootable) look fine around PMU and exynos-bus.
->>>> I also booted few times my next/dt branch (with this patch) and no
->>>> problems. How reproducible is the issue you experience?
->>> IOMMU needs a fixup, that has been merged today:
->>>
->>> https://lore.kernel.org/all/20230123093102.12392-1-m.szyprowski@samsung.com/
->>>
->>> I was initially convinced that this freeze is somehow related to this
->>> IOMMU fixup, but it turned out that the devfreq is a source of the problems.
->>>
->>> The freeze happens here about 1 of 10 boots, usually with kernel
->>> compiled from multi_v7_defconfig, while loading the PPMU modules. It
->>> happens on your next/dt branch too.
->> I was able to reproduce it easily with multi_v7. Then I commented out
->> dmc bus which fixed the issue. Then I commented out acp and c2c buses
->> (children/passive) which also fixed the issue. Then I uncommented
->> everything and went back to next/dt - exactly the same as it was failing
->> - and since then I cannot reproduce it. I triple checked, but now my
->> multi_v7 on U3 on next/dt boots perfectly fine. Every time.
-> 
-> This issue still happens from time to time. I quick workaround to fix it 
-> is to add:
-> 
-> MODULE_SOFTDEP("pre: exynos_ppmu");
-> 
-> to the exynos-bus driver. Is it acceptable solution?
 
-I initially thought it might be caused by deferred probe, but it happens
-even in successful boot. I guess we can go with this workaround because
-I really do not have other idea.
+--WqfTepoKbm4XihPt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Fri, Mar 24, 2023 at 02:46:51PM +0800, Hal Feng wrote:
+> The S7 core has no L1 data cache and MMU, so delete some
+> related properties.
+>=20
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>=20
+> Hi, Conor,
+>=20
+> This is a correction for the S7 entry.
 
+Again going off the latest version of the u74-mc core complex, this
+looks to be correct, thanks.
+I need to go read the Emil email from earier today, but I've
+provisionally gone and put this on the riscv-jh7100_initial_dts branch
+with a Fixes: tag.
+
+Thanks,
+Conor.
+
+> This patch depends on patch [1].
+>=20
+> [1] https://lore.kernel.org/all/20230320103750.60295-20-hal.feng@starfive=
+tech.com/
+>=20
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 9 ---------
+>  1 file changed, 9 deletions(-)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
+ts/starfive/jh7110.dtsi
+> index d484ecdf93f7..4c5fdb905da8 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -20,21 +20,12 @@ cpus {
+>  		S7_0: cpu@0 {
+>  			compatible =3D "sifive,s7", "riscv";
+>  			reg =3D <0>;
+> -			d-cache-block-size =3D <64>;
+> -			d-cache-sets =3D <64>;
+> -			d-cache-size =3D <8192>;
+> -			d-tlb-sets =3D <1>;
+> -			d-tlb-size =3D <40>;
+>  			device_type =3D "cpu";
+>  			i-cache-block-size =3D <64>;
+>  			i-cache-sets =3D <64>;
+>  			i-cache-size =3D <16384>;
+> -			i-tlb-sets =3D <1>;
+> -			i-tlb-size =3D <40>;
+> -			mmu-type =3D "riscv,sv39";
+>  			next-level-cache =3D <&ccache>;
+>  			riscv,isa =3D "rv64imac_zba_zbb";
+> -			tlb-split;
+>  			status =3D "disabled";
+> =20
+>  			cpu0_intc: interrupt-controller {
+> --=20
+> 2.38.1
+>=20
+
+--WqfTepoKbm4XihPt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZB30fgAKCRB4tDGHoIJi
+0m0jAQDgN9auzDIiU9HW1TSUC9HzDRYLzr+VbgtP30QtgUTeaQEA/UXn5IKUTjFn
+P2TdB0HAjMnHLaEvUPI8++IcsnQWdAs=
+=x47n
+-----END PGP SIGNATURE-----
+
+--WqfTepoKbm4XihPt--
