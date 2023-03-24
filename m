@@ -2,88 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3035D6C86CC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 503706C86C2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:23:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230357AbjCXU0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 16:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
+        id S230190AbjCXUXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 16:23:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbjCXU0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:26:30 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71AF51BAD2;
-        Fri, 24 Mar 2023 13:26:29 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id r16so2062345oij.5;
-        Fri, 24 Mar 2023 13:26:29 -0700 (PDT)
+        with ESMTP id S231974AbjCXUXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:23:00 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A691ADD5
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:22:58 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id w9so12478277edc.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:22:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679689377;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z/LMWIXCTebbEBvRvBxmqmfgG2n/mr0skTdDZ9JrIkA=;
+        b=Yj/L4LaMQo1d88HWuWhJxmGhhr59MtceqkMjwGzSRPFlgr+DTKBmZKZ6Q8uPZHTwAV
+         L7PrKMr397zwramr5+Vyua8RsVv17vGdLIhVXnJjOhL3biw4V0rhZKhJz2vqa705MLTz
+         kfP6od8vu0XlPTL67JakuEMnF0Bu8mIc1MZJpJcQaIoukBgpDOoOs5pobeBUd5lU/C4L
+         NUOG+ECN7zUAlwJZ2j9exQiH2y3nzV92Sp1Bilpsylpj+dIDOJH0RYkljMd/nvY9bkno
+         iVGKBFzePeZQLMFTnf6GeVHXy7Wfil9zaQA5G6G7AGuhRZxMhg7ac/aLzPBLOT4gNR7D
+         RVZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679689589;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2ARTWLAnE/R5/Yn3e8IzR5CYG/awWCo/Ki7MKRLqJWs=;
-        b=b3akyZZSO0zm17UMJoPNErRfhBnAdIBg1i9mdR0zQLs4bhFtsYZu/9g643xr6DwIH2
-         pSxOSplQEQb4Ab5asD3gr1XQ8BQLkOjyL+xa6auQ0eRHFXvWIWNHbhdaZlbVL1N5Bxj8
-         lW6LSJUxgonx28IL7F9gc8tqonYgdyj/h8zttjlZPlwT8Zg61V4/Qb7GN8tIaStYgMgL
-         MNKu2nHIELEzu+z+gKQEjUfnTH+lh/TGNXAvPdySB3FQx3hRMPAx1lYDZRYsmzYROc12
-         nABEF43XTSElZwoGdrIBli4qY6qrI6u6+5L6MuFr2DmzuHM32juir0dm5ELmVIt6Lg+a
-         pN9Q==
-X-Gm-Message-State: AO0yUKXHiuDZ/QoVlNSMI0RpW22n37UYlEotAD+aFUT1HYr+JBMOpFh2
-        CohcbUHElsyiUBLgC32blq1hK5YWFg==
-X-Google-Smtp-Source: AK7set/v1YbeRweTPhFlmin/sC3QdECy0j/Wx51PrqueLQ6Jc/SuW1sAaCfWv2xWkuMsrDtBqGlKyQ==
-X-Received: by 2002:a05:6808:6c4:b0:387:2f8e:fd56 with SMTP id m4-20020a05680806c400b003872f8efd56mr1612807oih.33.1679689588707;
-        Fri, 24 Mar 2023 13:26:28 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05680803cf00b003875e29808esm2089833oie.0.2023.03.24.13.26.28
+        d=1e100.net; s=20210112; t=1679689377;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z/LMWIXCTebbEBvRvBxmqmfgG2n/mr0skTdDZ9JrIkA=;
+        b=68IVwR4DjrCUZIoKkcaFOoZ/+vTzRCSFScgr8OArT9RBI0aB+Qr+F/hG0IEVDfwVOp
+         teNg2+2LYqmBFFPKzhKSTOfOwRC/J7fdjkdJdGX9RBaroKK9VY0hsca6XQlvuh+lEU82
+         a+cqHTW8sYKV352zfgIQ7NBd26gSVgClFnI3/95FC0DrvZiCt+0ZdMLmO/706+2ESvu1
+         QIVKKvY5fudxYPTQplfgyzsBsCFozoxtg3RkGmx+U2Wyfb6u4rKkeSx5Up+RsBl2rSfL
+         4WNVxjtbNjEuH1+UlJcibpL1ch0dJHd0ZjX5aJ5STRNnIli3xzajlSLS34+CoCePuIPp
+         2SWQ==
+X-Gm-Message-State: AAQBX9e40kKD0k4OSd6PVBqmwCzSVyavUxlikLn1jRBAvIMZYrz3yz5H
+        rOKbONIHGUqtWqz+3D0qfv3Iyw==
+X-Google-Smtp-Source: AKy350b//DLxCLjIHZqp5EtohEhanJKITOUhXiuRpIsdcPHHb/BMBYKLcq9yQBjW2CBHh/a8pMWoqQ==
+X-Received: by 2002:a17:906:9bdb:b0:93c:81b9:a2b1 with SMTP id de27-20020a1709069bdb00b0093c81b9a2b1mr3800033ejc.62.1679689377131;
+        Fri, 24 Mar 2023 13:22:57 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
+        by smtp.gmail.com with ESMTPSA id rh26-20020a17090720fa00b00930ba362216sm10900041ejb.176.2023.03.24.13.22.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 13:26:28 -0700 (PDT)
-Received: (nullmailer pid 2448124 invoked by uid 1000);
-        Fri, 24 Mar 2023 20:26:27 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: yamllint: Enable quoted string check
-Date:   Fri, 24 Mar 2023 15:22:43 -0500
-Message-Id: <20230324202243.2442956-1-robh@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        Fri, 24 Mar 2023 13:22:56 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/5] arm64: dts: qcom: sdm630: move DSI opp-table into DSI node
+Date:   Fri, 24 Mar 2023 21:22:44 +0100
+Message-Id: <20230324202244.744271-5-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
+References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-yamllint has a quoted string check. Enable the check aligned with the
-DT schema style which is only using quotes when necessary with the
-exception of regex patterns. There's also the frequent occurrence of '/'
-which we allow rather than fixing.
+The soc node is supposed to have only device nodes with MMIO addresses,
+so move the DSI OPP into the DSI controller node to fix:
 
-Signed-off-by: Rob Herring <robh@kernel.org>
+  sda660-inforce-ifc6560.dtb: soc: opp-table-dsi: {'compatible': ['operating-points-v2'], ... should not be valid under {'type': 'object'}
+    From schema: dtschema/schemas/simple-bus.yaml
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/.yamllint | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 38 ++++++++++++++--------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/.yamllint b/Documentation/devicetree/bindings/.yamllint
-index 4abe9f0a1d46..fea5231e1320 100644
---- a/Documentation/devicetree/bindings/.yamllint
-+++ b/Documentation/devicetree/bindings/.yamllint
-@@ -1,6 +1,11 @@
- extends: relaxed
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 5add1951d963..ef63aa86ad67 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1450,25 +1450,6 @@ mmcc: clock-controller@c8c0000 {
+ 					<0>;
+ 		};
  
- rules:
-+  quoted-strings:
-+    required: only-when-needed
-+    extra-allowed:
-+      - '[$^,[]'
-+      - '^/$'
-   line-length:
-     # 80 chars should be enough, but don't fail if a line is longer
-     max: 110
+-		dsi_opp_table: opp-table-dsi {
+-			compatible = "operating-points-v2";
+-
+-			opp-131250000 {
+-				opp-hz = /bits/ 64 <131250000>;
+-				required-opps = <&rpmpd_opp_svs>;
+-			};
+-
+-			opp-210000000 {
+-				opp-hz = /bits/ 64 <210000000>;
+-				required-opps = <&rpmpd_opp_svs_plus>;
+-			};
+-
+-			opp-262500000 {
+-				opp-hz = /bits/ 64 <262500000>;
+-				required-opps = <&rpmpd_opp_nom>;
+-			};
+-		};
+-
+ 		mdss: display-subsystem@c900000 {
+ 			compatible = "qcom,mdss";
+ 			reg = <0x0c900000 0x1000>,
+@@ -1610,6 +1591,25 @@ dsi0: dsi@c994000 {
+ 
+ 				status = "disabled";
+ 
++				dsi_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-131250000 {
++						opp-hz = /bits/ 64 <131250000>;
++						required-opps = <&rpmpd_opp_svs>;
++					};
++
++					opp-210000000 {
++						opp-hz = /bits/ 64 <210000000>;
++						required-opps = <&rpmpd_opp_svs_plus>;
++					};
++
++					opp-262500000 {
++						opp-hz = /bits/ 64 <262500000>;
++						required-opps = <&rpmpd_opp_nom>;
++					};
++				};
++
+ 				ports {
+ 					#address-cells = <1>;
+ 					#size-cells = <0>;
 -- 
-2.39.2
+2.34.1
 
