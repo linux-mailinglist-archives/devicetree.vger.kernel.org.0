@@ -2,110 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C1646C7E6C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8A66C7E99
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:17:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231561AbjCXNHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 09:07:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52788 "EHLO
+        id S229734AbjCXNRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 09:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjCXNHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:07:22 -0400
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515FE22A1B;
-        Fri, 24 Mar 2023 06:07:21 -0700 (PDT)
-Received: by mail-oo1-f50.google.com with SMTP id m6-20020a4ae846000000b0053b9059edd5so269448oom.3;
-        Fri, 24 Mar 2023 06:07:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679663240;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=13e4PzhHJoCEe/Nz2dMvzceKnl5ytY6lvF9QO/11MtQ=;
-        b=Ad6Wq0TYUVC8nZzxb2ThpC4XM6GkWN7hzmU0qtBg56LNdZDaqn/2hW+W+SnQvhFvwt
-         xTrl/p+tQzqrkw0yofXkpkEhqQ6KUPiZy9kxpftMjlJhf/nH3YvNEYK3JZHQdBHW/1QJ
-         jqduLACyGbTwUw8gzqA6sL9FtnTl+ftRcSpxmRhW4hF9fDvKSIlujYlrsHIcTQnHsvZn
-         EHImerXIzbRHZd81o/0EIrq6DGeo9Y8Fl5r60VoIN5JOzwa63pqAdkAc0dzFpBfwEqZ8
-         1Is+BchT0fUsdB+FxaMNZxj2gQ6d0Pmi646MC9rfhoUsbXkX2HcoG34GFbbyLofO4l8u
-         hQMw==
-X-Gm-Message-State: AO0yUKXKnrBBm+FOXmw6kJR6ilGkm07L+O3LFHsJADRDU+WNsSz3RGfD
-        716U1keB5ovy+UvhZBN8QPjh8H+acw==
-X-Google-Smtp-Source: AK7set9vyNqMBluunX573FfIh/MRKX7/vAM1A4OlmZZRECqbJeynbz0zyY2w2+1XsUJUR4DsbD+S0w==
-X-Received: by 2002:a4a:3707:0:b0:525:7096:972f with SMTP id r7-20020a4a3707000000b005257096972fmr1836149oor.9.1679663240388;
-        Fri, 24 Mar 2023 06:07:20 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s2-20020a4aad42000000b00525398a1144sm8191345oon.32.2023.03.24.06.07.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 06:07:19 -0700 (PDT)
-Received: (nullmailer pid 1693727 invoked by uid 1000);
-        Fri, 24 Mar 2023 13:07:19 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Mark Brown <broonie@kernel.org>, loongson-kernel@lists.loongnix.cn,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S229508AbjCXNRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:17:09 -0400
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2088.outbound.protection.outlook.com [40.107.249.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 941602128
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:17:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WG0LnDbApXhX1Tdec5y1BN0Ql4CJ1dnxOjB1c02F3xVuDItlMl8Q9glituEWarJavSbbwfzBkgiIe9vzBkvK7eVxp7AC37tDYIVo00CiFa8OEfXx7u/UnqpAgiM9eEcVxz2xrk+3TCpaygYtMgb8QGCIy0wLDgl2fagWJuz2zV6s7nX/ZcchzLLs5hQfHdCUhPWaQyykI+DCjelbROffbPqaPcVUhNTrkniexLH0+rPMd275oFjgHctTBXiZLJrtgOfa8RuOd8d2LsPAO+n2Mkk8vB/lVM7/fmHgFzIpqXFChQ3P5km6QVaCaWV5rMtNrKOjwKWauiKucKNbfDqKuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ll1U7tV6Vaes6ux8Tn9BeE4m6zMkrazQmszni+mKumA=;
+ b=E+cOkS8ZChLfWlyX01N1SQ9fHVfrBvazU+zm/RnwiByxFhSh4cMvGC7PMEblsGqIEgAWfztl0kINvDexFXnv7fGazulA3jd9vP4TW2GyaKdj9sW/pMF4qiRmhfOeFo+qG+xRhAljg/nC3fqsaPVhmTRpu0y994a27sTdEyza7g0Igfe3sSEwX5Lptz1P50HXbe9sNreThlLH2JCF8MvG2/XZplcaBWbuO/efxti4p2taQZfW/b8Vqd8R8nlF8KfE2q5+7Fxu212ZDRg413Vmyhw5WMT0MWEEjnvp2u1minJAyV8eDrGDZd4UX0KEXcp1z6gJRrTOrRQTHmqBV0aZvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ll1U7tV6Vaes6ux8Tn9BeE4m6zMkrazQmszni+mKumA=;
+ b=nqBnS2boTiYLfGzQxwT1z3ce3vV8zM/OScZp1ATMOcoJ08yQKpnpbhimevzer7vbPvwkRtQC2xBH9yI4qqd38Gu15bHMsbxoXejLRbEb1uZXN2lc+KF+FRoj7HAZXeCBnlbxTJQb7whNjzM3ykCLrdvotnLhzB8VfPl9BUUFLPk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from GV1PR04MB9055.eurprd04.prod.outlook.com (2603:10a6:150:1e::22)
+ by VI1PR04MB6958.eurprd04.prod.outlook.com (2603:10a6:803:137::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Fri, 24 Mar
+ 2023 13:17:06 +0000
+Received: from GV1PR04MB9055.eurprd04.prod.outlook.com
+ ([fe80::9c6d:d40c:fbe5:58bd]) by GV1PR04MB9055.eurprd04.prod.outlook.com
+ ([fe80::9c6d:d40c:fbe5:58bd%7]) with mapi id 15.20.6178.038; Fri, 24 Mar 2023
+ 13:17:06 +0000
+Date:   Fri, 24 Mar 2023 15:17:01 +0200
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20230324063317.14664-2-zhuyinbo@loongson.cn>
-References: <20230324063317.14664-1-zhuyinbo@loongson.cn>
- <20230324063317.14664-2-zhuyinbo@loongson.cn>
-Message-Id: <167966252219.1675112.1668738117284963309.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: spi: add loongson spi
-Date:   Fri, 24 Mar 2023 08:07:19 -0500
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, Li Yang <leoyang.li@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v12 13/13] arm64: dts: ls1088ardb: Add serdes descriptions
+Message-ID: <20230324131701.4ucxf65sxfdtqcai@LXL00007.wbi.nxp.com>
+References: <20230321201313.2507539-1-sean.anderson@seco.com>
+ <20230321201313.2507539-14-sean.anderson@seco.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230321201313.2507539-14-sean.anderson@seco.com>
+X-ClientProxiedBy: VI1PR07CA0129.eurprd07.prod.outlook.com
+ (2603:10a6:802:16::16) To GV1PR04MB9055.eurprd04.prod.outlook.com
+ (2603:10a6:150:1e::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV1PR04MB9055:EE_|VI1PR04MB6958:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ddacc8a-5973-45be-ade6-08db2c6a106d
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ijii1cr1RFnHoaEAenRahE8qP3Ik5tGWq7YiLg1PL2+dT+1hop1RsvMyaJJQaYk4J1660jzdZAdUaWGi1ZjQJ2KGAHEubye4g08AiFx+J6/qhfrJrhjtQcvMZjD6NYU9M3miM6spglWWDAftKoXH7mlmfOkhzE8DEXViYnIBVQdffUSHfRdQqBox4mseAHZq3IKSXjzooyHavP4yESP8ZU4mwY0XOXj1Boi54ejPSxkyOkAxUJqRTMJBLjWgXNWWGGl2jxDW1ua5TRLcg/nvqg6F6Sd775S7/fQLFliY5IXE1PHg1B4ojSy2OvXSyRVOdJL/f+k2aYSeqav6qQfibkcqMusz/yb7mMMvgvjctfqCE8jqMOZkHQSTl5klIDHCbaGfW9r0OMTUBNlR8Et5VrAOIle11bvtHTeS4wtz/vRWaVNeRcjBJ8bNthDqgnl3mbk3L93lS2cDTS/5jezkbx5e4SCZ349+MDYf/Iaq7hWx+L7J2+Wm4dWVuv1YdxmHRgjYUT5JXNRRABguOeAWz7WizwBgSpEFQOKuTd8XlzRhHkY0H2RhegzxImKI9VSH/cw0NpWfL42/XrW+D0aYn1F0rxoDs8o0qK7kAbtLdfDMb7oAudLn0Wp2XfdyotLx6NLyEZZYHncJ9hI9/x1cTw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9055.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(396003)(136003)(366004)(39860400002)(346002)(451199018)(1076003)(6506007)(6512007)(26005)(186003)(83380400001)(6486002)(6666004)(86362001)(478600001)(54906003)(66476007)(66556008)(66946007)(316002)(7416002)(44832011)(4326008)(8936002)(8676002)(5660300002)(6916009)(38100700002)(2906002)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wkQWKWaTC/VSUo40Fs/Pr3EKyLHr5+D8cdfC/ljBrENpckIhNt0KSnBPQZxv?=
+ =?us-ascii?Q?jyGoi/Qoum0kgOLz90CmhfXlJFlqH7sfWh23vDZjF0964a3yUAx3QvA3F76L?=
+ =?us-ascii?Q?pHyctMV/8QYKn8AFSKCEtWW+OQjlo5sarnem8Pg9qoj+wnSWqlvmx7x90gls?=
+ =?us-ascii?Q?iXhFAgiGs5x1xkjUbFSwEj4fCsOGGQHFC9hNa+EHWJdUcnIQ976VqJojbQdm?=
+ =?us-ascii?Q?VnlgG/t7fDViLm+MdBPfrlvl7vUqNpJWv+fvSfL1cE0R7ERPRfRsHeucnJ2o?=
+ =?us-ascii?Q?z7F7UBjFUyZxQPyq24oo3K20mkEJM+TiunVA0GjZSm6oEekhcTmMoOsGTNev?=
+ =?us-ascii?Q?BuMadYXoWyqpkBvXz18xg9ohvORTpIAHB6OMqLq1PpfYsF9iySSy3SyuWku9?=
+ =?us-ascii?Q?YE7NwAcN6sEp572mcfOuPqhmCqBFcyQEEbrDOyNzkeQ/kpnuWxkTKSJDlWh6?=
+ =?us-ascii?Q?CbToQXA1uEZpsXOBb1nkUtmIuo0t73yWJ61ydjeVe5fdRp0iS1yS6DsRQ5f3?=
+ =?us-ascii?Q?2ldQoaVppKvgJXEnRZ4PTGIEblrY13CY2IHcJG71Q5CZj4H9/1q4HQLrRluH?=
+ =?us-ascii?Q?t4g5hR3zh2d0d+q++WKGwtzBBYOHv3Ue43hnBYxwhdNCFQUw20cCafN73qjL?=
+ =?us-ascii?Q?roXy5/VoiWAwb/sVyN6UMe6u79QEL/HO2UI+4s48JZlWQql5vd0ib3/q8V76?=
+ =?us-ascii?Q?GHMYTM5VRsCepjr/DpVCG/NMNntMQ4lFCHCEjBXY7iY0SkCkeXzehieaWgmg?=
+ =?us-ascii?Q?dScywzMYEwDvBXJVSpmJSP3bP0hfq8vs8zCRM1aFc09IkyzE0MFqHU99KZtl?=
+ =?us-ascii?Q?OG0gQvRrcY1scxjK8l1RgfBInHLPAy6RMRiyF92kqG2Kz75a7zAniaoLv9Xu?=
+ =?us-ascii?Q?sgKzgSlFlOw9da+8xg0uAhbHjXXXnrT5yv1EnF43g1nzzGv0kAsrZ+beRSo5?=
+ =?us-ascii?Q?eDwbPrvOyCLMCbF7Ao0vXtTF7/3CL9Bq1nBHiqK50bqEglAP5pxaf6q3vKU7?=
+ =?us-ascii?Q?AgAIes2LKWLXLdelJaSYSrfYP92Yc6F2+M015NHT9y4wiD/8CcUKSHc5pdZc?=
+ =?us-ascii?Q?hhvcW3fRt6sfA4FsoAsSgwjDqdFwCuA5JHUU/3Y+TykB99u4JRleRQlu2fA2?=
+ =?us-ascii?Q?bWNOkCCGl7gAV8cq9elNSqbLhDrwghpMNs0rWozAlwOpBYlwFVcblpeanGrz?=
+ =?us-ascii?Q?zK2e0GC7KvdC2RVJA+tm/qFakQz4sHYVNf98qhvcDm3J9PzelYXOnxbwNa0+?=
+ =?us-ascii?Q?o0WpREm4Bf0R0/xv4iXwxJR8I4dyiy/6uwGDVe5hcPM4fjoPCNPdcw2slTS1?=
+ =?us-ascii?Q?IN9uy2wil2IEyvHqAy6gB4Qsu4V48l03Qwdp30ZeuYRxoScDY+RVUBAbny3J?=
+ =?us-ascii?Q?9nRJ2sQQIduxG2s/RgiqzbGRqLHLy0Gdpk40zpbyHcoaFuqKRwojsJE4OwOm?=
+ =?us-ascii?Q?xVvdhIV9PQBQH3gcnu5e6+/kGQKniPdcXFtl9qRbtvldRPWyOgjFfc9TMTtq?=
+ =?us-ascii?Q?2EObLFllDAjJzXrksc3pcqxXbTF5aCZlNFEvSOlVTYVRoYEFGRN/d6BsZWTz?=
+ =?us-ascii?Q?mwLhYA1Qpv6Q9b2F2Q6XWgmBNDEx2RtVrzM2at1l7tP/hpkY2eZeUwEXsrrj?=
+ =?us-ascii?Q?0A=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ddacc8a-5973-45be-ade6-08db2c6a106d
+X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9055.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2023 13:17:05.9335
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N/+QWcrMjVEOJr3Qv4wVc40grBmlcCe9WtubuTCVXMHbecp9kCDErmKzSActFdex+POdPhuyukjMaHAlwxC4hQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6958
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 24 Mar 2023 14:33:16 +0800, Yinbo Zhu wrote:
-> Add the Loongson platform spi binding with DT schema format using
-> json-schema.
+On Tue, Mar 21, 2023 at 04:13:12PM -0400, Sean Anderson wrote:
+> This adds serdes support to the LS1088ARDB. I have tested the QSGMII
+> ports as well as the two 10G ports. The SFP slot is now fully supported,
+> instead of being modeled as a fixed-link.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
->  .../bindings/spi/loongson,ls-spi.yaml         | 43 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
-> 
+> Linux hangs around when the serdes is initialized if the si5341 is
+> enabled with the in-tree driver, so I have modeled it as a two fixed
+> clocks instead. There are a few registers in the QIXIS FPGA which
+> control the SFP GPIOs; I have modeled them as discrete GPIO controllers
+> for now. I never saw the AQR105 interrupt fire; not sure what was going
+> on, but I have removed it to force polling.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+So you didn't see the interrupt fire even without these patches?
 
-yamllint warnings/errors:
+I just tested this on a LS1088ARDB and it works.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
+	root@localhost:~# cat /proc/interrupts | grep extirq
+	 99:          5  ls-extirq   2 Level     0x0000000008b97000:00
+	root@localhost:~# ip link set dev endpmac2 up
+	root@localhost:~# cat /proc/interrupts | grep extirq
+	 99:          6  ls-extirq   2 Level     0x0000000008b97000:00
+	root@localhost:~# ip link set dev endpmac2 down
+	root@localhost:~# cat /proc/interrupts | grep extirq
+	 99:          7  ls-extirq   2 Level     0x0000000008b97000:00
 
-doc reference errors (make refcheckdocs):
+Please don't just remove things.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230324063317.14664-2-zhuyinbo@loongson.cn
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Ioana
 
