@@ -2,72 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F7EA6C763C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 04:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 232F36C76B1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 05:51:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230501AbjCXDcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 23:32:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49588 "EHLO
+        id S229919AbjCXEvz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 24 Mar 2023 00:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjCXDca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 23:32:30 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE03318AB9;
-        Thu, 23 Mar 2023 20:32:28 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Dxj83LGR1k3ZMQAA--.25223S3;
-        Fri, 24 Mar 2023 11:32:27 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxLL7KGR1kFtwKAA--.4497S3;
-        Fri, 24 Mar 2023 11:32:26 +0800 (CST)
-Subject: Re: [PATCH v2 2/2] spi: loongson: add bus driver for the loongson spi
- controller
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229752AbjCXEvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 00:51:54 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339E3B453;
+        Thu, 23 Mar 2023 21:51:51 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9EEBD24DBFD;
+        Fri, 24 Mar 2023 12:51:43 +0800 (CST)
+Received: from EXMBX163.cuchost.com (172.16.7.73) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
+ 2023 12:51:43 +0800
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX163.cuchost.com
+ (172.16.6.73) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
+ 2023 12:51:43 +0800
+Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
+ EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
+ 15.00.1497.044; Fri, 24 Mar 2023 12:51:43 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>
+CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230317082950.12738-1-zhuyinbo@loongson.cn>
- <20230317082950.12738-3-zhuyinbo@loongson.cn>
- <68b6034f-8305-4854-a4c9-962be988ade7@sirena.org.uk>
- <9b7aff76-eff4-3b82-d7af-a723fbf21a32@loongson.cn>
- <9917d619-1104-4040-bb6f-c564fcf72806@sirena.org.uk>
- <5c281b1a-b6a7-c62e-6247-5d82ebd5e0d6@loongson.cn>
- <f7811b40-80a3-4985-b92d-1df3e28a0935@sirena.org.uk>
- <2337f45f-c513-1b10-ccfc-766363c5fd02@loongson.cn>
- <75a40be0-8eaa-4c9b-87dc-382c2a2af439@sirena.org.uk>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <3a0417f2-9e2d-7464-64fe-31d10b168f21@loongson.cn>
-Date:   Fri, 24 Mar 2023 11:32:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <75a40be0-8eaa-4c9b-87dc-382c2a2af439@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: RE: [PATCH v3 0/4] crypto: starfive - Add drivers for crypto engine
+Thread-Topic: [PATCH v3 0/4] crypto: starfive - Add drivers for crypto engine
+Thread-Index: AQHZVbQGpGqpyyNhMUOCrVA7ceGTta8JaAiQ
+Date:   Fri, 24 Mar 2023 04:51:43 +0000
+Message-ID: <734f3a559d28408fa5b95ade203626f2@EXMBX168.cuchost.com>
+References: <20230313135646.2077707-1-jiajie.ho@starfivetech.com>
+In-Reply-To: <20230313135646.2077707-1-jiajie.ho@starfivetech.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-CM-TRANSID: AQAAf8BxLL7KGR1kFtwKAA--.4497S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7JFyDuFyftw1fZr45GrWkCrg_yoW3Zrb_Cw
-        4vqr1rZrWUJw4UJw1DGw1UZrnrJrWUKa4UAF45Ar40qw15XFn5Jrn8Gws3JFy7Cr4Iyr98
-        Jr4rW3yfArW7JjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        27CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
-        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-        vE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-        r2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCF04k20xvE74
-        AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-        0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
-        IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
-        0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
-        Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07Uio7NUUUUU=
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [202.190.105.77]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+MIME-Version: 1.0
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,22 +65,77 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-在 2023/3/23 下午9:59, Mark Brown 写道:
-> On Thu, Mar 23, 2023 at 08:46:19PM +0800, zhuyinbo wrote:
->
->> I think add following change and that issue what you said will can be
->> fixed,   in addition, the spin_lock
->> was also not needed.   Do you think so?
->> @@ -101,8 +101,10 @@ static int loongson_spi_setup(struct spi_device *spi)
->>          if (spi->chip_select >= spi->master->num_chipselect)
->>                  return -EINVAL;
->>
->> +       loongson_spi->hz = 0;
->> +       loongson_spi->mode &= SPI_NO_CS;
->> +
->>          spin_lock(&loongson_spi->lock);
->> -       loongson_spi_update_state(loongson_spi, spi, NULL);
-> Looks plausible, yes - I'd need to see the full thing to verify.
 
-okay, I will send v3.
+> -----Original Message-----
+> From: Jia Jie Ho <jiajie.ho@starfivetech.com>
+> Sent: 13 March, 2023 9:57 PM
+> To: Herbert Xu <herbert@gondor.apana.org.au>; David S . Miller
+> <davem@davemloft.net>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner Berthing
+> <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>
+> Cc: linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
+> Subject: [PATCH v3 0/4] crypto: starfive - Add drivers for crypto engine
+> 
+> This patch series adds kernel driver support for StarFive JH7110 crypto engine.
+> The first patch adds Documentations for the device and Patch 2 adds device
+> probe and DMA init for the module. Patch 3 adds crypto and DMA dts node
+> for VisionFive 2 board. Patch 4 adds hash/hmac support to the module.
+> 
+> Patch 3 needs to be applied on top of:
+> https://patchwork.kernel.org/project/linux-
+> riscv/patch/20230221024645.127922-18-hal.feng@starfivetech.com/
+> https://patchwork.kernel.org/project/linux-
+> riscv/cover/20230120024445.244345-1-xingyu.wu@starfivetech.com/
+> 
+> Changes v2->v3:
+> - Only implement digest and use fallback for other ops (Herbert)
+> - Use interrupt instead of polling for hash complete (Herbert)
+> - Remove manual data copy from out-of-bound memory location as it will
+>   be handled by DMA API. (Christoph & Herbert)
+> 
+> Changes v1->v2:
+> - Fixed yaml filename and format (Krzysztof)
+> - Removed unnecessary property names in yaml (Krzysztof)
+> - Moved of_device_id table close to usage (Krzysztof)
+> - Use dev_err_probe for error returns (Krzysztof)
+> - Dropped redundant readl and writel wrappers (Krzysztof)
+> - Updated commit signed offs (Conor)
+> - Dropped redundant node in dts, module set to on in dtsi (Conor)
+> 
+> Jia Jie Ho (4):
+>   dt-bindings: crypto: Add StarFive crypto module
+>   crypto: starfive - Add crypto engine support
+>   riscv: dts: starfive: Add crypto and DMA node for VisionFive 2
+>   crypto: starfive - Add hash and HMAC support
+> 
+>  .../crypto/starfive,jh7110-crypto.yaml        |   70 ++
+>  MAINTAINERS                                   |    7 +
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   28 +
+>  drivers/crypto/Kconfig                        |    1 +
+>  drivers/crypto/Makefile                       |    1 +
+>  drivers/crypto/starfive/Kconfig               |   21 +
+>  drivers/crypto/starfive/Makefile              |    4 +
+>  drivers/crypto/starfive/jh7110-cryp.c         |  239 ++++
+>  drivers/crypto/starfive/jh7110-cryp.h         |  134 +++
+>  drivers/crypto/starfive/jh7110-hash.c         | 1041 +++++++++++++++++
+>  10 files changed, 1546 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
+>  create mode 100644 drivers/crypto/starfive/Kconfig  create mode 100644
+> drivers/crypto/starfive/Makefile  create mode 100644
+> drivers/crypto/starfive/jh7110-cryp.c
+>  create mode 100644 drivers/crypto/starfive/jh7110-cryp.h
+>  create mode 100644 drivers/crypto/starfive/jh7110-hash.c
+> 
+> --
+> 2.25.1
 
+
+Hi Herbert/David,
+
+Could you please help review this patch series?
+Thanks in advance.
+
+Best regards,
+Jia Jie
