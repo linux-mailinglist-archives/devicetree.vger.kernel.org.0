@@ -2,104 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF8796C86A3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8DD6C86BA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:22:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231761AbjCXURo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 16:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56360 "EHLO
+        id S231127AbjCXUW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 16:22:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231572AbjCXURn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:17:43 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7E11A486;
-        Fri, 24 Mar 2023 13:17:43 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id b19so2125817oib.7;
-        Fri, 24 Mar 2023 13:17:43 -0700 (PDT)
+        with ESMTP id S229551AbjCXUW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:22:56 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A3C1A95E
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:22:54 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id x3so12325423edb.10
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:22:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679689373;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f/8nQNR94y6t/5VtqhjM0ZF/6A0ua7j5oOvHfSU7/lw=;
+        b=dOc9jhY4N8YUGBiv3x4wPxr0n0Ngf+V+/Ic6NC5TVhIqdInrjGYBYDga1mDDCSZwFj
+         hSdUfR7+thm6BAERhP/nq/tNpTMWsqJt79ZiC3mpj58YFzAf8AwPn+0Fuyq1YHbBKoHj
+         dLVSj5l8fMovmDjp3L73aqAase+rr8xgW81Oq29MJ6EqKVp8TTmw0nZgJ2aHIalgtFLk
+         vj9gTsEV9p0GqHfrJ4ZGSznCXnzipkeBuMHMwhKv7NWc2cnAgOfjsUMsRlg+FzNXxbow
+         53zGQMBXZ4uVUUg8Hm5LLjGdnq3RWsPWSW+PtRGZ9+lVvZNQfloZehtiRW21i20t61C1
+         5r6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679689062;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hjo6T06AhgrOxDlWz+2G2Zgc5NeJaNtNcNVYDLu3Z6E=;
-        b=2JWRXrSz7YYmceDbTOfUwUqzTSmkWF55UTopg3rQRL50jhD2xcveMSu7kOvHRDKtar
-         e1rn2uE0pyQscjP1tqk/II2gWeqFjDF3pPYPeKvmR10EG/z2TDaPd1nWhWFznKLd9O1p
-         ZMxOz+A3TAAfu3o3vHlVB9Ixi03atqUoNXwmn/dF/KFi/Aov9DiOkCbWtj2M9eeM6L72
-         UGE5ebt58v38VggFdeAJ8gOd+QlpZNEeo5rY+cUasHu5B4wLhnwZocpZk+YGjdmJX+LT
-         vkg8N8ij04/CtGxxz5LI9tebEbEnIm34eSl10WXoUz0SetfQQO2o3detFmC5Xi262UwR
-         4v5A==
-X-Gm-Message-State: AO0yUKXLtl9yKbkWItMm6zvyywfwtJIw7d8NebVkvQ5v1t2ZoE3HJ/1I
-        YgvinMYKkrYyhtnpxIgqXP7Wyxc2pg==
-X-Google-Smtp-Source: AK7set83s82uaUJRj3dzo4SvDlSjN2K84Zt++hVAUhsWxmrL3xduYCYWVxI9pwtd5f8gJw4OKYZ90g==
-X-Received: by 2002:aca:a913:0:b0:386:a30c:f16a with SMTP id s19-20020acaa913000000b00386a30cf16amr1668100oie.50.1679689062413;
-        Fri, 24 Mar 2023 13:17:42 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l4-20020acabb04000000b00387852ef095sm918996oif.25.2023.03.24.13.17.41
+        d=1e100.net; s=20210112; t=1679689373;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f/8nQNR94y6t/5VtqhjM0ZF/6A0ua7j5oOvHfSU7/lw=;
+        b=CRvokpjZrZulPPpnSbrUsqIH0YJXeriF/JtzjqBdF7Th96k30a4K4YiEzv5US4IZxZ
+         RlK21A5WYbGaAfkm9VVeBV7UACK0MnJMmTyVpm7/6ndWpUamPPb+uHsYP7WQ4lBt5Eot
+         5FW1SHZjjKw45/GAzDdTyCRazeiYI0zKT7nm+WEAlEvUaaL8z5blGTLhBVgUWe6hFmhG
+         hCffisdDq7/TPH7V/bZJroBKy4tH8p/bnPSTkdluOkMVmY4//eaXNNwSKApEqiPKWfos
+         Rgvb4rF0oWPIJHsk3A/oAVaOw4/HoeMa35UGwiN+F5aCScmHvfbbPF98Q6cEW8yZBk6q
+         rStw==
+X-Gm-Message-State: AAQBX9f41C5RXEIo1NWHJMGhTvSI/RZK0N8qD4zV4HBJ4Az5luDry8a0
+        +08LS70BOR777FwenkBN9jMrwA==
+X-Google-Smtp-Source: AKy350YH+zPRg8shFxXaRMmprKSP+i3s/64H9neodx8jC3NYIjHU0yXtyu2ZX+el3QRtfd6e/X9HJA==
+X-Received: by 2002:a17:906:5299:b0:933:4dc8:972d with SMTP id c25-20020a170906529900b009334dc8972dmr3907248ejm.20.1679689373313;
+        Fri, 24 Mar 2023 13:22:53 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
+        by smtp.gmail.com with ESMTPSA id rh26-20020a17090720fa00b00930ba362216sm10900041ejb.176.2023.03.24.13.22.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 13:17:42 -0700 (PDT)
-Received: (nullmailer pid 2436315 invoked by uid 1000);
-        Fri, 24 Mar 2023 20:17:41 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        Fri, 24 Mar 2023 13:22:53 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/5] arm64: dts: qcom: msm8916-thwc-ufi001c: add function to pin config
+Date:   Fri, 24 Mar 2023 21:22:40 +0100
+Message-Id: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Bharat Bhushan <bbhushan2@marvell.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        wim@linux-watchdog.org
-In-Reply-To: <20230324145652.19221-1-bbhushan2@marvell.com>
-References: <20230324145652.19221-1-bbhushan2@marvell.com>
-Message-Id: <167968860240.2423272.17528725519300805146.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: marvell octeonTX2 GTI
- watchdog driver
-Date:   Fri, 24 Mar 2023 15:17:41 -0500
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Bindings require pin configuration nodes to have the function, even if
+it is GPIO:
 
-On Fri, 24 Mar 2023 20:26:51 +0530, Bharat Bhushan wrote:
-> Add binding documentation for the Marvell octeonTX2
-> GTI watchdog driver.
-> 
-> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
-> ---
->  .../watchdog/marvel-octeontx2-wdt.yaml        | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml
-> 
+  msm8916-thwc-ufi001c.dtb: pinctrl@1000000: sim-ctrl-default-state: 'oneOf' conditional failed, one must be fixed:
+    'esim-sel-pins', 'sim-en-pins', 'sim-sel-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml:28:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.example.dtb: watch-dog@802000040000: $nodename:0: 'watch-dog@802000040000' does not match '^(timer|watchdog)(@.*|-[0-9a-f])?$'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230324145652.19221-1-bbhushan2@marvell.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
+index 8433c9710b1c..978f0abcdf8f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
+@@ -44,18 +44,21 @@ &msmgpio {
+ 	sim_ctrl_default: sim-ctrl-default-state {
+ 		esim-sel-pins {
+ 			pins = "gpio0", "gpio3";
++			function = "gpio";
+ 			bias-disable;
+ 			output-low;
+ 		};
+ 
+ 		sim-en-pins {
+ 			pins = "gpio1";
++			function = "gpio";
+ 			bias-disable;
+ 			output-low;
+ 		};
+ 
+ 		sim-sel-pins {
+ 			pins = "gpio2";
++			function = "gpio";
+ 			bias-disable;
+ 			output-high;
+ 		};
+-- 
+2.34.1
 
