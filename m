@@ -2,93 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BBDE6C77C3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 07:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42AA46C77F8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 07:33:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231706AbjCXGR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 02:17:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
+        id S231273AbjCXGd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 02:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbjCXGRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 02:17:23 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D6028E76;
-        Thu, 23 Mar 2023 23:17:15 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32O5FbJ2030390;
-        Fri, 24 Mar 2023 06:16:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=XNhxMsKw6ZAe+EYt13fPXlDqqycgBNXXfO0jTrz0x0w=;
- b=LymwUMow5Jwgr4HR/5eHH+OVNwHFWYtxutNjh4/KbsM4Ny7gVjeScmWgEO57LS47Ec7w
- 5YApU1Y/pfNfXkB6xuPKu+qwmXQ1rpJHLMbSZiouiuLibsP0RlONIu389m+fVQC8fi44
- 2mkzSDMLs6X6om6+iMDSgRQl3qdH8f/Rl5rcO6GhCUgQdhinvRFFke/ls1m5SVtxCKQL
- t2Cbph8CoPiCySPCrklnOOIgbGb0Pc67HZ1XA89UhXW6TRjlZ3SqypwA5M78P5aDhHd3
- 40gCCKHSj8ExWuGFmmn2rvLs8QspOa4KzjJsHqoK/PHMpRAMYZLI+++zj6Gg1+rQ296/ ig== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pgydugvyf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Mar 2023 06:16:50 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32O6Gn6B005035
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Mar 2023 06:16:49 GMT
-Received: from hazha-gv.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Thu, 23 Mar 2023 23:16:43 -0700
-From:   Hao Zhang <quic_hazha@quicinc.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229484AbjCXGd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 02:33:28 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D39465BA;
+        Thu, 23 Mar 2023 23:33:26 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8Cxhdg0RB1kFZ4QAA--.25573S3;
+        Fri, 24 Mar 2023 14:33:24 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxsOQuRB1k8fgKAA--.40991S2;
+        Fri, 24 Mar 2023 14:33:22 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     Hao Zhang <quic_hazha@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-doc@vger.kernel.org>
-Subject: [PATCH v2 3/3] Documentation: trace: Add documentation for Coresight Dummy Trace
-Date:   Fri, 24 Mar 2023 14:16:08 +0800
-Message-ID: <20230324061608.33609-4-quic_hazha@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230324061608.33609-1-quic_hazha@quicinc.com>
-References: <20230324061608.33609-1-quic_hazha@quicinc.com>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v3 0/2] spi: loongson: add bus driver for the loongson spi
+Date:   Fri, 24 Mar 2023 14:33:15 +0800
+Message-Id: <20230324063317.14664-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LNGL-8bt0fqzFf7EHFVs3GItCkxhHfeV
-X-Proofpoint-GUID: LNGL-8bt0fqzFf7EHFVs3GItCkxhHfeV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_02,2023-03-23_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- adultscore=0 mlxscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 spamscore=0 malwarescore=0
- mlxlogscore=999 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303200000 definitions=main-2303240049
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxsOQuRB1k8fgKAA--.40991S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7AryfKr1DJF4rJF1DJr1fZwb_yoW8uFy8pF
+        W3Ca98Kr4DJF4xArs3JayUuFyfZ3yrXr9rXFWaq393uFyDZa4UZF1vqF1FvrZrAFnIvF1I
+        vFyvgrs5Ga4UZ3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b7xFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcxkI7VAKI48JMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxV
+        CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
+        6r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
+        WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG
+        6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
+        1UYxBIdaVFxhVjvjDU0xZFpf9x07Uio7NUUUUU=
+X-Spam-Status: No, score=-0.0 required=5.0 tests=SPF_HELO_PASS,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,78 +60,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for Coresight Dummy Trace under trace/coresight.
+Loongson platform support spi hardware controller and this series patch
+was to add spi driver and binding support.
 
-Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
----
- .../trace/coresight/coresight-dummy.rst       | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
- create mode 100644 Documentation/trace/coresight/coresight-dummy.rst
+Change in v2:
+		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+	 	   https://
+		   lore.kernel.org/all/20230307115022.12846-1-zhuyinbo@loongson.cn/
+		2. Remove the clock-names in spi yaml file.
+		3. Add "loongson,ls7a-spi" compatible in spi yaml file.
+		4. Add an || COMPILE_TEST and drop && PCI then add some CONFIG_PCI
+		   macro to limit some pci code.
+		5. Make the spi driver top code comment block that use C++ style.
+		6. Drop spi->max_speed_hz.
+		7. Add a spin_lock for loongson_spi_setup.
+		8. Add a timeout and cpu_relax() in loongson_spi_write_read_8bit.
+		9. Add spi_transfer_one and drop transfer and rework entire spi
+		   driver that include some necessary changes.
+		10. Use module_init replace subsys_initcall.
+		11. About PM interface that I don't find any issue so I don't add
+		    any changes.
+Change in v3:
+		1. This [PATCH v3 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Drop the unused blank line in loongson,ls-spi.yaml file.
+		3. Replace clock minItems with clock maxItems in yaml file.
+		4. Separate spi driver into platform module, pci module and core
+		   module.
+		5. Replace DIV_ROUND_UP with DIV_ROUND_UP_ULL to fix compile error
+		   "undefined reference to `__aeabi_uldivmod'" and  "__udivdi3 undefined"
+		   that reported by test robot.
+		6. Remove the spin lock.
+		7. Clear the loongson_spi->hz and loongson_spi->mode in setup to fixup
+		   the issue that multiple spi device transfer that maybe cause spi was
+		   be misconfigured.
 
-diff --git a/Documentation/trace/coresight/coresight-dummy.rst b/Documentation/trace/coresight/coresight-dummy.rst
-new file mode 100644
-index 000000000000..819cabab8623
---- /dev/null
-+++ b/Documentation/trace/coresight/coresight-dummy.rst
-@@ -0,0 +1,58 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+=============================
-+Coresight Dummy Trace Module
-+=============================
-+
-+    :Author:   Hao Zhang <quic_hazha@quicinc.com>
-+    :Date:     March 2023
-+
-+Introduction
-+---------------------------
-+
-+Coresight Dummy Trace Module is for the specific devices that HLOS don't
-+have permission to access or configure. Such as Coresight sink EUD, some
-+TPDMs etc. So there need driver to register dummy devices as Coresight
-+devices. Provide Coresight API for dummy device operations, such as
-+enabling and disabling dummy devices. Build the Coresight path for dummy
-+sink or dummy source for debugging.
-+
-+Sysfs files and directories
-+---------------------------
-+
-+Root: ``/sys/bus/coresight/devices/dummy<N>``
-+
-+----
-+
-+:File:            ``enable_source`` (RW)
-+:Notes:
-+    - > 0 : enable the datasets of dummy source.
-+
-+    - = 0 : disable the datasets of dummy source.
-+
-+:Syntax:
-+    ``echo 1 > enable_source``
-+
-+----
-+
-+:File:            ``enable_sink`` (RW)
-+:Notes:
-+    - > 0 : enable the datasets of dummy sink.
-+
-+    - = 0 : disable the datasets of dummy sink.
-+
-+:Syntax:
-+    ``echo 1 > enable_sink``
-+
-+----
-+
-+Config details
-+---------------------------
-+
-+There are two types of nodes, dummy sink and dummy source. The nodes
-+should be observed at the coresight path
-+"/sys/bus/coresight/devices".
-+e.g.
-+/sys/bus/coresight/devices # ls -l | grep dummy
-+dummy0 -> ../../../devices/platform/soc@0/soc@0:dummy_source/dummy0
-+dummy1 -> ../../../devices/platform/soc@0/soc@0:dummy_sink/dummy1
+Yinbo Zhu (2):
+  dt-bindings: spi: add loongson spi
+  spi: loongson: add bus driver for the loongson spi controller
+
+ .../bindings/spi/loongson,ls-spi.yaml         |  43 +++
+ MAINTAINERS                                   |  10 +
+ drivers/spi/Kconfig                           |  31 ++
+ drivers/spi/Makefile                          |   3 +
+ drivers/spi/spi-loongson-core.c               | 302 ++++++++++++++++++
+ drivers/spi/spi-loongson-pci.c                |  89 ++++++
+ drivers/spi/spi-loongson-plat.c               |  66 ++++
+ drivers/spi/spi-loongson.h                    |  41 +++
+ 8 files changed, 585 insertions(+)
+
 -- 
-2.17.1
+2.20.1
 
