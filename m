@@ -2,131 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 713956C7C5C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA7F66C7C75
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:25:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbjCXKQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 06:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56282 "EHLO
+        id S230117AbjCXKZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 06:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231678AbjCXKQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:16:56 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35D6136CA;
-        Fri, 24 Mar 2023 03:16:53 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id w4so1373571plg.9;
-        Fri, 24 Mar 2023 03:16:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679653013;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cziNVzlXnH/lQ5/2+kk4lE5zj/E0WdazVGv7S5DQupA=;
-        b=gTEL50fHUNYCxyR9k0EUrOvJ2iQIIrNX9VfBcWP3z4ptBVNbW5Nd9A86DS0Vb3dttt
-         ewdQvub3VD1E6ncz+SHjbR/s8R2qUsjLwNgvNmn1JtngdW9XXXIcUCHoQ9CGBw+AtS+H
-         fM1rnPkKB5dEDEDJcvMgLtcJ/nQFTFMlFYO8OF0XHR9eC8/P2IA+mVTEGjFctetHVuzt
-         S9zn9acZDNxucgjfKSXkDLYH+kESmUQ02extsU+kzVfd+0Cf7Yggrrf9kLVKbyLN7YTE
-         LgkVsPPXXkpk2qgQ/LSqEvyEHg7U0q6G+AC330vFT6fLD37s58lT5v69Qt7Tja6Y2FET
-         wb5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679653013;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cziNVzlXnH/lQ5/2+kk4lE5zj/E0WdazVGv7S5DQupA=;
-        b=2hY1S0X9Ui3Ds9OzxQ6E4HzAdb74xJU5Hr7zNpwyN2AIO2zMbAkv4tkUvvnzq60MpU
-         Mk+XluudfxBclCvn62vn10P7IdbIePv0whm0BqlO7wIM9xnrpjHpzPrADRNhVu1dTICc
-         YebMBvsSwUZRv5ihRK1jdzuzC+JDZjTwXYsn76Fh7cVPSwnv6f/wc1yGKPRS+QnRwb/Y
-         YZh2kGWvySSyv7ED1hPyIq1kVhzV/ia68hb+vCvRekikiSbAVhnKa7g2Qgj2FaJ5HKZv
-         GrI+uvdwFh2471f3PKNan+0N80cDhoFmig59SSNbzBWRoA75fOp2+Gw+Y3RVwGMQW7VC
-         DC/Q==
-X-Gm-Message-State: AO0yUKWLbO0nQGBg4plM8uMJplHC7hvi3/gb2WHATVHMWp2fnTaQEZng
-        qpbcve8bDsdQS3Qaxu17ENbhIgfEq8d+Ww==
-X-Google-Smtp-Source: AK7set9lTERL34FBRNIipit8w0qwmE6L0+mhtwG5LjWIAuHRB7gMRSprRagWnvLHUtpKuQUYtMLfrg==
-X-Received: by 2002:a05:6a20:8ee2:b0:d7:47e8:59bd with SMTP id m34-20020a056a208ee200b000d747e859bdmr2012753pzk.60.1679653013059;
-        Fri, 24 Mar 2023 03:16:53 -0700 (PDT)
-Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
-        by smtp.gmail.com with ESMTPSA id d2-20020a639742000000b00502e7115cbdsm10413239pgo.51.2023.03.24.03.16.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 03:16:52 -0700 (PDT)
-Date:   Fri, 24 Mar 2023 18:16:44 +0800
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, andersson@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, wcheng@codeaurora.org,
-        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-Subject: Re: [PATCH v4 12/18] usb: typec: qcom: Add Qualcomm PMIC TCPM support
-Message-ID: <ZB14jJNUhHGBl7Az@Gentoo>
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <20230318121828.739424-13-bryan.odonoghue@linaro.org>
- <ZBxkB04KqY8WbeA1@Gentoo>
- <89bca327-a860-672c-b4ae-766698d38639@linaro.org>
- <ZBzyK0ILtUDr986r@Gentoo>
- <37d14447-0f10-be88-9cd9-8ebd30f1d006@linaro.org>
- <ZBz5OvauxQ2PWcHu@Gentoo>
- <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
+        with ESMTP id S230071AbjCXKZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:25:51 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E64F1E1DF;
+        Fri, 24 Mar 2023 03:25:48 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 4FC82C0008;
+        Fri, 24 Mar 2023 10:25:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1679653546;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Xv+ASSzcWiUf7WB1UddjxDgaUpS6QjUv6DsxIIFvx1w=;
+        b=hl9OoFksAO9preOhRLTIo0SONnDHJIuXFwghucu/pBPo3zaA7osCDq9AyGtyOmgSyN7XUF
+        +XYru/MB6/vken94g5WLx5HB/V8xxCe3VeE7twcYrsqfHkcaExDaS26KALR2XI1mpvsl/K
+        SnbXosRs/KVijDPH3N1QMSg2pOhC7DPj3HIlBnPwiFoIWtrP5g58l/sQDDWQoizMoh5KIi
+        ZR+e4ZLGcvkR/rEbhkRnVjQ+p8dYyd8KHF0BnkvCJYfPy4TtSGtUPiuEEQA54LKByF3RwN
+        GHmrTJo2TrFW5uU0uHvpJUykvz4siTYpY1Ro4ty8npHV9HAV+5PvnZptqZg1pg==
+Date:   Fri, 24 Mar 2023 11:25:41 +0100
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org,
+        Michael Walle <michael@walle.cc>,
+        Richard Cochran <richardcochran@gmail.com>,
+        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jay Vosburgh <j.vosburgh@gmail.com>,
+        Veaceslav Falico <vfalico@gmail.com>,
+        Andy Gospodarek <andy@greyhouse.net>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Minghao Chi <chi.minghao@zte.com.cn>,
+        Jie Wang <wangjie125@huawei.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sean Anderson <sean.anderson@seco.com>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Alexander Lobakin <alexandr.lobakin@intel.com>,
+        Marco Bonelli <marco@mebeim.net>
+Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
+ selectable.
+Message-ID: <20230324112541.0b3dd38a@pc-7.home>
+In-Reply-To: <20230310113533.l7flaoli7y3bmlnr@skbuf>
+References: <20230308135936.761794-1-kory.maincent@bootlin.com>
+        <20230308135936.761794-1-kory.maincent@bootlin.com>
+        <20230308135936.761794-4-kory.maincent@bootlin.com>
+        <20230308135936.761794-4-kory.maincent@bootlin.com>
+        <20230308230321.liw3v255okrhxg6s@skbuf>
+        <20230310114852.3cef643d@kmaincent-XPS-13-7390>
+        <20230310113533.l7flaoli7y3bmlnr@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 24, 2023 at 02:37:15AM +0000, Bryan O'Donoghue wrote:
-> On 24/03/2023 01:13, Jianhua Lu wrote:
-> >> Can you show the printout of *(pmic_typec->base + TYPEC_SM_STATUS_REG) ?
-> 
-> [   17.108819] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-> qcom_pmic_typec_port_set_vbus misc 0x000000cb
-> 
-> [   17.118659] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-> qcom_pmic_typec_port_set_vbus sm_status 0x000000b9
-> 
-> SM_STAT == 0xb9 => 10111001
-When I connect my device to a usb hub with external power supply, it show
+Hello everyone,
 
-[ 1495.622026] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-get_cc: misc 0x000000c9 cc1 0x00000002 Rd cc2 0x00000000 Open attached 1 cc=cc2
-[ 1495.622383] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-get_cc: misc 0x000000c9 cc1 0x00000002 Rd cc2 0x00000000 Open attached 1 cc=cc2
-[ 1495.824637] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-qcom_pmic_typec_set_vbus sm_stat output 0x000000b9
-[ 1495.824667] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-qcom_pmic_typec_set_vbus misc 0x000000c9
-[ 1495.824685] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-qcom_pmic_typec_set_vbus sm_status 0x000000b9
-[ 1495.824739] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
-set_cc: currsrc=1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=cc2
-[ 1495.829001] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc complete
+I'm sorry to intervene late in this discussion, but since it looks like
+the discussion is converging towards the creation of a new API (though
+NDOs internally, and through netlink for userspace), I'd like to add a
+small other use-case to consider. Of course, this can be addressed
+later on.
 
-I think my device's pm8150b is connected to charger pump but this charger
-driver hasn't been implement, so can't detect pm8150b_vbus.
-> 
-> In other words, my hardware gives a clear indication of the appropriate 
-> transition.
-> 
-> Would appreciate if you could apply the above "patch"
-> 
-> That said I _am_ included to believe you and to do something about it, I 
-> will downgrade to a warning instead of returning on error in failure to 
-> transition to VSafeVX
-Your patch is correct. Making it warning let other devices' type-c work normally.
-I agree with your idea.
-> 
-> Yeah though I'd appreciate seeing the output of the above patch to see 
-> if there's something we are missing.
-> 
-> Thanks for your review/time/input
-> 
-> ---
-> bod
+On Fri, 10 Mar 2023 13:35:33 +0200
+Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+
+> On Fri, Mar 10, 2023 at 11:48:52AM +0100, K=C3=B6ry Maincent wrote:
+> > > From previous discussions, I believe that a device tree property
+> > > was added in order to prevent perceived performance regressions
+> > > when timestamping support is added to a PHY driver, correct? =20
+> >=20
+> > Yes, i.e. to select the default and better timestamp on a board. =20
+>=20
+> Is there a way to unambiguously determine the "better" timestamping
+> on a board?
+
+I'd like to point out a series sent a while ago :
+
+https://lore.kernel.org/netdev/3a14f417-1ae1-9434-5532-4b3387f25d18@orolia.=
+com/
+
+Here, the MAC's timestamping unit can be configured in 2 ways, which
+boils down to either more accurate timestamps, or better accuracy in
+frequency adjustments for the clock.
+
+The need is to be able to change this mode at runtime, as we can change
+the clock source for the timestamping unit to a very precise-one,
+therefore using the "accurate timestamps mode" working as a
+grand-master, or switching to slave mode, where we would sacrifice a
+little bit the timestamping precision to get better frequency
+precision.
+
+So, we can consider here that not only the MAC's timestamping unit has
+a non-fixed precision, but if we go through the route a a new API,
+maybe we can also take this case into account, allowing for a bit of
+configuration of the timestamping unit from userspace?=20
+
+> Is it plausible that over time, when PTP timestamping matures and,
+> for example, MDIO devices get support for PTP_SYS_OFFSET_EXTENDED
+> (an attempt was here: https://lkml.org/lkml/2019/8/16/638), the
+> relationship between PTP clock qualities changes, and so does the
+> preference change?
+
+I'm not exactly familiar with PTP_SYS_OFFSET_EXTENDED, but it looks a
+bit similar in purpose to the above-mentionned use-case.
+
+Thanks,
+
+Maxime
