@@ -2,56 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A676C8557
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 19:49:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 525246C855E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 19:51:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjCXSt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 14:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
+        id S231436AbjCXSvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 14:51:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbjCXStZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 14:49:25 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC65E2711;
-        Fri, 24 Mar 2023 11:49:22 -0700 (PDT)
-Received: from zn.tnic (p5de8e687.dip0.t-ipconnect.de [93.232.230.135])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id EEB631EC0716;
-        Fri, 24 Mar 2023 19:49:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1679683761;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=iHE7VW3ZBEXfcG3h4LmV2OzWObJqnQ/jtwe77JzyYPc=;
-        b=L4iHJtWzRj/rL0b1QAZxNtL3R8diFUp6fZbAATjj+edUOydmgBfUHzhsvEiD2Ew1hX8YlG
-        yTzs+zXfGlzCckhmNIEjRopge9pJklZDo8zaBIeR/q3wKEvjCISOvEhtd5WDcTL1/V8CuL
-        ud5pbeLwTUKUQgHndIrF/vrZ8m0cYPI=
-Date:   Fri, 24 Mar 2023 19:49:16 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
-Cc:     "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "tony.luck@intel.com" <tony.luck@intel.com>
-Subject: Re: [PATCH v3 2/2] edac: xilinx: Added EDAC support for Xilinx DDR
- controller
-Message-ID: <20230324184916.GGZB3wrKiQEpOtJI75@fat_crate.local>
-References: <20230117054100.8377-1-shubhrajyoti.datta@amd.com>
- <20230117054100.8377-3-shubhrajyoti.datta@amd.com>
- <Y9bu8CpiVKvFS1d+@zn.tnic>
- <BY5PR12MB490209C639C9ADD9FB67F75D81B29@BY5PR12MB4902.namprd12.prod.outlook.com>
+        with ESMTP id S231263AbjCXSvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 14:51:49 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3C59270B;
+        Fri, 24 Mar 2023 11:51:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TC1n6LM1aCAMDc9WDQX1m4oiVEwuXVe5d/wq6lnaXV2hFdku/5UcGG9kHnFrRUhf5ABHqp2K3NCK353GIRpgl/Cx4SwNQ7H27/9JsQv7d290nMBmXXoTcwa9+eB6MPZbtB/x6BB1Ez+IuA4o6F5aJmYyMDLSBFg8TDgU9nSwu4kcihMzR9iG6XUAou94Qq0KRZ8OZU2Xzm1f8yIH3UN2VaNraBwhTir5NHJv5O2ZD/d8x+kBbD2T1s/yX0ItjrnkWVNo2O8HSBqo1Iz9o+SFGja802vaI6+2foDExNLYkuGnKOVIfhg21/wl4E3ciMrmZ200ARAKAiA6I8UHxymZnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XTRp0nIAhtx0YzW2i3jspM6rsZXVMyMRmOkQ8fO867g=;
+ b=mtxnajkEn9wGgxpcPcvpG1jgUDAWy/cDER8PF1iC1JtAle2RmIlgOSAZnkyvkqKkdq/0MGUZV4tx+ZJIsHiHVzD+RWD5xt+d6yNWiXSbmOWKfXeamyiBUa8t2xyT/61c8wGKNGaYVZXZnCFh4YA86Kv3vnCPwUHMFYEGMhkAVNq+SMyfvr2gyziWtvtWWCiWxvnWCEfo1yabKIK2AoavGe+2I94ETFg6CkJW0aBd67HWMnMk2maakAfzlZlPUhZ+uBAJVco3Bz+y0iYI4xxhwHZ/FUwkY1KUfHXkjpqnqxzwWtkgiA9k1etxeUcGfc52VFUFyGWkWK7f19x0kzi8pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XTRp0nIAhtx0YzW2i3jspM6rsZXVMyMRmOkQ8fO867g=;
+ b=FpYdwirearVN7oF9gAQsyt9Jr2NE+DvFSn5LKCnlvvjuX43NWRyG4/KpnrQ4+mdjWIz4X8awRu6Duhy3tQy6dnwe0I63XB3emSz9ifdeVVwfxh2q33bSGwthhzcER+i7f1uqYsvap7+zFKfXIZUrh/2zC/SV/OYa9ECUGjW7T3WwCgV59Exb66DwOU/61VqDcyR2RCeEyZOq+RnMV9mqr3sNMsmy6Ic6wPbhdwAPMsb6X/d84vBEeEzAgshvQq0oD8jhMaazPIMr83MzWxLCiPQhV+lZTKoCkqoeCq1s44hmVQvMj4PBRDsVRFWk5eOQj88bb1deCGWN+ECX+jJW4A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
+ by MN6PR12MB8516.namprd12.prod.outlook.com (2603:10b6:208:46f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Fri, 24 Mar
+ 2023 18:51:44 +0000
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::735c:fa9:2043:279a]) by IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::735c:fa9:2043:279a%5]) with mapi id 15.20.6178.038; Fri, 24 Mar 2023
+ 18:51:44 +0000
+Message-ID: <7f2dc5cf-78b5-81c6-0012-26b1adce1c86@nvidia.com>
+Date:   Fri, 24 Mar 2023 11:51:40 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH V4 04/10] dt-bindings: timestamp: Add
+ nvidia,gpio-controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230323012929.10815-1-dipenp@nvidia.com>
+ <20230323012929.10815-5-dipenp@nvidia.com>
+ <20230324171329.GA2062332-robh@kernel.org>
+Content-Language: en-US
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+In-Reply-To: <20230324171329.GA2062332-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR13CA0070.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::15) To IA1PR12MB6604.namprd12.prod.outlook.com
+ (2603:10b6:208:3a0::7)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BY5PR12MB490209C639C9ADD9FB67F75D81B29@BY5PR12MB4902.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6604:EE_|MN6PR12MB8516:EE_
+X-MS-Office365-Filtering-Correlation-Id: eec32a54-2a08-4d52-661a-08db2c98d02f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SIyjqGq0z1q+sHdvUNO3lH5LvYnzgRepiuWsZhS3xEMo6xs0rZViZNSZakj5SUbiA0ttze/Dw8Z9XANs1MLgEaZIkwHIVX79NnMO9ywqnb357Tm99GRQ0xzBTSNcpGNnI+P7zMXHBrkE0ySun+ftFCNDrtMHjcgn0o3e6HYcrWTdPf7kWCQLGQEm/eISQPSCgjyk/6+JVZoAcRUQm8k8T8REAI+euGgOLFcTdO/i4naCgpF1m/EK+OHsyvCVTcapurU/lA3SSY2n46J086f2FsoM4cOSTKxW86y4wK5usEwudSHqRPBk+WnJF1wROBdCXV7bfkBXpIPmojrVOoOAVEZEQbBeHv/nvtnkP9WswbnUuzBWYf9fQnlj7Q6us24PCUmOXtuDDRFnEi+LKekAnAtr4ZjWALZn1v2OIrxBo5+DcHtNqBsk2tyEBd4Qa1FnNlUWIDkY9OHaK28egHSQUasdkjMyz7PYFaLVi5QIVMHKVDon8ROlNvLEgwpqqZGg49u6aZII3YMMM1Hb7pam/iOzwzUDA39gyCPZ7rnxpVLrsCv+5G8C7dnj3hXpXYF+xrHEoFkGBQjzlue+rw46Y1ndhuwdRvUNSTcdO3Tce78bRjUXVpnLzegXRmdOCsB4hrFH2UNE8NvuvKYOirFrCVbNqm+AVyH5lt0tYz80uz9N7H/ZFRMhPbh2MSGYEHeALm9ByMP3c+MfxM8VfYl1RJN08ndFOJBitMSjp/rveE8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB6604.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(376002)(39860400002)(396003)(366004)(451199021)(2906002)(2616005)(38100700002)(4326008)(6916009)(66476007)(66946007)(66556008)(7416002)(6666004)(41300700001)(316002)(5660300002)(26005)(6512007)(186003)(6486002)(53546011)(6506007)(478600001)(83380400001)(8936002)(31686004)(8676002)(31696002)(86362001)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q1Y2dU1LKy9TTHpFcFZ3elp0cG9HcFh5K24wamc5M3FmTGhCcWRFWUxjaWJL?=
+ =?utf-8?B?TkVNWURIWER4elJ1OUxnZlNvNXd5aVdSTVEydHUwVEdKdW1LK0hkV3NYQ29M?=
+ =?utf-8?B?QUlXMzdMcGVoaEdyL3VualhWUjl3Q2lUcW8rekFZVGo2WVdYSG9xWXFOSWto?=
+ =?utf-8?B?TzNENVFzWlIxOGJBMVpnNXJQRWZCYXNISkNVQUlQNEZTdFlsSzRaNk1wS0ll?=
+ =?utf-8?B?N240L2JlUXN3bURBTDhqYStUN2tMeHdpK0taN1hHdVV5MzdlNE1Va2ZMbnN0?=
+ =?utf-8?B?YUlMc201RlExNVo0c1RMWjhyZGNZeU9wSkRPTlpibDlGeHBLajNCSS9MRUpL?=
+ =?utf-8?B?elVwSlFTRVBvKzdDWTliVzFqcTNYZk1iVmdjQjZPWm5xSWV6dzM4TWJCSVNE?=
+ =?utf-8?B?cFVKS2Z6S1JndUtrTU1CbTdmMjhYUUZ6WC9nQzIrMWVoQk1KTFI5dHc2d2ll?=
+ =?utf-8?B?SnZ5blpENmh3bi9iRCtwOFkxNW55R25RcUg2NHEvWHYzZEFWQ1loTXJBckp3?=
+ =?utf-8?B?a09HNytHLzRDdWdXSGRtVFZJb2tuSjNUR3Z0dEhDdE9qVnNDNXRZZlZSZm5j?=
+ =?utf-8?B?TXI5MW52Qlk3NkJhVDNudWFpRUdOTVM4WGpDa2k1dTZqa0pvQURaQXdlRmFF?=
+ =?utf-8?B?dFpmejlXQ0JpditaZUs3ZFJiUWJxSVdhS3dSbFMwc1NxNDVRdkR3Nmc2RGZl?=
+ =?utf-8?B?Ym1TT213MDNmQWczQTdhcGVGd0hqdTlqYzdMU3NnZXFzbEwwRENzN2pVelBx?=
+ =?utf-8?B?LzgwenB2SjRtdzR2ekdBejNrZVFuUVN5TnFqdzhhOFhIcE8rWFc1K0UrTGh5?=
+ =?utf-8?B?aGh3ek1BZDJVSEFzVUszQkZEVVFnQWVlMXBWNmxJUnF2dFdocFlQOXlsNm5C?=
+ =?utf-8?B?NVFiWkRHMnNnbmxOZ09YaVpxM21UY3AwaDFyeHVxQ1N2c05pSTdvZ1ZjRGRW?=
+ =?utf-8?B?ekV5QVNPOHVtT3JsNTRVL0Mvak5od1NhT0JVSWRVWUR1RjJuSWp6eEppT3pn?=
+ =?utf-8?B?Q0ltOCtveTh5MEVhWWVIS2gweFdQVjlzZ1NrRmQ3OWNYOHZZMWhRWUVsR2hC?=
+ =?utf-8?B?OERGMzNVaGc0WWxOTEROczlKcS81ZWI2cFdiVnBRZUxsQmRIUlplL3JqRUE4?=
+ =?utf-8?B?WHNram1EQmhOQWpaN2xEdlRDeVNUS3d6a1djS1lJQjErQ3hSaEMvZHdkb1lq?=
+ =?utf-8?B?OHVyNHo4VTVZdEs4OXhZVmUzOXRWamQwcmIrcWFzb0F4RVRaYlVGTVhvY2Jk?=
+ =?utf-8?B?aTdvbnpWVXc2RnRJNUtsN2ozUVNsMEtEWFJrZFhnOFBPU3ZlUnhWeG9Qd3da?=
+ =?utf-8?B?Ui9tYzBVQy9nQmVSTDR6OU04RFZ6ZitUeFcrR3dtcXcyQmpqSUtEM092TDZD?=
+ =?utf-8?B?ZHhjeXhQbEtSZGlFZnhreVowaEhGU3dIN1JiYXp4UjNMc3I2c3Rla25keEJl?=
+ =?utf-8?B?eGYzOTFSMHlDcWJNeE5OUzFwZXJXS29VOWhZUGVnVlVtT3c3dTgxcVZWMlhp?=
+ =?utf-8?B?UmZKWks2b3lIWlZBTStkcEgxZWJXSGlUR3pMZVNteExuMGt3NVNiTjkvWDd4?=
+ =?utf-8?B?cFpnOEdwTzYzbFQ1anNGL1Y4UzVGQnY4Q2VLT3FmVUI5dUhKdUVqemxrNjFM?=
+ =?utf-8?B?d0diV0hTZFZ1RWJsV0swL0RpbUY4VWYra1RzajZTbS9aS3JnbUs0N2d4N0FX?=
+ =?utf-8?B?TGRBbGNVY2YvbUtZU09JUmNNY1dYdllKNzk0WTVBelZ2OVRseWFWUzJEbXpu?=
+ =?utf-8?B?c2Q1U3FPK2hUcEk4Y2p4WUNQRjhSNmpPemVramF1RnZQbElFZFlYWE1JQkhw?=
+ =?utf-8?B?bWxJeU9MUGpLQ3Bza3pNSEwyTFVtM1o3d04zcGNST1dMQUcyNGU0WGVjRENW?=
+ =?utf-8?B?L0l6OU41ZlZqaVIwQUpLS0w1YzF5c0JualpIeUtJemJxNU0waytOblZJSXBQ?=
+ =?utf-8?B?Q2pnbExPODU3RmpyMnNtOXNMWmtrS1dpUEh0UVB6NkNxN3o3YkhNUGhjbllD?=
+ =?utf-8?B?ekR1Z2Z1Y3Z1dUZDVlZJbWFwUlgya3dSZXk4aGRGblMwQlVueXdjL3NHczNu?=
+ =?utf-8?B?MWZkWVJoVDZwT2pHMmJUSERxYzdzZGc5K0VrNVNVMGgvVHFhaFd2RzRaeitk?=
+ =?utf-8?Q?5hR1sLkZjghP9nvVIBczBEGZW?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eec32a54-2a08-4d52-661a-08db2c98d02f
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6604.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2023 18:51:44.6898
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ep8PXmLhvIATDBoDWAFgJnhtohsxxZ+hgAcw94wLWve87zYbPQF6925gmQmzPrckwWsrDTkR9Sk0jXZjMIua5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8516
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,128 +132,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 02, 2023 at 05:24:16AM +0000, Datta, Shubhrajyoti wrote:
-> > > +
-> > > +#define PCSR_UNLOCK_VAL                              0xF9E8D7C6
-> > > +#define XDDR_ERR_TYPE_CE                     0
-> > > +#define XDDR_ERR_TYPE_UE                     1
-> > > +
-> > > +#define XILINX_DRAM_SIZE_4G                  0
-> > > +#define XILINX_DRAM_SIZE_6G                  1
-> > > +#define XILINX_DRAM_SIZE_8G                  2
-> > > +#define XILINX_DRAM_SIZE_12G                 3
-> > > +#define XILINX_DRAM_SIZE_16G                 4
-> > > +#define XILINX_DRAM_SIZE_32G                 5
-> > 
-> > Oh wow, that's a *lot* of defines!
-> > 
-> > How about unifying them?
-> > 
-> > All those rank masks look the same.
-> I did not understand the comment. Could you please clarify.
-> The size difference is not uniform so a offset jump strategy may not work.
-
-$ grep -E "GENMASK\(5, 0\)" drivers/edac/xilinx_ddrmc_edac.c
-#define RANK_0_MASK                             GENMASK(5, 0)
-#define ROW_0_MASK                              GENMASK(5, 0)
-#define ROW_5_MASK                              GENMASK(5, 0)
-#define ROW_10_MASK                             GENMASK(5, 0)
-#define ROW_15_MASK                             GENMASK(5, 0)
-#define COL_1_MASK                              GENMASK(5, 0)
-#define COL_6_MASK                              GENMASK(5, 0)
-#define BANK_1_MASK                             GENMASK(5, 0)
-
-Ditto for the other ones.
-
-Can't you use a single
-
-#define MASK_0					GENMASK(5, 0)
-
-and then use MASK_0 everywhere?
-
-And the same for the other ones?
-
-Better yet, you can define a function which does that repeated block:
-
-        priv->row_bit[0] = regval & ROW_0_MASK;
-        priv->row_bit[1] = (regval & ROW_1_MASK) >> ROW_1_SHIFT;
-        priv->row_bit[2] = (regval & ROW_2_MASK) >> ROW_2_SHIFT;
-        priv->row_bit[3] = (regval & ROW_3_MASK) >> ROW_3_SHIFT;
-        priv->row_bit[4] = (regval & ROW_4_MASK) >> ROW_4_SHIFT;
-
-in one:
-
-static inline void process_bit(priv, unsigned int start, ... regval)
-{
-	priv->row_bit[start]	 =  regval & MASK_0;
-	priv->row_bit[start + 1] = (regval & MASK_1) >> ROW_1_SHIFT;
-	...
-}
-
-and then you don't have to define the same masks for every 5 bits but
-have the function do it for ya, for each group of 5 bits?
-
-
+On 3/24/23 10:13 AM, Rob Herring wrote:
+> On Wed, Mar 22, 2023 at 06:29:23PM -0700, Dipen Patel wrote:
+>> Introducing nvidia,gpio-controller property from Tegra234 SoCs onwards.
+>> This is done to help below case.
+>>
+>> Without this property code would look like:
+>> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
+>> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
+>> 				   tegra_get_gpiochip_from_name);
+>> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
+>> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
+>> 				   tegra_get_gpiochip_from_name);
+>> else
+>> 	return -ENODEV;
 > 
-> <snip>
-> > > +     ulong err_addr = 0;
-> > > +     u32 index;
-> > > +
-> > > +     for (index = 0; index < XDDR_MAX_ROW_CNT; index++) {
-> > > +             err_addr |= (pinf.row & BIT(0)) << priv->row_bit[index];
-> > > +             pinf.row >>= 1;
-> > > +     }
-> > > +
-> > > +     for (index = 0; index < XDDR_MAX_COL_CNT; index++) {
-> > > +             err_addr |= (pinf.col & BIT(0)) << priv->col_bit[index];
-> > > +             pinf.col >>= 1;
-> > > +     }
-> > > +
-> > > +     for (index = 0; index < XDDR_MAX_BANK_CNT; index++) {
-> > > +             err_addr |= (pinf.bank & BIT(0)) << priv->bank_bit[index];
-> > > +             pinf.bank >>= 1;
-> > > +     }
-> > > +
-> > > +     for (index = 0; index < XDDR_MAX_GRP_CNT; index++) {
-> > > +             err_addr |= (pinf.group & BIT(0)) << priv->grp_bit[index];
-> > > +             pinf.group >>= 1;
-> > > +     }
-> > > +
-> > > +     for (index = 0; index < XDDR_MAX_RANK_CNT; index++) {
-> > > +             err_addr |= (pinf.rank & BIT(0)) << priv->rank_bit[index];
-> > > +             pinf.rank >>= 1;
-> > > +     }
-> > > +
-> > > +     for (index = 0; index < XDDR_MAX_LRANK_CNT; index++) {
-> > > +             err_addr |= (pinf.lrank & BIT(0)) << priv->lrank_bit[index];
-> > > +             pinf.lrank >>= 1;
-> > > +     }
-> > 
-> > Oh wow, 6 loops!
-> > 
-> > I'm wondering if you could "unroll" those loops and work on each component
-> > with a single mask and such...
+> Or you just put the name in match data.
+
+Not sure I have understood this comment, but "name" the first argument is
+already there to supply to callback to match data. Also, this if else is
+needed to know which "name" to provide.
 > 
-> I did not understand this one . The loop are running for different indixes.
+>>
+>> This means for every future addition of the compatible string, if else
+>> condition statements have to be expanded.
+>>
+>> With the property:
+>> gpio_ctrl = of_parse_phandle(dev->of_node, "nvidia,gpio-controller", 0);
+>> ....
+>> hte_dev->c = gpiochip_find(gpio_ctrl, tegra_get_gpiochip_from_of_node);
+>>
+>> This simplifies the code significantly. The introdunction of this
+> 
+> typo
 
-Let's take the first one. Isn't what you're doing equivalent to simply:
+ACK...
+> 
+>> property/binding does not break existing Tegra194 provider driver.
+> 
+> Making a new property required is an ABI break.
+The driver code for the Tegra194 binds by old binding and does not need
+this new property, the relevant code is part of this patch series.
+> 
+>> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+>> ---
+>>  .../timestamp/nvidia,tegra194-hte.yaml        | 31 +++++++++++++++++--
+>>  1 file changed, 29 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> index eafc33e9ae2e..841273a3d8ae 100644
+>> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> @@ -51,6 +51,12 @@ properties:
+>>        LIC instance has 11 slices and Tegra234 LIC has 17 slices.
+>>      enum: [3, 11, 17]
+>>  
+>> +  nvidia,gpio-controller:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      The phandle to AON gpio controller instance. This is required to handle
+>> +      namespace conversion between GPIO and GTE.
+> 
+> Explain what the GPIO controller is needed for rather than how this 
+> changes the driver.
+Doesn't "This is required..." statement addresses why GPIO controller is needed
+for part? Or do you want detail explanation which is already part of the commit?
+> 
+>> +
+>>    '#timestamp-cells':
+>>      description:
+>>        This represents number of line id arguments as specified by the
+>> @@ -65,22 +71,43 @@ required:
+>>    - interrupts
+>>    - "#timestamp-cells"
+>>  
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - nvidia,tegra234-gte-aon
+>> +    then:
+>> +      required:
+>> +        - nvidia,gpio-controller
+> 
+>> +
+>>  additionalProperties: false
+>>  
+>>  examples:
+>>    - |
+>>      tegra_hte_aon: timestamp@c1e0000 {
+>>                compatible = "nvidia,tegra194-gte-aon";
+>> -              reg = <0xc1e0000 0x10000>;
+>> +              reg = <0x0 0xc1e0000 0x0 0x10000>;
+>> +              interrupts = <0 13 0x4>;
+>> +              nvidia,int-threshold = <1>;
+>> +              #timestamp-cells = <1>;
+>> +    };
+>> +
+>> +  - |
+>> +    tegra234_hte_aon: timestamp@c1e0000 {
+>> +              compatible = "nvidia,tegra234-gte-aon";
+>> +              reg = <0x0 0xc1e0000 0x0 0x10000>;
+>>                interrupts = <0 13 0x4>;
+>>                nvidia,int-threshold = <1>;
+>> +              nvidia,gpio-controller = <&gpio_aon>;
+>>                #timestamp-cells = <1>;
+>>      };
+>>  
+>>    - |
+>>      tegra_hte_lic: timestamp@3aa0000 {
+>>                compatible = "nvidia,tegra194-gte-lic";
+>> -              reg = <0x3aa0000 0x10000>;
+>> +              reg = <0x0 0x3aa0000 0x0 0x10000>;
+>>                interrupts = <0 11 0x4>;
+>>                nvidia,int-threshold = <1>;
+>>                #timestamp-cells = <1>;
+>> -- 
+>> 2.17.1
+>>
 
-	err_addr = pinf.row & GENMASK_ULL(0, XDDR_MAX_ROW_CNT);
-	err_addr <<= XDDR_MAX_ROW_CNT;
-
-?
-
-You basically stick in the error address each segment one after the
-other...
-
-err_addr = [XDDR_MAX_ROW_CNT ... XDDR_MAX_COL_CNT ... XDDR_MAX_BANK_CNT .. ]
-
-and so on?
-
-Thx.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
