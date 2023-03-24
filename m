@@ -2,151 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29D946C78D8
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C97026C78ED
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:37:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231527AbjCXH2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 03:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54424 "EHLO
+        id S231705AbjCXHhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 03:37:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbjCXH2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:28:05 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578581166B
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:27:50 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id t10so4164174edd.12
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:27:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679642868;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oih3Pyj2vg952+sPFJ5XDe6upuoomzNQh4Yo5qTQaxo=;
-        b=GY1hpt+FN7fln0dR8BdnbXcu/LbNJ3fpf3kFZ0FEtAunb6CQjF/UG1GMb3Q6Mjg5T9
-         j54kRaHPAGqD8TRD/UVP/yqBJZZIs7Zr+oyhXrMRYS2yDmyYfV/1gbMz7gKE8MyZFdL5
-         X561dGydhZhie5OvyWoTqVylqy1zPSgMiEYftEkrdjSR2fwMWcjfvFgtmqY1FEBrnrV7
-         kox/hCP0Sv1mVESFoa30R/FIghehf0XfUWPj/eB0qZxgnz8aqE8pEsV6oxpnx2Dm0cGm
-         HKUXEK81gZQdQGCp3T61jtqXfdq8oH6cRQj001cU1oCGwxRn09azugCZU59CRlJkYp+/
-         lm0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679642868;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oih3Pyj2vg952+sPFJ5XDe6upuoomzNQh4Yo5qTQaxo=;
-        b=MtkbNxEFZUgTn2wMLNpiCQXWnSXF3P+V2poRwBY2u6HX9iOZZ5r4A4AMx1y4+mIpXB
-         mzxoHQ9kgEmqFNS03v0ANv2Fcq/o1ALNg4QT3wku8Asdq8HvHTPKm4l0YCTnTKqlxwLF
-         vwEm4W0LhuW/1V/B1T9BU53HaN5xGXt9X9A+XmMGeK4wPi0ExSA/OJCDmnt3N8LP5Gt2
-         AZuWUT0k7q/tCAty7eDiYFXE7bPuaip1jZ8U7BPggtMVOPFZQ/eibTgFAQPGnpt72oDV
-         Uh+vMPQVuyjEbBwFCufkRFwLaW/K9LYaaaf8kOZLVNZAa5O6F7ZYeufC4FQTPZdKYGoe
-         5H7g==
-X-Gm-Message-State: AAQBX9e4VpsgTo81jdrgBiAtKWfAaXW5MapHVx0YGrgXbTIhaM4PTtiC
-        ZnDsfmx//UGww0wGrG20sQEhxw==
-X-Google-Smtp-Source: AKy350ZunRJAXsfCtjyQ9QD3LrcckTtK/mvR3aNTMn6rSvTzB/AHlYFY975tPMMibVWK0xODrnmwRA==
-X-Received: by 2002:a17:906:32d5:b0:931:1e69:e1da with SMTP id k21-20020a17090632d500b009311e69e1damr1676830ejk.7.1679642868521;
-        Fri, 24 Mar 2023 00:27:48 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ce50:243f:54cc:5373? ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
-        by smtp.gmail.com with ESMTPSA id lg10-20020a170906f88a00b008cc920469b5sm9878299ejb.18.2023.03.24.00.27.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 00:27:48 -0700 (PDT)
-Message-ID: <799dac6c-f364-916f-4440-61c2429054c8@linaro.org>
-Date:   Fri, 24 Mar 2023 08:27:46 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: sm8450: remove invalid reg-names
- from ufs node
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Eric Biggers <ebiggers@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S231686AbjCXHhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:37:05 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E10340C0;
+        Fri, 24 Mar 2023 00:37:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XMNyRSr3vdx2QuPQquildwCGI+lZq6YqWjqwssW180BWn1cmAOhA4WINTZsJabD5GFIHO48f2beE0cvcGwewUIM9H71Uyq6SpqfyETEipdcwxpz3Zu+O8bmNY5vT3vVu/aVqy6VirjyZnOI0JfKbA+OiUP2pxhTLDIbSYwPXXWimM3Ry7IDZDBOvYeT0tVFC26UwxMHZTa97rUb9RDhV6J1K2ecrNI49/lEONScp19OslczleEBKrAjnKoe6Sioszl0vK/3PryDPoj7KQ60FCWWXdaMHAeTD9SWBmUMo89EHZ2ntIps0OoY7iRRPkn7AaLQdC92TMd927JuqaVTIIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RVc8ZJuErBpzijR9LjiJ3B34vw6NXI8DrV/BLNtbg1k=;
+ b=gEaZdFiM2djYahINqHWofaRJ6mbUq58R8Lq44Y8S2Sczrcw+h1YFnNB0rWSpFoNM8S8zt8xUDluvE0OK0ixLSrLDN0cn2A0z+fPJphc9ssvSmZeipbHBvWv/l1K/W6SagG85czRE9tH7VWRXqbo1ZOmBs80maxoKJlX6Dfd0MOOUiiAP+tzTc+3fRQIDVeEHYtVkt2kiHa5vFwIFdxbupFkuwGy3QWK/ekqlc73qOzgZL/tYCw3fYdgwPhHeiewUCeYKvSpWMETy1hDTHNkepW1KdqANlQ6Odzrk2XLADW2XXH2Tom3/ZqM1a7Xuv2uze29QrD/qQ3z8y1jXteQ3fw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RVc8ZJuErBpzijR9LjiJ3B34vw6NXI8DrV/BLNtbg1k=;
+ b=0yVXx/5MCf324q69WSGJ2cpB+psLac7t1tRU8y/Spk2MiMyE6CCiyq0zCZAh0Tv9WvU6nLroQL+lnuk8RHB98607YvLn4y5Y3YUrwlT/TKSIBico2P8ovFn6BNm1O0/0iN7ON7apKKyx1FZrePiW0MdkYqY2iceFw84jkU6Vjk8=
+Received: from DM6PR08CA0052.namprd08.prod.outlook.com (2603:10b6:5:1e0::26)
+ by CH0PR12MB5236.namprd12.prod.outlook.com (2603:10b6:610:d3::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Fri, 24 Mar
+ 2023 07:37:00 +0000
+Received: from DM6NAM11FT038.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1e0:cafe::48) by DM6PR08CA0052.outlook.office365.com
+ (2603:10b6:5:1e0::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38 via Frontend
+ Transport; Fri, 24 Mar 2023 07:37:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT038.mail.protection.outlook.com (10.13.173.137) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6254.9 via Frontend Transport; Fri, 24 Mar 2023 07:37:00 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 24 Mar
+ 2023 02:36:59 -0500
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Fri, 24 Mar 2023 02:36:56 -0500
+From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-scsi@vger.kernel.org
-References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
- <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-7-3ead1e418fe4@linaro.org>
- <9614782e-0d78-e8f2-a438-452cfa86f80b@linaro.org>
- <316d7d7d-b370-36e1-648a-400447d2dd47@linaro.org>
- <20230324065247.GA9598@sol.localdomain> <CREFOMX7DAPN.2NR3VSFCX9K10@otso>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CREFOMX7DAPN.2NR3VSFCX9K10@otso>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Michal Simek <michal.simek@xilinx.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <git@amd.com>,
+        <saikrishna12468@gmail.com>,
+        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH 0/2] mmc: sdhci-of-arasan: Add eMMC5.1 support for Xilinx Versal Net
+Date:   Fri, 24 Mar 2023 13:06:28 +0530
+Message-ID: <20230324073630.3194724-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT038:EE_|CH0PR12MB5236:EE_
+X-MS-Office365-Filtering-Correlation-Id: fbd4787b-4caf-47bb-b773-08db2c3a8dea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lW5FaxPmPEzsP7gF1RcJVHsLqeSf9v3hGMIc9tSQoZ71my9u8yQKzEwvAR7THq8kXzZiRN0vFxvl0qgFxfLbO12a1lNDhzutL6+TJKimO4OE6HJR8cCJCCEJFuuT94OXjAE/DhrzBBU1fWG8EXOvnyO1F5n4hfvkkz9I3fD1xptyst8J1UPDTxtO88GIa9AimItP0Gzb9IW978/lHfsyIOhqT8mp/LfQyztRu7bra7lzUabnUHkT5kAZcRRa4rIuGS28E1/9P6jUVmrPZSr/zQeWn3nN/RICV8aITaNp7pcpTn8aowRkV/QbPErR+l9JnJ4D9oRIdu+wH+0efURXJs2kPduZ9RMRj2dBdzo+9slPRARwILiqE63TKXE2lHl72kUoMBVJoH82Xs8twkKSPyugww08f7ubsmruX4tHWlYUbo0FZ4TR6aFbqgZ8PFe6bhjKHJLe+NE42aF92A+0ul9HikbVBFm9bbDHicI1UKuX4+7yGG5renI6ZhFn/IPFOZ+tkF0jR3zkqx01d622qVow/oCHmKx5hTmV57KAvAmAeo0aXMJC5GO6dPAySB+Hyr5S5mVL1QGU8eGRvRrbIoZFtyQ8w+9FgCCrZznpVB0wCj42zukWb0QDHYlyIjcaFxf9r+A5WHShPBG0Ksrj72KQ1K3NxOSyn3FT8rOEWuukFnbbi+VcceaCLOW//KLqOimsIz8BTc4PJT7ToTTVmwdMN1kFv9PnhipfFeahw9M=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(396003)(136003)(39860400002)(346002)(376002)(451199018)(46966006)(40470700004)(36840700001)(103116003)(40460700003)(36756003)(41300700001)(4326008)(8676002)(70206006)(8936002)(70586007)(316002)(478600001)(54906003)(110136005)(4744005)(5660300002)(2906002)(7416002)(82740400003)(40480700001)(356005)(36860700001)(81166007)(86362001)(83380400001)(186003)(26005)(82310400005)(1076003)(6666004)(336012)(47076005)(426003)(2616005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2023 07:37:00.3127
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbd4787b-4caf-47bb-b773-08db2c3a8dea
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT038.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5236
+X-Spam-Status: No, score=1.3 required=5.0 tests=AC_FROM_MANY_DOTS,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 08:26, Luca Weiss wrote:
-> Hi Eric,
-> 
-> On Fri Mar 24, 2023 at 7:52 AM CET, Eric Biggers wrote:
->> Hi Neil,
->>
->> On Thu, Mar 23, 2023 at 02:10:44PM +0100, Neil Armstrong wrote:
->>> Hi,
->>>
->>> On 23/03/2023 11:49, Krzysztof Kozlowski wrote:
->>>> On 23/03/2023 11:25, Neil Armstrong wrote:
->>>>> Fixes the following DT bindings check error:
->>>>> ufshc@1d84000: Unevaluated properties are not allowed ('reg-names' was unexpected)
->>>>>
->>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>>> ---
->>>>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 -
->>>>>   1 file changed, 1 deletion(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> index ef9bae2e6acc..8ecc48c7c5ef 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> @@ -3996,7 +3996,6 @@ ufs_mem_hc: ufshc@1d84000 {
->>>>>   				     "jedec,ufs-2.0";
->>>>>   			reg = <0 0x01d84000 0 0x3000>,
->>>>>   			      <0 0x01d88000 0 0x8000>;
->>>>> -			reg-names = "std", "ice";
->>>>
->>>> This is also part of:
->>>> https://lore.kernel.org/linux-arm-msm/20230308155838.1094920-8-abel.vesa@linaro.org/#Z31arch:arm64:boot:dts:qcom:sm8450.dtsi
->>>> but I actually wonder whether you just missed some binding patch?
->>>
->>> I'm aware of Abel's RFC patchset to support shared ICE, but this is a cleanup of the current DT,
->>> and the current bindings schema doesn't document reg-names.
->>>
->>
->> The ufs-qcom driver accesses the "ice" registers by name, so the reg-names can't
->> be removed from the device tree.  A few months ago there was a patch to fix the
->> device tree schema for qcom,ufs to include the reg-names.  It looks like that
->> patch got missed, though:
->> https://lore.kernel.org/r/20221209-dt-binding-ufs-v2-2-dc7a04699579@fairphone.com
-> 
-> Are you implying that I should resend the patch or something? Not sure
-> who to bug about applying this patch.
+Add eMMC5.1 support for Xilinx Versal Net platform which has PHY within
+the Host Controller space.
+Also, add Xilinx Versal Net compatible for eMMC5.1 in DT binding.
 
-Yes, you should. It has been almost three months...
+Sai Krishna Potthuri (1):
+  dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net compatible
 
-Best regards,
-Krzysztof
+Swati Agarwal (1):
+  mmc: sdhci-of-arasan: Add support for eMMC5.1 on Xilinx Versal Net
+    platform
+
+ .../devicetree/bindings/mmc/arasan,sdhci.yaml |   6 +
+ drivers/mmc/host/sdhci-of-arasan.c            | 237 +++++++++++++++++-
+ 2 files changed, 242 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
 
