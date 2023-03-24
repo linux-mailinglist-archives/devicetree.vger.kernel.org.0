@@ -2,145 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F696C87C4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 22:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE236C87C9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 22:55:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232002AbjCXVzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 17:55:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44330 "EHLO
+        id S232210AbjCXVz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 17:55:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231896AbjCXVzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 17:55:24 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CDE18160;
-        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id o25-20020a9d4119000000b006a11eb19f8eso425192ote.5;
-        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
+        with ESMTP id S232069AbjCXVzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 17:55:55 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BBFBCC1C
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 14:55:53 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bi9so3927127lfb.12
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 14:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679694951;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E6r6YUtJaIvDW9dxujuzmYnOokbQTzuDSN123E5tnr4=;
+        b=oEOS+ZAQa1GC4SxYIhpaEusTbfy5ZV6F3FCcs7hC2jJUGsQoVvkxcbJm0yXaliL3Tc
+         wIF4AGLwd8WlFmPbbrU/AB3ZbiYV9kC4bb+EJZ5/TpKpd405zDxvbb3GFPcMLDlU7gUE
+         kawDuc0LtIs7fXdZIBOxjZ2MZ24z/DZMNGjDtTOyQ4u3d1EPg4Scxb9doRyToSB81tAA
+         AXFCqiIvY9f4Kd6XqdNL6HvRNHeFtUaa3LJN61dyet4zkVjfIIikZzj68CQPCn1TrhAs
+         XzZ530n+wCWepmtHP/R3JPtm8B5+ywIfPIIF3inEqOZLyW90afRroeIVg54U4O83NuRK
+         2hIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679694922;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cg1iyMYEgtsbLeRCpRhPaB9K329aNM5LHp0JzHXTovw=;
-        b=g/fx6hdC0vQe+dWc57qFuWdVYDA/E/z/s/Dt6lxAz8c6sAcBHwaUBqyPuVH54g/7E/
-         lE9BFy9mHJKgnVwC1WTLk2jScU3omOCvu3IjQ7v34zwfgL0eoRqFR+Wg7DsNeS+bZc+P
-         oJzFJrlNTiK8tGCbKNnMJK1QRUSiBwnKzAP+Qh4qYJeYED9DoLlIQCMg4GfRxKQ8blRk
-         rMQn2w3sEI8VOKJ/Y8QncNzH2TZF5/86XXsyzc2YNNeeO7GIyXraiv9pRFpZEDmmwYsK
-         cBv2Fb9XKVkYjpCRfvL7A7tGFFDELxuwYFOZGHFZ9ZHDwP+pNMfaQEYA1wAAvKUBr8EN
-         lwDA==
-X-Gm-Message-State: AO0yUKWL3kQGkoO5oSEB12mqCyrmjRbESlT7n2dxZ9KRNGBNOQkoSWu9
-        XaQd/627ZUZHaGmQZoQB2A==
-X-Google-Smtp-Source: AK7set9dYHYAM+jGb64LFJy7wftyFTrHGyla2bUb6XZxeJK54Y5Ubcj6Z23GeROLf7WDxg8xYzahkQ==
-X-Received: by 2002:a05:6830:148d:b0:69f:93bc:26be with SMTP id s13-20020a056830148d00b0069f93bc26bemr2504070otq.21.1679694922173;
-        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
-Received: from robh_at_kernel.org ([2605:ef80:80f9:92f0:b372:78c0:69c1:66d6])
-        by smtp.gmail.com with ESMTPSA id b12-20020a9d6b8c000000b0069fa7b738b3sm2800448otq.27.2023.03.24.14.55.20
+        d=1e100.net; s=20210112; t=1679694951;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E6r6YUtJaIvDW9dxujuzmYnOokbQTzuDSN123E5tnr4=;
+        b=EY6CrXcTyGJACoDgrYmQ1ngKYbWUuJVAfEy1JbS8In7VYhwmhGfpschsgyvcUeF+hg
+         YD0XWYU4/SbIu/lsHb9NMFprWIlLB+N8K1c4/5AMn4iuApX3uyU4q+fSB685oT1iwfIn
+         8H+WjN86aFvydXQdNAd/hp5R9IOjb8UvKKoxU0BP5VbqoQMP4QSC99jPUW+081HqeXBO
+         3JPsGXt7NCnOd78MPWzbQocp5p87StwR/mZoaKq9DXqHQoU4xbPzHpx63EV1ahMpbbWg
+         7viwkv5Cf4IRoojITK/rwU1PfOv/aoaQTSXhXA3n8Z+oftMLYtyr7tdNC5lDNRAffG9F
+         1nRA==
+X-Gm-Message-State: AAQBX9er/B1KON6kpqYUt2EfOiN8fP3YPNo8G4M9QTbwoNDFici20tVA
+        uIyAENAyG/qc6Ef9ZAUaPWUwFg==
+X-Google-Smtp-Source: AKy350Zpnx42ljFHPDrMpwccNeOv58XHYr/SgImc0QJ9S3YRUx9t36guHM0o14ghTq+AMnTzK/Y51g==
+X-Received: by 2002:ac2:428c:0:b0:4dd:a060:402d with SMTP id m12-20020ac2428c000000b004dda060402dmr1024035lfh.15.1679694951379;
+        Fri, 24 Mar 2023 14:55:51 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id y1-20020a197501000000b004dcf20843efsm3488285lfe.239.2023.03.24.14.55.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 14:55:21 -0700 (PDT)
-Received: (nullmailer pid 49167 invoked by uid 1000);
-        Fri, 24 Mar 2023 21:55:19 -0000
-Date:   Fri, 24 Mar 2023 16:55:19 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v6] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
- binding
-Message-ID: <20230324215519.GA41513-robh@kernel.org>
-References: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
+        Fri, 24 Mar 2023 14:55:50 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/5] phy: qcom-qmp-usb: split away legacy USB+DP code
+Date:   Sat, 25 Mar 2023 00:55:45 +0300
+Message-Id: <20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 18, 2023 at 12:10:59AM +0100, Heiner Kallweit wrote:
-> Convert Amlogic Meson pin controller binding to yaml.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - consider that more than one compatible can be set
-> - remove bus part from example
-> v3:
-> - remove minItem/maxItem properties for compatible
-> v4:
-> - split patch to be able to deal with the different reg/reg-names
-> v5:
-> - remove compatible definition from common yaml
-> - move pincfg-node and pinmux-node definition to meson-gpio object definition
-> v6:
-> - add meson-pins definition
-> - change usage of unevaluatedProperties
-> ---
->  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 65 +++++++++++++
->  .../pinctrl/amlogic,meson-pinctrl-common.yaml | 57 +++++++++++
->  .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 66 +++++++++++++
->  .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 70 ++++++++++++++
->  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 74 +++++++++++++++
->  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 76 +++++++++++++++
->  .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
->  7 files changed, 408 insertions(+), 94 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> new file mode 100644
-> index 000000000..7dccf18c9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-a1.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Meson A1 pinmux controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +allOf:
-> +  - $ref: amlogic,meson-pinctrl-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson-a1-periphs-pinctrl
-> +      - amlogic,meson-s4-periphs-pinctrl
-> +
-> +required:
-> +  - compatible
-> +
-> +patternProperties:
-> +  "^bank@[0-9a-z]+$":
-> +    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
+While working on the QMP binding cleanup, I noticed that USB QMP driver
+supports both simple USB PHYs (which should be updated) and USB-only
+part of USB+DP PHYs (which are largely legacy and don't need to be
+updated). To ease further cleanup perform a quick cleanup of the last
+remaining USB+DP PHY (on sm8150 platform) and split the legacy codepath
+from the USB QMP PHY driver.
 
-       unevaluatedProperties: false
+Dmitry Baryshkov (5):
+  dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: add sm8150 USB+DP PHY
+  phy: qcom-qmp-combo: add support for the USB+DP PHY on SM8150 platform
+  arm64: dts: qcom: sm8150: turn first USB PHY into USB+DP PHY
+  dt-bindings: phy: qcom,msm8996-qmp-usb3-phy: drop legacy bindings
+  phy: qcom-qmp-usb: split off the legacy USB+dp_com support
 
-And other meson-gpio references. With that,
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        |   80 -
+ .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |    2 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |   17 +-
+ drivers/phy/qualcomm/Kconfig                  |   10 +
+ drivers/phy/qualcomm/Makefile                 |    1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     |    4 +
+ .../phy/qualcomm/phy-qcom-qmp-usb-legacy.c    | 1407 +++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  556 -------
+ 8 files changed, 1437 insertions(+), 640 deletions(-)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb-legacy.c
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+-- 
+2.30.2
+
