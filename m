@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FAC26C8670
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 20:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD9B6C863A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 20:54:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232037AbjCXT5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 15:57:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35258 "EHLO
+        id S229921AbjCXTyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 15:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231942AbjCXT4q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 15:56:46 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1991B543
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 12:56:30 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-536af432ee5so53465547b3.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 12:56:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679687789;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RhYYIOBYcZyuSgRg3T8Pd2sS16OkXMZ4m3rP2gSu380=;
-        b=Ag1iuj+S6Z4Y1lJXAJrY3Mn8rfl+2AN6RUbB8FF2Efu80+W0eu2S4qc4iffzQK5imi
-         KtGvwVv+Y81ZAhJfdbRo4IJWyWDQAbD3q1mJB1aw+lbPCOObJxjMBH+DQV0k89wiZOCa
-         HPsFgWcc5IvMIKhtXVJ5xFdQR04JSYSXzZuAc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679687789;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RhYYIOBYcZyuSgRg3T8Pd2sS16OkXMZ4m3rP2gSu380=;
-        b=J16cxBsZIL7P28fmdqYWBjVwoOG9yWPjhq1jAopM2nk04NXesn44JFJUgfWjdmM+u9
-         kkm3U9GaG2QrGczlmYKseO9xqmMNpbVcUkYlvSgg81ucvkEXPCHdex2EwItHFlxF/4DH
-         ohyhI/47bjxZOtXLK1v52NqBlC4jXFycNDRXcXwk+7lW7uYvRGliGtH/NVJzgg0w6zyC
-         19jZmHsTvvqryaTpGpJsYrSva28AMtQDyPaWA3MWFYeRO37pmocbyctfzWStohF5VG3U
-         xEu4y/d+l5+G3rqJN+bs4+QSjcXVS5bzFOCvCzLGKZcG2YYNglaXR84qQLVXU2O34lTs
-         KMOw==
-X-Gm-Message-State: AAQBX9dew8zKE6IcU4cKRJPRP1A5IHRWPc3NxaLK9gYxw0U3uUxHyBmw
-        AxfBUynWdcPU42ny5F2uuRYu9A==
-X-Google-Smtp-Source: AKy350b0eLq7t4fJJ/Zw35tvDmcmY1talDrP39suxk4lgr7xXjMPvQemHVU5OnqjI17ffqbpaaE2mw==
-X-Received: by 2002:a0d:e808:0:b0:543:53c:e3c with SMTP id r8-20020a0de808000000b00543053c0e3cmr4002039ywe.2.1679687789154;
-        Fri, 24 Mar 2023 12:56:29 -0700 (PDT)
-Received: from localhost ([2620:0:1035:15:5509:ec45:2b32:b39f])
-        by smtp.gmail.com with UTF8SMTPSA id 204-20020a8112d5000000b00545a0818495sm594780yws.37.2023.03.24.12.56.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 12:56:28 -0700 (PDT)
-From:   Mark Yacoub <markyacoub@chromium.org>
-X-Google-Original-From: Mark Yacoub <markyacoub@google.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229919AbjCXTyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 15:54:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8126B1BDA;
+        Fri, 24 Mar 2023 12:54:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD87862AD3;
+        Fri, 24 Mar 2023 19:54:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E957AC433EF;
+        Fri, 24 Mar 2023 19:54:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679687645;
+        bh=+l1Tmr6waa7ZpwQpJUq3NH4jxVo6IGOnRiecZJHvp9Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iWzQ90dJJ4XktycTJ1Js2unTbW1g9b6OhlV89FkuxIvs73yLlwFwCBXsq0ZbiAbsS
+         hUGqmmaUfZjTMduY+dubRO2akcckszFzZ77LePRCyX8svr/Yu/TBLQVqkhX/p7Zz6l
+         4VKjzBoRyqiIKX4T6+snATZWYkFz5oPE1VjOIdc9sWzNOuON6ENM2LCxgLP2LqoLod
+         b9zE00ZSaLIexQRBvRUopfoLuNKqojucT/zxFtZ5KGnK5Lu2O2GJa5Crql1ame8LY0
+         W8x04UfKdANOorVNd4dBKjxyAUZ5W7Fs6n5B/pTnPz+vb2J293qsRWtgfic6oZCJl4
+         4aBEwyo44z2UA==
+Date:   Fri, 24 Mar 2023 12:57:13 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     seanpaul@chromium.org, suraj.kandpal@intel.com,
-        dianders@chromium.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        Mark Yacoub <markyacoub@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v7 09/10] arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
-Date:   Fri, 24 Mar 2023 15:55:53 -0400
-Message-Id: <20230324195555.3921170-10-markyacoub@google.com>
-X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
-In-Reply-To: <20230324195555.3921170-1-markyacoub@google.com>
-References: <20230324195555.3921170-1-markyacoub@google.com>
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sm8450: remove invalid
+ properties in cluster-sleep nodes
+Message-ID: <20230324195713.5blwpv7xjijlrtt5@ripper>
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-0-0ca1bea1a843@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-2-0ca1bea1a843@linaro.org>
+ <20230324174518.2arvdglqqixmxqcp@ripper>
+ <fdd51d3d-a1fd-c3a9-c578-59a11c5213de@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fdd51d3d-a1fd-c3a9-c578-59a11c5213de@linaro.org>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Paul <seanpaul@chromium.org>
+On Fri, Mar 24, 2023 at 08:27:12PM +0100, Krzysztof Kozlowski wrote:
+> On 24/03/2023 18:45, Bjorn Andersson wrote:
+> > On Fri, Mar 24, 2023 at 10:28:47AM +0100, Neil Armstrong wrote:
+> >> Fixes the following DT bindings check error:
+> > 
+> > Is that because idle-state-name and local-timer-stop should not be
+> > defined for domain-idle-states or are you just clearing out the
+> > dtbs_check warning?
+> > 
+> > According to cpu-capacity.txt local-timer-stop seems to have been a
+> > property relevant for clusters in the past, was this a mistake in the
+> > binding or did something change when this was moved to
+> > domain-idle-states?
+> 
+> I cannot find anything about local-timer-stop in cpu-capacity.txt. Where
+> do you see it?
+> 
 
-Add the register ranges required for HDCP key injection and
-HDCP TrustZone interaction as described in the dt-bindings for the
-sc7180 dp controller.
+Ohh, you're right it's only mentioned in the example.
 
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+But idle-states.yaml documents the property for both cpus and clusters,
+and it's used throughout the examples.
 
----
-Changes in v3:
--Split off into a new patch containing just the dts change (Stephen)
--Add hdcp compatible string (Stephen)
-Changes in v4:
--Rebase on Bjorn's multi-dp patchset
-Changes in v5:
--Put the tz register offsets in trogdor dtsi (Rob C)
-Changes in v6:
--Rebased: Removed modifications in sc7180.dtsi as it's already upstream
-Changes in v7:
--Change registers offset
+Our cluster states are defined in domanin-idle-states instead of
+idle-state, does this imply that the flag is no longer applicable
+per cluster in this mode of operation?
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 47f39c547c41a..63183ac9c3c48 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -816,6 +816,14 @@ &mdss_dp {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&dp_hot_plug_det>;
-+
-+	reg = <0 0x0ae90000 0 0x200>,
-+	      <0 0x0ae90200 0 0x200>,
-+	      <0 0x0ae90400 0 0xc00>,
-+	      <0 0x0ae91000 0 0x400>,
-+	      <0 0x0ae91400 0 0x400>,
-+	      <0 0x0aed1000 0 0x174>,
-+	      <0 0x0aee1000 0 0x2c>;
- };
- 
- &mdss_dp_out {
--- 
-2.40.0.348.gf938b09366-goog
-
+Regards,
+Bjorn
