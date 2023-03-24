@@ -2,62 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5746C8076
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 15:56:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9466C8080
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 15:57:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231912AbjCXO4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 10:56:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33080 "EHLO
+        id S232280AbjCXO51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 10:57:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231877AbjCXO4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 10:56:12 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9513F2D5F;
-        Fri, 24 Mar 2023 07:56:10 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 23C035FD35;
-        Fri, 24 Mar 2023 17:56:08 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1679669768;
-        bh=jKGFF0Da4+1cXaHKpDC/eneHomsmAiAzeGToPU73Ezw=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=n9hzZenddFoehGW/bLJK8iYJ1+F+cmLzgGNjzI05HGrl0Dbm9UYRrZOoPP09iAy7W
-         gKUbM5uO2+5SDZWi16LZdE7mRi2Xxhg+Am1QSs0i3jd7ylClla2wTVMZjGex/WgZPY
-         6i4FOs0642yY94YTdoRTfq3LP7K3OmxroX4Auqy3TuNUwVZ7U7yvgzgt6H5PVaE6HJ
-         hNf4Ehyy4P+32/cAZbdTXsJ/0vKUC18x3q5i8tRtA6fGnNKJS5dfr+6YcoJLzBeego
-         XK2DWZGWgq7HkrcpsCyBvyjfuAeSM0N9gbR4gt6wOBYwxHe8yl9hCLa25DwLpUnnb5
-         o2xr2q6GEBeVA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 24 Mar 2023 17:56:07 +0300 (MSK)
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
-        <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <jianxin.pan@amlogic.com>
-CC:     <kernel@sberdevices.ru>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <rockosov@gmail.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Subject: [PATCH v3] firmware: meson_sm: populate platform devices from sm device tree data
-Date:   Fri, 24 Mar 2023 17:55:57 +0300
-Message-ID: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
-X-Mailer: git-send-email 2.36.0
+        with ESMTP id S232239AbjCXO5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 10:57:23 -0400
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E22C14B;
+        Fri, 24 Mar 2023 07:57:22 -0700 (PDT)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32OD7YT7030567;
+        Fri, 24 Mar 2023 07:57:00 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=PK+Rv7jXbC9ogJCpPAItVG+0CU9r1/yBY9eM/5NlpvQ=;
+ b=DFSFKC6LNTNJTlU5AE7zYABanJ1ahXGTkrNWFIkeduuJg6pEnCkSYM+BAD4NfSgktXNX
+ TcfaO8zhnvrKJhgXJwRIatsCnvbjRuDXRqamPCJ/Kqz6IaBLLmCHIiy0L1ngdGYcLxPH
+ Gwjrs0TeBgcUYG4cmhaj3iN0pFlC3tqG19PcbEpQ2IEzFKMIwiU9ZdysaTs9ERI4zQWY
+ EZsc+XQ5qFYsIBO1oEnQklhKyUekywXiifFJyBfOj+yqNRvxe8Soc89bP4Ev2q2aPkd9
+ ws0CQICz0wMizEpozO7AClZfJGnvfB/0i+tf32GdZa7iK3BLSVcxmw8acZZTeb+Kguoq tg== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3pgxmfjuk0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Fri, 24 Mar 2023 07:56:59 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
+ 2023 07:56:57 -0700
+Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Fri, 24 Mar 2023 07:56:55 -0700
+From:   Bharat Bhushan <bbhushan2@marvell.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Bharat Bhushan <bbhushan2@marvell.com>
+Subject: [PATCH 1/2] dt-bindings: watchdog: marvell octeonTX2 GTI watchdog driver
+Date:   Fri, 24 Mar 2023 20:26:51 +0530
+Message-ID: <20230324145652.19221-1-bbhushan2@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/24 06:52:00 #21002836
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+X-Proofpoint-GUID: cPFjYVVAaM0Mh7ztn062RuEWeK0tBSZq
+X-Proofpoint-ORIG-GUID: cPFjYVVAaM0Mh7ztn062RuEWeK0tBSZq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_08,2023-03-24_01,2023-02-09_01
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,52 +61,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some meson boards, secure monitor device has children, for example,
-power secure controller. By default, secure monitor isn't the bus in terms
-of device tree subsystem, so the of_platform initialization code doesn't
-populate its device tree data. As a result, secure monitor's children
-aren't probed at all.
+Add binding documentation for the Marvell octeonTX2
+GTI watchdog driver.
 
-Run the 'of_platform_populate()' routine manually to resolve such issues.
-
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
 ---
-Changes v3 since v2 at [2]:
-    - unmap meson sm shmem region if devm_of_platform_populate() failed
-    - move pr_info() log about successfully enabled secure-monitor to
-      the end of probe() routine
+ .../watchdog/marvel-octeontx2-wdt.yaml        | 43 +++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml
 
-Changes v2 since v1 at [1]:
-    - decline the device tree /firmware based solution
-    - introduce devm_of_platform_populate() solution in the meson sm driver
-
-Links:
-    [1] https://lore.kernel.org/all/20230323185548.13731-1-ddrokosov@sberdevices.ru/
-    [2] https://lore.kernel.org/linux-amlogic/20230324140141.6743-1-ddrokosov@sberdevices.ru/
----
- drivers/firmware/meson/meson_sm.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-index 77aa5c6398aa..1a99dbc274fa 100644
---- a/drivers/firmware/meson/meson_sm.c
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -311,11 +311,14 @@ static int __init meson_sm_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, fw);
- 
--	pr_info("secure-monitor enabled\n");
-+	if (devm_of_platform_populate(dev))
-+		goto out_in_base;
- 
- 	if (sysfs_create_group(&pdev->dev.kobj, &meson_sm_sysfs_attr_group))
- 		goto out_in_base;
- 
-+	pr_info("secure-monitor enabled\n");
+diff --git a/Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml b/Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml
+new file mode 100644
+index 000000000000..586b3c1bd780
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/marvel-octeontx2-wdt.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/marvel-octeontx2-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	return 0;
- 
- out_in_base:
++title: Marvell OcteonTX2 GTI watchdog
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++maintainers:
++  - Bharat Bhushan <bbhushan2@marvell.com>
++
++properties:
++  compatible:
++    enum:
++      - mrvl,octeontx2-gti-wdt
++
++  reg:
++    maxItems: 2
++
++  interrupts:
++    minItems: 1
++    maxItems: 36
++
++required:
++ - compatible
++ - reg
++ - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    watch-dog@802000040000 {
++      compatible = "mrvl,octeontx2-gti-wdt";
++      reg = <0x8020 0x40000 0x0 0x20000>;
++      interrupts = <0 38 1>, /* Core-0 */
++                   <0 39 1>; /* Core-1 */
++    };
++
++...
 -- 
-2.36.0
+2.17.1
 
