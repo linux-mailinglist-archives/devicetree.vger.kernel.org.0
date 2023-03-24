@@ -2,119 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8A66C7E99
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:17:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9C7E6C7EAD
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:25:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbjCXNRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 09:17:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40032 "EHLO
+        id S230382AbjCXNZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 09:25:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjCXNRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:17:09 -0400
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2088.outbound.protection.outlook.com [40.107.249.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 941602128
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:17:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WG0LnDbApXhX1Tdec5y1BN0Ql4CJ1dnxOjB1c02F3xVuDItlMl8Q9glituEWarJavSbbwfzBkgiIe9vzBkvK7eVxp7AC37tDYIVo00CiFa8OEfXx7u/UnqpAgiM9eEcVxz2xrk+3TCpaygYtMgb8QGCIy0wLDgl2fagWJuz2zV6s7nX/ZcchzLLs5hQfHdCUhPWaQyykI+DCjelbROffbPqaPcVUhNTrkniexLH0+rPMd275oFjgHctTBXiZLJrtgOfa8RuOd8d2LsPAO+n2Mkk8vB/lVM7/fmHgFzIpqXFChQ3P5km6QVaCaWV5rMtNrKOjwKWauiKucKNbfDqKuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ll1U7tV6Vaes6ux8Tn9BeE4m6zMkrazQmszni+mKumA=;
- b=E+cOkS8ZChLfWlyX01N1SQ9fHVfrBvazU+zm/RnwiByxFhSh4cMvGC7PMEblsGqIEgAWfztl0kINvDexFXnv7fGazulA3jd9vP4TW2GyaKdj9sW/pMF4qiRmhfOeFo+qG+xRhAljg/nC3fqsaPVhmTRpu0y994a27sTdEyza7g0Igfe3sSEwX5Lptz1P50HXbe9sNreThlLH2JCF8MvG2/XZplcaBWbuO/efxti4p2taQZfW/b8Vqd8R8nlF8KfE2q5+7Fxu212ZDRg413Vmyhw5WMT0MWEEjnvp2u1minJAyV8eDrGDZd4UX0KEXcp1z6gJRrTOrRQTHmqBV0aZvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ll1U7tV6Vaes6ux8Tn9BeE4m6zMkrazQmszni+mKumA=;
- b=nqBnS2boTiYLfGzQxwT1z3ce3vV8zM/OScZp1ATMOcoJ08yQKpnpbhimevzer7vbPvwkRtQC2xBH9yI4qqd38Gu15bHMsbxoXejLRbEb1uZXN2lc+KF+FRoj7HAZXeCBnlbxTJQb7whNjzM3ykCLrdvotnLhzB8VfPl9BUUFLPk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GV1PR04MB9055.eurprd04.prod.outlook.com (2603:10a6:150:1e::22)
- by VI1PR04MB6958.eurprd04.prod.outlook.com (2603:10a6:803:137::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Fri, 24 Mar
- 2023 13:17:06 +0000
-Received: from GV1PR04MB9055.eurprd04.prod.outlook.com
- ([fe80::9c6d:d40c:fbe5:58bd]) by GV1PR04MB9055.eurprd04.prod.outlook.com
- ([fe80::9c6d:d40c:fbe5:58bd%7]) with mapi id 15.20.6178.038; Fri, 24 Mar 2023
- 13:17:06 +0000
-Date:   Fri, 24 Mar 2023 15:17:01 +0200
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, Li Yang <leoyang.li@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v12 13/13] arm64: dts: ls1088ardb: Add serdes descriptions
-Message-ID: <20230324131701.4ucxf65sxfdtqcai@LXL00007.wbi.nxp.com>
-References: <20230321201313.2507539-1-sean.anderson@seco.com>
- <20230321201313.2507539-14-sean.anderson@seco.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230321201313.2507539-14-sean.anderson@seco.com>
-X-ClientProxiedBy: VI1PR07CA0129.eurprd07.prod.outlook.com
- (2603:10a6:802:16::16) To GV1PR04MB9055.eurprd04.prod.outlook.com
- (2603:10a6:150:1e::22)
+        with ESMTP id S231841AbjCXNZS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:25:18 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4DE12860
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:25:17 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id e18so1787140wra.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:25:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679664316;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q/vpnoYYXwQldMjtKP/K9nn+5xpo0clbcm7Xi85Za5Q=;
+        b=MwV/tT1w/89XxrGbyhJepCUgN+8UHN4wuO0E1mjgs954wzYtgqXwnCmlxTJF7t+DBT
+         G8XQq/qfYrjbJ2GdHZ119/GQRELa1ao2S7wbI8kzdiDgk/iy/UmFoHNTPB7ORpNP3dJS
+         AwV75+lOdSW7pMnnalw3EgnDGLBuSj1l16Rt7c0abxleP05MX+7Z9L1jO+qLs7FwvrTP
+         fXLWmLzP3xBZqFn7RE2qIPVbaPKJ+DLIjbGL89PWC2ZV2RX8Za/rRbSA2L7Nat4h/6Hj
+         RheFDGMsS/Zky/6/sZWoc0pMuSKJSgyPupaz4y4eEX7qxHkmCiTplbKg6uHsLZyXu3ez
+         BDpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679664316;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q/vpnoYYXwQldMjtKP/K9nn+5xpo0clbcm7Xi85Za5Q=;
+        b=7mFWFdiKqb4H3xC+PFeMAM6lE+0KLY6w7RyiLzNJeja0EBF0HbAIYM9uAtSGSpmPLI
+         PiuvfIiWPSi5psmzG/9xLCdyk89aJUsjI007WO7DHBDqFwFfR2OSHbLa1mjgGBkYCbS8
+         Esgc8wEfhlQmf/LW2E6mUE9Mj4cBKhIhyQl+BM642E1cvI937CJGZcxr9u+jyB8ZAe8A
+         cu8G9ypOdKflh9wKfAB3BknqIZqhR0kgpkESznN4n1Xuphsb/QSrpAQL9DeYW2HN0p+a
+         x+cw8CfeGYlI9lv2aCi17WIQGYXujUvjI+bijQv95XFgBZUHOgDbglkSYEja9Mx4QQEV
+         Q6HQ==
+X-Gm-Message-State: AAQBX9ebYOhRSm7QU/I5zCI2WRoeNy+O+UrspUI8R5rrJEWbA8V8afml
+        gGUMCaMxQnBY3zG1jBcj+Cnf+A==
+X-Google-Smtp-Source: AKy350adc+qfpzwd1OS0FFZpxLLnNuQRsBkSQTXYQiBJiqpEzz6wvdacBweqtInNDFl/c/qX8toVMA==
+X-Received: by 2002:a5d:4b42:0:b0:2c7:454:cee8 with SMTP id w2-20020a5d4b42000000b002c70454cee8mr2394735wrs.1.1679664315887;
+        Fri, 24 Mar 2023 06:25:15 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id p17-20020adfcc91000000b002c71dd1109fsm18517921wrj.47.2023.03.24.06.25.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 06:25:15 -0700 (PDT)
+Message-ID: <6bd08120-115e-5429-63da-32f8df52bc7f@linaro.org>
+Date:   Fri, 24 Mar 2023 13:25:14 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9055:EE_|VI1PR04MB6958:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ddacc8a-5973-45be-ade6-08db2c6a106d
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ijii1cr1RFnHoaEAenRahE8qP3Ik5tGWq7YiLg1PL2+dT+1hop1RsvMyaJJQaYk4J1660jzdZAdUaWGi1ZjQJ2KGAHEubye4g08AiFx+J6/qhfrJrhjtQcvMZjD6NYU9M3miM6spglWWDAftKoXH7mlmfOkhzE8DEXViYnIBVQdffUSHfRdQqBox4mseAHZq3IKSXjzooyHavP4yESP8ZU4mwY0XOXj1Boi54ejPSxkyOkAxUJqRTMJBLjWgXNWWGGl2jxDW1ua5TRLcg/nvqg6F6Sd775S7/fQLFliY5IXE1PHg1B4ojSy2OvXSyRVOdJL/f+k2aYSeqav6qQfibkcqMusz/yb7mMMvgvjctfqCE8jqMOZkHQSTl5klIDHCbaGfW9r0OMTUBNlR8Et5VrAOIle11bvtHTeS4wtz/vRWaVNeRcjBJ8bNthDqgnl3mbk3L93lS2cDTS/5jezkbx5e4SCZ349+MDYf/Iaq7hWx+L7J2+Wm4dWVuv1YdxmHRgjYUT5JXNRRABguOeAWz7WizwBgSpEFQOKuTd8XlzRhHkY0H2RhegzxImKI9VSH/cw0NpWfL42/XrW+D0aYn1F0rxoDs8o0qK7kAbtLdfDMb7oAudLn0Wp2XfdyotLx6NLyEZZYHncJ9hI9/x1cTw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9055.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(396003)(136003)(366004)(39860400002)(346002)(451199018)(1076003)(6506007)(6512007)(26005)(186003)(83380400001)(6486002)(6666004)(86362001)(478600001)(54906003)(66476007)(66556008)(66946007)(316002)(7416002)(44832011)(4326008)(8936002)(8676002)(5660300002)(6916009)(38100700002)(2906002)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wkQWKWaTC/VSUo40Fs/Pr3EKyLHr5+D8cdfC/ljBrENpckIhNt0KSnBPQZxv?=
- =?us-ascii?Q?jyGoi/Qoum0kgOLz90CmhfXlJFlqH7sfWh23vDZjF0964a3yUAx3QvA3F76L?=
- =?us-ascii?Q?pHyctMV/8QYKn8AFSKCEtWW+OQjlo5sarnem8Pg9qoj+wnSWqlvmx7x90gls?=
- =?us-ascii?Q?iXhFAgiGs5x1xkjUbFSwEj4fCsOGGQHFC9hNa+EHWJdUcnIQ976VqJojbQdm?=
- =?us-ascii?Q?VnlgG/t7fDViLm+MdBPfrlvl7vUqNpJWv+fvSfL1cE0R7ERPRfRsHeucnJ2o?=
- =?us-ascii?Q?z7F7UBjFUyZxQPyq24oo3K20mkEJM+TiunVA0GjZSm6oEekhcTmMoOsGTNev?=
- =?us-ascii?Q?BuMadYXoWyqpkBvXz18xg9ohvORTpIAHB6OMqLq1PpfYsF9iySSy3SyuWku9?=
- =?us-ascii?Q?YE7NwAcN6sEp572mcfOuPqhmCqBFcyQEEbrDOyNzkeQ/kpnuWxkTKSJDlWh6?=
- =?us-ascii?Q?CbToQXA1uEZpsXOBb1nkUtmIuo0t73yWJ61ydjeVe5fdRp0iS1yS6DsRQ5f3?=
- =?us-ascii?Q?2ldQoaVppKvgJXEnRZ4PTGIEblrY13CY2IHcJG71Q5CZj4H9/1q4HQLrRluH?=
- =?us-ascii?Q?t4g5hR3zh2d0d+q++WKGwtzBBYOHv3Ue43hnBYxwhdNCFQUw20cCafN73qjL?=
- =?us-ascii?Q?roXy5/VoiWAwb/sVyN6UMe6u79QEL/HO2UI+4s48JZlWQql5vd0ib3/q8V76?=
- =?us-ascii?Q?GHMYTM5VRsCepjr/DpVCG/NMNntMQ4lFCHCEjBXY7iY0SkCkeXzehieaWgmg?=
- =?us-ascii?Q?dScywzMYEwDvBXJVSpmJSP3bP0hfq8vs8zCRM1aFc09IkyzE0MFqHU99KZtl?=
- =?us-ascii?Q?OG0gQvRrcY1scxjK8l1RgfBInHLPAy6RMRiyF92kqG2Kz75a7zAniaoLv9Xu?=
- =?us-ascii?Q?sgKzgSlFlOw9da+8xg0uAhbHjXXXnrT5yv1EnF43g1nzzGv0kAsrZ+beRSo5?=
- =?us-ascii?Q?eDwbPrvOyCLMCbF7Ao0vXtTF7/3CL9Bq1nBHiqK50bqEglAP5pxaf6q3vKU7?=
- =?us-ascii?Q?AgAIes2LKWLXLdelJaSYSrfYP92Yc6F2+M015NHT9y4wiD/8CcUKSHc5pdZc?=
- =?us-ascii?Q?hhvcW3fRt6sfA4FsoAsSgwjDqdFwCuA5JHUU/3Y+TykB99u4JRleRQlu2fA2?=
- =?us-ascii?Q?bWNOkCCGl7gAV8cq9elNSqbLhDrwghpMNs0rWozAlwOpBYlwFVcblpeanGrz?=
- =?us-ascii?Q?zK2e0GC7KvdC2RVJA+tm/qFakQz4sHYVNf98qhvcDm3J9PzelYXOnxbwNa0+?=
- =?us-ascii?Q?o0WpREm4Bf0R0/xv4iXwxJR8I4dyiy/6uwGDVe5hcPM4fjoPCNPdcw2slTS1?=
- =?us-ascii?Q?IN9uy2wil2IEyvHqAy6gB4Qsu4V48l03Qwdp30ZeuYRxoScDY+RVUBAbny3J?=
- =?us-ascii?Q?9nRJ2sQQIduxG2s/RgiqzbGRqLHLy0Gdpk40zpbyHcoaFuqKRwojsJE4OwOm?=
- =?us-ascii?Q?xVvdhIV9PQBQH3gcnu5e6+/kGQKniPdcXFtl9qRbtvldRPWyOgjFfc9TMTtq?=
- =?us-ascii?Q?2EObLFllDAjJzXrksc3pcqxXbTF5aCZlNFEvSOlVTYVRoYEFGRN/d6BsZWTz?=
- =?us-ascii?Q?mwLhYA1Qpv6Q9b2F2Q6XWgmBNDEx2RtVrzM2at1l7tP/hpkY2eZeUwEXsrrj?=
- =?us-ascii?Q?0A=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ddacc8a-5973-45be-ade6-08db2c6a106d
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9055.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2023 13:17:05.9335
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N/+QWcrMjVEOJr3Qv4wVc40grBmlcCe9WtubuTCVXMHbecp9kCDErmKzSActFdex+POdPhuyukjMaHAlwxC4hQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6958
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 12/18] usb: typec: qcom: Add Qualcomm PMIC TCPM support
+Content-Language: en-US
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wcheng@codeaurora.org,
+        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-13-bryan.odonoghue@linaro.org>
+ <ZBxkB04KqY8WbeA1@Gentoo> <89bca327-a860-672c-b4ae-766698d38639@linaro.org>
+ <ZBzyK0ILtUDr986r@Gentoo> <37d14447-0f10-be88-9cd9-8ebd30f1d006@linaro.org>
+ <ZBz5OvauxQ2PWcHu@Gentoo> <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
+ <ZB14jJNUhHGBl7Az@Gentoo>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ZB14jJNUhHGBl7Az@Gentoo>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -122,32 +84,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 04:13:12PM -0400, Sean Anderson wrote:
-> This adds serdes support to the LS1088ARDB. I have tested the QSGMII
-> ports as well as the two 10G ports. The SFP slot is now fully supported,
-> instead of being modeled as a fixed-link.
-> 
-> Linux hangs around when the serdes is initialized if the si5341 is
-> enabled with the in-tree driver, so I have modeled it as a two fixed
-> clocks instead. There are a few registers in the QIXIS FPGA which
-> control the SFP GPIOs; I have modeled them as discrete GPIO controllers
-> for now. I never saw the AQR105 interrupt fire; not sure what was going
-> on, but I have removed it to force polling.
+On 24/03/2023 10:16, Jianhua Lu wrote:
 
-So you didn't see the interrupt fire even without these patches?
+With charger
+> [ 1495.824667] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500:
+> qcom_pmic_typec_set_vbus misc 0x000000c9
 
-I just tested this on a LS1088ARDB and it works.
+0xC9 == (TYPEC_SM_USBIN_LT_LV | TYPEC_SM_VBUS_VSAFE0V)
 
-	root@localhost:~# cat /proc/interrupts | grep extirq
-	 99:          5  ls-extirq   2 Level     0x0000000008b97000:00
-	root@localhost:~# ip link set dev endpmac2 up
-	root@localhost:~# cat /proc/interrupts | grep extirq
-	 99:          6  ls-extirq   2 Level     0x0000000008b97000:00
-	root@localhost:~# ip link set dev endpmac2 down
-	root@localhost:~# cat /proc/interrupts | grep extirq
-	 99:          7  ls-extirq   2 Level     0x0000000008b97000:00
+> [ 1495.824685] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500:
+> qcom_pmic_typec_set_vbus sm_status 0x000000b9
 
-Please don't just remove things.
+0xC9 == (TYPEC_SM_USBIN_LT_LV | TYPEC_SM_VBUS_VSAFE5V)
 
-Ioana
+so that is correct and expected i.e. VSAFE5V it shouldn't matter to the 
+type-c port controller *where* VBUS comes from only that it is within range.
 
+Could you run again with an unpowered device and post the printout?
+
+---
+bod
