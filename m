@@ -2,142 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E35636C7D7E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3086C7D9A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 13:01:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbjCXLwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 07:52:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58358 "EHLO
+        id S231311AbjCXMB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 08:01:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjCXLwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:52:09 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7776B22A1E;
-        Fri, 24 Mar 2023 04:52:08 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id o14so674376ioa.3;
-        Fri, 24 Mar 2023 04:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679658728;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iWww7KIOZBCmIAHeZv67n8Ky5bkkqCoK79aVsIAZNBI=;
-        b=TZIv8T/N6JJPGZzyhEafVekIQ23TQTiv0q+86h2sLILA6iYzEfF+u25kxtdHp0VNRq
-         oxZ78xFZORp0fy9rKmZZbV739hSARgPOxdeaHK8u5HVOOZ+XoTsb4e+8OIlwjfdD+Ql7
-         zhqN1Parx4H/ypNye6pC5LYEcdA2aVqEf5Pj85VQJCszYYHd3qwp7Z6vgH8A4g2J4iDq
-         Jvyj/nX9Kxxs1RNcEyCI4VxU8gCULSV9V72g3/PWK4V27yBgt7JRix0tewp8vbtVw3wM
-         S62jCU5Rp3Pf1rHR89/Ps52hFSuInfYfA0/v6QVaVOAAszzLLvwm1fE5xWI5yg91LgDW
-         n8Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679658728;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iWww7KIOZBCmIAHeZv67n8Ky5bkkqCoK79aVsIAZNBI=;
-        b=K1KOHApxjnV3NaWp+LomxoU+QAfwLSQUTgqzW2SD3iwqQEpCg13gElLdprOGPJhCA/
-         sCdzMarjTJ3+D91U9JYQIfkYn2zjigY1AOWW4uV5InCsiJGCDFQayGJXC+MHM5sO87in
-         bJ37sfKgzKqme2zFyJMUBwjz5rw7nWDZVFEEwaut4DqFhv2uh4vwq+LbYHEbphR2LcCL
-         ox1MMpJ3nivSUzxoAbfO6R2zpk0w8DYbp48ZEG+uL6j5632zMaCX6PDZb0OpDuRyVDE1
-         r5vhhppe8XYydPt7aj8m6Ne82e0/VrfKu58YQ+hpRU5ZeWRcaTYfVxK6s+G+FL+zffeE
-         7K1w==
-X-Gm-Message-State: AO0yUKU5b2Xz8YYjUSTTDM3W99bnMvervQVCvk6jBWPwzc1HCjFlod6o
-        REyecNVAAt9LUsX/JJumY+iJ5FhbBEtnVy10kvu28wmhtAs=
-X-Google-Smtp-Source: AK7set8+H6cwLxu738lkTCKCs6nwLDvrDpz/EBmL2ZmHT3i13MKkp+14knPu99WuRsmhLBPnfRJcdLzJTAFzgFo9qX0=
-X-Received: by 2002:a05:6638:22a1:b0:3ae:e73b:ff26 with SMTP id
- z1-20020a05663822a100b003aee73bff26mr831353jas.1.1679658727838; Fri, 24 Mar
- 2023 04:52:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230323185112.13855-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVKRS1N5s-cvxrgSj9ev-Hh+gxfa-Hp2+z1zt+r7fEUWg@mail.gmail.com>
-In-Reply-To: <CAMuHMdVKRS1N5s-cvxrgSj9ev-Hh+gxfa-Hp2+z1zt+r7fEUWg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 24 Mar 2023 11:51:41 +0000
-Message-ID: <CA+V-a8u5ttTsG9fn4ePKi-0=2NXzhk1seBwnzBn_X6VQDwWKpw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas: ostm: Document RZ/Five SoC
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S230092AbjCXMB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 08:01:27 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C6223C62;
+        Fri, 24 Mar 2023 05:01:23 -0700 (PDT)
+Received: from [IPv6:2a00:23c6:c311:3401:45a5:b946:dcd1:2820] (unknown [IPv6:2a00:23c6:c311:3401:45a5:b946:dcd1:2820])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: martyn)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 21BC66603118;
+        Fri, 24 Mar 2023 12:01:22 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679659282;
+        bh=dr+N/JcWG1jfg3DjYWBJI/Siew3Yosf/76j1HVDo89c=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=oPn1UimwgYIPjM/W692u/4rY8Y3Ut3WIyrKeD2NFxPVH1nQa4l6XRl9WjjLuKg4Ax
+         IOhbI/lhYi3hBxbnOMFXY64xI8PKpxzeC08Vz9Sw4oqXOGhZKPAg6v25OJKW/OPKT7
+         9MTGP/pYR35NzOgfCqNV4lg9RtCDUrPASaInx9GKoYjUTrfo7QcK5+i2bhTEPqImM3
+         GfWUsWh+mCp5Mm6EWOMzjIhRkauiSfM26jtwr5QUajkVoxTLnn+gbdNPTJXc+fWoQo
+         Tsve3ePvPkVCueUU9zcpaFKVY3zWWXRjyqpXUehpJf0xHPeZ8cWWgKRIozt7hn4m8R
+         5vSvSQFJOvQMQ==
+Message-ID: <659687a489b4baea1f2cbb879fc59037b39f7ea0.camel@collabora.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: remoteproc: k3-m4f: Add bindings
+ for K3 AM64x SoCs
+From:   Martyn Welch <martyn.welch@collabora.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Hari Nagalla <hnagalla@ti.com>, kernel@collabora.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Fri, 24 Mar 2023 12:01:19 +0000
+In-Reply-To: <20230308205833.GA1768401@p14s>
+References: <20230302171450.1598576-1-martyn.welch@collabora.com>
+         <20230302171450.1598576-2-martyn.welch@collabora.com>
+         <20230308205833.GA1768401@p14s>
+Organization: Collabora Ltd.
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4-1 
+MIME-Version: 1.0
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+T24gV2VkLCAyMDIzLTAzLTA4IGF0IDEzOjU4IC0wNzAwLCBNYXRoaWV1IFBvaXJpZXIgd3JvdGU6
+Cj4gT24gVGh1LCBNYXIgMDIsIDIwMjMgYXQgMDU6MTQ6NDhQTSArMDAwMCwgTWFydHluIFdlbGNo
+IHdyb3RlOgo+IAo+ID4gK2V4YW1wbGVzOgo+ID4gK8KgIC0gfAo+ID4gK8KgwqDCoCByZXNlcnZl
+ZC1tZW1vcnkgewo+ID4gK8KgwqDCoMKgwqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDI+Owo+ID4g
+K8KgwqDCoMKgwqDCoMKgICNzaXplLWNlbGxzID0gPDI+Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDC
+oMKgIG1jdV9tNGZzc19kbWFfbWVtb3J5X3JlZ2lvbjogbTRmLWRtYS1tZW1vcnlAOWNiMDAwMDAg
+ewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJzaGFyZWQtZG1hLXBv
+b2wiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MDAgMHg5Y2IwMDAwMCAw
+eDAwIDB4MTAwMDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5vLW1hcDsKPiA+ICvC
+oMKgwqDCoMKgwqDCoCB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgIG1jdV9tNGZzc19tZW1v
+cnlfcmVnaW9uOiBtNGYtbWVtb3J5QDljYzAwMDAwIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIGNvbXBhdGlibGUgPSAic2hhcmVkLWRtYS1wb29sIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHJlZyA9IDwweDAwIDB4OWNjMDAwMDAgMHgwMCAweGUwMDAwMD47Cj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBuby1tYXA7Cj4gPiArwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICvCoMKg
+wqAgfTsKPiA+ICsKPiA+ICvCoMKgwqAgc29jIHsKPiA+ICvCoMKgwqDCoMKgwqDCoCAjYWRkcmVz
+cy1jZWxscyA9IDwyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoCAjc2l6ZS1jZWxscyA9IDwyPjsKPiA+
+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoCBtYWlsYm94MF9jbHVzdGVyMDogbWFpbGJveC0wIHsKPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNtYm94LWNlbGxzID0gPDE+Owo+ID4gKwo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgbWJveF9tNF8wOiBtYm94LW00LTAgewo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB0aSxtYm94LXJ4ID0gPDAgMCAwPjsKPiA+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdGksbWJveC10eCA9IDwxIDAgMD47Cj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDC
+oMKgwqDCoMKgwqAgYnVzQGYwMDAwIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBh
+dGlibGUgPSAic2ltcGxlLWJ1cyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjYWRkcmVz
+cy1jZWxscyA9IDwyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNzaXplLWNlbGxzID0g
+PDI+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmFuZ2VzID0gPDB4MDAgMHgwNDAwMDAw
+MCAweDAwIDB4MDQwMDAwMDAgMHgwMAo+ID4gMHgwMWZmMTQwMD47Cj4gPiArCj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBidXNANDAwMDAwMCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIGNvbXBhdGlibGUgPSAic2ltcGxlLWJ1cyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDI+Owo+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAjc2l6ZS1jZWxscyA9IDwyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgcmFuZ2VzID0gPDB4MDAgMHgwNDAwMDAwMCAweDAwIDB4MDQwMDAwMDAg
+MHgwMAo+ID4gMHgwMWZmMTQwMD47Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIG1jdV9tNGZzczogbTRmc3NANTAwMDAwMCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJ0aSxhbTY0LW00ZnNzIjsKPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwMCAweDUwMDAw
+MDAgMHgwMCAweDMwMDAwPiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCA8MHgwMCAweDUwNDAwMDAgMHgwMCAweDEwMDAwPjsKPiA+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWctbmFtZXMgPSAiaXJhbSIsICJk
+cmFtIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB0aSxzY2kg
+PSA8JmRtc2M+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHRp
+LHNjaS1kZXYtaWQgPSA8OT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgdGksc2NpLXByb2MtaWRzID0gPDB4MTggMHhmZj47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVzZXRzID0gPCZrM19yZXNldCA5IDE+Owo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGZpcm13YXJlLW5hbWUgPSAiYW02
+Mi1tY3UtbTRmMF8wLWZ3IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBtYm94ZXMgPSA8Jm1haWxib3gwX2NsdXN0ZXIwICZtYm94X200XzA+Owo+IAo+IFRoaXMg
+ZG9lc24ndCBsb29rIHJpZ2h0IHNpbmNlIG1ib3hfbTRfMCBpcyBkZWZpbmVkIHdpdGhpbgo+IG1h
+aWxib3gwX2NsdXN0ZXIwLgo+IAoKTG9va2luZyBhdCBvdGhlciB1c2VycyBvZiB0aGUgb21hcCBt
+YWlsYm94ZXMgKGFuZCBub3Qgd2FudGluZyB0byBzcGVuZAphZ2VzIHRyYXdsaW5nIGJhY2sgdGhy
+b3VnaCB0aGUgbWFpbGluZyBsaXN0IGFyY2hpdmVzIHRvIHRyeSBhbmQgd29yawpvdXQgd2h5IGl0
+J3Mgc3BlY2lmaWVkIHRoZSB3YXkgaXQgaXMpIGl0IHNlZW1zIHRoYXQgdGhpcyBpcyB0aGUgd2F5
+CnRoYXQgdGhlc2UgbWFpbGJveGVzIGFyZSBzcGVjaWZpZWQuCgpGb3IgaW5zdGFuY2UgaW4gYGFy
+Y2gvYXJtL2Jvb3QvZHRzL29tYXA0LWw0LmR0c2lgLCB0aGUgbWFpbGJveCBpcwpkZWZpbmVkOgoK
+ICAgICAgICAgICAgICAgIG1haWxib3g6IG1haWxib3hAMCB7CiAgICAgICAgICAgICAgICAgICAg
+ICAgIGNvbXBhdGlibGUgPSAidGksb21hcDQtbWFpbGJveCI7CiAgICAgICAgICAgICAgICAgICAg
+ICAgIHJlZyA9IDwweDAgMHgyMDA+OwogICAgICAgICAgICAgICAgICAgICAgICBpbnRlcnJ1cHRz
+ID0gPEdJQ19TUEkgMjYgSVJRX1RZUEVfTEVWRUxfSElHSD47CiAgICAgICAgICAgICAgICAgICAg
+ICAgICNtYm94LWNlbGxzID0gPDE+OwogICAgICAgICAgICAgICAgICAgICAgICB0aSxtYm94LW51
+bS11c2VycyA9IDwzPjsKICAgICAgICAgICAgICAgICAgICAgICAgdGksbWJveC1udW0tZmlmb3Mg
+PSA8OD47CiAgICAgICAgICAgICAgICAgICAgICAgIG1ib3hfaXB1OiBtYm94LWlwdSB7CiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgdGksbWJveC10eCA9IDwwIDAgMD47CiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgdGksbWJveC1yeCA9IDwxIDAgMD47CiAgICAgICAgICAg
+ICAgICAgICAgICAgIH07CiAgICAgICAgICAgICAgICAgICAgICAgIG1ib3hfZHNwOiBtYm94LWRz
+cCB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGksbWJveC10eCA9IDwzIDAgMD47
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGksbWJveC1yeCA9IDwyIDAgMD47CiAg
+ICAgICAgICAgICAgICAgICAgICAgIH07CiAgICAgICAgICAgICAgICB9OwoKSXQncyB1c2VycyBp
+biBgYXJjaC9hcm0vYm9vdC9kdHMvb21hcDQuZHRzaWA6CgogICAgICAgICAgICAgICAgZHNwOiBk
+c3AgewogICAgICAgICAgICAgICAgICAgICAgICAuLi4KICAgICAgICAgICAgICAgICAgICAgICAg
+bWJveGVzID0gPCZtYWlsYm94ICZtYm94X2RzcD47CiAgICAgICAgICAgICAgICAgICAgICAgIC4u
+LgogICAgICAgICAgICAgICAgfTsKCiAgICAgICAgICAgICAgICBpcHU6IGlwdUA1NTAyMDAwMCB7
+CiAgICAgICAgICAgICAgICAgICAgICAgIC4uLgogICAgICAgICAgICAgICAgICAgICAgICBtYm94
+ZXMgPSA8Jm1haWxib3ggJm1ib3hfaXB1PjsKICAgICAgICAgICAgICAgICAgICAgICAgLi4uCiAg
+ICAgICAgICAgICAgICB9OwoKCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgbWVtb3J5LXJlZ2lvbiA9Cj4gPiA8Jm1jdV9tNGZzc19kbWFfbWVtb3J5X3JlZ2lvbj4s
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCA8Jm1jdV9tNGZzc19tZW1vcnlfcmVnaW9uPjsKPiA+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IH07Cj4gPiArwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICvCoMKgwqAgfTsKPiA+IC0tIAo+ID4gMi4z
+OS4xCj4gPiAKCg==
 
-Thank you for the review.
-
-On Fri, Mar 24, 2023 at 9:35=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for your patch!
->
-> On Thu, Mar 23, 2023 at 7:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > The OSTM block on the RZ/Five SoC is identical to one found on the RZ/G=
-2UL
-> > SoC. "renesas,r9a07g043-ostm" compatible string will be used on the
-> > RZ/Five SoC so to make this clear, update the comment to include RZ/Fiv=
-e
-> > SoC.
-> >
-> > No driver changes are required as generic compatible string
-> > "renesas,ostm" will be used as a fallback on RZ/Five SoC.
->
-> While this paragraph is true, it doesn't really matter, as you're not
-> adding a new SoC-specific compatible value.
->
-Agreed, I will keep that in mind for future patches.
-
-Cheers,
-Prabhakar
-
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> > --- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> > @@ -23,7 +23,7 @@ properties:
-> >        - enum:
-> >            - renesas,r7s72100-ostm  # RZ/A1H
-> >            - renesas,r7s9210-ostm   # RZ/A2M
-> > -          - renesas,r9a07g043-ostm # RZ/G2UL
-> > +          - renesas,r9a07g043-ostm # RZ/G2UL and RZ/Five
-> >            - renesas,r9a07g044-ostm # RZ/G2{L,LC}
-> >            - renesas,r9a07g054-ostm # RZ/V2L
-> >        - const: renesas,ostm        # Generic
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
