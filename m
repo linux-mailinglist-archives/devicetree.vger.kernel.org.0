@@ -2,139 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8414B6C8597
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 20:06:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 152196C859F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 20:09:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231241AbjCXTGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 15:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52424 "EHLO
+        id S229919AbjCXTJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 15:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbjCXTGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 15:06:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C546A1ABE3;
-        Fri, 24 Mar 2023 12:05:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 464E6B822D8;
-        Fri, 24 Mar 2023 19:05:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E10FEC433EF;
-        Fri, 24 Mar 2023 19:05:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679684739;
-        bh=McKaNQzEbk0xTIOMEdajlR1Z4xozs8VyLrhP53addwA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=knZIVMw5PE0f38FQxhO/H2qZ9SlfUvGpoYT6je9qZqDcGO566VsxxbqdUSmFV+IoM
-         +W02Vis+mamyc/jIhA4q9/ubjwWA8TVwJncHgz7F9RFRnTFweg1w8CWah1ORB0iHPQ
-         MiScVR2neGJUkdQWVN47fAgdGNc2qEBAOykq1AAiQQEtA3RD3nZZC27cDV6+F+5i3I
-         N3MTA5M+vuuXp7kmUnYmM4ZCE71xmNG7Hlz1q6YSelCF8prqW8rVHaiaO79mYnF2Yc
-         OJCvL0vNEEMbfbsNSxaWSMkQkP6V3REab2Mv6d2jXCWOGq3iMJ4DvqRsYb5e+hFQAw
-         Y+kSa1yx8GoPw==
-Date:   Fri, 24 Mar 2023 19:05:34 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231411AbjCXTJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 15:09:40 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D10B81981;
+        Fri, 24 Mar 2023 12:09:38 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id d22-20020a9d5e16000000b0069b5252ced7so1379978oti.13;
+        Fri, 24 Mar 2023 12:09:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679684978;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LDz1r5VhPNoU48BRrcseKzUPBMUtRwHQFTGhebuKT9E=;
+        b=mBocgl+vwFkZcermyRD7VYee0y/a2Wi3fv7BgAaB9i1Ad4yOZY3NRXrrk4cBdy3Pno
+         aSWp1tVROP89su3iy2PDYNM1MkxmsQRm7I6YYliaAxoH/jn5QHxby6/7VutHkuzNJa66
+         KQ3djSv7pvrbaWUKn9TV4X7wZ5oK+iZ7LjHwKEYE51Jt6uptCCxRMcxJmBWvw6KzRX9a
+         2dKXGbGji2I+lldpR9zzBP/5m3nfCmkEW3xokjMF7Xv5ChO1jtQqRvsXp+1yluDD0Ony
+         8m8MTmpWWF0R7kAGpTTdFosun3+nFQrDfas/t3ibMeZtTPXMd+LnJ8uFE3SP5XjZplD7
+         yDHQ==
+X-Gm-Message-State: AO0yUKV1eZHj0FTiAdU5fkUloadG2F9P6fmBmP/tKvNtj0VB+LfwVnwM
+        zFTiRCHWMxzNfLxF7ifUrw==
+X-Google-Smtp-Source: AK7set+PcreFrKXbM4FiRb1Nlu/NrWcMeXMQQEJhgIqpVVn6tfHybXq5oC3TyVV2TyBym2hVGWmnGw==
+X-Received: by 2002:a9d:6211:0:b0:6a0:4857:e119 with SMTP id g17-20020a9d6211000000b006a04857e119mr1708906otj.0.1679684977914;
+        Fri, 24 Mar 2023 12:09:37 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s10-20020a9d758a000000b0069f509ad088sm5364132otk.65.2023.03.24.12.09.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 12:09:37 -0700 (PDT)
+Received: (nullmailer pid 2276961 invoked by uid 1000);
+        Fri, 24 Mar 2023 19:09:36 -0000
+Date:   Fri, 24 Mar 2023 14:09:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     zhuyinbo <zhuyinbo@loongson.cn>
+Cc:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] riscv: dts: starfive: jh7110: Correct the properties
- of S7 core
-Message-ID: <225945e3-2610-4fec-8ee5-5893d26641b4@spud>
-References: <20230324064651.84670-1-hal.feng@starfivetech.com>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH v3 1/2] dt-bindings: spi: add loongson spi
+Message-ID: <20230324190936.GA2273835-robh@kernel.org>
+References: <20230324063317.14664-1-zhuyinbo@loongson.cn>
+ <20230324063317.14664-2-zhuyinbo@loongson.cn>
+ <1ebe139f-ed01-a073-c69f-a7db4b154fbf@loongson.cn>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="WqfTepoKbm4XihPt"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230324064651.84670-1-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <1ebe139f-ed01-a073-c69f-a7db4b154fbf@loongson.cn>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Mar 24, 2023 at 02:36:17PM +0800, zhuyinbo wrote:
+> This patch need depend on
+> https://lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/ .
 
---WqfTepoKbm4XihPt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It's best to remove that dependency if you want to merge both in the 
+same cycle.
 
-On Fri, Mar 24, 2023 at 02:46:51PM +0800, Hal Feng wrote:
-> The S7 core has no L1 data cache and MMU, so delete some
-> related properties.
->=20
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->=20
-> Hi, Conor,
->=20
-> This is a correction for the S7 entry.
-
-Again going off the latest version of the u74-mc core complex, this
-looks to be correct, thanks.
-I need to go read the Emil email from earier today, but I've
-provisionally gone and put this on the riscv-jh7100_initial_dts branch
-with a Fixes: tag.
-
-Thanks,
-Conor.
-
-> This patch depends on patch [1].
->=20
-> [1] https://lore.kernel.org/all/20230320103750.60295-20-hal.feng@starfive=
-tech.com/
->=20
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 9 ---------
->  1 file changed, 9 deletions(-)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-> index d484ecdf93f7..4c5fdb905da8 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -20,21 +20,12 @@ cpus {
->  		S7_0: cpu@0 {
->  			compatible =3D "sifive,s7", "riscv";
->  			reg =3D <0>;
-> -			d-cache-block-size =3D <64>;
-> -			d-cache-sets =3D <64>;
-> -			d-cache-size =3D <8192>;
-> -			d-tlb-sets =3D <1>;
-> -			d-tlb-size =3D <40>;
->  			device_type =3D "cpu";
->  			i-cache-block-size =3D <64>;
->  			i-cache-sets =3D <64>;
->  			i-cache-size =3D <16384>;
-> -			i-tlb-sets =3D <1>;
-> -			i-tlb-size =3D <40>;
-> -			mmu-type =3D "riscv,sv39";
->  			next-level-cache =3D <&ccache>;
->  			riscv,isa =3D "rv64imac_zba_zbb";
-> -			tlb-split;
->  			status =3D "disabled";
-> =20
->  			cpu0_intc: interrupt-controller {
-> --=20
-> 2.38.1
->=20
-
---WqfTepoKbm4XihPt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZB30fgAKCRB4tDGHoIJi
-0m0jAQDgN9auzDIiU9HW1TSUC9HzDRYLzr+VbgtP30QtgUTeaQEA/UXn5IKUTjFn
-P2TdB0HAjMnHLaEvUPI8++IcsnQWdAs=
-=x47n
------END PGP SIGNATURE-----
-
---WqfTepoKbm4XihPt--
+Rob
