@@ -2,140 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11DAD6C8796
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 22:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E52C66C87BE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 22:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231995AbjCXVny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 17:43:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48164 "EHLO
+        id S232043AbjCXVxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 17:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbjCXVns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 17:43:48 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D7D10265;
-        Fri, 24 Mar 2023 14:43:45 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id y184so2274237oiy.8;
-        Fri, 24 Mar 2023 14:43:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679694225;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CHSbB1SCTNjgkFNr2EH/UUZJ6o73g7xDpL0a/bfAGW4=;
-        b=SxPvXNrq5qpvJtUkizuYz+a5h+wTHWTvoDEWx9K4cukPNYMUPbqQqbQyl0Mv8CfMgR
-         xI9qjO3YKgGzrurAhWJPXJTzG4aA8aew+YNFJvL3QRXDK6nAHWL6F+z832IciWqZspiD
-         wa2HZsnYYWiMZFfzfHQc+VB7XqEk/5cV1CbzrMzoQLNP35kLH/ShNJI+YEBC9KHuGPc8
-         2W0KjvnDh/gVFsfw/NfipFcdcFIDbMWYhVbmy/QvMXM9mbh4lGIpERO6PD18wHoJpUKD
-         /RzbSzZdlVLZ04i08LVfJ6kb2I4sN9U0l8EdcVqHxtQQee/eEnr/Ni7Y53h6n553Bmmm
-         /MvA==
-X-Gm-Message-State: AO0yUKXAqGO9ZWYxzJcntnG7/SkEST3oenEtOkWQC9G+HQx8U+1/b/7Y
-        FyfxU4PSG1HWRIacuNkjwsRKvN6eEA==
-X-Google-Smtp-Source: AK7set/oeSAd7/XsFdatBuszhN1GZKNz6UbweX/12Q4XUIcikQgrV85TeiISLjYEDNk5No5DqZVBpA==
-X-Received: by 2002:a54:4406:0:b0:387:3239:61f3 with SMTP id k6-20020a544406000000b00387323961f3mr1756696oiw.21.1679694224727;
-        Fri, 24 Mar 2023 14:43:44 -0700 (PDT)
-Received: from robh_at_kernel.org ([2605:ef80:80f9:92f0:b372:78c0:69c1:66d6])
-        by smtp.gmail.com with ESMTPSA id j7-20020acab907000000b0038478923768sm8688314oif.3.2023.03.24.14.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 14:43:44 -0700 (PDT)
-Received: (nullmailer pid 33223 invoked by uid 1000);
-        Fri, 24 Mar 2023 21:43:41 -0000
-Date:   Fri, 24 Mar 2023 16:43:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 1/2] of: unittest: option to allow tests that trigger
- kernel stack dump
-Message-ID: <20230324214341.GA20080-robh@kernel.org>
-References: <20230301012116.1488132-1-frowand.list@gmail.com>
- <20230301012116.1488132-2-frowand.list@gmail.com>
- <018f54ee-55cc-e30b-4595-ce555fff1708@roeck-us.net>
- <96cfd1ee-768d-cc03-53dd-35ccf2396863@gmail.com>
+        with ESMTP id S232002AbjCXVxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 17:53:44 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EE055B2;
+        Fri, 24 Mar 2023 14:53:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679694823; x=1711230823;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7BxIj7sfQnrAoBk/QZyzI+WLdJD6yHfKb9dYwULjk7M=;
+  b=PPo568zRqBTZWu+AnlGXpmI2iSGEm/EybQwyR6p9hBNDdjlubuLiLdXv
+   kKXwcxvmwEB36mSyb98Xiq/dwH5L7Q7XNtM/h/5jTxc+5kg2CfQVFg1pX
+   LvcLwqbiUMSxcmrDedbFGSqYPFDfARdnCPOLKXg0ebFNwqek4vGsNcWqb
+   t0MqEATWf449d3Thb4jf9ukApZagpu1B/+5YYaqUNVQI/jTbZUckQa9cI
+   MVS88cfFqkoA2chV8CC3sd474gS13tEUb2dTtf4LyB07nbsGhK0Dg3Rig
+   Nbd0vmYNdbhY0NZgy0uX50V6LNLTGsSTTcFQm6qBdOboTN8HBY0yhIvP7
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="341462739"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; 
+   d="scan'208";a="341462739"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2023 14:53:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="685330606"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; 
+   d="scan'208";a="685330606"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 24 Mar 2023 14:53:40 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pfpLq-000Fgc-2H;
+        Fri, 24 Mar 2023 21:53:34 +0000
+Date:   Sat, 25 Mar 2023 05:53:20 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+Message-ID: <202303250536.OV1LR58y-lkp@intel.com>
+References: <20230324063317.14664-3-zhuyinbo@loongson.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <96cfd1ee-768d-cc03-53dd-35ccf2396863@gmail.com>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230324063317.14664-3-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 01, 2023 at 10:01:36AM -0600, Frank Rowand wrote:
-> On 2/28/23 22:07, Guenter Roeck wrote:
-> > On 2/28/23 17:21, Frank Rowand wrote:
-> >> Commit 74df14cd301a ("of: unittest: add node lifecycle tests") added
-> >> some tests that trigger a kernel stack dump.  Filtering the boot
-> >> messages with scripts/dtc/of_unittest_expect detects that the stack
-> >> dump is expected instead of being a test error.
-> >>
-> >> Test beds might interpret the stack dumps as errors, resulting in
-> >> needless debugging and error reports.  These test beds are likely
-> >> to remove unittests due to these stack dumps. To avoid these problems,
-> >> have unittest default to skip the tests that trigger a stack dump.
-> >>
-> >> Add a kernel cmdline option to not skip those tests.  This option can
-> >> be used by testers who are able to interpret the stack dumps as not
-> >> an error.
-> >>
-> >> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
-> >> ---
-> >>   drivers/of/unittest.c | 54 ++++++++++++++++++++++++++++++++++++++++---
-> >>   1 file changed, 51 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> >> index b5a7a31d8bd2..3a9bc2bc4ba1 100644
-> >> --- a/drivers/of/unittest.c
-> >> +++ b/drivers/of/unittest.c
-> >> @@ -70,6 +70,36 @@ static struct unittest_results {
-> >>   #define EXPECT_NOT_END(level, fmt, ...) \
-> >>       printk(level pr_fmt("EXPECT_NOT / : ") fmt, ##__VA_ARGS__)
-> >>   +/*
-> >> + * Some tests will cause the kernel to emit a stack dump, aka back trace,
-> >> + * when the test is successful.  The tests should make it possible for
-> >> + * test beds to detect that the trace is not an error via EXPECT_BEGIN().
-> >> + *
-> >> + * Most test beds do not process the EXPECT_BEGIN() information and may
-> >> + * flag the stack dump as an error, thus reporting a false failure.  It
-> >> + * is hoped that the KTAP version 4 specification will add the EXPECT_BEGIN()
-> >> + * processing to test beds.
-> >> + *
-> >> + * By default, skip tests that cause a stack dump.  Test beds that process
-> >> + * EXPECT_BEGIN() information should enable these tests via a kernel boot
-> >> + * command line option.
-> >> + */
-> >> +static int stackdump_tests_enabled;
-> >> +
-> >> +static int __init enable_unittest_stackdump(char *str)
-> >> +{
-> >> +    stackdump_tests_enabled = 1;
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int __init disable_unittest_stackdump(char *str)
-> >> +{
-> >> +    stackdump_tests_enabled = 0;
-> >> +    return 0;
-> >> +}
-> >> +early_param("of_unittest_stackdump", enable_unittest_stackdump);
-> >> +early_param("no_of_unittest_stackdump", disable_unittest_stackdump);
-> > 
-> > Does no_of_unittest_stackdump have any benefit or value ?
-> 
-> I would say no, but it is a common pattern to provide both
-> foo and no_foo.
+Hi Yinbo,
 
-It is? I see one documented example. I see numerous ones that are 
-'no_foo'.
+I love your patch! Yet something to improve:
 
-This doesn't scale well if lots of tests need to disable it. Perhaps it 
-should be more generic (at least documentation/naming wise even if the 
-implmentation lives in DT unittest for now).
+[auto build test ERROR on broonie-spi/for-next]
+[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.3-rc3 next-20230324]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Rob
+url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230324-143432
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20230324063317.14664-3-zhuyinbo%40loongson.cn
+patch subject: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson spi controller
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230325/202303250536.OV1LR58y-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/3742622c455d25c4a110d2caf2f5b2ceefe88f91
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230324-143432
+        git checkout 3742622c455d25c4a110d2caf2f5b2ceefe88f91
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303250536.OV1LR58y-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "loongson_spi_dev_pm_ops" [drivers/spi/spi-loongson-pci.ko] undefined!
+>> ERROR: modpost: "loongson_spi_dev_pm_ops" [drivers/spi/spi-loongson-plat.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
