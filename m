@@ -2,115 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A809F6C7A60
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:54:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E3A06C7A68
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:55:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbjCXIyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 04:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52590 "EHLO
+        id S231830AbjCXIzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 04:55:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231872AbjCXIyL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:54:11 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D73D1A95A
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:54:09 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id eh3so4883208edb.11
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:54:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679648048;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NNXplUZWv2uC8xy5gETPaTQRPgOmXhcKawD8mHOM96I=;
-        b=zVU3hHmlipliPeWoyg87GxPpsFN+Mrhj4VARlvwjnLsFt4Zs8wxkKAbMYSn93nEEIF
-         EwVEUE6IsLr9grcxDb9bKAhKmHpontmLvymc8LtKF/pn3dzhJL9MPKtH0LkwhsTLMgZj
-         WEv+L870Jxy6CfL0zuXA1uwDH32kJW9WD0CsEEUTNnWZQbxSvz8J1WYEv2Y9ormPuFhG
-         J1C7ffB0TKAYW4Stq+awGhXz5T2MGs9OobLrOvNqvRoFyTiaZlglULT4xZuhTkgWhiHY
-         LNNR5lGagd8ipojcW76vcOVDLMgPtP1d6vEyN36DYJqn7xSxwT9VTkvFQsCu938HSELk
-         p27g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679648048;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NNXplUZWv2uC8xy5gETPaTQRPgOmXhcKawD8mHOM96I=;
-        b=IiMaWy2U+QirCHxsGtTNEy7X+M0Gw9sFYeNw14LAteqKM5lDZ+un6wqqip/4OvWpVq
-         CNj6NHDlIlmxrElbGvjhUrKaKMvsDNsZj5Llo2LwJtfUEUEsPowyb7TWsI6iljv911DS
-         0nbFruZ8IecNTCUpSts4+ugi8o1GNN86b/cvwyKQm9Ub2juP9TFayhFY3fgDQoqHdwi8
-         JvDT9VGdl+EQ+yavvjj7qPCb/yrTGSAnmHwX/+nY0crHRS/giCNSkcfruN59E0tt4Wvq
-         oEDl+UEeQoBBST/I4E73FMpNeDjZ7/iwwRwYNT4hf2JGC+VWAfd0PoP9L/Qyf5PBuWHT
-         P+1A==
-X-Gm-Message-State: AAQBX9e+y0LVQ3tI02skZg+6fLCsO16IWQLy0gEn0/cTtWUfrOocoNTD
-        9MmrXdNEYNKpihRYPbXlAzbFfQ==
-X-Google-Smtp-Source: AKy350bZgiKkDUCbgQQLT9YEaIuSJGm/ZBIWZUHLUO47cm+GH5NzLc1eDt5Y0018/bTU/tsOB+qUYg==
-X-Received: by 2002:a17:907:9d1a:b0:8a5:8620:575 with SMTP id kt26-20020a1709079d1a00b008a586200575mr2039609ejc.3.1679648047919;
-        Fri, 24 Mar 2023 01:54:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:ce50:243f:54cc:5373? ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
-        by smtp.gmail.com with ESMTPSA id h13-20020a170906110d00b009333aa81446sm8232726eja.115.2023.03.24.01.54.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 01:54:07 -0700 (PDT)
-Message-ID: <66be41fe-0a90-506d-132c-5b87cb1c9e4e@linaro.org>
-Date:   Fri, 24 Mar 2023 09:54:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [net-next PATCH v5 12/15] arm: qcom: dt: Drop unevaluated
- properties in switch nodes for rb3011
-Content-Language: en-US
-To:     Christian Marangi <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231831AbjCXIze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:55:34 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24ED1C307;
+        Fri, 24 Mar 2023 01:55:33 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32O8tMlS036541;
+        Fri, 24 Mar 2023 03:55:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679648122;
+        bh=DxU0T2hXjJm5KDnQGJfy7ceGai8k87bWNWNnCsPtSsg=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=vE4cCgVyUGVvZ+s5UtXpRT05sY3Wu9WNSKwNxMCg106jLYCwW82u7DMfvzDxh/T56
+         W4AlwLwT8qJylchKk9pq1N/4HTvvv8vj9kiaFY5EQSXpqp5FX4DVuSS2cNooSKxn/9
+         l1dzCRk2W/ncXfT5+aOsA7qIJCwFOlXYkzDPKmKI=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32O8tMG7063738
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 24 Mar 2023 03:55:22 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 24
+ Mar 2023 03:55:22 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 24 Mar 2023 03:55:22 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32O8tL1L035697;
+        Fri, 24 Mar 2023 03:55:22 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org
-Cc:     Jonathan McDowell <noodles@earth.li>
-References: <20230319191814.22067-1-ansuelsmth@gmail.com>
- <20230319191814.22067-13-ansuelsmth@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230319191814.22067-13-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>, Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v7 1/6] arm64: defconfig: Enable audio drivers for TI K3 SoCs
+Date:   Fri, 24 Mar 2023 14:25:15 +0530
+Message-ID: <20230313-mcasp_upstream-v7-1-88168d0df9b8@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230313-mcasp_upstream-v7-0-88168d0df9b8@ti.com>
+References: <20230313-mcasp_upstream-v7-0-88168d0df9b8@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=888; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=hIQSN4mjS08ZYCycYNHfEzTIDOJFDZotIHYpiJLGHB0=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkHWSF4WBU+dLnvhwy7tPDpExx5s5Kzb0yL+8Tq
+ 3uNkbwMrAuJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZB1khQAKCRBD3pH5JJpx
+ RVo2D/4xazMXS3XLaWaX/2OPuKKlxw+27je+ea3tRojiVMSzqXzWE/fHVu0inpMgr0BMkVmoMWa
+ ZHoCKjMuk+LB92G3hUenguYbFLHPMKer918cEx4TlLYmmGUHxBmjEqoJOy+B2uRMjCMqpDT5Qnx
+ cuVsTG5aSmyoN9EKdohfywEnl1dNhdUNbOmDsXbpZp4F9YhEDYBHxE+nbFCp8Afwc+jtZS3SsiK
+ LJTDiJA2HkEKBnLOvy4IRJ00qOFyaoP8o5HLDdWQxx+BkeBiG30TS/M1kLuhuNq5uas7Q8GcirE
+ bnQHcocq+2exuZKwbU/MeW+enr6V/V7AKH2vVkKRAp8HJKcht0S3lH/jNBMVy4N2tzA/Qj88vEH
+ gaoypgghWfCs0mQl/v/N3m7TTqmb2c4rRMaZ8uk1kTIUcuh2fC67OEdXJgMLs7/pTfKjvoBQLk+
+ NnHfIoSmGhsubQ0W6sVMQo6tT6PvlHf9zK4COhgxX+/68IGV0UNZZeTPqrLI2OPiTo3R+LqDs8o
+ lZsHruYYtfNZUkr1gDBjnWPdz8MteGT2WWnxiaCGrpUqymWq/Sg5Aj4AscgiUGnnhHA+ZNUqaMC
+ QYQqyj9WussvvWbpn5o5hlaBXWQ/lUdUzgcyTqAINq8xqPJ02b+qkpa00XKoS5npdBEG187pLTq
+ eDhnpfc1THDNhcw==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp; fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/03/2023 20:18, Christian Marangi wrote:
-> IPQ8064 MikroTik RB3011UiAS-RM DT have currently unevaluted properties
-> in the 2 switch nodes. The bindings #address-cells and #size-cells are
-> redundant and cause warning for 'Unevaluated properties are not
-> allowed'.
-> 
-> Drop these bindings to mute these warning as they should not be there
-> from the start.
+TI's K3 platform uses McASP as the digital audio interface on the SoCs.
+AM62x and AM62A based starter kits also use the TLV320AIC3106 codec with
+a 3.5mm jack for analog audio input and output.
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+---
+ arch/arm64/configs/defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
-ARM: dts: qcom: ipq8064-rb3011:
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index b6e437486537..f3b004cb2500 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -920,6 +920,8 @@ CONFIG_SND_SOC_LPASS_WSA_MACRO=m
+ CONFIG_SND_SOC_LPASS_VA_MACRO=m
+ CONFIG_SND_SOC_LPASS_RX_MACRO=m
+ CONFIG_SND_SOC_LPASS_TX_MACRO=m
++CONFIG_SND_SOC_DAVINCI_MCASP=m
++CONFIG_SND_SOC_TLV320AIC3X_I2C=m
+ CONFIG_SND_SIMPLE_CARD=m
+ CONFIG_SND_AUDIO_GRAPH_CARD=m
+ CONFIG_SND_AUDIO_GRAPH_CARD2=m
 
-Best regards,
-Krzysztof
+-- 
+2.40.0
 
