@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 539B96C7D43
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C44CD6C7D5E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:41:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjCXLgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 07:36:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
+        id S231470AbjCXLlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 07:41:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjCXLgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:36:53 -0400
+        with ESMTP id S231516AbjCXLk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:40:57 -0400
 Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07571CF7E
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:36:51 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id x3so6665019edb.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:36:51 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E5F1DB85
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:40:56 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id h8so6755330ede.8
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679657810;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1679658054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vlkMAwkSL6A+6l6qhyo9+I+btfsSVV+jS0eHZv1Cz/4=;
-        b=hmJq3ncfz9zmAyQlRRCODWQq2YRZTe4STlK+rTkj4KcWTlJJXIMOdQUmKLUfJGSvBY
-         95//pT1vXhXjch/H4B2NfkMcZMwjhBHPY1hnC5sSJtwgEOl9YHV1EcLoZlUxLYjfxY2q
-         /Rw23+XrtJZIRGCYUcuoi7r9xMHOb6hRZ+DWfTvwZBRm6btkbfLHOOVtFjtQdnjWmdNv
-         iKGTrF2iOdWhZgXzBHMok4rKqvsszdLusl05KRAwx9gyQ5FA5nHZ8QYDI/gg7WH+n6br
-         6TFjnIWR+3TpXQNRjQv9gMQsq4jQf5Sys/ZYEDJ31obzKBmaj+CuZsWdZ3lk7Nyrv9Vi
-         fsBA==
+        bh=FDA/uoSWTDnnUdNCbAzztacdJP3oEz9K+rqxIbnxmm0=;
+        b=Z4EGMPnKp+OJfyJukNmtJMR+11sVCPZVpG4ab+3ntrTI99bny+nf70oE2lk08/ErNr
+         jrxuNym58CtNdHfW6eCdpsE3Q/2pdZyD7zJeQaZhYo0zcUZZTHfs858aHf4uLxieF3fy
+         Sk6yMqbyX3FitpcS2ao4XyhjaWatm2eadCccyjabVWD/eLoJ840NdJCJQz0to15eN611
+         mWk3GPJNUH2vsZRJmKADau+9yYDjrbaj5a9/uRBDSr2+DzfGtTRowzCDJX+ijuq6npzA
+         G+uRupBCg+l/Je+FQPe4XEKdNwSLcx6VKLqKtqxwCHmhN0IQMmHqOAG3/X03TnRQgr0d
+         Uf0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679657810;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1679658054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vlkMAwkSL6A+6l6qhyo9+I+btfsSVV+jS0eHZv1Cz/4=;
-        b=XEGAiosqnwtYmcMECSpfjd6nrxd7MtqDLnTDMHAOjYFgmE2os80baaMbOSmqOTwpsl
-         8ozOZUQ/A1DZ0rjhgh3gRmJeaUlbJ8fA8Bw7UD1+SrZnpq2CEImhroVnVN/vpzpu5WfL
-         RKtTyTMghydtle7sPHJqhbvlDdp4fEwWHTfATaTHuFGKLwpIlk8+OiiIKwBHPJ/o3+LG
-         TSQLKkZDWSEB60D9PX+KWjxFx6hmYOHxKwjpV4FOk6MSVthIVFXhwt3Xf8kYhw1w2ueg
-         dOjOVbjCgfQjD5eKMCztk9zdhkNN4znPiNo+Ole/GyhGlBNvgy5N5j+VbS+QWSltgZW2
-         E2Rw==
-X-Gm-Message-State: AO0yUKUdPP8yAKJUcGcnH/hdfxCFj57ENyC3ZjsNxG6tYVEJWoKSCc59
-        ExQTnHRNCM+96krzNEL2ytPQKA==
-X-Google-Smtp-Source: AK7set8JifsJoxUHo/xqsd+naerD1nr5pkzdEbY1ebVhB0Uat3D1Hfe+F+ZknhKDRxIvYIT5MrNL/A==
-X-Received: by 2002:a05:6402:1748:b0:4fb:223a:76e7 with SMTP id v8-20020a056402174800b004fb223a76e7mr8892025edx.18.1679657810234;
-        Fri, 24 Mar 2023 04:36:50 -0700 (PDT)
+        bh=FDA/uoSWTDnnUdNCbAzztacdJP3oEz9K+rqxIbnxmm0=;
+        b=CvnUBEGFxiGJUteNGQq1cLMJTprFdkDSf39JplEXv/oocc5KURsESWV3owcvkvIP7X
+         PDBDErO1doCatevJ3YaAg3cOhWU3oalzZizGHE/N/immDip3jjRCDRTdFLEOTtUY8C7M
+         zUMvaFsGTS62O6aevhQwcgkiOdAp3XcyhmlenVu7iFUgAf+I4FYaey1rQsZBfVeeccrK
+         TFrfMjBIkND5oZSGJGueXxm6gU/60R8v8evgrIyiaeAPLNQNYgR2G1iT57MwqCOLb4Xf
+         8bfyG54Jh5ASnac5QksHl/JIL8OJPHh/hxbpE63nPBnxpMtglbT8sdpKBaNTvLzbajD0
+         fZnA==
+X-Gm-Message-State: AAQBX9fT25ZvAjtECg5f9kZLLjq4wiuZ2R+pMy43BdTqWNjakTAGYE3S
+        wJAZJed2nnMtCmSyLz8fjLMzf2ibdKWdBxlaLmg=
+X-Google-Smtp-Source: AKy350Y/ge5Gs2wjFmEoOlbUMNFbhhzaLG3HHyOrLWfaZLXTPJHPyiR6NXgz4FKZxj0V9+iSnegLBw==
+X-Received: by 2002:aa7:cc12:0:b0:502:2265:8417 with SMTP id q18-20020aa7cc12000000b0050222658417mr1219481edt.17.1679658054585;
+        Fri, 24 Mar 2023 04:40:54 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:3027:fb0b:ae08:588? ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
-        by smtp.gmail.com with ESMTPSA id m10-20020a50998a000000b004e48f8df7e2sm10688391edb.72.2023.03.24.04.36.49
+        by smtp.gmail.com with ESMTPSA id b15-20020a50b40f000000b0050221d6768csm698869edh.11.2023.03.24.04.40.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 04:36:49 -0700 (PDT)
-Message-ID: <cbfbbfeb-8ce9-3908-9a61-58b7daa4e7d9@linaro.org>
-Date:   Fri, 24 Mar 2023 12:36:48 +0100
+        Fri, 24 Mar 2023 04:40:54 -0700 (PDT)
+Message-ID: <f69664cf-d995-41d1-f6d7-d6ea123506ef@linaro.org>
+Date:   Fri, 24 Mar 2023 12:40:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V3 2/2] ASoC: dt-bindings: max98363: add soundwire
- amplifier
+Subject: Re: [PATCH 1/2] dt-bindings: input: fsl,scu-key: add wakeup-source
+ property
 Content-Language: en-US
-To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, rf@opensource.cirrus.com,
-        ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-References: <20230323175256.2606939-1-ryan.lee.analog@gmail.com>
- <20230323175256.2606939-2-ryan.lee.analog@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     shawnguo@kernel.org, aisheng.dong@nxp.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20230323093141.4070840-1-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230323175256.2606939-2-ryan.lee.analog@gmail.com>
+In-Reply-To: <20230323093141.4070840-1-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -84,90 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 18:52, “Ryan wrote:
-> From: Ryan Lee <ryans.lee@analog.com>
+On 23/03/2023 10:31, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> This patch adds dt-bindings information for Analog Devices MAX98363
-> SoundWire Amplifier.
-
-No improvements here. So reminding:
-
-Do not use "This commit/patch", but imperative mood. See:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+> Add wakeup-source to indicate whether it could work to wakeup the system
+> from suspend mode.
 > 
-> Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Changes from v1:
->   Fixed a syntax error for the 'dt_binding_check' build.
->   Removed unnecessary properties.
->   Added description about SoundWire device ID of MAX98363
-> Changes from v2:
->   Removed the legacy from i2c/i2s driver and added SoundWire device ID info.
->   Added missing information about DAI.
-> 
->  .../bindings/sound/adi,max98363.yaml          | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-> new file mode 100644
-> index 000000000000..92352a23e1cb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/adi,max98363.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX98363 SoundWire Amplifier
-> +
-> +maintainers:
-> +  - Ryan Lee <ryans.lee@analog.com>
-> +
-> +description:
-> +  The MAX98363 is a SoundWire input Class D mono amplifier that
-> +  supports MIPI SoundWire v1.2-compatible digital interface for
-> +  audio and control data.
-> +  SoundWire peripheral device ID of MAX98363 is 0x3X019F836300
 
-lowercase hex
-
-> +  where X is the peripheral device unique ID decoded from pin.
-> +  It supports up to 10 peripheral devices(0x0 to 0x9).
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sdw3019F836300
-
-lowercase hex (also in example)
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#sound-dai-cells':
-> +    const: 0
-> +
-> +  sound-name-prefix: true
-
-Drop this.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#sound-dai-cells"
-> +
-> +additionalProperties: false
-
-Instead:
-unevaluatedProperties: false
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
