@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B8D6C7D23
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E4E6C7D2E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:29:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231375AbjCXLV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 07:21:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41734 "EHLO
+        id S231655AbjCXL3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 07:29:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231706AbjCXLVZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:21:25 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B173325B90;
-        Fri, 24 Mar 2023 04:21:23 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id e65so1664654ybh.10;
-        Fri, 24 Mar 2023 04:21:23 -0700 (PDT)
+        with ESMTP id S230043AbjCXL3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:29:32 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4AC1ABD7
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:29:30 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id ek18so6653682edb.6
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679656883;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lzzuuSV8TU4gXbg0fS4shS/O6UJkvfjdScq38tWCVsc=;
-        b=f0Q8y7NnKZjFQjeQ5E8//xFRKFOj8QE84E/iygoxivW2yL3KkPKc01EFL37PMdUbU8
-         5m27kT8rzvsY8QT6DhaT+P0rzX7zypBmsrXVOjc5l7PHxXP3tzj7dd0aBI2XdiipvRwE
-         BpAWW9IWE5efcXWwpE1y8kSzJYWNB5jMGn2NJAbRBvrnNYjFHfVaKp/xVRJcHguVnbqU
-         E0ZchFA4cO4JE1C1PL49FjnF7XCYtDilZM9/IbuulnwLW+SdIyZsSOfmgcYYgXgueufB
-         1PkT/+ezJbceDjAa5LCm4OgbY12OBbaagL9uFcTJuiJAA1W8QNb+LUNM4uhThaicRh8M
-         C4zw==
+        d=linaro.org; s=google; t=1679657369;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UBYZAHJ4oF06kqEyxwlGgNiRWjRifAoB3O7aBMX2ZGQ=;
+        b=lfpCU7UXubnZ6VCwtJq39UmJ/DpJcQAIzhTHuxxWf+LeDLHMq6sDOUOKW2kyZ2B2Qy
+         QyWbPBs86cM0ZIraepVH+TRXpMh6p9DKhjM3qej/Cjoh8kaNOYC8kPdZl2NCSYyTebAV
+         djGswrREiaH/F2uUbRa0T0YpeFJhVMeXij0BbQpAkHoUbzfGfXLvIi2akG9yCD3PGuaD
+         NynZeaomh7rzdSsEWYqvPQ7sMwrqKW1OKsXITdOJzrF2f2cltDRWmOkwPFAluLYF2xtI
+         rlnCmWqC76XzKZadNwoPOB11v1lmK9/X1N5FH9x8lkWnEgeW15EQbYyY0bcLD4sDv46a
+         Oscw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679656883;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lzzuuSV8TU4gXbg0fS4shS/O6UJkvfjdScq38tWCVsc=;
-        b=QQbQvhxVMLYl2ZDcQvULgdvt9o9WU5A+QJeAOid/ydSyxm6qtfb919d2Q3ke6QJbY9
-         e4Ll/8s5KPvAL06xR223lnHRfGfZeRYQmSJbhdoAozmfkgk/q62+L6Xzr42kXBHg0WY0
-         4rQEhThrEdnKcD35jiT6PY22Yym8WBF/QjJrOKAO4w8xV0S63Ti+w1CqAcGQQvAPFH1H
-         LXiRFLpx7ndQx4wVpbOQAR2uMJAP6fqIzW0UZCeUviNei6bEr9Z4YJb3Q4WlvYQAA+17
-         skb8QJr4YgURYkrq1WuAdB336Q6MXFZHM6Xuf3eao+SErA72+yFzC4A+LhpbZ1BaEa25
-         MTCQ==
-X-Gm-Message-State: AAQBX9fWfoDqVMYNSUtyahELXFQ7TsTQjuu61IL4mjFI61gNKDhY8Uni
-        DT9lEcjaci6YknwU+pEe9sVjjWyholQ1cxyF17k=
-X-Google-Smtp-Source: AKy350ZdYUk3LRlSE05bWW+bZ37IGyJKG7JJmZ+R7fSDXkOe6HFeEf8ws+eM2XfUuq0s6uyxUxARN0nuIPEZlqcxkws=
-X-Received: by 2002:a05:6902:1108:b0:b6d:fc53:c5c0 with SMTP id
- o8-20020a056902110800b00b6dfc53c5c0mr1957446ybu.1.1679656882752; Fri, 24 Mar
- 2023 04:21:22 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679657369;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UBYZAHJ4oF06kqEyxwlGgNiRWjRifAoB3O7aBMX2ZGQ=;
+        b=taKNDqtkPIiVzm4Do2OTjocjGtSl1R8HLbQtvS/HOEVLJdILaKAcepqZJvxAZpPVJk
+         OEhPglPjyHjgDaQGZjV10rJnyq1WPRo3sbB7ItiKUvmV5HEmNWapIMCZayU9omaHLOBs
+         oEbDdgVC/PpRYnz3gKYRSfo7euGTn9km+rmmaZxWqYxXpb4La2IZrZ28bzeLdescIKNV
+         7BS3beVohD9D0kXzfItEnxke2XSEE6LelCqlef5XxFmPQDYpu3jtZJorwPUqSunv6tFp
+         iW2HJV6raTPKG4zkYuT8m4/tifKpeIJE/ogKRmY3QoMQBmUTxxSZ0gMpX1sLHk+Ymwic
+         G9qQ==
+X-Gm-Message-State: AAQBX9cPXjeqKNeURWEX7QzJ8T7s+pTcyQ0HaklAhgQc+tWyEixKhXKe
+        dep/sbYdA/GctC8OGoGVquUeWw==
+X-Google-Smtp-Source: AKy350ap/qXI7A1sMp8C4oUtWf50SlQntYwZedDuCHwbGnlHGF5tBBAtbSvocbO5enonMQHKR7kEDA==
+X-Received: by 2002:a17:906:40c7:b0:930:7324:2766 with SMTP id a7-20020a17090640c700b0093073242766mr2059087ejk.35.1679657369098;
+        Fri, 24 Mar 2023 04:29:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:3027:fb0b:ae08:588? ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
+        by smtp.gmail.com with ESMTPSA id u7-20020a170906b10700b0092f38a6d082sm10094107ejy.209.2023.03.24.04.29.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 04:29:28 -0700 (PDT)
+Message-ID: <4e3e6d50-c6ba-985d-82e6-df52ef17d174@linaro.org>
+Date:   Fri, 24 Mar 2023 12:29:27 +0100
 MIME-Version: 1.0
-References: <20230323124510.2484808-1-noltari@gmail.com> <20230323124510.2484808-2-noltari@gmail.com>
- <20230324104020.54754079@xps-13> <CAKR-sGcbRRjqt3raXHcvfCfKFDfFWsuu+C7XW3qFckawMsqe4w@mail.gmail.com>
- <20230324114911.19e00ae1@xps-13>
-In-Reply-To: <20230324114911.19e00ae1@xps-13>
-From:   =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
-Date:   Fri, 24 Mar 2023 12:21:11 +0100
-Message-ID: <CAKR-sGc3R_k_+-hzv5DOOeRO-5rHL1k_dq7mpZLcv=FgZ1Moug@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: nand: Macronix: document new binding
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, masonccyang@mxic.com.tw,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v5 2/2] ARM: dts: exynos: add mmc aliases
+To:     Henrik Grimler <henrik@grimler.se>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alim.akhtar@samsung.com, m.szyprowski@samsung.com,
+        jenneron@protonmail.com, markuss.broks@gmail.com,
+        martin.juecker@gmail.com, virag.david003@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Valentine Iourine <iourine@iourine.msk.su>
+References: <20230316211558.8526-1-henrik@grimler.se>
+ <20230316211558.8526-3-henrik@grimler.se>
+ <216262b8-fe48-6696-17a4-eaa82e776db7@linaro.org> <ZBds5NFv1Lr8k0jk@L14.lan>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZBds5NFv1Lr8k0jk@L14.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,153 +82,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-El vie, 24 mar 2023 a las 11:49, Miquel Raynal
-(<miquel.raynal@bootlin.com>) escribi=C3=B3:
->
-> Hi =C3=81lvaro,
->
-> noltari@gmail.com wrote on Fri, 24 Mar 2023 11:31:17 +0100:
->
-> > Hi Miqu=C3=A8l,
-> >
-> > El vie, 24 mar 2023 a las 10:40, Miquel Raynal
-> > (<miquel.raynal@bootlin.com>) escribi=C3=B3:
-> > >
-> > > Hi =C3=81lvaro,
-> > >
-> > > noltari@gmail.com wrote on Thu, 23 Mar 2023 13:45:09 +0100:
-> > >
-> > > > Add new "mxic,disable-block-protection" binding documentation.
-> > > > This binding allows disabling block protection support for those de=
-vices not
-> > > > supporting it.
-> > > >
-> > > > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mtd/nand-macronix.txt | 3 +++
-> > > >  1 file changed, 3 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.tx=
-t b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-> > > > index ffab28a2c4d1..03f65ca32cd3 100644
-> > > > --- a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-> > > > +++ b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-> > > > @@ -16,6 +16,9 @@ in children nodes.
-> > > >  Required NAND chip properties in children mode:
-> > > >  - randomizer enable: should be "mxic,enable-randomizer-otp"
-> > > >
-> > > > +Optional NAND chip properties in children mode:
-> > > > +- block protection disable: should be "mxic,disable-block-protecti=
-on"
-> > > > +
-> > >
-> > > Besides the fact that nowadays we prefer to see binding conversions t=
-o
-> > > yaml before adding anything, I don't think this will fly.
-> > >
-> > > I'm not sure exactly what "disable block protection" means, we
-> > > already have similar properties like "lock" and "secure-regions", not
-> > > sure they will fit but I think it's worth checking.
-> >
-> > As explained in 2/2, commit 03a539c7a118 introduced a regression on
-> > Sercomm H500-s (BCM63268) OpenWrt devices with Macronix MX30LF1G18AC
-> > which hangs the device.
-> >
-> > This is the log with block protection disabled:
-> > [    0.495831] bcm6368_nand 10000200.nand: there is not valid maps for
-> > state default
-> > [    0.504995] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
-> > [    0.511526] nand: Macronix MX30LF1G18AC
-> > [    0.515586] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-> > 2048, OOB size: 64
-> > [    0.523516] bcm6368_nand 10000200.nand: detected 128MiB total,
-> > 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-> > [    0.535912] Bad block table found at page 65472, version 0x01
-> > [    0.544268] Bad block table found at page 65408, version 0x01
-> > [    0.954329] 9 fixed-partitions partitions found on MTD device brcmna=
-nd.0
-> > ...
-> >
-> > This is the log with block protection enabled:
-> > [    0.495095] bcm6368_nand 10000200.nand: there is not valid maps for
-> > state default
-> > [    0.504249] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
-> > [    0.510772] nand: Macronix MX30LF1G18AC
-> > [    0.514874] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-> > 2048, OOB size: 64
-> > [    0.522780] bcm6368_nand 10000200.nand: detected 128MiB total,
-> > 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-> > [    0.539687] Bad block table not found for chip 0
-> > [    0.550153] Bad block table not found for chip 0
-> > [    0.555069] Scanning device for bad blocks
-> > [    0.601213] CPU 1 Unable to handle kernel paging request at virtual
-> > address 10277f00, epc =3D=3D 8039ce70, ra =3D=3D 8016ad50
-> > *** Device hangs ***
-> >
-> > Enabling macronix_nand_block_protection_support() makes the device
-> > unable to detect the bad block table and hangs it when trying to scan
-> > for bad blocks.
->
-> Please trace nand_macronix.c and look:
-> - are the get_features and set_features really supported by the
->   controller driver?
+On 19/03/2023 21:13, Henrik Grimler wrote:
+>>>  
+>>> +	aliases {
+>>> +		mmc0 = &sdhci_0;
+>>> +		mmc2 = &sdhci_2;
+>>
+>>
+>> Why this is 2? Aliases are continues and match the board. For example
+>> Universal calls this mmc1 and the next mmc2, not 3.
+> 
+> Not sure I follow, Universal calls sdhci_2 mmc1 in schematics? (I have tried searching for
+> schematics but cannot really find anything about this board)
 
-This is what I could find by debugging:
-[    0.494993] bcm6368_nand 10000200.nand: there is not valid maps for
-state default
-[    0.505375] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
-[    0.512077] nand: Macronix MX30LF1G18AC
-[    0.515994] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-2048, OOB size: 64
-[    0.523928] bcm6368_nand 10000200.nand: detected 128MiB total,
-128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-[    0.534415] bcm6368_nand 10000200.nand: ll_op cmd 0xa00ee
-[    0.539988] bcm6368_nand 10000200.nand: ll_op cmd 0x600a0
-[    0.545659] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
-[    0.551214] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-[    0.557843] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
-[    0.563475] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-[    0.569998] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
-[    0.575653] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-[    0.582246] bcm6368_nand 10000200.nand: ll_op cmd 0x80010000
-[    0.588067] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-[    0.594657] nand: nand_get_features: addr=3Da0 subfeature_param=3D[00
-00 00 00] -> 0
-[    0.602341] macronix_nand_block_protection_support:
-ONFI_FEATURE_ADDR_MXIC_PROTECTION=3D0
-[    0.610548] macronix_nand_block_protection_support: !=3D
-MXIC_BLOCK_PROTECTION_ALL_LOCK
-[    0.624760] Bad block table not found for chip 0
-[    0.635542] Bad block table not found for chip 0
-[    0.640270] Scanning device for bad blocks
+Yes. The alias numbers are the numbering exposed on the board. This
+might or might not match original numbering. If you have a development
+board with a SoM, pretty often not all interfaces, let's say UARTs, are
+exposed. SoM might have 10 UARTs, but board has only 4 and numbers them
+UART0-3. Aliases should be 0-3, not 0, 5, 7, 9.
 
-I don't know how to tell if get_features / set_features is really supported=
-...
+> 
+>> I bet it is the same on Trats and all other boards.
+> 
+> Sure, I can change to mmc0, mmc1 for all 4210 devices.
 
-> - what is the state of the locking configuration in the chip when you
->   boot?
+Yes, please.
 
-Unlocked, I guess...
-How can I check that?
+> 
+>>> +		mmc3 = &sdhci_3;
+>>> +	};
+>>> +
+>>>  	chosen {
+>>>  		bootargs = "root=/dev/mmcblk0p5 rw rootwait earlyprintk panic=5 maxcpus=1";
+>>>  		stdout-path = "serial2:115200n8";
+>>> diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
+>>> index 6260da187e92..0e5419c0eaff 100644
+>>> --- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
+>>> +++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
+>>> @@ -20,6 +20,10 @@ / {
+>>>  	model = "TOPEET iTop 4412 Elite board based on Exynos4412";
+>>>  	compatible = "topeet,itop4412-elite", "samsung,exynos4412", "samsung,exynos4";
+>>>  
+>>> +	aliases {
+>>> +		mmc2 = &sdhci_2;
+>>
+>> mmc1
+> 
+> Ok, will change.
+> 
+>>> +	};
+>>> +
+>>>  	chosen {
+>>>  		bootargs = "root=/dev/mmcblk0p2 rw rootfstype=ext4 rootdelay=1 rootwait";
+>>>  		stdout-path = "serial2:115200n8";
+>>> diff --git a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
+>>> index ca8d42b2ce3b..7bc6968af9c3 100644
+>>> --- a/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
+>>> +++ b/arch/arm/boot/dts/exynos4412-itop-scp-core.dtsi
+>>> @@ -23,6 +23,10 @@ memory@40000000 {
+>>>  		reg = <0x40000000 0x40000000>;
+>>>  	};
+>>>  
+>>> +	aliases {
+>>> +		mmc0 = &mshc_0;
+>>> +	};
+>>> +
+>>>  	firmware@203f000 {
+>>>  		compatible = "samsung,secure-firmware";
+>>>  		reg = <0x0203f000 0x1000>;
+>>> diff --git a/arch/arm/boot/dts/exynos4412-midas.dtsi b/arch/arm/boot/dts/exynos4412-midas.dtsi
+>>> index 82aed59cba7c..e6b949c1a00f 100644
+>>> --- a/arch/arm/boot/dts/exynos4412-midas.dtsi
+>>> +++ b/arch/arm/boot/dts/exynos4412-midas.dtsi
+>>> @@ -25,6 +25,9 @@ / {
+>>>  	aliases {
+>>>  		i2c11 = &i2c_max77693;
+>>>  		i2c12 = &i2c_max77693_fuel;
+>>> +		mmc0 = &mshc_0;
+>>> +		mmc2 = &sdhci_2;
+>>> +		mmc3 = &sdhci_3;
+>>
+>> This is actually correct.
+>>
+>>>  	};
+>>>  
+>>>  	chosen {
+>>> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>> index 25e082fda955..45ef7b7ba7e0 100644
+>>> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>> @@ -13,6 +13,11 @@
+>>>  #include "exynos-mfc-reserved-memory.dtsi"
+>>>  
+>>>  / {
+>>> +	aliases {
+>>> +		mmc0 = &mshc_0;
+>>> +		mmc2 = &sdhci_2;
+>>
+>> This is also correct.
+>>
+>>> +	};
+>>
+>> For all other cases, where schematics are missing, just make them linear.
+> 
+> Alright, will do in next version, thanks for the feedback!
+> 
 
-> - is there anything that locks the device by calling mxic_nand_lock() ?
-> - finding no bbt is one thing, hanging is another, where is it hanging
->   exactly? (offset in nand/ and line in the code)
 
-I've got no idea...
+Best regards,
+Krzysztof
 
->
-> >
-> > >
-> > > Otherwise, why would you disable the block protection? What does it
-> > > mean exactly? I'm not in favor of a Macronix-specific property here.
-> > >
-> > > Thanks,
-> > > Miqu=C3=A8l
-> >
-> > --
-> > =C3=81lvaro
->
->
-> Thanks,
-> Miqu=C3=A8l
