@@ -2,108 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A2036C7950
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C99F66C79AB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:25:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjCXIDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 04:03:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48324 "EHLO
+        id S231307AbjCXIZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 04:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbjCXIDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:03:54 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1EF23864;
-        Fri, 24 Mar 2023 01:03:53 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id eh3so4462702edb.11;
-        Fri, 24 Mar 2023 01:03:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679645032;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xdPfVznn1+cmnWLd3joAMKzC5IL6oKT3yPikotdBwTo=;
-        b=ZDGfVVLCGkWZUzZiCRqGteeqkaKWetao4CofMCmxQWl+nVuqaKJ9Z853VpC11tQPrP
-         2fCpJLLFPKHOuevz60rn2UNBgDKrZhPrXTZYZFt8V/IG6gaDVo6ammZ4M0Cpo31pdqN8
-         macbIvU41vGNWiqA2gF89srr85ROsTkdx2G5I3l9Y/Wl8Q+zQrv+Y//lVTlMPr9M+Kux
-         sPAgl9D7dIpVwAkvszwIS2Le6nz22kiGcdOQjqIE9bM5d/64chSiaDtzcyGWKvSCbuEU
-         dai1mQ8ezO6sT40rNeh/MA652xJ3oJ055fWPXKu258MQcbAQq/eIYl2JRJBCmkimsFc+
-         J5uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679645032;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xdPfVznn1+cmnWLd3joAMKzC5IL6oKT3yPikotdBwTo=;
-        b=gyxah4JIoXVfWAFFo0S/OsDuN/bxvvhCbJQYr/Rhl7qnqIl9stJ20gLggUkG0jVrWY
-         00WLcbPQ7DKK5hQx2CpRPYJhFPSYKGwHuQyAoFUEyALQTqfm3wkYPrylI7H/k1bxsc2T
-         diB6aFNPQ0q1hGs1L5b499koNfgj93zpyOPhgqJybbSqqb7uSUaOTg0hxjM9Fp8dd8s/
-         X2KMwYrHTiwjMrijmSImr76M/LksxrOz1YjtdNT1pyhaBajopaRM7WIFVWhpBfvnP3Dt
-         w3EpvwWO1wyweb1WPUw5X3RrmvzAoZDpn+kAAO5wFHSJUkMeMC7JNGGFByTTmVliGxyP
-         iCbQ==
-X-Gm-Message-State: AAQBX9e1oPj5w5+yNDrvkxXNvGpknJm5hYHnkJJcq3dEOOhpszVjqe/g
-        hAah/Z6p4DhzW95xJ3Db4Ki9c5Y7fWM4GTdB8YA=
-X-Google-Smtp-Source: AKy350ZsgN9BqoCkjFLRhe/ETXRYHC7790A78K2S00e9Slpv5Upu4pOEf20dq2DZFMQhGRN0grToelfSXDUJdHXvQlY=
-X-Received: by 2002:a17:906:1744:b0:930:4944:c2c with SMTP id
- d4-20020a170906174400b0093049440c2cmr952299eje.12.1679645031882; Fri, 24 Mar
- 2023 01:03:51 -0700 (PDT)
+        with ESMTP id S229752AbjCXIZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:25:42 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B7525291;
+        Fri, 24 Mar 2023 01:25:41 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32O21nl6009116;
+        Fri, 24 Mar 2023 08:25:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=fVpCNVtZFfH87DRlptURT/buGO6SxHnjLASX+7OFy/Q=;
+ b=WDijNTEuW0pag+a5E3ZvjUCjiWuBK7sJrMOsl16JMuifBv0nThwIJ5XLKlpuRfGcv7zg
+ d50qf5VoKySi+i0JqGlEezsbv0KvXj6KwDK1BC4Y66iCy/rdDb+s9Nxq9sivjZ36yTjT
+ aFBB8ZcPKJzSXUsxwkHbjsvS/iTN6656ErxfvxpHC4+/aYS+kC/GdwD0eiWgq2hOoNdE
+ RXQx6RTpyHpN7Lt1vQ2y5Q4ThU/pM8HttHXMK2ZCT2F0Ck43Bq5EhIoyLEptzp26TDzO
+ Y/U+Zb7sowFm14ch4+2MFzcJKsfXugIW3rL6XvyRUEKNRGow1B1Bq9j9iI8IuqqE208X VA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pgxr899d7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Mar 2023 08:25:24 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32O8PNxr031524
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Mar 2023 08:25:23 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 24 Mar
+ 2023 01:25:19 -0700
+Message-ID: <d4c133c1-38c7-93e3-deaf-b55161057409@quicinc.com>
+Date:   Fri, 24 Mar 2023 16:25:16 +0800
 MIME-Version: 1.0
-References: <20230323123807.11882-1-cnsztl@gmail.com> <20230323123807.11882-2-cnsztl@gmail.com>
- <CAEwRq=pwWrXAuHMBaWzZE7cxmVMGuX=eqi5Esjxpe-jPXWF+0w@mail.gmail.com>
-In-Reply-To: <CAEwRq=pwWrXAuHMBaWzZE7cxmVMGuX=eqi5Esjxpe-jPXWF+0w@mail.gmail.com>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Fri, 24 Mar 2023 16:03:39 +0800
-Message-ID: <CAOP2_ThsN9O8su2MMFVZRMC6SQ-MQ6qxwXeGXmK2ySMxSGfMRw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: Add doc for FriendlyARM NanoPi R2C
-To:     Vincent Legoll <vincent.legoll@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andy Yan <andyshrk@163.com>, Peter Geis <pgwipeout@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 01/11] dt-bindings: arm: Add support for DSB element
+ size
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <1679551448-19160-1-git-send-email-quic_taozha@quicinc.com>
+ <1679551448-19160-2-git-send-email-quic_taozha@quicinc.com>
+ <e6ad7301-09ea-93e0-929e-86e0eb0a02e7@arm.com>
+Content-Language: en-US
+From:   Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <e6ad7301-09ea-93e0-929e-86e0eb0a02e7@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: smh7XMFPpWpEVOyQGTYe-rnu54zoYy_Z
+X-Proofpoint-GUID: smh7XMFPpWpEVOyQGTYe-rnu54zoYy_Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_04,2023-03-23_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ adultscore=0 impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
+ phishscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
+ mlxlogscore=984 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2303240068
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vincent,
+Hi Suzuki,
 
-On Thu, Mar 23, 2023 at 8:44=E2=80=AFPM Vincent Legoll <vincent.legoll@gmai=
-l.com> wrote:
+在 3/23/2023 7:18 PM, Suzuki K Poulose 写道:
+> On 23/03/2023 06:03, Tao Zhang wrote:
+>> Add property "qcom,dsb-elem-size" to support DSB(Discrete Single
+>> Bit) element for TPDM. The associated aggregator will read this
+>> size before it is enabled. DSB element size currently only
+>> supports 32-bit and 64-bit.
+>>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml 
+>> b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+>> index 5c08342..d9b6b613 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+>> @@ -44,6 +44,15 @@ properties:
+>>       minItems: 1
+>>       maxItems: 2
 >
-> Hello,
 >
-> On Thu, Mar 23, 2023 at 1:38=E2=80=AFPM Tianling Shen <cnsztl@gmail.com> =
-wrote:
-> > -      - description: FriendlyElec NanoPi R2S
-> > +      - description: FriendlyElec NanoPi R2C/S
+>>   +  qcom,dsb-element-size:
+>> +    description:
+>> +      Specifies the DSB(Discrete Single Bit) element size supported by
+>> +      the monitor. The associated aggregator will read this size 
+>> before it
+>> +      is enabled. DSB element size currently only supports 32-bit 
+>> and 64-bit.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 32
+>> +    maximum: 64
 >
-> Maybe do like for the following one:
->
-> >        - description: FriendlyElec NanoPi4 series boards
->
-> - description: FriendlyElec NanoPi R2 series boards
+> Shouldn't this be something like oneOf ? It is not a range, but one of
+> those two specific values ?
 
-Sounds good! I will apply your suggestion in v2.
+Yes, "qcom,dsb-element-size" should be an optional option required in TPDM
 
-Thanks,
-Tianling.
+devicetree. Other properties like "qcom,cmb-element-size", 
+"qcom,tc-element-size"
+
+and etc. will be added in a later patch series.
+
+I will update this doc according to your advice in the next version of 
+the patch.
+
+Tao
 
 >
-> Regards
+> Suzuki
 >
-> --
-> Vincent Legoll
+>
