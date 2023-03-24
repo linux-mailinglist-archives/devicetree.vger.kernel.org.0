@@ -2,77 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B408C6C86EB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BD9B6C8708
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:47:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbjCXUin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 16:38:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54330 "EHLO
+        id S232123AbjCXUra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 16:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232141AbjCXUil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:38:41 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15CD31E1D5;
-        Fri, 24 Mar 2023 13:38:41 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id h12-20020a17090aea8c00b0023d1311fab3so2781327pjz.1;
-        Fri, 24 Mar 2023 13:38:41 -0700 (PDT)
+        with ESMTP id S231950AbjCXUr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:47:29 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED375196B9
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:47:27 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id ek18so12623421edb.6
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:47:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679690320;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N5G/syVam4SknjFsEw80vzFCuD6BG5cs1b0YrLZ+gNk=;
-        b=Qszr7DLVXSvWv7inbHD/oLNYm+jkkEndHv5jZjZ1JN2QZtmnnYUMaN7SIit905jKth
-         /BY1QWiJtMJQoKUekclBnpaxN2Xaogq4ZhxUCS4g3M1TsjvkjTxR6CGheH5nCIdpTSI8
-         4aBMEACUlkyn3IVVgCADf9JiPEQd2G4JNbs7tRSJrLQ3TgVlG0Nso9zPQAAfaR7XLJTN
-         kbqiWuVPaEyBZYFi8ItKvBr+hg9POkkTrChKWNFM20EVn245JbJMhk/zM0utkwROuCEP
-         Xu8SUw2TVZZjV2hOEEVaHhTA48dWf+vlBGCSYZjDgI2CORx6M2xjDLlC16HhHzcYwWmD
-         4PfQ==
+        d=linaro.org; s=google; t=1679690846;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gvJuFk30qXvHsXmKvq2WXms+VNACf251BO2nmorEuAE=;
+        b=TPOAgzMTYkViLIjcHeqRkpM16OmWLnnbSWgzEmaWJhwgv6eN1kJDftmvs1qIr3Lpic
+         ypGfjEotaFTMZpJBjFijOTrxiGbMN2vhUX+dyTqFbm9U1NI7mTwp+TM2X5IMrdIYObb1
+         QCB0JNg9jdvMvi2jimAXGw/rrnK/mikPXCPcvazVy+qiYekvbuqavaUQ/HBEhUDPcfeE
+         7U0QDgpID8b7+iN+jfwEGzyC+OIPybCaixweKOBhBIL+6sbMSCDxbkuom5nH3Z/kZUh+
+         1us+I2Is9gmKVZRbqsGTsU7zIVTW+rzj5UdwTPuf4VFL+OpMXhvvqEwbP2xCCabM8XtZ
+         sAyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679690320;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N5G/syVam4SknjFsEw80vzFCuD6BG5cs1b0YrLZ+gNk=;
-        b=Fkca0FAQ4AtqliZw8qJB2+60JK/w17QHF9IcJd/9UVm5d+HBd0WbUjx+/XZNZUxvcO
-         VFr39C2ZAHJRnaRzjDrsJP/McaQnzqzbkROGOeVr2jhpOuy5kV8bmfQr8lc3HGuDoC1q
-         GxsZtuEpeeZEnz7W3Zh/4wrBcjtiMD3UYiYEK8gVKG+TM0v1NzybT6E54G5aIVN11PN3
-         9OFB0nuAJQMfovuGV5JIy0kGW1v9/fUj7WvZlAQV21yonaU/7JEC8E8Hab8V+O4GmN4o
-         KATn8+3PCT5SkMeRajUkzIJ0ww9pIaHTLCSasfv1RBSksdUeF6GdmzKGKSpKmkH2pK3q
-         74uA==
-X-Gm-Message-State: AAQBX9fXXhqeNOc0iJ5ruNOmYQ1ZGhP8JXBhcba5L3cyGN0/Ty3sHHAw
-        5ZXYpKzQITk398TxVhv+/pXUNKIM/bg=
-X-Google-Smtp-Source: AKy350abHWZOnX82gVzMiOfTyAKmvgrVNRXbgit78I2H0sTGJQu3A7O6RzW1hgRIEMIzxXixOSoN6g==
-X-Received: by 2002:a17:902:c949:b0:1a1:adb0:ed72 with SMTP id i9-20020a170902c94900b001a1adb0ed72mr4729285pla.4.1679690320097;
-        Fri, 24 Mar 2023 13:38:40 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id f17-20020a170902ab9100b001966d94cb2esm14503431plr.288.2023.03.24.13.38.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 13:38:39 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Matthew Lear <matthew.lear@broadcom.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        d=1e100.net; s=20210112; t=1679690846;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gvJuFk30qXvHsXmKvq2WXms+VNACf251BO2nmorEuAE=;
+        b=X96RGeRyHEyBM2nxghlfZGy2V0QgfRdlzJMPzUC5a93ozpbgcoHA66ZKDmZtQqh/9s
+         XQeaUFEu3C4j8fvH1foZKyMXsvqF0fgtBx8fyRrEkhSjUZoEBwcT18yppMPSHaSGdfnN
+         LWcOAjQ2c/X8F0VQ6iDdSxkESzSUC2rKg1dgMs7D9xEipxXUCldPo3rdigMPbGVhyfxQ
+         ymlOztxiT7VIdVnsCE/D2KpYasyBfy3TwwvCx7OFQl7tPheLK+8Y6QZOhnBWF0sVetMp
+         Uza1WhRc1ZD7udaX8N8LN6PhZl1ujkvHmge5cgxtP2WAS3BZ0FsU174sM+azBCFJvkI3
+         MktQ==
+X-Gm-Message-State: AAQBX9d9rPREgeXn+qx1w2tiv61qQmNhJHOymwoJpI1Acob5vY8iC7a7
+        6Xsip8lnlcCtMNNTHlwaB8AKgw==
+X-Google-Smtp-Source: AKy350YwCpEJ2Rxx3nxkTYvfEOr50qMbvXpKHh3yxBpw2u57GGoC30mDM0iDbjcLJi0wu6059ATpFA==
+X-Received: by 2002:a17:906:b049:b0:937:9a24:370b with SMTP id bj9-20020a170906b04900b009379a24370bmr4185300ejb.67.1679690846477;
+        Fri, 24 Mar 2023 13:47:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:3027:fb0b:ae08:588? ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
+        by smtp.gmail.com with ESMTPSA id v15-20020a170906858f00b0093229e527cdsm10307455ejx.42.2023.03.24.13.47.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 13:47:26 -0700 (PDT)
+Message-ID: <8c88fe1b-cb91-22e3-6fcd-c2fdf2202cc0@linaro.org>
+Date:   Fri, 24 Mar 2023 21:47:24 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sm8450: remove invalid
+ properties in cluster-sleep nodes
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Young <sean@mess.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Ravi Kumar V <kumarrav@codeaurora.org>,
-        linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
-        (V4L/DVB)),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v2 2/2] media: rc: gpio-ir-recv: Fix support for wake-up
-Date:   Fri, 24 Mar 2023 13:38:33 -0700
-Message-Id: <20230324203833.3540187-3-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230324203833.3540187-1-f.fainelli@gmail.com>
-References: <20230324203833.3540187-1-f.fainelli@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-0-0ca1bea1a843@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-2-0ca1bea1a843@linaro.org>
+ <20230324174518.2arvdglqqixmxqcp@ripper>
+ <fdd51d3d-a1fd-c3a9-c578-59a11c5213de@linaro.org>
+ <20230324195713.5blwpv7xjijlrtt5@ripper>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324195713.5blwpv7xjijlrtt5@ripper>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,34 +90,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver was intended from the start to be a wake-up source for the
-system, however due to the absence of a suitable call to
-device_set_wakeup_capable(), the device_may_wakeup() call used to decide
-whether to enable the GPIO interrupt as a wake-up source would never
-happen. Lookup the DT standard "wakeup-source" property and call
-device_init_wakeup() to ensure the device is flagged as being wakeup
-capable.
+On 24/03/2023 20:57, Bjorn Andersson wrote:
+> On Fri, Mar 24, 2023 at 08:27:12PM +0100, Krzysztof Kozlowski wrote:
+>> On 24/03/2023 18:45, Bjorn Andersson wrote:
+>>> On Fri, Mar 24, 2023 at 10:28:47AM +0100, Neil Armstrong wrote:
+>>>> Fixes the following DT bindings check error:
+>>>
+>>> Is that because idle-state-name and local-timer-stop should not be
+>>> defined for domain-idle-states or are you just clearing out the
+>>> dtbs_check warning?
+>>>
+>>> According to cpu-capacity.txt local-timer-stop seems to have been a
+>>> property relevant for clusters in the past, was this a mistake in the
+>>> binding or did something change when this was moved to
+>>> domain-idle-states?
+>>
+>> I cannot find anything about local-timer-stop in cpu-capacity.txt. Where
+>> do you see it?
+>>
+> 
+> Ohh, you're right it's only mentioned in the example.
+> 
+> But idle-states.yaml documents the property for both cpus and clusters,
+> and it's used throughout the examples.
+>
+> Our cluster states are defined in domanin-idle-states instead of
+> idle-state, does this imply that the flag is no longer applicable
+> per cluster in this mode of operation?
 
-Reported-by: Matthew Lear <matthew.lear@broadcom.com>
-Fixes: fd0f6851eb46 ("[media] rc: Add support for GPIO based IR Receiver driver")
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- drivers/media/rc/gpio-ir-recv.c | 2 ++
- 1 file changed, 2 insertions(+)
+As you noticed their meaning is interleaving. For example on SC7280 we
+use arm,idle-state for cluster. But other Qualcomm platforms rather
+define clusters as domain-idle-states and in that case, nothing parses
+tgat flag. The flag is only for cpuidle dt_idle_states. For
+power-domains it was always ignored.
 
-diff --git a/drivers/media/rc/gpio-ir-recv.c b/drivers/media/rc/gpio-ir-recv.c
-index 8dbe780dae4e..41ef8cdba28c 100644
---- a/drivers/media/rc/gpio-ir-recv.c
-+++ b/drivers/media/rc/gpio-ir-recv.c
-@@ -103,6 +103,8 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
- 		rcdev->map_name = RC_MAP_EMPTY;
- 
- 	gpio_dev->rcdev = rcdev;
-+	if (of_property_read_bool(np, "wakeup-source"))
-+		device_init_wakeup(dev, true);
- 
- 	rc = devm_rc_register_device(dev, rcdev);
- 	if (rc < 0) {
--- 
-2.34.1
+Funny fact - both cpu/cluster idle-states and power-domain-idle-states
+will end up eventually in cpuidle-psci.c...
+
+Best regards,
+Krzysztof
 
