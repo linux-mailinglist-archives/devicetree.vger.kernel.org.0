@@ -2,213 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 196D46C7A70
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:55:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7D56C7A7E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231941AbjCXIzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 04:55:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55994 "EHLO
+        id S231830AbjCXI5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 04:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231929AbjCXIzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:55:43 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E62241C9;
-        Fri, 24 Mar 2023 01:55:40 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32O8tU0Q077432;
-        Fri, 24 Mar 2023 03:55:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679648130;
-        bh=lV+HXvD7QcdmJmzElwDez7tC33GDs2nZ7rVEaoUKP70=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=rEgB8SWp+aFINKlmfVUHmWKgA/0BfvP9p7VQ/gbNX/LthGHZgi7nDJg3pkR+1FK+I
-         Vop71CBOhZzWs3crIxsiH06SUtRiDgQ4Nfj2APjbxZzLflXaXzcjWtLfIWUAVEx3ze
-         jm1BSLy8uJ9kMv6SRJRui8X8+soO+4sGB7zy1HF4=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32O8tUoo063786
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 Mar 2023 03:55:30 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 24
- Mar 2023 03:55:29 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 24 Mar 2023 03:55:29 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32O8tTCe035786;
-        Fri, 24 Mar 2023 03:55:29 -0500
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>, Jai Luthra <j-luthra@ti.com>
-Subject: [PATCH v7 6/6] arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
-Date:   Fri, 24 Mar 2023 14:25:20 +0530
-Message-ID: <20230313-mcasp_upstream-v7-6-88168d0df9b8@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230313-mcasp_upstream-v7-0-88168d0df9b8@ti.com>
-References: <20230313-mcasp_upstream-v7-0-88168d0df9b8@ti.com>
+        with ESMTP id S231979AbjCXI4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:56:55 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DFAE27D60
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:56:25 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id ek18so4998135edb.6
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:56:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679648177;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Um8TbgrwhTbkEwzBW9OgNTPHsSW0JHe7bi80kPf/8AM=;
+        b=tv9rIy9Uxu3qQtgXFh+rGg9UcyLX/MSBomBeUuea9AyNItUKVcnbXFLlYIaTPV0LDB
+         CQQugLqK7FP4jB7h+4rmxx5LAtCnyIpxToRHnyTKgJOrQW4OUHW9a4q5nQ2JdfnTYBJb
+         EsLCIF1w/ZBjnQD3Du69SsSYV2vCMp9LIUEiy2nHce7dBotl/YoYpxCrbQEp7fMwi4mO
+         cjS9PD/yx1wDYidaGNYm0jfQHbOQ224kh+Pdm08SgNvQEeXq/yIQndaa9wJ8wvmLshGf
+         TSYFnFj5kEUJUR55YMQ84OTOhr5K8XYpjB0mNaoGBOpcdsM/yXBnTxzDlByaF7Ju1pAS
+         Oeew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679648177;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Um8TbgrwhTbkEwzBW9OgNTPHsSW0JHe7bi80kPf/8AM=;
+        b=KKFhflgSREuLHm52omWsO7PYvYHN9OBjpDEqq1ilkCML++8BktFBMc8By8YrmlOKP/
+         bHb5g82Qn8K+crETq2Sr26wVH2sU+MajtjltfTX/xcX2wS3myTmLEZztxfOlfSm40aeK
+         Jci0sXvnA2JF3/b8rGZZqv4+RdYAldUhSJJ7z4QZUaDJyzWHu1N0CRRkYoKwBUS81j+2
+         92rM/Syh1ISvcFYhRGWd8imlE2T6pZE085v+mxXezxRo4E1n/nUeFGyQfud14x3E1eay
+         u+znsxRRHUq9gsChlODw8oAAfTM/ylYR0XZJbX9lmfP9Am/9bZdPxHiwdr9efuDJ6mmH
+         jOtQ==
+X-Gm-Message-State: AAQBX9cXEuW1/m97XGz4ZvksPuREytyijJtlJ7TpoUgvfeR8CUgMw88k
+        dkx4hPgb2XXYzEYLHI3udcvSrA==
+X-Google-Smtp-Source: AKy350Z722g5hPv9Mo9UlX7Q2mEg4+ITEw0ynPSM2C2jUm30y/pXKOFomdKzmH7x/14WP6tJRKidxg==
+X-Received: by 2002:a17:906:3607:b0:92d:44ca:1137 with SMTP id q7-20020a170906360700b0092d44ca1137mr2162491ejb.43.1679648176715;
+        Fri, 24 Mar 2023 01:56:16 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ce50:243f:54cc:5373? ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
+        by smtp.gmail.com with ESMTPSA id wy8-20020a170906fe0800b0093e261cc8bcsm612167ejb.58.2023.03.24.01.56.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 01:56:16 -0700 (PDT)
+Message-ID: <58316fc3-1ee1-b530-e783-ccd8225e07d6@linaro.org>
+Date:   Fri, 24 Mar 2023 09:56:15 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3461; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=GBSLCEn9irDxaEIQSwlX3uqzJq0b8qmTn/M8uqYMMDI=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkHWSKFS06xQ9UaZeV7f0LdY3MzfuIEB82Gvje1
- 6BM2FXaht6JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZB1kigAKCRBD3pH5JJpx
- RZRCEADSrdnFI2KyybklEeVMcD8m4EdkL2h1zIVm2VxpRhlkkYkXJ6nAB5d0mnU8hV9RhNJ5o1a
- tFQ2KXMldmUew8RgQLf17byuL6crN0qQ9cT4qUTm2w7Fo0V1cTEXmc+UbB/5K6/rZARajnc2GhV
- HmGPGm0KbHu5hzkXh/5ZZgCr9XPsQPut8dFcV0xWgP93mvhTIIHp9LrU9Y3hgfQ1v6MpcHJnUx6
- sOjDDCLADiDqtaQFc7lxfNS7Cu4T17z0LppiYx05VqXIfyT6KATSWHOEVHST6dxR9JCamV5Z7jx
- 3zT8tV6t1lKPiycXOysNuTNBY6hZ1S3B4/TgL/CAsluUZzkwG9G7M4AgrJa90cvYDjnMvhi4UA+
- zIcXw3hhXqYvn3Ap2077RHn3SRYudS0mHSBPICVuSo9Wut5xRlZX+xgY+t0Elk5OX3AxYHP0YJV
- cJq2m3QYD71kQG41zYciNR1TJ6AE7FxhM+I4UKPt3Kdg9RU3V2XIP5PutlbQ934so+n6GWCevwZ
- yCHpEP610xZCNm/KXz8m2VsNLQFmgN+Tm9DFDNQL42MNiXpQs2y9clEfY2WP+/mIahOm7Nq4FdK
- WRVy1MGwde9tgYSIQytjZao93X8KPDiPTBtjV3qn5+f8SDv0idJfWkadvuw9JziAywORXq5e2hY
- cpfb8dsWEYIUoDA==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp; fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V1 3/4] soc: qcom: boot_stat: Add Driver Support for Boot
+ Stats
+Content-Language: en-US
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <cover.1679403696.git.quic_schowdhu@quicinc.com>
+ <3f385562845ae26d519940ca8098fde89282991b.1679403696.git.quic_schowdhu@quicinc.com>
+ <611ea918-64a6-f306-b5ec-db55e41abda2@linaro.org>
+ <321005fc-1bfd-c04d-b2b5-d85d213ac00a@quicinc.com>
+ <7b939818-993a-e849-e7e0-ae9ea74ea52b@linaro.org>
+ <5c4df95e-fb44-e873-7ecc-dec381a42aff@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5c4df95e-fb44-e873-7ecc-dec381a42aff@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for audio codec and sound card, enable the audio serializer
-(McASP1) under use and update pinmux.
+On 23/03/2023 14:45, Souradeep Chowdhury wrote:
+> 
+> 
+> On 3/22/2023 8:23 PM, Krzysztof Kozlowski wrote:
+>> On 22/03/2023 14:54, Souradeep Chowdhury wrote:
+>>>
+>>>
+>>> On 3/21/2023 11:07 PM, Krzysztof Kozlowski wrote:
+>>>> On 21/03/2023 14:51, Souradeep Chowdhury wrote:
+>>>>> All of Qualcomm's proprietary Android boot-loaders capture boot time
+>>>>> stats, like the time when the bootloader started execution and at what
+>>>>> point the bootloader handed over control to the kernel etc. in the IMEM
+>>>>> region. This information is captured in a specific format by this driver
+>>>>> by mapping a structure to the IMEM memory region and then accessing the
+>>>>> members of the structure to print the information. This information is
+>>>>> useful in verifying if the existing boot KPIs have regre
+>>>>
+>>>>
+>>>>> +/**
+>>>>> + *  struct boot_stats - timestamp information related to boot stats
+>>>>> + *  @bootloader_start:	Time for the starting point of the abl bootloader
+>>>>> + *  @bootloader_end:	Time when the kernel starts loading from abl bootloader
+>>>>> + */
+>>>>> +struct boot_stats {
+>>>>> +	u32 bootloader_start;
+>>>>> +	u32 bootloader_end;
+>>>>> +} __packed;
+>>>>> +
+>>>>> +static struct boot_stats __iomem *boot_stats;
+>>>>> +static void __iomem *mpm_counter_base;
+>>>>> +static u32 mpm_counter_freq;
+>>>>
+>>>> No file-scope variables. Does not scale, not easy for review and
+>>>> maintenance. Avoid such code.
+>>>
+>>> Ack
+>>>>
+>>>>> +
+>>>>> +static int mpm_parse_dt(void)
+>>>>> +{
+>>>>> +	struct device_node *np_imem, *np_mpm2;
+>>>>> +
+>>>>> +	np_imem = of_find_compatible_node(NULL, NULL,
+>>>>> +					  "qcom,imem-boot_stats");
+>>>>> +	if (!np_imem) {
+>>>>> +		pr_err("can't find qcom,imem node\n");
+>>>>
+>>>> So you are printing errors everywhere, on every soc and with compile
+>>>> test on every platform there is in the world... sorry, it does not work
+>>>> like that.
+>>>
+>>> Ack
+>>>>
+>>>>> +		return -ENODEV;
+>>>>> +	}
+>>>>> +	boot_stats = of_iomap(np_imem, 0);
+>>>>> +	if (!boot_stats) {
+>>>>> +		pr_err("boot_stats: Can't map imem\n");
+>>>>> +		goto err1;
+>>>>> +	}
+>>>>
+>>>>
+>>>>> +
+>>>>> +static void __exit boot_stats_exit(void)
+>>>>> +{
+>>>>> +}
+>>>>> +module_exit(boot_stats_exit)
+>>>>
+>>>>
+>>>> I don't think this is some special code which deserves init calls. Make
+>>>> it module_platform_driver().
+>>>
+>>> Since this just reads some values from the Imem region and prints it to
+>>> the user and doesn't have a specific device associated with it, a
+>>
+>> Which is not really an argument for such antipattern, but okay...
+>>
+>>> generic module code is written for it and not a module_platform_driver().
+>>
+>> ... so how do you handle deferred probe?
+> 
+> This has no dependency on other resources except that it parses some 
+> information from DT nodes, so deferred probe handling is not needed
+> in this case.
 
-The codec (TLV320AIC3106) is also supplied with a DVDD 1.8V supply from
-the PMIC (TPS6593x) on the SK. [1] As the PMIC driver and devicetree
-node is missing, skip describing DVDD for now and manually set the OCMV
-voltage.
+Yes, I know, but if we would ever add it how this driver can handle it?
+This is antipattern.
 
-Link: https://www.ti.com/lit/zip/sprr459 [1]
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
-Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 77 +++++++++++++++++++++++++++++++++
- 1 file changed, 77 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index 2296d656323c..8d7087e5f9e4 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -123,6 +123,41 @@ led-0 {
- 			default-state = "off";
- 		};
- 	};
-+
-+	tlv320_mclk: clk-0 {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <12288000>;
-+	};
-+
-+	codec_audio: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "AM62Ax-SKEVM";
-+		simple-audio-card,widgets =
-+			"Headphone",	"Headphone Jack",
-+			"Line",		"Line In",
-+			"Microphone",	"Microphone Jack";
-+		simple-audio-card,routing =
-+			"Headphone Jack",	"HPLOUT",
-+			"Headphone Jack",	"HPROUT",
-+			"LINE1L",		"Line In",
-+			"LINE1R",		"Line In",
-+			"MIC3R",		"Microphone Jack",
-+			"Microphone Jack",	"Mic Bias";
-+		simple-audio-card,format = "dsp_b";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+		simple-audio-card,bitclock-inversion;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcasp1>;
-+		};
-+
-+		sound_master: simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3106>;
-+			clocks = <&tlv320_mclk>;
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -201,6 +236,15 @@ AM62AX_IOPAD(0x130, PIN_INPUT, 0) /* (AB17) RGMII1_TXC */
- 			AM62AX_IOPAD(0x12c, PIN_INPUT, 0) /* (W16) RGMII1_TX_CTL */
- 		>;
- 	};
-+
-+	main_mcasp1_pins_default: main-mcasp1-pins-default {
-+		pinctrl-single,pins = <
-+			AM62AX_IOPAD(0x090, PIN_INPUT, 2) /* (L19) GPMC0_BE0n_CLE.MCASP1_ACLKX */
-+			AM62AX_IOPAD(0x098, PIN_INPUT, 2) /* (R18) GPMC0_WAIT0.MCASP1_AFSX */
-+			AM62AX_IOPAD(0x08c, PIN_OUTPUT, 2) /* (K19) GPMC0_WEn.MCASP1_AXR0 */
-+			AM62AX_IOPAD(0x084, PIN_INPUT, 2) /* (L18) GPMC0_ADVn_ALE.MCASP1_AXR2 */
-+		>;
-+	};
- };
- 
- &main_i2c0 {
-@@ -235,6 +279,19 @@ exp1: gpio@22 {
- 				   "MCASP1_FET_SEL", "UART1_FET_SEL",
- 				   "PD_I2C_IRQ", "IO_EXP_TEST_LED";
- 	};
-+
-+	tlv320aic3106: audio-codec@1b {
-+		#sound-dai-cells = <0>;
-+		compatible = "ti,tlv320aic3106";
-+		reg = <0x1b>;
-+		ai3x-micbias-vg = <1>;	/* 2.0V */
-+		ai3x-ocmv = <1>;	/* 1.5V */
-+
-+		/* Regulators */
-+		AVDD-supply = <&vcc_3v3_sys>;
-+		IOVDD-supply = <&vcc_3v3_sys>;
-+		DRVDD-supply = <&vcc_3v3_sys>;
-+	};
- };
- 
- &sdhci1 {
-@@ -303,3 +360,23 @@ cpsw3g_phy0: ethernet-phy@0 {
- 		ti,min-output-impedance;
- 	};
- };
-+
-+&mcasp1 {
-+	status = "okay";
-+	#sound-dai-cells = <0>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcasp1_pins_default>;
-+
-+	op-mode = <0>;          /* MCASP_IIS_MODE */
-+	tdm-slots = <2>;
-+
-+	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-+	       1 0 2 0
-+	       0 0 0 0
-+	       0 0 0 0
-+	       0 0 0 0
-+	>;
-+	tx-num-evt = <32>;
-+	rx-num-evt = <32>;
-+};
-
--- 
-2.40.0
+Best regards,
+Krzysztof
 
