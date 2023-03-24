@@ -2,97 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD9B6C863A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 20:54:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54A336C8687
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 21:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbjCXTyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 15:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
+        id S231869AbjCXUI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 16:08:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbjCXTyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 15:54:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8126B1BDA;
-        Fri, 24 Mar 2023 12:54:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD87862AD3;
-        Fri, 24 Mar 2023 19:54:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E957AC433EF;
-        Fri, 24 Mar 2023 19:54:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679687645;
-        bh=+l1Tmr6waa7ZpwQpJUq3NH4jxVo6IGOnRiecZJHvp9Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iWzQ90dJJ4XktycTJ1Js2unTbW1g9b6OhlV89FkuxIvs73yLlwFwCBXsq0ZbiAbsS
-         hUGqmmaUfZjTMduY+dubRO2akcckszFzZ77LePRCyX8svr/Yu/TBLQVqkhX/p7Zz6l
-         4VKjzBoRyqiIKX4T6+snATZWYkFz5oPE1VjOIdc9sWzNOuON6ENM2LCxgLP2LqoLod
-         b9zE00ZSaLIexQRBvRUopfoLuNKqojucT/zxFtZ5KGnK5Lu2O2GJa5Crql1ame8LY0
-         W8x04UfKdANOorVNd4dBKjxyAUZ5W7Fs6n5B/pTnPz+vb2J293qsRWtgfic6oZCJl4
-         4aBEwyo44z2UA==
-Date:   Fri, 24 Mar 2023 12:57:13 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S231623AbjCXUIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 16:08:25 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC141421B
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:08:23 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id w9so12358479edc.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:08:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679688502;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/nXQwSluZLeTH688ZepgBtPa+FZFYWScgxaIXsWUlLM=;
+        b=zOa1jp5Kvn7C2FtxHhAfS1DGISKaM696BDoCyWCS/u3zYWs4ZnRxOYsqzLNtOP0mxh
+         kHlqSsolgSqOIXOAhjPuQGkdlmKSS4G9C18z9FzEQx3fNzQJc06SPOcB8H3EMif96tNi
+         Fs2b1Nb1viDFUrZYhqv0ky6pvdmhbcBpz0K46Dp2ichIslDrpzCmouZqr9pDEv00Z95m
+         Ejdgv7c4559vpsfHTPzE12co69RTynBbriIfXneNQCgz/dyeHlyxLNqIi6F6VTbbD2vr
+         zG3Yl612KB/7W1DCHdOQaSAJIbDfVup50nwFv2p5Ap6C7U9lMXP+kbdqzMvnlq3vBn+h
+         IvNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679688502;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/nXQwSluZLeTH688ZepgBtPa+FZFYWScgxaIXsWUlLM=;
+        b=7XnCnQGnKYs+HjO5xilOl5h9ND2jnpEUF4s2S77iXX0E5u/r2LOIAs74mq3TyB23RQ
+         6n/+lX+yyUcvebPdQCQacSXRAquZ6SSn4H19/bzofifStXE5DPxL2ugK2jL6NxiB0asD
+         VMuf8HeNFeoEME8K0b1tTMh7wPdWDfY12830YLpdS6o3tJeRAj62OzKyR+sr3ljFRe8V
+         Ng6sRYobHHoVMCdVZUvMpcXwTshj9QvNelJ4HfRsnybaIJPjtrCLXBsq4s5SB8P15B70
+         5lzld8TFZ7Y16iVZQXYnWNbYujr34wwekjcafCI1bbRSyOl9v6wSDIv/Ornlhutzzo/6
+         TjhA==
+X-Gm-Message-State: AAQBX9cnqE39XtF8cg2O+J1kN3TWdH9zf/Uz5YXyl8giptFZZFESua63
+        /pSGqsBmGQrB2RYaDwRW09HAMyCkMLPoZAPL7CE=
+X-Google-Smtp-Source: AKy350bsPiDq70VpGF5giZ4OEl4HSHYv8y8CbagTWXFgUPS4Fk/C88VwfsR35Monb/9vE1j+xAiGFQ==
+X-Received: by 2002:a17:906:3611:b0:930:d30a:6c20 with SMTP id q17-20020a170906361100b00930d30a6c20mr3928509ejb.17.1679688501764;
+        Fri, 24 Mar 2023 13:08:21 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id a20-20020a17090680d400b008def483cf79sm10594355ejx.168.2023.03.24.13.08.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 13:08:21 -0700 (PDT)
+Date:   Fri, 24 Mar 2023 22:08:19 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sm8450: remove invalid
- properties in cluster-sleep nodes
-Message-ID: <20230324195713.5blwpv7xjijlrtt5@ripper>
-References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-0-0ca1bea1a843@linaro.org>
- <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-2-0ca1bea1a843@linaro.org>
- <20230324174518.2arvdglqqixmxqcp@ripper>
- <fdd51d3d-a1fd-c3a9-c578-59a11c5213de@linaro.org>
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [RFC PATCH v3 4/7] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
+ dedicated driver
+Message-ID: <ZB4DMw5ZbD4zG1EK@linaro.org>
+References: <20230313115202.3960700-1-abel.vesa@linaro.org>
+ <20230313115202.3960700-5-abel.vesa@linaro.org>
+ <ZA9vFcjLMoifqcsE@sol.localdomain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fdd51d3d-a1fd-c3a9-c578-59a11c5213de@linaro.org>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <ZA9vFcjLMoifqcsE@sol.localdomain>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 24, 2023 at 08:27:12PM +0100, Krzysztof Kozlowski wrote:
-> On 24/03/2023 18:45, Bjorn Andersson wrote:
-> > On Fri, Mar 24, 2023 at 10:28:47AM +0100, Neil Armstrong wrote:
-> >> Fixes the following DT bindings check error:
-> > 
-> > Is that because idle-state-name and local-timer-stop should not be
-> > defined for domain-idle-states or are you just clearing out the
-> > dtbs_check warning?
-> > 
-> > According to cpu-capacity.txt local-timer-stop seems to have been a
-> > property relevant for clusters in the past, was this a mistake in the
-> > binding or did something change when this was moved to
-> > domain-idle-states?
+On 23-03-13 11:44:37, Eric Biggers wrote:
+> On Mon, Mar 13, 2023 at 01:51:59PM +0200, Abel Vesa wrote:
+> > diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c
+> > new file mode 100644
+> > index 000000000000..d664dd598791
+> > --- /dev/null
+> > +++ b/drivers/soc/qcom/ice.c
+> > @@ -0,0 +1,347 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Qualcomm ICE (Inline Crypto Engine) support.
+> > + *
+> > + * Copyright (c) 2013-2019, The Linux Foundation. All rights reserved.
+> > + * Copyright (c) 2019, Google LLC
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/of_platform.h>
+> > +
+> > +#include <linux/firmware/qcom/qcom_scm.h>
+> > +
+> > +#include <soc/qcom/ice.h>
+> > +
+> > +#define AES_256_XTS_KEY_SIZE			64
+> > +
+> > +/* QCOM ICE registers */
+> > +#define QCOM_ICE_REG_VERSION			0x0008
+> > +#define QCOM_ICE_REG_FUSE_SETTING		0x0010
+> > +
+> > +/* QCOM ICE v2.X only */
+> > +
+> > +#define QCOM_ICE_REG_BIST_STATUS		0x0070
+> > +#define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
 > 
-> I cannot find anything about local-timer-stop in cpu-capacity.txt. Where
-> do you see it?
+> The "/* QCOM ICE v2.X only */" comment should be removed, as it's misleading.
+> This driver only supports v3.  I think this comment also originally described
+> registers that have now been removed from the file.
+> 
+> > +/* BIST ("built-in self-test"?) status flags */
+> > +#define QCOM_ICE_BIST_STATUS_MASK		GENMASK(31, 28)
+> 
+> I think we're confident enough in what "BIST" stands for now that the question
+> mark can be removed.
+> 
+> > +/* Only one ICE instance is currently supported by HW */
+> > +static bool qcom_ice_check_supported(struct qcom_ice *ice)
+> 
+> I don't see how the comment relates to the function it documents.
+> 
+> > +static int __qcom_ice_enable(struct qcom_ice *ice, bool enable)
+> > +{
+> > +	struct device *dev = ice->dev;
+> > +	int err;
+> > +
+> > +	err = clk_prepare_enable(ice->core_clk);
+> > +	if (err) {
+> > +		dev_err(dev, "failed to enable core clock (%d)\n",
+> > +			err);
+> > +		return err;
+> > +	}
+> > +
+> > +	if (enable) {
+> > +		qcom_ice_low_power_mode_enable(ice);
+> > +		qcom_ice_optimization_enable(ice);
+> > +	}
+> > +
+> > +	err = qcom_ice_wait_bist_status(ice);
+> > +	if (err) {
+> > +		dev_err(dev, "BIST status error (%d)\n", err);
+> > +		return err;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> The 'enable' parameter is confusing.  Maybe call it 'enable_optimizations'?
+> 
+> > +
+> > +int qcom_ice_program_key(struct qcom_ice *ice, u8 crypto_cap_idx,
+> > +			 u8 algorithm_id, u8 key_size,
+> > +			 const u8 crypto_key[], u8 data_unit_size,
+> > +			 int slot)
+> > +{
+> > +	struct device *dev;
+> > +	union {
+> > +		u8 bytes[AES_256_XTS_KEY_SIZE];
+> > +		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
+> > +	} key;
+> > +	int i;
+> > +	int err;
+> > +
+> > +	dev = ice->dev;
+> 
+> Nit: declare and initialize 'dev' on the same line.
+> 
+> > +static struct qcom_ice *qcom_ice_create(struct platform_device *pdev, void __iomem *base)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct device_node *np = dev->of_node;
+> > +	struct qcom_ice *engine;
+> > +
+> > +	if (!qcom_scm_is_available())
+> > +		return ERR_PTR(-EPROBE_DEFER);
+> > +
+> > +	if (!qcom_scm_ice_available()) {
+> > +		dev_warn(dev, "ICE SCM interface not found\n");
+> > +		return NULL;
+> > +	}
+> > +
+> > +	engine = devm_kzalloc(dev, sizeof(*engine), GFP_KERNEL);
+> > +	if (!engine)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	engine->dev = &pdev->dev;
+> > +	engine->np = np;
+> > +	engine->base = base;
+> > +
+> > +	engine->core_clk = devm_clk_get(dev, NULL);
+> > +	if (IS_ERR(engine->core_clk))
+> > +		return ERR_CAST(engine->core_clk);
+> > +
+> > +	if (!qcom_ice_check_supported(engine))
+> > +		return ERR_PTR(-EOPNOTSUPP);
+> > +
+> > +	dev_info(dev, "Registered Qualcomm Inline Crypto Engine\n");
+> > +
+> > +	return engine;
+> 
+> Shouldn't the !qcom_scm_is_available() and !qcom_ice_check_supported() cases
+> have the same return value?  Both mean not supported, right?
 > 
 
-Ohh, you're right it's only mentioned in the example.
+Actually, the scm might've not probed yet, so we need to defer.
 
-But idle-states.yaml documents the property for both cpus and clusters,
-and it's used throughout the examples.
+> And shouldn't it be NULL, not ERR_PTR(-EOPNOTSUPP), so that the caller doesn't
+> fail to probe the host controller just because ICE is not supported?
 
-Our cluster states are defined in domanin-idle-states instead of
-idle-state, does this imply that the flag is no longer applicable
-per cluster in this mode of operation?
+The host controller needs to deal with a not-supported error actually.
+We want the ICE instance creation to fail if the driver doesn't support
+the HW version.
 
-Regards,
-Bjorn
+> 
+> > diff --git a/include/soc/qcom/ice.h b/include/soc/qcom/ice.h
+> > new file mode 100644
+> > index 000000000000..d4644c9f1bcd
+> > --- /dev/null
+> > +++ b/include/soc/qcom/ice.h
+> > @@ -0,0 +1,39 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright (c) 2023, Linaro Limited
+> > + */
+> > +
+> > +#ifndef __QCOM_ICE_H__
+> > +#define __QCOM_ICE_H__
+> > +
+> > +#include <linux/err.h>
+> 
+> <linux/types.h> would be more appropriate here, I think.
+> 
+> > +
+> > +#if IS_ENABLED(CONFIG_QCOM_INLINE_CRYPTO_ENGINE)
+> 
+> This #if does not appear to be necessary.
+> 
+> > +int qcom_ice_enable(struct qcom_ice *ice);
+> > +int qcom_ice_resume(struct qcom_ice *ice);
+> > +int qcom_ice_suspend(struct qcom_ice *ice);
+> > +struct qcom_ice *of_qcom_ice_get(struct device *dev);
+> > +int qcom_ice_program_key(struct qcom_ice *ice, u8 crypto_cap_idx,
+> > +			 u8 algorithm_id, u8 key_size,
+> > +			 const u8 crypto_key[], u8 data_unit_size,
+> > +			 int slot);
+> 
+> The crypto_cap_idx parameter is unused and should be removed.
+> 
+> > +int qcom_ice_evict_key(struct qcom_ice *ice, int slot);
+> 
+> Nit: these declarations are in a slightly different order from the definitions
+> in the .c file.
+> 
+> - Eric
