@@ -2,177 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3FB26C7C16
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 346B36C7C42
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:11:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjCXKAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 06:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54234 "EHLO
+        id S231589AbjCXKLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 06:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbjCXKAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:00:16 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6374D18160;
-        Fri, 24 Mar 2023 03:00:12 -0700 (PDT)
-Received: (Authenticated sender: alex@ghiti.fr)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1881FE000B;
-        Fri, 24 Mar 2023 09:59:57 +0000 (UTC)
-Message-ID: <d0087922-4721-ccf1-80bf-9f74099d0948@ghiti.fr>
-Date:   Fri, 24 Mar 2023 10:59:57 +0100
+        with ESMTP id S231611AbjCXKLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:11:11 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDF1F26CCC
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 03:11:05 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id u11-20020a05600c19cb00b003edcc414997so620699wmq.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 03:11:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679652664;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=7D0AnhC8qINGmkMrvNsGrg02iqTAAE7pNka7bMg+dd4=;
+        b=kbJqE+Kpv3PBewVIEy8nF3lSWyuRxhA6lgVtPWSLhfPYk2uEMWIVMSs8RXDh28Wrb9
+         +ub1etCXA1woCJcKZpAx5T3ZYSCXckuXjQFAcWKviA1vvX8QV/Cm1RrFYSG5bnIMJVxI
+         eGaRZR9KGVDI2CJ0KzhFIbEAyBg8MGpvzGdecOXjhODB+klLh+P8EL4ZXDYhTsyUHoRK
+         ZLTKEB/oMQKFjjA1FiXwF2JF0FE7XvXVpcxj2y7b7hqpavFu99Mq68Avo/OOUni7HrVg
+         rv31Sz8ImlgdpTJChxWDrGlfiE93FDc5cUqmJeDoja7wURvhnYbxXz1fvCPYIABiJdf/
+         sy+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679652664;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7D0AnhC8qINGmkMrvNsGrg02iqTAAE7pNka7bMg+dd4=;
+        b=yAQL5mzgGYe0NSt/QYTivHrjXH2NawXQ5KqECnIWgOMo5o0nBdcSeVc/MnVNLDSYHQ
+         +cBcTdx/DwLwexcx/L1Lkek4CBbpVq3B8k6O8nXGnt1pXG5/58wwwWT4Lg+pdjv1y5x0
+         OISXaTPvwySomu9TArBfVOhmJ8SH4lpLbsaP5G6oN7iu8AI9PO3Q8lvGbDfLMSmXHsfs
+         4epvW9rw5USevnKbJ9idT7aeLL3Vs35h9Rt1uwQzrOLWxPDdcNZlVKlSKmehMG6dAnBm
+         ZFH+v71ov2H7Cu3XtiZ/qzfDSEgj5ut/3Wfc6JxRg/bnVV2WhmCPRUGQLDgNpX7PrIkE
+         saBw==
+X-Gm-Message-State: AO0yUKXF5HBrnLSa517Gg7MI5dvbNi58X+AZ0ifCt/JClSpSuaQsJ6EU
+        kOFeqn60EpV7cbyu3zlXqd47Ig==
+X-Google-Smtp-Source: AK7set9DwzUdUe5hHDRBjGUaWsA8ce55Mua1cKuCK5olDg5+9I5GW9T8rQyUE71YZ4JRpa/kTpVOwQ==
+X-Received: by 2002:a7b:c046:0:b0:3ef:8b0:dbac with SMTP id u6-20020a7bc046000000b003ef08b0dbacmr1595348wmc.31.1679652664202;
+        Fri, 24 Mar 2023 03:11:04 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:213f:a579:70af:e4a0? ([2a01:e0a:982:cbb0:213f:a579:70af:e4a0])
+        by smtp.gmail.com with ESMTPSA id p7-20020a1c5447000000b003dd1bd0b915sm4537056wmi.22.2023.03.24.03.11.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 03:11:03 -0700 (PDT)
+Message-ID: <d180c7d5-7db9-a961-e519-cca5ccf6f013@linaro.org>
+Date:   Fri, 24 Mar 2023 11:11:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH v8 0/4] riscv: Use PUD/P4D/PGD pages for the linear
- mapping
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1] arm64: dts: meson: a1: place pwrc and secure-monitor
+ under /firmware
 Content-Language: en-US
-To:     Anup Patel <apatel@ventanamicro.com>,
-        Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Anup Patel <anup@brainfault.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mm@kvack.org
-References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
- <CAK9=C2XJtSG2d_nsyDv7kU1v7Jj0chdevqrMc0MpJswukcEABA@mail.gmail.com>
- <CAHVXubhhxpzHDM-n91V_rceY5t_VqLvrwZj3RP_tNL2=F9mqjQ@mail.gmail.com>
- <CAK9=C2WVOpSqtt8r1U4hnzSZ=cc1PocpukgQjNyahP2XuPhozw@mail.gmail.com>
-From:   Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <CAK9=C2WVOpSqtt8r1U4hnzSZ=cc1PocpukgQjNyahP2XuPhozw@mail.gmail.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        krzysztof.kozlowski@linaro.org, robh@kernel.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, jianxin.pan@amlogic.com
+Cc:     kernel@sberdevices.ru, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        rockosov@gmail.com
+References: <20230323185548.13731-1-ddrokosov@sberdevices.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <20230323185548.13731-1-ddrokosov@sberdevices.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.7 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/23/23 15:55, Anup Patel wrote:
-> On Thu, Mar 23, 2023 at 6:24 PM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
->> Hi Anup,
->>
->> On Thu, Mar 23, 2023 at 1:18 PM Anup Patel <apatel@ventanamicro.com> wrote:
->>> Hi Alex,
->>>
->>> On Thu, Mar 16, 2023 at 6:48 PM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
->>>> This patchset intends to improve tlb utilization by using hugepages for
->>>> the linear mapping.
->>>>
->>>> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabled, we must
->>>> take care of isolating the kernel text and rodata so that they are not
->>>> mapped with a PUD mapping which would then assign wrong permissions to
->>>> the whole region: it is achieved by introducing a new memblock API.
->>>>
->>>> Another patch makes use of this new API in arm64 which used some sort of
->>>> hack to solve this issue: it was built/boot tested successfully.
->>>>
->>>> base-commit-tag: v6.3-rc1
->>>>
->>>> v8:
->>>> - Fix rv32, as reported by Anup
->>>> - Do not modify memblock_isolate_range and fixes comment, as suggested by Mike
->>>> - Use the new memblock API for crash kernel too in arm64, as suggested by Andrew
->>>> - Fix arm64 double mapping (which to me did not work in v7), but ends up not
->>>>    being pretty at all, will wait for comments from arm64 reviewers, but
->>>>    this patch can easily be dropped if they do not want it.
->>>>
->>>> v7:
->>>> - Fix Anup bug report by introducing memblock_isolate_memory which
->>>>    allows us to split the memblock mappings and then avoid to map the
->>>>    the PUD which contains the kernel as read only
->>>> - Add a patch to arm64 to use this newly introduced API
->>>>
->>>> v6:
->>>> - quiet LLVM warning by casting phys_ram_base into an unsigned long
->>>>
->>>> v5:
->>>> - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, thanks
->>>>    Conor
->>>> - Add RB from Andrew
->>>>
->>>> v4:
->>>> - Rebase on top of v6.2-rc3, as noted by Conor
->>>> - Add Acked-by Rob
->>>>
->>>> v3:
->>>> - Change the comment about initrd_start VA conversion so that it fits
->>>>    ARM64 and RISCV64 (and others in the future if needed), as suggested
->>>>    by Rob
->>>>
->>>> v2:
->>>> - Add a comment on why RISCV64 does not need to set initrd_start/end that
->>>>    early in the boot process, as asked by Rob
->>>>
->>>> Alexandre Ghiti (4):
->>>>    riscv: Get rid of riscv_pfn_base variable
->>>>    mm: Introduce memblock_isolate_memory
->>>>    arm64: Make use of memblock_isolate_memory for the linear mapping
->>>>    riscv: Use PUD/P4D/PGD pages for the linear mapping
->>> Kernel boot fine on RV64 but there is a failure which is still not
->>> addressed. You can see this failure as following message in
->>> kernel boot log:
->>>      0.000000] Failed to add a System RAM resource at 80200000
->> Hmmm I don't get that in any of my test configs, would you mind
->> sharing yours and your qemu command line?
-> Try alexghiti_test branch at
-> https://github.com/avpatel/linux.git
->
-> I am building the kernel using defconfig and my rootfs is
-> based on busybox.
->
-> My QEMU command is:
-> qemu-system-riscv64 -M virt -m 512M -nographic -bios
-> opensbi/build/platform/generic/firmware/fw_dynamic.bin -kernel
-> ./build-riscv64/arch/riscv/boot/Image -append "root=/dev/ram rw
-> console=ttyS0 earlycon" -initrd ./rootfs_riscv64.img -smp 4
+Hi,
 
+On 23/03/2023 19:55, Dmitry Rokosov wrote:
+> Before, meson power secure controller was a child of secure monitor node.
+> But secure monitor isn't the bus in terms of device tree subsystem, so
+> of_platform initialization code doesn't populate its children
+> (of_platform_default_populate() API).
+> 
+> Therefore in the current device tree meson power secure controller isn't
+> probed at all.
+> 
+> If we place meson power secure controller and secure monitor nodes under
+> '/firmware', they will be populated automatically from of_platform
+> initialization.
+> 
+> Fixes: 04dd0b6584cd ("arm64: dts: meson: a1: add secure power domain controller")
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index 77023a29b6e7..44c651254dc5 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -72,8 +72,10 @@ linux,cma {
+>   		};
+>   	};
+>   
+> -	sm: secure-monitor {
+> -		compatible = "amlogic,meson-gxbb-sm";
+> +	firmware {
+> +		sm: secure-monitor {
+> +			compatible = "amlogic,meson-gxbb-sm";
+> +		};
+>   
+>   		pwrc: power-controller {
+>   			compatible = "amlogic,meson-a1-pwrc";
 
-So splitting memblock.memory is the culprit, it "confuses" the resources 
-addition and I can only find hacky ways to fix that...
+The amlogic,meson-gxbb-sm bindings says the power-controller node should be
+a subnode of secure-monitor, so instead please fix the sm driver by calling:
 
-So given that the arm64 patch with the new API is not pretty and that 
-the simplest solution is to re-merge the memblock regions afterwards 
-(which is done by memblock_clear_nomap), I'll drop the new API and the 
-arm64 patch to use the nomap API like arm64: I'll take advantage of that 
-to clean setup_vm_final which I have wanted to do for a long time.
+of_platform_populate(dev->of_node, NULL, NULL, dev);
 
-@Mike Thanks for you reviews!
-
-@Anup Thanks for all your bug reports on this patchset, I have to 
-improve my test flow (it is in the work :)).
-
-
-> Regards,
-> Anup
->
->> Thanks
->>
->>> Regards,
->>> Anup
->>>
->>>>   arch/arm64/mm/mmu.c           | 25 +++++++++++------
->>>>   arch/riscv/include/asm/page.h | 19 +++++++++++--
->>>>   arch/riscv/mm/init.c          | 53 ++++++++++++++++++++++++++++-------
->>>>   arch/riscv/mm/physaddr.c      | 16 +++++++++++
->>>>   drivers/of/fdt.c              | 11 ++++----
->>>>   include/linux/memblock.h      |  1 +
->>>>   mm/memblock.c                 | 20 +++++++++++++
->>>>   7 files changed, 119 insertions(+), 26 deletions(-)
->>>>
->>>> --
->>>> 2.37.2
->>>>
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Neil
