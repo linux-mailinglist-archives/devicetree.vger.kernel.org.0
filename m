@@ -2,61 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 232F36C76B1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 05:51:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E8B6C77B8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 07:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229919AbjCXEvz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 24 Mar 2023 00:51:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37770 "EHLO
+        id S229484AbjCXGQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 02:16:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjCXEvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 00:51:54 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339E3B453;
-        Thu, 23 Mar 2023 21:51:51 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 9EEBD24DBFD;
-        Fri, 24 Mar 2023 12:51:43 +0800 (CST)
-Received: from EXMBX163.cuchost.com (172.16.7.73) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
- 2023 12:51:43 +0800
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX163.cuchost.com
- (172.16.6.73) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
- 2023 12:51:43 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Fri, 24 Mar 2023 12:51:43 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>
-CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S231308AbjCXGQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 02:16:50 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DA528D32;
+        Thu, 23 Mar 2023 23:16:47 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32O4JN1f005878;
+        Fri, 24 Mar 2023 06:16:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=binmqssIOH8RRHmzcq2GvEcacH7/g6cim/PVJXyXtqE=;
+ b=ev5V4zVctWJ/2G7y8t9UE+7YX+lSsLirMZDIgtZrtC6mMTFQZZp8aM2SrX+PC+xPDTma
+ kCMrjw8htXQcMZ8pR70PT3uPoXzlxoUbeBqQ3KVSB4S9LyArZoRD+Myf3YcLfFXmJ2Kn
+ Ml/7Rs15VWzQwvPHB80k0O1qie2uXBBlmoIKouysK+ish8B6YsBrwzM0NUg5449T0G86
+ MAvF5VAfmCsDNGhG3qbdkfr6ZRTaARK4uQ6OIGpv3oEnzYaVr/PU7vGRCQPyYg2O9fsQ
+ dZ3YR9tbrBsW9zVRF2XWjnxKAUNGlbuYvoRFj/JbitCc4z2wyf+N0zN3IIoiVGH7PSWi mA== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pgyee8uk0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Mar 2023 06:16:29 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32O6GShd023727
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Mar 2023 06:16:28 GMT
+Received: from hazha-gv.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Thu, 23 Mar 2023 23:16:22 -0700
+From:   Hao Zhang <quic_hazha@quicinc.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: RE: [PATCH v3 0/4] crypto: starfive - Add drivers for crypto engine
-Thread-Topic: [PATCH v3 0/4] crypto: starfive - Add drivers for crypto engine
-Thread-Index: AQHZVbQGpGqpyyNhMUOCrVA7ceGTta8JaAiQ
-Date:   Fri, 24 Mar 2023 04:51:43 +0000
-Message-ID: <734f3a559d28408fa5b95ade203626f2@EXMBX168.cuchost.com>
-References: <20230313135646.2077707-1-jiajie.ho@starfivetech.com>
-In-Reply-To: <20230313135646.2077707-1-jiajie.ho@starfivetech.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.190.105.77]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>
+CC:     Hao Zhang <quic_hazha@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-doc@vger.kernel.org>
+Subject: [PATCH v2 0/3] Add support to configure Coresight Dummy subunit
+Date:   Fri, 24 Mar 2023 14:16:05 +0800
+Message-ID: <20230324061608.33609-1-quic_hazha@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Lta3x1h8TvZ0PQVBKPAZ1Lr7xe20DlQn
+X-Proofpoint-ORIG-GUID: Lta3x1h8TvZ0PQVBKPAZ1Lr7xe20DlQn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_02,2023-03-23_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1015 mlxlogscore=999
+ malwarescore=0 phishscore=0 priorityscore=1501 mlxscore=0 bulkscore=0
+ impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2303240049
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,78 +93,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Introduction of Coresight Dummy subunit
+The Coresight Dummy subunit is for Coresight Dummy component, there are some
+specific Coresight devices that HLOS don't have permission to access. Such as
+some TPDMs, they would be configured in NON-HLOS side, but it's necessary to
+build Coresight path for it to debug. So there need driver to register dummy
+devices as Coresight devices.
 
+Commit link:
+https://git.codelinaro.org/clo/linux-kernel/coresight/-/tree/coresight-dummy-v2
 
-> -----Original Message-----
-> From: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> Sent: 13 March, 2023 9:57 PM
-> To: Herbert Xu <herbert@gondor.apana.org.au>; David S . Miller
-> <davem@davemloft.net>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner Berthing
-> <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>
-> Cc: linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
-> Subject: [PATCH v3 0/4] crypto: starfive - Add drivers for crypto engine
-> 
-> This patch series adds kernel driver support for StarFive JH7110 crypto engine.
-> The first patch adds Documentations for the device and Patch 2 adds device
-> probe and DMA init for the module. Patch 3 adds crypto and DMA dts node
-> for VisionFive 2 board. Patch 4 adds hash/hmac support to the module.
-> 
-> Patch 3 needs to be applied on top of:
-> https://patchwork.kernel.org/project/linux-
-> riscv/patch/20230221024645.127922-18-hal.feng@starfivetech.com/
-> https://patchwork.kernel.org/project/linux-
-> riscv/cover/20230120024445.244345-1-xingyu.wu@starfivetech.com/
-> 
-> Changes v2->v3:
-> - Only implement digest and use fallback for other ops (Herbert)
-> - Use interrupt instead of polling for hash complete (Herbert)
-> - Remove manual data copy from out-of-bound memory location as it will
->   be handled by DMA API. (Christoph & Herbert)
-> 
-> Changes v1->v2:
-> - Fixed yaml filename and format (Krzysztof)
-> - Removed unnecessary property names in yaml (Krzysztof)
-> - Moved of_device_id table close to usage (Krzysztof)
-> - Use dev_err_probe for error returns (Krzysztof)
-> - Dropped redundant readl and writel wrappers (Krzysztof)
-> - Updated commit signed offs (Conor)
-> - Dropped redundant node in dts, module set to on in dtsi (Conor)
-> 
-> Jia Jie Ho (4):
->   dt-bindings: crypto: Add StarFive crypto module
->   crypto: starfive - Add crypto engine support
->   riscv: dts: starfive: Add crypto and DMA node for VisionFive 2
->   crypto: starfive - Add hash and HMAC support
-> 
->  .../crypto/starfive,jh7110-crypto.yaml        |   70 ++
->  MAINTAINERS                                   |    7 +
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   28 +
->  drivers/crypto/Kconfig                        |    1 +
->  drivers/crypto/Makefile                       |    1 +
->  drivers/crypto/starfive/Kconfig               |   21 +
->  drivers/crypto/starfive/Makefile              |    4 +
->  drivers/crypto/starfive/jh7110-cryp.c         |  239 ++++
->  drivers/crypto/starfive/jh7110-cryp.h         |  134 +++
->  drivers/crypto/starfive/jh7110-hash.c         | 1041 +++++++++++++++++
->  10 files changed, 1546 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
->  create mode 100644 drivers/crypto/starfive/Kconfig  create mode 100644
-> drivers/crypto/starfive/Makefile  create mode 100644
-> drivers/crypto/starfive/jh7110-cryp.c
->  create mode 100644 drivers/crypto/starfive/jh7110-cryp.h
->  create mode 100644 drivers/crypto/starfive/jh7110-hash.c
-> 
-> --
-> 2.25.1
+Changes in V2:
+1. Declare dummy_init and dummy_exit as static to fix missing-prototypes
+warnings. -- kernel test robot <lkp@intel.com>
+2. Fix the errors of coresight-dummy yaml file. -- Rob Herring <robh@kernel.org>
 
+Hao Zhang (3):
+  Coresight: Add coresight dummy driver
+  dt-bindings: arm: Add Coresight Dummy Trace YAML schema
+  Documentation: trace: Add documentation for Coresight Dummy Trace
 
-Hi Herbert/David,
+ .../bindings/arm/qcom,coresight-dummy.yaml    | 118 ++++++++++++
+ .../trace/coresight/coresight-dummy.rst       |  58 ++++++
+ drivers/hwtracing/coresight/Kconfig           |  11 ++
+ drivers/hwtracing/coresight/Makefile          |   1 +
+ drivers/hwtracing/coresight/coresight-dummy.c | 176 ++++++++++++++++++
+ 5 files changed, 364 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
+ create mode 100644 Documentation/trace/coresight/coresight-dummy.rst
+ create mode 100644 drivers/hwtracing/coresight/coresight-dummy.c
 
-Could you please help review this patch series?
-Thanks in advance.
+-- 
+2.17.1
 
-Best regards,
-Jia Jie
