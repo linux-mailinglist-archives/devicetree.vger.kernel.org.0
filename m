@@ -2,63 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 930A76C7BCE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 10:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B426C7BDC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 10:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjCXJqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 05:46:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33550 "EHLO
+        id S230077AbjCXJrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 05:47:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjCXJpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 05:45:42 -0400
-Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5B826C2F;
-        Fri, 24 Mar 2023 02:44:58 -0700 (PDT)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1pfdxs-008EpY-MD; Fri, 24 Mar 2023 17:44:05 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 24 Mar 2023 17:44:04 +0800
-Date:   Fri, 24 Mar 2023 17:44:04 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
+        with ESMTP id S231298AbjCXJra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 05:47:30 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47FE829168
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 02:47:15 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id y4so5560805edo.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 02:47:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679651234;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=68LL2tN+tvRxnHcGQimYX0Fn4/Y+S7c6syZHdYwPnTI=;
+        b=y/BAVhf7XMGXQZE1Y13WxXscpyxTT6091AZrh9ix9L48/sVvusr11hqc6a7R5l4o07
+         Hef2LRkOT+/26787JYdcyIWbdLbGoSouYknRmm1W6yTY4olkw1zNQiKkQjpSVIBG694e
+         27BbXDBWavVqMKuQvkf9SWWT2uJXHWenF7lwpBBXIRyMc8eQfDB97lfSsniY8/5/nANA
+         Hy2G84NnlaQRruaNSjgPu8QVQ1zX6q3NkY0AZzKWfCQMnUvVqs0IvFDe/Xhb6PofXjet
+         FlaT1RqrIOulyaSc2MGAiA2I2ipBZC05OzulHp8ycMGQJLraqRxSVgs0f6iNIl4MwLqX
+         Ki9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679651234;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=68LL2tN+tvRxnHcGQimYX0Fn4/Y+S7c6syZHdYwPnTI=;
+        b=F5jGtY1EbeF8Alv7gWRiCRHVcMUI61OHZ81RgqgUAUu8Pis/dJw6o4wbvHU+Bn9s2B
+         /h2P/tXezJYWI+TSw87zzRtvs4DBb41qpzgmDe7rXL+5bx+sOBfp3Ir+FOTfWclMSRav
+         au/4r+n0OSTiXAEoNGJNmWkNkciGl+LC+fTpub0RJisfP8NIE92vbIJMjXx5TfBCkqIq
+         h+d0bzqsOGB47MhIfMi5x5B6v6JnnIOjyl4K4qQ8PQSgR/wfMuQwdjOWXaWvAL+ZUsSy
+         53pM+1dHHEg9Tkd7s+Z0DfleEXkNO4JjpinFbXikiCcn9zC2ZyICpS+1/4ChVeUInS/D
+         EByA==
+X-Gm-Message-State: AAQBX9d1TKn34aqBbqLw4QBdm1cGDzKNbKG1ZhtJtZyJZe9En2aw6ANg
+        cY6+wtuShQIM6uGUeF1+t6YLUg==
+X-Google-Smtp-Source: AKy350Y4KNEVHV8TIh4Rz8tGeMz+jN+kqcpiakNF+uVS+SRrsU5RH3vG1yCVv74fqqlCu7gw965hmA==
+X-Received: by 2002:a05:6402:481:b0:4fc:7201:6de with SMTP id k1-20020a056402048100b004fc720106demr2150057edv.26.1679651233788;
+        Fri, 24 Mar 2023 02:47:13 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ce50:243f:54cc:5373? ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
+        by smtp.gmail.com with ESMTPSA id t14-20020a508d4e000000b004d8287c775fsm10384125edt.8.2023.03.24.02.47.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 02:47:13 -0700 (PDT)
+Message-ID: <b712b832-6b92-53aa-d6cd-124e079c8e07@linaro.org>
+Date:   Fri, 24 Mar 2023 10:47:12 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: msm: sm8450-mdss: Fix DSI
+ compatible
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] crypto: starfive - Add hash and HMAC support
-Message-ID: <ZB1w5G5XpaQkfqZi@gondor.apana.org.au>
-References: <20230313135646.2077707-1-jiajie.ho@starfivetech.com>
- <20230313135646.2077707-5-jiajie.ho@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230313135646.2077707-5-jiajie.ho@starfivetech.com>
-X-Spam-Status: No, score=4.3 required=5.0 tests=HELO_DYNAMIC_IPADDR2,
-        PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS,TVD_RCVD_IP
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-0-0ca1bea1a843@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-1-0ca1bea1a843@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-1-0ca1bea1a843@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 13, 2023 at 09:56:46PM +0800, Jia Jie Ho wrote:
->
-> +static void starfive_hash_dma_callback(void *param)
-> +{
-> +	struct starfive_cryp_dev *cryp = param;
-> +
-> +	complete(&cryp->tx_comp);
-> +}
+On 24/03/2023 10:28, Neil Armstrong wrote:
+> The DSI compatible changed between patchset revisions, but that wasn't
+> reflected in the bindings. Fix it.
+> 
+> Fixes: 0eda3c6cb1c5 ("dt-bindings: display/msm: add support for the display on SM8450")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Please get rid of tx_comp and do the rest of the processing here.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Best regards,
+Krzysztof
+
