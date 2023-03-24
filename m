@@ -2,89 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13BBA6C7BB9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 10:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 457D96C7BBE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 10:43:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbjCXJmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 05:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46806 "EHLO
+        id S231355AbjCXJmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 05:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232066AbjCXJlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 05:41:23 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B6335A7;
-        Fri, 24 Mar 2023 02:41:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231821AbjCXJmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 05:42:20 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1947D2528A;
+        Fri, 24 Mar 2023 02:42:12 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 56237CE20C8;
-        Fri, 24 Mar 2023 09:41:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B23F3C433D2;
-        Fri, 24 Mar 2023 09:41:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679650878;
-        bh=ugg+744kF+Sy2uuQwxj6DAdcJ4aARCHqjy7D3/aFdxM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SaW7dpIS8og6AvVMOJsekibS/hLVR/HxXc/KXIKAKRFayb0vsQH7zkDx66iraOOhC
-         KeVYE3NWho5Na2TL3dCEMJhhw0+jfooXLpENiSo9gkp1A10bO+c19yiNhPYkH47vSH
-         i5j5PvtXxxdom7pzzEiYnXKpwyHMmrBwrZ/T+EsB3dpyL3H9qMsLzsvH25XKltUczL
-         nZ5N9/H+Lhnb8bNfbwJiX8QlRCkRU+UzWuQX0R1Z6qzhQY3di87bCoVh0ExR0gupsO
-         HaTPg8njgfs03j7adawItfijJBHMTraiY+mdd3vkYdtK6xOLJlg85bcOAdzwA8uLfy
-         cf2z2glHcESWw==
-Message-ID: <2227040b-28fe-bab3-f964-665c92ab2816@kernel.org>
-Date:   Fri, 24 Mar 2023 10:41:14 +0100
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C1D706603103;
+        Fri, 24 Mar 2023 09:42:10 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1679650931;
+        bh=ebcxMmChYQz6A/ejLgJx2hRoaZswuqFXLT5RuazLrD8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GJcm7kUXnum8O5QYg3Yhy/u1GZviyHYRPMKxFk1EjRIGNpvWgD4YRu9LA/3w6euFT
+         OrpW9D9PZI4CgE+PESNVuTKFQ1UohddPqMa3eBebTiHaH+tswkBollMdptCIbngR1H
+         N0oFlfg9eE2hpbRPmYa8uIoWfj74j+0ozpDtQcKRCG0zzhdRshsGg87zMQfaS1cksH
+         enIBbt0XMqIZ1S2ywYz9qZ7zqPEtYWUI5oWheKWZZBw/Hrffb00Y1pmUKO4JWMBKKf
+         UuNOm+EWAGCROXPLDNAtEZj7+o8J40JDzZyQ7uqusUUj6EAxP/YT/O/sFBoE5vxCGt
+         upLwXdO6ujM+g==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        amergnat@baylibre.com, flora.fu@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 0/6] MediaTek Helio X10 MT6795 - MT6331/6332 PMIC Wrapper
+Date:   Fri, 24 Mar 2023 10:41:59 +0100
+Message-Id: <20230324094205.33266-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 3/6] devicetree: input: cypress,tt21000: fix interrupt
- type in dts example
-To:     Maximilian Weigand <mweigand@mweigand.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Alistair Francis <alistair@alistair23.me>
-References: <20230323135205.1160879-1-mweigand@mweigand.net>
- <20230323135205.1160879-4-mweigand@mweigand.net>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230323135205.1160879-4-mweigand@mweigand.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 14:52, Maximilian Weigand wrote:
-> Triggering the interrupt of the IRQ_TYPE_LEVEL_LOW type can lead to
-> probing issues with the device for the current driver (encountered on
-> the Pine64 PineNote). Basically the interrupt would be triggered before
-> certain commands were sent to the device, leading to a race between the
-> device responding fast enough and the irq handler fetching a data frame
-> from it. Actually all devices currently using the driver already use a
+Changes in v2:
+ - Rebased on next-20230323
+ - Changed pwrap.txt addition to new yaml file addition
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching). "dt-bindings", not "devicetree"
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+This series introduces support in the PMIC Wrapper for a different PMIC
+topology, which is commonly found on smartphone boards, using one main
+PMIC and one Companion/Sub PMIC, both accessible *only* through the pwrap;
+be aware that this kind of topology is not *specific to* the Helio X10
+SoC, but common across many kinds of MediaTek smartphone oriented SoCs
+and board designs.
 
-> falling edge trigger.
-> 
-> Signed-off-by: Maximilian Weigand <mweigand@mweigand.net>
-> Reviewed-by: Alistair Francis <alistair@alistair23.me>
+That said, support for the PMIC combo MT6331+MT6332 is provided in this
+series in a form that will be able to initialize the PMICs with crypto
+and DualIO but nothing else: these PMICs are very featureful, so I have
+decided to add this support in more than just one step, as there will
+be multiple patches for multiple different subsystems (..it's a mfd!..).
 
-Usually reviews are public.
+Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
 
-Best regards,
-Krzysztof
+AngeloGioacchino Del Regno (6):
+  dt-bindings: soc: mediatek: pwrap: Add compatible for MT6795 Helio X10
+  soc: mediatek: pwrap: Move PMIC read test sequence in function
+  soc: mediatek: pwrap: Add kerneldoc for struct pwrap_slv_type
+  soc: mediatek: mtk-pmic-wrap: Add support for companion PMICs
+  soc: mediatek: mtk-pmic-wrap: Add support for MT6331 w/ MT6332
+    companion
+  soc: mediatek: pwrap: Add support for MT6795 Helio X10
+
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml |   1 +
+ drivers/soc/mediatek/mtk-pmic-wrap.c          | 287 ++++++++++++++++--
+ 2 files changed, 262 insertions(+), 26 deletions(-)
+
+-- 
+2.40.0
 
