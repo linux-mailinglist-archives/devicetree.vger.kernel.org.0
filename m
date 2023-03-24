@@ -2,180 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542EA6C7C4F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 713956C7C5C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 11:17:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbjCXKPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 06:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
+        id S231426AbjCXKQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 06:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbjCXKPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:15:16 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C2A5C673;
-        Fri, 24 Mar 2023 03:15:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679652915; x=1711188915;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lhhFN5Vd1W/aAgP72ZDMZOV8VUt3XUbMuQBIwOPdm1s=;
-  b=QZyvH+XkK0eFlj3F42EMPORE6anTUosYeD7fuO6AWfmIvgiwpYm7h8Nk
-   cJSUXaMC/rkc36LfxTl/48E9B/ziG7gCurvwOSH7Vg1Lv/JQp1qi918Ui
-   0oo5tWYX6LdRI50/AoS3MRpFtKRDDMnuTfbhZhRLOmES2EKbD+zlFDMcD
-   4p1T6px6mBMj0z5Pp+4kd6VYsNgsqlPR3O5O8RXsHfuW8DOc9+CQcYQYN
-   mg/Jlf57LNtwdjCyAo3wjBU4j3hcFbnzdlUvOHsnWITXf49wAr3PWiRNg
-   axaaHoCE0GLSTWAB2eYuse2f0v3tGnhZbZYrT0YkJRZmhJTdReDZgr+tr
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="338467217"
-X-IronPort-AV: E=Sophos;i="5.98,287,1673942400"; 
-   d="scan'208";a="338467217"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2023 03:15:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="715179880"
-X-IronPort-AV: E=Sophos;i="5.98,287,1673942400"; 
-   d="scan'208";a="715179880"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 24 Mar 2023 03:15:11 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pfeRy-000FCm-2w;
-        Fri, 24 Mar 2023 10:15:10 +0000
-Date:   Fri, 24 Mar 2023 18:15:02 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <202303241811.OXj9KxAr-lkp@intel.com>
-References: <20230324063317.14664-3-zhuyinbo@loongson.cn>
+        with ESMTP id S231678AbjCXKQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 06:16:56 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35D6136CA;
+        Fri, 24 Mar 2023 03:16:53 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id w4so1373571plg.9;
+        Fri, 24 Mar 2023 03:16:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679653013;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cziNVzlXnH/lQ5/2+kk4lE5zj/E0WdazVGv7S5DQupA=;
+        b=gTEL50fHUNYCxyR9k0EUrOvJ2iQIIrNX9VfBcWP3z4ptBVNbW5Nd9A86DS0Vb3dttt
+         ewdQvub3VD1E6ncz+SHjbR/s8R2qUsjLwNgvNmn1JtngdW9XXXIcUCHoQ9CGBw+AtS+H
+         fM1rnPkKB5dEDEDJcvMgLtcJ/nQFTFMlFYO8OF0XHR9eC8/P2IA+mVTEGjFctetHVuzt
+         S9zn9acZDNxucgjfKSXkDLYH+kESmUQ02extsU+kzVfd+0Cf7Yggrrf9kLVKbyLN7YTE
+         LgkVsPPXXkpk2qgQ/LSqEvyEHg7U0q6G+AC330vFT6fLD37s58lT5v69Qt7Tja6Y2FET
+         wb5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679653013;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cziNVzlXnH/lQ5/2+kk4lE5zj/E0WdazVGv7S5DQupA=;
+        b=2hY1S0X9Ui3Ds9OzxQ6E4HzAdb74xJU5Hr7zNpwyN2AIO2zMbAkv4tkUvvnzq60MpU
+         Mk+XluudfxBclCvn62vn10P7IdbIePv0whm0BqlO7wIM9xnrpjHpzPrADRNhVu1dTICc
+         YebMBvsSwUZRv5ihRK1jdzuzC+JDZjTwXYsn76Fh7cVPSwnv6f/wc1yGKPRS+QnRwb/Y
+         YZh2kGWvySSyv7ED1hPyIq1kVhzV/ia68hb+vCvRekikiSbAVhnKa7g2Qgj2FaJ5HKZv
+         GrI+uvdwFh2471f3PKNan+0N80cDhoFmig59SSNbzBWRoA75fOp2+Gw+Y3RVwGMQW7VC
+         DC/Q==
+X-Gm-Message-State: AO0yUKWLbO0nQGBg4plM8uMJplHC7hvi3/gb2WHATVHMWp2fnTaQEZng
+        qpbcve8bDsdQS3Qaxu17ENbhIgfEq8d+Ww==
+X-Google-Smtp-Source: AK7set9lTERL34FBRNIipit8w0qwmE6L0+mhtwG5LjWIAuHRB7gMRSprRagWnvLHUtpKuQUYtMLfrg==
+X-Received: by 2002:a05:6a20:8ee2:b0:d7:47e8:59bd with SMTP id m34-20020a056a208ee200b000d747e859bdmr2012753pzk.60.1679653013059;
+        Fri, 24 Mar 2023 03:16:53 -0700 (PDT)
+Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id d2-20020a639742000000b00502e7115cbdsm10413239pgo.51.2023.03.24.03.16.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 03:16:52 -0700 (PDT)
+Date:   Fri, 24 Mar 2023 18:16:44 +0800
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wcheng@codeaurora.org,
+        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+Subject: Re: [PATCH v4 12/18] usb: typec: qcom: Add Qualcomm PMIC TCPM support
+Message-ID: <ZB14jJNUhHGBl7Az@Gentoo>
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-13-bryan.odonoghue@linaro.org>
+ <ZBxkB04KqY8WbeA1@Gentoo>
+ <89bca327-a860-672c-b4ae-766698d38639@linaro.org>
+ <ZBzyK0ILtUDr986r@Gentoo>
+ <37d14447-0f10-be88-9cd9-8ebd30f1d006@linaro.org>
+ <ZBz5OvauxQ2PWcHu@Gentoo>
+ <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230324063317.14664-3-zhuyinbo@loongson.cn>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yinbo,
+On Fri, Mar 24, 2023 at 02:37:15AM +0000, Bryan O'Donoghue wrote:
+> On 24/03/2023 01:13, Jianhua Lu wrote:
+> >> Can you show the printout of *(pmic_typec->base + TYPEC_SM_STATUS_REG) ?
+> 
+> [   17.108819] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+> qcom_pmic_typec_port_set_vbus misc 0x000000cb
+> 
+> [   17.118659] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+> qcom_pmic_typec_port_set_vbus sm_status 0x000000b9
+> 
+> SM_STAT == 0xb9 => 10111001
+When I connect my device to a usb hub with external power supply, it show
 
-I love your patch! Yet something to improve:
+[ 1495.622026] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+get_cc: misc 0x000000c9 cc1 0x00000002 Rd cc2 0x00000000 Open attached 1 cc=cc2
+[ 1495.622383] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+get_cc: misc 0x000000c9 cc1 0x00000002 Rd cc2 0x00000000 Open attached 1 cc=cc2
+[ 1495.824637] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+qcom_pmic_typec_set_vbus sm_stat output 0x000000b9
+[ 1495.824667] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+qcom_pmic_typec_set_vbus misc 0x000000c9
+[ 1495.824685] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+qcom_pmic_typec_set_vbus sm_status 0x000000b9
+[ 1495.824739] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+set_cc: currsrc=1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=cc2
+[ 1495.829001] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc complete
 
-[auto build test ERROR on broonie-spi/for-next]
-[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.3-rc3 next-20230324]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230324-143432
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-patch link:    https://lore.kernel.org/r/20230324063317.14664-3-zhuyinbo%40loongson.cn
-patch subject: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson spi controller
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230324/202303241811.OXj9KxAr-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/3742622c455d25c4a110d2caf2f5b2ceefe88f91
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230324-143432
-        git checkout 3742622c455d25c4a110d2caf2f5b2ceefe88f91
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303241811.OXj9KxAr-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/spi/spi-loongson-core.c: In function 'loongson_spi_init_master':
->> drivers/spi/spi-loongson-core.c:229:21: error: implicit declaration of function 'devm_ioremap'; did you mean 'of_ioremap'? [-Werror=implicit-function-declaration]
-     229 |         spi->base = devm_ioremap(dev, res->start, resource_size(res));
-         |                     ^~~~~~~~~~~~
-         |                     of_ioremap
->> drivers/spi/spi-loongson-core.c:229:19: warning: assignment to 'void *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     229 |         spi->base = devm_ioremap(dev, res->start, resource_size(res));
-         |                   ^
-   cc1: some warnings being treated as errors
-
-
-vim +229 drivers/spi/spi-loongson-core.c
-
-   201	
-   202	int loongson_spi_init_master(struct device *dev, struct resource *res)
-   203	{
-   204		struct spi_master *master;
-   205		struct loongson_spi *spi;
-   206		struct clk *clk;
-   207		int ret;
-   208	
-   209		master = spi_alloc_master(dev, sizeof(struct loongson_spi));
-   210		if (master == NULL) {
-   211			dev_dbg(dev, "master allocation failed\n");
-   212			return -ENOMEM;
-   213		}
-   214	
-   215		master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-   216		master->setup = loongson_spi_setup;
-   217		master->prepare_message = loongson_spi_prepare_message;
-   218		master->transfer_one = loongson_spi_transfer_one;
-   219		master->unprepare_message = loongson_spi_unprepare_message;
-   220		master->set_cs = loongson_spi_set_cs;
-   221		master->num_chipselect = 4;
-   222		master->dev.of_node = of_node_get(dev->of_node);
-   223		dev_set_drvdata(dev, master);
-   224	
-   225		spi = spi_master_get_devdata(master);
-   226	
-   227		spi->master = master;
-   228	
- > 229		spi->base = devm_ioremap(dev, res->start, resource_size(res));
-   230		if (spi->base == NULL) {
-   231			dev_err(dev, "cannot map io\n");
-   232			ret = -ENXIO;
-   233			goto free_master;
-   234		}
-   235	
-   236		clk = devm_clk_get(dev, NULL);
-   237		if (!IS_ERR(clk))
-   238			spi->clk_rate = clk_get_rate(clk);
-   239	
-   240		loongson_spi_reginit(spi);
-   241	
-   242		spi->mode = 0;
-   243		if (of_get_property(dev->of_node, "spi-nocs", NULL))
-   244			spi->mode |= SPI_NO_CS;
-   245	
-   246		ret = spi_register_master(master);
-   247		if (ret < 0)
-   248			goto free_master;
-   249	
-   250		return ret;
-   251	
-   252	free_master:
-   253		kfree(master);
-   254		spi_master_put(master);
-   255	
-   256		return ret;
-   257	}
-   258	EXPORT_SYMBOL_GPL(loongson_spi_init_master);
-   259	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+I think my device's pm8150b is connected to charger pump but this charger
+driver hasn't been implement, so can't detect pm8150b_vbus.
+> 
+> In other words, my hardware gives a clear indication of the appropriate 
+> transition.
+> 
+> Would appreciate if you could apply the above "patch"
+> 
+> That said I _am_ included to believe you and to do something about it, I 
+> will downgrade to a warning instead of returning on error in failure to 
+> transition to VSafeVX
+Your patch is correct. Making it warning let other devices' type-c work normally.
+I agree with your idea.
+> 
+> Yeah though I'd appreciate seeing the output of the above patch to see 
+> if there's something we are missing.
+> 
+> Thanks for your review/time/input
+> 
+> ---
+> bod
