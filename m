@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E666C79F2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2788A6C7A03
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 09:41:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230404AbjCXIiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 04:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56030 "EHLO
+        id S229609AbjCXIld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 04:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbjCXIiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:38:03 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BD51166F;
-        Fri, 24 Mar 2023 01:38:01 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AF9CC66030AA;
-        Fri, 24 Mar 2023 08:37:59 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679647080;
-        bh=leUkIfYHsV7YSnV9uYcacAILh9PlFS9yw7oLnYyzBZk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YM36CPg3tx9GWc9j6w8ZllGxCQEngD+c15etZO4mZbNg0VZBSL+0UGXta0bloiDL+
-         OONOa/97wu2hlYB93PA6FPDUnij7iz1cZkVjgmyBj1ee8yBBuyHbxUpBiG69bulGin
-         9dd6v5nDtiOyzjs5szA+3AbzTZJb5pSVsdWSql0sxNHw+qeyQnUlelkhSXeWDHYKAd
-         BXTT8hDlLF9gsqYiVzChYl4RnhKfrdY07RCUdE4yrqIKLx/XYsPRmxPtJmD/434GvE
-         2yOw6yZYQ1IW/lvT/Bi2E49UdnfR9WNU+IX4nEpDiBGVUZnbiV1Sjplm7hmUmIgiLf
-         2ljUSwxxqBguw==
-Message-ID: <97a5f383-38f5-e8ea-e1d8-489b690e4521@collabora.com>
-Date:   Fri, 24 Mar 2023 09:37:57 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v30 0/7] Add MediaTek SoC DRM (vdosys1) support for mt8195
-Content-Language: en-US
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     "Nancy.Lin" <nancy.lin@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S229734AbjCXIlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 04:41:32 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F7214EBA
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:41:31 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id r11so4890548edd.5
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 01:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679647290;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qKxYNXZ9eHTtJMVzM82IFy1ZfYeyHo24UX4/jj8J0vg=;
+        b=kk5HtABnn5CNziEd/v+xSZlemVkOLRPoG6I2hvVCXKOXwnkXJPXcUb0Ve7gBTCcfRJ
+         7xrAPksf0pAY1yRhsrtiq589Lf8myv2QtpFWIytfC8j1nmsQsCh9pT4f6PjVs1C547nx
+         GO/tL4XEzbeWHEj1NmtSTPEW13+croi5sgRokLh3/evQnhhD6KbqOH9mM9SJoKHymp0v
+         GhWh6CKtzqT/tQjLDQerKcrznVZzvwQR9XtJPL6H/FyK6GwMKt8imm5MCrrRSZehTwK+
+         MSi/hsYRjiBULZhNJ8rm52md2WJawZPgfEQAG89XJIYRITGj2sGDTbau/tkAwE5Uddj1
+         DFUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679647290;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qKxYNXZ9eHTtJMVzM82IFy1ZfYeyHo24UX4/jj8J0vg=;
+        b=DWG9GxZ8a4IzslvXYAY0ruKrPvnMvVltWJQ+FZcXdoMsHTA/uL7LVHQj5GLuUOF2QA
+         al3RGEK1uz4nqwS2e4+mD6lChCwUlscTH1MOf/o8nkyiJ7N3RJ6koWvFoAtS5uNH0cIA
+         RAV8dJjG1zVPIlDB13d6YD3L/RAocLFP1alMVfZgN7Ua2IY+Oe7A+SmM6ykb/VzYqkDa
+         LGD+r45Q2rc6LbqWz1E61ZXENx4JEGgBbny5WZ/bWS3roc+jbmoyNpIgvxJSbLCk+jcY
+         dPhk9HHQt+ak6v0xF2RNN9an5zdlUhMTYtGcB5fCNFagS02QDUo4zProc7x2QPjARhr0
+         f2XA==
+X-Gm-Message-State: AAQBX9euazRTVKujvMUEMafRDAmdWrqisIcBED2NlgJb33tJRlYU2OND
+        cQuos7USxXrg4C1cLxTIyzyvrg==
+X-Google-Smtp-Source: AKy350ai1hGJUdWv5AuStbzO8s918lkqS+DUjEbLx6cM/VEYzEvuynYhgcBLqUsfPvWFwGGEarki4Q==
+X-Received: by 2002:a17:907:3fa3:b0:93d:425a:b935 with SMTP id hr35-20020a1709073fa300b0093d425ab935mr2493419ejc.25.1679647289984;
+        Fri, 24 Mar 2023 01:41:29 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
+        by smtp.gmail.com with ESMTPSA id o12-20020a170906358c00b0093b6d1db84asm3552002ejb.120.2023.03.24.01.41.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 01:41:29 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, Daniel Vetter <daniel@ffwll.ch>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        CK Hu <ck.hu@mediatek.com>, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        clang-built-linux@googlegroups.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        singo.chang@mediatek.com
-References: <20230321121859.2355-1-nancy.lin@mediatek.com>
- <17831605-5c9d-9c92-d190-04f91060ace4@collabora.com>
- <CAAOTY_8ZAxVSLnJ1u5snsRgkszV7ixwhjUS2nDimE_Lpj=cUCA@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAAOTY_8ZAxVSLnJ1u5snsRgkszV7ixwhjUS2nDimE_Lpj=cUCA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: pinctrl: qcom,sm8550-lpass-lpi: allow input-enabled and bias-bus-hold
+Date:   Fri, 24 Mar 2023 09:41:27 +0100
+Message-Id: <20230324084127.29362-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,53 +74,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/03/23 00:25, Chun-Kuang Hu ha scritto:
-> Hi, Angelo:
-> 
-> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> 於
-> 2023年3月23日 週四 下午4:58寫道：
->>
->> Il 21/03/23 13:18, Nancy.Lin ha scritto:
->>> The hardware path of vdosys1 with DPTx output need to go through by several modules, such as, OVL_ADAPTOR and MERGE.
->>>
->>> Add DRM and these modules support by the patches below:
->>>
->>
->> I've tested v30 again on MT8173, MT8192 and MT8195 based Chromebooks.
->> Green light from me.
-> 
-> I'm curious about how you build code and test on Chromebooks. Do you
-> build in cros environment or pure linux
-> (https://archlinuxarm.org/platforms/armv8/mediatek/acer-chromebook-r13).
-> I've a MT8183 based Chromebook (HP 11a) and I've tried to run a
-> upstream kernel on it. cros is too heavy for me and I doubt I could
-> use it. I've tried the pure linux and could boot up with console, but
-> display does not work. If you use the pure linux environment, could
-> you share how it works?
-> 
+Add missing common pin configuration properties: input-enabled and
+bias-bus-hold.
 
-I haven't tested MT8183 (I don't actually have any 8183 machine in my hands)... but
-yes, I can share my test environment.
+Fixes: 268e97ccc311 ("dt-bindings: pinctrl: qcom,sm8550-lpass-lpi-pinctrl: add SM8550 LPASS")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I have one MicroSD that I use either in the MicroSD slot of the target machine, or
-in a USB reader; this *single* system is what I boot on *all* Chromebooks that I
-have: one kernel, multiple devicetrees, same Debian-based userspace.
+---
 
-What we have to prepare this bootable media can be found at [1], but beware that
-it currently uses an outdated kernel, so, what I have locally is a symlink to my
-kernel tree.
-You can change/add/remove the devicetree blobs that will get added to the image
-by modifying `chromebook-setup.sh`; before tampering with kernel tree symlink,
-please run that script for the first time, as it will download a cross-compiler,
-a kernel tree (that you will replace for sure) and the (very old) Debian rootfs
-that you can update with `apt-get dist-upgrade` after booting the Chromebook.
+Linus, please take it directly.
+---
+ .../bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-If you want to check about possible kernel configuration differences, what I use
-is at [2], so that you can compare.
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
+index 691bf60abb8c..ef9743246849 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
+@@ -96,9 +96,11 @@ $defs:
+           2: Lower Slew rate (slower edges)
+           3: Reserved (No adjustments)
+ 
++      bias-bus-hold: true
+       bias-pull-down: true
+       bias-pull-up: true
+       bias-disable: true
++      input-enable: true
+       output-high: true
+       output-low: true
+ 
+-- 
+2.34.1
 
-[1]: https://gitlab.collabora.com/google/chromebooks/-/tree/mtk-av1
-[2]: 
-https://gitlab.collabora.com/google/chromeos-kernel/-/blob/mt8195-tracking-master-rolling/arch/arm64/configs/defconfig
-
-Regards,
-Angelo
