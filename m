@@ -2,242 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 118696C7DFC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 13:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C1646C7E6C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:07:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231910AbjCXMYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 08:24:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47508 "EHLO
+        id S231561AbjCXNHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 09:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231892AbjCXMYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 08:24:33 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106231CBD1;
-        Fri, 24 Mar 2023 05:24:29 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32OCOIvG120757;
-        Fri, 24 Mar 2023 07:24:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1679660658;
-        bh=wkap2e6kzTTSvLw7zUfEUzfuLRCTlP03LJspERu3sD0=;
-        h=From:To:CC:Subject:Date;
-        b=U1iWKRQ60W+6AUfgcW3WBuk6R0YVDAWpZ3TpCSH2pCuYsK/Ywwyp9x4mf00AjMSH7
-         Ctyu+BAxYyIDpnf3FWdif9NNUb34MomJ4BoEi5wf5kQXTI41VoKOY1Y/asbKhvcaWn
-         3DXWz7Y5DrHALKZ3ENXfzz/SYk0Wdo6CjHO7djGo=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32OCOIp1005338
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 Mar 2023 07:24:18 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 24
- Mar 2023 07:24:18 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 24 Mar 2023 07:24:18 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32OCOHkr097323;
-        Fri, 24 Mar 2023 07:24:17 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>
-CC:     <afd@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-luthra@ti.com>, <j-choudhary@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am654: Add overlay for audio support
-Date:   Fri, 24 Mar 2023 17:54:17 +0530
-Message-ID: <20230324122417.252491-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+        with ESMTP id S229468AbjCXNHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:07:22 -0400
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515FE22A1B;
+        Fri, 24 Mar 2023 06:07:21 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id m6-20020a4ae846000000b0053b9059edd5so269448oom.3;
+        Fri, 24 Mar 2023 06:07:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679663240;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=13e4PzhHJoCEe/Nz2dMvzceKnl5ytY6lvF9QO/11MtQ=;
+        b=Ad6Wq0TYUVC8nZzxb2ThpC4XM6GkWN7hzmU0qtBg56LNdZDaqn/2hW+W+SnQvhFvwt
+         xTrl/p+tQzqrkw0yofXkpkEhqQ6KUPiZy9kxpftMjlJhf/nH3YvNEYK3JZHQdBHW/1QJ
+         jqduLACyGbTwUw8gzqA6sL9FtnTl+ftRcSpxmRhW4hF9fDvKSIlujYlrsHIcTQnHsvZn
+         EHImerXIzbRHZd81o/0EIrq6DGeo9Y8Fl5r60VoIN5JOzwa63pqAdkAc0dzFpBfwEqZ8
+         1Is+BchT0fUsdB+FxaMNZxj2gQ6d0Pmi646MC9rfhoUsbXkX2HcoG34GFbbyLofO4l8u
+         hQMw==
+X-Gm-Message-State: AO0yUKXKnrBBm+FOXmw6kJR6ilGkm07L+O3LFHsJADRDU+WNsSz3RGfD
+        716U1keB5ovy+UvhZBN8QPjh8H+acw==
+X-Google-Smtp-Source: AK7set9vyNqMBluunX573FfIh/MRKX7/vAM1A4OlmZZRECqbJeynbz0zyY2w2+1XsUJUR4DsbD+S0w==
+X-Received: by 2002:a4a:3707:0:b0:525:7096:972f with SMTP id r7-20020a4a3707000000b005257096972fmr1836149oor.9.1679663240388;
+        Fri, 24 Mar 2023 06:07:20 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s2-20020a4aad42000000b00525398a1144sm8191345oon.32.2023.03.24.06.07.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 06:07:19 -0700 (PDT)
+Received: (nullmailer pid 1693727 invoked by uid 1000);
+        Fri, 24 Mar 2023 13:07:19 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Mark Brown <broonie@kernel.org>, loongson-kernel@lists.loongnix.cn,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20230324063317.14664-2-zhuyinbo@loongson.cn>
+References: <20230324063317.14664-1-zhuyinbo@loongson.cn>
+ <20230324063317.14664-2-zhuyinbo@loongson.cn>
+Message-Id: <167966252219.1675112.1668738117284963309.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: spi: add loongson spi
+Date:   Fri, 24 Mar 2023 08:07:19 -0500
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-The GP application board has:
-ICSSG I2C0..3 connected to I2C EEPROMs
-ICSSG UART0..3 headers with level shifters
-ICSSG SPI0..3 connected to SPI Flash
-McASP0 connected to tlv320aic3106 codec with Headset out and Line In jack
+On Fri, 24 Mar 2023 14:33:16 +0800, Yinbo Zhu wrote:
+> Add the Loongson platform spi binding with DT schema format using
+> json-schema.
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+>  .../bindings/spi/loongson,ls-spi.yaml         | 43 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
+> 
 
-This patch adds support for the audio on the GP application board.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-[j-choudhary@ti.com: Makefile fixups, dtso file cleanups]
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
+yamllint warnings/errors:
 
-Changes are made considering Andrew's comment on another overlay patch[1]
-related to Makefile and styling comments on the overlay file.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
 
-[1]:
-<https://lore.kernel.org/all/8e6442c8-e4ef-705d-1378-7d1f8b74e84d@ti.com/>
+doc reference errors (make refcheckdocs):
 
- arch/arm64/boot/dts/ti/Makefile         |   3 +-
- arch/arm64/boot/dts/ti/k3-am654-gp.dtso | 124 ++++++++++++++++++++++++
- 2 files changed, 126 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am654-gp.dtso
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230324063317.14664-2-zhuyinbo@loongson.cn
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 541970a8ed0a..9b70a85fbc96 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -21,12 +21,13 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- 
- # Boards with AM65x SoC
-+k3-am654-evm-dtbs := k3-am654-base-board.dtb k3-am654-gp.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
--dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am654-evm.dtb
- 
- # Boards with J7200 SoC
- k3-j7200-evm-dtbs := k3-j7200-common-proc-board.dtb k3-j7200-evm-quad-port-eth-exp.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-gp.dtso b/arch/arm64/boot/dts/ti/k3-am654-gp.dtso
-new file mode 100644
-index 000000000000..14ceb2714677
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am654-gp.dtso
-@@ -0,0 +1,124 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * DT overlay for GP application board on AM654 EVM
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	gp_vcc_5v0: fixedregulator-gp-vcc-5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gp_vcc_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	codec_vcc_3v3: fixedregulator-codec-vcc-3v3 {
-+		/* LP5912-3.3DRVT */
-+		compatible = "regulator-fixed";
-+		regulator-name = "codec_vcc_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&gp_vcc_5v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	gp_vcc_1v8: fixedregulator-gp-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gp_vcc_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "AM65x-GPEVM";
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack",
-+			"Line", "Line In";
-+		simple-audio-card,routing =
-+			"Headphone Jack",	"HPLOUT",
-+			"Headphone Jack",	"HPROUT",
-+			"LINE1L",		"Line In",
-+			"LINE1R",		"Line In";
-+		simple-audio-card,format = "dsp_b";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+		simple-audio-card,bitclock-inversion;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcasp0>;
-+		};
-+
-+		sound_master: simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3106>;
-+			system-clock-frequency = <12000000>;
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	mcasp0_pins: mcasp0-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01f4, PIN_INPUT, 5) /* (V24) PRG0_PRU0_GPO0.MCASP0_ACLKX */
-+			AM65X_IOPAD(0x01f8, PIN_INPUT, 5) /* (W25) PRG0_PRU0_GPO1.MCASP0_AFSX */
-+			AM65X_IOPAD(0x0204, PIN_OUTPUT, 5) /* (Y24) PRG0_PRU0_GPO4.MCASP0_AXR0 */
-+			AM65X_IOPAD(0x0208, PIN_INPUT, 5) /* (V28) PRG0_PRU0_GPO5.MCASP0_AXR1 */
-+		>;
-+	};
-+
-+	aic3106_pins: aic3106-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x011c, PIN_OUTPUT, 7) /* (AD19) PRG1_PRU0_GPO15.GPIO0_71 */
-+		>;
-+	};
-+};
-+
-+&main_i2c0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	tlv320aic3106: tlv320aic3106@1b {
-+		#sound-dai-cells = <0>;
-+		compatible = "ti,tlv320aic3106";
-+		reg = <0x1b>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&aic3106_pins>;
-+		gpio-reset = <&main_gpio0 71 GPIO_ACTIVE_LOW>; /* gpio0_71 */
-+		/* Regulators */
-+		AVDD-supply = <&codec_vcc_3v3>;
-+		IOVDD-supply = <&gp_vcc_1v8>;
-+		DRVDD-supply = <&codec_vcc_3v3>;
-+		DVDD-supply = <&gp_vcc_1v8>;
-+	};
-+};
-+
-+&mcasp0 {
-+	status = "okay";
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcasp0_pins>;
-+	op-mode = <0>;          /* MCASP_IIS_MODE */
-+	tdm-slots = <2>;
-+	/* 16 serializers */
-+	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-+		1 2 0 0
-+		0 0 0 0
-+		0 0 0 0
-+		0 0 0 0
-+	>;
-+	tx-num-evt = <32>;
-+	rx-num-evt = <32>;
-+};
--- 
-2.25.1
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
