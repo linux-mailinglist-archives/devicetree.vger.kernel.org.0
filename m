@@ -2,57 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9774C6C7F24
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3E5B6C7F5A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 15:00:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231263AbjCXNwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 09:52:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
+        id S232110AbjCXOA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 10:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjCXNwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:52:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052131ACD0;
-        Fri, 24 Mar 2023 06:52:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231958AbjCXOAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 10:00:09 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5391F4B0
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:59:43 -0700 (PDT)
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D1A362AEA;
-        Fri, 24 Mar 2023 13:52:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6672C433EF;
-        Fri, 24 Mar 2023 13:52:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679665923;
-        bh=VFWAIb8kkILCZjlK61SwCOvFMSQhSfMr3UVPM0P/zus=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SXopr78XpZY1/cIa89tHN8Gw5yH20HpN0aGPkqKIPiD5moPjVY7lsN+q6BQMSKv3p
-         f8leXa+g9xPRdFusTlbRkvwcpWw/l5SO59+Irknegn5INhKKP9cHpbfrZgVomd0lp5
-         EuAIGxPDoIjTGC1iZkqgxL7XJwpHbtiJeqIMDuxVenqMjVCYWMm3inZ+7t4LHHki26
-         c8JhMhXxXeoLxq4VuHThegvMz4ZhQkRmKAusm6TeUThGpO1ARrsjnad5zKQ5pYcKUv
-         ty5+R6fd1wtKGF9kiU861dN59wUDWRUrlSxuP6pRCtXAlhE+C6eN6fnyGfiYYDlr9S
-         iFQsZr8SIpq5w==
-Date:   Fri, 24 Mar 2023 06:55:12 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-gpio@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-spi@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/14] pinctrl: qcom: Support OUTPUT_ENABLE; deprecate
- INPUT_ENABLE
-Message-ID: <20230324135512.afplb6cbugwr63ej@ripper>
-References: <20230323173019.3706069-1-dianders@chromium.org>
- <20230323102605.8.Id740ae6a993f9313b58add6b10f6a92795d510d4@changeid>
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E42C844541
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1679666378;
+        bh=0CzCezUBFius1/QvCjfVKLrX7WEPXSwgwzTCxhDCoiA=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=OmUDwCnLqdBtqb3GFy9r6zh6719eF7W6DROxdNM7xgIYzyhAOmAeZzJ1bpxU3/q9C
+         0jfRabi9cOoeQvRqXIjTTWFf+cCqoZkxtwH4VnaXcNF8eFQiM/c5PKqSc13jabGdpJ
+         VfuPS/FOzJ3APRYZfOm0oxiTdBSYW+YPysQOtv0a+YnbfzR2lglz8QdkrxtxWqkpLh
+         jEjLbhBF2HkuJ9CQdD6DXjrNW6nQ9Ue6vNzbmljfxtyuLR2RtV8tNNBuSkYjRDd125
+         xm5VgwJPETDQ5o2xnm60EYEfNWgJRMT5YQGBvxnS/zY+4Q59NaD/qqUJKWI7nXIMJa
+         k7V0K1R74WqeA==
+Received: by mail-qv1-f70.google.com with SMTP id f3-20020a0cc303000000b005c9966620daso1052939qvi.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:59:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679666378;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0CzCezUBFius1/QvCjfVKLrX7WEPXSwgwzTCxhDCoiA=;
+        b=1CL0M96hJUnYeHdL0DoYEr59c47BoHK1cpYQpRp4HQD51U72Q7TytmhV/Xi/m6CEJM
+         Cf1xEUfdyqWJFk680yC/vAIzhBVCifU0DZACjLnkmx0U0OTW69xJJE7k0Ujau58JOrGq
+         YZPEyYVh2/5YnVFRg4kTWIU7jLrn2Zg60d3AfdV6x62wYt6TiQQN/Hz8VDZXCiSsxEQv
+         SSOXH+eev+CxBhXvBZh9kdG9/xqQemBaNN01lZYBV80oh950dO5JpenFaY/yhDdCLsfx
+         joeHoOJsSK6iAQpfeajFqWdRwmpjXAQJSdXxAdoiMRTA4WTILZxMo8n1V6t2IK0Pn6UR
+         a/7g==
+X-Gm-Message-State: AO0yUKUj02uELNe8qiPD5QRx1zasLp60ER4WmYa75DHyxI2h8OovFP1/
+        c+aV7idwMWhkkcPch4WpGsxRYpT85tr0DWm9fIfzjk+K/mTyP+hGyahjHOqKe9x7HuHL9l0IfTR
+        ZkxiJLsrEhrej6Lg2z63uYid8DzZMGto0/UaodHyLdpruLyL3ds1D0P0=
+X-Received: by 2002:a37:a8cf:0:b0:745:8c04:2777 with SMTP id r198-20020a37a8cf000000b007458c042777mr503404qke.13.1679666377806;
+        Fri, 24 Mar 2023 06:59:37 -0700 (PDT)
+X-Google-Smtp-Source: AK7set+fYwdhVgyb9GNd32TrH8t4Pv6a28VQzyoEpE+xeNGm/T2XLuOweT5dKvtRVRvgDmnoGhBHVQhMCfEkxFGjGIU=
+X-Received: by 2002:a37:a8cf:0:b0:745:8c04:2777 with SMTP id
+ r198-20020a37a8cf000000b007458c042777mr503392qke.13.1679666377512; Fri, 24
+ Mar 2023 06:59:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230323102605.8.Id740ae6a993f9313b58add6b10f6a92795d510d4@changeid>
+References: <20230324022819.2324-1-samin.guo@starfivetech.com> <20230324022819.2324-7-samin.guo@starfivetech.com>
+In-Reply-To: <20230324022819.2324-7-samin.guo@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Fri, 24 Mar 2023 14:59:21 +0100
+Message-ID: <CAJM55Z8_W9yOcL+yGAwB-qanD_-bbf16VjCP66P_xDFW6-c+3A@mail.gmail.com>
+Subject: Re: [PATCH v8 6/6] net: stmmac: starfive_dmac: Add phy interface settings
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
@@ -62,131 +92,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 23, 2023 at 10:30:12AM -0700, Douglas Anderson wrote:
-> The Qualcomm pinctrl driver has been violating the documented meaning
-> of PIN_CONFIG_INPUT_ENABLE. That documentation says:
-> 
->   Note that this does not affect the pin's ability to drive output.
-> 
-> ...yet the Qualcomm driver's sole action when asked to "enable input"
-> on a pin is to disable its output.
-> 
-
-Seemed like a good idea at the time...
-
-> The Qualcomm driver's implementation stems from the fact that
-> "output-disable" is a "new" property from 2017. It was introduced in
-> commit 425562429d4f ("pinctrl: generic: Add output-enable
-> property"). The "input-enable" handling in Qualcomm drivers is from
-> 2015 introduced in commit 407f5e392f9c ("pinctrl: qcom: handle
-> input-enable pinconf property").
-> 
-> Let's change the Qualcomm driver to move us in the right direction. As
-> part of this:
-> 1. We'll now support PIN_CONFIG_OUTPUT_ENABLE
-> 2. We'll still support using PIN_CONFIG_INPUT_ENABLE to disable a
->    pin's output (in violation of the docs) with a big comment in the
->    code. This is needed because old device trees have "input-enable"
->    in them and, in some cases, people might need the old
->    behavior. While we could programmatically change all old device
->    trees, it doesn't really hurt to keep supporting the old behavior
->    and we're _supposed_ to try to be compatible with old device trees
->    anyway.
-> 
-> It can also be noted that the PIN_CONFIG_INPUT_ENABLE handling code
-> seems to have purposefully ignored its argument. That means that old
-> boards that had _either_ "input-disable" or "input-enable" in them
-> would have had the effect of disabling a pin's output. While we could
-> change this behavior, since we're only leaving the
-> PIN_CONFIG_INPUT_ENABLE there for backward compatibility we might as
-> well be fully backward compatible.
-> 
-
-It made total sense to to spell input-disable as output-{high,low} back
-then, but we're wiser now. Thanks for fixing it.
-
-> NOTE: despite the fact that we'll still support
-> PIN_CONFIG_INPUT_ENABLE for _setting_ config, we take it away from
-> msm_config_group_get(). This appears to be only used for populating
-> debugfs and fixing debugfs to "output enabled" where relevant instead
-> of "input enabled" makes more sense and has more truthiness.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
+On Fri, 24 Mar 2023 at 03:30, Samin Guo <samin.guo@starfivetech.com> wrote:
+>
+> dwmac supports multiple modess. When working under rmii and rgmii,
+> you need to set different phy interfaces.
+>
+> According to the dwmac document, when working in rmii, it needs to be
+> set to 0x4, and rgmii needs to be set to 0x1.
+>
+> The phy interface needs to be set in syscon, the format is as follows:
+> starfive,syscon: <&syscon, offset, shift>
+>
+> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 > ---
-> 
->  drivers/pinctrl/qcom/pinctrl-msm.c | 36 +++++++++++++++++++++++++-----
->  1 file changed, 31 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
-> index daeb79a9a602..4515f375c5e8 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-msm.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-msm.c
-> @@ -323,6 +323,7 @@ static int msm_config_reg(struct msm_pinctrl *pctrl,
->  		break;
->  	case PIN_CONFIG_OUTPUT:
->  	case PIN_CONFIG_INPUT_ENABLE:
-> +	case PIN_CONFIG_OUTPUT_ENABLE:
->  		*bit = g->oe_bit;
->  		*mask = 1;
->  		break;
-> @@ -414,11 +415,9 @@ static int msm_config_group_get(struct pinctrl_dev *pctldev,
->  		val = msm_readl_io(pctrl, g);
->  		arg = !!(val & BIT(g->in_bit));
->  		break;
-> -	case PIN_CONFIG_INPUT_ENABLE:
-> -		/* Pin is output */
-> -		if (arg)
-> +	case PIN_CONFIG_OUTPUT_ENABLE:
-> +		if (!arg)
->  			return -EINVAL;
-> -		arg = 1;
->  		break;
->  	default:
->  		return -ENOTSUPP;
-> @@ -502,9 +501,36 @@ static int msm_config_group_set(struct pinctrl_dev *pctldev,
->  			arg = 1;
->  			break;
->  		case PIN_CONFIG_INPUT_ENABLE:
-> -			/* disable output */
-> +			/*
-> +			 * According to pinctrl documentation this should
-> +			 * actually be a no-op.
-> +			 *
-> +			 * The docs are explicit that "this does not affect
-> +			 * the pin's ability to drive output" but what we do
-> +			 * here is to modify the output enable bit. Thus, to
-> +			 * follow the docs we should remove that.
-> +			 *
-> +			 * The docs say that we should enable any relevant
-> +			 * input buffer, but TLMM there is no input buffer that
-> +			 * can be enabled/disabled. It's always on.
-> +			 *
-> +			 * The points above, explain why this _should_ be a
-> +			 * no-op. However, for historical reasons and to
-> +			 * support old device trees, we'll violate the docs
-> +			 * still affect the output.
-> +			 *
-> +			 * It should further be noted that this old historical
-> +			 * behavior actually overrides arg to 0. That means
-> +			 * that "input-enable" and "input-disable" in a device
-> +			 * tree would _both_ disable the output. We'll
-> +			 * continue to preserve this behavior as well since
-> +			 * we have no other use for this attribute.
-> +			 */
->  			arg = 0;
->  			break;
-> +		case PIN_CONFIG_OUTPUT_ENABLE:
-> +			arg = !!arg;
-> +			break;
->  		default:
->  			dev_err(pctrl->dev, "Unsupported config parameter: %x\n",
->  				param);
-> -- 
-> 2.40.0.348.gf938b09366-goog
-> 
+>  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> index ef5a769b1c75..84690c8f0250 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> @@ -13,6 +13,10 @@
+>
+>  #include "stmmac_platform.h"
+>
+> +#define STARFIVE_DWMAC_PHY_INFT_RGMII  0x1
+> +#define STARFIVE_DWMAC_PHY_INFT_RMII   0x4
+> +#define STARFIVE_DWMAC_PHY_INFT_FIELD  0x7U
+> +
+>  struct starfive_dwmac {
+>         struct device *dev;
+>         struct clk *clk_tx;
+> @@ -44,6 +48,43 @@ static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed)
+>                 dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>  }
+>
+> +static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
+> +{
+> +       struct starfive_dwmac *dwmac = plat_dat->bsp_priv;
+> +       struct regmap *regmap;
+> +       unsigned int args[2];
+> +       unsigned int mode;
+> +
+> +       switch (plat_dat->interface) {
+> +       case PHY_INTERFACE_MODE_RMII:
+> +               mode = STARFIVE_DWMAC_PHY_INFT_RMII;
+> +               break;
+> +
+> +       case PHY_INTERFACE_MODE_RGMII:
+> +       case PHY_INTERFACE_MODE_RGMII_ID:
+> +               mode = STARFIVE_DWMAC_PHY_INFT_RGMII;
+> +               break;
+> +
+> +       default:
+> +               dev_err(dwmac->dev, "unsupported interface %d\n",
+> +                       plat_dat->interface);
+> +               return -EINVAL;
+> +       }
+> +
+> +       regmap = syscon_regmap_lookup_by_phandle_args(dwmac->dev->of_node,
+> +                                                     "starfive,syscon",
+> +                                                     2, args);
+> +       if (IS_ERR(regmap)) {
+> +               dev_err(dwmac->dev, "syscon regmap failed.\n");
+> +               return -ENXIO;
+> +       }
+> +
+> +       /* args[0]:offset  args[1]: shift */
+> +       return regmap_update_bits(regmap, args[0],
+> +                                 STARFIVE_DWMAC_PHY_INFT_FIELD << args[1],
+> +                                 mode << args[1]);
+> +}
+> +
+>  static int starfive_dwmac_probe(struct platform_device *pdev)
+>  {
+>         struct plat_stmmacenet_data *plat_dat;
+> @@ -89,6 +130,12 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
+>         plat_dat->bsp_priv = dwmac;
+>         plat_dat->dma_cfg->dche = true;
+>
+> +       err = starfive_dwmac_set_mode(plat_dat);
+> +       if (err) {
+> +               dev_err(&pdev->dev, "dwmac set mode failed.\n");
+> +               return err;
+> +       }
+
+Usually it's better to keep all error messages at the same "level".
+Like this you'll get two error messages if
+syscon_regmap_lookup_by_phandle_args fails. So I'd suggest moving this
+message into the starfive_dwmac_set_mode function and while you're at
+it you can do
+
+err = regmap_update_bits(...);
+if (err)
+  return dev_err_probe(dwmac->dev, err, "error setting phy mode\n");
+
+Also the file is called dwmac-starfive.c, so I'd expect the patch
+header to be "net: stmmac: dwmac-starfive: Add phy interface
+settings".
+
+/Emil
+
+>         err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+>         if (err) {
+>                 stmmac_remove_config_dt(pdev, plat_dat);
+> --
+> 2.17.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
