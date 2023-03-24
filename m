@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 733446C7D67
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 935EC6C7D74
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 12:48:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjCXLoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 07:44:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50304 "EHLO
+        id S230092AbjCXLss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 07:48:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230111AbjCXLoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:44:22 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BDD1E9FD
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:44:20 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id y4so6900877edo.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:44:20 -0700 (PDT)
+        with ESMTP id S229600AbjCXLsr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 07:48:47 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927041FFC
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:48:46 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id o12so6843583edb.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 04:48:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679658259;
+        d=linaro.org; s=google; t=1679658525;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PV2+Kw1a03u71xTK7xlUl8ktkm/tkiAy9Sd4SYFg1Rk=;
-        b=cNztfJT4Q0pg5oSGiUiysyzduJeJzDrxx40EM08fZ8w3PTJ6s7P2TaHId5+BlvZLuM
-         6vR2Jrkh7CllN1Adk+KasNy88E5xwQ+I6KdtPnIx7KfjbRW5vA1PembcnnKIQHnF5A9P
-         rTfs/EC0ai7aVjK+1rf3BrLMe/KbBOAfMeJNZCb4oWQsPw3BPwVQsEOd+Jp2Lhn2Zey9
-         uHMeGOkWrQtZ8zX2V6ftMX8YEMPH2t3YyqsdgyRDYifrRHNYLmlpv6sU9SJC6J4xfsm6
-         LVr0/Z6EbBF2kaodNVbmJzG/Ii2/WiIiC2ep45ho5SfcJUFbPiPXFUfWksKnH0A3qiBd
-         O4CQ==
+        bh=e8LtNo9O+N2urrNpkv74xPVkcVBPtljyRPq/ezfzVBE=;
+        b=rI+XgDA/H+XuKYBqgGmgj0mj37fzfUDe7gDew0ugQBK+ayvpgkpx0sKAgfpQrVgVPc
+         2ioMJcGrktbmW2Lv37II6n2IDGxydQIqCzQjcaag2dpAGzpm7WrrowwTJH57ajwq382f
+         ZD+mKdkJhlJM9gueKNoCXDDh59imz8rUhYn/NiO1k3q3jZeoseDkK58MkhaDuAIW/UEZ
+         obz+ZnJAzSNBTr8fOcquo3Ok15UO5YW75gr3WgVyYoD6NRmuCfUXz1QhFyVPP62Ofb91
+         lSQ7khRiYqgksVeyH8fOWS9NJIQaARz1RQsVvrccon3nTti/TygLjD1/Ducxw2gm1ITK
+         rFAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679658259;
+        d=1e100.net; s=20210112; t=1679658525;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PV2+Kw1a03u71xTK7xlUl8ktkm/tkiAy9Sd4SYFg1Rk=;
-        b=ByaidE8xqgeBOivOhSd9jsjQ6+QZ306GRSc4aW+LwGRTbUBdvAMuyLoejmjHV7m4+J
-         TCbz8zwA7gCijY7+AYFRvfGijz+4RrnEpPw3G4jcH7g81CTxR1uVi2DnVFDe/CCSDTvy
-         0GUpe/I7ANIoIxdnmO6w63EgpQyzobh3Yvw3djfzpgeHTeoSj49QYV6AOBoE+G/vqq8T
-         jZz0bh/oXhFcgQoj6jItRh4BehoJPVRpZEntOgbqZi1pMIlkHaePWwwt7qwISDxYgutc
-         88v0EOJehABu0nyeB7yYAc+pcKmqUhcOr8jRQjji6x2X+jmCgRQNIKRcCKqGWD2WFRzw
-         yXEw==
-X-Gm-Message-State: AAQBX9exYTxsHh3DD1AhhotTKOwdGS3ezOgskExGU5kCI+WZDjMYETo5
-        r0TN6EVa1cPwX/ZUQplaCa3DeS7ZQf+Vy2/Fu/4=
-X-Google-Smtp-Source: AKy350buKiFs3pb8Ta8k+M1vUQPFJiD0NRH4RsXr+sOiOetVRFPCrydIpT3mNuyijixEkO/rO25gAA==
-X-Received: by 2002:a05:6402:151:b0:4fc:5d56:f91d with SMTP id s17-20020a056402015100b004fc5d56f91dmr2316227edu.18.1679658258902;
-        Fri, 24 Mar 2023 04:44:18 -0700 (PDT)
+        bh=e8LtNo9O+N2urrNpkv74xPVkcVBPtljyRPq/ezfzVBE=;
+        b=4dLVwEuZI/2GOzRssRXsF0M9a1xmixam9lLI8CwRcnXlmIvs9yJY5iTi2PTXemQBlB
+         3GkO6D1H9/gxpdWUebo+utofNvNPx+bWBUB6ov8mD6x3CWZEaYrKjOhihMghhDze2ktk
+         YuowRlUr4vEd/eGHPM4hDh2AjmMoXGIKZf7YL49koTUuAXGoQL4yagnWXptpqBlesZ/+
+         uDeML8hAhiNmYxc9503n+btPX7kFtdzaeaSNbqVjdiAq2wYEKSeTIkSAUp7Mk83xkRw5
+         PDTP8goIyN8y9xCaHMjLi9heT6MuCHWphDcKOoSAYVauyGEtQXASuEFw+ZHznhyYm103
+         ziUA==
+X-Gm-Message-State: AAQBX9e1qC5bInqGnkDjXW2Ga7aWE5HUrEOk8LTQQao6hyEStpxOwU9N
+        v7BCUbQ42D/6poR/yo0HkNm4yQ==
+X-Google-Smtp-Source: AKy350Y+nkI7+I9GQMdFtSG2iD87jfm69SH6LIPv9KX3N+Z4mg0ptJ3fVUsTNB68LSUeqAJXiOf4tA==
+X-Received: by 2002:a17:906:580b:b0:931:20fd:3d09 with SMTP id m11-20020a170906580b00b0093120fd3d09mr2415525ejq.17.1679658524922;
+        Fri, 24 Mar 2023 04:48:44 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:3027:fb0b:ae08:588? ([2a02:810d:15c0:828:3027:fb0b:ae08:588])
-        by smtp.gmail.com with ESMTPSA id i28-20020a50871c000000b004fd204d180dsm10516512edb.64.2023.03.24.04.44.18
+        by smtp.gmail.com with ESMTPSA id y12-20020a17090668cc00b008d044ede804sm8084789ejr.163.2023.03.24.04.48.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 04:44:18 -0700 (PDT)
-Message-ID: <d646d109-d0a6-aedb-a8b2-ac954336e628@linaro.org>
-Date:   Fri, 24 Mar 2023 12:44:17 +0100
+        Fri, 24 Mar 2023 04:48:44 -0700 (PDT)
+Message-ID: <4f90e84b-1a9e-bc96-c9b3-12f95ea7bcff@linaro.org>
+Date:   Fri, 24 Mar 2023 12:48:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
- compatible
+Subject: Re: [PATCH v6] ASoC: dt-bindings: Add tas2781 DT documenting that
+ binding along with the driver
 Content-Language: en-US
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        git@amd.com, saikrishna12468@gmail.com
-References: <20230324073630.3194724-1-sai.krishna.potthuri@amd.com>
- <20230324073630.3194724-2-sai.krishna.potthuri@amd.com>
+To:     Shenghao Ding <13916275206@139.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
+        lgirdwood@gmail.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        x1077012@ti.com, peeyush@ti.com, navada@ti.com
+References: <20230324110929.27710-1-13916275206@139.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230324073630.3194724-2-sai.krishna.potthuri@amd.com>
+In-Reply-To: <20230324110929.27710-1-13916275206@139.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,39 +78,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 08:36, Sai Krishna Potthuri wrote:
-> Add Xilinx Versal Net compatible to support eMMC 5.1 PHY.
+On 24/03/2023 12:09, Shenghao Ding wrote:
+> Create tas2781.yaml for tas2781 driver.
 > 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+
+Where is the driver? Why are you sending these separate? You already got
+comment about wrong threading, so I really expect some improvements.
+> 
 > ---
->  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Changes in v6:
+>  - Remove all the "|" after "description:".
+>  - Drop the reset-gpios description.
+>  - Be consistent on the I2C.
+>  Changes to be committed:
+> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> index 8296c34cfa00..cf44a4b988a7 100644
-> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> @@ -27,6 +27,7 @@ allOf:
->              enum:
->                - xlnx,zynqmp-8.9a
->                - xlnx,versal-8.9a
-> +              - xlnx,versal-net-5.1-emmc
+> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> new file mode 100644
+> index 000000000000..af37595f3a6e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TAS2781 SmartAMP
+> +
+> +maintainers:
+> +  - Shenghao Ding <shenghao-ding@ti.com>
+> +  - Kevin Lu <kevin-lu@ti.com>
+> +
+> +description:
+> +  The TAS2781 is a mono, digital input Class-D audio amplifier
+> +  optimized for efficiently driving high peak power into small
+> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
+> +  Smart Amp speaker protection algorithm. The integrated speaker
+> +  voltage and current sense provides for real time
+> +  monitoring of loudspeaker behavior.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tas2781
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      I2C address of the primary device.
 
-v5.1 is eMMC standard or Versal block version? If the first, it's not
-suitable for compatibles.
+What happened here? Rob's comment seems ignored and now we have
+description without anything useful.
 
-Also, what's the difference from xlnx,versal-8.9a?
-
->      then:
->        properties:
->          clock-output-names:
-> @@ -62,6 +63,11 @@ properties:
->          description:
->            For this device it is strongly suggested to include
->            clock-output-names and '#clock-cells'.
-> +      - items:
-> +          - const: xlnx,versal-net-5.1-emmc     # Versal Net eMMC PHY
-> +        description:
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
 
 Best regards,
 Krzysztof
