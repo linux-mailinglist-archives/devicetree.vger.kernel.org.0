@@ -2,177 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8316C830F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 18:14:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66A406C8336
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 18:20:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231709AbjCXROL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 13:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46388 "EHLO
+        id S229540AbjCXRUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 13:20:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230380AbjCXROJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 13:14:09 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4826E30CA;
-        Fri, 24 Mar 2023 10:13:45 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 14-20020a9d010e000000b0069f1287f557so1253656otu.0;
-        Fri, 24 Mar 2023 10:13:45 -0700 (PDT)
+        with ESMTP id S229943AbjCXRUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 13:20:03 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37084E075
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 10:19:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1679678350;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wRdG1BtF0+O5vmK82BeeaZgtX/zg2FQsRJkCdAg4C4A=;
+        b=fQDk/YQL11mG+LooVGZBivjPdfmGFixdEoEiCX8SOdqFDxDhiRLK3bYZVooBFARtyYYSTS
+        Ouf2motaX0WQEW6wl0HLb+qMoQY/CV6J4j/BAAgZEjn8/dlVaD9AANPlOvxrs0/YH3sDir
+        qlFc28I6FwBHmRia30hytzHolH7eIqE=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-651-7LRNc3g7Pd6VSbi2OkgC3Q-1; Fri, 24 Mar 2023 13:19:09 -0400
+X-MC-Unique: 7LRNc3g7Pd6VSbi2OkgC3Q-1
+Received: by mail-qt1-f199.google.com with SMTP id a11-20020ac85b8b000000b003e3979be6abso1406851qta.12
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 10:19:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679678011;
+        d=1e100.net; s=20210112; t=1679678348;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kXC/ehgAlDQxlar8G+0cOCIylNpUxRXIsV141jWIs+8=;
-        b=d8w6/kgIy4OWy6tIGXp/lwc2cnIC8HQujHDyKpv0ZS0D6gk7/KmhUkSJb4t1DWqQ2x
-         zAB/PZCPvMIPgAuvKylj2w/GBWA+1Vsi7mZVVvE0959YptHo8OmTCDapSMvualyEDw7y
-         vBLLd6RM6Pu75qnwhd5HKZ4t/cBFgt7VNlabUHGb5rNOCPQnkL03MMulZYPs8gmjShWD
-         YnPSaA7CFIYnm2ATm+zUVwAqIrPg4k8Cwdx0n9wgKML3VtemW2GMAPGnkX+4ivGUD9kc
-         lGK+oHDImQ6JJZxujGm5a4CpKfc7LfP7aHzL0JpIrS9UeHfPPgblvtWZYl9KvP0W389A
-         vwDQ==
-X-Gm-Message-State: AO0yUKV/AwS11f7cFuf74RTZh/tQiCxhzxs4cpOESHr5G2z0MaW2Nnzu
-        zesXd9vgx+KW8oGMUy0VSA==
-X-Google-Smtp-Source: AK7set+5p7gPylRYq/K6l1RQHd22yIy2rXmsFpG3s5vAqu3sGEjDS54c2caeW0q1rpz0pGfTGa7MZg==
-X-Received: by 2002:a05:6830:14d0:b0:69f:9140:2dde with SMTP id t16-20020a05683014d000b0069f91402ddemr1970115otq.37.1679678010821;
-        Fri, 24 Mar 2023 10:13:30 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a20-20020a9d74d4000000b006a11998d20esm459350otl.45.2023.03.24.10.13.29
+        bh=wRdG1BtF0+O5vmK82BeeaZgtX/zg2FQsRJkCdAg4C4A=;
+        b=spEubMSftTvZGdW/Cbode/KF/aGDEMEw3eVx6SaEnsWssbTqMNj3hNAr0v4NH0hHsO
+         yMYZSVbQ4k/LIdorNyRb3WDcFCfOwG4Xqh8Fd6zTaedwBSyoqZGuAkray8zxbHnVgzvm
+         WLsJzsiXCRY4Vj02BqA1qAg5MOM9DCyQP6uUGjTWAWyBJ0gAQaM49I3hCIXXr6D8AdC5
+         BXuMdia9oUG8JygA2URP0/ka/PHv4MJIL9BIr7dWLBOs5j964SCtpJgrvPc2ThAchZZN
+         XE4SzyoOhGJVOUWrFb3S9H4kSiKmEpgyEV5bu3O/Q7m7zQXn5H8VLnHoe3dwEURDUDUC
+         6OTg==
+X-Gm-Message-State: AO0yUKUXFxIFHhVSFK2Qoo8bMS17oNrLr3kDr5yzth+8Q1q9qQ2yYsI2
+        yQCSWunWtd5TGz5dcEjDK6hcDai6BJLmFdgAOGIhgaw0Selbiq26nVzTz7hUUNlAvmf9q5bKwvT
+        F+DP17dv0Fef3aOmwNg8dMA==
+X-Received: by 2002:ac8:58cb:0:b0:3bf:b75a:d7a7 with SMTP id u11-20020ac858cb000000b003bfb75ad7a7mr17488893qta.7.1679678348515;
+        Fri, 24 Mar 2023 10:19:08 -0700 (PDT)
+X-Google-Smtp-Source: AK7set+Rbq4oH8qL3Uss5BKUMIP1q48p9N04PxOZSlI1W/66wpmMW3fNVZpbRku5c8MRrbOWeWkkpA==
+X-Received: by 2002:ac8:58cb:0:b0:3bf:b75a:d7a7 with SMTP id u11-20020ac858cb000000b003bfb75ad7a7mr17488859qta.7.1679678348241;
+        Fri, 24 Mar 2023 10:19:08 -0700 (PDT)
+Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
+        by smtp.gmail.com with ESMTPSA id s128-20020a372c86000000b0074374e2b630sm14534036qkh.119.2023.03.24.10.19.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 10:13:30 -0700 (PDT)
-Received: (nullmailer pid 2073665 invoked by uid 1000);
-        Fri, 24 Mar 2023 17:13:29 -0000
-Date:   Fri, 24 Mar 2023 12:13:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
-Subject: Re: [PATCH V4 04/10] dt-bindings: timestamp: Add
- nvidia,gpio-controller
-Message-ID: <20230324171329.GA2062332-robh@kernel.org>
-References: <20230323012929.10815-1-dipenp@nvidia.com>
- <20230323012929.10815-5-dipenp@nvidia.com>
+        Fri, 24 Mar 2023 10:19:07 -0700 (PDT)
+Date:   Fri, 24 Mar 2023 13:19:09 -0400
+From:   Eric Chanudet <echanude@redhat.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prasad Sodagudi <quic_psodagud@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add symbols to dtb
+Message-ID: <20230324171909.t6hhuwzduypj5b5b@echanude>
+References: <20230309233945.1199358-1-echanude@redhat.com>
+ <20230322025519.a5vrqljezo74qxwi@ripper>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230323012929.10815-5-dipenp@nvidia.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230322025519.a5vrqljezo74qxwi@ripper>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 06:29:23PM -0700, Dipen Patel wrote:
-> Introducing nvidia,gpio-controller property from Tegra234 SoCs onwards.
-> This is done to help below case.
+On Tue, Mar 21, 2023 at 07:55:19PM -0700, Bjorn Andersson wrote:
+> On Thu, Mar 09, 2023 at 06:39:48PM -0500, Eric Chanudet wrote:
+> > ABL uses the __symbols__ section to process the DTB before passing it
+> > forward. Without it, the bootstrap is interrupted.
+> > 
 > 
-> Without this property code would look like:
-> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
-> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
-> 				   tegra_get_gpiochip_from_name);
-> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
-> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
-> 				   tegra_get_gpiochip_from_name);
-> else
-> 	return -ENODEV;
+> If the reason is that ABL refuses to boot without it, then please have
+> ABL fixed. If on the other hand there is a valid reason for ABL to
+> require the dtb to have __symbols__ defined, please describe that - if
+> nothing else so that others know when this is supposed to be used.
 
-Or you just put the name in match data.
+Here is what I understand from the ABL sources and discussions with
+Prasad:
 
-> 
-> This means for every future addition of the compatible string, if else
-> condition statements have to be expanded.
-> 
-> With the property:
-> gpio_ctrl = of_parse_phandle(dev->of_node, "nvidia,gpio-controller", 0);
-> ....
-> hte_dev->c = gpiochip_find(gpio_ctrl, tegra_get_gpiochip_from_of_node);
-> 
-> This simplifies the code significantly. The introdunction of this
+Android Boot Loader (ABL), the UEFI application to run before executing
+the kernel, implements the Qualcomm SCM protocol to call into TZ. One of
+these SCM call is trapped by the hypervisor, itself provided with the
+firmware package for the board, and returns to ABL some information
+about our VM. These information may include one or more DTBO. ABL then
+proceeds and tries to apply the overlays on the DTB it loaded from the
+Android Boot Image it is trying to boot.
 
-typo 
+If there is an hypervisor and it returned at least one DTBO, ABL treats
+a failure to apply the DTBO (e.g, if __symbols__ are not available in
+the DTB) as critical and ends the boot. I was only ever given a firmware
+package that included the hypervisor and it always returned at least one
+DTBO. So enabling overlays is required to run this board, using the
+firmware I know of, with an upstream kernel and DTB at time of writing.
 
-> property/binding does not break existing Tegra194 provider driver.
+I suppose ABL could be made to handle such failure as a warning and
+continue booting? Which comes down to ignoring the DTBO provided by the
+hypervisor. Maybe that still allows the kernel to run the board with
+limited functionality?
 
-Making a new property required is an ABI break.
+Prior cases in the git history for enabling overlays covered board
+variants and extension headers (ti and nvidia). These do not fit what is
+happening here. In hindsight, I should have sent this as an RFC, with
+the above explanation to begin with, to ask about the limits and
+requirements.
 
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> ---
->  .../timestamp/nvidia,tegra194-hte.yaml        | 31 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> index eafc33e9ae2e..841273a3d8ae 100644
-> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> @@ -51,6 +51,12 @@ properties:
->        LIC instance has 11 slices and Tegra234 LIC has 17 slices.
->      enum: [3, 11, 17]
->  
-> +  nvidia,gpio-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The phandle to AON gpio controller instance. This is required to handle
-> +      namespace conversion between GPIO and GTE.
+Maybe Prasad, or someone with a more comprehensive knowledge of this
+board, can fill the remaining gaps or correct my understanding of the
+boot sequence if I got something wrong?
 
-Explain what the GPIO controller is needed for rather than how this 
-changes the driver.
+Thanks,
 
-> +
->    '#timestamp-cells':
->      description:
->        This represents number of line id arguments as specified by the
-> @@ -65,22 +71,43 @@ required:
->    - interrupts
->    - "#timestamp-cells"
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra234-gte-aon
-> +    then:
-> +      required:
-> +        - nvidia,gpio-controller
+-- 
+Eric Chanudet
 
-> +
->  additionalProperties: false
->  
->  examples:
->    - |
->      tegra_hte_aon: timestamp@c1e0000 {
->                compatible = "nvidia,tegra194-gte-aon";
-> -              reg = <0xc1e0000 0x10000>;
-> +              reg = <0x0 0xc1e0000 0x0 0x10000>;
-> +              interrupts = <0 13 0x4>;
-> +              nvidia,int-threshold = <1>;
-> +              #timestamp-cells = <1>;
-> +    };
-> +
-> +  - |
-> +    tegra234_hte_aon: timestamp@c1e0000 {
-> +              compatible = "nvidia,tegra234-gte-aon";
-> +              reg = <0x0 0xc1e0000 0x0 0x10000>;
->                interrupts = <0 13 0x4>;
->                nvidia,int-threshold = <1>;
-> +              nvidia,gpio-controller = <&gpio_aon>;
->                #timestamp-cells = <1>;
->      };
->  
->    - |
->      tegra_hte_lic: timestamp@3aa0000 {
->                compatible = "nvidia,tegra194-gte-lic";
-> -              reg = <0x3aa0000 0x10000>;
-> +              reg = <0x0 0x3aa0000 0x0 0x10000>;
->                interrupts = <0 11 0x4>;
->                nvidia,int-threshold = <1>;
->                #timestamp-cells = <1>;
-> -- 
-> 2.17.1
-> 
