@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF426C78FE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:38:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2790A6C7900
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:38:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231806AbjCXHib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 03:38:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40200 "EHLO
+        id S231809AbjCXHic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 03:38:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231712AbjCXHiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:38:25 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C10CC05
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:18 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id ew6so4326880edb.7
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:18 -0700 (PDT)
+        with ESMTP id S231783AbjCXHi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:38:27 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667708A55
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:19 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id x3so4269537edb.10
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679643497;
+        d=linaro.org; s=google; t=1679643498;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pBj1rBlifTeYBWfBaFqrskZBvLx8jr8lX+ag75/Q/1c=;
-        b=OjLJFTqqp8mdL099pdHn4eZnJMjNBsU50KnvGWmYalcuxXrHli0kHGjMdm7YV21Gqh
-         k7sJAE++HehtM/KboC3IeqBliJ6Zq67ZQyt9gCXXSVLchsrN+gFtTYh68IcgMS3RRNjq
-         wZEt5SulLcPX6Jkze6N6SYHuQPyyYODWzSsCVVEA/PY3ADOP0Ew/C0Awskzr9ehBvJmm
-         UwqOoXTwH2KNN0nJm7AyIpRm0lAEvdLHchvVYf4I/k92wOpYiA87vJh3HEzMMArom9F/
-         ySFQTSU1RQvI8ZAVDFg/kvmb8f1/aZb5PfVvDdxcPiYPsxxMufOUjW3VBfWGhz2JSSK7
-         P7uQ==
+        bh=E1JPVhPaKbK9t6zWORTjEjcFohQ8Rc4HAUg0NuNw4Xc=;
+        b=ndY85iwE3RVt5WVLWo8eeDVxPfY2k7Dw0VGoZzuE4Q1qHDHEUVZJTOlEjw5rHVUTBI
+         tVxqGaKLK5AhgSYmomRxhz7af+x0L/ESGZ/zQd03W8w7+XaT1LuZ6kScEwgwk1NFI8pV
+         bb9LaQRi5MCOb1QjaOZ3Rhn4TEHsuuXFU9eMfHgAxQ9ErHvVRb1QgWhj3JBshOEjLtJZ
+         8ZDg+Jrh6hpjelgBmk+CNpXvriwitnTYPr8LGHES0sfQnjf3qoGXp0lnGL2spLyZPXk8
+         wCOCd6/pwVbwd9hn/REpA0k/pYsS7VKNn8ynQ4sc8kA6L0nWDCmcG8uZMwPRDjejlurI
+         LGbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679643497;
+        d=1e100.net; s=20210112; t=1679643498;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pBj1rBlifTeYBWfBaFqrskZBvLx8jr8lX+ag75/Q/1c=;
-        b=FYR39XDUVL22l1yQOuEZp2nJzNlnhawwaPr31sqix+XdwmAK446jpxhlGez1p52Hog
-         9TbmONQCfN8AzdmiZSGkXtaWP5tGsiV7nV+zluHku0LyJ7IOyvpi32kt6cB666VpvdcP
-         yvusR9sz4X+Bj2rUDW9iAcDfWyENxy6bHrD7Jm7R8rNhAhInJvT3ErwSpYtJVpf4e82b
-         UGRq721qnubp8p1VgP1yaZt+URT8/c/azLWlFVGQZZ1yPeZENtO68Z2SLE11DyNdqNpM
-         2sd68M9astD6AxrettnM77fiN43khBIHl4JzH31h/gjLMJ6mBJ3+Af6fxcSZM6Mcd0Sh
-         gfyA==
-X-Gm-Message-State: AAQBX9fFByfWK+wVDFHj7mKxVuW3H0TKnMp/qC+PXi0yuTCbl5StJRCQ
-        M3cwKXgsB/OU8nMBgxaFXCvOmw==
-X-Google-Smtp-Source: AKy350aSmqp/jTl8AJ+hC/jfH5+R63J/jJrzIC1zRUVvbFF0ZIowk5FSVewHqL3dI+B1Vj6dtX7b0Q==
-X-Received: by 2002:a17:906:ca56:b0:921:7e42:2777 with SMTP id jx22-20020a170906ca5600b009217e422777mr2179362ejb.69.1679643496869;
-        Fri, 24 Mar 2023 00:38:16 -0700 (PDT)
+        bh=E1JPVhPaKbK9t6zWORTjEjcFohQ8Rc4HAUg0NuNw4Xc=;
+        b=fmevrsP9yP+qbn8H7M0ChvUmPYZpWxZxm/Ld8anoNXysJDztSY+8aBfHrCMUODbeaq
+         f3qWpVdNU9VevLNlG9NIc6YN0IvYphhxMRVEbB1wsD0EvCS3cWUVJaakZH9zMQJcTkOV
+         OPvyDvx5nEt6gm4c8OryEid3qKmV7B6xc/YadocJB9udBTZrO26VFchEXcQJFrdBD2Uz
+         J1wF89mLKyQSlILA1H/9tuXdzhug+hyIiv+3SNG4qkliX4YQIWYuvS3Fb+cmxlcN1ndd
+         URTEqMHDW3N9/V3LtOOqxAC/RzZaAEwibe5duZeH4ICRqfl28/hoztZb3bx+JObz550P
+         2g9w==
+X-Gm-Message-State: AAQBX9fZWl6xHImZtQyn2+y5DXLA7XkMcqxdojpWiP8p54OSIk6Uw/sz
+        QAPKevGcv/Dg8/MwcDcCrTD9iQ==
+X-Google-Smtp-Source: AKy350Ycx3CDmLkOlEBiyNB7hA2XRwYqRWxKrsIe7d7/rmV5hctI3km8t2WdRZ7WscFgC/lHpVzUCw==
+X-Received: by 2002:a17:906:7189:b0:930:6591:15ee with SMTP id h9-20020a170906718900b00930659115eemr2026580ejk.10.1679643497767;
+        Fri, 24 Mar 2023 00:38:17 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
-        by smtp.gmail.com with ESMTPSA id rh26-20020a17090720fa00b00930ba362216sm9970429ejb.176.2023.03.24.00.38.16
+        by smtp.gmail.com with ESMTPSA id rh26-20020a17090720fa00b00930ba362216sm9970429ejb.176.2023.03.24.00.38.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 00:38:16 -0700 (PDT)
+        Fri, 24 Mar 2023 00:38:17 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 2/6] arm64: dts: qcom: sdm845: drop incorrect domain idle states properties
-Date:   Fri, 24 Mar 2023 08:38:09 +0100
-Message-Id: <20230324073813.22158-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/6] arm64: dts: qcom: sm6375: drop incorrect domain idle states properties
+Date:   Fri, 24 Mar 2023 08:38:10 +0100
+Message-Id: <20230324073813.22158-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
 References: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
@@ -78,28 +78,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Domain idle states do not use 'idle-state-name' and 'local-timer-stop':
 
-  sdm845-shift-axolotl.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
+  sm6375-sony-xperia-murray-pdx225.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
 
 Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
 Link: https://lore.kernel.org/all/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org/
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 2 --
  1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index dc43e438b64a..189786a7c5a7 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -331,12 +331,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+index a99a5641623f..c020f5bd6491 100644
+--- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+@@ -229,12 +229,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
  		domain-idle-states {
  			CLUSTER_SLEEP_0: cluster-sleep-0 {
  				compatible = "domain-idle-state";
 -				idle-state-name = "cluster-power-collapse";
- 				arm,psci-suspend-param = <0x4100c244>;
- 				entry-latency-us = <3263>;
- 				exit-latency-us = <6562>;
- 				min-residency-us = <9987>;
+ 				arm,psci-suspend-param = <0x41000044>;
+ 				entry-latency-us = <2752>;
+ 				exit-latency-us = <3048>;
+ 				min-residency-us = <6118>;
 -				local-timer-stop;
  			};
  		};
