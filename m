@@ -2,178 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 497486C853A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 19:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A676C8557
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 19:49:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231629AbjCXShM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 14:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57010 "EHLO
+        id S229943AbjCXSt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 14:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230190AbjCXShL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 14:37:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256E712B;
-        Fri, 24 Mar 2023 11:37:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S229729AbjCXStZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 14:49:25 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC65E2711;
+        Fri, 24 Mar 2023 11:49:22 -0700 (PDT)
+Received: from zn.tnic (p5de8e687.dip0.t-ipconnect.de [93.232.230.135])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A5A1762C3A;
-        Fri, 24 Mar 2023 18:37:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D20BAC433EF;
-        Fri, 24 Mar 2023 18:37:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679683029;
-        bh=qATMgxUc7/Cj2AjJ1pQbCXfHyJibt2CWK82bpsYLbc4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lKwKT2jvATosVkXDCUEzPEw02cvUIrtlKc+rNC8B3kZGwALTtjAqCdTI4Q5GpoGGN
-         9Y7si8l171gHXPBR5mBw2WvcJD36A4J0gLyjokARGzgfQhq6b0ae4WG9HmptivDfRZ
-         sPVSIKdZgIiskRlKC/AGFhkuBOtqobk2hRvrIggEtIVQVcHBKlOpb1uVAX6mWbz1eK
-         Y+bJm45ekeVWYX46WrgRSy6HqWenyWfcRsAAiQ9ATFhph3aaM5DJtnezcP+g2kGTPR
-         lnTV9mxkv383cFwpwcmSVU6qbn9yFxUE22v4eHWyHOp3ISB5zDTYdtiX1wEbHWfU51
-         TG9KVF5SI638w==
-Date:   Fri, 24 Mar 2023 18:37:00 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v11 12/26] gunyah: vm_mgr: Add/remove user memory regions
-Message-ID: <20230324183659.GB28266@willie-the-truck>
-References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
- <20230304010632.2127470-13-quic_eberman@quicinc.com>
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id EEB631EC0716;
+        Fri, 24 Mar 2023 19:49:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1679683761;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=iHE7VW3ZBEXfcG3h4LmV2OzWObJqnQ/jtwe77JzyYPc=;
+        b=L4iHJtWzRj/rL0b1QAZxNtL3R8diFUp6fZbAATjj+edUOydmgBfUHzhsvEiD2Ew1hX8YlG
+        yTzs+zXfGlzCckhmNIEjRopge9pJklZDo8zaBIeR/q3wKEvjCISOvEhtd5WDcTL1/V8CuL
+        ud5pbeLwTUKUQgHndIrF/vrZ8m0cYPI=
+Date:   Fri, 24 Mar 2023 19:49:16 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
+Cc:     "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "tony.luck@intel.com" <tony.luck@intel.com>
+Subject: Re: [PATCH v3 2/2] edac: xilinx: Added EDAC support for Xilinx DDR
+ controller
+Message-ID: <20230324184916.GGZB3wrKiQEpOtJI75@fat_crate.local>
+References: <20230117054100.8377-1-shubhrajyoti.datta@amd.com>
+ <20230117054100.8377-3-shubhrajyoti.datta@amd.com>
+ <Y9bu8CpiVKvFS1d+@zn.tnic>
+ <BY5PR12MB490209C639C9ADD9FB67F75D81B29@BY5PR12MB4902.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230304010632.2127470-13-quic_eberman@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <BY5PR12MB490209C639C9ADD9FB67F75D81B29@BY5PR12MB4902.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 03, 2023 at 05:06:18PM -0800, Elliot Berman wrote:
-> When launching a virtual machine, Gunyah userspace allocates memory for
-> the guest and informs Gunyah about these memory regions through
-> SET_USER_MEMORY_REGION ioctl.
+On Thu, Mar 02, 2023 at 05:24:16AM +0000, Datta, Shubhrajyoti wrote:
+> > > +
+> > > +#define PCSR_UNLOCK_VAL                              0xF9E8D7C6
+> > > +#define XDDR_ERR_TYPE_CE                     0
+> > > +#define XDDR_ERR_TYPE_UE                     1
+> > > +
+> > > +#define XILINX_DRAM_SIZE_4G                  0
+> > > +#define XILINX_DRAM_SIZE_6G                  1
+> > > +#define XILINX_DRAM_SIZE_8G                  2
+> > > +#define XILINX_DRAM_SIZE_12G                 3
+> > > +#define XILINX_DRAM_SIZE_16G                 4
+> > > +#define XILINX_DRAM_SIZE_32G                 5
+> > 
+> > Oh wow, that's a *lot* of defines!
+> > 
+> > How about unifying them?
+> > 
+> > All those rank masks look the same.
+> I did not understand the comment. Could you please clarify.
+> The size difference is not uniform so a offset jump strategy may not work.
+
+$ grep -E "GENMASK\(5, 0\)" drivers/edac/xilinx_ddrmc_edac.c
+#define RANK_0_MASK                             GENMASK(5, 0)
+#define ROW_0_MASK                              GENMASK(5, 0)
+#define ROW_5_MASK                              GENMASK(5, 0)
+#define ROW_10_MASK                             GENMASK(5, 0)
+#define ROW_15_MASK                             GENMASK(5, 0)
+#define COL_1_MASK                              GENMASK(5, 0)
+#define COL_6_MASK                              GENMASK(5, 0)
+#define BANK_1_MASK                             GENMASK(5, 0)
+
+Ditto for the other ones.
+
+Can't you use a single
+
+#define MASK_0					GENMASK(5, 0)
+
+and then use MASK_0 everywhere?
+
+And the same for the other ones?
+
+Better yet, you can define a function which does that repeated block:
+
+        priv->row_bit[0] = regval & ROW_0_MASK;
+        priv->row_bit[1] = (regval & ROW_1_MASK) >> ROW_1_SHIFT;
+        priv->row_bit[2] = (regval & ROW_2_MASK) >> ROW_2_SHIFT;
+        priv->row_bit[3] = (regval & ROW_3_MASK) >> ROW_3_SHIFT;
+        priv->row_bit[4] = (regval & ROW_4_MASK) >> ROW_4_SHIFT;
+
+in one:
+
+static inline void process_bit(priv, unsigned int start, ... regval)
+{
+	priv->row_bit[start]	 =  regval & MASK_0;
+	priv->row_bit[start + 1] = (regval & MASK_1) >> ROW_1_SHIFT;
+	...
+}
+
+and then you don't have to define the same masks for every 5 bits but
+have the function do it for ya, for each group of 5 bits?
+
+
 > 
-> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  drivers/virt/gunyah/Makefile    |   2 +-
->  drivers/virt/gunyah/vm_mgr.c    |  44 ++++++
->  drivers/virt/gunyah/vm_mgr.h    |  25 ++++
->  drivers/virt/gunyah/vm_mgr_mm.c | 229 ++++++++++++++++++++++++++++++++
->  include/uapi/linux/gunyah.h     |  29 ++++
->  5 files changed, 328 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/virt/gunyah/vm_mgr_mm.c
+> <snip>
+> > > +     ulong err_addr = 0;
+> > > +     u32 index;
+> > > +
+> > > +     for (index = 0; index < XDDR_MAX_ROW_CNT; index++) {
+> > > +             err_addr |= (pinf.row & BIT(0)) << priv->row_bit[index];
+> > > +             pinf.row >>= 1;
+> > > +     }
+> > > +
+> > > +     for (index = 0; index < XDDR_MAX_COL_CNT; index++) {
+> > > +             err_addr |= (pinf.col & BIT(0)) << priv->col_bit[index];
+> > > +             pinf.col >>= 1;
+> > > +     }
+> > > +
+> > > +     for (index = 0; index < XDDR_MAX_BANK_CNT; index++) {
+> > > +             err_addr |= (pinf.bank & BIT(0)) << priv->bank_bit[index];
+> > > +             pinf.bank >>= 1;
+> > > +     }
+> > > +
+> > > +     for (index = 0; index < XDDR_MAX_GRP_CNT; index++) {
+> > > +             err_addr |= (pinf.group & BIT(0)) << priv->grp_bit[index];
+> > > +             pinf.group >>= 1;
+> > > +     }
+> > > +
+> > > +     for (index = 0; index < XDDR_MAX_RANK_CNT; index++) {
+> > > +             err_addr |= (pinf.rank & BIT(0)) << priv->rank_bit[index];
+> > > +             pinf.rank >>= 1;
+> > > +     }
+> > > +
+> > > +     for (index = 0; index < XDDR_MAX_LRANK_CNT; index++) {
+> > > +             err_addr |= (pinf.lrank & BIT(0)) << priv->lrank_bit[index];
+> > > +             pinf.lrank >>= 1;
+> > > +     }
+> > 
+> > Oh wow, 6 loops!
+> > 
+> > I'm wondering if you could "unroll" those loops and work on each component
+> > with a single mask and such...
+> 
+> I did not understand this one . The loop are running for different indixes.
 
-[...]
+Let's take the first one. Isn't what you're doing equivalent to simply:
 
-> +int gh_vm_mem_alloc(struct gh_vm *ghvm, struct gh_userspace_memory_region *region)
-> +{
-> +	struct gh_vm_mem *mapping, *tmp_mapping;
-> +	struct gh_rm_mem_entry *mem_entries;
-> +	phys_addr_t curr_page, prev_page;
-> +	struct gh_rm_mem_parcel *parcel;
-> +	int i, j, pinned, ret = 0;
-> +	size_t entry_size;
-> +	u16 vmid;
-> +
-> +	if (!region->memory_size || !PAGE_ALIGNED(region->memory_size) ||
-> +		!PAGE_ALIGNED(region->userspace_addr) || !PAGE_ALIGNED(region->guest_phys_addr))
-> +		return -EINVAL;
-> +
-> +	if (region->guest_phys_addr + region->memory_size < region->guest_phys_addr)
-> +		return -EOVERFLOW;
-> +
-> +	ret = mutex_lock_interruptible(&ghvm->mm_lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mapping = __gh_vm_mem_find_by_label(ghvm, region->label);
-> +	if (mapping) {
-> +		mutex_unlock(&ghvm->mm_lock);
-> +		return -EEXIST;
-> +	}
-> +
-> +	mapping = kzalloc(sizeof(*mapping), GFP_KERNEL);
-> +	if (!mapping) {
-> +		mutex_unlock(&ghvm->mm_lock);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	mapping->parcel.label = region->label;
-> +	mapping->guest_phys_addr = region->guest_phys_addr;
-> +	mapping->npages = region->memory_size >> PAGE_SHIFT;
-> +	parcel = &mapping->parcel;
-> +	parcel->mem_handle = GH_MEM_HANDLE_INVAL; /* to be filled later by mem_share/mem_lend */
-> +	parcel->mem_type = GH_RM_MEM_TYPE_NORMAL;
-> +
-> +	/* Check for overlap */
-> +	list_for_each_entry(tmp_mapping, &ghvm->memory_mappings, list) {
-> +		if (!((mapping->guest_phys_addr + (mapping->npages << PAGE_SHIFT) <=
-> +			tmp_mapping->guest_phys_addr) ||
-> +			(mapping->guest_phys_addr >=
-> +			tmp_mapping->guest_phys_addr + (tmp_mapping->npages << PAGE_SHIFT)))) {
-> +			ret = -EEXIST;
-> +			goto free_mapping;
-> +		}
-> +	}
-> +
-> +	list_add(&mapping->list, &ghvm->memory_mappings);
-> +
-> +	mapping->pages = kcalloc(mapping->npages, sizeof(*mapping->pages), GFP_KERNEL);
-> +	if (!mapping->pages) {
-> +		ret = -ENOMEM;
-> +		mapping->npages = 0; /* update npages for reclaim */
-> +		goto reclaim;
-> +	}
-> +
-> +	pinned = pin_user_pages_fast(region->userspace_addr, mapping->npages,
-> +					FOLL_WRITE | FOLL_LONGTERM, mapping->pages);
-> +	if (pinned < 0) {
-> +		ret = pinned;
-> +		mapping->npages = 0; /* update npages for reclaim */
-> +		goto reclaim;
-> +	} else if (pinned != mapping->npages) {
-> +		ret = -EFAULT;
-> +		mapping->npages = pinned; /* update npages for reclaim */
-> +		goto reclaim;
-> +	}
+	err_addr = pinf.row & GENMASK_ULL(0, XDDR_MAX_ROW_CNT);
+	err_addr <<= XDDR_MAX_ROW_CNT;
 
-I think Fuad mentioned this on an older version of these patches, but it
-looks like you're failing to account for the pinned memory here which is
-a security issue depending on who is able to issue the ioctl() calling
-into here.
+?
 
-Specifically, I'm thinking that your kXalloc() calls should be using
-GFP_KERNEL_ACCOUNT in this function and also that you should be calling
-account_locked_vm() for the pages being pinned.
+You basically stick in the error address each segment one after the
+other...
 
-Finally, what happens if userspace passes in a file mapping?
+err_addr = [XDDR_MAX_ROW_CNT ... XDDR_MAX_COL_CNT ... XDDR_MAX_BANK_CNT .. ]
 
-Will
+and so on?
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
