@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73506C7B54
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 10:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8291E6C7B5E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 10:29:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231932AbjCXJ24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 05:28:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33750 "EHLO
+        id S232114AbjCXJ3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 05:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232032AbjCXJ2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 05:28:54 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50468273F
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 02:28:53 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id m6-20020a05600c3b0600b003ee6e324b19so536347wms.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 02:28:53 -0700 (PDT)
+        with ESMTP id S231926AbjCXJ24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 05:28:56 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1F146BD
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 02:28:54 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id i9so1064721wrp.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 02:28:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679650132;
+        d=linaro.org; s=google; t=1679650133;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rm2CqI1B2hHOJ8Hl9EI4NwacgguNWTWv0kuPmfPl+UI=;
-        b=t284nf1k9sv2iMsS86WPPjUxEiH7BfXG4hgg1nU4y34toO5vT/a29fpKktjfH8TRsX
-         WKS6kJIznte2assEdru4gLMRsF3SWOdyLZVAPvXs43YUPEJ6n/F3NeWexEsAsRSwLrjw
-         yUe0h3iuWuWqj/y+rA/I6HWd8vBmb0mOTGWWwN4mJBYJW4HB6pZNgUEubzJjcRK3VcDd
-         iO6F6pGXhkfM8SABVu1qJyxt6EVoCVNfLUy6euuvpGLWqWgVRN60CyjxP2KyXqqYLg5m
-         w0cnrdp2AZ/VPL9p0K2LTKSn0J6qztMZzMMnWlY3wkduF9xXg2lB1uQz9pWgTv7ClySz
-         PlFQ==
+        bh=la//61tmt1JcHM3ugdeN6VnhDtVEZYhOaulQ5DfrvTk=;
+        b=Sb6+xZo54omB6soda+f0C+zM3HVRC8Sy5SrF+pvYfdroivYt2p7mjmIHNxxCgRzulF
+         /fQJnFwQcN12UMOg5qlrvttaKkj46Yh9ef3CUAGxOCVX/Yaw/l2+zgsicrSyfQMh08bB
+         sL/WHdUdE+H2MC/fZmN09TE1F+LmZLAxxqr5tSzbdWhhvYQ5Q4G9LN8VYC9muharWc8d
+         hcnbOlmvycwCT+hvr1TVyPrqb8/v3xn7K2RVAodsg4a9wdoN9gZ4MWQUFsVC+0c9pWc5
+         PgkL/lJ+zYylW9lXrvLikPItQZnPnv9dpPMBN+TIp5A6c0n2KmPnpothgOm4yVd60xSh
+         fkgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679650132;
+        d=1e100.net; s=20210112; t=1679650133;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rm2CqI1B2hHOJ8Hl9EI4NwacgguNWTWv0kuPmfPl+UI=;
-        b=J9CPzIsNDMvdI/7DItm/+9rF8QxMXJJL9PANthEZRMa36tUgixVKv9aBR/4byO09Oi
-         z3h43By/3HUD80JhlsfX9I7qCIUN/+tbrjM5S1c8NZ5cP4PECSPSH+jA30WhtfMbq1pu
-         CZEUvKHw7DIVJRjs3THIhePl3DKj59aNLnjAW25L/GZYWvhEs1q2E5pSDZfcN7Houb+C
-         TcUTuRTKyNCBvk0j07StLY9JBvtZochXCHVQY0+rQJ920l1bsI+LBDc4oWVE7I5jLfLF
-         QA9x9m7QDVwtD33kneoFJllCe5GNDDwD2vB0LpDc2SUHZhHmhGiOA1gh4zq2ANIIA3Ft
-         p3Vg==
-X-Gm-Message-State: AO0yUKXnSUxQkHZT432+Jge38O4ltLTFj9BUaMUzJSVZzu9U6a7fP+Lt
-        XoA0GVCHIy6G1Hbj3Tk3lP9ORQ==
-X-Google-Smtp-Source: AK7set/KO0ZKtP+ZNvxHzZXCh5+l/McQL+zEOhxzhknt4p1EcpvbrKTkz/jkNtk7LgYtfkCuZ5V61A==
-X-Received: by 2002:a05:600c:28b:b0:3ed:5cf7:3080 with SMTP id 11-20020a05600c028b00b003ed5cf73080mr1917189wmk.5.1679650131787;
-        Fri, 24 Mar 2023 02:28:51 -0700 (PDT)
+        bh=la//61tmt1JcHM3ugdeN6VnhDtVEZYhOaulQ5DfrvTk=;
+        b=fV2RzwjYuRelptpe9UfrszRK7k5c6wtvjFrvXpfEy5K1thhxKWC+cxVZGvw3sAuCeg
+         07sVxHgPzAy+TUKUBNpUf3Et7V72T89qeVy604iYwZlYsbNRIiDteuOy+k3/iFim7m0o
+         0tE2+tZT7jO7ZegAlvwAqUZl7gncgJlmUux74QWuUumRbyK88tDcq43gGurtMeXB7n6Q
+         Si7oz1m7oOpgX39dZHUCR88GZvZwKCHx4aSXweXtr1rxnbnrxil5dSYO/LRQsfP0JSQB
+         c6D2FPsZq5eu/A2RknK2VaLPoAM3tmEhEktGj7d6TLd1vyvrO9BbZDbcUtBOVT0eNELv
+         D8AQ==
+X-Gm-Message-State: AAQBX9coejeQOZXq5G+eqpXiGPa8IBAKjBxJa2KaLZYhrz+wNXRiFmzL
+        0fwbR8nk+EWIMUx6Eo2Eizgck4fDlw56hr270iPqYQ==
+X-Google-Smtp-Source: AKy350YgMPjfXwGTXE1iW69hMKX4XP6SaWX/WffDq3iU5AqJk/AmwqDuqeQazzIsxTnXts4iWN82Mw==
+X-Received: by 2002:a5d:51cc:0:b0:2d2:5396:ad98 with SMTP id n12-20020a5d51cc000000b002d25396ad98mr1400212wrv.21.1679650132831;
+        Fri, 24 Mar 2023 02:28:52 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id v14-20020adfe28e000000b002c5a790e959sm18029980wri.19.2023.03.24.02.28.50
+        by smtp.gmail.com with ESMTPSA id v14-20020adfe28e000000b002c5a790e959sm18029980wri.19.2023.03.24.02.28.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 02:28:51 -0700 (PDT)
+        Fri, 24 Mar 2023 02:28:52 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 24 Mar 2023 10:28:47 +0100
-Subject: [PATCH v2 2/4] arm64: dts: qcom: sm8450: remove invalid properties
- in cluster-sleep nodes
+Date:   Fri, 24 Mar 2023 10:28:48 +0100
+Subject: [PATCH v2 3/4] arm64: dts: qcom: sm8450: remove invalid
+ power-domain-names in pcie nodes
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-2-0ca1bea1a843@linaro.org>
+Message-Id: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-3-0ca1bea1a843@linaro.org>
 References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-0-0ca1bea1a843@linaro.org>
 In-Reply-To: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v2-0-0ca1bea1a843@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -75,9 +75,10 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-kernel@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=2.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        TVD_SUBJ_WIPE_DEBT autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,44 +86,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Fixes the following DT bindings check error:
-domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes:
-'pinctrl-[0-9]+'
-domain-idle-states: cluster-sleep-1: 'idle-state-name', 'local-timer-stop' do not match any of the regexes:
-'pinctrl-[0-9]+'
+pci@1c00000: Unevaluated properties are not allowed ('power-domain-names' were unexpected)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 78fb65bd15cc..ff55fcfdd676 100644
+index ff55fcfdd676..bcb51e612261 100644
 --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -255,22 +255,18 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
- 		domain-idle-states {
- 			CLUSTER_SLEEP_0: cluster-sleep-0 {
- 				compatible = "domain-idle-state";
--				idle-state-name = "cluster-l3-off";
- 				arm,psci-suspend-param = <0x41000044>;
- 				entry-latency-us = <1050>;
- 				exit-latency-us = <2500>;
- 				min-residency-us = <5309>;
--				local-timer-stop;
- 			};
+@@ -1792,7 +1792,6 @@ pcie0: pci@1c00000 {
+ 			reset-names = "pci";
  
- 			CLUSTER_SLEEP_1: cluster-sleep-1 {
- 				compatible = "domain-idle-state";
--				idle-state-name = "cluster-power-collapse";
- 				arm,psci-suspend-param = <0x4100c344>;
- 				entry-latency-us = <2700>;
- 				exit-latency-us = <3500>;
- 				min-residency-us = <13959>;
--				local-timer-stop;
- 			};
- 		};
- 	};
+ 			power-domains = <&gcc PCIE_0_GDSC>;
+-			power-domain-names = "gdsc";
+ 
+ 			phys = <&pcie0_lane>;
+ 			phy-names = "pciephy";
+@@ -1905,7 +1904,6 @@ pcie1: pci@1c08000 {
+ 			reset-names = "pci";
+ 
+ 			power-domains = <&gcc PCIE_1_GDSC>;
+-			power-domain-names = "gdsc";
+ 
+ 			phys = <&pcie1_lane>;
+ 			phy-names = "pciephy";
 
 -- 
 2.34.1
