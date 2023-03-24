@@ -2,125 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D6686C7DB0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 13:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B55A6C7DB9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 13:08:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231792AbjCXMGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 08:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
+        id S230350AbjCXMIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 08:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231655AbjCXMGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 08:06:22 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B501F4BA;
-        Fri, 24 Mar 2023 05:06:17 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id CA5C05FD6A;
-        Fri, 24 Mar 2023 15:06:14 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1679659574;
-        bh=k3sf6EC4sogl093QAM9hkykETNle5E2MS3s+d/HgAfM=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=IVzxfUcoCuX0vmnekzmfm3f7vnBzYB+tqMrgR7lL+BoEJt+qzQ2tgj4rwSgZ21isJ
-         IxoLErTYPXcQgQjBzi5LiDxdwZWYOQmJVzHBzqpPJRcIVLXAlSlBFU60HynmDMzeP7
-         PFzz3vdXD7Xy9SCMxXUhwQtMmC52L1EB/BDsR3ZasVKKUI8Ga6zNGLyWbvKwhAeHLc
-         Sf3AfTMq68u8k9mTdtEakKqMbjGOFypMcYq6x4HbpnM5hIj3oCqunOPhnFUtsOaxyJ
-         x/kAHL10YLn1UplLktZu1xlV+B9u7ptgEt9jsNMZl7mlY2EslVRpVKY72xoMoy8pK7
-         aDPMPYJKGlWMA==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 24 Mar 2023 15:06:13 +0300 (MSK)
-Date:   Fri, 24 Mar 2023 15:06:12 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     <neil.armstrong@linaro.org>
-CC:     <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <jianxin.pan@amlogic.com>,
-        <kernel@sberdevices.ru>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <rockosov@gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: meson: a1: place pwrc and secure-monitor
- under /firmware
-Message-ID: <20230324120612.tpb3uga56ilz7yqx@CAB-WSD-L081021>
-References: <20230323185548.13731-1-ddrokosov@sberdevices.ru>
- <d180c7d5-7db9-a961-e519-cca5ccf6f013@linaro.org>
+        with ESMTP id S231800AbjCXMIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 08:08:49 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D09E412BEC
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 05:08:46 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id h25so1956458lfv.6
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 05:08:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679659725; x=1682251725;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FKWvw7b+JAS44FVyD0FLI3tZGRETXw2/xRa06dfHw0k=;
+        b=afr9y2A1iS13xzsG4ZbEpuOwpHzB94ZjEYQ8femJ88V1SChdcim0pr/d5rq1pZ0ENH
+         9NMtrGFFOPc5Hby8mA7uqg9Hwq1c0LoHr5h9OlTI/y6TWpCAfYRKLuYzRgo/ZldDhEhP
+         K4/CgRvzYaY0dtiGaiBC0qD5kLhzYigv7P53TQ8NNJ29f6HSfrHpTdADqPCXVBqpDW9c
+         Z4vw8hoaoVDz9Y1/gUfxR6t0qH+d1mMKaB9UtZC3K4tE9Ll8ni1C1dbVV8MJlHkb7w2j
+         UmGHqjdywccrNSa0vAQhwzeqXDQP8ic7E5S6/4eHmLbe03/pPu3mm0uYV1hiJIWzY0Ks
+         ECsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679659725; x=1682251725;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FKWvw7b+JAS44FVyD0FLI3tZGRETXw2/xRa06dfHw0k=;
+        b=lNZ5O9wmb2Yarw0EKX3a2p3p1xpGe3F2kx12SMUY4Gw7aLYyUqbHlg5dzKN9XM+DvC
+         msqXt8B2lMdmqzUzI8SEtKfyoMO8qvxWB7tNEsnTsMiiMyYfS7Etjz4BwcakgWvwc6+q
+         G9J9waUmsSC7eyG2BLCPECM7uMFdHtcd8rLojliDSoQf6YIKmi85Hdm2Zx3c2rb4cuLN
+         PNNbHuQcwzRNqMLfvzZufk3j8ivXIyVglcdy6lAytxZDumAElvk/pIvo/RqxbudgGw1h
+         2nDg1ffYhbV9GC50eDZeROYHGkH19hmwwxxxIdzI/sqiq1XVnA7cCDBfG7KXaOANou2y
+         obUA==
+X-Gm-Message-State: AAQBX9f6bqkPeSSvGJuqUojqG+FYOPaZku7jxBaOM7vUOsxc9hxJgH0W
+        lJ/4TUUX2FuzpIxOFBnGmXA/1g==
+X-Google-Smtp-Source: AKy350a+AxVBqGyixTZ2LohqdfaVCcjTRMp0giVBa0/MZtDLKCnA5uRBslMBZXkINHhhFKF4sl/OMg==
+X-Received: by 2002:ac2:52b9:0:b0:4d2:c70a:fdfa with SMTP id r25-20020ac252b9000000b004d2c70afdfamr538404lfm.4.1679659725083;
+        Fri, 24 Mar 2023 05:08:45 -0700 (PDT)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id h8-20020a197008000000b004dc6070e121sm3329137lfc.83.2023.03.24.05.08.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 05:08:44 -0700 (PDT)
+Message-ID: <7b26e32d-6f3e-4e1f-33a7-0a994ae8526d@linaro.org>
+Date:   Fri, 24 Mar 2023 14:08:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d180c7d5-7db9-a961-e519-cca5ccf6f013@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/24 06:52:00 #21002836
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.2
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Add support for SM6115 and QCS2290
+ SoCs
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        dmaengine@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, bhupesh.linux@gmail.com, vkoul@kernel.org,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org
+References: <20230320071211.3005769-1-bhupesh.sharma@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20230320071211.3005769-1-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Neil,
+Hi Bhupesh,
 
-On Fri, Mar 24, 2023 at 11:11:02AM +0100, neil.armstrong@linaro.org wrote:
-> Hi,
+On 3/20/23 09:12, Bhupesh Sharma wrote:
+> Add new compatible for BAM DMA engine version v1.7.4 which is
+> found on Qualcomm SM6115 and QCS2290 SoCs.
 > 
-> On 23/03/2023 19:55, Dmitry Rokosov wrote:
-> > Before, meson power secure controller was a child of secure monitor node.
-> > But secure monitor isn't the bus in terms of device tree subsystem, so
-> > of_platform initialization code doesn't populate its children
-> > (of_platform_default_populate() API).
-> > 
-> > Therefore in the current device tree meson power secure controller isn't
-> > probed at all.
-> > 
-> > If we place meson power secure controller and secure monitor nodes under
-> > '/firmware', they will be populated automatically from of_platform
-> > initialization.
-> > 
-> > Fixes: 04dd0b6584cd ("arm64: dts: meson: a1: add secure power domain controller")
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > ---
-> >   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 6 ++++--
-> >   1 file changed, 4 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> > index 77023a29b6e7..44c651254dc5 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> > @@ -72,8 +72,10 @@ linux,cma {
-> >   		};
-> >   	};
-> > -	sm: secure-monitor {
-> > -		compatible = "amlogic,meson-gxbb-sm";
-> > +	firmware {
-> > +		sm: secure-monitor {
-> > +			compatible = "amlogic,meson-gxbb-sm";
-> > +		};
-> >   		pwrc: power-controller {
-> >   			compatible = "amlogic,meson-a1-pwrc";
+> While at it, also update qcom,bam-dma bindings to add comments
+> which describe the BAM DMA versions used in SM8150 and SM8250 SoCs.
+> This provides an easy reference for identifying the actual BAM DMA
+> version available on Qualcomm SoCs.
 > 
-> The amlogic,meson-gxbb-sm bindings says the power-controller node should be
-> a subnode of secure-monitor, so instead please fix the sm driver by calling:
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>   Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> of_platform_populate(dev->of_node, NULL, NULL, dev);
+> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> index f1ddcf672261..4c8536df98fe 100644
+> --- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> @@ -20,8 +20,10 @@ properties:
+>         - qcom,bam-v1.3.0
+>           # MSM8974, APQ8074 and APQ8084
+>         - qcom,bam-v1.4.0
+> -        # MSM8916 and SDM845
+> +        # MSM8916, SDM845, SM8150 and SM8250
+>         - qcom,bam-v1.7.0
+> +        # SM6115 and QRB2290
+> +      - qcom,bam-v1.7.4
+>   
+>     clocks:
+>       maxItems: 1
 
-This is second option which I was thinking of. I supposing this API is
-used from SoC platform drivers and bus drivers only.
-But if this approach is okay, I will rework the patch to
-of_platform_populate().
+apparently it's a good time to implement a switch in compatible values
+similar to the one done for QCE:
 
-Thank you for pointing out it.
+https://lore.kernel.org/linux-arm-msm/20230222172240.3235972-6-vladimir.zapolskiy@linaro.org/
 
--- 
-Thank you,
-Dmitry
+If this is done in the nearest time, then new platfrom QCE changes
+can be seamlessly added after the next merge window, also the change
+in the compatible values model shall resolve multiple technical
+concerns including the one above about 1/1 change in the series.
+
+--
+Best wishes,
+Vladimir
