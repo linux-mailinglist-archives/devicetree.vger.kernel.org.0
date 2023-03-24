@@ -2,226 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F2F6C7F0B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9774C6C7F24
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:52:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbjCXNqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 09:46:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60898 "EHLO
+        id S231263AbjCXNwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 09:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjCXNqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:46:08 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92ED612843;
-        Fri, 24 Mar 2023 06:46:05 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6F58FE0005;
-        Fri, 24 Mar 2023 13:46:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1679665563;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=34EHV6yollIvtUQQHjHl3WbSvLpP4jDXad2HndnLaQI=;
-        b=luRx3aU5x+/1bv2+BhNgi/i4sPT2ssKTAlA4HANghGBAFSmIHjOtzp5APTSmk1wMKs6HhL
-        RjZM6w0TzgEQCcFqXhzrwqY+bj2gBWSsfjcECEcZGPw6VJ/sUZXVzW5i/xTbaXmiSQcBmK
-        5FnjR2+41p2bYJv2489qvS7eTXF9+K0eEq3R5sxcMG5R9aNRZI6wEFFJQJ4KKtPYfF/Bvh
-        Ar/T8hqZBD7qHeY7PlRDxUamooX0Ysdivo2OXhx9rJsOnUwT1ypkiR6xOurYgkXL+3VO7g
-        fnr7cCCf4NaRo+4M725KFw150gj/ktlYbuMhnv9xfGDbQ8MYJcDSHh3HuovWWQ==
-Date:   Fri, 24 Mar 2023 14:45:59 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6?= Rojas <noltari@gmail.com>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, masonccyang@mxic.com.tw,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        with ESMTP id S229600AbjCXNwF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:52:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052131ACD0;
+        Fri, 24 Mar 2023 06:52:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D1A362AEA;
+        Fri, 24 Mar 2023 13:52:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6672C433EF;
+        Fri, 24 Mar 2023 13:52:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679665923;
+        bh=VFWAIb8kkILCZjlK61SwCOvFMSQhSfMr3UVPM0P/zus=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SXopr78XpZY1/cIa89tHN8Gw5yH20HpN0aGPkqKIPiD5moPjVY7lsN+q6BQMSKv3p
+         f8leXa+g9xPRdFusTlbRkvwcpWw/l5SO59+Irknegn5INhKKP9cHpbfrZgVomd0lp5
+         EuAIGxPDoIjTGC1iZkqgxL7XJwpHbtiJeqIMDuxVenqMjVCYWMm3inZ+7t4LHHki26
+         c8JhMhXxXeoLxq4VuHThegvMz4ZhQkRmKAusm6TeUThGpO1ARrsjnad5zKQ5pYcKUv
+         ty5+R6fd1wtKGF9kiU861dN59wUDWRUrlSxuP6pRCtXAlhE+C6eN6fnyGfiYYDlr9S
+         iFQsZr8SIpq5w==
+Date:   Fri, 24 Mar 2023 06:55:12 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-spi@vger.kernel.org, Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: nand: Macronix: document new
- binding
-Message-ID: <20230324144559.3473c537@xps-13>
-In-Reply-To: <CAKR-sGc3R_k_+-hzv5DOOeRO-5rHL1k_dq7mpZLcv=FgZ1Moug@mail.gmail.com>
-References: <20230323124510.2484808-1-noltari@gmail.com>
-        <20230323124510.2484808-2-noltari@gmail.com>
-        <20230324104020.54754079@xps-13>
-        <CAKR-sGcbRRjqt3raXHcvfCfKFDfFWsuu+C7XW3qFckawMsqe4w@mail.gmail.com>
-        <20230324114911.19e00ae1@xps-13>
-        <CAKR-sGc3R_k_+-hzv5DOOeRO-5rHL1k_dq7mpZLcv=FgZ1Moug@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+Subject: Re: [PATCH 08/14] pinctrl: qcom: Support OUTPUT_ENABLE; deprecate
+ INPUT_ENABLE
+Message-ID: <20230324135512.afplb6cbugwr63ej@ripper>
+References: <20230323173019.3706069-1-dianders@chromium.org>
+ <20230323102605.8.Id740ae6a993f9313b58add6b10f6a92795d510d4@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230323102605.8.Id740ae6a993f9313b58add6b10f6a92795d510d4@changeid>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi =C3=81lvaro,
+On Thu, Mar 23, 2023 at 10:30:12AM -0700, Douglas Anderson wrote:
+> The Qualcomm pinctrl driver has been violating the documented meaning
+> of PIN_CONFIG_INPUT_ENABLE. That documentation says:
+> 
+>   Note that this does not affect the pin's ability to drive output.
+> 
+> ...yet the Qualcomm driver's sole action when asked to "enable input"
+> on a pin is to disable its output.
+> 
 
-noltari@gmail.com wrote on Fri, 24 Mar 2023 12:21:11 +0100:
+Seemed like a good idea at the time...
 
-> El vie, 24 mar 2023 a las 11:49, Miquel Raynal
-> (<miquel.raynal@bootlin.com>) escribi=C3=B3:
-> >
-> > Hi =C3=81lvaro,
-> >
-> > noltari@gmail.com wrote on Fri, 24 Mar 2023 11:31:17 +0100:
-> > =20
-> > > Hi Miqu=C3=A8l,
-> > >
-> > > El vie, 24 mar 2023 a las 10:40, Miquel Raynal
-> > > (<miquel.raynal@bootlin.com>) escribi=C3=B3: =20
-> > > >
-> > > > Hi =C3=81lvaro,
-> > > >
-> > > > noltari@gmail.com wrote on Thu, 23 Mar 2023 13:45:09 +0100:
-> > > > =20
-> > > > > Add new "mxic,disable-block-protection" binding documentation.
-> > > > > This binding allows disabling block protection support for those =
-devices not
-> > > > > supporting it.
-> > > > >
-> > > > > Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.co=
-m>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/mtd/nand-macronix.txt | 3 +++
-> > > > >  1 file changed, 3 insertions(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/mtd/nand-macronix.=
-txt b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-> > > > > index ffab28a2c4d1..03f65ca32cd3 100644
-> > > > > --- a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-> > > > > +++ b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
-> > > > > @@ -16,6 +16,9 @@ in children nodes.
-> > > > >  Required NAND chip properties in children mode:
-> > > > >  - randomizer enable: should be "mxic,enable-randomizer-otp"
-> > > > >
-> > > > > +Optional NAND chip properties in children mode:
-> > > > > +- block protection disable: should be "mxic,disable-block-protec=
-tion"
-> > > > > + =20
-> > > >
-> > > > Besides the fact that nowadays we prefer to see binding conversions=
- to
-> > > > yaml before adding anything, I don't think this will fly.
-> > > >
-> > > > I'm not sure exactly what "disable block protection" means, we
-> > > > already have similar properties like "lock" and "secure-regions", n=
-ot
-> > > > sure they will fit but I think it's worth checking. =20
-> > >
-> > > As explained in 2/2, commit 03a539c7a118 introduced a regression on
-> > > Sercomm H500-s (BCM63268) OpenWrt devices with Macronix MX30LF1G18AC
-> > > which hangs the device.
-> > >
-> > > This is the log with block protection disabled:
-> > > [    0.495831] bcm6368_nand 10000200.nand: there is not valid maps for
-> > > state default
-> > > [    0.504995] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0x=
-f1
-> > > [    0.511526] nand: Macronix MX30LF1G18AC
-> > > [    0.515586] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-> > > 2048, OOB size: 64
-> > > [    0.523516] bcm6368_nand 10000200.nand: detected 128MiB total,
-> > > 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-> > > [    0.535912] Bad block table found at page 65472, version 0x01
-> > > [    0.544268] Bad block table found at page 65408, version 0x01
-> > > [    0.954329] 9 fixed-partitions partitions found on MTD device brcm=
-nand.0
-> > > ...
-> > >
-> > > This is the log with block protection enabled:
-> > > [    0.495095] bcm6368_nand 10000200.nand: there is not valid maps for
-> > > state default
-> > > [    0.504249] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0x=
-f1
-> > > [    0.510772] nand: Macronix MX30LF1G18AC
-> > > [    0.514874] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-> > > 2048, OOB size: 64
-> > > [    0.522780] bcm6368_nand 10000200.nand: detected 128MiB total,
-> > > 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-> > > [    0.539687] Bad block table not found for chip 0
-> > > [    0.550153] Bad block table not found for chip 0
-> > > [    0.555069] Scanning device for bad blocks
-> > > [    0.601213] CPU 1 Unable to handle kernel paging request at virtual
-> > > address 10277f00, epc =3D=3D 8039ce70, ra =3D=3D 8016ad50
-> > > *** Device hangs ***
-> > >
-> > > Enabling macronix_nand_block_protection_support() makes the device
-> > > unable to detect the bad block table and hangs it when trying to scan
-> > > for bad blocks. =20
-> >
-> > Please trace nand_macronix.c and look:
-> > - are the get_features and set_features really supported by the
-> >   controller driver? =20
->=20
-> This is what I could find by debugging:
-> [    0.494993] bcm6368_nand 10000200.nand: there is not valid maps for
-> state default
-> [    0.505375] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
-> [    0.512077] nand: Macronix MX30LF1G18AC
-> [    0.515994] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
-> 2048, OOB size: 64
-> [    0.523928] bcm6368_nand 10000200.nand: detected 128MiB total,
-> 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
-> [    0.534415] bcm6368_nand 10000200.nand: ll_op cmd 0xa00ee
-> [    0.539988] bcm6368_nand 10000200.nand: ll_op cmd 0x600a0
-> [    0.545659] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
-> [    0.551214] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-> [    0.557843] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
-> [    0.563475] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-> [    0.569998] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
-> [    0.575653] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-> [    0.582246] bcm6368_nand 10000200.nand: ll_op cmd 0x80010000
-> [    0.588067] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES =3D 0x00
-> [    0.594657] nand: nand_get_features: addr=3Da0 subfeature_param=3D[00
-> 00 00 00] -> 0
-> [    0.602341] macronix_nand_block_protection_support:
-> ONFI_FEATURE_ADDR_MXIC_PROTECTION=3D0
-> [    0.610548] macronix_nand_block_protection_support: !=3D
-> MXIC_BLOCK_PROTECTION_ALL_LOCK
-> [    0.624760] Bad block table not found for chip 0
-> [    0.635542] Bad block table not found for chip 0
-> [    0.640270] Scanning device for bad blocks
->=20
-> I don't know how to tell if get_features / set_features is really support=
-ed...
+> The Qualcomm driver's implementation stems from the fact that
+> "output-disable" is a "new" property from 2017. It was introduced in
+> commit 425562429d4f ("pinctrl: generic: Add output-enable
+> property"). The "input-enable" handling in Qualcomm drivers is from
+> 2015 introduced in commit 407f5e392f9c ("pinctrl: qcom: handle
+> input-enable pinconf property").
+> 
+> Let's change the Qualcomm driver to move us in the right direction. As
+> part of this:
+> 1. We'll now support PIN_CONFIG_OUTPUT_ENABLE
+> 2. We'll still support using PIN_CONFIG_INPUT_ENABLE to disable a
+>    pin's output (in violation of the docs) with a big comment in the
+>    code. This is needed because old device trees have "input-enable"
+>    in them and, in some cases, people might need the old
+>    behavior. While we could programmatically change all old device
+>    trees, it doesn't really hurt to keep supporting the old behavior
+>    and we're _supposed_ to try to be compatible with old device trees
+>    anyway.
+> 
+> It can also be noted that the PIN_CONFIG_INPUT_ENABLE handling code
+> seems to have purposefully ignored its argument. That means that old
+> boards that had _either_ "input-disable" or "input-enable" in them
+> would have had the effect of disabling a pin's output. While we could
+> change this behavior, since we're only leaving the
+> PIN_CONFIG_INPUT_ENABLE there for backward compatibility we might as
+> well be fully backward compatible.
+> 
 
-Looks like your driver does not support exec_op but the core provides a
-get/set_feature implementation.
+It made total sense to to spell input-disable as output-{high,low} back
+then, but we're wiser now. Thanks for fixing it.
 
->=20
-> > - what is the state of the locking configuration in the chip when you
-> >   boot? =20
->=20
-> Unlocked, I guess...
-> How can I check that?
+> NOTE: despite the fact that we'll still support
+> PIN_CONFIG_INPUT_ENABLE for _setting_ config, we take it away from
+> msm_config_group_get(). This appears to be only used for populating
+> debugfs and fixing debugfs to "output enabled" where relevant instead
+> of "input enabled" makes more sense and has more truthiness.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-It's in your dump, the chip returns 0, meaning it's all unlocked,
-apparently.
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-> > - is there anything that locks the device by calling mxic_nand_lock() ?
+Regards,
+Bjorn
 
-So nobody locks the device I guess? Did you add traces there?
-
-> > - finding no bbt is one thing, hanging is another, where is it hanging
-> >   exactly? (offset in nand/ and line in the code) =20
->=20
-> I've got no idea...
-
-You can use ftrace or just add printks a bit everywhere and try to get
-closer and closer.
-
-I looked at the patch, I don't see anything strange. Besides, I have a
-close enough datasheet and I don't see what could confuse the device.
-
-Are you really sure this patch is the problem? Is the WP pin wired on
-your design?
-
-Thanks,
-Miqu=C3=A8l
+> ---
+> 
+>  drivers/pinctrl/qcom/pinctrl-msm.c | 36 +++++++++++++++++++++++++-----
+>  1 file changed, 31 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
+> index daeb79a9a602..4515f375c5e8 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-msm.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-msm.c
+> @@ -323,6 +323,7 @@ static int msm_config_reg(struct msm_pinctrl *pctrl,
+>  		break;
+>  	case PIN_CONFIG_OUTPUT:
+>  	case PIN_CONFIG_INPUT_ENABLE:
+> +	case PIN_CONFIG_OUTPUT_ENABLE:
+>  		*bit = g->oe_bit;
+>  		*mask = 1;
+>  		break;
+> @@ -414,11 +415,9 @@ static int msm_config_group_get(struct pinctrl_dev *pctldev,
+>  		val = msm_readl_io(pctrl, g);
+>  		arg = !!(val & BIT(g->in_bit));
+>  		break;
+> -	case PIN_CONFIG_INPUT_ENABLE:
+> -		/* Pin is output */
+> -		if (arg)
+> +	case PIN_CONFIG_OUTPUT_ENABLE:
+> +		if (!arg)
+>  			return -EINVAL;
+> -		arg = 1;
+>  		break;
+>  	default:
+>  		return -ENOTSUPP;
+> @@ -502,9 +501,36 @@ static int msm_config_group_set(struct pinctrl_dev *pctldev,
+>  			arg = 1;
+>  			break;
+>  		case PIN_CONFIG_INPUT_ENABLE:
+> -			/* disable output */
+> +			/*
+> +			 * According to pinctrl documentation this should
+> +			 * actually be a no-op.
+> +			 *
+> +			 * The docs are explicit that "this does not affect
+> +			 * the pin's ability to drive output" but what we do
+> +			 * here is to modify the output enable bit. Thus, to
+> +			 * follow the docs we should remove that.
+> +			 *
+> +			 * The docs say that we should enable any relevant
+> +			 * input buffer, but TLMM there is no input buffer that
+> +			 * can be enabled/disabled. It's always on.
+> +			 *
+> +			 * The points above, explain why this _should_ be a
+> +			 * no-op. However, for historical reasons and to
+> +			 * support old device trees, we'll violate the docs
+> +			 * still affect the output.
+> +			 *
+> +			 * It should further be noted that this old historical
+> +			 * behavior actually overrides arg to 0. That means
+> +			 * that "input-enable" and "input-disable" in a device
+> +			 * tree would _both_ disable the output. We'll
+> +			 * continue to preserve this behavior as well since
+> +			 * we have no other use for this attribute.
+> +			 */
+>  			arg = 0;
+>  			break;
+> +		case PIN_CONFIG_OUTPUT_ENABLE:
+> +			arg = !!arg;
+> +			break;
+>  		default:
+>  			dev_err(pctrl->dev, "Unsupported config parameter: %x\n",
+>  				param);
+> -- 
+> 2.40.0.348.gf938b09366-goog
+> 
