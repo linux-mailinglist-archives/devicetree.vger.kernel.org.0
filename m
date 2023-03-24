@@ -2,125 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F37146C80A3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 16:02:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4C776C80BB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 16:09:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232300AbjCXPCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 11:02:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47614 "EHLO
+        id S231725AbjCXPJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 11:09:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232280AbjCXPCa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 11:02:30 -0400
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 479D41A67B;
-        Fri, 24 Mar 2023 08:02:29 -0700 (PDT)
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32O6YNpg018286;
-        Fri, 24 Mar 2023 08:02:22 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=pfpt0220; bh=KsuiKi0/2VWPXAHDgeXROi/C4iGh0eo1W7TTdfdWANw=;
- b=E2ilRJZUvqrOxMsA9WLLkNbHNHt5hcSu5J03zfU7jmUuLhehfm0VOfZB/iWJ43Xztgeu
- 4DelJtNLmV4h3ziokmKiAdt3PXpGZShray/YEymlbh4FsK8rG9cxiBWHe/jMr3OrR4w7
- /hwkxFkeu39jKWIrdGpcsqFMsOTsJZZ0TsVBUKGkDNk+0gDfG/hmFLhN1TEtr6k74Q0n
- xPhyfLoEbdC6BsmAUd3Lv2to2KPAABWGa65IFxsRnRFeemGk0RYAWyNy6dpfHWCHDy/m
- 8X5CgGmcV2oUKbZTfz26sKamuQdRb1PaCLAtXIMbp/2P5mJYinWknKpzYSK8GY+GSngm HA== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3ph6q3smbb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Fri, 24 Mar 2023 08:02:21 -0700
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
- 2023 08:02:20 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
- Transport; Fri, 24 Mar 2023 08:02:19 -0700
-Received: from Dell2s-9 (unknown [10.110.150.250])
-        by maili.marvell.com (Postfix) with ESMTP id CCE483F7067;
-        Fri, 24 Mar 2023 08:02:19 -0700 (PDT)
-Date:   Fri, 24 Mar 2023 08:02:19 -0700
-From:   Piyush Malgujar <pmalgujar@marvell.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
-        <jannadurai@marvell.com>, <cchavva@marvell.com>
-Subject: Re: [PATCH v3 5/6] dt-bindings: mmc: sdhci-cadence: SD6 support
-Message-ID: <20230324150219.GA462@Dell2s-9>
-References: <20230227183151.27912-1-pmalgujar@marvell.com>
- <20230227183151.27912-6-pmalgujar@marvell.com>
- <90b332b7-ba62-d9b5-2d94-5d2e70fad4af@linaro.org>
+        with ESMTP id S231277AbjCXPJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 11:09:38 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6CAB476;
+        Fri, 24 Mar 2023 08:09:37 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id p13-20020a17090a284d00b0023d2e945aebso5975392pjf.0;
+        Fri, 24 Mar 2023 08:09:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679670577;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5i2HJ5gQdpf3meIzhPtG5gcbljUi9sT3i45KJjgXMv4=;
+        b=m3KvAoqWB+vwLpR6xfgLBQNzEepRFUa0DIUzrsC2qgMYgvP8dU3674kU+nHYb1EmLX
+         KKNNOPYOIe3ULHrgBVwb7UsUFycbVYTC8/+VVl9pz6ti/VSv+nACk8g79GXRM/uQESz5
+         FKadgrMmMYNwzoG67LLunxF4ifHX2d2jnVZrFPfZx3V1W7yAPDnHHp1VLt9zNNe5q4Mr
+         EsV1ELBZfn5HcpSy/CkKKmCkJ/BJ+QOHo8EZh2j6w23SlhQhGXxTW5ULI16HGSeC5g2M
+         AvfCWJ7eV1niNeoowMyHXsNxcKHim6f8SCQcJyk8yPJ/ma4Pb4Ey2TKc6Qm3ivL6DQ6O
+         x+tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679670577;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5i2HJ5gQdpf3meIzhPtG5gcbljUi9sT3i45KJjgXMv4=;
+        b=ToKOzhku51vbUgAuXhjwU6NTse2QPg9MOFBJhz/GJVK0j0aXnxjSYMnZ4OFpuZHqm0
+         y6sKgiGamdMlQMxEhtosiz08YBm3FHRjB4BFIcwwv+yDnhro3y+8+3ZJqszGUZLYUBBh
+         7ARPmLVHqKAWYXeGv49tvPj8FlgFDF1QS5TNEjX1Ol0TKU/RzeFWqFxJlA+9CIFOXaTv
+         rgExTcw7WVZOObBtsjrV56713PY2No0bU3OnEFZJS3dPrkrIjBYWjiJNxJN9ijvGtrax
+         wkZAxrURtrxTIyl9G0QDqlXVdg605hm4S7XkRmCd1LpsPcXRMZDj2Wnlw1Pc9Il48HhW
+         3crw==
+X-Gm-Message-State: AAQBX9dGQLysNfMAd9jxhV8wtZPZ50KsQAeRnSsRZOT2la/6fHTh+rIp
+        cZD/vQvq3ZkPy8+iTEDORvI=
+X-Google-Smtp-Source: AKy350Zt7RqUG0LqiuhDlzZm0dTtNhX4P9zCvM711mtiljVmDqi8ynj5aMTkWm+uvep/exuX71e/nQ==
+X-Received: by 2002:a17:902:ceca:b0:1a1:7b8d:6719 with SMTP id d10-20020a170902ceca00b001a17b8d6719mr2929803plg.27.1679670576938;
+        Fri, 24 Mar 2023 08:09:36 -0700 (PDT)
+Received: from Gentoo (n220246252084.netvigator.com. [220.246.252.84])
+        by smtp.gmail.com with ESMTPSA id c13-20020a170902c1cd00b0019aa8149cc9sm14336048plc.35.2023.03.24.08.09.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 08:09:36 -0700 (PDT)
+Date:   Fri, 24 Mar 2023 23:09:27 +0800
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wcheng@codeaurora.org,
+        caleb.connolly@linaro.org, konrad.dybcio@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
+Subject: Re: [PATCH v4 12/18] usb: typec: qcom: Add Qualcomm PMIC TCPM support
+Message-ID: <ZB29J/7LI4PREmn6@Gentoo>
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <20230318121828.739424-13-bryan.odonoghue@linaro.org>
+ <ZBxkB04KqY8WbeA1@Gentoo>
+ <89bca327-a860-672c-b4ae-766698d38639@linaro.org>
+ <ZBzyK0ILtUDr986r@Gentoo>
+ <37d14447-0f10-be88-9cd9-8ebd30f1d006@linaro.org>
+ <ZBz5OvauxQ2PWcHu@Gentoo>
+ <40503ba8-7a38-0d1d-1d59-82101a0ce92e@linaro.org>
+ <ZB14jJNUhHGBl7Az@Gentoo>
+ <6bd08120-115e-5429-63da-32f8df52bc7f@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <90b332b7-ba62-d9b5-2d94-5d2e70fad4af@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-GUID: 0gdXSSbut2TIb_yfuWOQP7iJSSYS0grh
-X-Proofpoint-ORIG-GUID: 0gdXSSbut2TIb_yfuWOQP7iJSSYS0grh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_08,2023-03-24_01,2023-02-09_01
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <6bd08120-115e-5429-63da-32f8df52bc7f@linaro.org>
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-Thanks for the review comments.
-
-On Tue, Feb 28, 2023 at 11:53:51AM +0100, Krzysztof Kozlowski wrote:
-> On 27/02/2023 19:31, Piyush Malgujar wrote:
-> > From: Jayanthi Annadurai <jannadurai@marvell.com>
-> > 
-> > Add support for SD6 controller support.
-> > 
-> > Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
-> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
-> > ---
-> >  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 24 +++++++++++++++++--
-> >  1 file changed, 22 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> > index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..0dba17c4f17f82c8ae68e46225ed72418e8361ff 100644
-> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> > @@ -4,7 +4,7 @@
-> >  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
-> > +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
-> >  
-> >  maintainers:
-> >    - Masahiro Yamada <yamada.masahiro@socionext.com>
-> > @@ -18,7 +18,9 @@ properties:
-> >        - enum:
-> >            - microchip,mpfs-sd4hc
-> >            - socionext,uniphier-sd4hc
-> > -      - const: cdns,sd4hc
-> > +      - enum:
-> > +          - cdns,sd4hc
-> > +          - cdns,sd6hc
+On Fri, Mar 24, 2023 at 01:25:14PM +0000, Bryan O'Donoghue wrote:
+> On 24/03/2023 10:16, Jianhua Lu wrote:
 > 
-> I see here rather random set of changes in each version of this patch.
-> This does not really make sense. You are saying that existing (!!!)
-> mpfs-sd4hc is compatible with sd6hc. I think you wanted oneOf here, but
-> not sure. Can you explain what is your intention? Your commit msg is
-> just one line saying the same as subject, so not really helpful.
+> so that is correct and expected i.e. VSAFE5V it shouldn't matter to the 
+> type-c port controller *where* VBUS comes from only that it is within range.
 > 
+> Could you run again with an unpowered device and post the printout?
+Here is output when plugin usb-c device without power supply:
+
+[   45.714005] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: vbus vsafe5v fail
+[   45.714024] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+qcom_pmic_typec_set_vbus sm_stat output 0x00000099
+[   45.714043] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+qcom_pmic_typec_set_vbus misc 0x000000c9
+[   45.714060] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500:
+qcom_pmic_typec_set_vbus sm_status 0x00000099
+[   45.714185] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500:
+set_cc: currsrc=1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=cc2
+[   45.719505] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc complete
 > 
-> Best regards,
-> Krzysztof
->
-
-Yes thank you, it should be oneOf as sd6hc is exclusive. I will correct it in the
-next version.
-
-Best Regards,
-Piyush
+I get schematics of same vendor's similar device, it shows usb vbus is
+connected to charger pump. It can be the main reason that can't detect vbus, but
+I don't know why type-c can work normally.
+> ---
+> bod
