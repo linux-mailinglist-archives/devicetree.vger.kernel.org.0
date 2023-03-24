@@ -2,116 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 728596C7429
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 00:38:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAAD16C744F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 01:03:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjCWXiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Mar 2023 19:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35804 "EHLO
+        id S229734AbjCXADp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Mar 2023 20:03:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbjCWXhy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 19:37:54 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0510F2E0E1
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 16:37:46 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id i13so31224lfe.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Mar 2023 16:37:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679614665; x=1682206665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wCsZad9X/4syLP5Vggx9hok5CS9phhLBm89vT4ELF4Y=;
-        b=Am2Sw0F2UcRFFO/VT+AhylPotRXwCbP/ptLNEw2L6kZOnEiLaMccIT4/hvTQxwMHLx
-         4lnnMOXkMPcHaAs7OBbyGyXucx4fgJqg73OgjNlhSvDADyr2/Glk+GRCfSS5AvQRdFlP
-         ugaZIs+xA2uQCRV8hCb5XJtFcq+s58oXfGrloiOFyhgZpiqLNaNl3n7Dgj5V3kfKamoa
-         9H04k6p1Cir+BYXF1pcmkEn0drMrjrRpcS9TA3xM8nlCowFxhQLWQYheNjgDsO+Q52Te
-         /4jAbGrUwn5+mpKLoIKCXOc5MJM5KLNMpFYQWW32qN0jhUYedPoDrrtpEnJ/t3VOOYan
-         F9+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679614665; x=1682206665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wCsZad9X/4syLP5Vggx9hok5CS9phhLBm89vT4ELF4Y=;
-        b=FDXlz7UW1XF8KFfbtz7Y+L69byjQJR4WaHFmkb1+2M0WPaqzLkWIQwlSDHJ4NofY1p
-         XYl/oO1stCjGcNK6zb2vB/vaeqgIeV4QLJmZs/gKu9T6lNZ5OZX5YWKeegScAMqojA4Z
-         9IPtlG1YTd+VBdWwQzh7G7ye41VKTgFZSdu4Ae+7OjZgfPJHu3P2sfFG2XEVhZpuWQG4
-         28WVBzGWiXm5tqpzSNzvTL2YcUV2LaZQPlaHz5lJI9kEXMaxKreQBGYRwQTNLNtajWwD
-         +XfCODxpOFP4NMM2pi607AI2Xcx7LK5cE0gUwPK2+EpEUsmmUUC7qWZYUOJ9+PvQzORT
-         28BA==
-X-Gm-Message-State: AAQBX9eL+Mo38FCPWaUZP5FMFcKP4xHRR3RMhFX8roLq5dWQRcTAxFYs
-        ulQ11M1SSoNNyjL03eLjgfcOHg==
-X-Google-Smtp-Source: AKy350b0uRDsG0Egt/nKDBTPMgykgkHTr0qtr9WmkQhZ8QpVPrTOqdG8/sU0qU82wODZqfbG1gFGxA==
-X-Received: by 2002:ac2:5961:0:b0:4e1:f70a:3b04 with SMTP id h1-20020ac25961000000b004e1f70a3b04mr75636lfp.4.1679614664970;
-        Thu, 23 Mar 2023 16:37:44 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id w9-20020ac254a9000000b004e845b49d81sm3105264lfk.140.2023.03.23.16.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Mar 2023 16:37:44 -0700 (PDT)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: qcom: sm8450: add description of Qualcomm Crypto Engine IP
-Date:   Fri, 24 Mar 2023 01:37:35 +0200
-Message-Id: <20230323233735.2131020-6-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230323233735.2131020-1-vladimir.zapolskiy@linaro.org>
-References: <20230323233735.2131020-1-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S229660AbjCXADo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Mar 2023 20:03:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FFC02C67A;
+        Thu, 23 Mar 2023 17:03:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BFF36628FB;
+        Fri, 24 Mar 2023 00:03:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02E68C433D2;
+        Fri, 24 Mar 2023 00:03:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679616223;
+        bh=XUAQX7WLfPzAunVs66lGMtCyPb+vveo57jrK8ZTvSfI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rtel7lrEL0i9v7PLBlT4+t+EzDejq77npMxgGV9XvuXioojGieXhZ0XVTf4kMPYyM
+         1CPybuqC5B1X5XsAqOo1j8pyBcIS0NKbBq3yPCwcrDl4fQrZ8BiYkx9SiluFiRg39x
+         LEk1DdjrNojzkJYOnhv9W1jsDR2nMgDLyS443cpXobYuv2LZNcsRbZcWgGWhsEJPTF
+         8qdYh0yXHjeJfjbLv0woEt+Lv/9HxHFe7lVBT1Q1ibCYRgWbH8AurM9lWUNjo/2F+O
+         ZjR1nvwhRwUl7rM7y0AErIblD4VWy69HLjeQ80RiwCimBXnWUWJu00iDh32ScGZ/eB
+         LgkIso8S/zIBQ==
+Date:   Fri, 24 Mar 2023 00:03:37 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Saalim Quadri <danascape@gmail.com>
+Cc:     alsa-devel@alsa-project.org, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        krzysztof.kozlowski@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        Leon Romanovsky <leon@leon.nu>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: alc5632: Convert to dtschema
+Message-ID: <13480aac-019d-40cc-b785-00ec5614e284@sirena.org.uk>
+References: <4a553ab8-4cd3-4ce4-8225-20f43b70a5be@sirena.org.uk>
+ <20230323193709.5176-1-danascape@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p7P/9WEWSNzZV5B+"
+Content-Disposition: inline
+In-Reply-To: <20230323193709.5176-1-danascape@gmail.com>
+X-Cookie: A lie in time saves nine.
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add description of QCE and its corresponding BAM DMA IPs on SM8450 SoC.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+--p7P/9WEWSNzZV5B+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index ce4b7d0a09ab..228c26fb9003 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -4081,6 +4081,28 @@ ufs_mem_phy_lanes: phy@1d87400 {
- 			};
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0x0 0x01dc4000 0x0 0x24000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			num-channels = <8>;
-+			qcom,num-ees = <2>;
-+			iommus = <&apps_smmu 0x584 0x11>;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sm8450-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0x0 0x01dfa000 0x0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "memory";
-+			iommus = <&apps_smmu 0x584 0x11>;
-+		};
-+
- 		sdhc_2: mmc@8804000 {
- 			compatible = "qcom,sm8450-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0 0x08804000 0 0x1000>;
--- 
-2.33.0
+On Fri, Mar 24, 2023 at 01:07:09AM +0530, Saalim Quadri wrote:
 
+> +maintainers:
+> +  - Leon Romanovsky <leon@leon.nu>
+> +  - Mark Brown <broonie@kernel.org>
+
+I know nothing specific about this device so shouldn't be listed.  CCing
+Leon for him to confirm.
+
+--p7P/9WEWSNzZV5B+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQc6NgACgkQJNaLcl1U
+h9A61Af+NpVYj2Eus5eln0oJJ2sFYS7Mhz/F06ddXU1O2kQP+pqzInt2TSjWuQra
+8jK8DFTpEroGGBhX4NnqHAISeWXzz9g9zu7LuipuMYmhlYtQdLmLzRCEm2tqFTC2
+sl1ZH7JpN8kwD/0jEVu6fzRoHv2+wgqKz+M4HHndXBJBIwOkSDZDEiny0ogEXrsY
+XIHFZULrLnF5RQTH61GU8raCPF2p3ixhtOxPh+ju2eoLwoz/aX9mUPk+4lpwP/0f
+DaRZIrcwHpOh1TNgZlLwNWwJQOAY/atQCncRANcOEERV96PLJMAhPvKcScadebgU
+4JT7biBiQbQp8Jyl1qF2MJklQ7OIlg==
+=UK0B
+-----END PGP SIGNATURE-----
+
+--p7P/9WEWSNzZV5B+--
