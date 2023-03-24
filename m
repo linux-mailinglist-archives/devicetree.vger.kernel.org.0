@@ -2,111 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E52C66C87BE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 22:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F696C87C4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 22:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232043AbjCXVxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 17:53:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38816 "EHLO
+        id S232002AbjCXVzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 17:55:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232002AbjCXVxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 17:53:44 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EE055B2;
-        Fri, 24 Mar 2023 14:53:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679694823; x=1711230823;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7BxIj7sfQnrAoBk/QZyzI+WLdJD6yHfKb9dYwULjk7M=;
-  b=PPo568zRqBTZWu+AnlGXpmI2iSGEm/EybQwyR6p9hBNDdjlubuLiLdXv
-   kKXwcxvmwEB36mSyb98Xiq/dwH5L7Q7XNtM/h/5jTxc+5kg2CfQVFg1pX
-   LvcLwqbiUMSxcmrDedbFGSqYPFDfARdnCPOLKXg0ebFNwqek4vGsNcWqb
-   t0MqEATWf449d3Thb4jf9ukApZagpu1B/+5YYaqUNVQI/jTbZUckQa9cI
-   MVS88cfFqkoA2chV8CC3sd474gS13tEUb2dTtf4LyB07nbsGhK0Dg3Rig
-   Nbd0vmYNdbhY0NZgy0uX50V6LNLTGsSTTcFQm6qBdOboTN8HBY0yhIvP7
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="341462739"
-X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; 
-   d="scan'208";a="341462739"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2023 14:53:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="685330606"
-X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; 
-   d="scan'208";a="685330606"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 24 Mar 2023 14:53:40 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pfpLq-000Fgc-2H;
-        Fri, 24 Mar 2023 21:53:34 +0000
-Date:   Sat, 25 Mar 2023 05:53:20 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <202303250536.OV1LR58y-lkp@intel.com>
-References: <20230324063317.14664-3-zhuyinbo@loongson.cn>
+        with ESMTP id S231896AbjCXVzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 17:55:24 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CDE18160;
+        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id o25-20020a9d4119000000b006a11eb19f8eso425192ote.5;
+        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679694922;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cg1iyMYEgtsbLeRCpRhPaB9K329aNM5LHp0JzHXTovw=;
+        b=g/fx6hdC0vQe+dWc57qFuWdVYDA/E/z/s/Dt6lxAz8c6sAcBHwaUBqyPuVH54g/7E/
+         lE9BFy9mHJKgnVwC1WTLk2jScU3omOCvu3IjQ7v34zwfgL0eoRqFR+Wg7DsNeS+bZc+P
+         oJzFJrlNTiK8tGCbKNnMJK1QRUSiBwnKzAP+Qh4qYJeYED9DoLlIQCMg4GfRxKQ8blRk
+         rMQn2w3sEI8VOKJ/Y8QncNzH2TZF5/86XXsyzc2YNNeeO7GIyXraiv9pRFpZEDmmwYsK
+         cBv2Fb9XKVkYjpCRfvL7A7tGFFDELxuwYFOZGHFZ9ZHDwP+pNMfaQEYA1wAAvKUBr8EN
+         lwDA==
+X-Gm-Message-State: AO0yUKWL3kQGkoO5oSEB12mqCyrmjRbESlT7n2dxZ9KRNGBNOQkoSWu9
+        XaQd/627ZUZHaGmQZoQB2A==
+X-Google-Smtp-Source: AK7set9dYHYAM+jGb64LFJy7wftyFTrHGyla2bUb6XZxeJK54Y5Ubcj6Z23GeROLf7WDxg8xYzahkQ==
+X-Received: by 2002:a05:6830:148d:b0:69f:93bc:26be with SMTP id s13-20020a056830148d00b0069f93bc26bemr2504070otq.21.1679694922173;
+        Fri, 24 Mar 2023 14:55:22 -0700 (PDT)
+Received: from robh_at_kernel.org ([2605:ef80:80f9:92f0:b372:78c0:69c1:66d6])
+        by smtp.gmail.com with ESMTPSA id b12-20020a9d6b8c000000b0069fa7b738b3sm2800448otq.27.2023.03.24.14.55.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Mar 2023 14:55:21 -0700 (PDT)
+Received: (nullmailer pid 49167 invoked by uid 1000);
+        Fri, 24 Mar 2023 21:55:19 -0000
+Date:   Fri, 24 Mar 2023 16:55:19 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v6] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
+Message-ID: <20230324215519.GA41513-robh@kernel.org>
+References: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230324063317.14664-3-zhuyinbo@loongson.cn>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <4fdb1416-b806-c9d3-dc1d-80875b01ac3a@gmail.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yinbo,
+On Sat, Mar 18, 2023 at 12:10:59AM +0100, Heiner Kallweit wrote:
+> Convert Amlogic Meson pin controller binding to yaml.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - consider that more than one compatible can be set
+> - remove bus part from example
+> v3:
+> - remove minItem/maxItem properties for compatible
+> v4:
+> - split patch to be able to deal with the different reg/reg-names
+> v5:
+> - remove compatible definition from common yaml
+> - move pincfg-node and pinmux-node definition to meson-gpio object definition
+> v6:
+> - add meson-pins definition
+> - change usage of unevaluatedProperties
+> ---
+>  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     | 65 +++++++++++++
+>  .../pinctrl/amlogic,meson-pinctrl-common.yaml | 57 +++++++++++
+>  .../amlogic,meson-pinctrl-g12a-aobus.yaml     | 66 +++++++++++++
+>  .../amlogic,meson-pinctrl-g12a-periphs.yaml   | 70 ++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml | 74 +++++++++++++++
+>  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml  | 76 +++++++++++++++
+>  .../bindings/pinctrl/meson,pinctrl.txt        | 94 -------------------
+>  7 files changed, 408 insertions(+), 94 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> new file mode 100644
+> index 000000000..7dccf18c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,meson-pinctrl-a1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Meson A1 pinmux controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +allOf:
+> +  - $ref: amlogic,meson-pinctrl-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-periphs-pinctrl
+> +      - amlogic,meson-s4-periphs-pinctrl
+> +
+> +required:
+> +  - compatible
+> +
+> +patternProperties:
+> +  "^bank@[0-9a-z]+$":
+> +    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
 
-I love your patch! Yet something to improve:
+       unevaluatedProperties: false
 
-[auto build test ERROR on broonie-spi/for-next]
-[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.3-rc3 next-20230324]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+And other meson-gpio references. With that,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230324-143432
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-patch link:    https://lore.kernel.org/r/20230324063317.14664-3-zhuyinbo%40loongson.cn
-patch subject: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson spi controller
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230325/202303250536.OV1LR58y-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/3742622c455d25c4a110d2caf2f5b2ceefe88f91
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yinbo-Zhu/dt-bindings-spi-add-loongson-spi/20230324-143432
-        git checkout 3742622c455d25c4a110d2caf2f5b2ceefe88f91
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303250536.OV1LR58y-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "loongson_spi_dev_pm_ops" [drivers/spi/spi-loongson-pci.ko] undefined!
->> ERROR: modpost: "loongson_spi_dev_pm_ops" [drivers/spi/spi-loongson-plat.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Reviewed-by: Rob Herring <robh@kernel.org>
