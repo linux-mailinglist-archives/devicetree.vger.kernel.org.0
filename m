@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A986C80C2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 16:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A35316C80EF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 16:14:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232241AbjCXPKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 11:10:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56648 "EHLO
+        id S232213AbjCXPOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 11:14:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232107AbjCXPKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 11:10:41 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74EE0E187
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 08:10:37 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id w9so9250162edc.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 08:10:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1679670636;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtH3EySMDIrw+lZaElaWD6H77SmUICjB03o3KHw7964=;
-        b=4KBk5by17CO5KmKepXBL60mhAyiD0mY6LsmCidHOWe4QrkZTthadwgyShcBCsOHEoS
-         uQfOxPiUbuK5espG5oLIC7DvREqJXwfSinDauBZshXoF1nRZQieEmeq9ZfmlAWNMX/NJ
-         oUBzPum8EQpnc30fxewPdHJULyQdqwa1YZcF1dYuv4tV5kdxV8be471wG+/NhkXjGYmT
-         hPPsmYeB93E7T/jgBPiPzlRXOS9RvRwjJq65YSGUROIyn7SLB3iHf6NC1gbNXQbzLzzu
-         NltwrHquLkBZmRygFO+Zh5EH59I3BirP00lBfyS+y2Y/db77OItGdk5OAG+EzCG2MNjy
-         vLwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679670636;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GtH3EySMDIrw+lZaElaWD6H77SmUICjB03o3KHw7964=;
-        b=u1xLtzUhnXA2vXWCerIR/RW3VmmXtxZtixrf7WK4518ASnFeEyBLWpVIAUr5WtZ33M
-         JyBGeyFb2lE57xSW3k22ajqd4B8Ri9p+84qOkWOcnxveWaFTSSN+27Ern2mIrtC+RPVl
-         psg+U1231LwyO3WRxg1qOmxMcguvZh1yYhwNv/yuXOzaub2xo3qIKCsnPQbBrWK3jZxL
-         kLUGU9jPvmsv7Nxn+al5ojJWckSKIDlFB16OPWPzjKsc5LYXu8VghPidDAfJe2l+5LTK
-         jdx0K6+vn0wOHLDhoVHeUP0ZhYEE6RL8dqjgKJRKkQefkILS8GveSXQtj0gcEx2XKOeN
-         kBnA==
-X-Gm-Message-State: AAQBX9dFaMQLVkXAm76IDV84ay4sttXhJ9cbhunahlfdM1W+KPx1QmSx
-        t4upeHAM2a7pCHyi14wx/f+w/vDAj2HnLApaOWR3PWAM
-X-Google-Smtp-Source: AKy350bgvYQzINUfdVFIAXWRNiS65HRBsyBFtPJc247rP/+q7Cu1ksH9gUnC6Bp8pFlwB0krvX0pQg==
-X-Received: by 2002:a17:907:a0b:b0:93e:739f:b0b3 with SMTP id bb11-20020a1709070a0b00b0093e739fb0b3mr2203088ejc.50.1679670635938;
-        Fri, 24 Mar 2023 08:10:35 -0700 (PDT)
-Received: from localhost (84-115-214-73.cable.dynamic.surfer.at. [84.115.214.73])
-        by smtp.gmail.com with ESMTPSA id hb6-20020a170906b88600b0093120a11a5dsm10475739ejb.92.2023.03.24.08.10.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 08:10:35 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 24 Mar 2023 16:10:34 +0100
-Message-Id: <CREPJP5KTX2D.VCM8IIZIP1ZT@otso>
-To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
-        <gregkh@linuxfoundation.org>, <andersson@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     <wcheng@codeaurora.org>, <caleb.connolly@linaro.org>,
-        <konrad.dybcio@linaro.org>, <subbaram@quicinc.com>,
-        <jackp@quicinc.com>, <robertom@qti.qualcomm.com>,
-        <lujianhua000@gmail.com>
-Subject: Re: [PATCH v4 00/18] Add Qualcomm PMIC TPCM support
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.14.0
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
-In-Reply-To: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        with ESMTP id S232476AbjCXPNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 11:13:49 -0400
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96BA13D59;
+        Fri, 24 Mar 2023 08:13:23 -0700 (PDT)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32OD7YRd030570;
+        Fri, 24 Mar 2023 08:13:13 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=pfpt0220; bh=m7eJZqfbGIP6ABsouoQLM79Zjnxq/OgPtKip3ry0izo=;
+ b=YSis7Kw2a/yfq4F9YCGEZkudyuF7v0m9EoAHVTKF6U9wmN7aciLoOmmwAtNi7fKX5dhQ
+ axIl2L3+l0d5LiBaoQh25H1KTbwV9j92Dpvx7l7qBaEjMG0efZhH11ze0+CLp9j+TnTu
+ /cQKk+o8VH9bVk1HJFwELHrJMK62QWe8H+W6prCZQgsgGsNU/1I0ukPTpUdGT3kygOkk
+ P71ellgmQQEccshvNH0Xh2Nlc2ByYrcTMY/2o03uyCpHNnhl4uUERRFRhcr2ddk6mZnh
+ 1EC+ugFxzZDyKz4hEpnLvZmrzN3dqYPE4DgaiZzyD17wLKLovxe0bgMxp7luRd5Ie/Ea yw== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3pgxmfjw8x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Fri, 24 Mar 2023 08:13:12 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
+ 2023 08:13:10 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Fri, 24 Mar 2023 08:13:10 -0700
+Received: from Dell2s-9 (unknown [10.110.150.250])
+        by maili.marvell.com (Postfix) with ESMTP id 328BD3F7059;
+        Fri, 24 Mar 2023 08:13:10 -0700 (PDT)
+Date:   Fri, 24 Mar 2023 08:13:10 -0700
+From:   Piyush Malgujar <pmalgujar@marvell.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
+        <jannadurai@marvell.com>, <cchavva@marvell.com>
+Subject: Re: [PATCH v3 5/6] dt-bindings: mmc: sdhci-cadence: SD6 support
+Message-ID: <20230324151310.GB462@Dell2s-9>
+References: <20230227183151.27912-1-pmalgujar@marvell.com>
+ <20230227183151.27912-6-pmalgujar@marvell.com>
+ <20230228154648.GA3298015-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230228154648.GA3298015-robh@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-GUID: enzEamJ42N_bUD1QKajCJrXjvxsJ0_h7
+X-Proofpoint-ORIG-GUID: enzEamJ42N_bUD1QKajCJrXjvxsJ0_h7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_09,2023-03-24_01,2023-02-09_01
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,119 +70,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
+Hi Rob,
 
-On Sat Mar 18, 2023 at 1:18 PM CET, Bryan O'Donoghue wrote:
-> Bryan O'Donoghue (17):
->   dt-bindings: regulator: qcom,usb-vbus-regulator: Mark reg as required
->   dt-bindings: regulator: qcom,usb-vbus-regulator: Mark
->     regulator-*-microamp required
->   dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add orientation-switch
->     as optional
->   dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: Add port as an optional
->   dt-bindings: usb: Add qcom,pmic-typec dt-binding header
->   dt-bindings: usb: Add Qualcomm PMIC Type-C controller YAML schema
->   dt-bindings: usb: Add qcom,pmic-pdphy dt-binding header
->   dt-bindings: usb: Add Qualcomm PMIC PDPHY controller YAML schema
->   dt-bindings: usb: Add Qualcomm PMIC TCPM YAML schema
->   dt-bindings: mfd: qcom,spmi-pmic: Add pdphy to SPMI device types
->   dt-bindings: mfd: qcom,spmi-pmic: Add typec to SPMI device types
->   usb: typec: qcom: Add Qualcomm PMIC TCPM support
->   arm64: dts: qcom: pm8150b: Add a TCPM description
->   arm64: dts: qcom: qrb5165-rb5: Switch on Type-C VBUS boost
->   arm64: dts: qcom: qrb5165-rb5: Switch on basic TCPM
->   arm64: dts: qcom: qrb5165-rb5: Switch on TCPM usb-role-switching for
->     usb_1
->   arm64: dts: qcom: qrb5165-rb5: Switch on TCPM orientation-switch for
->     usb_1_qmpphy
->
-> Dmitry Baryshkov (1):
->   phy: qcom-qmp: Register as a typec switch for orientation detection
+Thanks for the review comments.
 
-I've just given this a spin on sm7225-fairphone-fp4 with pm7250b as the
-PMIC (instead of pm8150b).
+On Tue, Feb 28, 2023 at 09:46:48AM -0600, Rob Herring wrote:
+> On Mon, Feb 27, 2023 at 10:31:50AM -0800, Piyush Malgujar wrote:
+> > From: Jayanthi Annadurai <jannadurai@marvell.com>
+> > 
+> > Add support for SD6 controller support.
+> 
+> On what h/w?
+> 
 
-Overall it seems to work, which is awesome! I think I sent you emails in
-the past where I had troubles getting earlier revisions to work.
+This has been used and tested on Marvell CN10K series SOCs.
 
-Still there's some rough edges:
+> > 
+> > Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> > ---
+> >  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 24 +++++++++++++++++--
+> >  1 file changed, 22 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..0dba17c4f17f82c8ae68e46225ed72418e8361ff 100644
+> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > @@ -4,7 +4,7 @@
+> >  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> > -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+> > +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
+> >  
+> >  maintainers:
+> >    - Masahiro Yamada <yamada.masahiro@socionext.com>
+> > @@ -18,7 +18,9 @@ properties:
+> >        - enum:
+> >            - microchip,mpfs-sd4hc
+> >            - socionext,uniphier-sd4hc
+> > -      - const: cdns,sd4hc
+> > +      - enum:
+> > +          - cdns,sd4hc
+> > +          - cdns,sd6hc
+> 
+> Other than FPGA implementations IP vendor compatible strings are pretty 
+> much useless. Define a compatible for your h/w.
+> 
 
-As Jianhua Lu has already reported, I'm also hitting the vbus vsafe5v
-message quite often. Returning 0 in that function on error seems to work
-around it and everything appears to be fine regardless.
+ok, will use Marvell specific string here. 
 
-  [  243.939593] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: vbus vsafe=
-5v fail
-  [  243.939600] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 1 result -110
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -111,6 +113,24 @@ properties:
+> >      minimum: 0
+> >      maximum: 0x7f
+> >  
+> > +  cdns,iocell-input-delay-ps:
+> > +    description: Delay in ps across the input IO cells
+> > +
+> > +  cdns,iocell-output-delay-ps:
+> > +    description: Delay in ps across the output IO cells
+> > +
+> > +  cdns,delay-element-ps:
+> > +    description: Delay element in ps used for calculating phy timings
+> > +
+> > +  cdns,read-dqs-cmd-delay-ps:
+> > +    description: Command delay used in HS200 tuning
+> > +
+> > +  cdns,tune-val-start-ps:
+> > +    description: Staring value of data delay used in HS200 tuning
+> > +
+> > +  cdns,tune-val-step-ps:
+> > +    description: Incremental value of data delay used in HS200 tuning
+> 
+> Wouldn't any controller implementation need these possibly? IIRC, we 
+> have some common properties for this. If not, survey what we do have and 
+> come up with something common. Or you can imply all this from the h/w 
+> specific compatible you are going to add.
+> 
 
-If you want to take a peek at the schematics for this device, they're
-available here:
-https://www.fairphone.com/wp-content/uploads/2022/09/FP4_Information-for-re=
-pairers-and-recyclers.pdf
-USB things you can find on page 57, the pm7250b is on page 49.
+These parameters are for sd6 cadence controller, will add sd6 in the property
+string so to imply it's specific to sd6hc.
 
-When plugging in the device with TCPM on into my PC (peripheral mode)
-then the USB device registers and unregisters every couple of seconds,
-never stays stable on. No messages in dmesg when this happens. This only
-happens with the USB-C plug in one direction, in the other it
-works reliable.
+> Rob
 
-Also I've had it that at some point the usb connection seemed to be kind
-of stuck on host mode, plugging the device into my PC didn't appear to
-do anything.
-
-For host mode I tried using both a USB stick and a USB-C to headphone
-jack dongle, both work fine in both directions.
-
-In any case, I look very much forward to this landing, it will be
-awesome to have this feature working OOTB! And let me know if you need
-anything tested on this hardware.
-
-Regards
-Luca
-
->
->  .../bindings/mfd/qcom,spmi-pmic.yaml          |   8 +
->  .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |  10 +
->  .../regulator/qcom,usb-vbus-regulator.yaml    |  10 +-
->  .../bindings/usb/qcom,pmic-pdphy.yaml         |  89 +++
->  .../bindings/usb/qcom,pmic-typec.yaml         |  88 +++
->  .../bindings/usb/qcom,pmic-virt-tcpm.yaml     |  88 +++
->  MAINTAINERS                                   |  10 +
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  70 ++
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  63 +-
->  drivers/phy/qualcomm/Kconfig                  |   8 +
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c     |  80 ++-
->  drivers/usb/typec/Kconfig                     |  13 -
->  drivers/usb/typec/Makefile                    |   1 -
->  drivers/usb/typec/qcom-pmic-typec.c           | 261 -------
->  drivers/usb/typec/tcpm/Kconfig                |  11 +
->  drivers/usb/typec/tcpm/Makefile               |   1 +
->  drivers/usb/typec/tcpm/qcom/Makefile          |   6 +
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_pdphy.c | 605 +++++++++++++++++
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_pdphy.h |  85 +++
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c | 637 ++++++++++++++++++
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.h | 163 +++++
->  .../usb/typec/tcpm/qcom/qcom_pmic_virt_tcpm.c | 326 +++++++++
->  .../dt-bindings/usb/typec/qcom,pmic-pdphy.h   |  18 +
->  .../dt-bindings/usb/typec/qcom,pmic-typec.h   |  18 +
->  24 files changed, 2388 insertions(+), 281 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-pdphy=
-.yaml
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec=
-.yaml
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-virt-=
-tcpm.yaml
->  delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
->  create mode 100644 drivers/usb/typec/tcpm/qcom/Makefile
->  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_pdphy.c
->  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_pdphy.h
->  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
->  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.h
->  create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_virt_tcpm.c
->  create mode 100644 include/dt-bindings/usb/typec/qcom,pmic-pdphy.h
->  create mode 100644 include/dt-bindings/usb/typec/qcom,pmic-typec.h
->
-> --=20
-> 2.39.2
-
+Thanks,
+Piyush
