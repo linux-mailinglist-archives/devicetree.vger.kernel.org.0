@@ -2,124 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D696C7861
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E6ED6C7883
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:12:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbjCXHDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 03:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46746 "EHLO
+        id S230112AbjCXHMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 03:12:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjCXHDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:03:51 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB03133;
-        Fri, 24 Mar 2023 00:03:48 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 4220624E1E2;
-        Fri, 24 Mar 2023 15:03:42 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
- 2023 15:03:42 +0800
-Received: from [192.168.125.74] (113.72.145.117) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 24 Mar
- 2023 15:03:41 +0800
-Message-ID: <0c9c19ad-815c-fb0f-3024-96ea55e7c6c0@starfivetech.com>
-Date:   Fri, 24 Mar 2023 15:03:40 +0800
+        with ESMTP id S229522AbjCXHMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:12:32 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F3E25E0A
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:12:31 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id w9so4195689edc.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:12:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679641950;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GHYARhcu7fqeGh+Mo9qe8pAsnwrLQZJjJYTNVl5/co0=;
+        b=eQ/gIFjOOzT1h/PfMelahxCE+q5DGqaPZzYpkuWS8Ix50crh+8pLukozCcpxvnN1lN
+         Rdwy0u6DYTq0gHaf+n5q65JduEvxaCK/TZzYMp6uI7n6DD8N3Kw1i9bT9de6O9LNSK4U
+         JhxUYb6OL65cMdC2sMceG64Tz43ZBnCKhKjahnwMpGp0xrPFIyl1+Kb65j20+ja1tu79
+         PW/oSDbUmfpV+A8hH2x/MQWi22+4MviE4dpyMLpayOys3ctYUtv5Y/SPO8lH4Q+8O3aQ
+         ZxZrG2MAX6NnYhQcP98DRhzBSMXt+Zzxm7h7rDx1LzZPkwBAOTFCwqoVddQyJovSS0Df
+         M8pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679641950;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GHYARhcu7fqeGh+Mo9qe8pAsnwrLQZJjJYTNVl5/co0=;
+        b=KOiz1u34dhxesgYSh9HBNRnzrzM94P6mcDW4gYeGOzmn9Stid3FcMy9kqMawwkFXGj
+         rCUPME7fzTsJ0YH5+foFY7DKPR5icjzWJjja6tD5QfoPTSmnjLovRJK7Isi9ukAc5CCQ
+         BGFegYTbb8s9MQHgvUIx8L8zR89cCRrQpgiqjQiWEDCclNXrT84p39gPCbBWHEZm0ZIQ
+         KwguYGzrWnH8AkM4wOyGljlgisCkyeNC0orioTlCCBuGqdwHcSkdT1gWSI/VjKQSOoIw
+         SDkoNyXvnbT541kBfdiPiWQxDLow8v/5AjzuJHj9IrScvEi3MGtLxI6RbpBkHMlwNubL
+         68kg==
+X-Gm-Message-State: AAQBX9chjoyelQSQ6KgsBE49uGvwLOhACcIQbqvsKWlEy3aRBJFwctoL
+        oRJxvyfXPKI6f5rEPcVb0DTDuw==
+X-Google-Smtp-Source: AKy350ZgsGG14ir1cibTF8MCHhqvpjZXYXE75aJ1CLRl2+x6YiTaEEn8kXqhVNjwE/4L8/Vzwx87Yg==
+X-Received: by 2002:a17:906:54cc:b0:932:c315:b0d with SMTP id c12-20020a17090654cc00b00932c3150b0dmr1642754ejp.34.1679641949969;
+        Fri, 24 Mar 2023 00:12:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:ce50:243f:54cc:5373? ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
+        by smtp.gmail.com with ESMTPSA id kb1-20020a1709070f8100b00933c4a25735sm7128368ejc.100.2023.03.24.00.12.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Mar 2023 00:12:29 -0700 (PDT)
+Message-ID: <3356ecee-4e6c-8707-c26e-73329b4f4728@linaro.org>
+Date:   Fri, 24 Mar 2023 08:12:28 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v6 19/21] riscv: dts: starfive: Add initial StarFive
- JH7110 device tree
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 4/8] arm64: dts: qcom: sm8450: remove invalid properties
+ in cluster-sleep nodes
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Conor Dooley <conor@kernel.org>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+To:     neil.armstrong@linaro.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20230320103750.60295-1-hal.feng@starfivetech.com>
- <20230320103750.60295-20-hal.feng@starfivetech.com>
- <60359574-8bce-40f2-99db-6d81f6e6c5c3@spud>
- <6ce5b897-f1c2-4b58-9353-9d9e881ad237@spud>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <6ce5b897-f1c2-4b58-9353-9d9e881ad237@spud>
-Content-Type: text/plain; charset="UTF-8"
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-scsi@vger.kernel.org
+References: <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-0-3ead1e418fe4@linaro.org>
+ <20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org>
+ <0bcad5cc-112f-386c-b70e-146530ac4898@linaro.org>
+ <215efc34-68bf-53d7-2191-a5132c3d2198@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <215efc34-68bf-53d7-2191-a5132c3d2198@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.117]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Mar 2023 09:03:23 +0000, Conor Dooley wrote:
-> On Wed, Mar 22, 2023 at 10:02:40PM +0000, Conor Dooley wrote:
->> On Mon, Mar 20, 2023 at 06:37:48PM +0800, Hal Feng wrote:
->> > From: Emil Renner Berthing <kernel@esmil.dk>
->> > 
->> > Add initial device tree for the JH7110 RISC-V SoC by StarFive
->> > Technology Ltd.
->> > 
->> > Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
->> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> > Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
->> > Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
->> > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
->> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> > ---
->> 
->> > +		S7_0: cpu@0 {
->> > +			compatible = "sifive,s7", "riscv";
->> > +			reg = <0>;
->> > +			d-cache-block-size = <64>;
->> > +			d-cache-sets = <64>;
->> > +			d-cache-size = <8192>;
->> > +			d-tlb-sets = <1>;
->> > +			d-tlb-size = <40>;
->> > +			device_type = "cpu";
->> > +			i-cache-block-size = <64>;
->> > +			i-cache-sets = <64>;
->> > +			i-cache-size = <16384>;
->> > +			i-tlb-sets = <1>;
->> > +			i-tlb-size = <40>;
->> > +			mmu-type = "riscv,sv39";
->> > +			next-level-cache = <&ccache>;
->> > +			riscv,isa = "rv64imac_zba_zbb";
->> > +			tlb-split;
->> > +			status = "disabled";
->> 
->> Jess pointed out on IRC that this S7 entry looks wrong as it is claiming
->> that the S7 has an mmu. I didn't go looking back in the history of
->> u74-mc core complex manuals, but the latest version does not show an mmu
->> for the S7.
+On 23/03/2023 14:14, Neil Armstrong wrote:
+> On 23/03/2023 11:51, Krzysztof Kozlowski wrote:
+>> On 23/03/2023 11:25, Neil Armstrong wrote:
+>>> Fixes the following DT bindings check error:
+>>> domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes:
+>>> 'pinctrl-[0-9]+'
+>>> domain-idle-states: cluster-sleep-1: 'idle-state-name', 'local-timer-stop' do not match any of the regexes:
+>>> 'pinctrl-[0-9]+'
+>>
+>> I don't get from the commit msg why these properties are not correct
+>> here. The idle states allow them, so maybe something is missing in the
+>> binding? At least commit msg should explain this.
 > 
-> BTW Hal, if the dt-binding stuff is okay with Emil, I can just remove
-> the mmu here if you confirm it is a mistake rather than you needing to
-> resubmit to remove it.
+> The domain-idle-states bindings doesn't document those 2 properties, so perhaps it's missing ?
 
-I confirm that the S7 core has no L1 data cache and MMU, so some properties
-should be deleted. I have submitted a new patch for the correction.
+Ah, you are right. These were copied from CPU idle states, so here they
+do not make sense.
 
-https://lore.kernel.org/all/20230324064651.84670-1-hal.feng@starfivetech.com/
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Hal
+Krzysztof
+
