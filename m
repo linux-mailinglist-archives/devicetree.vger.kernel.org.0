@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2790A6C7900
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:38:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6C66C7902
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 08:38:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231809AbjCXHic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 03:38:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40126 "EHLO
+        id S231783AbjCXHie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 03:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231783AbjCXHi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:38:27 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667708A55
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:19 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id x3so4269537edb.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:19 -0700 (PDT)
+        with ESMTP id S231792AbjCXHi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 03:38:28 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3940C93E3
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:20 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id o12so4300026edb.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 00:38:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1679643498;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=E1JPVhPaKbK9t6zWORTjEjcFohQ8Rc4HAUg0NuNw4Xc=;
-        b=ndY85iwE3RVt5WVLWo8eeDVxPfY2k7Dw0VGoZzuE4Q1qHDHEUVZJTOlEjw5rHVUTBI
-         tVxqGaKLK5AhgSYmomRxhz7af+x0L/ESGZ/zQd03W8w7+XaT1LuZ6kScEwgwk1NFI8pV
-         bb9LaQRi5MCOb1QjaOZ3Rhn4TEHsuuXFU9eMfHgAxQ9ErHvVRb1QgWhj3JBshOEjLtJZ
-         8ZDg+Jrh6hpjelgBmk+CNpXvriwitnTYPr8LGHES0sfQnjf3qoGXp0lnGL2spLyZPXk8
-         wCOCd6/pwVbwd9hn/REpA0k/pYsS7VKNn8ynQ4sc8kA6L0nWDCmcG8uZMwPRDjejlurI
-         LGbg==
+        bh=s0CXrEO0kHiEzAxVSvYkVOU3gt452PSdh5fBlOScP70=;
+        b=txP9jfzdiXhV57tUGUvx/Nr288Di2Kd4DyfwqiXGf3sEzRawJ9R0dzHlZiDXp/cfQ8
+         9yPpP+852qEckiTIq8k8Nu6n5Hyhg8DVb/2SozTbgMhcyLvOilpCGB1NXYhsgipVztN0
+         KetpUWafVQlJOjwID7GKaI23n+b/6HH4kxzCkG68b1UjZuvdHRKdT7oPFQgx4PPTtlL7
+         KTZQ4GuVsb6fHqK/Er4Pq6VBrl+ELjHv1TlragN5FG0BzWNem5rDIaPiSR1OCwLJsakV
+         6SFU1TSLmea0k6CiLQGBEOHfeN0wc0ArkiXVzNYu26VC5MR+3oFiVhRXdn1aDp7Rawrp
+         qJ+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112; t=1679643498;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=E1JPVhPaKbK9t6zWORTjEjcFohQ8Rc4HAUg0NuNw4Xc=;
-        b=fmevrsP9yP+qbn8H7M0ChvUmPYZpWxZxm/Ld8anoNXysJDztSY+8aBfHrCMUODbeaq
-         f3qWpVdNU9VevLNlG9NIc6YN0IvYphhxMRVEbB1wsD0EvCS3cWUVJaakZH9zMQJcTkOV
-         OPvyDvx5nEt6gm4c8OryEid3qKmV7B6xc/YadocJB9udBTZrO26VFchEXcQJFrdBD2Uz
-         J1wF89mLKyQSlILA1H/9tuXdzhug+hyIiv+3SNG4qkliX4YQIWYuvS3Fb+cmxlcN1ndd
-         URTEqMHDW3N9/V3LtOOqxAC/RzZaAEwibe5duZeH4ICRqfl28/hoztZb3bx+JObz550P
-         2g9w==
-X-Gm-Message-State: AAQBX9fZWl6xHImZtQyn2+y5DXLA7XkMcqxdojpWiP8p54OSIk6Uw/sz
-        QAPKevGcv/Dg8/MwcDcCrTD9iQ==
-X-Google-Smtp-Source: AKy350Ycx3CDmLkOlEBiyNB7hA2XRwYqRWxKrsIe7d7/rmV5hctI3km8t2WdRZ7WscFgC/lHpVzUCw==
-X-Received: by 2002:a17:906:7189:b0:930:6591:15ee with SMTP id h9-20020a170906718900b00930659115eemr2026580ejk.10.1679643497767;
-        Fri, 24 Mar 2023 00:38:17 -0700 (PDT)
+        bh=s0CXrEO0kHiEzAxVSvYkVOU3gt452PSdh5fBlOScP70=;
+        b=RN6HXvib3KlZ+Uzn1NInj+y3IEavvEf/UY2AEtsSLTAs+NHz6evCEnFXWRSIGZERha
+         3bgYVpHgQf5sxCkicmz5FBVKciKK50JEID7AWxMlGTK1VjyyBeCH9R7UcLBKwxDijGGg
+         GpI5G4Q8zvQ+smkKxvQfrFTsu1UbUz7hvYZb4wf1rgSlTbT/JjwiBscXXKu0fvI7+fkK
+         mbUdIlHEF0HandLKSAChW4EbfZnHe77hinv5PWwHkpIpwzzJyTRHZde9q7cYjkdZkR0S
+         siTPrp+DaZzKMRvxW308IbzijV8tPo+Uxi0KK7PL7b9jb0vUcZGeCShjONlOvRX9fcFM
+         R7CA==
+X-Gm-Message-State: AAQBX9d6m4Hf+0ra3vVrouiT50oxjMWYxHyArvL+30obaGk8gPPpODpc
+        ePe0bu8RHI7RHPoQMte43+K1Kg==
+X-Google-Smtp-Source: AKy350Y95ECzPAy9a25mMDi63+t+A41Pldkx5vPXjcrKdHuLv9Aj+jl4u6E8yEwxdj02vm6I/uKI8g==
+X-Received: by 2002:a17:906:3896:b0:933:3a22:8513 with SMTP id q22-20020a170906389600b009333a228513mr2493570ejd.53.1679643498750;
+        Fri, 24 Mar 2023 00:38:18 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:ce50:243f:54cc:5373])
         by smtp.gmail.com with ESMTPSA id rh26-20020a17090720fa00b00930ba362216sm9970429ejb.176.2023.03.24.00.38.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Mar 2023 00:38:17 -0700 (PDT)
+        Fri, 24 Mar 2023 00:38:18 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 3/6] arm64: dts: qcom: sm6375: drop incorrect domain idle states properties
-Date:   Fri, 24 Mar 2023 08:38:10 +0100
-Message-Id: <20230324073813.22158-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/6] arm64: dts: qcom: sm8150: drop incorrect domain idle states properties
+Date:   Fri, 24 Mar 2023 08:38:11 +0100
+Message-Id: <20230324073813.22158-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
 References: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
@@ -78,28 +78,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Domain idle states do not use 'idle-state-name' and 'local-timer-stop':
 
-  sm6375-sony-xperia-murray-pdx225.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
+  sm8150-hdk.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
 
 Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
 Link: https://lore.kernel.org/all/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org/
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6375.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 --
  1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-index a99a5641623f..c020f5bd6491 100644
---- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
-@@ -229,12 +229,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 0de406752a4c..da048f86c50e 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -287,12 +287,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
  		domain-idle-states {
  			CLUSTER_SLEEP_0: cluster-sleep-0 {
  				compatible = "domain-idle-state";
 -				idle-state-name = "cluster-power-collapse";
- 				arm,psci-suspend-param = <0x41000044>;
- 				entry-latency-us = <2752>;
- 				exit-latency-us = <3048>;
- 				min-residency-us = <6118>;
+ 				arm,psci-suspend-param = <0x4100c244>;
+ 				entry-latency-us = <3263>;
+ 				exit-latency-us = <6562>;
+ 				min-residency-us = <9987>;
 -				local-timer-stop;
  			};
  		};
