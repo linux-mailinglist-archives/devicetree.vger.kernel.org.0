@@ -2,126 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B55A6C7DB9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 13:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 118696C7DFC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 13:24:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbjCXMIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 08:08:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52514 "EHLO
+        id S231910AbjCXMYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 08:24:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231800AbjCXMIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 08:08:49 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D09E412BEC
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 05:08:46 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id h25so1956458lfv.6
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 05:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679659725; x=1682251725;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FKWvw7b+JAS44FVyD0FLI3tZGRETXw2/xRa06dfHw0k=;
-        b=afr9y2A1iS13xzsG4ZbEpuOwpHzB94ZjEYQ8femJ88V1SChdcim0pr/d5rq1pZ0ENH
-         9NMtrGFFOPc5Hby8mA7uqg9Hwq1c0LoHr5h9OlTI/y6TWpCAfYRKLuYzRgo/ZldDhEhP
-         K4/CgRvzYaY0dtiGaiBC0qD5kLhzYigv7P53TQ8NNJ29f6HSfrHpTdADqPCXVBqpDW9c
-         Z4vw8hoaoVDz9Y1/gUfxR6t0qH+d1mMKaB9UtZC3K4tE9Ll8ni1C1dbVV8MJlHkb7w2j
-         UmGHqjdywccrNSa0vAQhwzeqXDQP8ic7E5S6/4eHmLbe03/pPu3mm0uYV1hiJIWzY0Ks
-         ECsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679659725; x=1682251725;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKWvw7b+JAS44FVyD0FLI3tZGRETXw2/xRa06dfHw0k=;
-        b=lNZ5O9wmb2Yarw0EKX3a2p3p1xpGe3F2kx12SMUY4Gw7aLYyUqbHlg5dzKN9XM+DvC
-         msqXt8B2lMdmqzUzI8SEtKfyoMO8qvxWB7tNEsnTsMiiMyYfS7Etjz4BwcakgWvwc6+q
-         G9J9waUmsSC7eyG2BLCPECM7uMFdHtcd8rLojliDSoQf6YIKmi85Hdm2Zx3c2rb4cuLN
-         PNNbHuQcwzRNqMLfvzZufk3j8ivXIyVglcdy6lAytxZDumAElvk/pIvo/RqxbudgGw1h
-         2nDg1ffYhbV9GC50eDZeROYHGkH19hmwwxxxIdzI/sqiq1XVnA7cCDBfG7KXaOANou2y
-         obUA==
-X-Gm-Message-State: AAQBX9f6bqkPeSSvGJuqUojqG+FYOPaZku7jxBaOM7vUOsxc9hxJgH0W
-        lJ/4TUUX2FuzpIxOFBnGmXA/1g==
-X-Google-Smtp-Source: AKy350a+AxVBqGyixTZ2LohqdfaVCcjTRMp0giVBa0/MZtDLKCnA5uRBslMBZXkINHhhFKF4sl/OMg==
-X-Received: by 2002:ac2:52b9:0:b0:4d2:c70a:fdfa with SMTP id r25-20020ac252b9000000b004d2c70afdfamr538404lfm.4.1679659725083;
-        Fri, 24 Mar 2023 05:08:45 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id h8-20020a197008000000b004dc6070e121sm3329137lfc.83.2023.03.24.05.08.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Mar 2023 05:08:44 -0700 (PDT)
-Message-ID: <7b26e32d-6f3e-4e1f-33a7-0a994ae8526d@linaro.org>
-Date:   Fri, 24 Mar 2023 14:08:35 +0200
+        with ESMTP id S231892AbjCXMYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 08:24:33 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106231CBD1;
+        Fri, 24 Mar 2023 05:24:29 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32OCOIvG120757;
+        Fri, 24 Mar 2023 07:24:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679660658;
+        bh=wkap2e6kzTTSvLw7zUfEUzfuLRCTlP03LJspERu3sD0=;
+        h=From:To:CC:Subject:Date;
+        b=U1iWKRQ60W+6AUfgcW3WBuk6R0YVDAWpZ3TpCSH2pCuYsK/Ywwyp9x4mf00AjMSH7
+         Ctyu+BAxYyIDpnf3FWdif9NNUb34MomJ4BoEi5wf5kQXTI41VoKOY1Y/asbKhvcaWn
+         3DXWz7Y5DrHALKZ3ENXfzz/SYk0Wdo6CjHO7djGo=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32OCOIp1005338
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 24 Mar 2023 07:24:18 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 24
+ Mar 2023 07:24:18 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 24 Mar 2023 07:24:18 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32OCOHkr097323;
+        Fri, 24 Mar 2023 07:24:17 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>
+CC:     <afd@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <j-luthra@ti.com>, <j-choudhary@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am654: Add overlay for audio support
+Date:   Fri, 24 Mar 2023 17:54:17 +0530
+Message-ID: <20230324122417.252491-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH 1/2] dt-bindings: dma: Add support for SM6115 and QCS2290
- SoCs
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        dmaengine@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, bhupesh.linux@gmail.com, vkoul@kernel.org,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org
-References: <20230320071211.3005769-1-bhupesh.sharma@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20230320071211.3005769-1-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhupesh,
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-On 3/20/23 09:12, Bhupesh Sharma wrote:
-> Add new compatible for BAM DMA engine version v1.7.4 which is
-> found on Qualcomm SM6115 and QCS2290 SoCs.
-> 
-> While at it, also update qcom,bam-dma bindings to add comments
-> which describe the BAM DMA versions used in SM8150 and SM8250 SoCs.
-> This provides an easy reference for identifying the actual BAM DMA
-> version available on Qualcomm SoCs.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->   Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-> index f1ddcf672261..4c8536df98fe 100644
-> --- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-> @@ -20,8 +20,10 @@ properties:
->         - qcom,bam-v1.3.0
->           # MSM8974, APQ8074 and APQ8084
->         - qcom,bam-v1.4.0
-> -        # MSM8916 and SDM845
-> +        # MSM8916, SDM845, SM8150 and SM8250
->         - qcom,bam-v1.7.0
-> +        # SM6115 and QRB2290
-> +      - qcom,bam-v1.7.4
->   
->     clocks:
->       maxItems: 1
+The GP application board has:
+ICSSG I2C0..3 connected to I2C EEPROMs
+ICSSG UART0..3 headers with level shifters
+ICSSG SPI0..3 connected to SPI Flash
+McASP0 connected to tlv320aic3106 codec with Headset out and Line In jack
 
-apparently it's a good time to implement a switch in compatible values
-similar to the one done for QCE:
+This patch adds support for the audio on the GP application board.
 
-https://lore.kernel.org/linux-arm-msm/20230222172240.3235972-6-vladimir.zapolskiy@linaro.org/
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+[j-choudhary@ti.com: Makefile fixups, dtso file cleanups]
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
 
-If this is done in the nearest time, then new platfrom QCE changes
-can be seamlessly added after the next merge window, also the change
-in the compatible values model shall resolve multiple technical
-concerns including the one above about 1/1 change in the series.
+Changes are made considering Andrew's comment on another overlay patch[1]
+related to Makefile and styling comments on the overlay file.
 
---
-Best wishes,
-Vladimir
+[1]:
+<https://lore.kernel.org/all/8e6442c8-e4ef-705d-1378-7d1f8b74e84d@ti.com/>
+
+ arch/arm64/boot/dts/ti/Makefile         |   3 +-
+ arch/arm64/boot/dts/ti/k3-am654-gp.dtso | 124 ++++++++++++++++++++++++
+ 2 files changed, 126 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am654-gp.dtso
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 541970a8ed0a..9b70a85fbc96 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -21,12 +21,13 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+ 
+ # Boards with AM65x SoC
++k3-am654-evm-dtbs := k3-am654-base-board.dtb k3-am654-gp.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+-dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am654-evm.dtb
+ 
+ # Boards with J7200 SoC
+ k3-j7200-evm-dtbs := k3-j7200-common-proc-board.dtb k3-j7200-evm-quad-port-eth-exp.dtbo
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-gp.dtso b/arch/arm64/boot/dts/ti/k3-am654-gp.dtso
+new file mode 100644
+index 000000000000..14ceb2714677
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am654-gp.dtso
+@@ -0,0 +1,124 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * DT overlay for GP application board on AM654 EVM
++ *
++ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "k3-pinctrl.h"
++
++&{/} {
++	gp_vcc_5v0: fixedregulator-gp-vcc-5v0 {
++		compatible = "regulator-fixed";
++		regulator-name = "gp_vcc_5v0";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	codec_vcc_3v3: fixedregulator-codec-vcc-3v3 {
++		/* LP5912-3.3DRVT */
++		compatible = "regulator-fixed";
++		regulator-name = "codec_vcc_3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&gp_vcc_5v0>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	gp_vcc_1v8: fixedregulator-gp-vcc-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "gp_vcc_1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "AM65x-GPEVM";
++		simple-audio-card,widgets =
++			"Headphone", "Headphone Jack",
++			"Line", "Line In";
++		simple-audio-card,routing =
++			"Headphone Jack",	"HPLOUT",
++			"Headphone Jack",	"HPROUT",
++			"LINE1L",		"Line In",
++			"LINE1R",		"Line In";
++		simple-audio-card,format = "dsp_b";
++		simple-audio-card,bitclock-master = <&sound_master>;
++		simple-audio-card,frame-master = <&sound_master>;
++		simple-audio-card,bitclock-inversion;
++
++		simple-audio-card,cpu {
++			sound-dai = <&mcasp0>;
++		};
++
++		sound_master: simple-audio-card,codec {
++			sound-dai = <&tlv320aic3106>;
++			system-clock-frequency = <12000000>;
++		};
++	};
++};
++
++&main_pmx0 {
++	mcasp0_pins: mcasp0-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x01f4, PIN_INPUT, 5) /* (V24) PRG0_PRU0_GPO0.MCASP0_ACLKX */
++			AM65X_IOPAD(0x01f8, PIN_INPUT, 5) /* (W25) PRG0_PRU0_GPO1.MCASP0_AFSX */
++			AM65X_IOPAD(0x0204, PIN_OUTPUT, 5) /* (Y24) PRG0_PRU0_GPO4.MCASP0_AXR0 */
++			AM65X_IOPAD(0x0208, PIN_INPUT, 5) /* (V28) PRG0_PRU0_GPO5.MCASP0_AXR1 */
++		>;
++	};
++
++	aic3106_pins: aic3106-pins {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x011c, PIN_OUTPUT, 7) /* (AD19) PRG1_PRU0_GPO15.GPIO0_71 */
++		>;
++	};
++};
++
++&main_i2c0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	tlv320aic3106: tlv320aic3106@1b {
++		#sound-dai-cells = <0>;
++		compatible = "ti,tlv320aic3106";
++		reg = <0x1b>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&aic3106_pins>;
++		gpio-reset = <&main_gpio0 71 GPIO_ACTIVE_LOW>; /* gpio0_71 */
++		/* Regulators */
++		AVDD-supply = <&codec_vcc_3v3>;
++		IOVDD-supply = <&gp_vcc_1v8>;
++		DRVDD-supply = <&codec_vcc_3v3>;
++		DVDD-supply = <&gp_vcc_1v8>;
++	};
++};
++
++&mcasp0 {
++	status = "okay";
++	#sound-dai-cells = <0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcasp0_pins>;
++	op-mode = <0>;          /* MCASP_IIS_MODE */
++	tdm-slots = <2>;
++	/* 16 serializers */
++	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
++		1 2 0 0
++		0 0 0 0
++		0 0 0 0
++		0 0 0 0
++	>;
++	tx-num-evt = <32>;
++	rx-num-evt = <32>;
++};
+-- 
+2.25.1
+
