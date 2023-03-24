@@ -2,48 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4986C7ECD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C606C7EE1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 14:34:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbjCXNcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 09:32:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59688 "EHLO
+        id S231717AbjCXNeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 09:34:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbjCXNcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:32:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718AD13DD1;
-        Fri, 24 Mar 2023 06:32:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231773AbjCXNeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 09:34:10 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CC2196AD
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:33:59 -0700 (PDT)
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1520962AE2;
-        Fri, 24 Mar 2023 13:32:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C5B4C4339E;
-        Fri, 24 Mar 2023 13:31:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679664721;
-        bh=wvdaxhVUZXP2ZRN5FN1jyjGJf66FlAp1dzMNx8omUgA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dI5wOby7+SLCBQjHxGxWg4aUAsvlsWT8pOoMXnzthg6BtBwZoWO4X3NLxeLY4JdQ1
-         uxePXcPWZ/z26RYfVx1AjYG8RWoNTRNgcvwCYtWVBPtcK1McxI8POEMESl3NOjUUah
-         B+UXnuXmaFLcIKePhb75spPKpF/dXLXh218kr0mD1PKRVnLl6IcNH0bvo0rFFoqmKQ
-         asF3klXHFQ/0vq5m/iYVTcPaDvkhYAWxPzQdqCO7xSjVvgg7haPEUEkckH9K3Qh+98
-         l4AH+xbtJt1i/rkUVvDM8+KJJEqeJM5z6Ne0sdKWhEuSeRrvGHw+p4CNw2Qz9rhJ4t
-         xcNPQK6dxk5EQ==
-From:   Roger Quadros <rogerq@kernel.org>
-To:     nm@ti.com, vigneshr@ti.com
-Cc:     kristo@kernel.org, srk@ti.com, r-gunasekaran@ti.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am625-sk: Enable Type-C port for USB0
-Date:   Fri, 24 Mar 2023 15:31:50 +0200
-Message-Id: <20230324133150.43224-3-rogerq@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230324133150.43224-1-rogerq@kernel.org>
-References: <20230324133150.43224-1-rogerq@kernel.org>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 651DF4187F
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 13:33:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1679664835;
+        bh=baRLhktlWOxcXvwHFNv0QgrA5IgUVwTfkSsdMkEu4+4=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=b34nfFRc1TfAcYkAdvQbNUvYd2zY0XJmbIxm4YuEEqwbARIb3CoHSAAKNtgykJZDg
+         Sa3aBSNsXcgs36j1XG5VwnqCqmlvblPCKgNanTRh2QclfcW6rq7/MKz+5kUDI9rTq3
+         1YPXCASO/60wnY45RTVq3LFngmVKm3P1btuNk69+1sgkUOoWna6yXMF2w0+xvfOT3a
+         xGaAhqDf99yYwYAB1nBrTlpqs6+YWYx5nfpZMq3QUWlBzooWVwhZCAag0xz9NJpDWj
+         tiTc/F4JUEyWNnywsRt3MMmI4m3VNlCYxusYyVUMjePX81+VrxnlVapQRywAnF0bPK
+         CydrXFrzReHFA==
+Received: by mail-qt1-f200.google.com with SMTP id v7-20020a05622a188700b003e0e27bbc2eso1044491qtc.8
+        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 06:33:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679664834;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=baRLhktlWOxcXvwHFNv0QgrA5IgUVwTfkSsdMkEu4+4=;
+        b=U8dDoyovUoZeQm2IYN4RczBxU1+g6mYGmlPNMOG2EKJf48pnrq2nlEEynKhr0FjOdO
+         4p4tpePuvkPOi2OBjJD9+E1HH0gkgmr9GYk0UcXFcvQcMBjJ5BJfJxHN7KlUieOh0sIF
+         zMg78gRaZ6V+P9lNbYjLyS4FV5K+Y6HiNJxmHcRsDYelpqPO4dAhukfD9qNsNrma0uk1
+         J7qjKa16Bn8zniMbTgy4cuxA4LnLWyTw6Rg4zU6rmhTMnZfYX6FCZBeY1MJl+8IOcZvu
+         Z7l2/6ltg/Y2TWumqU2cyI5UQadIWvx4nueOksnizFpi68hO85ETPH850W4PNdrnfY/U
+         IsfQ==
+X-Gm-Message-State: AO0yUKWIE7N51yqe9tgskBx0oGIsr2Dmu5Dh42ZmrwhiLyz6lPL9E5bT
+        Ijvnykto0d4jEKiJ3Y4it4i5DIGOAuqqjbV9HUDce9rNSxN/XYJI+v4jBrPe29RxMfj80R42Vwq
+        x04FpDFO/EhwWMn3z3qy42GgXYBUX1q0elclqXKi22kenAsO472CRLek=
+X-Received: by 2002:a05:620a:a18:b0:746:7f12:f2f3 with SMTP id i24-20020a05620a0a1800b007467f12f2f3mr651794qka.13.1679664834417;
+        Fri, 24 Mar 2023 06:33:54 -0700 (PDT)
+X-Google-Smtp-Source: AK7set+PMWroXLuUn1KxCXS1+t1n+7MwGF6fo/rG+E0PHsQotj4U0S9r3aNHlQweDVOeiRzH2jNJj64BuscgHlEEvaU=
+X-Received: by 2002:a05:620a:a18:b0:746:7f12:f2f3 with SMTP id
+ i24-20020a05620a0a1800b007467f12f2f3mr651787qka.13.1679664834154; Fri, 24 Mar
+ 2023 06:33:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230322094820.24738-1-walker.chen@starfivetech.com> <20230322094820.24738-3-walker.chen@starfivetech.com>
+In-Reply-To: <20230322094820.24738-3-walker.chen@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Fri, 24 Mar 2023 14:33:38 +0100
+Message-ID: <CAJM55Z9VfY76ZxTxX-o56MNppALKbYuYvx6+fXvx=3LAg6gKDw@mail.gmail.com>
+Subject: Re: [PATCH v6 2/4] dmaengine: dw-axi-dmac: Add support for StarFive
+ JH7110 DMA
+To:     Walker Chen <walker.chen@starfivetech.com>
+Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
@@ -53,78 +81,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-USB0 is a Type-C port with dual data role and power sink.
+On Wed, 22 Mar 2023 at 10:48, Walker Chen <walker.chen@starfivetech.com> wrote:
+>
+> Add DMA reset operation in device probe and use different configuration
+> on CH_CFG registers according to match data. Update all uses of
+> of_device_is_compatible with of_device_get_match_data.
+>
+> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 40 ++++++++++++++++++++++++--
- 1 file changed, 38 insertions(+), 2 deletions(-)
+Thanks!
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index be027fad5f61..c80b12943881 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -315,6 +315,33 @@ &main_i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c0_pins_default>;
- 	clock-frequency = <400000>;
-+
-+	tps6598x@3f {
-+		compatible = "ti,tps6598x";
-+		reg = <0x3f>;
-+		interrupt-parent = <&exp1>;
-+		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-names = "irq";
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			self-powered;
-+			data-role = "dual";
-+			power-role = "sink";
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usb_con_hs: endpoint {
-+						remote-endpoint = <&usb0_hs_ep>;
-+					};
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_i2c1 {
-@@ -336,7 +363,7 @@ exp1: gpio@22 {
- 				   "UART1_FET_BUF_EN", "WL_LT_EN",
- 				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
- 				   "CSI_GPIO2", "PRU_3V3_EN",
--				   "HDMI_INTn", "TEST_GPIO2",
-+				   "HDMI_INTn", "PD_I2C_IRQ",
- 				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
- 				   "MCASP1_FET_SEL", "UART1_FET_SEL",
- 				   "TSINT#", "IO_EXP_TEST_LED";
-@@ -486,7 +513,16 @@ &usbss1 {
- };
- 
- &usb0 {
--	dr_mode = "peripheral";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	usb-role-switch;
-+
-+	port@0 {
-+		reg = <0>;
-+		usb0_hs_ep: endpoint {
-+			remote-endpoint = <&usb_con_hs>;
-+		};
-+	};
- };
- 
- &usb1 {
--- 
-2.34.1
-
+> ---
+>  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 38 ++++++++++++++++---
+>  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
+>  2 files changed, 34 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> index 4169e1d7d5ca..6cfcb541d8c3 100644
+> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> @@ -21,10 +21,12 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_dma.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/property.h>
+> +#include <linux/reset.h>
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+>
+> @@ -46,6 +48,10 @@
+>         DMA_SLAVE_BUSWIDTH_32_BYTES     | \
+>         DMA_SLAVE_BUSWIDTH_64_BYTES)
+>
+> +#define AXI_DMA_FLAG_HAS_APB_REGS      BIT(0)
+> +#define AXI_DMA_FLAG_HAS_RESETS                BIT(1)
+> +#define AXI_DMA_FLAG_USE_CFG2          BIT(2)
+> +
+>  static inline void
+>  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
+>  {
+> @@ -86,7 +92,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
+>
+>         cfg_lo = (config->dst_multblk_type << CH_CFG_L_DST_MULTBLK_TYPE_POS |
+>                   config->src_multblk_type << CH_CFG_L_SRC_MULTBLK_TYPE_POS);
+> -       if (chan->chip->dw->hdata->reg_map_8_channels) {
+> +       if (chan->chip->dw->hdata->reg_map_8_channels &&
+> +           !chan->chip->dw->hdata->use_cfg2) {
+>                 cfg_hi = config->tt_fc << CH_CFG_H_TT_FC_POS |
+>                          config->hs_sel_src << CH_CFG_H_HS_SEL_SRC_POS |
+>                          config->hs_sel_dst << CH_CFG_H_HS_SEL_DST_POS |
+> @@ -1367,10 +1374,11 @@ static int parse_device_properties(struct axi_dma_chip *chip)
+>
+>  static int dw_probe(struct platform_device *pdev)
+>  {
+> -       struct device_node *node = pdev->dev.of_node;
+>         struct axi_dma_chip *chip;
+>         struct dw_axi_dma *dw;
+>         struct dw_axi_dma_hcfg *hdata;
+> +       struct reset_control *resets;
+> +       unsigned int flags;
+>         u32 i;
+>         int ret;
+>
+> @@ -1398,12 +1406,25 @@ static int dw_probe(struct platform_device *pdev)
+>         if (IS_ERR(chip->regs))
+>                 return PTR_ERR(chip->regs);
+>
+> -       if (of_device_is_compatible(node, "intel,kmb-axi-dma")) {
+> +       flags = (uintptr_t)of_device_get_match_data(&pdev->dev);
+> +       if (flags & AXI_DMA_FLAG_HAS_APB_REGS) {
+>                 chip->apb_regs = devm_platform_ioremap_resource(pdev, 1);
+>                 if (IS_ERR(chip->apb_regs))
+>                         return PTR_ERR(chip->apb_regs);
+>         }
+>
+> +       if (flags & AXI_DMA_FLAG_HAS_RESETS) {
+> +               resets = devm_reset_control_array_get_exclusive(&pdev->dev);
+> +               if (IS_ERR(resets))
+> +                       return PTR_ERR(resets);
+> +
+> +               ret = reset_control_deassert(resets);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       chip->dw->hdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
+> +
+>         chip->core_clk = devm_clk_get(chip->dev, "core-clk");
+>         if (IS_ERR(chip->core_clk))
+>                 return PTR_ERR(chip->core_clk);
+> @@ -1554,8 +1575,15 @@ static const struct dev_pm_ops dw_axi_dma_pm_ops = {
+>  };
+>
+>  static const struct of_device_id dw_dma_of_id_table[] = {
+> -       { .compatible = "snps,axi-dma-1.01a" },
+> -       { .compatible = "intel,kmb-axi-dma" },
+> +       {
+> +               .compatible = "snps,axi-dma-1.01a"
+> +       }, {
+> +               .compatible = "intel,kmb-axi-dma",
+> +               .data = (void *)AXI_DMA_FLAG_HAS_APB_REGS,
+> +       }, {
+> +               .compatible = "starfive,jh7110-axi-dma",
+> +               .data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),
+> +       },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_dma_of_id_table);
+> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> index e9d5eb0fd594..eb267cb24f67 100644
+> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> @@ -33,6 +33,7 @@ struct dw_axi_dma_hcfg {
+>         /* Register map for DMAX_NUM_CHANNELS <= 8 */
+>         bool    reg_map_8_channels;
+>         bool    restrict_axi_burst_len;
+> +       bool    use_cfg2;
+>  };
+>
+>  struct axi_dma_chan {
+> --
+> 2.17.1
+>
