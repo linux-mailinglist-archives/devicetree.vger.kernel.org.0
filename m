@@ -2,84 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A406C8054
-	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 15:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5746C8076
+	for <lists+devicetree@lfdr.de>; Fri, 24 Mar 2023 15:56:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231952AbjCXOwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Mar 2023 10:52:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47268 "EHLO
+        id S231912AbjCXO4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Mar 2023 10:56:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbjCXOwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 10:52:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4D2C178;
-        Fri, 24 Mar 2023 07:52:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E9481B824C9;
-        Fri, 24 Mar 2023 14:52:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19939C433D2;
-        Fri, 24 Mar 2023 14:52:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679669529;
-        bh=0PpDPmjLSqLkyprFWnCZwIMNanhy8NMfDChEItYUYNA=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=kvEY9K6hJSrfGheCe0CCWiJvR7+SACqnTDQvORE8gcs3GXKHKrl8XyQh5xdLsjJGN
-         f+RgCo4voThMwXliDU07e4JaZHMnU/A8CXebqL+OYdGaGOthpKlAl8Jjd2fjiSiA5s
-         LjNVYwmpsHVbh0RifGqcwtu7N/6FZO1abie/+uGBq4AsHmCBJqympi80JQxxRt1zsG
-         WYddlOuILALfgxi3bukwSc8UJxrMQmwr5V9JDVU2YHaZRgKZ+KyBzzk2maiI+l4wUb
-         8l9L+PSnRbTvPAdjvn5jwNpzAri92KiyY6B25NGeZ0+VLG/zhWBjvawRHr1iF+R+mv
-         qBASAYbByTAFw==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231877AbjCXO4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Mar 2023 10:56:12 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9513F2D5F;
+        Fri, 24 Mar 2023 07:56:10 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 23C035FD35;
+        Fri, 24 Mar 2023 17:56:08 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1679669768;
+        bh=jKGFF0Da4+1cXaHKpDC/eneHomsmAiAzeGToPU73Ezw=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=n9hzZenddFoehGW/bLJK8iYJ1+F+cmLzgGNjzI05HGrl0Dbm9UYRrZOoPP09iAy7W
+         gKUbM5uO2+5SDZWi16LZdE7mRi2Xxhg+Am1QSs0i3jd7ylClla2wTVMZjGex/WgZPY
+         6i4FOs0642yY94YTdoRTfq3LP7K3OmxroX4Auqy3TuNUwVZ7U7yvgzgt6H5PVaE6HJ
+         hNf4Ehyy4P+32/cAZbdTXsJ/0vKUC18x3q5i8tRtA6fGnNKJS5dfr+6YcoJLzBeego
+         XK2DWZGWgq7HkrcpsCyBvyjfuAeSM0N9gbR4gt6wOBYwxHe8yl9hCLa25DwLpUnnb5
+         o2xr2q6GEBeVA==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri, 24 Mar 2023 17:56:07 +0300 (MSK)
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     <krzysztof.kozlowski@linaro.org>, <robh@kernel.org>,
+        <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <jianxin.pan@amlogic.com>
+CC:     <kernel@sberdevices.ru>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <rockosov@gmail.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v3] firmware: meson_sm: populate platform devices from sm device tree data
+Date:   Fri, 24 Mar 2023 17:55:57 +0300
+Message-ID: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 1/2] dt-bindings: wireless: add ath11k pcie bindings
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230321094011.9759-2-johan+linaro@kernel.org>
-References: <20230321094011.9759-2-johan+linaro@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167966952416.27260.9867436581416631920.kvalo@kernel.org>
-Date:   Fri, 24 Mar 2023 14:52:05 +0000 (UTC)
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/24 06:52:00 #21002836
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Johan Hovold <johan+linaro@kernel.org> wrote:
+In some meson boards, secure monitor device has children, for example,
+power secure controller. By default, secure monitor isn't the bus in terms
+of device tree subsystem, so the of_platform initialization code doesn't
+populate its device tree data. As a result, secure monitor's children
+aren't probed at all.
 
-> Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6855
-> for which the calibration data variant may need to be described.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Run the 'of_platform_populate()' routine manually to resolve such issues.
 
-Patch applied to ath-next branch of ath.git, thanks.
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+Changes v3 since v2 at [2]:
+    - unmap meson sm shmem region if devm_of_platform_populate() failed
+    - move pr_info() log about successfully enabled secure-monitor to
+      the end of probe() routine
 
-b6b88111c0db dt-bindings: net: wireless: add ath11k pcie bindings
+Changes v2 since v1 at [1]:
+    - decline the device tree /firmware based solution
+    - introduce devm_of_platform_populate() solution in the meson sm driver
 
+Links:
+    [1] https://lore.kernel.org/all/20230323185548.13731-1-ddrokosov@sberdevices.ru/
+    [2] https://lore.kernel.org/linux-amlogic/20230324140141.6743-1-ddrokosov@sberdevices.ru/
+---
+ drivers/firmware/meson/meson_sm.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index 77aa5c6398aa..1a99dbc274fa 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -311,11 +311,14 @@ static int __init meson_sm_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, fw);
+ 
+-	pr_info("secure-monitor enabled\n");
++	if (devm_of_platform_populate(dev))
++		goto out_in_base;
+ 
+ 	if (sysfs_create_group(&pdev->dev.kobj, &meson_sm_sysfs_attr_group))
+ 		goto out_in_base;
+ 
++	pr_info("secure-monitor enabled\n");
++
+ 	return 0;
+ 
+ out_in_base:
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230321094011.9759-2-johan+linaro@kernel.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.36.0
 
