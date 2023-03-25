@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D13806C8DE3
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 586A96C8DE5
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:12:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231915AbjCYMMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 08:12:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39738 "EHLO
+        id S231825AbjCYMMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 08:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231740AbjCYMMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:12:22 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE8F7136CA
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:12:20 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id s8so5478226lfr.8
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:12:20 -0700 (PDT)
+        with ESMTP id S231906AbjCYMMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:12:43 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C01E14225
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:12:39 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id e11so4279190lji.8
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:12:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679746339;
+        d=linaro.org; s=google; t=1679746358;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mx5GKFNJIsSUryNV2aWwLZ8jV1O9SFf3vbPq664rBAE=;
-        b=XKXucM7jXM1x4OMWNfXoq1MPrMiNYQLUQvME3Ywl3Z1iOFCzZrhOvPU7S4kt3zZyWU
-         9ly8j2CE5F4SZ0pvkzMNh9AmSRr5ES+BlEvcehK3uW3IRmNfIn/oZ9j+4u9kfLWywKNq
-         0DBCB5G8x1MaKvVcVfUz4MebYt9Rq8K39AyomJjnAs72fp9sV76/CTM8aUdII4rIHEPj
-         YSk+/QkGd8ECm8TgzvhM8Rfu3V5Q8DUuNMVJUpQXXW6CgKZDMcdb1UZZV4Xs63QGz/vV
-         qXMwLPswRsGAE9afmRepGQPaqh7CrTSNLuMfMBQ8C5YB/6x1YINl2cWTDYQpyFLhZveX
-         bH9g==
+        bh=KOKj8v+JeWrMhJcyWb6hLuGQlmRfk5jovd4JgoLoghk=;
+        b=xnFpoHV+sryGfPdc6MZcPJzVMgscfCdoloDUpJKGACZmjzACWiBY/YeetCYrHJoDqr
+         CQOgHrIkg7Dk6njY/PsAZ4qkxxAAWUZT5aSaZ92T2CfQ+NzG8q1SQVVPnIhq8N7uiHo/
+         DirAk4lMSMnUYWCK6ZZ4PLNFBZCq1rZs5nXAAi2laA/Xrxf5XH8sEX9PpB3UQLYQ+jjx
+         QH0HUMm1xCZwReVX9ICgjC0hQwQrNl/ZFOR5Vndo7DVIkei2xMDcelo2vyNKZNKWW6XJ
+         WKSzs3DsviIREqTCGl2ietgk/oQD/cKur0ZWTebVxTCKM6Bby2YjhxhJ9Pzt8ycyGYBm
+         ol0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679746339;
+        d=1e100.net; s=20210112; t=1679746358;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mx5GKFNJIsSUryNV2aWwLZ8jV1O9SFf3vbPq664rBAE=;
-        b=3CbfpmcnlZGGZ33WA4vNl6QJ9BbuxvBGLV5qjq31/1kJ5ofOerUgztjoH7asK9H8yE
-         nmzezfYJhvZp4yZhL/xaUz+Z9iw2t6qfZHwToWBZ1/RFIFtIWcQav2SoPa/5OJBH6iWS
-         wSYk4JLEMAtIq5JfGS60/YqhrKJXN86f0Dt8sTRXOxcRbDn6Bgj7vlCiN5H/D41VpDLE
-         /bOk8MJUjutuE6rEXgr0x9LvPqim1YjgsU5w0TYTHRVYoMnbJfM5y9ZpzbkhqhlP6M3f
-         6BBQ/DKqcg50R7TjCqyBb7p/+IiHxlYYHJwFp6oXIWpn7D53K6XGVu93N5L4kQvfUPJP
-         IqeA==
-X-Gm-Message-State: AAQBX9dO2N0EOSbZkD6+qmWmLl7a8ecxsk9ox82JMFB9MYEqayRaa11F
-        F28Eqi9lgb20o7VgTNOI1jdX4Q==
-X-Google-Smtp-Source: AKy350aF/hWJDU6/B+zXSPwlitxzpBseuHLcNf7bdpQocER3sjipiZaGiW6Mg0s5VGAVbSocSqvQOA==
-X-Received: by 2002:ac2:5a4b:0:b0:4ea:918a:4b97 with SMTP id r11-20020ac25a4b000000b004ea918a4b97mr1925641lfn.63.1679746339021;
-        Sat, 25 Mar 2023 05:12:19 -0700 (PDT)
+        bh=KOKj8v+JeWrMhJcyWb6hLuGQlmRfk5jovd4JgoLoghk=;
+        b=zsKUprrX0KhDkCtUgtFvOWJo/GB5DS05hi+gJFKqPpv7Jo0ShaIjxsgrjpBWT2PUYh
+         RgaLOnAhkxgclRiDMFPYvCuAhHEUSLMNocRru0W2b23Bfm4K1omx1bHyMPGz+BXEpYQe
+         4AB+DLuA9Cw2AMM+IHfJPeczrW5nKv32kfANvc7hwHXJn0I/qfBvL03eF/8tLVrsCVEW
+         bBMS8ppTEPsj+mYxPRnVZihWCTbdOmCmVUBaCnLG98eWXgOxu8OwKJtMA4flthWsU5tj
+         nYthRi/k9OpQyoZ+qLWknTyPs4F48yL9xHryDJvaP+BlND5dOcfP8Vn2EdYOpxq7kHOy
+         jZCA==
+X-Gm-Message-State: AAQBX9eczVDRZYd4czXGc+lbDmqR0tbidV5SXWwElS669qMBHdqOXLBc
+        W7+tX0csv9Ggg64pKDGSHS93KA==
+X-Google-Smtp-Source: AKy350YJOtcGJnKqfsNpN8iVYHLZ9AlcyJIO1TgrZiWY+EQcdbbQGOW+NvSYskIOIHmQ2qK0/ScIrQ==
+X-Received: by 2002:a2e:9997:0:b0:299:ac58:1c4 with SMTP id w23-20020a2e9997000000b00299ac5801c4mr1862550lji.1.1679746357933;
+        Sat, 25 Mar 2023 05:12:37 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id q4-20020ac25284000000b004e1b880ba20sm3798241lfm.292.2023.03.25.05.12.17
+        by smtp.gmail.com with ESMTPSA id j3-20020a19f503000000b004d6ebbad989sm3802380lfb.1.2023.03.25.05.12.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 05:12:18 -0700 (PDT)
-Message-ID: <f600869e-0fd8-ca19-1baf-d23f7a9103d6@linaro.org>
-Date:   Sat, 25 Mar 2023 13:12:17 +0100
+        Sat, 25 Mar 2023 05:12:37 -0700 (PDT)
+Message-ID: <e90454f3-78d4-ba78-6f60-248b550a9fa3@linaro.org>
+Date:   Sat, 25 Mar 2023 13:12:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx65: add IPA information
+Subject: Re: [PATCH 2/2] ARM: dts: qcom-sdx65: move status properties to end
+ of nodes
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
         agross@kernel.org
 Cc:     quic_rohiagar@quicinc.com, caleb.connolly@linaro.org,
@@ -67,10 +67,9 @@ Cc:     quic_rohiagar@quicinc.com, caleb.connolly@linaro.org,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230324201528.2540564-1-elder@linaro.org>
- <20230324201528.2540564-2-elder@linaro.org>
- <98fcbdd4-77b3-5b17-7102-c590f1a5a63e@kernel.org>
+ <20230324201528.2540564-3-elder@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <98fcbdd4-77b3-5b17-7102-c590f1a5a63e@kernel.org>
+In-Reply-To: <20230324201528.2540564-3-elder@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -85,86 +84,97 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 25.03.2023 12:14, Krzysztof Kozlowski wrote:
-> On 24/03/2023 21:15, Alex Elder wrote:
->> Add IPA-related nodes and definitions to "sdx65.dtsi".  The SMP2P
->> nodes (ipa_smp2p_out and ipa_smp2p_in) are already present.
->>
->> Enable IPA in "sdx65-mtp.dts"; this GSI firmware is loaded by Trust
->> Zone on this platform.
->>
->> Tested-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->> Signed-off-by: Alex Elder <elder@linaro.org>
->> ---
->>  arch/arm/boot/dts/qcom-sdx65-mtp.dts |  5 ++++
->>  arch/arm/boot/dts/qcom-sdx65.dtsi    | 38 ++++++++++++++++++++++++++++
->>  2 files changed, 43 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->> index ed98c83c141fc..72e25de0db5fc 100644
->> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->> @@ -245,6 +245,11 @@ &blsp1_uart3 {
->>  	status = "okay";
->>  };
->>  
->> +&ipa {
->> +	qcom,gsi-loader = "skip";
->> +	status = "okay";
->> +};
->> +
->>  &qpic_bam {
->>  	status = "okay";
->>  };
->> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
->> index 192f9f94bc8b4..360d6dc144811 100644
->> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
->> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
->> @@ -11,6 +11,7 @@
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  #include <dt-bindings/power/qcom-rpmpd.h>
->>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->> +#include <dt-bindings/interconnect/qcom,sdx65.h>
->>  
->>  / {
->>  	#address-cells = <1>;
->> @@ -299,6 +300,43 @@ tcsr_mutex: hwlock@1f40000 {
->>  			#hwlock-cells = <1>;
->>  		};
->>  
->> +		ipa: ipa@3e04000 {
->> +			compatible = "qcom,sdx65-ipa";
->> +
->> +			iommus = <&apps_smmu 0x5e0 0x0>,
->> +				 <&apps_smmu 0x5e2 0x0>;
->> +			reg = <0x3f40000 0x10000>,
->> +			      <0x3f50000 0x5000>,
->> +			      <0x3e04000 0xfc000>;
->> +			reg-names = "ipa-reg",
->> +				    "ipa-shared",
->> +				    "gsi";
->> +
->> +			interrupts-extended = <&intc GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
->> +					      <&intc GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
->> +					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->> +					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
->> +			interrupt-names = "ipa",
->> +					   "gsi",
->> +					   "ipa-clock-query",
->> +					   "ipa-setup-ready";
+On 24.03.2023 21:15, Alex Elder wrote:
+> Move a few device tree "status" properties so that they are the last
+> specified property, in "qcom-sdx65-mtp.dts" and "qcom-sdx65.dtsi".
+> Note that properties must always be specified before sub-nodes.
 > 
-> These look misaligned.
-> 
-> With above:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-With this and moving iommus below interconnect:
-
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Alex Elder <elder@linaro.org>
+> ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm/boot/dts/qcom-sdx65-mtp.dts | 6 +++---
+>  arch/arm/boot/dts/qcom-sdx65.dtsi    | 8 +++++---
+>  2 files changed, 8 insertions(+), 6 deletions(-)
 > 
-> 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+> index 72e25de0db5fc..57bc3b03d3aac 100644
+> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+> @@ -270,8 +270,8 @@ nand@0 {
+>  };
+>  
+>  &remoteproc_mpss {
+> -	status = "okay";
+>  	memory-region = <&mpss_adsp_mem>;
+> +	status = "okay";
+>  };
+>  
+>  &usb {
+> @@ -283,14 +283,14 @@ &usb_dwc3 {
+>  };
+>  
+>  &usb_hsphy {
+> -	status = "okay";
+>  	vdda-pll-supply = <&vreg_l4b_0p88>;
+>  	vdda33-supply = <&vreg_l10b_3p08>;
+>  	vdda18-supply = <&vreg_l5b_1p8>;
+> +	status = "okay";
+>  };
+>  
+>  &usb_qmpphy {
+> -	status = "okay";
+>  	vdda-phy-supply = <&vreg_l4b_0p88>;
+>  	vdda-pll-supply = <&vreg_l1b_1p2>;
+> +	status = "okay";
+>  };
+> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> index 360d6dc144811..a7adf28a395a8 100644
+> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
+> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> @@ -224,16 +224,15 @@ usb_hsphy: phy@ff4000 {
+>  				     "qcom,usb-snps-hs-7nm-phy";
+>  			reg = <0xff4000 0x120>;
+>  			#phy-cells = <0>;
+> -			status = "disabled";
+>  			clocks = <&rpmhcc RPMH_CXO_CLK>;
+>  			clock-names = "ref";
+>  			resets = <&gcc GCC_QUSB2PHY_BCR>;
+> +			status = "disabled";
+>  		};
+>  
+>  		usb_qmpphy: phy@ff6000 {
+>  			compatible = "qcom,sdx65-qmp-usb3-uni-phy";
+>  			reg = <0x00ff6000 0x1c8>;
+> -			status = "disabled";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+>  			ranges;
+> @@ -247,6 +246,8 @@ usb_qmpphy: phy@ff6000 {
+>  				 <&gcc GCC_USB3_PHY_BCR>;
+>  			reset-names = "phy", "common";
+>  
+> +			status = "disabled";
+> +
+>  			usb_ssphy: phy@ff6200 {
+>  				reg = <0x00ff6e00 0x160>,
+>  				      <0x00ff7000 0x1ec>,
+> @@ -393,7 +394,6 @@ mem_noc: interconnect@9680000 {
+>  		usb: usb@a6f8800 {
+>  			compatible = "qcom,sdx65-dwc3", "qcom,dwc3";
+>  			reg = <0x0a6f8800 0x400>;
+> -			status = "disabled";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+>  			ranges;
+> @@ -423,6 +423,8 @@ usb: usb@a6f8800 {
+>  
+>  			resets = <&gcc GCC_USB30_BCR>;
+>  
+> +			status = "disabled";
+> +
+>  			usb_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x0a600000 0xcd00>;
