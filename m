@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D0D56C8AE5
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 05:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C82A26C8C3C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 08:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230292AbjCYEdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 00:33:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46604 "EHLO
+        id S229895AbjCYHk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 03:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbjCYEdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 00:33:37 -0400
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BACB10E4
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 21:33:35 -0700 (PDT)
-Received: by mail-ua1-x933.google.com with SMTP id i22so2777363uat.8
-        for <devicetree@vger.kernel.org>; Fri, 24 Mar 2023 21:33:35 -0700 (PDT)
+        with ESMTP id S229699AbjCYHk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 03:40:28 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D3355267;
+        Sat, 25 Mar 2023 00:40:27 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id n125so4839667ybg.7;
+        Sat, 25 Mar 2023 00:40:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679718814;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+FwD1qe1aEhxGQwbkfsAcs59fzQAp+267YsErGDwRDQ=;
-        b=iOFPi2EpJxYYxobOHGqjcpDoFg3I0Cf9cCiHsWV6gSJJ/2aZpe6HW9DB/PQLkXxGzN
-         qj2kCyi+v1dUPETrWiILCcrZHHflu9iCIqKBzkAHRMM9GRgZ/m/uLOtcWmX4mAJDumVZ
-         UNpPB7YoMkihR/Bvc44JXgVgX8VjDhAwXtAfY=
+        d=gmail.com; s=20210112; t=1679730026;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rYsDanyFIFeDSw0nKRS4qdlqbTjBz25V3/PJAUjnPhI=;
+        b=cJ2pOCHq2roMIGE7y56sK4+Y1Ez+n9X9FjvFc4STQcE4BnhdVBB8vN/5gGZwYB5z4T
+         n2ueTvW4Qjdv2inJf9st+Wj9r7u4pQAL0vELkFaNfVFuS+KH13hrM69ChquyHgud+wyk
+         UZM54S+QjlVUTC1bov2L1EUuEYY1frv7k2sL6LzPpF0OfoAuQJBFtp18iPH9tOBIgVoZ
+         JUs53gityYzkL85dAMd/CjHIXi3LJmunY4z2jGXKxfDoQi5FyjC03ngWZ7zmERpjMG3R
+         l7910vJbctm4yWM6Oxn+oSD64k1wiY5JqSlIOJE7X/b/eiOfLXPs3hw91GYR5WCbnCEz
+         akYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679718814;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+FwD1qe1aEhxGQwbkfsAcs59fzQAp+267YsErGDwRDQ=;
-        b=PB94wDkVH32gZu4IFAPX41Z4Y4YwvFRM8zJmUkf3DJtkFsrhuai1pVfjl7I958Ipfd
-         CAgwDg1wG0j7FMTlW4f3uJcChx+YkOMr0gOZE2EIJFrcV5VrKQEnqvO+mR6K0tt9zj62
-         VLeVcG8Lr4etiFUehsN661VrILx1SZ2AGZ7+vzEmZuDt//6POoze5d7Xp2bMDRV+vgh6
-         Ov7uZiL5o/y8N6kO3ln9VLclHwqZ92rDlYFmyWopE/gP9c3UQ/C26osSMvNK91UZIQVR
-         OmLE8wRosdOMXBoKlzRn9V+Qlve9CPL5MfRuvA+vqKspV4m8HH+qY0vSk/xIm/WXN5dr
-         dacg==
-X-Gm-Message-State: AO0yUKVMJLZDc7STjvg0JBezmeEmM6h5sYEjV++QU2rWhtUIqpIzyXS/
-        XltL1FNvQ8O07iIdMmI7N2JT6YpR71YklwyHECLz9w==
-X-Google-Smtp-Source: AK7set8snxwLMBw9XRJSwzZ8WvoC9Kq12OK3/hxUxctwmRuEURtsmj8QD8ZysLyTsXXDQnMndDgdvCTkYeUbBR3rXP4=
-X-Received: by 2002:a05:6122:7c9:b0:401:7625:e9e3 with SMTP id
- l9-20020a05612207c900b004017625e9e3mr7173590vkr.1.1679718814257; Fri, 24 Mar
- 2023 21:33:34 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679730026;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rYsDanyFIFeDSw0nKRS4qdlqbTjBz25V3/PJAUjnPhI=;
+        b=CmgNYbGVuPy2oJdPTZFEoOyaeEjzAtMFOUa6P744MAvJ9EG8bIQnOE05mNIw6tCO1z
+         wjlkPYsThpP2lMmBohqMDnQV8t/Z93wmEgqUAWnQ0L9NsocvjyBTF+SyyPGW3jUrf2LY
+         iEFomsU6Gwr2GqLDeiHc7VVXRqvahowam0M8ZIc0AbQRvi7Mb4CxP8LC0z3c9kyU6pKa
+         CjvfNP+Z7yisUSPuGOqLkOqQ4zGRREPFvAX7JQQsgplpD8YETK9nWrJ8N+b8Ze7XObIh
+         j4FkoP8eEXdFYg2ZH3X5M7DSNSNfzA67LPKEYOk3NpBk8Jh1HeyaZ5e+JUN2XM9T6WDy
+         GI2A==
+X-Gm-Message-State: AAQBX9eTHCboxlV2cHUGNCrIZCr44UB3W0JqMWVm55mfAx5F1cmKip6X
+        rnIdvYMptL+6LswKmqyRVyU=
+X-Google-Smtp-Source: AKy350YBztxmYOrO82qvnRcnyHLBYIfQ+edDVxGjdeutSueof48FJ8pb1sKRae6EsG8leonu3IRT7Q==
+X-Received: by 2002:a25:db4b:0:b0:b6a:51c9:d7ba with SMTP id g72-20020a25db4b000000b00b6a51c9d7bamr4845084ybf.20.1679730026306;
+        Sat, 25 Mar 2023 00:40:26 -0700 (PDT)
+Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
+        by smtp.googlemail.com with ESMTPSA id w20-20020a25c714000000b00b7767ca7498sm969629ybe.53.2023.03.25.00.40.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Mar 2023 00:40:25 -0700 (PDT)
+From:   Tianling Shen <cnsztl@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Tianling Shen <cnsztl@gmail.com>, Andy Yan <andyshrk@163.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Vincent Legoll <vincent.legoll@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] Add support for NanoPi R2C and OrangePi R1 Plus LTS
+Date:   Sat, 25 Mar 2023 15:40:18 +0800
+Message-Id: <20230325074022.9818-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
- <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com> <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
-In-Reply-To: <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Sat, 25 Mar 2023 12:33:23 +0800
-Message-ID: <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
-To:     Balsam CHIHI <bchihi@baylibre.com>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,73 +79,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre.com> =
-wrote:
->
-> Hi Chen-Yu,
->
-> I suspect the bug comes from incorrect calibration data offsets for AP
-> Domain because you confirm that MCU Domain probe runs without issues.
-> Is it possible to test something for us to confirm this theory (i
-> don't have an mt8192 board on hand now), when you have the time of
-> course?
-> We would like to test AP Domain's calibration data offsets with a
-> working one, for example :
->
->  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D {
->                 {
-> -               .cal_offset =3D { 0x25, 0x28 },
-> +               .cal_offset =3D { 0x04, 0x04 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_VPU0 },
->                         { .dt_id =3D MT8192_AP_VPU1 }
-> @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
-> mt8192_lvts_ap_data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x2e, 0x31 },
-> +               .cal_offset =3D { 0x04, 0x04 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_GPU0 },
->                         { .dt_id =3D MT8192_AP_GPU1 }
-> @@ -1346,7 +1346,7 @@ static const struct lvts_ctrl_data
-> mt8192_lvts_ap_data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x37, 0x3a },
-> +               .cal_offset =3D { 0x04, 0x04 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_INFRA },
->                         { .dt_id =3D MT8192_AP_CAM },
-> @@ -1356,7 +1356,7 @@ static const struct lvts_ctrl_data
-> mt8192_lvts_ap_data_ctrl[] =3D {
->                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
->         },
->         {
-> -               .cal_offset =3D { 0x40, 0x43, 0x46 },
-> +               .cal_offset =3D { 0x04, 0x04, 0x04 },
->                 .lvts_sensor =3D {
->                         { .dt_id =3D MT8192_AP_MD0 },
->                         { .dt_id =3D MT8192_AP_MD1 },
->
-> This example is tested and works for mt8195,
-> (all sensors use the same calibration data offset for testing purposes).
->
-> Thank you in advance for your help.
+Hi, this patchset adds two new boards using the Motorcomm NIC which
+got supported/fixed in kernel v6.3:
 
-The MCU ones are still tripping though. If I change all of them to 0x04,
-then nothing trips. There's also a bug in the interrupt handling code
-that needs to be dealt with.
+* FriendlyARM NanoPi R2C - yt8521s
+* Xunlong OrangePi R1 Plus LTS - yt8531c
 
-AFAICT the calibration data is stored differently. If you look at ChromeOS'=
-s
-downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT8192,
-and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
-MT8195 has all data sequentially stored, while MT8192 has most data stored
-in lower 24 bits of each 32-bit word, and the highest 8 bits are then used
-to pack data for the remaining sensors.
+Changes since v1:
+* https://lore.kernel.org/linux-rockchip/20230323123807.11882-1-cnsztl@gmail.com/
+* Updated dt-binding description for NanoPi R2C
 
-Regards
-ChenYu
+Tianling Shen (4):
+  dt-bindings: Add doc for FriendlyARM NanoPi R2C
+  arm64: dts: rockchip: Add FriendlyARM NanoPi R2C
+  dt-bindings: Add doc for Xunlong OrangePi R1 Plus LTS
+  arm64: dts: rockchip: Add Xunlong OrangePi R1 Plus LTS
+
+ .../devicetree/bindings/arm/rockchip.yaml     | 12 ++++--
+ arch/arm64/boot/dts/rockchip/Makefile         |  2 +
+ .../boot/dts/rockchip/rk3328-nanopi-r2c.dts   | 40 +++++++++++++++++++
+ .../rockchip/rk3328-orangepi-r1-plus-lts.dts  | 40 +++++++++++++++++++
+ 4 files changed, 90 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2c.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+
+-- 
+2.40.0
+
