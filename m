@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3CB6C8DC2
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E57C76C8DC5
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:03:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231770AbjCYMDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 08:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
+        id S231327AbjCYMDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 08:03:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231740AbjCYMDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:03:38 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0D77ED1
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:32 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id h9so4279206ljq.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:32 -0700 (PDT)
+        with ESMTP id S231248AbjCYMDs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:03:48 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB05912CC7
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:38 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id j11so5431548lfg.13
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679745811;
+        d=linaro.org; s=google; t=1679745817;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A+HvbnHAFO6mX+JqArCA+vYEYcRN5IjHek0RMpHLSYE=;
-        b=pmlxprMkzSvX3zwFUp25X3fcETxfhi7YTQEyol6Hac9WwBrOuVVgMbQPKY7oO8O8Xx
-         P957xQYV2akDnvN6w0yjR57x1D7EN140MWXRSC6p7QTbcwRiDMYJXz3ieqhZlq5+yPQj
-         yUsTLd8A1ZcxtXuwT0Kj/L5WBy/wtdq/stJS5LlcYvngVY1MHjPkVlTB8i2aPxMovigi
-         L7U9k3/VAPTi8jpMISrCTrADhcFYyWcGyXlKKBKD544/lBEU4ce5hZGWKAqoywHa+bnX
-         cs+L6t0rnIMHiOKZEs+IjMNtOnQTmwHAmRGo/vvOF76rfjhr1ifwGUo0zSGVL0txunMl
-         jq3g==
+        bh=6j1VQpMAyc7WS9oetMlOZogxFB7dE/fVbl9yOMaHBRY=;
+        b=GiHwvlAQ4X6GhvAwXr/mBga1uvXb22rx0lW9XQ19QE2FiB4mJ11kkMb7ZH624BMK1y
+         dISAG4gT7tdF6XLkbYVSREf3e118u8/OPoOGda1dvAttMwj9KZFNeGjv4TIuugILgj9n
+         KECcHTwyj6lxhToi4AjVJwTeWw4iXAvBblaY1hmb3NfBGPzHoEHe1hWvNsM2bkHZ9fbU
+         PjystD/0azs/4TLvi6st0FhPoqEUieqCpr1j9iUJNNc41k3xa2KBbxX/rCVZ1ubbuOFi
+         EcDLclt8935MZ1zI/tt1L3BjnJ9dVRaZKhnfn3W4tj7CAIvoLWGrRx7oCT7H0fgjVjgj
+         e9Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679745811;
+        d=1e100.net; s=20210112; t=1679745817;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A+HvbnHAFO6mX+JqArCA+vYEYcRN5IjHek0RMpHLSYE=;
-        b=DP7DHUkgm9dOC3/Z72TBvMiKg3ZW7en9TDWKuxzdsJ6hxudTFwYjzsqpCRv//7St4O
-         JArn/N9HGtHf706S8viaNRAJ40PUuFVwRM9rYNYJF30Sza//fdVj5NC9DgOzOAND4SMg
-         Np4IpTJR7WcS1ZtW2PeFNwfmVwQdA2aMy48KQuexLOIHJyk+3n12s/aOFKl87wfaSJTv
-         Vh9sYAZ6Zcm4Md45R6Z11UqBD8GaiwX+Ovxc34pGcJuBQU9FOMR9pWydm48TM/OYFQ9q
-         QMXWCyRJTtvb3gx5Tmm9GF7dARazHTTqhY4AtrUoxhZW4YqAJZMIdpTDOHu6et1TFqwO
-         QAXQ==
-X-Gm-Message-State: AAQBX9d+gTZvtTLWquhbaMJfF+OdfuJus9L/4g1zc/zqspkj8GF/wnmk
-        3LDIxhtpWpGvTUG7ZBso+svXKA==
-X-Google-Smtp-Source: AKy350ZGsgRIDOvaMDS3h3addre0DOEsaX5Ta6RVe2+xSwrnaX50tJynYFBELwXJsjD0h7OfZv9lUw==
-X-Received: by 2002:a2e:9c04:0:b0:29e:e7b1:1202 with SMTP id s4-20020a2e9c04000000b0029ee7b11202mr1671306lji.43.1679745810922;
-        Sat, 25 Mar 2023 05:03:30 -0700 (PDT)
+        bh=6j1VQpMAyc7WS9oetMlOZogxFB7dE/fVbl9yOMaHBRY=;
+        b=MxVmlJ3d460r3i0+qRBPhWLAyY+d6LS743OgcQDXYR1//yCQ82tYp8VfRiTPgnm0mQ
+         0W7z3N0r39v+HyE6SD4pYZ4IgI3VyOq55qEpfPXqSnOzKcqN012Fb66wPZFSgpTTWfRS
+         uT83rR8uMJEiVBHLmgLQ2pzNvToyOKP8+w4kWfSv2yWsUcnFJsKY78MRzl/OEpGoY5lk
+         TRDhtevfXTV85lDs9wXDrlR4uUEe8QUBMtUEutHzHIwZD7CHBAGRO5WXo8tpkYUu8BkX
+         GtHigXO8HDkXCHy/p791/C3QOZ4Igyb1ERIQAqQy1p8Tkh3SpeNRHQ5FvxGqXLCtQjSh
+         8tNg==
+X-Gm-Message-State: AAQBX9dsIJ5+jVSWSDj5Dv52If5c6di7U5UStHpJHd+yH5EAyXDOXS1A
+        i948j0fevQ2yEel7ln7pTEnsNw==
+X-Google-Smtp-Source: AKy350ZzN9OJhP/Ot1TSpNvOZEsVl9lYEzZ7Q/BLVb1/ztv6yS1z6ei13XsxcqimDHzvulXz6jwyfg==
+X-Received: by 2002:ac2:43a4:0:b0:4ea:f526:5bee with SMTP id t4-20020ac243a4000000b004eaf5265beemr1490748lfl.11.1679745817306;
+        Sat, 25 Mar 2023 05:03:37 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e904c000000b00299f0194108sm3786959ljg.31.2023.03.25.05.03.29
+        by smtp.gmail.com with ESMTPSA id h16-20020a05651211d000b004db3e445f1fsm3788770lfr.97.2023.03.25.05.03.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 05:03:30 -0700 (PDT)
-Message-ID: <adea74ab-5fdf-f073-a2c7-d39f5d3cd2bd@linaro.org>
-Date:   Sat, 25 Mar 2023 13:03:29 +0100
+        Sat, 25 Mar 2023 05:03:37 -0700 (PDT)
+Message-ID: <9c2d3f35-00cb-0b32-d943-436234cf0a68@linaro.org>
+Date:   Sat, 25 Mar 2023 13:03:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: msm8994-msft-lumia: drop simple-bus
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: msm8996-xiaomi: drop simple-bus
  from clocks
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
- <20230324202244.744271-3-krzysztof.kozlowski@linaro.org>
+ <20230324202244.744271-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230324202244.744271-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324202244.744271-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -85,9 +85,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 24.03.2023 21:22, Krzysztof Kozlowski wrote:
 > 'clocks' node is not a bus, but just a placeholder for clocks:
 > 
->   msm8992-msft-lumia-octagon-talkman.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+>   msm8996-xiaomi-gemini.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
 >     From schema: dtschema/schemas/simple-bus.yaml
->   msm8992-msft-lumia-octagon-talkman.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]], ...
+>   msm8996-xiaomi-gemini.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]], ...
 >     From schema: dtschema/schemas/simple-bus.yaml
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
@@ -95,19 +95,19 @@ On 24.03.2023 21:22, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi | 2 --
+>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 2 --
 >  1 file changed, 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-> index 0c112b7b57ea..2861bcdf87b7 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-> @@ -46,8 +46,6 @@ chosen {
->  	};
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> index 446b1d23dec0..1ce5df0a3405 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> @@ -12,8 +12,6 @@
 >  
+>  / {
 >  	clocks {
 > -		compatible = "simple-bus";
 > -
->  		divclk4: divclk4 {
->  			compatible = "fixed-clock";
->  			#clock-cells = <0>;
+>  		divclk1_cdc: divclk1 {
+>  			compatible = "gpio-gate-clock";
+>  			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
