@@ -2,155 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 668BA6C8C44
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 08:41:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76ECC6C8C89
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 09:20:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbjCYHkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 03:40:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33736 "EHLO
+        id S231704AbjCYIUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 04:20:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231968AbjCYHke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 03:40:34 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F88619C49;
-        Sat, 25 Mar 2023 00:40:32 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id i7so4899155ybt.0;
-        Sat, 25 Mar 2023 00:40:32 -0700 (PDT)
+        with ESMTP id S230062AbjCYIUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 04:20:32 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F76E16AD5;
+        Sat, 25 Mar 2023 01:20:29 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id e18so3847495wra.9;
+        Sat, 25 Mar 2023 01:20:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679730031;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3ENFbyVo6ntDOx+QsNQdjIvn/5kMh1BsTEjEJ3xCsmA=;
-        b=ex/GczeP++ovZupQ3HqNy/MkN7HsVMa286tPtX0GrLD7Ds+ia9eNEyltaSDKqsF86P
-         87Tt9nc5bAbOzPuKG92VXQn+8gjjA2190hqm/GCuUFHhNkRQjVhsizRW8UPrd30ny8Vr
-         pZ0xmsT4Iv3P7V8hAs05kwy9TcvXx0FSBoDfRS4mWyql1+IBUZ8BotngWsujRK22k5o+
-         6r9XTenmqUx3Lhnw6k/+rQAPVEKlHZLj2IsSduDihxy1/FMwJAI0cttfKGxGzjyUuSy/
-         2Ma0KXEjnLCbm8/SBDSIl5e98ksZ8M4Qr6J9c6GbcZF1rhOr6q3H/oDaNxiopgVf7pYS
-         8vEQ==
+        d=gmail.com; s=20210112; t=1679732428;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UbR9BD+mMBi4l1rXs1ccrWieqpTtxXFXw8kLIEeWGp0=;
+        b=An4ZN2rtznICgFJfIo4XkmDwB4CycNcRUWWNfNAULL9qrW+O/JcaBlHsAKIYPqaefD
+         8On4qG1V5Af8BLqnk/UaJjwg8Uq94DmMQCKk4Fv4Astz6w0qF88EoOA8YpofMa5rQXTs
+         aywqvh1DMtNpUcTUJLz6SO75pyfOzj/TfTxlpPV9sm++Rch+izeNbOH68hgdkmBhaxwR
+         SqFwnJTW6EjukXi9Abp6tvaS174tV6WcERRE2XkU34U21w3AflMn8Zn3fFjp3z5Dt/Er
+         8OPz9zKblecvUnWUNZ1rDx5043H5GkZ3qkBbaTU9iBkmA85H+GQ1tzPYhYCdEG4zIAPV
+         xXWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679730031;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3ENFbyVo6ntDOx+QsNQdjIvn/5kMh1BsTEjEJ3xCsmA=;
-        b=NXYZ+UGXTLJ1cx5i4vboO1XcTdH5Rz6H4DocaNO51zSsAPkwZ07fSsGVX3TeEJHgO5
-         Cz+YlsYPO97XwteuhgsQpFabr5bVQg5si4zxVVVY5YBCVk9kOsxIMmJj8jtWClCkkdOc
-         8BMoedtOtKA8pawMRQbVdLiDSKDQH4TF5zYM1FsgJjBYvohHjp2pl0E5A/LJba6SEGlG
-         3PEnAqr+2uDZVF/rEWZDiQJ7IYbt0if6n024VspPgLBnlFd13v4xrPa4+6bAgaT1gK/7
-         lH5C333oSIKKzwcRyVMFbcQxIo1mUxCXfPNVt26aQ8d9US6LV49TCDA5szBHE3QFmMRY
-         zMIg==
-X-Gm-Message-State: AAQBX9eNtgDXdN6u5Z2t2aVGjeVTnkBffQEnN6mCCIA8n+jON+V8LvjM
-        ehsYrm9OllNM6lrZTIJh5zM=
-X-Google-Smtp-Source: AKy350aV8Slwn420heuYfAiUsnb7FYpKpCpimHVxcbyjyQTUtydCvA9ErH1v7wPW9p19HECCceqFgg==
-X-Received: by 2002:a05:6902:1108:b0:aee:c71c:1845 with SMTP id o8-20020a056902110800b00aeec71c1845mr6924755ybu.19.1679730031503;
-        Sat, 25 Mar 2023 00:40:31 -0700 (PDT)
-Received: from localhost.localdomain (tunnel785484-pt.tunnel.tserv9.chi1.ipv6.he.net. [2001:470:1f10:aed::2])
-        by smtp.googlemail.com with ESMTPSA id w20-20020a25c714000000b00b7767ca7498sm969629ybe.53.2023.03.25.00.40.30
+        d=1e100.net; s=20210112; t=1679732428;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UbR9BD+mMBi4l1rXs1ccrWieqpTtxXFXw8kLIEeWGp0=;
+        b=3j7T2Ur3zTf0S29njpLrKZN/QlKyRscBurVeCeSgLf+v4jV+h264JOYT2b9TW1uSNa
+         VZgMuGGwG6hSJ6jU6K76J8PnD80RtQzQmsaDfy8YMFH0QwZ8u3kr4fz6VnvBhBoqdMeZ
+         NvnHZhirnIU3otTf1FCVpchgTFMKf97lXPwR+/dDQGHgWFEbpnFF/1J1HAuEmsV5FfU7
+         FYDGg0pUt1Q4UjOx5MWQ1jxBkpOMKWTxA3TiUv98726QuOhZrkbUGBeMdyTzMaOxWnfU
+         WjIlgyHVqi2tkAnbwJiw7I0ytmFFZZDp5dT931xDzo1QWgyxtMfN+LWD/nNij1jpnuSY
+         dPug==
+X-Gm-Message-State: AAQBX9dqmV8gc7KCxsHqyKMF+sMlglgzS6OXFS7S7dFc7NU/XfE56PEU
+        YSbubU9lESwviz2lsvgUOS9s9VXrQm8=
+X-Google-Smtp-Source: AKy350ZN5BIafcAadP4NiYS62jDVTbekHpNVYB/VMMXOrTus08MxTU+olFAsJDq94splQ9q/IExrlg==
+X-Received: by 2002:a5d:6187:0:b0:2ce:5056:7220 with SMTP id j7-20020a5d6187000000b002ce50567220mr3663846wru.51.1679732427728;
+        Sat, 25 Mar 2023 01:20:27 -0700 (PDT)
+Received: from xeon.. ([188.163.112.76])
+        by smtp.gmail.com with ESMTPSA id n12-20020a5d484c000000b002c59f18674asm20175918wrs.22.2023.03.25.01.20.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Mar 2023 00:40:31 -0700 (PDT)
-From:   Tianling Shen <cnsztl@gmail.com>
+        Sat, 25 Mar 2023 01:20:27 -0700 (PDT)
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Tianling Shen <cnsztl@gmail.com>, Andy Yan <andyshrk@163.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Vincent Legoll <vincent.legoll@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: Add Xunlong OrangePi R1 Plus LTS
-Date:   Sat, 25 Mar 2023 15:40:22 +0800
-Message-Id: <20230325074022.9818-5-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230325074022.9818-1-cnsztl@gmail.com>
-References: <20230325074022.9818-1-cnsztl@gmail.com>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v3 0/2] Fix sound on ASUS Transformers
+Date:   Sat, 25 Mar 2023 10:20:09 +0200
+Message-Id: <20230325082011.6985-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OrangePi R1 Plus LTS is a minor variant of OrangePi R1 Plus with
-the on-board NIC chip changed from rtl8211e to yt8531c, and otherwise
-identical to OrangePi R1 Plus.
+- update dts bindings
 
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../rockchip/rk3328-orangepi-r1-plus-lts.dts  | 40 +++++++++++++++++++
- 2 files changed, 41 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+Changes from v2
+- dropped already picked patches
+- adjustments in binding updates (tf101 and tf300t require wm8903
+  codec patch to properly work with internal mic)
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 0bdcddd221f8..2d585bbb8f3a 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
-new file mode 100644
-index 000000000000..5d7d567283e5
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) 2016 Xunlong Software. Co., Ltd.
-+ * (http://www.orangepi.org)
-+ *
-+ * Copyright (c) 2021-2023 Tianling Shen <cnsztl@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "rk3328-orangepi-r1-plus.dts"
-+
-+/ {
-+	model = "Xunlong Orange Pi R1 Plus LTS";
-+	compatible = "xunlong,orangepi-r1-plus-lts", "rockchip,rk3328";
-+};
-+
-+&gmac2io {
-+	phy-handle = <&yt8531c>;
-+	tx_delay = <0x19>;
-+	rx_delay = <0x05>;
-+
-+	mdio {
-+		/delete-node/ ethernet-phy@1;
-+
-+		yt8531c: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+
-+			motorcomm,clk-out-frequency-hz = <125000000>;
-+			motorcomm,keep-pll-enabled;
-+			motorcomm,auto-sleep-disabled;
-+
-+			pinctrl-0 = <&eth_phy_reset_pin>;
-+			pinctrl-names = "default";
-+			reset-assert-us = <15000>;
-+			reset-deassert-us = <50000>;
-+			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
+Changes from v1
+- fm34 dropped for re-work
+- quirk for headset detection and rt5631 bringup splitted
+- minor adjustments in binding updates
+- improvement of rt5631 rate asignment
+---
+
+Svyatoslav Ryhel (2):
+  ARM: tegra: transformers: update sound nodes
+  ARM: tegra: transformers: bind RT5631 sound nodes
+
+ arch/arm/boot/dts/tegra20-asus-tf101.dts        | 13 +++++++------
+ arch/arm/boot/dts/tegra30-asus-tf201.dts        | 17 +++++++++++++++++
+ arch/arm/boot/dts/tegra30-asus-tf300t.dts       |  8 +++-----
+ arch/arm/boot/dts/tegra30-asus-tf300tg.dts      | 17 +++++++++++++++++
+ arch/arm/boot/dts/tegra30-asus-tf700t.dts       | 17 +++++++++++++++++
+ .../dts/tegra30-asus-transformer-common.dtsi    |  9 +++++----
+ 6 files changed, 66 insertions(+), 15 deletions(-)
+
 -- 
-2.40.0
+2.37.2
 
