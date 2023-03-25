@@ -2,150 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04E606C8E57
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 14:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 333806C8E69
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 14:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbjCYND5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 09:03:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57204 "EHLO
+        id S230007AbjCYNVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 09:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjCYND4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 09:03:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18294231;
-        Sat, 25 Mar 2023 06:03:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229460AbjCYNVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 09:21:48 -0400
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61390BDED;
+        Sat, 25 Mar 2023 06:21:46 -0700 (PDT)
+Received: from smtp102.mailbox.org (unknown [10.196.197.102])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8CB8860C4F;
-        Sat, 25 Mar 2023 13:03:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 021D7C433EF;
-        Sat, 25 Mar 2023 13:03:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679749433;
-        bh=SdU9kHEoxW2j7sZXsy+1t2VVON6O+/GheN3KRNLgs1E=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lODoXwMzbTBrWzv4nDvHf9nn7KL/E7kjb22atsRTMAfthkBVqZOoHTNKCNBxvZGkY
-         fNjc8eP5VZ8JDHfLEyYaReVfSYoJx9a4Spl4Ndw5K19r7uyZ0g+/njV0/T4vpymnL+
-         Oq1uKEdQwEJi6UHPKTj58iCdB5sn9RiUNiUWSZlxFsf0JXIZJEWrAovXN95Hv7EZnd
-         BzEyvLugFp6TihFwMV4fYlQbv1/npZYKtaDhVN6a3JdWLejC+9fKplxXl2IWXEFo1U
-         Dtzy8gxUgrcqikmDA9Xq16aTjbXRAG25sJ+xU3hnDmJY/zwkv5GC5e2wjgUv7Hapzr
-         n3A/hHaCfTSlQ==
-Message-ID: <88c7d438-28ad-cc17-6abe-d8e1853260e9@kernel.org>
-Date:   Sat, 25 Mar 2023 15:03:49 +0200
+        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4PkKVC6hKTz9sx2;
+        Sat, 25 Mar 2023 14:21:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
+        s=MBO0001; t=1679750499;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=rQ4rmDiN74N93ke3ZfdLAVNzGoB4ib6CMk1ag8Q3NV0=;
+        b=tMw+jM5JSj9ECmfpovTCPePydYS+RsWoGnpX7iudp/qiKaZzrnqr72z2eKizb8i2lNT0OG
+        +dY9IvoFN9ukFT9s2N+peVdsszgw/ibXwpWnaFuEpYl1DhGaXavAJiTGZDrKgShAEHY8E7
+        P23kJ0FvqpZxWaDdcvKALNHMgCvbVQzoDH2fGxgY02wr+tudiVjUQK54Pn9lrSXVO1N7B4
+        t+xcrVhMUdJVkAOW3ubSroyudyRsXqfU+l3p0CYp6APSiFIYXwdk8O1u+weR+WArQ3U4o3
+        m5Bs9txPxNtH05VY7dcl/+F2NiHaxdg/NSNqR2yqRQYfOslV9qzk2irGu9Qpqw==
+From:   Dylan Van Assche <me@dylanvanassche.be>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Dylan Van Assche <me@dylanvanassche.be>
+Subject: [PATCH 0/2] Qualcomm SDM845 SLPI DSP driver support
+Date:   Sat, 25 Mar 2023 14:21:15 +0100
+Message-Id: <20230325132117.19733-1-me@dylanvanassche.be>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am625-sk: Enable Type-C port for
- USB0
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-Cc:     vigneshr@ti.com, kristo@kernel.org, srk@ti.com,
-        r-gunasekaran@ti.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230324133150.43224-1-rogerq@kernel.org>
- <20230324133150.43224-3-rogerq@kernel.org>
- <20230324181542.luvmpvjx2uclic52@reemerge>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230324181542.luvmpvjx2uclic52@reemerge>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Qualcomm SDM845 SoC has a separate SLPI (Sensor Low Power Island)
+DSP for sensors connected to the SoC which is responsible for exposing
+sensors to userspace, power saving, and other features. 
+While sensors are connected to GPIOs of the SoC, they cannot be used
+because the hypervisor blocks direct access to the sensors, thus the 
+DSP must be used to access any sensor on this SoC. The SLPI DSP uses a
+GLink edge (dsps) to communicate with the host and has a FastRPC interface
+to load files from the host filesystem such as sensor configuration files.
+The FastRPC interface does not use regular FastRPC Compute Banks
+but instead uses an allocated CMA region through which communication happens.
 
+This set of patches adds support to drivers for the SLPI DSP:
+1. Configure the permissions of assigned DSP memory through the hypervisor.
+2. Allocate a remote heap when the FastRPC session ID is 0 instead of using 
+a Compute Bank directly.
+3. Add the SLPI remoteproc resource to the q6v5_pas driver to enable support
+for it in the driver.
+over QRTR.
 
-On 24/03/2023 20:15, Nishanth Menon wrote:
-> On 15:31-20230324, Roger Quadros wrote:
->> USB0 is a Type-C port with dual data role and power sink.
->>
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 40 ++++++++++++++++++++++++--
->>  1 file changed, 38 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->> index be027fad5f61..c80b12943881 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->> @@ -315,6 +315,33 @@ &main_i2c0 {
->>  	pinctrl-names = "default";
->>  	pinctrl-0 = <&main_i2c0_pins_default>;
->>  	clock-frequency = <400000>;
->> +
->> +	tps6598x@3f {
->> +		compatible = "ti,tps6598x";
->> +		reg = <0x3f>;
->> +		interrupt-parent = <&exp1>;
->> +		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
->> +		interrupt-names = "irq";
->> +
->> +		connector {
->> +			compatible = "usb-c-connector";
->> +			label = "USB-C";
->> +			self-powered;
->> +			data-role = "dual";
->> +			power-role = "sink";
->> +			ports {
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +
->> +				port@0 {
->> +					reg = <0>;
->> +					usb_con_hs: endpoint {
->> +						remote-endpoint = <&usb0_hs_ep>;
->> +					};
->> +				};
->> +			};
->> +		};
->> +	};
->>  };
->>  
->>  &main_i2c1 {
->> @@ -336,7 +363,7 @@ exp1: gpio@22 {
->>  				   "UART1_FET_BUF_EN", "WL_LT_EN",
->>  				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
->>  				   "CSI_GPIO2", "PRU_3V3_EN",
->> -				   "HDMI_INTn", "TEST_GPIO2",
->> +				   "HDMI_INTn", "PD_I2C_IRQ",
->>  				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
->>  				   "MCASP1_FET_SEL", "UART1_FET_SEL",
->>  				   "TSINT#", "IO_EXP_TEST_LED";
->> @@ -486,7 +513,16 @@ &usbss1 {
->>  };
->>  
->>  &usb0 {
->> -	dr_mode = "peripheral";
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	usb-role-switch;
->> +
->> +	port@0 {
->> +		reg = <0>;
->> +		usb0_hs_ep: endpoint {
->> +			remote-endpoint = <&usb_con_hs>;
->> +		};
->> +	};
->>  };
->>  
->>  &usb1 {
->> -- 
->> 2.34.1
->>
-> 
-> Please see thread: 
-> https://lore.kernel.org/all/20230321-am62-lp-sk-v2-0-0a56e1694804@ti.com/
-> you might need to rebase off that.
-> 
+DTS changes to enable the SLPI DSP in the SDM845 DTS and hardware
+e.g. Oneplus 6 and SHIFTPHONES SHIFT6mq will be send once the driver changes
+are applied.
 
-OK.
+Kind regards,
+Dylan Van Assche
 
-cheers,
--roger
+Dylan Van Assche (2):
+  dt-bindings: remoteproc: qcom: adsp: add qcom,sdm845-slpi-pas
+    compatible
+  remoteproc: qcom: pas: add SDM845 SLPI resource
+
+ .../bindings/remoteproc/qcom,adsp.yaml          |  3 +++
+ drivers/remoteproc/qcom_q6v5_pas.c              | 17 +++++++++++++++++
+ 2 files changed, 20 insertions(+)
+
+-- 
+2.39.2
+
