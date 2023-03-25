@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E57C76C8DC5
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:03:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 892346C8DCA
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:04:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231327AbjCYMDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 08:03:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57896 "EHLO
+        id S231719AbjCYMEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 08:04:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231248AbjCYMDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:03:48 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB05912CC7
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:38 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id j11so5431548lfg.13
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:38 -0700 (PDT)
+        with ESMTP id S231766AbjCYMEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:04:36 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4967B903C
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:04:27 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id q14so4255504ljm.11
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:04:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679745817;
+        d=linaro.org; s=google; t=1679745865;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6j1VQpMAyc7WS9oetMlOZogxFB7dE/fVbl9yOMaHBRY=;
-        b=GiHwvlAQ4X6GhvAwXr/mBga1uvXb22rx0lW9XQ19QE2FiB4mJ11kkMb7ZH624BMK1y
-         dISAG4gT7tdF6XLkbYVSREf3e118u8/OPoOGda1dvAttMwj9KZFNeGjv4TIuugILgj9n
-         KECcHTwyj6lxhToi4AjVJwTeWw4iXAvBblaY1hmb3NfBGPzHoEHe1hWvNsM2bkHZ9fbU
-         PjystD/0azs/4TLvi6st0FhPoqEUieqCpr1j9iUJNNc41k3xa2KBbxX/rCVZ1ubbuOFi
-         EcDLclt8935MZ1zI/tt1L3BjnJ9dVRaZKhnfn3W4tj7CAIvoLWGrRx7oCT7H0fgjVjgj
-         e9Ww==
+        bh=m9E6tVU0VFnT2Q7zgGzmwRXtASAyx/gtsF/EXn4Spns=;
+        b=PCU2wD5Qd0/Lz4JuROKWh3SkZ/W8Jbil2Cn0BOi9eN5AvIGLwqgOOObHqaRuiKxNOC
+         ug0Hm7+jBXcYSGSLm49BDOrcoCo5jB5M/RT2ZMAw9dPQbRBPi68jdJt0YJrJ5jhzIxjx
+         Tyox5dHdPhYIDMvT9ggesAh5ECxeTXw2n4QGi70uwE9gJRVZgYC0GsK6l5SHz8i9mBoN
+         EJOdhqrWB4nko8Z+hfOhQR4i6yfIP6FJ66cwHfrdDU6KeOeK52idC62cxUzFcW5dBsLl
+         6iBbw8hoc5YuB7gqLJv3eI4bvNTg0XjJqi/G6lnw2krqUrgbjlJX1//JJImNBpdgzXta
+         gOGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679745817;
+        d=1e100.net; s=20210112; t=1679745865;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6j1VQpMAyc7WS9oetMlOZogxFB7dE/fVbl9yOMaHBRY=;
-        b=MxVmlJ3d460r3i0+qRBPhWLAyY+d6LS743OgcQDXYR1//yCQ82tYp8VfRiTPgnm0mQ
-         0W7z3N0r39v+HyE6SD4pYZ4IgI3VyOq55qEpfPXqSnOzKcqN012Fb66wPZFSgpTTWfRS
-         uT83rR8uMJEiVBHLmgLQ2pzNvToyOKP8+w4kWfSv2yWsUcnFJsKY78MRzl/OEpGoY5lk
-         TRDhtevfXTV85lDs9wXDrlR4uUEe8QUBMtUEutHzHIwZD7CHBAGRO5WXo8tpkYUu8BkX
-         GtHigXO8HDkXCHy/p791/C3QOZ4Igyb1ERIQAqQy1p8Tkh3SpeNRHQ5FvxGqXLCtQjSh
-         8tNg==
-X-Gm-Message-State: AAQBX9dsIJ5+jVSWSDj5Dv52If5c6di7U5UStHpJHd+yH5EAyXDOXS1A
-        i948j0fevQ2yEel7ln7pTEnsNw==
-X-Google-Smtp-Source: AKy350ZzN9OJhP/Ot1TSpNvOZEsVl9lYEzZ7Q/BLVb1/ztv6yS1z6ei13XsxcqimDHzvulXz6jwyfg==
-X-Received: by 2002:ac2:43a4:0:b0:4ea:f526:5bee with SMTP id t4-20020ac243a4000000b004eaf5265beemr1490748lfl.11.1679745817306;
-        Sat, 25 Mar 2023 05:03:37 -0700 (PDT)
+        bh=m9E6tVU0VFnT2Q7zgGzmwRXtASAyx/gtsF/EXn4Spns=;
+        b=Zj1x5qUYKB9KOGxUEOBqmiS4NeTlvy7yIiAlDJ4rfWd/AJ7G0vsYg9jFUUMtlte/V/
+         7WyXBPhtlgcz5ARBM4Ysq9plQvdU7ZgDhXMnIafD8SP7UgHG4BDMLQWRTOBAJ35eduUg
+         T87Q98O7qa2XLaeS0a0AvdCSA3RSSLAJ4VDJGx2tpy/rKLubp5ePc8L1sON5kTtuWDsU
+         N3sjAYDa7RPX9bJaasHi/+zU0p+UXDNyaK/NZ0x03hkghJXdRt6k1WeMeqaomH4Yt9nq
+         bva9Nykwb6RVAYTY0hwRRqC933MTyygMeGh4nQ8AqoVLzJN58t6E9MQWTAResJ3qUmcd
+         95Gw==
+X-Gm-Message-State: AAQBX9fZmUPCovHADTMZb1PKXEEEsuR1k2RAHx2+go5lQnWo05qiAa4D
+        pXnAF2+qo6+IJy1kzGAe0//Z4w==
+X-Google-Smtp-Source: AKy350ZNMrjWswnFv1AE9CKsY5hB+YGL2fpCmQUHwtqIg/e0YKTyz85YJuwnBgvV4A7E0UM8d3k1hw==
+X-Received: by 2002:a2e:a175:0:b0:299:acf2:efe9 with SMTP id u21-20020a2ea175000000b00299acf2efe9mr2121519ljl.0.1679745864888;
+        Sat, 25 Mar 2023 05:04:24 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05651211d000b004db3e445f1fsm3788770lfr.97.2023.03.25.05.03.36
+        by smtp.gmail.com with ESMTPSA id f15-20020a2e9e8f000000b0029c36ebf89asm2835131ljk.112.2023.03.25.05.04.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 05:03:37 -0700 (PDT)
-Message-ID: <9c2d3f35-00cb-0b32-d943-436234cf0a68@linaro.org>
-Date:   Sat, 25 Mar 2023 13:03:35 +0100
+        Sat, 25 Mar 2023 05:04:24 -0700 (PDT)
+Message-ID: <5cf37779-49fe-ad06-d357-582129995771@linaro.org>
+Date:   Sat, 25 Mar 2023 13:04:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: msm8996-xiaomi: drop simple-bus
- from clocks
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm630: move DSI opp-table into DSI
+ node
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
- <20230324202244.744271-4-krzysztof.kozlowski@linaro.org>
+ <20230324202244.744271-5-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230324202244.744271-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324202244.744271-5-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,31 +83,76 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 24.03.2023 21:22, Krzysztof Kozlowski wrote:
-> 'clocks' node is not a bus, but just a placeholder for clocks:
+> The soc node is supposed to have only device nodes with MMIO addresses,
+> so move the DSI OPP into the DSI controller node to fix:
 > 
->   msm8996-xiaomi-gemini.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
->     From schema: dtschema/schemas/simple-bus.yaml
->   msm8996-xiaomi-gemini.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]], ...
+>   sda660-inforce-ifc6560.dtb: soc: opp-table-dsi: {'compatible': ['operating-points-v2'], ... should not be valid under {'type': 'object'}
 >     From schema: dtschema/schemas/simple-bus.yaml
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+Nit: you also changed its node name and didn't mention that, but I
+don't see that as anything major so it's gtg as-is
+
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 2 --
->  1 file changed, 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 38 ++++++++++++++--------------
+>  1 file changed, 19 insertions(+), 19 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> index 446b1d23dec0..1ce5df0a3405 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> @@ -12,8 +12,6 @@
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 5add1951d963..ef63aa86ad67 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -1450,25 +1450,6 @@ mmcc: clock-controller@c8c0000 {
+>  					<0>;
+>  		};
 >  
->  / {
->  	clocks {
-> -		compatible = "simple-bus";
+> -		dsi_opp_table: opp-table-dsi {
+> -			compatible = "operating-points-v2";
 > -
->  		divclk1_cdc: divclk1 {
->  			compatible = "gpio-gate-clock";
->  			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
+> -			opp-131250000 {
+> -				opp-hz = /bits/ 64 <131250000>;
+> -				required-opps = <&rpmpd_opp_svs>;
+> -			};
+> -
+> -			opp-210000000 {
+> -				opp-hz = /bits/ 64 <210000000>;
+> -				required-opps = <&rpmpd_opp_svs_plus>;
+> -			};
+> -
+> -			opp-262500000 {
+> -				opp-hz = /bits/ 64 <262500000>;
+> -				required-opps = <&rpmpd_opp_nom>;
+> -			};
+> -		};
+> -
+>  		mdss: display-subsystem@c900000 {
+>  			compatible = "qcom,mdss";
+>  			reg = <0x0c900000 0x1000>,
+> @@ -1610,6 +1591,25 @@ dsi0: dsi@c994000 {
+>  
+>  				status = "disabled";
+>  
+> +				dsi_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-131250000 {
+> +						opp-hz = /bits/ 64 <131250000>;
+> +						required-opps = <&rpmpd_opp_svs>;
+> +					};
+> +
+> +					opp-210000000 {
+> +						opp-hz = /bits/ 64 <210000000>;
+> +						required-opps = <&rpmpd_opp_svs_plus>;
+> +					};
+> +
+> +					opp-262500000 {
+> +						opp-hz = /bits/ 64 <262500000>;
+> +						required-opps = <&rpmpd_opp_nom>;
+> +					};
+> +				};
+> +
+>  				ports {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
