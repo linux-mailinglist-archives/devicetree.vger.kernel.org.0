@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E6B6C8D21
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 11:39:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 890676C8D29
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 12:04:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231735AbjCYKjB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 25 Mar 2023 06:39:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34968 "EHLO
+        id S231841AbjCYLEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 07:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjCYKjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 06:39:00 -0400
-X-Greylist: delayed 99 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 25 Mar 2023 03:38:59 PDT
-Received: from smtprelay01.ispgateway.de (smtprelay01.ispgateway.de [80.67.18.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9B413DE6
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 03:38:59 -0700 (PDT)
-Received: from [92.206.161.29] (helo=note-book.lan)
-        by smtprelay01.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <git@apitzsch.eu>)
-        id 1pg1Gt-00019P-Bl; Sat, 25 Mar 2023 11:37:15 +0100
-Message-ID: <f91b463f52a3ce3002212b429350f592a0131042.camel@apitzsch.eu>
-Subject: Re: [PATCH 1/2] dt-bindings: input: atmel,maxtouch: add
- linux,keycodes
-From:   =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Date:   Sat, 25 Mar 2023 11:37:13 +0100
-In-Reply-To: <20230227205035.18551-1-git@apitzsch.eu>
-References: <20230227205035.18551-1-git@apitzsch.eu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4 
+        with ESMTP id S230399AbjCYLEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 07:04:36 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E8F1F956
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 04:04:35 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id h8so17292982ede.8
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 04:04:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679742273;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YGuQcUMPAohDQdYCn6esi5t8mBDfcwG+UMgt1Vpx+WM=;
+        b=pMAvRb8aCJ2b0iCd+bQbJvnxrHmZdtK2pRSRcgh8uUGqvblJeke1gYjt2UVdKTPv2T
+         tE/Jx7SUB3KniKeL3tXU9iLtWMVaVOQn2bD0tkfIwL+eY/NlNpJBI/hXmIDAh8bMyaYI
+         HxIWizm/znH9TrCyib1AJNP0PMJXPbJ1I8+dxmfRO9M6mkYHa9lSvSjWmGoAta0y3o61
+         RUXOIC0PIN/nYSvCp4SDQyCd2//4jjpLR3o1hFqT22PbPt8syu6kWex4RbPC1Voip8PD
+         jMvgpF3URNTFFCWYZiTX/Qv30J+QbEIufaG3hIQmjufi0hl6LEfjfX2yX6SW+1o5ZMfX
+         LrZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679742273;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YGuQcUMPAohDQdYCn6esi5t8mBDfcwG+UMgt1Vpx+WM=;
+        b=cKRUdZdsiOAIsK/NPoeHkXPJUn9AvJG7mnB81mRKv6LN5d6wJilMPsdL5VaMAdnI7U
+         EJyeaW5QqgB1tY8C3TbIXLiCAuReVqWBycpDxy1pknA44UFvGlIrWcSGYxXKnCPMTZhK
+         B0iPJP00sYYLmttz4Qqol9F5m00uJLqoqOfxCIvQEef5Kj7sQ9mR1eIfPtSWfptlyyAo
+         rfKetlOdDTDJ/t0Eb6QgI6/+f9iu5gtphmDvgSxPjHEKhBb9FE+S1lp6QB/bHPYgtskD
+         RFk4ZO9RMAgx+YyqZEbDbFbcGdccmryYPG1xyFmDkJ5/5tLFNB/R3X3n7mfc3eirPps8
+         23wQ==
+X-Gm-Message-State: AAQBX9cvg0GPaOLcmA1t2sJq8g0aC1/PGdihG+5DZEKKilpdFXqJL3KM
+        xBP13Yz2VIHAzSeemVtoaymUroYnzasYXq2QQ+A=
+X-Google-Smtp-Source: AKy350Y/NlId/yerM/9zRTivgf+nQ019MPql1v8mGNitanGiTO1YCTgARhntB8wDoJL8eH7ILlPbiQ==
+X-Received: by 2002:a17:906:951:b0:933:3cc7:4420 with SMTP id j17-20020a170906095100b009333cc74420mr5852539ejd.45.1679742273597;
+        Sat, 25 Mar 2023 04:04:33 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d230:b2c7:d55:c9c8? ([2a02:810d:15c0:828:d230:b2c7:d55:c9c8])
+        by smtp.gmail.com with ESMTPSA id b1-20020a1709065e4100b008ca52f7fbcbsm11602168eju.1.2023.03.25.04.04.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Mar 2023 04:04:33 -0700 (PDT)
+Message-ID: <55ab6fdb-7b93-38bb-bbf9-9d9e2051afba@linaro.org>
+Date:   Sat, 25 Mar 2023 12:04:32 +0100
 MIME-Version: 1.0
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V4 02/10] dt-bindings: timestamp: Add Tegra234 support
+Content-Language: en-US
+To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        timestamp@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+        brgl@bgdev.pl, corbet@lwn.net, gregkh@linuxfoundation.org
+References: <20230323012929.10815-1-dipenp@nvidia.com>
+ <20230323012929.10815-3-dipenp@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230323012929.10815-3-dipenp@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, dem 27.02.2023 um 21:50 +0100 schrieb André Apitzsch:
-> In some configurations the touch controller can support the touch keys.
-> Document the linux,keycodes property that enables those keys and
-> specifies the keycodes that should be used to report the key events.
+On 23/03/2023 02:29, Dipen Patel wrote:
+> Added timestamp provider support for the Tegra234 in devicetree
+> bindings.
 > 
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
 > ---
->  .../devicetree/bindings/input/atmel,maxtouch.yaml          | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-> index 3ec579d63570..c40799355ed7 100644
-> --- a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-> +++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-> @@ -14,6 +14,9 @@ description: |
->    Atmel maXTouch touchscreen or touchpads such as the mXT244
->    and similar devices.
->  
-> +allOf:
-> +  - $ref: input.yaml#
-> +
->  properties:
->    compatible:
->      const: atmel,maxtouch
-> @@ -60,6 +63,10 @@ properties:
->        or experiment to determine which bit corresponds to which input. Use
->        KEY_RESERVED for unused padding values.
->  
-> +  linux,keycodes:
-> +    minItems: 1
-> +    maxItems: 8
-> +
->    atmel,wakeup-method:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: |
-> 
-> base-commit: 982818426a0ffaf93b0621826ed39a84be3d7d62
+> v2:
 
-Hi Nick, hi Dmitry,
-
-Friendly ping.
-
-What is missing to get this up-streamed?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-André
+Krzysztof
+
