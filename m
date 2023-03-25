@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 157B76C8E46
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F2AD6C8E54
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 14:03:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230405AbjCYMkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 08:40:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41872 "EHLO
+        id S229925AbjCYNDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 09:03:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbjCYMka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:40:30 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303B2D327
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:40:28 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id h9so4341978ljq.2
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:40:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679748026;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cNz8fBi/BXHbkVgQEn3fLQuFdLZYOTJPQpY97s0Oo2g=;
-        b=LkvI9g1xizHzQigUAf2RtAcziEiXuZ9ToAvrXa5i0o1K01d4lpGrPIAuLGLCKbnfXO
-         BoBRC1rtf1RwsXLVpmCIShcKr9TuW66wejPO6+NQ3Xw5apWZdJWD673kAqLnHS5Kg9pH
-         Stgf4WAlzvngwqmR6U4pc/QaJeTlxHJIh48dQLi23FDMKph08EAwUKA0izJeLQJqYO4S
-         RIKWU6xhWxfTxveP8UfWf1/8LlNQnZVx1wEvG2EG2OAsJLoWdOhzYlQgztKlFPssRmxZ
-         L67PXbzc7cykTYLzoRdwi5fG47LLcJSs5LbWaVYI6ZcEqAwaMQub+37hWSvQhPbA/LZx
-         D6XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679748026;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cNz8fBi/BXHbkVgQEn3fLQuFdLZYOTJPQpY97s0Oo2g=;
-        b=jcIcXqZoLUHBbV57XhhtVcsojnk8f9kFhpATIjYLcEy1kGEXXZ0P5xtqa6ValP1WkU
-         1XHAkI7CsPzYaw+qtJTdAAZPpKRUi6q43NQ/vYMObAs7ii+1MJF0KDZRJlXif0jJclxI
-         PCmiv9DTpQ6jZQUUVi3EYfflbqbNrF/1q657txbG42CVm93f0ofAqvFVb85mD2SgsaKa
-         fqy09Hg5Fpgg57p0LgOaNni/hiltsoqM5AUhlseHykNkyip2ik0I84WZbjQEHrgwKLue
-         1my5eEuP1rjBd0uwvxM9TUQZvxe9qxvHyxIejC5m4eS179NzRKE0JpnJPiGi3r5DsTER
-         EzIw==
-X-Gm-Message-State: AAQBX9dzGmuXulqjDp4dVmjQGSiuztKw7O28AkAz8RJJTxtdqVUd4Btb
-        El5BbGRUuqR/En5aL2T//Nxmpg==
-X-Google-Smtp-Source: AKy350bLy849a4hklm0/uPxQLADMwHLW8rii4VSOgB1dkRAZUGTB01rjolhHMuk3P7Yxv5TVUZ3hfA==
-X-Received: by 2002:a2e:8302:0:b0:29b:d5a1:77ed with SMTP id a2-20020a2e8302000000b0029bd5a177edmr2007379ljh.32.1679748026400;
-        Sat, 25 Mar 2023 05:40:26 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id h18-20020ac25972000000b004cc8207741fsm3828185lfp.93.2023.03.25.05.40.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 05:40:25 -0700 (PDT)
-Message-ID: <cf4feba0-de96-9e81-592b-e4b7520340a6@linaro.org>
-Date:   Sat, 25 Mar 2023 13:40:24 +0100
+        with ESMTP id S229446AbjCYNDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 09:03:16 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 518C340DE;
+        Sat, 25 Mar 2023 06:03:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0DB48B8075C;
+        Sat, 25 Mar 2023 13:03:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97F6EC433EF;
+        Sat, 25 Mar 2023 13:03:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679749391;
+        bh=RzQArc2DTEQ6mlQA7QJSmpoVuSxWh581ekX4emLqCXM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WSDwwZQ8F1QY49fvJD1R4IRm6YWs2lPAxe15jtzXq3XWQLXJKEb8jkg2Sfsu8e1K4
+         n9oRmUlU0mzK8WUAOVpkri6TguT7u0B7pDUBG0sePnScp5RdmWhNiBabz4LqCfEvJU
+         y2P8vBwC5rAdrkdjik3t6zauGQ9Wvuvp0eMxuuLp4DeNXTjlRrJRjZCZHrY0uanGh1
+         S44GqjyA+/mzl1VRN34TLuKPCDH9HTs0+13YYmQLYEGQNKNiD7BJ9fxXzboLzcYQyo
+         JCtuTBFPzEWjbQ1P8YtCSSaFihHotl7MmNpqFIQVHUFakLkMwQSFX24n7nwD7/A6tM
+         6q5FRb6bBq4eg==
+Message-ID: <42bbac46-782b-e2ac-67f3-37489e3a2047@kernel.org>
+Date:   Sat, 25 Mar 2023 15:03:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 12/12] arm64: dts: qcom: sc8180x: Introduce Lenovo Flex
- 5G
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am625-sk: Add ti,vbus-divider
+ property to usbss1
+To:     Nishanth Menon <nm@ti.com>
+Cc:     vigneshr@ti.com, kristo@kernel.org, srk@ti.com,
+        r-gunasekaran@ti.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Dhruva Gole <d-gole@ti.com>
+References: <20230324133150.43224-1-rogerq@kernel.org>
+ <20230324133150.43224-2-rogerq@kernel.org>
+ <20230324181435.i2n2q6cvh6x4kabw@repeal>
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230325122444.249507-1-vkoul@kernel.org>
- <20230325122444.249507-13-vkoul@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230325122444.249507-13-vkoul@kernel.org>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230324181435.i2n2q6cvh6x4kabw@repeal>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,479 +63,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 25.03.2023 13:24, Vinod Koul wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On 24/03/2023 20:14, Nishanth Menon wrote:
+> On 15:31-20230324, Roger Quadros wrote:
+>> From: Dhruva Gole <d-gole@ti.com>
+>>
+>> The property "ti,vbus-divider" is needed for both usbss0 and usbss1 as
+>> both USB0 and USB1 have the same external voltage divider circuit.
+>>
+>> Signed-off-by: Dhruva Gole <d-gole@ti.com>
+>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>> index 67dc26fc23e4..be027fad5f61 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>> @@ -482,6 +482,7 @@ &usbss0 {
+>>  
+>>  &usbss1 {
+>>  	status = "okay";
+>> +	ti,vbus-divider;
+>>  };
+>>  
 > 
-> Introduce support for the Lenovo Flex 5G laptop, built on the Qualcomm
-> SC8180X platform. Supported peripherals includes keyboard, touchpad,
-> UFS storage, external USB and WiFi.
+> 1. Does'nt this need a fixes tag?
+> 2. lakml is missing in CC
+
+Will fix both issues.
+
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 590 ++++++++++++++++++
->  2 files changed, 591 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+>>  &usb0 {
+>> -- 
+>> 2.34.1
+>>
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index fdce44a7a902..f096561f711e 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -141,6 +141,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie-nvme-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc8180x-lenovo-flex-5g.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8180x-primus.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-lenovo-thinkpad-x13s.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> new file mode 100644
-> index 000000000000..76dad608fb85
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> @@ -0,0 +1,590 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020-2023, Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "sc8180x.dtsi"
-> +#include "sc8180x-pmics.dtsi"
-> +
-> +/ {
-> +	model = "Lenovo Flex 5G";
-> +	compatible = "lenovo,flex-5g", "qcom,sc8180x";
-> +
-> +	aliases {
-> +		serial0 = &uart13;
-> +	};
-> +
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pmc8180c_lpg 4 1000000>;
-> +		enable-gpios = <&pmc8180c_gpios 8 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bl_pwm_default>;
-> +	};
-> +
-> +	chosen {
-> +	};
-Unused, remove.
 
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hall_int_active_state>;
-property
-property-names
-
-> +
-> +		lid {
-> +			gpios = <&tlmm 121 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			wakeup-source;
-> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		rmtfs_mem: rmtfs-region@85500000 {
-> +			compatible = "qcom,rmtfs-mem";
-> +			reg = <0x0 0x85500000 0x0 0x200000>;
-You're using 0 and 0x0 in a mixed fashion. Please stick with one,
-preferably 0x0 everywhere.
-
-> +			no-map;
-> +
-> +			qcom,client-id = <1>;
-> +			qcom,vmid = <15>;
-> +		};
-> +
-[...]
-
-> +
-> +&dispcc {
-> +	status = "okay";
-Any reason for disabling dispcc by default?
-
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sc8180x/qcdxkmsuc8180.mbn";
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <100000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_active>, <&i2c1_hid_active>;
-property
-property-names
-
-> +
-> +	status = "okay";
-> +
-> +	hid@10 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x10>;
-> +		hid-descr-addr = <0x1>;
-> +
-> +		interrupts-extended = <&tlmm 122 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&i2c7 {
-> +	clock-frequency = <100000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c7_active>, <&i2c7_hid_active>;
-> +
-> +	status = "okay";
-> +
-> +	hid@5 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x5>;
-> +		hid-descr-addr = <0x20>;
-> +
-> +		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	hid@2c {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x2c>;
-> +		hid-descr-addr = <0x20>;
-> +
-> +		interrupts-extended = <&tlmm 24 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_edp {
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&edp_hpd_active>;
-> +
-> +	status = "okay";
-> +
-> +	aux-bus {
-> +		panel {
-> +			compatible = "edp-panel";
-> +			no-hpd;
-> +
-> +			backlight = <&backlight>;
-> +
-> +			ports {
-> +				port {
-> +					auo_b140han06_in: endpoint {
-> +						remote-endpoint = <&mdss_edp_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss_edp_out: endpoint {
-> +				remote-endpoint = <&auo_b140han06_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&pcie3 {
-> +	perst-gpio = <&tlmm 178 GPIO_ACTIVE_LOW>;
-> +	wake-gpio = <&tlmm 180 GPIO_ACTIVE_HIGH>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie3_default_state>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pcie3_phy {
-> +	vdda-phy-supply = <&vreg_l5e_0p88>;
-> +	vdda-pll-supply = <&vreg_l3c_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pmc8180c_lpg {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_0 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_1 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_2 {
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_adsp {
-> +	memory-region = <&adsp_mem>;
-> +	firmware-name = "qcom/sc8180x/LENOVO/82AK/qcadsp8180.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	memory-region = <&cdsp_mem>;
-> +	firmware-name = "qcom/sc8180x/LENOVO/82AK/qccdsp8180.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_mpss {
-> +	memory-region = <&mpss_mem>;
-> +	firmware-name = "qcom/sc8180x/LENOVO/82AK/qcmpss8180_nm.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&uart13 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart13_state>;
-> +
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn3998-bt";
-> +
-> +		vddio-supply = <&vreg_s4a_1p8>;
-> +		vddxo-supply = <&vreg_l7a_1p8>;
-> +		vddrf-supply = <&vreg_l9a_1p3>;
-> +		vddch0-supply = <&vreg_l11c_3p3>;
-> +		max-speed = <3200000>;
-> +	};
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 190 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply = <&vreg_l10e_2p9>;
-> +	vcc-max-microamp = <155000>;
-> +
-> +	vccq2-supply = <&vreg_l7e_1p8>;
-> +	vccq2-max-microamp = <425000>;
-Missing regulator-allow-set-load for regulators that have current
-ops assigned to them.
-
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l5e_0p88>;
-> +	vdda-pll-supply = <&vreg_l3c_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_prim_hsphy {
-> +	vdda-pll-supply = <&vreg_l5e_0p88>;
-> +	vdda18-supply = <&vreg_l12a_1p8>;
-> +	vdda33-supply = <&vreg_l16e_3p0>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_prim_qmpphy {
-> +	vdda-phy-supply = <&vreg_l3c_1p2>;
-> +	vdda-pll-supply = <&vreg_l5e_0p88>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_prim {
-We mostly use usb_1 / usb_2 for this
-
-> +	status = "okay";
-> +};
-> +
-> +&usb_prim_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
-> +&usb_sec_hsphy {
-> +	vdda-pll-supply = <&vreg_l5e_0p88>;
-> +	vdda18-supply = <&vreg_l12a_1p8>;
-> +	vdda33-supply = <&vreg_l16e_3p0>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_sec_qmpphy {
-> +	vdda-phy-supply = <&vreg_l3c_1p2>;
-> +	vdda-pll-supply = <&vreg_l5e_0p88>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_sec {
-> +	status = "okay";
-> +};
-> +
-> +&usb_sec_dwc3 {
-> +	dr_mode = "host";
-No roleswitching?
-
-> +};
-> +
-> +&wifi {
-> +	memory-region = <&wlan_mem>;
-It comes from the common dt file, so this may as well stay there.
-
-Konrad
-> +
-> +	vdd-0.8-cx-mx-supply = <&vreg_l1e_0p75>;
-> +	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-> +	vdd-1.3-rfa-supply = <&vreg_l9a_1p3>;
-> +	vdd-3.3-ch0-supply = <&vreg_l11c_3p3>;
-> +	vdd-3.3-ch1-supply = <&vreg_l10c_3p3>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&xo_board_clk {
-> +	clock-frequency = <38400000>;
-> +};
-> +
-> +/* PINCTRL */
-> +
-> +&pmc8180c_gpios {
-> +	bl_pwm_default: bl-pwm-default-state {
-> +		en-pins {
-> +			pins = "gpio8";
-> +			function = "normal";
-> +		};
-> +
-> +		pwm-pins {
-> +			pins = "gpio10";
-> +			function = "func1";
-> +		};
-> +	};
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <47 4>, <126 4>;
-> +
-> +	edp_hpd_active: epd-hpd-active-state {
-> +		pins = "gpio10";
-> +		function = "edp_hot";
-> +	};
-> +
-> +	hall_int_active_state: hall-int-active-state {
-> +		pins = "gpio121";
-> +		function = "gpio";
-> +
-> +		input-enable;
-> +		bias-disable;
-> +	};
-> +
-> +	i2c1_active: i2c1-active-state {
-> +		pins = "gpio114", "gpio115";
-> +		function = "qup1";
-> +
-> +		bias-pull-up = <1>;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	i2c1_hid_active: i2c1-hid-active-state {
-> +		pins = "gpio122";
-> +		function = "gpio";
-> +
-> +		input-enable;
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	i2c7_active: i2c7-active-state {
-> +		pins = "gpio98", "gpio99";
-> +		function = "qup7";
-> +
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	i2c7_hid_active: i2c7-hid-active-state {
-> +		pins = "gpio37", "gpio24";
-> +		function = "gpio";
-> +
-> +		input-enable;
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	pcie3_default_state: pcie3-default-state {
-> +		clkreq-pins {
-> +			pins = "gpio179";
-> +			function = "pci_e3";
-> +			bias-pull-up;
-> +		};
-> +
-> +		reset-n-pins {
-> +			pins = "gpio178";
-> +			function = "gpio";
-> +
-> +			drive-strength = <2>;
-> +			output-low;
-> +			bias-pull-down;
-> +		};
-> +
-> +		wake-n-pins {
-> +			pins = "gpio180";
-> +			function = "gpio";
-> +
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	uart13_state: uart13-state {
-> +		cts-pins {
-> +			pins = "gpio43";
-> +			function = "qup13";
-> +			bias-pull-down;
-> +		};
-> +
-> +		rts-tx-pins {
-> +			pins = "gpio44", "gpio45";
-> +			function = "qup13";
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
-> +
-> +		rx-pins {
-> +			pins = "gpio46";
-> +			function = "qup13";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +};
+cheers,
+-roger
