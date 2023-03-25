@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED36B6C8DBC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:03:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 543C86C8DBF
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 13:03:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbjCYMDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 08:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56068 "EHLO
+        id S230062AbjCYMDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 08:03:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjCYMDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:03:01 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5B82699
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:02:59 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id bi9so5449763lfb.12
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:02:59 -0700 (PDT)
+        with ESMTP id S230043AbjCYMDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 08:03:22 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959C55270
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:17 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id e11so4262785lji.8
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 05:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679745778;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=y12pBMJMfkHML5M9T8BiKwKEu+VsqbjbY9flvBgFo4A=;
-        b=bHBDp+PitHQJsPu2SBExO61KY01Ffrpt1+Zx7U8F3weijGoIJ49jflcMo50/LRnZHU
-         lvFShYdQhU3ocZnRMQtxToC9brMnX5mjUyh6MJqvWTbz87nuXZTsc+6cGhCnYxHQmMOZ
-         kLna+BNmMIVv01oIcHcxgCLiOB06z2hgbgX9jiXRHp9sDVkPcLK6TDa95K3QkDVOLFAS
-         eOh7rUgWTa9TuTQSz1Hmj6A0GZCJr+4AXLokMCENqVbtw5YLyDRBoabdKe8ER3sT4YzH
-         u43urYU4urBP+jCUkYgyhSghUCr7XVIGkKjM6c6BF+qgSG5wKfFRxVBGMxBoHZNpZjKl
-         B0AQ==
+        d=linaro.org; s=google; t=1679745795;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sHtrB6ODLvt68eh9gSE/iYNIvI2QI55H+clMuzIW/l4=;
+        b=mP5dHu/1WDXSrlSN0caG1pcakHjBWqhyeyRcSBuTopUpQuE2Pjs8IMW2PpCfWA3i7F
+         z+eIbyvT5PapDovcC+LDCevxrV8M7KPyFWVWLDBYjpc3ESi0Bkocouujd9DBHy3l8DkW
+         cbvyXWlE4QaIPtlXM3VKLpiRZQI+0vgzyT1RWhen8mha7A5qRbtFKUIbSHAdpA+RZSmm
+         GPTTLPhbuFwQ0ZhCNwgSXdrA4btRQ4gdkqsf7H6oUAQ6yhFN+ciWCsNZaWJhoqmpFXGf
+         8ciQ5t75mGHcuskD8Ujr4Ov5sqvS84Yc+rlbND0zRHejt+oOJruWwhwVDY5LQI4Gug0U
+         TkHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679745778;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679745795;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y12pBMJMfkHML5M9T8BiKwKEu+VsqbjbY9flvBgFo4A=;
-        b=eYNtPID5dC5eAbqd5c26u+nX9kwT3yj3w8d1qpVUwXJuVf7h8VGMqYyLfwmQBZoRmz
-         AubQoym+xom/lj3rI+mmtFmfBQcNB0SjUnYORjwxhEPmg6c/h/kY1o2WRc07jSHBvRKz
-         6/wC1V9teRKPThsG9eXPN9Lt9HVFAD0khIrSBaIM+KOR5TJRuHeuR2r4Yq6yKa2Xt2hY
-         YjV2o+OWjw9i4fQLTZqvbFwbXqs2PcQqwN4ajDnRgIz8J3mQW9fk/Zev09mYZljKhWD7
-         ohfbIwkx6qzUeNyc56993vrh29kDSW3OljAE/J8osuj+7K4PuDwTjNeoVuLdTzcIRose
-         /5Cw==
-X-Gm-Message-State: AAQBX9eP55Vo9GRIY66k1omYrpW9lINakIWP6LaD7Puv85rQUKtImJ4c
-        oY7QGxT90g9Ki0BC/cESa4fUMw==
-X-Google-Smtp-Source: AKy350bCqmIoZXlZuYM6DqJCydMcQCEWpt/97ZNj0696jDVmL1ZKG3/mpIvblmWRunGhRjOeMqp1Dg==
-X-Received: by 2002:a05:6512:67:b0:4d5:6583:d2e4 with SMTP id i7-20020a056512006700b004d56583d2e4mr1669830lfo.29.1679745778203;
-        Sat, 25 Mar 2023 05:02:58 -0700 (PDT)
+        bh=sHtrB6ODLvt68eh9gSE/iYNIvI2QI55H+clMuzIW/l4=;
+        b=BcLPnDeIfumbWD7GkjdDklrLAEVARAPdq59uwfShZlIWM60UK+6WaQS8kW/28hY5UM
+         RvjsJ3VfMybKkrcXJsc1zm/KrJQGCepariz6RgcB7SddPBs2F1wLA/6/BKqP32WYWvDg
+         aaE5xIdSA8poaD7VsLV/XA6WcQG4uwyudG1Ra+UAnuqs7XOVmDcnOUQg84dKHj2OOAJ0
+         kAvOHGjO1n3iRCi1oVmam4n3OQDVxUCPgh/NrbTxwXlUKuQJS7c6fBxE95FsRsT/P7yA
+         UO62BbIt5MoFKSs5kF+AU68gG+dgXZHLV0oT14MLcoeAuiS+JTNKDj6xNg8zhQKKv0B/
+         NdTg==
+X-Gm-Message-State: AAQBX9dFp3OVbUoIhHoOz3hUwxxGlXcAS+4HSWJUjUmN6gJRlv2DqGXo
+        8oLb03XegOYpSZPwub0MkOCbHA==
+X-Google-Smtp-Source: AKy350YDeHJ/F2M92otvKoJsM6r5peSUP/AF1DoC8ZKa+KRtDwiIuwY7wWdZ3cEHgUk0NlitnuSmCg==
+X-Received: by 2002:a2e:90d4:0:b0:29e:896a:5cec with SMTP id o20-20020a2e90d4000000b0029e896a5cecmr1682308ljg.40.1679745795501;
+        Sat, 25 Mar 2023 05:03:15 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id d19-20020ac241d3000000b004cf07a0051csm3783948lfi.228.2023.03.25.05.02.57
+        by smtp.gmail.com with ESMTPSA id l6-20020a2ea306000000b002983bdf7d71sm3691800lje.106.2023.03.25.05.03.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 05:02:57 -0700 (PDT)
-Message-ID: <580ae0ef-3ff8-7022-4675-f77f0f5102e9@linaro.org>
-Date:   Sat, 25 Mar 2023 13:02:56 +0100
+        Sat, 25 Mar 2023 05:03:15 -0700 (PDT)
+Message-ID: <7551a3f9-590d-0de7-a209-5a4d6bf3a2bd@linaro.org>
+Date:   Sat, 25 Mar 2023 13:03:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: msm8916-thwc-ufi001c: add function
- to pin config
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: apq8096-db820c: drop simple-bus
+ from clocks
+Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -64,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
+ <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,43 +83,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 24.03.2023 21:22, Krzysztof Kozlowski wrote:
-> Bindings require pin configuration nodes to have the function, even if
-> it is GPIO:
+> 'clocks' node is not a bus, but just a placeholder for clocks:
 > 
->   msm8916-thwc-ufi001c.dtb: pinctrl@1000000: sim-ctrl-default-state: 'oneOf' conditional failed, one must be fixed:
->     'esim-sel-pins', 'sim-en-pins', 'sim-sel-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
+>   apq8096-db820c.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+>     From schema: dtschema/schemas/simple-bus.yaml
+>   apq8096-db820c.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]],  ...
+>     From schema: dtschema/schemas/simple-bus.yaml
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-> index 8433c9710b1c..978f0abcdf8f 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts
-> @@ -44,18 +44,21 @@ &msmgpio {
->  	sim_ctrl_default: sim-ctrl-default-state {
->  		esim-sel-pins {
->  			pins = "gpio0", "gpio3";
-> +			function = "gpio";
->  			bias-disable;
->  			output-low;
->  		};
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> index 4476e2e22816..b599909c4463 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> @@ -63,7 +63,6 @@ chosen {
+>  	};
 >  
->  		sim-en-pins {
->  			pins = "gpio1";
-> +			function = "gpio";
->  			bias-disable;
->  			output-low;
->  		};
->  
->  		sim-sel-pins {
->  			pins = "gpio2";
-> +			function = "gpio";
->  			bias-disable;
->  			output-high;
->  		};
+>  	clocks {
+> -		compatible = "simple-bus";
+>  		divclk4: divclk4 {
+>  			compatible = "fixed-clock";
+>  			#clock-cells = <0>;
