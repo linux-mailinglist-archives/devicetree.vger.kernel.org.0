@@ -2,113 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28ED76C8F60
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 17:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B23336C8F7C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 17:36:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbjCYQRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 12:17:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
+        id S229588AbjCYQgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 12:36:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjCYQRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 12:17:12 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BDF74C01;
-        Sat, 25 Mar 2023 09:17:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679761031; x=1711297031;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Vrcn0rGVgrXIQf6tSvf4FE1wbGH838j2OtTvkbDyXDw=;
-  b=NRZ1i7NCCvQF5HJfvkUWLcqYMkEyL96Dl3LrcPbeNA/DwguAx/Canfxa
-   1Yi/aggSNNQVVUwdgVrt4C0OkQhv4lmYwP9FVufpBUrz9YHqZRlQpLySD
-   6pqS2kp1YR8azNFhMP6g37jUfwQ/bfnTcq0wCfSoZUQIL3O09C4Nxs6E3
-   0robPUd/xcZ6uLkl7OtnFXMcuNcvkaxfkuMF0voXlessMTi+nU/LBZP5O
-   8EbrdyzUyJdzZoBdRLdHp9FIEiQHIXClwlGiKvQrsYwVrIpMvqq+ihdNW
-   7oU7Pka2A+8kgJhb+w3QfoZkTF7gFRIYeGUFvmNt0VpJmer2Kr+vdUYNs
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10660"; a="404914160"
-X-IronPort-AV: E=Sophos;i="5.98,290,1673942400"; 
-   d="scan'208";a="404914160"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2023 09:17:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10660"; a="685520387"
-X-IronPort-AV: E=Sophos;i="5.98,290,1673942400"; 
-   d="scan'208";a="685520387"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 25 Mar 2023 09:17:07 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pg6Zn-000GNO-0v;
-        Sat, 25 Mar 2023 16:17:07 +0000
-Date:   Sun, 26 Mar 2023 00:16:28 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Dylan Van Assche <me@dylanvanassche.be>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Dylan Van Assche <me@dylanvanassche.be>
-Subject: Re: [PATCH 2/4] dts: arm64: qcom: sdm845: add SLPI FastRPC support
-Message-ID: <202303260005.DW8hkIxU-lkp@intel.com>
-References: <20230325135114.21688-3-me@dylanvanassche.be>
+        with ESMTP id S229446AbjCYQge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 12:36:34 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF653AA8;
+        Sat, 25 Mar 2023 09:36:34 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id r7-20020a17090b050700b002404be7920aso3782454pjz.5;
+        Sat, 25 Mar 2023 09:36:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679762193;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WA9n8a27gA8kTUJpSEshzCNiRNDsajmOjGwfhhvIo7w=;
+        b=R7vcO9N+gBpo9ysy7yqA67yGh+CR1pkyBnPo1ITdOV/rKZlrFnO8dDDdsQR2gaoRhT
+         9EuqF+cRYaBY+2MnPgU3HEm6j5UWfsuI2sjgKDOL2roH0VGCbwthPAv3gpBp60Z1UiKA
+         gOeJqDm7kEtXqCadHg3BBQleOZFnvu/Rj8HN5i2mfOAuPT6aR6ZK9g8JyogH5CowXbHG
+         wSTnu1ywUp/7CLOG4JwQFjUWCzxbCzq+6SujK6N8CcfHNNDxQyo6IVFjhNZzUUn3Qgx+
+         e6L1SgIb+6xaJ0AtDQ1vBW1Yo0KMHrB41pq29jYt9Z0QOlm/YJcGWP5q6dCY++GGpTY7
+         Ttng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679762193;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WA9n8a27gA8kTUJpSEshzCNiRNDsajmOjGwfhhvIo7w=;
+        b=WZUM6frfsk8wIlYFAN1C9kqjRz6IhWBcAqiqGUlZh247BFhB6XSM1D7DIsfx/IdWLt
+         LQJRKUDl5x/TzyFNOPLYtzNThyM9HQHuggu+3YqD7SgT3EBfR4OtoVEB4n4hVzPZ+vxZ
+         24H2LgOrauQuz0tSdctKG9TYFgBqrvsTq7QY7cNHUUz/YTNq9ZP6mZRArexr/54Qp5Wx
+         M2vUB8YMCVGAwkp3d0AbyD0Ifv6fkPAZi+y4nbaBq+3RFnBH8rXedZxyxMWFwnjBZhSd
+         9mBkOFYtoC8umyXfWu88M/N4VOndCpNXOxaeLSzEMGwtwBt26sCar4czuhgeGDZgk01N
+         nFlw==
+X-Gm-Message-State: AAQBX9euD7iBuW19bgqzUWZPvLmBa/qg9qEQvQBLS+++/KUaBZHb7CEd
+        DY4LEan8TdyObZwIva+bkKw=
+X-Google-Smtp-Source: AKy350ZHL7G2KFrTkI2HzyipXt3HsrixoT/aeQU76WAtDtWGPJbfyToTNxrcP+XsPqhU41eEzR4m9Q==
+X-Received: by 2002:a17:903:41c8:b0:19a:9890:eac6 with SMTP id u8-20020a17090341c800b0019a9890eac6mr7538636ple.24.1679762193400;
+        Sat, 25 Mar 2023 09:36:33 -0700 (PDT)
+Received: from pavilion.. ([2402:e280:2146:a9a:dbe7:6935:261d:5dd6])
+        by smtp.gmail.com with ESMTPSA id ix18-20020a170902f81200b0019f1027f88bsm16178714plb.307.2023.03.25.09.36.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Mar 2023 09:36:33 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        danascape@gmail.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: alc5632: Convert to dtschema
+Date:   Sat, 25 Mar 2023 22:06:24 +0530
+Message-Id: <20230325163624.6704-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <323401ed-3549-f45d-f9c7-c8f9f2d5c381@linaro.org>
+References: <323401ed-3549-f45d-f9c7-c8f9f2d5c381@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230325135114.21688-3-me@dylanvanassche.be>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dylan,
 
-Thank you for the patch! Yet something to improve:
+> Yes. That's what I also said in the beginning, but for some reason
+> Saalim cut this part... and re-added subsystem maintainers.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.3-rc3 next-20230324]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The file was last updated a few years back and it was by Mark, so I added him as well, while the
+original binding was written by Leon only, so I added him as well.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dylan-Van-Assche/dts-arm64-qcom-sdm845-add-SLPI-remoteproc/20230325-215354
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230325135114.21688-3-me%40dylanvanassche.be
-patch subject: [PATCH 2/4] dts: arm64: qcom: sdm845: add SLPI FastRPC support
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20230326/202303260005.DW8hkIxU-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/df03f51210d03566bf0d35a56633d55e3c57b5ad
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Dylan-Van-Assche/dts-arm64-qcom-sdm845-add-SLPI-remoteproc/20230325-215354
-        git checkout df03f51210d03566bf0d35a56633d55e3c57b5ad
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+Regards,
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303260005.DW8hkIxU-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/qcom/sdm845.dtsi:3360.4-5 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Saalim
