@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 494976C8D9F
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 12:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D36FF6C8DA6
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 12:53:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbjCYLwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 07:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39184 "EHLO
+        id S230037AbjCYLxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 07:53:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjCYLwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 07:52:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B8E2CA0C;
-        Sat, 25 Mar 2023 04:52:17 -0700 (PDT)
+        with ESMTP id S231707AbjCYLxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 07:53:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A02B2F1;
+        Sat, 25 Mar 2023 04:53:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E4B7860C3D;
-        Sat, 25 Mar 2023 11:52:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64E77C433EF;
-        Sat, 25 Mar 2023 11:52:12 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 39424B803F8;
+        Sat, 25 Mar 2023 11:53:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13F31C433EF;
+        Sat, 25 Mar 2023 11:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679745136;
-        bh=S81O2f+uuTmPTwheCDEyFysXHkEUR3+b1qgwrMEBup0=;
+        s=k20201202; t=1679745185;
+        bh=FFBB5Qbytv/2GhipRMImzTvlxCw1uCSobBjuA0Yniqs=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=IBYsba9Jyohl3v3hp+AEXp1EQUKY2GwfXLyl5PGKVRIPu4L44xbzNe7B5YT9p/UBD
-         kEgiOXQiikTN8ur7MS71R/V1P9JcYTMc3KpNRRU3wi0tDUPj5X1VG9yIbGvyha15Zb
-         0HPnT2s6a2KBgAMMvt74cLaKOqlHk7RMIg9aSR9dEwbu4bupwEIjHMpQ67KxMKHEfh
-         smLCsNP8nttxHMdi2u0kJiyma9N6Jd/+8uS+CI9mS8i29itoXO/1P62/k982V1POQD
-         n91in6GS40x5LyYb8i80lhVy00zmydqCvSM6Yx40REXVTLszTnhGbG9Az5DkGdDF/K
-         E6+wXhNfSoXcQ==
-Message-ID: <b2fce18f-62e7-a374-2300-02ff2ae9935b@kernel.org>
-Date:   Sat, 25 Mar 2023 12:52:10 +0100
+        b=iaCm8xHG0OLKDna6iEpAcJOZQ5gAYYo2lIHjr0T9zFwpCN+15+sEBDcSsvwSGlGil
+         JKiQkOeBmRCCGdwyJTQJa1mbowpZrlm+6vdXUK8z/T2e2MqXvy/DuMEMweYsblZBjF
+         UGGXTzK1GK/J5z5WYGXaWmPVUnnTy6GObPfZJKsy89R4A5xxke+Xyfd5zHZbTY9Co5
+         Lzil0pPwVlwRyUcRFNRH28WtLcbIZLtpjflrntxjogojeUuqlwpWCnPfjSEFaBCCGI
+         xOM2QvZ6KaTBgMmBqpMkFZqlT6+jHJ+IhMeXxndYGoa4ivUC3gNPDj0dkP7OTTYp0R
+         0UGlzHMz3N56A==
+Message-ID: <c6390182-8624-35c9-746b-f76e4987777c@kernel.org>
+Date:   Sat, 25 Mar 2023 12:52:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: Add doc for FriendlyARM NanoPi R2C
+Subject: Re: [PATCH v2 3/4] dt-bindings: Add doc for Xunlong OrangePi R1 Plus
+ LTS
 Content-Language: en-US
 To:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -52,13 +53,13 @@ To:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230325074022.9818-1-cnsztl@gmail.com>
- <20230325074022.9818-2-cnsztl@gmail.com>
+ <20230325074022.9818-4-cnsztl@gmail.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230325074022.9818-2-cnsztl@gmail.com>
+In-Reply-To: <20230325074022.9818-4-cnsztl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,11 +69,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/03/2023 08:40, Tianling Shen wrote:
-> Add devicetree binding documentation for the FriendlyARM NanoPi R2C.
-> 
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 +
+> Add devicetree binding documentation for the
+> Xunlong OrangePi R1 Plus LTS.
 
 
 Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
