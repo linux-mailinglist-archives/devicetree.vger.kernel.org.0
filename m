@@ -2,90 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2206C8D95
-	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 12:49:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB9B6C8D99
+	for <lists+devicetree@lfdr.de>; Sat, 25 Mar 2023 12:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230424AbjCYLtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 07:49:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
+        id S230062AbjCYLvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 07:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjCYLtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 07:49:06 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CC21351E
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 04:49:03 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id eg48so17501279edb.13
-        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 04:49:03 -0700 (PDT)
+        with ESMTP id S229505AbjCYLvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 07:51:03 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E5F136C6
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 04:51:01 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id er18so6392440edb.9
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 04:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679744942;
+        d=linaro.org; s=google; t=1679745059;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kQyYQJ5ADRdF9OVtRfx6rMZJz2Nfi45W36+555qY1PU=;
-        b=JBA87vR3OI9LMt/L1FYtJpneL3XrGo/91n2B7ZT8MakWj/8yfzgUw5luR8Xuz8p69E
-         0/egcylpxO3IGMXaAHKYPAqJYkZVObi+Zn22pFLkRuoRspFdcWPegE1+cUXfkzstPhey
-         +uZaSdsJAKp3zPlpsk41+qm7KUEm/9pswRhfxZHImiwyETw+pgnSo1LxTcR6IVFZO4me
-         kKtrpdPYIG1PyIZIx6WIdBv45uui1ex3gd2LUqoG+7kybfPYdJtlEF71//zaq1NTmaLm
-         EwYTATLTIWaMkP3y2NUiUw8Z5xVPWsyClkmbZg5jdaEbdMUuUMLKSMo7JpXyb+/fniHP
-         hPfw==
+        bh=nQfEsJ/kRE4svm/QpY3bwtkC6UQ1KDFqIxzZimyy0K4=;
+        b=zHR6Zo3t7o/2x6z18o6qSsk7yt9XwsI38ibIpH1UKOIN8XToCvDfqe7vBnFXwVEZ8u
+         vTVtD130VtoJ3BxeHbBH/4Dq60M/2IXsyH/C5iKswd0DelleoYS+AcIdexkzhjETlEsL
+         GcRyG0oVy5k2gZuZZ0OH0/RIwouFKdAfBPc/R5RY35EOHrwJFZk0WB8WVD2FvcEpX/kq
+         8c9W9kPlQ3FfD7rCmUZ3Ul//iQGH0joinU8KZCoWcf/fEd3aefxXR9FLvMDMqpU2j6gV
+         1R9HY+SJHf78r0XAEy+Rc6hGe/X/a13SO/xtit8u62QueW9+wvsOf5dDbQIZrBI32hAS
+         ASgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679744942;
+        d=1e100.net; s=20210112; t=1679745059;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kQyYQJ5ADRdF9OVtRfx6rMZJz2Nfi45W36+555qY1PU=;
-        b=wfiYfoT4jGJMYbrGpHoOp8sDR5MgSRxN6HucxJPQYx9nfw457uI1NfDgbpEQjR4s+x
-         1hkYmmXZyuPyxbYlKET5uRfykVMEkuppv40lqijzMZaFlK22MqOsChGsM1APM2uXmpuL
-         0M6v91qCWD8cCxBu0paeE6Na1aFfI9o4JvZWIB9Dz5op3SXJN2NdISKvhfFDh5BW4Ud0
-         QYQ1XVeHVqkLvdqmQhgg/8HS1gjI9TaK6sHpyVXnEixtGnfQtMoA1Wan1rjuFNU6qhCx
-         VGL1B89eqfofv7lZ07jrkw9kYYmxq9IUegXn5EK43ZTF/bQR57yYLxYV+YPlM7zNDE/A
-         OutQ==
-X-Gm-Message-State: AAQBX9fN1xuMP6qGvyEDnkpkmE2GX7e4Li0t/cG4ZGh+W32cdFOus3EK
-        Obqwsuc2v52JQzeeTp03kIv1/PzRs/I3L+ZDBHk=
-X-Google-Smtp-Source: AKy350YTzrkYAXqQjHWZV0xpJM6s5LAt6LbBiUANs0niqJlx14HXYukVYXfsZrnn/XNAv0K2o1tP1w==
-X-Received: by 2002:a17:906:b159:b0:93d:b767:9fea with SMTP id bt25-20020a170906b15900b0093db7679feamr5292904ejb.31.1679744942194;
-        Sat, 25 Mar 2023 04:49:02 -0700 (PDT)
+        bh=nQfEsJ/kRE4svm/QpY3bwtkC6UQ1KDFqIxzZimyy0K4=;
+        b=0TJ8MG04Vc1ezR3AcYnQVak/4rF9ygA0a8N6FJ913Rp/s5f9Fo4GG7fzgXSb6FAf1g
+         5KszchMYEe7uysTPzX00kU24ZEBM1Om7ICtG5dysyp8Y0FXoWzBUFXKuKAjXlmmzDwAN
+         gZNDSaTKA/D9rIGchAHNZeTm1kHF7gUJ0UMSyGIlpegaoyLOW/jdnUD1rXeqr3K2k/Ms
+         8nDhllxC+G9KyXw0kMr4iF9UE7mvK0TZP2plMKeYfOaKBAMUncxVEObrYxkjP4NSxcCr
+         5CrPDkAaa5kkG4FoLOLK6JnIw88mgjIdt0uVubUsyIVI3Vq76nDbJX87aHFLrMSEgmSA
+         v7hg==
+X-Gm-Message-State: AAQBX9dgaqvwQJpEm+3md5WAfZ66uGICpceH021LXVp7ssEeXR9U3CZD
+        +iQzJMGnXKDJwtB4Jy50+NJHqA==
+X-Google-Smtp-Source: AKy350ZVONNBf6X0XDXBdDm3eOWd/T0wslYWfPem1OuD3M4j6fthRc4ITWf8ho4pEtCkdeiAqnDZQg==
+X-Received: by 2002:a17:907:a42a:b0:93f:b391:9a07 with SMTP id sg42-20020a170907a42a00b0093fb3919a07mr1082633ejc.15.1679745059546;
+        Sat, 25 Mar 2023 04:50:59 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:d230:b2c7:d55:c9c8? ([2a02:810d:15c0:828:d230:b2c7:d55:c9c8])
-        by smtp.gmail.com with ESMTPSA id a25-20020a50c319000000b004bc15a440f1sm12215603edb.78.2023.03.25.04.49.00
+        by smtp.gmail.com with ESMTPSA id r3-20020a50d683000000b004c0239e41d8sm12114820edi.81.2023.03.25.04.50.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 04:49:01 -0700 (PDT)
-Message-ID: <e51c200e-6de0-d516-3f32-28367b2f5a95@linaro.org>
-Date:   Sat, 25 Mar 2023 12:49:00 +0100
+        Sat, 25 Mar 2023 04:50:59 -0700 (PDT)
+Message-ID: <29530f96-2633-a9ae-0ab6-811b68a74e9d@linaro.org>
+Date:   Sat, 25 Mar 2023 12:50:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: Add Coresight Dummy Trace YAML
- schema
+Subject: Re: [PATCH v7] dt-bindings: pinctrl: Convert Amlogic Meson pinctrl
+ binding
 Content-Language: en-US
-To:     Hao Zhang <quic_hazha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-doc@vger.kernel.org
-References: <20230324061608.33609-1-quic_hazha@quicinc.com>
- <20230324061608.33609-3-quic_hazha@quicinc.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <3e839363-e12a-93f1-a1f6-f783caa5665e@gmail.com>
+ <b0a91d24-4458-169e-6547-2a2a68cd9922@linaro.org>
+ <354ffe85-2033-eaf0-4dc5-b5a425900c20@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230324061608.33609-3-quic_hazha@quicinc.com>
+In-Reply-To: <354ffe85-2033-eaf0-4dc5-b5a425900c20@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -98,180 +87,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 07:16, Hao Zhang wrote:
-> Add new coresight-dummy.yaml file describing the bindings required
-> to define coresight dummy trace in the device trees.
-> 
-
-Subject: drop second/last, redundant "YAML schema". The "dt-bindings"
-prefix is already stating that these are bindings and all new must be DT
-schema. You cannot add anything else, so this is redundant.
+On 25/03/2023 12:41, Heiner Kallweit wrote:
+> On 25.03.2023 12:18, Krzysztof Kozlowski wrote:
+>> On 24/03/2023 23:51, Heiner Kallweit wrote:
+>>> Convert Amlogic Meson pin controller binding to yaml.
+>>>
 
 
-> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
-> ---
->  .../bindings/arm/qcom,coresight-dummy.yaml    | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
-> new file mode 100644
-> index 000000000000..7b719b084d72
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
-> @@ -0,0 +1,118 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-dummy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: QCOM Coresight Dummy component
-> +
-> +description: |
-> +  The Coresight Dummy component is for the specific devices that HLOS don't have
-> +  permission to access or configure. Such as Coresight sink EUD, some TPDMs etc.
-> +  So there need driver to register dummy devices as Coresight devices. Provide
-> +  Coresight API for dummy device operations, such as enabling and disabling
-> +  dummy devices. Build the Coresight path for dummy sink or dummy source for
-> +  debugging.
-> +
-> +  The primary use case of the coresight dummy is to build path for dummy sink or
-> +  dummy source.
-> +
-> +maintainers:
-> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> +  - Tao Zhang <quic_taozha@quicinc.com>
-> +  - Hao Zhang <quic_hazha@quicinc.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - qcom,coresight-dummy
-> +  required:
-> +    - compatible
+>>> +patternProperties:
+>>> +  "^bank@[0-9a-z]+$":
+>>> +    $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        maxItems: 4
+>>> +
+>>> +      reg-names:
+>>> +        items:
+>>> +          - const: mux
+>>> +          - const: pull
+>>> +          - const: pull-enable
+>>> +          - const: gpio
+>>> +
+>>> +    unevaluatedProperties: false
+>>
+>> Wrong placement. Rob asked you to put it after $ref and the review was
+>> conditional based on this. Don't add review-tag if you do not follow the
+>> comment.
+>>
+> I wasn't aware that this makes a difference, and in e.g. samsung,pinctrl.yaml
+> I found it at the end of the patternProperties block.
+> Thanks for the hint, then I will correct this and resubmit.
 
-Why do you need the select?
-
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^dummy_.*(sink|source)_[0-9]+.*$"
-
-We do not enforce node names in individual bindings. Why do you need it?
-Plus underscore is not even proper character...
-
-> +  compatible:
-> +    items:
-
-Drop items. You have only one item, so no need for list.
-
-> +      - const: qcom,coresight-dummy
-> +
-> +  qcom,dummy-sink:
-> +    type: boolean
-> +    description:
-> +      Indicates that the type of this coresight node is dummy sink.
-
-You just duplicated property name. Write something useful.
-
-> +
-> +  qcom,dummy-source:
-> +    type: boolean
-> +    description:
-> +      Indicates that the type of this coresight node is dummy source.
-
-You just duplicated property name. Write something useful.
-
-> +
-> +  out-ports:
-> +    description: |
-
-No need for |
-
-> +      Output connections from the dummy source to Coresight Trace bus.
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port:
-> +        description: Output connection from the dummy source to Coresight
-> +            Trace bus.
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +  in-ports:
-> +    description: |
-
-Ditto
-
-> +      Input connections from the CoreSight Trace bus to dummy sink.
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port:
-> +        description: Input connection from the Coresight Trace bus to
-> +            dummy sink.
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +oneOf:
-> +  - required:
-> +      - qcom,dummy-sink
-> +  - required:
-> +      - qcom,dummy-source
-> +
-> +examples:
-> +  # minimum dummy sink definition. dummy sink connect to coresight replicator.
-> +  - |
-> +    dummy_sink_1 {
-
-Node names should be generic, so "sink"
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +      compatible = "qcom,coresight-dummy";
-> +      qcom,dummy-sink;
-> +
-> +      in-ports {
-> +        port {
-> +          eud_in_replicator_swao: endpoint {
-> +            remote-endpoint =
-> +              <&replicator_swao_out_eud>;
-
-Why line break after =?
-
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +  # minimum dummy source definition. dummy source connect to coresight funnel.
-
-If you use sentences, then start with capital letter.
-
-> +  - |
-> +    dummy_source_1 {
-> +      compatible = "qcom,coresight-dummy";
-> +      qcom,dummy-source;
-> +
-> +      out-ports {
-> +        port {
-> +          dummy_riscv_out_funnel_swao: endpoint {
-> +            remote-endpoint =
-> +              <&funnel_swao_in_dummy_riscv>;
-
-Why line break?
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +...
+But Rob asks for it, so regardless whether it makes difference or not,
+you ignore the comment?
 
 Best regards,
 Krzysztof
