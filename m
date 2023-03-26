@@ -2,143 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC656C9691
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB706C9699
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232623AbjCZQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 12:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35368 "EHLO
+        id S231787AbjCZQFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 12:05:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231842AbjCZQDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:03:38 -0400
+        with ESMTP id S232707AbjCZQEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:04:52 -0400
 Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982E04229
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:03:36 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id b20so26335431edd.1
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:03:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B8DE44BA
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:04:24 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id t10so26155034edd.12
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1679846616;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QV3iGa8KiUlr1LClhXl1D1BGw0maVF3hcUmABXx2qKM=;
-        b=rq5dyFnUl7RahLZHNlkhn8nQ8r1SCLpS07sZ1IVPZQJ3gVy0TCL2nFSO4YipbN3KkF
-         cqTPtfp304/6vW5DlnooqxktttCdVjUHlOTqCWhTxmLShyqTJQYFn08BEWKvPXMfEDxa
-         6QhqrddIx+rQQal8P4izUsMxr75QpKTnFYBYo=
+        d=linaro.org; s=google; t=1679846661;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qlCkeJgW3mVdh/0eT8pyaphF08RZSTIB3iRCwBVYpLw=;
+        b=G3rzxWZpyXJuLljg3vzsoZBHx+KC0mggEg9XPc0IEsVnjlCZRfV76nppFwg7LMsTFt
+         4l61aom9HRVJiYTQNGR5ZJsVdfwXRHl4pQMiOvfSxHoWimrs9HTQWq47voCv/KUVg2gE
+         leeLiGlGByE491CHvwxrPmuz9BGRpz6f9lxJm0rGN4OLpAHDMcem9byC+NQIZioZ/TkM
+         MryXd/ercqgUzCWfoKS70M+z8QsCy8pFMmbBQrk6GlLBOTRDtd9SZ69OUX7NSGxU27Sr
+         RHoujmEviOi9MakYbmJlzeshsj5QMNB9jXmq9kCdN2Z1RBq5SgfnJpSOpKc+Q3aIWuZ9
+         PDAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679846616;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QV3iGa8KiUlr1LClhXl1D1BGw0maVF3hcUmABXx2qKM=;
-        b=ggsbPZc6uM4rKmumuPS0NsoDxc1ogLsH8oGmVu9JVLbUUzKZkjxuckWex14a1vmNwe
-         rVuWkN3DRgsMIU4yVkK8+L3Cm42YVK4Qfd/s/ax11zfR+8Hwe3tleIEycVY4P9MRHSgm
-         64wYL+92cXMttxmhDjghGY3xomHY6yynbKgF9nZa2k4aTfjhErE4oWFlj8Ktqi52EJqB
-         NnDUM2aXsgv5ji9Kfkd+CLpWM+sxytWmuiMB+AiwpmfK89MemNdWthhlTCouirt7TiZG
-         JVQW3t4/VjesAmr7vU2lukxuiBx+S4mJM/cLHQE9eL7tlpxMx+m9ISRbIjRzzjpncSv7
-         HGOg==
-X-Gm-Message-State: AAQBX9eRbKm0XWCyBY+MwKwWyc0w+0cC/OIfUhEu+cJ9wOcrxAiwoPcW
-        cMBydrFJTrQBBhzgE5T5O8Mn2w==
-X-Google-Smtp-Source: AKy350aWHhGJriWVrLf6TakD+wy8UiRbEvNVXeYw5vTRA6TEpbcBjqXWsqfoa/9hQ0foQ3aDVKRFZA==
-X-Received: by 2002:a05:6402:70a:b0:4fb:9b54:ccb8 with SMTP id w10-20020a056402070a00b004fb9b54ccb8mr9305209edx.21.1679846616252;
-        Sun, 26 Mar 2023 09:03:36 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-0-102-254.retail.telecomitalia.it. [87.0.102.254])
-        by smtp.gmail.com with ESMTPSA id m2-20020a50d7c2000000b00501fc87352fsm6869333edj.13.2023.03.26.09.03.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 09:03:36 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        michael@amarulasolutions.com,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v8 4/5] ARM: dts: stm32: add pin map for CAN controller on stm32f4
-Date:   Sun, 26 Mar 2023 18:03:24 +0200
-Message-Id: <20230326160325.3771891-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20230326160325.3771891-1-dario.binacchi@amarulasolutions.com>
-References: <20230326160325.3771891-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20210112; t=1679846661;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qlCkeJgW3mVdh/0eT8pyaphF08RZSTIB3iRCwBVYpLw=;
+        b=cn13/k2c04JITWZ2MoTmmkv2yTv21bGYrdPzqEi5W+rZuvqLxAdY/xMosC4FB+jYas
+         +PnRvnjFpzymkE2gG25pwt9r+uaAXe2nEaHhq++knujxzfN9e0WbQTk7012VB6di4X3k
+         c/ksijaS3wQ7TN2rdhi+5KoJMQbJzeodN692Q8p4RJQDQMyL24vsAloppITqscOUl2+R
+         SF27xxQxzJgHzL+Lbik/LgNomIbtzDFdmBy4+LZYArtvSGIhCgM+6k52XHLc2JwjA0WK
+         h94FhQkgWR5j+GgWQ8e7v8lgfOeefYC00fwboBipFEMxuWgoRX4vtLMfvjShkASC5TSG
+         VVCQ==
+X-Gm-Message-State: AO0yUKUJxYQAu+RuiVoGn/vUYXlsJANS/Rw/pj4g47VbmenMFO72AOek
+        3bp956i1VmckrzYfOHhmBC0x/g==
+X-Google-Smtp-Source: AK7set9rWPLBX9fuj2+oYAYrlmSCGKLQh1+m2VEKnNQWXSSpm8ulEDCe6we5h+Xa6nQ1ObV+tRWTmA==
+X-Received: by 2002:a05:6402:944:b0:4ad:f811:e267 with SMTP id h4-20020a056402094400b004adf811e267mr15670897edz.12.1679846660905;
+        Sun, 26 Mar 2023 09:04:20 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:eca3:3b8f:823b:2669? ([2a02:810d:15c0:828:eca3:3b8f:823b:2669])
+        by smtp.gmail.com with ESMTPSA id kg6-20020a17090776e600b008b904cb2bcdsm13222129ejc.11.2023.03.26.09.04.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Mar 2023 09:04:20 -0700 (PDT)
+Message-ID: <80e9a424-1d5b-5402-4567-c489204869b6@linaro.org>
+Date:   Sun, 26 Mar 2023 18:04:19 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx65: add IPA information
+Content-Language: en-US
+To:     Alex Elder <elder@ieee.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org
+Cc:     quic_rohiagar@quicinc.com, caleb.connolly@linaro.org,
+        mka@chromium.org, evgreen@chromium.org, quic_cpratapa@quicinc.com,
+        quic_avuyyuru@quicinc.com, quic_jponduru@quicinc.com,
+        quic_subashab@quicinc.com, elder@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230324201528.2540564-1-elder@linaro.org>
+ <20230324201528.2540564-2-elder@linaro.org>
+ <98fcbdd4-77b3-5b17-7102-c590f1a5a63e@kernel.org>
+ <82797190-5a83-53d5-47cd-0c62b3f7c6d8@ieee.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <82797190-5a83-53d5-47cd-0c62b3f7c6d8@ieee.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin configurations for using CAN controller on stm32f469-disco
-board. They are located on the Arduino compatible connector CN5 (CAN1)
-and on the extension connector CN12 (CAN2).
+On 26/03/2023 18:01, Alex Elder wrote:
+> On 3/25/23 6:14 AM, Krzysztof Kozlowski wrote:
+>> On 24/03/2023 21:15, Alex Elder wrote:
+>>> Add IPA-related nodes and definitions to "sdx65.dtsi".  The SMP2P
+>>> nodes (ipa_smp2p_out and ipa_smp2p_in) are already present.
+>>>
+>>> Enable IPA in "sdx65-mtp.dts"; this GSI firmware is loaded by Trust
+>>> Zone on this platform.
+>>>
+>>> Tested-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>> Signed-off-by: Alex Elder <elder@linaro.org>
+>>> ---
+>>>   arch/arm/boot/dts/qcom-sdx65-mtp.dts |  5 ++++
+>>>   arch/arm/boot/dts/qcom-sdx65.dtsi    | 38 ++++++++++++++++++++++++++++
+>>>   2 files changed, 43 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+>>> index ed98c83c141fc..72e25de0db5fc 100644
+>>> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+>>> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
+>>> @@ -245,6 +245,11 @@ &blsp1_uart3 {
+>>>   	status = "okay";
+>>>   };
+>>>   
+>>> +&ipa {
+>>> +	qcom,gsi-loader = "skip";
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>   &qpic_bam {
+>>>   	status = "okay";
+>>>   };
+>>> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+>>> index 192f9f94bc8b4..360d6dc144811 100644
+>>> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
+>>> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+>>> @@ -11,6 +11,7 @@
+>>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>   #include <dt-bindings/power/qcom-rpmpd.h>
+>>>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>>> +#include <dt-bindings/interconnect/qcom,sdx65.h>
+>>>   
+>>>   / {
+>>>   	#address-cells = <1>;
+>>> @@ -299,6 +300,43 @@ tcsr_mutex: hwlock@1f40000 {
+>>>   			#hwlock-cells = <1>;
+>>>   		};
+>>>   
+>>> +		ipa: ipa@3e04000 {
+>>> +			compatible = "qcom,sdx65-ipa";
+>>> +
+>>> +			iommus = <&apps_smmu 0x5e0 0x0>,
+>>> +				 <&apps_smmu 0x5e2 0x0>;
+>>> +			reg = <0x3f40000 0x10000>,
+>>> +			      <0x3f50000 0x5000>,
+>>> +			      <0x3e04000 0xfc000>;
+>>> +			reg-names = "ipa-reg",
+>>> +				    "ipa-shared",
+>>> +				    "gsi";
+>>> +
+>>> +			interrupts-extended = <&intc GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
+>>> +					      <&intc GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
+>>> +					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+>>> +					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
+>>> +			interrupt-names = "ipa",
+>>> +					   "gsi",
+>>> +					   "ipa-clock-query",
+>>> +					   "ipa-setup-ready";
+>>
+>> These look misaligned.
+> 
+> I believe this is the alignment convention used by all IPA nodes
+> in DTS files.  It's possible I'm not seeing something you are,
+> but...  what alignment should be used?  And if I change this,
+> should I change all others?
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+If this is aligned, then fine. The diff points it is not, but the diff
+might be a bit tricky sometimes.
 
----
+Alignment is till " in previous line. For example sdm845 looks fine.
 
-(no changes since v3)
 
-Changes in v3:
-- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
-- Remove a blank line.
-
-Changes in v2:
-- Remove a blank line.
-
- arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 30 ++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-index 4523c63475e4..3bb812d6399e 100644
---- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-@@ -447,6 +447,36 @@ pins2 {
- 					slew-rate = <2>;
- 				};
- 			};
-+
-+			can1_pins_a: can1-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 9, AF9)>; /* CAN1_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 8, AF9)>; /* CAN1_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_a: can2-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 5, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_b: can2-1 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 12, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.32.0
+Best regards,
+Krzysztof
 
