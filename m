@@ -2,232 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E9056C98D4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 01:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91EA66C98D9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 01:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232020AbjCZXit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 19:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57168 "EHLO
+        id S229471AbjCZXlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 19:41:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjCZXiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 19:38:23 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 002D659E8
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 16:38:20 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id f5-20020a4ad805000000b005399cfd276bso1083747oov.6
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 16:38:20 -0700 (PDT)
+        with ESMTP id S229456AbjCZXlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 19:41:04 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525E45B82;
+        Sun, 26 Mar 2023 16:40:47 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id e18so6891388wra.9;
+        Sun, 26 Mar 2023 16:40:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1679873900;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20210112; t=1679874046;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fOYoXNhDxV9KBWMQ/yrHmx0omzhnX0saDndzajAssSo=;
-        b=Jx8g1FahvAgWj0s4SjnHbHJ5VXxWsidBMCMCDDRv7MnqDrKoxIwFIGQ7FmWaLvI3rS
-         N+Obso/VAq/qnUmxO85G9PYdCLmH/BLapIUIUnq5EGdzlbIef+XwZ5iDalmI0vpC9mki
-         SkDiR+F38QjBI+Ni4dG25qL1JXFOK3+OfXXGmC8ArCGKUrXf7jOU5lMK5HlkULLSIFNE
-         gjNsHlaAiIe/vLV5i4q8KMJ2T6bk4k5ub1lFqMP2e/NPjWFDSWCBvgtqsOrZcuFTP0fM
-         j5k2ns338T7mohj204OzxGsu623ZRSkHhfy9iT99S4xFhRUgCusw99PjHJeIExXv6MAK
-         hNBw==
+        bh=P41fXiXFzQYoqX8WCtNc6OtPCt6dlzfDHiVW1ftks0U=;
+        b=DZKVCqFvXkjAFNIEU9tnPxhz0A1z7sr/xRDD2Osxcuw1UHLovyd2E/w73Azdi/v1IK
+         T0TfaB1yBC6PUwJstC5M3tYU7B5MQCp499TsQ0XtYXkXZwTugsCwWPzkUoE6sYzIEaQ3
+         92KUs/yO2PD8/eGX/ZzhBgoVJ5BNj8O9uT7S6ZwyPeyf29jvWORUgWDSfgVcyJvH/NJ6
+         VTcZJHGpWcHMo6ocjv+j7JyStaVpbrbCWEfcsW+FROpcAMSr6mM/6D+CRrkoAXRQo16e
+         IhqLMs6wAT1rX2RtPq0KzBRvrOK53PPkTT3Smz4GO6BJX8NNrhslcqA8+7F/yxqV+AZh
+         lUMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679873900;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679874046;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fOYoXNhDxV9KBWMQ/yrHmx0omzhnX0saDndzajAssSo=;
-        b=QMelfK33UMu7uuaB7stF416+Eq2I/5XyB3WtjrmpPFJ7tSVZq+IoIzbBYzmKCqVQQd
-         ov710iD1C3G33Mi/cGpoYhQy63XM0lX2U2Eqg8NX1nYL/NHv4Jqbeyx48ZBsNDUYkg8r
-         y/eqcCrR0aQSNuABE5zh9szxRdcilx5pbLpoTztGiXPjuh0Jk5eL94sQx9ADE8PZAgjl
-         YfDsbVkR2syWqb0y6eTrUW3H3Xz8S6Kx709uZbbXtXxNjGX7jYbC7PVntGq6rKxiavqw
-         KOYvnp+O3SCBVlUPrj+P7FiEIkOnc38W1oQi99aUOEAZyjq0TljZt5f9w5I8cSJSIhyj
-         l+nA==
-X-Gm-Message-State: AO0yUKWfphnCZp1E2NCPthk2eY8yRESt4x0l25LHEqpLPvKSgL61nKxp
-        wousq7vZ3kmsXmMVEMfCTmCsZg==
-X-Google-Smtp-Source: AK7set8CEFURxAGBWTFm/sFlXJrqCOCtWNlhaQN+tN+9K24M2OPU8Vuy99/AVu9gavTy8v+bi+nBJg==
-X-Received: by 2002:a4a:4111:0:b0:517:4020:60b6 with SMTP id x17-20020a4a4111000000b00517402060b6mr4949987ooa.8.1679873900279;
-        Sun, 26 Mar 2023 16:38:20 -0700 (PDT)
-Received: from localhost ([2600:1700:eb1:c450::35])
-        by smtp.gmail.com with ESMTPSA id u63-20020a4a5742000000b0051aa196ac82sm10921355ooa.14.2023.03.26.16.38.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 16:38:19 -0700 (PDT)
-From:   Steev Klimaszewski <steev@kali.org>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>,
-        Johan Hovold <johan@kernel.org>
-Subject: [PATCH v8 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-Date:   Sun, 26 Mar 2023 18:38:12 -0500
-Message-Id: <20230326233812.28058-5-steev@kali.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230326233812.28058-1-steev@kali.org>
-References: <20230326233812.28058-1-steev@kali.org>
+        bh=P41fXiXFzQYoqX8WCtNc6OtPCt6dlzfDHiVW1ftks0U=;
+        b=0n0oDNM8HG9Sj/7tuef1YwUPq9Pvx4MktZ/KrroHeQFODcROfeVP4gVduPexH6ioCk
+         cLf2niHIDXxfoeyTMXXOPHjAH9O6jLJQuH761pjAbxw56U4Kbr5cR0iEI+AVVOeQUVlr
+         CuEGpuaaBRlKoQT2tMhwtbvMfl+Qa6u70z/gA2sOFztigGNb45XcpkUBjVhBrWcJzn53
+         FUYv2fvyc402iVSCRadSbQ55YxyqsAQ6iSzduxi4WgMaXH3n67k6h5T0X8YrNgrRocpq
+         XCL611tZAOW1R0onis8+gM4Q+1IbW+D9WIiFNq3Ryf5ADznAdS4YmGJUqzuGMbOe9DWg
+         zuVA==
+X-Gm-Message-State: AAQBX9e2ljOMbufqfEFbBALPMOegvewbp6r4FcaavSXaVUjy57ISIrP0
+        /vaVDwNkijYmRd8ZG3/152iWxTL8w1MFsWV38EbiSyyDTZ2QPw==
+X-Google-Smtp-Source: AKy350a2D12GsQXmTxLDNWt04UP2ULZuKv1vaMcFRNA1UNw3Jpqtnb9v04YeMlvUtB7IqpW3VFKFRrAUR8ppjFgh+S0=
+X-Received: by 2002:adf:ec82:0:b0:2c7:1745:77ec with SMTP id
+ z2-20020adfec82000000b002c7174577ecmr1956907wrn.2.1679874045661; Sun, 26 Mar
+ 2023 16:40:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230326001535.149539-1-bigbeeshane@gmail.com>
+ <20230326001535.149539-2-bigbeeshane@gmail.com> <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
+ <CABnpCuCzdbWTTp1Gc6wWPsB80J5GYw1QzKtZzzyEYU456E=1JA@mail.gmail.com>
+ <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org> <CABnpCuAWm7jh19JKukOquPnZCwHoJispgDPGJzjYy6T_BZSnbg@mail.gmail.com>
+ <717bfba9-1d70-ef09-9193-853a57117926@linaro.org> <CABnpCuA7V9ti6BOoz+3Mq-f=PwgxL2K7rOhjo6tJ4QquSZbaSA@mail.gmail.com>
+ <03ec1aac-3c6d-892f-fad9-f386a5d4d10e@linaro.org> <87cz4v2nr1.fsf@bloch.sibelius.xs4all.nl>
+In-Reply-To: <87cz4v2nr1.fsf@bloch.sibelius.xs4all.nl>
+From:   Shane Francis <bigbeeshane@gmail.com>
+Date:   Mon, 27 Mar 2023 00:40:34 +0100
+Message-ID: <CABnpCuAqT-RtdmeaAqyB_CQkLa=vn8zxF_WkYRnj8FoGJLL=_Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-add this.
+Hi Mark
 
-Signed-off-by: Steev Klimaszewski <steev@kali.org>
----
-Changes since v7:
- * Drop regulator now in a different patchset from Johan
- * Fix alphabetization
+> That code makes absolutely no sense.  This tries to transplant
+> phandles from one DTB into another DTB?  Mainline U-Boot has no code
+> like that.  I think this is just broken beyond repair.
 
-Changes since v6:
- * Remove allowed-modes as they aren't needed
- * Remove regulator-allow-set-load
- * Set regulator-always-on because the wifi chip also uses the regulator
- * cts pin uses bias-bus-hold
- * Alphabetize uart2 pins
+Yeah its a dumb bit of code, my concern when looking at the R6S is that
+when devices look to get mainline support that are unable to change to
+another uboot build (such as when secure boot is involved) those will
+have a hard time as this ABI breakage ship would have departed long
+ago. And the RK3588 support is very new..... I thought about raising it
+now.
 
-Changes since v5:
- * Update patch subject
- * Specify initial mode (via guess) for vreg_s1c
- * Drop uart17 definition
- * Rename bt_en to bt_default because configuring more than one pin
- * Correct (maybe) bias configurations
- * Correct cts gpio
- * Split rts-tx into two nodes
- * Drop incorrect link in the commit message
+The question for me is how (in the future) will devices with this SoC
+and cannot modify their uboot make use of the mainline kernel ?
 
-Changes since v4:
- * Address Konrad's review comments.
+I have looked into undoing this clock configuration during early kernel
+boot but the SoC seems to hard lock.
 
-Changes since v3:
- * Add vreg_s1c
- * Add regulators and not dead code
- * Fix commit message changelog
+I apologise if raising this patch was a bad idea but like I stated to
+Krzysztof I am just onboarding this device as a hobby. However
+from an outside standpoint having a potential breakage like this
+because starting from 0 looked cleaner than 1 seems a bit odd to
+me.
 
-Changes since v2:
- * Remove dead code and add TODO comment
- * Make dtbs_check happy with the pin definitions
+Regards
 
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index da79b5465a1b..129c5f9a2a61 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -24,6 +24,7 @@ / {
- 	aliases {
- 		i2c4 = &i2c4;
- 		i2c21 = &i2c21;
-+		serial1 = &uart2;
- 	};
- 
- 	wcd938x: audio-codec {
-@@ -1102,6 +1103,32 @@ &txmacro {
- 	status = "okay";
- };
- 
-+&uart2 {
-+	pinctrl-0 = <&uart2_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+
-+		vddio-supply = <&vreg_s10b>;
-+		vddbtcxmx-supply = <&vreg_s12b>;
-+		vddrfacmn-supply = <&vreg_s12b>;
-+		vddrfa0p8-supply = <&vreg_s12b>;
-+		vddrfa1p2-supply = <&vreg_s11b>;
-+		vddrfa1p7-supply = <&vreg_s1c>;
-+
-+		max-speed = <3200000>;
-+
-+		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&bt_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &usb_0 {
- 	status = "okay";
- };
-@@ -1222,6 +1249,21 @@ hastings_reg_en: hastings-reg-en-state {
- &tlmm {
- 	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
- 
-+	bt_default: bt-default-state {
-+		hstp-bt-en-pins {
-+			pins = "gpio133";
-+			function = "gpio";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		hstp-sw-ctrl-pins {
-+			pins = "gpio132";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio25";
- 		function = "gpio";
-@@ -1389,6 +1431,34 @@ reset-n-pins {
- 		};
- 	};
- 
-+	uart2_default: uart2-default-state {
-+		cts-pins {
-+			pins = "gpio121";
-+			function = "qup2";
-+			bias-bus-hold;
-+		};
-+
-+		rts-pins {
-+			pins = "gpio122";
-+			function = "qup2";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		rx-pins {
-+			pins = "gpio124";
-+			function = "qup2";
-+			bias-pull-up;
-+		};
-+
-+		tx-pins {
-+			pins = "gpio123";
-+			function = "qup2";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
- 	usb0_sbu_default: usb0-sbu-state {
- 		oe-n-pins {
- 			pins = "gpio101";
--- 
-2.39.2
-
+On Sun, Mar 26, 2023 at 10:42=E2=80=AFPM Mark Kettenis <mark.kettenis@xs4al=
+l.nl> wrote:
+>
+> > Date: Sun, 26 Mar 2023 22:02:39 +0200
+> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >
+> > On 26/03/2023 19:51, Shane Francis wrote:
+> > >> Bootloader also does not use mainline DTS, so where is exactly the p=
+roblem?
+> > >
+> > > In this case uboot does load the target DTB, and it seems a common
+> > > function in rockchips
+> > > downstream boot process, see :
+> > >
+> > > https://github.com/rockchip-linux/u-boot/blob/ef1dd650042f61915c4859e=
+cc94623a09a3529fa/arch/arm/mach-rockchip/kernel_dtb.c#L70
+> > >
+>
+> That code makes absolutely no sense.  This tries to transplant
+> phandles from one DTB into another DTB?  Mainline U-Boot has no code
+> like that.  I think this is just broken beyond repair.
+>
+> > U-Boot comes with its own DTB, so what does it means "loads the target
+> > DTB"? From where? The one appended to the kernel zImage? No, it cannot.=
+..
+> >
+> > Any component which operates on mainline DTB must conform to the
+> > bindings (with respect to the ABI), thus your arguments here mean you
+> > are not allowed to change ABI in the future. Never. This change,
+> > assuming original binding was broken, could be warranted.
+>
+> The current mainline binding isn't broken; 0 is a perfectly fine clock
+> index.  The RK3588 clock bindings are already used by U-Boot (too late
+> to fix for the 2023.4 release happening in a few days) and OpenBSD
+> (too late to fix for the 7.3 release that will happen a few weeks).
+> Changing the clock binding will just create more chaos.
+>
+> <rant>
+>
+> What is broken here is the development process.  Rockchip shouldn't be
+> maintaining these heavily modified forks of U-Boot and the Linux
+> kernel.  But at the same time mainline Linux developers should not be
+> asking for arbitrary changes to the device tree bindings just to
+> satisfy some unwritten rules.  The clock bindings were originaly
+> submitted with clock numbers identical to those that Rockchip uses:
+>
+>   https://lore.kernel.org/all/20220623160329.239501-2-sebastian.reichel@c=
+ollabora.com/
+>
+> but then changed because a reviewer wanted them to start at 0 and
+> didn't want any holes:
+>
+>   https://lore.kernel.org/all/0841741a-22f6-40f6-c745-6065dfdbcb1d@linaro=
+.org/
+>
+> This isn't the first example where this happened.  And it invariably
+> leads to confusion and breakage in projects that try to follow the
+> mainline Linux device tree bindings.
+>
+> </rant>
