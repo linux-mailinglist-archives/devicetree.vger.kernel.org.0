@@ -2,78 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F6E6C9429
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 14:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D516C942B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 14:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231925AbjCZMUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 08:20:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48186 "EHLO
+        id S231185AbjCZMVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 08:21:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbjCZMUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 08:20:05 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F2D72BA
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:19:48 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id h8so25058746ede.8
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:19:48 -0700 (PDT)
+        with ESMTP id S230243AbjCZMVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 08:21:53 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3C3D6A7D
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:21:51 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id ek18so25105193edb.6
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679833187;
+        d=linaro.org; s=google; t=1679833310;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5IfSw2r9l6b89lopg9LLMNXb7FdQOCZOmyoAvbxtqm4=;
-        b=ICgUV56vJG7JvicQ1to2mtKiPShhd0VBIO0jiWPe2V3YS/q3rol+M1E1zzGXk/XPNP
-         +W1qo4xda1Lzl4nPbMJVO5Hhw/HP9QrgJEhZGek4acCxCZmg5+wmt0tqSHTgSXUBidk+
-         cJFFpDy7WYYw1gtHrufleBzx5Id6xgsu9xDtMzOiPWjV50ZrD1Z8F76MGBjzSlya3X6F
-         XeJUKCrBAkiz9z3C8j1tmZVY63B/u3Lim3OlHt4qNTcxBEghauXDqNj+DJhE2IHofTxQ
-         N/yNC/PmdtDcbAOpQJO+XMjjPPj8GCAFAAwGW+CK2+k7X2wTMs0qJvglfC++etLedY9T
-         fz4A==
+        bh=zVP0q5GOX/hLCywa6jLtgJqXWgfu/GbW40t0aFqMMo8=;
+        b=YLxk8yxVs1fPjuNnGaFCwQLNGp3e7Y/9Wg2D2IGIguuWdDBgnDYUF9VPitxIDLtMtj
+         I4QT4K+o45AVEGQHhcnF3whlyuyKgOs+J65ZF1MYR1ru/sUvUXAYGH95tJHojhPpQDr2
+         Xn7O9+g2JOZfjRO6rg0U/ZfG0nLzXQKVGcwOLkJivyd8ZhioI399UH5Neu6or37dsNUb
+         HzcCadOOo3Xj76tIWFD9zAqqkMrpyamrQPYvpfRgVB47rehLXo2mF0OKNBk0NNFqL+Xm
+         i3SfwBCkKvTQOqjw0m7tZWRMeHtYl3ABn7vkRBL/oKXNGcQjENXVCkwQVgIf698d8T1Z
+         5ZxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679833187;
+        d=1e100.net; s=20210112; t=1679833310;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5IfSw2r9l6b89lopg9LLMNXb7FdQOCZOmyoAvbxtqm4=;
-        b=Nqz0+bpIihneq40YU+5XzpGnr9bI36dE2Aq3xq+lVHxnYRgZRzEfO2g9UnwPIer0J+
-         fz/bvLuQ3bNpoCwkJNKV1wdOx51wewSt4222KIYtKG6w6LP/SwCLwieKYUN+G5w/vX/L
-         kaIH6tMZYLJm2QaS3bqNRlnZ9spj9GAXCEs6uwS+IR76V9YSrghfSz60Za4H4P/jlWqx
-         +r90/HUcoqkD3ZgVktWGeuW94gBODdzyE3tYDSVtcDSzZiHAkHe5A0uWx/xPkFoDzeye
-         j0BxdRNBghYQjoqkjSq3c3zbaC1/uI5IwvjmUY0nSl8AUhQcsjIcmaRuHlAyheOuRZBS
-         1fmA==
-X-Gm-Message-State: AAQBX9fs0D7FUAL1Is+rnA3Oa5jwbLfrhv7TgPVf4iA8Bmh3lUU8HjGv
-        NIIgjkMA9aq0pqqn0eLuRz9oaQ==
-X-Google-Smtp-Source: AKy350a1XLCkbinF5XRxjdf3OkRhCOO6OmHKr8keL9ZpWl+WeR/eP/VXicf+cpUc0OZlO78BUWT3zA==
-X-Received: by 2002:a17:907:1c21:b0:8dd:5710:a017 with SMTP id nc33-20020a1709071c2100b008dd5710a017mr11870314ejc.4.1679833187018;
-        Sun, 26 Mar 2023 05:19:47 -0700 (PDT)
+        bh=zVP0q5GOX/hLCywa6jLtgJqXWgfu/GbW40t0aFqMMo8=;
+        b=DCEDQ5z/saoygOG3vg/TST72CCgbBlum208/33ETWHG6Ph21mDArbJz1FelV1Ms6xP
+         wWslCN3yUdBR+3jT4WHQVuEBc/SKfoQlGNFHGW/oOsG0K5mUdbpvdpIhw+yRb7+EB8Me
+         oRyiKhaE5iiZYJtHckyfO1tiJP8K6qMQmUUjnlpPut6lioqsudb1Hg+r5An70oPvwj9U
+         JtHqLkT3MfQCknwPoFbQXzmYC0fb5wDat9WwghWCjlmuodtw7BbjYENP49JFD7fabZAF
+         ZQ8b22RZsjsJKa1gkKdEGgZ510WkvHvrEmXovwbTCQhsDMOeaLPgMNfWgSJ7QREgTr+I
+         tcMw==
+X-Gm-Message-State: AAQBX9fwl8ovGmtVIpEm3y6m2tZ7oS0F9Mkw7RPqRPbOmtu9ZFkTGXZf
+        +h83jZ2YByPx7FG/HW3Oj5r60cVIIlO/fgkeIkc=
+X-Google-Smtp-Source: AKy350Z8Nm7ZuAbyxo/SHlOyBboWAXg4VgdJyW1Y8DzvipW26/qtmBdXEYn3fSxRT59u2Qgrogs/tg==
+X-Received: by 2002:aa7:cd8b:0:b0:501:d3a1:9a52 with SMTP id x11-20020aa7cd8b000000b00501d3a19a52mr9063096edv.33.1679833310350;
+        Sun, 26 Mar 2023 05:21:50 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
-        by smtp.gmail.com with ESMTPSA id k7-20020a1709062a4700b008b176df2899sm12856711eje.160.2023.03.26.05.19.46
+        by smtp.gmail.com with ESMTPSA id ha8-20020a170906a88800b0093a6c591743sm7515800ejb.69.2023.03.26.05.21.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 05:19:46 -0700 (PDT)
-Message-ID: <e06977ab-8112-1e45-4392-df36e358e772@linaro.org>
-Date:   Sun, 26 Mar 2023 14:19:45 +0200
+        Sun, 26 Mar 2023 05:21:49 -0700 (PDT)
+Message-ID: <a0e15e8c-06d8-664a-a0ed-49361afdc078@linaro.org>
+Date:   Sun, 26 Mar 2023 14:21:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
+Subject: Re: [PATCH v3 4/6] dt-bindings: sound: Add support for the Lantiq
+ PEF2256 codec
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Prathamesh Shete <pshete@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Suresh Mangipudi <smangipudi@nvidia.com>
-References: <20230207115617.12088-1-pshete@nvidia.com>
- <a1395eb2-da3a-e080-fa6b-50f20d879655@linaro.org> <Y+OGdMFQkL9Dtaq/@orome>
- <9e7e1762-1c2e-28cd-c7a7-b0577addf51e@linaro.org>
- <DM5PR12MB24066CE3175B74150235FE55B7B49@DM5PR12MB2406.namprd12.prod.outlook.com>
- <3b9d4177-ebd9-e341-294d-41860fa8c5ac@linaro.org> <ZBxeLIXJDbM2ebyt@orome>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230322134654.219957-1-herve.codina@bootlin.com>
+ <20230322134654.219957-5-herve.codina@bootlin.com>
+ <cf87e7c0-b769-d1fc-0718-c5c2986993b8@linaro.org>
+ <20230323082758.5e4385ff@bootlin.com>
+ <5c82c731-3124-9eca-32a3-c974db95724a@linaro.org>
+ <20230323091001.100ca343@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZBxeLIXJDbM2ebyt@orome>
+In-Reply-To: <20230323091001.100ca343@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -86,96 +87,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 15:11, Thierry Reding wrote:
-> On Wed, Mar 08, 2023 at 01:24:04PM +0100, Krzysztof Kozlowski wrote:
->> On 08/03/2023 12:45, Prathamesh Shete wrote:
+On 23/03/2023 09:10, Herve Codina wrote:
+> On Thu, 23 Mar 2023 08:31:28 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 23/03/2023 08:27, Herve Codina wrote:
+>>> Hi Krzysztof
 >>>
+>>> On Wed, 22 Mar 2023 22:59:37 +0100
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>   
+>>>> On 22/03/2023 14:46, Herve Codina wrote:  
+>>>>> The Lantiq PEF2256 is a framer and line interface component designed to
+>>>>> fulfill all required interfacing between an analog E1/T1/J1 line and the
+>>>>> digital PCM system highway/H.100 bus.
+>>>>>
+>>>>> The codec support allows to use some of the PCM system highway
+>>>>> time-slots as audio channels to transport audio data over the E1/T1/J1
+>>>>> lines.
+>>>>>
+>>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>>>> ---
+>>>>>  .../bindings/sound/lantiq,pef2256-codec.yaml  | 54 +++++++++++++++++++
+>>>>>  1 file changed, 54 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml b/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..da35b70cda99
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/sound/lantiq,pef2256-codec.yaml
+>>>>> @@ -0,0 +1,54 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/sound/lantiq,pef2256-codec.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Lantiq PEF2256 codec
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Herve Codina <herve.codina@bootlin.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  Codec support for PEF2256.
+>>>>> +
+>>>>> +  The Lantiq PEF2256, also known as Infineon PEF2256 or FALC56, is a framer and
+>>>>> +  line interface component designed to fulfill all required interfacing between
+>>>>> +  an analog E1/T1/J1 line and the digital PCM system highway/H.100 bus.
+>>>>> +
+>>>>> +  The codec support allows to use some of the PCM system highway time-slots as
+>>>>> +  audio channels to transport audio data over the E1/T1/J1 lines.
+>>>>> +
+>>>>> +  The time-slots used by the codec must be set and so, the properties
+>>>>> +  'dai-tdm-slot-num', 'dai-tdm-slot-width', 'dai-tdm-slot-tx-mask' and
+>>>>> +  'dai-tdm-slot-rx-mask' must be present in the ALSA sound card node for
+>>>>> +  sub-nodes that involve the codec. The codec uses 8bit time-slots.
+>>>>> +  'dai-tdm-tdm-slot-with' must be set to 8.
+>>>>> +  The tx and rx masks define the PEF2256 time-slots assigned to the codec.
+>>>>> +
+>>>>> +  The PEF2256 codec node should be a child of a PEF2256 node.
+>>>>> +  Refer to the bindings described in
+>>>>> +  Documentation/devicetree/bindings/mfd/lantiq,pef2256.yaml
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: dai-common.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: lantiq,pef2256-codec
+>>>>> +
+>>>>> +  '#sound-dai-cells':
+>>>>> +    const: 0    
+>>>>
+>>>> You do not have here any resources, so the entire binding can be dropped
+>>>> and merged into the parent.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>  
 >>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: Wednesday, February 8, 2023 5:28 PM
->>>> To: Thierry Reding <thierry.reding@gmail.com>
->>>> Cc: Prathamesh Shete <pshete@nvidia.com>; Jonathan Hunter
->>>> <jonathanh@nvidia.com>; linus.walleij@linaro.org; robh+dt@kernel.org;
->>>> krzysztof.kozlowski+dt@linaro.org; devicetree@vger.kernel.org; linux-
->>>> tegra@vger.kernel.org; linux-gpio@vger.kernel.org; Suresh Mangipudi
->>>> <smangipudi@nvidia.com>
->>>> Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
->>>>
->>>> External email: Use caution opening links or attachments
->>>>
->>>>
->>>> On 08/02/2023 12:24, Thierry Reding wrote:
->>>>> On Tue, Feb 07, 2023 at 04:33:08PM +0100, Krzysztof Kozlowski wrote:
->>>>
->>>>
->>>>>>> +          type: object
->>>>>>> +          additionalProperties:
->>>>>>> +            properties:
->>>>>>> +              nvidia,pins:
->>>>>>> +                description: An array of strings. Each string contains the name
->>>>>>> +                  of a pin or group. Valid values for these names are listed
->>>>>>> +                  below.
->>>>>>
->>>>>> Define properties in top level, which points to the complexity of
->>>>>> your if-else, thus probably this should be split into two bindings.
->>>>>> Dunno, your other bindings repeat this pattern :(
->>>>>
->>>>> The property itself is already defined in the common schema found in
->>>>> nvidia,tegra-pinmux-common.yaml and we're overriding this here for
->>>>> each instance since each has its own set of pins.
->>>>>
->>>>> This was a compromise to avoid too many bindings. Originally I
->>>>> attempted to roll all Tegra pinctrl bindings into a single dt-schema,
->>>>> but that turned out truly horrible =) Splitting this into per-SoC
->>>>> bindings is already causing a lot of duplication in these files,
->>>>
->>>> What would be duplicated? Almost eveerything should be coming from
->>>> shared binding, so you will have only compatible,
->>>> patternProperties(pinmux) and nvidia,pins. And an example. Maybe I miss
->>>> something but I would say this would create many but very easy to read
->>>> bindings, referencing common pieces.
->>>>
->>>>> though splitting
->>>>> off the common bits into nvidi,tegra-pinmux-common.yaml helps a bit
->>>>> with that already. Splitting this into per-instance bindings would
->>>>> effectively duplicate everything but the pin array here, so we kind of
->>>>> settled on this compromise for Tegra194.
->>>>
->>>> OK, but are you sure it is now readable? You have if:then: with
->>>> patternProperties: with additionalProperties: with properties: with
->>>> nvidia,pins.
->>> This is inline with the existing bindings and I think this is the compromise that was reached during review when the bindings were submitted,
+>>> Ok,
+>>> Do you expect all these properties (except compatible) merged at the parent  
 >>
->> So the code might be totally unreadable, but it is inline with existing
->> code, thus it should stay unreadable. Great.
-> 
-> I'd say this is very subjective. I personally don't find the current
-> version hard to read, but that's maybe because I wrote it... =)
-> 
->>> offer to rework if a better alternative can be found, but that only makes sense if all the other bindings get changed as well, so I think it'd be good if we can merge in the same format as the existing bindings for now and change all of them later on.
+>> You have only two properties here - dai cells and name-prefix...
 >>
->> Cleanup should happen before adding new bindings.
+>>> level or may I keep a child node with these properties including the
+>>> compatible property (ie. yaml file merge).  
+>>
+>> I was thinking that these should be merged into parent because usually
+>> you do not need child node for this. However now I started to think how
+>> the codec driver would look like. Essentially the parent MFD driver
+>> would need to register dais...
+>>
 > 
-> I don't recall the exact problems that I ran into last time, but I do
-> remember that pulling out the common bindings to the very top-level was
-> the main issue.
+> There is also something specific to audio, the slots definition
+> 'dai-tdm-slot-tx-mask' and 'dai-tdm-slot-rx-mask'. These slots definitions
+> are set at the ALSA sound card sub-nodes.
+> So, I can have multiple codec in the PEF2256.
 > 
-> If I understand correctly what you're saying, the main problem that
-> makes this hard to read is the if and else constructs for AON/MAIN
-> variants on Tegra194/Tegra234. These should be quite easy to pull out
-> into separate bindings. I'll do that first and then see if there's
-> anything that could be done to further improve things.
+> For instance:
+>   framer {
+>     compatible = "lantiq,pef2256", "simple-mfd";
+>     ...
+>     pef2256_codec0: codec0 {
+>       compatible = "lantiq,pef2256-codec";
+>       #sound-dai-cells = <0>;
+>     };
+>     pef2256_codec1: codec1 {
+>       compatible = "lantiq,pef2256-codec";
+>       #sound-dai-cells = <0>;
+>     };
+>   };
 
-One problem is allowing characters here which are not allowed. Second
-problem is reluctance to change it with argument "existing bindings also
-have this problem". It's explanation like "there is already bug like
-this, so I am allowed to add similar one".
+Then include it in the example. It would cut short this discussion.
 
-Now third is that defining properties in allOf is not the style we want
-to have, because it does not work with additionalProperties and is
-difficult to read. Again using argument "existing code also does like
-this" is a very poor argument.
 
 Best regards,
 Krzysztof
