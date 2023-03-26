@@ -2,127 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CDE26C939C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 11:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 412D56C93AC
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 12:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231294AbjCZJiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 05:38:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34290 "EHLO
+        id S229458AbjCZKDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 06:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjCZJiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 05:38:11 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB2861723
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:38:09 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id er18so13107743edb.9
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:38:09 -0700 (PDT)
+        with ESMTP id S229887AbjCZKDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 06:03:17 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7828A26B9
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 03:03:15 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-536af432ee5so118604207b3.0
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 03:03:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679823488;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZrBuJiIoQK2v1CW9coA2UE02/s0G06cmU89tU/gP2E=;
-        b=jMBSiE/53ZDBTd2s3jj2WfxJQOtKbHxGyPe3PymEn3WvXUiVT1DMVDD/LGE2BuHPZz
-         TEaEGjsmeDpUoSRCc4ArK1WMdYMaGEiPK2KNPLnOrkPWPVOj3J8UnYES6TU6KrDODsGo
-         hNKQK/AM8KOkqTg5X7S06SjRXOEF3Wntp0mcnkaamSK1GJwu3hETvJDHEbk7dLv5tg2l
-         QirjaXfdHM5gQV4QfDuar1aicPjBuHd/OGltjwMGcMh/BZI3uw7eiGw/cfSqtay9sdXj
-         kVcLDdNh0jQvvbKHR8R4pNQTfZJGvesQBinBQqNfrRHCtcLx2ji9ly3qrlaUfIrzgf9b
-         yw+Q==
+        d=linaro.org; s=google; t=1679824994;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X54UJPGeK4IGLr17wnsJdrPT2D0HyEvf0ORw+55QQdY=;
+        b=PAtYZ4Cl+eYSlr3YYO5sd8vOwStIIBytiB6BKmsr5oYTCqLNXVFAAXaXQNA+RWh1SN
+         w07z6VtfHQ3TnBoPDeZ2M3rfGyHhZKv/YwjWknaD6tLiKxOjsj6zxV4Y55frK6SoOKhV
+         KwMsjDWdc1AymtWNbKozbz3BN0INPdR+baRyO72xrHdu/xsUU8W4uRtujE64KuptBOcD
+         LlJXtUuPubcw8PfhpKA0lIl4yGaUlGXS5upCAFnhfxlPoSnf/j15ArSwjryW2uRAgHix
+         Dx5G5ywcJk0y46YiehcBq9GigHfmCffGuk4eZOJ7Wo03azmHhDo+dJg+gjAZ2jwMfvRB
+         xA2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679823488;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ZrBuJiIoQK2v1CW9coA2UE02/s0G06cmU89tU/gP2E=;
-        b=Mh4a+WfRXpFRUiKF0JaDXTFPigzunabyOyv8Ag4NWv/pLUbDjEyA30y34tpMALHveO
-         aqc+kc+X4Qpo0DWWHleduhEAGn420QvtDb1N6L7kwJHko/a7PsqajklJ3aJGArUF/sms
-         o56BtoUYJ7CCyuAnrNaIU8wK6N4oX8J71wZLvotbWAsFT9lROBPqZz3q7yTTLHMEyh/4
-         gl6QZh1HAAM+VQYw0wKVo7bsGbC0zJEAf+QJfekrYER8cmxMUubySxrQTAqsep/3BVoV
-         VMl0hbIhMWQ85sPwMYGy5JD/Q5TupAu/7N4fgNQzPdLvdA91NC6Fe2CRwJmOjXOceAGl
-         Jkrg==
-X-Gm-Message-State: AO0yUKWOzvzWujpY9qOR523Eosni/vzoPYdfw7xZ59Q7Kq2DXOPNpWKq
-        dM3J4DxRKyNn5yRtTG4Cn2Tedw==
-X-Google-Smtp-Source: AK7set9Wdnq4Hya0KycQsDYZzYTaBke37/nQ5a3vtW+4Iv/3ZShUaYWQ/4+8D8cBldBVx7qAB5rhJw==
-X-Received: by 2002:a17:906:c781:b0:8b1:2eef:154c with SMTP id cw1-20020a170906c78100b008b12eef154cmr15293793ejb.0.1679823488416;
-        Sun, 26 Mar 2023 02:38:08 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
-        by smtp.gmail.com with ESMTPSA id o12-20020a170906358c00b0093b6d1db84asm6384747ejb.120.2023.03.26.02.38.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 02:38:08 -0700 (PDT)
-Message-ID: <a5966d2b-3e8f-3518-8f71-a4ed8de4b725@linaro.org>
-Date:   Sun, 26 Mar 2023 11:38:07 +0200
+        d=1e100.net; s=20210112; t=1679824994;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X54UJPGeK4IGLr17wnsJdrPT2D0HyEvf0ORw+55QQdY=;
+        b=uKhY+ezwGCIYFHFcCMewRMXNHFEStnHqkfFX7/SzsoGC+wn7zhkOog4+Sy4QWtCdF4
+         wg8XEQWP4XjEXBvL9SYi/RZN34Jt/uZwlR/Nyl/WQLIQvbSWi9xt8qC9g2FMHrMTmNAx
+         yo++qCtSfFHtT6Qwtb9/CFN13aO3Mkgsncp2h1a1hAJvdLLVX831eVMX8JV1Z3FUQCRD
+         8WvU2amh5jh2Lg5/nrwGz9cxoEVNQtwuBWTpj+095kPjE8hVt4coxoIjYlukOVglBy+p
+         fY3STSt8eSs9ISLiTbJFwPJfNffW4hC81uRBn/9ScG03yiKSMxDiaV5HFcK7BA+56DOR
+         IlsQ==
+X-Gm-Message-State: AAQBX9dSy8GPrjetpvyX+zn2M8/dHDfCIQU5YPDU7ur69tHueLR1tFIW
+        PP466q8kZEtqB+Kx8SWH9FzP0/mdLErjV3IxFQu8qA==
+X-Google-Smtp-Source: AKy350YkYqLubvOtsGf5NRYVIiI7kELC2GTIpY8o/J7IFJRllBOQxeD/FFoYp12DlsocF2oHLB0kA6kMuelghQFs164=
+X-Received: by 2002:a81:b617:0:b0:541:7f69:aa8b with SMTP id
+ u23-20020a81b617000000b005417f69aa8bmr3486734ywh.5.1679824994679; Sun, 26 Mar
+ 2023 03:03:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] arm64: dts: Add basic NanoPi R6S (RK3588S) Support
-Content-Language: en-US
-To:     Shane Francis <bigbeeshane@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230326001535.149539-1-bigbeeshane@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230326001535.149539-1-bigbeeshane@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
+ <CAA8EJpqR-QisyWEHE83oFbXt8wUcn2Ofd4W6UwFmkYzGD18N9Q@mail.gmail.com> <c6429b89-bdf1-a601-7cc2-a6cbb566fecd@linaro.org>
+In-Reply-To: <c6429b89-bdf1-a601-7cc2-a6cbb566fecd@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 26 Mar 2023 13:03:03 +0300
+Message-ID: <CAA8EJppPHVZbseXFx8g+m9PxgODuenLEBHeDT3z6MojzVALKqA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: move DSI opp-table out of
+ soc node
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2023 01:15, Shane Francis wrote:
-> This adds basic support for the NanoPi R6S SBC
-> 
-> Currently working :
->   - UART
->   - mmc storage (internal)
->   - RGMII / GMAC 1Gb ethernet
->   - SYS LED
-> 
-> Signed-off-by: Shane Francis <bigbeeshane@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3588s-nanopi-r6s.dts  | 126 ++++++++++++++++++
->  2 files changed, 127 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 99a44c400d6a..39cad757d29d 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -91,3 +91,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6s.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
-> new file mode 100644
-> index 000000000000..21b26539a855
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
-> @@ -0,0 +1,126 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "rk3588s.dtsi"
-> +
-> +/ {
-> +	model = "NanoPi R6S - RK3588S";
-> +	compatible = "friendlyelec,nanopi6", "rockchip,rk3588";
+On Sun, 26 Mar 2023 at 12:22, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/03/2023 11:21, Dmitry Baryshkov wrote:
+> > On Sun, 26 Mar 2023 at 12:16, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> The soc node is supposed to have only device nodes with MMIO addresses,
+> >> so move the DSI OPP out of it (it is used also by second DSI1 on
+> >> SDM660):
+> >
+> > This raises a question: would it make sense to add /opps to handle all
+> > opp tables?
+>
+> We didn't add it to any other cases like this (and we already fixed all
+> other boards), so why now? We can but it is a bit late for it.
 
-Missing bindings documentation.
+Because nobody expressed this idea beforehand? I'm not insisting here,
+you have a better understanding of DT. Just wondering if it makes
+sense.
 
-Please run scripts/checkpatch.pl and fix reported warnings.
-
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
