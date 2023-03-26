@@ -2,119 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E99F6C974B
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 19:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DD886C9770
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 20:22:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbjCZRwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 13:52:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44566 "EHLO
+        id S229793AbjCZSWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 14:22:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232069AbjCZRvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 13:51:43 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729AA5B88;
-        Sun, 26 Mar 2023 10:51:42 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id q19so3324283wrc.5;
-        Sun, 26 Mar 2023 10:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679853101;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SQtHwxLiaWLJIGykUiHYl89Ngg0txqbdaptvAgwczSA=;
-        b=HXRiXeGKYFyN1HdxGyEvmo3qTxzeR0tZQcIjFMCsO11EiMdZiOyyx/7sM4Jqkwyfmi
-         BaZnw3Sc1LnonaCyGsfkKUfw0Tg3CL+Sce7ORpAGOuxj8/Es3j7RuPZulMuOMaNZLWwB
-         ZFP8sbKwfJ6KX4UavGrcQcWfCJlDoHBm1jCeP/w56ebqBJjIGysPoJNsc1kGo7BcWfJG
-         0JKylT+TRSMTCr/8Le7S2wwcxnOOPZbEC2i04Q04NoJjZ0YE/3NiItMvY2oeABpyjOKq
-         lx+HNM7Zz2jpF4XdfFJx9S0wxS11Fs1Rv7zVKbp5x39yH6BPAzgpard02kkI8pC9MJs5
-         464A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679853101;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SQtHwxLiaWLJIGykUiHYl89Ngg0txqbdaptvAgwczSA=;
-        b=NWtgfCZ+pa+QkCMpjqEbEk/wfBYv4aTTNSuvRRiZSiMSwmV01qmoW8eFim+5VOjU0W
-         wpKdn034ovCks/NrXn2msqEjT0Wry9wY51zDrOiGBc7haaXS64OMhgaBlN2Yvl4GfDoZ
-         OO8UOL+6F+5ePZaDf8Gvp6jRZxLpNmxyJH0rX8f8L0PMfUTBLfT7HlAn/GKPv9H7k2WS
-         mUNqsFX95Z8gO0ysflAF8XH9Dq6HD3cioe8rTHSBXm9IY5jPI8UGw3HInA1sncptXfQQ
-         fqzK+HcdvBgNQl3gXWdhI7HkJPh2C76KMRyvLg1OMGPLmTbsXjw4aQ0NIZRpANdHB7HT
-         M0pQ==
-X-Gm-Message-State: AAQBX9fizjvl2uF/21Gm+xWsPcuLlPqCFuKTnw0eFDFR7vzsZ9KK3WYt
-        BiXogOu3tl+J4eJs/NIhZNzVkIdv2srsmIbXG8c=
-X-Google-Smtp-Source: AKy350YEtmZvkRKbrZP0JupwIckeH8jk6XHajX9oLrJNa6AiLb+Tt3Djt4A71mPRRZcRxRb6OCxsuHXjxN4KaG5dqv4=
-X-Received: by 2002:adf:ec82:0:b0:2ce:56eb:5892 with SMTP id
- z2-20020adfec82000000b002ce56eb5892mr1486107wrn.2.1679853100837; Sun, 26 Mar
- 2023 10:51:40 -0700 (PDT)
+        with ESMTP id S229573AbjCZSWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 14:22:53 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A616580;
+        Sun, 26 Mar 2023 11:22:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679854972; x=1711390972;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NoAMrGG8BO82WF0/W/nj7Qdz5t8YcEaBhEumn5bnTws=;
+  b=QGe0qNLgH/yTHU45hpxizwbIa8VZo8kw6+z+KUzLCO52X8JILDEe/xXa
+   tx8+a6J/+jC54MZKtmifZE2vazHI8GxSXUbi7R6+TkjvSL2XPLTHPkurx
+   FLT8yETMsPGsvjF7LLtnWQGVjDUMtXQuskpMQCQiBSNuYAzWx7jbVZuO4
+   J3jFFDwz2/UBpc/UAkmqR9aOrgYF9xxlRNjwxyHz9U86q30V3nrLoxKvj
+   bJCGrgRB8ZW+y9keObE4gUDbxJfyDrssF4FeS0erkQsKEhtIyeCWSnGUv
+   FqfjsDKf7GwJfx8nYyskCptgP8ZxerKF+gTh+qGewV0A8+cjpuZTxO1ro
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="402714547"
+X-IronPort-AV: E=Sophos;i="5.98,292,1673942400"; 
+   d="scan'208";a="402714547"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Mar 2023 11:22:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10661"; a="660631212"
+X-IronPort-AV: E=Sophos;i="5.98,293,1673942400"; 
+   d="scan'208";a="660631212"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 26 Mar 2023 11:22:48 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pgV0y-000HIT-0m;
+        Sun, 26 Mar 2023 18:22:48 +0000
+Date:   Mon, 27 Mar 2023 02:22:17 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Herve Codina via Alsa-devel <alsa-devel@alsa-project.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/6] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <202303270203.QeRuuc9d-lkp@intel.com>
+References: <167949286900.26.3992817728812049195@mailman-core.alsa-project.org>
 MIME-Version: 1.0
-References: <20230326001535.149539-1-bigbeeshane@gmail.com>
- <20230326001535.149539-2-bigbeeshane@gmail.com> <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
- <CABnpCuCzdbWTTp1Gc6wWPsB80J5GYw1QzKtZzzyEYU456E=1JA@mail.gmail.com>
- <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org> <CABnpCuAWm7jh19JKukOquPnZCwHoJispgDPGJzjYy6T_BZSnbg@mail.gmail.com>
- <717bfba9-1d70-ef09-9193-853a57117926@linaro.org>
-In-Reply-To: <717bfba9-1d70-ef09-9193-853a57117926@linaro.org>
-From:   Shane Francis <bigbeeshane@gmail.com>
-Date:   Sun, 26 Mar 2023 18:51:29 +0100
-Message-ID: <CABnpCuA7V9ti6BOoz+3Mq-f=PwgxL2K7rOhjo6tJ4QquSZbaSA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <167949286900.26.3992817728812049195@mailman-core.alsa-project.org>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Bootloader also does not use mainline DTS, so where is exactly the proble=
-m?
+Hi Herve,
 
-In this case uboot does load the target DTB, and it seems a common
-function in rockchips
-downstream boot process, see :
+Thank you for the patch! Yet something to improve:
 
-https://github.com/rockchip-linux/u-boot/blob/ef1dd650042f61915c4859ecc9462=
-3a09a3529fa/arch/arm/mach-rockchip/kernel_dtb.c#L70
+[auto build test ERROR on lee-mfd/for-mfd-next]
+[also build test ERROR on broonie-sound/for-next lee-leds/for-leds-next robh/for-next linus/master v6.3-rc3 next-20230324]
+[cannot apply to lee-mfd/for-mfd-fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-It's a pretty nasty process, but unfortunately some devices will be
-stuck with it I guess, and in
-those cases they will have issues booting a mainline kernel.
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina-via-Alsa-devel/mfd-Add-support-for-the-Lantiq-PEF2256-framer/20230322-215208
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/167949286900.26.3992817728812049195%40mailman-core.alsa-project.org
+patch subject: [PATCH v3 2/6] mfd: Add support for the Lantiq PEF2256 framer
+config: m68k-randconfig-c024-20230326 (https://download.01.org/0day-ci/archive/20230327/202303270203.QeRuuc9d-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d60948895815b59306d870e7c189741b7d14d5e2
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Herve-Codina-via-Alsa-devel/mfd-Add-support-for-the-Lantiq-PEF2256-framer/20230322-215208
+        git checkout d60948895815b59306d870e7c189741b7d14d5e2
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303270203.QeRuuc9d-lkp@intel.com/
 
-Regards
+All errors (new ones prefixed by >>):
 
+   m68k-linux-ld: drivers/mfd/pef2256.o: in function `pinconf_generic_dt_node_to_map_pin':
+>> pef2256.c:(.text+0x280): undefined reference to `pinconf_generic_dt_node_to_map'
 
-On Sun, Mar 26, 2023 at 6:23=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/03/2023 18:59, Shane Francis wrote:
-> > Hi Krzysztof
-> >
-> >
-> >> So mention this in the commit msg.
-> >
-> >> Then commit msg should also mention it.
-> >
-> > Sorry for not expanding on this more in the initial commit message, I w=
-ill
-> > expand on this in the next patch set.
-> >
-> > However I think in general for most modern platforms it can be assumed
-> > that replacing the bootloader is not always something that is achievabl=
-e
-> > for one reason or another
->
-> Bootloader also does not use mainline DTS, so where is exactly the proble=
-m?
->
-> Best regards,
-> Krzysztof
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
