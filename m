@@ -2,184 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1856C969B
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D0F6C96A5
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232643AbjCZQFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 12:05:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37432 "EHLO
+        id S232685AbjCZQH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 12:07:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232720AbjCZQEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:04:54 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1424ED0
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:04:26 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id s7so3431201ilv.12
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:04:26 -0700 (PDT)
+        with ESMTP id S232674AbjCZQH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:07:28 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB85422A
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:07:26 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id eh3so26208418edb.11
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:07:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1679846665;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QLUV32TFJ1PBsRP4JRwHZ1TsUoT8zxPU9gMsdTVjtMI=;
-        b=OtD/D0AhwXys72VxWf5Pa7p27bCAloMtPV/TlsO+HLfyaee80Lvpgnb4rJWR6EyxUp
-         DQMJ4cVz8I7w1VqnjH4bQijDRTy7bW4P60WkmPgdxQRm5CLbJVyBDfdawlxARm3qsw5/
-         4jA6N8V9eDWFd8DyzMTKQwU/esRetldF2ax58=
+        d=amarulasolutions.com; s=google; t=1679846845;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dIi+oN72WZEPUIzF4SXi/G/Glt6kbpRtp0rjNVLhNxU=;
+        b=rYC+DXaM8jK8m+4KNtMsT/0cBAqMBwjPK7uRdODmDe+FpYpXt0WHXiiX9AF38CuVV4
+         02Z0j2OfhQGgTKc+humC8K22N/iyMQrjCtAvFt9sWcSQ2w6sECg192pN2gdc6/J8qIOy
+         xiF7hiwyMolfZwM9rGos/DV5nbG64/s9M2zSk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679846665;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QLUV32TFJ1PBsRP4JRwHZ1TsUoT8zxPU9gMsdTVjtMI=;
-        b=i2uRyUtCRKSlf3EA5v7zS05K2gdLm4MgUm//S17PaTUJnxjmg0W3x/e91dh5r6U6BI
-         yVDQsuqmq+Lny2svDpxckNSP+2k+9U58zJ0QbmAQ0nzJpmqFLQJN9qgE9qL2GPWHib6j
-         6vESVOo/TIeRwAxKMu9cBpJtyGwRA4/AxKyfeQ5vZqturrZrhBGgiCgmStveQelOKCTW
-         pzGCXjk3HYOad+i1aYFxYzBZaMv03eADVI9P+JauMHbz7oHqOMMuo169/r6YB/lYncNG
-         l5eDskExHgQ9b5Bm908ccIdxxaKJikSZJm9KDzwDiPlgkn6XUVfDOhGkxnwRvNimrdLG
-         cBsg==
-X-Gm-Message-State: AAQBX9cSY/tF3qXGV/wzNKZJhv9cWVbX0o77ROcQXZ5lcYe16PdxUlAT
-        gnBQG63MVT2IpnqKrl9Wv/0RW657RfOOsgCrtUsf0g==
-X-Google-Smtp-Source: AKy350YT5l7cjYXaNvQzx6EZReyPIuE1rGnu4arDQ3k/L9D77LZfGAtDrGEM+GG5dwc+svYj+0/6eg==
-X-Received: by 2002:a92:c688:0:b0:315:3d99:bbd3 with SMTP id o8-20020a92c688000000b003153d99bbd3mr7262477ilg.8.1679846664942;
-        Sun, 26 Mar 2023 09:04:24 -0700 (PDT)
-Received: from [10.211.55.3] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id q3-20020a5e9403000000b007594a835232sm2092375ioj.13.2023.03.26.09.04.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 09:04:24 -0700 (PDT)
-Message-ID: <5f825218-c583-7ccd-6845-684a4b166abe@ieee.org>
-Date:   Sun, 26 Mar 2023 11:04:23 -0500
+        d=1e100.net; s=20210112; t=1679846845;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dIi+oN72WZEPUIzF4SXi/G/Glt6kbpRtp0rjNVLhNxU=;
+        b=NIj3wPrwHP81/U8ohYK7drwBWWfia0mxo3bliQwnorKu6Qj/pzDp2gVH9u0ahKm6Ck
+         DSvgxGBtjyFyEglEKcGa7u4+IlFT8ihPJVdkp/ER6I70VnGn4HutlrWzJoK2jTe9GkSq
+         0COQhs4E5lOghwthLDRypW/U5h0xU9OZy6yAKDwz/Bn9Rez4OxM5vAzxbO1PRWdzVKi3
+         umzBpmgnmiVjRGgtZtuomZ8dR72bhN5J9ox/Eo9SPFItQ7XZ1y2wuRaOuMd54XrcGClO
+         r8Kr9CLwNh/CUXuncY85w16U1mdLvxaYp/TiKp2N71xg/CPuSO8hlbuQqNlWX3HbZGDR
+         CRJg==
+X-Gm-Message-State: AAQBX9d2vv205hJ0ualoKeMAt7bXqPlzzzwCLkVS3FrGeOOZq+xZO7mP
+        K8eJ8/dZUFLXS/XOwsifsupTPuRxTqY98ldePXA33w==
+X-Google-Smtp-Source: AKy350aSHCmM5L0AkEbNo7ZMCzsEjdop5DldR1H6TrcAFOLh2mVLvg3OquHgLQZFz71CzdYZwPS0LbUPocYBiudtQeU=
+X-Received: by 2002:a50:d517:0:b0:4fb:7e7a:ebf1 with SMTP id
+ u23-20020a50d517000000b004fb7e7aebf1mr4267496edi.6.1679846845304; Sun, 26 Mar
+ 2023 09:07:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx65: add IPA information
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     quic_rohiagar@quicinc.com, caleb.connolly@linaro.org,
-        mka@chromium.org, evgreen@chromium.org, quic_cpratapa@quicinc.com,
-        quic_avuyyuru@quicinc.com, quic_jponduru@quicinc.com,
-        quic_subashab@quicinc.com, elder@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230324201528.2540564-1-elder@linaro.org>
- <20230324201528.2540564-2-elder@linaro.org>
- <98fcbdd4-77b3-5b17-7102-c590f1a5a63e@kernel.org>
- <f600869e-0fd8-ca19-1baf-d23f7a9103d6@linaro.org>
-From:   Alex Elder <elder@ieee.org>
-In-Reply-To: <f600869e-0fd8-ca19-1baf-d23f7a9103d6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230315211040.2455855-1-dario.binacchi@amarulasolutions.com>
+ <CABGWkvpHHLNzZHDMzWveoHtApmR3czVvoCOnuWBZt-UoLVU-6g@mail.gmail.com> <20230324155632.24chi5ndo23awhhp@pengutronix.de>
+In-Reply-To: <20230324155632.24chi5ndo23awhhp@pengutronix.de>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Sun, 26 Mar 2023 18:07:14 +0200
+Message-ID: <CABGWkvpsza=b8GAFkyL2VMMHqkHyY4VLQ=8aky5G8vWTeAR49g@mail.gmail.com>
+Subject: Re: [RESEND PATCH v7 0/5] can: bxcan: add support for ST bxCAN controller
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+        michael@amarulasolutions.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/25/23 7:12 AM, Konrad Dybcio wrote:
-> 
-> 
-> On 25.03.2023 12:14, Krzysztof Kozlowski wrote:
->> On 24/03/2023 21:15, Alex Elder wrote:
->>> Add IPA-related nodes and definitions to "sdx65.dtsi".  The SMP2P
->>> nodes (ipa_smp2p_out and ipa_smp2p_in) are already present.
->>>
->>> Enable IPA in "sdx65-mtp.dts"; this GSI firmware is loaded by Trust
->>> Zone on this platform.
->>>
->>> Tested-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->>> Signed-off-by: Alex Elder <elder@linaro.org>
->>> ---
->>>   arch/arm/boot/dts/qcom-sdx65-mtp.dts |  5 ++++
->>>   arch/arm/boot/dts/qcom-sdx65.dtsi    | 38 ++++++++++++++++++++++++++++
->>>   2 files changed, 43 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->>> index ed98c83c141fc..72e25de0db5fc 100644
->>> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->>> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->>> @@ -245,6 +245,11 @@ &blsp1_uart3 {
->>>   	status = "okay";
->>>   };
->>>   
->>> +&ipa {
->>> +	qcom,gsi-loader = "skip";
->>> +	status = "okay";
->>> +};
->>> +
->>>   &qpic_bam {
->>>   	status = "okay";
->>>   };
->>> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
->>> index 192f9f94bc8b4..360d6dc144811 100644
->>> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
->>> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
->>> @@ -11,6 +11,7 @@
->>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>   #include <dt-bindings/power/qcom-rpmpd.h>
->>>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->>> +#include <dt-bindings/interconnect/qcom,sdx65.h>
->>>   
->>>   / {
->>>   	#address-cells = <1>;
->>> @@ -299,6 +300,43 @@ tcsr_mutex: hwlock@1f40000 {
->>>   			#hwlock-cells = <1>;
->>>   		};
->>>   
->>> +		ipa: ipa@3e04000 {
->>> +			compatible = "qcom,sdx65-ipa";
->>> +
->>> +			iommus = <&apps_smmu 0x5e0 0x0>,
->>> +				 <&apps_smmu 0x5e2 0x0>;
->>> +			reg = <0x3f40000 0x10000>,
->>> +			      <0x3f50000 0x5000>,
->>> +			      <0x3e04000 0xfc000>;
->>> +			reg-names = "ipa-reg",
->>> +				    "ipa-shared",
->>> +				    "gsi";
->>> +
->>> +			interrupts-extended = <&intc GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
->>> +					      <&intc GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
->>> +					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->>> +					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
->>> +			interrupt-names = "ipa",
->>> +					   "gsi",
->>> +					   "ipa-clock-query",
->>> +					   "ipa-setup-ready";
->>
->> These look misaligned.
->>
->> With above:
->>
->> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> With this and moving iommus below interconnect:
+Hi Marc,
 
-Is there guidance somewhere that states what order should be
-used for these properties?  Why should iommus be below
-interconnects?
+On Fri, Mar 24, 2023 at 4:56=E2=80=AFPM Marc Kleine-Budde <mkl@pengutronix.=
+de> wrote:
+>
+> On 21.03.2023 12:25:15, Dario Binacchi wrote:
+> > A gentle ping to remind you of this series.
+> > I have no idea why it hasn't deserved any response for quite some
+> > time.
+> > Is there anything I am still missing?
+>
+> I wonder if we want to do a s/master/primary/ in the DT bindings and
+> driver?
 
-As I said to Krzysztof, I *think* all of the IPA nodes look
-like this; should all of them be updated to follow whatever
-the preferred convention is?
+The ST reference manual (RM0386) explicitly uses the master and slave words
+in the bxcan chapter. I would stay consistent with it. But I have no proble=
+m
+changing it to primary. I just sent v8 with the changes you suggested
+for shared irq
+and clock enable/disable, but if you prefer to use primary I will send
+the v9 version
+with that change.
+Please let me know your opinion.
 
-Thanks.
+Thanks and regards,
+Dario
 
-					-Alex
+>
+> regards,
+> Marc
+>
+> --
+> Pengutronix e.K.                 | Marc Kleine-Budde           |
+> Embedded Linux                   | https://www.pengutronix.de  |
+> Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129  |
+> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
 
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> Konrad
->>
->>
->> Best regards,
->> Krzysztof
->>
 
+--=20
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
