@@ -2,116 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99E876C9505
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 16:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465966C95BE
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 16:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231989AbjCZOLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 10:11:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
+        id S231279AbjCZOrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 10:47:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231990AbjCZOLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 10:11:33 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2205983E8;
-        Sun, 26 Mar 2023 07:11:02 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-17ec8963db8so6689175fac.8;
-        Sun, 26 Mar 2023 07:11:02 -0700 (PDT)
+        with ESMTP id S229640AbjCZOrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 10:47:00 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E0D46A3
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 07:46:59 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id ew6so25769905edb.7
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 07:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679842018;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HFfrjCvrpWX6CnF+HF1tJ28DSs/1vxlz9uEimUmt+gQ=;
+        b=Ntvb7K1nveWCIADlOJbiB8IYh3RmF/JSbKaJlmFXBxW54uMgTPUKheiECZTWdE+nLv
+         c4jWoOMHP4dNki94qSmlfEPmCdXfQNYBLGMArFXA/BtrPnwy6x1NOdQ5Yyh5JWfjzjct
+         y7L42zXKiid6qLsMe1VgAR4oJ7hNRq+lwHZ9j2FWwSoHbcxoy+rk+jnffT2QhhPG1OsL
+         3o1T9gwji6ZdIIxItLYzFZ1sD388Rxr/mTpifTHVyv/Hz7CORTc5x1jZP1Dx+Qs47BRd
+         dowz2z9T2mb/x7eRNggOvGRvBVLdVf+l+qlTqXmetbotX19ftL4r1gc0fho3Sn7lQ85l
+         kdZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679839823;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RI84tHAsFIA+Z9+3RM9Ce999KROH+/bxjRxCcU6olVY=;
-        b=aAiivHeu/Tsv0dz4SKSXiaosIrrtpdO20RyVijglBIQSFePnfJw8aHDNss+5DIUrPr
-         ZBITDtgL3ha4o2n7JoB7olDrYijdQLBI/mfMPzKRQoscY8sP7dTXAJbxL4sZkq2DsVZv
-         JsY0xLCedFhueLhfXW/XHeGW8cehxf3xocLlQYtfpSXO1NRk0ADks5ov07xdFZeac0fv
-         vCx2lxGlSACaDWqT+tyFxSircfW9guaQm/sxhlDpFR8+4tUB6u1oTOwUpohP5Pp/uHyp
-         QQSNgzf5uMtWTk0/k+yguqpZZv5wkXO6OyDLIDn8fpaF/5KPVOBG8mdfm7xM0kAq+bAc
-         NXLg==
-X-Gm-Message-State: AAQBX9e4EGXZ7BfiiuTjZVtCVM3GQilSlhZ2ChFkk0TfNPWqzCUlQPIk
-        Y/nkSwWVuJwo/hsv8Jth0g==
-X-Google-Smtp-Source: AKy350a+wztBAVZCse1OmxrhNfzmyAzezy7grQ/X6mbQuuEsDbhoHnKJRF53Dr55qRBhmiRDuQzhDA==
-X-Received: by 2002:a05:6870:ec8c:b0:17a:bf1b:cab8 with SMTP id eo12-20020a056870ec8c00b0017abf1bcab8mr6363964oab.4.1679839823002;
-        Sun, 26 Mar 2023 07:10:23 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s2-20020a4a5102000000b005252e5b6604sm10485165ooa.36.2023.03.26.07.10.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 07:10:22 -0700 (PDT)
-Received: (nullmailer pid 380188 invoked by uid 1000);
-        Sun, 26 Mar 2023 14:10:21 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20210112; t=1679842018;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HFfrjCvrpWX6CnF+HF1tJ28DSs/1vxlz9uEimUmt+gQ=;
+        b=fAU/D+dwBaKm/YQhfeKNMta4lrQ7JcNDo2EmjK7Dqdl7+EGEqfEVhCKimwj+Vk3iVD
+         8oNbvksOZkT6VsMv/+YWNATj2rL7poxD1phst2Z4wUAMwTo9gknYFETAvaVlp79+cys3
+         p6T4dF1miqPWU9avB/pQEcZAihMO+tJz2hMZb1AiJX//sdV94TwtEjsUIcEockzeKMP5
+         ceizHhXJLfdxW3du59T8JMov2DLG687tbsZv8IX0RtAOJmuBFr/oollF+KH6i2UpviJn
+         wJE1U/+9sBJB8apfbcdFgNUpbeZfTAf3/oT/io1T4oSdnZ4oliEK/DkmNyarQmwHFs8r
+         9dDw==
+X-Gm-Message-State: AAQBX9fxzoC9Y/Huu2XB6YFRB2olpmVR7iHkydFMgH67HP1hHegPB8nj
+        RGywDitBY4VEkTCjoiW+E32iVQ==
+X-Google-Smtp-Source: AKy350ZQ1GaV8yhLr5q+kh5hsJpJhRqSpymNZuY/9YV2yeQJgeVnFVWC6RmHZCX03m93Hnyu6YMN4g==
+X-Received: by 2002:a17:906:6702:b0:878:72f7:bd99 with SMTP id a2-20020a170906670200b0087872f7bd99mr9000974ejp.6.1679842018063;
+        Sun, 26 Mar 2023 07:46:58 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:eca3:3b8f:823b:2669? ([2a02:810d:15c0:828:eca3:3b8f:823b:2669])
+        by smtp.gmail.com with ESMTPSA id n3-20020a170906088300b009327ed171f2sm12237730eje.129.2023.03.26.07.46.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Mar 2023 07:46:57 -0700 (PDT)
+Message-ID: <324e710d-de76-23dc-de4b-d34e32e63aca@linaro.org>
+Date:   Sun, 26 Mar 2023 16:46:56 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230325122444.249507-6-vkoul@kernel.org>
-References: <20230325122444.249507-1-vkoul@kernel.org>
- <20230325122444.249507-6-vkoul@kernel.org>
-Message-Id: <167983963951.350350.7524342280614332456.robh@kernel.org>
-Subject: Re: [PATCH v2 05/12] dt-bindings: interconnect: split SC8180x to
- own schema
-Date:   Sun, 26 Mar 2023 09:10:21 -0500
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3] ASoC: dt-bindings: alc5632: Convert to dtschema
+To:     Saalim Quadri <danascape@gmail.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+References: <20230323130511.16367-1-danascape@gmail.com>
+ <20230326131039.19190-1-danascape@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230326131039.19190-1-danascape@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/03/2023 15:10, Saalim Quadri wrote:
+> Convert the ALC5632 audio codec bindings to DT schema.
 
-On Sat, 25 Mar 2023 17:54:37 +0530, Vinod Koul wrote:
-> SC8180x comes with interconnects having and missing IO address space, and
-> variable number of clocks, so split it from common file for easier
-> maintenance and to fix warnings like:
+You got comment about threading. Do not ignore it.
+
 > 
-> sc8180x-lenovo-flex-5g.dtb: interconnect-0: 'reg' is a required property
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
 > ---
->  .../bindings/interconnect/qcom,rpmh.yaml      | 11 ---
->  .../interconnect/qcom,sc8180x-rpmh.yaml       | 76 +++++++++++++++++++
->  2 files changed, 76 insertions(+), 11 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Where is the changelog? What happened here?
 
-yamllint warnings/errors:
+>  .../devicetree/bindings/sound/alc5632.txt     | 43 -------------
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.yaml: properties:compatible:enum: ['qcom,sc8180x-aggre1-noc', 'qcom,sc8180x-aggre1-noc', 'qcom,sc8180x-aggre2-noc', 'qcom,sc8180x-camnoc-virt', 'qcom,sc8180x-compute-noc', 'qcom,sc8180x-config-noc', 'qcom,sc8180x-dc-noc', 'qcom,sc8180x-gem-noc', 'qcom,sc8180x-mc-virt', 'qcom,sc8180x-mmss-noc', 'qcom,sc8180x-qup-virt', 'qcom,sc8180x-system-noc'] has non-unique elements
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.example.dtb: interconnect@16e0000: reg: [[0, 23986176], [0, 53376]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.example.dtb: interconnect@16e0000: Unevaluated properties are not allowed ('reg' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.yaml
 
-doc reference errors (make refcheckdocs):
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        alc5632: codec@1a {
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230325122444.249507-6-vkoul@kernel.org
+No improvements here.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> +            compatible = "realtek,alc5632";
+> +            reg = <0x1a>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +        };
+> +    };
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
