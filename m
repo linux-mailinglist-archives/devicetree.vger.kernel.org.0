@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8118A6C9649
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 17:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 206C86C964C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 17:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232385AbjCZPyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 11:54:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46922 "EHLO
+        id S232484AbjCZPyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 11:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232460AbjCZPyh (ORCPT
+        with ESMTP id S232443AbjCZPyh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 11:54:37 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A747449E
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:35 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id ek18so26220832edb.6
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:35 -0700 (PDT)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AF47294
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:36 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id h8so26181932ede.8
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679846073;
+        d=linaro.org; s=google; t=1679846074;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vHf8Iv0NI1emcO/z/ewyqHnQEFOXmu7+0ljc1Q4ZcJI=;
-        b=tE+yQdG1T2SqxcmRUDC4jgRpO3h7Oj3NGFQfvFEK8Rta9B5C16LDC0qSp7CL3kczar
-         bl39yE1ZDZ9p3qAwBysPv7OZjSex/W12Yy4uNYL7k3aDmVQJZl/yAE672BmWGLl4Rz/k
-         7xywNh3tkJCtL/5D0E787Sxg7zaxdLRghGEfN/a+dOkqPg0lXfRv0Hzu2oAHurJCcS6y
-         Hps9EoPrUrAZHrJJ4L1yNpdRn5hTOYk18r/3mrClj6p7PEWAtQUxWUXk05CnBuB4qJmY
-         mCt4dKIQX5nr/RdOBnLYFdW3YLEYxUKBE2DuZcU7+jmn3FLHm0gXTtNT05XCdjzcl3Vx
-         hh9Q==
+        bh=2CYAkeBkiK+UhGthwoQ1EwlNXrFR2ygK1R+o0KFshok=;
+        b=iniB2T59+riVzewdPmkYZTlzSoMEMibvs1gKTUrFj/FlPUgrgbP4ZJDQNewJS/NVhn
+         1CFxpd3JcXrRLeifWK2d/aO8I8l3m6pe3ON92TN+gvOaDEJEJR1GyVkWtAoSoH495O/g
+         AWUXli4NoPQNE6/xAGw9W8gPX/OnisQIit2jCrYeRyb2+qDOYralNkm9GjOQpOqKicnu
+         6hTQQeTGxWwNEXOFRh1mGoTC2KMIfKu77IBW8XupaiP78TLYTZOu0tEsf+xr7cvLqyo2
+         kOzHJEpTrOSlNYZ88ch50BuhzvasTM99iYPMFRuWtxQ7R/xGmLlsIgxNdRQxZPLKNPhr
+         ILpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679846073;
+        d=1e100.net; s=20210112; t=1679846074;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vHf8Iv0NI1emcO/z/ewyqHnQEFOXmu7+0ljc1Q4ZcJI=;
-        b=gpf+61n3IbSmQrdBsdG7p3KKKMk7Qdcyb5cH5fVKySahnj3HzZ12LAkqVsmWVCCLnu
-         cbWzGBqODsvFVtuV1jF/v2nVA7Pq+y0aqJMN8iK3M1pKU+YbTn7iqA0Ip9t//Lvvb1ia
-         suHV9kphzDqwpBASZ5ew8xo6pa0+ogdrdDqXMZUXGL2uOTwkAA7lQffREni/3GVUoyJJ
-         CHwGhUCfjant3Vdy7lGaO7xkT2xDhM9Aa/wNkCxg2uYlA4rB9pNwfxW6QF1gO9ECRkrx
-         rWFDNshBIne8ioKSF0RkTxef8WxslT7SgZVNcxhNGzHQb+nx5wyEltq4xtcCLdjzbP/j
-         UmiQ==
-X-Gm-Message-State: AAQBX9epSnH1haGeu2kDgeoDvp8bUsWz6JBDt9d7VMhLsazA29cjTLGf
-        osiRgZpsHRIcx0fC9K3U4VYNgA==
-X-Google-Smtp-Source: AKy350Z9yW9do38i5Qti2/g6ZEwstDQ0vYhgJqnw6UnOMq56bflHZ5rivUZlOZlnskR73Qd+s7j7pg==
-X-Received: by 2002:aa7:cc07:0:b0:4a2:5652:d8ba with SMTP id q7-20020aa7cc07000000b004a25652d8bamr8542357edt.18.1679846073737;
-        Sun, 26 Mar 2023 08:54:33 -0700 (PDT)
+        bh=2CYAkeBkiK+UhGthwoQ1EwlNXrFR2ygK1R+o0KFshok=;
+        b=2dAe7QxyFhKnzfhQIgQqqMHSuTKYrOM2iouWydQ1V0e3nqDuVtI75zs19k+PEo8USl
+         sziLY37XUe9I9cPpOiPQH3dIXhxSgqXT/rR0VzsM/8xjo8jMMEe8Tpe58ShCLVbEzFXS
+         1yOFcQQJ1O3RsePcnSp29NaKwwZ+jvE7VmqIxvjPEY2ExvW8FW7T0lQmuKNwR+cpUJnI
+         AC+RtNVyhlnzQ4vswA+KJDDUFnKHiunD7gy0sSBPnSHBdH5d1dXs1m8x6p+K7TGN3ZCD
+         DaNZRVQ07BiI3keNg+qqBAjPjm9pIyxXlrlQUCF8MR/oUt6+Yau8ww48iVvBXBtH7RFD
+         XyGw==
+X-Gm-Message-State: AAQBX9dhDp9yr3vAFvTgKtIl598ckTR4CTeb00tQXmRmxt0SAmkroEmp
+        nT0fkAqEXrtEEFgW+opVnWCSzQ==
+X-Google-Smtp-Source: AKy350YpYs/8Vdmi3STGf5AquUGui7sbir34hOCWu9zkXPhfNRRkOuFcZ9t6H3NCocxlP0Gvgw4JwQ==
+X-Received: by 2002:aa7:c846:0:b0:4fb:8d3c:3b86 with SMTP id g6-20020aa7c846000000b004fb8d3c3b86mr9105609edt.1.1679846074821;
+        Sun, 26 Mar 2023 08:54:34 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:eca3:3b8f:823b:2669])
-        by smtp.gmail.com with ESMTPSA id l6-20020a50d6c6000000b004af62273b66sm13506742edj.18.2023.03.26.08.54.32
+        by smtp.gmail.com with ESMTPSA id l6-20020a50d6c6000000b004af62273b66sm13506742edj.18.2023.03.26.08.54.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 08:54:33 -0700 (PDT)
+        Sun, 26 Mar 2023 08:54:34 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -64,9 +64,9 @@ To:     Neil Armstrong <neil.armstrong@linaro.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/6] dt-bindings: display: visionox,rm69299: document reg
-Date:   Sun, 26 Mar 2023 17:54:24 +0200
-Message-Id: <20230326155425.91181-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 6/6] dt-bindings: display: boe,tv101wum-nl6: document rotation
+Date:   Sun, 26 Mar 2023 17:54:25 +0200
+Message-Id: <20230326155425.91181-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
 References: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
@@ -81,68 +81,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Panels are supposed to have one reg.  This fixes dtbs_check warnings
-like:
+Allow 'rotation' property (coming from panel-common.yaml) already used
+in DTS:
 
-  sc7180-idp.dtb: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+  sc7180-trogdor-quackingstick-r0.dtb: panel@0: 'rotation' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../display/panel/visionox,rm69299.yaml       | 25 +++++++++++++------
- 1 file changed, 17 insertions(+), 8 deletions(-)
+ .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml      | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-index 481ef051df1e..444ac2a4772d 100644
---- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-@@ -19,6 +19,8 @@ properties:
-   compatible:
-     const: visionox,rm69299-1080p-display
+diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+index f98ed588c750..aed55608ebf6 100644
+--- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
++++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+@@ -55,6 +55,7 @@ properties:
+     description: phandle of the backlight device attached to the panel
  
-+  reg: true
-+
-   vdda-supply:
-     description: |
-       Phandle of the regulator that provides the vdda supply voltage.
-@@ -34,6 +36,7 @@ additionalProperties: false
+   port: true
++  rotation: true
  
  required:
    - compatible
-+  - reg
-   - vdda-supply
-   - vdd3p3-supply
-   - reset-gpios
-@@ -41,16 +44,22 @@ required:
- 
- examples:
-   - |
--    panel {
--        compatible = "visionox,rm69299-1080p-display";
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+            compatible = "visionox,rm69299-1080p-display";
-+            reg = <0>;
- 
--        vdda-supply = <&src_pp1800_l8c>;
--        vdd3p3-supply = <&src_pp2800_l18a>;
-+            vdda-supply = <&src_pp1800_l8c>;
-+            vdd3p3-supply = <&src_pp2800_l18a>;
- 
--        reset-gpios = <&pm6150l_gpio 3 0>;
--        port {
--            panel0_in: endpoint {
--                remote-endpoint = <&dsi0_out>;
-+            reset-gpios = <&pm6150l_gpio 3 0>;
-+            port {
-+                panel0_in: endpoint {
-+                    remote-endpoint = <&dsi0_out>;
-+                };
-             };
-         };
-     };
 -- 
 2.34.1
 
