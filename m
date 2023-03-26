@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3CC06C9647
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 17:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8118A6C9649
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 17:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232432AbjCZPyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 11:54:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46736 "EHLO
+        id S232385AbjCZPyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 11:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232443AbjCZPye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 11:54:34 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3077D421A
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:33 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id w9so26264418edc.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:33 -0700 (PDT)
+        with ESMTP id S232460AbjCZPyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 11:54:37 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A747449E
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:35 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id ek18so26220832edb.6
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 08:54:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679846072;
+        d=linaro.org; s=google; t=1679846073;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qb6wejOAWg8Tq0/xVUihnm3zM3Ykv1bV1Wxaitw6vys=;
-        b=uFqZlpVVmx5h5YGt9V4RkhGjCgFfg/K53xRA90eWEwZ86FJdYz0lHlHfZ+UVmruME+
-         H70w1sAhHv8hXJPLeWKNvEmI391bLRf4+S+l5RYE9j7G2Tz+1rKTAQGxWcul7qCTOd2T
-         uJjnW6PX2ofmzgVmlmwGi+K4OWEELT4YTPaLmmOTM8tYs0GBVM5bgevUQpoYHZy3Xmyi
-         omLEIAcwAEwvUBI5+iNUlJI4AJhlkilix63Pt1I9jOVinOJjx1pfJ2CrHW67ATorWT81
-         Ag4uoRbQ7iiykNL5j1MkndTuoN7v/JGf7+N7YwaehYFtqFcD2B1/IfwGirP5MMpaxegB
-         WDRg==
+        bh=vHf8Iv0NI1emcO/z/ewyqHnQEFOXmu7+0ljc1Q4ZcJI=;
+        b=tE+yQdG1T2SqxcmRUDC4jgRpO3h7Oj3NGFQfvFEK8Rta9B5C16LDC0qSp7CL3kczar
+         bl39yE1ZDZ9p3qAwBysPv7OZjSex/W12Yy4uNYL7k3aDmVQJZl/yAE672BmWGLl4Rz/k
+         7xywNh3tkJCtL/5D0E787Sxg7zaxdLRghGEfN/a+dOkqPg0lXfRv0Hzu2oAHurJCcS6y
+         Hps9EoPrUrAZHrJJ4L1yNpdRn5hTOYk18r/3mrClj6p7PEWAtQUxWUXk05CnBuB4qJmY
+         mCt4dKIQX5nr/RdOBnLYFdW3YLEYxUKBE2DuZcU7+jmn3FLHm0gXTtNT05XCdjzcl3Vx
+         hh9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679846072;
+        d=1e100.net; s=20210112; t=1679846073;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qb6wejOAWg8Tq0/xVUihnm3zM3Ykv1bV1Wxaitw6vys=;
-        b=crSDW6lNE3XpRQarfs7PZfd5ZRGYpLnpFE0YjVov7X3razTYAytef3zTmIIti2jZFt
-         y+Hjwd+S+2cNzApsUeeCHY/siZZcbLaOy/BwTNd1qCSoh0IWtgfMGnvliDIEuQYRNWdr
-         1VVBL3q7bjhkt+dhD4EnRdcHZ9jwCbg9mJvM1thv0twhg1Oay7+IQ6sti9KToXtcV+p3
-         T+sQ0Cg5k1o7j3vzSIcBqf+JK02joXf8uqVE+fEN5vcn3ErZznQHL+x/qj1rlddgA0aH
-         aXqqsbjqzCrTg69g6yQL07m/bjeB750WBpfxs3KKv3jt2ORbNSN3egAOKPlquVvRoXBi
-         ivtw==
-X-Gm-Message-State: AAQBX9frF7YehQ/EfIJvcE1L6wPa+sab2XiT7TFZI8tV6HIg7ufcobZo
-        V7/swMgM8NzqNP/Jr3+piZHBFA==
-X-Google-Smtp-Source: AKy350Zt2i4Or7nsFrCPdZGmCr9S/cL7QJFPKdglAMXRGLWGsseYfQ1oUV5m2neU6SIbvgRLUsj6Tg==
-X-Received: by 2002:a17:906:3896:b0:933:3a22:8513 with SMTP id q22-20020a170906389600b009333a228513mr10968276ejd.53.1679846072731;
-        Sun, 26 Mar 2023 08:54:32 -0700 (PDT)
+        bh=vHf8Iv0NI1emcO/z/ewyqHnQEFOXmu7+0ljc1Q4ZcJI=;
+        b=gpf+61n3IbSmQrdBsdG7p3KKKMk7Qdcyb5cH5fVKySahnj3HzZ12LAkqVsmWVCCLnu
+         cbWzGBqODsvFVtuV1jF/v2nVA7Pq+y0aqJMN8iK3M1pKU+YbTn7iqA0Ip9t//Lvvb1ia
+         suHV9kphzDqwpBASZ5ew8xo6pa0+ogdrdDqXMZUXGL2uOTwkAA7lQffREni/3GVUoyJJ
+         CHwGhUCfjant3Vdy7lGaO7xkT2xDhM9Aa/wNkCxg2uYlA4rB9pNwfxW6QF1gO9ECRkrx
+         rWFDNshBIne8ioKSF0RkTxef8WxslT7SgZVNcxhNGzHQb+nx5wyEltq4xtcCLdjzbP/j
+         UmiQ==
+X-Gm-Message-State: AAQBX9epSnH1haGeu2kDgeoDvp8bUsWz6JBDt9d7VMhLsazA29cjTLGf
+        osiRgZpsHRIcx0fC9K3U4VYNgA==
+X-Google-Smtp-Source: AKy350Z9yW9do38i5Qti2/g6ZEwstDQ0vYhgJqnw6UnOMq56bflHZ5rivUZlOZlnskR73Qd+s7j7pg==
+X-Received: by 2002:aa7:cc07:0:b0:4a2:5652:d8ba with SMTP id q7-20020aa7cc07000000b004a25652d8bamr8542357edt.18.1679846073737;
+        Sun, 26 Mar 2023 08:54:33 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:eca3:3b8f:823b:2669])
-        by smtp.gmail.com with ESMTPSA id l6-20020a50d6c6000000b004af62273b66sm13506742edj.18.2023.03.26.08.54.31
+        by smtp.gmail.com with ESMTPSA id l6-20020a50d6c6000000b004af62273b66sm13506742edj.18.2023.03.26.08.54.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 08:54:32 -0700 (PDT)
+        Sun, 26 Mar 2023 08:54:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -64,9 +64,9 @@ To:     Neil Armstrong <neil.armstrong@linaro.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/6] dt-bindings: display: panel-simple-dsi: document port
-Date:   Sun, 26 Mar 2023 17:54:23 +0200
-Message-Id: <20230326155425.91181-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/6] dt-bindings: display: visionox,rm69299: document reg
+Date:   Sun, 26 Mar 2023 17:54:24 +0200
+Message-Id: <20230326155425.91181-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
 References: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
@@ -81,47 +81,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Panels are supposed to have one port (coming from panel-common.yaml
-binding):
+Panels are supposed to have one reg.  This fixes dtbs_check warnings
+like:
 
-  msm8916-samsung-a3u-eur.dtb: panel@0: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+  sc7180-idp.dtb: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../display/panel/samsung,s6e88a0-ams452ef01.yaml         | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../display/panel/visionox,rm69299.yaml       | 25 +++++++++++++------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml
-index 44ce98f68705..b749e9e906b7 100644
---- a/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml
-@@ -16,6 +16,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+index 481ef051df1e..444ac2a4772d 100644
+--- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
++++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+@@ -19,6 +19,8 @@ properties:
    compatible:
-     const: samsung,s6e88a0-ams452ef01
-   reg: true
-+  port: true
-   reset-gpios: true
-   vdd3-supply:
-     description: core voltage supply
-@@ -25,6 +26,7 @@ properties:
+     const: visionox,rm69299-1080p-display
+ 
++  reg: true
++
+   vdda-supply:
+     description: |
+       Phandle of the regulator that provides the vdda supply voltage.
+@@ -34,6 +36,7 @@ additionalProperties: false
+ 
  required:
    - compatible
-   - reg
-+  - port
-   - vdd3-supply
-   - vci-supply
++  - reg
+   - vdda-supply
+   - vdd3p3-supply
    - reset-gpios
-@@ -46,5 +48,11 @@ examples:
-                     vdd3-supply = <&pm8916_l17>;
-                     vci-supply = <&reg_vlcd_vci>;
-                     reset-gpios = <&msmgpio 25 GPIO_ACTIVE_HIGH>;
+@@ -41,16 +44,22 @@ required:
+ 
+ examples:
+   - |
+-    panel {
+-        compatible = "visionox,rm69299-1080p-display";
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+                    port {
-+                            panel_in: endpoint {
-+                                    remote-endpoint = <&dsi0_out>;
-+                            };
-+                    };
++        panel@0 {
++            compatible = "visionox,rm69299-1080p-display";
++            reg = <0>;
+ 
+-        vdda-supply = <&src_pp1800_l8c>;
+-        vdd3p3-supply = <&src_pp2800_l18a>;
++            vdda-supply = <&src_pp1800_l8c>;
++            vdd3p3-supply = <&src_pp2800_l18a>;
+ 
+-        reset-gpios = <&pm6150l_gpio 3 0>;
+-        port {
+-            panel0_in: endpoint {
+-                remote-endpoint = <&dsi0_out>;
++            reset-gpios = <&pm6150l_gpio 3 0>;
++            port {
++                panel0_in: endpoint {
++                    remote-endpoint = <&dsi0_out>;
++                };
              };
+         };
      };
 -- 
 2.34.1
