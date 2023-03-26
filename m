@@ -2,178 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1FA6C96A7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF4296C96B9
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbjCZQIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 12:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
+        id S231980AbjCZQLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 12:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbjCZQI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:08:29 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4E946B9
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:08:28 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id h5so3430974ile.13
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:08:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1679846907;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hmWU3HOEJbbXWYXoBYPRgRHzG+SKRTnqVA9N2/ofI1w=;
-        b=Wg1QM8/YMpRaCJAOuR5alIpWbx1ppfnISy8H69O/NgeWor6SkELX53FXVONDqvbgaJ
-         dvyYSRVBWRpSsU4Ng3rsEBIYRgiGJQ7cTWUVhcOsqPAueVjAUmrohSU8xzErX2+h/5V3
-         BPkx7vDU8MmGMnyv6weBP7LGEQdPKDJZkR9BM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679846907;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hmWU3HOEJbbXWYXoBYPRgRHzG+SKRTnqVA9N2/ofI1w=;
-        b=GzezkAmsRaxLVgsQCtWgEww7ChGSMpNWuGbzhc8urUvlcaI9jBV41vN1YFKxp4RdK+
-         L44G4+RBdeeUTXoOxYu6t4qnlOnDysoky0UnOM1ODGt623UUINECMtA4EJR5e0C3mzuE
-         YTC1urJLyMBl8josYeg8ALZNMqMcXL9lRrwtItg6fjYHivU7kf/JwjM6rRnHtmofGN/2
-         jz1RWBZtGGtJo6cJu34odcv3LRld/ImZfqvChJMfCce+7red/cY2BpyVY4RqbqkCGeeS
-         3psbJ4xUAF7rNRZWTm1bbMD/v6yhS12fZvW08Pt/+3R30SVo39qsB+rHmvQxPti7SdTW
-         XOPw==
-X-Gm-Message-State: AAQBX9eRYum/o9osnaovQwDggBNtizYYn1dTJPLT3fCwwDpyOU5pemlk
-        FIeSHgAvtnhgDu8x0MjlTSGsWg==
-X-Google-Smtp-Source: AKy350aARNmNflI3UCZ68ajxhsC+vG7Qt5H0cyHaRefnTQANxcoOs7ReJ3N0PLwHez+XrcbZplDziQ==
-X-Received: by 2002:a92:dd03:0:b0:316:e6e4:570b with SMTP id n3-20020a92dd03000000b00316e6e4570bmr6771010ilm.11.1679846907463;
-        Sun, 26 Mar 2023 09:08:27 -0700 (PDT)
-Received: from [10.211.55.3] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id f15-20020a056e0212af00b00313fa733bcasm7294385ilr.25.2023.03.26.09.08.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 09:08:26 -0700 (PDT)
-Message-ID: <a7d15a55-131a-4edb-8ace-2e35d3488ae8@ieee.org>
-Date:   Sun, 26 Mar 2023 11:08:25 -0500
+        with ESMTP id S229621AbjCZQLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:11:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E8846BC;
+        Sun, 26 Mar 2023 09:11:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 47F9BB80D17;
+        Sun, 26 Mar 2023 16:11:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A2CC433EF;
+        Sun, 26 Mar 2023 16:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679847067;
+        bh=o9DhWBV3PlIK120tOC+Wz+SCIfbOtFOcA2xWJ2t7RJs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=IJCflRmAEhIDBBRjbWju3AVqZdbIpitpI7cGgyoxGpDZ2VKFhwjNh1LJiIwjF2Ie/
+         E0I0D3O7KM+EI4NZlcfyJ5/3fSVQslIc3R8VBm8H5WGfXdnywPsvC510F4+qfoysNY
+         5NCrNrtIMclXrOf2NatTSjK+pbxk3AL0pFST34qeNEzGpV1qsYKYxC+XfpxTLe2rAw
+         UjJw0Mzw1hnFbGbC2fvDTbahJtyzRH+VpHQxzgnd8sDSTow9XbXcSRTlPBIwyFj6AS
+         28P4VBCD3BIgU/KFTBbMILtW3HVsRcM7m9YR9vj3qsmjzusf2qwz47nii6fmv1vcph
+         0LU8vG+DIu0fQ==
+Date:   Sun, 26 Mar 2023 17:26:10 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andrew Hepp <andrew.hepp@ahepp.dev>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 2/2] iio: temperature: Add MCP9600 thermocouple EMF
+ converter
+Message-ID: <20230326172610.55db8cff@jic23-huawei>
+In-Reply-To: <59c33dc5-bc97-8016-72cf-e56c73943eda@ahepp.dev>
+References: <20230319184728.49232-1-andrew.hepp@ahepp.dev>
+        <20230319184728.49232-3-andrew.hepp@ahepp.dev>
+        <89271a29-5b02-34fe-409b-373e3b8044ef@metafoo.de>
+        <59c33dc5-bc97-8016-72cf-e56c73943eda@ahepp.dev>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx65: add IPA information
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org
-Cc:     quic_rohiagar@quicinc.com, caleb.connolly@linaro.org,
-        mka@chromium.org, evgreen@chromium.org, quic_cpratapa@quicinc.com,
-        quic_avuyyuru@quicinc.com, quic_jponduru@quicinc.com,
-        quic_subashab@quicinc.com, elder@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230324201528.2540564-1-elder@linaro.org>
- <20230324201528.2540564-2-elder@linaro.org>
- <98fcbdd4-77b3-5b17-7102-c590f1a5a63e@kernel.org>
- <82797190-5a83-53d5-47cd-0c62b3f7c6d8@ieee.org>
- <80e9a424-1d5b-5402-4567-c489204869b6@linaro.org>
-From:   Alex Elder <elder@ieee.org>
-In-Reply-To: <80e9a424-1d5b-5402-4567-c489204869b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/26/23 11:04 AM, Krzysztof Kozlowski wrote:
-> On 26/03/2023 18:01, Alex Elder wrote:
->> On 3/25/23 6:14 AM, Krzysztof Kozlowski wrote:
->>> On 24/03/2023 21:15, Alex Elder wrote:
->>>> Add IPA-related nodes and definitions to "sdx65.dtsi".  The SMP2P
->>>> nodes (ipa_smp2p_out and ipa_smp2p_in) are already present.
->>>>
->>>> Enable IPA in "sdx65-mtp.dts"; this GSI firmware is loaded by Trust
->>>> Zone on this platform.
->>>>
->>>> Tested-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->>>> Signed-off-by: Alex Elder <elder@linaro.org>
->>>> ---
->>>>    arch/arm/boot/dts/qcom-sdx65-mtp.dts |  5 ++++
->>>>    arch/arm/boot/dts/qcom-sdx65.dtsi    | 38 ++++++++++++++++++++++++++++
->>>>    2 files changed, 43 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->>>> index ed98c83c141fc..72e25de0db5fc 100644
->>>> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->>>> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
->>>> @@ -245,6 +245,11 @@ &blsp1_uart3 {
->>>>    	status = "okay";
->>>>    };
->>>>    
->>>> +&ipa {
->>>> +	qcom,gsi-loader = "skip";
->>>> +	status = "okay";
->>>> +};
->>>> +
->>>>    &qpic_bam {
->>>>    	status = "okay";
->>>>    };
->>>> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
->>>> index 192f9f94bc8b4..360d6dc144811 100644
->>>> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
->>>> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
->>>> @@ -11,6 +11,7 @@
->>>>    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>    #include <dt-bindings/power/qcom-rpmpd.h>
->>>>    #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->>>> +#include <dt-bindings/interconnect/qcom,sdx65.h>
->>>>    
->>>>    / {
->>>>    	#address-cells = <1>;
->>>> @@ -299,6 +300,43 @@ tcsr_mutex: hwlock@1f40000 {
->>>>    			#hwlock-cells = <1>;
->>>>    		};
->>>>    
->>>> +		ipa: ipa@3e04000 {
->>>> +			compatible = "qcom,sdx65-ipa";
->>>> +
->>>> +			iommus = <&apps_smmu 0x5e0 0x0>,
->>>> +				 <&apps_smmu 0x5e2 0x0>;
->>>> +			reg = <0x3f40000 0x10000>,
->>>> +			      <0x3f50000 0x5000>,
->>>> +			      <0x3e04000 0xfc000>;
->>>> +			reg-names = "ipa-reg",
->>>> +				    "ipa-shared",
->>>> +				    "gsi";
->>>> +
->>>> +			interrupts-extended = <&intc GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
->>>> +					      <&intc GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
->>>> +					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->>>> +					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
->>>> +			interrupt-names = "ipa",
->>>> +					   "gsi",
->>>> +					   "ipa-clock-query",
->>>> +					   "ipa-setup-ready";
->>>
->>> These look misaligned.
->>
->> I believe this is the alignment convention used by all IPA nodes
->> in DTS files.  It's possible I'm not seeing something you are,
->> but...  what alignment should be used?  And if I change this,
->> should I change all others?
-> 
-> If this is aligned, then fine. The diff points it is not, but the diff
-> might be a bit tricky sometimes.
-> 
-> Alignment is till " in previous line. For example sdm845 looks fine.
+On Thu, 23 Mar 2023 11:20:55 -0700
+Andrew Hepp <andrew.hepp@ahepp.dev> wrote:
 
-OK thank you.  I will send v2 of this series after I hear back
-from Konrad, adding your reviewed-by, and will double-check
-the alignment as well.
+> On 3/19/23 11:59 AM, Lars-Peter Clausen wrote:
+> > This looks really good. I have some small comments, and I apologize for=
+=20
+> > only having them so late in the review cycle. =20
+>=20
+> No worries at all! I really appreciate the time and effort you,=20
+> Jonathan, and Krzysztof have put into reviewing this.
+>=20
+> >=20
+> > On 3/19/23 11:47, Andrew Hepp wrote: =20
+> >> Add support for the MCP9600 thermocouple EMF converter. =20
+> >=20
+> > Would be nice to have a very short description of the capabilities of=20
+> > the sensor in the commit message.
+> >  =20
+>=20
+> That seems like a good idea! Should the message be about the=20
+> capabilities of the sensor, or the capabilities of the driver? The=20
+> sensor supports a lot of advanced features that the driver currently=20
+> doesn't support.
+>=20
+> Currently I'm leaning towards
+>=20
+> "Add support for the MCP9600 thermocouple EMF converter. The sensor has=20
+> integrated cold junction compensation and a typical accuracy of 0.5=20
+> degrees Celsius. The driver supports a resolution of 0.0625 degrees=20
+> Celsius."
+>=20
 
-					-Alex
+Might be worth calling out what EMF stands for as well.
+Otherwise that is fine.
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+
+One follow up below. I took another look at the driver and other than the
+points Lars has raised, this looks good to me now.
+
+Thanks,
+
+Jonathan
+
+
+> >>
+> >> Datasheet:=20
+> >> https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20=
+005426.pdf
+> >> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
+> >> ---
+> >> [...]
+> >> diff --git a/drivers/iio/temperature/mcp9600.c=20
+> >> b/drivers/iio/temperature/mcp9600.c
+> >> new file mode 100644
+> >> index 000000000000..b6d8ffb90c36
+> >> --- /dev/null
+> >> +++ b/drivers/iio/temperature/mcp9600.c
+> >> @@ -0,0 +1,145 @@
+> >> +// SPDX-License-Identifier: GPL-2.0+
+> >> [...]
+> >> +static const struct iio_chan_spec mcp9600_channels[] =3D {
+> >> +=C2=A0=C2=A0=C2=A0 {
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D IIO_TEMP,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .address =3D MCP9600_HOT_J=
+UNCTION,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .info_mask_separate =3D
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BI=
+T(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
+> >> +=C2=A0=C2=A0=C2=A0 },
+> >> +=C2=A0=C2=A0=C2=A0 {
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D IIO_TEMP,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .address =3D MCP9600_COLD_=
+JUNCTION,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .channel2 =3D IIO_MOD_TEMP=
+_AMBIENT,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .modified =3D 1,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .info_mask_separate =3D
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BI=
+T(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
+> >> +=C2=A0=C2=A0=C2=A0 },
+> >> +=C2=A0=C2=A0=C2=A0 IIO_CHAN_SOFT_TIMESTAMP(2), =20
+> > If you do not have supported for buffered capture there is no need to=20
+> > include a timestamp in the channel spec. There is no way to read it=20
+> > without buffered support. =20
+>=20
+> Ack
+>=20
+> >> +};
+> >> +
+> >> +struct mcp9600_data {
+> >> +=C2=A0=C2=A0=C2=A0 struct i2c_client *client;
+> >> +=C2=A0=C2=A0=C2=A0 struct mutex read_lock; /* lock to prevent concurr=
+ent reads */
+> >> +};
+> >> +
+> >> +static int mcp9600_read(struct mcp9600_data *data,
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st=
+ruct iio_chan_spec const *chan, int *val)
+> >> +{
+> >> +=C2=A0=C2=A0=C2=A0 __be16 buf; =20
+> > buf does not seem to be used. =20
+>=20
+> Oops, sorry about that, I'll make sure to build with warnings as errors=20
+> next submission. I tested the module after changing from=20
+> i2c_smbus_read_block_data but looks like I got a bit ahead of myself=20
+> submitting.
+>=20
+> >> +=C2=A0=C2=A0=C2=A0 int ret; >> +
+> >> +=C2=A0=C2=A0=C2=A0 mutex_lock(&data->read_lock); =20
+> > Do you actually need the custom lock? i2c_smbus_read_word_swapped itsel=
+f=20
+> > should provide locking and there is only a single operation under your=
+=20
+> > custom lock, which will already be atomic. =20
+>=20
+> That seems like a convincing argument to me. It certainly doesn't seem=20
+> like the lock is doing anything, since i2c_smbus_read_word_swapped=20
+> provides locking.
+>=20
+> >> +=C2=A0=C2=A0=C2=A0 ret =3D i2c_smbus_read_word_swapped(data->client, =
+chan->address);
+> >> +=C2=A0=C2=A0=C2=A0 mutex_unlock(&data->read_lock);
+> >> +
+> >> +=C2=A0=C2=A0=C2=A0 if (ret < 0)
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
+> >> +=C2=A0=C2=A0=C2=A0 *val =3D ret;
+> >> +
+> >> +=C2=A0=C2=A0=C2=A0 return 0;
+> >> +}
+> >> +
+> >> [...]
+> >> +static int mcp9600_probe(struct i2c_client *client)
+> >> +{
+> >> +=C2=A0=C2=A0=C2=A0 struct iio_dev *indio_dev;
+> >> +=C2=A0=C2=A0=C2=A0 struct mcp9600_data *data;
+> >> +=C2=A0=C2=A0=C2=A0 int ret;
+> >> +
+> >> +=C2=A0=C2=A0=C2=A0 ret =3D i2c_smbus_read_byte_data(client, MCP9600_D=
+EVICE_ID);
+> >> +=C2=A0=C2=A0=C2=A0 if (ret < 0)
+> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret; =20
+> >=20
+> > Might as well throw an error message in here for better diagnostics.
+> >=20
+> >  =C2=A0=C2=A0=C2=A0 return dev_err_probe(&client->dev, ret, "Failed to =
+read device ID\n");
+> >=20
+> >  =20
+>=20
+> I think this is how I did it in my original submission, but it sounds=20
+> like the preferred way of doing things is to warn without returning an=20
+> error, in order to support fallback compatibilities?
+
+A failure to read the DEVICE_ID register at all is worth a print as this
+is the first time the driver will try to use the bus so if the device isn't
+there (or isn't responding) it would be good to shout about it.
+
+Jonathan
+
+
 
