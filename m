@@ -2,63 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 552BB6C980B
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 23:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 291776C985F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 00:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjCZVmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 17:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54706 "EHLO
+        id S231575AbjCZWCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 18:02:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjCZVmc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 17:42:32 -0400
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4804EC3
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 14:42:30 -0700 (PDT)
-X-KPN-MessageId: 10acee67-cc1f-11ed-91cc-005056994fde
-Received: from smtp.kpnmail.nl (unknown [10.31.155.6])
-        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-        id 10acee67-cc1f-11ed-91cc-005056994fde;
-        Sun, 26 Mar 2023 23:42:11 +0200 (CEST)
+        with ESMTP id S230418AbjCZWCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 18:02:41 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE8159FA
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 15:02:39 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id z83so8241627ybb.2
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 15:02:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=xs4all.nl; s=xs4all01;
-        h=subject:to:from:message-id:date;
-        bh=FOHaG8D2+t7NKnOheQiaKsU743SJhRHZwy+ITYWQT9w=;
-        b=PGmQl8BUzCG9sCU6fr7lx7ESnRwS06LpaaXh56zx+DaxPVHqnj8A4DqJLlK0g2GoVmtEDaNRYo4H7
-         8K9wEBiT29G8LNOIMqJIXDzdgVJ1wFPRdq7VhlmBRH6qSlrxl1JERid1HLbzpvKRm2nFPDDIM+lPw2
-         teQYfFIN9YySZVS2T+uHaS+xRGgrQwb2d1HKCZDiafb9JvB3zevGG1ZUrNd/GFXS355A6QG/PnYqHh
-         1yqpR/nsE9mqQeSYvGoPujQzoiRVgw7IRLpFtdwJG+ZL+YP8puly3yVeyIH9WDskRRXaeh01n1tdMz
-         mIgQgyogj5qpAKPYqgKCNI0PiNOWUUg==
-X-KPN-MID: 33|hflgBB15tGX+zdNpKRslL5mh+CpZ/uOmqt5ryKTP4uSj4o30B92d2FImLAWYt3e
- Ilt2bntrlBRe0j8YFV3IChwVIV9neq13kOPTw0KPnEgE=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|LSlsABmnZF/7Drgl6ODBOgZ/U6fYFApiMoIJihfaejXXCn+pqFnEI3v/wyi6Rg7
- ZtpeHDK2Zn4wI/KQ24OjwHQ==
-X-Originating-IP: 80.61.163.207
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by smtp.xs4all.nl (Halon) with ESMTPSA
-        id 1a037cf8-cc1f-11ed-87f0-00505699772e;
-        Sun, 26 Mar 2023 23:42:28 +0200 (CEST)
-Date:   Sun, 26 Mar 2023 23:42:27 +0200
-Message-Id: <87cz4v2nr1.fsf@bloch.sibelius.xs4all.nl>
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     bigbeeshane@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <03ec1aac-3c6d-892f-fad9-f386a5d4d10e@linaro.org> (message from
-        Krzysztof Kozlowski on Sun, 26 Mar 2023 22:02:39 +0200)
-Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
-References: <20230326001535.149539-1-bigbeeshane@gmail.com>
- <20230326001535.149539-2-bigbeeshane@gmail.com>
- <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
- <CABnpCuCzdbWTTp1Gc6wWPsB80J5GYw1QzKtZzzyEYU456E=1JA@mail.gmail.com>
- <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org>
- <CABnpCuAWm7jh19JKukOquPnZCwHoJispgDPGJzjYy6T_BZSnbg@mail.gmail.com>
- <717bfba9-1d70-ef09-9193-853a57117926@linaro.org>
- <CABnpCuA7V9ti6BOoz+3Mq-f=PwgxL2K7rOhjo6tJ4QquSZbaSA@mail.gmail.com> <03ec1aac-3c6d-892f-fad9-f386a5d4d10e@linaro.org>
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        d=linaro.org; s=google; t=1679868159;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GIc/+PDO2htV2jMp3KoF29hKZ12iZrid4FdCljLl48k=;
+        b=afaLl3Ha4GhPKcKshef+64lLZtACUvVS/1jAuXiJO7hdtSCrNjJ83E8oq5/9midSG1
+         1fZuC5nCf/LPJoMTg1uQtioaulMia4KDC7k1qRAwPHNsW7ehCS+UcuEC+VTTrVfJTJ0A
+         gA+/YGB2UnIjcaAMzIm7zjFqilwua3AeEOWAiZPEgU1k3I3+7xfpqxiF+a7YV5fNSqXE
+         0jVitL1jMy/PkvR+OtowmcyL9F4gw4vNVBuOnI7LpDXbCIKwKeYtTFemF0YihbK5JwFm
+         V7s87ESYtCcbmaadxyYcysQmkVdQBI/iPK6Qj+KeCaASiGYQMb5CANXTHbXwHLhEK1q3
+         kvgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679868159;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GIc/+PDO2htV2jMp3KoF29hKZ12iZrid4FdCljLl48k=;
+        b=lV+fo0NqFXFSPZVUMm/S8Q+MGmkeottQ6AOrZh892IulWoeQtOF/tVjkq1KHftsgpO
+         Nr80FGtXgtClq1jQl4JlMI0GFvjBBxNlHPof1h8+C12gnhoeEcTlorqyieEbxSM11dK0
+         QKAH2Y7ScQ/Ebw/JNY66do0j0pGXHrQE0zrnTJvfq3Uv5hNnAEsx9hLjtnIPB0eAgptf
+         LLTMBHrFDI7nub2fJ9wtfWbR3m/WPoWe33WgzKkIst8SCgRcL1fPoYEhMJybD4uLc6IF
+         SYYRAdJeRDXslYgO/1q3vyNO8LyM5RVmLtZbXWksQFT78FtTDunlrxWFEwciierxi9+K
+         LpZA==
+X-Gm-Message-State: AAQBX9dHUPhRZkW7KTypWnum4t6qrXKmr7n59HVM5bCSoi2ooM+BeMz1
+        0bS/Zn4pWh/8B0SePVb/Vkpl39X1dFE4davFL0sVEscCi5AZCbF/beu+Bw==
+X-Google-Smtp-Source: AKy350Z2Qzm+5ANjsAThGZFty6IX7daVX2aW0EYjjTkzMa2fQoYReQIT8/fAf0fwdMIK93UKhsOoGxAujOSwHFJvSEg=
+X-Received: by 2002:a05:6902:1201:b0:b6c:4d60:1bd6 with SMTP id
+ s1-20020a056902120100b00b6c4d601bd6mr6141431ybu.9.1679868159111; Sun, 26 Mar
+ 2023 15:02:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <1677774797-31063-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1677774797-31063-15-git-send-email-quic_vpolimer@quicinc.com> <20230326162723.3lo6pnsfdwzsvbhj@ripper>
+In-Reply-To: <20230326162723.3lo6pnsfdwzsvbhj@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 27 Mar 2023 01:02:28 +0300
+Message-ID: <CAA8EJpp+gX+6zniMioBfXC95VF2qVTPidQB36zyrohhrGerK8g@mail.gmail.com>
+Subject: Re: [PATCH v14 14/14] drm/msm/dp: set self refresh aware based on PSR support
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
+        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,55 +72,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Sun, 26 Mar 2023 22:02:39 +0200
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> On 26/03/2023 19:51, Shane Francis wrote:
-> >> Bootloader also does not use mainline DTS, so where is exactly the problem?
-> > 
-> > In this case uboot does load the target DTB, and it seems a common
-> > function in rockchips
-> > downstream boot process, see :
-> > 
-> > https://github.com/rockchip-linux/u-boot/blob/ef1dd650042f61915c4859ecc94623a09a3529fa/arch/arm/mach-rockchip/kernel_dtb.c#L70
+On Sun, 26 Mar 2023 at 19:24, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Thu, Mar 02, 2023 at 10:03:17PM +0530, Vinod Polimera wrote:
+> > For the PSR to kick in, self_refresh_aware has to be set.
+> > Initialize it based on the PSR support for the eDP interface.
+> >
+>
+> When I boot my sc8280xp devices (CRD and X13s) to console with this
+> patch included I get a login prompt, and then there are no more screen
+> updates.
+>
+> Switching virtual terminal (ctrl+alt+fN) causes the screen to redraw.
+>
+> Blindly login in and launching Wayland works and from then on screen
+> updates works as expected.
+>
+> Switching from Wayland to another virtual terminal causes the problem to
+> re-appear, no updates after the initial refresh, switching back go the
+> Wayland-terminal crashed the machine.
+>
+>
+>
+> Reverting this single patch resolves both the issue with the console
+> updating as exected and flipping between the virtual terminal with
+> Wayland and the others no longer crashes my machine.
+
+I hope Vinod Polimera can assist in solving the issue. In the worst
+case we will have to revert this commit, shortcutting the PSR until it
+is properly debugged.
+
+>
+> Regards,
+> Bjorn
+>
+> > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> > ---
+> >  drivers/gpu/drm/msm/dp/dp_drm.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c b/drivers/gpu/drm/msm/dp/dp_drm.c
+> > index 029e08c..785d766 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_drm.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_drm.c
+> > @@ -117,6 +117,8 @@ static int edp_bridge_atomic_check(struct drm_bridge *drm_bridge,
+> >       if (WARN_ON(!conn_state))
+> >               return -ENODEV;
+> >
+> > +     conn_state->self_refresh_aware = dp->psr_supported;
+> > +
+> >       if (!conn_state->crtc || !crtc_state)
+> >               return 0;
+> >
+> > --
+> > 2.7.4
 > >
 
-That code makes absolutely no sense.  This tries to transplant
-phandles from one DTB into another DTB?  Mainline U-Boot has no code
-like that.  I think this is just broken beyond repair.
 
-> U-Boot comes with its own DTB, so what does it means "loads the target
-> DTB"? From where? The one appended to the kernel zImage? No, it cannot...
-> 
-> Any component which operates on mainline DTB must conform to the
-> bindings (with respect to the ABI), thus your arguments here mean you
-> are not allowed to change ABI in the future. Never. This change,
-> assuming original binding was broken, could be warranted.
 
-The current mainline binding isn't broken; 0 is a perfectly fine clock
-index.  The RK3588 clock bindings are already used by U-Boot (too late
-to fix for the 2023.4 release happening in a few days) and OpenBSD
-(too late to fix for the 7.3 release that will happen a few weeks).
-Changing the clock binding will just create more chaos.
-
-<rant>
-
-What is broken here is the development process.  Rockchip shouldn't be
-maintaining these heavily modified forks of U-Boot and the Linux
-kernel.  But at the same time mainline Linux developers should not be
-asking for arbitrary changes to the device tree bindings just to
-satisfy some unwritten rules.  The clock bindings were originaly
-submitted with clock numbers identical to those that Rockchip uses:
-
-  https://lore.kernel.org/all/20220623160329.239501-2-sebastian.reichel@collabora.com/
-
-but then changed because a reviewer wanted them to start at 0 and
-didn't want any holes:
-
-  https://lore.kernel.org/all/0841741a-22f6-40f6-c745-6065dfdbcb1d@linaro.org/
-
-This isn't the first example where this happened.  And it invariably
-leads to confusion and breakage in projects that try to follow the
-mainline Linux device tree bindings.
-
-</rant>
+-- 
+With best wishes
+Dmitry
