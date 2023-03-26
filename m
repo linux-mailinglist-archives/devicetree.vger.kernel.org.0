@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECAAA6C932C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 10:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956AE6C932F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 10:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231856AbjCZIwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 04:52:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
+        id S231891AbjCZIxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 04:53:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231869AbjCZIwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 04:52:18 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA48B83C9
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 01:52:16 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id eh3so24057057edb.11
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 01:52:16 -0700 (PDT)
+        with ESMTP id S231869AbjCZIxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 04:53:41 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947662D47
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 01:53:39 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id w9so24210043edc.3
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 01:53:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679820735;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1679820818;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p1G5XuG2O44rhuRS+cdtjXkMOG1YaLkvmFPo9d6ePeQ=;
-        b=kt9fmK2m0EiBdcWA/bhdn34lSYAf9VIEFlhYgE1guZ9rrBz7zO8tOE0YsSuDxaXLsd
-         AystX85dhnq9pPaS7QQuGJMwhiuROindN2L2dpc4nO42bq5kRAxoxRDK/3N0i+vG4tm1
-         zbrr4ToalhuObWk3ViDoIXBekoMpMcXhohlEStpxktqu9111oPyW3tv7ASk2ZUZz0M1j
-         TeHqYdi2W7gCNoa6xMu6oxFYzVgv2yU2xY0Di7UT3SLKdYq8+MTnqZe0524j/vJN/PSJ
-         GL3Av5csVCx8cCCK40uWMI5k002k6P4y+ZQb0sM4CHKWKghWwW+jIG7dVpwrV5ELIv/0
-         k+pQ==
+        bh=s9l4JG0jB8L5lnEnjjTm1GgDn+X8VhsreqRhQBiqr0A=;
+        b=qoWu95l+hp+iuVd5NrArIwy22CkrJS7NFYJSBmFoLSmyVJRhg/kLhZZF440sXGnAr4
+         XkXIU/wRw9+ta9wBOWptmxqspvWpDQZXymfwIzTNVFWzaqT0rO4tXfDUnbn12MrOGv7R
+         ATP6/XjEDjDWBLmS8/wLnHMPjP0aTCAbMnptwlv5XBmoC8h/uah6uyoKFWaR0o8P+yVq
+         lMq6zU+k/b0uUN0fUo6Wn6OSczlGrGXKC8Jykabww2t+RlUGwHmRLg8sp5D2rle0hZfn
+         dH26UrcczD/yqxzpIXznbXTngDw9qsPD+F7BUqdGivnRoRqjaoAD+zyJ5Px0FxLVpgrZ
+         ybOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679820735;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1679820818;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p1G5XuG2O44rhuRS+cdtjXkMOG1YaLkvmFPo9d6ePeQ=;
-        b=mnEmuHKDU8CWpeWJi4Uz6lZfaPLjmcWlwveXJ07q4yAmgKwXThChcs/U5clYIr9Ftz
-         gsaRNmhzbA7V36IY1Ozadtn1sdmwMhOIZyS1gb+1vVS/T56scqhwB/3rgRwxCm8wfukw
-         +tNIF/fQYgK8OeVzetXonRSzIUw4ozZAG96Y8QR4EFBQRIOLTDZwy79sUB6cdIw624K0
-         ZcFDT5TApEB9DIWetwaQ5DopsrZYp8E/Q/AjoRP3onQB/UCrmW73cmcLqLyJgTvcm2Mc
-         zmrSGOJORPH+puh2I3fnG4umcvU14tkg/xDtGCARDwDv0LgiJvhN5HwXpY4Yh/ESlA1Z
-         AUdA==
-X-Gm-Message-State: AAQBX9dan7YmSDHYZ4LFmKHOn7Xvfb5vxqihLyWd7nS0cojLWAvR7fAg
-        3mbwHWvoaVWBsSRGzeVfLq7CnA==
-X-Google-Smtp-Source: AKy350a4Hf2pni90dnhLjgH1jLAjpW5maFCPJFgbsuds0EDN8CGprK37+v/57FDrATumfl8wg8VLiw==
-X-Received: by 2002:a05:6402:1390:b0:502:2382:5c24 with SMTP id b16-20020a056402139000b0050223825c24mr7067869edv.39.1679820735349;
-        Sun, 26 Mar 2023 01:52:15 -0700 (PDT)
+        bh=s9l4JG0jB8L5lnEnjjTm1GgDn+X8VhsreqRhQBiqr0A=;
+        b=2K+8c51as9N6TrRS7zvel39bSTtnIBIwNMkrMuf2gShhEbJJ2M9QjxzrSdGer/jEoT
+         6xsb+lNqttOb6xEwITJYPIbfo5Fu5OQHRH1Buqa/+q9S8DX6sZ16k2PU1rlJgXLENg5O
+         WoIn7sIXw6oLgJfj+FZ7l4Bes6b6xATLXXddeLveFHeHFfAtMdkTewxmzI0VXjprDBZJ
+         /kWoS18IiKZxxQM5oL7xcEIlwggAPWgMqDYXYBprpKM0POJ5vEhXggGpfCKnG1qtbw0f
+         HkiuavQATNDnLRChYsgyfhFCNml6NLK4Vq8OZWHdj00PN3BBthuhqh4gdiT7eggVHujg
+         LTtQ==
+X-Gm-Message-State: AAQBX9dZJ70riQPmH1J6dFXM0Ds1+x8wPwOFDL9JZX55G/vuXfTVZQ2b
+        u+hWfQC528qRUbN4SJHQ+EAomA==
+X-Google-Smtp-Source: AKy350Yzdh3LrxuHVgV4rLFo9iMeONGkUKJeqNKzMm/w+brGzvkE8UQ3rLeLIg45zubE/v1V++5L+w==
+X-Received: by 2002:a17:906:33d2:b0:92c:6fbf:4d with SMTP id w18-20020a17090633d200b0092c6fbf004dmr8348892eja.40.1679820818136;
+        Sun, 26 Mar 2023 01:53:38 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
-        by smtp.gmail.com with ESMTPSA id z17-20020a5096d1000000b004aee4e2a56esm13223831eda.0.2023.03.26.01.52.14
+        by smtp.gmail.com with ESMTPSA id z21-20020a1709064e1500b00930de1da701sm12992572eju.10.2023.03.26.01.53.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 01:52:14 -0700 (PDT)
-Message-ID: <d827dafb-5b97-7ba3-542c-e3f60d4fb468@linaro.org>
-Date:   Sun, 26 Mar 2023 10:51:56 +0200
+        Sun, 26 Mar 2023 01:53:37 -0700 (PDT)
+Message-ID: <8ab9d0c3-89f7-90f3-58d6-d2994d372518@linaro.org>
+Date:   Sun, 26 Mar 2023 10:53:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 0/2] Qualcomm SDM845 SLPI DSP driver support
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: adsp: add
+ qcom,sdm845-slpi-pas compatible
+Content-Language: en-US
 To:     Dylan Van Assche <me@dylanvanassche.be>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -67,9 +69,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
 References: <20230325132117.19733-1-me@dylanvanassche.be>
-Content-Language: en-US
+ <20230325132117.19733-2-me@dylanvanassche.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230325132117.19733-1-me@dylanvanassche.be>
+In-Reply-To: <20230325132117.19733-2-me@dylanvanassche.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,30 +85,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/03/2023 14:21, Dylan Van Assche wrote:
-> The Qualcomm SDM845 SoC has a separate SLPI (Sensor Low Power Island)
-> DSP for sensors connected to the SoC which is responsible for exposing
-> sensors to userspace, power saving, and other features. 
-> While sensors are connected to GPIOs of the SoC, they cannot be used
-> because the hypervisor blocks direct access to the sensors, thus the 
-> DSP must be used to access any sensor on this SoC. The SLPI DSP uses a
-> GLink edge (dsps) to communicate with the host and has a FastRPC interface
-> to load files from the host filesystem such as sensor configuration files.
-> The FastRPC interface does not use regular FastRPC Compute Banks
-> but instead uses an allocated CMA region through which communication happens.
+> SLPI DSP remoteproc on DSP is defined by the 'qcom,sdm845-slpi-pas'
+> compatible in the qcom_q6v5_pas driver. Add this compatible to the
+> devicetree bindings.
 > 
-> This set of patches adds support to drivers for the SLPI DSP:
-> 1. Configure the permissions of assigned DSP memory through the hypervisor.
-> 2. Allocate a remote heap when the FastRPC session ID is 0 instead of using 
-> a Compute Bank directly.
-> 3. Add the SLPI remoteproc resource to the q6v5_pas driver to enable support
-> for it in the driver.
-> over QRTR.
+> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+> ---
+>  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> DTS changes to enable the SLPI DSP in the SDM845 DTS and hardware
-> e.g. Oneplus 6 and SHIFTPHONES SHIFT6mq will be send once the driver changes
-> are applied.
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+> index 643ee787a81f..175be01ecd1c 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - qcom,sdm660-adsp-pas
+>        - qcom,sdm845-adsp-pas
+>        - qcom,sdm845-cdsp-pas
+> +      - qcom,sdm845-slpi-pas
+>  
+>    reg:
+>      maxItems: 1
+> @@ -63,6 +64,7 @@ allOf:
+>                - qcom,msm8998-adsp-pas
+>                - qcom,sdm845-adsp-pas
+>                - qcom,sdm845-cdsp-pas
+> +              - qcom,sdm845-slpi-pas
+>      then:
+>        properties:
+>          clocks:
+> @@ -104,6 +106,7 @@ allOf:
 
-No, as we explained on IRC, we expect DTS to be sent the same time.
+
+You miss also if:then: for power-domains.
 
 Best regards,
 Krzysztof
