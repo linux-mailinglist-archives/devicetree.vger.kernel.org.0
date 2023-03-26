@@ -2,70 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5B0F6C97DB
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 22:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 552BB6C980B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 23:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjCZUpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 16:45:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36192 "EHLO
+        id S229700AbjCZVmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 17:42:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbjCZUpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 16:45:33 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C3F5FF5
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 13:45:25 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id h8so27933034ede.8
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 13:45:25 -0700 (PDT)
+        with ESMTP id S229475AbjCZVmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 17:42:32 -0400
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4804EC3
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 14:42:30 -0700 (PDT)
+X-KPN-MessageId: 10acee67-cc1f-11ed-91cc-005056994fde
+Received: from smtp.kpnmail.nl (unknown [10.31.155.6])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id 10acee67-cc1f-11ed-91cc-005056994fde;
+        Sun, 26 Mar 2023 23:42:11 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679863524;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EvZrVpDdfTLeMGJL+heZ69WUSKrchJNCDDAYmYCMphA=;
-        b=ZuSKHqc9wHPiA8M5czSgpKnQcYELnVhA9nB6Md8rv7AeorKkIFrZng7Clvi28TIzlp
-         dvwqxGXyvJy2UqUophw1hpaK/ZlOE53rmafjDvl2eh0MKZLnOP0fntZ/Ceo0waCbnpRB
-         86SRY4r1ZeUg6IKCiUSdtSyPRAUarFDNG824nJxQgLw8W1u6raDS5cAp3mpCslpYb0y2
-         jkUGE4fN9i5a5GFNh7yAYg/t0CZ9Jmguoun9FoKJ9XTn7YxHpgW/qNPMYWa1mroJMi/B
-         eKPNSKYF2XuIjNe1NOGcdk9F7MXJ80AfPPIn2lE4SPrGxfVr15GfRn7RtPqgoTdvjYD7
-         42LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679863524;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EvZrVpDdfTLeMGJL+heZ69WUSKrchJNCDDAYmYCMphA=;
-        b=DH9mU3r4YiBeFILo54Q+lvbtSmDtNYAskv5k8WvE6HsYPzuC0aSfmkfOAbE8osn9G+
-         4nqKDnnj7iTAF73zgI78XNH3MeNj4NmTUElwOrndwYbKkYy7PrD/KDkgCrYgO00zBifh
-         RLV63tW8FGfPCE2cpzC3fm0AiErWzwa7aoh5E9VApvy3aYMgf9GmgSkY5gDhJUMVfiqb
-         +BEmyaD6KI0Mlfgjj8loXPw9X1M2JSP+VJYLqmZR+Q6r2tpLRvjGqmezMBi5ND/pk8at
-         3Jlfw1BSdz8Z5jRjDKBmaCGl94p3QBgFmOoAz6RSaY2eFNQusYUgH5TavKYQgJbetd00
-         +H+g==
-X-Gm-Message-State: AAQBX9etlkdEXie1mLKIbE4ivM8AIl1IDd6QEmhQA6RIeRYPWl9gMdxB
-        lXlIbXaio/JAODHMRKJwDgx3rwUWeNITkJUQNZk=
-X-Google-Smtp-Source: AKy350afISWMGjqW02mLjl6itx6fdrvMvdaEhMIqaBbv+Rigfq5/tCg+ES9ZBQKvLgaHV+KIqXoVoQ==
-X-Received: by 2002:a17:906:dff5:b0:88c:a43d:81bc with SMTP id lc21-20020a170906dff500b0088ca43d81bcmr8568811ejc.58.1679863524094;
-        Sun, 26 Mar 2023 13:45:24 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:6b51:4748:3f3f:ffcf])
-        by smtp.gmail.com with ESMTPSA id ga5-20020a170906b84500b0093e23d03d72sm4090982ejb.177.2023.03.26.13.45.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 13:45:23 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=FOHaG8D2+t7NKnOheQiaKsU743SJhRHZwy+ITYWQT9w=;
+        b=PGmQl8BUzCG9sCU6fr7lx7ESnRwS06LpaaXh56zx+DaxPVHqnj8A4DqJLlK0g2GoVmtEDaNRYo4H7
+         8K9wEBiT29G8LNOIMqJIXDzdgVJ1wFPRdq7VhlmBRH6qSlrxl1JERid1HLbzpvKRm2nFPDDIM+lPw2
+         teQYfFIN9YySZVS2T+uHaS+xRGgrQwb2d1HKCZDiafb9JvB3zevGG1ZUrNd/GFXS355A6QG/PnYqHh
+         1yqpR/nsE9mqQeSYvGoPujQzoiRVgw7IRLpFtdwJG+ZL+YP8puly3yVeyIH9WDskRRXaeh01n1tdMz
+         mIgQgyogj5qpAKPYqgKCNI0PiNOWUUg==
+X-KPN-MID: 33|hflgBB15tGX+zdNpKRslL5mh+CpZ/uOmqt5ryKTP4uSj4o30B92d2FImLAWYt3e
+ Ilt2bntrlBRe0j8YFV3IChwVIV9neq13kOPTw0KPnEgE=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|LSlsABmnZF/7Drgl6ODBOgZ/U6fYFApiMoIJihfaejXXCn+pqFnEI3v/wyi6Rg7
+ ZtpeHDK2Zn4wI/KQ24OjwHQ==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id 1a037cf8-cc1f-11ed-87f0-00505699772e;
+        Sun, 26 Mar 2023 23:42:28 +0200 (CEST)
+Date:   Sun, 26 Mar 2023 23:42:27 +0200
+Message-Id: <87cz4v2nr1.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     bigbeeshane@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: rockchip: use just "port" in panel on RockPro64
-Date:   Sun, 26 Mar 2023 22:45:20 +0200
-Message-Id: <20230326204520.80859-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230326204520.80859-1-krzysztof.kozlowski@linaro.org>
-References: <20230326204520.80859-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+In-Reply-To: <03ec1aac-3c6d-892f-fad9-f386a5d4d10e@linaro.org> (message from
+        Krzysztof Kozlowski on Sun, 26 Mar 2023 22:02:39 +0200)
+Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
+References: <20230326001535.149539-1-bigbeeshane@gmail.com>
+ <20230326001535.149539-2-bigbeeshane@gmail.com>
+ <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
+ <CABnpCuCzdbWTTp1Gc6wWPsB80J5GYw1QzKtZzzyEYU456E=1JA@mail.gmail.com>
+ <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org>
+ <CABnpCuAWm7jh19JKukOquPnZCwHoJispgDPGJzjYy6T_BZSnbg@mail.gmail.com>
+ <717bfba9-1d70-ef09-9193-853a57117926@linaro.org>
+ <CABnpCuA7V9ti6BOoz+3Mq-f=PwgxL2K7rOhjo6tJ4QquSZbaSA@mail.gmail.com> <03ec1aac-3c6d-892f-fad9-f386a5d4d10e@linaro.org>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,42 +66,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The panel bindings expect to have only one port, thus they do not allow
-to use "ports" node:
+> Date: Sun, 26 Mar 2023 22:02:39 +0200
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> On 26/03/2023 19:51, Shane Francis wrote:
+> >> Bootloader also does not use mainline DTS, so where is exactly the problem?
+> > 
+> > In this case uboot does load the target DTB, and it seems a common
+> > function in rockchips
+> > downstream boot process, see :
+> > 
+> > https://github.com/rockchip-linux/u-boot/blob/ef1dd650042f61915c4859ecc94623a09a3529fa/arch/arm/mach-rockchip/kernel_dtb.c#L70
+> >
 
-  rk3399-rockpro64.dtb: panel@0: 'ports' does not match any of the regexes: 'pinctrl-[0-9]+'
+That code makes absolutely no sense.  This tries to transplant
+phandles from one DTB into another DTB?  Mainline U-Boot has no code
+like that.  I think this is just broken beyond repair.
 
-There is only one endpoint, so use simpler form without "reg".
+> U-Boot comes with its own DTB, so what does it means "loads the target
+> DTB"? From where? The one appended to the kernel zImage? No, it cannot...
+> 
+> Any component which operates on mainline DTB must conform to the
+> bindings (with respect to the ABI), thus your arguments here mean you
+> are not allowed to change ABI in the future. Never. This change,
+> assuming original binding was broken, could be warranted.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 12 +++---------
- 1 file changed, 3 insertions(+), 9 deletions(-)
+The current mainline binding isn't broken; 0 is a perfectly fine clock
+index.  The RK3588 clock bindings are already used by U-Boot (too late
+to fix for the 2023.4 release happening in a few days) and OpenBSD
+(too late to fix for the 7.3 release that will happen a few weeks).
+Changing the clock binding will just create more chaos.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 78157521e944..bca2b50e0a93 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -647,16 +647,10 @@ mipi_panel: panel@0 {
- 		avdd-supply = <&avdd>;
- 		backlight = <&backlight>;
- 		dvdd-supply = <&vcc3v3_s0>;
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 
--			port@0 {
--				reg = <0>;
--
--				mipi_in_panel: endpoint {
--					remote-endpoint = <&mipi_out_panel>;
--				};
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
- 			};
- 		};
- 	};
--- 
-2.34.1
+<rant>
 
+What is broken here is the development process.  Rockchip shouldn't be
+maintaining these heavily modified forks of U-Boot and the Linux
+kernel.  But at the same time mainline Linux developers should not be
+asking for arbitrary changes to the device tree bindings just to
+satisfy some unwritten rules.  The clock bindings were originaly
+submitted with clock numbers identical to those that Rockchip uses:
+
+  https://lore.kernel.org/all/20220623160329.239501-2-sebastian.reichel@collabora.com/
+
+but then changed because a reviewer wanted them to start at 0 and
+didn't want any holes:
+
+  https://lore.kernel.org/all/0841741a-22f6-40f6-c745-6065dfdbcb1d@linaro.org/
+
+This isn't the first example where this happened.  And it invariably
+leads to confusion and breakage in projects that try to follow the
+mainline Linux device tree bindings.
+
+</rant>
