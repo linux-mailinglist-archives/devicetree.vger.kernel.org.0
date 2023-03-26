@@ -2,67 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C56C86C941F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 14:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F6E6C9429
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 14:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231737AbjCZMP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 08:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42906 "EHLO
+        id S231925AbjCZMUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 08:20:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjCZMP2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 08:15:28 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AFA6E89;
-        Sun, 26 Mar 2023 05:15:27 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id d17so5911429wrb.11;
-        Sun, 26 Mar 2023 05:15:27 -0700 (PDT)
+        with ESMTP id S230399AbjCZMUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 08:20:05 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F2D72BA
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:19:48 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id h8so25058746ede.8
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:19:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679832926;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z0X0IVqjnE4GWpoQcuqF7rO1/hOAXNdvp0AiJjukc3U=;
-        b=qVxt62xawSEhPWFgEX0PQW7ZAi7jWK9MHmWhc2MHtIrtxqXQvIojSpFrn8uDw2SbaG
-         t/lb8nXS9CAqv6a6XdUMV8xbUHt75f+t5Kx1+8iuR9az6odwTS4Bkynr1iBvEi8t2QhV
-         ejpoV5ip/bGRoANzpc2zxEgyFzAfPhCtXDwt2b78UYxgGEicMJbN4UVobm2Iehz/73iR
-         8UkusbgQGJ3fjyc9jUC8s1H9wsG0N3xpbZjNqyUw8WrzRHWdsAnEhJL+26eyYFPSSWDC
-         RqJjhejyLjwcC2mp0PPB9+7bOtitH0XBG9xE96+nMwghH5rh98yU3kTB1MFPOAnxajhn
-         zN0Q==
+        d=linaro.org; s=google; t=1679833187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5IfSw2r9l6b89lopg9LLMNXb7FdQOCZOmyoAvbxtqm4=;
+        b=ICgUV56vJG7JvicQ1to2mtKiPShhd0VBIO0jiWPe2V3YS/q3rol+M1E1zzGXk/XPNP
+         +W1qo4xda1Lzl4nPbMJVO5Hhw/HP9QrgJEhZGek4acCxCZmg5+wmt0tqSHTgSXUBidk+
+         cJFFpDy7WYYw1gtHrufleBzx5Id6xgsu9xDtMzOiPWjV50ZrD1Z8F76MGBjzSlya3X6F
+         XeJUKCrBAkiz9z3C8j1tmZVY63B/u3Lim3OlHt4qNTcxBEghauXDqNj+DJhE2IHofTxQ
+         N/yNC/PmdtDcbAOpQJO+XMjjPPj8GCAFAAwGW+CK2+k7X2wTMs0qJvglfC++etLedY9T
+         fz4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679832926;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z0X0IVqjnE4GWpoQcuqF7rO1/hOAXNdvp0AiJjukc3U=;
-        b=ceHy0I/JA8LE4Xig80eH8c13u4vE62TpoY8wviNrOHZOqrS8YmovxJm8fJJdSGzVTO
-         2eN8ZB109EbOepLA9VYb3Rno0uXKogfQ6552mIaMrrQpvVpQxv37nAAjwTG/HirzUY4v
-         7n9cmU9vIYkHLhb6Tlkvfzq/5+YWJI47KW4UDKQy7a0AiTefoQ9x6eglZroiBMXKRlNf
-         0BgQ7sm+jaTnZc7hhIkpXybQ4aZlyyynl+WsKclgsn7grjIPp8GPXXUi17gFioY3mLeo
-         BtSqBf25upYkb3JDVt/074SQxCbdDiHh+QUBxFzfrOoFneGKOXXm/VrS8k9u416AZtSo
-         eqvQ==
-X-Gm-Message-State: AAQBX9eG2gbs67hJqoQjXuwXNvxyVCJOCGmpR4m8xbxfRCZ9WWD/dMkw
-        melt+ArxHeJeOf4geb4HB/fpP3qskHQNyl2qnLM=
-X-Google-Smtp-Source: AKy350ZyC1hmbCAqH2PE38tVkcOijPvTEjTrk6Bbob5z53kn/8egAoCIB4tn2r+qQLb2/2kGaO5z5XUWHXg5jmLzpuc=
-X-Received: by 2002:adf:f4c2:0:b0:2ce:ad3a:551d with SMTP id
- h2-20020adff4c2000000b002cead3a551dmr1361058wrp.2.1679832925722; Sun, 26 Mar
- 2023 05:15:25 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679833187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5IfSw2r9l6b89lopg9LLMNXb7FdQOCZOmyoAvbxtqm4=;
+        b=Nqz0+bpIihneq40YU+5XzpGnr9bI36dE2Aq3xq+lVHxnYRgZRzEfO2g9UnwPIer0J+
+         fz/bvLuQ3bNpoCwkJNKV1wdOx51wewSt4222KIYtKG6w6LP/SwCLwieKYUN+G5w/vX/L
+         kaIH6tMZYLJm2QaS3bqNRlnZ9spj9GAXCEs6uwS+IR76V9YSrghfSz60Za4H4P/jlWqx
+         +r90/HUcoqkD3ZgVktWGeuW94gBODdzyE3tYDSVtcDSzZiHAkHe5A0uWx/xPkFoDzeye
+         j0BxdRNBghYQjoqkjSq3c3zbaC1/uI5IwvjmUY0nSl8AUhQcsjIcmaRuHlAyheOuRZBS
+         1fmA==
+X-Gm-Message-State: AAQBX9fs0D7FUAL1Is+rnA3Oa5jwbLfrhv7TgPVf4iA8Bmh3lUU8HjGv
+        NIIgjkMA9aq0pqqn0eLuRz9oaQ==
+X-Google-Smtp-Source: AKy350a1XLCkbinF5XRxjdf3OkRhCOO6OmHKr8keL9ZpWl+WeR/eP/VXicf+cpUc0OZlO78BUWT3zA==
+X-Received: by 2002:a17:907:1c21:b0:8dd:5710:a017 with SMTP id nc33-20020a1709071c2100b008dd5710a017mr11870314ejc.4.1679833187018;
+        Sun, 26 Mar 2023 05:19:47 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
+        by smtp.gmail.com with ESMTPSA id k7-20020a1709062a4700b008b176df2899sm12856711eje.160.2023.03.26.05.19.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Mar 2023 05:19:46 -0700 (PDT)
+Message-ID: <e06977ab-8112-1e45-4392-df36e358e772@linaro.org>
+Date:   Sun, 26 Mar 2023 14:19:45 +0200
 MIME-Version: 1.0
-References: <20230326001535.149539-1-bigbeeshane@gmail.com>
- <20230326001535.149539-2-bigbeeshane@gmail.com> <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
-In-Reply-To: <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
-From:   Shane Francis <bigbeeshane@gmail.com>
-Date:   Sun, 26 Mar 2023 13:15:15 +0100
-Message-ID: <CABnpCuCh2kmvTRrmsY0cwNqjFR6nv1xwxrZPJieM4_Ph8qEGeA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Prathamesh Shete <pshete@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Suresh Mangipudi <smangipudi@nvidia.com>
+References: <20230207115617.12088-1-pshete@nvidia.com>
+ <a1395eb2-da3a-e080-fa6b-50f20d879655@linaro.org> <Y+OGdMFQkL9Dtaq/@orome>
+ <9e7e1762-1c2e-28cd-c7a7-b0577addf51e@linaro.org>
+ <DM5PR12MB24066CE3175B74150235FE55B7B49@DM5PR12MB2406.namprd12.prod.outlook.com>
+ <3b9d4177-ebd9-e341-294d-41860fa8c5ac@linaro.org> <ZBxeLIXJDbM2ebyt@orome>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZBxeLIXJDbM2ebyt@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,77 +86,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
+On 23/03/2023 15:11, Thierry Reding wrote:
+> On Wed, Mar 08, 2023 at 01:24:04PM +0100, Krzysztof Kozlowski wrote:
+>> On 08/03/2023 12:45, Prathamesh Shete wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Wednesday, February 8, 2023 5:28 PM
+>>>> To: Thierry Reding <thierry.reding@gmail.com>
+>>>> Cc: Prathamesh Shete <pshete@nvidia.com>; Jonathan Hunter
+>>>> <jonathanh@nvidia.com>; linus.walleij@linaro.org; robh+dt@kernel.org;
+>>>> krzysztof.kozlowski+dt@linaro.org; devicetree@vger.kernel.org; linux-
+>>>> tegra@vger.kernel.org; linux-gpio@vger.kernel.org; Suresh Mangipudi
+>>>> <smangipudi@nvidia.com>
+>>>> Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
+>>>>
+>>>> External email: Use caution opening links or attachments
+>>>>
+>>>>
+>>>> On 08/02/2023 12:24, Thierry Reding wrote:
+>>>>> On Tue, Feb 07, 2023 at 04:33:08PM +0100, Krzysztof Kozlowski wrote:
+>>>>
+>>>>
+>>>>>>> +          type: object
+>>>>>>> +          additionalProperties:
+>>>>>>> +            properties:
+>>>>>>> +              nvidia,pins:
+>>>>>>> +                description: An array of strings. Each string contains the name
+>>>>>>> +                  of a pin or group. Valid values for these names are listed
+>>>>>>> +                  below.
+>>>>>>
+>>>>>> Define properties in top level, which points to the complexity of
+>>>>>> your if-else, thus probably this should be split into two bindings.
+>>>>>> Dunno, your other bindings repeat this pattern :(
+>>>>>
+>>>>> The property itself is already defined in the common schema found in
+>>>>> nvidia,tegra-pinmux-common.yaml and we're overriding this here for
+>>>>> each instance since each has its own set of pins.
+>>>>>
+>>>>> This was a compromise to avoid too many bindings. Originally I
+>>>>> attempted to roll all Tegra pinctrl bindings into a single dt-schema,
+>>>>> but that turned out truly horrible =) Splitting this into per-SoC
+>>>>> bindings is already causing a lot of duplication in these files,
+>>>>
+>>>> What would be duplicated? Almost eveerything should be coming from
+>>>> shared binding, so you will have only compatible,
+>>>> patternProperties(pinmux) and nvidia,pins. And an example. Maybe I miss
+>>>> something but I would say this would create many but very easy to read
+>>>> bindings, referencing common pieces.
+>>>>
+>>>>> though splitting
+>>>>> off the common bits into nvidi,tegra-pinmux-common.yaml helps a bit
+>>>>> with that already. Splitting this into per-instance bindings would
+>>>>> effectively duplicate everything but the pin array here, so we kind of
+>>>>> settled on this compromise for Tegra194.
+>>>>
+>>>> OK, but are you sure it is now readable? You have if:then: with
+>>>> patternProperties: with additionalProperties: with properties: with
+>>>> nvidia,pins.
+>>> This is inline with the existing bindings and I think this is the compromise that was reached during review when the bindings were submitted,
+>>
+>> So the code might be totally unreadable, but it is inline with existing
+>> code, thus it should stay unreadable. Great.
+> 
+> I'd say this is very subjective. I personally don't find the current
+> version hard to read, but that's maybe because I wrote it... =)
+> 
+>>> offer to rework if a better alternative can be found, but that only makes sense if all the other bindings get changed as well, so I think it'd be good if we can merge in the same format as the existing bindings for now and change all of them later on.
+>>
+>> Cleanup should happen before adding new bindings.
+> 
+> I don't recall the exact problems that I ran into last time, but I do
+> remember that pulling out the common bindings to the very top-level was
+> the main issue.
+> 
+> If I understand correctly what you're saying, the main problem that
+> makes this hard to read is the if and else constructs for AON/MAIN
+> variants on Tegra194/Tegra234. These should be quite easy to pull out
+> into separate bindings. I'll do that first and then see if there's
+> anything that could be done to further improve things.
 
-Will do, I haven't submitted patches for a while totally forgot the
-wrapping guidelines
+One problem is allowing characters here which are not allowed. Second
+problem is reluctance to change it with argument "existing bindings also
+have this problem". It's explanation like "there is already bug like
+this, so I am allowed to add similar one".
 
-> Unfortunately the reason is not good enough for ABI break. Replace
-> vendor boot uboots with open-source one or just correct them (it's still
-> U-Boot so even for vendor one you have the source).
+Now third is that defining properties in allOf is not the style we want
+to have, because it does not work with additionalProperties and is
+difficult to read. Again using argument "existing code also does like
+this" is a very poor argument.
 
-Replacing uboot is fine for this case, however I can foresee that can
-cause issues further down the line.
+Best regards,
+Krzysztof
 
-
-1. No uboot source from the vendor, we all know no everyone respects
-code licencing
-
-2. Secure environments (like android tables), this chipset will likely
-end up in android tablets that have the secure boot chain enable.
-These will be unable to replace uboot even if source is available.
-
-As this SoC is new to the Linux kernel (not even useable for much it's
-current state) would it not be better to aling on this so vendor and
-mainline DTS "agree" now rather than possibly have to address is in
-the future ?
-
-I have also investigated setting these clock rates during kernel boot,
-but the SoC locks up.
-
-
-On Sun, Mar 26, 2023 at 10:37=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/03/2023 01:15, Shane Francis wrote:
-> > Some vendor uboot bootloaders use the target kernels
-> > DTB image to determine the target clock speeds for
-> > some PLLs, currently this can cause uboot to set the
-> > clock rate for gpll incorrectly on to cpll (breaking)
->
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/s=
-ubmitting-patches.rst#L586
->
-> > RGMII.
-> >
-> > This change starts the PLL clock definitions from 1
-> > to correct this miss-match
->
-> Unfortunately the reason is not good enough for ABI break. Replace
-> vendor boot uboots with open-source one or just correct them (it's still
-> U-Boot so even for vendor one you have the source).
->
-> >
-> > Signed-off-by: Shane Francis <bigbeeshane@gmail.com>
-> > ---
-> >  .../dt-bindings/clock/rockchip,rk3588-cru.h   | 1442 ++++++++---------
-> >  1 file changed, 721 insertions(+), 721 deletions(-)
-> >
-> > diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/=
-dt-bindings/clock/rockchip,rk3588-cru.h
-> > index b5616bca7b44..d63b07d054b7 100644
-> > --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> > +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> > @@ -12,727 +12,727 @@
-> >
-> >  /* cru-clocks indices */
-> >
-> > -#define PLL_B0PLL                    0
->
->
-> Best regards,
-> Krzysztof
->
