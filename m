@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E36256C93B4
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 12:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3B7E6C941A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 14:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbjCZKNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 06:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51974 "EHLO
+        id S230243AbjCZMN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 08:13:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230292AbjCZKNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 06:13:16 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9FA358E
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 03:13:13 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id t10so24378692edd.12
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 03:13:13 -0700 (PDT)
+        with ESMTP id S229596AbjCZMN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 08:13:26 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C6A30F8
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:13:25 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id w9so25111544edc.3
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 05:13:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679825592;
+        d=linaro.org; s=google; t=1679832804;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MOh4lC4EpmD6D3IsSXbrUjZG6ycDZwmCNEwAzeoH1FQ=;
-        b=xe3VuwN4Ew16g8dK3fS72dD7DoMqWCfpxH2cYkvrulfZLAAFccoNSAP1wDTjJPg7so
-         2miZ3d/n6zwx2aLARZVLLw3X4gRqznCFw7Rllq560862ZmkDgfwdfFUO86qin8uFv/td
-         c+Ttf5lrMlasAnGarYO36lM3pbJBpwuakPbhTyzb8m3TPfTx53/SFLELNt4yPCh8lFeI
-         nD9inVGSNGPnTtfuoqr+ki32H+M03jUAMMJpUmPSnv20ijJ/OoEq/QD8zQ1Ex2X/QtrN
-         k8jJXDO2ICGxbC30kijnumArQx+wd5oMJgNUOcUBoSra6fap5VFIzYaZStOsGpPPQbTR
-         4GoQ==
+        bh=KfylKtuqAdjWyuMFH3aXceJDXKfQlN7GtkmpCp4vpDQ=;
+        b=TI/sZ5klonceETXd4v1IIZbs0JqAKBoPoMF22tmnim2jZPaW0GrLb1snHgedeeYKbL
+         WCGwlAHywiRjXoslzc7NdAbuBgltPuBvqSLnWrj45JjnGWpNaotrlRZFFHapAQp+6iXb
+         OsjmucWoMjH48o0DdltpXS60j80yKVwOZG2FR1CwxvVr3pMjxRdS7J4ayDOE9yXSPnQK
+         1L+lFSV0wKztvtZkwST+uwkMsX5z2lLuQ2nUGuJsgUf0pBKSp0OR9OEkYTgBuYxTK2VC
+         kqbPYHOr4RVTGVgakagCYQFLdGAr6LGCK6gq9MQjrz8MTkpclDXqOiVdYGidDjMriSAa
+         s2yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679825592;
+        d=1e100.net; s=20210112; t=1679832804;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MOh4lC4EpmD6D3IsSXbrUjZG6ycDZwmCNEwAzeoH1FQ=;
-        b=ML6C7Wj7jYw8oFKqLGcjJZBnHzSZ/PKDesQB5g8kBgdp9bLc54I4M8vmOGC4S70QDx
-         wzolc+SLPFrf4QYf/7+6K8yQsUA1G/YlmPbYpmZ3hQU4Uvb0pXKGCihdMFkjFrhIhwhp
-         dyXLPTWOv/sTzdMSKLgzusCZFPVXgaRtoxhcX8/7wcanmoEBLzIXoIsPrndAq7MnQEAe
-         csix1NpLVPF3W/IssyOL+K/eeINWfbgPBQ8wDQcOrRIV7qoqfcgcxVIxS/n8JqTgMlYS
-         BSfqhS5UXGOn0ZXPT0Yb97dmdOxvgWfE5Irj1jyl1ewiRerBgj4gY9hxP2jgS6RYnv1z
-         /Gvw==
-X-Gm-Message-State: AAQBX9e9Kk2bRtBCBAR86sX1n7BQZgwpHaqeU06e57cm76doy/KU0Xom
-        9drXU0Y3oOrcVtoCA0P7iKjUBw==
-X-Google-Smtp-Source: AKy350b/CpcoRKdk5/rSN0V752Q+031uCPvdlGTc1KTIxeFnGCZF//nkNLeyvGT5IiBmK3/EG7pg4g==
-X-Received: by 2002:aa7:d291:0:b0:4fb:59bb:ce7c with SMTP id w17-20020aa7d291000000b004fb59bbce7cmr8324123edq.32.1679825591993;
-        Sun, 26 Mar 2023 03:13:11 -0700 (PDT)
+        bh=KfylKtuqAdjWyuMFH3aXceJDXKfQlN7GtkmpCp4vpDQ=;
+        b=PAdKCYBsF8ACmsnf33fmlk63pm9KtPzh7qVva/DI43VXhTCdbFaUbMEXXIVHvms1bv
+         IZSF6MrmNl/1eHrupR249RUoO6Ub+7ZnjmJDvWExiWC663NsJZEFZb7oqjp1qnm8Z39J
+         PBJz3DaVhEbEqglMU9RbxglGJmsAyUZFNgJ3w4qKWhKvvXiHynL4YovM2YdfWk1Li4pb
+         J+OrQTo2FZ3ZljoZEEjsEznDfWqe6Hio0wSyrwyM/eywDuP7sWxsQbSBqmRnPpEQjDke
+         GfD0hTblz+Oquy80Ae4BJZFZf2ZdIz0z3VOve6xZ2ayiQjtBGI6NFszLtX4cw2CN88RD
+         mOew==
+X-Gm-Message-State: AAQBX9eUR0Tn+BSs0qMj1+AJkbSzvRW3bPEZkgBl4+waUmm0Jev9ZVsl
+        96CkCjSyqmGhx7XC1a3430Ncr0o0UsYgwNimgv8=
+X-Google-Smtp-Source: AKy350Yvy1Y+JDumuEvGtVH5rvXS3ImzTb1katIGgHGIfY5OqMoBiaG2UM7CLyFikjBrprHV+9iWIg==
+X-Received: by 2002:a17:906:3f8e:b0:939:ad91:adf5 with SMTP id b14-20020a1709063f8e00b00939ad91adf5mr9741002ejj.25.1679832803951;
+        Sun, 26 Mar 2023 05:13:23 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
-        by smtp.gmail.com with ESMTPSA id r3-20020a50aac3000000b004fccef39ec9sm13384888edc.70.2023.03.26.03.13.11
+        by smtp.gmail.com with ESMTPSA id k9-20020a17090666c900b0092b606cb803sm13112964ejp.140.2023.03.26.05.13.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 03:13:11 -0700 (PDT)
-Message-ID: <83b657c3-5a78-1c81-fea5-5679a30bd517@linaro.org>
-Date:   Sun, 26 Mar 2023 12:13:10 +0200
+        Sun, 26 Mar 2023 05:13:23 -0700 (PDT)
+Message-ID: <3eb2133f-7e9b-ea98-87c8-cd24814bf12e@linaro.org>
+Date:   Sun, 26 Mar 2023 14:13:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: move DSI opp-table out of
- soc node
+Subject: Re: [PATCH v4 1/3] dt-bindings: usb: cdns-imx8qm: add imx8qm cdns3
+ glue layer
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJpqR-QisyWEHE83oFbXt8wUcn2Ofd4W6UwFmkYzGD18N9Q@mail.gmail.com>
- <c6429b89-bdf1-a601-7cc2-a6cbb566fecd@linaro.org>
- <CAA8EJppPHVZbseXFx8g+m9PxgODuenLEBHeDT3z6MojzVALKqA@mail.gmail.com>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        imx@lists.linux.dev, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org
+References: <20230323163116.2921999-1-Frank.Li@nxp.com>
+ <20230323163116.2921999-2-Frank.Li@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppPHVZbseXFx8g+m9PxgODuenLEBHeDT3z6MojzVALKqA@mail.gmail.com>
+In-Reply-To: <20230323163116.2921999-2-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,31 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2023 12:03, Dmitry Baryshkov wrote:
-> On Sun, 26 Mar 2023 at 12:22, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 26/03/2023 11:21, Dmitry Baryshkov wrote:
->>> On Sun, 26 Mar 2023 at 12:16, Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> The soc node is supposed to have only device nodes with MMIO addresses,
->>>> so move the DSI OPP out of it (it is used also by second DSI1 on
->>>> SDM660):
->>>
->>> This raises a question: would it make sense to add /opps to handle all
->>> opp tables?
->>
->> We didn't add it to any other cases like this (and we already fixed all
->> other boards), so why now? We can but it is a bit late for it.
+On 23/03/2023 17:31, Frank Li wrote:
+> NXP imx8qm integrates 1 cdns3 IP. This is glue layer device bindings.
 > 
-> Because nobody expressed this idea beforehand? I'm not insisting here,
-> you have a better understanding of DT. Just wondering if it makes
-> sense.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v3 to v4
+> - Drop all clock-assign
+> 
+> Change from v2 to v3
 
-It will not change much of ordering - all nodes will be close to each
-other anyway (opp-table-XYZ), thus is rather a matter of readability and
-subjective preference. No other platforms have "opps" or "opp-tables".
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
