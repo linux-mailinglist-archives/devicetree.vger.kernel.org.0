@@ -2,98 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BD466C96EF
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB756C96FE
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229959AbjCZQr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 12:47:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
+        id S232259AbjCZQ5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 12:57:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjCZQr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:47:56 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764ED4C15
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:47:55 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id ew6so26463735edb.7
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 09:47:55 -0700 (PDT)
+        with ESMTP id S229601AbjCZQ5N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:57:13 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEA784C27;
+        Sun, 26 Mar 2023 09:57:12 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id y14so6317813wrq.4;
+        Sun, 26 Mar 2023 09:57:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679849274;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=d+t9quZI40H0SICIWubeZOL2PZ33/cypkKWWx+K52uk=;
-        b=JxMvIUJymY0NKfVB/F/uMVb5FWt+KL1HfEmNopAn72YDZIgund07S7NAGaL/MpgwN+
-         hKxdZmk4LlFQdYqKoFOOhdJQcZh+h4YeU2rWNsw+rQG+/rutThmyXqffqzcIyd5uuUFS
-         j3KYU4BupFN/o22ClumZc/nypMne6wG60BZhQpOS9q7pQ/vsKUMKTd5onpTWWHpeTlnq
-         M5561tYpHlNn7/Na0JR6TAdUZCRpXfoJjGfPwbXA4zfnu6OGTeKxrIYdeaQ9lj8k63eI
-         8C9xFNinlslsZ6tCAtyY5MTQ1+tD4xHrtmie2ebjX0AV9OSSZJf3d8wzqfPlV5fmoa7l
-         C73Q==
+        d=gmail.com; s=20210112; t=1679849831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b5QdxNjjZRZ0PDxQDn1YuSSVtqF8SC5453jOB4hYT5g=;
+        b=k3sRQUiZjU5LJAwQvgLaAo8oHqjvzZ1Xiut5EtrtakbkKdg+fUoo9Nao+pranX0Klp
+         HV9rsQryr1O9uVdPZzknU6rlIzV7aCrVPVXdQ2bQoEkB84YXhA8cMT6IxE+ZfVdxqc3z
+         hJrETS9YFo6nw85i8U/u9FUJ6wjJx8jNeHugA7DAAE2JxHyTt3fRll9/NZ2qlWKl6xgT
+         Wp43C7lBZg2Gmn7oQMZDp35ecpF1VKdbJM3QvrVrjvnU9iSZk5LIPYp2j8AV2b2CQ1Xt
+         543OX3aKp/jkzbNt2rIsjb8DSIJizHIDb3pMxtKqK+mBEpCVk1Q0qRtdLw3aJmL2MXkS
+         adeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679849274;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d+t9quZI40H0SICIWubeZOL2PZ33/cypkKWWx+K52uk=;
-        b=iD8kPX9jWR7jLWqzJrBP0gPkLKlmNZFlLgO2pg+r6cqX3c0FWHToZlh8+uv5URraSP
-         ml1hS4YHdh85HKr2SgC0uN58sNuE4baa3aujGGA64OZakQzbOI57+PRpOsZziwzZP7rK
-         scmZ6F/TdGTC48wIDCtTnXsphaQ6Puh8SsTmQ0pS9DKtw9N7Jc54p3pzF/erUwboamKZ
-         do5L85qxl7kuP0JgLko6OtQjS0ELhBSMj+Zq9T5JHkRljvMNn37X4xUJR6tbRTM3Ygrl
-         MW1BLCHOkUBM3Wy1CgjHDtewMNXD0OdDRWMbpBZ3XcwpRJYQbw935LHDFqeJIe+s2v+i
-         vjuQ==
-X-Gm-Message-State: AAQBX9fHGOiK2tW5giejqNtbCcDsTyRk2Wbnp+HPKWsnzOQCoH7cfFcA
-        DolZkNGkSTnOHfTVEZmECHFMTA==
-X-Google-Smtp-Source: AKy350ZvBl+hiLf4EcOy+Xnugmi4VSxHZTjFBB5xT/Pg62Ee+OlYhDqqJRN25Uj/HQbYxzy11U4B3A==
-X-Received: by 2002:a05:6402:5146:b0:502:1cae:8b11 with SMTP id n6-20020a056402514600b005021cae8b11mr10862531edd.23.1679849273974;
-        Sun, 26 Mar 2023 09:47:53 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:eca3:3b8f:823b:2669])
-        by smtp.gmail.com with ESMTPSA id u20-20020a50c054000000b004aeeb476c5bsm13559502edd.24.2023.03.26.09.47.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 09:47:53 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] riscv: dts: canaan: drop invalid spi-max-frequency
-Date:   Sun, 26 Mar 2023 18:47:51 +0200
-Message-Id: <20230326164751.104789-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20210112; t=1679849831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b5QdxNjjZRZ0PDxQDn1YuSSVtqF8SC5453jOB4hYT5g=;
+        b=zLDn8/E4e0GSryhYdIVN//+6PxPsRoqf7mVdHImvtzAxR6Ry0gTZHvDyEr4fO3U7L2
+         QahRdgqkB61s77Hku+Rv3RaSlqxciEr3Y48yWorJ6jyV2tKfufOjJv+9KsRhb3TLd+dh
+         MyeeP0B9QHYdBb57m3mkNuVzsNI2vIlxbPFgcPnBsEKDOqRQ0ljCiSPstrSZatpMFjGX
+         RJNoxPLdNOWtO62GzOR648bmGLlmG1hvfOosLDxTyljnuraOFJ/3Tg1i6D6LvwVBFmQA
+         XydSPprFDDrlCIeYWYbkLq0lUaKZQicHAyoaUJjMWRGY95s8hZQ0h3aipT1/YtaGVFQY
+         deOQ==
+X-Gm-Message-State: AAQBX9dIam9hnTFx3oc58hZL/VuLEV0OxXyrIqT9u4kdgZvj/Yw4m27I
+        cx7N714U05ducrtK22evzQ4XmBJxHmng1I7Kq7Ycua91EEJaUw==
+X-Google-Smtp-Source: AKy350ZQJxyFHb+gYWiDsIv/lZd04YiXPEsVLN4AhFyx1FayiiHaNfFXf94JSdtHVVCwz/tSBiobq0QujLGK4Y/nBWY=
+X-Received: by 2002:a5d:59a6:0:b0:2cf:eff8:48a1 with SMTP id
+ p6-20020a5d59a6000000b002cfeff848a1mr4501392wrr.2.1679849831193; Sun, 26 Mar
+ 2023 09:57:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230326001535.149539-1-bigbeeshane@gmail.com>
+ <20230326001535.149539-2-bigbeeshane@gmail.com> <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
+ <CABnpCuCzdbWTTp1Gc6wWPsB80J5GYw1QzKtZzzyEYU456E=1JA@mail.gmail.com> <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org>
+In-Reply-To: <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org>
+From:   Shane Francis <bigbeeshane@gmail.com>
+Date:   Sun, 26 Mar 2023 17:57:00 +0100
+Message-ID: <CABnpCuCKYBb_JBqBgMfjEvzUjkzQ6RgKbz9Ny78L+tPKs55wwQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The spi-max-frequency is a property of SPI children, not the
-controller:
+Hi Krzysztof
 
-  k210_generic.dtb: spi@50240000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
+So mention this in the commit msg.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/riscv/boot/dts/canaan/k210.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/riscv/boot/dts/canaan/k210.dtsi b/arch/riscv/boot/dts/canaan/k210.dtsi
-index 07e2e2649604..f87c5164d9cf 100644
---- a/arch/riscv/boot/dts/canaan/k210.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k210.dtsi
-@@ -259,7 +259,6 @@ spi2: spi@50240000 {
- 					 <&sysclk K210_CLK_APB0>;
- 				clock-names = "ssi_clk", "pclk";
- 				resets = <&sysrst K210_RST_SPI2>;
--				spi-max-frequency = <25000000>;
- 			};
- 
- 			i2s0: i2s@50250000 {
--- 
-2.34.1
-
+On Sun, Mar 26, 2023 at 3:51=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/03/2023 14:02, Shane Francis wrote:
+> >> Please wrap commit message according to > > Linux coding style /
+> > submission
+> >
+> > Will do, I haven't submitted patches for a while totally forgot the
+> > wrapping guidelines
+> >
+> >> Unfortunately the reason is not good enough > for ABI break. Replace
+> >> vendor boot uboots with open-source one or > just correct them (it's s=
+till
+> >> U-Boot so even for vendor one you have the source).
+> >
+> > Replacing uboot is fine for this case, however I can foresee that can c=
+ause
+> > issues further down the line.
+> >
+> >
+> > 1. No uboot source from the vendor, we all know no everyone respects co=
+de
+> > licencing
+> >
+> > 2. Secure environments (like android tables), this chipset will likely =
+end
+> > up in android tablets that have the secure boot chain enable. These wil=
+l be
+> > unable to replace uboot even if source is available.
+>
+> So mention this in the commit msg.
+>
+> >
+> > As this SoC is new to the Linux kernel (not even useable for much it's
+> > current state) would it not be better to aling on this so vendor and
+> > mainline DTS "agree" now rather than possibly have to address is in the
+> > future ?
+>
+> Then commit msg should also mention it.
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
