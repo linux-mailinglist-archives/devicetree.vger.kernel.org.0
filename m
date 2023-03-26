@@ -2,161 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87FDD6C91E3
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 01:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33EA46C91E5
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 01:57:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbjCZA4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Mar 2023 20:56:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57832 "EHLO
+        id S229882AbjCZA5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Mar 2023 20:57:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjCZA4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 20:56:14 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F39FBB8E;
-        Sat, 25 Mar 2023 17:56:13 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-17997ccf711so5763639fac.0;
-        Sat, 25 Mar 2023 17:56:13 -0700 (PDT)
+        with ESMTP id S229446AbjCZA5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Mar 2023 20:57:37 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60C9BB80
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 17:57:35 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id h25so6936148lfv.6
+        for <devicetree@vger.kernel.org>; Sat, 25 Mar 2023 17:57:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679792171;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uAwqO8DmblyvZIKV1qNsnAE1hHK5TyffAw/NgAmyT5k=;
-        b=amnPa9ykmh0NipOZ5rN9IBmY77F05sjIytUNydCstPU5sDt7uYmNqilQmvP0Mi/5RY
-         fQM3Of7U6YcIGV1gDXk9epIfNIK4cSrAoZEzg4VNlfxYdSvp5hAMNYEu16B7G1I5UDci
-         LBqRLzTNKf6ljUmq18IqAOxx3J+VJVXrCEP5AgkJb3mt9G+Ey01JTm0Ym0OuP3TZ6+HM
-         aoA7KlfaGOVZfbwp4A/PfWThOCA7QM8GcOr0EJNcrTRJ+ZpLPBbyVAwyht+ZDp2adslO
-         UYU1Jyk3Yu7oAqm2TYbc6NZCSeIlnSVgo6I0wML27TWJoX1xpLerHVQQ0nqL9VEX8bY5
-         cr9A==
+        d=linaro.org; s=google; t=1679792254;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/q5uxzakrQ9teWALDZWu8oA0wDMjc+3lIyuDRspNANo=;
+        b=C74peBWEQJTruG6UIdlaxtou9xL4sBaGPZ/az4/ZI9bpJn7atwdFb5gqMqLOEguJ7p
+         LRhYdI6nhyFNJLwA1fI7S9ViiR6zxBE1MBnZ+lExb+jrR1swryf/ceUoGHtwPNOleNVX
+         9E7fKdJVJibvqF1bKS0/jk/eYgjb3REU4o+udZymMd8TkuUPGSwCd2l+vu9YYGJ8PhPW
+         6o7IZ7L5xHYVkf04slj+iLT4s4n2qV5+esYcrX7jvarHKJC4mENK7SmA9Q/olYCsBuYl
+         EXe1bcaf6ofWh2uhWH1jwg0e3Ps2N4avg4lIOXdwr/IbSmJbh48lPY3Ps4ktz3xcXWcf
+         +YtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679792171;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uAwqO8DmblyvZIKV1qNsnAE1hHK5TyffAw/NgAmyT5k=;
-        b=hYJDmKDtKomyjbevJqMQmoBIn8lSjqXFjrvxwlT/qPXO50ZIwv/+Ms63iu8LFKu3e1
-         YMeJh2/LDCLgY/1o4zs/YYJLdrYWOUWjhlEJSGssbEk8ro4UCkerdBhbfUJ9Zn7w8iOI
-         9lXvnbMZMiXSTfXNGuyhPLibafXApR9K52MNXzMd09o8UASHeBZ0ju0eWvneokVB7dU9
-         i4dFiTX1KJkacNqBGJjOQRDx6N2GbMoVJ0iPg1SDcWuXmUYA8i0e8aQv7+A9P3mcpT34
-         dytbwBSyj8TeMzRY/yPYEbSPwRNnllRgUb8JmeMjob65Hcsy27xaiNvu+ynWgptXvYpJ
-         xqdQ==
-X-Gm-Message-State: AO0yUKVykC7rE5HvRRBXqU0GvKyFbxIQ+22nXdweFWlIZ1WkyREvEkbR
-        yfvVcCNATc1Iij+7/dWuLo4=
-X-Google-Smtp-Source: AK7set9hXBU/hTVV0DiOuJRCuAHYZa35pnjIiPFEqWj24/Oq/SOkrDzzylZ+KhKLbzVRBGBL+CAF0A==
-X-Received: by 2002:a05:6870:5884:b0:177:ab4c:fc90 with SMTP id be4-20020a056870588400b00177ab4cfc90mr5539624oab.32.1679792171553;
-        Sat, 25 Mar 2023 17:56:11 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:189a:e969:3b47:81d? ([2600:1700:2442:6db0:189a:e969:3b47:81d])
-        by smtp.gmail.com with ESMTPSA id yv18-20020a05687c229200b001729072f759sm8585936oab.0.2023.03.25.17.56.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Mar 2023 17:56:10 -0700 (PDT)
-Message-ID: <4b483680-2532-98e9-71b0-4b2ced508313@gmail.com>
-Date:   Sat, 25 Mar 2023 19:56:09 -0500
+        d=1e100.net; s=20210112; t=1679792254;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/q5uxzakrQ9teWALDZWu8oA0wDMjc+3lIyuDRspNANo=;
+        b=yDASQVkl1YSM8Kr89OL/4hrIvhPj4n8jcza+kkGcaMEte9GMXLVhxTE19tFWuOiwcu
+         ZObebOfQbf5soWJ45xqR5B954DwoT6DRTTeaAbLljbadqeqCA+8Afy1u3VQoauJfQTWx
+         UYqzGWQJmw15QdeCg/VyS/p22sPul9q5CBv3R562FyZtl/NepfFPRBe/Qpbd9oKRGIgz
+         Zpve4FDyaoT0WJJBJekzG835WMvjBcY10+6S9XtFzmGDNullkfD0QnHC8vBLA6eHyC49
+         PhSlMaPUyRzuFbXHVzfxJJVZAszuQjMzXOcsw+WweMBs6mEKRGqmZf4zwK99ta3FYwwx
+         8N9A==
+X-Gm-Message-State: AAQBX9e2iVwxy8wI6kXXdNcsggdc5egJy8UCpJFjRiL0dyHF68b/yv66
+        L2dHSc9dnBHWeN1PhZ5vev9cWg==
+X-Google-Smtp-Source: AKy350YTa6v5GREGlqyOsKRP7D0hdjtMEaUku5fLe5fC2YHQFnH0bpHq2BaThx+/Ve9BXjkQXJU3JQ==
+X-Received: by 2002:ac2:5638:0:b0:4dd:fd4e:5a20 with SMTP id b24-20020ac25638000000b004ddfd4e5a20mr2283885lff.58.1679792254120;
+        Sat, 25 Mar 2023 17:57:34 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id n13-20020ac242cd000000b004e7fa99f3f4sm3996858lfl.265.2023.03.25.17.57.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Mar 2023 17:57:33 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/9] phy: qcom-qmp-combo: convert to newer style of bindings
+Date:   Sun, 26 Mar 2023 03:57:24 +0300
+Message-Id: <20230326005733.2166354-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 1/2] of: unittest: option to allow tests that trigger
- kernel stack dump
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20230301012116.1488132-1-frowand.list@gmail.com>
- <20230301012116.1488132-2-frowand.list@gmail.com>
- <018f54ee-55cc-e30b-4595-ce555fff1708@roeck-us.net>
- <96cfd1ee-768d-cc03-53dd-35ccf2396863@gmail.com>
- <20230324214341.GA20080-robh@kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20230324214341.GA20080-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/24/23 16:43, Rob Herring wrote:
-> On Wed, Mar 01, 2023 at 10:01:36AM -0600, Frank Rowand wrote:
->> On 2/28/23 22:07, Guenter Roeck wrote:
->>> On 2/28/23 17:21, Frank Rowand wrote:
->>>> Commit 74df14cd301a ("of: unittest: add node lifecycle tests") added
->>>> some tests that trigger a kernel stack dump.  Filtering the boot
->>>> messages with scripts/dtc/of_unittest_expect detects that the stack
->>>> dump is expected instead of being a test error.
->>>>
->>>> Test beds might interpret the stack dumps as errors, resulting in
->>>> needless debugging and error reports.  These test beds are likely
->>>> to remove unittests due to these stack dumps. To avoid these problems,
->>>> have unittest default to skip the tests that trigger a stack dump.
->>>>
->>>> Add a kernel cmdline option to not skip those tests.  This option can
->>>> be used by testers who are able to interpret the stack dumps as not
->>>> an error.
->>>>
->>>> Signed-off-by: Frank Rowand <frowand.list@gmail.com>
->>>> ---
->>>>   drivers/of/unittest.c | 54 ++++++++++++++++++++++++++++++++++++++++---
->>>>   1 file changed, 51 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
->>>> index b5a7a31d8bd2..3a9bc2bc4ba1 100644
->>>> --- a/drivers/of/unittest.c
->>>> +++ b/drivers/of/unittest.c
->>>> @@ -70,6 +70,36 @@ static struct unittest_results {
->>>>   #define EXPECT_NOT_END(level, fmt, ...) \
->>>>       printk(level pr_fmt("EXPECT_NOT / : ") fmt, ##__VA_ARGS__)
->>>>   +/*
->>>> + * Some tests will cause the kernel to emit a stack dump, aka back trace,
->>>> + * when the test is successful.  The tests should make it possible for
->>>> + * test beds to detect that the trace is not an error via EXPECT_BEGIN().
->>>> + *
->>>> + * Most test beds do not process the EXPECT_BEGIN() information and may
->>>> + * flag the stack dump as an error, thus reporting a false failure.  It
->>>> + * is hoped that the KTAP version 4 specification will add the EXPECT_BEGIN()
->>>> + * processing to test beds.
->>>> + *
->>>> + * By default, skip tests that cause a stack dump.  Test beds that process
->>>> + * EXPECT_BEGIN() information should enable these tests via a kernel boot
->>>> + * command line option.
->>>> + */
->>>> +static int stackdump_tests_enabled;
->>>> +
->>>> +static int __init enable_unittest_stackdump(char *str)
->>>> +{
->>>> +    stackdump_tests_enabled = 1;
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static int __init disable_unittest_stackdump(char *str)
->>>> +{
->>>> +    stackdump_tests_enabled = 0;
->>>> +    return 0;
->>>> +}
->>>> +early_param("of_unittest_stackdump", enable_unittest_stackdump);
->>>> +early_param("no_of_unittest_stackdump", disable_unittest_stackdump);
->>>
->>> Does no_of_unittest_stackdump have any benefit or value ?
->>
->> I would say no, but it is a common pattern to provide both
->> foo and no_foo.
-> 
-> It is? I see one documented example. I see numerous ones that are 
-> 'no_foo'.
+Reviewing several patchsets for newer platforms made me understand that
+having two styles of QMP PHY bindings causes confusion. Despite binding
+documents having notes telling that old bindings should be used for
+older platforms, it is too easy to attempt adding new platform with
+older QMP PHY binding. Thus let's have just a single documented style of
+bindings.
 
-I reconsidered.  I plan to remove the no_of_unittest_stackdump in v2, updated
-to the current kernel version.
+Dependencies: [1], [2] (for sm8150 changes)
 
--Frank
+[1] https://lore.kernel.org/linux-arm-msm/20230323144726.1614344-1-dmitry.baryshkov@linaro.org/
+[2] https://lore.kernel.org/linux-arm-msm/20230324215550.1966809-1-dmitry.baryshkov@linaro.org/ 
 
-> 
-> This doesn't scale well if lots of tests need to disable it. Perhaps it 
-> should be more generic (at least documentation/naming wise even if the 
-> implmentation lives in DT unittest for now).
-> 
-> Rob
+Changes since v1:
+ - Split large patchset into smaller parts
+ - Reworked sm8150 too (following changes in [2])
+ - Unified bindings with the existing ones
+   - use shared list of clocks,
+   - added sc7180 as a first grade entry
+   - dropped useless descriptions
+   - removed ref_clk_src clock
+   - dropped second example
+
+Dmitry Baryshkov (9):
+  dt-bindings: phy: migrate combo QMP PHY bindings to
+    qcom,sc8280xp-qmp-usb43dp-phy.yaml
+  phy: qcom-qmp-combo: simplify clock handling
+  phy: qcom-qmp-combo: populate offsets for all combo PHYs
+  phy: qcom-qmp-combo: add qcom,sc7280-qmp-usb3-dp-phy compat entry
+  arm64: dts: qcom: sc7180: switch USB+DP QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: sc7280: switch USB+DP QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: sdm845: switch USB+DP QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: sm8150: switch USB+DP QMP PHY to new style of
+    bindings
+  arm64: dts: qcom: sm8250: switch USB+DP QMP PHY to new style of
+    bindings
+
+ .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      | 278 ------------------
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |  45 ++-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  57 ++--
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |  57 ++--
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  57 ++--
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  48 +--
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  49 +--
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     |  79 +++--
+ 8 files changed, 162 insertions(+), 508 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+
+-- 
+2.30.2
 
