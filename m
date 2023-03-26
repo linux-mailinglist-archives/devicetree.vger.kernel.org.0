@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74C6D6C97DA
+	by mail.lfdr.de (Postfix) with ESMTP id E5B0F6C97DB
 	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 22:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbjCZUpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230354AbjCZUpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 26 Mar 2023 16:45:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36176 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231258AbjCZUpd (ORCPT
+        with ESMTP id S231351AbjCZUpd (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 16:45:33 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E5644B1
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 13:45:24 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id y4so28038104edo.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 13:45:24 -0700 (PDT)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C3F5FF5
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 13:45:25 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id h8so27933034ede.8
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 13:45:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679863523;
+        d=linaro.org; s=google; t=1679863524;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=E0i+V8G7VdrK/84+XZ0FJoiVtupVc5YlW2vczBepMrk=;
-        b=N4d0IndMuyD4ayxxCiLuUSkQOXoR+pdQhWDyB2S/LO++7YRb/1nBCVGWgUUcENLFFP
-         rJ45zYpBmlA4cLr1AgOL8lPYtrovKYY45nBNXQsIHZJ+nwZndhMY5GE0QuX5u5mh9kUK
-         /P2TaF7atG3fldx5Yew/xw9RXAG+VYjdg1ePjG18jdVHeOuc6jb0vu34CRZvmJ83/RVE
-         MCSmKQPxMh5XsrjZ5goHoF52U6B/ayMozmYtpShO0ZUhDB1lvFkUlD1Zp20Ial+EtBJJ
-         wOAKTF+hSboQvl5NyNtxgj9/M4AEobruZNbIxDch0ZAN14gB9ATMOC/zy2p+TcPNn3TV
-         VqJA==
+        bh=EvZrVpDdfTLeMGJL+heZ69WUSKrchJNCDDAYmYCMphA=;
+        b=ZuSKHqc9wHPiA8M5czSgpKnQcYELnVhA9nB6Md8rv7AeorKkIFrZng7Clvi28TIzlp
+         dvwqxGXyvJy2UqUophw1hpaK/ZlOE53rmafjDvl2eh0MKZLnOP0fntZ/Ceo0waCbnpRB
+         86SRY4r1ZeUg6IKCiUSdtSyPRAUarFDNG824nJxQgLw8W1u6raDS5cAp3mpCslpYb0y2
+         jkUGE4fN9i5a5GFNh7yAYg/t0CZ9Jmguoun9FoKJ9XTn7YxHpgW/qNPMYWa1mroJMi/B
+         eKPNSKYF2XuIjNe1NOGcdk9F7MXJ80AfPPIn2lE4SPrGxfVr15GfRn7RtPqgoTdvjYD7
+         42LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679863523;
+        d=1e100.net; s=20210112; t=1679863524;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=E0i+V8G7VdrK/84+XZ0FJoiVtupVc5YlW2vczBepMrk=;
-        b=f7Ti0K2nw6gIrMjCEp/no1e9/KQBZicogfgZVzvYn4J70vqiAX9fByHP9lITCe2ust
-         33EqmMCdsgR1r57bc29Ci+fRC34zSaRwyQmRllVk7X7AiLedWTThGzX9UzGMBwHI0g/Z
-         g8Ogms7jFXEkmbM360FkebRwQ4UKXnGIVWqGy3yFDf8+WmvR3hqsubs1CQmmTCKMfBa7
-         jwt1eRbWv1C1XoaKowYqB9YkoVmYdPsEDLDb0Icu5H+ZX0zZl6hUpLO2YnbuOYMimP7G
-         zkrTZV0jy4KlxkYbbyZ3cZ9FCoLX9hsCVvrxZr9XP9pm5ZIcQPAVNBd0UN5IT/PO+NL0
-         MJvQ==
-X-Gm-Message-State: AAQBX9cnTzWcLKoK0xuV59+PmqXKh/zNWQ6b96z2QACHnC5YMCfffKUs
-        l03XEPANssxlKFfWE+zMW6oLcA==
-X-Google-Smtp-Source: AKy350ZVWzfpQH3Vv3fya5+Swd9/DQof6OEiE4x/vV5J3lMabZeCVhLRbM1KfCFu1xvTRqLTtZAwPA==
-X-Received: by 2002:a17:906:2bc9:b0:939:e870:2b37 with SMTP id n9-20020a1709062bc900b00939e8702b37mr10695350ejg.70.1679863523176;
-        Sun, 26 Mar 2023 13:45:23 -0700 (PDT)
+        bh=EvZrVpDdfTLeMGJL+heZ69WUSKrchJNCDDAYmYCMphA=;
+        b=DH9mU3r4YiBeFILo54Q+lvbtSmDtNYAskv5k8WvE6HsYPzuC0aSfmkfOAbE8osn9G+
+         4nqKDnnj7iTAF73zgI78XNH3MeNj4NmTUElwOrndwYbKkYy7PrD/KDkgCrYgO00zBifh
+         RLV63tW8FGfPCE2cpzC3fm0AiErWzwa7aoh5E9VApvy3aYMgf9GmgSkY5gDhJUMVfiqb
+         +BEmyaD6KI0Mlfgjj8loXPw9X1M2JSP+VJYLqmZR+Q6r2tpLRvjGqmezMBi5ND/pk8at
+         3Jlfw1BSdz8Z5jRjDKBmaCGl94p3QBgFmOoAz6RSaY2eFNQusYUgH5TavKYQgJbetd00
+         +H+g==
+X-Gm-Message-State: AAQBX9etlkdEXie1mLKIbE4ivM8AIl1IDd6QEmhQA6RIeRYPWl9gMdxB
+        lXlIbXaio/JAODHMRKJwDgx3rwUWeNITkJUQNZk=
+X-Google-Smtp-Source: AKy350afISWMGjqW02mLjl6itx6fdrvMvdaEhMIqaBbv+Rigfq5/tCg+ES9ZBQKvLgaHV+KIqXoVoQ==
+X-Received: by 2002:a17:906:dff5:b0:88c:a43d:81bc with SMTP id lc21-20020a170906dff500b0088ca43d81bcmr8568811ejc.58.1679863524094;
+        Sun, 26 Mar 2023 13:45:24 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:6b51:4748:3f3f:ffcf])
-        by smtp.gmail.com with ESMTPSA id ga5-20020a170906b84500b0093e23d03d72sm4090982ejb.177.2023.03.26.13.45.22
+        by smtp.gmail.com with ESMTPSA id ga5-20020a170906b84500b0093e23d03d72sm4090982ejb.177.2023.03.26.13.45.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Mar 2023 13:45:22 -0700 (PDT)
+        Sun, 26 Mar 2023 13:45:23 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -56,9 +56,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/3] arm64: dts: rockchip: use just "port" in panel on Pinebook Pro
-Date:   Sun, 26 Mar 2023 22:45:19 +0200
-Message-Id: <20230326204520.80859-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] arm64: dts: rockchip: use just "port" in panel on RockPro64
+Date:   Sun, 26 Mar 2023 22:45:20 +0200
+Message-Id: <20230326204520.80859-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230326204520.80859-1-krzysztof.kozlowski@linaro.org>
 References: <20230326204520.80859-1-krzysztof.kozlowski@linaro.org>
@@ -76,37 +76,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 The panel bindings expect to have only one port, thus they do not allow
 to use "ports" node:
 
-  rk3399-pinebook-pro.dtb: edp-panel: 'ports' does not match any of the regexes: 'pinctrl-[0-9]+'
+  rk3399-rockpro64.dtb: panel@0: 'ports' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+There is only one endpoint, so use simpler form without "reg".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../boot/dts/rockchip/rk3399-pinebook-pro.dts    | 16 +++-------------
- 1 file changed, 3 insertions(+), 13 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 54bb0398128f..ddd45de97950 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -50,19 +50,9 @@ edp_panel: edp-panel {
- 		pinctrl-0 = <&panel_en_pin>;
- 		power-supply = <&vcc3v3_panel>;
- 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+index 78157521e944..bca2b50e0a93 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+@@ -647,16 +647,10 @@ mipi_panel: panel@0 {
+ 		avdd-supply = <&avdd>;
+ 		backlight = <&backlight>;
+ 		dvdd-supply = <&vcc3v3_s0>;
 -		ports {
 -			#address-cells = <1>;
 -			#size-cells = <0>;
--
+ 
 -			port@0 {
 -				reg = <0>;
--				#address-cells = <1>;
--				#size-cells = <0>;
 -
--				panel_in_edp: endpoint@0 {
--					reg = <0>;
--					remote-endpoint = <&edp_out_panel>;
+-				mipi_in_panel: endpoint {
+-					remote-endpoint = <&mipi_out_panel>;
 -				};
 +		port {
-+			panel_in_edp: endpoint {
-+				remote-endpoint = <&edp_out_panel>;
++			mipi_in_panel: endpoint {
++				remote-endpoint = <&mipi_out_panel>;
  			};
  		};
  	};
