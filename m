@@ -2,127 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64DA26C98B5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 01:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A930E6C98BD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 01:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjCZXbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 19:31:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54104 "EHLO
+        id S230212AbjCZXiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 19:38:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjCZXbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 19:31:32 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8646E4C10;
-        Sun, 26 Mar 2023 16:31:31 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id r29so6862320wra.13;
-        Sun, 26 Mar 2023 16:31:31 -0700 (PDT)
+        with ESMTP id S229456AbjCZXiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 19:38:16 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4084C39
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 16:38:15 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id f19-20020a9d5f13000000b00693ce5a2f3eso3689483oti.8
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 16:38:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679873489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IS4fLhwz//kQI/SKHwIiN/58Jw75aYaj1Sbbq5p+eGQ=;
-        b=jerRZlU3BpTNtYbdGUEJdQmS2i9kAY3UCns0cLhsue29BWOuYY/gLTL2DahonvvQxU
-         El7ro+wWQi+q0QDOHJZvxXrF2jMJQaS8udmX1XHxGYj1VAYSp4u/iw7PH8a84A63gqPf
-         bRVrh8LNfJSbHh03yPGo4E7eWGKKndRDIUMcYpNDB4Mnjl7Vk4/VOCi8jMCOLZIPFOyo
-         x2PvwrDaa1cW1SuGOWuKbSwrDpvyNkAzOJbRIZSuFRJSpwjhV6q+0cDi48+GuuuzMz7u
-         1x/7hgYxLmvFgcmldJVblVyuoQk4TVb/KWSRguYSuszzAnjMskIrgbRAnMsiChH+9Ie3
-         hhhg==
+        d=kali.org; s=google; t=1679873894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rD/4jqknT+2SfkmCPcdlb88a5ABGC34ExHbgNfTm8GY=;
+        b=k0lfLbGWXDEOwiywNv2JuXcotcGCpmb0zO7bHJsyT1/SFrC4mtmICd8TrIiVsS2ev8
+         n48L4HlRzGN+FEo5hL4UKaXC1NfU5ZlXw6vpgFANLP87+P3X2HB7OSHHsrQTsWexcH5e
+         e/7wzQ8eolc4nZVRK3QfofFJUu5qsAM8cSCloKG28HXdOHyEMHag1Xmofb/FeSdI0EPo
+         cYh077vAmvg0Ae0FUHBylrAwlQdSSRvoSd7g3Hxy/kYs5tD3bubOmMI0ndNcbVPTx0d9
+         rbyQ+TJnvZclxZFI7EjKuc6+pehsmWMKiTinqHPqZTMM2L3v9U3G7KunzRrCjrJuU43r
+         EZ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679873489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IS4fLhwz//kQI/SKHwIiN/58Jw75aYaj1Sbbq5p+eGQ=;
-        b=fkRe1dfpGzB5wmrhY6ApZ4/nFfePc2D1JMW8w2rRzeHj5tyP0sJAPAjO0oHgQuJQ3+
-         Adyr9f6p3qnk2qSBzDKUBUyas9Eq3gA72JiCiQEdAOsvSGbFxN8cVmAP8uTajUfMIw5U
-         s/qP7RHmhb9bZOSxPbSZQsUSNUDXWAtFc1Pzfh2J5RxdmWcjWro9IYEi8/YXPZT+RzAZ
-         41DkDuAxARu2/ouc9NVEqa1l2DxmVX1xA03b1sLJFpEFXxy9FFSrzy0qIldz43NsMVKO
-         DCyfN5u40GAlUF6pQFu5dtHvYX0vPr7dybYBUYQsLFtRN3N6wjXoLZjBeEWbomMSkx3p
-         BDDA==
-X-Gm-Message-State: AAQBX9dej2K0UTUyJY3gPj0agN1uvie3PyeGiONbUsdmdAcnJwAsw8n9
-        5Bf5HD3TFJAxe0kZjG721jzqWmMiMgmB9p/c4s8=
-X-Google-Smtp-Source: AKy350bMNcVjpAEQLEIScGOgPhjtRtiiywRIfkT7s6Bxs4K9aKYnHFq/XBB9/Kkk54PtXNBg/zioVJa2QC3Cs8HUgv0=
-X-Received: by 2002:adf:f4c2:0:b0:2c3:be6a:7614 with SMTP id
- h2-20020adff4c2000000b002c3be6a7614mr1958745wrp.2.1679873489230; Sun, 26 Mar
- 2023 16:31:29 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679873894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rD/4jqknT+2SfkmCPcdlb88a5ABGC34ExHbgNfTm8GY=;
+        b=EAGqutrEE5+uqHTxRkUZ7zA8hLQ4HCY13YVMhIXuTXusk12+tpMOJgHIkKuicNfkYo
+         3uziFKgoUkDQSnfCWNzX7mMHEqgVqIl7VhOQuG3ruYTmEl9zA8/i1fO9rq3lzXuWKd63
+         +Llw1oeQQhDIcSSDKftpGuqqplvwNgxM/V2wqIp6dpF/ru1ZLW3UfG1sjDASgR7f8ctH
+         K9WjjqtYCr0ZkkzYA0+C5DSY315BfvtbM38eo/7obFKBN3Pu3Wb73I9nDFkBeyvf8ZOx
+         J5zyEB1KCp0E6fqPAIKR0EVkiVHleEawUGq/KBLOO48dVdsRUtjICivFStsHMquSj24o
+         2DOQ==
+X-Gm-Message-State: AAQBX9fvWGDFertg0iMynoArtPWXqdsV+skfghFuKdNV+PADgBr5pHtj
+        MmIaMqGBk63nDZ4hoTTjJbzeEw==
+X-Google-Smtp-Source: AKy350agDeXz+t/l3M9eFwvJa5NwWBwm5Y8uqyR9+NypJltaTSL4Dw714LoHxmGJ0pISV3W6/SOdxQ==
+X-Received: by 2002:a05:6830:3892:b0:6a1:2a17:16f2 with SMTP id bq18-20020a056830389200b006a12a1716f2mr2999700otb.1.1679873894386;
+        Sun, 26 Mar 2023 16:38:14 -0700 (PDT)
+Received: from localhost ([2600:1700:eb1:c450::35])
+        by smtp.gmail.com with ESMTPSA id m18-20020a9d7ad2000000b006a120f50a6fsm2044585otn.61.2023.03.26.16.38.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Mar 2023 16:38:13 -0700 (PDT)
+From:   Steev Klimaszewski <steev@kali.org>
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>,
+        Tim Jiang <quic_tjiang@quicinc.com>,
+        Johan Hovold <johan@kernel.org>
+Subject: [PATCH v8 0/4] Add WCN6855 Bluetooth support
+Date:   Sun, 26 Mar 2023 18:38:08 -0500
+Message-Id: <20230326233812.28058-1-steev@kali.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230326001535.149539-1-bigbeeshane@gmail.com>
- <20230326184040.33008-1-bigbeeshane@gmail.com> <20230326184040.33008-2-bigbeeshane@gmail.com>
- <0711b320-6c36-6564-70d2-35fc76ac1ebc@linaro.org>
-In-Reply-To: <0711b320-6c36-6564-70d2-35fc76ac1ebc@linaro.org>
-From:   Shane Francis <bigbeeshane@gmail.com>
-Date:   Mon, 27 Mar 2023 00:31:18 +0100
-Message-ID: <CABnpCuC1PLYT82A2iMPkPgRPB0mzGUfF=wBzPpAp+YMN_VfGjg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: update rk3588 clock definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+First things first, I do not have access to the specs nor the schematics, so a
+lot of this was done via guess work, looking at the acpi tables, and looking at
+how a similar device (wcn6750) was added.
 
-> We did not finish discussion yet, so sending new version 50 minutes
-> after your last reply does not give me a chance to respond.
+This patchset has 2 patchsets that it depends on, for the bindings so that they
+pass dtbs_check, as well as adding in the needed regulators to make bluetooth
+work.
 
-I was refreshing the patch set to address your comments on the new DTS
-setup for the R6S, I did not change this portion of the patch.
+https://lore.kernel.org/lkml/20230316105800.18751-1-johan+linaro@kernel.org/
+and
+https://lore.kernel.org/lkml/20230322113318.17908-1-johan+linaro@kernel.org/
 
-I apologise for missing some of the rules here, I am just onboarding this
-device for a personal project, but will leave it here for now.
-
-
-Regards
+The end result is that we do have a working device, using the firmware files
+that are found in the linux-firmware git repository already.
 
 
-On Sun, Mar 26, 2023 at 9:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/03/2023 20:40, Shane Francis wrote:
-> > Some vendor uboot bootloaders use the target kernels DTB image to
-> > determine the target clock speeds for some PLLs, currently this can cau=
-se
-> > uboot to set the clock rate for gpll incorrectly on to cpll (breaking)
-> > RGMII.
->
-> Do not attach (thread) your patchsets to some other threads (unrelated
-> or older versions). This buries them deep in the mailbox and might
-> interfere with applying entire sets.
->
-> >
-> > This change starts the PLL clock definitions from 1 to correct this
-> > miss-match
-> >
-> > This could be handled by uboot bu updating mappings in that code base
-> > however not all devices will have a replaceable uboot (in cases such as
-> > when a secure boot chain is implemented)
-> >
-> > Signed-off-by: Shane Francis <bigbeeshane@gmail.com>
-> > ---
-> >  .../dt-bindings/clock/rockchip,rk3588-cru.h   | 1442 ++++++++---------
-> >  1 file changed, 721 insertions(+), 721 deletions(-)
-> >
-> > diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/=
-dt-bindings/clock/rockchip,rk3588-cru.h
-> > index b5616bca7b44..d63b07d054b7 100644
-> > --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> > +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->
-> We did not finish discussion yet, so sending new version 50 minutes
-> after your last reply does not give me chance to respond.
->
-> Best regards,
-> Krzysztof
->
+Bluetooth: hci0: setting up wcn6855
+Bluetooth: hci0: Frame reassembly failed (-84)
+Bluetooth: hci0: QCA Product ID   :0x00000013
+Bluetooth: hci0: QCA SOC Version  :0x400c0210
+Bluetooth: hci0: QCA ROM Version  :0x00000201
+Bluetooth: hci0: QCA Patch Version:0x000038e6
+Bluetooth: hci0: QCA controller version 0x02100201
+Bluetooth: hci0: QCA Downloading qca/hpbtfw21.tlv
+Bluetooth: hci0: QCA Downloading qca/hpnv21.bin
+Bluetooth: hci0: QCA setup on UART is completed
+
+There are a few things that I am not sure why they happen, and don't have the
+knowledge level to figure out why they happen or debugging it.
+
+I do not know why the Frame assembly failed, and modprobe -r hci_uart and then
+modprobe hci_uart does not always show the same Frame assembly failed.
+
+The BD Address also seems to be incorrect, and I'm not sure what is going on
+there either.
+
+Testing was done by connecting a Razer Orochi bluetooth mouse, and using it, as
+well as connecting to and using an H2GO bluetooth speaker and playing audio out
+via canberra-gtk-play as well as a couple of YouTube videos in a browser.
+Additionally, a huddle was done in Slack on Chromium with a pair of Gen1 Apple
+AirPods as well as a hangout in Discord on Firefox ESR.
+
+steev@wintermute:~$ hciconfig -a
+hci0:   Type: Primary  Bus: UART
+        BD Address: 00:00:00:00:5A:AD  ACL MTU: 1024:8  SCO MTU: 240:4
+        UP RUNNING PSCAN
+        RX bytes:1492 acl:0 sco:0 events:126 errors:0
+        TX bytes:128743 acl:0 sco:0 commands:597 errors:0
+        Features: 0xff 0xfe 0x8f 0xfe 0xd8 0x3f 0x5b 0x87
+        Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3
+        Link policy: RSWITCH HOLD SNIFF
+        Link mode: PERIPHERAL ACCEPT
+        Name: 'wintermute'
+        Class: 0x0c010c
+        Service Classes: Rendering, Capturing
+        Device Class: Computer, Laptop
+        HCI Version:  (0xc)  Revision: 0x0
+        LMP Version:  (0xc)  Subversion: 0x46f7
+        Manufacturer: Qualcomm (29)
+
+steev@wintermute:~$ dmesg | grep Razer
+[ 3089.235440] input: Razer Orochi as /devices/virtual/misc/uhid/0005:1532:0056.0003/input/input11
+[ 3089.238580] hid-generic 0005:1532:0056.0003: input,hidraw2: BLUETOOTH HID v0.01 Mouse [Razer Orochi] on 00:00:00:00:5a:ad
+steev@wintermute:~$ dmesg | grep H2GO
+[ 3140.959947] input: H2GO Speaker (AVRCP) as /devices/virtual/input/input12
+steev@wintermute:~$ dmesg | grep AirPod
+[  853.742619] input: Steev’s AirPods (AVRCP) as /devices/virtual/input/input14
+
+v8 Adds a dependency on another patchset from Johan, which can be found at
+https://lore.kernel.org/lkml/20230322113318.17908-1-johan+linaro@kernel.org/
+which I believe has already been accepted upstream, and removes the regulator
+from the dts in my patchset, additionally, fix the alphabetization.
+
+v7 Addresses commit message review nits by Paul, as  well as dts
+changes requested by Johan. Additionally, the dt bindings now rely on
+https://lore.kernel.org/lkml/20230316105800.18751-1-johan+linaro@kernel.org/ for
+the bias-bus-hold option on sc8280xp.
+
+v6 can be found at https://lore.kernel.org/all/20230316034759.73489-1-steev@kali.org/
+
+Bjorn Andersson (1):
+  arm64: dts: qcom: sc8280xp: Define uart2
+
+Steev Klimaszewski (3):
+  dt-bindings: net: Add WCN6855 Bluetooth
+  Bluetooth: hci_qca: Add support for QTI Bluetooth chip wcn6855
+  arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
+
+ .../net/bluetooth/qualcomm-bluetooth.yaml     | 17 +++++
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 70 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 14 ++++
+ drivers/bluetooth/btqca.c                     | 14 +++-
+ drivers/bluetooth/btqca.h                     | 10 +++
+ drivers/bluetooth/hci_qca.c                   | 57 +++++++++++----
+ 6 files changed, 167 insertions(+), 15 deletions(-)
+
+-- 
+2.39.2
+
