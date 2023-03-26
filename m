@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDC7B6C9368
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 11:22:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204CB6C9381
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 11:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231904AbjCZJW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 05:22:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43098 "EHLO
+        id S232106AbjCZJ1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 05:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231873AbjCZJWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 05:22:25 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C9893F2
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:22:23 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id eg48so24162962edb.13
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:22:23 -0700 (PDT)
+        with ESMTP id S231297AbjCZJ1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 05:27:00 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD0212E
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:26:58 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id b20so24370683edd.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:26:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679822542;
+        d=linaro.org; s=google; t=1679822817;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5rXoV9ZT/umKedJfUsdr0K9co5AscuT4z2LTYT9lVJE=;
-        b=hYCTtRTQIwtNTBhlkzPyuFFAPazi45fgs2gh50HZ0mVZH3WeBAIUhsM3JvkTriUX0q
-         gEs+Hc+UXyBAr57Mwt+AwZ6i+yvzBLvDvMgjpyIaDswBAncOimGd8ldcdooTX3qw6spO
-         AXymcTg1sLL/T1Jc19eSPapIJIVObgxB8bNp0+yNwOJGdsCKSAvGFpY/XVeYI8SnrMSH
-         R0sb/nvRVPxrHg2OGTrG2zQ22HpPzaDqi2dMh9K10MVzLqo8UJGlqJzzp+xtVhyNI4CY
-         higkRFpYE6RvTrHWqo5f9qUEtW/HlImSaYrJAbSt8hW0r5ePGrZXl0aQCav2zEOgJuCW
-         yccw==
+        bh=VahlOo5KlwSRji1K/2qUnu3qE76o4itfuZQQxoCQsXQ=;
+        b=PTa4unM2NVPnWXcwefj8aetMPoDppDQtgUbk6dZ0/ItkMDWynTY3hyV4rKF39NyJGN
+         hVsPi2kX8sl8H5A4wF01rf6giIOf369UdEmH6XYwWmaek2VRY608qvfiio+X9ZQkZyBL
+         oteYqq1LCp8kDzrY34yZXkxI2D/3P2v56nkGU8L/msN3rEHWuoYN2tKbHqIA///7rH0s
+         UZBJFCzHPAF0yHStNjHc/a8nDgsYSC2J3s6n9Z5YpZBowy8tszYM6ZqfvK+twZmYGUDs
+         2ofFN+bvgYr+6FDHQpsp/hJs47Kmsny1ZKlUAGSFlJ6wraHZ5WJL0e4SXKczq+x1R2ID
+         QtgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679822542;
+        d=1e100.net; s=20210112; t=1679822817;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5rXoV9ZT/umKedJfUsdr0K9co5AscuT4z2LTYT9lVJE=;
-        b=XadpYk/qWcHV1xGbvJivzTGSmxRF+zlGyvkyZkSxj2+/xY5x9Z5H5Ia/6LfCwF4dq8
-         hiHZ6Dl8kR2Dy77V3OMhveecZdvrMaf1HjkXbX4SEUE3B7Dc4zDk5ROPCZjdnbaQdzQs
-         wYUiB25yvju4PGYfFsmgpSB+8qYdU7rrrBY8FDz9KM65Wtz0XjTJov0yD8QVJ1KgZPfr
-         50gw5D3DEBHqpmL/ROIWJhkx1zYBDvK8U+U6gSMEQ16Gw9EMfb8sNWLnF3NXc4I23Hgl
-         4RxOYIxsC0mj9vPMWS9snPCjP5wGnELL9YSzU3Dbx7Onu82XjkeZNLQwYS/srtKw0eu/
-         Hg/Q==
-X-Gm-Message-State: AAQBX9d/biDIeCSY1o3chwGxub7M/Ohl5uPq6wli2ExJRyZDMujZ2fgB
-        ZuDXVhIBQ/AW3rryK65N916RkQ==
-X-Google-Smtp-Source: AKy350ZEeKY6w6K1zzH/dW/xivR15vW3hQd6CLYZegluO5Sbjosmz2HaeiqG5cUr1ggyvwzbv6IOqQ==
-X-Received: by 2002:aa7:c7cf:0:b0:500:50f6:dd27 with SMTP id o15-20020aa7c7cf000000b0050050f6dd27mr7533927eds.26.1679822542121;
-        Sun, 26 Mar 2023 02:22:22 -0700 (PDT)
+        bh=VahlOo5KlwSRji1K/2qUnu3qE76o4itfuZQQxoCQsXQ=;
+        b=pnF6Shqq2gXjBYDBxC/hTFVNo3u5mX2jbozEaSFp/0aoYJLBlWLmxhUlUz7vkJNtqI
+         4meJj11UfIkhWZgw1yeYkUmCGCwNYVH3vuq0rzUss7cAtwvuzKeHs/1Qgqv4OzuVz+Zr
+         STixT+NiEoxgxj3TjItBpMGoDwZwZFCKQaP25ffQvVePqnhlmAkNc4kF4F/5FUNa2zTW
+         aU8PuEPHWneGZH90iN3S48up30wwKAoSt97T4F4bQTcun6CuZHZnYexIFoy95IAaHg4F
+         MpaXwmmGE0XjhJvQwMVcq+NqmqQ+IDbThMg000JWdXM1WGfMNud/iCRdIdZdQwhdeK7c
+         7pxQ==
+X-Gm-Message-State: AAQBX9eoA3faaZrLGeWGcG+SsILQ5i+V4dA9ECLlCd5M07kS4LKtNjY+
+        m9gCxHBwF2WPaBKvQ1IQaI4W2g==
+X-Google-Smtp-Source: AKy350aKep/8NAQS3ScZSU6WqB5Ppr/tKZPCLWKiF6NI2LIizmmJ0+03GiPNzUYSVh9U7ITxLM5Rlw==
+X-Received: by 2002:a05:6402:2022:b0:4fd:2675:3785 with SMTP id ay2-20020a056402202200b004fd26753785mr9170207edb.22.1679822817074;
+        Sun, 26 Mar 2023 02:26:57 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
-        by smtp.gmail.com with ESMTPSA id xi3-20020a170906dac300b009445d6213c0sm308958ejb.75.2023.03.26.02.22.21
+        by smtp.gmail.com with ESMTPSA id u27-20020a50951b000000b004bf999f8e57sm13249082eda.19.2023.03.26.02.26.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 02:22:21 -0700 (PDT)
-Message-ID: <c6429b89-bdf1-a601-7cc2-a6cbb566fecd@linaro.org>
-Date:   Sun, 26 Mar 2023 11:22:20 +0200
+        Sun, 26 Mar 2023 02:26:56 -0700 (PDT)
+Message-ID: <4762f4a1-5e99-4e5a-72c0-9c4c61cdc856@linaro.org>
+Date:   Sun, 26 Mar 2023 11:26:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: move DSI opp-table out of
- soc node
+Subject: Re: [PATCH] ASoC: dt-bindings: ak4458: Convert to dtschema
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Saalim Quadri <danascape@gmail.com>, shengjiu.wang@nxp.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.baluta@nxp.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJpqR-QisyWEHE83oFbXt8wUcn2Ofd4W6UwFmkYzGD18N9Q@mail.gmail.com>
+References: <20230325201007.13006-1-danascape@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJpqR-QisyWEHE83oFbXt8wUcn2Ofd4W6UwFmkYzGD18N9Q@mail.gmail.com>
+In-Reply-To: <20230325201007.13006-1-danascape@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -81,20 +76,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2023 11:21, Dmitry Baryshkov wrote:
-> On Sun, 26 Mar 2023 at 12:16, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> The soc node is supposed to have only device nodes with MMIO addresses,
->> so move the DSI OPP out of it (it is used also by second DSI1 on
->> SDM660):
+On 25/03/2023 21:10, Saalim Quadri wrote:
+> Convert the AK4458 audio DAC bindings to DT schema.
 > 
-> This raises a question: would it make sense to add /opps to handle all
-> opp tables?
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/ak4458.txt      | 28 ---------
+>  .../bindings/sound/asahi-kasei,ak4458.yaml    | 62 +++++++++++++++++++
+>  2 files changed, 62 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/ak4458.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ak4458.txt b/Documentation/devicetree/bindings/sound/ak4458.txt
+> deleted file mode 100644
+> index 0416c14895d6..000000000000
+> --- a/Documentation/devicetree/bindings/sound/ak4458.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -AK4458 audio DAC
+> -
+> -This device supports I2C mode.
+> -
+> -Required properties:
+> -
+> -- compatible : "asahi-kasei,ak4458" or "asahi-kasei,ak4497"
+> -- reg : The I2C address of the device for I2C
+> -
+> -Optional properties:
+> -- reset-gpios: A GPIO specifier for the power down & reset pin
+> -- mute-gpios: A GPIO specifier for the soft mute pin
+> -- AVDD-supply: Analog power supply
+> -- DVDD-supply: Digital power supply
+> -- dsd-path: Select DSD input pins for ak4497
+> -            0: select #16, #17, #19 pins
+> -            1: select #3, #4, #5 pins
+> -
+> -Example:
+> -
+> -&i2c {
+> -	ak4458: dac@10 {
+> -		compatible = "asahi-kasei,ak4458";
+> -		reg = <0x10>;
+> -		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>
+> -		mute-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+> new file mode 100644
+> index 000000000000..b97aee96fa17
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4458.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AK4458 audio DAC
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - asahi-kasei,ak4458
+> +      - asahi-kasei,ak4497
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Analog power supply
+> +
+> +  dvdd-supply:
+> +    description: Digital power supply
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  mute-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO used to mute all the outputs
+> +
+> +  dsd-path:
+> +    description: Select DSD input pins for ak4497
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    oneOf:
+> +      - const: 0
+> +        description: select #16, #17, #19 pins
+> +      - const: 1
+> +        description: select #3, #4, #5 pins
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
 
-We didn't add it to any other cases like this (and we already fixed all
-other boards), so why now? We can but it is a bit late for it.
+Based on driver:
 
+allOf:
+  - if:
+      properties:
+        compatible:
+          enum:
+            - ak4458.....
+  then:
+    properties:
+      dsd-path: false
+
+> +additionalProperties: false
+> +
 Best regards,
 Krzysztof
 
