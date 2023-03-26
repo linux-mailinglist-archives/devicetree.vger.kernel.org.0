@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FCD76C939A
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 11:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CDE26C939C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 11:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231877AbjCZJhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 05:37:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32876 "EHLO
+        id S231294AbjCZJiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 05:38:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbjCZJhV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 05:37:21 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C68CF5
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:37:19 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id h8so24301055ede.8
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:37:19 -0700 (PDT)
+        with ESMTP id S229643AbjCZJiL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 05:38:11 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB2861723
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:38:09 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id er18so13107743edb.9
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 02:38:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679823438;
+        d=linaro.org; s=google; t=1679823488;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=womt1sTjj98HBWC12qs0rQLizgn/XM7va5jl8pNY4ac=;
-        b=GHkGxIaUDHD9EVehc6ie2OQuCwM40c0Sa/sF8VYs8OH+m5MpI3q68BwrNW2YOW+ipo
-         cr8ES+JlIAq13MyMuLYnUBFfN4xtMwH0x+BZO/eD5KI//izd5SSS38fr7Qx44Q47Osf2
-         wx3toJdDGo5LVoFftdIU24vVQIn8RpVXMhDydizeu2K+WBADhg4BQNQWFubeMA6aaztF
-         KbNI93cdJebCDYh1WgyGa0VIw1YzUdWOeGLBlbOmv6u+uf3zDtGkgxXqcjiT/BdkBipL
-         R5X8U6f7aLAJxgX0s6M2UAxge20lJpE3eyn0H9NF1XHvtJV0pqA9jASBh5tFolIMR0nF
-         Qh0A==
+        bh=3ZrBuJiIoQK2v1CW9coA2UE02/s0G06cmU89tU/gP2E=;
+        b=jMBSiE/53ZDBTd2s3jj2WfxJQOtKbHxGyPe3PymEn3WvXUiVT1DMVDD/LGE2BuHPZz
+         TEaEGjsmeDpUoSRCc4ArK1WMdYMaGEiPK2KNPLnOrkPWPVOj3J8UnYES6TU6KrDODsGo
+         hNKQK/AM8KOkqTg5X7S06SjRXOEF3Wntp0mcnkaamSK1GJwu3hETvJDHEbk7dLv5tg2l
+         QirjaXfdHM5gQV4QfDuar1aicPjBuHd/OGltjwMGcMh/BZI3uw7eiGw/cfSqtay9sdXj
+         kVcLDdNh0jQvvbKHR8R4pNQTfZJGvesQBinBQqNfrRHCtcLx2ji9ly3qrlaUfIrzgf9b
+         yw+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679823438;
+        d=1e100.net; s=20210112; t=1679823488;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=womt1sTjj98HBWC12qs0rQLizgn/XM7va5jl8pNY4ac=;
-        b=fkQ3ylR/37NXgaw4mULf86A6IZRN3E5l845bzzIEDno1bBOAndBXsk+yAFkOt4D8PI
-         JMl5w9C/Xg+Txg+1qTMNosfsKG47hW+YBll0xbt2QkFLBUe48aYA8TgUVeOQu5a3WYoD
-         ZBNWbcI14fl5F7MzSeFpx8lIb5yedfMisO5ouXs/d+Qo+f9n8WObj/Uy2XzJMh60zQ/u
-         FZkyji8zZoCuw7vuuflVceRCShslHw7ekzoVofZfcp9E+K1usxQnFO808hVtklELxhs0
-         XDIti7E2FaiJ7S77LEvEIvMlLEaJRf7fOXCaxVGENyoUqvd4bhHaFm8arhmVGW5HPDrZ
-         7++Q==
-X-Gm-Message-State: AAQBX9cqrkmU7WNMccDYGClbWDf7CWmqRSqIYRPN1G+0QxuaFEIYj/mq
-        G5ppVCzAepNiXi5BG84I5492Dg==
-X-Google-Smtp-Source: AKy350aR88wKTInMhM2+4A7tNI6V5uRWI3jQ2Pt0sIPnZuOvt7Cl/gcLtj4c8VsNeo0rbho+lF/46A==
-X-Received: by 2002:a05:6402:8d6:b0:502:2953:8ecb with SMTP id d22-20020a05640208d600b0050229538ecbmr5138565edz.13.1679823438181;
-        Sun, 26 Mar 2023 02:37:18 -0700 (PDT)
+        bh=3ZrBuJiIoQK2v1CW9coA2UE02/s0G06cmU89tU/gP2E=;
+        b=Mh4a+WfRXpFRUiKF0JaDXTFPigzunabyOyv8Ag4NWv/pLUbDjEyA30y34tpMALHveO
+         aqc+kc+X4Qpo0DWWHleduhEAGn420QvtDb1N6L7kwJHko/a7PsqajklJ3aJGArUF/sms
+         o56BtoUYJ7CCyuAnrNaIU8wK6N4oX8J71wZLvotbWAsFT9lROBPqZz3q7yTTLHMEyh/4
+         gl6QZh1HAAM+VQYw0wKVo7bsGbC0zJEAf+QJfekrYER8cmxMUubySxrQTAqsep/3BVoV
+         VMl0hbIhMWQ85sPwMYGy5JD/Q5TupAu/7N4fgNQzPdLvdA91NC6Fe2CRwJmOjXOceAGl
+         Jkrg==
+X-Gm-Message-State: AO0yUKWOzvzWujpY9qOR523Eosni/vzoPYdfw7xZ59Q7Kq2DXOPNpWKq
+        dM3J4DxRKyNn5yRtTG4Cn2Tedw==
+X-Google-Smtp-Source: AK7set9Wdnq4Hya0KycQsDYZzYTaBke37/nQ5a3vtW+4Iv/3ZShUaYWQ/4+8D8cBldBVx7qAB5rhJw==
+X-Received: by 2002:a17:906:c781:b0:8b1:2eef:154c with SMTP id cw1-20020a170906c78100b008b12eef154cmr15293793ejb.0.1679823488416;
+        Sun, 26 Mar 2023 02:38:08 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6cac:926d:a4f2:aa09? ([2a02:810d:15c0:828:6cac:926d:a4f2:aa09])
-        by smtp.gmail.com with ESMTPSA id k12-20020a50ce4c000000b004af70c546dasm13284309edj.87.2023.03.26.02.37.17
+        by smtp.gmail.com with ESMTPSA id o12-20020a170906358c00b0093b6d1db84asm6384747ejb.120.2023.03.26.02.38.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 02:37:17 -0700 (PDT)
-Message-ID: <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
-Date:   Sun, 26 Mar 2023 11:37:16 +0200
+        Sun, 26 Mar 2023 02:38:08 -0700 (PDT)
+Message-ID: <a5966d2b-3e8f-3518-8f71-a4ed8de4b725@linaro.org>
+Date:   Sun, 26 Mar 2023 11:38:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
+Subject: Re: [PATCH 1/2] arm64: dts: Add basic NanoPi R6S (RK3588S) Support
 Content-Language: en-US
 To:     Shane Francis <bigbeeshane@gmail.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -62,9 +62,8 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230326001535.149539-1-bigbeeshane@gmail.com>
- <20230326001535.149539-2-bigbeeshane@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230326001535.149539-2-bigbeeshane@gmail.com>
+In-Reply-To: <20230326001535.149539-1-bigbeeshane@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -78,40 +77,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/03/2023 01:15, Shane Francis wrote:
-> Some vendor uboot bootloaders use the target kernels
-> DTB image to determine the target clock speeds for
-> some PLLs, currently this can cause uboot to set the
-> clock rate for gpll incorrectly on to cpll (breaking)
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-
-> RGMII.
+> This adds basic support for the NanoPi R6S SBC
 > 
-> This change starts the PLL clock definitions from 1
-> to correct this miss-match
-
-Unfortunately the reason is not good enough for ABI break. Replace
-vendor boot uboots with open-source one or just correct them (it's still
-U-Boot so even for vendor one you have the source).
-
+> Currently working :
+>   - UART
+>   - mmc storage (internal)
+>   - RGMII / GMAC 1Gb ethernet
+>   - SYS LED
 > 
 > Signed-off-by: Shane Francis <bigbeeshane@gmail.com>
 > ---
->  .../dt-bindings/clock/rockchip,rk3588-cru.h   | 1442 ++++++++---------
->  1 file changed, 721 insertions(+), 721 deletions(-)
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3588s-nanopi-r6s.dts  | 126 ++++++++++++++++++
+>  2 files changed, 127 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
 > 
-> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> index b5616bca7b44..d63b07d054b7 100644
-> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> @@ -12,727 +12,727 @@
->  
->  /* cru-clocks indices */
->  
-> -#define PLL_B0PLL			0
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 99a44c400d6a..39cad757d29d 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -91,3 +91,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6s.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> new file mode 100644
+> index 000000000000..21b26539a855
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> @@ -0,0 +1,126 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "rk3588s.dtsi"
+> +
+> +/ {
+> +	model = "NanoPi R6S - RK3588S";
+> +	compatible = "friendlyelec,nanopi6", "rockchip,rk3588";
 
+Missing bindings documentation.
+
+Please run scripts/checkpatch.pl and fix reported warnings.
 
 Best regards,
 Krzysztof
