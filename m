@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB756C96FE
-	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF246C9703
+	for <lists+devicetree@lfdr.de>; Sun, 26 Mar 2023 18:59:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232259AbjCZQ5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 12:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
+        id S229715AbjCZQ7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 12:59:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjCZQ5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:57:13 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEA784C27;
-        Sun, 26 Mar 2023 09:57:12 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id y14so6317813wrq.4;
-        Sun, 26 Mar 2023 09:57:12 -0700 (PDT)
+        with ESMTP id S229601AbjCZQ7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 12:59:38 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F6AA55B5;
+        Sun, 26 Mar 2023 09:59:37 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id l27so6329838wrb.2;
+        Sun, 26 Mar 2023 09:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679849831;
+        d=gmail.com; s=20210112; t=1679849976;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=b5QdxNjjZRZ0PDxQDn1YuSSVtqF8SC5453jOB4hYT5g=;
-        b=k3sRQUiZjU5LJAwQvgLaAo8oHqjvzZ1Xiut5EtrtakbkKdg+fUoo9Nao+pranX0Klp
-         HV9rsQryr1O9uVdPZzknU6rlIzV7aCrVPVXdQ2bQoEkB84YXhA8cMT6IxE+ZfVdxqc3z
-         hJrETS9YFo6nw85i8U/u9FUJ6wjJx8jNeHugA7DAAE2JxHyTt3fRll9/NZ2qlWKl6xgT
-         Wp43C7lBZg2Gmn7oQMZDp35ecpF1VKdbJM3QvrVrjvnU9iSZk5LIPYp2j8AV2b2CQ1Xt
-         543OX3aKp/jkzbNt2rIsjb8DSIJizHIDb3pMxtKqK+mBEpCVk1Q0qRtdLw3aJmL2MXkS
-         adeg==
+        bh=4onfKPR5OV3H8ezXvNnqQtHHZOpBtrzFFIqmv0blz20=;
+        b=F6M99Gu/29cxqx2Ny1B34fJ6KzEVNqQUdeB6+w5fcVYc0G5Mnyebxly18qN5QkEJ7W
+         W1Tye1OHF4qPYf9f9FnR/uIw/eWztZjw1nAyhLq6F3a9aMUi1zrSlBGbHkN3hc2SGF3s
+         A6dciSwZbxpNodkOORZC8UsKRiWw0N2fC6Uh2NfetPQi5WkjJzonMSdO/ENp38KrnBu9
+         H0r9WKPZHiYdwNDMjodf1f7ogn23kfq8EHQQ7u79EY+Ncn26AFr419javWSP6zepK3FR
+         1xjpU3GSabT9vpPSK9r7uEYE86R5aRzOWa8Qt4vNjzWEPiD65Qk7VYU6gSja7A3Q6Vr5
+         tcYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679849831;
+        d=1e100.net; s=20210112; t=1679849976;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=b5QdxNjjZRZ0PDxQDn1YuSSVtqF8SC5453jOB4hYT5g=;
-        b=zLDn8/E4e0GSryhYdIVN//+6PxPsRoqf7mVdHImvtzAxR6Ry0gTZHvDyEr4fO3U7L2
-         QahRdgqkB61s77Hku+Rv3RaSlqxciEr3Y48yWorJ6jyV2tKfufOjJv+9KsRhb3TLd+dh
-         MyeeP0B9QHYdBb57m3mkNuVzsNI2vIlxbPFgcPnBsEKDOqRQ0ljCiSPstrSZatpMFjGX
-         RJNoxPLdNOWtO62GzOR648bmGLlmG1hvfOosLDxTyljnuraOFJ/3Tg1i6D6LvwVBFmQA
-         XydSPprFDDrlCIeYWYbkLq0lUaKZQicHAyoaUJjMWRGY95s8hZQ0h3aipT1/YtaGVFQY
-         deOQ==
-X-Gm-Message-State: AAQBX9dIam9hnTFx3oc58hZL/VuLEV0OxXyrIqT9u4kdgZvj/Yw4m27I
-        cx7N714U05ducrtK22evzQ4XmBJxHmng1I7Kq7Ycua91EEJaUw==
-X-Google-Smtp-Source: AKy350ZQJxyFHb+gYWiDsIv/lZd04YiXPEsVLN4AhFyx1FayiiHaNfFXf94JSdtHVVCwz/tSBiobq0QujLGK4Y/nBWY=
-X-Received: by 2002:a5d:59a6:0:b0:2cf:eff8:48a1 with SMTP id
- p6-20020a5d59a6000000b002cfeff848a1mr4501392wrr.2.1679849831193; Sun, 26 Mar
- 2023 09:57:11 -0700 (PDT)
+        bh=4onfKPR5OV3H8ezXvNnqQtHHZOpBtrzFFIqmv0blz20=;
+        b=Jz6EblTryChG1tKO7NxQwT3WN6ZAt4FSjnj8fTeyRyKBwv9rJybR80s1N6f7rhqYVK
+         +X/nwKWaABsMaCdgIf2quaVRWAarhjwSV/b2qlORR1Gu+B3kAarkM2+C5DWpIm6SyYRU
+         BNavmdZ23KYfazhV8udjtKZ1VWVwsjHstDPxCEzuedImMLvEdQT5ioOQJgxmXhawePcz
+         o3OksBtC5omMMpeSLAsEaNQcKCyFC4Y4K+WDTffSfBI1iTMjnbI5IUzSgjkpfheIKIe/
+         PGiIGTOJbnMqf5tu03IFGFi2jjTGgZOnGujUUUkNFyR8RrKTTQIla56pP1RXCq3twwYe
+         Zpmg==
+X-Gm-Message-State: AAQBX9e0XJ5lvjOm7hqzjcaZzkPJhMkVlC539bXKZoJa/3n3LMPxVF+i
+        He9Ri3VtzoyRCrb6PnCbGDxHnoAOkb97d9ZLVHE=
+X-Google-Smtp-Source: AKy350auyOW51dcsEwSuS3Tg3x334Pt9EVII6MmtPIIGeMOP0puGxpIVEQCLy7aqA7YGXMxkjfHF7nEUR6fKBM9dO5Q=
+X-Received: by 2002:adf:ec82:0:b0:2c7:156c:ae8d with SMTP id
+ z2-20020adfec82000000b002c7156cae8dmr1819274wrn.2.1679849976117; Sun, 26 Mar
+ 2023 09:59:36 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230326001535.149539-1-bigbeeshane@gmail.com>
  <20230326001535.149539-2-bigbeeshane@gmail.com> <10930783-e1dd-5e75-a2cc-a09af862d949@linaro.org>
  <CABnpCuCzdbWTTp1Gc6wWPsB80J5GYw1QzKtZzzyEYU456E=1JA@mail.gmail.com> <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org>
 In-Reply-To: <1b9c8e19-10f2-824d-9b50-51e7a9287bb1@linaro.org>
 From:   Shane Francis <bigbeeshane@gmail.com>
-Date:   Sun, 26 Mar 2023 17:57:00 +0100
-Message-ID: <CABnpCuCKYBb_JBqBgMfjEvzUjkzQ6RgKbz9Ny78L+tPKs55wwQ@mail.gmail.com>
+Date:   Sun, 26 Mar 2023 17:59:25 +0100
+Message-ID: <CABnpCuAWm7jh19JKukOquPnZCwHoJispgDPGJzjYy6T_BZSnbg@mail.gmail.com>
 Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -74,7 +74,20 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Krzysztof
 
-So mention this in the commit msg.
+
+> So mention this in the commit msg.
+
+> Then commit msg should also mention it.
+
+Sorry for not expanding on this more in the initial commit message, I will
+expand on this in the next patch set.
+
+However I think in general for most modern platforms it can be assumed
+that replacing the bootloader is not always something that is achievable
+for one reason or another
+
+
+Thanks In Advance
 
 On Sun, Mar 26, 2023 at 3:51=E2=80=AFPM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
