@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6DD6C9882
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 00:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66ECB6C9898
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 01:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232037AbjCZWUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 18:20:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46488 "EHLO
+        id S229606AbjCZXAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 19:00:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232069AbjCZWUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 18:20:14 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BAA5BBC
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 15:20:08 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id j7so8257396ybg.4
-        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 15:20:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679869207;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=foOnpfIYG0px2xtCe2qdMBsyq8TVBOTSn6mu2GF/zDg=;
-        b=GPT1qZRYCtzPeP8RsM5dc0gjR9NijUAa26kXFs4Ub0oDIh70ssYWD62OtMFvdZevFe
-         EXX/xFjzVqZvEvNAAnFsznAYGzkgNmt91cGh/M2H17IklqNKyT/+o84UqwgNG3i4kcM9
-         ZnD8h4l3Y5pOG0rgpjZ5ySt7LDMsEzgL3I3fal8Rsvxlg4cRl6mD8ehmDfw1RMqonjiD
-         1whV4KLxPJ/AL7bYP0Ly8hs4ZBlCHGB/A8/sWXBbMA85sLjH3TRk1X1NytKMqlc3tP+f
-         Auxc9uE2ljlW5+tfXVnPCLXSULfH+fnjnYTTYhdo3ZA7mOB4qF8U9nvBZnQa/vuI/w0+
-         yNlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679869207;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=foOnpfIYG0px2xtCe2qdMBsyq8TVBOTSn6mu2GF/zDg=;
-        b=66F/p32t/yeC5TygycT8tjYhdzZUsR7k5ZqXMb/7KZ11oh3hpINTCCdtD47JAn+y93
-         KmgkW+L+4csdXvLOX8Fp7kGi0HFiaO9/FeMbLc38tN4x9RCjfY3YA/J+oDXQS7SU3aYf
-         V2Eh3kQoVk+NYxto8ZCpofn/WzFslQNDuNvdwZL7h0Tc0FGznOvCp6TrCcMoSy2FEGC4
-         ZjEFJP8AggbazeSm/0r8fmpLoTvqJvHUhHDkOG83DZk5XDo7yp1OXa/fpjG56nB2qWdQ
-         5Za+SX2cORayxYMjoiEhryUZL8x1ZmkwG9ipxgp1iv6/huqYWJ792CZ/vneUnQrz/kfs
-         YzVA==
-X-Gm-Message-State: AAQBX9clG0hQqE5ZO16tuDhNDIlc0hrM4Drz5sHEv6OkoR26bR5EDINV
-        pnAbB3Qd5PWLY9HIrqPFtW2/yTQqukJhe4GJwY5vWHShcuRzCHZHEvQIZpGK
-X-Google-Smtp-Source: AKy350YCDKOFoHOb5/Bc82gl0QSgBzmoGtwsAhdj0iVIryNrpBQmYK61Y91NKeNBLwElnbOicqiRIEVFcnvbsuvsHnU=
-X-Received: by 2002:a05:6902:1549:b0:b77:be38:6406 with SMTP id
- r9-20020a056902154900b00b77be386406mr4139356ybu.9.1679869207636; Sun, 26 Mar
- 2023 15:20:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230326155753.92007-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230326155753.92007-1-krzysztof.kozlowski@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 27 Mar 2023 01:19:57 +0300
-Message-ID: <CAA8EJpp5+G=ujJQ_03+FWXA4N58pznCnXho-ctmdBdrT+Bi+sw@mail.gmail.com>
-Subject: Re: [PATCH 01/11] arm64: dts: qcom: sdm845-cheza: use just "port" in
- Innolux panel
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229456AbjCZXAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 19:00:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23CDF55AE;
+        Sun, 26 Mar 2023 16:00:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CAC50B80D64;
+        Sun, 26 Mar 2023 23:00:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A1A0C433EF;
+        Sun, 26 Mar 2023 23:00:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679871650;
+        bh=x6Z12fR83Gq7xvHh4mr/kK1h0Pqkf36AjClyCalvXdg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=SGfFZOdeUl4Q3V2nqRr8Faa166YY3OMTZvTTTKGep0HBYvNL0t8UoBVascmOqEEaf
+         nY2njkFdimiBcdxkLLFmaTBtR8e6Lcce5ytX75LGlib2rSXCCHebF0d5XGMr+27OaX
+         oYsogxgI8rkquV0yXO7jn5+4to9HCCojzktZUbihun88ds5DLsK2MpNo6x4l1P+Qfi
+         4Qk5tINCyUsUx+tYHp/2+k85iYk+G2JF5i7d+p6sSlgia8jrY19MGMURnnVWvnLYE8
+         DmYE2oztHeB5TRT/XHIEQlzHlspsh4gO6AXvCgn1o4wR5OQ3fIBRuZwhThd34wwcd8
+         oOYTYrPt1LEOA==
+From:   Conor Dooley <conor@kernel.org>
+To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH] riscv: dts: canaan: drop invalid spi-max-frequency
+Date:   Sun, 26 Mar 2023 23:59:41 +0100
+Message-Id: <167987156176.153791.15260217411572025430.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230326164751.104789-1-krzysztof.kozlowski@linaro.org>
+References: <20230326164751.104789-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=436; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=0zFLew1NsRZR2Xph0On5u79GHzMJx5S7s4zUw+ZVKAU=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCkK5yKv3fpp3PKfge+Mu/UylUM/q/aYckkXvth7skRmT a8HU92RjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzEVJWRoSFMuHy3icO+syvV Wuv2/5vwVNCB//EXdw6N4+3XxV+cvsTwV8pLiztfOmpJ+w6VWZMWnDpTc2H5QuW4j1einyRwuy9 pZQQA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Mar 2023 at 18:58, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> The panel bindings expect to have only one port, thus they do not allow
-> to use "ports" node:
->
->   sdm845-cheza-r2.dtb: panel: 'ports' does not match any of the regexes: 'pinctrl-[0-9]+'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Sun, 26 Mar 2023 18:47:51 +0200, Krzysztof Kozlowski wrote:
+> The spi-max-frequency is a property of SPI children, not the
+> controller:
+> 
+>   k210_generic.dtb: spi@50240000: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
+> 
+> 
 
--- 
-With best wishes
-Dmitry
+Applied to riscv-dt-fixes, thanks!
+I'll make sure to add a test for the !mmu dts in CI too.
+
+[1/1] riscv: dts: canaan: drop invalid spi-max-frequency
+      https://git.kernel.org/conor/c/8056dc043d7f
+
+Thanks,
+Conor.
