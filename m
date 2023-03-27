@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B41A6CA1BA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E4666CA1BC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbjC0KxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 06:53:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36098 "EHLO
+        id S230104AbjC0Kxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 06:53:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229878AbjC0KxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:53:16 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5054214
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:53:09 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id s20so8496084ljp.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:53:09 -0700 (PDT)
+        with ESMTP id S229462AbjC0Kxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:53:32 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE5A1FD6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:53:31 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id q16so10792557lfe.10
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:53:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679914387;
+        d=linaro.org; s=google; t=1679914409;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8rVlxo50ZRMJpj54LYT8yYL0LIjvmZfFknzyZvuDRxc=;
-        b=gQMxgFQhQ+XgCsTEZPe6WiIcpvJ6VrErfQjFx2qxsT0gPvNzngjf8A0ufcP/vawEPF
-         xax9ZGva0ta5qZOV60Q0Z2f92VIfFUaD/WktSLX5DKN+yLVwewHwC5wPDB7+G3msV9H4
-         V3wNCM9WcTkqKrE+Qj0j4HEZLp0cuJAW3ZOmOwdqf83NAlkQIriMy0rAvVt3RPk+5avv
-         03mxIooubdoONc+X/0XQt1CfX94DHYktNSIX3M2Cy5qWwgyFIg9DqCGwgU5+dyKnJC/c
-         tkVS/WyUfis2HjQKtJgG7ddQYnsqHtU2M1hx/9/ykvaDX183UyMJmqDTXcQHLnowWFWK
-         25Qw==
+        bh=3WnzOjHdVfvoCMG3pjVqA605yGhXEuWWs9v71lH5Wbo=;
+        b=Xm77A2gZGJkkJRtH7/hFJbceaoRhHoVaOSxcCKITYDDDP4yT2vupGTRCWt74OJ+uen
+         KpfmZs5f/A++PJKPsZoJ6OjGV1chdMTpQIT9W34thZ+h4J+1HBG5uQf/ULfnLqhSEhAR
+         0z2ytp0tax/KYyx3JEkAfBBO2lIHsftrPRqBA0YLEYkSMMT15/0t3CAd6SrcqN+1g47q
+         jtkLfIFkq1wFK11UujS6j+bkWaqUZk227f5/1D2vBf3KRUDoEd5LbNqToHxKTLKtfdwf
+         J+kVvbDFHlA86Mza2ojvGiC3UT4ARSxK1gD8jkyOI8I6qp3idVgIagCeWYrDvpCAtJqL
+         J5ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679914387;
+        d=1e100.net; s=20210112; t=1679914409;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8rVlxo50ZRMJpj54LYT8yYL0LIjvmZfFknzyZvuDRxc=;
-        b=L71aAIhf13TdA//8tNWcwyfY+9FOk9qseyg6agd5gMVrwxsaiIyFkMekLMq8b7vYDZ
-         Odf3SUdPQxwtcy99Q9PeN51ri6bDVZYjlcVJdk2eYMgwzM2qPhdiaVXzY8SiWX4qXryU
-         pnrm+nDTX0Fsz4PgcLDVl95i3fquK2HAURQm7DS9ekCAGMLeU7fnsb0vWF4C/tGCLjsb
-         nOtzg+CJZIKA4CFuCfYsi4+yqazUuu9mXZ+qRibaaURsIpYXKPn1DeqWlkz4aXB0VSSB
-         MRxmckThySMX12mB9hmlh2yPhsTCAwdNxs+SlQBewCgW90h2qMVGpumTosZmMr/dm3wo
-         gDhg==
-X-Gm-Message-State: AAQBX9cVwu2RuMJJH1bRW0pOnMxNwTKKIUKRZyopPEdPzFXrbIjpACSt
-        oK+2EtClgx8p+9jNBfJmHOhDeg==
-X-Google-Smtp-Source: AKy350amcE3SNY/yZynqjrIkiRBpnixSxtejReSkObtAQp2PGBYuvkg9I0ohQG5IIIhrjEkLchD70w==
-X-Received: by 2002:a05:651c:1052:b0:29e:e7b0:efb4 with SMTP id x18-20020a05651c105200b0029ee7b0efb4mr3369009ljm.11.1679914387624;
-        Mon, 27 Mar 2023 03:53:07 -0700 (PDT)
+        bh=3WnzOjHdVfvoCMG3pjVqA605yGhXEuWWs9v71lH5Wbo=;
+        b=U2e+KQMvhZZqsdKYK4ieyTGu7T4oOFswKcYDw2ysGTay4aXswCDKBLHPjeytKFMUER
+         PKdSRx2LuZ2k34DJocc+zGxXx2MZ000ViukOag9cIVZBulfpifFLEU53ON3046xEhJTh
+         3Kt7jKcT7S8OKPEygIx4IEocy9eZkVIpg0XjtjegCA0qu7tClHO/1c//+kh0eNY6/zAu
+         /ig9g7NNoKHnSLvvOP6FxPAtB0n7aosmubSSeCG/aWFhj+R2dCYXA4K6mXiT1tuxoG4Q
+         TbbwB96OMTP7ci912n2lsGvgT64w/WoqvnafQar/sJg2pM8X6ueJm4UDULC6gNFGnz/m
+         Pedg==
+X-Gm-Message-State: AAQBX9eMUMLkfRAh0UYp+qPPt34LL1PGD4pYEjwjnrmDNbZPq+Zuj2Ku
+        920N9c7ukSCl50382Dd4nVvyrQ==
+X-Google-Smtp-Source: AKy350aYInrCK0ZXczOvivBLQCQFlcg1lhhCSj4cNtly1U8Jiy5o34ej8P5uE+5wVjEIyQgO5SUasw==
+X-Received: by 2002:ac2:5541:0:b0:4e0:2455:3ade with SMTP id l1-20020ac25541000000b004e024553ademr2952253lfk.60.1679914409515;
+        Mon, 27 Mar 2023 03:53:29 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id o10-20020a2e730a000000b00294692d8645sm4635491ljc.17.2023.03.27.03.53.01
+        by smtp.gmail.com with ESMTPSA id y28-20020ac2447c000000b004eafa141a12sm2075784lfl.9.2023.03.27.03.53.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 03:53:07 -0700 (PDT)
-Message-ID: <6a545494-832b-d1d9-ad5a-9ed0a724703b@linaro.org>
-Date:   Mon, 27 Mar 2023 12:52:59 +0200
+        Mon, 27 Mar 2023 03:53:29 -0700 (PDT)
+Message-ID: <d8ff650c-fd6a-bec4-354b-eb7b27b6394e@linaro.org>
+Date:   Mon, 27 Mar 2023 12:53:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: sm8150: turn first USB PHY into
- USB+DP PHY
+Subject: Re: [PATCH 2/2] remoteproc: qcom: pas: add SDM845 SLPI resource
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        neil.armstrong@linaro.org, Andy Gross <agross@kernel.org>,
+To:     Dylan Van Assche <me@dylanvanassche.be>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
- <20230324215550.1966809-4-dmitry.baryshkov@linaro.org>
- <70957e67-e570-3800-e679-d7c291295999@linaro.org>
- <cfa6af3e-c7bc-894a-119c-5c6c5ea82ec0@linaro.org>
- <85d75550-66f4-2680-c6fe-9c575e916b40@linaro.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230325132117.19733-1-me@dylanvanassche.be>
+ <20230325132117.19733-3-me@dylanvanassche.be>
+ <a27e7e67-a3e8-01ec-1f0d-717d705af117@linaro.org>
+ <91875b7f6f77d6bc846e2da6d009b44c89cbafab.camel@dylanvanassche.be>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <85d75550-66f4-2680-c6fe-9c575e916b40@linaro.org>
+In-Reply-To: <91875b7f6f77d6bc846e2da6d009b44c89cbafab.camel@dylanvanassche.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -88,68 +86,79 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 27.03.2023 12:14, Dmitry Baryshkov wrote:
-> On 27/03/2023 11:05, Neil Armstrong wrote:
->> On 27/03/2023 09:59, Neil Armstrong wrote:
->>> On 24/03/2023 22:55, Dmitry Baryshkov wrote:
->>>> The first USB PHY on the sm8150 platform is really the USB+DP combo
->>>> PHY. Add the DP part of the PHY.
->>>>
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>   arch/arm64/boot/dts/qcom/sm8150.dtsi | 17 +++++++++++++----
->>>>   1 file changed, 13 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->>>> index 9491be4a6bf0..a618218f7b68 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->>>> @@ -3392,20 +3392,19 @@ usb_2_hsphy: phy@88e3000 {
->>>>           };
->>>>           usb_1_qmpphy: phy@88e9000 {
->>>> -            compatible = "qcom,sm8150-qmp-usb3-phy";
->>>> +            compatible = "qcom,sm8150-qmp-usb3-dp-phy";
->>>>               reg = <0 0x088e9000 0 0x18c>,
->>>> -                  <0 0x088e8000 0 0x10>;
->>>> +                  <0 0x088e8000 0 0x38>,
->>>> +                  <0 0x088ea000 0 0x40>;
->>>>               status = "disabled";
->>>>               #address-cells = <2>;
->>>>               #size-cells = <2>;
->>>>               ranges;
->>>> -
->>>>               clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
->>>>                    <&rpmhcc RPMH_CXO_CLK>,
->>>>                    <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
->>>>                    <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
->>>>               clock-names = "aux", "ref_clk_src", "ref", "com_aux";
->>>> -
->>>>               resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
->>>>                    <&gcc GCC_USB3_PHY_PRIM_BCR>;
->>>>               reset-names = "phy", "common";
->>>> @@ -3423,6 +3422,16 @@ usb_1_ssphy: phy@88e9200 {
->>>>                   clock-names = "pipe0";
->>>>                   clock-output-names = "usb3_phy_pipe_clk_src";
->>>>               };
->>>> +
->>>> +            usb_1_dpphy: phy@88ea200 {
->>>> +                reg = <0 0x088ea200 0 0x200>,
->>>> +                      <0 0x088ea400 0 0x200>,
->>>> +                      <0 0x088eaa00 0 0x200>,
->>>> +                      <0 0x088ea600 0 0x200>,
->>>> +                      <0 0x088ea800 0 0x200>;
->>>> +                #clock-cells = <1>;
->>>> +                #phy-cells = <0>;
->>>> +            };
->>>
->>> Is there a reason why the new flat bindings from qcom,sc8280xp-qmp-usb43dp-phy.yaml are not used instead ?
->>>
->>
->> Oh ok I see "phy: qcom-qmp-combo: convert to newer style of bindings" is the followup of this serie,
->> please specify it because it wasn't obvious...
+On 27.03.2023 11:34, Dylan Van Assche wrote:
+> Hi Konrad,
 > 
-> I thought that a note in the cover letter was good enough, but yeah, maybe it should be more explicit. Do you think it warrants v2? I can send one.
-IMO it's unnecessary so long as both get in.
+> On Mon, 2023-03-27 at 10:44 +0200, Konrad Dybcio wrote:
+>>
+>>
+>> On 25.03.2023 14:21, Dylan Van Assche wrote:
+>>> Add SLPI resources for the SDM845 Qualcomm SoC to the Qualcomm
+>>> remoteproc q6v5_pas driver to define the default firmware name
+>>> and GLink edge name.
+>>>
+>>> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+>>> ---
+>>>  drivers/remoteproc/qcom_q6v5_pas.c | 17 +++++++++++++++++
+>>>  1 file changed, 17 insertions(+)
+>>>
+>>> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c
+>>> b/drivers/remoteproc/qcom_q6v5_pas.c
+>>> index c99a20542685..d82b6f4bced4 100644
+>>> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+>>> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+>>> @@ -1028,6 +1028,22 @@ static const struct adsp_data
+>>> slpi_resource_init = {
+>>>                 .ssctl_id = 0x16,
+>>>  };
+>>>  
+>>> +static const struct adsp_data sdm845_slpi_resource = {
+>>> +               .crash_reason_smem = 424,
+>>> +               .firmware_name = "slpi.mdt",
+>>> +               .pas_id = 12,
+>>> +               .auto_boot = true,
+>>> +               .proxy_pd_names = (char*[]){
+>>> +                       "lcx",
+>>> +                       "lmx",
+>>> +                       NULL
+>>> +               },
+>>> +               .load_state = "slpi",
+>>> +               .ssr_name = "dsps",
+>>> +               .sysmon_name = "slpi",
+>>> +               .ssctl_id = 0x16,
+>> Isn't this identical to sm8150_slpi_resource?
+>>
+>> Konrad
+> 
+> Yes it is. I added a new entry because for SM8150, SM8250, and SM8350
+> they are duplicated as well. The SDM845's struct is indentical to
+> SM8150/SM8250/SM8350's structs.
+Well, you just found a quick improvement to make then! :D
 
 Konrad
+> 
+> Kind regards,
+> Dylan Van Assche
+> 
+>>> +};
+>>> +
+>>>  static const struct adsp_data sm8150_slpi_resource = {
+>>>                 .crash_reason_smem = 424,
+>>>                 .firmware_name = "slpi.mdt",
+>>> @@ -1201,6 +1217,7 @@ static const struct of_device_id
+>>> adsp_of_match[] = {
+>>>         { .compatible = "qcom,sdm660-adsp-pas", .data =
+>>> &adsp_resource_init},
+>>>         { .compatible = "qcom,sdm845-adsp-pas", .data =
+>>> &sdm845_adsp_resource_init},
+>>>         { .compatible = "qcom,sdm845-cdsp-pas", .data =
+>>> &sdm845_cdsp_resource_init},
+>>> +       { .compatible = "qcom,sdm845-slpi-pas", .data =
+>>> &sdm845_slpi_resource},
+>>>         { .compatible = "qcom,sdx55-mpss-pas", .data =
+>>> &sdx55_mpss_resource},
+>>>         { .compatible = "qcom,sm6115-adsp-pas", .data =
+>>> &adsp_resource_init},
+>>>         { .compatible = "qcom,sm6115-cdsp-pas", .data =
+>>> &cdsp_resource_init},
 > 
