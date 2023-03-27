@@ -2,137 +2,469 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 155E46C9EAD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1B26C9EAE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:56:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233513AbjC0Iza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 04:55:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58942 "EHLO
+        id S233516AbjC0I4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 04:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232907AbjC0IzC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:55:02 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC5E902C
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:50:41 -0700 (PDT)
+        with ESMTP id S232975AbjC0Izc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:55:32 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13632EC
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:51:42 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id h25so10334172lfv.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:51:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1679907041; x=1711443041;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vY3KoypFPKzdZSYJPM6q5nkoi3aDDvQNGeIcaUwe7YU=;
-  b=TdRpgST1+fqSqfWK57EGCZuE36tx7ENicNY7vFq8MOVS+xeCkVcrDH01
-   sLZE1rX6/qPkCvlIeXP6g76VAglIcj8lKYOgxvNi8yGVNlN4OrJgdgO7O
-   YTdlhUzVGUNEWjqRjXzQ4WSz+LzXZhYMAzwgJ1Bp/Y8WHcQdjxQhLKgi+
-   DIlGIeQHIokLqcbtM7bEODunI3mlCjFeDP+JBM1kElXgl3bGLmeE0lLb4
-   pLysg91hKJKzave1wgZF4sFDO/7PTsc4QbgluXLew5uGg85Xh8nQTpKsp
-   CA2tpE16a865IUhONk2kuLmHVswodAQ7eNfE4fNH8rGbYPr1MOVi7ChtM
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,294,1673910000"; 
-   d="scan'208";a="29947163"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 27 Mar 2023 10:50:38 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 27 Mar 2023 10:50:39 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 27 Mar 2023 10:50:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1679907039; x=1711443039;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vY3KoypFPKzdZSYJPM6q5nkoi3aDDvQNGeIcaUwe7YU=;
-  b=VikFDJtqUi98a1xLp5Pv5MkU//Ijl6qX5VPmn/2NclRH/E7c1RgH5uAU
-   6NNkNQ2GDNmoy0qhJe/ZP4fikdYRVK51wJRz1bjxs3hcPX4iyFyVBD3Aa
-   qfIUUuwDC3OsG2QbC+Fe5B2tCPyk0obkdxcP0n3IND/4mrQnVbuveqgqb
-   tuanlpZzblzf5laa/KKHbP/7mqs1pXNGxs5WW+O+X4x3H9sWGowYoL1G1
-   gLEBRmOEwWJAgdE+ufx5N3oqH4gq52Od/UD01WDIQkDDQs87Q58tXACZ8
-   aeiRuhl6YOOtT8o5uUQ/Szf0Iq9Gl+6iDG1cRNbWrIENZTokx59+R82Go
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,294,1673910000"; 
-   d="scan'208";a="29947161"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Mar 2023 10:50:38 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C170E280056;
-        Mon, 27 Mar 2023 10:50:37 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mm: Fix lcdif compatible
-Date:   Mon, 27 Mar 2023 10:50:37 +0200
-Message-ID: <5663802.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230327023444.GF3364759@dragon>
-References: <20230316140646.489626-1-alexander.stein@ew.tq-group.com> <20230327023444.GF3364759@dragon>
+        d=linaro.org; s=google; t=1679907100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O2+kRCNVOr2pBFfgdf+JplZo6qHGQlkF340GrkRwD8U=;
+        b=qU7jolIbbSl5zD2tA8YK/ZxLY8rDToXZQ/ycWR5SP3WAnXtSHbuN/RVkwohZXclLu2
+         /WCkMb4UHx8aTV29QRpBcpapGzzdFva81aErnk5Vp+bHjM+q4wObkrOxnZS7jNJ34umY
+         GRPv0wr8sv3fH3KChaOsdndWdVSzn2/1CJLipV+rd6y/WrkNsQZTYiCqemyx0WL3716p
+         Meleyv58Xv7bYQMccrIdNHxefc/t0HEluQcgyazXHFli9JoLU+YsoMtfojTkWayPcRWX
+         DEISpVzkfzThO+WDy9+XRPCIlSjYezeTjjEV+e/vKBgQmLUVpv/ehO+c6Hq+IEfVwOlW
+         p62A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679907100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O2+kRCNVOr2pBFfgdf+JplZo6qHGQlkF340GrkRwD8U=;
+        b=V2hCnLJT893YF1PabRdGXkhgczyZePynu7Rl4aJlWDzq8tX0S7sAym5+moZdJKj8vM
+         nT18qkw9UGOarcXUPCTQ2Zl1UU9ikh1IpKvjs/H8BeXpotAnD/63WOIx319Bnj7GPxbL
+         nKbt4zip4cte9Z61QybFOhbz/tCHn9LPKmHph1wjShht7lXGTLs8VvKi/Fpr7+EVmK2G
+         YZIqWaTx9HbHOsuNSVX7MMwbrvqdhTydNwSWHl3mYjxyFVHMlQgD3yJJilOAPL/ZISMK
+         7ohxHhdRwJrFxFEJz5GGZrqrUjT4c3WjN9vobnAV0oZAW3rDDlA9wmpQwSohwNg06qWJ
+         olyw==
+X-Gm-Message-State: AAQBX9eWvNcQvIHe/qbN1XIfe0isDNnziwE9KiSD9xp14AsEdYq5z0Oh
+        J8r43JYqZmv4cNYSkrrf5jtgCg==
+X-Google-Smtp-Source: AKy350bFRvV8uD+FvgcuLNXlZq2os4xpuXLlzBvvYRq/oAQPOwFEwwRffDZ0bMYEGWGMOj2ISw+rPw==
+X-Received: by 2002:ac2:5607:0:b0:4c0:91d0:e7ab with SMTP id v7-20020ac25607000000b004c091d0e7abmr2573477lfd.28.1679907100312;
+        Mon, 27 Mar 2023 01:51:40 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id c18-20020ac25312000000b004eaec70c68esm2731000lfh.294.2023.03.27.01.51.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 01:51:39 -0700 (PDT)
+Message-ID: <84bcb9a7-40f7-b692-0f06-4075b27b5b7e@linaro.org>
+Date:   Mon, 27 Mar 2023 10:51:38 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 12/12] arm64: dts: qcom: sc8180x: Introduce Lenovo Flex
+ 5G
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230325122444.249507-1-vkoul@kernel.org>
+ <20230325122444.249507-13-vkoul@kernel.org>
+ <cf4feba0-de96-9e81-592b-e4b7520340a6@linaro.org> <ZCEs57ttv67KfOua@matsya>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZCEs57ttv67KfOua@matsya>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 27. M=E4rz 2023, 04:34:44 CEST schrieb Shawn Guo:
-> On Thu, Mar 16, 2023 at 03:06:45PM +0100, Alexander Stein wrote:
-> > imx8mm-lcdif is compatible to imx6sx-lcdif.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->=20
-> Doesn't apply for me.
-
-Ah, you are right. These are patches based on Jagan's MIPI-DSI support.
-I'll resubmit once that series is applied.
-
-Best regards,
-Alexander
-
-> Shawn
->=20
-> > ---
-> >=20
-> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8mm.dtsi index
-> > fedd32cfa47a..1de455ba21da 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > @@ -1120,7 +1120,7 @@ aips4: bus@32c00000 {
-> >=20
-> >  			ranges =3D <0x32c00000 0x32c00000 0x400000>;
-> >  		=09
-> >  			lcdif: lcdif@32e00000 {
-> >=20
-> > -				compatible =3D "fsl,imx28-lcdif";
-> > +				compatible =3D "fsl,imx8mm-lcdif",=20
-"fsl,imx6sx-lcdif";
-> >=20
-> >  				reg =3D <0x32e00000 0x10000>;
-> >  				clocks =3D <&clk=20
-IMX8MM_CLK_LCDIF_PIXEL>,
-> >  			=09
-> >  					 <&clk=20
-IMX8MM_CLK_DISP_AXI_ROOT>,
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+On 27.03.2023 07:43, Vinod Koul wrote:
+> On 25-03-23, 13:40, Konrad Dybcio wrote:
+>>
+>>
+>> On 25.03.2023 13:24, Vinod Koul wrote:
+>>> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>
+>>> Introduce support for the Lenovo Flex 5G laptop, built on the Qualcomm
+>>> SC8180X platform. Supported peripherals includes keyboard, touchpad,
+>>> UFS storage, external USB and WiFi.
+>>>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>>  .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 590 ++++++++++++++++++
+>>>  2 files changed, 591 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index fdce44a7a902..f096561f711e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -141,6 +141,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie-nvme-lte.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= sc8180x-lenovo-flex-5g.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc8180x-primus.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-lenovo-thinkpad-x13s.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+>>> new file mode 100644
+>>> index 000000000000..76dad608fb85
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+>>> @@ -0,0 +1,590 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+>>> + * Copyright (c) 2020-2023, Linaro Limited
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/input/gpio-keys.h>
+>>> +#include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>> +#include "sc8180x.dtsi"
+>>> +#include "sc8180x-pmics.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Lenovo Flex 5G";
+>>> +	compatible = "lenovo,flex-5g", "qcom,sc8180x";
+>>> +
+>>> +	aliases {
+>>> +		serial0 = &uart13;
+>>> +	};
+>>> +
+>>> +	backlight: backlight {
+>>> +		compatible = "pwm-backlight";
+>>> +		pwms = <&pmc8180c_lpg 4 1000000>;
+>>> +		enable-gpios = <&pmc8180c_gpios 8 GPIO_ACTIVE_HIGH>;
+>>> +
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&bl_pwm_default>;
+>>> +	};
+>>> +
+>>> +	chosen {
+>>> +	};
+>> Unused, remove.
+> 
+> ok
+> 
+>>
+>>> +
+>>> +	gpio-keys {
+>>> +		compatible = "gpio-keys";
+>>> +
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&hall_int_active_state>;
+>> property
+>> property-names
+> 
+> ack here and everwhere else
+> 
+>>
+>>> +
+>>> +		lid {
+>>> +			gpios = <&tlmm 121 GPIO_ACTIVE_LOW>;
+>>> +			linux,input-type = <EV_SW>;
+>>> +			linux,code = <SW_LID>;
+>>> +			wakeup-source;
+>>> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	reserved-memory {
+>>> +		rmtfs_mem: rmtfs-region@85500000 {
+>>> +			compatible = "qcom,rmtfs-mem";
+>>> +			reg = <0x0 0x85500000 0x0 0x200000>;
+>> You're using 0 and 0x0 in a mixed fashion. Please stick with one,
+>> preferably 0x0 everywhere.
+> 
+> yep
+> 
+>>
+>>> +			no-map;
+>>> +
+>>> +			qcom,client-id = <1>;
+>>> +			qcom,vmid = <15>;
+>>> +		};
+>>> +
+>> [...]
+>>
+>>> +
+>>> +&dispcc {
+>>> +	status = "okay";
+>> Any reason for disabling dispcc by default?
+> 
+> I think that is a good question. I would prefer disabling and enabling
+> in places it is required, we might have a headless system or a dev board
+> where we dont have display..?
+It's a double-edged sword: on one side we could disable clocks that were
+mistakenly enabled, but on the other hand we do keep some some clocks
+always-on within that driver..
 
+Perhaps leave it on by default and shut it off per-board if need be.
 
+> 
+>>
+>>> +};
+>>> +
+>>> +&gpu {
+>>> +	status = "okay";
+>>> +
+>>> +	zap-shader {
+>>> +		memory-region = <&gpu_mem>;
+>>> +		firmware-name = "qcom/sc8180x/qcdxkmsuc8180.mbn";
+>>> +	};
+>>> +};
+>>> +
+>>> +&i2c1 {
+>>> +	clock-frequency = <100000>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&i2c1_active>, <&i2c1_hid_active>;
+>> property
+>> property-names
+>>
+>>> +
+>>> +	status = "okay";
+>>> +
+>>> +	hid@10 {
+>>> +		compatible = "hid-over-i2c";
+>>> +		reg = <0x10>;
+>>> +		hid-descr-addr = <0x1>;
+>>> +
+>>> +		interrupts-extended = <&tlmm 122 IRQ_TYPE_LEVEL_LOW>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&i2c7 {
+>>> +	clock-frequency = <100000>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&i2c7_active>, <&i2c7_hid_active>;
+>>> +
+>>> +	status = "okay";
+>>> +
+>>> +	hid@5 {
+>>> +		compatible = "hid-over-i2c";
+>>> +		reg = <0x5>;
+>>> +		hid-descr-addr = <0x20>;
+>>> +
+>>> +		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_LOW>;
+>>> +	};
+>>> +
+>>> +	hid@2c {
+>>> +		compatible = "hid-over-i2c";
+>>> +		reg = <0x2c>;
+>>> +		hid-descr-addr = <0x20>;
+>>> +
+>>> +		interrupts-extended = <&tlmm 24 IRQ_TYPE_LEVEL_LOW>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&mdss {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&mdss_edp {
+>>> +	data-lanes = <0 1 2 3>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&edp_hpd_active>;
+>>> +
+>>> +	status = "okay";
+>>> +
+>>> +	aux-bus {
+>>> +		panel {
+>>> +			compatible = "edp-panel";
+>>> +			no-hpd;
+>>> +
+>>> +			backlight = <&backlight>;
+>>> +
+>>> +			ports {
+>>> +				port {
+>>> +					auo_b140han06_in: endpoint {
+>>> +						remote-endpoint = <&mdss_edp_out>;
+>>> +					};
+>>> +				};
+>>> +			};
+>>> +		};
+>>> +	};
+>>> +
+>>> +	ports {
+>>> +		port@1 {
+>>> +			reg = <1>;
+>>> +			mdss_edp_out: endpoint {
+>>> +				remote-endpoint = <&auo_b140han06_in>;
+>>> +			};
+>>> +		};
+>>> +	};
+>>> +};
+>>> +
+>>> +&pcie3 {
+>>> +	perst-gpio = <&tlmm 178 GPIO_ACTIVE_LOW>;
+>>> +	wake-gpio = <&tlmm 180 GPIO_ACTIVE_HIGH>;
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&pcie3_default_state>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&pcie3_phy {
+>>> +	vdda-phy-supply = <&vreg_l5e_0p88>;
+>>> +	vdda-pll-supply = <&vreg_l3c_1p2>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&pmc8180c_lpg {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&qupv3_id_0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&qupv3_id_1 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&qupv3_id_2 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&remoteproc_adsp {
+>>> +	memory-region = <&adsp_mem>;
+>>> +	firmware-name = "qcom/sc8180x/LENOVO/82AK/qcadsp8180.mbn";
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&remoteproc_cdsp {
+>>> +	memory-region = <&cdsp_mem>;
+>>> +	firmware-name = "qcom/sc8180x/LENOVO/82AK/qccdsp8180.mbn";
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&remoteproc_mpss {
+>>> +	memory-region = <&mpss_mem>;
+>>> +	firmware-name = "qcom/sc8180x/LENOVO/82AK/qcmpss8180_nm.mbn";
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&uart13 {
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&uart13_state>;
+>>> +
+>>> +	status = "okay";
+>>> +
+>>> +	bluetooth {
+>>> +		compatible = "qcom,wcn3998-bt";
+>>> +
+>>> +		vddio-supply = <&vreg_s4a_1p8>;
+>>> +		vddxo-supply = <&vreg_l7a_1p8>;
+>>> +		vddrf-supply = <&vreg_l9a_1p3>;
+>>> +		vddch0-supply = <&vreg_l11c_3p3>;
+>>> +		max-speed = <3200000>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&ufs_mem_hc {
+>>> +	reset-gpios = <&tlmm 190 GPIO_ACTIVE_LOW>;
+>>> +
+>>> +	vcc-supply = <&vreg_l10e_2p9>;
+>>> +	vcc-max-microamp = <155000>;
+>>> +
+>>> +	vccq2-supply = <&vreg_l7e_1p8>;
+>>> +	vccq2-max-microamp = <425000>;
+>> Missing regulator-allow-set-load for regulators that have current
+>> ops assigned to them.
+>>
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&ufs_mem_phy {
+>>> +	vdda-phy-supply = <&vreg_l5e_0p88>;
+>>> +	vdda-pll-supply = <&vreg_l3c_1p2>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_prim_hsphy {
+>>> +	vdda-pll-supply = <&vreg_l5e_0p88>;
+>>> +	vdda18-supply = <&vreg_l12a_1p8>;
+>>> +	vdda33-supply = <&vreg_l16e_3p0>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_prim_qmpphy {
+>>> +	vdda-phy-supply = <&vreg_l3c_1p2>;
+>>> +	vdda-pll-supply = <&vreg_l5e_0p88>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_prim {
+>> We mostly use usb_1 / usb_2 for this
+> 
+> Isnt this better from readablity pov? esp since this is board dts
+Generally both sound pretty reasonable but I'm just saying that
+all other trees name this differently..
+
+Konrad
+> 
+>>
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_prim_dwc3 {
+>>> +	dr_mode = "host";
+>>> +};
+>>> +
+>>> +&usb_sec_hsphy {
+>>> +	vdda-pll-supply = <&vreg_l5e_0p88>;
+>>> +	vdda18-supply = <&vreg_l12a_1p8>;
+>>> +	vdda33-supply = <&vreg_l16e_3p0>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_sec_qmpphy {
+>>> +	vdda-phy-supply = <&vreg_l3c_1p2>;
+>>> +	vdda-pll-supply = <&vreg_l5e_0p88>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_sec {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&usb_sec_dwc3 {
+>>> +	dr_mode = "host";
+>> No roleswitching?
+> 
+> Laptop :-) Always in host mode
+> 
+>>
+>>> +};
+>>> +
+>>> +&wifi {
+>>> +	memory-region = <&wlan_mem>;
+>> It comes from the common dt file, so this may as well stay there.
+> 
+> I can do that
+> 
