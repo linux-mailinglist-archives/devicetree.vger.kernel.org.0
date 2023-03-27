@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D0196CA4A2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AFA26CA4A5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232251AbjC0Mxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 08:53:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51748 "EHLO
+        id S232557AbjC0Mxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 08:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232156AbjC0MxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:53:23 -0400
+        with ESMTP id S232290AbjC0MxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:53:24 -0400
 Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0611724
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:21 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id bg16-20020a05600c3c9000b003eb34e21bdfso7335838wmb.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:21 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 429071B1
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:22 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso7309508wms.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679921600;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=37FpTbJ+p7al0O18ZyBtxicxMZqjHJxOYjRMTMvw+q8=;
-        b=nhPSOmDfzAecbkr3paJAPzUdgz1XNBvuOjoEV2DguxIZ0YSZ888H30COiZXAw8uVjq
-         n+Lj6/NvFO3nDf7YKxDAkziXQ/dWOT+BWYAcUsxXaAva7PmFXns0sMaEoj+6GQsRahEd
-         dXnVGdQCKLU9yvt59jjtZx1B2nK+V15OJl0Yu27bwl6i4Sk7IG2E8+1m32/qPo8zR6Wr
-         axD36jG+N3jpr4wgVxRu7+yblTkNvz7WCnT37RLjI2QJv1uVE0619Vvqj/lbt3ZAOHHE
-         O21tGggGIFLTtqwKlDm+rj5WOQPPmFnyye8Lbh8sFeULJDyLTr6qotH6blWZx9G5X/OK
-         tfRw==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679921601;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MUtBx+ZDcvBvTMSzz6CyHu6NajXWGopTZJ1ZilR4jUE=;
+        b=zQn43BYBE5LEVK7NNGzUv02OGgPeuZ/xlBOKv7AtwuRiLZJ63ecV0sbHQkd5fjt+vT
+         ZAFZP5orxIiO4BiUb8rq9dWzmguDJBuWuvFXWcXNPzGBFipIx/XVRzYW4vr29G9arb5a
+         L/6W6Ej6nX0gcFjo1HeUhIEkd7U+DQf0JVH1foL4cBPjhjzTXH1mT10FmPvCU20GddVa
+         dsRj1g19Wa0H9TZAgYSOfXqTNjySCv63dNvGefyHUopd86VfIDWfZCnZNsYlLhFDOmWf
+         mytruDw5bLHaK2inhJC9eX0fUbls6vZiyavQBHIDmjsXeQln77cR0HhM/Rmd++6e10D/
+         0/qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679921600;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=37FpTbJ+p7al0O18ZyBtxicxMZqjHJxOYjRMTMvw+q8=;
-        b=ZJ2vlXqje/Iy1bpj8CQzJrGId/Cck28qeM9SZ4PYNwzfbdA+9KFofbNo1cvdIFYjWt
-         Se3wdvnd01rRQxjGehwv7WNpkPeD+B6XjcTp/Gluu8xQeHbHa+H9+l3mcSzkIMtllqfL
-         x4ZLbUWeQdV3jJIkL/xGoBX9un1GHdoM/dtFyY5B5FDjz/FidREWwqnrk1qQUN5RD7Iz
-         Y5t/C/63e3+vwBS/+EYBOeqIbvgFB4dGpe4B4LalRi1w3T40XdbyTe6/fGNRdELTbJN8
-         87FlOsM9uX6JB20uGYlHCclfez77oS9zG2TwJ+tRQ4TUlJe/qOPKhyCAXQMjVp3b7CbV
-         2gTQ==
-X-Gm-Message-State: AO0yUKW8ZfCoYCOlFS+RtX0l8yvSDqegk7MtKw1uI69gn3ntBXX8EQRr
-        wVFUbnEx67sYmxk2wG9en1AGjoDIL+Rg8ix9m/M=
-X-Google-Smtp-Source: AK7set9fg69jRpZK00jq+nIGBu3vJ7Fes2R2mZZh5IPLtSMPN/+1fP9in+puSVD3SCGRsbIUiwv4KQ==
-X-Received: by 2002:a05:600c:548d:b0:3ee:c06:e942 with SMTP id iv13-20020a05600c548d00b003ee0c06e942mr8843546wmb.25.1679921599861;
-        Mon, 27 Mar 2023 05:53:19 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679921601;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MUtBx+ZDcvBvTMSzz6CyHu6NajXWGopTZJ1ZilR4jUE=;
+        b=KRlea7O9hGeHfCahGPfIUmmY8EXGd2CNb1xYfjuE8xSXzx7UF/Bt8jloNgrcf2/pjd
+         CpVZpPbB/+Olb8x1s+r2qZPZAGeAdmwzHKrp4ewy/PzthpK0Oi6B3gaecCLEcLQlF9Tf
+         LQzSSuZ5+ZvqN6fVk9umdtspaMA9Y1nfojpgx5DWjwm0MzGmxVjLUiKZIiSJpXKODG7x
+         E8IIvS3YUF5J0jSIz0y8ClCxeZ+uENMnYUvqY3QaVhvSdocCySIuN64B5BpI1rwunWFm
+         +owYw0j2i24W2vigobvCMefbloI3fZ9P54xaqlApRRUyt2slwBfQoh4aFbdXVU/U3VMs
+         1xcg==
+X-Gm-Message-State: AO0yUKXVzlPRRvtThCjNpB5w/qKzBgFP5ubKChV17tdFD2UcAFEe2dzf
+        Ty5lcB0cg5yyD3o9Vrp+QKyxbQ==
+X-Google-Smtp-Source: AK7set8foAhaEz1+Hy9mnqHQULu3bo54rjsgWxkfWmq5tyVDg/aq7y2lkEdRXdvEwJICbCNSw2i4EA==
+X-Received: by 2002:a7b:cd0d:0:b0:3ed:30cb:5569 with SMTP id f13-20020a7bcd0d000000b003ed30cb5569mr8471551wmj.20.1679921600794;
+        Mon, 27 Mar 2023 05:53:20 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:313d:a304:2790:a949])
-        by smtp.gmail.com with ESMTPSA id q25-20020a1ce919000000b003ee58e8c971sm13572220wmc.14.2023.03.27.05.53.18
+        by smtp.gmail.com with ESMTPSA id q25-20020a1ce919000000b003ee58e8c971sm13572220wmc.14.2023.03.27.05.53.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 05:53:19 -0700 (PDT)
+        Mon, 27 Mar 2023 05:53:20 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,10 +58,12 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v3 00/18] arm64: dts: qcom: sa8775p: add basic PMIC support
-Date:   Mon, 27 Mar 2023 14:52:58 +0200
-Message-Id: <20230327125316.210812-1-brgl@bgdev.pl>
+Subject: [PATCH v3 01/18] arm64: dts: qcom: sa8775p: pad reg properties to 8 digits
+Date:   Mon, 27 Mar 2023 14:52:59 +0200
+Message-Id: <20230327125316.210812-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230327125316.210812-1-brgl@bgdev.pl>
+References: <20230327125316.210812-1-brgl@bgdev.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -74,63 +77,73 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-This adds support for a number of PMIC functionalities on sa8775p. The PMIC
-used on the reference board is pm8654au which is another variant of the SPMI
-PMIC from Qualcomm with an automotive twist.
+The file has inconsistent padding of the address part of soc node
+children's reg properties. Fix it.
 
-v2 -> v3:
-- add GPIO line names for the PMIC GPIOs on sa8775p-ride
-- add missing GPIO chips to the PMIC .dtsi
-- add missing thermal zones and alerts
-- add regulators (driver support and regulator settings for sa8775p-ride)
-- add missing PDC mappings
-- squash patches 7 and 8 to avoid adding code without users
-- dropped Krzysztof's Ack from patch 3 as it now extends the max number of
-  mappings so most likely needs a second look
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-v1 -> v2:
-- improve DT coding style where needed
-- don't disable the power button in PMIC's .dtsi
-- add debounce time for pwrkey and resin inputs
-- use the official PMIC's name in DT labels
-- add reg-names property for the PON node
-- add patches that tidy up the dtsi before the PMIC stuff
-
-Bartosz Golaszewski (18):
-  arm64: dts: qcom: sa8775p: pad reg properties to 8 digits
-  arm64: dts: qcom: sa8775p: sort soc nodes by reg property
-  dt-bindings: interrupt-controller: qcom-pdc: add compatible for
-    sa8775p
-  arm64: dts: qcom: sa8775p: add the pdc node
-  arm64: dts: qcom: sa8775p: add the spmi node
-  dt-bindings: mfd: qcom,spmi-pmic: add compatible for pmm8654au
-  arm64: dts: qcom: sa8775p: add support for the on-board PMICs
-  arm64: dts: qcom: sa8775p: add the Power On device node
-  arm64: dts: qcom: sa8775p: pmic: add the power key
-  arm64: dts: qcom: sa8775p: pmic: add support for the pmm8654 RESIN
-    input
-  arm64: dts: qcom: sa8775p: pmic: add thermal zones
-  dt-bindings: pinctrl: qcom,pmic-gpio: add compatible for
-    pmm8654au-gpio
-  pinctrl: qcom: spmi-gpio: add support for pmm8654au-gpio
-  arm64: dts: qcom: sa8775p: add PMIC GPIO controller nodes
-  arm64: dts: qcom: sa8775p-ride: set gpio-line-names for PMIC GPIOs
-  dt-bindings: regulator: qcom,rpmh: add compatible for pmm8654au RPMH
-  regulator: qcom-rpmh: add support for pmm8654au regulators
-  arm64: dts: qcom: sa8775p-ride: add PMIC regulators
-
- .../interrupt-controller/qcom,pdc.yaml        |   3 +-
- .../bindings/mfd/qcom,spmi-pmic.yaml          |   1 +
- .../bindings/pinctrl/qcom,pmic-gpio.yaml      |   2 +
- .../regulator/qcom,rpmh-regulator.yaml        |  14 +
- arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi   | 211 ++++++++
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts     | 285 +++++++++++
- arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 465 ++++++++++--------
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   1 +
- drivers/regulator/qcom-rpmh-regulator.c       |  55 +++
- 9 files changed, 838 insertions(+), 199 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index c5b73c591e0f..5aa28a3b12ae 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -440,7 +440,7 @@ soc: soc@0 {
+ 
+ 		gcc: clock-controller@100000 {
+ 			compatible = "qcom,sa8775p-gcc";
+-			reg = <0x0 0x100000 0x0 0xc7018>;
++			reg = <0x0 0x00100000 0x0 0xc7018>;
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
+@@ -464,7 +464,7 @@ gcc: clock-controller@100000 {
+ 
+ 		ipcc: mailbox@408000 {
+ 			compatible = "qcom,sa8775p-ipcc", "qcom,ipcc";
+-			reg = <0x0 0x408000 0x0 0x1000>;
++			reg = <0x0 0x00408000 0x0 0x1000>;
+ 			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
+@@ -473,7 +473,7 @@ ipcc: mailbox@408000 {
+ 
+ 		qupv3_id_1: geniqup@ac0000 {
+ 			compatible = "qcom,geni-se-qup";
+-			reg = <0x0 0xac0000 0x0 0x6000>;
++			reg = <0x0 0x00ac0000 0x0 0x6000>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges;
+@@ -485,7 +485,7 @@ qupv3_id_1: geniqup@ac0000 {
+ 
+ 			uart10: serial@a8c000 {
+ 				compatible = "qcom,geni-uart";
+-				reg = <0x0 0xa8c000 0x0 0x4000>;
++				reg = <0x0 0x00a8c000 0x0 0x4000>;
+ 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-names = "se";
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
+@@ -735,7 +735,7 @@ rpmhpd_opp_turbo_l1: opp-9 {
+ 
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+-			reg = <0x0 0x1f40000 0x0 0x20000>;
++			reg = <0x0 0x01f40000 0x0 0x20000>;
+ 			#hwlock-cells = <1>;
+ 		};
+ 
+@@ -754,7 +754,7 @@ cpufreq_hw: cpufreq@18591000 {
+ 
+ 		tlmm: pinctrl@f000000 {
+ 			compatible = "qcom,sa8775p-tlmm";
+-			reg = <0x0 0xf000000 0x0 0x1000000>;
++			reg = <0x0 0x0f000000 0x0 0x1000000>;
+ 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
 -- 
 2.37.2
 
