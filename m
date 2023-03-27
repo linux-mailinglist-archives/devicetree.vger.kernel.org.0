@@ -2,93 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE4A66CA6CF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB526CA74E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbjC0OKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 10:10:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42336 "EHLO
+        id S232991AbjC0OST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:18:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229852AbjC0OKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:10:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9487BD3;
-        Mon, 27 Mar 2023 07:09:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 59A90B80BEC;
-        Mon, 27 Mar 2023 14:09:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CE99C433EF;
-        Mon, 27 Mar 2023 14:09:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679926196;
-        bh=qhleqvSXG55LxvL+uEa9mQ1uZqawiIM0nEiCIToDFzE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gyz3rDhZiVPqbbQYupLmUGWcI1BIvh3RYJcqWZuuFKl3ygJh3GXR3R1M9hWXUv9qY
-         rdl/JEvArv34V2ryq0xWC7VFi2Z3tvIwOrl6AErokW4MQfmapOtZ3hQ6AM+GvSZx0z
-         G/PEzJtXUyXAZJa8Fblso8ugrxIukM4NSndWNi7gCmlzGLqTnz3BUppmnsu5GvbMvJ
-         WGA6Re0e5drIsKBQnbX5Ve737LcMqu3SjUOakQ9F402KcbNBT5mTXTPk49dBbziPOJ
-         wuqFaaOUl+6yvAjkgskdkzv/Q8MhoD1XQ5NXjOpio67D6supKhRshqwW9nMMBUEtlg
-         EjtXMFKw+HRjQ==
-Date:   Mon, 27 Mar 2023 07:12:59 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232488AbjC0OSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:18:05 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98626A54;
+        Mon, 27 Mar 2023 07:16:19 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id h25so11660185lfv.6;
+        Mon, 27 Mar 2023 07:16:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679926575;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hEN6CxeaZDl0mJP9ZYJ+VeHAdDWaws/ieJcjOL6ATL8=;
+        b=ChQeGRVfObIFJ2D+tCk4G38Ywu8sf5w0IKv2Z2raD4bR/mlpppD/HllSCU8DEJ8HgE
+         PbQtAseuAp3XrvKtw8Hxvl+SSyyaN/Io/i+3Zd/CEldP12j0eDrVUu6F4hntBntsn6v0
+         JdjY+2bpZR7WzY1vX5TKgaXJdsqHFMJwpvxMiEYgJmxjkZxr2VuCGp9AwoHI+XaTm69R
+         1uhQ94x6yuv3XE2+aloMAILp70ajc1tY0c9EilIbGmXH/huNB7TDGbiWifNtLnFoQ6kl
+         V6Qg3ONcMtTjGgBpJaoF5iMNa4Ylg8O6fG808zL2IqYpyhu8L2xBaFetXI5uQ0PKiXBE
+         LWoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679926575;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hEN6CxeaZDl0mJP9ZYJ+VeHAdDWaws/ieJcjOL6ATL8=;
+        b=mf+PfNJ4fFC0tY5J64odo6Np4aEeSpBpqCG9gA6LuWYq2VP1i8aA1tTIMw2HTaZ+IX
+         y48LUt9dEmjCca7jRwG+WNqlkM9h0UPjWqgEHdrcR8FilIGArLjDsUWeZxnqhGcEstNL
+         6BVN+C3sh02tOI7Vt0dsq29ahn5U7ZuZBs2vJa4WgmVYGZ/iQ2SID7dbify+JXsTeZZx
+         eal8vt3wiY4yBC2wly2GASigdWdTStqVxHHw6IvsSiKrrzgIflryD/CGylF0qcgFJ4kL
+         tx5F+wt8hFSOjswGMr6rfizSu2uwdPlTtO6dEV5O/5lKWnsAJm0PUt7JktYcfbhb2iDH
+         KGFw==
+X-Gm-Message-State: AAQBX9dFECylkVK/+2H3/+MZrxi1+ZflaVpMFzz3DgCok0xDXU/Gj3dr
+        9zVlI/BzyCijZ46t/k5jnHU=
+X-Google-Smtp-Source: AKy350ZsBIo2tJ8zJ115L0WAvIXrjx5aREjkdaPZi5OhIvkTIj/WXwkslLFFcseehLD+ZMSsb+zRXA==
+X-Received: by 2002:ac2:550f:0:b0:4d7:44c9:9f4c with SMTP id j15-20020ac2550f000000b004d744c99f4cmr3329822lfk.4.1679926575279;
+        Mon, 27 Mar 2023 07:16:15 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id w3-20020ac24423000000b004e977970721sm4444519lfl.219.2023.03.27.07.16.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 07:16:14 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-pci@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-usb@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-scsi@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v2 00/12] Introduce the SC8180x devices
-Message-ID: <20230327141259.bjdtyvhilxuxts62@ripper>
-References: <20230325122444.249507-1-vkoul@kernel.org>
- <6f6be544-48da-0c22-ea54-e07e35131ec9@linaro.org>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V6 0/3] nvmem: add fixed cells layout
+Date:   Mon, 27 Mar 2023 16:16:08 +0200
+Message-Id: <20230327141611.25131-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6f6be544-48da-0c22-ea54-e07e35131ec9@linaro.org>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 09:46:31AM +0200, Krzysztof Kozlowski wrote:
-> On 25/03/2023 13:24, Vinod Koul wrote:
-> > This introduces Qualcomm SC8180x SoC which features in Lenovo Flex 5G
-> > laptop. This also adds support for Primus platform as well as Lenovo Flex 5G
-> > laptop.
-> > 
-> > I would be great if submaintainers can ack the binding patch so that
-> > everything can go thru qcom tree
-> 
-> I think Bjorn recently was rejecting taking bindings patches, so what
-> changed?
-> 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Nothing changed. In the interest of reducing the risk for merge
-conflicts I still think it's best if bindings goes via respective
-maintainer trees; so patch 1 is for me...
+NVMEM bindings received a new feature recently: layouts. They allow 
+defining NVMEM device content in a separated DT node named 
+"nvmem-layout". That improvement results in cleaner and more generic
+bindings.
 
-Regards,
-Bjorn
+New bindings & drivers should use layouts design. If possible we should
+also try converting existing bindings & drivers to layouts.
+
+This patchset allows defining NVMEM cells in a new way (using NVMEM
+layout feature).
+
+This deprecates support for defining NVMEM cells as direct DT device
+node subnodes but IT DOESN'T drop support for that.
+
+PLEASE understand what this patchset handles. It adds new & preferred
+way of defining NVMEM cells. This patchset does NOT meant to:
+1. Convert ALL existing bindings or drivers (it's a task for later)
+2. Add support for new extra features (like multiple layouts)
+3. Break any backward compatibility (it WON'T happen)
+
+V5:
+Support "fixed-layout" internally in NVMEM core (see PATCH 3/3)
+V6:
+Rename function & add unevaluatedProperties
+
+Rafał Miłecki (3):
+  dt-bindings: nvmem: layouts: add fixed-layout
+  dt-bindings: nvmem: convert base example to use NVMEM fixed cells
+    layout
+  nvmem: core: add support for fixed cells *layout*
+
+ .../bindings/nvmem/layouts/fixed-cell.yaml    | 31 ++++++++++
+ .../bindings/nvmem/layouts/fixed-layout.yaml  | 50 +++++++++++++++
+ .../bindings/nvmem/layouts/nvmem-layout.yaml  |  5 +-
+ .../devicetree/bindings/nvmem/nvmem.yaml      | 61 ++++++++-----------
+ drivers/nvmem/core.c                          | 32 +++++++++-
+ 5 files changed, 137 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+ create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+
+-- 
+2.34.1
+
