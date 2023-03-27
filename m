@@ -2,96 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BDE96C9D62
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C0796C9D6E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233009AbjC0IPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 04:15:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44558 "EHLO
+        id S232701AbjC0IRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 04:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233019AbjC0IPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:15:04 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F292C524E
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:14:52 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id i5so32531227eda.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:14:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679904891;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uJ9/5C697ydgp86GT24/w/0BjIB/pHOZy6FLILlmTDY=;
-        b=i5SShJbAHbYWCT6T+tG3lc2zagmYkY2ltdA7KGBy5XUyuJY4z3W6Abysgs8ztT+hoa
-         KRQYcGuafcclzD7MFjvqbtGYCUZwaD0UZoQmGdb0/OhKkY+EMqVguV+O75bi65yexlmo
-         fIlHk8cUThAzLEUDyDclLj0TmGFOdFV+lsL+r7otIRkwAtBT/QAZ9vxS1+5C+4wGl8uM
-         c83EfOvR7PClbIn4LMqEEAfXCOorl46W6kbcTctR0PqBiVuUbw7N83ytH5ri+btkGyRg
-         LiO1EYmjZlFNMVqy7gf1Mq+xA/23CJUhx/z6zwktTsuweZSbqONx8IRuSVZF+XX7RuHt
-         XMzA==
+        with ESMTP id S232677AbjC0IRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:17:00 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F8C144AC
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:16:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1679904972;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dqM4HxKTQa8CAlzTf6R5B7JwdVrZ3pTGuhEoPvMHOiA=;
+        b=hy6951tUEeFZ5zWeCTKFe5yLOWJ8Pi2PZ6bu5qyigRDwFCGW6hRK42Kuno7fPctJhv8Mwx
+        WWYH8L2ZVkNjRQpSzBQQMK3EoscKBsvBLRuSe8BtL33FQPQzdvvAv97E30K3ybu136z43l
+        4QARiWIR8cjbjv/ANjpB6voqLyACA9g=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-524-XPBxVEePM0-MkrZwU0_lcw-1; Mon, 27 Mar 2023 04:16:11 -0400
+X-MC-Unique: XPBxVEePM0-MkrZwU0_lcw-1
+Received: by mail-wr1-f70.google.com with SMTP id b14-20020a05600003ce00b002cfefd8e637so615103wrg.15
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:16:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679904891;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uJ9/5C697ydgp86GT24/w/0BjIB/pHOZy6FLILlmTDY=;
-        b=vJPlAouFjO/SMl5MOdd8AZRm4fOVYUr8RJO3IAvx18Pl1n+kOzdU7cLn3VREspvkgS
-         KsI7ymKTmY/EvVIsmXjc4A/k1YZRMHdolm/l+1VZWdD2D8EPjXDSVE4Cykhv05nhd1vB
-         /Rknh/dPb2frsbFcN9zkvdyP6XaQSEf/MalsDWYn2ndEr/DtIBQERxXx8LGi5nk28LCm
-         NjKL0xRRa0FTJOaL4ibIrxgU/+u+LHNeNb3QsnQhKQ9bioRD+wjVKF071PwyBM1WpX79
-         Yg7tgi3kMal6tldySnsp9hG7MtE5rKITvV1xhSNgYIHtIU3vaE7xb5Wa0bKD/HxQX4kn
-         rLdA==
-X-Gm-Message-State: AAQBX9e+/Xe3CgoEubJjwA2cJqTijCczsRvxzKKje+X7lvMryFosVqrC
-        oq+9pA3Of2iJjzKK1DBPkf5egg==
-X-Google-Smtp-Source: AKy350bWKIDxQsBzXyvo0WoSSAogV1zSIUDVdW8trqKiF66ZbVGwozz65mtqAFj9fiCoOK+8Lpkt2g==
-X-Received: by 2002:a17:906:284c:b0:931:99b5:5a23 with SMTP id s12-20020a170906284c00b0093199b55a23mr10876707ejc.44.1679904891494;
-        Mon, 27 Mar 2023 01:14:51 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:198e:c1a5:309b:d678? ([2a02:810d:15c0:828:198e:c1a5:309b:d678])
-        by smtp.gmail.com with ESMTPSA id b4-20020a17090630c400b0092b5384d6desm13807165ejb.153.2023.03.27.01.14.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 01:14:51 -0700 (PDT)
-Message-ID: <030e45d8-6ba2-e9b0-4a24-3f2b7845be4b@linaro.org>
-Date:   Mon, 27 Mar 2023 10:14:50 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 11/12] arm64: dts: qcom: sc8180x: Introduce Primus
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20210112; t=1679904970;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dqM4HxKTQa8CAlzTf6R5B7JwdVrZ3pTGuhEoPvMHOiA=;
+        b=loeHln3rhyLGc4uTPccirKPGEqyecz0SA7ifqb2Ijq4RFXINun3xJV3FrSra81coqS
+         IMv6MWWZj1egXVxvELuvg+Wjol6N0saDZB9IJicaHwJpkvHKYGiAwKLYnv+wFVdyQO1I
+         t4nxiFAHWjKtCTzBIFmiIvl5tMB3BhbbPT+tF2mUo+H7st5rZyjZJ8BqsqKGTN6qqT1m
+         XPXiHotax0dc5W4VSmjD8t9sIOrm39IgFf/TlN0sVuRP6GTbE3+G2gDsIMne68HaON4r
+         soKEBrSG+0EsPlZ1+McpiZmCTJ6OFSQgBfch4ZeJdknkHCWZvduZvdzZxCFbVxoTcwX2
+         CdYA==
+X-Gm-Message-State: AO0yUKXBj+AVeMPgy/CsLv/X0v6fYMizndESnjLm15SuYuL7wxDwmltg
+        PGRwkxUyrlz+RHKWA6xcIKFTAcVgKqLsoykR3pmLpx5AIttm2/kIe7yUwQDB0d6jySrc35cFw7H
+        44YjjGflnU/hc9cXd+fMbyw==
+X-Received: by 2002:a1c:7318:0:b0:3ed:3cec:d2ec with SMTP id d24-20020a1c7318000000b003ed3cecd2ecmr9224589wmb.15.1679904969981;
+        Mon, 27 Mar 2023 01:16:09 -0700 (PDT)
+X-Google-Smtp-Source: AK7set8ZUoTXxMxtwd0sU6jQR8jMhRDwPLktCNTgCwqGs+AGnExW7nkz8pp+TofqXoPOE6jQzeNX9w==
+X-Received: by 2002:a1c:7318:0:b0:3ed:3cec:d2ec with SMTP id d24-20020a1c7318000000b003ed3cecd2ecmr9224554wmb.15.1679904969577;
+        Mon, 27 Mar 2023 01:16:09 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id t14-20020a05600c198e00b003ef66c89af0sm7017891wmq.0.2023.03.27.01.16.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 01:16:09 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     Jarrah <kernel@undef.tools>, linux-kernel@vger.kernel.org
+Cc:     Robert Mader <robert.mader@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Ondrej Jirman <megi@xff.cz>, Martijn Braam <martijn@brixit.nl>,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230325122444.249507-1-vkoul@kernel.org>
- <20230325122444.249507-12-vkoul@kernel.org>
- <f4fd089e-5ad4-dc35-abb5-dc3053702311@linaro.org>
-In-Reply-To: <f4fd089e-5ad4-dc35-abb5-dc3053702311@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2] arm64: dts: rk3399-pinephone-pro: Add internal
+ display support
+In-Reply-To: <e4f82c1e-621e-7e94-497d-8c579264f996@undef.tools>
+References: <20230327074136.1459212-1-javierm@redhat.com>
+ <e4f82c1e-621e-7e94-497d-8c579264f996@undef.tools>
+Date:   Mon, 27 Mar 2023 10:16:08 +0200
+Message-ID: <87edpatxrr.fsf@minerva.mail-host-address-is-not-set>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 10:12, Krzysztof Kozlowski wrote:
->> +
->> +/ {
->> +	model = "Qualcomm SC8180x Primus";
->> +	compatible = "qcom,sc8180x-primus", "qcom,sc8180x";
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings.
+Jarrah <kernel@undef.tools> writes:
 
-It seems it is already documented. Confusing to document board
-compatibles in separate patchset one year before boards gets accepted...
+> Hi Javier,
+>
+> On 3/27/23 18:41, Javier Martinez Canillas wrote:
+>> From: Ondrej Jirman <megi@xff.cz>
+>>
+>> The phone's display is using a Hannstar LCD panel. Support it by adding a
+>> panel DT node and all needed nodes (backlight, MIPI DSI, regulators, etc=
+).
+>>
+>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+>> Co-developed-by: Martijn Braam <martijn@brixit.nl>
+>> Co-developed-by: Kamil Trzci=C5=84ski <ayufan@ayufan.eu>
+>> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+>> ---
+>>
+>> Changes in v2:
+>> - Drop touchscreen node because used the wrong compatible (Ondrej Jirman=
+).
+>
+>
+> Any reason not to include this with the correct compatible string? It's=20
+> been available since=20
+> https://lore.kernel.org/all/20220813043821.9981-1-kernel@undef.tools/.=20
+> Swapping out gt917s for gt1158 in the node from your previous patch=20
+> should be enough.
+>
 
+Yes, but I didn't know that the driver already had the compatible string
+so I just dropped it for now and was meaning to take a look to that later.
+
+Adding the touchscreen node can be done as a follow-up though in another
+patch.
+
+--=20
 Best regards,
-Krzysztof
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
