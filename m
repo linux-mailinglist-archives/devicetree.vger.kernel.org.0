@@ -2,55 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C7DA6C9F3C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B0C6C9F41
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:22:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232875AbjC0JV1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 Mar 2023 05:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35592 "EHLO
+        id S232587AbjC0JWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 05:22:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232738AbjC0JV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:21:26 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9BC2D210D;
-        Mon, 27 Mar 2023 02:21:24 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9704B3;
-        Mon, 27 Mar 2023 02:22:08 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E10CE3F6C4;
-        Mon, 27 Mar 2023 02:21:21 -0700 (PDT)
-Date:   Mon, 27 Mar 2023 10:21:18 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Belisko Marek <marek.belisko@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] ARM: dts: sunxi: add MangoPi MQ-R-T113 board
-Message-ID: <20230327102118.2ef356e3@donnerap.cambridge.arm.com>
-In-Reply-To: <CAAfyv34PerH2XEFUv5G9_V2x5xaM6Dz2+vz8Rt_UbCEv4OGg7Q@mail.gmail.com>
-References: <20230320005249.13403-1-andre.przywara@arm.com>
-        <20230320005249.13403-5-andre.przywara@arm.com>
-        <CAAfyv34PerH2XEFUv5G9_V2x5xaM6Dz2+vz8Rt_UbCEv4OGg7Q@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S232529AbjC0JWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:22:32 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB2D210D;
+        Mon, 27 Mar 2023 02:22:31 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id h17so7928629wrt.8;
+        Mon, 27 Mar 2023 02:22:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679908950;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uUDm94cuqNsQmZlVr5Y+d2/6iij4ZcYk5kPEnEDDj90=;
+        b=QEgDqcZaOanHmPkYcMvtQjLd25vh2Hcskbrb1/CQe9v5ULDTQAYBJ1nWHcXNv357UJ
+         LHLeu641aL/s3vrRIWsvuYjAczxPvk2gqGKYy733nRICuS1pbVaBKCqiErIu+xbeeG0L
+         VUXiOULqEDakvBJXJPGNxpYw/CpcKvnJ0bOKgdiOn6+3r01CTfdSJ+mivVXo6Ps6iqFn
+         BLGefqD+OwKBUMvotrqpQTNHqUOybagc1ohUeehXkHrEfA/FRUoNIzfuFwnut/AjMHID
+         QHgRExtE4rsO+QTPtXZwNBhdumnQ60nvHmVj+lMVRzbbJ59UOxsPS96SNH5wHUWbYGZd
+         CndQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679908950;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uUDm94cuqNsQmZlVr5Y+d2/6iij4ZcYk5kPEnEDDj90=;
+        b=2iHQHtUFwYNzBQoiRl2Iknowyrbl3lW/7tP9jYTmcEeHZ50vtWTfSJkW9rVwq6H3M2
+         5wPwCRcr22bLRucf4AR2HjTnzf0eWgB3CU+L9zD6G5cDqeTCbC1BBu8s/oCXsRhV3Zij
+         r9WSCRYcBrmsP0Nh/QpWAxPzL/X3pm5FtFj+u6JUefBSTV7G7x3hV0FdW8TFNxk0cNXv
+         vxms05nqK7Fw9rGGTy3PZ4bXwuKEtgeIolSEqw6OMEN+QnK0gbOfsePOKOiTiLThWnWO
+         26k7tqgzTXz228nUJK0JZeC8b+vc1BHzPKfQVo2ouEaeJO1+aXUMZctb395du/VgC2Dj
+         rvcg==
+X-Gm-Message-State: AAQBX9cVTn49zJuMlCDPNCL/hZFhVm3tY0Nw5XBCiKYziAzRa4AGKoKq
+        wy6QdXhocEagQwXsodIfOmJRwV5iuKdKq89cD7Y=
+X-Google-Smtp-Source: AKy350bTAlkSbVG8D7+r7I0dbIWroXFlbKeNyJfM2es7Xg1xOxIfCH3ajl/h50HA/pMaUlmhc0C3YmY+pHhkHde5AHE=
+X-Received: by 2002:adf:f4c2:0:b0:2ce:ad3a:551d with SMTP id
+ h2-20020adff4c2000000b002cead3a551dmr1777328wrp.2.1679908949646; Mon, 27 Mar
+ 2023 02:22:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+References: <20230326001535.149539-1-bigbeeshane@gmail.com>
+ <87cz4v2nr1.fsf@bloch.sibelius.xs4all.nl> <CABnpCuAqT-RtdmeaAqyB_CQkLa=vn8zxF_WkYRnj8FoGJLL=_Q@mail.gmail.com>
+ <2874439.e9J7NaK4W3@diego>
+In-Reply-To: <2874439.e9J7NaK4W3@diego>
+From:   Shane Francis <bigbeeshane@gmail.com>
+Date:   Mon, 27 Mar 2023 10:22:18 +0100
+Message-ID: <CABnpCuBoM23msO0FikL33eDXYV2A4hNfsLkKhNiBs-DKJ5aKCA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: clock: update rk3588 clock definitions
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,262 +74,168 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Mar 2023 10:30:33 +0200
-Belisko Marek <marek.belisko@gmail.com> wrote:
+Hi
 
-Hi Marek,
+> when secure boot is involed, I'd think the whole device will be sufficien=
+tly
+> locked down to also disallow custom kernels. Otherwise that wouldn't be
+> a secure boot. (bootloader verifying kernel image + rootfs)
 
-thanks for testing!
+If you look at the Android boot chain this is the case when in "locked mode=
+",
+uboot (or whatever 2nd stage you have) validates the boot / kernel image
+either via public key or symmetric key. However in unlocked mode using
+something like the "unlock" fastboot command this check is disabled but
+the signature validation of the uboot / second stage is still enforced. AFA=
+IK
+this process is part of the Android device validation suite.
 
-> On Mon, Mar 20, 2023 at 1:53 AM Andre Przywara <andre.przywara@arm.com> wrote:
+Yes Android is only one OS vendor, however it is probably the largest use
+case for this SoC.
+
+> So we're in a pickle here. As Peter said, _if_ we wanted to change the id=
+s
+> one more time, to allow those vendor uboot hacks, now would be the time.
+>
+> But then als Mark said, the current bindings are used already in a number
+> of different places and aren't broken per se.
+
+I agree, its a bit messy, I was just raising the patch now just in case it =
+was
+something that could be changed with relative ease, if thats not the case t=
+he
+patch can be ignored
+
+Thanks In Advance
+
+On Mon, Mar 27, 2023 at 10:07=E2=80=AFAM Heiko St=C3=BCbner <heiko@sntech.d=
+e> wrote:
+>
+> Am Montag, 27. M=C3=A4rz 2023, 01:40:34 CEST schrieb Shane Francis:
+> > Hi Mark
 > >
-> > The MangoPi MQ-R-T113 is a small SBC with the Allwinner T113-s3 SoC.
-> > The SoC features two Arm Cortex-A7 cores and 128 MB of co-packaged DDR3
-> > DRAM. The board adds mostly connectors and the required regulators, plus
-> > a Realtek RTL8189FTV WiFi chip.
-> > Power comes in via a USB-C connector wired as a peripheral, and there is
-> > a second USB-C connector usable as a host port.
+> > > That code makes absolutely no sense.  This tries to transplant
+> > > phandles from one DTB into another DTB?  Mainline U-Boot has no code
+> > > like that.  I think this is just broken beyond repair.
 > >
-> > Add a .dtsi file describing most of the board's peripherals, and include
-> > that from the actual board .dts file. This allows to re-use the .dtsi
-> > for the MQ-R-F113 RISC-V variant of that board.
+> > Yeah its a dumb bit of code, my concern when looking at the R6S is that
+> > when devices look to get mainline support that are unable to change to
+> > another uboot build (such as when secure boot is involved)
+>
+> when secure boot is involed, I'd think the whole device will be sufficien=
+tly
+> locked down to also disallow custom kernels. Otherwise that wouldn't be
+> a secure boot. (bootloader verifying kernel image + rootfs)
+>
+>
+> > those will
+> > have a hard time as this ABI breakage ship would have departed long
+> > ago. And the RK3588 support is very new..... I thought about raising it
+> > now.
 > >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm/boot/dts/Makefile                    |   1 +
-> >  .../dts/sun8i-t113s-mangopi-mq-r-t113.dts     |  35 +++++
-> >  .../boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi | 126 ++++++++++++++++++
-> >  3 files changed, 162 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
-> >  create mode 100644 arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
+> > The question for me is how (in the future) will devices with this SoC
+> > and cannot modify their uboot make use of the mainline kernel ?
 > >
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index efe4152e5846d..3367e24146da8 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -1397,6 +1397,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
-> >         sun8i-s3-elimo-initium.dtb \
-> >         sun8i-s3-lichee-zero-plus.dtb \
-> >         sun8i-s3-pinecube.dtb \
-> > +       sun8i-t113s-mangopi-mq-r-t113.dtb \
-> >         sun8i-t3-cqa3t-bv3.dtb \
-> >         sun8i-v3-sl631-imx179.dtb \
-> >         sun8i-v3s-licheepi-zero.dtb \
-> > diff --git a/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
-> > new file mode 100644
-> > index 0000000000000..94e24b5926dd7
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
-> > @@ -0,0 +1,35 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > +// Copyright (C) 2022 Arm Ltd.
-> > +
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun8i-t113s.dtsi"
-> > +#include "sunxi-d1s-t113-mangopi-mq-r.dtsi"
-> > +
-> > +/ {
-> > +       model = "MangoPi MQ-R-T113";
-> > +       compatible = "widora,mangopi-mq-r-t113", "allwinner,sun8i-t113s";
-> > +
-> > +       aliases {
-> > +               ethernet0 = &rtl8189ftv;
-> > +       };
-> > +};
-> > +
-> > +&cpu0 {
-> > +       cpu-supply = <&reg_vcc_core>;
-> > +};
-> > +
-> > +&cpu1 {
-> > +       cpu-supply = <&reg_vcc_core>;
-> > +};  
-> Tested on MQ-R-T113 Mangopi on top of 6.3-rc3 and on booted system I
-> have only one CPU available:
-
-Right, thanks for the heads up. The reason is that the current U-Boot
-branch does not enable PSCI services, so the kernel does not know how to
-enable and online the second core. As with the other 32-bit parts, the
-PSCI nodes and properties get inserted into the DT by U-Boot, at runtime:
-arch/arm/lib/psci-dt.c:fdt_psci().
-
-It should be fairly straight-forward to enable that in U-Boot, I will try
-to look into this later this week.
-
-Cheers,
-Andre
-
-> root@t113:~# cat /proc/cpuinfo
-> processor       : 0
-> model name      : ARMv7 Processor rev 5 (v7l)
-> BogoMIPS        : 48.00
-> Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4
-> idiva idivt vfpd32 lpae evtstrm
-> CPU implementer : 0x41
-> CPU architecture: 7
-> CPU variant     : 0x0
-> CPU part        : 0xc07
-> CPU revision    : 5
-> 
-> Hardware        : Generic DT based system
-> Revision        : 0000
-> Serial          : 9340600081169098
-> 
-> bootlog shows:
-> [    0.003515] /cpus/cpu@0 missing clock-frequency property
-> [    0.003601] /cpus/cpu@1 missing clock-frequency property
-> [    0.003640] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
-> 
-> > +
-> > +&mmc1 {
-> > +       rtl8189ftv: wifi@1 {
-> > +               reg = <1>;
-> > +               interrupt-parent = <&pio>;
-> > +               interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 = WL_WAKE_AP */
-> > +               interrupt-names = "host-wake";
-> > +       };
-> > +};
-> > diff --git a/arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi b/arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
-> > new file mode 100644
-> > index 0000000000000..e9bc749488bb2
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
-> > @@ -0,0 +1,126 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > +// Copyright (C) 2022 Arm Ltd.
-> > +/*
-> > + * Common peripherals and configurations for MangoPi MQ-R boards.
-> > + */
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +
-> > +/ {
-> > +       aliases {
-> > +               serial3 = &uart3;
-> > +       };
-> > +
-> > +       chosen {
-> > +               stdout-path = "serial3:115200n8";
-> > +       };
-> > +
-> > +       leds {
-> > +               compatible = "gpio-leds";
-> > +
-> > +               led-0 {
-> > +                       color = <LED_COLOR_ID_BLUE>;
-> > +                       function = LED_FUNCTION_STATUS;
-> > +                       gpios = <&pio 3 22 GPIO_ACTIVE_LOW>; /* PD22 */
-> > +               };
-> > +       };
-> > +
-> > +       /* board wide 5V supply directly from the USB-C socket */
-> > +       reg_vcc5v: regulator-5v {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "vcc-5v";
-> > +               regulator-min-microvolt = <5000000>;
-> > +               regulator-max-microvolt = <5000000>;
-> > +               regulator-always-on;
-> > +       };
-> > +
-> > +       /* SY8008 DC/DC regulator on the board */
-> > +       reg_3v3: regulator-3v3 {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "vcc-3v3";
-> > +               regulator-min-microvolt = <3300000>;
-> > +               regulator-max-microvolt = <3300000>;
-> > +               vin-supply = <&reg_vcc5v>;
-> > +       };
-> > +
-> > +       /* SY8008 DC/DC regulator on the board, also supplying VDD-SYS */
-> > +       reg_vcc_core: regulator-core {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "vcc-core";
-> > +               regulator-min-microvolt = <880000>;
-> > +               regulator-max-microvolt = <880000>;
-> > +               vin-supply = <&reg_vcc5v>;
-> > +       };
-> > +
-> > +       /* XC6206 LDO on the board */
-> > +       reg_avdd2v8: regulator-avdd {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "avdd2v8";
-> > +               regulator-min-microvolt = <2800000>;
-> > +               regulator-max-microvolt = <2800000>;
-> > +               vin-supply = <&reg_3v3>;
-> > +       };
-> > +
-> > +       wifi_pwrseq: wifi-pwrseq {
-> > +               compatible = "mmc-pwrseq-simple";
-> > +               reset-gpios = <&pio 6 12 GPIO_ACTIVE_LOW>; /* PG12 */
-> > +       };
-> > +};
-> > +
-> > +&dcxo {
-> > +       clock-frequency = <24000000>;
-> > +};
-> > +
-> > +&ehci1 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&mmc0 {
-> > +       pinctrl-0 = <&mmc0_pins>;
-> > +       pinctrl-names = "default";
-> > +       vmmc-supply = <&reg_3v3>;
-> > +       cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-> > +       disable-wp;
-> > +       bus-width = <4>;
-> > +       status = "okay";
-> > +};
-> > +
-> > +&mmc1 {
-> > +       pinctrl-0 = <&mmc1_pins>;
-> > +       pinctrl-names = "default";
-> > +       vmmc-supply = <&reg_3v3>;
-> > +       non-removable;
-> > +       bus-width = <4>;
-> > +       mmc-pwrseq = <&wifi_pwrseq>;
-> > +       status = "okay";
-> > +};
-> > +
-> > +&ohci1 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&pio {
-> > +       vcc-pb-supply = <&reg_3v3>;
-> > +       vcc-pd-supply = <&reg_3v3>;
-> > +       vcc-pe-supply = <&reg_avdd2v8>;
-> > +       vcc-pf-supply = <&reg_3v3>;
-> > +       vcc-pg-supply = <&reg_3v3>;
-> > +};
-> > +
-> > +&uart3 {
-> > +       pinctrl-names = "default";
-> > +       pinctrl-0 = <&uart3_pb_pins>;
-> > +       status = "okay";
-> > +};
-> > +
-> > +/* The USB-C socket has its CC pins pulled to GND, so is hardwired as a UFP. */
-> > +&usb_otg {
-> > +       dr_mode = "peripheral";
-> > +       status = "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +       usb1_vbus-supply = <&reg_vcc5v>;
-> > +       status = "okay";
-> > +};
-> > --
-> > 2.35.7
-> >  
-> 
-> BR,
-> 
-> marek
-> 
-
+> > I have looked into undoing this clock configuration during early kernel
+> > boot but the SoC seems to hard lock.
+> >
+> > I apologise if raising this patch was a bad idea but like I stated to
+> > Krzysztof I am just onboarding this device as a hobby. However
+> > from an outside standpoint having a potential breakage like this
+> > because starting from 0 looked cleaner than 1 seems a bit odd to
+> > me.
+>
+> In general we can't be on the "whim" of SoC vendors.
+>
+> I.e. dt-bindings are supposed to be reviewed _first_ and not invented in
+> some SoC vendor's dark basement. That did work in the past with Rockchip
+> but in recent years they did loose most of their upstream momentum it
+> seems.
+>
+> Because vendors often invent unpractical or even conflicting bindings on
+> their own.
+>
+> So we're in a pickle here. As Peter said, _if_ we wanted to change the id=
+s
+> one more time, to allow those vendor uboot hacks, now would be the time.
+>
+> But then als Mark said, the current bindings are used already in a number
+> of different places and aren't broken per se.
+>
+> So I guess either decision possibility is bad ;-)
+>
+>
+> Heiko
+>
+>
+> > On Sun, Mar 26, 2023 at 10:42=E2=80=AFPM Mark Kettenis <mark.kettenis@x=
+s4all.nl> wrote:
+> > >
+> > > > Date: Sun, 26 Mar 2023 22:02:39 +0200
+> > > > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > >
+> > > > On 26/03/2023 19:51, Shane Francis wrote:
+> > > > >> Bootloader also does not use mainline DTS, so where is exactly t=
+he problem?
+> > > > >
+> > > > > In this case uboot does load the target DTB, and it seems a commo=
+n
+> > > > > function in rockchips
+> > > > > downstream boot process, see :
+> > > > >
+> > > > > https://github.com/rockchip-linux/u-boot/blob/ef1dd650042f61915c4=
+859ecc94623a09a3529fa/arch/arm/mach-rockchip/kernel_dtb.c#L70
+> > > > >
+> > >
+> > > That code makes absolutely no sense.  This tries to transplant
+> > > phandles from one DTB into another DTB?  Mainline U-Boot has no code
+> > > like that.  I think this is just broken beyond repair.
+> > >
+> > > > U-Boot comes with its own DTB, so what does it means "loads the tar=
+get
+> > > > DTB"? From where? The one appended to the kernel zImage? No, it can=
+not...
+> > > >
+> > > > Any component which operates on mainline DTB must conform to the
+> > > > bindings (with respect to the ABI), thus your arguments here mean y=
+ou
+> > > > are not allowed to change ABI in the future. Never. This change,
+> > > > assuming original binding was broken, could be warranted.
+> > >
+> > > The current mainline binding isn't broken; 0 is a perfectly fine cloc=
+k
+> > > index.  The RK3588 clock bindings are already used by U-Boot (too lat=
+e
+> > > to fix for the 2023.4 release happening in a few days) and OpenBSD
+> > > (too late to fix for the 7.3 release that will happen a few weeks).
+> > > Changing the clock binding will just create more chaos.
+> > >
+> > > <rant>
+> > >
+> > > What is broken here is the development process.  Rockchip shouldn't b=
+e
+> > > maintaining these heavily modified forks of U-Boot and the Linux
+> > > kernel.  But at the same time mainline Linux developers should not be
+> > > asking for arbitrary changes to the device tree bindings just to
+> > > satisfy some unwritten rules.  The clock bindings were originaly
+> > > submitted with clock numbers identical to those that Rockchip uses:
+> > >
+> > >   https://lore.kernel.org/all/20220623160329.239501-2-sebastian.reich=
+el@collabora.com/
+> > >
+> > > but then changed because a reviewer wanted them to start at 0 and
+> > > didn't want any holes:
+> > >
+> > >   https://lore.kernel.org/all/0841741a-22f6-40f6-c745-6065dfdbcb1d@li=
+naro.org/
+> > >
+> > > This isn't the first example where this happened.  And it invariably
+> > > leads to confusion and breakage in projects that try to follow the
+> > > mainline Linux device tree bindings.
+> > >
+> > > </rant>
+> >
+>
+>
+>
+>
