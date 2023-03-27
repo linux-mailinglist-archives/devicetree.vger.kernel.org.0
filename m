@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 947206CA741
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EAD06CA73F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233071AbjC0ORS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 10:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46680 "EHLO
+        id S233067AbjC0ORR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:17:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232156AbjC0OQx (ORCPT
+        with ESMTP id S232936AbjC0OQx (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:16:53 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E55A7AAB
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:15:22 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id er18so25593806edb.9
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6E67AB2
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:15:23 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id x3so36741526edb.10
         for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:15:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679926471;
+        d=linaro.org; s=google; t=1679926472;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=979bDGKht4sTcPvoh4er/U+zmo9ulR4Dq1wytmjDqYM=;
-        b=oUzd/9aUKVm0GdaahbuFfy/DWKP1+FYgEMM+RyLeGyzPjXluHrME8MeMAtJyiimfX5
-         5PJgNbjghIwrjwWhfMxSjK2S/z4olHqIUVrHVJh5JDkyUD4ne5Gn0LyQ0gRH5N6KVX8f
-         wnuUL5JImmvpCzzn9rLiREBxYVAq0y5Xd4OBRWQ8T9om1NaRGnXtm5eWNXn730hs2EA9
-         ps/D+cRwlferKDpr3FJEdqcrE+dFXYSnCy6T4juqEYHxw2znkOZ5FImQ6/HoQR2hAilY
-         r0Nct8QYn/ac+r5CRdA/8MIxprxkQagW05chgX4szLAuDKkH7B+jsY+6rTTbgSSl0Ri2
-         1BeA==
+        bh=VMo5mk6M+0hlW82wXM7SGHXpxbM/f39pn/sc0oURYAs=;
+        b=QgkE+mkboWATCDENaIf+7VwDJST7w1u9Js4eaaCtIYD9EbO+hBcE8XnJpjYxgz2QiQ
+         gSyET6cvy7IK+V5YAsIPhdH/u3aqtkm9h1m1ek0NknaiUfczWiMRWnx1z/pgMNcCbsZO
+         q4KxeX+owvBgA/ieX9XPJYKUTlR87q9PwAfmKg4Pzi5/z4T5W8kn65eAWwyTwWwUB9tl
+         TdXITiqc06D3PqeMO1FE3AcXcEojdc0oyjCJQLYTByUU70pFOsb8kuGOaIBslLglWKyL
+         ulJz46GUoaYku8y2XDG6JG4V2F6uUpztxiZbf+O81IAJlLWq5lc+76LV60FmxgFOQR32
+         ySTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679926471;
+        d=1e100.net; s=20210112; t=1679926472;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=979bDGKht4sTcPvoh4er/U+zmo9ulR4Dq1wytmjDqYM=;
-        b=qhkch0bXSsaWWFykgPx937dYt3w0PIc3U2fJdGJKvoW0ZFL4fzUPhrQX9IDA56dM7J
-         DjFoU1pL0kh6nS90czCB6+eKV1wGB4UPNghGw5S/CsdOjRSdzJEDUP6Q5kUKaUcScgQk
-         6XKA/Jbxop3egf+jMGgfHdTfOj7F5+1mNQlE/7aBuq4vsq38lVqAUYyTEJCvXE8aA4kk
-         YyVGiRBLgeLJxqSfwqTDvaz+jBAkxHJT1mTBPjcEXyHS5BYz16Rw0ru+B/Lh89+h/vZq
-         14lk/SQ6bSDEjx/tQvpNke/cC2igCu5H7J39PwA2jRb+4IO9f3/lUjpRbzWJ4vzn/O3R
-         ne+A==
-X-Gm-Message-State: AAQBX9cHl6E74xgKfEkVTN55xQYRY96h5EzRQSogicaSuThq1QHAzFOn
-        1yDbo6wGMTOAyRldsvr6OoFJag==
-X-Google-Smtp-Source: AKy350bVl9nCxCIg/cC2I6S/Kr1LzGtEnS4bTindm15Jh7tvtqQmZV5ORAHb+zAA52IBp2P13iHSNA==
-X-Received: by 2002:a17:906:cb98:b0:931:73d:4cc3 with SMTP id mf24-20020a170906cb9800b00931073d4cc3mr13061245ejb.11.1679926471484;
-        Mon, 27 Mar 2023 07:14:31 -0700 (PDT)
+        bh=VMo5mk6M+0hlW82wXM7SGHXpxbM/f39pn/sc0oURYAs=;
+        b=7ygm7WN0YVYoI3OQEZ4IoYJWp8bGE35D5FzJNFfyDWeC1YlNAZKnTyK0nsZvg6ITcq
+         eVaR4bKkUMXea7DL3KirFAuPiVSxIk9ssMwWI4R5hlaEbp/jqm/QV971YhPoet5r7fnP
+         0aE7nTGPtnTGHzBuTq42upBM3FrCEHV3WIvwfIvWNS6l/QmKggFtkQTty+x5EghVwqM4
+         lUA6oDfGrNO+hfwp2olAcvsBpqiy7NFt/5W8dsSRj+vCCtGyFpOfQsEXxOLJybz9L3j/
+         Kxu7/gglCCPrkZ4U3bu1dcO6kE0SdLQky1dUc55XXk4CC+8NYaCcdjYxqUl3Az8WyTPt
+         SeQw==
+X-Gm-Message-State: AAQBX9dHv500/XmEhqUo0EmscayqDTN5TjFzIDD4womHv/MRo2/H6CUi
+        hW+4+UXbUcq+L0oFd62aCSacvg==
+X-Google-Smtp-Source: AKy350bquPBTcGxJPoF+/Q5WSiFpB7Ht3GStZp0nKS61pRxY9nxjIafot0ypLdfHQfP3b91rf7253A==
+X-Received: by 2002:a17:906:f2d1:b0:932:35b1:47f8 with SMTP id gz17-20020a170906f2d100b0093235b147f8mr12600175ejb.34.1679926472472;
+        Mon, 27 Mar 2023 07:14:32 -0700 (PDT)
 Received: from krzk-bin.. ([2a02:810d:15c0:828:581e:789c:7616:5ee])
-        by smtp.gmail.com with ESMTPSA id ha25-20020a170906a89900b00934212e973esm11273339ejb.198.2023.03.27.07.14.30
+        by smtp.gmail.com with ESMTPSA id ha25-20020a170906a89900b00934212e973esm11273339ejb.198.2023.03.27.07.14.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 07:14:31 -0700 (PDT)
+        Mon, 27 Mar 2023 07:14:32 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/5] arm64: dts: qcom: ipq8074: add compatible fallback to mailbox
-Date:   Mon, 27 Mar 2023 16:07:50 +0200
-Message-Id: <20230327140752.163009-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 4/5] arm64: dts: qcom: sc7180: add compatible fallback to mailbox
+Date:   Mon, 27 Mar 2023 16:07:51 +0200
+Message-Id: <20230327140752.163009-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230327140752.163009-1-krzysztof.kozlowski@linaro.org>
 References: <20230327140752.163009-1-krzysztof.kozlowski@linaro.org>
@@ -76,27 +76,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ8074 mailbox is compatible with IPQ6018.
+SC7180 mailbox is compatible with SDM845.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index fe37dcdc52c8..84e715aa4310 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -686,7 +686,8 @@ watchdog: watchdog@b017000 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 3c799b564b64..009e054d53e5 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3413,7 +3413,8 @@ msi-controller@17a40000 {
  		};
  
- 		apcs_glb: mailbox@b111000 {
--			compatible = "qcom,ipq8074-apcs-apps-global";
-+			compatible = "qcom,ipq8074-apcs-apps-global",
-+				     "qcom,ipq6018-apcs-apps-global";
- 			reg = <0x0b111000 0x1000>;
- 			clocks = <&a53pll>, <&xo>;
- 			clock-names = "pll", "xo";
+ 		apss_shared: mailbox@17c00000 {
+-			compatible = "qcom,sc7180-apss-shared";
++			compatible = "qcom,sc7180-apss-shared",
++				     "qcom,sdm845-apss-shared";
+ 			reg = <0 0x17c00000 0 0x10000>;
+ 			#mbox-cells = <1>;
+ 		};
 -- 
 2.34.1
 
