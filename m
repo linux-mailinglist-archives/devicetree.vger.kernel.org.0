@@ -2,105 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03FA26CAE68
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2306CAE75
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:22:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232676AbjC0TTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 15:19:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43956 "EHLO
+        id S229762AbjC0TWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 15:22:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbjC0TS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:18:59 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A966CF;
-        Mon, 27 Mar 2023 12:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=xfwD58r7ManSAcpynfJdhPJPb96SmXfv4nKRVZMP16k=; b=xS3TkBLpKk7oxdcIdC9Bdo53Ny
-        QwB2QZZLiC+Bi6w8bc7MVztJhPo3j8elRFfzvjeFdI59SaG2OGxMhJzkjWl2X1ZzdBPcephzafTcb
-        rwBPLae2mbcT2HFnaoIgXZYwslSXnivcOEYv8K185DlnGDkiI94CMNu1ueRF+1Ri4BsBac1Ne8lSA
-        PTMbAeqpmuW06qud/FMkRU0rPZxgqh9AqptFUkaMtyG5fOLBNHk5DgSNhmnNvtfW02qPd/mBBKnEu
-        iKVZxCcnali3pFoyBWBlKYlmnLCLTomj4rJp2vmb45PDnNzQhHOTSpFLAarX3JSC4rNDUnM3N0r7F
-        pvW8uqHA==;
-Received: from p200300ccff0533001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff05:3300:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pgsMZ-00014E-IO; Mon, 27 Mar 2023 21:18:40 +0200
-Date:   Mon, 27 Mar 2023 21:18:38 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [RFC 1/2] ARM: dts: omap: Drop ti,omap36xx compatible
-Message-ID: <20230327211838.580af7a9@aktux>
-In-Reply-To: <20230216153339.19987-2-afd@ti.com>
-References: <20230216153339.19987-1-afd@ti.com>
-        <20230216153339.19987-2-afd@ti.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229584AbjC0TWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:22:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4596FE9;
+        Mon, 27 Mar 2023 12:22:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D5189614A6;
+        Mon, 27 Mar 2023 19:22:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3770FC433D2;
+        Mon, 27 Mar 2023 19:22:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679944960;
+        bh=yjMqxNQU7lUX4uC4Mct8A5dMe4z3ieteuQwS+cdRzig=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=QWrREjCbOoW2ZSnTjrPP2I5fhtqXP7KkXUCjsZ0kJe6j71P4ox2lAm2uKLtzb8vTQ
+         nFjMVKh3B3Qc9N2cXbp67T6OHTSbEAFgwtoUMARR02d+Lh2FrOhK18VAhAekjbl0gV
+         OT9I1IIAwDRXzUknj3OUtIN4Zj5/gN5LtDcJk6xA8vuu0zN1qHvxrCd8mLsBM1954i
+         wgjVhzzjdwBB9zYz5bsz+56Bn16llbtWhWREABWUXbX4IPfuDUG8MA56HlSqHez+ZS
+         YXKQdOC/gFK8liW7LDPBbYPOquDVjVe5HHAktSjAus3McW/EdmJrNi1AOs/6Db9nLt
+         dP71SjwgfG/BQ==
+Message-ID: <749fc5bfd507b2316fc95c77eff41e03.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230323025229.2971-1-zhuyinbo@loongson.cn>
+References: <20230323025229.2971-1-zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v16 1/2] dt-bindings: clock: add loongson-2 boot clock index
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Mon, 27 Mar 2023 12:22:37 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Feb 2023 09:33:38 -0600
-Andrew Davis <afd@ti.com> wrote:
-
-> This was not matched anywhere and provides no additional information.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+Quoting Yinbo Zhu (2023-03-22 19:52:28)
+> The Loongson-2 boot clock was used to spi and lio peripheral and
+> this patch was to add boot clock index number.
+>=20
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm/boot/dts/omap3-beagle-xm.dts              | 2 +-
->  arch/arm/boot/dts/omap3-cm-t3730.dts               | 2 +-
->  arch/arm/boot/dts/omap3-igep0020-rev-f.dts         | 2 +-
->  arch/arm/boot/dts/omap3-igep0020.dts               | 2 +-
->  arch/arm/boot/dts/omap3-igep0030-rev-g.dts         | 2 +-
->  arch/arm/boot/dts/omap3-igep0030.dts               | 2 +-
->  arch/arm/boot/dts/omap3-lilly-dbb056.dts           | 2 +-
->  arch/arm/boot/dts/omap3-n9.dts                     | 2 +-
->  arch/arm/boot/dts/omap3-n950.dts                   | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-alto35.dts     | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-chestnut43.dts | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-gallop43.dts   | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-palo35.dts     | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-palo43.dts     | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-summit.dts     | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-tobi.dts       | 2 +-
->  arch/arm/boot/dts/omap3-overo-storm-tobiduo.dts    | 2 +-
->  arch/arm/boot/dts/omap3-pandora-1ghz.dts           | 2 +-
->  arch/arm/boot/dts/omap3-sbc-t3730.dts              | 2 +-
->  arch/arm/boot/dts/omap3-sniper.dts                 | 2 +-
->  arch/arm/boot/dts/omap3-zoom3.dts                  | 2 +-
->  21 files changed, 21 insertions(+), 21 deletions(-)
-> 
-hmm, we have
-drivers/clk/ti/dpll.c:         of_machine_is_compatible("ti,omap36xx"))
 
-but that is more completely
-  if ((of_machine_is_compatible("ti,omap3630") ||
-             of_machine_is_compatible("ti,omap36xx")) &&
-
-so missing omap36xx will not harm if 3630 is there. SO this should
-be probably ok.
-
-Regards,
-Andreas
+Applied to clk-next
