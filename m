@@ -2,95 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 233306C9C01
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 818226C9C0E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229959AbjC0Haf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 03:30:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
+        id S232235AbjC0Hcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 03:32:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjC0Hae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:30:34 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8DC18E
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:30:33 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id t10so31739656edd.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:30:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679902232;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bTfaKKskPdyIPMxQE6a/OZWVaFKrOdK1xEfW52CBCmM=;
-        b=Y9GsxCv7G6E0p6ZvWk21C73fKAs9IBGpMh/FZN6ZSAJ7D1/Me94re24lqWoczuW+KN
-         X9YW++uh7j7DBBxGWHbn1JSvcZlwmucYoIsMkI6NCl/Y4cC0IRfFcShS7cEI5IrQ4Z0v
-         Uc/cRIPuPnetg1MUX2dnHtaGYv42uR/G4YTasBVIgZ/MjmRZc+1VydR4Mdl8m4S1N54p
-         JcAl1GzIND3r4bG4wxLdBZ2VA6WLOKc5KJoCXHWQXrgR6M9enYzxwqPFS0r2vx79BBJ0
-         v/E8sQjV3dVddrnyy+fu5W1+lT06VkOaVyaB4HPXzo4Zw/ADExuPzpOG48LmabvljdTh
-         89tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679902232;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bTfaKKskPdyIPMxQE6a/OZWVaFKrOdK1xEfW52CBCmM=;
-        b=N9VWQ7f7UBBpHekZ5QXqb3qgFEuBnK+mSzaGoN5ds694ZCfBMg+Rszs/YDn7ukzMZG
-         5Rt+mM8J0TxpC0EYAI/G6hqO8ocN+r3N4tS0Whe4x9YoCFssAGkoV6FSyerxyY6dNtZu
-         DyqTe+3yeC7T/8VFNGKN/QODja/zjzgkOq+YZxsMW57xHNtDY9V7YgJ0A+f1ylKbHbFI
-         KAAkVf0OG8quigjuDEEsMkR2ARRH+Ka66TsbYrYI3v48FDhfGcpbE/Iqlo7XX82pzg54
-         Lh7jvT0EVTsTwOEa2cQ2K+vSlNIvQC4e/qfQUspAJxZXTiZxsL0lLxHVLHs7GaEYOt2M
-         ZZ0g==
-X-Gm-Message-State: AAQBX9c0O0kvQOxoYvrACdNNZuJGbonYsOrUJSxraCI5jLpPMR+6jo9R
-        G80URzOOkL0vVBZ+ILfTNO46Xg==
-X-Google-Smtp-Source: AKy350Yvk9Mfe+tV1ogObK7tgapZ69mC+Nui/Iefyic1/6+fRuWcWMqgZeHzROZdMnS4Sb/micJxnQ==
-X-Received: by 2002:a17:906:2ecd:b0:931:636e:de5a with SMTP id s13-20020a1709062ecd00b00931636ede5amr11164773eji.31.1679902231990;
-        Mon, 27 Mar 2023 00:30:31 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:198e:c1a5:309b:d678? ([2a02:810d:15c0:828:198e:c1a5:309b:d678])
-        by smtp.gmail.com with ESMTPSA id ia9-20020a170907a06900b00932b3e2c015sm12887688ejc.51.2023.03.27.00.30.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 00:30:31 -0700 (PDT)
-Message-ID: <e27b4c0f-0cde-ecbd-c387-6098c39d0f02@linaro.org>
-Date:   Mon, 27 Mar 2023 09:30:30 +0200
+        with ESMTP id S229651AbjC0Hcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:32:47 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1B3ED18E;
+        Mon, 27 Mar 2023 00:32:47 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 6BCA68108;
+        Mon, 27 Mar 2023 07:32:46 +0000 (UTC)
+Date:   Mon, 27 Mar 2023 10:32:45 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] bus: ti-sysc: Use of_property_present() for testing DT
+ property presence
+Message-ID: <20230327073245.GV7501@atomide.com>
+References: <20230310144734.1546656-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 RESEND 1/2] dt-bindings: gpu: mali-bifrost: Document
- nvmem for speedbin support
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, airlied@gmail.com
-Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
-        steven.price@arm.com, alyssa.rosenzweig@collabora.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
- <20230323090822.61766-2-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230323090822.61766-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230310144734.1546656-1-robh@kernel.org>
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 10:08, AngeloGioacchino Del Regno wrote:
-> Some SoCs implementing ARM Mali GPUs may be subject to speed binning
-> and the usable bin is read from nvmem: document the addition of nvmem
-> and nvmem-cells for 'speed-bin'.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+* Rob Herring <robh@kernel.org> [230310 16:48]:
+> It is preferred to use typed property access functions (i.e.
+> of_property_read_<type> functions) rather than low-level
+> of_get_property/of_find_property functions for reading properties. As
+> part of this, convert of_get_property/of_find_property calls to the
+> recently added of_property_present() helper when we just want to test
+> for presence of a property and nothing more.
 
+Thanks applying into omap-for-v6.4/ti-sysc.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Tony
