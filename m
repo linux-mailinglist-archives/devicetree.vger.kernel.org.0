@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27F2F6CA7C1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34F756CA7C6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:33:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbjC0Oct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 10:32:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60088 "EHLO
+        id S232841AbjC0Odv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:33:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232841AbjC0Ocs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:32:48 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B205319AC
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:32:41 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-536af432ee5so174823127b3.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:32:41 -0700 (PDT)
+        with ESMTP id S232394AbjC0Odu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:33:50 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A7B10D8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:33:45 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id j7so10850782ybg.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:33:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679927561;
+        d=linaro.org; s=google; t=1679927624;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oZWYt2A1/xegsDaR9fdcxpuR4sCQsiDX1CHwh3kGLtI=;
-        b=aFlzEpm3jS5c8Qt8xlwCGn9pcvUmoRnZQXEwcDzfRk2NX/Ad+4ieeQgIf+Ly12IAJV
-         gW3CfuVrLZXDlf3+lzbkpm0IW+sqoIcR/I9vNWRsL4ZCNQLNc3QP4OwqF7ixJNo2+1HM
-         ncRWqrVZpHahKE+KObjsVch8rSd0ya95mMao8jpoInJFlOz1UKbNDv8XqapeVq/jvCft
-         ZDt23UJUjworIWWsJ76H+FdLBRUDrPfarccUMRBH/Q/EjUAFJMG/i+Yqq0XcTrPRs3rV
-         Iyc4HgsncEKgKoS734APuWVIL69jCnwqHNMp6NPYVR+VdFM/Sc1W+OkqsUYSGqSVKDu/
-         Nzdw==
+        bh=/CcCvJ3M8X5bAT0MjMyx1DIy4dFWq+26CM4dvph3VyA=;
+        b=qyvfOd4NZMIuS2cCHeUDyJhTUOYo+PZdpDghf7+nGJANwRa2wD46ockofA01/GMBjj
+         P4EMGYRT4W2V1ICq/1wqC11cQVb+3KazFNQTR2JEvqewPFsbJZeS2grXj3NfhYP8fftY
+         7l/bH0t42kLO9GzCgy3MHa6HmdeXitZm33YLagQ9Xi4D2Djfvvn+s8OME+VN1mBQ2ZqQ
+         LbTEhEoBjDwhwcqe9etqDKtkd5D/l7pEFGvhVUgf55Wdg5cCizseq3Kz6ptPhXGKe8hu
+         5Avyn45l/SDpgwFPx58Bvz0xmEWqr2a3oQ4Z1ImkwdLxDd2MKAMGi+RFTI+Sotaa3YcG
+         Osng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679927561;
+        d=1e100.net; s=20210112; t=1679927624;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oZWYt2A1/xegsDaR9fdcxpuR4sCQsiDX1CHwh3kGLtI=;
-        b=LyVh6U0tCY0aFyZNK8tAiHWAFejaA0psVsllUP+lPFuKN9r8GW8RU1kfORoJeNBbdj
-         4fyPHDXHHf9aWjHAC9cBJCMdzuDNrjcUWfAj+xUQ+dGXwaXp9Wlt2tLZ7+YJivEWxg3G
-         9Rwwj4YJl4A1Si4iNh/s0ouF2ObJhE4g/pR1FlER7PDCYMF0tqJDfGpX33ZEY5JPFjWg
-         wp8i5fRi8ZZ3BE0iLgrjPWMcHrjM1ZYyxrNNoI9+cgzlFzRkNUGUndZIdQIR+W8/lCIW
-         YhBjNhkrzawqQE0MZCkB4N+TK3jkiClkrKnhvWu9XswwI8HT4waIKAl/Vpgh7u0v64E/
-         V1Ig==
-X-Gm-Message-State: AAQBX9fDD/fdRGa9lQfMoMnSH3aePx6yE9jkdC59DSt5YurngDb++AQh
-        9b/zNLwlXPoztbJ3tiRRf9pALDvqTb+f4d67Whs4sQ==
-X-Google-Smtp-Source: AKy350YGL//ko0YOoMJn0yEBqBZM1OBbm7i8Gh3XLiKPeHWOd4Tug/7//ICczuY6fpZH922jDtuTVP3l2J/SHPOrcPc=
-X-Received: by 2002:a05:690c:3:b0:541:698b:7bdb with SMTP id
- bc3-20020a05690c000300b00541698b7bdbmr4131051ywb.2.1679927560837; Mon, 27 Mar
- 2023 07:32:40 -0700 (PDT)
+        bh=/CcCvJ3M8X5bAT0MjMyx1DIy4dFWq+26CM4dvph3VyA=;
+        b=46dGGatSdtP8xyyuNQeuFtPYi+XNo/DuB4Bvb0jpidPmz9zeEh9ZtSOVvbJe9iceMH
+         6V0coL8sOyYqkQ3yF+fEivWvp1OFcxUtTK9fY+tOI9sU5JxCbWDsuiI9m2pWtrcqm52Y
+         Vh8qaVEZ/r93KjrWNjttgn9RmYbfbqwfL/P6Z7J+9kt2BJdejhqq5h6DGlhrfwdOC61z
+         wOuaBPSGirrJ4+E5C9ZSuodNLD6KxGQvQGkd8SXHBqx/gGewf0XKzQlVH4hoFDwQztxW
+         yQDktz20ILugK+R/HNH5mbfsvmRIqXYwoMAK0iG3+zDErRg6RMcg10qnt+mqcIgL9DZC
+         aElA==
+X-Gm-Message-State: AAQBX9f4diFnx0Wxo+m/7pVA0a85uOwji0FuSCxHfMjC+l6U9m3FS2jB
+        h2GUgfRTOkGkKTIgKeWLYgBXmO4opwOJ8DB1KxQbpfajQ+FtPYAMsgWFlWuB
+X-Google-Smtp-Source: AKy350bNunvajuzPd/DqZePLz1idoUffSv7bokNWvRXeIBJYkk+GTrK7xk0ngdbDtiU1co3aD0VeZxdvhKus7BlJcQg=
+X-Received: by 2002:a05:6902:a8c:b0:b7b:fb15:8685 with SMTP id
+ cd12-20020a0569020a8c00b00b7bfb158685mr1336018ybb.9.1679927624688; Mon, 27
+ Mar 2023 07:33:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230325134410.21092-1-me@dylanvanassche.be> <20230325134410.21092-2-me@dylanvanassche.be>
- <883c3c48-c6e5-556d-431f-e92592b9106a@linaro.org> <b75b92bf64b55ba0ace0fbff65955c838a294dec.camel@dylanvanassche.be>
- <44904ffc-83d4-1137-3479-737a81b31d16@linaro.org> <1f3fb4bd5387c8d69a6eb068fb773b9273081c13.camel@dylanvanassche.be>
-In-Reply-To: <1f3fb4bd5387c8d69a6eb068fb773b9273081c13.camel@dylanvanassche.be>
+References: <20230327140752.163009-1-krzysztof.kozlowski@linaro.org> <20230327140752.163009-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230327140752.163009-2-krzysztof.kozlowski@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 27 Mar 2023 17:32:30 +0300
-Message-ID: <CAA8EJprxn6LSDu3NV8r0pFr1pc+zRydoyOdJ2y6VRN3zZ8a52g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: misc: qcom,fastrpc: add
- qcom,assign-all-memory property
-To:     Dylan Van Assche <me@dylanvanassche.be>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
+Date:   Mon, 27 Mar 2023 17:33:34 +0300
+Message-ID: <CAA8EJpoQwWm046sBv5KGm2Ccw7U5JG58ppaPo7PGcB5iDgUugQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: mailbox: qcom,apcs-kpss-global: use
+ fallbacks for few variants
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
@@ -79,86 +72,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Mar 2023 at 17:27, Dylan Van Assche <me@dylanvanassche.be> wrote:
+On Mon, 27 Mar 2023 at 17:17, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Hi Krzysztof,
+> Rework the compatibles of IPQ8074, SC7180, SC8180X and SM8150 as
+> compatible devices (same from Linux driver point of view).  This allows
+> smaller of_device_id table in the Linux driver and smaller
+> allOf:if:then: constraints.
 >
-> On Mon, 2023-03-27 at 14:22 +0200, Krzysztof Kozlowski wrote:
-> > On 27/03/2023 13:37, Dylan Van Assche wrote:
-> > > Hi Krzysztof,
-> > >
-> > > On Sun, 2023-03-26 at 10:55 +0200, Krzysztof Kozlowski wrote:
-> > > > On 25/03/2023 14:44, Dylan Van Assche wrote:
-> > > > > Document the added qcom,assign-all-memory in devicetree
-> > > > > bindings.
-> > > > >
-> > > > > Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 6
-> > > > > ++++++
-> > > > >  1 file changed, 6 insertions(+)
-> > > > >
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > > > > b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > > > > index 1ab9588cdd89..fa5b00534b30 100644
-> > > > > --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > > > > @@ -57,6 +57,12 @@ properties:
-> > > > >        Virtual machine IDs for remote processor.
-> > > > >      $ref: "/schemas/types.yaml#/definitions/uint32-array"
-> > > > >
-> > > > > +  qcom,assign-all-mem:
-> > > > > +    description:
-> > > > > +      Assign memory to all Virtual machines defined by
-> > > > > qcom,vmids.
-> > > >
-> > > > This (neither commit msg) does not explain why this is needed and
-> > > > actually does not sound like hardware-related property.
-> > >
-> > > This is made a separate property to toggle different behavior in
-> > > the
-> > > driver if it is needed for some FastRPC nodes.
-> >
-> > Bindings are not for driver behavior.
-> >
-> > > Downstream does guard
-> > > this with a property 'restrict-access' as well, see [1] for a
-> > > random
-> > > SDM845 downstream kernel. On SDM845, this property is not present,
-> > > thus
-> > > the IF block runs. On SDM670, this property is present, then the IF
-> > > block is skipped. That's why I opt for this property to have this
-> > > behaviour conditionally. I'm not sure how to explain it better
-> > > though.
-> >
-> > Still you described driver... Please come with something more
-> > hardware
-> > related.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 >
-> So just updating the description is enough then?
+> ---
 >
-> As this is all reverse engineered, I have no access to the
-> documentation of FastRPC, so best effort:
+> Changes since v3:
+> 1. Narrow the scope of the patch after feedback from Dmitry.
+>
+> Depends on (merged to Qualcomm SoC tree):
+> https://lore.kernel.org/linux-arm-msm/20230322173559.809805-1-krzysztof.kozlowski@linaro.org/T/#t
+> ---
+>  .../mailbox/qcom,apcs-kpss-global.yaml        | 31 ++++++++++---------
+>  1 file changed, 16 insertions(+), 15 deletions(-)
 
-Vendor kernels put a lot of controls into DT, despite some of these
-controls being related to software or being a platform constant.
-Upstream tends to push some of the constraints into the driver data,
-leaving only variadic parts in DT.
-Could you please check if the property you are proposing is constant
-among the devices on a platform or not. If it is a platform
-peculiarity, a usual way is to add it to driver data rather than the
-DT.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
->
-> """
-> Mark allocated memory region accessible to remote processor.
-> This memory region is used by remote processor to communicate
-> when no dedicated Fastrpc context bank hardware is available
-> for remote processor.
-> """
->
-> Is this the description that is 'more hardware related'?
+Thank you!
 
 -- 
 With best wishes
