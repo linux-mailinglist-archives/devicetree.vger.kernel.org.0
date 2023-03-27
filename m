@@ -2,147 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B02196CB01D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 22:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8A936CB030
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 22:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbjC0Uqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 16:46:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40964 "EHLO
+        id S229505AbjC0U6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 16:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbjC0Uqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 16:46:46 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A42B22727;
-        Mon, 27 Mar 2023 13:46:44 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id eg48so41297079edb.13;
-        Mon, 27 Mar 2023 13:46:44 -0700 (PDT)
+        with ESMTP id S229808AbjC0U6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 16:58:48 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF9B1FC7
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 13:58:45 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id o2so9691845plg.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 13:58:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679950003;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n5VGGE40NcbEq8mDa+XnKTY8jKSu6LE7xtzGaY9kskM=;
-        b=aY9n6MwEOjFxlplG/AmL1AhqIv6DAGPlesKsrSMZUOQfrazRbBVuLvn/maeIs9IH2S
-         i1/4kALdIGyCdVYjF58Gmh/aZMsqpQa9ap/Awf9qSknI9le2GH+39R89RPlTFovdUaeD
-         2n5eWhISNQsl73Zg7uh9pKQTVvFGP92WlUjlrwDaxO6rCLBmawXNB7SiPwyrJXWsCwJv
-         Sv9YiJMkxpFyr3Kc8rgdHIQtzRZu3FvDzcAU7ktuas5gkar71JxZHt0bGmFxY4aKlPaI
-         5jyNtYd6DM/ay/JufXUfyjF+12zA2R8QLofrVAL5DDFdcUQEdIRRxQedl1rnJY6jkSj0
-         Nqfw==
+        d=linaro.org; s=google; t=1679950725;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eH1CJX04q2BHUR5TJOFKJGoWhDyShBC0LXQUgI8ky8M=;
+        b=J3o54tF0lNEkesTpP5H1LlTIpmJlYC/zA8uXtDj4vzg1d1dSPjT3iSz0JcuXDw63lZ
+         BAuLhmRwwfAi3TYxK/P1vfWLXL5TxZRAj4LjqE6kSg3uT776Z9kjGD1bcXR/5wTlbvJj
+         sYXbAy2/1dUNBNmrNsLIjz9O8Yar7App3XBwpxXyuXcDH28vBiHRSVW2RcRwBb/3nZaF
+         okREhu68L83ulgoPoH/KyCSVqCuwKfdGq4nMEcmTc2DzrBrkGICpvy+veFdr/1iThqc3
+         2ouszMCDmMIHCK3u6Aq7EW9UBbulDhd9WXfyHuYDt/y/P2l6DGrgQXiZ6mwQXFs5/kVZ
+         OvFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679950003;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n5VGGE40NcbEq8mDa+XnKTY8jKSu6LE7xtzGaY9kskM=;
-        b=s5So6MQPtah+kKr2QuySn7ujdweuD915DUKr93vJpPqNX5vEjBIo/UcoaYn1zR1anA
-         ++VhIc3pKHu5VsePD7NYWlSEoS4hA5DvexLh+F4gyvv9aeUeCRpq/UGkMeXd336xSovX
-         wYcHVmtR+dUWqHtwymDTiZX+H73DV/Fe0di0ds9Ar51pXyqpHZ0dGGoflztpTltgVMmD
-         Zb07+XNi32U1QI4pFZYgeWGxmppF5Cauk/Fuff4LrRbfGpImnTJWuKV+kwhVvmALymX6
-         kdesy2Lx0yGqVxexUKjTGuEsIu3xyRMopSzPv+HKnAzti0e0imNMx9MJNJXH/5fjeBJC
-         85Eg==
-X-Gm-Message-State: AAQBX9cv0v/UATSWSt4T2GDPuT00R4xMuQpB0Fj+qfAuq9ilzUi750R5
-        PJyQFZLRNezjcR8tDUjFPgU=
-X-Google-Smtp-Source: AKy350aK9Y63itdv4ewgSBQo+2OgFfKBT+Q+is5SeV+AA/eMwqp0tLtQc6vcwjQ/bGUVRwPpC2Gc3w==
-X-Received: by 2002:a17:906:4d0f:b0:8b2:8876:6a3c with SMTP id r15-20020a1709064d0f00b008b288766a3cmr12973366eju.29.1679950002716;
-        Mon, 27 Mar 2023 13:46:42 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id e3-20020a170906504300b00930c6c01c9esm14694983ejk.143.2023.03.27.13.46.40
+        d=1e100.net; s=20210112; t=1679950725;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eH1CJX04q2BHUR5TJOFKJGoWhDyShBC0LXQUgI8ky8M=;
+        b=kigLqVrGuFhRG9+i7dZ+J2VGussFGETDz+sJ6GHyyCajARSq70NflCysre19rv2P9x
+         YviOwwjOFSBra6LnBSDiz5yVgqVyFkIp7Ae3Te6ZkRTni3ezZZ/7Lb8ebizvPmswoG+d
+         Z9YR6nDrRO6uf/KO73CRskqPnXCtVMScFokIcJXO2LzGa4BPwA/EhbIWWWg1ZRTtv0Uq
+         vWclhwTBWkPE3bmx62ZaPWTRhy2jtiemhenCVoGkQDt77o0U14eRGzi0lzR/TnR3kzFY
+         oR0RnIqSOsFYQ/F7GPv00PYRCLKQ6vyXKV285NRupWQxeTtW90i395C0XDdLyqqKZB3K
+         lIhA==
+X-Gm-Message-State: AO0yUKVtBwm5V967sFh8tXav0CXF4vRN65eu2GGCOSmoVuSxl91Ky1Xi
+        x7CjksU2is2rJy5dYjP35jr0WA==
+X-Google-Smtp-Source: AK7set+nDTrsfcNlBKMWgUMp0C+CrZ+copoRG2Tzs6C6eZzeKaYjFY9667WrepMwzomNCv3HfVYCKA==
+X-Received: by 2002:a05:6a20:4ca3:b0:dd:44a8:9d2c with SMTP id fq35-20020a056a204ca300b000dd44a89d2cmr11207157pzb.47.1679950724652;
+        Mon, 27 Mar 2023 13:58:44 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:ad52:968f:ad4a:52d2])
+        by smtp.gmail.com with ESMTPSA id y18-20020a62b512000000b0062d8c855ee9sm1909108pfe.149.2023.03.27.13.58.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 13:46:42 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        =?ISO-8859-1?Q?Andr=E1s_Szemz=F6?= <szemzo.andras@gmail.com>,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Belisko Marek <marek.belisko@gmail.com>
-Subject: Re: [PATCH v2 0/4] ARM: dts: sunxi: Add MangoPi MQ-R board support
-Date:   Mon, 27 Mar 2023 22:46:40 +0200
-Message-ID: <2673156.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20230320005249.13403-1-andre.przywara@arm.com>
-References: <20230320005249.13403-1-andre.przywara@arm.com>
+        Mon, 27 Mar 2023 13:58:44 -0700 (PDT)
+Date:   Mon, 27 Mar 2023 14:58:41 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v5 1/5] soc: ti: pruss: Add pruss_get()/put() API
+Message-ID: <20230327205841.GA3158115@p14s>
+References: <20230323062451.2925996-1-danishanwar@ti.com>
+ <20230323062451.2925996-2-danishanwar@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230323062451.2925996-2-danishanwar@ti.com>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 20. marec 2023 ob 01:52:45 CEST je Andre Przywara napisal(a):
-> Hi,
-> 
-> this is v2, mostly acknowledging the fact that there is an Allwinner D1s
-> version of the board as well, thus splitting the board .dts into a
-> shared .dtsi and a stub .dts for the ARM version. I don't have the RISC-V
-> version, so cannot provide (nor test) this .dts file, but creation should
-> be easy, being based on the shared board .dtsi file.
-> Since the D1/D1s .dts files are now merged, this patch set should compile
-> cleanly now.
-> 
-> ======================================
-> 
-> The MangoPi MQ-R-T113 is a small SBC with the Allwinner T113-s3 SoC.
-> That is a very close relative to the Allwinner D1/D1s SoCs, but with
-> Arm Cortex-A7 cores, and 128 MB of SIP co-packaged DDR3 DRAM.
-> 
-> This series introduces the missing T113-s .dtsi, which builds on top of
-> the D1/D1s .dtsi, but adds the ARM specific peripherals, like the CPU
-> cores, the arch timer, the GIC and the PMU.
-> This requires to add a symlink to the RISC-V DT directory in patch 1/4,
-> to be able to easily reference the base .dtsi from other architecture
-> directories.
-> Since there are versions of the MQ-R boards with the Allwinner D1s,
-> there is shared .dtsi describing the board peripherals, plus a small
-> stub .dts to tie together all bits for the actual board.
-> 
-> Cheers,
-> Andre
-> 
-> Changelog v1 ... v2:
-> - rebase on top of v6.3-rc3 (including now merged D1/D1s .dtsi files)
-> - refine board naming, stating both RISC-V and ARM versions
-> - move board .dts into a shared .dtsi (to cover RISC-V version)
-> - fix 5V regulator node name
-> 
-> Andre Przywara (4):
->   dts: add riscv include prefix link
->   ARM: dts: sunxi: add Allwinner T113-s SoC .dtsi
->   dt-bindings: arm: sunxi: document MangoPi MQ-R board names
->   ARM: dts: sunxi: add MangoPi MQ-R-T113 board
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  .../devicetree/bindings/riscv/sunxi.yaml      |   5 +
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../dts/sun8i-t113s-mangopi-mq-r-t113.dts     |  35 +++++
->  arch/arm/boot/dts/sun8i-t113s.dtsi            |  59 ++++++++
->  .../boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi | 126 ++++++++++++++++++
->  scripts/dtc/include-prefixes/riscv            |   1 +
->  7 files changed, 232 insertions(+)
->  create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
->  create mode 100644 arch/arm/boot/dts/sun8i-t113s.dtsi
->  create mode 100644 arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
->  create mode 120000 scripts/dtc/include-prefixes/riscv
+Hi Danish
 
-Merged, thanks!
+On Thu, Mar 23, 2023 at 11:54:47AM +0530, MD Danish Anwar wrote:
+> From: Tero Kristo <t-kristo@ti.com>
+> 
+> Add two new get and put API, pruss_get() and pruss_put() to the
+> PRUSS platform driver to allow client drivers to request a handle
+> to a PRUSS device. This handle will be used by client drivers to
+> request various operations of the PRUSS platform driver through
+> additional API that will be added in the following patches.
+> 
+> The pruss_get() function returns the pruss handle corresponding
+> to a PRUSS device referenced by a PRU remoteproc instance. The
+> pruss_put() is the complimentary function to pruss_get().
+> 
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  drivers/remoteproc/pru_rproc.c                |  2 +-
+>  drivers/soc/ti/pruss.c                        | 60 ++++++++++++++++++-
+>  .../{pruss_driver.h => pruss_internal.h}      |  7 ++-
+>  include/linux/remoteproc/pruss.h              | 19 ++++++
+>  4 files changed, 83 insertions(+), 5 deletions(-)
+>  rename include/linux/{pruss_driver.h => pruss_internal.h} (90%)
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index b76db7fa693d..4ddd5854d56e 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -19,7 +19,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/remoteproc/pruss.h>
+> -#include <linux/pruss_driver.h>
+> +#include <linux/pruss_internal.h>
+>  #include <linux/remoteproc.h>
+>  
+>  #include "remoteproc_internal.h"
+> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+> index 6882c86b3ce5..6c2bb02a521d 100644
+> --- a/drivers/soc/ti/pruss.c
+> +++ b/drivers/soc/ti/pruss.c
+> @@ -6,6 +6,7 @@
+>   * Author(s):
+>   *	Suman Anna <s-anna@ti.com>
+>   *	Andrew F. Davis <afd@ti.com>
+> + *	Tero Kristo <t-kristo@ti.com>
+>   */
+>  
+>  #include <linux/clk-provider.h>
+> @@ -16,8 +17,9 @@
+>  #include <linux/of_address.h>
+>  #include <linux/of_device.h>
+>  #include <linux/pm_runtime.h>
+> -#include <linux/pruss_driver.h>
+> +#include <linux/pruss_internal.h>
+>  #include <linux/regmap.h>
+> +#include <linux/remoteproc.h>
+>  #include <linux/slab.h>
+>  
+>  /**
+> @@ -30,6 +32,62 @@ struct pruss_private_data {
+>  	bool has_core_mux_clock;
+>  };
+>  
+> +/**
+> + * pruss_get() - get the pruss for a given PRU remoteproc
+> + * @rproc: remoteproc handle of a PRU instance
+> + *
+> + * Finds the parent pruss device for a PRU given the @rproc handle of the
+> + * PRU remote processor. This function increments the pruss device's refcount,
+> + * so always use pruss_put() to decrement it back once pruss isn't needed
+> + * anymore.
+> + *
+> + * Return: pruss handle on success, and an ERR_PTR on failure using one
+> + * of the following error values
+> + *    -EINVAL if invalid parameter
+> + *    -ENODEV if PRU device or PRUSS device is not found
+> + */
+> +struct pruss *pruss_get(struct rproc *rproc)
+> +{
+> +	struct pruss *pruss;
+> +	struct device *dev;
+> +	struct platform_device *ppdev;
+> +
+> +	if (IS_ERR_OR_NULL(rproc))
+> +		return ERR_PTR(-EINVAL);
+> +
 
-Best regards,
-Jernej
+There is no guarantee that @rproc is valid without calling rproc_get_by_handle()
+or pru_rproc_get().
 
-
-
+> +	dev = &rproc->dev;
+> +
+> +	/* make sure it is PRU rproc */
+> +	if (!dev->parent || !is_pru_rproc(dev->parent))
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	ppdev = to_platform_device(dev->parent->parent);
+> +	pruss = platform_get_drvdata(ppdev);
+> +	if (!pruss)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	get_device(pruss->dev);
+> +
+> +	return pruss;
+> +}
+> +EXPORT_SYMBOL_GPL(pruss_get);
+> +
+> +/**
+> + * pruss_put() - decrement pruss device's usecount
+> + * @pruss: pruss handle
+> + *
+> + * Complimentary function for pruss_get(). Needs to be called
+> + * after the PRUSS is used, and only if the pruss_get() succeeds.
+> + */
+> +void pruss_put(struct pruss *pruss)
+> +{
+> +	if (IS_ERR_OR_NULL(pruss))
+> +		return;
+> +
+> +	put_device(pruss->dev);
+> +}
+> +EXPORT_SYMBOL_GPL(pruss_put);
+> +
+>  static void pruss_of_free_clk_provider(void *data)
+>  {
+>  	struct device_node *clk_mux_np = data;
+> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_internal.h
+> similarity index 90%
+> rename from include/linux/pruss_driver.h
+> rename to include/linux/pruss_internal.h
+> index ecfded30ed05..8f91cb164054 100644
+> --- a/include/linux/pruss_driver.h
+> +++ b/include/linux/pruss_internal.h
+> @@ -6,9 +6,10 @@
+>   *	Suman Anna <s-anna@ti.com>
+>   */
+>  
+> -#ifndef _PRUSS_DRIVER_H_
+> -#define _PRUSS_DRIVER_H_
+> +#ifndef _PRUSS_INTERNAL_H_
+> +#define _PRUSS_INTERNAL_H_
+>  
+> +#include <linux/remoteproc/pruss.h>
+>  #include <linux/types.h>
+>  
+>  /*
+> @@ -51,4 +52,4 @@ struct pruss {
+>  	struct clk *iep_clk_mux;
+>  };
+>  
+> -#endif	/* _PRUSS_DRIVER_H_ */
+> +#endif	/* _PRUSS_INTERNAL_H_ */
+> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+> index 039b50d58df2..93a98cac7829 100644
+> --- a/include/linux/remoteproc/pruss.h
+> +++ b/include/linux/remoteproc/pruss.h
+> @@ -4,12 +4,14 @@
+>   *
+>   * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+>   *	Suman Anna <s-anna@ti.com>
+> + *	Tero Kristo <t-kristo@ti.com>
+>   */
+>  
+>  #ifndef __LINUX_PRUSS_H
+>  #define __LINUX_PRUSS_H
+>  
+>  #include <linux/device.h>
+> +#include <linux/err.h>
+>  #include <linux/types.h>
+>  
+>  #define PRU_RPROC_DRVNAME "pru-rproc"
+> @@ -44,6 +46,23 @@ enum pru_ctable_idx {
+>  
+>  struct device_node;
+>  struct rproc;
+> +struct pruss;
+> +
+> +#if IS_ENABLED(CONFIG_TI_PRUSS)
+> +
+> +struct pruss *pruss_get(struct rproc *rproc);
+> +void pruss_put(struct pruss *pruss);
+> +
+> +#else
+> +
+> +static inline struct pruss *pruss_get(struct rproc *rproc)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +static inline void pruss_put(struct pruss *pruss) { }
+> +
+> +#endif /* CONFIG_TI_PRUSS */
+>  
+>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>  
+> -- 
+> 2.25.1
+> 
