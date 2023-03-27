@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF4D6CA1DA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E80E6CA202
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 13:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232037AbjC0K7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 06:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41896 "EHLO
+        id S232220AbjC0LEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 07:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbjC0K7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:59:43 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14362735
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:59:42 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id p15so9937124ybl.9
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:59:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679914782;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cIVo2dlqJiiyp85rWZ9bI1y0w9kmh/mgSwb0qLyW7E=;
-        b=HpAU6+Yufd8ekUlVDHkFI81rDPd94b4qWTH7yuDsOEA2Ut0f5J9ba2s3LHM7SMrzD0
-         w4fZByz8p4ux2lldYl3Q1UsWPLfmAcEf/nDVyEBb/ndixUMiN8pxVvjIqr7bVdm8ury0
-         sg97heLG4+thQaiKAgBZ29ytx6MeDpoIz+tCv3bvymjOe25rY+GO5p+ikIMWu9jyuhn4
-         W2IZDHevp92O1BcmnOh8RmtV5hw/VZH0BqjixPMJqjiJl9FFjq+OhRch/rh/pVhbdrd9
-         dxaxbnvOcfRF/Kzto/tuDreZSm9wNbGsfp7VmlmGInt1sU4+xdWBrNxWvYmwbgzbE0v1
-         /o3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679914782;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4cIVo2dlqJiiyp85rWZ9bI1y0w9kmh/mgSwb0qLyW7E=;
-        b=KhzyJsMGgTyDsvI7ePS40v1yIjKY/9J4HLAS9dSp2+C/E6GhdYGex8fwRzvhVlFnJR
-         E+nTUJ1J0DaMVA36xScMBrFeipCES8r11JYO/+weIDNpkPKl0GBvqpxQTDmxL7Nsny+8
-         YP3YavvirBmtqpdyePJQoUNW1xdL0tpsQojUWfYmZxBOqzm5zrqQyPeOHQsKwpF3EfxG
-         uAhBVg1TH6xnuPNrWK+I+itv9KMGh0c5jl9YjpGkFYAL0gwKDn+fEei9YHllN1TxgmMc
-         S6MNJ6lNWyCP13Sy0IrDK9/VVAnq/A8x9ippe1diNRENijmtxcbwmd9RwHo3Esz3O3Kk
-         Vk8A==
-X-Gm-Message-State: AAQBX9fyuahhW5kREXUb/Y0/QTPueLzdlpZXbWtAYgMgA4/wwGX5we9V
-        P/37o0j3Y+nGHyKq3lqt17Ohu74Pub+7lk1AuqCy7Q==
-X-Google-Smtp-Source: AKy350b5PoC9b2J9/khe3V6Tkw9uAc0Lp6gjwZcsHGSG0CxqeaAumyEo+6eqBsCqxlWqhiTzMb1m1rI7YuEqSoTqylI=
-X-Received: by 2002:a05:6902:1586:b0:98e:6280:74ca with SMTP id
- k6-20020a056902158600b0098e628074camr6889426ybu.1.1679914782191; Mon, 27 Mar
- 2023 03:59:42 -0700 (PDT)
+        with ESMTP id S232231AbjC0LEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 07:04:20 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE574483;
+        Mon, 27 Mar 2023 04:04:11 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 606B524E114;
+        Mon, 27 Mar 2023 19:04:04 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Mar
+ 2023 19:04:04 +0800
+Received: from [192.168.125.108] (113.72.145.117) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Mar
+ 2023 19:04:03 +0800
+Message-ID: <20774e11-b7d4-e895-13f1-ea6dad130e4e@starfivetech.com>
+Date:   Mon, 27 Mar 2023 19:04:02 +0800
 MIME-Version: 1.0
-References: <20221122-mt8365-i2c-support-v5-0-6e4f3b54937f@baylibre.com>
- <20221122-mt8365-i2c-support-v5-2-6e4f3b54937f@baylibre.com>
- <2a1b1f66-970e-5adb-389e-b9c47a790712@collabora.com> <CAFGrd9pf+ojPDciF3Mtw-QT51LZCj+GNLHXurGx_vcC17GHA2A@mail.gmail.com>
-In-Reply-To: <CAFGrd9pf+ojPDciF3Mtw-QT51LZCj+GNLHXurGx_vcC17GHA2A@mail.gmail.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 27 Mar 2023 12:59:31 +0200
-Message-ID: <CAFGrd9r-s564RPk+F5J_=Ns-1tjWo-osEYaXNNt0uXU_k=TKqw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] arm64: dts: mediatek: enable i2c0 for mt8365-evk board
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Qii Wang <qii.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v3 4/5] usb: cdns3: add StarFive JH7110 USB driver.
+Content-Language: en-US
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+References: <20230315104411.73614-1-minda.chen@starfivetech.com>
+ <20230315104411.73614-5-minda.chen@starfivetech.com>
+ <2c99725a0bf259203a5b00f4c752eeb1b6596f59.camel@pengutronix.de>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <2c99725a0bf259203a5b00f4c752eeb1b6596f59.camel@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.117]
+X-ClientProxiedBy: EXCAS063.cuchost.com (172.16.6.23) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,11 +69,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > ...and please do *not* use the mediatek,pull-up-adv property: this is
-> > supposed to be there only for older devicetrees and there's a replacement
-> > for it.... unless you have any specific reason to do so (and if you do,
-> > you should well explain that).
->
-> bias-pull-up isn't necessary currently because MT8365 doesn't use MTK
 
-I mean mediatek,pull-up-adv. bias-pull-up can be kept.
+
+On 2023/3/23 17:29, Philipp Zabel wrote:
+> On Mi, 2023-03-15 at 18:44 +0800, Minda Chen wrote:
+>> There is a Cadence USB3 core for JH7110 SoCs, the cdns
+>> core is the child of this USB wrapper module device.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> ---
+> [...]
+>> diff --git a/drivers/usb/cdns3/cdns3-starfive.c b/drivers/usb/cdns3/cdns3-starfive.c
+>> new file mode 100644
+>> index 000000000000..a99f98f85235
+>> --- /dev/null
+>> +++ b/drivers/usb/cdns3/cdns3-starfive.c
+>> @@ -0,0 +1,305 @@
+> [...]
+>> +static int cdns_clk_rst_init(struct cdns_starfive *data)
+>> +{
+>> +	int ret;
+>> +
+>> +	data->num_clks = devm_clk_bulk_get_all(data->dev, &data->clks);
+>> +	if (data->num_clks < 0)
+>> +		return dev_err_probe(data->dev, -ENODEV,
+>> +			"Failed to get clocks\n");
+>> +
+>> +	ret = clk_bulk_prepare_enable(data->num_clks, data->clks);
+>> +	if (ret)
+>> +		return dev_err_probe(data->dev, ret,
+>> +			"failed to enable clocks\n");
+> 
+> In general, it's better to acquire all resources first and only then
+> start interacting with them, and to order all devm_ calls before non-
+> devm calls to make sure cleanup is done in reverse order.
+> 
+> In this case you can switch clk_bulk_prepare_enable() with
+> devm_reset_control_array_get_exclusive() and simplify the error path.
+> 
+OK, thanks
+>> +	data->resets = devm_reset_control_array_get_exclusive(data->dev);
+>> +	if (IS_ERR(data->resets)) {
+>> +		ret = dev_err_probe(data->dev, PTR_ERR(data->resets),
+>> +			"Failed to get resets");
+>> +		goto err_clk_init;
+>> +	}
+>> +
+>> +	ret = reset_control_deassert(data->resets);
+>> +	if (ret) {
+>> +		ret = dev_err_probe(data->dev, ret,
+>> +			"failed to reset clocks\n");
+>> +		goto err_clk_init;
+>> +	}
+>> +
+>> +	return ret;
+>> +
+>> +err_clk_init:
+>> +	clk_bulk_disable_unprepare(data->num_clks, data->clks);
+>> +	return ret;
+>> +}
+> 
+> regards
+> Philipp
