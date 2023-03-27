@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 418B06CA4C0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D4C6CA4B3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232461AbjC0Mxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 08:53:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
+        id S232690AbjC0Mxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 08:53:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232403AbjC0Mx0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:53:26 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B04180
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:25 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso7309639wms.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:25 -0700 (PDT)
+        with ESMTP id S232463AbjC0Mx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:53:29 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E4719A8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:27 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so6975601wmq.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679921605;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679921606;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OdWVdTE/8Dyw4hqegkINdb1CQZwRDCkTAUWJC3MHmmA=;
-        b=HvYgD4KGYU/NxUu1HsxoxwPql4ri+9vu7aNFmN/pL48Rqhg8qSXg6EJk94NuMbJu54
-         sVCkXD6JWcW1vJ2QCfwh65LyWiJNdXGN4aLIH1McTfvsBjhMr95Y0PcqOXgwIbQT+J7M
-         U+xH04cfB+GTeUfoROWlcZg8iwEHQy+uPrgMAVChBrGlHeRUEkXrQ0/p0h51zw0dkoDd
-         loC77Ifuc/ho6A1MMEnEfuBaSHyvBmHLRjTT/UUzG29Y7Rll+tVZ5P5QQAzbZN10oQYa
-         mM48wLP2IeZg/ZI28lXy4J6y2MkDW4rmHJntSRGRwz5I0FPlKL2Kz6R9hOSwYTxwdtmr
-         oIbw==
+        bh=EER6tqhI6vUHVYjj6AGxC6PvPaE4KpffK80o6d6UVhA=;
+        b=1Ly8lNpAV9k1UhP7Su28XfdkCDmVuHTha78ZXjqHRst1E6offaBB+HPOczENpuglyV
+         bn5sbgYf/3YJzcodYOmF/G/d+aqm4+cQL9sY2Oh3AMaTfm5FUd4oBcMVD5XN6hHwrp5l
+         uVaHAwFKM7IhUD4I80QGJM5G8qe/YicqF5HgzxX8vvqhdYrXre81UPwz7OEIFVDon5YX
+         7+wdHq4bPV0bo4DARk2cqOIPvsfp+FqxbKI/VS3qreU4ygZAtrbCGaQZbA+Tb77hcmI8
+         e/2mY/qwbgh3ESzt/gKzsEhZzAwexZ6/CB4xLtVbUxkfoVduLeRXUR4XLRs/i+B7fgKf
+         q3hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679921605;
+        d=1e100.net; s=20210112; t=1679921606;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OdWVdTE/8Dyw4hqegkINdb1CQZwRDCkTAUWJC3MHmmA=;
-        b=K7wG/lDxNIy6KH4rtRMiBSujr+QlUcc00RoeLVlLXXNB0OXD7EwG6EZTavbGe9Nsc1
-         KyIWBfWlxAftJHmr9Pl/QojGVgd6yu7VRLffX92v1QBtQ7LLzXLrD0ewQ2lyg2VA4/uv
-         94TJXzxpyxWyl0WfCFM2RR1Iz94Z+0AIq2ubgzIwTlK8xr0TjzqPHc4WIaYiSRGbFlqE
-         AxzYrfpaUASnA+yyvHKwrn4x6KFu99EMgszKlc8pyE5/jWhkvhukAzxSEEo1y5T+JKdq
-         vuV9cJILiO5YAYnknyv6Pr48VGRmJSktzbnmrDboFJGWWmLx/gBvQCVlwcSF2gAia723
-         p6CQ==
-X-Gm-Message-State: AO0yUKW6RxYsFOl4sED5xH8BIgiqpvUJQQlLPY6GJ7MCdIcAmK8PjbKR
-        fYuLQZCEgLbyXJv41IcdDQyStQ==
-X-Google-Smtp-Source: AK7set94sTqbHq2k11xMJPQMd1/OwxqKj4ebw0WPvxg1kpr6t6SgH7ZqF+5WDOJLKhR/GtJn+EEE7g==
-X-Received: by 2002:a1c:7318:0:b0:3ed:3cec:d2ec with SMTP id d24-20020a1c7318000000b003ed3cecd2ecmr9836530wmb.15.1679921605220;
-        Mon, 27 Mar 2023 05:53:25 -0700 (PDT)
+        bh=EER6tqhI6vUHVYjj6AGxC6PvPaE4KpffK80o6d6UVhA=;
+        b=Dqgdf6afFAR1AgTWf9qi1tlkIlr4jWvqUijdNZuYtF40sUGEcHIZcd8qEoItOfXWDw
+         8tAkVLiY/NdpQnWjIaKnOjwfwKFiUljHr92Nd84E4as8ZzjWOXTO7Aq014F1uPZl/tT7
+         uVN9a7fxTuL/NLXmmDCv+v+O+DdbFcoB/hduNkTnfNHwh5imOakaCTqr6Pex1Uq21dGS
+         6Xv6OIhRVrHG14dBgjTYPyVUKzUlIop7dBZh5+9UpFYsF8+KFYU5fB+7NDiCE+5IRnks
+         YMBklbod8W5xdPlehHiTmvCk7SAZ2Jsf1EWSf2ImF+kiejraWQkz6FapYt3NVfy2P+6b
+         pOVg==
+X-Gm-Message-State: AO0yUKWLPUnpESGTY25+u8NYJH1rf/FkqABsTQqjWWzehrlzwPq8ydxY
+        GnaIwG/McaoX9ms57DikjlTjOQ==
+X-Google-Smtp-Source: AK7set/gDtCdlw+0ffazR+UtWVA1Dk219aeNa6+48pTJWrxYDJh//ywnZJHClJhoSiDgrTJhu7ubmQ==
+X-Received: by 2002:a7b:cd10:0:b0:3ee:672d:caa4 with SMTP id f16-20020a7bcd10000000b003ee672dcaa4mr9085581wmj.17.1679921606041;
+        Mon, 27 Mar 2023 05:53:26 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:313d:a304:2790:a949])
-        by smtp.gmail.com with ESMTPSA id q25-20020a1ce919000000b003ee58e8c971sm13572220wmc.14.2023.03.27.05.53.24
+        by smtp.gmail.com with ESMTPSA id q25-20020a1ce919000000b003ee58e8c971sm13572220wmc.14.2023.03.27.05.53.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 05:53:24 -0700 (PDT)
+        Mon, 27 Mar 2023 05:53:25 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,11 +57,10 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 06/18] dt-bindings: mfd: qcom,spmi-pmic: add compatible for pmm8654au
-Date:   Mon, 27 Mar 2023 14:53:04 +0200
-Message-Id: <20230327125316.210812-7-brgl@bgdev.pl>
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v3 07/18] arm64: dts: qcom: sa8775p: add support for the on-board PMICs
+Date:   Mon, 27 Mar 2023 14:53:05 +0200
+Message-Id: <20230327125316.210812-8-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230327125316.210812-1-brgl@bgdev.pl>
 References: <20230327125316.210812-1-brgl@bgdev.pl>
@@ -78,28 +77,72 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-PMM8654au is the SPMI PMIC variant used on sa8775p-ride. Add a compatible
-for it.
+Add a new .dtsi file for sa8775p PMICs and add the four PMICs interfaced
+to the SoC via SPMI. Enable the PMICs for sa8775p-ride.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Lee Jones <lee@kernel.org>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 37 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts   |  1 +
+ 2 files changed, 38 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index 975c30aad23c..0f7dd7ac9630 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -79,6 +79,7 @@ properties:
-           - qcom,pmk8350
-           - qcom,pmk8550
-           - qcom,pmm8155au
-+          - qcom,pmm8654au
-           - qcom,pmp8074
-           - qcom,pmr735a
-           - qcom,pmr735b
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+new file mode 100644
+index 000000000000..afe220b374c2
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
+@@ -0,0 +1,37 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2023, Linaro Limited
++ */
++
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/spmi/spmi.h>
++
++&spmi_bus {
++	pmm8654au_0: pmic@0 {
++		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
++		reg = <0x0 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++
++	pmm8654au_1: pmic@2 {
++		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
++		reg = <0x2 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++
++	pmm8654au_2: pmic@4 {
++		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
++		reg = <0x4 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++
++	pmm8654au_3: pmic@6 {
++		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
++		reg = <0x6 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+index 1020dfd21da2..b7ee4cc676b5 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ 
+ #include "sa8775p.dtsi"
++#include "sa8775p-pmics.dtsi"
+ 
+ / {
+ 	model = "Qualcomm SA8775P Ride";
 -- 
 2.37.2
 
