@@ -2,163 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDA56CACD7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F008D6CACDF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230289AbjC0SQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 14:16:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56136 "EHLO
+        id S230424AbjC0STk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 14:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjC0SQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:16:48 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EDBF30E9
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 11:15:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1679940957;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=UK/vUrhHuqntUFN+BgSrVc4SUZdQT7VSDoiLy/b5Axs=;
-        b=NNwE4krVkJRl1kRk9dgNeddDXT6qBNoT9lYT/anhqIt1e0C/CB1FfHZFhPEWbXl81TNP7x
-        9n4xO9Dn9pRHQHCJ4QS+xo6pSaPckhWYzHJxfZHEVlcm2Z8sq1IKcG8p5H0n3gBasKtOD8
-        0ZxLJffwMkZFWJNsNEhkG2HQ6aKeNSA=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-230-kF892kRyMO2VXh9m2gUZoQ-1; Mon, 27 Mar 2023 14:15:56 -0400
-X-MC-Unique: kF892kRyMO2VXh9m2gUZoQ-1
-Received: by mail-wm1-f71.google.com with SMTP id bg13-20020a05600c3c8d00b003ed40f09355so5113485wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 11:15:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679940954;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UK/vUrhHuqntUFN+BgSrVc4SUZdQT7VSDoiLy/b5Axs=;
-        b=A/NScQhUD5I+tDl09xXGbHAzdQHXJyVFNwJbJi8B+5NtngQh6XWeF6bna69JHE+GVl
-         GCNWpFFm+59ld0X9nQUE3qGIO+B523Ay8YKmbljwD856Y2u4iLze5EO0dX9YIyYSOX3U
-         ObiCA3XzxuOmrbHF78HoC1mUmQaQbJedJdYJ52h9nQmubd4dSbNHyt+cu73ft9GGBMVT
-         OrdHLvjP48YSElduY2JomvThK4fch3L/mASuLCC3ketP1dIHiT0OVgIbBVJ34R2RzXTd
-         k9BlKXvYElRgAtNK8715dma6Lb7Cxjv9jNt5Rsxp47DcdKhpruZ9+FbaBMAZ3rEy5Dl6
-         YFfA==
-X-Gm-Message-State: AAQBX9fs3iK+tRkVr2+886BSlqIkjGcxhVHOv04tJkAhI3kVHgT2SUJ3
-        3TqebutTHAMBSUEzI9rsp24uW8xsgZeMlgFiMnBXdN8cjWDH/GvD2xN/LoM+WNdkkvE9/uXCZS8
-        aYU7HGbqloS06nTQf4bUB3g==
-X-Received: by 2002:adf:e98b:0:b0:2c5:4ffb:b5d4 with SMTP id h11-20020adfe98b000000b002c54ffbb5d4mr10067890wrm.19.1679940953967;
-        Mon, 27 Mar 2023 11:15:53 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZaT6ahYHthFl0PUIe9zMPk4lKHZv5UbJklHs82pkUCUN/DtNmeerfQ+58giM6OUYgp3Y5NMA==
-X-Received: by 2002:adf:e98b:0:b0:2c5:4ffb:b5d4 with SMTP id h11-20020adfe98b000000b002c54ffbb5d4mr10067876wrm.19.1679940953689;
-        Mon, 27 Mar 2023 11:15:53 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id p17-20020adfcc91000000b002c71dd1109fsm25758248wrj.47.2023.03.27.11.15.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 11:15:53 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-Cc:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org,
-        Robert Mader <robert.mader@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Martijn Braam <martijn@brixit.nl>,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229550AbjC0STj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:19:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 495AF1BF1;
+        Mon, 27 Mar 2023 11:19:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E57AF613CA;
+        Mon, 27 Mar 2023 18:19:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A254C433D2;
+        Mon, 27 Mar 2023 18:19:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679941177;
+        bh=jxWcGcpioNQejKk8I7hJg+OhLTSHRqbJl49uuhHYivo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Zc8sMCdKqOks3JUZN+McYVEWMcU8JNsdhkPNeC1XxCSKRjOLWQ4BkZgrK37KeNxsG
+         R3fcqJvW+ikEcFOM+WimhkTemMG3zc4nLBuHPfsEchkgMCfgcJjjJCVb/rX/HziQ1x
+         WY+4rzGx/Ba5PCPfLEtYG6/PfhOA0WBF9ucxR+s1hDcmtCIBGKmmDiP6SL7G2Fdy/4
+         bE0L2kW3TR3mn0y5S7Vh3htid6fEXPRNCo7DXgkACBclfQmNYg/9DZbrB6fajjP6zA
+         W1Cct7By/QiKd8W2XTgRPHaRRKZqZbcYmr6XiDV+yLn17LK+UmWhbSiEdBRcfL1hVJ
+         4Wp5Du2EAMRjg==
+Date:   Mon, 27 Mar 2023 11:19:34 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: rk3399-pinephone-pro: Add internal
- display support
-In-Reply-To: <20230327174855.xpxrdfldqcxk463r@core>
-References: <20230327074136.1459212-1-javierm@redhat.com>
- <20230327130147.wgxl2qayhzsi2xak@core>
- <87wn32rynm.fsf@minerva.mail-host-address-is-not-set>
- <1924921.PYKUYFuaPT@diego>
- <87mt3yrwzo.fsf@minerva.mail-host-address-is-not-set>
- <20230327174855.xpxrdfldqcxk463r@core>
-Date:   Mon, 27 Mar 2023 20:15:52 +0200
-Message-ID: <87jzz2rrfr.fsf@minerva.mail-host-address-is-not-set>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH v4 5/7] scsi: ufs: ufs-qcom: Switch to the new ICE API
+Message-ID: <20230327181934.GD1882@sol.localdomain>
+References: <20230327134734.3256974-1-abel.vesa@linaro.org>
+ <20230327134734.3256974-6-abel.vesa@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327134734.3256974-6-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ond=C5=99ej Jirman <megi@xff.cz> writes:
+Hi Abel,
 
-> On Mon, Mar 27, 2023 at 06:15:55PM +0200, Javier Martinez Canillas wrote:
+On Mon, Mar 27, 2023 at 04:47:32PM +0300, Abel Vesa wrote:
+> Now that there is a new dedicated ICE driver, drop the ufs-qcom-ice and
+> use the new ICE api provided by the Qualcomm soc driver ice. The platforms
+> that already have ICE support will use the API as library since there will
+> not be a devicetree node, but instead they have reg range. In this case,
+> the of_qcom_ice_get will return an ICE instance created for the consumer's
+> device. But if there are platforms that do not have ice reg in the
+> consumer devicetree node and instead provide a dedicated ICE devicetree
+> node, the of_qcom_ice_get will look up the device based on qcom,ice
+> property and will get the ICE instance registered by the probe function
+> of the ice driver.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-[...]
+I am still worried about the ICE clock.  Are you sure it is being managed
+correctly?  With your patch, the ICE clock gets enabled in ufs_qcom_ice_resume
+and disabled in ufs_qcom_ice_suspend, which hopefully pair up.  But it also gets
+enabled in ufs_qcom_ice_enable which isn't paired with anything.  Also, this all
+happens at a different time from the existing UFS clocks being enabled/disabled.
 
->>=20
->> It is broken though? This is what is in Ondrej downstream tree and I see
->> no issues on my Pinephone Pro. He mentioned some flicker when looking at
->> the signals with a scope and hooking a photoresistor.
->
-> LED regulator is driven out of spec by a frequency that's 20x lower than
-> recommended, if you want short version of what's broken about the DT patc=
-h.
->
->> But that's fair. I'll let Ondrej then post a v3 if he wants to address t=
-he
->> issues he pointed out, since is his patch after all.
->
-> It's not my patch. Original author of the DT is Martijn or Kamil. I just =
-carry
-> their DT work in split-up patches in my tree, and I sometimes try to find=
- solutions
-> to bugs I find when using PPP. That's the story of these DT changes you'r=
-e posting.
->
-> Since you posted this DT patch for upstreaming, I wanted to help you by r=
-eviewed
-> it more completely, so I opened the schematic and datasheets for the comp=
-onents
-> that are described in this patch, and discovered these new issues I comme=
-nted
-> about. And I also tested it on top of linus/master.
->
-> Just because something is in my tree doesn't mean it's mine, or that I re=
-viewed
-> it in detail and prepared it for upstreaming, or that I'm interested in
+I wonder if the ICE clock should be enabled/disabled in ufs_qcom_setup_clocks()
+instead of what you are doing currently?
 
-Thanks for the clarification. Because the patch had your authorship I
-wrongly assumed that came from you. Sorry about the confusion.
+> +static int ufs_qcom_ice_init(struct ufs_qcom_host *host)
+> +{
+> +	struct ufs_hba *hba = host->hba;
+> +	struct device *dev = hba->dev;
+> +
+> +	host->ice = of_qcom_ice_get(dev);
+> +	if (host->ice == ERR_PTR(-EOPNOTSUPP)) {
+> +		dev_warn(dev, "Disabling inline encryption support\n");
+> +		hba->caps &= ~UFSHCD_CAP_CRYPTO;
+> +		host->ice = NULL;
+> +	}
+> +
+> +	if (IS_ERR(host->ice))
+> +		return PTR_ERR(host->ice);
+> +
+> +	return 0;
+> +}
 
-> upstreaming it. I'm just trying to help you with your upstreaming effort =
-by
-> testing and review since I got to know the hardware quite well over the l=
-ast
-> years and can check the schematics and datasheets quickly, and I like to =
-think
-> upstream code is held to higher standard. That's all.
->
+This is still sometimes leaving UFSHCD_CAP_CRYPTO set in cases where ICE is
+unsupported.
 
-Appreciate your help and I agree that upstream code should be held to a
-high standard. But since the DTS in mainline is pretty basic anyways (you
-can only boot to serial right now), is not really usable for other thing
-than development and keep adding the missing support.
+Moving the *setting* of UFSHCD_CAP_CRYPTO into here would fix that.
 
-So I thought that we could do it in steps without creating that much work
-for the people trying to post the downstream patches and having to re-spin
-too many times.
+It is also hard to understand how the -EOPNOTSUPP case differs from the NULL
+case.  Can you add a comment?  Or just consider keeping the original behavior,
+which did not distinguish between these cases (as long as MASK_CRYPTO_SUPPORT
+was set in REG_CONTROLLER_CAPABILITIES, which was checked first).
 
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+- Eric
