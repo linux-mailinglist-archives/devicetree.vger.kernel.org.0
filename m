@@ -2,161 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0C46CA348
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 746456CA3E8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbjC0MPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 08:15:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34380 "EHLO
+        id S231203AbjC0MVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 08:21:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232777AbjC0MOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:14:45 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CA9C3AB6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:14:39 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id i5so35459788eda.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:14:39 -0700 (PDT)
+        with ESMTP id S232303AbjC0MVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:21:31 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83D183E7
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:19:40 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id t10so35220725edd.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:19:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112; t=1679919278;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zV7l9gwzS8uQDvU8ghGXWk1DwKUvHBE9MrpysU0Lhqw=;
-        b=cCLCI0wMW6IRrmquuFwWgV0/AtgncU+z6G0YwRGCKcPihYxqfjtEUP9PZFwIrsmigW
-         VtZxXoT3CsK5aVgrLkaFP04/rxndWu5A0D+zj2F/oXxRRqjL/9qL3tUwo4qqjxrboSLC
-         hAhmnuNeQTYq5qv17YcKG32fYUexBlRjb1vDJI/bxNPFOIot+Xi95OHKx0W/+W0zm+Js
-         UDYjhTCiiuhDCL2kWG2AMsnUOOVd/pgT15aMbQP7fuvK7zWzVONVaNdSmZPmNBYpplzk
-         KmoKrfdQVBQg82RyQiyYtLhIZ5C2/y3PhA327LsJxffMNrzKHZlte7+NcO8wTOpj1h3+
-         a+RQ==
+        d=linaro.org; s=google; t=1679919563;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3EakUI0jPNAKMyGSbXLdAYtexLz6JRBq3/S7X5rdpkM=;
+        b=YfOGi5nIN1LMTUEwVIBWmw5WfzTXuwcFr6VkD9El4PILnUwRTn3tA1fPy81Q+aVppr
+         cXMxGPGNiWUWNw1RV2+rFWcv0QCT4Ik4de8GtvQpKVBKJnl5K1t1Mv7gFeMB1RjLP2U8
+         O1mRf3twnqy4kExwXswjwwKvGHxcqHl4DeXfT7IVT9InR/2c1j6zZyUIwQuBgQF3jpKf
+         03yOzbOs7oRCbLVc5YzdvmKaj6/0haPCuyy3hWK9Cq05OPsbwjvsHGrPn6XDzB2/PB+y
+         JJAtAxUos3kfWw3Oy0fC66+DFiuxyYG4soxu1ypMr8oCqcRkVsfXxFyl4rNMovRYY63Y
+         Ixcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679919278;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zV7l9gwzS8uQDvU8ghGXWk1DwKUvHBE9MrpysU0Lhqw=;
-        b=nH4rMBI4qVORf63aBcwgQc+puJFKugZesKsThu49C6l+W6O31O2dUUXZ2ol+tNthVx
-         2JETfF93cWiZqZVpOfSuKonRo5ofAu0EX+qTxrSLaXuq2YFx6+7Yc8hngXGVz6QL7cnl
-         sW3KPKUkDUC7Z05+qvJCgULlVPLt0E4lutXxDiuomMab+zfAz2mevqLnjYq7a+wD5TS0
-         5qj++5YhhA7hsLfr8bsKiU0zlTDkgC/HXPdt6j5BcEImdBH8p8g3ctoycoitpaMguzWd
-         lpT9O1piMV0aIDj2ZYpQEDgDPYp6MUclehZFJUP3W3B9yU66vH4/35Dh38YJrEN6+g7n
-         /g8w==
-X-Gm-Message-State: AAQBX9dY31tRjIeE1ufLiZBex9txB/1CbYHd8+n005gaSsjZI14++5st
-        7zT8qhd39+TpNfXWN8jdNSa9U4j6fxhqX7/gWmY7fA==
-X-Google-Smtp-Source: AKy350YoU2vC7aokDmLDWrPj3cpvgmucjwtQQi8VTcpal+Pl/zZwRYz8X50BsBIvSx7RUVyUkJ/fyLGgiTzEnTe0gn0=
-X-Received: by 2002:a50:9fef:0:b0:4fc:2096:b15c with SMTP id
- c102-20020a509fef000000b004fc2096b15cmr5975228edf.1.1679919277773; Mon, 27
- Mar 2023 05:14:37 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679919563;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3EakUI0jPNAKMyGSbXLdAYtexLz6JRBq3/S7X5rdpkM=;
+        b=THVE3yQaDRmnHA+ci41yW4KT5FJrdMxeDM7NSIypsQfPF87WmyfiBBsCBbKVE+opKN
+         IoWwWoh+qMfkuzmxqx22L4AxMLMvtNuXFVyexXVJsYHlZkCFxGrMAHEC14HCPvi+pk+O
+         PpwR/CJl+1FgCzzJK8lX/q9cKPJZdjtw47ugb5g8+esMujxET4ckcnqgkJIw6rXopUub
+         4k8LhEvbH3gPK8/BIHqILWpe9VMsp7ZKwt/0n1i10HHMe34s7kfNaxYBDf1ziJ83WmU+
+         C4XS72CkJEHXy7Tv8Smrl3gyrB8Dw7zGSVNa0fjYJok4rU0tbnyOzUmiaZjBihPnH4T2
+         UQew==
+X-Gm-Message-State: AAQBX9cZ1JHBVL3BZY7SbhO6SV+h6QORIX4WOtZoSc2wngy3TrS2P7Z7
+        xnu4Rj5lHvP5vZJOLpywcuIL6A==
+X-Google-Smtp-Source: AKy350b6d9XE2HHWOHZjV/5/85T1ouRUKqmWiG8PcQum228h/qDy8/lVOV2pixdrzmpNPdtK01VMrw==
+X-Received: by 2002:a17:906:11d6:b0:93b:68a8:a0e0 with SMTP id o22-20020a17090611d600b0093b68a8a0e0mr11190947eja.16.1679919562742;
+        Mon, 27 Mar 2023 05:19:22 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:581e:789c:7616:5ee? ([2a02:810d:15c0:828:581e:789c:7616:5ee])
+        by smtp.gmail.com with ESMTPSA id u6-20020a50d506000000b004fd2aab4953sm14660386edi.45.2023.03.27.05.19.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 05:19:22 -0700 (PDT)
+Message-ID: <d5821429-032d-e1e6-3a4e-ca19eb4a60ed@linaro.org>
+Date:   Mon, 27 Mar 2023 14:19:20 +0200
 MIME-Version: 1.0
-References: <20230324155421.271544-1-alexghiti@rivosinc.com> <20230324155421.271544-3-alexghiti@rivosinc.com>
-In-Reply-To: <20230324155421.271544-3-alexghiti@rivosinc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 27 Mar 2023 17:44:26 +0530
-Message-ID: <CAAhSdy3fMm5gVASMqfs7qMdUp7omZG5tKSeDCxvDA1YALPDiTA@mail.gmail.com>
-Subject: Re: [PATCH v9 2/3] riscv: Move the linear mapping creation in its own function
-To:     Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 03/10] dt-bindings: qcom-qce: Fix compatibles
+ combinations for SM8150 and IPQ4019 SoCs
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, rfoss@kernel.org,
+        neil.armstrong@linaro.org
+References: <20230322114519.3412469-1-bhupesh.sharma@linaro.org>
+ <20230322114519.3412469-4-bhupesh.sharma@linaro.org>
+ <333081a2-6b31-3fca-1a95-4273b5a46fb7@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <333081a2-6b31-3fca-1a95-4273b5a46fb7@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 24, 2023 at 9:26=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosinc=
-.com> wrote:
->
-> No change intended, it just splits the linear mapping creation from
-> setup_vm_final: this prepares for upcoming additions to the linear
-> mapping creation.
->
-> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+On 27/03/2023 13:49, Vladimir Zapolskiy wrote:
+> Hi Bhupesh,
+> 
+> On 3/22/23 13:45, Bhupesh Sharma wrote:
+>> Currently the compatible list available in 'qce' dt-bindings does not
+>> support SM8150 and IPQ4019 SoCs directly, leading to following
+>> 'dtbs_check' error:
+>>
+>>   arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb:
+>>    crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
+>> 	['qcom,sm8150-qce', 'qcom,qce'] is too long
+>> 	['qcom,sm8150-qce', 'qcom,qce'] is too short
+>>
+>> Fix the same.
+>>
+>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>> index e375bd981300..90ddf98a6df9 100644
+>> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+>> @@ -24,6 +24,12 @@ properties:
+>>           deprecated: true
+>>           description: Kept only for ABI backward compatibility
+>>   
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,ipq4019-qce
+>> +              - qcom,sm8150-qce
+>> +          - const: qcom,qce
+>> +
+> 
+> thank you for the fix, the change is correct, please apply the tag:
+> 
+> Fixes: 00f3bc2db351 ("dt-bindings: qcom-qce: Add new SoC compatible strings for Qualcomm QCE IP")
+> 
+> But let me ask you to split the "items" into two:
+> 
+>        - items:
+>            - const: qcom,ipq4019-qce
+>            - const: qcom,qce
+> 
+>        - items:
+>            - const: qcom,sm8150-qce
+>            - const: qcom,qce
+> 
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
-Tested-by: Anup Patel <anup@brainfault.org>
+Why splitting these? The enum is the preferred way usually, so why here
+do it differently?
 
-Regards,
-Anup
+Best regards,
+Krzysztof
 
-> ---
->  arch/riscv/mm/init.c | 42 ++++++++++++++++++++++++++++--------------
->  1 file changed, 28 insertions(+), 14 deletions(-)
->
-> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> index cc558d94559a..3b37d8606920 100644
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -1086,16 +1086,25 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->         pt_ops_set_fixmap();
->  }
->
-> -static void __init setup_vm_final(void)
-> +static void __init create_linear_mapping_range(phys_addr_t start,
-> +                                              phys_addr_t end)
->  {
-> +       phys_addr_t pa;
->         uintptr_t va, map_size;
-> -       phys_addr_t pa, start, end;
-> -       u64 i;
->
-> -       /* Setup swapper PGD for fixmap */
-> -       create_pgd_mapping(swapper_pg_dir, FIXADDR_START,
-> -                          __pa_symbol(fixmap_pgd_next),
-> -                          PGDIR_SIZE, PAGE_TABLE);
-> +       for (pa =3D start; pa < end; pa +=3D map_size) {
-> +               va =3D (uintptr_t)__va(pa);
-> +               map_size =3D best_map_size(pa, end - pa);
-> +
-> +               create_pgd_mapping(swapper_pg_dir, va, pa, map_size,
-> +                                  pgprot_from_va(va));
-> +       }
-> +}
-> +
-> +static void __init create_linear_mapping_page_table(void)
-> +{
-> +       phys_addr_t start, end;
-> +       u64 i;
->
->         /* Map all memory banks in the linear mapping */
->         for_each_mem_range(i, &start, &end) {
-> @@ -1107,14 +1116,19 @@ static void __init setup_vm_final(void)
->                 if (end >=3D __pa(PAGE_OFFSET) + memory_limit)
->                         end =3D __pa(PAGE_OFFSET) + memory_limit;
->
-> -               for (pa =3D start; pa < end; pa +=3D map_size) {
-> -                       va =3D (uintptr_t)__va(pa);
-> -                       map_size =3D best_map_size(pa, end - pa);
-> -
-> -                       create_pgd_mapping(swapper_pg_dir, va, pa, map_si=
-ze,
-> -                                          pgprot_from_va(va));
-> -               }
-> +               create_linear_mapping_range(start, end);
->         }
-> +}
-> +
-> +static void __init setup_vm_final(void)
-> +{
-> +       /* Setup swapper PGD for fixmap */
-> +       create_pgd_mapping(swapper_pg_dir, FIXADDR_START,
-> +                          __pa_symbol(fixmap_pgd_next),
-> +                          PGDIR_SIZE, PAGE_TABLE);
-> +
-> +       /* Map the linear mapping */
-> +       create_linear_mapping_page_table();
->
->         /* Map the kernel */
->         if (IS_ENABLED(CONFIG_64BIT))
-> --
-> 2.37.2
->
