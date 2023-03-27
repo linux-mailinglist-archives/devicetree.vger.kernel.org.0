@@ -2,87 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D02FC6CAE1A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 668B36CAE1C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:06:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbjC0TEb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 Mar 2023 15:04:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55350 "EHLO
+        id S229946AbjC0TGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 15:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbjC0TEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:04:30 -0400
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71A52719;
-        Mon, 27 Mar 2023 12:04:28 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id i7so12056436ybt.0;
-        Mon, 27 Mar 2023 12:04:28 -0700 (PDT)
+        with ESMTP id S229610AbjC0TGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:06:00 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F81226A6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 12:05:57 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id h8so40355991ede.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 12:05:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679943956;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2BuTaW3J/AVyHqQTC99uJpLP3eB+1iZMX0oLrYWZybg=;
+        b=rvtir/fKMe5BFCjaJdjHOfomSp4Suwz5z93QZbJCSSOZzdffa80//lK2r1VS6X8dBV
+         Q3zezRWxrKQiVVwJvIDMvQd3VkEbUGUmwyb9jZkg1oU4xR9TXTgCxxgek85roq8Lmg0f
+         Fr7ijPOnBZLJT8CPdKRSIFNQyLkK6klKoc+7AW2PhUFI0jo0EWutqEKd51EojBl+1Kg/
+         i4k3Lk5ltnk3EtKcBA4Ht3dE4N4I5/cYfW3VNsX01ur+YApq1F8TbISjPvsEEQTZbWhv
+         cOqZBzN5C8l0qbQnBnIA7MV3oP4FLqAzhw66qDHsNzurH/iYwboWnETkQOuHCwQZfz1y
+         F+rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679943867;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+UFBf/PJ4B8eptCmmhaug8CchpjKto2XVsuXPxLn/2U=;
-        b=yl2ANp/j8rffygGEC8guR7gZlqWyY8mHgHZWgi7wMaQzVGz7gR8Fv2nKaQYg8y4TuS
-         8kV8C6XjZOUjtMro3EQ6chVAoJ7IHekmPdMf5dWK8EC+IYSXlGqc3MsapAlEmPMWCKYG
-         pz/NSAfctWhSwspzqHzbQHsBQjTg2rBM/LMmtviAL+ZYqDy5Wn1oA/m0Fi/dV+m9Juns
-         j/qCH8z+ZaoHPfBSXBiChXcR3Xto41Bpl9GM9ydkp7sSKY9JdIv2VWv8mCr35wJRI52L
-         GIcX8ya8y9sfJNqu3rkMszQ1TwXIbzB77XPxj6xAmm8N4bSmy18cvQ32jGrh9mCI88gA
-         8UbA==
-X-Gm-Message-State: AAQBX9f9fZA2VOCFUTLlao/I1nKOzckb1CimFqLYfeS883wHQFqjWSt0
-        ypGnoIAXKkmI9rR7XazRtRReBIPL1saNXw==
-X-Google-Smtp-Source: AKy350ZlgSO0AIZgBRroytZb9+3+UdOnRdZ7bbVz6SQazMY4N6YHRrmm2tkgFAYP7d2pS4LXaBrluw==
-X-Received: by 2002:a25:6948:0:b0:b63:e1f7:b121 with SMTP id e69-20020a256948000000b00b63e1f7b121mr11365104ybc.5.1679943867510;
-        Mon, 27 Mar 2023 12:04:27 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id 198-20020a250bcf000000b00b7767ca746asm2414493ybl.7.2023.03.27.12.04.26
+        d=1e100.net; s=20210112; t=1679943956;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2BuTaW3J/AVyHqQTC99uJpLP3eB+1iZMX0oLrYWZybg=;
+        b=EtM3ZjRwZ+ajM8GV6M2IbHZkV0SJ+HhwNiLCi5tMrsPgmwLsM+FaoMuxK3h1lsRhTM
+         Ay+gmEKb/ChAwe6T1BbFX+2zMzGiQuTksopVJlu1Vot8psjWO8VU5RSJynKKp4aQD9UX
+         siWTnL0P6DADzA9Hxek0eq35cu0iuGZK0inxCa7JBA/EKR+V+9XDQnbWxDGxLTqs1UH2
+         0F+tHYJYDk1gXOhKUT7W0/CLdMcRRl21WJ4Ta71KYW9Ask/bWTLKC9LoDUKP2D+EHhR8
+         2KPUIij77V2Kq9LB3psetHvYwoJlz7E1fs55tJMa9Sn6bEgzEa1Hxbjgi9CWreS4lnFN
+         /zWw==
+X-Gm-Message-State: AAQBX9fZSRct+unM33MPjP08F5j0WatrVXZybSijaejQCe+JBPOCH9Dm
+        24CaUX1hfyQqKI1qFR7XbhETaPOO+sKjh+SE35c=
+X-Google-Smtp-Source: AKy350Yk0SAFeqtvDmPlrfg7iYq7hca/kt9KOVLp+eQtXd3p2q9/r1Uucloa+XrwYBhRNKnXMxHopA==
+X-Received: by 2002:a05:6402:1655:b0:501:d917:d52 with SMTP id s21-20020a056402165500b00501d9170d52mr11701917edx.8.1679943955993;
+        Mon, 27 Mar 2023 12:05:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9314:a4b3:ce49:2c6b? ([2a02:810d:15c0:828:9314:a4b3:ce49:2c6b])
+        by smtp.gmail.com with ESMTPSA id x93-20020a50bae6000000b004fbf6b35a56sm14997800ede.76.2023.03.27.12.05.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 12:04:26 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id n125so11991834ybg.7;
-        Mon, 27 Mar 2023 12:04:26 -0700 (PDT)
-X-Received: by 2002:a05:6902:154e:b0:b77:d2db:5f8f with SMTP id
- r14-20020a056902154e00b00b77d2db5f8fmr7646774ybu.12.1679943866424; Mon, 27
- Mar 2023 12:04:26 -0700 (PDT)
+        Mon, 27 Mar 2023 12:05:55 -0700 (PDT)
+Message-ID: <138820d9-5ff4-0cd1-88a9-6845ad85d157@linaro.org>
+Date:   Mon, 27 Mar 2023 21:05:54 +0200
 MIME-Version: 1.0
-References: <20230327170053.4100949-1-robh@kernel.org>
-In-Reply-To: <20230327170053.4100949-1-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 27 Mar 2023 21:04:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUV9KAtp87rWOhB6eSPWL3jTBf0frwpQDaWPD=H=w3skg@mail.gmail.com>
-Message-ID: <CAMuHMdUV9KAtp87rWOhB6eSPWL3jTBf0frwpQDaWPD=H=w3skg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: ata: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v1 1/2] dt-bindings: gpio: ds4520: Add ADI DS4520
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>, linux-ide@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230327130010.8342-1-okan.sahin@analog.com>
+ <20230327130010.8342-2-okan.sahin@analog.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230327130010.8342-2-okan.sahin@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 7:01 PM Rob Herring <robh@kernel.org> wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On 27/03/2023 15:00, Okan Sahin wrote:
+> Add ADI DS4520 devicetree document.
+> 
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
+> ---
+>  .../bindings/gpio/adi,ds4520-gpio.yaml        | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/adi,ds4520-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/adi,ds4520-gpio.yaml b/Documentation/devicetree/bindings/gpio/adi,ds4520-gpio.yaml
+> new file mode 100644
+> index 000000000000..69f90e59d415
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/adi,ds4520-gpio.yaml
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Filename matching compatible.
 
-Gr{oetje,eeting}s,
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/adi,ds4520-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: DS4520 I2C GPIO expander
+> +
+> +maintainers:
+> +  - Okan Sahin <okan.sahin@analog.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ds4520
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
 
-                        Geert
+Use consistent quotes - either ' or ".
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+i2c
+
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ds4520: gpio@50 {
+
+Drop the label, not used here.
+
+> +            compatible = "adi,ds4520-gpio";
+
+As Rob's bot pointed...
+
+Best regards,
+Krzysztof
+
