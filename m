@@ -2,98 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0E96CA91E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201AF6CA921
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232812AbjC0Pff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 11:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56262 "EHLO
+        id S232489AbjC0Pfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 11:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbjC0Pfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:35:34 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD4FC2
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:35:32 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id l12so9218620wrm.10
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:35:32 -0700 (PDT)
+        with ESMTP id S232572AbjC0Pfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:35:53 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5C210F5
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:35:52 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id x8-20020a9d3788000000b0069f922cd5ceso4743115otb.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:35:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679931331;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8N0hw4+EMSVtCyZmq7J5HduUc9xYRvfHTSgJBWJto70=;
-        b=6TAtyyrRhTgXGlXDflWGtkR6vdqzDTcQXvrMvSCFyT809wO1uDB8+q7Ol208GnrjDQ
-         jdR9pVUSe/+Bkl2YkjNcBDPStTK54dohQt4Xf8imHMBJSlA2jqnwvVBtL2Eo/XTTnTuy
-         ifjjDeRJkvJgouPPhm9PZsh7/UFkU1X3uOcQ5iNIDmHDdPKNje/IJfkfU2bPnnW+bODu
-         7y6iNXTYQeNECKahRh81jTTpbYCwKDuUrT6y58MvmJK7+SZ+jQaCJCUfID6d/PPQ7eyM
-         s+G4V92W5xzHn3korVCP9Fy9JYNJ49Kz9ckzIblaDaw1xxT2FnxHT94xmgaPtvet9k0l
-         1baA==
+        d=gmail.com; s=20210112; t=1679931351;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lvH2wwh5ilVKrGxPTUn0cBva2EIuEqu2IvcB3AtAx+o=;
+        b=jb52HQakdyH6iclqcMk1O0LY26oENvXN4HUJpHYe2Y/zRlshuUMAKyDkJPp64aG16M
+         2030GJyCQ7jg03WUEE2+6HOvxSSnaj7Nsn8ysYnIS/+j8QPWLw5/mn4psEHVP0gHY/0Z
+         /fuidn07JEkvLqPaq3LlJB6+vT0OzPf4iEGnOHsCWZrO08QrkDBjfKYwOa9o3uflkGZL
+         0K4KV5p/5jQrQuz0a8Iv12rTKawzYU8eP6ZZrm1s04v/WPZAUjP+KdX5BnHGTfwdwSIk
+         rO0ZyCVfyxJJNXcg7RYKKDcTyzmsJ1/UQyGf/UGwg17DcYRSZY9f+jMG/sMFO4Oa0zj5
+         Xv6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679931331;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8N0hw4+EMSVtCyZmq7J5HduUc9xYRvfHTSgJBWJto70=;
-        b=tAu/8bcb6BM6qF/6hisAHt/ZbwIiWGTj3hXHuLM+o84RtVlsYR3xJaZ1ELgZngdmaM
-         Dlvnstw0vYDgz0Xpg9524EAXY7+ylEM6rD8ebAcxeuYPc6LinaG4FL600cpQ9WjE1pfH
-         32GkRZt0aNBa5uaFwQFSnnrF0JugrwNN2qnA7547MU5Vk8FndazrUjOtH8dGmfkiXzWk
-         czQLIQcsZeREy4bPLAWpWEYJcdCufgWw8cnymU+iFOoS1MEQuOcRLQ/JuFZ0KGI9cVCg
-         /xrZUu0xB0GkPqorJP+IvMyqhpWLmyHxaSbPDoaNx/0oL0tOnwkmwta3xScSVMXVkY4C
-         IA5g==
-X-Gm-Message-State: AAQBX9fkUd0IlvTS5x+n+NqqKD95suu8A97QIs1RpaJzzMaKOiolvPV3
-        HvF33hBq8V8f+8H1GbjiFtIjcQ==
-X-Google-Smtp-Source: AKy350YJn17Drgd1PMAWXHDxj5oFw5AMn5zFS9BIUMVYNI+vwzGpQHTMb1wO4ytJZFVcUx3HPRdxQQ==
-X-Received: by 2002:a5d:4291:0:b0:2c3:db98:3e87 with SMTP id k17-20020a5d4291000000b002c3db983e87mr9522092wrq.20.1679931331232;
-        Mon, 27 Mar 2023 08:35:31 -0700 (PDT)
-Received: from [192.168.1.70] (151.31.102.84.rev.sfr.net. [84.102.31.151])
-        by smtp.gmail.com with ESMTPSA id e9-20020adffc49000000b002be5bdbe40csm25374042wrs.27.2023.03.27.08.35.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 08:35:30 -0700 (PDT)
-Message-ID: <2ea21982-485a-d052-2e25-84907e263743@baylibre.com>
-Date:   Mon, 27 Mar 2023 17:35:28 +0200
+        d=1e100.net; s=20210112; t=1679931351;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lvH2wwh5ilVKrGxPTUn0cBva2EIuEqu2IvcB3AtAx+o=;
+        b=x6mcBijG0YiJcPAMl8uCfsxIgrFxm4+njEja/IxoOQx8ME2PZe2fzeYgmtx5xHiuq1
+         edBMWJQSlPN+4xx+7d2ANnE3e9UAHloPA/HIgFmrnUb1bQabY/VknX/46HExWbG+lwex
+         E3Ml6EYLxI230l08wOFC0V0j8GL1UPhA3KQ7RVr2IOoIhiiual+FfiXDp08DQxC928HL
+         cAv3WeSzwOJyVT+zyYxaxN1JVpb9H8k/MX4xe0xxE6wlpgGIUz+2j6PfN81moQ6khrUk
+         FVCj1tgtJxU/pxghSITzW7B17HEdCKyPKIAv05mHxIGBr7SXzGhoS8Q9FeBAHyILH+qK
+         r9xA==
+X-Gm-Message-State: AO0yUKV3cuNoyV8aEP8472IoJea7E58WLE+MYifO//MMrs00oqr0Q8JF
+        e1xP59L4Z6EZ3srmZZolDLg=
+X-Google-Smtp-Source: AK7set+cj08VsQuilXZ3ti0UfuXnFbiatsG1Zk3ryzbwhkzyi0UQ3WfdUkBWC6F4SC0NyX7sle7PJw==
+X-Received: by 2002:a9d:63c8:0:b0:69d:27e8:998d with SMTP id e8-20020a9d63c8000000b0069d27e8998dmr6732126otl.2.1679931351662;
+        Mon, 27 Mar 2023 08:35:51 -0700 (PDT)
+Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id n12-20020a9d740c000000b006a0ae1c4263sm3908913otk.48.2023.03.27.08.35.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 08:35:51 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, jonas@kwiboo.se,
+        maccraft123mc@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add clk_rtc_32k to Anbernic xx3 Devices
+Date:   Mon, 27 Mar 2023 10:35:47 -0500
+Message-Id: <20230327153547.821822-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 2/4] mfd: tps6594: Add driver for TI TPS6594 PMIC
-Content-Language: en-US
-From:   Julien Panis <jpanis@baylibre.com>
-To:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
-        gregkh@linuxfoundation.org, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com
-Cc:     eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-References: <20230321171020.74736-1-jpanis@baylibre.com>
- <20230321171020.74736-3-jpanis@baylibre.com>
-In-Reply-To: <20230321171020.74736-3-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
+For the Anbernic devices to display properly, we need to specify the
+clock frequency of the PLL_VPLL. Adding the parent clock in the
+rk356x.dtsi requires us to update our clock definitions to accomplish
+this.
 
-On 3/21/23 18:10, Julien Panis wrote:
-> This patch adds support for TPS6594 PMIC MFD core. It provides
-> communication through the I2C and SPI interfaces, and supports
-> protocols with embedded CRC data fields for safety applications.
->
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> Acked-for-MFD-by: Lee Jones <lee@kernel.org>
+Fixes: 64b69474edf3 ("arm64: dts: rockchip: assign rate to clk_rtc_32k on rk356x")
 
-Lee, I will have to drop your ack for next version (v4).
-A bug will be fixed in tps6594-core (a couple of lines
-will be added/moved in 2 functions, it will be explained
-in the coverletter changelog so that you can easily see
-the diff).
-Sorry for the disturbance.
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi | 6 ++++--
+ arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts   | 6 ++++--
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
+index 65a80d1f6d91..9a0e217f069f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
+@@ -16,8 +16,10 @@ backlight: backlight {
+ };
+ 
+ &cru {
+-	assigned-clocks = <&cru PLL_GPLL>, <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
+-	assigned-clock-rates = <1200000000>, <200000000>, <241500000>;
++	assigned-clocks = <&pmucru CLK_RTC_32K>, <&cru PLL_GPLL>,
++			  <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
++	assigned-clock-rates = <32768>, <1200000000>,
++			       <200000000>, <241500000>;
+ };
+ 
+ &gpio_keys_control {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
+index b4b2df821cba..c763c7f3b1b3 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
+@@ -105,8 +105,10 @@ spk_amp: audio-amplifier {
+ };
+ 
+ &cru {
+-	assigned-clocks = <&cru PLL_GPLL>, <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
+-	assigned-clock-rates = <1200000000>, <200000000>, <500000000>;
++	assigned-clocks = <&pmucru CLK_RTC_32K>, <&cru PLL_GPLL>,
++			  <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
++	assigned-clock-rates = <32768>, <1200000000>,
++			       <200000000>, <500000000>;
+ };
+ 
+ &dsi_dphy0 {
+-- 
+2.34.1
+
