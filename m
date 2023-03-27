@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 095DE6C9D0F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 668A86C9D17
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232936AbjC0IAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 04:00:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57458 "EHLO
+        id S232672AbjC0IBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 04:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232913AbjC0IAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:00:22 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86564233
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:00:18 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id r11so7654547wrr.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:00:18 -0700 (PDT)
+        with ESMTP id S232939AbjC0IBU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:01:20 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1514B526B
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:01:17 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id eh3so32091944edb.11
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:01:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679904017;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zyFUNg7n9En5R9qIpd5WTwBxBqNXal61tLrhnEg793Y=;
-        b=nf2hQVNadEfcLR3PzlLieEiKhWqMbZvnv+T5JHtQq6q18vncdxeWlpG1FX2InzLpPE
-         2dtvmswoL6c9wQUB2pPm3NGjMway7kEsoax4iTZnCuypi/8I6p4mBP8RE4ldW12a8GL6
-         wgFbpnC3Ky6r/9kfKjsIQP162It6m8G4LTFAX1pGioPLkFwl0ucWgfb9+tnKtEKo8E9M
-         5AdzWjhIX/FT9HxJaBlDuyD0DoyQG8lQvwnZjDFzLovtkpXXQANP+rgJfaW3oY/nMDa4
-         a0vF9kdgy05qSelJCynPJtzrHaMPIDJa+tLt0gMbghUFWeb1ShEeduRTVaYhIJs2s9Ir
-         A2Ag==
+        d=linaro.org; s=google; t=1679904075;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IuAEn34evWkVu+9g8pzRZ0hvhIqCGv/9o6SvLbyayKo=;
+        b=Zc6Pxv7O/Ah5V8t+dlGwiLkt/3TbeGoWzWL7HNsIIabo0lnDs1byWI+IkPhHgchnDW
+         a645LNnxe5eTN8twzOCgZjCTz2Q3Le/XVMVIjqBFvCTX6fPhKUT4Vp/TJ2ORh6LREELW
+         /oSRQxpsLpE7TP9KBL/i4Vlxysbz8TWvM73Js2Fz5lLNZBEPD0en448i39LF6d/KrqrR
+         MNrMx58APxq80vpDEJ5NGi6ZBSnausd6w/Pya6jv0hH7AEc+9kRWoB8S4gvzPLMhqKqt
+         mQiA61PfS8LfnMApT0kA34rA8lyw4eiDRaz4j5T0K25PPgwuM3mJqfoTwqZmH2UAz5jL
+         KITg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679904017;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zyFUNg7n9En5R9qIpd5WTwBxBqNXal61tLrhnEg793Y=;
-        b=Xf8GJvKLzcGSMmx+zYdmfrS5qOJ/fxbb3poCMKlnuA5+2m3gtdo76e70AX1z11XZIW
-         Nwu09ogjBQJwZUE/mcaEB63N7csvig75oHfmPtDXwCaAIQOFMzmfydU0ITPjInExJbeh
-         WOTmByTKy0heEBVhqv9k7t8pE/FDR7ayzI7w5OGQt56y8Rz9Kuv0gYy+3mlmxid+ci2W
-         vJ3WFszAGFbZC48ONeP48w0Hims6ZY7Wc7zZiWJLPYaJdEP3Ad0ej5ueF+yNz9WgTrNz
-         TWNaC7n6G3xZyZKPO3caJCzWjizC2M2OLv/46rv+0YIVs2HSimWqxdK98WljywCp1l0v
-         V9AA==
-X-Gm-Message-State: AAQBX9fKLiTXuolJIM8IexCvHxlPidAkfYlNvDv5TkwT3UayDuJBkhdB
-        qGqGNeGUWRhX2o7+76iEgHkwyw==
-X-Google-Smtp-Source: AKy350ZVpzk0g8Uo/mKh0MckpKDCypHEEztwKTgYIDvcHkBMmu/0AcXbH9P7NLS4OlzLxlPLPp3Ipw==
-X-Received: by 2002:a5d:4350:0:b0:2dd:11b8:8ab2 with SMTP id u16-20020a5d4350000000b002dd11b88ab2mr7811188wrr.38.1679904017407;
-        Mon, 27 Mar 2023 01:00:17 -0700 (PDT)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id v3-20020adfe4c3000000b002cf8220cc75sm16450063wrm.24.2023.03.27.01.00.16
+        d=1e100.net; s=20210112; t=1679904075;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IuAEn34evWkVu+9g8pzRZ0hvhIqCGv/9o6SvLbyayKo=;
+        b=qPAd4YQG7k+PcB8fVl7eJCnzlT+P8idGLhNLeaG9pH7fD/Cx3Bdo9EVaPrO3Qo3I+B
+         2KkuHZwdzPs7TptpGMgmiPiFImdalbITwR1GK+bBFwBwI2hE/c4SqAUuhJa1pBh8IwC+
+         PZ5Sq1Vvg/JXaVd6gAPvwHneBaY5Yoo7oY7tocE055iOaGaqDRWsaezqXL8D2IyCF6BE
+         wV0KCVqIQ4kVH6nBKNPGLyYMBuu+x7vY/pMBdUqIOFnKhqxB7d9JfThDWa2GswFoZAVw
+         W7p9Yuibb+0mJ5mNOjksgknLVfvWgqYikAbVK4/UEtSt7tOpogB/sA/oX0PTc7OXkIZX
+         EW9w==
+X-Gm-Message-State: AAQBX9ejx6XdxdTvhF9sPIKjuMzR1eTPwhH8D8JbNH6fQqX2AbCnBJ+Q
+        iucuyuf7bxChqQJW9SyRC+1iJw==
+X-Google-Smtp-Source: AKy350bIuG/4z1iiKW0lC8wTRxCuaJolAI7s+x1CbqqxUTPT34ySWHo3ciDWbj19NxxG12DrJ3hBEg==
+X-Received: by 2002:aa7:ce0f:0:b0:502:24a4:b0ad with SMTP id d15-20020aa7ce0f000000b0050224a4b0admr10030514edv.4.1679904075589;
+        Mon, 27 Mar 2023 01:01:15 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:198e:c1a5:309b:d678? ([2a02:810d:15c0:828:198e:c1a5:309b:d678])
+        by smtp.gmail.com with ESMTPSA id f11-20020a50a6cb000000b00501c96564b5sm10527397edc.93.2023.03.27.01.01.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 01:00:17 -0700 (PDT)
-Message-ID: <656c6ae6-41c5-9b7e-8602-02d8b3b4149e@linaro.org>
-Date:   Mon, 27 Mar 2023 10:00:16 +0200
+        Mon, 27 Mar 2023 01:01:15 -0700 (PDT)
+Message-ID: <c3cb97cf-bb2a-2072-ae8b-a7fc9f9c9d61@linaro.org>
+Date:   Mon, 27 Mar 2023 10:01:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 4/5] dt-bindings: phy: qcom,msm8996-qmp-usb3-phy: drop
- legacy bindings
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 08/12] regulator: dt-bindings: qcom,rpmh: Add
+ compatible for PMC8180
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
- <20230324215550.1966809-5-dmitry.baryshkov@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230324215550.1966809-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230325122444.249507-1-vkoul@kernel.org>
+ <20230325122444.249507-9-vkoul@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230325122444.249507-9-vkoul@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -87,161 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 22:55, Dmitry Baryshkov wrote:
-> The qcom,msm8996-qmp-usb3-phy.yaml defines bindings for several PHYs
-> which predate USB -> USB+DP migration. Now as sm8150 has been migrated,
-> drop the legacy bindings completely. No device trees use them anymore.
-> Newer USB+DP bindings should use combo bindings from the beginning.
-
-Shouldn't we mark then as deprecated first ?
-
-Neil
-
+On 25/03/2023 13:24, Vinod Koul wrote:
+> Commit 71ca776a8885 ("regulator: qcom-rpmh: Add pmc8180 and pmc8180c")
+> introduced these compatible's but the yaml conversion commit
+> 7255f98d08c7 ("regulator: Convert RPMh regulator bindings to YAML")
+> seems to have dropped it
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   .../phy/qcom,msm8996-qmp-usb3-phy.yaml        | 80 -------------------
->   1 file changed, 80 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-> index e81a38281f8c..5684eaf170e4 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
-> @@ -24,26 +24,17 @@ properties:
->         - qcom,msm8996-qmp-usb3-phy
->         - qcom,msm8998-qmp-usb3-phy
->         - qcom,qcm2290-qmp-usb3-phy
-> -      - qcom,sc7180-qmp-usb3-phy
-> -      - qcom,sc8180x-qmp-usb3-phy
-> -      - qcom,sdm845-qmp-usb3-phy
->         - qcom,sdm845-qmp-usb3-uni-phy
->         - qcom,sdx55-qmp-usb3-uni-phy
->         - qcom,sdx65-qmp-usb3-uni-phy
->         - qcom,sm6115-qmp-usb3-phy
-> -      - qcom,sm8150-qmp-usb3-phy
->         - qcom,sm8150-qmp-usb3-uni-phy
-> -      - qcom,sm8250-qmp-usb3-phy
->         - qcom,sm8250-qmp-usb3-uni-phy
-> -      - qcom,sm8350-qmp-usb3-phy
->         - qcom,sm8350-qmp-usb3-uni-phy
-> -      - qcom,sm8450-qmp-usb3-phy
->   
->     reg:
-> -    minItems: 1
->       items:
->         - description: serdes
-> -      - description: DP_COM
->   
->     "#address-cells":
->       enum: [ 1, 2 ]
-> @@ -128,28 +119,6 @@ required:
->   additionalProperties: false
->   
->   allOf:
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,sc7180-qmp-usb3-phy
-> -    then:
-> -      properties:
-> -        clocks:
-> -          maxItems: 4
-> -        clock-names:
-> -          items:
-> -            - const: aux
-> -            - const: cfg_ahb
-> -            - const: ref
-> -            - const: com_aux
-> -        resets:
-> -          maxItems: 1
-> -        reset-names:
-> -          items:
-> -            - const: phy
-> -
->     - if:
->         properties:
->           compatible:
-> @@ -204,7 +173,6 @@ allOf:
->           compatible:
->             contains:
->               enum:
-> -              - qcom,sm8150-qmp-usb3-phy
->                 - qcom,sm8150-qmp-usb3-uni-phy
->                 - qcom,sm8250-qmp-usb3-uni-phy
->                 - qcom,sm8350-qmp-usb3-uni-phy
-> @@ -225,29 +193,6 @@ allOf:
->               - const: phy
->               - const: common
->   
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,sm8250-qmp-usb3-phy
-> -              - qcom,sm8350-qmp-usb3-phy
-> -    then:
-> -      properties:
-> -        clocks:
-> -          maxItems: 3
-> -        clock-names:
-> -          items:
-> -            - const: aux
-> -            - const: ref_clk_src
-> -            - const: com_aux
-> -        resets:
-> -          maxItems: 2
-> -        reset-names:
-> -          items:
-> -            - const: phy
-> -            - const: common
-> -
->     - if:
->         properties:
->           compatible:
-> @@ -271,28 +216,6 @@ allOf:
->               - const: phy_phy
->               - const: phy
->   
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,sdm845-qmp-usb3-phy
-> -              - qcom,sm8150-qmp-usb3-phy
-> -              - qcom,sm8350-qmp-usb3-phy
-> -              - qcom,sm8450-qmp-usb3-phy
-> -    then:
-> -      patternProperties:
-> -        "^phy@[0-9a-f]+$":
-> -          properties:
-> -            reg:
-> -              items:
-> -                - description: TX lane 1
-> -                - description: RX lane 1
-> -                - description: PCS
-> -                - description: TX lane 2
-> -                - description: RX lane 2
-> -                - description: PCS_MISC
-> -
->     - if:
->         properties:
->           compatible:
-> @@ -319,13 +242,10 @@ allOf:
->                 - qcom,ipq6018-qmp-usb3-phy
->                 - qcom,ipq8074-qmp-usb3-phy
->                 - qcom,qcm2290-qmp-usb3-phy
-> -              - qcom,sc7180-qmp-usb3-phy
-> -              - qcom,sc8180x-qmp-usb3-phy
->                 - qcom,sdx55-qmp-usb3-uni-phy
->                 - qcom,sdx65-qmp-usb3-uni-phy
->                 - qcom,sm6115-qmp-usb3-phy
->                 - qcom,sm8150-qmp-usb3-uni-phy
-> -              - qcom,sm8250-qmp-usb3-phy
->       then:
->         patternProperties:
->           "^phy@[0-9a-f]+$":
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
