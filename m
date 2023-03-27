@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 241CA6CA72D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B306CA733
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233044AbjC0ONd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 10:13:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46586 "EHLO
+        id S233033AbjC0OOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:14:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232866AbjC0OMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:12:44 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725CE658D;
-        Mon, 27 Mar 2023 07:11:29 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id i9so8959448wrp.3;
-        Mon, 27 Mar 2023 07:11:29 -0700 (PDT)
+        with ESMTP id S232734AbjC0OO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:14:28 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E85C76BD
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:12:42 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso7480836wms.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:12:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679926285;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oy4rJp/0zV8uQx96aqdFOna+cm21IPd+B8/oErRDE1c=;
-        b=N1+9G3TumKrPZKtDgnUYD6HDreYZGrsnCsG3x6VR1o6zsdlKygYn5Z2B/6MK7uSEib
-         /66G9qTuGKBx/QqmSMP7T42XAs/7GFQk8nHeM2yzmROF/lCWibWpheeY7B2GIYdPhN1b
-         9GOlfffc+AZNhfrEsFIJ3yAaWe0xtdGPgJ7Kl/Hxs1k3JTD2gzvl09ggMzmHbEwGGjX0
-         5zZz5BzkFOFGFyvfTTjuPhvEr8tGjp/IpmshsxkTYQ/MxRyhYQnC07KfzFJlhNkTtrfr
-         U+DjoUUgEiUUffoufrfwBWTA2WZQ8MQAdVmgCLlpPjCWptllhVOFI+HVVbkY+10eJdED
-         7MAg==
+        d=linaro.org; s=google; t=1679926350;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=fKnoQ1IGP979Kt8TCBwbgTqrZMuWob8dGcOoVTk9Mns=;
+        b=xIo433rYkzdQshhv0w4YajqWveo8kDFdO02NDrgL2+OyJotmdYUaYLjlY5rlx5s6XH
+         Tb9Tz7PtAkGdQVNgbxbv/RGZXwPhydwRQ8Owfcm8K5+fXekpnxuZ4x5mBd7UsdOyKh0y
+         xZkMAkpn4o5i7sdk33oQkznhLTUDO1qi2YKisjyi/Jgf7+bqqg3KojB97upu9HzA4W9Q
+         yKa99CG/mDjTsyvxmND71zrB1vtls7NQ4b6cqQ4j/nlLGOvtSMyI9rqnYUgrBtLADD4e
+         8X+Na+Q5T2pBqDn0QY3I6gTPR67uhyBYHmwmfplczL9pwGSUsf469KGucqG4SnAF8qSi
+         unuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679926285;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oy4rJp/0zV8uQx96aqdFOna+cm21IPd+B8/oErRDE1c=;
-        b=FMq992CpDPrMpcuoNU7v2pHnJ5WKkCjoRtruPc5m3muB4eg9xCAjexKkTsEroi+5hA
-         durhU+5iBGOl/FoytHyGN6pLTqSDuY/4oc/vvpXD/yiORs9XLlExHXAFxEoVc8L4An/G
-         +i61vETMfq9ZVUVG0vFD5rqTdjroN+gwJx2tmmH6zzDJZsXG0In7PZQKEk1cOmWrcK1u
-         lqFFSjWFvUcKg/TBdi4lENPhFWZwAD+ogrU07Prv5zqlTQ+F/eC3wTnfl+jpwj86RfOh
-         jr5rHMMI5fZZqc+W/WHSHoTm/Vq876gIIEmaHN3OH7NB8RINqn+WicFilTAO6HzRXXZ2
-         dlKg==
-X-Gm-Message-State: AAQBX9cRRe04NsHN3WvViu0vNRBelz/muQ6LV/Mpp7RhuKm7OiKkH2KZ
-        qdll3xKrzazm0df3Kq7B0nA=
-X-Google-Smtp-Source: AKy350bY2vBFHRJIpmB9jjsdfXbR2+U5xce8+gKxuwZJYB+85/mF1ngen08oj5b5T/J/Vu/xGqkEyw==
-X-Received: by 2002:adf:e5d1:0:b0:2ce:a7f5:ff10 with SMTP id a17-20020adfe5d1000000b002cea7f5ff10mr8517757wrn.57.1679926285261;
-        Mon, 27 Mar 2023 07:11:25 -0700 (PDT)
-Received: from localhost.localdomain (93-34-89-197.ip49.fastwebnet.it. [93.34.89.197])
-        by smtp.googlemail.com with ESMTPSA id p17-20020adfcc91000000b002c71dd1109fsm25307591wrj.47.2023.03.27.07.11.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 07:11:24 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        d=1e100.net; s=20210112; t=1679926350;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fKnoQ1IGP979Kt8TCBwbgTqrZMuWob8dGcOoVTk9Mns=;
+        b=FbYSW4dZz5fn3PfMo+KbAs6ymkRicgV7PJzl+peq4DQgO5gyrL5pC0aQ3h4pxO7IrI
+         ib+swktMaQu1MrqTIdcC3b6DwK3yLrJri2nmG2ghMXDG5uCECHMJMRFK/AA3P8zOD+89
+         QQQsTHBFSaIa8R0FEwHWXJIfZdUTCCMr/IhDRRjuH7G0f9wKIsHSeNAskQq98SjPO4QP
+         lvCqc9GGdmJYjX/yuIvKqeCLY8KJvqAk+1oj5KqZ6yoyORuiQATGdQOxhB62VlRahC9N
+         1Eil/+X8EQXXkbzD82e0hdzT5rg/S3MWCTgYrCT1xfq4pBNsibbmyHV+HAq8GdqyqHVL
+         1Gew==
+X-Gm-Message-State: AO0yUKWq2XkYtWkQ5ji/tJjybEY4V3cNNVrCWTD0e6w7BMyJE7VyVcM+
+        a+XcNdXS1cN0isjNTljB1bI9eg==
+X-Google-Smtp-Source: AK7set/BioTRThtgYoUpRpK1iQV3aUjlqyafv/MSXVLT+TCzV7sOZd5n/J0DhO10wtb6+Yoyi6Q5sA==
+X-Received: by 2002:a7b:c5d4:0:b0:3ed:8079:27d7 with SMTP id n20-20020a7bc5d4000000b003ed807927d7mr9022949wmk.40.1679926350308;
+        Mon, 27 Mar 2023 07:12:30 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ef3b:2a41:93d:75f2? ([2a01:e0a:982:cbb0:ef3b:2a41:93d:75f2])
+        by smtp.gmail.com with ESMTPSA id o9-20020a05600c510900b003ed793d9de0sm22134610wms.1.2023.03.27.07.12.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 07:12:29 -0700 (PDT)
+Message-ID: <09fbe342-7bf2-fd51-f401-d88e787078a4@linaro.org>
+Date:   Mon, 27 Mar 2023 16:12:27 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/3] perf/amlogic: resolve conflict between canvas &
+ pmu
+Content-Language: en-US
+To:     Marc Gonzalez <mgonzalez@freebox.fr>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [net-next PATCH v6 16/16] arm: mvebu: dt: Add PHY LED support for 370-rd WAN port
-Date:   Mon, 27 Mar 2023 16:10:31 +0200
-Message-Id: <20230327141031.11904-17-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230327141031.11904-1-ansuelsmth@gmail.com>
-References: <20230327141031.11904-1-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jiucheng Xu <jiucheng.xu@amlogic.com>
+Cc:     Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Pierre-Hugues Husson <phh@phh.me>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230327120932.2158389-1-mgonzalez@freebox.fr>
+ <20230327120932.2158389-3-mgonzalez@freebox.fr>
+Organization: Linaro Developer Services
+In-Reply-To: <20230327120932.2158389-3-mgonzalez@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,49 +88,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch>
+On 27/03/2023 14:09, Marc Gonzalez wrote:
 
-The WAN port of the 370-RD has a Marvell PHY, with one LED on
-the front panel. List this LED in the device tree.
+I'll fixup the commit message while applying.
 
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/armada-370-rd.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> According to S905X2 Datasheet - Revision 07:
+> 
+> DMC_MON area spans 0xff638080-0xff6380c0
+> DDR_PLL area spans 0xff638c00-0xff638c34
+> 
+> Round DDR_PLL area size up to 0x40
+> 
+> Fixes: 90cf8e21016fa3 ("arm64: dts: meson: Add DDR PMU node")
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index a5653ab1f0b43..1aab65bb5f578 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -1585,6 +1585,12 @@ canvas: video-lut@48 {
+>   					compatible = "amlogic,canvas";
+>   					reg = <0x0 0x48 0x0 0x14>;
+>   				};
+> +
+> +				pmu: pmu@80 {
+> +					reg = <0x0 0x80 0x0 0x40>,
+> +					      <0x0 0xc00 0x0 0x40>;
+> +					interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
+> +				};
+>   			};
+>   
+>   			usb2_phy1: phy@3a000 {
+> @@ -1710,12 +1716,6 @@ internal_ephy: ethernet-phy@8 {
+>   			};
+>   		};
+>   
+> -		pmu: pmu@ff638000 {
+> -			reg = <0x0 0xff638000 0x0 0x100>,
+> -			      <0x0 0xff638c00 0x0 0x100>;
+> -			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
+> -		};
+> -
+>   		aobus: bus@ff800000 {
+>   			compatible = "simple-bus";
+>   			reg = <0x0 0xff800000 0x0 0x100000>;
 
-diff --git a/arch/arm/boot/dts/armada-370-rd.dts b/arch/arm/boot/dts/armada-370-rd.dts
-index be005c9f42ef..15b36aa34ef4 100644
---- a/arch/arm/boot/dts/armada-370-rd.dts
-+++ b/arch/arm/boot/dts/armada-370-rd.dts
-@@ -20,6 +20,7 @@
- /dts-v1/;
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/gpio/gpio.h>
- #include "armada-370.dtsi"
- 
-@@ -135,6 +136,19 @@ &mdio {
- 	pinctrl-names = "default";
- 	phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				label = "WAN";
-+				color = <LED_COLOR_ID_WHITE>;
-+				function = LED_FUNCTION_LAN;
-+				function-enumerator = <1>;
-+				linux,default-trigger = "netdev";
-+			};
-+		};
- 	};
- 
- 	switch: switch@10 {
--- 
-2.39.2
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
