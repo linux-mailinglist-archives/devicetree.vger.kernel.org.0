@@ -2,100 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C456CA082
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BA126CA09F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:57:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232755AbjC0JwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 05:52:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48480 "EHLO
+        id S233104AbjC0J5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 05:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232818AbjC0JwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:52:09 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4EAB149CA;
-        Mon, 27 Mar 2023 02:52:07 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A42E4B3;
-        Mon, 27 Mar 2023 02:52:51 -0700 (PDT)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A165E3F73F;
-        Mon, 27 Mar 2023 02:52:04 -0700 (PDT)
-Message-ID: <9c7f6414-ac5c-bee2-7068-04a7ee7d94f9@arm.com>
-Date:   Mon, 27 Mar 2023 10:52:03 +0100
+        with ESMTP id S230017AbjC0J5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:57:49 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEA1C49EB
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 02:57:47 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id z83so9774543ybb.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 02:57:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679911067;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=k27rtmcwmhq6wgggW/3Sn6Xc8kSRrAZhl+xMeyBeZ1E=;
+        b=Z8d2Y5dDY5QbTwfzzRpnpKhSqE2jBF3ZiZvhNAX1EzXonhBTIj6acln5VzZyW0HJy6
+         +4Qaqe+zeCbEVHUjDQAw1rHKv/mjL3+OqxSFJUYO0xpDrY2gkbOqvq2ZCO14Xo+usOgo
+         WT0rj8QYUxLh1xt+8yrzZuM2KTehS5ONwuYTWPp5UTErgkJiP0GXRFK7ciQRTs4Ro3Ly
+         QDlWLCCtC3n5NgCBvyOuVqQti3YqNmECSPmc9PqbpDo+VEQbz/qqWzAU25ZkX21+f05j
+         nz7vgBJg8nIiRkfCoHTyxkrgg+9HuVqGEFd+6RGiBnZHFJ0FphrVrV1UPp9p0cR0n5gx
+         mYxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679911067;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k27rtmcwmhq6wgggW/3Sn6Xc8kSRrAZhl+xMeyBeZ1E=;
+        b=C3kOZnLCnwU+EXjMx0AaOJ+gbNy5+vrpx3VcmhboBLRVhwkp8eZh3x1GvCeUhyQL/D
+         L7xnaBguP0MNxQ749G8fWVpeSlbilC3ZDVj6ZcT8K9o3beRvMs6S72KOKWK6yfdatVWv
+         7QlX7ZKLXgYsqQHNu80KWtKOQK3URi3vFqBL5zxkozE8iwFwbOnV5naQ+9JgChx40CWc
+         xUROq5yHWZ65Hte1drmOTUh2bxu7SpkBgYI3IRCwzjQ2hN4DbKms+WivCcoIAJsB1LhF
+         HDt4Lx6y24/1wLHtGGXyKiJngxJKNQRrxkaGMB7RJC9Zyp9matGrmKdbjX7xgZF0cPBQ
+         m0tA==
+X-Gm-Message-State: AAQBX9eLw5fncjPRl5++rzlHTOCTfyU3o38hMInFQFcoL8C53HH1rs25
+        mWzh3z6fUpYvP59sQ5qoKz9pniIjK40AP58LnMstmr+dJJp0TOe9kCa60exo
+X-Google-Smtp-Source: AKy350bqSZkp2vwHLM2HDg2kTXElzv8K9pxIBAEzotZUwoRAEzYSw1UgG97x5U7K4JqAfAqPvGH0dSiNZYU4olbTJKc=
+X-Received: by 2002:a05:6902:a8e:b0:b7c:1144:a729 with SMTP id
+ cd14-20020a0569020a8e00b00b7c1144a729mr491732ybb.9.1679911066871; Mon, 27 Mar
+ 2023 02:57:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH] coresight: cti: Check if the CPU activated for the CPU
- CTI
-Content-Language: en-US
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1679910560-23469-1-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1679910560-23469-1-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <cover.1679909245.git.quic_varada@quicinc.com> <b4504cbc87e526de92a423dd21c389b30068761b.1679909245.git.quic_varada@quicinc.com>
+In-Reply-To: <b4504cbc87e526de92a423dd21c389b30068761b.1679909245.git.quic_varada@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 27 Mar 2023 12:57:36 +0300
+Message-ID: <CAA8EJpo+1mg74-DbkjDs51LdCRR4Y9KjtUBvA=neNdyZZ34zFw@mail.gmail.com>
+Subject: Re: [PATCH v4 6/8] phy: qcom: qmp: Update IPQ9574 USB Phy
+ initialization Sequence
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org,
+        Praveenkumar I <quic_ipkumar@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 10:49, Tao Zhang wrote:
-> Check whether the CPU corresponding to the CPU CTI is activated.
-> If it is not activated, the CPU CTI node should not exist, and
-> an error will be returned in the initialization function.
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+On Mon, 27 Mar 2023 at 12:32, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> Updated USB QMP PHY Init sequence based on HPG for IPQ9574.
+> Reused clock and reset list from existing targets.
+>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->   drivers/hwtracing/coresight/coresight-cti-core.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-cti-core.c b/drivers/hwtracing/coresight/coresight-cti-core.c
-> index 277c890..aaa83ae 100644
-> --- a/drivers/hwtracing/coresight/coresight-cti-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-cti-core.c
-> @@ -899,10 +899,12 @@ static int cti_probe(struct amba_device *adev, const struct amba_id *id)
->   	drvdata->config.hw_powered = true;
->   
->   	/* set up device name - will depend if cpu bound or otherwise */
-> -	if (drvdata->ctidev.cpu >= 0)
-> +	if (drvdata->ctidev.cpu >= 0) {
-> +		if (!cpu_active(drvdata->ctidev.cpu))
-> +			return -ENXIO;
->   		cti_desc.name = devm_kasprintf(dev, GFP_KERNEL, "cti_cpu%d",
->   					       drvdata->ctidev.cpu);
+>  Changes in v4:
+>         - Use qmp_usb_offsets for register space access
+>  Changes in v3:
+>         - Fix hex captitalization
+>  Changes in v2:
+>         - Removed unused phy register offsets
+>         - Moved the clock entries to the correct place
+>         - Maintain sorted order
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 129 ++++++++++++++++++++++++++++++++
+>  1 file changed, 129 insertions(+)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> index a49711c..ed5f794 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> @@ -94,6 +94,7 @@ enum qphy_reg_layout {
+>         QPHY_PCS_STATUS,
+>         QPHY_PCS_AUTONOMOUS_MODE_CTRL,
+>         QPHY_PCS_LFPS_RXTERM_IRQ_CLEAR,
+> +       QPHY_PCS_LFPS_RXTERM_IRQ_STATUS,
 
-But why ? As long as we do not enable or touch any CPU specific bits in 
-the probe, why do we need to fail this ? What are you trying to fix ?
+This is unused
 
-Please could you share the log if you are hitting something ? This looks
-like masking a problem.
+>         QPHY_PCS_POWER_DOWN_CONTROL,
+>         /* Keep last to ensure regs_layout arrays are properly initialized */
+>         QPHY_LAYOUT_SIZE
+> @@ -139,6 +140,97 @@ static const unsigned int qmp_v5_usb3phy_regs_layout[QPHY_LAYOUT_SIZE] = {
+>         [QPHY_PCS_LFPS_RXTERM_IRQ_CLEAR] = QPHY_V5_PCS_USB3_LFPS_RXTERM_IRQ_CLEAR,
+>  };
+>
+> +static const unsigned int usb3phy_regs_layout[] = {
+> +       [QPHY_SW_RESET]                         = 0x00,
+> +       [QPHY_START_CTRL]                       = 0x08,
+> +       [QPHY_PCS_STATUS]                       = 0x17c,
+> +       [QPHY_PCS_AUTONOMOUS_MODE_CTRL]         = 0x0d4,
+> +       [QPHY_PCS_LFPS_RXTERM_IRQ_CLEAR]        = 0x0d8,
+> +       [QPHY_PCS_POWER_DOWN_CONTROL]           = 0x04,
+> +};
 
-Suzuki
+This does not look correct. you are yousing QPHY_V3_PCS for the table,
+while your register layout corresponds to QPHY_V2_PCS registers.
+Please doublecheck this. Also, is there any reason to duplicate
+existing qmp_v2_usb3phy_regs_layout or qmp_v3_usb3phy_regs_layout?
+
+> +
+> +static const struct qmp_phy_init_tbl ipq9574_usb3_serdes_tbl[] = {
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x1a),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_BIAS_EN_CLKBUFLR_EN, 0x08),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_CLK_SELECT, 0x30),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_BG_TRIM, 0x0f),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_UCDR_FASTLOCK_FO_GAIN, 0x0b),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SVS_MODE_CLK_SEL, 0x01),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_HSCLK_SEL, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x06),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_PLL_IVCO, 0x0f),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SYS_CLK_CTRL, 0x06),
+> +       /* PLL and Loop filter settings */
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_DEC_START_MODE0, 0x68),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START1_MODE0, 0xab),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START2_MODE0, 0xaa),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START3_MODE0, 0x02),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_CP_CTRL_MODE0, 0x09),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_PLL_RCTRL_MODE0, 0x16),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_PLL_CCTRL_MODE0, 0x28),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_INTEGLOOP_GAIN0_MODE0, 0xa0),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP1_MODE0, 0xaa),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP2_MODE0, 0x29),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP3_MODE0, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_CORE_CLK_EN, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP_CFG, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_MAP, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_BG_TIMER, 0x0a),
+> +       /* SSC settings */
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_EN_CENTER, 0x01),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_PER1, 0x7d),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_PER2, 0x01),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_ADJ_PER1, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_ADJ_PER2, 0x00),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_STEP_SIZE1, 0x0a),
+> +       QMP_PHY_INIT_CFG(QSERDES_COM_SSC_STEP_SIZE2, 0x05),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl ipq9574_usb3_tx_tbl[] = {
+> +       QMP_PHY_INIT_CFG(QSERDES_TX_HIGHZ_TRANSCEIVEREN_BIAS_DRVR_EN, 0x45),
+> +       QMP_PHY_INIT_CFG(QSERDES_TX_RCV_DETECT_LVL_2, 0x12),
+> +       QMP_PHY_INIT_CFG(QSERDES_TX_LANE_MODE, 0x06),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl ipq9574_usb3_rx_tbl[] = {
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_UCDR_SO_GAIN, 0x06),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL2, 0x02),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL3, 0x6c),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL3, 0x4c),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL4, 0xb8),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x77),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x80),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_SIGDET_CNTRL, 0x03),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_SIGDET_DEGLITCH_CNTRL, 0x16),
+> +       QMP_PHY_INIT_CFG(QSERDES_RX_SIGDET_ENABLES, 0x0c),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl ipq9574_usb3_pcs_tbl[] = {
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_TXDEEMPH_M6DB_V0, 0x15),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_TXDEEMPH_M3P5DB_V0, 0x0e),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_FLL_CNTRL2, 0x83),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_FLL_CNTRL1, 0x02),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_FLL_CNT_VAL_L, 0x09),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_FLL_CNT_VAL_H_TOL, 0xa2),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_FLL_MAN_CODE, 0x85),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_LOCK_DETECT_CONFIG1, 0xd1),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_LOCK_DETECT_CONFIG2, 0x1f),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_LOCK_DETECT_CONFIG3, 0x47),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_POWER_STATE_CONFIG2, 0x1b),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RXEQTRAINING_WAIT_TIME, 0x75),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RXEQTRAINING_RUN_TIME, 0x13),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_LFPS_TX_ECSTART_EQTLOCK, 0x86),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_PWRUP_RESET_DLY_TIME_AUXCLK, 0x04),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_TSYNC_RSYNC_TIME, 0x44),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RCVR_DTCT_DLY_P1U2_L, 0xe7),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RCVR_DTCT_DLY_P1U2_H, 0x03),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RCVR_DTCT_DLY_U3_L, 0x40),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RCVR_DTCT_DLY_U3_H, 0x00),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_RX_SIGDET_LVL, 0x88),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_TXDEEMPH_M6DB_V0, 0x17),
+> +       QMP_PHY_INIT_CFG(QPHY_V3_PCS_TXDEEMPH_M3P5DB_V0, 0x0f),
+> +};
+> +
+>  static const struct qmp_phy_init_tbl ipq8074_usb3_serdes_tbl[] = {
+>         QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x1a),
+>         QMP_PHY_INIT_CFG(QSERDES_COM_BIAS_EN_CLKBUFLR_EN, 0x08),
+> @@ -1510,6 +1602,10 @@ static inline void qphy_clrbits(void __iomem *base, u32 offset, u32 val)
+>  }
+>
+>  /* list of clocks required by phy */
+> +static const char * const ipq9574_phy_clk_l[] = {
+> +       "aux", "cfg_ahb",
+
+No ref clock?
+
+> +};
+> +
+>  static const char * const msm8996_phy_clk_l[] = {
+>         "aux", "cfg_ahb", "ref",
+>  };
+> @@ -1558,6 +1654,14 @@ static const char * const qmp_phy_vreg_l[] = {
+>         "vdda-phy", "vdda-pll",
+>  };
+>
+> +static const struct qmp_usb_offsets qmp_usb_offsets_ipq9574 = {
+> +       .serdes         = 0,
+> +       .pcs            = 0x800,
+> +       .pcs_usb        = 0x600,
+
+Are you confusing pcs_usb vs pcs_misc? There was no separate pcs_usb on v3 PHYs
+
+> +       .tx             = 0x200,
+> +       .rx             = 0x400,
+> +};
+> +
+>  static const struct qmp_usb_offsets qmp_usb_offsets_v5 = {
+>         .serdes         = 0,
+>         .pcs            = 0x0200,
+> @@ -1586,6 +1690,28 @@ static const struct qmp_phy_cfg ipq8074_usb3phy_cfg = {
+>         .regs                   = qmp_v3_usb3phy_regs_layout,
+>  };
+>
+> +static const struct qmp_phy_cfg ipq9574_usb3phy_cfg = {
+> +       .lanes                  = 1,
+> +
+> +       .offsets                = &qmp_usb_offsets_ipq9574,
+> +
+> +       .serdes_tbl             = ipq9574_usb3_serdes_tbl,
+> +       .serdes_tbl_num         = ARRAY_SIZE(ipq9574_usb3_serdes_tbl),
+> +       .tx_tbl                 = ipq9574_usb3_tx_tbl,
+> +       .tx_tbl_num             = ARRAY_SIZE(ipq9574_usb3_tx_tbl),
+> +       .rx_tbl                 = ipq9574_usb3_rx_tbl,
+> +       .rx_tbl_num             = ARRAY_SIZE(ipq9574_usb3_rx_tbl),
+> +       .pcs_tbl                = ipq9574_usb3_pcs_tbl,
+> +       .pcs_tbl_num            = ARRAY_SIZE(ipq9574_usb3_pcs_tbl),
+> +       .clk_list               = ipq9574_phy_clk_l,
+> +       .num_clks               = ARRAY_SIZE(ipq9574_phy_clk_l),
+> +       .reset_list             = msm8996_usb3phy_reset_l,
+> +       .num_resets             = ARRAY_SIZE(msm8996_usb3phy_reset_l),
+> +       .vreg_list              = qmp_phy_vreg_l,
+> +       .num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
+> +       .regs                   = usb3phy_regs_layout,
+> +};
+> +
+>  static const struct qmp_phy_cfg msm8996_usb3phy_cfg = {
+>         .lanes                  = 1,
+>
+> @@ -2589,6 +2715,9 @@ static const struct of_device_id qmp_usb_of_match_table[] = {
+>                 .compatible = "qcom,ipq8074-qmp-usb3-phy",
+>                 .data = &ipq8074_usb3phy_cfg,
+>         }, {
+> +               .compatible = "qcom,ipq9574-qmp-usb3-phy",
+> +               .data = &ipq9574_usb3phy_cfg,
+> +       }, {
+>                 .compatible = "qcom,msm8996-qmp-usb3-phy",
+>                 .data = &msm8996_usb3phy_cfg,
+>         }, {
+> --
+> 2.7.4
+>
 
 
-> -	else
-> +	} else
->   		cti_desc.name = coresight_alloc_device_name(&cti_sys_devs, dev);
->   	if (!cti_desc.name)
->   		return -ENOMEM;
-
+-- 
+With best wishes
+Dmitry
