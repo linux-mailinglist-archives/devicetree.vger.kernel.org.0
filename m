@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD926C9BEF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233306C9C01
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232500AbjC0HYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 03:24:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55072 "EHLO
+        id S229959AbjC0Haf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 03:30:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbjC0HX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:23:59 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CAE213F
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:23:55 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id x3so31699612edb.10
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:23:55 -0700 (PDT)
+        with ESMTP id S229596AbjC0Hae (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:30:34 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8DC18E
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:30:33 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id t10so31739656edd.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:30:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679901834;
+        d=linaro.org; s=google; t=1679902232;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OjdPO/oq4IIE0hFyHigrECYsxChLPPYgESz7B/pDYOI=;
-        b=kEhpgaB0+FpNDi/WR7iPM+81mqXbh4tx5ISPPA1oSU6dY97FK8aUp9yDlZvoyl8xjD
-         tbdmmIazwmIue7n7Z8EYtw58KkMRx0qDa81z+PvmsVGpNRhcouOmJqWi4qYkFwjKe1L1
-         R22JIaoaRhQJkEPtmehBpE/5AwLPEKjjn8ujez8CuBIIZIzl1ZmStzbFDGkjnTDz4DEj
-         vaZFbfYZDgrhO5gntDqIGjcXjYHKW9JAjiIGLDxQTsFvCtgo3y8KGSGp5R86QE8Z8Qef
-         /5/Bn+BLqvmjVTwhEn6yMIRRu7AqxkXU764qg25bs7Ndn+IcHxJ75/McKUoPxReqhmUa
-         qZrg==
+        bh=bTfaKKskPdyIPMxQE6a/OZWVaFKrOdK1xEfW52CBCmM=;
+        b=Y9GsxCv7G6E0p6ZvWk21C73fKAs9IBGpMh/FZN6ZSAJ7D1/Me94re24lqWoczuW+KN
+         X9YW++uh7j7DBBxGWHbn1JSvcZlwmucYoIsMkI6NCl/Y4cC0IRfFcShS7cEI5IrQ4Z0v
+         Uc/cRIPuPnetg1MUX2dnHtaGYv42uR/G4YTasBVIgZ/MjmRZc+1VydR4Mdl8m4S1N54p
+         JcAl1GzIND3r4bG4wxLdBZ2VA6WLOKc5KJoCXHWQXrgR6M9enYzxwqPFS0r2vx79BBJ0
+         v/E8sQjV3dVddrnyy+fu5W1+lT06VkOaVyaB4HPXzo4Zw/ADExuPzpOG48LmabvljdTh
+         89tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679901834;
+        d=1e100.net; s=20210112; t=1679902232;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OjdPO/oq4IIE0hFyHigrECYsxChLPPYgESz7B/pDYOI=;
-        b=w+9444c1Yz9QmcR8/I0YkXFs555PhhiSUEEH7uhAb5l+eKerkiMC9+DPbffB0BNfjc
-         e8n79X9caN9cwqztYBHF+uKX4ogvPlD2NrDkVrSbCqWCPduL7PnztVj+86v8NTnwMrzG
-         wqyn9imyDgxfg93u5xuglAOCtgtgtJPztgVNjRvpxpPCFT9EXE++4+JqjEaaVZDBl3yX
-         5ULLQvoj4OERvRX/F2YvaVfpaV2cu3izHTk/ytXD2Q44YwHfxh5YjPsQ7CN82dkumf4f
-         czuA7JorDQnglo3QLaOsmz0tZOMAYt/CmOAO3YvUHDjK1ZOusVlPWzQc35MrTTpWNpvP
-         CPrg==
-X-Gm-Message-State: AAQBX9dwSPkG0IrAp1ksaY8nazY6pAJtOUhLpZubCn9q7daodBfYuWH7
-        UtrlytfBe2CxTxOHZkh7WgiaVQ==
-X-Google-Smtp-Source: AKy350azTNMcDvP3N7zgcsBq8oWHYm5j1ZDrSetdKr7bGj0XWY8nqN78nx3uN23pI6zOfMxTy1BUQw==
-X-Received: by 2002:a17:906:6dd7:b0:931:c99c:480 with SMTP id j23-20020a1709066dd700b00931c99c0480mr11619450ejt.69.1679901834032;
-        Mon, 27 Mar 2023 00:23:54 -0700 (PDT)
+        bh=bTfaKKskPdyIPMxQE6a/OZWVaFKrOdK1xEfW52CBCmM=;
+        b=N9VWQ7f7UBBpHekZ5QXqb3qgFEuBnK+mSzaGoN5ds694ZCfBMg+Rszs/YDn7ukzMZG
+         5Rt+mM8J0TxpC0EYAI/G6hqO8ocN+r3N4tS0Whe4x9YoCFssAGkoV6FSyerxyY6dNtZu
+         DyqTe+3yeC7T/8VFNGKN/QODja/zjzgkOq+YZxsMW57xHNtDY9V7YgJ0A+f1ylKbHbFI
+         KAAkVf0OG8quigjuDEEsMkR2ARRH+Ka66TsbYrYI3v48FDhfGcpbE/Iqlo7XX82pzg54
+         Lh7jvT0EVTsTwOEa2cQ2K+vSlNIvQC4e/qfQUspAJxZXTiZxsL0lLxHVLHs7GaEYOt2M
+         ZZ0g==
+X-Gm-Message-State: AAQBX9c0O0kvQOxoYvrACdNNZuJGbonYsOrUJSxraCI5jLpPMR+6jo9R
+        G80URzOOkL0vVBZ+ILfTNO46Xg==
+X-Google-Smtp-Source: AKy350Yvk9Mfe+tV1ogObK7tgapZ69mC+Nui/Iefyic1/6+fRuWcWMqgZeHzROZdMnS4Sb/micJxnQ==
+X-Received: by 2002:a17:906:2ecd:b0:931:636e:de5a with SMTP id s13-20020a1709062ecd00b00931636ede5amr11164773eji.31.1679902231990;
+        Mon, 27 Mar 2023 00:30:31 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:198e:c1a5:309b:d678? ([2a02:810d:15c0:828:198e:c1a5:309b:d678])
-        by smtp.gmail.com with ESMTPSA id hy14-20020a1709068a6e00b009351546fb54sm10151855ejc.28.2023.03.27.00.23.53
+        by smtp.gmail.com with ESMTPSA id ia9-20020a170907a06900b00932b3e2c015sm12887688ejc.51.2023.03.27.00.30.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 00:23:53 -0700 (PDT)
-Message-ID: <8d5cefae-e10e-52c1-b070-4a1d15a5ef93@linaro.org>
-Date:   Mon, 27 Mar 2023 09:23:52 +0200
+        Mon, 27 Mar 2023 00:30:31 -0700 (PDT)
+Message-ID: <e27b4c0f-0cde-ecbd-c387-6098c39d0f02@linaro.org>
+Date:   Mon, 27 Mar 2023 09:30:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/6] dt-bindings: soc: mediatek: pwrap: Add compatible
- for MT6795 Helio X10
+Subject: Re: [PATCH v1 RESEND 1/2] dt-bindings: gpu: mali-bifrost: Document
+ nvmem for speedbin support
 Content-Language: en-US
 To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        amergnat@baylibre.com, flora.fu@mediatek.com,
+        <angelogioacchino.delregno@collabora.com>, airlied@gmail.com
+Cc:     daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
+        steven.price@arm.com, alyssa.rosenzweig@collabora.com,
+        robh@kernel.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230324094205.33266-1-angelogioacchino.delregno@collabora.com>
- <20230324094205.33266-2-angelogioacchino.delregno@collabora.com>
+        kernel@collabora.com
+References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
+ <20230323090822.61766-2-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230324094205.33266-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230323090822.61766-2-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -81,12 +81,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 10:42, AngeloGioacchino Del Regno wrote:
-> Add a compatible for the PMIC Wrapper found on the MT6795 Helio X10 SoC.
+On 23/03/2023 10:08, AngeloGioacchino Del Regno wrote:
+> Some SoCs implementing ARM Mali GPUs may be subject to speed binning
+> and the usable bin is read from nvmem: document the addition of nvmem
+> and nvmem-cells for 'speed-bin'.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml         | 1 +
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
