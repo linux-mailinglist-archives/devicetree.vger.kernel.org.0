@@ -2,162 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 864A26CAB01
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 18:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C05E56CAB27
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 18:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231932AbjC0Qut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 12:50:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
+        id S230104AbjC0Q6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 12:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231960AbjC0Qur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 12:50:47 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F59D40C6;
-        Mon, 27 Mar 2023 09:50:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1679935835; bh=0b6vVlYAyh5z7fdaNDqWVNg+I6CkcXsuoksujna/tzw=;
-        h=Date:From:To:Subject:X-My-GPG-KeyId:References:From;
-        b=pmarkM+/OZc5OTi6iMA5S8Y17L7nGwnIcGzPlZKDWPUUrPCpqkcOwE2lru+q14ty0
-         rnPmMWBKXaaKRQesS6Jte9hq+nfXdfQ9NGJFNmQvuyhof1Rkw3aJ8/XEXRBY62ctsx
-         YoELERSyoCzH9p6Db06LlLzgI7SNCNzLI1GLl7II=
-Date:   Mon, 27 Mar 2023 18:50:35 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org,
-        Robert Mader <robert.mader@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Martijn Braam <martijn@brixit.nl>,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: rk3399-pinephone-pro: Add internal
- display support
-Message-ID: <20230327165035.uc2etuxypehjnrp6@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org,
-        Robert Mader <robert.mader@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Martijn Braam <martijn@brixit.nl>,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20230327074136.1459212-1-javierm@redhat.com>
- <20230327130147.wgxl2qayhzsi2xak@core>
+        with ESMTP id S230417AbjC0Q6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 12:58:30 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on20606.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe5b::606])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4B630D6;
+        Mon, 27 Mar 2023 09:58:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q2eT1YxKqWCk9lA2wV8QMkywa7HeF7kzi7SfQWIE+jp/c0n2elN5fPf6CLZ5k1/HXkr2ytaS2jkFizX+ByJ5JeOr1U97GvJIPunrLkQxAcTA/rwNXab1qF2Jq2OpRsWVdJPhJZNfRhmPwl6lXXIhdQs+Xe9319BYEu8U02Rjj1Hz3/uqA4MY6uXsOOSLdFO8gV1/oKlKUoPQqH9bY6t5TjTwmRVkJ1TGH5gXNg+RWGXJ51bEK+5z83SCeQODzmlkkHv4M8NhLdw5fYxxMTs55YLso/EYwX5hnJlr11l7GcV8QAIa+SpUzB5gDbwRp7WoJnxwN29QELVRKRO03MAmKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0M7XTiL9Rsp+Sy1ymkZK5t76TN0snq+YRbsXewzsf1Y=;
+ b=f1fOlmiCYxWBwmNyMoqobYeu+Bxbe4RM1A0JfMPpBTC0ZhSZDMDfS8xNZM65ALnVKNB6SKsPyIuH+0fukDA87jum4HDkioTmF8rVwBeLSCY1z1VO0kvEVb/8b02Obj/WmlS2EzLE8rrdRvBEC7XuW4Awr/QAspZ1aV3lywe7XNL4+b6dEEUG+bwU+TtSx27+xc+j7Z34wC0HxBHbA6L7qiuD6XEs/eeDApVLxIiOHDHdR9uHhNe0zWZoa1/IYrV+shvE05e8KofGb16gtdk2HXKpPOu7fJmWsb+HFZqZ9iTK95m6RESI47UbPDkHHWyuWw5VYLEbqyYD3gMUlXC8/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0M7XTiL9Rsp+Sy1ymkZK5t76TN0snq+YRbsXewzsf1Y=;
+ b=GQDaPegSOhXGZepo7+H5cABT7uMUkBWmYDm6phEI7a3LFvhTY7hN+TD53RRsDRkQS3I2ugHXHrpLIbmy9gPFWXM4N/3659X/on0dbFDEcUFmxI9dl3suEI5v3F55Q9otDkpixz98vIbXXmf1t8CMRZ0t/SOJczJi8J+WJS00dCmuBkO+b2rfCdQT4P2ngjQwPmVQ5r87e6IqYct6kFBRH94JLDNcQkpvlLl4nXVBe17/P7mMINK7MIYhczRt94pgN+mtvPEoQSf2o1OqwIgveLyVlNm+TtZFpAeZnlwBLRMBrHMW0Z2MoJgHycF2mCaKYpIk4498fAlJrvDGpaikAQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
+ by IA0PR12MB8325.namprd12.prod.outlook.com (2603:10b6:208:407::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Mon, 27 Mar
+ 2023 16:58:26 +0000
+Received: from IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::265:64aa:fb3e:288]) by IA1PR12MB6604.namprd12.prod.outlook.com
+ ([fe80::265:64aa:fb3e:288%4]) with mapi id 15.20.6222.028; Mon, 27 Mar 2023
+ 16:58:25 +0000
+Message-ID: <a7539193-8374-cda6-f535-360a4a8eab22@nvidia.com>
+Date:   Mon, 27 Mar 2023 09:58:19 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH V4 04/10] dt-bindings: timestamp: Add
+ nvidia,gpio-controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        robh+dt@kernel.org, timestamp@lists.linux.dev,
+        krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, corbet@lwn.net,
+        gregkh@linuxfoundation.org
+References: <20230323012929.10815-1-dipenp@nvidia.com>
+ <20230323012929.10815-5-dipenp@nvidia.com>
+ <f523c155-7d05-2034-27ea-e2e56881c0bb@linaro.org>
+Content-Language: en-US
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+In-Reply-To: <f523c155-7d05-2034-27ea-e2e56881c0bb@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0P220CA0017.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::27) To IA1PR12MB6604.namprd12.prod.outlook.com
+ (2603:10b6:208:3a0::7)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327130147.wgxl2qayhzsi2xak@core>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6604:EE_|IA0PR12MB8325:EE_
+X-MS-Office365-Filtering-Correlation-Id: a03d6718-78d9-4148-bd40-08db2ee47b11
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JFFZji0Ig2uAa6AOrkta99bY/NmHBBwVVkY50LapncSguH5/BtV5ZFmJu3IkhClLf9hyz2tSkFDp0sBTgoY3IOZXATpfJIOMW2cifrzb4JZ1FDsG7QKP+bQOAR/D0TIUthDjpy7ZXfWlMUtXJtUnu/omh5xbLUZkrgMrYKxiEvZ7w3NDzpgShQ7bw0mybdYWaFN8a4YgcclpTKayJug4oxqEtwh0k1fvL4adcA2C20AO6SrZYStfdAuVPFM9acp/jUgF4WxpuSvIlzmdNSMuW/jkRGSZCpQI0dduclbqRof+j41NPJIAeFbIT8wYvLctSjnThc+xbQTMpAKH909rfZ3+7hiXTeJAORUi4I2virVYvnO8JIifnDJImHSEXwRFamnGDOM9HA9UmWoNFoRXGlGCwZRiHMM0iBql9RxBJgSB3RM4xxZQ/om9FdldlM+V6BMP5q6ac9CCasn8CYASwXOdVjSiDq12h8CM7hKjfZUiJOAIgs9NHKM7j6Eb092bbSamNN2DgXQgsFqof2sjP8EXTC4FjdNnlkQa6LKpUGFf8eanGoCZIvZBoslHmGCp47iqmIfn7/QLZkQkySNTyC28eWo6TQY1oKJCvhrka2eDxQnqtv1gjvwJZlVXR6zHz6HjKDsk5DP7llMUD3FPy3s8FYBwcOB9jE4B3gyOolg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB6604.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(396003)(136003)(39860400002)(376002)(451199021)(53546011)(921005)(2906002)(36756003)(186003)(316002)(6486002)(31686004)(38100700002)(6512007)(26005)(31696002)(83380400001)(2616005)(6666004)(66556008)(8676002)(66946007)(66476007)(86362001)(8936002)(41300700001)(478600001)(5660300002)(7416002)(6506007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WWJZd0tUY2FuR2RJbVRnOS9ZMGl5d0NsMytneUdKREtjTi9rQk80VWt4d1g1?=
+ =?utf-8?B?NWVock9oeHpSdVprQUFhYVE3eTNsb1N5WDZPblYreFBwUnRwUDFPYTFzV2Fw?=
+ =?utf-8?B?NERsOGM5SmlwK0JXK2xSeGhRUTV0OCt2d2VSakM5c29WWUJNOGFPOTRtRW91?=
+ =?utf-8?B?SXVCcTZLKzh1MTdabzZDRTA3c1lHWXdKN2hlV1VvRFZUalZEeVdYeURtRjZy?=
+ =?utf-8?B?RFhpVkFOMkFRbTF6bklJMHBGUHJHUlBvN0NJRDl3QmJuK3I4YUkwU0tRTWRk?=
+ =?utf-8?B?RjZ4dURqUUNBbGhNY2xMVk5pNnVYZGJEUVJKZVpPamkzWGhjZXR2bHJyYjBE?=
+ =?utf-8?B?STBjUkdNQXd6TmZMMGU3bTJlUldieFNVQ1UzbTZOblZNUFdhejVlSThwdjJ3?=
+ =?utf-8?B?bEd2Q05sUmZyUDB6djEzUEhDWVlveWNlbEcxRFB4Uml6Y2NiNWh3dkZDWU5u?=
+ =?utf-8?B?WWk0WStmcVN0U3ZSRC9OUXo3MjBPSEdyaHpDRGVKeDV1ZktEVjVrWnJIbVMz?=
+ =?utf-8?B?cmZaZWVaVDdVbnE2bHRiVElFNEtRSXYrZWU5K0kwMzVHWHIyWlgxVlYzRzJH?=
+ =?utf-8?B?VlI2blJ6NWh5Tks3S0hXWUtncitJbFJaQkdOaDBaSHdhektRSElpMmxSdU5P?=
+ =?utf-8?B?SS9pWVkvUy9hejBDOUhuVDJpeFBiWWVLQWViLzJXZEt0aUJqVWdpVGE3c1p0?=
+ =?utf-8?B?aGFtMEtnTEJENkpCTjZMYUViTGFJbHhlZlA0Q1pWbXdvT2thQjJadGlGN2Vz?=
+ =?utf-8?B?YVlsVjkvc2EvZzFtSlZ3VFhpNmRnQ2VOdEF2VjBiRis5SXVSNWd5NEFhNXBY?=
+ =?utf-8?B?WUI5ZHB5amdQN2lWbEdwK2pjai9CdkpOMzJoeU9aMGZaU3BVeGNZWE5weTJo?=
+ =?utf-8?B?d1VGZTFhR3FrMGc3UC9MVmtpSWhWd1ljYnJza2liUzVBdkhPUTJzVVVkNk02?=
+ =?utf-8?B?dTRYTU5YNnprWGEyU2t5am5HU3c0SlQrL09qa0phbmZjZURLR2lnL3hqVW1B?=
+ =?utf-8?B?VXl0VzFERFlaS0VLOUVPcDhLM1pMV2pyYmdna1lVOTEwODBsMnc1cmlmWUJY?=
+ =?utf-8?B?ZVV3TjRLcTl4TlB2VWhOVnF0aTJPUCtLeVpKRUFlZXlGY0I4YUZIQkROcWF5?=
+ =?utf-8?B?WmozdkFiVzBDM1dCckxLTS9pWW54Yy9OaWQ4ck4wemZZNllGSnRncDk5VXY2?=
+ =?utf-8?B?S0x0UXN5b3cxb3liOFJ1dnUvbDZRalBJd1N2dGdKTEkyQkJyRmV0MFQxa1Zn?=
+ =?utf-8?B?WmNiQ243Y0RCWm13MFhuNkFkcTZXWlNXWE16WVczMWlzS3FMajJrUkFKbGh2?=
+ =?utf-8?B?RnlXQmRMSHNmbTJ1cXRrL0tKaGVkVkptWlRrZ3F3NHdCL216N2N5NGdPQ0Uy?=
+ =?utf-8?B?RVgvVDduOUluY3hOLzNYQzE3dTdEdDJISUcvZDJlL2Vnblo0S0NYNU5QTHdT?=
+ =?utf-8?B?aEJaU2F2enVsWnZ6Y1VFZGdsQmZrVHVDdXhVVWhJOUs4RzRDVGU5UDRoSUhs?=
+ =?utf-8?B?ajRtSnIySjF1ZmxmUW9aeHlyYWRSdDBBbzRZcnlBd2lVNE5zY2N3bkprQTdm?=
+ =?utf-8?B?SExmT1FrcWFBNEZhU1FsN28wZHNzdytGVlN4NnpkRThEbUtMeEV4K3hqRE9Y?=
+ =?utf-8?B?MFVMZHVIYjdiL3FGVUxhK1BwSUVnMnp3RVl4Smd3L2tScDB2bnpQamdaQUlh?=
+ =?utf-8?B?dlZ0WWFRdFFvNS9JQmVrM1ZlWlRCQ3ZmLy9PaXRTcXlONXVqanpqcXR5bmY4?=
+ =?utf-8?B?bThpV1lGM2t0U2x2eU91elJMQUJsVVYxWTB5SVdyYUpNSjd3MnVEZ0hxUjU5?=
+ =?utf-8?B?MVFLaHR2dWxWRDVucDR1bDZ2UnF5OGp1WDRLN013MC9za2JrWXBqODRXcG02?=
+ =?utf-8?B?Nm5KQ0VzUGhXL0phVHlpb2RUNmJMbHFWMnhmeW54N2VxNk5tVnpsUStNaHBM?=
+ =?utf-8?B?NC9jcHVleG13UlZ4dUIrTVkxNjVkQUtXRU12T0lkelU4OTNDNkJ6dDIwaE1V?=
+ =?utf-8?B?V3ZyR0JPWVgveGJuS1YwQ3B2K1JqYW1UTm1iQ2FuandJKzNtTVlMc25iV3Fx?=
+ =?utf-8?B?TVN3NFNRcnBIdWt5R0o0WGtUcDZwbW5UeEtRMy9BZ1J1bnBkOTZhZ3loR251?=
+ =?utf-8?Q?gdYHrE9cske7QRlgfddiNx55/?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a03d6718-78d9-4148-bd40-08db2ee47b11
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6604.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2023 16:58:25.7934
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T0DNxkfJn8/pcETd383TL8J5MhpFMc2YqMGyS3diV5zkCgGiLMmGgmMRIO8i1d4jY22pLX0NCwPAAZfZu5cCAw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8325
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-One small note...
-
-On Mon, Mar 27, 2023 at 03:01:48PM +0200, megi xff wrote:
-> Hi Javier,
+On 3/25/23 4:07 AM, Krzysztof Kozlowski wrote:
+> On 23/03/2023 02:29, Dipen Patel wrote:
+>> Introducing nvidia,gpio-controller property from Tegra234 SoCs onwards.
+>> This is done to help below case.
+>>
+>> Without this property code would look like:
+>> if (of_device_is_compatible(dev->of_node, "nvidia,tegra194-gte-aon"))
+>> 	hte_dev->c = gpiochip_find("tegra194-gpio-aon",
+>> 				   tegra_get_gpiochip_from_name);
+>> else if (of_device_is_compatible(dev->of_node, "nvidia,tegra234-gte-aon"))
+>> 	hte_dev->c = gpiochip_find("tegra234-gpio-aon",
+>> 				   tegra_get_gpiochip_from_name);
+>> else
+>> 	return -ENODEV;
+>>
+>> This means for every future addition of the compatible string, if else
+>> condition statements have to be expanded.
+>>
+>> With the property:
+>> gpio_ctrl = of_parse_phandle(dev->of_node, "nvidia,gpio-controller", 0);
+>> ....
+>> hte_dev->c = gpiochip_find(gpio_ctrl, tegra_get_gpiochip_from_of_node);
+>>
+>> This simplifies the code significantly. The introdunction of this
+>> property/binding does not break existing Tegra194 provider driver.
+>>
+>> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+>> ---
+>>  .../timestamp/nvidia,tegra194-hte.yaml        | 31 +++++++++++++++++--
+>>  1 file changed, 29 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> index eafc33e9ae2e..841273a3d8ae 100644
+>> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+>> @@ -51,6 +51,12 @@ properties:
+>>        LIC instance has 11 slices and Tegra234 LIC has 17 slices.
+>>      enum: [3, 11, 17]
+>>  
+>> +  nvidia,gpio-controller:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      The phandle to AON gpio controller instance. This is required to handle
+>> +      namespace conversion between GPIO and GTE.
+>> +
+>>    '#timestamp-cells':
+>>      description:
+>>        This represents number of line id arguments as specified by the
+>> @@ -65,22 +71,43 @@ required:
+>>    - interrupts
+>>    - "#timestamp-cells"
+>>  
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - nvidia,tegra234-gte-aon
+>> +    then:
+>> +      required:
+>> +        - nvidia,gpio-controller
+>> +
+>>  additionalProperties: false
+>>  
+>>  examples:
+>>    - |
+>>      tegra_hte_aon: timestamp@c1e0000 {
+>>                compatible = "nvidia,tegra194-gte-aon";
+>> -              reg = <0xc1e0000 0x10000>;
+>> +              reg = <0x0 0xc1e0000 0x0 0x10000>;
 > 
-> [...]
->
-> This (1 kHz) seems to be outside of the range of recommended dimming frequency
-> of SY7203: https://megous.com/dl/tmp/fb79af4023a5f102.png It's too low.
+> This is not really explained in commit msg... are you sure you tested it?
+I have to revert this part back in next patch as when I upgraded dtsschema it gave me errors.
 > 
-> The consequence is that there's a large ripple on the positive input of the
-> feedback comparator https://megous.com/dl/tmp/e155900fecb0323f.png which
-> will cause similar instability in backlight brightness.
 > 
-> I've hooked up a photoresistor to a scope, and the display is indeed varying the
-> brightness at 1 kHz https://megous.com/dl/tmp/09cb95c7b4b2892b.png
+> Best regards,
+> Krzysztof
 > 
-> There are two variants of SY7203 which differ by ouput regulation technique.
-> One with this internal integrator, and other with direct PWM control of the
-> output. My guess is that PPP uses the integrator variant.
-> 
-> I switched PWM period to 50000 (20 kHz recommended by the datasheet and the
-> flicker is gone https://megous.com/dl/tmp/31b6bfc51badde3b.png
-> 
-> So I think higher PWM frequency will be better suited here, and this may really
-> be the LED driver variant with the integrator.
-> 
-> (Photoresistors are not that fast, but I've hooked a LED to signal generator,
-> to simulate 20kHz blinking backlight, and I was still able to catch the pattern
-> on the scope via a photoresistor, so it looks like this verifies that it
-> would still be possible to measure some flicker at 20 kHz using this technique.
-> I guess I should buy a PIN diode for the next time. :))
 
-Experimentally SY7203 will only start up with duty cycle of 250ns or more.
-
-So this means that default curve generated by the kernel will not work at 20 kHz
-at low ranges, because cie1931 -> pwm duty cycle covnersion done by the
-kernel will result in too small duty cycle at brightness < 5%, because that
-translates to duty cycle of 250ns or less. In other words, kernel will generate
-3124 brightness steps for PWM period of 50us, with bottom ~150 steps being
-unusable and behaving weirdly (sometimes some of them work sometimes not,
-depending whether the LED regulator is already running or not).
-
-So the cie1931 curve may need a bit of a Y shift, by specifying a minimum duty
-cycle usable by the hardware.
-
-Something like these 50 brightness levels work nicely, starting from minimum
-250ns and going up:
-
-	brightness-levels =
-		<0 250 360 470 580 690 810 949 1110 1294 1502
-		1737 1998 2289 2610 2964 3351 3774 4233 4731
-		5268 5847 6467 7133 7845 8604 9412 10271 11182
-		12146 13164 14239 15374 16568 17822 19140 20521
-		21969 23483 25068 26722 28447 30247 32121 34071
-		36099 38210 40400 42669 45026 47468 50000>;
-	default-brightness-level = <17>;
-
-when put into backlight node.
-
-Or if we want 100 steps, then this curve would work, too:
-
-brightness-levels = <250 304 360 414 470 524 580 634 690 747 810 877
-	949 1027 1110 1199 1294 1395 1502 1616 1737 1864 1998 2140 2289
-	2446 2610 2783 2964 3154 3351 3559 3774 3999 4233 4477 4731 4994
-	5268 5552 5847 6152 6467 6795 7133 7483 7845 8219 8604 9002 9412
-	9835 10271 10719 11182 11656 12146 12648 13164 13695 14239 14799
-	15374 15963 16568 17186 17822 18474 19140 19822 20521 21236 21969
-	22717 23483 24267 25068 25885 26722 27575 28447 29338 30247 31173
-	32121 33087 34071 35077 36099 37145 38210 39292 40400 41523 42669
-	43839 45026 46237 47468 48722 50000>;
-
-
-> > +		pwm-delay-us = <10000>;
-
-Also this doesn't seem to be documented anywhere or used in the kernel code...
-So we should remove it.
-
-kind regards,
-	o.
-
-> > +	};
-> > +
-> >  	gpio-keys {
-> >  		compatible = "gpio-keys";
-> >  		pinctrl-names = "default";
