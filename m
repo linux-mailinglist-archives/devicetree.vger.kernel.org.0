@@ -2,56 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4866CABE6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 19:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BDBA6CAC29
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 19:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjC0Rfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 13:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38074 "EHLO
+        id S232202AbjC0RsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 13:48:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbjC0Rfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 13:35:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6DA10DB
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 10:35:40 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pgqkm-0002dR-7a; Mon, 27 Mar 2023 19:35:32 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pgqkl-00783Z-Kf; Mon, 27 Mar 2023 19:35:31 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pgqkk-008Tz0-UV; Mon, 27 Mar 2023 19:35:30 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] arm64: dts: imx8mp: Add GPT blocks
-Date:   Mon, 27 Mar 2023 19:35:26 +0200
-Message-Id: <20230327173526.851734-3-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230327173526.851734-1-u.kleine-koenig@pengutronix.de>
-References: <20230327173526.851734-1-u.kleine-koenig@pengutronix.de>
+        with ESMTP id S232159AbjC0RsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 13:48:09 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A376E30E0
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 10:48:05 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id c29so12530129lfv.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 10:48:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679939284;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Bv0wD40+aVa6VSlTrbt6mn44i+Oaj4TK6/Tv/6oXWIk=;
+        b=YWIGTJBSRnezeA2k/P/AtWxO6tR3OwcaJ5+9PDZfzRYnMrVlA1//WKJjPricF6BncN
+         zFU1EYQywnxn6YyhXj9nCF+HatG2ZhmCPVHNma6sWdTJ6bY4KfaCs1zN/HJoJ3xN43sl
+         Wlq0B5Ug8sFJGq86QFHTP3oJbP2swXAZo4XXbrBPRELh3ulV1CNJFPXbGcr1Br7ET8nB
+         tqI/QmYOyKhoM8suvw32Jvfh5skbNDbTkrVcERUxGStkHwVIitHB0PClg3/zQ0jAQNtF
+         p4m6TVK4bJQq+baw6SjI8k2BT3IGlh833XMrRk3yGayTIWBUblP9y1TGcqx2yKtCqbwy
+         R5SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679939284;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bv0wD40+aVa6VSlTrbt6mn44i+Oaj4TK6/Tv/6oXWIk=;
+        b=QpNP2V/B7AKO/FGN0Ak7ESkA3qE7abth6axfewKik6jI+dct7aMFzf11PsPsT2UKFJ
+         ixUqCnip+fCKXoRccE8I8lw9Ll/jglJYuuczl52y/pftuN+g9iUQqIOjvQlSKQRF5Aam
+         35fOtPuB/ukMzdT75Jc+aHC7/Twebs2yAtumpj2Fc6nG9VZ4DCDlgTZEx8AJY3HoPPvc
+         PLfnWwTI9wk4etli5Lb7IGt9QLKMzOeA/FHA7KRV6lwXWkT6NdAHOvwuXxn+V7piXQB/
+         chUi0err7G9Frwtf9hPcaTKeqaUtcgOUaw0UIBzSLZgFz63WzYf9u6Lts+rA/qKNwuMH
+         DpuA==
+X-Gm-Message-State: AAQBX9cEkb344+LKRvoGikOoDZ0ZPRCO9Hi2JXaX1kc3RFtHShurokn7
+        ikHxxgEi9puGUc52prlG/QNYFQ==
+X-Google-Smtp-Source: AKy350ZssKPDJuGQ85FB71rGe3YVHtaG6xa9NZLpivLD2gQJVBU8hIXcUk3XfsoaXzadIXkQUIvDFw==
+X-Received: by 2002:ac2:5083:0:b0:4eb:7d1:862d with SMTP id f3-20020ac25083000000b004eb07d1862dmr2368123lfm.38.1679939283849;
+        Mon, 27 Mar 2023 10:48:03 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id n7-20020ac242c7000000b004db2978e330sm4753264lfl.258.2023.03.27.10.48.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 10:48:03 -0700 (PDT)
+Message-ID: <3e130983-62ab-10c1-4914-5f9e1edc4b8b@linaro.org>
+Date:   Mon, 27 Mar 2023 19:48:02 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: move DSI opp-table out of
+ soc node
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2560; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=Ir+1mLJDPzLO2B6s08AGZpt7TFEoOeiRCnmiT0adxLo=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkIdPcZ4GEgjqa88gXsXdYm1KpJlcf2OA82pxfq 3WxD4fpAZiJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZCHT3AAKCRCPgPtYfRL+ TpiiB/0Wr5Gxms5TK5YsC5TV8hsOacj+7dNs2ADQ3NeXn/+JA5zB3H8B7tOD5otrLFo7UcuKpA0 E+mCDcHX/Z81vZqm0IYYUX2OJVw7/fjUhzoV3Y3QyBRmPQI/P451AaVLdQqzbix7D4ADQsi639k wG0PEBansU/Xd6Epgi6W9iJhtx1gtb3ChWXHJbn4j3pe8iEH34phJaUizZr3ntXqeK0tJDUtI90 T+pX9wUQ39eQnsv3ruTAAQ/4gl0fh/M/164SuB29MK66+Ic1vVXbik0NydYaBoldrumM8/sk57A kkjijH1Lh7hHesQjdDRTBzyQadIexbZwAuoW8zCPjjkcTX8Z
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,80 +79,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8MP includes the same GPT blocks as the i.MX6DL. Add all 6
-instances.
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 48 +++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index a19224fe1a6a..910534624beb 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -409,6 +409,30 @@ wdog3: watchdog@302a0000 {
- 				status = "disabled";
- 			};
- 
-+			gpt1: timer@302d0000 {
-+				compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
-+				reg = <0x302d0000 0x10000>;
-+				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_GPT1_ROOT>, <&clk IMX8MP_CLK_GPT1>;
-+				clock-names = "ipg", "per";
-+			};
-+
-+			gpt2: timer@302e0000 {
-+				compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
-+				reg = <0x302e0000 0x10000>;
-+				interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_GPT2_ROOT>, <&clk IMX8MP_CLK_GPT2>;
-+				clock-names = "ipg", "per";
-+			};
-+
-+			gpt3: timer@302f0000 {
-+				compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
-+				reg = <0x302f0000 0x10000>;
-+				interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_GPT3_ROOT>, <&clk IMX8MP_CLK_GPT3>;
-+				clock-names = "ipg", "per";
-+			};
-+
- 			iomuxc: pinctrl@30330000 {
- 				compatible = "fsl,imx8mp-iomuxc";
- 				reg = <0x30330000 0x10000>;
-@@ -722,6 +746,30 @@ system_counter: timer@306a0000 {
- 				clocks = <&osc_24m>;
- 				clock-names = "per";
- 			};
-+
-+			gpt6: timer@306e0000 {
-+				compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
-+				reg = <0x306e0000 0x10000>;
-+				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_GPT6_ROOT>, <&clk IMX8MP_CLK_GPT6>;
-+				clock-names = "ipg", "per";
-+			};
-+
-+			gpt5: timer@306f0000 {
-+				compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
-+				reg = <0x306f0000 0x10000>;
-+				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_GPT5_ROOT>, <&clk IMX8MP_CLK_GPT5>;
-+				clock-names = "ipg", "per";
-+			};
-+
-+			gpt4: timer@30700000 {
-+				compatible = "fsl,imx8mp-gpt", "fsl,imx6dl-gpt";
-+				reg = <0x30700000 0x10000>;
-+				interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_GPT4_ROOT>, <&clk IMX8MP_CLK_GPT4>;
-+				clock-names = "ipg", "per";
-+			};
- 		};
- 
- 		aips3: bus@30800000 {
--- 
-2.39.2
+On 26.03.2023 11:16, Krzysztof Kozlowski wrote:
+> The soc node is supposed to have only device nodes with MMIO addresses,
+> so move the DSI OPP out of it (it is used also by second DSI1 on
+> SDM660):
+> 
+>   sda660-inforce-ifc6560.dtb: soc: opp-table-dsi: {'compatible': ['operating-points-v2'], ... should not be valid under {'type': 'object'}
+>     From schema: dtschema/schemas/simple-bus.yaml
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+> 
+> Changes since v1:
+> 1. Move the node out of soc. Don't add Konrad's review tag.
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 38 ++++++++++++++--------------
+>  1 file changed, 19 insertions(+), 19 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 72d9a12b5e9c..b91e423a3cfc 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -328,6 +328,25 @@ memory@80000000 {
+>  		reg = <0x0 0x80000000 0x0 0x0>;
+>  	};
+>  
+> +	dsi_opp_table: opp-table-dsi {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-131250000 {
+> +			opp-hz = /bits/ 64 <131250000>;
+> +			required-opps = <&rpmpd_opp_svs>;
+> +		};
+> +
+> +		opp-210000000 {
+> +			opp-hz = /bits/ 64 <210000000>;
+> +			required-opps = <&rpmpd_opp_svs_plus>;
+> +		};
+> +
+> +		opp-262500000 {
+> +			opp-hz = /bits/ 64 <262500000>;
+> +			required-opps = <&rpmpd_opp_nom>;
+> +		};
+> +	};
+> +
+>  	pmu {
+>  		compatible = "arm,armv8-pmuv3";
+>  		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -1450,25 +1469,6 @@ mmcc: clock-controller@c8c0000 {
+>  					<0>;
+>  		};
+>  
+> -		dsi_opp_table: opp-table-dsi {
+> -			compatible = "operating-points-v2";
+> -
+> -			opp-131250000 {
+> -				opp-hz = /bits/ 64 <131250000>;
+> -				required-opps = <&rpmpd_opp_svs>;
+> -			};
+> -
+> -			opp-210000000 {
+> -				opp-hz = /bits/ 64 <210000000>;
+> -				required-opps = <&rpmpd_opp_svs_plus>;
+> -			};
+> -
+> -			opp-262500000 {
+> -				opp-hz = /bits/ 64 <262500000>;
+> -				required-opps = <&rpmpd_opp_nom>;
+> -			};
+> -		};
+> -
+>  		mdss: display-subsystem@c900000 {
+>  			compatible = "qcom,mdss";
+>  			reg = <0x0c900000 0x1000>,
