@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E3B6CADDF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9A366CADF1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbjC0St5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 14:49:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40816 "EHLO
+        id S231978AbjC0SwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 14:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbjC0Stv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:49:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 388DC3AA2;
-        Mon, 27 Mar 2023 11:49:37 -0700 (PDT)
+        with ESMTP id S229477AbjC0SwD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:52:03 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FA11722;
+        Mon, 27 Mar 2023 11:52:02 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C79DA61474;
-        Mon, 27 Mar 2023 18:49:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D9DC433EF;
-        Mon, 27 Mar 2023 18:49:35 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4F197B818BD;
+        Mon, 27 Mar 2023 18:52:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E167BC433EF;
+        Mon, 27 Mar 2023 18:51:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679942976;
-        bh=jLpV4aLEaWhnj2ZeSXlyZ4XrVCotJyZACRst+Ac2PsY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Rd5hRxyfDJ/6AksAtofExgq4NRAeL1yIwf+eXcgpeStZ0wYSYQNeSv6Lz1SdNx04f
-         71t7VD8RAxgbPs6ATLN4wAQWolJcZ2UwWc2RNt2OnX2NdB8BCD/YZyhzKyetRwFL9I
-         2vN/eCphpT1Nx2q956+8o/nZkpu8cVO12JuIjRd9is4Rpg33jrmTn4xo4qJTvqDNRA
-         eaXBmZJdkWyVXTSun5xEyvRFPNVa9d4pTe0lOoj12RlY/3OblQV0rsWke7kiqb+Z3S
-         negqyzWgL9hlvX7CR8QJhcDX9IHk3F+KUtpVsPmm00OmRq75PxAjBKPCSuE+TbGCQv
-         ACN2NpvYai5kQ==
-Date:   Mon, 27 Mar 2023 11:49:33 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
+        s=k20201202; t=1679943120;
+        bh=yR3kBWWj+U4PCxXjD6CdcYK2bWLqQYhs47tXIHYqMvw=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=NC9QQ16qy9f3He7b9VpqRElXD2n+2W9PC/SN5tohM5BqvqtqPcUmRktUsu96CewxP
+         d4Hce0GMDAsjd+fgSsBLryg7Nrhff1CF0HpA+m0qrBwf6hMR9fUs7VOIOnzTs9pvGn
+         jCVIW/V77Jw6CBV4TqagW4g4gkpkXeJSmY6phLGwo6afeNQ0jS8JAzmCuTdpdN9y5g
+         0pIa0SyISjKxCTweAde4md1bxjfxXgyukpISyJvZ+g5ITPytSs2feqf0n7aU16owj8
+         BresQCt9n5+XRwAA72/I6flnPVsuxt91wtg9SpI/V8mXSEPv+0Q1zDRBW8e1I16f7X
+         /i8k/7mUwZ8Tw==
+Message-ID: <53f2bd239c74bab3079be3185abc4909.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230320103750.60295-14-hal.feng@starfivetech.com>
+References: <20230320103750.60295-1-hal.feng@starfivetech.com> <20230320103750.60295-14-hal.feng@starfivetech.com>
+Subject: Re: [PATCH v6 13/21] clk: starfive: Add StarFive JH7110 system clock driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Iskren Chernev <me@iskren.info>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: ufs: qcom: Add sm6115 binding
-Message-ID: <20230327184933.GD73752@sol.localdomain>
-References: <20221209-dt-binding-ufs-v3-0-499dff23a03c@fairphone.com>
- <20221209-dt-binding-ufs-v3-1-499dff23a03c@fairphone.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221209-dt-binding-ufs-v3-1-499dff23a03c@fairphone.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org
+To:     Hal Feng <hal.feng@starfivetech.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org
+Date:   Mon, 27 Mar 2023 11:51:57 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,16 +67,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 24, 2023 at 08:41:28AM +0100, Luca Weiss wrote:
-> From: Iskren Chernev <me@iskren.info>
-> 
-> Add SM6115 UFS to DT schema.
-> 
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Quoting Hal Feng (2023-03-20 03:37:42)
+> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk=
+/starfive/clk-starfive-jh7110-sys.c
+> new file mode 100644
+> index 000000000000..f98a508969c3
+> --- /dev/null
+> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> @@ -0,0 +1,450 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * StarFive JH7110 System Clock Driver
+> + *
+> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+> + */
+> +
+> +#include <linux/clk.h>
 
-Reviewed-by: Eric Biggers <ebiggers@google.com>
+Please drop this include.
 
-- Eric
+> +#include <linux/clk-provider.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/platform_device.h>
