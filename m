@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 149D96CA4C9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838456CA4BA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:53:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232846AbjC0Mx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 08:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52506 "EHLO
+        id S232713AbjC0Mxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 08:53:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbjC0Mxb (ORCPT
+        with ESMTP id S232254AbjC0Mxb (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:53:31 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E7019B5
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D1C19AE
         for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:29 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id l37so4996551wms.2
+Received: by mail-wm1-x32d.google.com with SMTP id l37so4996576wms.2
         for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:53:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679921608;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1679921609;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CCfaLfkFa9+r23DNhVQqZmyOO2Rn4kY0uWG6aZK0HR8=;
-        b=PYBN+u4b1Gohk9bh2TKYaETvHvNPu8a/7/SNvTVGy8lroSQ6N6YNFD3LFHqGuO/OHn
-         ucJyoCHrpNHTvFYD+Fve6MCPLWomRjMJDY4tdk0dReUgC0Iubjy6wOi0EnjCM7VlqALs
-         e6Kcd8Rq66c5HJVX5lyvB6K19tmWa9bIc3HlGSYJ6VOzYJHWFRQkjPuqwS0j2G7nVNt9
-         zww0SLIMSbSoL5jE+xEL0vT1WI102PMMAimVnzzgwRMaSY3gFqTBTvU9fHorqjVoxPoD
-         tFEoA5B4ta2xMRZjxrL+WEpST86DotAQTbi5djxeYLdk5irUAVW1e/iHTPS2dqvM/KN5
-         vQxA==
+        bh=9xLbshkx8RN3Dp5pV4JMfPJgexrRDb08ZnEhmNgvIW8=;
+        b=DN5zlzT8lBCRiq18EenA9tEbn5n8IpWw4jH6eQi+f7ZGyZUGT3RNp2lPyQ+nSTPnw8
+         g5cpS5ACzV/j8UyIyCbYakip31FlVZrcSwNhyXHEgqQcEujcGEd/XdN6p6/a+sKk/7SX
+         Bhbjyk9BBl7Vg+fyf9dPeVYNvh1PQMycMKQy+RxOpvEiREEIrWuupNEhYGlVsop2I2DR
+         FaXcT78CGQyQqBmZswzFMc8pEJqcTFcB0lRuOPn7d7IofcIVyrEySTIARP8bsyUjvnS1
+         fpYrFUAT3+IGewuV5yv95R5EIzZGdx6sN8AIcIX/DnrelZ+yKnODEW8w+X+nwuSdpRLs
+         T4AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679921608;
+        d=1e100.net; s=20210112; t=1679921609;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CCfaLfkFa9+r23DNhVQqZmyOO2Rn4kY0uWG6aZK0HR8=;
-        b=Tu4FlS8/2/lOzETIqPZ9wCm9SSF6iRTcSJblhtvthH/WId04r7TVb5br71FxB7dPdv
-         Zb1wNBjEOS6nUKvuFx0DQFYOI1Cy81ohRAyjH5y4sj7CfRooG1JjEx4zeUsbKP/Mls1Y
-         m1Pe/MMmghFP7BAGJ6po/aPnBDO4CpjihSlAmRuA2pr9yuVvLC4bOMhWrz4B6+k4hp7p
-         x59N8RApAbvJRVjOtNts8usKUu/lmn2wJBsNrUDz24qi7X2kUHKotTKklyJvjQhM1t2C
-         7DTo/m7FVcsDYZz/OpJkz/Mhbse6JazFrNuCoZJgLZYITCZZNot4uwz7e2NVGAdeq3Fo
-         MHKQ==
-X-Gm-Message-State: AO0yUKVBr5ZfVDgulsngVQn6yKBe88hUq6b2R/74/ZEZ7UHNX0S6Hanv
-        tTfwCKbcsu0SybgbI2qUz14yFw==
-X-Google-Smtp-Source: AK7set+brWqvOktXTMt7JRWGxzKOEw32VebNsxv+m3zTuLyQQgQ+hqQDyx53EY5Yk3RvBviZPdJJQA==
-X-Received: by 2002:a1c:770b:0:b0:3ed:4b0f:5378 with SMTP id t11-20020a1c770b000000b003ed4b0f5378mr9168056wmi.27.1679921607876;
-        Mon, 27 Mar 2023 05:53:27 -0700 (PDT)
+        bh=9xLbshkx8RN3Dp5pV4JMfPJgexrRDb08ZnEhmNgvIW8=;
+        b=5tZ3OIcgz8rd8P/cw6UmVq/2hDSiR17nISoIb8B5AWgXXdigW2SQ9PlYkLSEfe86GP
+         b7Xb4PFUg/8lc3wkUMVgqX88bSE3Nr4Y02y842/PNrhIERnIwd29UwT4nDXgJJ7M8iVp
+         Rwad35v0lrAE5eaL5uFPN0PpKHDSNnt8Jdm22L9gSu5BC0dWWxeuKhi9ZTrvjWO8nCJx
+         DQGDELcfvh+FeM4PQZVwS1mT6BTwPoHdC9zBm7k2mvQ3yPqvuKHTvKPC/qN9GgO7U/tQ
+         oKilRtgwFAZwaoml5VUDVgqlO9CPOopch+9Wz7/vMTA4i1RzUx/4jFV/0xRMAS+FB9fY
+         HgpA==
+X-Gm-Message-State: AO0yUKUoLnQOGm4LRmPZr78kz6r0CSz92tfacWzzEqeV5fg1G1bvN6gh
+        pTldLYpuMWBBLbAeLr7P0H3hoQ==
+X-Google-Smtp-Source: AK7set9WWTu28DjahOZNwv8/DaGb5PjaAwrlWJycYTjARylTu7X3/sB8BOqBaDO6igjO0Xcish5UiQ==
+X-Received: by 2002:a05:600c:258:b0:3ea:d611:f8 with SMTP id 24-20020a05600c025800b003ead61100f8mr9758392wmj.38.1679921608872;
+        Mon, 27 Mar 2023 05:53:28 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:313d:a304:2790:a949])
-        by smtp.gmail.com with ESMTPSA id q25-20020a1ce919000000b003ee58e8c971sm13572220wmc.14.2023.03.27.05.53.27
+        by smtp.gmail.com with ESMTPSA id q25-20020a1ce919000000b003ee58e8c971sm13572220wmc.14.2023.03.27.05.53.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 05:53:27 -0700 (PDT)
+        Mon, 27 Mar 2023 05:53:28 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH v3 09/18] arm64: dts: qcom: sa8775p: pmic: add the power key
-Date:   Mon, 27 Mar 2023 14:53:07 +0200
-Message-Id: <20230327125316.210812-10-brgl@bgdev.pl>
+Subject: [PATCH v3 10/18] arm64: dts: qcom: sa8775p: pmic: add support for the pmm8654 RESIN input
+Date:   Mon, 27 Mar 2023 14:53:08 +0200
+Message-Id: <20230327125316.210812-11-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230327125316.210812-1-brgl@bgdev.pl>
 References: <20230327125316.210812-1-brgl@bgdev.pl>
@@ -77,7 +77,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add the power key node under the PON node for PMIC #0 on sa8775p.
+Add the RESIN input for sa8775p platforms' PMIC.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
@@ -86,19 +86,19 @@ Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
  1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-index dbc596e32253..f421d4d64c8e 100644
+index f421d4d64c8e..8616ead3daf5 100644
 --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-@@ -19,6 +19,13 @@ pmm8654au_0_pon: pon@1200 {
- 			reg-names = "hlos", "pbs";
- 			mode-recovery = <0x1>;
- 			mode-bootloader = <0x2>;
+@@ -26,6 +26,13 @@ pmm8654au_0_pon_pwrkey: pwrkey {
+ 				linux,code = <KEY_POWER>;
+ 				debounce = <15625>;
+ 			};
 +
-+			pmm8654au_0_pon_pwrkey: pwrkey {
-+				compatible = "qcom,pmk8350-pwrkey";
-+				interrupts-extended = <&spmi_bus 0x0 0x12 0x7 IRQ_TYPE_EDGE_BOTH>;
-+				linux,code = <KEY_POWER>;
++			pmm8654au_0_pon_resin: resin {
++				compatible = "qcom,pmk8350-resin";
++				interrupts-extended = <&spmi_bus 0x0 0x12 0x6 IRQ_TYPE_EDGE_BOTH>;
 +				debounce = <15625>;
++				status = "disabled";
 +			};
  		};
  	};
