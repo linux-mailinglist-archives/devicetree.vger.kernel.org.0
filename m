@@ -2,140 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5EFD6CA1CE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E1F6CA1D5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbjC0K4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 06:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
+        id S229651AbjC0K5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 06:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbjC0K4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:56:50 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25CC01FD6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:56:48 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id p204so9904958ybc.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:56:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679914607;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/V3pA35xhVCbP9jkYQO9e9S5qEV2hgRETTuNLYG0J5I=;
-        b=q6NUh0GLhbSm+jdtm5u/zJSq9hxnLKIfoo86F6ho5smnjf34w4TPsj9OZwgJekDkfe
-         W+/E4fPYuxWqCcR0vFt/V5DtbFMv76+JyAmmnJ0wDwyX9VkezXK6dmfKe0lGXCkVV1nQ
-         punl2iTjp0SNLSPRDx0NFGQ5yRKS1RhOa+esRXcB0rDOTQMuv6QnlQ6J0w3XbombUITr
-         maO1C4mmuLpNd4Yky5AvLakgbvtYmCIuyXvMSstF73DGH90kUum/xdYY4Lvz/2gGcsF1
-         BKAD5nHXNHn0M7WGb+KgnAMiTaGScaC4MXH6KxkSk+tALMQm2DQxRv8i6rZRUoe1a891
-         pdyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679914607;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/V3pA35xhVCbP9jkYQO9e9S5qEV2hgRETTuNLYG0J5I=;
-        b=7jNgjHS7mhW34aSB8ALkOirjqqbhAdD70Ve2qXYP/fMqqVJZGXCQUkJ3n1kTUsAYHf
-         sY3aNK9kQC2jiClqooA7i02OrLl3h9XLAqXvs3U3dlKTY71EiWWQtd0giBBz+6iUsXt2
-         oYLucZLDZi5d0zLR/0jAbjKy5sbZIVeHlGMxasGB1fjLId/zmt290o6pFmFt7+NhADG/
-         W7NixIrJGvJs1JZmK2k7T59imnEYn3TJ9lHILW4B6DR6XJWUcxOtG+i9m9KJHamp26Un
-         Uad/Bd8Tr833liO8qMSaJMdVkP6QkRJYPvn5n5imAJO8HE8IoEEmDaivkhWxrolGemze
-         f2zA==
-X-Gm-Message-State: AAQBX9fAXRtRG0ibxrEDA5hbZRS+F1iYZ+ON7ieRGCisHfTesSxWlZov
-        7hFM9YVkc+8ColONL760rpaKFJd6AFxgev/IRHJzLg==
-X-Google-Smtp-Source: AKy350YfvVDOEdafb4m5KIOnnCg2t8RAuLdF4lY57Kt2SzbDhA40QER8ozVCwQkqO3tcWU5y9O4EoOR4PmQqRw+iAnQ=
-X-Received: by 2002:a05:6902:1181:b0:b6c:2224:8a77 with SMTP id
- m1-20020a056902118100b00b6c22248a77mr7052843ybu.1.1679914607297; Mon, 27 Mar
- 2023 03:56:47 -0700 (PDT)
+        with ESMTP id S232083AbjC0K5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:57:44 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1F9FE;
+        Mon, 27 Mar 2023 03:57:43 -0700 (PDT)
+Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MacjC-1qIqB338lW-00cC1T; Mon, 27 Mar 2023 12:57:11 +0200
+Message-ID: <1585c36f-cb8e-55ee-ac30-766feceda09f@i2se.com>
+Date:   Mon, 27 Mar 2023 12:57:10 +0200
 MIME-Version: 1.0
-References: <20221122-mt8365-i2c-support-v5-0-6e4f3b54937f@baylibre.com>
- <20221122-mt8365-i2c-support-v5-2-6e4f3b54937f@baylibre.com> <2a1b1f66-970e-5adb-389e-b9c47a790712@collabora.com>
-In-Reply-To: <2a1b1f66-970e-5adb-389e-b9c47a790712@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 27 Mar 2023 12:56:36 +0200
-Message-ID: <CAFGrd9pf+ojPDciF3Mtw-QT51LZCj+GNLHXurGx_vcC17GHA2A@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] arm64: dts: mediatek: enable i2c0 for mt8365-evk board
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Qii Wang <qii.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V2 4/8] dt-bindings: iio: st-sensors: Add IIS328DQ
+ accelerometer
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Li Yang <leoyang.li@nxp.com>,
+        Denis Ciocca <denis.ciocca@st.com>, soc@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230317103323.7741-1-stefan.wahren@chargebyte.com>
+ <20230317103323.7741-5-stefan.wahren@chargebyte.com>
+ <20230318155534.16b47583@jic23-huawei>
+ <708b63c9-d2b6-c65f-0112-8f50173c0bca@linaro.org>
+ <20230319154257.68facd30@jic23-huawei>
+Content-Language: en-US
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20230319154257.68facd30@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:8JjwnMM7XnWNBJfVFVFQz/Tiu5rLOiFTcZi7M3YMwIp1TwXnB5l
+ jaYyfdUHoiqK3r+fROLSqx1dkmbWgrg395NUkDbXe4OvFpOKwZODgbQNbkuBBsNbfuyRorI
+ BbI845rPcLGfsvazLr4MhkeuSbTiLgUiyqo9nTyEiI+3W4Z9pdxJ4mpn6TPukr21v71IIIi
+ gZ/uwEX39dqa1Yr1HlFpQ==
+UI-OutboundReport: notjunk:1;M01:P0:fbuEvtqtbv8=;P7qznWhu6AaORnGTjW46eOTN7B6
+ 4ejWaRtPK7L2uBxDHi/sA7a8Peg7WHWAg+MRW+7CNhyKZaw2N7Z3iht4L/W9CrUPRoZ7UsvcZ
+ y0SWwgHuqD+darVDWBVkn5dcNgxyUFDJFyiutTAUy74zkRrJg0vYGmJ4jSTCydlFPnR+3rFbF
+ cCbgXcfmo0eWmOzEBW6aZh6rmsRg8+83iuwSxsCvOSmmoa9xJpbq7+WPP9+RBg7XGeVEhqC3l
+ 9P52t9SY25AF7deTIZGYhIHMP8L3Sn0HLe6DcZvnhTRxQhO2GGCp6v95T5qyiOEgMXA3sibuD
+ KwAxqfFUaU/IE9RM7eOUB6NlaxE2VrqVe/UQ9Zf0hPJDPzlUxbiVjPzrPd51Mc14W7SNrHJtU
+ dRBt60e6C8JrCz0wFY7gwFhp7PX5BC3HsA9sxtDKqB/Iuxph1DXMQ0Prpv9460dFoZ5RVup8q
+ YrR8NyvgtXRkUKKP3XjRPpBccofwMoARRmP0FAD4zPhElqwZJM/+GHF3VtTtjcg1dfA1o63+f
+ yIO3GQcb3Oi7GWtOhR9KEJBbNqy6hAtuQ03uOhBp2cU7pBYtOUDI6V/lf6dVnceqL9WAg8FJf
+ FqIIYDujafOpFwwtnOx3mb/HZYstaG2LjpOe06IM/q2+qMIl+PBj243vjbaxUMYppTqdGgUHQ
+ fL+dqUr6KO2vk5i/THf5WezImMK1gIfNnIst7lYiBg==
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+Hi Jonathan,
 
-Le lun. 27 mars 2023 =C3=A0 10:45, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
->
-> Il 27/03/23 10:27, Alexandre Mergnat ha scritto:
-> > Enable the I2C0 bus provides communication with:
-> > - The integrated RT9466 Switching Battery Charger.
-> > - The integrated MT6691 LP4X buck for VDDQ.
-> > - The integrated MT6691 LP4X buck for VDD2.
-> > - The pin header, to plug external I2C devices.
-> >
-> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 16 ++++++++++++++++
-> >   1 file changed, 16 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/b=
-oot/dts/mediatek/mt8365-evk.dts
-> > index 4683704ea235..35cb142004a4 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> > @@ -87,6 +87,13 @@ optee_reserved: optee@43200000 {
-> >       };
-> >   };
-> >
-> > +&i2c0 {
-> > +     clock-frequency =3D <100000>;
-> > +     pinctrl-0 =3D <&i2c0_pins>;
-> > +     pinctrl-names =3D "default";
-> > +     status =3D "okay";
-> > +};
-> > +
-> >   &pio {
-> >       gpio_keys: gpio-keys-pins {
-> >               pins {
-> > @@ -96,6 +103,15 @@ pins {
-> >               };
-> >       };
-> >
-> > +     i2c0_pins: i2c0-pins {
-> > +             pins {
->                         pinmux =3D ...pins...
->                         bias-pull-up =3D <your-pull-up-adv-value>;
->                 };
->
-> ...and please do *not* use the mediatek,pull-up-adv property: this is
-> supposed to be there only for older devicetrees and there's a replacement
-> for it.... unless you have any specific reason to do so (and if you do,
-> you should well explain that).
+Am 19.03.23 um 16:42 schrieb Jonathan Cameron:
+> On Sun, 19 Mar 2023 13:40:49 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 18/03/2023 16:55, Jonathan Cameron wrote:
+>>> On Fri, 17 Mar 2023 11:33:19 +0100
+>>> Stefan Wahren <stefan.wahren@chargebyte.com> wrote:
+>>>    
+>>>> The ST IIS328DQ is an accelerometer sensor, which is compatible with
+>>>> the already supported ST H3LIS331DL. So add the new compatible
+>>>> with a fallback to the ST sensor binding.
+>>>>
+>>>> Link: https://lore.kernel.org/linux-iio/2bac9ecf-9d2e-967e-9020-1c950487d781@i2se.com/
+>>>> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+>>>> Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>	
+>>>> ---
+>>>>   Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 3 +++
+>>>>   1 file changed, 3 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>>>> index c6201976378f..5eb71b24a7cb 100644
+>>>> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>>>> @@ -48,6 +48,9 @@ properties:
+>>>>             - st,lsm330d-accel
+>>>>             - st,lsm330dl-accel
+>>>>             - st,lsm330dlc-accel
+>>>> +      - items:
+>>>> +          - const: st,iis328dq
+>>>> +          - const: st,h3lis331dl-accel
+>>>
+>>> Hmm. So this separates the particular 'oneOf' group from the description
+>>> associated with the ST accelerometers.
+>>>
+>>> DT experts, is there a better way to do this?  Ideally we'd also associate
+>>> other similar groups going forwards so it might become less and less obvious
+>>> how the groupings work. (bit late for the many groups that exist
+>>> already in that list above this point).
+>>
+>> If by "grouping" you mean how the oneOf items are organized with
+>> descriptions, I wouldn't put too much attention to it. You can add some
+>> '#' comments to separate the groups, but for me this is still readable.
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Works for me. Thanks for quick response!  Applied this and next patch
+> to the togreg branch of iio.git
 
-bias-pull-up isn't necessary currently because MT8365 doesn't use MTK
-paris/moore drivers.
+Shawn had some comments to patch #7. Just to make it clear, there is no 
+need to resend patch 4 and 5 in V3?
 
-> Besides, if you introduce the usage of that property in any 8365 devicetr=
-ee,
-> the previously proposed 8365 pinctrl cleanup will become a bit harder to =
-do.
+Best regards
 
-I'm thinking of deprecating the "mediatek,pull-up-adv",
-"mediatek,pull-down-adv" properties from mt8365 pinctrl binding too.
-
-Regards,
-Alex
+> 
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
