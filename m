@@ -2,142 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC58F6CAECB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CE56CAF0D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbjC0Tgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 15:36:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S229762AbjC0Tp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 15:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231174AbjC0Tgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:36:37 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7329310CC;
-        Mon, 27 Mar 2023 12:36:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0781EB818D4;
-        Mon, 27 Mar 2023 19:36:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B068C433EF;
-        Mon, 27 Mar 2023 19:36:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679945793;
-        bh=3VinL61oh1AfiLtJ/xna8xib3ysQ3OiMQrgj/aGjWKw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i3lFG3GXZulHbQyv6vKwtbgDnKO5FZsdlsEMhFxcKSgyVVJAJy7SKXfsa0H4wDE/T
-         9CVF7XnQAv5LRpHzNc9SsQ9WX44ZgNd8oXPdd6Aw4Zu1veDhnHi/ft62BNzdq8OEJm
-         Sab9TjY4O+NeUiZjfqAzyLuXOasynDm0WOTV4D5Od/DSf415BSNLRXkZwVKHyhmTUN
-         /GRcd2aiJiA2zCsAXq38AJ4vCaQSmLP5pf85YnbA4gmOTrAzkosjh3gITFXsxpolgb
-         jfMLaIc6jOuAaR8O6VUbrCDyo5EfHJrN6lxckVhyNaBXrb9BSYhdUCrKXRVr4NpNiJ
-         1ck3nRVlq06MA==
-Date:   Mon, 27 Mar 2023 12:39:38 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229631AbjC0TpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:45:25 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6826930F7;
+        Mon, 27 Mar 2023 12:45:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1679946319; bh=oxmK92xKDmUDCfivDFeZAnn0jp1onvjYGp6dhItp8CU=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=W/QSBpIY+ehzrfFrRYhdqlYndxeQINnji9LdNotUr0jtMs1fliPLNbhbIWVRkpUcG
+         wM9E25XRsHkKjlqW2HAbGcw09mZqKYOQs+TurpuTJocOFWvyjikrFt0LFkG7GlZc9o
+         LyeLgqRw8HMLy7bUp30APaoCba98kLojrv83pDec=
+Date:   Mon, 27 Mar 2023 21:45:18 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        linux-kernel@vger.kernel.org,
+        Robert Mader <robert.mader@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Martijn Braam <martijn@brixit.nl>,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630: move DSI opp-table out of
- soc node
-Message-ID: <20230327193938.42rvpttgo5p4kia6@ripper>
-References: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2] arm64: dts: rk3399-pinephone-pro: Add internal
+ display support
+Message-ID: <20230327194518.qkm5qgap6vkivpeg@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        linux-kernel@vger.kernel.org,
+        Robert Mader <robert.mader@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Martijn Braam <martijn@brixit.nl>,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20230327074136.1459212-1-javierm@redhat.com>
+ <20230327130147.wgxl2qayhzsi2xak@core>
+ <87wn32rynm.fsf@minerva.mail-host-address-is-not-set>
+ <1924921.PYKUYFuaPT@diego>
+ <87mt3yrwzo.fsf@minerva.mail-host-address-is-not-set>
+ <20230327174855.xpxrdfldqcxk463r@core>
+ <87jzz2rrfr.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230326091605.18908-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87jzz2rrfr.fsf@minerva.mail-host-address-is-not-set>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 26, 2023 at 11:16:05AM +0200, Krzysztof Kozlowski wrote:
-> The soc node is supposed to have only device nodes with MMIO addresses,
-> so move the DSI OPP out of it (it is used also by second DSI1 on
-> SDM660):
+On Mon, Mar 27, 2023 at 08:15:52PM +0200, Javier Martinez Canillas wrote:
+> Ondřej Jirman <megi@xff.cz> writes:
 > 
+> > On Mon, Mar 27, 2023 at 06:15:55PM +0200, Javier Martinez Canillas wrote:
+> 
+> [...]
+> 
+> >> 
+> >> It is broken though? This is what is in Ondrej downstream tree and I see
+> >> no issues on my Pinephone Pro. He mentioned some flicker when looking at
+> >> the signals with a scope and hooking a photoresistor.
+> >
+> > LED regulator is driven out of spec by a frequency that's 20x lower than
+> > recommended, if you want short version of what's broken about the DT patch.
+> >
+> >> But that's fair. I'll let Ondrej then post a v3 if he wants to address the
+> >> issues he pointed out, since is his patch after all.
+> >
+> > It's not my patch. Original author of the DT is Martijn or Kamil. I just carry
+> > their DT work in split-up patches in my tree, and I sometimes try to find solutions
+> > to bugs I find when using PPP. That's the story of these DT changes you're posting.
+> >
+> > Since you posted this DT patch for upstreaming, I wanted to help you by reviewed
+> > it more completely, so I opened the schematic and datasheets for the components
+> > that are described in this patch, and discovered these new issues I commented
+> > about. And I also tested it on top of linus/master.
+> >
+> > Just because something is in my tree doesn't mean it's mine, or that I reviewed
+> > it in detail and prepared it for upstreaming, or that I'm interested in
+> 
+> Thanks for the clarification. Because the patch had your authorship I
+> wrongly assumed that came from you. Sorry about the confusion.
 
-This node has been moved into the dsi node, so if we still want this,
-could you please update the commit message.
+Ever since base DT support for Pinephone Pro was merged, none of the DT patches
+in my tree are in the original form as prepared by the authors + fixes I've
+added. That's simply impossible anymore.
 
-Regards,
-Bjorn
+To look up who did what, you'd have to look at older branches, pre-merge.
 
->   sda660-inforce-ifc6560.dtb: soc: opp-table-dsi: {'compatible': ['operating-points-v2'], ... should not be valid under {'type': 'object'}
->     From schema: dtschema/schemas/simple-bus.yaml
+Patches after the merge just came from squashing everything into one patch,
+cleaning it up, and re-splitting along some vague functionality boundaries,
+while trying to keep best-effort original SoBs as faithfully as possible, so
+that I can keep maintaining the PPP support in a sane manner.
+
+Anyway, SoB's are added in chronological order. So:
+
+https://github.com/megous/linux/commit/471c5f33ba74c3d498ccc1eb69c098623b193926
+
+Means the author of the changes is Martijn + Kamil (roughly) and I may have
+a line of code in there too, since my SoB is last. For some reason, the order is
+inverted in the patch you posted, making it seem I developed these changes
+originally.
+
+> > upstreaming it. I'm just trying to help you with your upstreaming effort by
+> > testing and review since I got to know the hardware quite well over the last
+> > years and can check the schematics and datasheets quickly, and I like to think
+> > upstream code is held to higher standard. That's all.
+> >
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Appreciate your help and I agree that upstream code should be held to a
+> high standard. But since the DTS in mainline is pretty basic anyways (you
+> can only boot to serial right now), is not really usable for other thing
+> than development and keep adding the missing support.
+
+Having wrong frequency used is not a missing support for something. Sorry it's
+too bothersome to get the review piecemeal, but sometimes people have more time to
+look at patches in-depth, and at other times they don't and you just get surface
+level or no review.
+
+One point of posting patches to the mailing list is to get review. And it's not
+that great to do in-depth review for you, up to going through schematics and
+datasheets, testing, and even proposing and testing solutions for found issues,
+just to be dismissed without technical reason.
+
+The thing is this review will most likely happen just once, and noone will go
+back, read through the entire huge DT along with a schematic, to look at whether
+this or that pullup is really necessary, whether some parameter is out of spec
+from the datasheet for each part, or things like that. That's just not
+pragmatic.
+
+Instead, people will happily attribute non-obvious issues caused by these
+omissions of manual review to shoddy or slow or power-inefficient HW. "1kHz
++ harmonics interference in codec because high power backlight DC-DC regulator
+basically spews off 1kHz of 1-2W load + harmonics because it's driven
+incorrectly? Ah, the phone just has a shitty audio codec!"
+
+So, don't take it as some perfectionism. Upstreaming just seems like the best
+time to look at things that were overlooked in the past in more detail and get
+these little things right, because the DT additions are done piecemal and
+slowly/gradually, so it's more manageable to review and fix right away. This
+will just not happen later on for these obscure devices like Pinephone Pro,
+where the whole effort that goes into it is like one half of a fulltime
+developer time split over 4 mildly interested real persons, slowly tapering off
+over time as the device ages.
+
+regards,
+	o.
+
+> So I thought that we could do it in steps without creating that much work
+> for the people trying to post the downstream patches and having to re-spin
+> too many times.
 > 
-> ---
-> 
-> Changes since v1:
-> 1. Move the node out of soc. Don't add Konrad's review tag.
-> ---
->  arch/arm64/boot/dts/qcom/sdm630.dtsi | 38 ++++++++++++++--------------
->  1 file changed, 19 insertions(+), 19 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index 72d9a12b5e9c..b91e423a3cfc 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -328,6 +328,25 @@ memory@80000000 {
->  		reg = <0x0 0x80000000 0x0 0x0>;
->  	};
->  
-> +	dsi_opp_table: opp-table-dsi {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-131250000 {
-> +			opp-hz = /bits/ 64 <131250000>;
-> +			required-opps = <&rpmpd_opp_svs>;
-> +		};
-> +
-> +		opp-210000000 {
-> +			opp-hz = /bits/ 64 <210000000>;
-> +			required-opps = <&rpmpd_opp_svs_plus>;
-> +		};
-> +
-> +		opp-262500000 {
-> +			opp-hz = /bits/ 64 <262500000>;
-> +			required-opps = <&rpmpd_opp_nom>;
-> +		};
-> +	};
-> +
->  	pmu {
->  		compatible = "arm,armv8-pmuv3";
->  		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -1450,25 +1469,6 @@ mmcc: clock-controller@c8c0000 {
->  					<0>;
->  		};
->  
-> -		dsi_opp_table: opp-table-dsi {
-> -			compatible = "operating-points-v2";
-> -
-> -			opp-131250000 {
-> -				opp-hz = /bits/ 64 <131250000>;
-> -				required-opps = <&rpmpd_opp_svs>;
-> -			};
-> -
-> -			opp-210000000 {
-> -				opp-hz = /bits/ 64 <210000000>;
-> -				required-opps = <&rpmpd_opp_svs_plus>;
-> -			};
-> -
-> -			opp-262500000 {
-> -				opp-hz = /bits/ 64 <262500000>;
-> -				required-opps = <&rpmpd_opp_nom>;
-> -			};
-> -		};
-> -
->  		mdss: display-subsystem@c900000 {
->  			compatible = "qcom,mdss";
->  			reg = <0x0c900000 0x1000>,
 > -- 
-> 2.34.1
+> Best regards,
+> 
+> Javier Martinez Canillas
+> Core Platforms
+> Red Hat
 > 
