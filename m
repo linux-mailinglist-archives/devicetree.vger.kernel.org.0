@@ -2,168 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 040C06CA886
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 413226CA8C3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:17:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232287AbjC0PDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 11:03:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44782 "EHLO
+        id S229762AbjC0PRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 11:17:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232153AbjC0PDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:03:51 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021FF3596;
-        Mon, 27 Mar 2023 08:03:03 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id x17so11868704lfu.5;
-        Mon, 27 Mar 2023 08:03:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679929356;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3af7AQ9wLc3osxXyvBrW7r37wpKHewq77ohhLjiNp5I=;
-        b=aJAMeUSuyua/Fa1o+yzjjCi4t7zNAxGXPG0mr4ctDoteRlTqAfsvzt1UmCylvScST+
-         D53MpZfSCQPDgUc4+h6B7RJD9NS7BV9RdYb6/cn4TGT16+1YttXq8Rye0AiNdP/bI6wF
-         sLW+/u9BtWSxrCwrd9nt1QCeK0N5jhH82sQNgvY20RpccuN9HQlRPXikT8jzUa17mYOd
-         mw18ksCfHZkzth1pn5CNNsc0+mw12AKyd6tYCn9ddyKIVgT1m53d5eVuSdJW2paltwS0
-         Fh1NNRXw8IlOEsmcFE7+n0Lw1IuKRyOIaybwgKVSBOb7K5BThsbAaPL58VQc6NDK1sqB
-         mZHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679929356;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3af7AQ9wLc3osxXyvBrW7r37wpKHewq77ohhLjiNp5I=;
-        b=iSMijXm7selnhKm6hWZu/w/rqkmV1FpSsGpvP7tSsHxqUCz7ciPxy5rCylW27GniVJ
-         lZP+pQYbqhpknw8PHlMWD6+z0skoSdOVp56DExxpbpvHkBfNUpFqF6tT0IpqyO/tgqdV
-         sI5PIim+ThCxNanzmAps1ecUbTBx0g1O+YGD4N5MPqDmNmrDJdTZzZOGkNUkPhz8qvhK
-         FwypytfGa2U9tgUc+CP4ugswi0l/58fnTvLBGeT+Ci/hYYVr/QYA6ljXjiac3GquzVx7
-         NYA1S6T7kiZ4o1211HB0nV3nSnJguW0tIYw3vUPWmHmE5tuTw86GjpY5IkGlCzsuBpAQ
-         Y3Qg==
-X-Gm-Message-State: AAQBX9ePnVuG3OGmnpN6cgChieXP4kXWxyo5lOUEQt1BKm4vdiNkUkK2
-        0muFgeieVl+oJWjfSsAcRDs=
-X-Google-Smtp-Source: AKy350YAIa8fmdryQsNcyE9xdIj1Y0024oPSK/j0KzOEf8cX+5Lf79GCDkuFHKNiRZfI46m1NUYpWA==
-X-Received: by 2002:a19:a40a:0:b0:4eb:982:adf with SMTP id q10-20020a19a40a000000b004eb09820adfmr1952941lfc.26.1679929356417;
-        Mon, 27 Mar 2023 08:02:36 -0700 (PDT)
-Received: from xeon.. ([188.163.112.76])
-        by smtp.gmail.com with ESMTPSA id f4-20020a19ae04000000b0049ad2619becsm4706923lfc.131.2023.03.27.08.02.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 08:02:36 -0700 (PDT)
-From:   Svyatoslav Ryhel <clamor95@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v4 2/2] ARM: tegra: transformers: bind RT5631 sound nodes
-Date:   Mon, 27 Mar 2023 18:02:19 +0300
-Message-Id: <20230327150219.13636-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230327150219.13636-1-clamor95@gmail.com>
-References: <20230327150219.13636-1-clamor95@gmail.com>
+        with ESMTP id S230212AbjC0PRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:17:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40C6199;
+        Mon, 27 Mar 2023 08:17:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 679AEB81616;
+        Mon, 27 Mar 2023 15:17:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E7CEC4339B;
+        Mon, 27 Mar 2023 15:17:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679930240;
+        bh=WxXjXDVt250Dzp30WluOUfbIb760o1vY2QBgR+3iufI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DgSCKdzHtd3A8JummnAbCF0GnDlwtgZE6oSuVEtby2k6dFHawi07+eYzwPhFI/zPn
+         1IqdQXp31wiy/gxtYX6xIXwHsgB7dDWGbPo6yynzdtMX0Vzh+sZ7ApcD4v6Hrd7yJM
+         xTrafTzK5Qq9V8l3zkkyJ+yxFjRh4x26wz388XcMmrfyf1YhaCvtQo9lmQT6pcvAcA
+         bMYMFdx1Gz2tsb/AYwR47c26nxs8JIX5KkB8g9NdHo8PqeB5MQ2sLpGsRviMSYsdYc
+         EOg4Jv1ldxV8sUCYxJzAt8ZpOKQIeoGcrTIh8+8rqmOATAeYbhPniEhhLGy8a0zYPU
+         3q5KeUrdBoIzg==
+Received: by mail-lj1-f177.google.com with SMTP id a21so2236083ljq.10;
+        Mon, 27 Mar 2023 08:17:20 -0700 (PDT)
+X-Gm-Message-State: AAQBX9eKZiCt8jkD65xvwQRbwQzJaPlvkKpdZCmq38zpKkFuoJIO5YKM
+        JpMFjo0tDRA5eqN6dJ+cNglT4X2mBkK/mytx/Q==
+X-Google-Smtp-Source: AKy350ZJD8lXrATp34gVJQNtWOp95oG2v0KcgMEyjZm8N9VS0wqsbCWLENkFgqU2pL5ANEjL4W1+rI8dl98MGCb+WEw=
+X-Received: by 2002:a2e:a304:0:b0:2a1:627a:70bb with SMTP id
+ l4-20020a2ea304000000b002a1627a70bbmr3582823lje.10.1679930238193; Mon, 27 Mar
+ 2023 08:17:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230321121859.2355-1-nancy.lin@mediatek.com> <17831605-5c9d-9c92-d190-04f91060ace4@collabora.com>
+ <CAAOTY_8ZAxVSLnJ1u5snsRgkszV7ixwhjUS2nDimE_Lpj=cUCA@mail.gmail.com> <97a5f383-38f5-e8ea-e1d8-489b690e4521@collabora.com>
+In-Reply-To: <97a5f383-38f5-e8ea-e1d8-489b690e4521@collabora.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 27 Mar 2023 23:17:06 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9_vn-m2jTaaHkFDV+v2-LeaAxtCLNNnOxZq5Httb-TAQ@mail.gmail.com>
+Message-ID: <CAAOTY_9_vn-m2jTaaHkFDV+v2-LeaAxtCLNNnOxZq5Httb-TAQ@mail.gmail.com>
+Subject: Re: [PATCH v30 0/7] Add MediaTek SoC DRM (vdosys1) support for mt8195
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Nancy.Lin" <nancy.lin@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        CK Hu <ck.hu@mediatek.com>, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        clang-built-linux@googlegroups.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        singo.chang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TF201, TF300TG and TF700T support RT5631 codec.
+Hi, Angelo:
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- arch/arm/boot/dts/tegra30-asus-tf201.dts   | 17 +++++++++++++++++
- arch/arm/boot/dts/tegra30-asus-tf300tg.dts | 17 +++++++++++++++++
- arch/arm/boot/dts/tegra30-asus-tf700t.dts  | 17 +++++++++++++++++
- 3 files changed, 51 insertions(+)
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2023=E5=B9=B43=E6=9C=8824=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:3=
+8=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Il 24/03/23 00:25, Chun-Kuang Hu ha scritto:
+> > Hi, Angelo:
+> >
+> > AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =
+=E6=96=BC
+> > 2023=E5=B9=B43=E6=9C=8823=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=
+=884:58=E5=AF=AB=E9=81=93=EF=BC=9A
+> >>
+> >> Il 21/03/23 13:18, Nancy.Lin ha scritto:
+> >>> The hardware path of vdosys1 with DPTx output need to go through by s=
+everal modules, such as, OVL_ADAPTOR and MERGE.
+> >>>
+> >>> Add DRM and these modules support by the patches below:
+> >>>
+> >>
+> >> I've tested v30 again on MT8173, MT8192 and MT8195 based Chromebooks.
+> >> Green light from me.
+> >
+> > I'm curious about how you build code and test on Chromebooks. Do you
+> > build in cros environment or pure linux
+> > (https://archlinuxarm.org/platforms/armv8/mediatek/acer-chromebook-r13)=
+.
+> > I've a MT8183 based Chromebook (HP 11a) and I've tried to run a
+> > upstream kernel on it. cros is too heavy for me and I doubt I could
+> > use it. I've tried the pure linux and could boot up with console, but
+> > display does not work. If you use the pure linux environment, could
+> > you share how it works?
+> >
+>
+> I haven't tested MT8183 (I don't actually have any 8183 machine in my han=
+ds)... but
+> yes, I can share my test environment.
+>
+> I have one MicroSD that I use either in the MicroSD slot of the target ma=
+chine, or
+> in a USB reader; this *single* system is what I boot on *all* Chromebooks=
+ that I
+> have: one kernel, multiple devicetrees, same Debian-based userspace.
+>
+> What we have to prepare this bootable media can be found at [1], but bewa=
+re that
+> it currently uses an outdated kernel, so, what I have locally is a symlin=
+k to my
+> kernel tree.
+> You can change/add/remove the devicetree blobs that will get added to the=
+ image
+> by modifying `chromebook-setup.sh`; before tampering with kernel tree sym=
+link,
+> please run that script for the first time, as it will download a cross-co=
+mpiler,
+> a kernel tree (that you will replace for sure) and the (very old) Debian =
+rootfs
+> that you can update with `apt-get dist-upgrade` after booting the Chromeb=
+ook.
+>
+> If you want to check about possible kernel configuration differences, wha=
+t I use
+> is at [2], so that you can compare.
 
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf201.dts b/arch/arm/boot/dts/tegra30-asus-tf201.dts
-index 3c2b9e93e028..0406c5a69c12 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf201.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf201.dts
-@@ -624,4 +624,21 @@ opp-table-emc {
- 		/delete-node/ opp-800000000-1300;
- 		/delete-node/ opp-900000000-1350;
- 	};
-+
-+	sound {
-+		compatible = "asus,tegra-audio-rt5631-tf201",
-+			     "nvidia,tegra-audio-rt5631";
-+		nvidia,model = "Asus Transformer Prime TF201 RT5631";
-+
-+		nvidia,audio-routing =
-+			"Headphone Jack", "HPOL",
-+			"Headphone Jack", "HPOR",
-+			"Int Spk", "SPOL",
-+			"Int Spk", "SPOR",
-+			"MIC1", "MIC Bias1",
-+			"MIC Bias1", "Mic Jack",
-+			"DMIC", "Int Mic";
-+
-+		nvidia,audio-codec = <&rt5631>;
-+	};
- };
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf300tg.dts b/arch/arm/boot/dts/tegra30-asus-tf300tg.dts
-index 573deeafb7ba..4861db8e1e59 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf300tg.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf300tg.dts
-@@ -1084,4 +1084,21 @@ opp-table-actmon {
- 		/delete-node/ opp-800000000;
- 		/delete-node/ opp-900000000;
- 	};
-+
-+	sound {
-+		compatible = "asus,tegra-audio-rt5631-tf300tg",
-+			     "nvidia,tegra-audio-rt5631";
-+		nvidia,model = "Asus Transformer Pad TF300TG RT5631";
-+
-+		nvidia,audio-routing =
-+			"Headphone Jack", "HPOL",
-+			"Headphone Jack", "HPOR",
-+			"Int Spk", "SPOL",
-+			"Int Spk", "SPOR",
-+			"MIC1", "MIC Bias1",
-+			"MIC Bias1", "Mic Jack",
-+			"DMIC", "Int Mic";
-+
-+		nvidia,audio-codec = <&rt5631>;
-+	};
- };
-diff --git a/arch/arm/boot/dts/tegra30-asus-tf700t.dts b/arch/arm/boot/dts/tegra30-asus-tf700t.dts
-index e7fe8c7a7435..efde7dad718a 100644
---- a/arch/arm/boot/dts/tegra30-asus-tf700t.dts
-+++ b/arch/arm/boot/dts/tegra30-asus-tf700t.dts
-@@ -820,4 +820,21 @@ vdd_1v2_mipi: regulator-mipi {
- 		enable-active-high;
- 		vin-supply = <&vdd_3v3_sys>;
- 	};
-+
-+	sound {
-+		compatible = "asus,tegra-audio-rt5631-tf700t",
-+			     "nvidia,tegra-audio-rt5631";
-+		nvidia,model = "Asus Transformer Infinity TF700T RT5631";
-+
-+		nvidia,audio-routing =
-+			"Headphone Jack", "HPOL",
-+			"Headphone Jack", "HPOR",
-+			"Int Spk", "SPOL",
-+			"Int Spk", "SPOR",
-+			"MIC1", "MIC Bias1",
-+			"MIC Bias1", "Mic Jack",
-+			"DMIC", "Int Mic";
-+
-+		nvidia,audio-codec = <&rt5631>;
-+	};
- };
--- 
-2.37.2
+Thanks for the information, I would try to compare the kernel config first.
 
+>
+> [1]: https://gitlab.collabora.com/google/chromebooks/-/tree/mtk-av1
+> [2]:
+> https://gitlab.collabora.com/google/chromeos-kernel/-/blob/mt8195-trackin=
+g-master-rolling/arch/arm64/configs/defconfig
+>
+> Regards,
+> Angelo
