@@ -2,219 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1370B6C9B42
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 08:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A8B6C9B5C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 08:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232071AbjC0GFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 02:05:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33486 "EHLO
+        id S232105AbjC0G1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 02:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230380AbjC0GFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 02:05:39 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A664EEE;
-        Sun, 26 Mar 2023 23:05:33 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32R5fwVf014477;
-        Mon, 27 Mar 2023 06:05:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=c5Moma9QH1NFeyptfTJA6uULulI09houVr9jBihY+sE=;
- b=jZf8vqINdE2wX/JjsMfeN8j6DCG4vol6NRi4QBvIEEFtH0Y695l6DrIDLLXO9n945nP/
- j+rGF2F1PmwvTUX3Mn9aBhzw55xY5ntyNamrmRM9GoQXLFCBgkPexY4LvXZoIdk+HA2k
- G6aAb79avxYwqyJTtyFIApK8sbVgwKW/xXYoX0kJWM+Up2LyyOQX6XDjPeDEbD9yDk8D
- 7WzRYdPmN2DOgEI5gZ01R9QO7ESNK6j0tLziJujU8Rq8ANUxypfJRP8jjSTvc6X8ti8Z
- CzhiBW9B86DVnjMXfKAwIcn7fctl+dKI/t5ni8W4daRLFAkBA5PYgGD1csD8Fn78G7+j Cg== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pk57701x1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 06:05:19 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32R65It5030052
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 06:05:18 GMT
-Received: from [10.253.35.148] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Sun, 26 Mar
- 2023 23:05:10 -0700
-Message-ID: <a56a460e-7d50-fcf0-95a5-cf08eeb73f43@quicinc.com>
-Date:   Mon, 27 Mar 2023 14:05:08 +0800
+        with ESMTP id S229950AbjC0G1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 02:27:40 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08564498;
+        Sun, 26 Mar 2023 23:27:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1679898458; x=1711434458;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yUGZr001csTpDC6gvfZA1QE8lGdCVfjVc1sD6Q6zxms=;
+  b=XR+KqMAy/Ck5DFeh2uzLXk0Myfazk+/zLBdczU9XjiZWBjE/sqtSlCY/
+   YGZ60/H0qVXEbrG0lBSA7C/vvCnzFbOA2CtEJjUwJrcypibQDR1myDUH8
+   7kAnyGByEs4jLKt68fjKJ7wuGNSTxJj40v5BpbQxavgRXthL+FTqzlUZs
+   cIWgo6tYaYqg8pCLi1IEsgP/Xaz9aKcJIi69rw7cWw5aiNTQPRlbBpLSv
+   RgVQgnzLTq9zzJ2kWPvyeoqY5hHc8Lm2u6sxr1XLA2Nif6vB9jl/34tfA
+   k3dcsGc5rpqKdYbCBgjb+K7jFosVbXctpFXsd/xbjZSqgj2bng8zSvtGY
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.98,293,1673910000"; 
+   d="scan'208";a="29940150"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 27 Mar 2023 08:27:34 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 27 Mar 2023 08:27:34 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 27 Mar 2023 08:27:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1679898454; x=1711434454;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yUGZr001csTpDC6gvfZA1QE8lGdCVfjVc1sD6Q6zxms=;
+  b=Fk9YqqG1VP1SBPwBqdPU0K8cjCVMcSjzO94ysOmSZ7yxfOBeon0VTf07
+   Y9Lw0EMlYu3CON7N3CVnt7IKm9aNvKGtXsLGXsFxXkS2vLstsjT8KEuFB
+   Ta8cNih7jlCeRwWqVRYn9BgXlRfBBO0iwIdvE9+KMWFbuHqPysl1Sky4P
+   i+PH224JYIhd9u33HEJmM2RMkJPqdfk5oLnYDSsZBLwPGiYeXPTCNm6Cd
+   TGQpwSqhTMsKJyyQ6lwQ11wMqXYlWHoUpaJ7ihwapKB6DtO05HmWNhWBI
+   MYYU+uzDIhyom3nL2FrEcgZx/JhunecH53SxhPmsZl3B1HVXqVE6BYm24
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,293,1673910000"; 
+   d="scan'208";a="29940149"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 27 Mar 2023 08:27:34 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 16D93280056;
+        Mon, 27 Mar 2023 08:27:34 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     peng.fan@oss.nxp.com, linux-arm-kernel@lists.infradead.org
+Cc:     Markus.Niebel@ew.tq-group.com, abailon@baylibre.com,
+        abelvesa@kernel.org, aford173@gmail.com,
+        devicetree@vger.kernel.org, djakov@kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        l.stach@pengutronix.de, laurent.pinchart@ideasonboard.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        marex@denx.de, paul.elder@ideasonboard.com, peng.fan@nxp.com,
+        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
+        gerg@kernel.org, Greg Ungerer <gerg@linux-m68k.org>
+Subject: Re: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk ctrl
+Date:   Mon, 27 Mar 2023 08:27:31 +0200
+Message-ID: <2678294.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230327045037.593326-1-gerg@linux-m68k.org>
+References: <20220703091451.1416264-8-peng.fan@oss.nxp.com> <20230327045037.593326-1-gerg@linux-m68k.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 3/3] Documentation: trace: Add documentation for
- Coresight Dummy Trace
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-doc@vger.kernel.org>
-References: <20230324061608.33609-1-quic_hazha@quicinc.com>
- <20230324061608.33609-4-quic_hazha@quicinc.com>
- <e383c17d-12b8-b134-acc5-82f515714562@arm.com>
-From:   Hao Zhang <quic_hazha@quicinc.com>
-In-Reply-To: <e383c17d-12b8-b134-acc5-82f515714562@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: W2Z5qzmY9BFcRWSfwrWsZFOaxkPYsP0e
-X-Proofpoint-ORIG-GUID: W2Z5qzmY9BFcRWSfwrWsZFOaxkPYsP0e
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-24_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 adultscore=0
- mlxlogscore=986 phishscore=0 malwarescore=0 spamscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2303270050
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suzuki,
+Hi Greg,
 
-On 3/24/2023 7:00 PM, Suzuki K Poulose wrote:
-> On 24/03/2023 06:16, Hao Zhang wrote:
->> Add documentation for Coresight Dummy Trace under trace/coresight.
->>
->> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
->> ---
->>   .../trace/coresight/coresight-dummy.rst       | 58 +++++++++++++++++++
->>   1 file changed, 58 insertions(+)
->>   create mode 100644 Documentation/trace/coresight/coresight-dummy.rst
->>
->> diff --git a/Documentation/trace/coresight/coresight-dummy.rst 
->> b/Documentation/trace/coresight/coresight-dummy.rst
->> new file mode 100644
->> index 000000000000..819cabab8623
->> --- /dev/null
->> +++ b/Documentation/trace/coresight/coresight-dummy.rst
->> @@ -0,0 +1,58 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +
->> +=============================
->> +Coresight Dummy Trace Module
->> +=============================
->> +
->> +    :Author:   Hao Zhang <quic_hazha@quicinc.com>
->> +    :Date:     March 2023
->> +
->> +Introduction
->> +---------------------------
->> +
->> +Coresight Dummy Trace Module is for the specific devices that HLOS don't
-> 
-> Please do not use cryptic abbreviations, please use "kernel"
-> 
-Sure, I will change it to "kernel".
-> 
->> +have permission to access or configure. 
-> 
-> Such as Coresight sink EUD, some
->> +TPDMs etc. 
-> Say "e.g., CoreSight TPDMs on Qualcomm platforms.:
-> 
-> So there need driver to register dummy devices as Coresight
->> +devices.
-> 
-> Add:
-> 
-> "It may also be used to define components that may not have any
-> programming interfaces (e.g, static links), so that paths can
-> be established in the driver.
-> "
-> 
->   Provide Coresight API for dummy device operations, such as
->> +enabling and disabling dummy devices. Build the Coresight path for dummy
->> +sink or dummy source for debugging.
-> 
-I will take your advice in the next version of patch.
-> 
-> I think the following content may not be needed as they are part
-> of the standard source/sink type devices, nothing specific to
-> dummy devices.
-> 
-> --- vvvvv ---
->> +
->> +Sysfs files and directories
->> +---------------------------
->> +
->> +Root: ``/sys/bus/coresight/devices/dummy<N>``
->> +
->> +----
->> +
->> +:File:            ``enable_source`` (RW)
->> +:Notes:
->> +    - > 0 : enable the datasets of dummy source.
->> +
->> +    - = 0 : disable the datasets of dummy source.
->> +
->> +:Syntax:
->> +    ``echo 1 > enable_source``
->> +
->> +----
->> +
->> +:File:            ``enable_sink`` (RW)
->> +:Notes:
->> +    - > 0 : enable the datasets of dummy sink.
->> +
->> +    - = 0 : disable the datasets of dummy sink.
->> +
->> +:Syntax:
->> +    ``echo 1 > enable_sink``
->> +
->> +----
->> +
-> 
-> --- You may remove the above ^^^ ----
->
-I will remove the above notes in the next version of patch.
+Am Montag, 27. M=E4rz 2023, 06:50:37 CEST schrieb Greg Ungerer:
+> On 2/3/22 17:13, Peng Fan wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >=20
+> > Add interconnect property for hsio blk ctrl
+> >=20
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >=20
+>  > arch/arm64/boot/dts/freescale/imx8mp.dtsi | 5 +++++
+>  > 1 file changed, 5 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> > 08bd57742294..9cceeeeb26be 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1109,6 +1109,11 @@ hsio_blk_ctrl: blk-ctrl@32f10000 {
+> >=20
+> >  						<&pgc_hsiomix>,=20
+<&pgc_pcie_phy>;
+> >  			=09
+> >  				power-domain-names =3D "bus", "usb",=20
+"usb-phy1",
+> >  			=09
+> >  						     "usb-phy2",=20
+"pcie", "pcie-phy";
+> >=20
+> > +				interconnects =3D <&noc=20
+IMX8MP_ICM_NOC_PCIE &noc IMX8MP_ICN_HSIO>,
+> > +						<&noc=20
+IMX8MP_ICM_USB1 &noc IMX8MP_ICN_HSIO>,
+> > +						<&noc=20
+IMX8MP_ICM_USB2 &noc IMX8MP_ICN_HSIO>,
+> > +						<&noc=20
+IMX8MP_ICM_PCIE &noc IMX8MP_ICN_HSIO>;
+> > +				interconnect-names =3D "noc-pcie",=20
+"usb1", "usb2", "pcie";
+> >=20
+> >  				#power-domain-cells =3D <1>;
+> >  		=09
+> >  			};
+> >  	=09
+> >  		};
+>=20
+> This change completely breaks USB for me on a new iMX8mp platform I am
+> working with. Before this change normal USB probe looks good:
+>=20
+>     xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>     xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number=
+ 1
+>     xhci-hcd xhci-hcd.0.auto: hcc params 0x0220fe6d hci version 0x110 qui=
+rks
+> 0x0000000000010010 xhci-hcd xhci-hcd.0.auto: irq 206, io mem 0x38100000
+>     xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+>     xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number=
+ 2
+>     xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+>     usb usb1: New USB device found, idVendor=3D1d6b, idProduct=3D0002,
+> bcdDevice=3D 6.03 usb usb1: New USB device strings: Mfr=3D3, Product=3D2,
+> SerialNumber=3D1 usb usb1: Product: xHCI Host Controller
+>     usb usb1: Manufacturer: Linux 6.3.0-rc4-dirty xhci-hcd
+>     ....
+>=20
+> But after this commit is applied, no USB probe messages at all.
+>=20
+> USB worked fine in 6.0 for me, but when I switched up to 6.1 USB was brok=
+en,
+> I bisected to this as being the offending commit. This is still broken for
+> me in todays 6.3-rc4. If I revert this change (and only this change) USB
+> works again.
+>=20
+> Any thoughts on why this breaks USB?
 
-Thanks,
-Hao
+Maybe you are missing CONFIG_INTERCONNECT_IMX8MP?
 
->> +Config details
->> +---------------------------
->> +
->> +There are two types of nodes, dummy sink and dummy source. The nodes
->> +should be observed at the coresight path
->> +"/sys/bus/coresight/devices".
->> +e.g.
->> +/sys/bus/coresight/devices # ls -l | grep dummy
->> +dummy0 -> ../../../devices/platform/soc@0/soc@0:dummy_source/dummy0
->> +dummy1 -> ../../../devices/platform/soc@0/soc@0:dummy_sink/dummy1
-> 
-> Suzuki
-> 
+Best regards,
+Alexander
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
