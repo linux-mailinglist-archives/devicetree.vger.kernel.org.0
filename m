@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 465626CAC4E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 19:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0823B6CAC7C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 19:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231896AbjC0RxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 13:53:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59336 "EHLO
+        id S232583AbjC0R4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 13:56:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232207AbjC0RxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 13:53:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ADF2170A;
-        Mon, 27 Mar 2023 10:52:59 -0700 (PDT)
+        with ESMTP id S232435AbjC0R4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 13:56:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647C34217;
+        Mon, 27 Mar 2023 10:56:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F159E61460;
-        Mon, 27 Mar 2023 17:52:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AABAC433EF;
-        Mon, 27 Mar 2023 17:52:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 33EFF6145D;
+        Mon, 27 Mar 2023 17:55:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BF8C433EF;
+        Mon, 27 Mar 2023 17:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679939578;
-        bh=YUjw6HS7Ov0YlFJ936LcRdxbHpWylAOUWlXSpvo0Xus=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T1MN3jBV0gb+UwCkF0T7VQ2Ufwhk5sPD+iei9Q9lOdNqlJoDm/Jo6HfJgg4rwrgW0
-         GI1bYD1pNH+oxApvz0AbaIniEKaVLTOSgflI6HGGB2+wNb5tViDNcxVNYJGbdAazK1
-         1mgRzjxvV23vJ/1IxjAInTfWzvNPo90/vLbV+jFu0KxC+ZQ+SInWb2AwBgiVdZ3GB3
-         z0C7NOxbWq5xKDXm65qsQymYFsNwMWWtGmrHUJ0IwlHktznE5yQs33J+z9Yx+IMS6F
-         2zVBD3c6pn6GsiooTVy02KA/pWscHe3Bs1X9n0HXD753oNUjN7TQS267UNSbWk2TZN
-         F1OfRaOGTSjMQ==
-Date:   Mon, 27 Mar 2023 10:52:55 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-Message-ID: <20230327175255.GB1882@sol.localdomain>
-References: <20230327134734.3256974-1-abel.vesa@linaro.org>
- <20230327134734.3256974-3-abel.vesa@linaro.org>
+        s=k20201202; t=1679939751;
+        bh=BTsXxRvCLHUwMsoz6OVwgCkz9JGH4IoIw+qiZjHPfRs=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=aSxiC7wisGx1zjB1nEngu9TuO4eYZCS+SXH5RdnBjWySvPF6xGa78m0Pt9tJB3uD0
+         0JxYBgW0hzI1AigiEChoqUcAbTLgHBLD5qLtefCITmQOb91zbEKlNk46OlRxX7qoZK
+         euVF8BHXASCtU0Nsz9GUHu+beILqY48Pc2hFGRUgBWDbTQimfNR3EsPyPQsEOqsUcV
+         kgdhYbi0mpZ3Z4Tsg+cgSukOT6ErF57Yt8MUJYdjP7ZIzieOOYth2gZGbnwOWrRPa7
+         1DEAq3WeMsrqDlHe6tkaqdbO6Vqo5SZ4NpsSMmn2tGnkHs+vgpkSst4olbJHUQVW8E
+         LCqroX+IcAChw==
+Message-ID: <2114bae6f9b0dd922b3e029fe425a8c1.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327134734.3256974-3-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230310075535.3476580-1-alexander.stein@ew.tq-group.com>
+References: <20230310075535.3476580-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v3 1/4] clk: rs9: Check for vendor/device ID
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 27 Mar 2023 10:55:49 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,43 +59,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 04:47:29PM +0300, Abel Vesa wrote:
-> Starting with SM8550, the ICE will have its own devicetree node
-> so add the qcom,ice property to reference it.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Quoting Alexander Stein (2023-03-09 23:55:32)
+> This is in preparation to support additional devices which have different
+> IDs as well as a slightly different register layout.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Marek Vasut <marex@denx.de>
 > ---
-> 
-> The v3 (RFC) is here:
-> https://lore.kernel.org/all/20230313115202.3960700-3-abel.vesa@linaro.org/
-> 
-> Changes since v3:
->  * dropped the "and drop core clock" part from subject line
-> 
-> Changes since v2:
->  * dropped all changes except the qcom,ice property
-> 
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index 64df6919abaf..0ad14d5b722e 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -120,6 +120,10 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: platform specific settings for DLL_CONFIG reg.
->  
-> +  qcom,ice:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the Inline Crypto Engine node
-> +
 
-It would be helpful if the description was more detailed and explained that this
-is a replacement for the directly specified reg and clock.
-
-Otherwise, looks good to me.
-
-Reviewed-by: Eric Biggers <ebiggers@google.com>
-
-- Eric
+Applied to clk-next
