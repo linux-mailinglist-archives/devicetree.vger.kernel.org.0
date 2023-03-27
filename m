@@ -2,193 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C5D6CAD28
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D9D06CADB8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:45:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230461AbjC0SiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 14:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46306 "EHLO
+        id S230049AbjC0Sps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 14:45:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232400AbjC0SiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:38:05 -0400
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [IPv6:2001:67c:2050:0:465::202])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6473B7;
-        Mon, 27 Mar 2023 11:37:59 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S229935AbjC0Spn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:45:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF41E3C13;
+        Mon, 27 Mar 2023 11:45:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4PlhQD1WVrz9sc1;
-        Mon, 27 Mar 2023 20:37:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
-        s=MBO0001; t=1679942276;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=OpnY5Bll0e5uxT0SinClsl4A2EVcTJcY0t1lar/iMyU=;
-        b=vXkPWp3D4jR8eSe2YoJquvRM/caraZwDhConHqvV7+z26+YIet9wjbUdnXJ80c+BNtpB8x
-        QJSB3rWesiXNc/Qs9LKYO4gad8Te6cikFJLH/922jYZKNdsig0gfwkyU7s6ZcqnBEKAHMn
-        udquq0Y4XY6dMhM2EJ/wEcuMxj19hTkEwAZenJMv6yPDC6I2blpnRVcx1v8HHNQfe26GL0
-        pdl4wE+77YJPMsTrkXDKCJqT+n5vaYLQzzXpOAXP6eR+0oLmvPfIyyZFUEHfPWUXBTd/gC
-        QKfhygZ21oEgpz0eTYZyjHS4pItKvGk/o1sl5ED3Q9wXocJe15GVb8oS0FYGfg==
-From:   Dylan Van Assche <me@dylanvanassche.be>
-To:     Andy Gross <agross@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 72FE261472;
+        Mon, 27 Mar 2023 18:45:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47DA0C433D2;
+        Mon, 27 Mar 2023 18:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679942740;
+        bh=cPADjkmRo6v7PQmzp77eeshIMF05/BF4SyAuwPUuVEQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=j619G8NZJ0oX4nI/xT6v6vdbKwKT7JDOgw+dd+x9ra774uad3q9XX1AeUSY5Bl93B
+         oCyAcvQPXL6yVaAV1QRG1Giy1vSa6zKUU+3cMz0Az7u841R696GhbcnciLswrIl9jT
+         V9wz+BVmMqEjdLDb0lERcli3bVZHYMNonH/ytC+lTZV5LnfPi0bQY/Kkgv6bZRMYKI
+         V8r3xZhsFP/aNrjePLTB3aXMjBWkyi8OQGqULCSVOmFvpM0AzHxl2veq0cmZB7/+/C
+         t6AsnfO1cSQa0wYNKY3M3gU7dHm6Z0Iq3X8zYuW2eP1DqJKXneO63exKBjGrvek+IA
+         8zS+M93AWzywQ==
+Date:   Mon, 27 Mar 2023 11:45:38 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Iskren Chernev <me@iskren.info>,
         Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dylan Van Assche <me@dylanvanassche.be>
-Subject: [PATCH v2 3/3] remoteproc: qcom: pas: refactor SLPI remoteproc init
-Date:   Mon, 27 Mar 2023 20:37:36 +0200
-Message-Id: <20230327183736.496170-4-me@dylanvanassche.be>
-In-Reply-To: <20230327183736.496170-1-me@dylanvanassche.be>
-References: <20230327183736.496170-1-me@dylanvanassche.be>
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: ufs: qcom: Add reg-names property
+ for ICE
+Message-ID: <20230327184538.GB73752@sol.localdomain>
+References: <20221209-dt-binding-ufs-v3-0-499dff23a03c@fairphone.com>
+ <20221209-dt-binding-ufs-v3-2-499dff23a03c@fairphone.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4PlhQD1WVrz9sc1
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221209-dt-binding-ufs-v3-2-499dff23a03c@fairphone.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SLPI remoteproc initialization is the same for SDM845, SM8150, SM8250,
-SM8350 but is duplicated for each compatible. Refactor initialization
-structs for these 4 compatibles as a single struct.
+On Fri, Mar 24, 2023 at 08:41:29AM +0100, Luca Weiss wrote:
+> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
+> in the bindings so the existing dts can validate successfully.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> index 23447281deec..ebc8e1adbc6f 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> @@ -75,6 +75,10 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+>    required-opps:
+>      maxItems: 1
+>  
+> @@ -129,6 +133,8 @@ allOf:
+>          reg:
+>            minItems: 1
+>            maxItems: 1
+> +        reg-names:
+> +          maxItems: 1
+>  
+>    - if:
+>        properties:
+> @@ -157,6 +163,12 @@ allOf:
+>          reg:
+>            minItems: 2
+>            maxItems: 2
+> +        reg-names:
+> +          items:
+> +            - const: std
+> +            - const: ice
+> +      required:
+> +        - reg-names
+>  
+>    - if:
+>        properties:
+> @@ -185,6 +197,8 @@ allOf:
+>          reg:
+>            minItems: 1
+>            maxItems: 1
+> +        reg-names:
+> +          maxItems: 1
+>  
+>    - if:
+>        properties:
+> @@ -210,6 +224,12 @@ allOf:
+>          reg:
+>            minItems: 2
+>            maxItems: 2
+> +        reg-names:
+> +          items:
+> +            - const: std
+> +            - const: ice
+> +      required:
+> +        - reg-names
+>  
+>      # TODO: define clock bindings for qcom,msm8994-ufshc
+>  
 
-Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 66 ++++--------------------------
- 1 file changed, 9 insertions(+), 57 deletions(-)
+Looks good to me, though I'm not an expert in device tree bindings.  It's
+unfortunate that whether ICE is present needs to be explicitly declared for each
+SoC here (I would have expected that to only be done in the device tree files
+themselves), and that the order of the regs and clocks is fixed (I would have
+expected them to act as maps keyed by name).  But it seems that's the way it is.
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index d82b6f4bced4..d1c7baec4aca 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -1014,7 +1014,7 @@ static const struct adsp_data sc8180x_mpss_resource = {
- 	.ssctl_id = 0x12,
- };
- 
--static const struct adsp_data slpi_resource_init = {
-+static const struct adsp_data msm_slpi_resource_init = {
- 		.crash_reason_smem = 424,
- 		.firmware_name = "slpi.mdt",
- 		.pas_id = 12,
-@@ -1028,7 +1028,7 @@ static const struct adsp_data slpi_resource_init = {
- 		.ssctl_id = 0x16,
- };
- 
--static const struct adsp_data sdm845_slpi_resource = {
-+static const struct adsp_data sm_slpi_resource_init = {
- 		.crash_reason_smem = 424,
- 		.firmware_name = "slpi.mdt",
- 		.pas_id = 12,
-@@ -1044,54 +1044,6 @@ static const struct adsp_data sdm845_slpi_resource = {
- 		.ssctl_id = 0x16,
- };
- 
--static const struct adsp_data sm8150_slpi_resource = {
--		.crash_reason_smem = 424,
--		.firmware_name = "slpi.mdt",
--		.pas_id = 12,
--		.auto_boot = true,
--		.proxy_pd_names = (char*[]){
--			"lcx",
--			"lmx",
--			NULL
--		},
--		.load_state = "slpi",
--		.ssr_name = "dsps",
--		.sysmon_name = "slpi",
--		.ssctl_id = 0x16,
--};
--
--static const struct adsp_data sm8250_slpi_resource = {
--	.crash_reason_smem = 424,
--	.firmware_name = "slpi.mdt",
--	.pas_id = 12,
--	.auto_boot = true,
--	.proxy_pd_names = (char*[]){
--		"lcx",
--		"lmx",
--		NULL
--	},
--	.load_state = "slpi",
--	.ssr_name = "dsps",
--	.sysmon_name = "slpi",
--	.ssctl_id = 0x16,
--};
--
--static const struct adsp_data sm8350_slpi_resource = {
--	.crash_reason_smem = 424,
--	.firmware_name = "slpi.mdt",
--	.pas_id = 12,
--	.auto_boot = true,
--	.proxy_pd_names = (char*[]){
--		"lcx",
--		"lmx",
--		NULL
--	},
--	.load_state = "slpi",
--	.ssr_name = "dsps",
--	.sysmon_name = "slpi",
--	.ssctl_id = 0x16,
--};
--
- static const struct adsp_data wcss_resource_init = {
- 	.crash_reason_smem = 421,
- 	.firmware_name = "wcnss.mdt",
-@@ -1200,9 +1152,9 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
- 	{ .compatible = "qcom,msm8974-adsp-pil", .data = &adsp_resource_init},
- 	{ .compatible = "qcom,msm8996-adsp-pil", .data = &msm8996_adsp_resource},
--	{ .compatible = "qcom,msm8996-slpi-pil", .data = &slpi_resource_init},
-+	{ .compatible = "qcom,msm8996-slpi-pil", .data = &msm_slpi_resource_init},
- 	{ .compatible = "qcom,msm8998-adsp-pas", .data = &msm8996_adsp_resource},
--	{ .compatible = "qcom,msm8998-slpi-pas", .data = &slpi_resource_init},
-+	{ .compatible = "qcom,msm8998-slpi-pas", .data = &msm_slpi_resource_init},
- 	{ .compatible = "qcom,qcs404-adsp-pas", .data = &adsp_resource_init },
- 	{ .compatible = "qcom,qcs404-cdsp-pas", .data = &cdsp_resource_init },
- 	{ .compatible = "qcom,qcs404-wcss-pas", .data = &wcss_resource_init },
-@@ -1217,7 +1169,7 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,sdm660-adsp-pas", .data = &adsp_resource_init},
- 	{ .compatible = "qcom,sdm845-adsp-pas", .data = &sdm845_adsp_resource_init},
- 	{ .compatible = "qcom,sdm845-cdsp-pas", .data = &sdm845_cdsp_resource_init},
--	{ .compatible = "qcom,sdm845-slpi-pas", .data = &sdm845_slpi_resource},
-+	{ .compatible = "qcom,sdm845-slpi-pas", .data = &sm_slpi_resource_init},
- 	{ .compatible = "qcom,sdx55-mpss-pas", .data = &sdx55_mpss_resource},
- 	{ .compatible = "qcom,sm6115-adsp-pas", .data = &adsp_resource_init},
- 	{ .compatible = "qcom,sm6115-cdsp-pas", .data = &cdsp_resource_init},
-@@ -1228,17 +1180,17 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,sm8150-adsp-pas", .data = &sm8150_adsp_resource},
- 	{ .compatible = "qcom,sm8150-cdsp-pas", .data = &sm8150_cdsp_resource},
- 	{ .compatible = "qcom,sm8150-mpss-pas", .data = &mpss_resource_init},
--	{ .compatible = "qcom,sm8150-slpi-pas", .data = &sm8150_slpi_resource},
-+	{ .compatible = "qcom,sm8150-slpi-pas", .data = &sm_slpi_resource_init},
- 	{ .compatible = "qcom,sm8250-adsp-pas", .data = &sm8250_adsp_resource},
- 	{ .compatible = "qcom,sm8250-cdsp-pas", .data = &sm8250_cdsp_resource},
--	{ .compatible = "qcom,sm8250-slpi-pas", .data = &sm8250_slpi_resource},
-+	{ .compatible = "qcom,sm8250-slpi-pas", .data = &sm_slpi_resource_init},
- 	{ .compatible = "qcom,sm8350-adsp-pas", .data = &sm8350_adsp_resource},
- 	{ .compatible = "qcom,sm8350-cdsp-pas", .data = &sm8350_cdsp_resource},
--	{ .compatible = "qcom,sm8350-slpi-pas", .data = &sm8350_slpi_resource},
-+	{ .compatible = "qcom,sm8350-slpi-pas", .data = &sm_slpi_resource_init},
- 	{ .compatible = "qcom,sm8350-mpss-pas", .data = &mpss_resource_init},
- 	{ .compatible = "qcom,sm8450-adsp-pas", .data = &sm8350_adsp_resource},
- 	{ .compatible = "qcom,sm8450-cdsp-pas", .data = &sm8350_cdsp_resource},
--	{ .compatible = "qcom,sm8450-slpi-pas", .data = &sm8350_slpi_resource},
-+	{ .compatible = "qcom,sm8450-slpi-pas", .data = &sm_slpi_resource_init},
- 	{ .compatible = "qcom,sm8450-mpss-pas", .data = &sm8450_mpss_resource},
- 	{ .compatible = "qcom,sm8550-adsp-pas", .data = &sm8550_adsp_resource},
- 	{ .compatible = "qcom,sm8550-cdsp-pas", .data = &sm8550_cdsp_resource},
--- 
-2.39.2
+Reviewed-by: Eric Biggers <ebiggers@google.com>
 
+- Eric
