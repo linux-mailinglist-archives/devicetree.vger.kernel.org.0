@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF75A6CA94F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B9AD6CA952
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232827AbjC0Plb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 11:41:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34894 "EHLO
+        id S232235AbjC0Ple (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 11:41:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232799AbjC0Pl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:41:26 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F190C5FC8
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:41:05 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id q19so6192025wrc.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:41:05 -0700 (PDT)
+        with ESMTP id S232207AbjC0Pla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:41:30 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47A55FD4
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:41:08 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id m2so9257752wrh.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:41:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679931663;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QRmSUNy4M2+H8BYOHeh1potZMu69bvvcUQWcmJgEBKQ=;
-        b=1f6LjBiihtpzPeWHtP8J5pVDTk0M0YHmcqsbvgBzvLEeiMiYiJImczZJ1dZhov6FVi
-         /IS9bUXOTjf1bP/kgKjvUUOFWnextYQpYUFQjwwnr/3DucFaNqRvnIeg2DCoH/B6L4bj
-         1SnwzSj4tOfVn5RtxnYXpcbq7UF62RU96jss/Shg34UM5qebtfmO4G2yf4TTYKqK8D+U
-         BJzPtRKsAgU/bzHKF+27OVQvm6GSJjZ+x6F1r9He2dXcoBAu9gc0u/fcqGCFOkM+DSFE
-         TWtf41FBfWLfOrW00rAdEAvptH/h7GqItHGPrjAeIizTWhBWi3GSiBMzM1v4cIq+GDBq
-         RyEg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679931665;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OPzvzuvpmK6mdKAkMf0lpAwxvChSpk37xRLJ2bHOdk4=;
+        b=XpZz20/pAuEQ5Md8qiiPdZnOu13Yp8mFmZXTj4VPKbUt5xrqXCUM+N3buxjZW4BAch
+         j9KheRyjyboP8Y0PRVoNAIQH0hCJfmOe4+z9ItA0DF3Hgv7SOottAw+jmbp3Rcc0Bq0O
+         ePdQG8ro0k8UvxJDvXxYqIjYN96a3rKye+26XZhK72kltU1GGydv5ry03iaNFgwVREPk
+         U/rSdX9vuUXBlFQwQMqYCKqkkLiZWk+kDU0rWy0uaZ9qzUX6zHZuCvt5IhSDoCfh83yQ
+         KI1tHqWrY4rnc213D8HbgFmI+8uhHoezoZ6iBfpf3WvLadUFwRdk6H9r7dp1a4ESZaXv
+         zorg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679931663;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QRmSUNy4M2+H8BYOHeh1potZMu69bvvcUQWcmJgEBKQ=;
-        b=6tkm+zYKn9gmppB8OrhXOGiS7CSU5rfq65FmvlTWJxgMyugtPU/q7PYtoVLKQCz7jQ
-         5gsr8kbu9FK8zs+dh8B6fg3ivnUnc8Ep8PHJNSc+MKAT5vk/sN/pWmlnHrx606hWS/LI
-         5/LUTNEMHGpzeq8GK0CDiZe5bCuRQqs6M2m4fiKHvMZAj181CXe2FwmcCwLV7tJe9EzD
-         TIfPQuVXtXsT3B7a2VT3luKYKw77M6VP/QsmMJdn2qPB8LPcHkfOys1VDGalGJ8kpB1l
-         +oMyr0uW0jg5R2WwhAhmRF/5n/a7I4QA3CvDo4W5L0EZRVfj+tp9W9sohJTABJmMVWpC
-         KaPw==
-X-Gm-Message-State: AAQBX9e8L++3lSqyRAcCCL0hSy6M1rUzrzmQ9Yz1cPsdq6KFppOuj1+T
-        jBkJQlXd4+ILnkl72fTTmD+6Ow==
-X-Google-Smtp-Source: AKy350awLlg2JE80+u+rHOZHYi5I1Jc+lFerK/i4FldeRTAIsacbGa+9le+TQRPyiMe1MD2LwB5SLA==
-X-Received: by 2002:a5d:4603:0:b0:2d0:8ed9:5ab4 with SMTP id t3-20020a5d4603000000b002d08ed95ab4mr10274027wrq.60.1679931663453;
-        Mon, 27 Mar 2023 08:41:03 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1679931665;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OPzvzuvpmK6mdKAkMf0lpAwxvChSpk37xRLJ2bHOdk4=;
+        b=DWurMx2lI2jArmy/DjG2L1aHhtT97z+dXZVyXTF11Io9Hs9Km124DK51LCrTvNY88w
+         csiUELjWcwL9NKHyLv/822zo6u/UOZCvBcXu8/2mKQqEQRhIYe6sFeHA0bEP0gzTPFtx
+         KCcQiO2pN3hPpB8ieeMFOi+Z8Tw4DG1PWJM6JWxeJgCXDtYquevEE2Ko4TZ0BxCRW8Em
+         Wc/ZuFINWexj9Vz5AmekpcLbuPYndzdyGoHlOPOKD5CEg6PWU3BX0XUMSra6/CwkbG5g
+         Z5CGAAj++daE7EXFHNtpZb91vUToy8LLYMX1IqHor+M6LxRWqTuUdgln51t3xqsPULqn
+         BN6A==
+X-Gm-Message-State: AAQBX9emXOKB5o44I6rhyKoBZ/rduwAd+oRFNWlM4WunzjpRQvtzqz9n
+        5Sfvl909Ie7PnrQ5zeVRHfjDHg==
+X-Google-Smtp-Source: AKy350a6zBABnqUxrmI3Lbtn30qVOt8YDcJE/Ji9bto3b3LcAPxHxDAH3FBjq/QrXlFiAJUdM3kZZQ==
+X-Received: by 2002:adf:edc9:0:b0:2ce:aad6:a5d0 with SMTP id v9-20020adfedc9000000b002ceaad6a5d0mr8388548wro.29.1679931665338;
+        Mon, 27 Mar 2023 08:41:05 -0700 (PDT)
 Received: from baylibre-ThinkPad-T14s-Gen-2i.. (151.31.102.84.rev.sfr.net. [84.102.31.151])
-        by smtp.gmail.com with ESMTPSA id a18-20020a5d4d52000000b002d1e49cff35sm25277161wru.40.2023.03.27.08.41.01
+        by smtp.gmail.com with ESMTPSA id a18-20020a5d4d52000000b002d1e49cff35sm25277161wru.40.2023.03.27.08.41.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 08:41:03 -0700 (PDT)
+        Mon, 27 Mar 2023 08:41:05 -0700 (PDT)
 From:   Julien Panis <jpanis@baylibre.com>
 To:     lee@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
@@ -59,10 +60,12 @@ Cc:     eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
         eblanc@baylibre.com, jneanne@baylibre.com
-Subject: [PATCH v4 0/4] TI TPS6594 PMIC support (Core, ESM, PFSM)
-Date:   Mon, 27 Mar 2023 17:40:57 +0200
-Message-Id: <20230327154101.211732-1-jpanis@baylibre.com>
+Subject: [PATCH v4 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
+Date:   Mon, 27 Mar 2023 17:40:58 +0200
+Message-Id: <20230327154101.211732-2-jpanis@baylibre.com>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20230327154101.211732-1-jpanis@baylibre.com>
+References: <20230327154101.211732-1-jpanis@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -76,96 +79,253 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 TPS6594 is a Power Management IC which provides regulators and others
 features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
-communicate through the I2C or SPI interfaces.
+PFSM (Pre-configurable Finite State Machine) managing the state of the
+device.
 TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
 
-This series adds support to TI TPS6594 PMIC and its derivatives.
-
-The features implemented in this series are:
-- Core (MFD I2C and SPI entry points)
-- ESM (child device)
-- PFSM (child device)
-
-- Core description:
-I2C and SPI interface protocols are implemented, with and without
-the bit-integrity error detection feature (CRC mode).
-In multi-PMIC configuration, all instances share a single GPIO of
-the SoC to generate interrupt requests via their respective nINT
-output pin.
-
-- ESM description:
-This device monitors the SoC error output signal at its nERR_SOC
-input pin. In error condition, ESM toggles its nRSTOUT_SOC pin
-to reset the SoC.
-Basically, ESM driver starts ESM hardware.
-
-- PFSM description:
-Strictly speaking, PFSM is not hardware. It is a piece of code.
-PMIC integrates a state machine which manages operational modes.
-Depending on the current operational mode, some voltage domains
-remain energized while others can be off.
-PFSM driver can be used to trigger transitions between configured
-states.
-
-Changes since v3:
-* [dt-bindings] Remove 'x' from 'ti,lp8764x' compatible.
-* [MFD i2c/spi drivers] Remove 'x' from 'ti,lp8764x' compatible.
-* [MFD core driver] Drop Lee's Ack on patch 2/4 because additional
-testing revealed a major bug in 'tps6594-core.c':
-  Based on the assumption that CRC feature is disabled on PMIC at power
-  on, the first I2C command sent ('PFSM I2C_2 trigger') to enable CRC
-  feature is sent without CRC. Though, there are situations where CRC
-  feature can be enabled already on PMIC at I2C/SPI modprobe:
-  - when I2C/SPI module is unloaded/reloaded,
-  - when a PMIC transition (from RETENTION to ACTIVE state) is triggered
-    by an RTC alarm (SoC is powered on).
-  In these situations, the first I2C command sent to enable CRC feature
-  generates an error (because of missing CRC in that command !). This v4
-  fixes the issue: first the 'CRC_EN' bit is tested, and then, if CRC
-  feature is not already enabled, the I2C command enabling it is sent.
-  Functions slightly modified:
-  - tps6594_device_init(),
-  - tps6594_set_crc_feature().
-
-Link to v3:
-https://lore.kernel.org/all/20230321171020.74736-1-jpanis@baylibre.com/
-
-Others series will be submitted over the next few weeks, providing
-drivers for others child devices like GPIOs (pinctrl), RTC, and
-regulators. Board support will also be added (device trees).
-
-Julien Panis (4):
-  dt-bindings: mfd: Add TI TPS6594 PMIC
-  mfd: tps6594: Add driver for TI TPS6594 PMIC
-  misc: tps6594-esm: Add driver for TI TPS6594 ESM
-  misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
-
- .../devicetree/bindings/mfd/ti,tps6594.yaml   |  231 ++++
- .../userspace-api/ioctl/ioctl-number.rst      |    1 +
- drivers/mfd/Kconfig                           |   32 +
- drivers/mfd/Makefile                          |    3 +
- drivers/mfd/tps6594-core.c                    |  462 ++++++++
- drivers/mfd/tps6594-i2c.c                     |  244 ++++
- drivers/mfd/tps6594-spi.c                     |  129 +++
- drivers/misc/Kconfig                          |   23 +
- drivers/misc/Makefile                         |    2 +
- drivers/misc/tps6594-esm.c                    |  132 +++
- drivers/misc/tps6594-pfsm.c                   |  304 +++++
- include/linux/mfd/tps6594.h                   | 1020 +++++++++++++++++
- include/uapi/linux/tps6594_pfsm.h             |   45 +
- 13 files changed, 2628 insertions(+)
+Signed-off-by: Julien Panis <jpanis@baylibre.com>
+---
+ .../devicetree/bindings/mfd/ti,tps6594.yaml   | 231 ++++++++++++++++++
+ 1 file changed, 231 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
- create mode 100644 drivers/mfd/tps6594-core.c
- create mode 100644 drivers/mfd/tps6594-i2c.c
- create mode 100644 drivers/mfd/tps6594-spi.c
- create mode 100644 drivers/misc/tps6594-esm.c
- create mode 100644 drivers/misc/tps6594-pfsm.c
- create mode 100644 include/linux/mfd/tps6594.h
- create mode 100644 include/uapi/linux/tps6594_pfsm.h
 
-
-base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+new file mode 100644
+index 000000000000..4498e6361b34
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+@@ -0,0 +1,231 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI TPS6594 Power Management Integrated Circuit
++
++maintainers:
++  - Julien Panis <jpanis@baylibre.com>
++
++description:
++  TPS6594 is a Power Management IC which provides regulators and others
++  features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
++  PFSM (Pre-configurable Finite State Machine) managing the state of the device.
++  TPS6594 is the super-set device while TPS6593 and LP8764X are derivatives.
++
++properties:
++  compatible:
++    enum:
++      - ti,lp8764
++      - ti,tps6593
++      - ti,tps6594
++
++  reg:
++    description: I2C slave address or SPI chip select number.
++    maxItems: 1
++
++  ti,primary-pmic:
++    type: boolean
++    description: |
++      Identify the primary PMIC on SPMI bus.
++      A multi-PMIC synchronization scheme is implemented in the PMIC device
++      to synchronize the power state changes with other PMIC devices. This is
++      accomplished through a SPMI bus: the primary PMIC is the controller
++      device on the SPMI bus, and the secondary PMICs are the target devices
++      on the SPMI bus.
++
++  system-power-controller: true
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++    description: |
++      The first cell is the pin number, the second cell is used to specify flags.
++      See ../gpio/gpio.txt for more information.
++
++  interrupts:
++    maxItems: 1
++
++  ti,multi-phase-id:
++    description: |
++      Describes buck multi-phase configuration, if any. For instance, XY id means
++      that outputs of buck converters X and Y are combined in multi-phase mode.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    oneOf:
++      - items:
++          - const: 12
++      - items:
++          - const: 34
++      - items:
++          - const: 12
++          - const: 34
++      - items:
++          - const: 123
++      - items:
++          - const: 1234
++
++  regulators:
++    type: object
++    description: List of regulators provided by this controller.
++
++    patternProperties:
++      "^buck([1-5]|12|34|123|1234)$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++
++        unevaluatedProperties: false
++
++      "^ldo[1-4]$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++
++        unevaluatedProperties: false
++
++    allOf:
++      - if:
++          required:
++            - buck12
++        then:
++          properties:
++            buck123: false
++            buck1234: false
++      - if:
++          required:
++            - buck123
++        then:
++          properties:
++            buck34: false
++      - if:
++          required:
++            - buck1234
++        then:
++          properties:
++            buck34: false
++
++    additionalProperties: false
++
++  rtc:
++    type: object
++    description: RTC provided by this controller.
++    $ref: /schemas/rtc/rtc.yaml#
++
++  watchdog:
++    type: object
++    description: Watchdog provided by this controller.
++    $ref: /schemas/watchdog/watchdog.yaml#
++
++patternProperties:
++  "^buck([1-5]|12|34|123|1234)-supply$":
++    description: Input supply phandle for each buck.
++
++  "^ldo[1-4]-supply$":
++    description: Input supply phandle for each ldo.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tps6593: pmic@48 {
++            compatible = "ti,tps6593";
++            reg = <0x48>;
++            ti,primary-pmic;
++            system-power-controller;
++
++            gpio-controller;
++            #gpio-cells = <2>;
++
++            pinctrl-names = "default";
++            pinctrl-0 = <&pmic_irq_pins_default>;
++            interrupt-parent = <&mcu_gpio0>;
++            interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
++
++            ti,multi-phase-id = <123>;
++
++            buck123-supply = <&vcc_3v3_sys>;
++            buck4-supply = <&vcc_3v3_sys>;
++            buck5-supply = <&vcc_3v3_sys>;
++            ldo1-supply = <&vcc_3v3_sys>;
++            ldo2-supply = <&vcc_3v3_sys>;
++            ldo3-supply = <&buck5>;
++            ldo4-supply = <&vcc_3v3_sys>;
++
++            regulators {
++                buck123: buck123 {
++                    regulator-name = "vcc_core";
++                    regulator-min-microvolt = <750000>;
++                    regulator-max-microvolt = <850000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                buck4: buck4 {
++                    regulator-name = "vcc_1v1";
++                    regulator-min-microvolt = <1100000>;
++                    regulator-max-microvolt = <1100000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                buck5: buck5 {
++                    regulator-name = "vcc_1v8_sys";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo1: ldo1 {
++                    regulator-name = "vddshv5_sdio";
++                    regulator-min-microvolt = <3300000>;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo2: ldo2 {
++                    regulator-name = "vpp_1v8";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo3: ldo3 {
++                    regulator-name = "vcc_0v85";
++                    regulator-min-microvolt = <850000>;
++                    regulator-max-microvolt = <850000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                ldo4: ldo4 {
++                    regulator-name = "vdda_1v8";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++            };
++
++            rtc: rtc {
++                wakeup-source;
++            };
++
++            watchdog: watchdog {
++                timeout-sec = <10>;
++            };
++        };
++    };
 -- 
 2.37.3
 
