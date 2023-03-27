@@ -2,79 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 124606CA5AB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:24:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1058E6CA5BD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232583AbjC0NY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 09:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36180 "EHLO
+        id S232741AbjC0NZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 09:25:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232520AbjC0NXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:23:50 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CE82726
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 06:23:23 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id er18so24926527edb.9
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 06:23:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679923401;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FjQpUfEO0NsE7N3bLT5uR7/QoLqyWyEQKa6IuwI/2/Q=;
-        b=f/5TMMjIfCgndJMlaJ4r71lbXVsNskze6ZnT/CIHAv6BxV9SLh4v8fyC88l8kU85U2
-         rBuuo9mpNQroSu66yJ+POn8fD3VptqUzEncPkYpeIuk1IEmjjHw+0o1Hh1D3DxAnNoon
-         M4CO6AT+7YDrU0CwU7qbo5QXem3KQ035DCr2lS5QQIZM7RSeD7VwuN2fPgKaD1i84dVz
-         fMug82jTJauGI7kjWHYTHY2qRwDTWT4eE+CwoHSdufk68x530YMC2eAH6+ALuKLziA1Z
-         Na8OVqga5M6b10mcS3g9uttyq31xzK+aaoniJII5oRksHGW3biJbt8MLE19umzxrlDz5
-         Y1sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679923401;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FjQpUfEO0NsE7N3bLT5uR7/QoLqyWyEQKa6IuwI/2/Q=;
-        b=YTLXAfuUtp1z06aHMhsVfR3GvtFHuR19k+BQHngc22pOqa6lw/Ueaohk1yfsnvCCbu
-         fZdbsG9GATDgH+rpMFCQzed5k4JG3zq94PoazbLSzP1eohs7+olEox12n3YUduMmDinW
-         qSNDaBWyOy+fgQEs5bnkCWhUnMr6/l4h41e+2Pp5blAKxAOcjwYykA2a++NuIpYZYRZb
-         bAVu/JikUNacksEJwAQzMY79F77igI/5GNMEtc3kWqG3SZ8qvN3TRpcsg92dhqAdidFy
-         LdQUlYGdfRrjSlhFS7gV7Z0ue/CcnvF5o2LdqWGxrJtCh7utgivvlktA3mpErki4+68t
-         bzUA==
-X-Gm-Message-State: AAQBX9fdoshSHHekegliu2W//iCqE+1jReiuPNpG76eYvhUs2/B+pxIz
-        eLWDEl6SzgwzFMjX5abnRf9twrPcgskMJIwM2GY=
-X-Google-Smtp-Source: AKy350ZUl+vUbD/HZJiigKbFVDkPZWimDS0mWigAI07cv5eEwg9rsxZejhZUO4wjuY3K/PLlHqV1aw==
-X-Received: by 2002:a17:907:d402:b0:930:ca4d:f2bf with SMTP id vi2-20020a170907d40200b00930ca4df2bfmr14281716ejc.54.1679923400927;
-        Mon, 27 Mar 2023 06:23:20 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:581e:789c:7616:5ee])
-        by smtp.gmail.com with ESMTPSA id gy24-20020a170906f25800b00930445428acsm14286814ejb.14.2023.03.27.06.23.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 06:23:20 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Patrick Lai <quic_plai@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 10/10] ASoC: codecs: lpass-wsa-macro: add support for SM8550
-Date:   Mon, 27 Mar 2023 15:22:54 +0200
-Message-Id: <20230327132254.147975-11-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230327132254.147975-1-krzysztof.kozlowski@linaro.org>
-References: <20230327132254.147975-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232496AbjC0NZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:25:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336BB59FD;
+        Mon, 27 Mar 2023 06:24:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 724676126E;
+        Mon, 27 Mar 2023 13:24:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90AB3C433D2;
+        Mon, 27 Mar 2023 13:23:56 +0000 (UTC)
+Message-ID: <87e68e05-8512-17fc-584c-0022ddefb8f0@linux-m68k.org>
+Date:   Mon, 27 Mar 2023 23:23:53 +1000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: imx8mp: add vpu pgc nodes
+Content-Language: en-US
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
+        "aford173@gmail.com" <aford173@gmail.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "marex@denx.de" <marex@denx.de>,
+        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "gerg@kernel.org" <gerg@kernel.org>
+References: <20220713063653.2584488-6-peng.fan@oss.nxp.com>
+ <20230327050642.593778-1-gerg@linux-m68k.org>
+ <DU0PR04MB94174D60EE38B56FEB6CD5BC888B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From:   Greg Ungerer <gerg@linux-m68k.org>
+In-Reply-To: <DU0PR04MB94174D60EE38B56FEB6CD5BC888B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,99 +68,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the WSA macro codec on Qualcomm SM8550.  SM8550 does not
-use NPL clock, thus add flags allowing to skip it.
+Hi Peng,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+On 27/3/23 20:01, Peng Fan wrote:
+>> Subject: Re: [PATCH] arm64: dts: imx8mp: add vpu pgc nodes
+>>
+>> On 22/8/22 14:45, Peng Fan wrote:
+>>> Add i.MX8MP PGC nodes for vpu, which are used to supply power for VPU.
+>>>
+>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>>> Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+>>> ---
+>>>   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 27
+>>> +++++++++++++++++++++++
+>>>   1 file changed, 27 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> index 0b165f98a82c..34af983b0210 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> @@ -598,6 +598,33 @@ pgc_ispdwp: power-domain@18 {
+>>>                                                  reg =
+>> <IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP>;
+>>>                                                  clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>;
+>>>                                          };
+>>> +
+>>> +                                       pgc_vpumix: power-domain@19 {
+>>> +                                               #power-domain-cells = <0>;
+>>> +                                               reg = <IMX8MP_POWER_DOMAIN_VPUMIX>;
+>>> +                                               clocks =<&clk IMX8MP_CLK_VPU_ROOT>;
+>>> +                                       };
+>>> +
+>>> +                                       pgc_vpu_g1: power-domain@20 {
+>>> +                                               #power-domain-cells = <0>;
+>>> +                                               power-domains = <&pgc_vpumix>;
+>>> +                                               reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
+>>> +                                               clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
+>>> +                                       };
+>>> +
+>>> +                                       pgc_vpu_g2: power-domain@21 {
+>>> +                                               #power-domain-cells = <0>;
+>>> +                                               power-domains = <&pgc_vpumix>;
+>>> +                                               reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
+>>> +                                               clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
+>>> +                                       };
+>>> +
+>>> +                                       pgc_vpu_vc8000e: power-domain@22 {
+>>> +                                               #power-domain-cells = <0>;
+>>> +                                               power-domains = <&pgc_vpumix>;
+>>> +                                               reg =
+>> <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
+>>> +                                               clocks = <&clk
+>> IMX8MP_CLK_VPU_VC8KE_ROOT>;
+>>> +                                       };
+>>>                                  };
+>>>                          };
+>>>                  };
+>>
+>> This change causes new error messages to come out during boot, for
+>> example:
+>>
+>>      ...
+>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>      30890000.serial: ttymxc1 at MMIO 0x30890000 (irq = 197, base_baud =
+>> 1500000) is a IMX
+>>      ...
+>>      hwmon hwmon1: temp1_input not attached to any thermal zone
+>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>      ...
+>>
+>> They don't seem to cause any problems on the hardware I am using, well, at
+>> least not that I have found so far.
+>>
+>> This first appeared for me in linux-6.1. But it is the same in todays linux 6.3-
+>> rc4. Reverting this change (not completely trivial due to a couple of commits
+>> after it that rely on it) fixes it - no more errors.
+> [Peng Fan]
+> 
+> The VPU BLK CTRL seems not enabled.
 
----
+How to enable it?
+I have the blk-ctrl config options enabled:
 
-Changes since v1:
-1. Move the flag define to common header
----
- sound/soc/codecs/lpass-wsa-macro.c | 37 +++++++++++++++++++++++-------
- 1 file changed, 29 insertions(+), 8 deletions(-)
+     #
+     # i.MX SoC drivers
+     #
+     CONFIG_IMX_GPCV2_PM_DOMAINS=y
+     CONFIG_SOC_IMX8M=y
+     CONFIG_SOC_IMX9=y
+     CONFIG_IMX8M_BLK_CTRL=y
+     CONFIG_IMX9_BLK_CTRL=y
+     # end of i.MX SoC drivers
 
-diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
-index 6484c335bd5d..8ba7dc89daaa 100644
---- a/sound/soc/codecs/lpass-wsa-macro.c
-+++ b/sound/soc/codecs/lpass-wsa-macro.c
-@@ -14,6 +14,8 @@
- #include <linux/pm_runtime.h>
- #include <linux/of_platform.h>
- #include <sound/tlv.h>
-+
-+#include "lpass-macro-common.h"
- #include "lpass-wsa-macro.h"
- 
- #define CDC_WSA_CLK_RST_CTRL_MCLK_CONTROL	(0x0000)
-@@ -2346,7 +2348,10 @@ static int wsa_macro_register_mclk_output(struct wsa_macro *wsa)
- 	struct clk_init_data init;
- 	int ret;
- 
--	parent_clk_name = __clk_get_name(wsa->npl);
-+	if (wsa->npl)
-+		parent_clk_name = __clk_get_name(wsa->npl);
-+	else
-+		parent_clk_name = __clk_get_name(wsa->mclk);
- 
- 	init.name = "mclk";
- 	of_property_read_string(dev_of_node(dev), "clock-output-names",
-@@ -2379,9 +2384,12 @@ static int wsa_macro_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct wsa_macro *wsa;
-+	kernel_ulong_t flags;
- 	void __iomem *base;
- 	int ret;
- 
-+	flags = (kernel_ulong_t)device_get_match_data(dev);
-+
- 	wsa = devm_kzalloc(dev, sizeof(*wsa), GFP_KERNEL);
- 	if (!wsa)
- 		return -ENOMEM;
-@@ -2398,9 +2406,11 @@ static int wsa_macro_probe(struct platform_device *pdev)
- 	if (IS_ERR(wsa->mclk))
- 		return PTR_ERR(wsa->mclk);
- 
--	wsa->npl = devm_clk_get(dev, "npl");
--	if (IS_ERR(wsa->npl))
--		return PTR_ERR(wsa->npl);
-+	if (flags & LPASS_MACRO_FLAG_HAS_NPL_CLOCK) {
-+		wsa->npl = devm_clk_get(dev, "npl");
-+		if (IS_ERR(wsa->npl))
-+			return PTR_ERR(wsa->npl);
-+	}
- 
- 	wsa->fsgen = devm_clk_get(dev, "fsgen");
- 	if (IS_ERR(wsa->fsgen))
-@@ -2551,10 +2561,21 @@ static const struct dev_pm_ops wsa_macro_pm_ops = {
- };
- 
- static const struct of_device_id wsa_macro_dt_match[] = {
--	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
--	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
--	{.compatible = "qcom,sm8450-lpass-wsa-macro"},
--	{.compatible = "qcom,sc8280xp-lpass-wsa-macro" },
-+	{
-+		.compatible = "qcom,sc7280-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	}, {
-+		.compatible = "qcom,sm8250-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	}, {
-+		.compatible = "qcom,sm8450-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	}, {
-+		.compatible = "qcom,sm8550-lpass-wsa-macro",
-+	}, {
-+		.compatible = "qcom,sc8280xp-lpass-wsa-macro",
-+		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, wsa_macro_dt_match);
--- 
-2.34.1
+Running with the full arm64 defconfig and using the imx8mp-evk.dtb still
+outputs these messages:
+
+     [   18.150679] imx-pgc imx-pgc-domain.8: failed to command PGC
+     [   18.159241] imx-pgc imx-pgc-domain.8: failed to command PGC
+     [   18.167822] imx-pgc imx-pgc-domain.8: failed to command PGC
+
+Or do you mean something more fundamental, like the hardware block not
+being enabled by boot loader?  (Something to keep in mind is that the
+platform I am using has no video output, only serial console).
+
+Regards
+Greg
 
