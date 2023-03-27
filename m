@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB5AA6C9C3D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E42CE6C9C50
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232598AbjC0Hgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 03:36:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
+        id S232642AbjC0Hhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 03:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232600AbjC0Hgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:36:41 -0400
+        with ESMTP id S232640AbjC0Hhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:37:35 -0400
 Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74DE4C32
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:36:22 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id q19so4534260wrc.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:36:22 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4244E4EF1
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:36:52 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id v1so7617397wrv.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:36:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679902581;
+        d=linaro.org; s=google; t=1679902609;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YEIQ17cReUpj3NLdD60sp+mWH9LUrjuCCZwl6mkty+4=;
-        b=ejG9zLMXk6/eBK4wOchabkPaYZFwSBGMD6FwSgyyaLlkUIDDZNV51XXgPX4rF2iUVC
-         RJDLJgHzgsa+d4gF9Bn9bhqBWZL+NmcZ0PYw/3URdGHNkmdSPa8HuNhAyfEIXi5qwqpV
-         XafX8UVtABErLiSKKAHVXYgGARqUJlUvubSCb1F0g2TybPVMWtnhj7rBoz5Cus6Ooo4a
-         I92pYMWPnAxMnvd3GDKGwv/kElbFrs3HacTjXlnsrFmaP68e0+R806FNplTZp2LE4nXO
-         N2mgoT0pK0cqm8QadXLVFcgcsctOy+Pa8/5Qm2BYGImJUH5eFlFInjiTofHj0brO8xlR
-         nNxg==
+        bh=NbYmGbS5uaBCRcMwyPZQrI6VMogdLbv4M+SG8lk+chs=;
+        b=wg0cLRtGHOzjEqnn6wJzNGYyPEk33R5HZsMfaePIN5X0eiVdVpdFvDQ8JEL2He8pJO
+         n5ya6PKRhQN/Ewi/PR+1J7nkFYcTEhevMdjfkiDfvTLYtsN8RvWs6wgWBwfnRQDldA9S
+         pfkVZLtYllCfaCnihAzkkyxrxDsWoIhakvQqiyZ9a0aAiZVAMBaDqFrUFIimaAj90pVm
+         u/IyC7go5tYf8uMRJNDk27tNmUxwUQ36z0Es2Q/Mmnbdg+k54WwCLu/dab7nxFakyXra
+         xmDeDegoEXX5sSPBj+nghbQropkNAvw0woUyMGdTNbqTO1Rg1bKA4CdwXQDC7JUOO01J
+         gmIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679902581;
+        d=1e100.net; s=20210112; t=1679902609;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YEIQ17cReUpj3NLdD60sp+mWH9LUrjuCCZwl6mkty+4=;
-        b=Z/jL2pvCyc1N9OaRVA8uW3SD30ZEm4T6nLYLbfMsync858/Jk9Y1XWykL2/qfM1yv8
-         D0PWUdTuJ/IJYXCXDwwTWJLh6c1nuxRtttGSO5Uic/AgkHyEbEoXF1DTdHnZNhn23A4a
-         NGl6ll2pvDcgKmmNdeLeuTJcjz9R/0joki6oG5SPPgBNV6hZ7ue8TQWOz+sEXgNVCvZN
-         TISxY9ic+nXkoVzHTt9+tVe81vE1HEZhhiX71J8Xe940Dg7YQY5IaPBEEEGk0b3pAWXU
-         7fU+g+3QuVRBAQJjxdDWcG+Gl817R9fuWBKhHlXp5Murb0qOaWZT0fV0sCsa8IAV7eiq
-         r3gA==
-X-Gm-Message-State: AAQBX9cw0MzOYEw/dvDhjvTBl+Aly+2Cx0kXeUMWmzC5UCrAUBiSvaev
-        b9yozsuLlgNgPfB4Ba2BKnknUg==
-X-Google-Smtp-Source: AKy350bl/w0uNx6XXsDNl7Qwy6QFuHNfbmfO1G/roslYiDFypUOyNTdLEF/7yzLyhJpAc9X3uAd6Pg==
-X-Received: by 2002:adf:fd47:0:b0:2dc:cad4:87b9 with SMTP id h7-20020adffd47000000b002dccad487b9mr9462425wrs.68.1679902581210;
-        Mon, 27 Mar 2023 00:36:21 -0700 (PDT)
+        bh=NbYmGbS5uaBCRcMwyPZQrI6VMogdLbv4M+SG8lk+chs=;
+        b=kYnDRrHpe4G13qAMvrzUE250NtSON6sgPaZQxTdmBPTbVq2WpWlgMepcRVAgKepBYV
+         iy15bxjfWf0s+MiJxmctW0x3bNxXYK1/fPvmCkhlAucvVIVe6JNlvLkIYTz75iD6rut7
+         4eezQJdjR3sQAq8WEcfZFaqrP9RREJTcUvT78SC6jekqGFcabZDx/vaARLy62uEByQnU
+         R31u/SHj0kOXnJJRADBppYB1bLXPhdjh98UYrnYDrw2g2NqRw73F1zSNrIl14Wsu94u8
+         7zAlMKyoI9/3W7KrekKBy2nM0EagCEyPS0oYoqWmpJrqeTVJhulW2FEbuizdOEHnBKiD
+         2UmA==
+X-Gm-Message-State: AAQBX9ebTdr/0hLmgIRp1JhrU/kGREE+uDb5IlYkx258SxlmrBEf+ZVh
+        vKozONypg4ivRAsyz+mkuV+AlQ==
+X-Google-Smtp-Source: AKy350ZR+iZ8CU4+6lZ0dAb/tRTaCxmQCiUUBubE3HwF5ZsO/o1ChMh3bOjSEzu1DgEdtZg9H+j9yQ==
+X-Received: by 2002:a5d:428c:0:b0:2d3:3cda:b3c6 with SMTP id k12-20020a5d428c000000b002d33cdab3c6mr8427206wrq.40.1679902609335;
+        Mon, 27 Mar 2023 00:36:49 -0700 (PDT)
 Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id h6-20020adfe986000000b002d09cba6beasm24530620wrm.72.2023.03.27.00.36.20
+        by smtp.gmail.com with ESMTPSA id t3-20020a5d6903000000b002e105c017adsm872386wru.44.2023.03.27.00.36.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 00:36:20 -0700 (PDT)
-Message-ID: <4fe8f6b9-86af-c57d-1c0d-7bd831b8732f@linaro.org>
-Date:   Mon, 27 Mar 2023 09:36:20 +0200
+        Mon, 27 Mar 2023 00:36:49 -0700 (PDT)
+Message-ID: <d538eab9-a97a-25c4-f4a9-fe3f1e1ef449@linaro.org>
+Date:   Mon, 27 Mar 2023 09:36:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/6] dt-bindings: display: novatek,nt36672a: correct VDDIO
- supply
+Subject: Re: [PATCH 3/6] dt-bindings: display: panel-simple-dsi: allow vddio
+ variant
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -74,9 +74,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
- <20230326155425.91181-2-krzysztof.kozlowski@linaro.org>
+ <20230326155425.91181-3-krzysztof.kozlowski@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20230326155425.91181-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230326155425.91181-3-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -90,17 +90,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/03/2023 17:54, Krzysztof Kozlowski wrote:
-> The nt36672a bindings were added with a mistake on VDDIO supply calling
-> it in one place vddio and in other vddi0.  Typical name is rather vddio
-> which is also now used by DTS (sdm845-xiaomi-beryllium-common.dtsi) and
-> Linux driver.
+> Few panels like Samsung s6e3fc2x01 and sofef00 use vddio-supply instead
+> of power-supply (in DTS and Linux driver), so allow it to fix:
 > 
-> Fixes: c2abcf30efb8 ("dt-bindings: display: novatek,nt36672a: Fix unevaluated properties warning")
-> Fixes: 9528a02430df ("dt-bindings: display: panel: Add bindings for Novatek nt36672a")
+>    sdm845-oneplus-enchilada.dtb: panel@0: 'power-supply' is a required property
+> 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   .../devicetree/bindings/display/panel/novatek,nt36672a.yaml | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+>   .../display/panel/panel-simple-dsi.yaml       | 24 +++++++++++++++----
+>   1 file changed, 20 insertions(+), 4 deletions(-)
 
 <snip>
 
