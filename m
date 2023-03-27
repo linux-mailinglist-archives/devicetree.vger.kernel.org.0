@@ -2,508 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3366CA95A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C39096CA972
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:45:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbjC0Plx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 11:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36912 "EHLO
+        id S232372AbjC0Pp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 11:45:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232861AbjC0Pln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:41:43 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FF14ED1
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:41:23 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id v1so9274199wrv.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 08:41:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679931672;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1qYUT8eH+GBja6dZkOJxD7CQwhf3OQ3evXxb7a7LNSw=;
-        b=1hdnDWRqkOhoJCFOoYVaMi1WgekYiDgJ8z/WNNYREEz+nZMPWYNwlcBCUKXfsTQfZx
-         nzUL/cDv8CNtiSAj7jo5lS0zKw8bf90rh9wDgS27oV9iIAH0TWV2Y3AZBRoaMp/qHsLW
-         tEkt7FXT/VtEmaYLWJXYxt8ktMhnu/xdG/hqbIFVSaEyeofGJH3WmXBy+H70BDIk8lYr
-         LApvAf42SNAeG9inFRnWpx0pKT1WwQ6FXhfEoN24/6n+mdqP/udr5bhVtNWFCwgQsVYi
-         j4s29VFhJJmuegq3XM78dQ7oPOF30Voe4utRVrtj+6v8n2nhNPAgCPtbpSebPc9Z8uMc
-         zJKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679931672;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1qYUT8eH+GBja6dZkOJxD7CQwhf3OQ3evXxb7a7LNSw=;
-        b=dch4ZwjUn9QerI3han19pZnf4bpmQRWQ+xaem7M0UOlcDottpVNQT/JKSK2nwr7KuK
-         g8Rw2cx3d6La4B1iXasmRtD8mfd6WMXl1voJeFehK8WiccxDCmDzOagaWu6h4uvcuj53
-         T224H+Zc3EfpcWq8xHqXMac0HiPXJL24LtrmAqNFxGWNTuDxsSID/p6rBrW0AeKZtdSx
-         2Y2FEujBUvIiJDhdyMpe4M1Km06fmMS+9DSAqA8hZKQPhDSebEzn0Rw3bPQ1KRAqQ0w9
-         mCOLrLvod4sCugA1h8oybyX4rtdVyFX3QQFFOsw5WUoZXbbJgMfEhJVtzhNZ1ld1P3p4
-         F9fA==
-X-Gm-Message-State: AAQBX9eXamPsDQi0M0BP+9pno/+uG/866JnvfTQF9rF48ao0FJ02jcYV
-        Rkl2kPuBd94YW2imwqCgW/PaLw==
-X-Google-Smtp-Source: AKy350ZcmbP806uWUlOTlsZ3nWaHS/JeS2jLtnKhSe1EGAEe3h1BThe8a5ysiBD0Rcj1/fuV/4D5JA==
-X-Received: by 2002:adf:dd06:0:b0:2d4:62ed:e7cf with SMTP id a6-20020adfdd06000000b002d462ede7cfmr9962412wrm.43.1679931672229;
-        Mon, 27 Mar 2023 08:41:12 -0700 (PDT)
-Received: from baylibre-ThinkPad-T14s-Gen-2i.. (151.31.102.84.rev.sfr.net. [84.102.31.151])
-        by smtp.gmail.com with ESMTPSA id a18-20020a5d4d52000000b002d1e49cff35sm25277161wru.40.2023.03.27.08.41.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 08:41:11 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
-        gregkh@linuxfoundation.org, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com
-Cc:     eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, davem@davemloft.net,
-        christian.koenig@amd.com, contact@emersion.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
-        eblanc@baylibre.com, jneanne@baylibre.com
-Subject: [PATCH v4 4/4] misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
-Date:   Mon, 27 Mar 2023 17:41:01 +0200
-Message-Id: <20230327154101.211732-5-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230327154101.211732-1-jpanis@baylibre.com>
-References: <20230327154101.211732-1-jpanis@baylibre.com>
+        with ESMTP id S232335AbjC0Pp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:45:57 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B816810C9;
+        Mon, 27 Mar 2023 08:45:54 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B0D8EC14;
+        Mon, 27 Mar 2023 08:46:38 -0700 (PDT)
+Received: from e120937-lin.. (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 14D3B3F6C4;
+        Mon, 27 Mar 2023 08:45:52 -0700 (PDT)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     sudeep.holla@arm.com, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
+        cristian.marussi@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH v2 0/2] Add SCMI support for mailbox unidirectional channels
+Date:   Mon, 27 Mar 2023 16:45:26 +0100
+Message-Id: <20230327154528.460836-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This PFSM controls the operational modes of the PMIC:
-- STANDBY and LP_STANDBY,
-- ACTIVE state,
-- MCU_ONLY state,
-- RETENTION state, with or without DDR and/or GPIO retention.
-Depending on the current operational mode, some voltage domains
-remain energized while others can be off.
+Hi,
 
-This PFSM is also used to trigger a firmware update, and provides
-R/W access to device registers.
+this series aims to extend SCMI mailbox transport layer to support mailbox
+controllers that expose unidirectional channels.
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- .../userspace-api/ioctl/ioctl-number.rst      |   1 +
- drivers/misc/Kconfig                          |  12 +
- drivers/misc/Makefile                         |   1 +
- drivers/misc/tps6594-pfsm.c                   | 304 ++++++++++++++++++
- include/uapi/linux/tps6594_pfsm.h             |  45 +++
- 5 files changed, 363 insertions(+)
- create mode 100644 drivers/misc/tps6594-pfsm.c
- create mode 100644 include/uapi/linux/tps6594_pfsm.h
+SCMI communications between an agent like Linux and the platform fw server
+happens through 2 main communication channels: an 'a2p' bidirectional
+channel (called TX in SCMI parlance) used to send synchronous commands
+and receive related replies and an optional 'p2a' unidirectional channel
+(called RX) used to convey notfications or delayed responses to
+asynchronous commands possibly emitted by the platform toward the agent.
 
-diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
-index 0a1882e296ae..07ff4d619db4 100644
---- a/Documentation/userspace-api/ioctl/ioctl-number.rst
-+++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
-@@ -180,6 +180,7 @@ Code  Seq#    Include File                                           Comments
- 'P'   00-0F  drivers/usb/class/usblp.c                               conflict!
- 'P'   01-09  drivers/misc/pci_endpoint_test.c                        conflict!
- 'P'   00-0F  xen/privcmd.h                                           conflict!
-+'P'   00-03  linux/tps6594_pfsm.h                                    conflict!
- 'Q'   all    linux/soundcard.h
- 'R'   00-1F  linux/random.h                                          conflict!
- 'R'   01     linux/rfkill.h                                          conflict!
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index c73c02801330..75e427f124b2 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -549,6 +549,18 @@ config TPS6594_ESM
- 	  This driver can also be built as a module.  If so, the module
- 	  will be called tps6594-esm.
- 
-+config TPS6594_PFSM
-+	tristate "TI TPS6594 Pre-configurable Finite State Machine support"
-+	depends on MFD_TPS6594
-+	default MFD_TPS6594
-+	help
-+	  Support PFSM (Pre-configurable Finite State Machine) on TPS6594 PMIC devices.
-+	  These devices integrate a finite state machine engine, which manages the state
-+	  of the device during operating state transition.
-+
-+	  This driver can also be built as a module.  If so, the module
-+	  will be called tps6594-pfsm.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 3dc69ec69912..f2a4d1ff65d4 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -66,3 +66,4 @@ obj-$(CONFIG_VCPU_STALL_DETECTOR)	+= vcpu_stall_detector.o
- obj-$(CONFIG_TMR_MANAGER)      += xilinx_tmr_manager.o
- obj-$(CONFIG_TMR_INJECT)	+= xilinx_tmr_inject.o
- obj-$(CONFIG_TPS6594_ESM)	+= tps6594-esm.o
-+obj-$(CONFIG_TPS6594_PFSM)	+= tps6594-pfsm.o
-diff --git a/drivers/misc/tps6594-pfsm.c b/drivers/misc/tps6594-pfsm.c
-new file mode 100644
-index 000000000000..e7b5ccfa1d4b
---- /dev/null
-+++ b/drivers/misc/tps6594-pfsm.c
-@@ -0,0 +1,304 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PFSM (Pre-configurable Finite State Machine) driver for TI TPS6594/TPS6593/LP8764X PMICs
-+ *
-+ * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
-+ */
-+
-+#include <linux/fs.h>
-+#include <linux/interrupt.h>
-+#include <linux/ioctl.h>
-+#include <linux/miscdevice.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/mfd/tps6594.h>
-+
-+#include <linux/tps6594_pfsm.h>
-+
-+#define TPS6594_STARTUP_DEST_MCU_ONLY_VAL 2
-+#define TPS6594_STARTUP_DEST_ACTIVE_VAL   3
-+#define TPS6594_STARTUP_DEST_SHIFT	  5
-+#define TPS6594_STARTUP_DEST_MCU_ONLY	  (TPS6594_STARTUP_DEST_MCU_ONLY_VAL \
-+					   << TPS6594_STARTUP_DEST_SHIFT)
-+#define TPS6594_STARTUP_DEST_ACTIVE	  (TPS6594_STARTUP_DEST_ACTIVE_VAL \
-+					   << TPS6594_STARTUP_DEST_SHIFT)
-+
-+/*
-+ * To update the PMIC firmware, the user must be able to access
-+ * page 0 (user registers) and page 1 (NVM control and configuration).
-+ */
-+#define TPS6594_PMIC_MAX_POS 0x200
-+
-+#define TPS6594_FILE_TO_PFSM(f) container_of((f)->private_data, struct tps6594_pfsm, miscdev)
-+
-+/**
-+ * struct tps6594_pfsm - device private data structure
-+ *
-+ * @miscdev: misc device infos
-+ * @regmap:  regmap for accessing the device registers
-+ */
-+struct tps6594_pfsm {
-+	struct miscdevice miscdev;
-+	struct regmap *regmap;
-+};
-+
-+static ssize_t tps6594_pfsm_read(struct file *f, char __user *buf,
-+				 size_t count, loff_t *ppos)
-+{
-+	struct tps6594_pfsm *pfsm = TPS6594_FILE_TO_PFSM(f);
-+	loff_t pos = *ppos;
-+	unsigned int val;
-+	int ret;
-+	int i;
-+
-+	if (pos < 0)
-+		return -EINVAL;
-+	if (pos >= TPS6594_PMIC_MAX_POS)
-+		return 0;
-+	if (count > TPS6594_PMIC_MAX_POS - pos)
-+		count = TPS6594_PMIC_MAX_POS - pos;
-+
-+	for (i = 0 ; i < count ; i++) {
-+		ret = regmap_read(pfsm->regmap, pos + i, &val);
-+		if (ret)
-+			return ret;
-+
-+		if (put_user(val, buf + i))
-+			return -EFAULT;
-+	}
-+
-+	*ppos = pos + count;
-+
-+	return count;
-+}
-+
-+static ssize_t tps6594_pfsm_write(struct file *f, const char __user *buf,
-+				  size_t count, loff_t *ppos)
-+{
-+	struct tps6594_pfsm *pfsm = TPS6594_FILE_TO_PFSM(f);
-+	loff_t pos = *ppos;
-+	char val;
-+	int ret;
-+	int i;
-+
-+	if (pos < 0)
-+		return -EINVAL;
-+	if (pos >= TPS6594_PMIC_MAX_POS || !count)
-+		return 0;
-+	if (count > TPS6594_PMIC_MAX_POS - pos)
-+		count = TPS6594_PMIC_MAX_POS - pos;
-+
-+	for (i = 0 ; i < count ; i++) {
-+		if (get_user(val, buf + i))
-+			return -EFAULT;
-+
-+		ret = regmap_write(pfsm->regmap, pos + i, val);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	*ppos = pos + count;
-+
-+	return count;
-+}
-+
-+static int tps6594_pfsm_configure_ret_trig(struct regmap *regmap, u8 options)
-+{
-+	int ret;
-+
-+	if (options & PMIC_GPIO_RETENTION)
-+		ret = regmap_set_bits(regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+				      TPS6594_BIT_TRIGGER_I2C(5) | TPS6594_BIT_TRIGGER_I2C(6));
-+	else
-+		ret = regmap_clear_bits(regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+					TPS6594_BIT_TRIGGER_I2C(5) | TPS6594_BIT_TRIGGER_I2C(6));
-+	if (ret)
-+		return ret;
-+
-+	if (options & PMIC_DDR_RETENTION)
-+		ret = regmap_set_bits(regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+				      TPS6594_BIT_TRIGGER_I2C(7));
-+	else
-+		ret = regmap_clear_bits(regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+					TPS6594_BIT_TRIGGER_I2C(7));
-+
-+	return ret;
-+}
-+
-+static long tps6594_pfsm_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
-+{
-+	struct tps6594_pfsm *pfsm = TPS6594_FILE_TO_PFSM(f);
-+	struct pmic_state pfsm_state;
-+	void __user *argp = (void __user *)arg;
-+	int ret = -EINVAL;
-+
-+	switch (cmd) {
-+	case PMIC_GOTO_STANDBY:
-+		/* Disable LP mode */
-+		ret = regmap_clear_bits(pfsm->regmap, TPS6594_REG_RTC_CTRL_2,
-+					TPS6594_BIT_LP_STANDBY_SEL);
-+		if (ret)
-+			return ret;
-+
-+		/* Force trigger */
-+		ret = regmap_write_bits(pfsm->regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+					TPS6594_BIT_TRIGGER_I2C(0), TPS6594_BIT_TRIGGER_I2C(0));
-+		break;
-+	case PMIC_GOTO_LP_STANDBY:
-+		/* Enable LP mode */
-+		ret = regmap_set_bits(pfsm->regmap, TPS6594_REG_RTC_CTRL_2,
-+				      TPS6594_BIT_LP_STANDBY_SEL);
-+		if (ret)
-+			return ret;
-+
-+		/* Force trigger */
-+		ret = regmap_write_bits(pfsm->regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+					TPS6594_BIT_TRIGGER_I2C(0), TPS6594_BIT_TRIGGER_I2C(0));
-+		break;
-+	case PMIC_UPDATE_PGM:
-+		/* Force trigger */
-+		ret = regmap_write_bits(pfsm->regmap, TPS6594_REG_FSM_I2C_TRIGGERS,
-+					TPS6594_BIT_TRIGGER_I2C(3), TPS6594_BIT_TRIGGER_I2C(3));
-+		break;
-+	case PMIC_SET_STATE:
-+		if (copy_from_user(&pfsm_state, argp, sizeof(pfsm_state)))
-+			return -EFAULT;
-+
-+		switch (pfsm_state.state) {
-+		case PMIC_ACTIVE_STATE:
-+			/* Modify NSLEEP1-2 bits */
-+			ret = regmap_set_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
-+					      TPS6594_BIT_NSLEEP1B | TPS6594_BIT_NSLEEP2B);
-+			break;
-+		case PMIC_MCU_ONLY_STATE:
-+			/* Configure retention triggers */
-+			ret = tps6594_pfsm_configure_ret_trig(pfsm->regmap, pfsm_state.options);
-+			if (ret)
-+				return ret;
-+
-+			/* Modify NSLEEP1-2 bits */
-+			ret = regmap_clear_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
-+						TPS6594_BIT_NSLEEP1B);
-+			if (ret)
-+				return ret;
-+
-+			ret = regmap_set_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
-+					      TPS6594_BIT_NSLEEP2B);
-+			break;
-+		case PMIC_RETENTION_STATE:
-+			/* Configure wake-up destination */
-+			if (pfsm_state.options & PMIC_MCU_ONLY_STARTUP_DEST)
-+				ret = regmap_write_bits(pfsm->regmap, TPS6594_REG_RTC_CTRL_2,
-+							TPS6594_MASK_STARTUP_DEST,
-+							TPS6594_STARTUP_DEST_MCU_ONLY);
-+			else
-+				ret = regmap_write_bits(pfsm->regmap, TPS6594_REG_RTC_CTRL_2,
-+							TPS6594_MASK_STARTUP_DEST,
-+							TPS6594_STARTUP_DEST_ACTIVE);
-+			if (ret)
-+				return ret;
-+
-+			/* Configure retention triggers */
-+			ret = tps6594_pfsm_configure_ret_trig(pfsm->regmap, pfsm_state.options);
-+			if (ret)
-+				return ret;
-+
-+			/* Modify NSLEEP1-2 bits */
-+			ret = regmap_clear_bits(pfsm->regmap, TPS6594_REG_FSM_NSLEEP_TRIGGERS,
-+						TPS6594_BIT_NSLEEP2B);
-+			break;
-+		}
-+
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+static const struct file_operations tps6594_pfsm_fops = {
-+	.owner		= THIS_MODULE,
-+	.llseek		= generic_file_llseek,
-+	.read		= tps6594_pfsm_read,
-+	.write		= tps6594_pfsm_write,
-+	.unlocked_ioctl	= tps6594_pfsm_ioctl,
-+};
-+
-+static irqreturn_t tps6594_pfsm_isr(int irq, void *dev_id)
-+{
-+	struct platform_device *pdev = dev_id;
-+	int i;
-+
-+	for (i = 0 ; i < pdev->num_resources ; i++) {
-+		if (irq == platform_get_irq_byname(pdev, pdev->resource[i].name)) {
-+			dev_err(pdev->dev.parent, "%s event detected\n", pdev->resource[i].name);
-+			return IRQ_HANDLED;
-+		}
-+	}
-+
-+	return IRQ_NONE;
-+}
-+
-+static int tps6594_pfsm_probe(struct platform_device *pdev)
-+{
-+	struct tps6594_pfsm *pfsm;
-+	struct tps6594 *tps = dev_get_drvdata(pdev->dev.parent);
-+	struct device *dev = &pdev->dev;
-+	int irq;
-+	int ret;
-+	int i;
-+
-+	pfsm = devm_kzalloc(dev, sizeof(struct tps6594_pfsm), GFP_KERNEL);
-+	if (!pfsm)
-+		return -ENOMEM;
-+
-+	pfsm->regmap = tps->regmap;
-+
-+	pfsm->miscdev.minor = MISC_DYNAMIC_MINOR;
-+	pfsm->miscdev.name = devm_kasprintf(dev, GFP_KERNEL, "pfsm-%ld-0x%02x",
-+					    tps->chip_id, tps->reg);
-+	pfsm->miscdev.fops = &tps6594_pfsm_fops;
-+	pfsm->miscdev.parent = dev->parent;
-+
-+	for (i = 0 ; i < pdev->num_resources ; i++) {
-+		irq = platform_get_irq_byname(pdev, pdev->resource[i].name);
-+		if (irq < 0)
-+			return dev_err_probe(dev, irq, "Failed to get %s irq\n",
-+					     pdev->resource[i].name);
-+
-+		ret = devm_request_threaded_irq(dev, irq, NULL,
-+						tps6594_pfsm_isr, IRQF_ONESHOT,
-+						pdev->resource[i].name, pdev);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to request irq\n");
-+	}
-+
-+	platform_set_drvdata(pdev, pfsm);
-+
-+	return misc_register(&pfsm->miscdev);
-+}
-+
-+static int tps6594_pfsm_remove(struct platform_device *pdev)
-+{
-+	struct tps6594_pfsm *pfsm = platform_get_drvdata(pdev);
-+
-+	misc_deregister(&pfsm->miscdev);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver tps6594_pfsm_driver = {
-+	.driver	= {
-+		.name = "tps6594-pfsm",
-+	},
-+	.probe = tps6594_pfsm_probe,
-+	.remove = tps6594_pfsm_remove,
-+};
-+
-+module_platform_driver(tps6594_pfsm_driver);
-+
-+MODULE_ALIAS("platform:tps6594-pfsm");
-+MODULE_AUTHOR("Julien Panis <jpanis@baylibre.com>");
-+MODULE_DESCRIPTION("TPS6594 Pre-configurable Finite State Machine Driver");
-+MODULE_LICENSE("GPL");
-diff --git a/include/uapi/linux/tps6594_pfsm.h b/include/uapi/linux/tps6594_pfsm.h
-new file mode 100644
-index 000000000000..c3fd07df28b3
---- /dev/null
-+++ b/include/uapi/linux/tps6594_pfsm.h
-@@ -0,0 +1,45 @@
-+/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-+/*
-+ * Userspace ABI for TPS6594 PMIC Pre-configurable Finite State Machine
-+ *
-+ * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
-+ */
-+
-+#ifndef __TPS6594_PFSM_H
-+#define __TPS6594_PFSM_H
-+
-+#include <linux/const.h>
-+#include <linux/ioctl.h>
-+#include <linux/types.h>
-+
-+/* PFSM state definitions */
-+enum pfsm_state {
-+	PMIC_ACTIVE_STATE,
-+	PMIC_MCU_ONLY_STATE,
-+	PMIC_RETENTION_STATE
-+};
-+
-+/**
-+ * struct pmic_state - PMIC state identification
-+ * @state:   PFSM destination state
-+ * @options: options for destination state
-+ */
-+struct pmic_state {
-+	enum pfsm_state state;
-+	__u8 options;
-+};
-+
-+/* Commands */
-+#define	PMIC_BASE			'P'
-+
-+#define	PMIC_GOTO_STANDBY		_IO(PMIC_BASE, 0)
-+#define	PMIC_GOTO_LP_STANDBY		_IO(PMIC_BASE, 1)
-+#define	PMIC_UPDATE_PGM			_IO(PMIC_BASE, 2)
-+#define	PMIC_SET_STATE			_IOW(PMIC_BASE, 3, struct pmic_state)
-+
-+/* Options for destination state */
-+#define PMIC_GPIO_RETENTION		_BITUL(0)
-+#define PMIC_DDR_RETENTION		_BITUL(1)
-+#define PMIC_MCU_ONLY_STARTUP_DEST	_BITUL(2)
-+
-+#endif /*  __TPS6594_PFSM_H */
+The current SCMI mailbox transport support was modelled around mailboxes
+that were bidirectional by nature, and, as such, fit well in the above
+SCMI communication scheme, allowing us to currently describe the mailbox
+transport channels as in the following examples:
+
+ 1.  system with a single TX 'a2p' defined over a mailbox bidirectional
+     channel:
+
+	mboxes = <&mb 0 0>;
+	shmem = <&a2p_mem>;
+
+ 2. system with a TX 'a2p' defined over a bidirectional mailbox channel
+    AND an optional RX 'p2a' defined over a unidirectional channel:
+
+	mboxes = <&mb 0 0>, <&mb 0 1>,
+	shmem = <&a2p_shmem>, <&p2a_shmem>;
+
+This binding, as it is now, does NOT support the usage of mailbox
+controllers exposing channels that are unidirectional by nature, like
+it is the case with ARM MHUv2 mailboxes as an example, since 2 distinct
+unidirectional mailbox channels would be needed to represent just the
+SCMI TX bidirectional communication path.
+
+Note that the mboxes property referred in the SCMI nodes to configure the
+transport is compliant with (and parsed by) the mailbox common subsystem,
+which is the entity that exposes and finally handles the mailbox
+controller: as a consequence playing creatively (or dirty :P) with the
+syntax of the mboxes property to fit our needs is not an option.
+
+This series extends the SCMI mailbox-related bindings, which defines how
+mboxes and shmem properties are interpreted, and the logic inside the
+SCMI mailbox transport subsystem to support the usage of these type of
+unidirectional mailbox channels, while aiming to maintain backward
+compatibility with the original scheme based on bidirectional channels.
+
+With these proposed DT extensions, in addition to the above definitions,
+the following descriptions can be crafted for a system using a mailbox
+controller exposing unidirectional channels:
+
+ 2. system with a single TX 'a2p' defined over a pair of unidirectional
+    mailbox channels (similar to 1):
+
+	mboxes = <&mb_tx 0 0>, <&mb_rx 0 0>;
+	shmem = <&a2p_mem>;
+
+ 3. system with a TX 'a2p' defined over a pair of unidirectional channels
+    AND an RX 'p2a' defined over a unidirectional channel (similar to 2):
+
+	mboxes = <&mb_tx 0 0>, <&mb_rx 0 0>, <&mb_rx 0 1>;
+	shmem = <&a2p_shmem>, <&p2a_shmem>;
+
+The SCMI mailbox transport logic has been modified to select and make a
+proper use of the needed channels depending on the combination of found
+mboxes/shmem descriptors:
+
+  a) 1 mbox / 1 shmem => SCMI TX over 1 mailbox bidirectional channel
+  b) 2 mbox / 2 shmem => SCMI TX and RX over 2 mailbox bidirectional chans
+
+  c) 2 mbox / 1 shmem => SCMI TX over 2 mailbox unidirectional chans
+  d) 3 mbox / 2 shmem => SCMI TX and RX over 3 mailbox unidirectional chans
+
+with any other combination considered invalid.
+
+Note that, up until the changes in this series, the only valid configs
+accepted by the SCMI mailbox transport are a) and b): this ensures backward
+compatibility even in the case in which a DT sporting the new format (c,d)
+is, wrongly, deployed with an old kernel still not supporting this new
+logic: in such a case c) and d) configs will be simply rejected. (wrongly
+deployed because installing a c) or d) styled-DT would be required only if
+the underlying mailbox HW had effectively changed and used unidir chans)
+
+I have tested this on a JUNO board (MHUv1 bidirectional) and TotalCompute
+TC2 reference design (MHUv2 unidirectional). [1]
+
+The series is based on v6.3-rc4.
+
+Having said that, I am not completely sure if all of the above constraints
+should (and/or could) be expressed in a more formal way also in the YAML
+binding itself.
+
+Any feedback or suggestion in these regards is highly appreciated.
+
+Thanks,
+Cristian
+
+[1]: https://gitlab.arm.com/arm-reference-solutions/arm-reference-solutions-docs/-/blob/master/docs/totalcompute/tc2/tc2_sw_stack.rst
+
+----
+v1 --> v2
+ - added mbox-names unidirectional definitions and example
+
+
+Cristian Marussi (2):
+  dt-bindings: firmware: arm,scmi: Support mailboxes unidirectional
+    channels
+  firmware: arm_scmi: Add support for unidirectional mailbox channels
+
+ .../bindings/firmware/arm,scmi.yaml           | 76 +++++++++++++--
+ drivers/firmware/arm_scmi/mailbox.c           | 95 ++++++++++++++++---
+ 2 files changed, 150 insertions(+), 21 deletions(-)
+
 -- 
-2.37.3
+2.34.1
 
