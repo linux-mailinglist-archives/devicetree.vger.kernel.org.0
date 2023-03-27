@@ -2,184 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD68E6CA8E2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C90286CA8E7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:28:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbjC0P1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 11:27:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
+        id S232400AbjC0P2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 11:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232435AbjC0P1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:27:46 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 505D130CF;
-        Mon, 27 Mar 2023 08:27:43 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23F06C14;
-        Mon, 27 Mar 2023 08:28:27 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 83BB53F6C4;
-        Mon, 27 Mar 2023 08:27:41 -0700 (PDT)
-Date:   Mon, 27 Mar 2023 16:27:35 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, sudeep.holla@arm.com,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        nicola.mazzucato@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Support mailboxes
- unidirectional channels
-Message-ID: <ZCG154hlWbLMAzIi@e120937-lin>
-References: <20230327140342.222168-1-cristian.marussi@arm.com>
- <20230327140342.222168-2-cristian.marussi@arm.com>
- <dd8d1503-e2bf-7032-4d0a-16d9a5b2aa51@linaro.org>
+        with ESMTP id S229762AbjC0P2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:28:41 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 905C611D;
+        Mon, 27 Mar 2023 08:28:40 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32RFSYpu073981;
+        Mon, 27 Mar 2023 10:28:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679930914;
+        bh=vembBHKzfCYf5PMfL3tKWXrfTUY6YKgAJ8delViusVU=;
+        h=From:To:CC:Subject:Date;
+        b=bJOA5qTs/3x/wplvJgGmZCpNKIiLMEZKN4E8hgn65RYf4uh7eoZXxIEAE6B3fStWR
+         nLz4Utdhdcd2+dwOFX1sTjqlDNDSWipgPjb1aJ104Ff/XLrCDudkQhXTtinsyQ7XIm
+         ODLi20/iORN/jo4XLlyMKzczwNruwcPX9sdRXblg=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32RFSYbO008967
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 27 Mar 2023 10:28:34 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 27
+ Mar 2023 10:28:33 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 27 Mar 2023 10:28:33 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32RFSXNu044467;
+        Mon, 27 Mar 2023 10:28:33 -0500
+From:   Devarsh Thakkar <devarsht@ti.com>
+To:     <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
+        <linux-remoteproc@vger.kernel.org>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>
+CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <devarsht@ti.com>, <rogerq@kernel.org>
+Subject: [PATCH v8 0/3] Add single core R5F IPC for AM62 SoC family             
+Date:   Mon, 27 Mar 2023 20:58:29 +0530
+Message-ID: <20230327152832.923480-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dd8d1503-e2bf-7032-4d0a-16d9a5b2aa51@linaro.org>
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 04:42:12PM +0200, Krzysztof Kozlowski wrote:
-> On 27/03/2023 16:03, Cristian Marussi wrote:
-> > SCMI defines two kinds of communication channels between the agent and the
-> > platform: one bidirectional 'a2p' channel used by the agent to send SCMI
-> > commands and synchronously receive the related replies, and an optional
-> > 'p2a' unidirectional channel used to asynchronously receive delayed
-> > responses and notifications emitted from the platform.
-> > 
-> > When configuring an SCMI transport based on mailboxes, the current binding
-> > supports only mailboxes providing bidirectional channels: in such a case
-> > one mailbox channel can be easily assigned to each SCMI channel as above
-> > described.
-> > 
-> > In case, instead, to have to deal with mailboxes providing only distinct
-> > unidirectional channels, it becomes necessary to extend the binding in
-> > order to be able to bind 2 distinct unidirectional mailbox channels to the
-> > same SCMI 'a2p' channel.
-> > 
-> > Bidirectional and unidirectional channels support for the SCMI mailbox
-> > transport can coexist by carefully considering the effective combination
-> > of defined 'mboxes' and 'shmem' descriptors.
-> > 
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: devicetree@vger.kernel.org
-> 
+AM62 SoC family don't have a multicore R5F cluster,                             
+instead they have a single core R5F.                                            
+This enables IPC support with single core R5F for AM62                          
+family of SoCs.
 
-Hi Krzysztof,
+While at it, also simplify the cluster mode setting usage
+by using soc_data specific checks only at probe.
 
-thanks for having a look.
+Devarsh Thakkar (3):
+  remoteproc: k3-r5: Simplify cluster mode setting usage
+  dt-bindings: remoteproc: ti: Add new compatible for AM62 SoC family
+  remoteproc: k3-r5: Use separate compatible string for TI AM62x SoC
+    family
 
-> Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-> commit msg. There is no single need to store automated output of
-> get_maintainers.pl in the git log. It can be easily re-created at any
-> given time, thus its presence in the git history is redundant and
-> obfuscates the log.
-> 
-> If you need it for your own patch management purposes, keep it under ---.
-> 
+ .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  |  76 ++++++++---
+ drivers/remoteproc/ti_k3_r5_remoteproc.c      | 127 ++++++++++++------
+ 2 files changed, 138 insertions(+), 65 deletions(-)
+---
+V2:                                                                             
+  - dt-bindings: Avoid acronyms, use "Device Manager" instead of "DM"           
+V3:                                                                             
+  - dt-bindings: Use separate if block for each compatible for                  
+    ti,cluster-mode property                                                    
+  - dt-bindings: Rearrange compatibles as per alphabatical order                
+V4:                                                                             
+  - dt-bindings: Place each enum in separate line in allOf                      
+V5:                                                                             
+  - No change (fixing typo in email address)                                    
+V6:                                                                             
+  - dt-bindings: Remove reviewed-by due to new modifications to use             
+    cluster-mode=3                                                              
+    Introduce Simplify cluster-mode setting preamble patch per review           
+comments                                                                        
+  - Use CLUSTER_MODE_SINGLECORE for AM62x                                       
+  - Set PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE for single core.                      
+V7:                                                                             
+  - Override to appropriate cluster-mode per firmware status flag               
+    without checking soc_data                                                   
+  - Set appropriate mode as default if not provided in DT                       
+  - Check mode validity against SoC data during probe                           
+  - Rebase on top of 6.3 linux-next                                             
+V8:                                                                             
+  - Avoid using soc_data while overriding cluster mode for IPC-only mode  
+-- 
+2.34.1
 
-Ok. I use to add those Cc to trigger git-sendmail to add proper CCs but
-in this case indeed I copied you on all the series anyway. I'll drop it.
-
-> 
-> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> > ---
-> >  .../bindings/firmware/arm,scmi.yaml           | 42 +++++++++++++++++--
-> >  1 file changed, 38 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > index 2f7c51c75e85..9a7dc30e386f 100644
-> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > @@ -63,10 +63,24 @@ properties:
-> >    mboxes:
-> >      description:
-> >        List of phandle and mailbox channel specifiers. It should contain
-> > -      exactly one or two mailboxes, one for transmitting messages("tx")
-> > -      and another optional for receiving the notifications("rx") if supported.
-> > +      exactly one, two or three mailboxes; the first one or two for transmitting
-> > +      messages ("tx") and another optional ("rx") for receiving notifications
-> > +      and delayed responses, if supported by the platform.
-> > +      The number of mailboxes needed for transmitting messages depends on the
-> > +      type of channels exposed by the specific underlying mailbox controller;
-> > +      one single channel descriptor is enough if such channel is bidirectional,
-> > +      while two channel descriptors are needed to represent the SCMI ("tx")
-> > +      channel if the underlying mailbox channels are of unidirectional type.
-> > +      The effective combination in numbers of mboxes and shmem descriptors let
-> > +      the SCMI subsystem determine unambiguosly which type of SCMI channels are
-> > +      made available by the underlying mailbox controller and how to use them.
-> > +       1 mbox / 1 shmem => SCMI TX over 1 mailbox bidirectional channel
-> > +       2 mbox / 2 shmem => SCMI TX and RX over 2 mailbox bidirectional channels
-> > +       2 mbox / 1 shmem => SCMI TX over 2 mailbox unidirectional channels
-> > +       3 mbox / 2 shmem => SCMI TX and RX over 3 mailbox unidirectional channels
-> > +      Any other combination of mboxes and shmem is invalid.
-> >      minItems: 1
-> > -    maxItems: 2
-> > +    maxItems: 3
-> 
-> Missing update to mbox-names.
-> 
-Ah .. missed that since mbox-names is not marked as a required property
-in this binding. I'll add in V2.
-
-> >  
-> >    shmem:
-> >      description:
-> > @@ -234,7 +248,7 @@ $defs:
-> >  
-> >        mboxes:
-> >          minItems: 1
-> > -        maxItems: 2
-> > +        maxItems: 3
-> 
-> The same. How is it supposed to work? tx rx and that's it?
-> 
-
-The logic is that SCMI transport can determine which type of channels
-(bidir vs unidir) you are using by looking at how many mboxes and how
-many shmem are defined as detailed in the description above.
-(not using mbox-names refs because was never marked as required so it
- would break backward compatibility starting to use that)
-
-I'll add a fix in V2 to fit mbox-names into this logic too.
-
-> >  
-> >        shmem:
-> >          minItems: 1
-> > @@ -393,6 +407,26 @@ examples:
-> >          };
-> >      };
-> >  
-> > +  - |
-> > +    firmware {
-> > +        scmi {
-> > +            compatible = "arm,scmi";
-> > +            mboxes = <&mhu_U_tx 0 0>, <&mhu_U_rx 0 0>;
-> > +            shmem = <&cpu_scp_lpri0>;
-> > +
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> 
-> I don't think adding one more example with difference in only one piece
-> is needed here.
-> 
-
-Mmm, I thought was sensible to add this example, given that a mailbox
-transport configuration for a mailbox exposing unidrectional channels is
-quite different from the usual bidirectional channel config already
-present in the pre-existent example.
-
-I'll add mbox-names into this example and see if I can change your
-mind...or I can then finally drop it.
-
-Thanks,
-Cristian
