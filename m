@@ -2,48 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFB076CA3CC
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF916CA31B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 14:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232417AbjC0MSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 08:18:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33920 "EHLO
+        id S231932AbjC0MNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 08:13:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232303AbjC0MSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:18:16 -0400
-X-Greylist: delayed 376 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 27 Mar 2023 05:16:53 PDT
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B99EF3C11;
-        Mon, 27 Mar 2023 05:16:53 -0700 (PDT)
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-        by ns.iliad.fr (Postfix) with ESMTP id 99967210A1;
-        Mon, 27 Mar 2023 14:11:09 +0200 (CEST)
-Received: from venus.iliad.local (freebox.vlq16.iliad.fr [213.36.7.13])
-        by ns.iliad.fr (Postfix) with ESMTP id 7CBAF21079;
-        Mon, 27 Mar 2023 14:11:09 +0200 (CEST)
-From:   Marc Gonzalez <mgonzalez@freebox.fr>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc:     Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Pierre-Hugues Husson <phh@phh.me>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] perf/amlogic: resolve conflict between canvas & pmu
-Date:   Mon, 27 Mar 2023 14:09:31 +0200
-Message-Id: <20230327120932.2158389-3-mgonzalez@freebox.fr>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230327120932.2158389-1-mgonzalez@freebox.fr>
-References: <20230327120932.2158389-1-mgonzalez@freebox.fr>
+        with ESMTP id S229878AbjC0MNL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 08:13:11 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4234D3A84
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:13:10 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id h8so35215515ede.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 05:13:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112; t=1679919189;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vmNpIzNfG612nyW1bhVMjBSrVg7n0oMr5DFwLjMDXpE=;
+        b=cDuZhRwmRdhUa9PzYQnOCAO7avYp1p9ucMyD4vRrNtYqFQH5bgn8DVtNCyN8Qj4VvK
+         Asm62i1lbAsqclKyYuS3dfTXUyh00QL2T/stsE3b2Sx0N8SRs+tJ9SGS+Vd2KbNV0AkX
+         hw5CANHrzIrrTa3/Xs5D/jhnTJGcP6yRjgC43pz3p7TszeSxD3bfSJhV3+0o/n8EwzHe
+         RWrKtvOzwdR4bheDoXFRJzlxwxj0jRwFB5NOdkOOcyb/PW3p7Q9XAVObF8UjkAq4VFBQ
+         8Qjv9GhEUT9yAZav3rQsZ81tg86EZG2r/2oPfCWa6/I27FUSJkIxRD8AekAxurhA0GDL
+         dYzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679919189;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vmNpIzNfG612nyW1bhVMjBSrVg7n0oMr5DFwLjMDXpE=;
+        b=mYp9UB9TrlDcG3ffoJ68kqOJAhHdL5M5pfBt8GC6RBvXUL6uJao6JXvGLV4PubeXbn
+         ZpKbL5IsoGQlP8H3Ggydr/cPkdRPEJIEyr85xCUrBAdMJNvbsM3K8HfCylXIY94jZ5rX
+         cVS1z2+OxsAKSpc7F16lAqNLvu1+0fGRdd8dQKzpgN0MuIVr/tpgt4EXJFcSzKxDK1el
+         4906X3X8PhytlLsT2zMn9IcUsSe9lu2AKGGVSJ5H5P8JlWwhoeor4tlbVMU5Eu02Gz1h
+         ZZMddhraBr0sdWTlGzL4AXAgF8HKe64uqr0PNsddnyTgqGC/WPPvtZoSc3qHYqX9GUMn
+         EkhQ==
+X-Gm-Message-State: AAQBX9eGhvQSibEmEv3MQrvDZ83iiN/XnIUKCR/DMdO0MtkOO6bd/Kic
+        HmP0sS7FePYw2KLp+p5g/ZMY+9dHGtNCGn73azaodLc2wLgOXrZ4
+X-Google-Smtp-Source: AKy350bq3aqC/oOrLVqEUOhMcf2gp9/VAl1K+i1eN1DDWpJ/F20bJSOj2ABZt74p8o9I/6yRHACDjsmJwyg3dDlkhfc=
+X-Received: by 2002:a50:bac5:0:b0:4ab:49b9:686d with SMTP id
+ x63-20020a50bac5000000b004ab49b9686dmr5596204ede.1.1679919188663; Mon, 27 Mar
+ 2023 05:13:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+References: <20230324155421.271544-1-alexghiti@rivosinc.com>
+In-Reply-To: <20230324155421.271544-1-alexghiti@rivosinc.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 27 Mar 2023 17:42:57 +0530
+Message-ID: <CAAhSdy3L59sUK3nniio8iWvAAR13cMzvXDX+wxyjEOajuuEhxw@mail.gmail.com>
+Subject: Re: [PATCH v9 0/3] riscv: Use PUD/P4D/PGD pages for the linear mapping
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,49 +73,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to S905X2 Datasheet - Revision 07:
+On Fri, Mar 24, 2023 at 9:24=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosinc=
+.com> wrote:
+>
+> This patchset intends to improve tlb utilization by using hugepages for
+> the linear mapping.
+>
+> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabled, we must
+> take care of isolating the kernel text and rodata so that they are not
+> mapped with a PUD mapping which would then assign wrong permissions to
+> the whole region: it is achieved the same way as arm64 by using the
+> memblock nomap API which isolates those regions and re-merge them afterwa=
+rds
+> thus avoiding any issue with the system resources tree creation.
+>
+> base-commit-tag: v6.3-rc1
+>
+> v9:
+> - Remove new API and arm64 patches as it created more issues than it
+>   solved, thanks Anup for reporting those bugs!
+> - Add a patch that moves the linear mapping creation outside of setup_vm_=
+final
+> - Use nomap API like arm64
+> - Removed RB from Andrew and Anup as the patch changed its logic
+> - Fix kernel rodata size computation
+>
+> v8:
+> - Fix rv32, as reported by Anup
+> - Do not modify memblock_isolate_range and fixes comment, as suggested by=
+ Mike
+> - Use the new memblock API for crash kernel too in arm64, as suggested by=
+ Andrew
+> - Fix arm64 double mapping (which to me did not work in v7), but ends up =
+not
+>   being pretty at all, will wait for comments from arm64 reviewers, but
+>   this patch can easily be dropped if they do not want it.
+>
+> v7:
+> - Fix Anup bug report by introducing memblock_isolate_memory which
+>   allows us to split the memblock mappings and then avoid to map the
+>   the PUD which contains the kernel as read only
+> - Add a patch to arm64 to use this newly introduced API
+>
+> v6:
+> - quiet LLVM warning by casting phys_ram_base into an unsigned long
+>
+> v5:
+> - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, thanks
+>   Conor
+> - Add RB from Andrew
+>
+> v4:
+> - Rebase on top of v6.2-rc3, as noted by Conor
+> - Add Acked-by Rob
+>
+> v3:
+> - Change the comment about initrd_start VA conversion so that it fits
+>   ARM64 and RISCV64 (and others in the future if needed), as suggested
+>   by Rob
+>
+> v2:
+> - Add a comment on why RISCV64 does not need to set initrd_start/end that
+>   early in the boot process, as asked by Rob
+>
+> Alexandre Ghiti (3):
+>   riscv: Get rid of riscv_pfn_base variable
+>   riscv: Move the linear mapping creation in its own function
+>   riscv: Use PUD/P4D/PGD pages for the linear mapping
 
-DMC_MON area spans 0xff638080-0xff6380c0
-DDR_PLL area spans 0xff638c00-0xff638c34
+I have tested this series again on QEMU RV64 and RV32. I also tried
+KVM RV64 and RV32, this works fine as well.
 
-Round DDR_PLL area size up to 0x40
+>
+>  arch/riscv/include/asm/page.h |  19 ++++++-
+>  arch/riscv/mm/init.c          | 102 ++++++++++++++++++++++++++--------
+>  arch/riscv/mm/physaddr.c      |  16 ++++++
+>  drivers/of/fdt.c              |  11 ++--
+>  4 files changed, 118 insertions(+), 30 deletions(-)
+>
+> --
+> 2.37.2
+>
 
-Fixes: 90cf8e21016fa3 ("arm64: dts: meson: Add DDR PMU node")
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index a5653ab1f0b43..1aab65bb5f578 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1585,6 +1585,12 @@ canvas: video-lut@48 {
- 					compatible = "amlogic,canvas";
- 					reg = <0x0 0x48 0x0 0x14>;
- 				};
-+
-+				pmu: pmu@80 {
-+					reg = <0x0 0x80 0x0 0x40>,
-+					      <0x0 0xc00 0x0 0x40>;
-+					interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-+				};
- 			};
- 
- 			usb2_phy1: phy@3a000 {
-@@ -1710,12 +1716,6 @@ internal_ephy: ethernet-phy@8 {
- 			};
- 		};
- 
--		pmu: pmu@ff638000 {
--			reg = <0x0 0xff638000 0x0 0x100>,
--			      <0x0 0xff638c00 0x0 0x100>;
--			interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
--		};
--
- 		aobus: bus@ff800000 {
- 			compatible = "simple-bus";
- 			reg = <0x0 0xff800000 0x0 0x100000>;
--- 
-2.25.1
-
+Regards,
+Anup
