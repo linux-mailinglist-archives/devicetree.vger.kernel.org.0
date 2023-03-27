@@ -2,59 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC586C9999
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 04:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F2B6C999B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 04:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbjC0C25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 22:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51004 "EHLO
+        id S231956AbjC0CfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 22:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjC0C2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 22:28:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0CF49E5;
-        Sun, 26 Mar 2023 19:28:54 -0700 (PDT)
+        with ESMTP id S229479AbjC0Ce7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 22:34:59 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33EB340C0
+        for <devicetree@vger.kernel.org>; Sun, 26 Mar 2023 19:34:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3197FB80B2D;
-        Mon, 27 Mar 2023 02:28:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D431C433EF;
-        Mon, 27 Mar 2023 02:28:49 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 82D1BCE0FED
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 02:34:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F4A6C433D2;
+        Mon, 27 Mar 2023 02:34:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679884131;
-        bh=yEnbU4jXi0im10fYUjokipCSwa2/toPw9vBKXRJ/ogg=;
+        s=k20201202; t=1679884490;
+        bh=RKyAFoiAfy1tpXFv4htb+g1YITDtmDnTBXiOMaUYGOQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JovX1fMzg6gRSGQwt/R8zxIjrJ8pze+N2oOsv1QcGhBMxmn12HClC/MqKejng/9Zr
-         2x0kV2Po5OdWHCqaiTC1QsqbQfstKXqAs0wMSonWCAEzlHUpLRwKYQpcPIHOZyvCYj
-         kY5oEA1z8bCwmGlzIK0LLkfN/hm+YNKDy/KjmTOg/YijGlB1QekkoqxwHKn6B1jM41
-         DVTSNjeO+Iy+ThC/c1jYjoo0YS22lwvz4PvUCFB7yXTTzEDDPaaXe/I9gUvsGjtuOB
-         KslI6sSyOJXwrNKu9D5Bjmd3m6fJ+kzuYAxjY0shN6Te4tnmSOhljRj6bPv8K3gBTf
-         xw3I1gjTA425g==
-Date:   Mon, 27 Mar 2023 10:28:44 +0800
+        b=mZss9+0PZYpY/r1wJ9PcKC61Ce9EGTWsSvQbJ1+t0HHLpmijNrUYv+yc6ePYxvlf1
+         q1fF4nFILk+a/vPl1VYY3Wfj0akE9Vpfc9Ka3Z8NODd2LxNX5vd07fjSdTfsYThPu0
+         Tp9AoamtNzGqOHcQK4J2KBWIXrq63KLXLv6tAYfoj6LX7Pg6NakcXI6wSipfvaeITd
+         GG9mFZtxiGg4TdPJe1XWKLeJAv1hektT5NZWZl4BGZrw9PiqlFHqLRZPSd6kO64a2V
+         /P+211AkPcBllejeaDZBXZbbywdSIqLsphM8WzeWVDmnbz52yXg7xfM6rPmzp6L7E0
+         n46QmA1ByMrXg==
+Date:   Mon, 27 Mar 2023 10:34:44 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/5] =?iso-8859-1?B?QVJNOqBk?= =?iso-8859-1?B?dHM6?=
- imx6dl-yapp4: Move status to the end of property list
-Message-ID: <20230327022844.GE3364759@dragon>
-References: <20230314180608.44482-1-michal.vokac@ysoft.com>
- <20230314180608.44482-3-michal.vokac@ysoft.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mm: Fix lcdif compatible
+Message-ID: <20230327023444.GF3364759@dragon>
+References: <20230316140646.489626-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230314180608.44482-3-michal.vokac@ysoft.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+In-Reply-To: <20230316140646.489626-1-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,39 +57,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 14, 2023 at 07:06:05PM +0100, Michal Vokáč wrote:
-> The status property should always be last in the list.
+On Thu, Mar 16, 2023 at 03:06:45PM +0100, Alexander Stein wrote:
+> imx8mm-lcdif is compatible to imx6sx-lcdif.
 > 
-> Fixes: b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5562 channel node")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-It's not really a bug fix but only a cosmetic change.  Dropped this tag
-and applied the series.
+Doesn't apply for me.
 
 Shawn
 
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 > ---
-> Changes in v2:
-> - new patch
-> 
->  arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-> index cb1972f8e8d2..8a78a656bac0 100644
-> --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-> +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-> @@ -269,9 +269,9 @@ leds: led-controller@30 {
->  		compatible = "ti,lp5562";
->  		reg = <0x30>;
->  		clock-mode = /bits/ 8 <1>;
-> -		status = "disabled";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> +		status = "disabled";
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index fedd32cfa47a..1de455ba21da 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -1120,7 +1120,7 @@ aips4: bus@32c00000 {
+>  			ranges = <0x32c00000 0x32c00000 0x400000>;
 >  
->  		led@0 {
->  			chan-name = "R";
+>  			lcdif: lcdif@32e00000 {
+> -				compatible = "fsl,imx28-lcdif";
+> +				compatible = "fsl,imx8mm-lcdif", "fsl,imx6sx-lcdif";
+>  				reg = <0x32e00000 0x10000>;
+>  				clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
+>  					 <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
 > -- 
-> 2.25.1
+> 2.34.1
 > 
