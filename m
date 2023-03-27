@@ -2,237 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9E76CA6C1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559846CA736
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232276AbjC0OEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 10:04:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36614 "EHLO
+        id S233000AbjC0ORB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbjC0OEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:04:44 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4B1F41704;
-        Mon, 27 Mar 2023 07:04:26 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 44996143D;
-        Mon, 27 Mar 2023 07:05:10 -0700 (PDT)
-Received: from e120937-lin.. (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A60FF3F6C4;
-        Mon, 27 Mar 2023 07:04:24 -0700 (PDT)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S232926AbjC0OQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:16:48 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA6D65A8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:15:16 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id i5so37027527eda.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:15:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679926467;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ISvse2cGQJrRIUvXeCVbpkIoreFOaLucU+fudoPdjVE=;
+        b=pKUbWMSsZEgq+l3VXxnAnA8IP/TM/DtW205mSTV3JK1O4qJeXnJuHWdHgIphHK3kkR
+         XNW53YqYWxVZInhk/9NIzQgu0SAotKmDO364nWjXScOMVM8nTNS2eCGJTa8ZP3TpqHlM
+         Y3YbOTE97fifBo8DFZOw1zbG1SbOvWP+GNij0zIDkbgdoCL36ahWdGNhkEaljkZlzv8b
+         meCj+c7U9sLlZje836JRtMjrgT56aYcIXSkk9oXivF758GrhtYnXXLVeG9gfFXcO9tS2
+         gbLDweQnMm3sPVtkiUftv28LgrhZHk+Yczoc2YQmgomuXYaoaY+RTXLxTsJLnSHOhsRz
+         MsyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679926467;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ISvse2cGQJrRIUvXeCVbpkIoreFOaLucU+fudoPdjVE=;
+        b=djUs9R6nHSxMRTZwgKlbK8zJOkE63dLmHI+sCveC4GYqp9/z6/GxBwwnQsBtP/CmWU
+         Re21wxmo1KYZ3E78dtyDs0xh9VITK71ajrASntyV64M8Zfcc046a/98k6zZJkjHiVQmm
+         DrnU/98GX6Niw7FwpWif66IHvUsrwscQEN/JtPIwfxttL0VL5roVigGTPAOnwD3ioGrr
+         vNSSKZTqNCkQTfum4uhd33ZHhALlqakCoihN5Fl+DC6CIuWa0rReztW5YVQ1IbQl2Lt/
+         FrtJ6nCMW2+F1eE0ZidHZGL1qmic5XhgnyEjf0RAuZKYgKRg/Abn4oUs6ygw50TSeEVM
+         CEfw==
+X-Gm-Message-State: AAQBX9ek+bj1PgXjnCGxX6AIUjJXa/OcGVTs+GDQ2NH4kR8jwO/y7EVH
+        kZIoa8kr+Godkjl8qDQwXYJKcA==
+X-Google-Smtp-Source: AKy350YTNEvYnbJloziJHhVwZM3OMnt7za1N8an1nZ8/GgVRpvaIP7SloLgH5v9vsnfJqlL88OgEWw==
+X-Received: by 2002:a17:906:5646:b0:930:7d8f:15a4 with SMTP id v6-20020a170906564600b009307d8f15a4mr12181023ejr.53.1679926467631;
+        Mon, 27 Mar 2023 07:14:27 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:581e:789c:7616:5ee])
+        by smtp.gmail.com with ESMTPSA id ha25-20020a170906a89900b00934212e973esm11273339ejb.198.2023.03.27.07.14.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 07:14:27 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Cc:     sudeep.holla@arm.com, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
-        cristian.marussi@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH 2/2] firmware: arm_scmi: Add support for unidirectional mailbox channels
-Date:   Mon, 27 Mar 2023 15:03:42 +0100
-Message-Id: <20230327140342.222168-3-cristian.marussi@arm.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 0/5] mailbox/arm64: qcom: rework compatibles for fallback
+Date:   Mon, 27 Mar 2023 16:07:47 +0200
+Message-Id: <20230327140752.163009-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230327140342.222168-1-cristian.marussi@arm.com>
-References: <20230327140342.222168-1-cristian.marussi@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the SCMI transport layer to support mailbox controllers that expose
-communication channels that are unidirectional by nature.
+Hi,
 
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
- drivers/firmware/arm_scmi/mailbox.c | 95 +++++++++++++++++++++++++----
- 1 file changed, 84 insertions(+), 11 deletions(-)
+Changes since v3
+================
+1. Narrow the scope of the patches after feedback from Dmitry - only few
+   variants are made compatible.
 
-diff --git a/drivers/firmware/arm_scmi/mailbox.c b/drivers/firmware/arm_scmi/mailbox.c
-index 112c285deb97..1efa5e9392c4 100644
---- a/drivers/firmware/arm_scmi/mailbox.c
-+++ b/drivers/firmware/arm_scmi/mailbox.c
-@@ -19,13 +19,15 @@
-  * struct scmi_mailbox - Structure representing a SCMI mailbox transport
-  *
-  * @cl: Mailbox Client
-- * @chan: Transmit/Receive mailbox channel
-+ * @chan: Transmit/Receive mailbox uni/bi-directional channel
-+ * @chan_receiver: Optional Receiver mailbox unidirectional channel
-  * @cinfo: SCMI channel info
-  * @shmem: Transmit/Receive shared memory area
-  */
- struct scmi_mailbox {
- 	struct mbox_client cl;
- 	struct mbox_chan *chan;
-+	struct mbox_chan *chan_receiver;
- 	struct scmi_chan_info *cinfo;
- 	struct scmi_shared_mem __iomem *shmem;
- };
-@@ -48,30 +50,62 @@ static void rx_callback(struct mbox_client *cl, void *m)
- 
- static bool mailbox_chan_available(struct device_node *of_node, int idx)
- {
-+	int num_mb;
-+
-+	/*
-+	 * Just check if bidirrectional channels are involved, and check the
-+	 * index accordingly; proper full validation will be made later
-+	 * in mailbox_chan_setup().
-+	 */
-+	num_mb = of_count_phandle_with_args(of_node, "mboxes", "#mbox-cells");
-+	if (num_mb == 3 && idx == 1)
-+		idx = 2;
-+
- 	return !of_parse_phandle_with_args(of_node, "mboxes",
- 					   "#mbox-cells", idx, NULL);
- }
- 
--static int mailbox_chan_validate(struct device *cdev)
-+/**
-+ * mailbox_chan_validate  - Validate transport configuration and map channels
-+ *
-+ * @cdev: Reference to the underlying transport device carrying the
-+ *	  of_node descriptor to analyze.
-+ * @a2p_rx_chan: A reference to an optional unidirectional channel to use
-+ *		 for replies on the a2p channel. Set as zero if not present.
-+ * @p2a_chan: A reference to the optional p2a channel.
-+ *	      Set as zero if not present.
-+ *
-+ * At first, validate the transport configuration as described in terms of
-+ * 'mboxes' and 'shmem', then determin which mailbox channel indexes are
-+ * appropriate to be use in the current configuration.
-+ *
-+ * Return: 0 on Success or error
-+ */
-+static int mailbox_chan_validate(struct device *cdev,
-+				 int *a2p_rx_chan, int *p2a_chan)
- {
- 	int num_mb, num_sh, ret = 0;
- 	struct device_node *np = cdev->of_node;
- 
- 	num_mb = of_count_phandle_with_args(np, "mboxes", "#mbox-cells");
- 	num_sh = of_count_phandle_with_args(np, "shmem", NULL);
-+	dev_dbg(cdev, "Found %d mboxes and %d shmems !\n", num_mb, num_sh);
-+
- 	/* Bail out if mboxes and shmem descriptors are inconsistent */
--	if (num_mb <= 0 || num_sh > 2 || num_mb != num_sh) {
--		dev_warn(cdev, "Invalid channel descriptor for '%s'\n",
--			 of_node_full_name(np));
-+	if (num_mb <= 0 || num_sh <= 0 || num_sh > 2 || num_mb > 3 ||
-+	    (num_mb == 1 && num_sh != 1) || (num_mb == 3 && num_sh != 2)) {
-+		dev_warn(cdev,
-+			 "Invalid channel descriptor for '%s' - mbs:%d  shm:%d\n",
-+			 of_node_full_name(np), num_mb, num_sh);
- 		return -EINVAL;
- 	}
- 
-+	/* Bail out if provided shmem descriptors do not refer distinct areas  */
- 	if (num_sh > 1) {
- 		struct device_node *np_tx, *np_rx;
- 
- 		np_tx = of_parse_phandle(np, "shmem", 0);
- 		np_rx = of_parse_phandle(np, "shmem", 1);
--		/* SCMI Tx and Rx shared mem areas have to be distinct */
- 		if (!np_tx || !np_rx || np_tx == np_rx) {
- 			dev_warn(cdev, "Invalid shmem descriptor for '%s'\n",
- 				 of_node_full_name(np));
-@@ -82,6 +116,29 @@ static int mailbox_chan_validate(struct device *cdev)
- 		of_node_put(np_rx);
- 	}
- 
-+	/* Calculate channels IDs to use depending on mboxes/shmem layout */
-+	if (!ret) {
-+		switch (num_mb) {
-+		case 1:
-+			*a2p_rx_chan = 0;
-+			*p2a_chan = 0;
-+			break;
-+		case 2:
-+			if (num_sh == 2) {
-+				*a2p_rx_chan = 0;
-+				*p2a_chan = 1;
-+			} else {
-+				*a2p_rx_chan = 1;
-+				*p2a_chan = 0;
-+			}
-+			break;
-+		case 3:
-+			*a2p_rx_chan = 1;
-+			*p2a_chan = 2;
-+			break;
-+		}
-+	}
-+
- 	return ret;
- }
- 
-@@ -92,15 +149,18 @@ static int mailbox_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	struct device *cdev = cinfo->dev;
- 	struct scmi_mailbox *smbox;
- 	struct device_node *shmem;
--	int ret, idx = tx ? 0 : 1;
-+	int ret, a2p_rx_chan, p2a_chan, idx = tx ? 0 : 1;
- 	struct mbox_client *cl;
- 	resource_size_t size;
- 	struct resource res;
- 
--	ret = mailbox_chan_validate(cdev);
-+	ret = mailbox_chan_validate(cdev, &a2p_rx_chan, &p2a_chan);
- 	if (ret)
- 		return ret;
- 
-+	if (!tx && !p2a_chan)
-+		return -ENODEV;
-+
- 	smbox = devm_kzalloc(dev, sizeof(*smbox), GFP_KERNEL);
- 	if (!smbox)
- 		return -ENOMEM;
-@@ -130,15 +190,26 @@ static int mailbox_chan_setup(struct scmi_chan_info *cinfo, struct device *dev,
- 	cl->tx_block = false;
- 	cl->knows_txdone = tx;
- 
--	smbox->chan = mbox_request_channel(cl, tx ? 0 : 1);
-+	smbox->chan = mbox_request_channel(cl, tx ? 0 : p2a_chan);
- 	if (IS_ERR(smbox->chan)) {
- 		ret = PTR_ERR(smbox->chan);
- 		if (ret != -EPROBE_DEFER)
--			dev_err(cdev, "failed to request SCMI %s mailbox\n",
--				tx ? "Tx" : "Rx");
-+			dev_err(cdev,
-+				"failed to request SCMI %s mailbox\n", desc);
- 		return ret;
- 	}
- 
-+	/* Additional unidirectional channel for TX if needed */
-+	if (tx && a2p_rx_chan) {
-+		smbox->chan_receiver = mbox_request_channel(cl, a2p_rx_chan);
-+		if (IS_ERR(smbox->chan_receiver)) {
-+			ret = PTR_ERR(smbox->chan_receiver);
-+			if (ret != -EPROBE_DEFER)
-+				dev_err(cdev, "failed to request SCMI Tx Receiver mailbox\n");
-+			return ret;
-+		}
-+	}
-+
- 	cinfo->transport_info = smbox;
- 	smbox->cinfo = cinfo;
- 
-@@ -152,8 +223,10 @@ static int mailbox_chan_free(int id, void *p, void *data)
- 
- 	if (smbox && !IS_ERR(smbox->chan)) {
- 		mbox_free_channel(smbox->chan);
-+		mbox_free_channel(smbox->chan_receiver);
- 		cinfo->transport_info = NULL;
- 		smbox->chan = NULL;
-+		smbox->chan_receiver = NULL;
- 		smbox->cinfo = NULL;
- 	}
- 
+Changes since v2
+================
+1. Split fixes to separate patchset which is now dependency:
+   https://lore.kernel.org/linux-arm-msm/20230322173559.809805-1-krzysztof.kozlowski@linaro.org/T/#t
+2. Add Ack
+3. No other changes, as discussion with Dmitry did not reach conclusion on incompatibility.
+
+Changes since v1
+================
+1. Rebase
+2. Make msm8994 fallback for several variants, not msm8953, because the latter
+   actually might take some clocks.
+3. Two new patches for SDX55.
+4. Minor corrections in bindings style.
+v1: https://lore.kernel.org/all/20230202161856.385825-1-krzysztof.kozlowski@linaro.org/
+
+Description
+===========
+
+If entire approach is accepted (and correct), there are no dependencies and
+patches can be picked independently.  Although the best in the same cycle, so
+there will be no new `dtbs_check` warnings.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (5):
+  dt-bindings: mailbox: qcom,apcs-kpss-global: use fallbacks for few
+    variants
+  mailbox: qcom-apcs-ipc: do not grow the of_device_id
+  arm64: dts: qcom: ipq8074: add compatible fallback to mailbox
+  arm64: dts: qcom: sc7180: add compatible fallback to mailbox
+  arm64: dts: qcom: sm8150: add compatible fallback to mailbox
+
+ .../mailbox/qcom,apcs-kpss-global.yaml        | 31 ++++++++++---------
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi         |  3 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  3 +-
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c       | 11 ++++---
+ 5 files changed, 28 insertions(+), 23 deletions(-)
+
 -- 
 2.34.1
 
