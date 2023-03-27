@@ -2,175 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A8596CA684
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC696CA68E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232141AbjC0Nyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 09:54:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51320 "EHLO
+        id S232440AbjC0Nzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 09:55:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbjC0Nyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:54:31 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5673C25;
-        Mon, 27 Mar 2023 06:54:30 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32RDLVad013620;
-        Mon, 27 Mar 2023 13:54:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=vErAbA+67np0DJjRjpGBn7ZfxgBTtrb9gzfiMtW068A=;
- b=DKm8ufx20TaXw7+W3AalnHf91O4nx8BmfaHWtVzmhb1WUKYMADTpVrs9LQhKwTTa+IMy
- fqtW6eX61ThmBtcjlFwIP++hMed6pelgNK/10y2C2ms+Md2xDY2qDutX2OaQ5zYRQXXk
- W5qW9YVlyGpuSr+cALC3/KRYOOeF60Uv3+y1xLKyxMj2FsOaCK/qEsEMJOuFNKnFXR6w
- 70zbCbC4At/BFyYIGC7wbBfj+Mn0B7cadfP/KkhfYkZaLg4FMtG+dNFAwK/xDtb7feNx
- 9/ytZsAcx8JwjJbjMC8S0bpC3Nt/ylOtWYAAof3D06SG0Ii9f01Hh8Cs3PmSJ+od/ZCC ng== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pkby4825k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 13:54:10 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32RDs9p2004370
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 13:54:09 GMT
-Received: from [10.201.3.104] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Mar
- 2023 06:54:05 -0700
-Message-ID: <745e6bd6-96a5-ceab-1f0c-31440d34e4c8@quicinc.com>
-Date:   Mon, 27 Mar 2023 19:24:02 +0530
+        with ESMTP id S232439AbjC0Nzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:55:52 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35EA3C29
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 06:55:50 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id h17so8881719wrt.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 06:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679925349;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9pc99uwIQzjl9n1D0bXEH2WGeSt6mESdgE+0lhZDWFo=;
+        b=o1H4g6PXxDd7WQ1XE15gbdkHOdw1Opv3CGX7K5pdr44WKxqEkFQOoRVdrWFtTw7wzV
+         KsNFJ/YLmK7BHl3h/8ZrZ1R4PEDJlYneF4dJAfrI0BxRgvoT6+wWbkNS56dy8IQijv+O
+         D7J5EJH/ZSU0scUw0SFgUEoPpihqTx2hXUonxrsvemktPLwwF6dORF6XbP2d1KbNsTPb
+         7bpIWWWzwt8+hqT1jaohTOWPXvh51B9UAHx0+paibKUlA+6kwJTcKM99l95nwANnh4i2
+         QR1n4KSazKjg1ZXnQJpI2iVySlYrxMbs86f9tuHtr76VGCjsz7PBu3Fkh6imMWR1Fd8i
+         OOdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679925349;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9pc99uwIQzjl9n1D0bXEH2WGeSt6mESdgE+0lhZDWFo=;
+        b=i97k3rIpTGclz0oPcezO+YqOI40aCG16hCxYv5cZiXeORx2C2sFlUniPdT5RbG0zrV
+         tdBS6BDD8xu78qqJcFltdhKsKTuOyZSCp87PeQvGXTeAuPiFg2iKjyxwgx1SGhQl+ns2
+         y+H+s1M6xn1uhaxoOjwg6mUCtsJmubi35fPrp3yYsyU2rbw4JP+VpVQA2WSUBVTtP33e
+         NeO478wXE+lYYMrgFxywI4c+0vfZ47FEU1V2IAnbGTYCdX74ut+Vlxhn0EA2FfN5Rgbk
+         6zfKle8JvUiyttlkJfELd6ASkfWlmQJThMq6oXd9aOTNfRtR2JZL6evbTa3MYNo6ca8y
+         8xxw==
+X-Gm-Message-State: AAQBX9cwxj3molA8hX5wG8wmrAPlLV4JMiMd32bTCI17nJ33aWpsT47W
+        lHiNcvYm7jEfdrBzI/7H+1VAlQ==
+X-Google-Smtp-Source: AKy350bALDAORP5R5D5dV3jfbUXqv8xWVCw64igC3DBEjdomPNbFYGczsMKz4eo0EbdTXHlQeXe/2g==
+X-Received: by 2002:a5d:604e:0:b0:2c7:851:c0bf with SMTP id j14-20020a5d604e000000b002c70851c0bfmr9522521wrt.0.1679925349098;
+        Mon, 27 Mar 2023 06:55:49 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ef3b:2a41:93d:75f2? ([2a01:e0a:982:cbb0:ef3b:2a41:93d:75f2])
+        by smtp.gmail.com with ESMTPSA id m23-20020a056000181700b002c5694aef92sm25072772wrh.21.2023.03.27.06.55.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 06:55:48 -0700 (PDT)
+Message-ID: <01bac126-d057-d189-ca19-37db31057e99@linaro.org>
+Date:   Mon, 27 Mar 2023 15:55:46 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/5] mtd: rawnand: qcom: Add initial support for qspi nand
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v11 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
 Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-CC:     Boris Brezillon <boris.brezillon@collabora.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-        <robh+dt@kernel.org>, <vigneshr@ti.com>, <richard@nod.at>,
-        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <quic_srichara@quicinc.com>, <qpic_varada@quicinc.com>,
-        <quic_sjaganat@quicinc.com>
-References: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
- <1602307902-16761-3-git-send-email-mdalam@codeaurora.org>
- <20201029100751.713e27df@collabora.com>
- <b70ddb40-a1f1-f967-6b7b-057a39b0bcc2@quicinc.com>
- <20230306153851.0dcdda27@xps-13>
-From:   Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <20230306153851.0dcdda27@xps-13>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BeaiQvF3fssM7SoEvGEbcFicwmdk2VcU
-X-Proofpoint-GUID: BeaiQvF3fssM7SoEvGEbcFicwmdk2VcU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-27_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
- impostorscore=0 phishscore=0 mlxlogscore=999 mlxscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2303270109
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
+ <20230321193014.26349-4-ddrokosov@sberdevices.ru>
+ <1jmt3yo5r0.fsf@starbuckisacylon.baylibre.com>
+ <20230327105115.ury3w4xpzhcpnqjg@CAB-WSD-L081021>
+ <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
+ <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
+ <20230327131927.k7uswfn6i3jqjrzv@CAB-WSD-L081021>
+Organization: Linaro Developer Services
+In-Reply-To: <20230327131927.k7uswfn6i3jqjrzv@CAB-WSD-L081021>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/6/2023 8:08 PM, Miquel Raynal wrote:
-> Hello,
-> 
-> quic_mdalam@quicinc.com wrote on Mon, 6 Mar 2023 19:45:58 +0530:
-> 
->> On 10/29/2020 2:37 PM, Boris Brezillon wrote:
->>> Hello,
+On 27/03/2023 15:19, Dmitry Rokosov wrote:
+> On Mon, Mar 27, 2023 at 02:03:25PM +0200, neil.armstrong@linaro.org wrote:
+>> On 27/03/2023 13:39, Jerome Brunet wrote:
 >>>
->>> On Sat, 10 Oct 2020 11:01:39 +0530
->>> Md Sadre Alam <mdalam@codeaurora.org> wrote:
->>>   
->>>> This change will add initial support for qspi (serial nand).
->>>>
->>>> QPIC Version v.2.0 onwards supports serial nand as well so this
->>>> change will initialize all required register to enable qspi (serial
->>>> nand).
->>>>
->>>> This change is supporting very basic functionality of qspi nand flash.
->>>>
->>>> 1. Reset device (Reset QSPI NAND device).
->>>>
->>>> 2. Device detection (Read id QSPI NAND device).
->>> Unfortunately, that's not going to work in the long term. You're
->>> basically hacking the raw NAND framework to make SPI NANDs fit. I do
->>> understand the rationale behind this decision (re-using the code for
->>> ECC and probably other things), but that's not going to work. So I'd
->>> recommend doing the following instead:
+>>> On Mon 27 Mar 2023 at 13:51, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 >>>
->>> 1/ implement a SPI-mem controller driver
->>> 2/ implement an ECC engine driver so the ECC logic can be shared
->>>      between the SPI controller and raw NAND controller drivers
->>> 3/ convert the raw NAND driver to the exec_op() interface (none of
->>>      this hack would have been possible if the driver was using the new
->>>      API)
+>>>> On Mon, Mar 27, 2023 at 11:51:21AM +0200, Jerome Brunet wrote:
+>>>>>
+>>>>> On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+>>>>>
+>>>>>> Add the documentation for Amlogic A1 PLL and Amlogic A1 Peripherals
+>>>>>> clock drivers.
+>>>>>> Introduce Amlogic A1 PLL and Amlogic A1 Peripherals device tree
+>>>>>> bindings and include them to MAINTAINERS.
+>>>>>>
+>>>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>>>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>>>>>> ---
+>>>>>>    .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
+>>>>>>    .../bindings/clock/amlogic,a1-pll-clkc.yaml   |  59 +++++++++
+>>>>>>    MAINTAINERS                                   |   1 +
+>>>>>>    include/dt-bindings/clock/amlogic,a1-clkc.h   | 113 ++++++++++++++++++
+>>>>>>    .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |  21 ++++
+>>>>>>    5 files changed, 267 insertions(+)
+>>>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>>>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>>>>
+>>>>> There is two drivers (and 2 independent patches). There should be 2
+>>>>> bindings patches as well.
+>>>>>
+>>>>
+>>>> Before, in previous versions I had two versions, but it wasn't bisectable
+>>>> approach.
 >>>
->>> Regards,
+>>> You are confusing bisectable and Rob's robot. Splitting patches is more
+>>> that likely to help bisect (and patches backport) - not the other way around.
 >>>
->>> Boris
->>>   
->>      Sorry for late reply, again started working on this feature support.  The QPIC v2 on wards there is serial nand support got added , its not a standard SPI controller
+>>>> a1-clkc schema depends on a1-pll-clkc headers and vice versa.
+>>>> It means dt schemas checkers will show us failure if we split them into two
+>>>> patchsets.
+>>>
+>>> Only because you are patches are not upstream yet ...
+>>>
+>>>> I know, that we can use raw digits instead of CLKID names, but IMO it doesn't
+>>>> look like production schema and it requires one more patchset above the
+>>>> series with proper CLKID definitons usage and proper header including.
+>>>>
+>>>> BTW, there is an example of Rob's test bot failure found in the previous
+>>>> v10 patch series due to chicken or the egg problem.
+>>>> https://lore.kernel.org/all/167769997208.7087.5344356236212731922.robh@kernel.org/
+>>>>
+>>>> Please advise what's the best practice to resolve that..
+>>>
+>>> Don't use the header in your example would solve the problem and
+>>> still be correct DT wise.
+>>>
+>>> The examples are just examples, they are not required to actually
+>>> matches a real HW, as far as I know.
 >>
->>      its QPIC controller having support for serial nand. All SPI related configuration done by QPIC hardware and its not exposed as SPI bus to the external world. Only based on
+>> Exact, you can use fake lables instead of defined:
 >>
->>      QPIC_SPI_CFG = 1, serial functionality will get selected. So that no need to implement as SPI-mem controller driver, since its not a SPI controller.
+>> <&clkc_pll CLKID_FCLK_DIV2>,
 >>
->>     Please check the below diagram for top view of QPIC controller.
+>> =>
+>> remove "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
+>>
+>> <&clkc_pll_fclk_div2>,
+>>
+>> is perfectly ok and will permit have 2 separate patches.
+>>
+>> The dependency is only if you have a common yaml file for
+>> both bindings files, but this is not the case here.
 > 
-> One of the hard things in the Linux kernel is to make devices fit
-> frameworks. This feature does not fit the raw NAND framework. It does
-> not follow any of the conventions taken there. It is not gonna be
-> accepted there. You need to expose spi-mem functionalities, even if the
-> spi-proper features are not available. I believe your situation still
-> fits the spi-mem abstraction.
+> Simple removal of "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
+> header doesn't work, dt_binding_check make rule is failed:
+
+I never wrote you to only remove the include, adding fake labels phandles was the logical next step.
+
+Neil
+
 > 
-> Thanks,
-> Miquèl
+> Error: Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:28.37-38 syntax error
+> FATAL ERROR: Unable to parse input tree
+> 
+> It happens, because 'dt_binding_check' generates simple dts example and
+> tries to compile it:
+> 
+> cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
+> ===
+> 
+> /dts-v1/;
+> /plugin/; // silence any missing phandle references
+> 
+> 
+> /{
+>      compatible = "foo";
+>      model = "foo";
+>      #address-cells = <1>;
+>      #size-cells = <1>;
+> 
+> 
+> 
+>      example-0 {
+>          #address-cells = <1>;
+>          #size-cells = <1>;
+> 
+>          
+> 
+>          apb {
+>              #address-cells = <2>;
+>              #size-cells = <2>;
+>          
+>              clock-controller@800 {
+>                  compatible = "amlogic,a1-clkc";
+>                  reg = <0 0x800 0 0x104>;
+>                  #clock-cells = <1>;
+>                  clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+>                           <&clkc_pll CLKID_FCLK_DIV3>,
+>                           <&clkc_pll CLKID_FCLK_DIV5>,
+>                           <&clkc_pll CLKID_FCLK_DIV7>,
+>                           <&clkc_pll CLKID_HIFI_PLL>,
+>                           <&xtal>;
+>                  clock-names = "fclk_div2", "fclk_div3",
+>                                "fclk_div5", "fclk_div7",
+>                                "hifi_pll", "xtal";
+>              };
+>          };
+> 
+>      };
+> };
+> ===
+> 
+> As you can see, header is required.
+> 
+> But looks like, dt binding checker is happy with the fake references hack :)
+> Below there is generated example dts:
+> 
+> cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
+> ===
+> 
+> /dts-v1/;
+> /plugin/; // silence any missing phandle references
+> 
+> 
+> /{
+>      compatible = "foo";
+>      model = "foo";
+>      #address-cells = <1>;
+>      #size-cells = <1>;
+> 
+> 
+> 
+>      example-0 {
+>          #address-cells = <1>;
+>          #size-cells = <1>;
+> 
+>          
+> 
+>          apb {
+>              #address-cells = <2>;
+>              #size-cells = <2>;
+>          
+>              clock-controller@800 {
+>                  compatible = "amlogic,a1-clkc";
+>                  reg = <0 0x800 0 0x104>;
+>                  #clock-cells = <1>;
+>                  clocks = <&clkc_pll_fclk_div2>,
+>                           <&clkc_pll_fclk_div3>,
+>                           <&clkc_pll_fclk_div5>,
+>                           <&clkc_pll_fclk_div7>,
+>                           <&clkc_pll_hifi_pll>,
+>                           <&xtal>;
+>                  clock-names = "fclk_div2", "fclk_div3",
+>                                "fclk_div5", "fclk_div7",
+>                                "hifi_pll", "xtal";
+>              };
+>          };
+> 
+>      };
+> };
+> ===
+> 
+> Yep, we are able to cheat dt checkers, but we don't help dt developers
+> with such example.
+> May be, it's better to prepare two patches in such hierarchy:
+> 
+> 1) A1 PLL clkc bindings with fake references without clkc headers
+> 2) A1 clkc bindings with real CLKID bindings + A1 PLL clkc bindings fix
+> with real CLKID A1 clkc bindings + header.
+> 
+> The such approach resolves DT checkers failures and split DT bindings
+> into two patchsets.
+> 
+> [...]
+> 
 
-
-I have started writing the driver code for SPI NAND. Please check the below design,
-is this fine as per Boris suggestion.
-
-
-           |------------------------|                      |------------------------------|                        |---------------------------------|
-           |qcom spi nand driver    |--------------------->|common ECC engine driver      |<-----------------------|qcom raw nand driver             |
-           |                        |                      |                              |                        |                                 |
-           |                        |                      |drivers/mtd/nand/ecc-qcom.c   |                        |drivers/mtd/nand/raw/qcom_nand.c |
-           |                        |                      |                              |                        |                                 |
-           |drivers/spi/spi-qpic.c  |                      |------------------------------|                        |                                 |
-           |                        |                      |common API file:              |                        |                                 |
-           |                        |                      |common API: reset, read id,   |                        |                                 |
-           |                        |--------------------->|erase, read page, write page, |<-----------------------|                                 |
-           |------------------------|                      |bad block check etc.          |                        |                                 |
-                                                           |                              |                        |---------------------------------|
-                                                           |drivers/mtd/nand/raw/qpic_comm|
-                                                           |    on.c                      |
-                                                           |------------------------------|
-
-
-Here ECC engine driver as separate file under (drivers/mtd/nand/ecc-qcom.c) and all
-common APIs like reset, read id, erase, write page, read page, check block bad etc.
-as separate file under drivers/mtd/nand/raw/qpic_common.c.APIs under ECC engine drivers
-and qpic_common.c will be exported and used by spi-qpic.c driver (Serial NAND) and qcom_nand.c
-(raw nand driver).
-
-Thanks,
-Alam.
