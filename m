@@ -2,69 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BECF76C9E82
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E3416C9E7E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233313AbjC0Isx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 04:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53638 "EHLO
+        id S232976AbjC0Isu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 04:48:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233197AbjC0Isa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:48:30 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C7D366EBD;
-        Mon, 27 Mar 2023 01:45:10 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxJDTrViFkukYSAA--.28393S3;
-        Mon, 27 Mar 2023 16:42:19 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxPL7lViFkPQsOAA--.10208S3;
-        Mon, 27 Mar 2023 16:42:15 +0800 (CST)
-Subject: Re: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson spi
- controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230324063317.14664-1-zhuyinbo@loongson.cn>
- <20230324063317.14664-3-zhuyinbo@loongson.cn>
- <0fff1e01-678b-a26a-084b-9aa30a0deea5@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <2a24cce4-3211-3440-cc42-55499ded275e@loongson.cn>
-Date:   Mon, 27 Mar 2023 16:42:13 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S233316AbjC0Is2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:48:28 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FAEBA278
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:45:10 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id br6so10272749lfb.11
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:45:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679906671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KLrKAr+c7u8+WkfYnvdsqKkhxaW/xmaQn97MpcR7do8=;
+        b=rdogzM223NHg8iJx7iIN2LHYZn7tUjiFtUG9eoMoJTXpUK32coL01Ru11TIQbmWWOP
+         VKCBJBjnt0SQEZ3jeNQWQSALELd1RJCWRVgVn5znTCUioLfpT5I0pAyE8nVsXnrhvKmr
+         XXgxpsb4MRhJh5W7tj4qpUxPjzCwZVvDNePFeope9K0zHDiXNlVpl737EvCassslHUg/
+         4W369SCxed9tNg11GGBDRgExuMDsWuUwhXXkhzt5n/M81kMTIY/z7xfX0UClA/VP5+Nc
+         /Ju/SXpvGo/WX1n7Lqu9BfXvCK8EGnvBX5HwtyTr5/ygFq0ofey+MgrlvL3bDLKUud6y
+         d8Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679906671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KLrKAr+c7u8+WkfYnvdsqKkhxaW/xmaQn97MpcR7do8=;
+        b=i4PZlEgMzzAVFYZvBlDhkeFIIzuKS3tsmLm4aRTl2rHmD+JvRZjfw3DBAR9OOtrjGc
+         jLzn9E+H5HsRyVc5jWdpDwO79EOkBO6UUYIu+911UmYwIV9NOtWYUR8LV/UUDvCxBPs6
+         Re8vV0nE4zFczQRFPw9v+CI6ggRQothys01BvlnSKK/72FHbhNrcu7ucbycpfslZGcIY
+         a8VfdbZUcMM6J+k1uIjcQIgCnLJmMnsKM3wjoQicdreVAAaVjkTWfuqvO/lqLm+FVzV6
+         kPjGV04xzEiQDY9GqnjEiNs9pzccvXcqjNqWOEbNBaBd7+JaW6LgsHn9zrDgjj5nshXB
+         r3+w==
+X-Gm-Message-State: AAQBX9cwfNDJ+gEOeKbAx2GU8vYLxAsL0+uEL6XIXrus/jav51x0zTN2
+        SnFGlRa9rzFHnR4oUA/APhW0KA==
+X-Google-Smtp-Source: AKy350ZGT9cY4UQC0D9IPOa/NyJ/hHznWUNEoPQIk9+IaHao2iitH0e524xsgtLK7ODG9AmvF+W5MA==
+X-Received: by 2002:ac2:46f9:0:b0:4e9:d719:3603 with SMTP id q25-20020ac246f9000000b004e9d7193603mr3463966lfo.55.1679906671138;
+        Mon, 27 Mar 2023 01:44:31 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id r10-20020a19ac4a000000b004b5979f9ba8sm4591731lfc.210.2023.03.27.01.44.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 01:44:30 -0700 (PDT)
+Message-ID: <a27e7e67-a3e8-01ec-1f0d-717d705af117@linaro.org>
+Date:   Mon, 27 Mar 2023 10:44:29 +0200
 MIME-Version: 1.0
-In-Reply-To: <0fff1e01-678b-a26a-084b-9aa30a0deea5@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/2] remoteproc: qcom: pas: add SDM845 SLPI resource
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxPL7lViFkPQsOAA--.10208S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoWruw1kuw1xtF1xJF18CryUZFb_yoWkZrXEkr
-        4xuryxur1UJFsrJayYv34xZry2vFW8Ww10qF1DtFW5X39Iqry3Aw1DZryxW3W5Ar48ZFs8
-        Cr93Jw10kry5ujkaLaAFLSUrUUUU1b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
-        17CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
-        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
-        0_JF0_Jw1l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
-        c4AY6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
-        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY
-        6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
-        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8pBT5UUUUU==
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Dylan Van Assche <me@dylanvanassche.be>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230325132117.19733-1-me@dylanvanassche.be>
+ <20230325132117.19733-3-me@dylanvanassche.be>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230325132117.19733-3-me@dylanvanassche.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,32 +84,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-在 2023/3/24 下午7:31, Krzysztof Kozlowski 写道:
-> On 24/03/2023 07:33, Yinbo Zhu wrote:
->> This bus driver supports the Loongson spi hardware controller in the
->> Loongson platforms and supports to use DTS and PCI framework to
->> register spi device resources.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   MAINTAINERS                     |   4 +
->>   drivers/spi/Kconfig             |  31 ++++
->>   drivers/spi/Makefile            |   3 +
->>   drivers/spi/spi-loongson-core.c | 302 ++++++++++++++++++++++++++++++++
->>   drivers/spi/spi-loongson-pci.c  |  89 ++++++++++
->>   drivers/spi/spi-loongson-plat.c |  66 +++++++
->>   drivers/spi/spi-loongson.h      |  41 +++++
->>   7 files changed, 536 insertions(+)
->>   create mode 100644 drivers/spi/spi-loongson-core.c
->>   create mode 100644 drivers/spi/spi-loongson-pci.c
->>   create mode 100644 drivers/spi/spi-loongson-plat.c
->>   create mode 100644 drivers/spi/spi-loongson.h
+On 25.03.2023 14:21, Dylan Van Assche wrote:
+> Add SLPI resources for the SDM845 Qualcomm SoC to the Qualcomm
+> remoteproc q6v5_pas driver to define the default firmware name
+> and GLink edge name.
 > 
-> Your patches still have build warnings. Are these false postives or you
-> forgot to build it? Anyway, please respond to the report.
+> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+> ---
+>  drivers/remoteproc/qcom_q6v5_pas.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> Best regards,
-> Krzysztof
-thanks your reminder, I have already provided feedback about compile issue.
-> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index c99a20542685..d82b6f4bced4 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> @@ -1028,6 +1028,22 @@ static const struct adsp_data slpi_resource_init = {
+>  		.ssctl_id = 0x16,
+>  };
+>  
+> +static const struct adsp_data sdm845_slpi_resource = {
+> +		.crash_reason_smem = 424,
+> +		.firmware_name = "slpi.mdt",
+> +		.pas_id = 12,
+> +		.auto_boot = true,
+> +		.proxy_pd_names = (char*[]){
+> +			"lcx",
+> +			"lmx",
+> +			NULL
+> +		},
+> +		.load_state = "slpi",
+> +		.ssr_name = "dsps",
+> +		.sysmon_name = "slpi",
+> +		.ssctl_id = 0x16,
+Isn't this identical to sm8150_slpi_resource?
 
+Konrad
+> +};
+> +
+>  static const struct adsp_data sm8150_slpi_resource = {
+>  		.crash_reason_smem = 424,
+>  		.firmware_name = "slpi.mdt",
+> @@ -1201,6 +1217,7 @@ static const struct of_device_id adsp_of_match[] = {
+>  	{ .compatible = "qcom,sdm660-adsp-pas", .data = &adsp_resource_init},
+>  	{ .compatible = "qcom,sdm845-adsp-pas", .data = &sdm845_adsp_resource_init},
+>  	{ .compatible = "qcom,sdm845-cdsp-pas", .data = &sdm845_cdsp_resource_init},
+> +	{ .compatible = "qcom,sdm845-slpi-pas", .data = &sdm845_slpi_resource},
+>  	{ .compatible = "qcom,sdx55-mpss-pas", .data = &sdx55_mpss_resource},
+>  	{ .compatible = "qcom,sm6115-adsp-pas", .data = &adsp_resource_init},
+>  	{ .compatible = "qcom,sm6115-cdsp-pas", .data = &cdsp_resource_init},
