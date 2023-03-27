@@ -2,103 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8376CACA2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA3366CACC5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232475AbjC0SFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 14:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44020 "EHLO
+        id S230300AbjC0SMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 14:12:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbjC0SFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:05:30 -0400
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0866730E7;
-        Mon, 27 Mar 2023 11:05:28 -0700 (PDT)
-Received: from [192.168.1.103] (31.173.81.236) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Mon, 27 Mar
- 2023 21:05:25 +0300
-Subject: Re: [PATCH] dt-bindings: ata: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>
-References: <20230327170053.4100949-1-robh@kernel.org>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <24c8055b-8a1c-4556-e830-3b51b8d23f49@omp.ru>
-Date:   Mon, 27 Mar 2023 21:05:25 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        with ESMTP id S229477AbjC0SMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:12:31 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AF495;
+        Mon, 27 Mar 2023 11:12:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679940750; x=1711476750;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=y6w2xJ/oqEByFFIHKtzvwFaQsZynVoW8risyl+Pyoy4=;
+  b=d7kOAQmP5fPC+x6egDBRB65MNBkU6PyQzovvVZBmYF2fK0eLBt2r4N+a
+   Dt2taGwCtcYzNeUQ8rK3ZmDZU3Lq8Y9Vz65rx4/031GI4iPqAUtnDzTPA
+   k39yZpGN+xeUT3oUihfVfsE1IDuR2YHqiMz6kd3SVrQdpTYpE8xHduhH9
+   TJH4pactzS+SuKvJaALadrO3wB/DkUTyzrR0IKu3seEeCuejY9fs2+V3f
+   B5TYvP//IRYeNxdBP9GmNFGWoIi2Y8OoHTXirZr6jw1ObtZgoXKMDSmdA
+   hPSE6g1ycCbfyFCc6B7aOIlkci7/NP5Ks9ivMl/58jb4HxvF9BGVuN8Vx
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="342753090"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; 
+   d="scan'208";a="342753090"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2023 11:12:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="713939744"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; 
+   d="scan'208";a="713939744"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 27 Mar 2023 11:12:26 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pgrKP-000HuV-27;
+        Mon, 27 Mar 2023 18:12:21 +0000
+Date:   Tue, 28 Mar 2023 02:11:57 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Maximilian Weigand <mweigand@mweigand.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Maximilian Weigand <mweigand@mweigand.net>,
+        Alistair Francis <alistair@alistair23.me>
+Subject: Re: [PATCH 6/6] Input: cyttsp5: implement proper sleep and wakeup
+ procedures
+Message-ID: <202303280119.UlD7s4Rk-lkp@intel.com>
+References: <20230323135205.1160879-7-mweigand@mweigand.net>
 MIME-Version: 1.0
-In-Reply-To: <20230327170053.4100949-1-robh@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [31.173.81.236]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 03/27/2023 17:45:10
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 0
-X-KSE-AntiSpam-Info: Lua profiles 176318 [Mar 27 2023]
-X-KSE-AntiSpam-Info: Version: 5.9.59.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 507 507 08d345461d9bcca7095738422a5279ab257bb65a
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_uf_ne_domains}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;devicetree.org:7.1.1
-X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.81.236
-X-KSE-AntiSpam-Info: Rate: 0
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 03/27/2023 17:47:00
-X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 3/27/2023 4:08:00 PM
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230323135205.1160879-7-mweigand@mweigand.net>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/27/23 8:00 PM, Rob Herring wrote:
+Hi Maximilian,
 
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-[...]
+Thank you for the patch! Perhaps something to improve:
 
-> diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> index c4e4a9eab658..fe0909554790 100644
-> --- a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> +++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/ata/renesas,rcar-sata.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/ata/renesas,rcar-sata.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Renesas R-Car Serial-ATA Interface
->  
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on dtor-input/for-linus linus/master v6.3-rc4 next-20230327]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Reviewed-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+url:    https://github.com/intel-lab-lkp/linux/commits/Maximilian-Weigand/Input-cyttsp5-fix-array-length/20230323-215957
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20230323135205.1160879-7-mweigand%40mweigand.net
+patch subject: [PATCH 6/6] Input: cyttsp5: implement proper sleep and wakeup procedures
+config: i386-randconfig-a011-20230327 (https://download.01.org/0day-ci/archive/20230328/202303280119.UlD7s4Rk-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/9988f8132aa9a4e8c9f0eb3093b06a9f02d90ec9
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Maximilian-Weigand/Input-cyttsp5-fix-array-length/20230323-215957
+        git checkout 9988f8132aa9a4e8c9f0eb3093b06a9f02d90ec9
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/input/touchscreen/
 
-MBR, Sergey
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303280119.UlD7s4Rk-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/input/touchscreen/cyttsp5.c:581:6: warning: unused variable 'crc' [-Wunused-variable]
+           u16 crc;
+               ^
+   drivers/input/touchscreen/cyttsp5.c:620:6: warning: unused variable 'crc' [-Wunused-variable]
+           u16 crc;
+               ^
+   drivers/input/touchscreen/cyttsp5.c:700:5: warning: unused variable 'cmd' [-Wunused-variable]
+           u8 cmd[2];
+              ^
+>> drivers/input/touchscreen/cyttsp5.c:1004:6: warning: unused variable 'error' [-Wunused-variable]
+           int error;
+               ^
+>> drivers/input/touchscreen/cyttsp5.c:1003:21: warning: unused variable 'client' [-Wunused-variable]
+           struct i2c_client *client = to_i2c_client(dev);
+                              ^
+   5 warnings generated.
+
+
+vim +/crc +581 drivers/input/touchscreen/cyttsp5.c
+
+   576	
+   577	static int cyttsp5_enter_sleep(struct cyttsp5 *ts)
+   578	{
+   579		int rc;
+   580		u8 cmd[2];
+ > 581		u16 crc;
+   582	
+   583		memset(cmd, 0, sizeof(cmd));
+   584	
+   585		SET_CMD_REPORT_TYPE(cmd[0], 0);
+   586		SET_CMD_REPORT_ID(cmd[0], HID_POWER_SLEEP);
+   587		SET_CMD_OPCODE(cmd[1], HID_CMD_SET_POWER);
+   588	
+   589		rc = cyttsp5_write(ts, HID_COMMAND_REG, cmd, 2);
+   590		if (rc) {
+   591			dev_err(ts->dev, "Failed to write command %d", rc);
+   592			return rc;
+   593		}
+   594	
+   595		rc = wait_for_completion_interruptible_timeout(&ts->cmd_command_done,
+   596					msecs_to_jiffies(CY_HID_SET_POWER_TIMEOUT));
+   597		if (rc <= 0) {
+   598			dev_err(ts->dev, "HID output cmd execution timed out\n");
+   599			rc = -ETIMEDOUT;
+   600			return rc;
+   601		}
+   602	
+   603		/* validate */
+   604		if ((ts->response_buf[2] != HID_RESPONSE_REPORT_ID)
+   605				|| ((ts->response_buf[3] & 0x3) != HID_POWER_SLEEP)
+   606				|| ((ts->response_buf[4] & 0xF) != HID_CMD_SET_POWER)) {
+   607			rc = -EINVAL;
+   608			dev_err(ts->dev, "Validation of the sleep response failed\n");
+   609			return rc;
+   610		}
+   611	
+   612		return 0;
+   613	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
