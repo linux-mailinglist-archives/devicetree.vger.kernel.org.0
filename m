@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E48A6CB05C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 23:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0B56CB06D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 23:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbjC0VFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 17:05:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57302 "EHLO
+        id S231871AbjC0VOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 17:14:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232211AbjC0VFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 17:05:00 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3F530F6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 14:04:41 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id ja10so9706208plb.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 14:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679951072;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=b3BlSIi0ORzZ5YgJoiJ2zZR40sarw+gdRjnKYSAtweI=;
-        b=XVYLZAn82SNr8CHuqtmYkJkZke6Dwb9mmza6Tr6duyH2uLzwFpsGEuLJlDCtwLBXeM
-         x4PC/Mn0BYOjv/ucNuYuqrQ+ALj9Kk5QnKKlYKeLQkFSjyW0gNE+CHsaY6Fu5qsGsEY3
-         7sKht3oXlqDQGZoEfa0KPUbVpsIWayJfA0314uNadYqL7zK4B/ICYj+rRom7DohcVLAt
-         3Kqhjc23jPUEKaW0NXYCGLrs533jGLTo2xuYyw4+eIgy8kL5o//6nSL1k1IYq0zE/ppK
-         DelojTwVDNIRSYtuH/5P43ctd4w5cm/yqW5FTDK3t0dJn1gq/JXN8FSrhNrrfj5P2n8V
-         ih4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679951072;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b3BlSIi0ORzZ5YgJoiJ2zZR40sarw+gdRjnKYSAtweI=;
-        b=jMZrYnPuqo4InQXlz/3hXTcgH+kttQtA0AaAuCJ21mMw77yL1pktckDA+mCCXJ551P
-         KrcCi8lPEbDPA0y+Lmzd/iI07glwOThZsOQSSkn/Uv8pFEy9mnbpPshthjJKM53Sy6NQ
-         vglwC3xD70AeWHthvy7HKFEZLu++tngrnsXt0ZuTGnXS+lIb2w6ziNIPvSnE8cP11eI0
-         Xu1A06wrNftyjz6CM7V/9K5Xm7bzBY1lzjg1h5HssXMItL8imWp6MmvlCjFS26ore0Rl
-         xBhPElxGluewFx/9SMq8Zw5elqvM+/oGH4eJ+PImRjXQjYMzS1FNIPReQ3MaRbjyaDRU
-         U17Q==
-X-Gm-Message-State: AO0yUKWdaZuIq+7URZlZvqU1dpvMBpPXqKveubYGry08HtferO3qT+iL
-        7825yNmwGgYUfSq21duuyINkBg==
-X-Google-Smtp-Source: AK7set+9TmZNqzYd+qlWo/KxKxwystgsk67yWtkfaeiArceRtBW2JX+3k+aWeo8cfu/+upasRFTHJw==
-X-Received: by 2002:a05:6a20:3b26:b0:da:1b99:34f0 with SMTP id c38-20020a056a203b2600b000da1b9934f0mr11987345pzh.39.1679951072029;
-        Mon, 27 Mar 2023 14:04:32 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:ad52:968f:ad4a:52d2])
-        by smtp.gmail.com with ESMTPSA id 25-20020aa79159000000b0062bc045bf4fsm6212065pfi.19.2023.03.27.14.04.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 14:04:31 -0700 (PDT)
-Date:   Mon, 27 Mar 2023 15:04:29 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] soc: ti: pruss: Add helper functions to get/set
- PRUSS_CFG_GPMUX
-Message-ID: <20230327210429.GD3158115@p14s>
-References: <20230323062451.2925996-1-danishanwar@ti.com>
- <20230323062451.2925996-6-danishanwar@ti.com>
+        with ESMTP id S231133AbjC0VOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 17:14:42 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087A21703;
+        Mon, 27 Mar 2023 14:14:39 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 010175FD07;
+        Tue, 28 Mar 2023 00:14:37 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1679951677;
+        bh=9ycbOjNYWPGPuemVUaFLexVP6yqoiw6Ms1b3Do67mQ0=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=XkFSNLxAWgQqGYBJ7Mu52Y2xhMANMpt/ZCoW6X3J2mfoB2wcx/Ij1ZSvdo/tXOKcA
+         zZtEmisEr2qhIkNyTYLPtmuKuZ4Fxj3Q/YQoacdFu7Y1cj0EIv+GTef92M+0590/N6
+         Wlyjj9VKd2L4144Qiwi8KoGw4KJaaGoUp2BI+2YqO1XEynS6goKuMhRec3bF/u3GRt
+         EgiRywFDIHpLLbsaKtuhXrFvaBHH6NuLteYAKlhLOHHLKfylFBNb8IwXzt2GNkAcvA
+         bCeGR683yVEEu5PDpW93b6aYB0iwMPY/CMAzqchLd9nuCEeOr18GNWkhFbtUXM5Mji
+         9ROO5beEKSl2Q==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Tue, 28 Mar 2023 00:14:36 +0300 (MSK)
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>,
+        Martin Kurbanov <mmkurbanov@sberdevices.ru>
+Subject: [PATCH v2 0/2] add support for Meson A1 SPI Flash Controller
+Date:   Tue, 28 Mar 2023 00:13:49 +0300
+Message-ID: <20230327211351.686831-1-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230323062451.2925996-6-danishanwar@ti.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/27 19:06:00 #21018749
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,143 +68,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 23, 2023 at 11:54:51AM +0530, MD Danish Anwar wrote:
-> From: Tero Kristo <t-kristo@ti.com>
-> 
-> Add two new helper functions pruss_cfg_get_gpmux() & pruss_cfg_set_gpmux()
-> to get and set the GP MUX mode for programming the PRUSS internal wrapper
-> mux functionality as needed by usecases.
-> 
-> Co-developed-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> Reviewed-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  drivers/soc/ti/pruss.c           | 44 ++++++++++++++++++++++++++++++++
->  include/linux/remoteproc/pruss.h | 30 ++++++++++++++++++++++
->  2 files changed, 74 insertions(+)
-> 
-> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> index ac415442e85b..3aa3c38c6c79 100644
-> --- a/drivers/soc/ti/pruss.c
-> +++ b/drivers/soc/ti/pruss.c
-> @@ -239,6 +239,50 @@ int pruss_cfg_xfr_enable(struct pruss *pruss, enum pru_type pru_type,
->  }
->  EXPORT_SYMBOL_GPL(pruss_cfg_xfr_enable);
->  
-> +/**
-> + * pruss_cfg_get_gpmux() - get the current GPMUX value for a PRU device
-> + * @pruss: pruss instance
-> + * @pru_id: PRU identifier (0-1)
-> + * @mux: pointer to store the current mux value into
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux)
-> +{
-> +	int ret = 0;
-> +	u32 val;
-> +
-> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
-> +		return -EINVAL;
-> +
-> +	ret = pruss_cfg_read(pruss, PRUSS_CFG_GPCFG(pru_id), &val);
-> +	if (!ret)
-> +		*mux = (u8)((val & PRUSS_GPCFG_PRU_MUX_SEL_MASK) >>
-> +			    PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
+This patchset introduces DT bindings and driver for the Amlogic Meson A1
+SPI flash controller (A113L SoC).
 
-What happens if @mux is NULL?
+The existing spi-meson-spifc driver is incompatible with the A1 SPIFC
+at all.
 
-Thanks,
-Mathieu
+The implementation has been tested on the Amlogic A113L SoC based device
+connected with ESMT F50L1G41LB spinand flash.
 
+This patchset has dependencies on the A1 clock series which is still
+under review [1].
 
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_get_gpmux);
-> +
-> +/**
-> + * pruss_cfg_set_gpmux() - set the GPMUX value for a PRU device
-> + * @pruss: pruss instance
-> + * @pru_id: PRU identifier (0-1)
-> + * @mux: new mux value for PRU
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux)
-> +{
-> +	if (mux >= PRUSS_GP_MUX_SEL_MAX ||
-> +	    pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
-> +		return -EINVAL;
-> +
-> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
-> +				PRUSS_GPCFG_PRU_MUX_SEL_MASK,
-> +				(u32)mux << PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
-> +}
-> +EXPORT_SYMBOL_GPL(pruss_cfg_set_gpmux);
-> +
->  static void pruss_of_free_clk_provider(void *data)
->  {
->  	struct device_node *clk_mux_np = data;
-> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
-> index bb001f712980..42f1586c62ac 100644
-> --- a/include/linux/remoteproc/pruss.h
-> +++ b/include/linux/remoteproc/pruss.h
-> @@ -16,6 +16,24 @@
->  
->  #define PRU_RPROC_DRVNAME "pru-rproc"
->  
-> +/*
-> + * enum pruss_gp_mux_sel - PRUSS GPI/O Mux modes for the
-> + * PRUSS_GPCFG0/1 registers
-> + *
-> + * NOTE: The below defines are the most common values, but there
-> + * are some exceptions like on 66AK2G, where the RESERVED and MII2
-> + * values are interchanged. Also, this bit-field does not exist on
-> + * AM335x SoCs
-> + */
-> +enum pruss_gp_mux_sel {
-> +	PRUSS_GP_MUX_SEL_GP = 0,
-> +	PRUSS_GP_MUX_SEL_ENDAT,
-> +	PRUSS_GP_MUX_SEL_RESERVED,
-> +	PRUSS_GP_MUX_SEL_SD,
-> +	PRUSS_GP_MUX_SEL_MII2,
-> +	PRUSS_GP_MUX_SEL_MAX,
-> +};
-> +
->  /*
->   * enum pruss_gpi_mode - PRUSS GPI configuration modes, used
->   *			 to program the PRUSS_GPCFG0/1 registers
-> @@ -110,6 +128,8 @@ int pruss_cfg_gpimode(struct pruss *pruss, enum pruss_pru_id pru_id,
->  int pruss_cfg_miirt_enable(struct pruss *pruss, bool enable);
->  int pruss_cfg_xfr_enable(struct pruss *pruss, enum pru_type pru_type,
->  			 bool enable);
-> +int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux);
-> +int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux);
->  
->  #else
->  
-> @@ -152,6 +172,16 @@ static inline int pruss_cfg_xfr_enable(struct pruss *pruss,
->  	return ERR_PTR(-EOPNOTSUPP);
->  }
->  
-> +static inline int pruss_cfg_get_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 *mux)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
-> +static inline int pruss_cfg_set_gpmux(struct pruss *pruss, enum pruss_pru_id pru_id, u8 mux)
-> +{
-> +	return ERR_PTR(-EOPNOTSUPP);
-> +}
-> +
->  #endif /* CONFIG_TI_PRUSS */
->  
->  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
-> -- 
-> 2.25.1
-> 
+Changelog:
+  v2 since v1 at [2]:
+    - Make cosmetic changes
+
+Links:
+  [1] https://lore.kernel.org/all/20230321193014.26349-1-ddrokosov@sberdevices.ru/
+  [2] https://lore.kernel.org/all/20230322150458.783901-1-mmkurbanov@sberdevices.ru/
+
+Martin Kurbanov (2):
+  dt-bindings: spi: add Amlogic Meson A1 SPI controller
+  spi: add support for Meson A1 SPI Flash Controller
+
+ .../bindings/spi/amlogic,meson-a1-spifc.yaml  |  42 ++
+ drivers/spi/Kconfig                           |   7 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-meson-spifc-a1.c              | 453 ++++++++++++++++++
+ 4 files changed, 503 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-a1-spifc.yaml
+ create mode 100644 drivers/spi/spi-meson-spifc-a1.c
+
+--
+2.40.0
+
