@@ -2,111 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6CB6C9915
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 02:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D48826C9957
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 03:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbjC0Arp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 20:47:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        id S229850AbjC0BaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 21:30:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjC0Aro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 20:47:44 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2D349F5;
-        Sun, 26 Mar 2023 17:47:43 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id cn12so29355200edb.4;
-        Sun, 26 Mar 2023 17:47:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1679878062;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8U/kCluxO6B+PSARzu8RjX0sOedAO1dFag2paOw8YcA=;
-        b=dzNR+8yt25epPqrGhHtRTfI5b07bmwbKE6CGWoCN4qvZpGQSvoaFIH58ldwIDKOxaL
-         gMfNCAnEOFs3bpaebkk3ZzeF2CwWvAQ8J7+HllMrkMyFqwfGwGuZvQ/lN9ifWKAaFT+/
-         QORmeS1KOq4GJCO3QdQFGbA047MfaG2lWfvLk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679878062;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8U/kCluxO6B+PSARzu8RjX0sOedAO1dFag2paOw8YcA=;
-        b=1HyL5aelbcjONaxWl3dAOh0jn/8GDJE1UXxdaYqqCJzdxqomsKAYp00LkRbc9e7ldV
-         Ad7brlLgJwzoPkuL52xleC2VTVxgpc2cV6nZ6wAPYYdRO94aHH6QMb6RRXMrN9M9P/LH
-         MDmz8ynwHTJKBqTEN+xVl54ag/LQAPKomg1E6XJcb9oaJpCA4Z4pwD5ghnXBKmBs5V8n
-         yc2q1hXHSq5c6tOvePPbUdtYI8wymn0l1vbJVeBoDrh7C5C3ZzebXvNwfBw2l5dz+8k4
-         7GXx2eP+EY8dZtA6o9p3WzwGvQhNg1gkPXHGxa1TLq8//m0l9kokwCt7Xasx9k4D1oMc
-         437g==
-X-Gm-Message-State: AAQBX9fYS8lh5n41KHHz5DXA8u1unhqnYOyLJ1gLRJPtvy13l9gcOGqE
-        bebdOkgISUMeMhR/oW4Uraj5iy0pqaj58D721DU=
-X-Google-Smtp-Source: AKy350YuUI6Ov7M1JXz/f5WFAFINfRoDgXv40HbW6V5KKxwGX+W6DfvovjGBJyDlNfwi6fursVxWYuUD1nZNzzwuPyI=
-X-Received: by 2002:a17:907:7b8a:b0:931:6e39:3d0b with SMTP id
- ne10-20020a1709077b8a00b009316e393d0bmr4932622ejc.15.1679878062063; Sun, 26
- Mar 2023 17:47:42 -0700 (PDT)
+        with ESMTP id S229471AbjC0BaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 21:30:15 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59CD04680;
+        Sun, 26 Mar 2023 18:30:11 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 27CE024E13F;
+        Mon, 27 Mar 2023 09:29:55 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Mar
+ 2023 09:29:55 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 27 Mar
+ 2023 09:29:53 +0800
+Message-ID: <670108d3-d8d7-102b-75fc-52e2db8945f2@starfivetech.com>
+Date:   Mon, 27 Mar 2023 09:29:52 +0800
 MIME-Version: 1.0
-References: <20230321190914.2266216-1-lakshmiy@us.ibm.com> <20230321190914.2266216-6-lakshmiy@us.ibm.com>
-In-Reply-To: <20230321190914.2266216-6-lakshmiy@us.ibm.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 27 Mar 2023 00:47:29 +0000
-Message-ID: <CACPK8Xd70HABKrSRXKM5vA57YUCckykKOZV1ECuJc1=g70k--Q@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] ARM: dts: aspeed: p10bmc: Change power supply info
-To:     Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
-        Eddie James <eajames@linux.ibm.com>
-Cc:     robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
-        krzysztof.kozlowski+dt@linaro.org, andrew@aj.id.au,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v8 6/6] net: stmmac: starfive_dmac: Add phy interface
+ settings
+Content-Language: en-US
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+References: <20230324022819.2324-1-samin.guo@starfivetech.com>
+ <20230324022819.2324-7-samin.guo@starfivetech.com>
+ <CAJM55Z8_W9yOcL+yGAwB-qanD_-bbf16VjCP66P_xDFW6-c+3A@mail.gmail.com>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <CAJM55Z8_W9yOcL+yGAwB-qanD_-bbf16VjCP66P_xDFW6-c+3A@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Mar 2023 at 19:09, Lakshmi Yadlapati <lakshmiy@us.ibm.com> wrote:
->
-> Bonnell system supports new ACBEL FSG032 power supply on
-> I2C addresses 5A and 5B. Update the device tree with new
-> power supply information and device addresses.
->
-> Signed-off-by: Lakshmi Yadlapati <lakshmiy@us.ibm.com>
 
-Eddie, can I get you to review?
+Re: [PATCH v8 6/6] net: stmmac: starfive_dmac: Add phy interface settings
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+to: Samin Guo <samin.guo@starfivetech.com>
+data: 2023/3/24
 
-I will take this through the aspeed tree.
+> On Fri, 24 Mar 2023 at 03:30, Samin Guo <samin.guo@starfivetech.com> wrote:
+>>
+>> dwmac supports multiple modess. When working under rmii and rgmii,
+>> you need to set different phy interfaces.
+>>
+>> According to the dwmac document, when working in rmii, it needs to be
+>> set to 0x4, and rgmii needs to be set to 0x1.
+>>
+>> The phy interface needs to be set in syscon, the format is as follows:
+>> starfive,syscon: <&syscon, offset, shift>
+>>
+>> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+>> ---
+>>  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 47 +++++++++++++++++++
+>>  1 file changed, 47 insertions(+)
+>>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>> index ef5a769b1c75..84690c8f0250 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+>> @@ -13,6 +13,10 @@
+>>
+>>  #include "stmmac_platform.h"
+>>
+>> +#define STARFIVE_DWMAC_PHY_INFT_RGMII  0x1
+>> +#define STARFIVE_DWMAC_PHY_INFT_RMII   0x4
+>> +#define STARFIVE_DWMAC_PHY_INFT_FIELD  0x7U
+>> +
+>>  struct starfive_dwmac {
+>>         struct device *dev;
+>>         struct clk *clk_tx;
+>> @@ -44,6 +48,43 @@ static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed)
+>>                 dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+>>  }
+>>
+>> +static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
+>> +{
+>> +       struct starfive_dwmac *dwmac = plat_dat->bsp_priv;
+>> +       struct regmap *regmap;
+>> +       unsigned int args[2];
+>> +       unsigned int mode;
+>> +
+>> +       switch (plat_dat->interface) {
+>> +       case PHY_INTERFACE_MODE_RMII:
+>> +               mode = STARFIVE_DWMAC_PHY_INFT_RMII;
+>> +               break;
+>> +
+>> +       case PHY_INTERFACE_MODE_RGMII:
+>> +       case PHY_INTERFACE_MODE_RGMII_ID:
+>> +               mode = STARFIVE_DWMAC_PHY_INFT_RGMII;
+>> +               break;
+>> +
+>> +       default:
+>> +               dev_err(dwmac->dev, "unsupported interface %d\n",
+>> +                       plat_dat->interface);
+>> +               return -EINVAL;
+>> +       }
+>> +
+>> +       regmap = syscon_regmap_lookup_by_phandle_args(dwmac->dev->of_node,
+>> +                                                     "starfive,syscon",
+>> +                                                     2, args);
+>> +       if (IS_ERR(regmap)) {
+>> +               dev_err(dwmac->dev, "syscon regmap failed.\n");
+>> +               return -ENXIO;
+>> +       }
+>> +
+>> +       /* args[0]:offset  args[1]: shift */
+>> +       return regmap_update_bits(regmap, args[0],
+>> +                                 STARFIVE_DWMAC_PHY_INFT_FIELD << args[1],
+>> +                                 mode << args[1]);
+>> +}
+>> +
+>>  static int starfive_dwmac_probe(struct platform_device *pdev)
+>>  {
+>>         struct plat_stmmacenet_data *plat_dat;
+>> @@ -89,6 +130,12 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
+>>         plat_dat->bsp_priv = dwmac;
+>>         plat_dat->dma_cfg->dche = true;
+>>
+>> +       err = starfive_dwmac_set_mode(plat_dat);
+>> +       if (err) {
+>> +               dev_err(&pdev->dev, "dwmac set mode failed.\n");
+>> +               return err;
+>> +       }
+> 
+> Usually it's better to keep all error messages at the same "level".
+> Like this you'll get two error messages if
+> syscon_regmap_lookup_by_phandle_args fails. So I'd suggest moving this
+> message into the starfive_dwmac_set_mode function and while you're at
+> it you can do
+> 
+> err = regmap_update_bits(...);
+> if (err)
+>   return dev_err_probe(dwmac->dev, err, "error setting phy mode\n");
+> 
+> Also the file is called dwmac-starfive.c, so I'd expect the patch
+> header to be "net: stmmac: dwmac-starfive: Add phy interface
+> settings".
+> 
+> /Emil
+> 
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-> index a5be0ee048ec..4f959a4f8b58 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-bonnell.dts
-> @@ -552,14 +552,14 @@ ucd90160@64 {
->  &i2c3 {
->         status = "okay";
->
-> -       power-supply@58 {
-> -               compatible = "ibm,cffps";
-> -               reg = <0x58>;
-> +       power-supply@5a {
-> +               compatible = "acbel,fsg032";
-> +               reg = <0x5a>;
->         };
->
-> -       power-supply@59 {
-> -               compatible = "ibm,cffps";
-> -               reg = <0x59>;
-> +       power-supply@5b {
-> +               compatible = "acbel,fsg032";
-> +               reg = <0x5b>;
->         };
->  };
->
-> --
-> 2.37.2
->
+Thanks, the next version will be optimized.
+
+Best regards,
+Samin
+>>         err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+>>         if (err) {
+>>                 stmmac_remove_config_dt(pdev, plat_dat);
+>> --
+>> 2.17.1
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
