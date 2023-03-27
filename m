@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6AB76C9C6C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:40:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C02906C9C72
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 09:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232707AbjC0Hkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 03:40:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50138 "EHLO
+        id S232071AbjC0HlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 03:41:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232666AbjC0Hki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:40:38 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F53755A5
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:40:14 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id n10-20020a05600c4f8a00b003ee93d2c914so6321306wmq.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 00:40:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679902812;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ClBOj0gK1ahT7UCzB1KKn78jhUJGd6/ThX8Qzeq7fl4=;
-        b=rkmmZgxto45TV5TxYS3lbMJdrFAD+Y5TOh+x/fv77Bv2IZE3RvXg+GOWS+SkDCpNDl
-         Qv0tTi7xSwYLhxUy+kaMoElTho4JRiEPruE3gOz4SfuNqDAS3FV6qxnmCWbeajELqm1u
-         SlrWJzE93kFMDTptxyh2v7cmkHIrsAjYUX+jBgamFaw1AJ+VGXfX1058zcsjmPVq78k4
-         WM6ub73hbp8v4jLiCQ1EcsD0i+ltTicD2u3S8xISdk7ORn4UYukO1r42iZQxBbn4dgH5
-         6M0+VK0paAYS277slAolKZPQ/ghiXgcUae4jfRI7C9Q5sJJzHyRDvDU3NUyjY6WYuwQy
-         Wu0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679902812;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ClBOj0gK1ahT7UCzB1KKn78jhUJGd6/ThX8Qzeq7fl4=;
-        b=XPEhfu9TSHbl0xPJAoSoiV0FGYFdEyiQLTQTrBExIHjlnYYNUIHsYu0I5Z7MbO7EXa
-         5unjpZeHolJoNlGCb6DlrdrrRAp8pw9qiJjurKjTjtin9Ncu5x29sLgk88zU/yNLYlci
-         hmZt0rsQb8LIk76p6fmcPlLpDEP2c8kLo6GDPQ5d9mgxf4+Q55xTSRtl5HUOiF6bPs6U
-         MTwb9KOzQHxpfrTOuVEXwfe524Cw/s/BjBG488Tx23D77NaD3xe61zHiFYYa3rViUwIT
-         kyMx62UKDohSJ7sIGR0fBOow5cxu/qwbPvRb2oJlt6s9ihqd3oHMFUdOTtpsepo5eiWW
-         hPiw==
-X-Gm-Message-State: AO0yUKU5xFirnHtTLQWcbXsx2/0KsWE0pPThsXuAA+3ttYSNahPiZdL4
-        iXLfHvyyJ5Vp5tHox53RKElqCA==
-X-Google-Smtp-Source: AK7set/HbomPUYJYpvAz8cosQ1bhr1ic2igEN2YfjSfVteCKmqlgQXoWWUqdknydjiR2gEP3SPDJiA==
-X-Received: by 2002:a1c:f418:0:b0:3ed:8780:f265 with SMTP id z24-20020a1cf418000000b003ed8780f265mr8940924wma.21.1679902812220;
-        Mon, 27 Mar 2023 00:40:12 -0700 (PDT)
-Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id n20-20020a7bc5d4000000b003ee10fb56ebsm12796925wmk.9.2023.03.27.00.40.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 00:40:11 -0700 (PDT)
-Message-ID: <3c30663c-e78b-388a-5822-932434436a4c@linaro.org>
-Date:   Mon, 27 Mar 2023 09:40:11 +0200
+        with ESMTP id S232723AbjC0Hkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 03:40:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84760C7;
+        Mon, 27 Mar 2023 00:40:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 41C6CB80E68;
+        Mon, 27 Mar 2023 07:40:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E04A8C433D2;
+        Mon, 27 Mar 2023 07:40:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679902839;
+        bh=9LjIPBq9toXuTJxAnKHZwT1LmvINtBkrGpiSjOfYvbo=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=t4BmoWbIJ2XoMzISMOo0Z+PL69voM/J93N4BppCcOfeS8tcA/9GazIcfPogC2X0oa
+         U/+njEvB2yQe655AVMVOc/v5laIAsWcOcr9ALX1NO/PK2A2VOoWDhxi8wnYRYNOFgR
+         dpzGMXp82v6ZKmbldw1MrEwrwrt9X0I2CxAOXUidJrUw9rL3NmNkIXtxiRMs2OQ7os
+         6EP1ie9NYqMX7mvBKhEskZfnxDdPDmNbdbwA0tolx3IAT3OvucHuYNCn6mPX+9cB7I
+         nNdD9+dbpdx1FExSa5nq7LQ2qd3g1LQaVCj5AU1UNWtu7zrNzZ2Ys0xSn+H2yEHLc/
+         lTg/vNzLO0Byw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C1FC3E2A038;
+        Mon, 27 Mar 2023 07:40:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: display: sitronix,st7789v: document dc-gpios
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230326164700.104570-1-krzysztof.kozlowski@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230326164700.104570-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 0/2] net: dsa: b53: mdio: add support for BCM53134
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167990283979.16393.5675896346341604175.git-patchwork-notify@kernel.org>
+Date:   Mon, 27 Mar 2023 07:40:39 +0000
+References: <20230324084138.664285-1-noltari@gmail.com>
+In-Reply-To: <20230324084138.664285-1-noltari@gmail.com>
+To:     =?utf-8?q?=C3=81lvaro_Fern=C3=A1ndez_Rojas_=3Cnoltari=40gmail=2Ecom=3E?=@ci.codeaurora.org
+Cc:     paul.geurts@prodrive-technologies.com, f.fainelli@gmail.com,
+        jonas.gorski@gmail.com, andrew@lunn.ch, olteanv@gmail.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2023 18:47, Krzysztof Kozlowski wrote:
-> The device comes with DCX pin which is already used in
-> canaan/sipeed_maixduino.dts (although not in Linux driver).
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Fri, 24 Mar 2023 09:41:36 +0100 you wrote:
+> This is based on the initial work from Paul Geurts that was sent to the
+> incorrect linux development lists and recipients.
+> I've simplified his patches by adding BCM53134 to the is531x5() block since it
+> seems that the switch doesn't need a special RGMII config.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../devicetree/bindings/display/panel/sitronix,st7789v.yaml   | 4 ++++
->   1 file changed, 4 insertions(+)
+> Paul Geurts (1):
+>   net: dsa: b53: mdio: add support for BCM53134
+> 
+> [...]
 
-<snip>
+Here is the summary with links:
+  - [v2,1/2] dt-bindings: net: dsa: b53: add BCM53134 support
+    https://git.kernel.org/netdev/net-next/c/a20869b3a785
+  - [v2,2/2] net: dsa: b53: mdio: add support for BCM53134
+    https://git.kernel.org/netdev/net-next/c/f927e8ef1e93
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
