@@ -2,79 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E90DE6C99C2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 04:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 362746C99D1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 05:01:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232093AbjC0CxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Mar 2023 22:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36076 "EHLO
+        id S232192AbjC0DB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Mar 2023 23:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjC0CxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 22:53:00 -0400
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05D294682;
-        Sun, 26 Mar 2023 19:52:59 -0700 (PDT)
-Received: by mail-oo1-xc2e.google.com with SMTP id v14-20020a4ae6ce000000b0053b91ae6552so1117780oot.8;
-        Sun, 26 Mar 2023 19:52:58 -0700 (PDT)
+        with ESMTP id S232156AbjC0DBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Mar 2023 23:01:49 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9665558D;
+        Sun, 26 Mar 2023 20:01:40 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-17683b570b8so7811556fac.13;
+        Sun, 26 Mar 2023 20:01:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679885578;
+        d=gmail.com; s=20210112; t=1679886100;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Bwxc+9Wm9XzKT3wRxyc/yPN0nekHNduBtYwd30w4es=;
-        b=Ri2bV1FoPdgTw8eh91inBnZJ+Qu05D62pZaR49BYSn4lGQZdHyxBDBpsYq82C2/KPM
-         8WYVkWpAifvRsKZGBQDFJIpNP/YWF1t9Dmlg2M7iNoBkM5F2xmhPunNECZSJ5jAitliU
-         R3QUSopKVqTCMQSg2DOiuk0C3/B8O6J7GTU0TnJGJQ9uTbLhWQ/zrPmNm9uxWFvJj5FO
-         Nh0TrOq/p67efHEAy3gwv5QTY6zGSG3keGsvcDBtmfCNbWyrgSws18VwQI8qdhZZwfNc
-         KvCcdnaTgdI5y5OgeX3osQfoSV+OYV2iO4iCUsmQDgSlqMAcTRIAmMgOuwlztr38X9fc
-         OV6Q==
+        bh=D/ODnD91UY42Ysvog6gyqrIAdQSS1mTSw0ElJHMXsUQ=;
+        b=fnNrSwJTJTEF0B70kqmJw1ENbREis1qbd5p9GmPzE1v4KQcUELgHIxtJrNha+1fqR5
+         UMlCSGp604H5740+mzjN8Uo4vwU2gxuj9dghmuzXrKNYi0qfIH/czrn0yUqYo+17FiDZ
+         TQ3wIfF0VUQiRE+Y+Vwo2EBEN+r4aLe/5U0HzZKAIZpNVk3nhBrudpIWwxOKla5XZxkI
+         o5MxCGGCVFvK0QDQB7egcRUMXvdgWnRMqXDEQaoTiDaPjSBvlRewxqTTWP/S0WOm2Eq4
+         n7ID0D6VDYdR8WO7zvuwyEO3IEqJ2RkDfe0swxXHcjoqcQHdcFbesN2QRb0rfSWDPXO4
+         mjxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679885578;
+        d=1e100.net; s=20210112; t=1679886100;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Bwxc+9Wm9XzKT3wRxyc/yPN0nekHNduBtYwd30w4es=;
-        b=tNEqyjRySKR1Ky2jXhWorJT2zKkaB+FhrMXLRQFAviUHUlAp3Um4u7hu6TOGefcMAO
-         WSvhdd/pKY+Rky31397unU+3x6kP8fguHvlB/3mgG3KtSiC/0N/ozy1+KTen4ABg0Kga
-         TXBki17kO1iqabUuVFPs2fmcxjfxAoIkuxSAnDfoJ9hjRFRK5/VF757KY0VQs25RKqx5
-         aTEEihKtH5iUvx7uaHknQ1jN6WtniBf7j4XinjsioPPdTr+xcDF4Vl4YMfqYVX4wjCAE
-         z94GqHYgSDIBTl6bAnnbZa3Jjkqqey4LosrgDv0F0UNaJsJUYPgb5jr97Ej7Jq26nkLU
-         bsLA==
-X-Gm-Message-State: AO0yUKUuqcG3kE5aLqfpQ+hf2NzDmmXARiTSv7Z/iqzK8v4BRhjsUYu2
-        W6tv+y+cb7CHKIBFOGtYBpU=
-X-Google-Smtp-Source: AK7set/o369pQb1Fc6jFOL0nEK9V5MY2Ai6irQxBSn4gfxgxy+ywh0kdL4g7fxXrtddj+x6XtQYojQ==
-X-Received: by 2002:a4a:410f:0:b0:53b:4b21:2345 with SMTP id x15-20020a4a410f000000b0053b4b212345mr4762320ooa.2.1679885578198;
-        Sun, 26 Mar 2023 19:52:58 -0700 (PDT)
+        bh=D/ODnD91UY42Ysvog6gyqrIAdQSS1mTSw0ElJHMXsUQ=;
+        b=7dVQYmOiSfoy6vBQPbewLpcCaHZf+W8zf3tZGjSbhsMnwoVfatZxwJZ71EFfMiFkk1
+         MJxLrF+XarFVLgPPVyRloE4/cCctkdxwKKsSCNuCNx4xvx/CmEzji/fg/GaUsNXrlGUo
+         2ANgwmH40E/aP9cGBka0MoGgPlXtcla3dvTnYjieIgE5ZdxQPsqZt7vjohbUaOkIhZtZ
+         5Vioep5OaPzZmAud2UvdixSojh/ZZ3y/Yf3f6u56kgbD+ITC17/vDqWjW7agZ8g0Ue5c
+         br21IZmAeEyLj4Df01NiQZAEk9XFe1VLUYwRXNX2FOZe+2NhGLqiTYE9Q6OoKBJ5Nh86
+         Rxug==
+X-Gm-Message-State: AAQBX9ew4YKv7wfyu5+j2vMilMsn0KbiMJwdNT95kI4aBrexOdg1WzcN
+        9vKAVBjCIC8e7ajQHwKgItM=
+X-Google-Smtp-Source: AK7set/4eDYG1uEuvh2RsElDMslo5k4epLRJSOnyys22BmZJTqrLzLKk3XBWac/gx9pQGS52dIrLQQ==
+X-Received: by 2002:a05:6870:40d2:b0:177:c6f2:a74b with SMTP id l18-20020a05687040d200b00177c6f2a74bmr6693499oal.1.1679886100067;
+        Sun, 26 Mar 2023 20:01:40 -0700 (PDT)
 Received: from ?IPV6:2600:1700:2442:6db0:988b:7dda:764e:c744? ([2600:1700:2442:6db0:988b:7dda:764e:c744])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05680803cf00b003875e29808esm4217121oie.0.2023.03.26.19.52.56
+        by smtp.gmail.com with ESMTPSA id l26-20020a0568301d7a00b0069fa776d3c2sm4932048oti.18.2023.03.26.20.01.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 19:52:57 -0700 (PDT)
-Message-ID: <25c6664b-6e9f-17d5-957c-054d99787a1a@gmail.com>
-Date:   Sun, 26 Mar 2023 21:52:56 -0500
+        Sun, 26 Mar 2023 20:01:39 -0700 (PDT)
+Message-ID: <a14f6e0d-88fe-4c38-0489-a9d2d97ef307@gmail.com>
+Date:   Sun, 26 Mar 2023 22:01:38 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
-Subject: Re: [PATCH v2] treewide: Fix instantiation of devices in DT overlays
+Subject: Re: [PATCH V7 0/3] Generate device tree node for pci devices
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
+To:     Christian Gmeiner <christian.gmeiner@gmail.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, helgaas@kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
+        stefano.stabellini@xilinx.com, trix@redhat.com,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
+        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
+        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+References: <1674183732-5157-1-git-send-email-lizhi.hou@amd.com>
+ <af2a6686-ea35-e5fc-7541-27e5d6ca9311@gmail.com>
+ <20230227113150.398dcfa7@fixe.home>
+ <52b8f136-c73f-a97d-2bb6-48aff3755f98@gmail.com>
+ <f927790dc9839cd93902c0d2e5afe5e8@bootlin.com>
+ <1886b888-a0e8-b1ee-c48a-ddbc8b5b0c63@gmail.com>
+ <CAL_JsqL_ER32ys-yW_7-QKLjEmKK8StOeM5yvH2ChuvX++fe5Q@mail.gmail.com>
+ <9b4bb45a-f6e4-c95c-d27c-21c7fecb5505@gmail.com>
+ <20230309094507.62d7c35e@fixe.home>
+ <CAH9NwWfvXjY8=OFesytZ1HAM-wBJ=tNB8wAkP99JLw=inYJJgg@mail.gmail.com>
 From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
+In-Reply-To: <CAH9NwWfvXjY8=OFesytZ1HAM-wBJ=tNB8wAkP99JLw=inYJJgg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
@@ -85,100 +93,170 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/24/23 04:30, Geert Uytterhoeven wrote:
-> When loading a DT overlay that creates a device, the device is not
-> instantiated, unless the DT overlay is unloaded and reloaded again.
+On 3/21/23 03:44, Christian Gmeiner wrote:
+> Hi all
 > 
-> Saravana explains:
->   Basically for all overlays (I hope the function is only used for
->   overlays) we assume all nodes are NOT devices until they actually
->   get added as a device.
+> Am Do., 9. März 2023 um 09:52 Uhr schrieb Clément Léger
+> <clement.leger@bootlin.com>:
+>>
+>> Le Wed, 8 Mar 2023 01:31:52 -0600,
+>> Frank Rowand <frowand.list@gmail.com> a écrit :
+>>
+>>> On 3/6/23 18:52, Rob Herring wrote:
+>>>> On Mon, Mar 6, 2023 at 3:24 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>>>>
+>>>
+>>> < snip >
+>>>
+>>> Hi Rob,
+>>>
+>>> I am in no position to comment intelligently on your comments until I
+>>> understand the SoC on PCI card model I am asking to be described in
+>>> this subthread.
+>>
+>> Hi Frank,
+>>
+>> Rather than answering all of the assumptions that were made in the upper
+>> thread (that are probably doing a bit too much of inference), I will
+>> re-explain that from scratch.
+>>
+>> Our usecase involves the lan966x SoCs. These SoCs are mainly targeting
+>> networking application and offers multiple SFP and RGMII interfaces.
+>> This Soc can be used in two exclusive modes (at least for the intended
+>> usage):
+>>
+>> SoC mode:
+>>    The device runs Linux by itself, on ARM64 cores included in the
+>>    SoC. This use-case of the lan966x is currently almost upstreamed,
+>>    using a traditional Device Tree representation of the lan996x HW
+>>    blocks [1] A number of drivers for the different IPs of the SoC have
+>>    already been merged in upstream Linux (see
+>>    arch/arm/boot/dts/lan966x.dtsi)
+>>
+>> PCI mode:
+>>   The lan966x SoC is configured as a PCIe endpoint (PCI card),
+>>   connected to a separate platform that acts as the PCIe root complex.
+>>   In this case, all the IO memories that are exposed by the devices
+>>   embedded on this SoC are exposed through PCI BARs 0 & 1 and the ARM64
+>>   cores of the SoC are not used. Since this is a PCIe card, it can be
+>>   plugged on any platform, of any architecture supporting PCIe.
+>>
+>> This work only focus on the *PCI mode* usage. In this mode, we have the
+>> following prerequisites:
+>> - Should work on all architectures (x86, ARM64, etc)
+>> - Should be self-contained in the driver
+>> - Should be able to reuse all existing platform drivers
+>>
+>> In PCI mode, the card runs a firmware (not that it matters at all by
+>> the way) which configure the card in PCI mode at boot time. In this
+>> mode, it exposes a single PCI physical function associated with
+>> vendor/product 0x1055/0x9660. This is not a multi-function PCI device !
+>> This means that all the IO memories (peripheral memories, device
+>> memories, registers, whatever you call them) are accessible using
+>> standard readl()/writel() on the BARs that have been remapped. For
+>> instance (not accurate), in the BAR 0, we will have this kind of memory
+>> map:
+>>
+>>            BAR0
+>>    0x0 ┌───────────┐
+>>        │           │
+>>        ├───────────┤
+>>        │   Clock   │
+>>        │ controller│
+>>        ├───────────┤
+>>        │           │
+>>        ├───────────┤
+>>        │   I2C     │
+>>        │ controller│
+>>        ├───────────┤
+>>        │           │
+>>        ├───────────┤
+>>        │   MDIO    │
+>>        │ Controller│
+>>        ├───────────┤
+>>        │           │
+>>        ├───────────┤
+>>        │  Switch   │
+>>        │ Controller│
+>>        ├───────────┤
+>>        │           │
+>>        │   ...     │
+>>
+>>
+>> It also exposes either a single interrupt via the legacy interrupt
+>> (which can then be demuxed by reading the SoC internal interrupt
+>> controller registers), or multiple interrupts using MSI interrupts.
+>>
+>> As stated before, all these peripherals are already supported in SoC
+>> mode and thus, there are aleready existing platform drivers for each of
+>> them. For more information about the devices that are exposed please
+>> see link [1] which is the device-tree overlay used to describe the
+>> lan9662 card.
+>>
+>> In order to use the ethernet switch, we must configure everything that
+>> lies around this ethernet controller, here are a few amongst all of
+>> them:
+>> - MDIO bus
+>> - I2C controller for SFP modules access
+>> - Clock controller
+>> - Ethernet controller
+>> - Syscon
+>>
+>> Since all the platform drivers already exist for these devices, we
+>> want to reuse them. Multiple solutions were thought of (fwnode, mfd,
+>> ACPI, device-tree) and eventually ruled out for some of them and efforts
+>> were made to try to tackle that (using fwnode [2], device-tree [3])
+>>
+>> One way to do so is to use a device-tree overlay description that is
+>> loaded dynamically on the PCI device OF node. This can be done using the
+>> various device-tree series series that have been proposed (included
+>> this one). On systems that do not provide a device-tree of_root, create
+>> an empty of_root node (see [4]). Then during PCI enumeration, create
+>> device-tree node matching the PCI tree that was enumerated (See [5]).
+>> This is needed since the PCI card can be plugged on whatever port the
+>> user wants and thus it can not be statically described using a fixed
+>> "target-path" property in the overlay.
+>>
+>> Finally, to glue everything together, we add a PCI driver for the
+>> VID/PID of the PCI card (See [6]). This driver is responsible of adding
+>> the "ranges" property in the device-tree PCI node to remap the child
+>> nodes "reg" property to the PCI memory map. This is needed because the
+>> PCI memory addresses differ between platform, enumeration order and so
+>> on.Finally, the driver will load the device-tree overlay (See [1]) to
+>> the PCI device-tree node. Eventually, a call to
+>> of_platform_default_populate() will probe the nodes and platform
+>> drivers.
+>>
+>> I hope this will help you understanding what is going on here. In the
+>> meantime, I'm also trying to obtain public documentation about the
+>> lan966x SoC.
+>>
+>> [1]
+>> https://github.com/clementleger/linux/blob/bf9b4ef803d86c4ae59a4ca195a4152b0d5c3cea/drivers/mfd/lan966x_pci.dts
+>> [2]
+>> https://lore.kernel.org/netdev/YhPSkz8+BIcdb72R@smile.fi.intel.com/T/
+>> [3]
+>> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
+>> [4]
+>> https://lore.kernel.org/lkml/20230223213418.891942-1-frowand.list@gmail.com/
+>> [5]
+>> https://lore.kernel.org/lkml/1674183732-5157-1-git-send-email-lizhi.hou@amd.com/
+>> [6]
+>> https://github.com/clementleger/linux/blob/bf9b4ef803d86c4ae59a4ca195a4152b0d5c3cea/drivers/mfd/lan966x_pci_of.c
+>>
+>> --
+>> Clément Léger,
+>> Embedded Linux and Kernel engineer at Bootlin
+>> https://bootlin.com
 > 
-> Based on a patch by Saravana Kannan, which covered only platform and spi
-> devices.
+> What is missing to move on with this patch set?
 
-I have given this a quick look but want to look more deeply at overall
-context.  (That Geert found imx-weim, i2c, and spi is a good sign.)
-
-At the top of my list for Monday 3/27.
+I need to evaluate what Clément Léger wrote in the email you replied to.  I had overlooked this
+reply to my questions.  From a quick scan, it looks like he _probably_ provided the context I
+was looking for to understand the architecture of the proposal.  But it is late Sunday night,
+so I won't get to this tonight.
 
 -Frank
 
 > 
-> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
-> Link: https://lore.kernel.org/r/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=rWYnkCZ6z5bGX-wj4w@mail.gmail.com
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> ---
-> v2:
->   - Add Acked-by,
->   - Drop RFC.
-> ---
->  drivers/bus/imx-weim.c    | 1 +
->  drivers/i2c/i2c-core-of.c | 1 +
->  drivers/of/dynamic.c      | 1 +
->  drivers/of/platform.c     | 1 +
->  drivers/spi/spi.c         | 1 +
->  5 files changed, 5 insertions(+)
-> 
-> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-> index 36d42484142aede2..898e23a4231400fa 100644
-> --- a/drivers/bus/imx-weim.c
-> +++ b/drivers/bus/imx-weim.c
-> @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
->  				 "Failed to setup timing for '%pOF'\n", rd->dn);
->  
->  		if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
-> +			rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  			if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
->  				dev_err(&pdev->dev,
->  					"Failed to create child device '%pOF'\n",
-> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-> index aa93467784c29c89..303f9003562eed3d 100644
-> --- a/drivers/i2c/i2c-core-of.c
-> +++ b/drivers/i2c/i2c-core-of.c
-> @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
->  			return NOTIFY_OK;
->  		}
->  
-> +		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  		client = of_i2c_register_device(adap, rd->dn);
->  		if (IS_ERR(client)) {
->  			dev_err(&adap->dev, "failed to create client for '%pOF'\n",
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index 07d93753b12f5f4d..e311d406b1705306 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np)
->  	np->sibling = np->parent->child;
->  	np->parent->child = np;
->  	of_node_clear_flag(np, OF_DETACHED);
-> +	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
->  }
->  
->  /**
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block *nb,
->  		if (of_node_check_flag(rd->dn, OF_POPULATED))
->  			return NOTIFY_OK;
->  
-> +		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  		/* pdev_parent may be NULL when no bus platform device */
->  		pdev_parent = of_find_device_by_node(rd->dn->parent);
->  		pdev = of_platform_device_create(rd->dn, NULL,
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 8e8af148b1dc371e..66ac67580d2a473b 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -4527,6 +4527,7 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
->  			return NOTIFY_OK;
->  		}
->  
-> +		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  		spi = of_register_spi_device(ctlr, rd->dn);
->  		put_device(&ctlr->dev);
->  
 
