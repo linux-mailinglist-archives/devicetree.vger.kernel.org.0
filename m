@@ -2,165 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41DA56CAAEF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 18:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 864A26CAB01
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 18:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbjC0Qsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 12:48:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35072 "EHLO
+        id S231932AbjC0Qut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 12:50:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjC0Qsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 12:48:53 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632602718;
-        Mon, 27 Mar 2023 09:48:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 14D97B817B0;
-        Mon, 27 Mar 2023 16:48:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CFDDC433D2;
-        Mon, 27 Mar 2023 16:48:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679935729;
-        bh=RBHLpix/Xszw9JJ0ucrZ1EJILEOxun33InjcawwuCE4=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=NFJzwgrr4eBE9U877Qj9iwNQVN3CSva0WlZVYlhzk5QTBEQ/JnlaUJ/zdEf3Agylr
-         4KonOj+BjRk5SMrCm99RotKuLIVL2L1fx+9iUJeJUsGIUPMt/b0qu25qmrWGUbpWW1
-         wQEKbOStS83AG+Wr94+TSX1Yz6rymnDklS2dgI0v4lceabnviiN2kLFHdCvz1WmWaL
-         ZIqTDy/B2D+Lj6CY4QatRjxsZrp0R6O0mkEOzqRcXR4rXSIL87uEmynQ6sapMekxCz
-         o2aS4pZTTqCfLCrkdoCHaVLP0wtqTJmUeie3CX9FuSQxNxrIzz96ZT54Y+A3up5vcA
-         pxuWLFB7wOTEw==
-Message-ID: <0af15083921c5d3c89392209654f0c9b.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230327132718.573-3-quic_devipriy@quicinc.com>
-References: <20230327132718.573-1-quic_devipriy@quicinc.com> <20230327132718.573-3-quic_devipriy@quicinc.com>
-Subject: Re: [PATCH V10 2/4] clk: qcom: Add Global Clock Controller driver for IPQ9574
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, arnd@arndb.de, broonie@kernel.org,
-        catalin.marinas@arm.com, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        with ESMTP id S231960AbjC0Qur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 12:50:47 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F59D40C6;
+        Mon, 27 Mar 2023 09:50:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1679935835; bh=0b6vVlYAyh5z7fdaNDqWVNg+I6CkcXsuoksujna/tzw=;
+        h=Date:From:To:Subject:X-My-GPG-KeyId:References:From;
+        b=pmarkM+/OZc5OTi6iMA5S8Y17L7nGwnIcGzPlZKDWPUUrPCpqkcOwE2lru+q14ty0
+         rnPmMWBKXaaKRQesS6Jte9hq+nfXdfQ9NGJFNmQvuyhof1Rkw3aJ8/XEXRBY62ctsx
+         YoELERSyoCzH9p6Db06LlLzgI7SNCNzLI1GLl7II=
+Date:   Mon, 27 Mar 2023 18:50:35 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Robert Mader <robert.mader@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Martijn Braam <martijn@brixit.nl>,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2] arm64: dts: rk3399-pinephone-pro: Add internal
+ display support
+Message-ID: <20230327165035.uc2etuxypehjnrp6@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Robert Mader <robert.mader@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Martijn Braam <martijn@brixit.nl>,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        marcel.ziswiler@toradex.com, mturquette@baylibre.com,
-        nfraprado@collabora.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, shawnguo@kernel.org, will@kernel.org
-Date:   Mon, 27 Mar 2023 09:48:47 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20230327074136.1459212-1-javierm@redhat.com>
+ <20230327130147.wgxl2qayhzsi2xak@core>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327130147.wgxl2qayhzsi2xak@core>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Devi Priya (2023-03-27 06:27:16)
-> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq957=
-4.c
-> new file mode 100644
-> index 000000000000..b2a2d618a5ec
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gcc-ipq9574.c
-> @@ -0,0 +1,4248 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (c) 2023 The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/err.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
+One small note...
 
-What is this include for?
+On Mon, Mar 27, 2023 at 03:01:48PM +0200, megi xff wrote:
+> Hi Javier,
+> 
+> [...]
+>
+> This (1 kHz) seems to be outside of the range of recommended dimming frequency
+> of SY7203: https://megous.com/dl/tmp/fb79af4023a5f102.png It's too low.
+> 
+> The consequence is that there's a large ripple on the positive input of the
+> feedback comparator https://megous.com/dl/tmp/e155900fecb0323f.png which
+> will cause similar instability in backlight brightness.
+> 
+> I've hooked up a photoresistor to a scope, and the display is indeed varying the
+> brightness at 1 kHz https://megous.com/dl/tmp/09cb95c7b4b2892b.png
+> 
+> There are two variants of SY7203 which differ by ouput regulation technique.
+> One with this internal integrator, and other with direct PWM control of the
+> output. My guess is that PPP uses the integrator variant.
+> 
+> I switched PWM period to 50000 (20 kHz recommended by the datasheet and the
+> flicker is gone https://megous.com/dl/tmp/31b6bfc51badde3b.png
+> 
+> So I think higher PWM frequency will be better suited here, and this may really
+> be the LED driver variant with the integrator.
+> 
+> (Photoresistors are not that fast, but I've hooked a LED to signal generator,
+> to simulate 20kHz blinking backlight, and I was still able to catch the pattern
+> on the scope via a photoresistor, so it looks like this verifies that it
+> would still be possible to measure some flicker at 20 kHz using this technique.
+> I guess I should buy a PIN diode for the next time. :))
 
-> +#include <linux/regmap.h>
+Experimentally SY7203 will only start up with duty cycle of 250ns or more.
 
-Need to include clk-provider.h
+So this means that default curve generated by the kernel will not work at 20 kHz
+at low ranges, because cie1931 -> pwm duty cycle covnersion done by the
+kernel will result in too small duty cycle at brightness < 5%, because that
+translates to duty cycle of 250ns or less. In other words, kernel will generate
+3124 brightness steps for PWM period of 50us, with bottom ~150 steps being
+unusable and behaving weirdly (sometimes some of them work sometimes not,
+depending whether the LED regulator is already running or not).
 
-> +
-> +#include <linux/reset-controller.h>
+So the cie1931 curve may need a bit of a Y shift, by specifying a minimum duty
+cycle usable by the hardware.
 
-Put a newline here.
+Something like these 50 brightness levels work nicely, starting from minimum
+250ns and going up:
 
-> +#include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-> +#include <dt-bindings/reset/qcom,ipq9574-gcc.h>
-> +
-> +#include "clk-rcg.h"
-> +#include "clk-branch.h"
-> +#include "clk-alpha-pll.h"
-> +#include "clk-regmap-divider.h"
-> +#include "clk-regmap-mux.h"
-> +#include "clk-regmap-phy-mux.h"
-> +#include "reset.h"
-> +
-> +/* Need to match the order of clocks in DT binding */
-> +enum {
-> +       DT_XO,
-> +       DT_SLEEP_CLK,
-> +       DT_BIAS_PLL_UBI_NC_CLK,
-> +       DT_PCIE30_PHY0_PIPE_CLK,
-> +       DT_PCIE30_PHY1_PIPE_CLK,
-> +       DT_PCIE30_PHY2_PIPE_CLK,
-> +       DT_PCIE30_PHY3_PIPE_CLK,
-> +       DT_USB3PHY_0_CC_PIPE_CLK,
-> +};
-> +
-> +enum {
-> +       P_XO,
-> +       P_PCIE30_PHY0_PIPE,
-> +       P_PCIE30_PHY1_PIPE,
-> +       P_PCIE30_PHY2_PIPE,
-> +       P_PCIE30_PHY3_PIPE,
-> +       P_USB3PHY_0_PIPE,
-> +       P_GPLL0,
-> +       P_GPLL0_DIV2,
-> +       P_GPLL0_OUT_AUX,
-> +       P_GPLL2,
-> +       P_GPLL4,
-> +       P_PI_SLEEP,
-> +       P_BIAS_PLL_UBI_NC_CLK,
-> +};
-> +
-> +static const struct parent_map gcc_xo_map[] =3D {
-> +       { P_XO, 0 },
-> +};
-> +
-> +static const struct clk_parent_data gcc_xo_data[] =3D {
-> +       { .index =3D DT_XO },
-> +};
-> +
-> +static const struct clk_parent_data gcc_sleep_clk_data[] =3D {
-> +       { .index =3D DT_SLEEP_CLK },
-> +};
-> +
-> +static struct clk_alpha_pll gpll0_main =3D {
-> +       .offset =3D 0x20000,
-> +       .regs =3D clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +       .clkr =3D {
-> +               .enable_reg =3D 0x0b000,
-> +               .enable_mask =3D BIT(0),
-> +               .hw.init =3D &(struct clk_init_data) {
+	brightness-levels =
+		<0 250 360 470 580 690 810 949 1110 1294 1502
+		1737 1998 2289 2610 2964 3351 3774 4233 4731
+		5268 5847 6467 7133 7845 8604 9412 10271 11182
+		12146 13164 14239 15374 16568 17822 19140 20521
+		21969 23483 25068 26722 28447 30247 32121 34071
+		36099 38210 40400 42669 45026 47468 50000>;
+	default-brightness-level = <17>;
 
-All these clk_init_data structs should be const.
+when put into backlight node.
 
-> +                       .name =3D "gpll0_main",
-> +                       .parent_data =3D gcc_xo_data,
-> +                       .num_parents =3D ARRAY_SIZE(gcc_xo_data),
-> +                       .ops =3D &clk_alpha_pll_ops,
-> +               },
-> +       },
-> +};
+Or if we want 100 steps, then this curve would work, too:
+
+brightness-levels = <250 304 360 414 470 524 580 634 690 747 810 877
+	949 1027 1110 1199 1294 1395 1502 1616 1737 1864 1998 2140 2289
+	2446 2610 2783 2964 3154 3351 3559 3774 3999 4233 4477 4731 4994
+	5268 5552 5847 6152 6467 6795 7133 7483 7845 8219 8604 9002 9412
+	9835 10271 10719 11182 11656 12146 12648 13164 13695 14239 14799
+	15374 15963 16568 17186 17822 18474 19140 19822 20521 21236 21969
+	22717 23483 24267 25068 25885 26722 27575 28447 29338 30247 31173
+	32121 33087 34071 35077 36099 37145 38210 39292 40400 41523 42669
+	43839 45026 46237 47468 48722 50000>;
+
+
+> > +		pwm-delay-us = <10000>;
+
+Also this doesn't seem to be documented anywhere or used in the kernel code...
+So we should remove it.
+
+kind regards,
+	o.
+
+> > +	};
+> > +
+> >  	gpio-keys {
+> >  		compatible = "gpio-keys";
+> >  		pinctrl-names = "default";
