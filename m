@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DABE6CA67B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A8596CA684
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232766AbjC0Nv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 09:51:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40870 "EHLO
+        id S232141AbjC0Nyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 09:54:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232861AbjC0Nvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:51:31 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329576E9D;
-        Mon, 27 Mar 2023 06:50:39 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id o26-20020a4ad49a000000b0053964a84b0fso1328320oos.7;
-        Mon, 27 Mar 2023 06:50:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679925038;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sdu8kvcOTirGrWj69vMN2+TEmBise2kmxyOqDHaHDbI=;
-        b=tEOC6fAtjCweZ4dAUM4ubUm86ICa2t8MLCNNnz7bAS+jRoPPw76Z0FlVBf5JHCr+QB
-         WdBhnOULd7NrvZ+bkLQZkv0Fy6OQkIOpRCLilsdkuOUT0LXL5fY768OTHHs6jo2Yq1mg
-         TuqlTEL9QWDZwhmQ2SG0ftLa6O68M8sbET9TYJw2j2MhSRt+G2W9NU2p0EjyftljMYhf
-         txUd69EiKlyKZCGjlJ6Pwzy/NzpYic/W92o12kDo9F161Nx8je/ZIOD/5i86wwUp3PgY
-         7AZ9wqZN2dKS4jQVXerBhNVg6kUm6JX25srEhzXH+XsvtOX4Q3ZlBC1Rpd3EGhkns8R7
-         f6ew==
-X-Gm-Message-State: AO0yUKU/3t0Np78wrEETCVVJUNhSOR2Ebapp5KzCM/bzmNfEkD6TFpUL
-        fZKvFy7K/3/gPJQf46f4FA==
-X-Google-Smtp-Source: AK7set+n+luM2eu7l4E5E0Hgk4BF/OO51E9s+Wat4P4mUYaZLYFoh/1u9PtpBb7dgARKwpy6PC2EMQ==
-X-Received: by 2002:a4a:58c9:0:b0:538:243:2191 with SMTP id f192-20020a4a58c9000000b0053802432191mr5989631oob.7.1679925038362;
-        Mon, 27 Mar 2023 06:50:38 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j4-20020a4aab44000000b0052569fb1cfesm11288215oon.28.2023.03.27.06.50.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 06:50:37 -0700 (PDT)
-Received: (nullmailer pid 3484373 invoked by uid 1000);
-        Mon, 27 Mar 2023 13:50:37 -0000
-Date:   Mon, 27 Mar 2023 08:50:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH V5 2/3] dt-bindings: nvmem: convert base example to use
- NVMEM fixed cells layout
-Message-ID: <167992503682.3484320.7287063657241924701.robh@kernel.org>
-References: <20230321102418.4190-1-zajec5@gmail.com>
- <20230321102418.4190-3-zajec5@gmail.com>
+        with ESMTP id S230107AbjC0Nyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:54:31 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5673C25;
+        Mon, 27 Mar 2023 06:54:30 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32RDLVad013620;
+        Mon, 27 Mar 2023 13:54:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vErAbA+67np0DJjRjpGBn7ZfxgBTtrb9gzfiMtW068A=;
+ b=DKm8ufx20TaXw7+W3AalnHf91O4nx8BmfaHWtVzmhb1WUKYMADTpVrs9LQhKwTTa+IMy
+ fqtW6eX61ThmBtcjlFwIP++hMed6pelgNK/10y2C2ms+Md2xDY2qDutX2OaQ5zYRQXXk
+ W5qW9YVlyGpuSr+cALC3/KRYOOeF60Uv3+y1xLKyxMj2FsOaCK/qEsEMJOuFNKnFXR6w
+ 70zbCbC4At/BFyYIGC7wbBfj+Mn0B7cadfP/KkhfYkZaLg4FMtG+dNFAwK/xDtb7feNx
+ 9/ytZsAcx8JwjJbjMC8S0bpC3Nt/ylOtWYAAof3D06SG0Ii9f01Hh8Cs3PmSJ+od/ZCC ng== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pkby4825k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 27 Mar 2023 13:54:10 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32RDs9p2004370
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 27 Mar 2023 13:54:09 GMT
+Received: from [10.201.3.104] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Mar
+ 2023 06:54:05 -0700
+Message-ID: <745e6bd6-96a5-ceab-1f0c-31440d34e4c8@quicinc.com>
+Date:   Mon, 27 Mar 2023 19:24:02 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/5] mtd: rawnand: qcom: Add initial support for qspi nand
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Boris Brezillon <boris.brezillon@collabora.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+        <robh+dt@kernel.org>, <vigneshr@ti.com>, <richard@nod.at>,
+        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <quic_srichara@quicinc.com>, <qpic_varada@quicinc.com>,
+        <quic_sjaganat@quicinc.com>
+References: <1602307902-16761-1-git-send-email-mdalam@codeaurora.org>
+ <1602307902-16761-3-git-send-email-mdalam@codeaurora.org>
+ <20201029100751.713e27df@collabora.com>
+ <b70ddb40-a1f1-f967-6b7b-057a39b0bcc2@quicinc.com>
+ <20230306153851.0dcdda27@xps-13>
+From:   Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <20230306153851.0dcdda27@xps-13>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230321102418.4190-3-zajec5@gmail.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: BeaiQvF3fssM7SoEvGEbcFicwmdk2VcU
+X-Proofpoint-GUID: BeaiQvF3fssM7SoEvGEbcFicwmdk2VcU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 mlxlogscore=999 mlxscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2303270109
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,18 +87,90 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 21 Mar 2023 11:24:17 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> With support for the "fixed-layout" binding it's possible and preferred
-> now to define fixed NVMEM cells in the layout node. Do that for the
-> example binding.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../devicetree/bindings/nvmem/nvmem.yaml      | 42 +++++++++++--------
->  1 file changed, 24 insertions(+), 18 deletions(-)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 3/6/2023 8:08 PM, Miquel Raynal wrote:
+> Hello,
+> 
+> quic_mdalam@quicinc.com wrote on Mon, 6 Mar 2023 19:45:58 +0530:
+> 
+>> On 10/29/2020 2:37 PM, Boris Brezillon wrote:
+>>> Hello,
+>>>
+>>> On Sat, 10 Oct 2020 11:01:39 +0530
+>>> Md Sadre Alam <mdalam@codeaurora.org> wrote:
+>>>   
+>>>> This change will add initial support for qspi (serial nand).
+>>>>
+>>>> QPIC Version v.2.0 onwards supports serial nand as well so this
+>>>> change will initialize all required register to enable qspi (serial
+>>>> nand).
+>>>>
+>>>> This change is supporting very basic functionality of qspi nand flash.
+>>>>
+>>>> 1. Reset device (Reset QSPI NAND device).
+>>>>
+>>>> 2. Device detection (Read id QSPI NAND device).
+>>> Unfortunately, that's not going to work in the long term. You're
+>>> basically hacking the raw NAND framework to make SPI NANDs fit. I do
+>>> understand the rationale behind this decision (re-using the code for
+>>> ECC and probably other things), but that's not going to work. So I'd
+>>> recommend doing the following instead:
+>>>
+>>> 1/ implement a SPI-mem controller driver
+>>> 2/ implement an ECC engine driver so the ECC logic can be shared
+>>>      between the SPI controller and raw NAND controller drivers
+>>> 3/ convert the raw NAND driver to the exec_op() interface (none of
+>>>      this hack would have been possible if the driver was using the new
+>>>      API)
+>>>
+>>> Regards,
+>>>
+>>> Boris
+>>>   
+>>      Sorry for late reply, again started working on this feature support.  The QPIC v2 on wards there is serial nand support got added , its not a standard SPI controller
+>>
+>>      its QPIC controller having support for serial nand. All SPI related configuration done by QPIC hardware and its not exposed as SPI bus to the external world. Only based on
+>>
+>>      QPIC_SPI_CFG = 1, serial functionality will get selected. So that no need to implement as SPI-mem controller driver, since its not a SPI controller.
+>>
+>>     Please check the below diagram for top view of QPIC controller.
+> 
+> One of the hard things in the Linux kernel is to make devices fit
+> frameworks. This feature does not fit the raw NAND framework. It does
+> not follow any of the conventions taken there. It is not gonna be
+> accepted there. You need to expose spi-mem functionalities, even if the
+> spi-proper features are not available. I believe your situation still
+> fits the spi-mem abstraction.
+> 
+> Thanks,
+> Miquèl
 
+
+I have started writing the driver code for SPI NAND. Please check the below design,
+is this fine as per Boris suggestion.
+
+
+           |------------------------|                      |------------------------------|                        |---------------------------------|
+           |qcom spi nand driver    |--------------------->|common ECC engine driver      |<-----------------------|qcom raw nand driver             |
+           |                        |                      |                              |                        |                                 |
+           |                        |                      |drivers/mtd/nand/ecc-qcom.c   |                        |drivers/mtd/nand/raw/qcom_nand.c |
+           |                        |                      |                              |                        |                                 |
+           |drivers/spi/spi-qpic.c  |                      |------------------------------|                        |                                 |
+           |                        |                      |common API file:              |                        |                                 |
+           |                        |                      |common API: reset, read id,   |                        |                                 |
+           |                        |--------------------->|erase, read page, write page, |<-----------------------|                                 |
+           |------------------------|                      |bad block check etc.          |                        |                                 |
+                                                           |                              |                        |---------------------------------|
+                                                           |drivers/mtd/nand/raw/qpic_comm|
+                                                           |    on.c                      |
+                                                           |------------------------------|
+
+
+Here ECC engine driver as separate file under (drivers/mtd/nand/ecc-qcom.c) and all
+common APIs like reset, read id, erase, write page, read page, check block bad etc.
+as separate file under drivers/mtd/nand/raw/qpic_common.c.APIs under ECC engine drivers
+and qpic_common.c will be exported and used by spi-qpic.c driver (Serial NAND) and qcom_nand.c
+(raw nand driver).
+
+Thanks,
+Alam.
