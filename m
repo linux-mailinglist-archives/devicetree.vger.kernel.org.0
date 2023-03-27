@@ -2,93 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFA756C9D31
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 676686C9D34
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 10:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232936AbjC0IJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 04:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38470 "EHLO
+        id S232963AbjC0IKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 04:10:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbjC0IJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:09:40 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93893191;
-        Mon, 27 Mar 2023 01:09:39 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 97DDF6602087;
-        Mon, 27 Mar 2023 09:09:37 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1679904578;
-        bh=WsJrZpm843H/Mqkak9eNmuxfS+fyJ9GgkzGPM1UBOFY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MRMri0dpMSRlcR433ByuMgdZmR0JajiPP6xsngGy/nxPO5KOcUB0byRvbzhLRc99D
-         hL41kgsF36sAAaLuskGkuY/mWTqL+4k1loJa50QP3npbNq0jz5511R7YZ9Rb7aFbXZ
-         YDHQU1or1V1O1Q1DMy2kTyLxcMsZl7vxTO9pgU9M5bf7rNTqjmCIqtg+EhpWE2foSl
-         3J+Ujz2CKp4vZBT8LOlLcj943u7W2t10QfP52tDmNx46C69Pq6WcfpdXTqaXFosJu5
-         svMP6/z9mrvJ+E+izWpN5pIt92RpnRTEd1+Oat5V0P42zHO8Z5OpDw/gbTi+R8bM5p
-         F3su3t1xiwMSg==
-Message-ID: <8937b354-a808-5e4b-94c4-f2c8a63945e2@collabora.com>
-Date:   Mon, 27 Mar 2023 10:09:35 +0200
+        with ESMTP id S233003AbjC0IJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 04:09:55 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2899349D6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:09:53 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id s13so4486287wmr.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 01:09:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679904591;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ESC+h5a5L+0QAStOf0nm0G7C56coJgIIvWvF2IVlW7A=;
+        b=RJCp8u0D7Y+BJT4d9sHYZqHYdgS6/bS9cqSDE1yqhvqXQBBfwcx+3a6mU6GEmWF2EK
+         wYLsvirQfCWw/ufuni09wqNubJ0Bn+MVAJoxP+v3SWwTPG9J5/Pbg2kB9ts4dqmEJC7L
+         YktG2HGf5I878ceRj5KES0oeuvO2WV4WVDrB9yg26oLAUMO1Ok80sQ+J+aMHVHnMAWgy
+         zw7v8K3/TkLONwqaNxqgEQOlQc32F6Nres7WTXtfLo9J2vvw59YGUGxg1EjWrDLwFd/k
+         Hmx2nzXEz30BI7E2DtZwqNtkK2J5jCRMrwq6oYu4lRLI8wMCpbrRHZCfoEY9gq8QBXDk
+         gFfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679904591;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ESC+h5a5L+0QAStOf0nm0G7C56coJgIIvWvF2IVlW7A=;
+        b=Y8IExkqLBfBI8bPdtbsHB+ujGNJibGoSRCWcGipR2jTGS625k6F395C8e4HDC/R43f
+         n4oFWMiumbf2lX9QmUOr/1Hy1eW3H2swZtlB6vCwM+wGQWchfU6Pb9zYgGVpOpXT0y/X
+         6JuFcIndCz5DAqax4C+Br/9kmIk+xX5G/xj7RjKCmxmZiQ7L379Y6ib2XbkAULv0xFOX
+         DXvBFa8jN6Fb1frSn1lUQyIJMFteaIs2BHk57t40C2mOR+Q1QRr4ubVAYd/h9vQ9mzsh
+         21B7H8bhW+fIF7v2onDCg2Sn5e2dQu5YrGhRCEcJyzf6dC6Q+4P1LZTrf5fFjPVm8FVm
+         75OA==
+X-Gm-Message-State: AO0yUKVc+iUxsdZd1BwtSw/zabKG8HxCOKqYWkG5AES9MmyCYx2aPIla
+        UO1hlC86Rgg5qu+TBbMmF3QuLA==
+X-Google-Smtp-Source: AK7set+7SXVjbBDjDfD+QIY9ofKP1turU4YPCc57g+4P6wMTaOxGHtdXngsVkcq1nK2Jsr16WIHZyQ==
+X-Received: by 2002:a7b:c8d9:0:b0:3ed:245f:97a with SMTP id f25-20020a7bc8d9000000b003ed245f097amr8879158wml.19.1679904591668;
+        Mon, 27 Mar 2023 01:09:51 -0700 (PDT)
+Received: from [192.168.7.111] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id l10-20020a7bc44a000000b003ed246c1d28sm12593795wmi.44.2023.03.27.01.09.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 01:09:51 -0700 (PDT)
+Message-ID: <ab495295-fc33-a195-e39c-4de4a2685cef@linaro.org>
+Date:   Mon, 27 Mar 2023 10:09:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 03/18] arm64: dts: mediatek: mt6795: xperia-m5: Enable
- Frequency Hopping
+ Thunderbird/102.8.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 5/9] arm64: dts: qcom: sc7180: switch USB+DP QMP PHY to
+ new style of bindings
 Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     matthias.bgg@gmail.com, qii.wang@mediatek.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        houlong.wei@mediatek.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230324175456.219954-1-angelogioacchino.delregno@collabora.com>
- <20230324175456.219954-4-angelogioacchino.delregno@collabora.com>
- <ZB9jlTsEb0Clf1zu@duo.ucw.cz>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <ZB9jlTsEb0Clf1zu@duo.ucw.cz>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org
+References: <20230326005733.2166354-1-dmitry.baryshkov@linaro.org>
+ <20230326005733.2166354-6-dmitry.baryshkov@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230326005733.2166354-6-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/03/23 22:11, Pavel Machek ha scritto:
-> On Fri 2023-03-24 18:54:41, AngeloGioacchino Del Regno wrote:
->> Enable FHCTL with Spread Spectrum for MAINPLL, MPLL and MSDCPLL
->> as found on the downstream kernel for this smartphone.
->> Which one to enable, and at what SSC percentage, was found by
->> dumping the debugging data from a running downstream kernel and
->> checking the downstream code.
+On 26/03/2023 01:57, Dmitry Baryshkov wrote:
+> Change the USB QMP PHY to use newer style of QMP PHY bindings (single
+> resource region, no per-PHY subnodes).
 > 
-> What advantages does this have? Lower EMI emissions?
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 57 ++++++++++------------------
+>   1 file changed, 19 insertions(+), 38 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 3c799b564b64..98004b02b762 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -14,6 +14,7 @@
+>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>   #include <dt-bindings/interconnect/qcom,sc7180.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+>   #include <dt-bindings/phy/phy-qcom-qusb2.h>
+>   #include <dt-bindings/power/qcom-rpmpd.h>
+>   #include <dt-bindings/reset/qcom,sdm845-aoss.h>
+> @@ -2713,49 +2714,28 @@ usb_1_hsphy: phy@88e3000 {
+>   			nvmem-cells = <&qusb2p_hstx_trim>;
+>   		};
+>   
+> -		usb_1_qmpphy: phy-wrapper@88e9000 {
+> +		usb_1_qmpphy: phy@88e8000 {
+>   			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
+> -			reg = <0 0x088e9000 0 0x18c>,
+> -			      <0 0x088e8000 0 0x3c>,
+> -			      <0 0x088ea000 0 0x18c>;
+> +			reg = <0 0x088e8000 0 0x3000>;
+>   			status = "disabled";
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+>   
+>   			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+> -				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
+>   				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+> -			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
+> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
+> +				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>;
+> +			clock-names = "aux",
+> +				      "ref",
+> +				      "com_aux",
+> +				      "usb3_pipe",
+> +				      "cfg_ahb";
+>   
+>   			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+>   				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
+>   			reset-names = "phy", "common";
+>   
+> -			usb_1_ssphy: usb3-phy@88e9200 {
+> -				reg = <0 0x088e9200 0 0x128>,
+> -				      <0 0x088e9400 0 0x200>,
+> -				      <0 0x088e9c00 0 0x218>,
+> -				      <0 0x088e9600 0 0x128>,
+> -				      <0 0x088e9800 0 0x200>,
+> -				      <0 0x088e9a00 0 0x18>;
+> -				#clock-cells = <0>;
+> -				#phy-cells = <0>;
+> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> -				clock-names = "pipe0";
+> -				clock-output-names = "usb3_phy_pipe_clk_src";
+> -			};
+> -
+> -			dp_phy: dp-phy@88ea200 {
+> -				reg = <0 0x088ea200 0 0x200>,
+> -				      <0 0x088ea400 0 0x200>,
+> -				      <0 0x088eaa00 0 0x200>,
+> -				      <0 0x088ea600 0 0x200>,
+> -				      <0 0x088ea800 0 0x200>;
+> -				#clock-cells = <1>;
+> -				#phy-cells = <0>;
+> -			};
+> +			#clock-cells = <1>;
+> +			#phy-cells = <1>;
+>   		};
+>   
+>   		dc_noc: interconnect@9160000 {
+> @@ -2835,7 +2815,7 @@ usb_1_dwc3: usb@a600000 {
+>   				iommus = <&apps_smmu 0x540 0>;
+>   				snps,dis_u2_susphy_quirk;
+>   				snps,dis_enblslpm_quirk;
+> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+>   				phy-names = "usb2-phy", "usb3-phy";
+>   				maximum-speed = "super-speed";
+>   			};
+> @@ -3143,8 +3123,9 @@ mdss_dp: displayport-controller@ae90000 {
+>   					      "ctrl_link_iface", "stream_pixel";
+>   				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+>   						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+> -				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+> -				phys = <&dp_phy>;
+> +				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
+> +							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
+> +				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
+>   				phy-names = "dp";
+>   
+>   				operating-points-v2 = <&dp_opp_table>;
+> @@ -3201,8 +3182,8 @@ dispcc: clock-controller@af00000 {
+>   				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
+>   				 <&dsi_phy 0>,
+>   				 <&dsi_phy 1>,
+> -				 <&dp_phy 0>,
+> -				 <&dp_phy 1>;
+> +				 <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
+> +				 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
+>   			clock-names = "bi_tcxo",
+>   				      "gcc_disp_gpll0_clk_src",
+>   				      "dsi0_phy_pll_out_byteclk",
 
-Hello Pavel,
-
-this is done for multiple reasons, main one being lower EMI, but the effects
-on functionality, depending on the actual board, may be quite dramatic and
-ranging from lower WiFi and/or modem signal "sensitivity" (as in, for example,
-having to automatically lower signal gain because of signal disturbance from
-the conducted EMI ripple), to even a complete platform crash due to clocking
-issues.
-
-This is not about accounting for hardware quirks because having this situation
-is totally normal and expected, especially on "particular" usecases such as
-smartphones, where the actual board is typically much constrained in terms of
-space, and where on the same board you have multiple components generating noise,
-either wanted (a nfc/wifi/bt/2g/3g/4g/5g/something-else signal), or unwanted.
-
-Cheers!
-Angelo
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
