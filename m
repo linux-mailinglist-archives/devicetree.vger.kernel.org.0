@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ACB36C9F0B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 815A76C9F1B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbjC0JMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 05:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53946 "EHLO
+        id S232339AbjC0JNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 05:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjC0JMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:12:06 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 39D88E9;
-        Mon, 27 Mar 2023 02:11:59 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8BxedndXSFko0sSAA--.27776S3;
-        Mon, 27 Mar 2023 17:11:57 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxbb7YXSFkrRIOAA--.33921S3;
-        Mon, 27 Mar 2023 17:11:54 +0800 (CST)
-Subject: Re: [PATCH v3 1/2] dt-bindings: spi: add loongson spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, loongson-kernel@lists.loongnix.cn,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S232951AbjC0JNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:13:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6561D1BD3;
+        Mon, 27 Mar 2023 02:13:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EB7C761151;
+        Mon, 27 Mar 2023 09:13:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98696C433D2;
+        Mon, 27 Mar 2023 09:13:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1679908393;
+        bh=i2DixOICfTfUPwZLMVJoKRB8PiwZdHjvi1UBGoZXtjM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aE+TZGdKB+QTUlhkYnSe5/ij+7cpn3cOYgImMe+fvgtL5gv02Mtjdje2CHFXX7BBk
+         RxwjoHfbYNos1c3FeezzhWjbXBDbZkDUjKLUoJ7XC4R2xqwb3SoKrOonLoGOOapzNi
+         s3JL0ESeq9HuqGi8H7RS4kIJbiQ1h0dBnIpH5NNk=
+Date:   Mon, 27 Mar 2023 11:13:10 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Hao Zhang <quic_hazha@quicinc.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, zhuyinbo@loongson.cn
-References: <20230324063317.14664-1-zhuyinbo@loongson.cn>
- <20230324063317.14664-2-zhuyinbo@loongson.cn>
- <167966252219.1675112.1668738117284963309.robh@kernel.org>
- <31026abc-bdb3-9d30-276f-82ff93e43d48@loongson.cn>
- <87045dd7-7af1-7af2-83f3-aa15bf74e965@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <be027670-f60d-1fce-5dcd-b406824f26e0@loongson.cn>
-Date:   Mon, 27 Mar 2023 17:11:52 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>, Leo Yan <leo.yan@linaro.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] Documentation: trace: Add documentation for
+ Coresight Dummy Trace
+Message-ID: <ZCFeJkkpIor5P28r@kroah.com>
+References: <20230324061608.33609-1-quic_hazha@quicinc.com>
+ <20230324061608.33609-4-quic_hazha@quicinc.com>
 MIME-Version: 1.0
-In-Reply-To: <87045dd7-7af1-7af2-83f3-aa15bf74e965@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bxbb7YXSFkrRIOAA--.33921S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7Kry8Kry5uw1Utr13Ar4UXFb_yoW8Cr45pw
-        48Can0yFWjyr13Kw4ft34Igw1YqrykJr1YqrnxKry7tF90va4Fvr4akryUuFsruF13Gryx
-        ZF1UK343K34jvw7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
-        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
-        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
-        Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82
-        IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCI
-        bckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_Jr
-        I_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v2
-        6r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj4
-        0_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8
-        JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8SksDUUUUU==
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230324061608.33609-4-quic_hazha@quicinc.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,52 +71,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2023/3/27 下午4:52, Krzysztof Kozlowski 写道:
-> On 27/03/2023 10:39, zhuyinbo wrote:
->>
->>
->> 在 2023/3/24 下午9:07, Rob Herring 写道:
->>>
->>> On Fri, 24 Mar 2023 14:33:16 +0800, Yinbo Zhu wrote:
->>>> Add the Loongson platform spi binding with DT schema format using
->>>> json-schema.
->>>>
->>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>> ---
->>>>    .../bindings/spi/loongson,ls-spi.yaml         | 43 +++++++++++++++++++
->>>>    MAINTAINERS                                   |  6 +++
->>>>    2 files changed, 49 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->>>>
->>>
->>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>
->>> yamllint warnings/errors:
->>>
->>> dtschema/dtc warnings/errors:
->>> Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
->>> FATAL ERROR: Unable to parse input tree
->>> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
->>> make[1]: *** Waiting for unfinished jobs....
->>> make: *** [Makefile:1512: dt_binding_check] Error 2
->> Hi Rob Herring,
->>
->> This error was still appears on 22 line, this line was
->> LOONGSON2_BOOT_CLK not refer, it need depend on
->> https://lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
->> then compile will be successful. and I had added this depend on
->> description in v2, v3 patch changelog, I was also send a email to remind
->> your bot for the test my patch need dpend on other clock patch.
+On Fri, Mar 24, 2023 at 02:16:08PM +0800, Hao Zhang wrote:
+> Add documentation for Coresight Dummy Trace under trace/coresight.
 > 
-> ... and did you read Rob's advice?yes
-For some reason you responded to
-> automated bot's email, but not to actual email from Rob.
-okay, I got it.
+> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
+> ---
+>  .../trace/coresight/coresight-dummy.rst       | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/trace/coresight/coresight-dummy.rst
 > 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/Documentation/trace/coresight/coresight-dummy.rst b/Documentation/trace/coresight/coresight-dummy.rst
+> new file mode 100644
+> index 000000000000..819cabab8623
+> --- /dev/null
+> +++ b/Documentation/trace/coresight/coresight-dummy.rst
+> @@ -0,0 +1,58 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +=============================
+> +Coresight Dummy Trace Module
+> +=============================
+> +
+> +    :Author:   Hao Zhang <quic_hazha@quicinc.com>
+> +    :Date:     March 2023
+> +
+> +Introduction
+> +---------------------------
+> +
+> +Coresight Dummy Trace Module is for the specific devices that HLOS don't
+> +have permission to access or configure. Such as Coresight sink EUD, some
+> +TPDMs etc. So there need driver to register dummy devices as Coresight
+> +devices. Provide Coresight API for dummy device operations, such as
+> +enabling and disabling dummy devices. Build the Coresight path for dummy
+> +sink or dummy source for debugging.
+> +
+> +Sysfs files and directories
+> +---------------------------
+> +
+> +Root: ``/sys/bus/coresight/devices/dummy<N>``
 
+sysfs files are documented in Documentation/ABI/ not in random .rst
+files, sorry.  Please use the correct format described there, not a
+random one like this :)
+
+thanks,
+
+greg k-h
