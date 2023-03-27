@@ -2,65 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1058E6CA5BD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 707F86CA5D5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:28:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232741AbjC0NZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 09:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34536 "EHLO
+        id S232775AbjC0N2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 09:28:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbjC0NZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:25:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336BB59FD;
-        Mon, 27 Mar 2023 06:24:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 724676126E;
-        Mon, 27 Mar 2023 13:24:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90AB3C433D2;
-        Mon, 27 Mar 2023 13:23:56 +0000 (UTC)
-Message-ID: <87e68e05-8512-17fc-584c-0022ddefb8f0@linux-m68k.org>
-Date:   Mon, 27 Mar 2023 23:23:53 +1000
+        with ESMTP id S232384AbjC0N21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:28:27 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD8230E6;
+        Mon, 27 Mar 2023 06:28:13 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32RAJEKM024674;
+        Mon, 27 Mar 2023 13:27:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=zMOf3H9MfVXtmHyapLAstKy2EJvf6Cj5ivPih/SsaXs=;
+ b=gax7jARbCBBwphuGRVnMJ8GF5/B8na5koVbWVqAAwyrK22jvwkGUiPVNPNOIB6EXaysc
+ NYUs4ZWoymEMiY16odP4VpWUxgZ7xqk+R2dmGInnEFS+kL9ZuZM8Wwzr8Cao4/YHqJbs
+ N1zukM4kZpM3X27fOEc/tViG/oCh2dr+xzmE1qRntrs7i5VwFuRTPqySGE9QTuLFttpN
+ JnVsh2w8iFoscqkVYvRqSVE//s9baJkEdiZg9YBBPrVbNh0Cgn55AxRk0AcOiya0xAvX
+ gd+sxcFeAZ0osMNIdfdFvsQyGeJzRfpSqOooFkN1B9TsieiqzTURW3sr1zH7t2IT5wFi kQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pk57710ya-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 27 Mar 2023 13:27:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32RDRkF8007327
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 27 Mar 2023 13:27:46 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Mon, 27 Mar 2023 06:27:37 -0700
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <shawnguo@kernel.org>, <arnd@arndb.de>,
+        <marcel.ziswiler@toradex.com>, <dmitry.baryshkov@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+Subject: [PATCH V10 0/4] Add minimal boot support for IPQ9574
+Date:   Mon, 27 Mar 2023 18:57:14 +0530
+Message-ID: <20230327132718.573-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: imx8mp: add vpu pgc nodes
-Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "marex@denx.de" <marex@denx.de>,
-        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "gerg@kernel.org" <gerg@kernel.org>
-References: <20220713063653.2584488-6-peng.fan@oss.nxp.com>
- <20230327050642.593778-1-gerg@linux-m68k.org>
- <DU0PR04MB94174D60EE38B56FEB6CD5BC888B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From:   Greg Ungerer <gerg@linux-m68k.org>
-In-Reply-To: <DU0PR04MB94174D60EE38B56FEB6CD5BC888B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: xHFHnZvr9Ephwk9BLeNOdrekIa5U3aey
+X-Proofpoint-ORIG-GUID: xHFHnZvr9Ephwk9BLeNOdrekIa5U3aey
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-27_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 adultscore=0
+ mlxlogscore=488 phishscore=0 malwarescore=0 spamscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2303270105
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,114 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+The IPQ9574 is Qualcomm's 802.11ax SoC for Routers,
+Gateways and Access Points
 
-On 27/3/23 20:01, Peng Fan wrote:
->> Subject: Re: [PATCH] arm64: dts: imx8mp: add vpu pgc nodes
->>
->> On 22/8/22 14:45, Peng Fan wrote:
->>> Add i.MX8MP PGC nodes for vpu, which are used to supply power for VPU.
->>>
->>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>> Signed-off-by: Shawn Guo <shawnguo@kernel.org>
->>> ---
->>>   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 27
->>> +++++++++++++++++++++++
->>>   1 file changed, 27 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->>> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->>> index 0b165f98a82c..34af983b0210 100644
->>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->>> @@ -598,6 +598,33 @@ pgc_ispdwp: power-domain@18 {
->>>                                                  reg =
->> <IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP>;
->>>                                                  clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>;
->>>                                          };
->>> +
->>> +                                       pgc_vpumix: power-domain@19 {
->>> +                                               #power-domain-cells = <0>;
->>> +                                               reg = <IMX8MP_POWER_DOMAIN_VPUMIX>;
->>> +                                               clocks =<&clk IMX8MP_CLK_VPU_ROOT>;
->>> +                                       };
->>> +
->>> +                                       pgc_vpu_g1: power-domain@20 {
->>> +                                               #power-domain-cells = <0>;
->>> +                                               power-domains = <&pgc_vpumix>;
->>> +                                               reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
->>> +                                               clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
->>> +                                       };
->>> +
->>> +                                       pgc_vpu_g2: power-domain@21 {
->>> +                                               #power-domain-cells = <0>;
->>> +                                               power-domains = <&pgc_vpumix>;
->>> +                                               reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
->>> +                                               clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
->>> +                                       };
->>> +
->>> +                                       pgc_vpu_vc8000e: power-domain@22 {
->>> +                                               #power-domain-cells = <0>;
->>> +                                               power-domains = <&pgc_vpumix>;
->>> +                                               reg =
->> <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
->>> +                                               clocks = <&clk
->> IMX8MP_CLK_VPU_VC8KE_ROOT>;
->>> +                                       };
->>>                                  };
->>>                          };
->>>                  };
->>
->> This change causes new error messages to come out during boot, for
->> example:
->>
->>      ...
->>      imx-pgc imx-pgc-domain.8: failed to command PGC
->>      imx-pgc imx-pgc-domain.8: failed to command PGC
->>      imx-pgc imx-pgc-domain.8: failed to command PGC
->>      30890000.serial: ttymxc1 at MMIO 0x30890000 (irq = 197, base_baud =
->> 1500000) is a IMX
->>      ...
->>      hwmon hwmon1: temp1_input not attached to any thermal zone
->>      imx-pgc imx-pgc-domain.8: failed to command PGC
->>      imx-pgc imx-pgc-domain.8: failed to command PGC
->>      imx-pgc imx-pgc-domain.8: failed to command PGC
->>      ...
->>
->> They don't seem to cause any problems on the hardware I am using, well, at
->> least not that I have found so far.
->>
->> This first appeared for me in linux-6.1. But it is the same in todays linux 6.3-
->> rc4. Reverting this change (not completely trivial due to a couple of commits
->> after it that rely on it) fixes it - no more errors.
-> [Peng Fan]
-> 
-> The VPU BLK CTRL seems not enabled.
+This series adds minimal board boot support for ipq9574-rdp433 variant
 
-How to enable it?
-I have the blk-ctrl config options enabled:
+V9 can be found at:
+https://lore.kernel.org/linux-arm-kernel/20230316072940.29137-1-quic_devipriy@quicinc.com/
 
-     #
-     # i.MX SoC drivers
-     #
-     CONFIG_IMX_GPCV2_PM_DOMAINS=y
-     CONFIG_SOC_IMX8M=y
-     CONFIG_SOC_IMX9=y
-     CONFIG_IMX8M_BLK_CTRL=y
-     CONFIG_IMX9_BLK_CTRL=y
-     # end of i.MX SoC drivers
+Changes in V10:
+	- Dropped the pinctrl driver and its binding as it is
+	  already part of the linux-next/master
+	- Detailed change log is present in the respective patches
 
-Running with the full arm64 defconfig and using the imx8mp-evk.dtb still
-outputs these messages:
+Devi Priya (4):
+  dt-bindings: clock: Add ipq9574 clock and reset definitions
+  clk: qcom: Add Global Clock Controller driver for IPQ9574
+  arm64: dts: qcom: Add support for ipq9574 SoC and RDP433 variant
+  arm64: defconfig: Enable IPQ9574 SoC base configs
 
-     [   18.150679] imx-pgc imx-pgc-domain.8: failed to command PGC
-     [   18.159241] imx-pgc imx-pgc-domain.8: failed to command PGC
-     [   18.167822] imx-pgc imx-pgc-domain.8: failed to command PGC
+ .../bindings/clock/qcom,ipq9574-gcc.yaml      |   62 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |   84 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  270 ++
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-ipq9574.c                | 4248 +++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h  |  213 +
+ include/dt-bindings/reset/qcom,ipq9574-gcc.h  |  164 +
+ 10 files changed, 5053 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-gcc.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq9574.c
+ create mode 100644 include/dt-bindings/clock/qcom,ipq9574-gcc.h
+ create mode 100644 include/dt-bindings/reset/qcom,ipq9574-gcc.h
 
-Or do you mean something more fundamental, like the hardware block not
-being enabled by boot loader?  (Something to keep in mind is that the
-platform I am using has no video output, only serial console).
 
-Regards
-Greg
+base-commit: 011eb7443621f49ca1e8cdf9c74c215f25019118
+-- 
+2.17.1
 
