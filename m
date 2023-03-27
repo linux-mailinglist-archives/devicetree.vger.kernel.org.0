@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A3F36CA79A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B2726CA79F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233180AbjC0O2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 10:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49304 "EHLO
+        id S233200AbjC0O2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:28:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232276AbjC0O2O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:28:14 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624EF6597
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:27:34 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-54606036bb3so7984087b3.6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:27:34 -0700 (PDT)
+        with ESMTP id S233102AbjC0O2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:28:17 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061A710D8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:27:46 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id e65so10775454ybh.10
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:27:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679927253;
+        d=linaro.org; s=google; t=1679927265;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=h24fqvNh2MtFb7EQW++89YiwETI1wexBBZ/Ngv8WZuY=;
-        b=WyKIMqF83gDfQPHKM2mPns9a0xHPKCtAJZzvUeMSejBHB5Y5/KspjpvdrsTMSE4QLC
-         TTde8JWyxuotuWhFSZSys+TjgmgyIM3vFoAWeTjzZHWaycXuat+vdQnCPR3rSXNfnvfk
-         pPgkyDDwF3OYP34jFDgCZ531ITPkQKc80pBl38Aa0jjxo+lQjs4TXFdyd+ExfxeeJdQa
-         6RRAJ9jRHz8nTUra7/VM2HvESWFag2w52o1TE4FlQoCsIcaA015TvSmHEc31RrnWGMdY
-         NCC/jflH/CfJnCDvjg0SkkFvFWtZpVeDSwNC3OM4kAtYGXWwvymfnHnYjA4ox2U1flpq
-         U+Cg==
+        bh=sgiisWdAkK9TZByL6qo6IqTFGMxPn6Lsp6OHLkAuwu4=;
+        b=sWUOgoKORUJyz6il5vhJZSTWG2/9Re59WLZ8D5hSzxihnW7ewbqtooTLxWT+ZrgVjo
+         w4MC2Gphns5ot05nr+eNMYLbiiVZWR0th/Er7M+3ZaLSc4v85G7BW2JhkZzSdVHu/sIJ
+         C6YAPuWvdAsqjcuN/Aq2qL9XsAJxg8dn4nb4YUHTCmKeFiWRZlOqQmh4Ty3ZcPTb3qoV
+         C29hR+WGvHT0mDuYtLj+DC9I1psnQB2nyLP1QiXzJh82ThNa71JiQiQdPrArQJ1i7wNs
+         6S7Jaq3tXUBceY3vv/JmHsbkf1mQl/Jl1Qezo7SAdX8W+K1eGHVbWZocV3G7nVljn0C3
+         y5+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679927253;
+        d=1e100.net; s=20210112; t=1679927265;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=h24fqvNh2MtFb7EQW++89YiwETI1wexBBZ/Ngv8WZuY=;
-        b=n0RcJNoVIKlBBvC/1hs8YQE95pycfV+5DG/iWI4mMhReR9sbp6Pjs08ZeVkXClyrC4
-         Zr1c2gXL6IYsErVKWq0O4WzBtMXKT6i6SQHdLcnPN/dr5mi0QCEyfofWErJ2UFlUVhud
-         lWZk1HCLKiNvl0gX3Jns3Sh97gOiwUAt9eGGceIfPcs+QMocbKYUezqQlJwi45acCpkx
-         XI8eHlbXBp9Eb+exPr+L2pJOSb0E7gP7f614/YA2ttivICuB2LFoJ1USwluy/9yTvB/L
-         K9XqQLkIuTtUlNmPF4SebKLISZtYSyfK1bqMz2xagEhmWb3yb9gJVtua+uScKPyR5J3/
-         hP2Q==
-X-Gm-Message-State: AAQBX9fAoGhm0jsLu24Zsz0qStk20/rGn4b3Dx2wtwNXgWPAvZL3gRiY
-        I3HMokBk2Urzn7bbPZkuMqo7C1O44qMfD+vLEqLVtg==
-X-Google-Smtp-Source: AKy350YZFQq577NIJqdhEJ032DUk3yv4PKctbFOftvR3jd3zPsZM+9hg0FJS3nIb7X4K14FFmYH2mmR/waEHcrn8e5s=
-X-Received: by 2002:a81:b50f:0:b0:544:b8d8:339e with SMTP id
- t15-20020a81b50f000000b00544b8d8339emr5533695ywh.5.1679927253542; Mon, 27 Mar
- 2023 07:27:33 -0700 (PDT)
+        bh=sgiisWdAkK9TZByL6qo6IqTFGMxPn6Lsp6OHLkAuwu4=;
+        b=HajofXDM1xOalQhtCXXFQWu7qg4/iZiIVXqhE3Ay4dDsWE6Rf1xwr6ayMv+dY6IjWy
+         Wh36CapTLY30xBYO3cioapNWx3gDcEoDl1KCPz06Bc+W2x73tldauVU1diYoJ17emk/n
+         k8fIfY3i47wnnl16WRekpha8tQtDwcYOLFMARVFdjnIXNuMo5eELa7SC0GIBqDSYqoGg
+         GFZYRxPkSNY0rgxdUYHSYHQsuWc5SoTYFaFwNH5x6t3bxnIwwDF9YDPhrNopuI2sMDjC
+         x7IXRK9YW5u054y1eCRui77MJcNhxu2ZcFxeexS1sPbP563wlS24Xmw/qH4zn2TOW6/l
+         unaw==
+X-Gm-Message-State: AAQBX9eCsjLYp1QnLySLcar2HUEIcXNzS8+NrQTqdxvNsyeqmfiBjeJ6
+        EIXn2RN9ahH/+f0TArtO+UqEWekbCqAnb6Zk+9NBIg==
+X-Google-Smtp-Source: AKy350YLZ8BJ7UVOhyWMGjbJZVGwlJuUQmqILqBjohAFBFlpR3qOR5Llb1TnhXzJFqWNNKEUZGMBqr3nzj1e1QM1opY=
+X-Received: by 2002:a05:6902:102b:b0:b46:4a5e:3651 with SMTP id
+ x11-20020a056902102b00b00b464a5e3651mr7197095ybt.9.1679927265147; Mon, 27 Mar
+ 2023 07:27:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230327140752.163009-1-krzysztof.kozlowski@linaro.org> <20230327140752.163009-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230327140752.163009-4-krzysztof.kozlowski@linaro.org>
+References: <20230327140752.163009-1-krzysztof.kozlowski@linaro.org> <20230327140752.163009-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230327140752.163009-5-krzysztof.kozlowski@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 27 Mar 2023 17:27:22 +0300
-Message-ID: <CAA8EJppZxd31JxcFaMUrEKF7mcCroizdeXePhKZ+i-KtkMyhXw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: ipq8074: add compatible fallback
+Date:   Mon, 27 Mar 2023 17:27:34 +0300
+Message-ID: <CAA8EJprfS_xfiu8v_GPcTkspV1hoyGYkKnufaX7G1SW8X7vfzw@mail.gmail.com>
+Subject: Re: [PATCH v4 4/5] arm64: dts: qcom: sc7180: add compatible fallback
  to mailbox
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -75,15 +75,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Mon, 27 Mar 2023 at 17:17, Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> IPQ8074 mailbox is compatible with IPQ6018.
+> SC7180 mailbox is compatible with SDM845.
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 3 ++-
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
 >  1 file changed, 2 insertions(+), 1 deletion(-)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
 -- 
 With best wishes
 Dmitry
