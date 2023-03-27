@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCFDF6CA6AF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 354096CA6D6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 16:10:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230273AbjC0N7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 09:59:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
+        id S232389AbjC0OK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 10:10:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbjC0N7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:59:06 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D952B3C00
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 06:59:05 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id h9so9141221ljq.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 06:59:05 -0700 (PDT)
+        with ESMTP id S232276AbjC0OKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 10:10:25 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB5A2D50
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:10:15 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id l8-20020a05600c1d0800b003ef6708bbf6so3336913wms.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 07:10:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679925544;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tHuButm+JKrD0k0PAzu4NQYuzqahXjCrFzScIxc9JRs=;
-        b=frd4XJIkuYQPEouh8pcHYEAwEO4OtXi8u3Ycmy/kGXdd5rJ0wsnz/tCXq9hZWx5qkz
-         J9PMMi2fZe3O057Jy7dVKiojllW97UrNxKItbtkWNh2NGZE6S7LX4alQXpU7rr00+Xxh
-         4szbpcgW0z/34e3L1I9IUDFJPDDYCLPQWAtIbfipK9j7usFwdz7dJbE+DfgKP7E4iSl8
-         HJZGkf9SIIjJzUlk8P/2947GSzX0JUaRmProwQvZ7g5JqikLvnQyKYtGWaGJAorbREOS
-         XnJ5sZ6RFj3j+3oNAleSIVY8dFkr3nePF8PZh6k4lBJYpEGAeaj75Pd6ud0j8GrFci2l
-         Sihw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679926214;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZVlIe/RgdhwWumjRHCwBYuMjJV3egIYQrdrj1qprP/0=;
+        b=MfGvpI6CNgREzd3FpwD44ac3g0urXBQcIr/jfzJgvkLVOrj5OY8LvP2WYnjW2Xd6ql
+         y4lR0WO8eFmfoumUCMf8+itWPii9nUo2Bd8f7k2lQph5CqvxmA6ndj2aw2W9+9P2BuRV
+         jeA/LEz2R+4QURvHaajRhx/sb8LbscGdvo1AU6C2pHrDgay4GgCFw0yDPiTgTmAkzX9+
+         ZZIwaLbntgdqMJVHWuRwjSdBb4QdlQxGwK2fqwaVhvkZlbhMrvY24L2gvuhf52sU5aTM
+         S/BTcl5tUvkNWfDqAH/LUBgNrKGKXJZS/Aqf3C9phy4mTj4qdppnXdjNMrTme2OuRvTO
+         iYew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679925544;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tHuButm+JKrD0k0PAzu4NQYuzqahXjCrFzScIxc9JRs=;
-        b=2Hze0VG2TnccC/dH8NnLYpLuq2ODsoHbwmKaBChQYdC1ROwJNNXBTrGybDWy+0O9DB
-         7EYfE0vxufmTAtaWlLA6CKdLVnAjc8bIFF1d7RUOOmUyvhDWmgwpvwa6d3uoWLIaCB+j
-         z4DjTM+z1n88HfQ8VU99xnfoq/LXGE/T/v3kYH8ndJWx6t3/5WxKoCDK8sQkT2qAjTYv
-         reYwzioMvXvKSYTA0bGH5oZSRFOjm+Qfmq9JI0u+DOq5uBQ4qEmqKzM9Tx4j+AQVojfG
-         O2wLC/b2d/RrbzrFTZ4+f41mw7M6FYkZecouhSWVbt58IH4uhQbE5tNM7WTYJhQ7TzZ3
-         KlKw==
-X-Gm-Message-State: AAQBX9fFYKewyJo3wjkkbnWlsRxnuIj6ukGSj3Aj5iS9UU5eOYCaOZ+h
-        7L9fzNelrMzSfDyMbXKNQ+wsyhiUF1bhSJJAegw=
-X-Google-Smtp-Source: AKy350Z8Ok4/26x+lDsZoUOePn+2xXP1XrH5c+EGh54s1v1AVIDVT5VKIN/6xJAt2q8aXllTlPO2gQ==
-X-Received: by 2002:a2e:9883:0:b0:293:5164:4f2b with SMTP id b3-20020a2e9883000000b0029351644f2bmr3686547ljj.8.1679925544144;
-        Mon, 27 Mar 2023 06:59:04 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id k2-20020a2e8882000000b002a2e931fc48sm1595536lji.140.2023.03.27.06.59.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 06:59:03 -0700 (PDT)
-Message-ID: <46082dde-d633-3b0a-6418-3c69f72962c2@linaro.org>
+        d=1e100.net; s=20210112; t=1679926214;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZVlIe/RgdhwWumjRHCwBYuMjJV3egIYQrdrj1qprP/0=;
+        b=ixexdGAfuHbY1EZ+rMGFjXRC7ZT70zK+bfVLoFprWX6PDtB1Qs4tAQvqOu3yl9za6B
+         VFCHgg7H7+HUrh3RpugLlG7DNu1a+3HP2OLSFl6aBoIlj9z5Ouv6CZO13AkuHS3Wv6tc
+         rZaH8vGVyNNND+qxf9iCy2V3OQCMTKBTn7WmL7hkL/1GeGe8evqR47R1CZUTH3fvd0T7
+         +ALJgX6MLIP/oIbBClJxKnxGCp9vTbGi1W+uB3iGSrhPhvwXpM9m7v8QfXLJjjzdFZMT
+         oAxcVVrvAPp+37QxWP2x77WPF9Y36wj8rkixf6yTPnf7wbEANWet36vBa7T2xg1+gOaE
+         9RSA==
+X-Gm-Message-State: AO0yUKVUHcKBuitHNdeRX+yJfFBcVA5WmNDkBTLTn7uIBg+dEj3poI0V
+        +jIldjM/Bj0uD38tJol4k5Eznw==
+X-Google-Smtp-Source: AK7set/aY05hvbiA8KMzWBPj0eKSUapzbpCUsTazqbkJwnY7zYE8nWiRLrnNjGBX/wUBUVVHowIx3Q==
+X-Received: by 2002:a05:600c:3642:b0:3e2:1d1e:78d6 with SMTP id y2-20020a05600c364200b003e21d1e78d6mr9400422wmq.7.1679926213866;
+        Mon, 27 Mar 2023 07:10:13 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id m5-20020a7bce05000000b003edff838723sm13886159wmc.3.2023.03.27.07.10.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 07:10:13 -0700 (PDT)
+References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
+ <20230321193014.26349-4-ddrokosov@sberdevices.ru>
+ <1jmt3yo5r0.fsf@starbuckisacylon.baylibre.com>
+ <20230327105115.ury3w4xpzhcpnqjg@CAB-WSD-L081021>
+ <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
+ <1f68ff4f-46ab-7d9e-fa57-bb94beb4c691@linaro.org>
+User-agent: mu4e 1.8.13; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+        kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v11 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
 Date:   Mon, 27 Mar 2023 15:59:02 +0200
+In-reply-to: <1f68ff4f-46ab-7d9e-fa57-bb94beb4c691@linaro.org>
+Message-ID: <1ja5zynv3v.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: fix pon compatible and
- registers
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230327122948.4323-1-johan+linaro@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230327122948.4323-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,42 +83,95 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Mon 27 Mar 2023 at 15:41, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-On 27.03.2023 14:29, Johan Hovold wrote:
-> The pmk8280 PMIC PON peripheral is gen3 and uses two sets of registers;
-> hlos and pbs.
-> 
-> This specifically fixes the following error message during boot when the
-> pbs registers are not defined:
-> 
-> 	PON_PBS address missing, can't read HW debounce time
-> 
-> Note that this also enables the spurious interrupt workaround introduced
-> by commit 0b65118e6ba3 ("Input: pm8941-pwrkey - add software key press
-> debouncing support") (which may or may not be needed).
-> 
-> Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> On 27/03/2023 13:39, Jerome Brunet wrote:
+>> 
+>> On Mon 27 Mar 2023 at 13:51, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+>> 
+>>> On Mon, Mar 27, 2023 at 11:51:21AM +0200, Jerome Brunet wrote:
+>>>>
+>>>> On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+>>>>
+>>>>> Add the documentation for Amlogic A1 PLL and Amlogic A1 Peripherals
+>>>>> clock drivers.
+>>>>> Introduce Amlogic A1 PLL and Amlogic A1 Peripherals device tree
+>>>>> bindings and include them to MAINTAINERS.
+>>>>>
+>>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>>>>> ---
+>>>>>  .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
+>>>>>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |  59 +++++++++
+>>>>>  MAINTAINERS                                   |   1 +
+>>>>>  include/dt-bindings/clock/amlogic,a1-clkc.h   | 113 ++++++++++++++++++
+>>>>>  .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |  21 ++++
+>>>>>  5 files changed, 267 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>>>>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>>>
+>>>> There is two drivers (and 2 independent patches). There should be 2
+>>>> bindings patches as well.
+>>>>
+>>>
+>>> Before, in previous versions I had two versions, but it wasn't bisectable
+>>> approach.
+>> 
+>> You are confusing bisectable and Rob's robot. Splitting patches is more
+>> that likely to help bisect (and patches backport) - not the other way around.
+>
+> No, he did not confuse. Splitting patches makes the series
+> non-bisectable which was visible in the past.
+>
+> What's more, there is no reason to have bindings patches split just
+> because you split drivers. Bindings are independent of drivers - we
+> write them for hardware description.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> index c35e7f6bd657..a0ba535bb6c9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> @@ -59,8 +59,9 @@ pmk8280: pmic@0 {
->  		#size-cells = <0>;
->  
->  		pmk8280_pon: pon@1300 {
-> -			compatible = "qcom,pm8998-pon";
-> -			reg = <0x1300>;
-> +			compatible = "qcom,pmk8350-pon";
-> +			reg = <0x1300>, <0x800>;
-> +			reg-names = "hlos", "pbs";
->  
->  			pmk8280_pon_pwrkey: pwrkey {
->  				compatible = "qcom,pmk8350-pwrkey";
+Patches should do one thing, my comment is a simple application of that.
+
+There no reason to have a single patch provide the bindings for 2
+independent pieces of HW, which those components are. If a dependency
+has been set, it is one that should not be there.
+
+They do provide inputs to one another, yes but remain independent pieces of
+HW. They have a different address space and as a consequences, different
+drivers
+
+If we were being strict, it should even be seperate series.
+
+>
+>> 
+>>> a1-clkc schema depends on a1-pll-clkc headers and vice versa.
+>>> It means dt schemas checkers will show us failure if we split them into two
+>>> patchsets.
+>> 
+>> Only because you are patches are not upstream yet ...
+>> 
+>>> I know, that we can use raw digits instead of CLKID names, but IMO it doesn't
+>>> look like production schema and it requires one more patchset above the
+>>> series with proper CLKID definitons usage and proper header including.
+>>>
+>>> BTW, there is an example of Rob's test bot failure found in the previous
+>>> v10 patch series due to chicken or the egg problem.
+>>> https://lore.kernel.org/all/167769997208.7087.5344356236212731922.robh@kernel.org/
+>>>
+>>> Please advise what's the best practice to resolve that..
+>> 
+>> Don't use the header in your example would solve the problem and
+>> still be correct DT wise.
+>> 
+>> The examples are just examples, they are not required to actually
+>> matches a real HW, as far as I know.
+>
+> Yes, that would work... or just keep them here.
+>
+>
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
