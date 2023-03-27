@@ -2,101 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2A56CA0D2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:07:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFB66CA0DB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 12:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233008AbjC0KHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 06:07:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
+        id S233439AbjC0KIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 06:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232813AbjC0KHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:07:01 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8EFF46B5
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:06:59 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id z42so8317398ljq.13
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:06:59 -0700 (PDT)
+        with ESMTP id S233407AbjC0KIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 06:08:30 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C014C3A
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:08:27 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id d11-20020a05600c3acb00b003ef6e6754c5so1517359wms.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 03:08:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679911618;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KFv/A1+uJn3CnMRGy/hasrUt1t16K7NodNwg6vSfcFk=;
-        b=IdP5kqn82eh9bgkRp3Z2liP32XsdMsNhWaiV1xVFrkUnDDdOgJNqCKvX6cMc2pDu93
-         8gg4nWR/Ttc0Jqyd7iyE8dKcXkHmJ//8kQ8H+j+/uumRJqeZWv8JyaNdX3M9uQFRho67
-         CBQ78CZa5lIvoKLWTVM04LWj+WeE1MWEyYu2sgb7BBynDbRvPhx7bimOWJpHDd95kZ5f
-         EQeCKKyfafSHXq21IZ8d88qrCrirv8e0RZzDTo9iEoN5UlWxCp7RvL6ivDdyy8ccr9Ni
-         efODoystPOCp1d9pAyHkyVcVaxJm3eu94F6I3oimPlUcABp00yBeRTX55r7GsyYmMj/z
-         oW+A==
+        d=linaro.org; s=google; t=1679911705;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tGoH4KvFumE/aZ3oDDGGiwEflY/XB6nXZQrLqw1tSnI=;
+        b=syqWTErWORaOaEkKGE/WcSpMeaCjSH+kWTHXltMv3KacuoG1iBMJjyyI3Ypgi7VVKM
+         IbhfWcST7FfiXNazxPT/YvX3zxOy2cOeWQVrPykLdYfRBUi1XNSHD/zx+OHmDSixjtNQ
+         R6pqNc9Y0OhUc8j/4jPZY3QT/mfxgyCst7FYxHm/mZ445Gti7eA4lksC4qowfX9Qb2Gt
+         shnL4UuD9LMgbeFQwgTadf15bkqQAsB76+Yjd/n0YQ0EowXaFTAKPzpUWrVTxf3DWsLB
+         egmG8uVz3EAfN0mw82ZUhaowpyC/ZgJ8eP9sVbc0X2Nn/yyKo/7R2X7Zt78Nd9LFhxfN
+         IMWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679911618;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KFv/A1+uJn3CnMRGy/hasrUt1t16K7NodNwg6vSfcFk=;
-        b=bABGnLqQG5Kc/f1gpB1OfcSfsBk68BU6EPLX5M6B0IAQZKzmPGDJrtJvxERLwlBiqW
-         fPRZYJteiBr06nAhrkp8dmtFt6YBnsEIUvNMz81OZRxgMipichUjhAEWkNACF6jwGDYY
-         UnR9oPzt1yCxYPh4q9B5oyChR/wV1+u5/HDCA4sFruG30v/3eMg+f9LylGGmj24BfPbm
-         BkaICfyLVhnbazFQ3zV+lfdmnsaGnBg9W7TestUo160Gk6uFaLxQSg0sdXa6bLa/NskS
-         KT3Rh6VWYYt8BPWUwo1F6/dhL2+bQB4MlWgxkzhzGAUah/IE2WksASl9tixDoXXpme+y
-         YalQ==
-X-Gm-Message-State: AAQBX9c3DU//Gjn6A9E+FwlRWWVwvttlnOUMhugquyPZXZLCmjDT6Q5d
-        tdL6QbzHjrPuOxDde/n7GqfrRA==
-X-Google-Smtp-Source: AKy350ZoyXzkePDlK0a2Zv/qtfAPQqmBLJtchcelEf+6jFDMmAb+gyVqvE+cz+ETMv+aPdHloSJs2Q==
-X-Received: by 2002:a2e:9c01:0:b0:29b:964e:693d with SMTP id s1-20020a2e9c01000000b0029b964e693dmr3635550lji.42.1679911618103;
-        Mon, 27 Mar 2023 03:06:58 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id j12-20020a2e6e0c000000b002a5faadb938sm156521ljc.138.2023.03.27.03.06.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 03:06:57 -0700 (PDT)
-Message-ID: <522e9f28-bcb7-13cf-8da9-8db8a66193cc@linaro.org>
-Date:   Mon, 27 Mar 2023 13:06:57 +0300
+        d=1e100.net; s=20210112; t=1679911705;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tGoH4KvFumE/aZ3oDDGGiwEflY/XB6nXZQrLqw1tSnI=;
+        b=WZVSAGsHqIkjVK4NB3CZinCnwaQAEowmZAbblArm8VKLHNvww+wHEp8bN6CV7TjD4l
+         96RlbEaULRGt/6Wd0OApJWvKY8EBgvmSV2Z63KqxuUImdr3aEaxMmQQ1RHg7BPeiDM+J
+         c6RClrZjiZtaQ6YHX4H1q6S8pBi/Qmk1m6tu5ldEj7/fBAXYRryQMuSGQnS1MIwr94fh
+         lkxi1i09YnxIvV9I319KmLdI08umVFhU4wuR0nvju9o35s5hxQ/eMhQSQmMPG4kLeBPo
+         zyra5kB61WnS5ecsCKMQqbIkcFSkoXxzLBuvnOR2BuDh+AvAcGekQctY9EPm6uzI/qmM
+         Yn9Q==
+X-Gm-Message-State: AO0yUKVPclyMXXBfhccey0xQg0D3HEmzEukpoVTfZQDGn4LCk24mKcVX
+        txTkyWXDNLb5ZySbw4gnMWr7dg==
+X-Google-Smtp-Source: AK7set8wE+/BnkmdZ5WYVo08VavTEhx5WcZTtPZM/fOa76aeYHFRLlZQ9S5YiCxFmmadow+sa0nakQ==
+X-Received: by 2002:a05:600c:21c1:b0:3ed:8c60:c512 with SMTP id x1-20020a05600c21c100b003ed8c60c512mr9202174wmj.17.1679911705511;
+        Mon, 27 Mar 2023 03:08:25 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m21-20020a7bcb95000000b003eeb1d6a470sm11182003wmi.13.2023.03.27.03.08.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 03:08:25 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     krzysztof.kozlowski@linaro.org, robh@kernel.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, jianxin.pan@amlogic.com,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     kernel@sberdevices.ru, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        rockosov@gmail.com
+In-Reply-To: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+References: <20230324145557.27797-1-ddrokosov@sberdevices.ru>
+Subject: Re: [PATCH v3] firmware: meson_sm: populate platform devices from
+ sm device tree data
+Message-Id: <167991170468.420117.8412879129199021084.b4-ty@linaro.org>
+Date:   Mon, 27 Mar 2023 12:08:24 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 4/8] clk: qcom: gcc-ipq9574: Add USB related clocks
-Content-Language: en-GB
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1679909245.git.quic_varada@quicinc.com>
- <ff189b0316ad524a7d8331bd89452112b60cdbb2.1679909245.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <ff189b0316ad524a7d8331bd89452112b60cdbb2.1679909245.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 12:30, Varadarajan Narayanan wrote:
-> Add the clocks needed for enabling USB in IPQ9574
+Hi,
+
+On Fri, 24 Mar 2023 17:55:57 +0300, Dmitry Rokosov wrote:
+> In some meson boards, secure monitor device has children, for example,
+> power secure controller. By default, secure monitor isn't the bus in terms
+> of device tree subsystem, so the of_platform initialization code doesn't
+> populate its device tree data. As a result, secure monitor's children
+> aren't probed at all.
 > 
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->   Changes in v2:
-> 	- Fixed coding style issues
-> ---
->   drivers/clk/qcom/gcc-ipq9574.c               | 37 ++++++++++++++++++++++++++++
->   include/dt-bindings/clock/qcom,ipq9574-gcc.h |  2 ++
->   2 files changed, 39 insertions(+)
+> Run the 'of_platform_populate()' routine manually to resolve such issues.
+> 
+> [...]
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/drivers)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+[1/1] firmware: meson_sm: populate platform devices from sm device tree data
+      https://git.kernel.org/amlogic/c/e45f243409db98d610248c843b25435e7fb0baf3
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-With best wishes
-Dmitry
+Neil
 
