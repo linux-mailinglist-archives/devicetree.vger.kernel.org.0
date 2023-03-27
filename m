@@ -2,166 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA3366CACC5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 979366CACD2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbjC0SMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 14:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53576 "EHLO
+        id S231960AbjC0SQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 14:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjC0SMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:12:31 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AF495;
-        Mon, 27 Mar 2023 11:12:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679940750; x=1711476750;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=y6w2xJ/oqEByFFIHKtzvwFaQsZynVoW8risyl+Pyoy4=;
-  b=d7kOAQmP5fPC+x6egDBRB65MNBkU6PyQzovvVZBmYF2fK0eLBt2r4N+a
-   Dt2taGwCtcYzNeUQ8rK3ZmDZU3Lq8Y9Vz65rx4/031GI4iPqAUtnDzTPA
-   k39yZpGN+xeUT3oUihfVfsE1IDuR2YHqiMz6kd3SVrQdpTYpE8xHduhH9
-   TJH4pactzS+SuKvJaALadrO3wB/DkUTyzrR0IKu3seEeCuejY9fs2+V3f
-   B5TYvP//IRYeNxdBP9GmNFGWoIi2Y8OoHTXirZr6jw1ObtZgoXKMDSmdA
-   hPSE6g1ycCbfyFCc6B7aOIlkci7/NP5Ks9ivMl/58jb4HxvF9BGVuN8Vx
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="342753090"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; 
-   d="scan'208";a="342753090"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2023 11:12:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="713939744"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; 
-   d="scan'208";a="713939744"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 27 Mar 2023 11:12:26 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pgrKP-000HuV-27;
-        Mon, 27 Mar 2023 18:12:21 +0000
-Date:   Tue, 28 Mar 2023 02:11:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Maximilian Weigand <mweigand@mweigand.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Maximilian Weigand <mweigand@mweigand.net>,
-        Alistair Francis <alistair@alistair23.me>
-Subject: Re: [PATCH 6/6] Input: cyttsp5: implement proper sleep and wakeup
- procedures
-Message-ID: <202303280119.UlD7s4Rk-lkp@intel.com>
-References: <20230323135205.1160879-7-mweigand@mweigand.net>
+        with ESMTP id S230208AbjC0SQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:16:12 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05hn2217.outbound.protection.outlook.com [52.100.174.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267DA213C
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 11:16:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p5mCIf4UrsGSlS80h/axn673IYQFpt/GkKUqplnMUHY=;
+ b=JuD/er1926LU5hty17z8aPAaNkmOAnEh9gqHm3JDB3OcdwJ101TRoX1J9N53nYf0zaCoEXkhAPBsOIlZmzfazrcSOI6C62bHLXQv/DJqDy8w7bOEG+qEXQ0vY03LEcibIR4O11ZMqmIZzvDfJq/TabaCn9VPwcop1Ths/yKcX/sUH2jY8KvpkqlVWJRd8K1Ez99XYNvInjlTUWYCrnQipXlnvZTNyzNGcyERILdKVOU45zXBiKxaNLB4oUdrLMJr8GWxNXVSA8p7oas15WZhCHvEDrorCdvTIuPXhCDsJYgIilMvsK6HoRQSw2ZaHhAOUHNhnyeJaML66MW9vwshjQ==
+Received: from FR3P281CA0173.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:a0::15)
+ by AM9PR03MB7330.eurprd03.prod.outlook.com (2603:10a6:20b:267::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Mon, 27 Mar
+ 2023 18:16:07 +0000
+Received: from VI1EUR05FT016.eop-eur05.prod.protection.outlook.com
+ (2603:10a6:d10:a0:cafe::1d) by FR3P281CA0173.outlook.office365.com
+ (2603:10a6:d10:a0::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.16 via Frontend
+ Transport; Mon, 27 Mar 2023 18:16:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.80)
+ smtp.mailfrom=seco.com; dkim=pass (signature was verified)
+ header.d=seco.com;dmarc=pass action=none header.from=seco.com;
+Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
+ 20.160.56.80 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.160.56.80; helo=inpost-eu.tmcas.trendmicro.com; pr=C
+Received: from inpost-eu.tmcas.trendmicro.com (20.160.56.80) by
+ VI1EUR05FT016.mail.protection.outlook.com (10.233.242.73) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6222.23 via Frontend Transport; Mon, 27 Mar 2023 18:16:07 +0000
+Received: from outmta (unknown [192.168.82.135])
+        by inpost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id B58F22008088D;
+        Mon, 27 Mar 2023 18:16:06 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (unknown [104.47.17.174])
+        by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id 3267A2008006C;
+        Mon, 27 Mar 2023 18:16:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FWppf1xEuQWjocYDW4w6Mumd5Es506nrCRuLubBHcSc1aCUcwrFsiOeMhzWi+Lv6JnRPdr8yX30RqqPq8bOtVu5tl/lANxSMi5zXCzAlrmghMn4NeXnXG6+G3Eo2Db6Op6KVYrqppWKR2IH1wUJsDoUN4gIkv9i+gu/g5BgS97V8Ib3kJCwJEBziW1OJZtjLJu2AOOp+fkzA2pSZHWLZfBfoUn8zaOySKD9khSGPjS4GeKvrOfvUCAycsh/4hu+t65FjpWwm7Hlhf0T4bAxfl3Gy4mI2VWpyozxMVwhk/zwgJ4jBnbsUNDq0ppNwvGXNCMX6xRo89tXLgHFxclQVqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p5mCIf4UrsGSlS80h/axn673IYQFpt/GkKUqplnMUHY=;
+ b=NqZbgMzoyH9abVwDuvc6bd5dSqcrYkw/3L2iFxzDbrwht3e0eg2XY894Ee0L6y91lgkaEGBVMBt86054KhrT2AUsCjVzuN4Qn7jTtHHdWDh/CNdgwY2rgnt8RyuozHT1z8Gl7hEjgA08Sf2WdNQaHKKtESFiH8rjdZXlqay9G4vWClecxtwkOPIn7HpIjNbH2paVKRDo/uMSvSAq6HuFrT8SESGYxYsioz+AFRdaNxbjtGRgigEf/bPuD/3kKb1Ir5+pnCdtQ534x/kOWuZKBTj/7xcWK7tVz0+noSgPQ32Q/jgTaSt/ErPSp+pdyYKGiSmU/5Pp29NHX1yWzazySw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p5mCIf4UrsGSlS80h/axn673IYQFpt/GkKUqplnMUHY=;
+ b=JuD/er1926LU5hty17z8aPAaNkmOAnEh9gqHm3JDB3OcdwJ101TRoX1J9N53nYf0zaCoEXkhAPBsOIlZmzfazrcSOI6C62bHLXQv/DJqDy8w7bOEG+qEXQ0vY03LEcibIR4O11ZMqmIZzvDfJq/TabaCn9VPwcop1Ths/yKcX/sUH2jY8KvpkqlVWJRd8K1Ez99XYNvInjlTUWYCrnQipXlnvZTNyzNGcyERILdKVOU45zXBiKxaNLB4oUdrLMJr8GWxNXVSA8p7oas15WZhCHvEDrorCdvTIuPXhCDsJYgIilMvsK6HoRQSw2ZaHhAOUHNhnyeJaML66MW9vwshjQ==
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
+ by DB9PR03MB7753.eurprd03.prod.outlook.com (2603:10a6:10:2ca::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.30; Mon, 27 Mar
+ 2023 18:15:57 +0000
+Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::dbcf:1089:3242:614e]) by DB9PR03MB8847.eurprd03.prod.outlook.com
+ ([fe80::dbcf:1089:3242:614e%5]) with mapi id 15.20.6178.041; Mon, 27 Mar 2023
+ 18:15:57 +0000
+Message-ID: <5ca4aeba-db2c-4c0c-c620-d380b4b839bb@seco.com>
+Date:   Mon, 27 Mar 2023 14:15:47 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v12 13/13] arm64: dts: ls1088ardb: Add serdes descriptions
+Content-Language: en-US
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, Li Yang <leoyang.li@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20230321201313.2507539-1-sean.anderson@seco.com>
+ <20230321201313.2507539-14-sean.anderson@seco.com>
+ <20230324131701.4ucxf65sxfdtqcai@LXL00007.wbi.nxp.com>
+From:   Sean Anderson <sean.anderson@seco.com>
+In-Reply-To: <20230324131701.4ucxf65sxfdtqcai@LXL00007.wbi.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY5PR20CA0009.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::22) To DB9PR03MB8847.eurprd03.prod.outlook.com
+ (2603:10a6:10:3dd::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230323135205.1160879-7-mweigand@mweigand.net>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-TrafficTypeDiagnostic: DB9PR03MB8847:EE_|DB9PR03MB7753:EE_|VI1EUR05FT016:EE_|AM9PR03MB7330:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe82b9a1-abf2-4618-33b5-08db2eef55a6
+X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: eL8sA9D0GSJuj/xEltleaqd+CRRebl4FiwKLzQ33I48MEfiaVm+AYE9EMQBA6LDe2ranIj/jVDHaUNinPdyklvZxVk8u5l+PYQIeOZEgwQuiYn06IUjj+R4prq0/h7tFUjxT9Io6188rFcDBp0iaDB0Su0bULkcWJ5MfQK0UhS/pvVQPgYqOyndHBxAKmQ4T26GAeJxakYRaJy1UoPP265OSMdBNtQzerUHPqBN96OQCmjQFDL2jV/BnvBgB1XRiWqI66/zDpU0sSSptRyiKNeNXxKhKsdnUrfGWRA+rhvrUm8zMcNTQVLCtBiHNN4vHJnR7duMgzFiYtEvqono86FaXiv6ZnVfR1DCkmGg/UFiyYbB8zun169+FpEIdCRi54SFEIqQqKH2XqOupVXPp2/5mLL5hc3K0OzRFM3CzkRFZye+nbetw3odm2cS8eKycXIhdauh5WGqpFysLBR17rgevX2o5F43SFdyRPIgcr97Q1uaD34NboElW0IvOFJGv88423go7konjkDTAwqlPXRjghD91nijruXSkEofCXcbIIZsnm+SEakMHgMro37lTY1QeC6QHVNg1h/OSg7X2ZRybSY0ZwlH+DtNLEMS9K4+7mvS+rsKixSkXVTEedNZVqj9w2OYCtw6xtwJXJs5lDfU5i5YlPS3n15TWIRROdprqjHhyRXVI/UMDb2eNDF6l
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(396003)(136003)(346002)(376002)(39850400004)(366004)(451199021)(36756003)(31686004)(31696002)(86362001)(26005)(6506007)(53546011)(186003)(2616005)(83380400001)(7416002)(6512007)(44832011)(8936002)(5660300002)(6666004)(6486002)(41300700001)(6916009)(52116002)(4326008)(54906003)(38350700002)(2906002)(38100700002)(316002)(66556008)(66946007)(8676002)(66476007)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7753
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VI1EUR05FT016.eop-eur05.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: d2e2bb75-833f-46a6-a002-08db2eef4fc4
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uvehHsiOehrApysy2z/Krtj9ApL2goKHKoUNaLSk7H9rGtTQmE7hdCYQiVGwgUZKTSZ8r1Ud7QXcRFtrLfKqksH5xfqMsWcV4SpDcus1lEVPs/n5khk4hEMUEqVyc+WLsaEMi5kNgQLDU0+pCSf7sQUOcVpDYiV6NsOL7g2/iDXUi57fxzt6MolBGM5HY7DwZINGLzNGr3fVNe/HbB1PDe+PSwEHt/cUuSLW71T075OYKy/jC2Hu3BaPIffqFs1MFNdtK/8H2PZIecAgPUfgO5tF2FRQbNLWeWYaJO2P7ToVqhEMyX/P9DY+pJtDHNp+yq3BXQYfkEtoAkY2Uzcnk3FJFgS32rLWY0wf671Hc+L6BNDX+iPbqBv4c2CW6pjw1OOy85dSnVO278022zcQxeVE3cLBMY213t4Kv3Y2H3Uk2GPBMrrgeWF2qPUa6LH7aE5B/oJtqD3pSaLvcK5xdpxLN40kN3PZ+vrzzajpqPHoCzhbSwT4hVWFcYSceMeepMhJbX6+1UESCWCJmf/7R0kIAcFjxI3ZWC53DRuNKoozZtpaunFHy5xXNkUcYXghPfzsfW6gitJzngqZ8W2rD/hSKCIu/WsNl4YGlp1k+iIUWL+MCYs2UEr2nlwEsXyHZ+6o1PwdYYtRP7IZOb5mjYRFDYvhD4RNYxg8/X6ib7oHfSSD/xuhDmaTdmLHVj19W9mAXcck4fzWf9FXk/YHFkaiVDDXeZlR1uc1NOTnjOdkhyw6CR4lWkF6TUklwmhlDeAA3jjX7pKmh8hEp+urjnkC370sEsbKiwjAUpx2Vfo=
+X-Forefront-Antispam-Report: CIP:20.160.56.80;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:inpost-eu.tmcas.trendmicro.com;PTR:inpost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230028)(396003)(39850400004)(376002)(346002)(136003)(451199021)(5400799015)(36840700001)(46966006)(40470700004)(336012)(31686004)(186003)(36756003)(6506007)(6512007)(82310400005)(26005)(53546011)(83380400001)(2616005)(40460700003)(8936002)(8676002)(5660300002)(41300700001)(6916009)(70586007)(4326008)(70206006)(316002)(478600001)(356005)(7596003)(7636003)(82740400003)(54906003)(47076005)(40480700001)(44832011)(7416002)(2906002)(36860700001)(6486002)(34020700004)(6666004)(31696002)(86362001)(43740500002)(12100799027);DIR:OUT;SFP:1501;
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2023 18:16:07.0980
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe82b9a1-abf2-4618-33b5-08db2eef55a6
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.80];Helo=[inpost-eu.tmcas.trendmicro.com]
+X-MS-Exchange-CrossTenant-AuthSource: VI1EUR05FT016.eop-eur05.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7330
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maximilian,
+On 3/24/23 09:17, Ioana Ciornei wrote:
+> On Tue, Mar 21, 2023 at 04:13:12PM -0400, Sean Anderson wrote:
+>> This adds serdes support to the LS1088ARDB. I have tested the QSGMII
+>> ports as well as the two 10G ports. The SFP slot is now fully supported,
+>> instead of being modeled as a fixed-link.
+>> 
+>> Linux hangs around when the serdes is initialized if the si5341 is
+>> enabled with the in-tree driver, so I have modeled it as a two fixed
+>> clocks instead. There are a few registers in the QIXIS FPGA which
+>> control the SFP GPIOs; I have modeled them as discrete GPIO controllers
+>> for now. I never saw the AQR105 interrupt fire; not sure what was going
+>> on, but I have removed it to force polling.
+> 
+> So you didn't see the interrupt fire even without these patches?
 
-Thank you for the patch! Perhaps something to improve:
+Not sure. I went to check this, and discovered I could no longer get the
+link to come up in Linux, even on v6.0 (before the rate adaptation
+tuff). I see the LEDs blinking in U-Boot, so presumably it's some
+configuration problem. I'm going to look into this further when I have
+more time.
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus linus/master v6.3-rc4 next-20230327]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> I just tested this on a LS1088ARDB and it works.
+> 
+> 	root@localhost:~# cat /proc/interrupts | grep extirq
+> 	 99:          5  ls-extirq   2 Level     0x0000000008b97000:00
+> 	root@localhost:~# ip link set dev endpmac2 up
+> 	root@localhost:~# cat /proc/interrupts | grep extirq
+> 	 99:          6  ls-extirq   2 Level     0x0000000008b97000:00
+> 	root@localhost:~# ip link set dev endpmac2 down
+> 	root@localhost:~# cat /proc/interrupts | grep extirq
+> 	 99:          7  ls-extirq   2 Level     0x0000000008b97000:00
+> 
+> Please don't just remove things.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maximilian-Weigand/Input-cyttsp5-fix-array-length/20230323-215957
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20230323135205.1160879-7-mweigand%40mweigand.net
-patch subject: [PATCH 6/6] Input: cyttsp5: implement proper sleep and wakeup procedures
-config: i386-randconfig-a011-20230327 (https://download.01.org/0day-ci/archive/20230328/202303280119.UlD7s4Rk-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/9988f8132aa9a4e8c9f0eb3093b06a9f02d90ec9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Maximilian-Weigand/Input-cyttsp5-fix-array-length/20230323-215957
-        git checkout 9988f8132aa9a4e8c9f0eb3093b06a9f02d90ec9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/input/touchscreen/
+Well, polling isn't the worst thing for a single interface... I do
+remember having a problem with the interrupt. If this series works
+with interrupts enabled, I can leave it in.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303280119.UlD7s4Rk-lkp@intel.com/
+Did you have a chance to look at the core (patches 7 and 8) of this
+series? Does it make sense to you? Am I missing something which would
+allow switching from 1G->10G?
 
-All warnings (new ones prefixed by >>):
-
->> drivers/input/touchscreen/cyttsp5.c:581:6: warning: unused variable 'crc' [-Wunused-variable]
-           u16 crc;
-               ^
-   drivers/input/touchscreen/cyttsp5.c:620:6: warning: unused variable 'crc' [-Wunused-variable]
-           u16 crc;
-               ^
-   drivers/input/touchscreen/cyttsp5.c:700:5: warning: unused variable 'cmd' [-Wunused-variable]
-           u8 cmd[2];
-              ^
->> drivers/input/touchscreen/cyttsp5.c:1004:6: warning: unused variable 'error' [-Wunused-variable]
-           int error;
-               ^
->> drivers/input/touchscreen/cyttsp5.c:1003:21: warning: unused variable 'client' [-Wunused-variable]
-           struct i2c_client *client = to_i2c_client(dev);
-                              ^
-   5 warnings generated.
-
-
-vim +/crc +581 drivers/input/touchscreen/cyttsp5.c
-
-   576	
-   577	static int cyttsp5_enter_sleep(struct cyttsp5 *ts)
-   578	{
-   579		int rc;
-   580		u8 cmd[2];
- > 581		u16 crc;
-   582	
-   583		memset(cmd, 0, sizeof(cmd));
-   584	
-   585		SET_CMD_REPORT_TYPE(cmd[0], 0);
-   586		SET_CMD_REPORT_ID(cmd[0], HID_POWER_SLEEP);
-   587		SET_CMD_OPCODE(cmd[1], HID_CMD_SET_POWER);
-   588	
-   589		rc = cyttsp5_write(ts, HID_COMMAND_REG, cmd, 2);
-   590		if (rc) {
-   591			dev_err(ts->dev, "Failed to write command %d", rc);
-   592			return rc;
-   593		}
-   594	
-   595		rc = wait_for_completion_interruptible_timeout(&ts->cmd_command_done,
-   596					msecs_to_jiffies(CY_HID_SET_POWER_TIMEOUT));
-   597		if (rc <= 0) {
-   598			dev_err(ts->dev, "HID output cmd execution timed out\n");
-   599			rc = -ETIMEDOUT;
-   600			return rc;
-   601		}
-   602	
-   603		/* validate */
-   604		if ((ts->response_buf[2] != HID_RESPONSE_REPORT_ID)
-   605				|| ((ts->response_buf[3] & 0x3) != HID_POWER_SLEEP)
-   606				|| ((ts->response_buf[4] & 0xF) != HID_CMD_SET_POWER)) {
-   607			rc = -EINVAL;
-   608			dev_err(ts->dev, "Validation of the sleep response failed\n");
-   609			return rc;
-   610		}
-   611	
-   612		return 0;
-   613	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+--Sean
