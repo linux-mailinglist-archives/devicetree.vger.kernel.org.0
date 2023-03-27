@@ -2,68 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D62836CAC8E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A8376CACA2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 20:05:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjC0SCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 14:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40572 "EHLO
+        id S232475AbjC0SFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 14:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjC0SCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:02:03 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404CDEC;
-        Mon, 27 Mar 2023 11:02:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E8547B818A4;
-        Mon, 27 Mar 2023 18:02:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E79A1C4339B;
-        Mon, 27 Mar 2023 18:01:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679940119;
-        bh=r3W3CExS6s0aynR90LW9av86zilz2l5bpPiQq8qSgxE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e5eKH37trpX6huVMm+kEvfWLbcU5tdQTr1r2ve39BDvGGqv/TSsQSO/2MEhhQqIL5
-         hudw/0svA//Q0jC0gCjlzEOaq9YWJOu9Tka09ExBUq7XZ/TatcLyACvJnOGYXkN6AK
-         LOL5uLSGXEV9OZ5EnAoCWJNiAK71AGI/TNSaDTCPB0dOgHYxIamMjE0+t6Re4WjWZ0
-         1ZrByloe1o0sg0mT6tZDdbw+tH8tg8xXcabHmnRJgmBi4QEBy80jl3Rv2rZ+5J9Sbd
-         anijbDoznXNlGRQMpfxYja5jghHDNhB0hgs+khe/fPuMZYJXkMGyU53pf4nfAUuTYR
-         /sC19gQf19C/A==
-Date:   Mon, 27 Mar 2023 11:01:57 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v4 4/7] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
- dedicated driver
-Message-ID: <20230327180157.GC1882@sol.localdomain>
-References: <20230327134734.3256974-1-abel.vesa@linaro.org>
- <20230327134734.3256974-5-abel.vesa@linaro.org>
+        with ESMTP id S229733AbjC0SFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 14:05:30 -0400
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0866730E7;
+        Mon, 27 Mar 2023 11:05:28 -0700 (PDT)
+Received: from [192.168.1.103] (31.173.81.236) by msexch01.omp.ru
+ (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Mon, 27 Mar
+ 2023 21:05:25 +0300
+Subject: Re: [PATCH] dt-bindings: ata: Drop unneeded quotes
+To:     Rob Herring <robh@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>
+References: <20230327170053.4100949-1-robh@kernel.org>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <24c8055b-8a1c-4556-e830-3b51b8d23f49@omp.ru>
+Date:   Mon, 27 Mar 2023 21:05:25 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327134734.3256974-5-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+In-Reply-To: <20230327170053.4100949-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [31.173.81.236]
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 03/27/2023 17:45:10
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 0
+X-KSE-AntiSpam-Info: Lua profiles 176318 [Mar 27 2023]
+X-KSE-AntiSpam-Info: Version: 5.9.59.0
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 507 507 08d345461d9bcca7095738422a5279ab257bb65a
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_uf_ne_domains}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: omp.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;devicetree.org:7.1.1
+X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.81.236
+X-KSE-AntiSpam-Info: Rate: 0
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 03/27/2023 17:47:00
+X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 3/27/2023 4:08:00 PM
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,72 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 04:47:31PM +0300, Abel Vesa wrote:
-> +	/* For now this driver only supports ICE version 3 and 4. */
-> +	if (major != 3 && major != 4) {
-> +		dev_warn(dev, "Unsupported ICE version: v%d.%d.%d\n",
-> +			 major, minor, step);
-> +		return false;
-> +	}
+On 3/27/23 8:00 PM, Rob Herring wrote:
 
-Version 4 support was not in the original.  This ought to be mentioned in the
-commit message.
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+[...]
 
-> +struct qcom_ice *of_qcom_ice_get(struct device *dev)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct qcom_ice *ice = ERR_PTR(-EPROBE_DEFER);
-> +	struct device_node *node;
-> +	struct resource *res;
-> +	void __iomem *base;
-> +
-> +	if (!dev || !dev->of_node)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	/* legacy has ice reg range in the consumer DT node */
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ice");
-> +	if (res) {
-> +		base = devm_ioremap_resource(&pdev->dev, res);
-> +		if (IS_ERR(base))
-> +			return base;
-> +
-> +		/* create ICE instance using consumer dev */
-> +		return qcom_ice_create(pdev, base);
-> +	}
-> +
-> +	node = of_parse_phandle(dev->of_node, "qcom,ice", 0);
-> +	if (!node) {
-> +		ice = NULL;
-> +		goto out;
-> +	}
+> diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
+> index c4e4a9eab658..fe0909554790 100644
+> --- a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
+> +++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/ata/renesas,rcar-sata.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/ata/renesas,rcar-sata.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Renesas R-Car Serial-ATA Interface
+>  
 
-I think a longer comment in this code explaining the legacy implementation vs.
-the new implementation would be helpful.
+Reviewed-by: Sergey Shtylyov <s.shtylyov@omp.ru>
 
-> +	pdev = of_find_device_by_node(node);
-> +	if (!pdev) {
-> +		dev_err(dev, "Cannot find device node %s\n", node->name);
-> +		goto out;
-> +	}
-
-It is hard to understand the return value in this case, since
-'ice = ERR_PTR(-EPROBE_DEFER)' happens way above.  Maybe do:
-
-	if (!pdev) {
-		dev_err(dev, "Cannot find device node %s\n", node->name);
-		ice = ERR_PTR(-EPROBE_DEFER);
-		goto out;
-	}
-> +
-> +	ice = platform_get_drvdata(pdev);
-> +	if (!ice) {
-> +		dev_err(dev, "Cannot get ice\n");
-> +		put_device(&pdev->dev);
-> +		return ERR_PTR(-ENODEV);
-> +	}
-
-Can this error message be more descriptive?
-
-Otherwise this patch is looking good, thanks!
-
-- Eric
+MBR, Sergey
