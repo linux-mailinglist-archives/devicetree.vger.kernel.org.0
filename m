@@ -2,96 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 844F96CB24A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 01:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 757FB6CB298
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 01:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbjC0X1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 19:27:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36476 "EHLO
+        id S230218AbjC0XpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 19:45:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjC0X1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 19:27:16 -0400
-Received: from esa1.hgst.iphmx.com (esa1.hgst.iphmx.com [68.232.141.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5147310F
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 16:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1679959635; x=1711495635;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=8v/j5oydGaOLEzE1iZOLYHGbB0l++zz9C6Rd3Ol5Oqs=;
-  b=lWNre7F0MqVe5i4tHhPB83LnZAnMfzafw6ehGaz/sKk4CAh7sEV2ZocE
-   eEYkwB/OCkLYx9ZVDQdvc/9dSHOtTbJz/SeNwudtnAg37FUOE3TAZNh1z
-   PS//muuTIpfMqNNNbvMg8F2MuT0BKP76+gZMtrDU24YeJe814s3kwPpnE
-   pzgW8x+/hu/NUJ3a/SO5pq9SOqc5rxgvnAGN2uqLoA0p1cngYfl4b05vz
-   ++sq754qG8O5nd0+HqeqQgALeq2re7VgKvEZEqKQEjxtRsI3cFmBCIICt
-   tg2FLL7KhrbUuq6xY7dNocfxv7b1E3YiWt7K5xtU62QTq/VKXklTOP73S
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,295,1673884800"; 
-   d="scan'208";a="338704324"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 28 Mar 2023 07:27:14 +0800
-IronPort-SDR: GTYyjFyiE7r1c9PWMUBdR37LWtYFod7Uc+FRZGjYfITM6lCqv1WwV/TSYsbAAZ5d8nd98tx4ji
- e3UggmKQ56YWGpKhX78ANwJvo9hehCgLlx9hEtj7ox67/gCPd5U2iSYgq/V+cEQYU3Iyeij9OJ
- gK9lDVjqgSBViQyyQBThXjhs1MQ+VyHE3WlQsmf3gVeletn+I0RJbZaIRj4ccrl/BQ63LYNvTz
- X1MONLiSWZh5O7V2+bXbUwWWkPsvWaBUtV3LBI3BIsItVyqSGeKTDM0UOgP+rSvdjUdUAu93fx
- ZfU=
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Mar 2023 15:43:25 -0700
-IronPort-SDR: jAQ163V31iYyuIYfN3bOHh5GC8qLetCV6+OKHvzwVJlDpdNamsccmirMjEWH61vimbspMeiGo1
- 3yzMh4wepyB35WGjtVVbW2YlTFM68IbwxMDA5ZH+IMAz1pEi8t14g/uPMT3Y54wOQu1RtqF3nE
- C2InfhlcRLqhXE4kVC5GFVCAbCxLBKY3WrH4flKrj/AugUqYN6IHBIAhMQqgf2/+aRcE9Acnzq
- 9gsWyDoJKpDBwrCXYwRt4jsXaRBE/yf5oXDZljLYzbQlortjjTwkxF56EaN5DQLfQHoAh6U2GQ
- FSA=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Mar 2023 16:27:14 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Plpr23dfxz1RtVn
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 16:27:14 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:content-language:references:to
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1679959634; x=1682551635; bh=8v/j5oydGaOLEzE1iZOLYHGbB0l++zz9C6R
-        d3Ol5Oqs=; b=QX3rP6A9ZXTSfRgk0Wh/idvyK1hRW541DFFqqptpOyYAPq51B61
-        PFRgVGVY5U9XvMLY0bpMcY+ctYCG8aR6E+YCJa70Nky49Rupw92CEDNFglF8NBhh
-        YxpvhkXzaxvGjph83LPYDRDiuyxxZAK/XVhvgVKspCAoKEllgfVYW6rHQBdECely
-        FW7PTCxHp2nGgM/sbtNTH3UpxRMPfigypCUJv8jnUnBsXX9bWf9iDxKLiRTlblOh
-        yLBZ2eqoVI4S2mZQbTv1fOsjtkUi9C1Ge0ujbFEjITO8YfpI94p3JhQMDzqTjCFM
-        LQ5rdX/x9B8LyxYbG231DYioHRurn6RUKmA==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id k27YepAAZeTZ for <devicetree@vger.kernel.org>;
-        Mon, 27 Mar 2023 16:27:14 -0700 (PDT)
-Received: from [10.225.163.111] (unknown [10.225.163.111])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Plpr05zyRz1RtVm;
-        Mon, 27 Mar 2023 16:27:12 -0700 (PDT)
-Message-ID: <30066318-e9ca-0796-f671-23f4a85bb138@opensource.wdc.com>
-Date:   Tue, 28 Mar 2023 08:27:11 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: ata: Drop unneeded quotes
-To:     Rob Herring <robh@kernel.org>,
+        with ESMTP id S229493AbjC0XpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 19:45:20 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E1E531B8;
+        Mon, 27 Mar 2023 16:45:19 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AB4ACC14;
+        Mon, 27 Mar 2023 16:46:03 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6556C3F73F;
+        Mon, 27 Mar 2023 16:45:17 -0700 (PDT)
+Date:   Tue, 28 Mar 2023 00:44:45 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>
-Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20230327170053.4100949-1-robh@kernel.org>
-Content-Language: en-US
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20230327170053.4100949-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        Martin Botka <martin.botka@somainline.org>,
+        martin.botka1@gmail.com, Shengyu Qu <wiagn233@outlook.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 1/3] dt-bindings: mfd: x-powers,axp152: Document the
+ AXP313a variant
+Message-ID: <20230328002802.5ae4961b@slackpad.lan>
+In-Reply-To: <460ee8a7-23a8-fc70-1eb6-88bbaa99b35a@linaro.org>
+References: <20230324113013.254371-1-andre.przywara@arm.com>
+ <20230324113013.254371-2-andre.przywara@arm.com>
+ <460ee8a7-23a8-fc70-1eb6-88bbaa99b35a@linaro.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -99,16 +55,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/28/23 02:00, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On Sat, 25 Mar 2023 12:40:38 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+Hi,
+
+> On 24/03/2023 12:30, Andre Przywara wrote:
+> > From: Martin Botka <martin.botka@somainline.org>
+> > 
+> > The X-Powers AXP313a is a PMIC used on some devices with the Allwinner
+> > H616 or H313 SoC.
+> > According to the datasheet, the DC/DC converter PWM frequency is fixed
+> > (to 3 MHz), so disallow the property that lets us set this frequency
+> > for the other PMICs.
+> > 
+> > Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../devicetree/bindings/mfd/x-powers,axp152.yaml     | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > index b7a8747d5fa0e..4b4f42cb09ef7 100644
+> > --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > @@ -79,6 +79,17 @@ allOf:
+> >        required:
+> >          - interrupts
+> >  
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: x-powers,axp313a
+> > +
+> > +    then:
+> > +      not:
+> > +        required:
+> > +          - x-powers,dcdc-freq  
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Should be simpler x-powers,dcdc-freq: false
 
-Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Ah, many thanks! I was a bit concerned about "not required" not sounding
+quite right, but I indeed copied from the other cases and verified that
+it worked as expected.
+But yours is indeed much better, thanks for the other patch!
 
+Cheers,
+Andre
 
--- 
-Damien Le Moal
-Western Digital Research
+> I'll fix the other cases.
+> 
+> Best regards,
+> Krzysztof
+> 
 
