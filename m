@@ -2,136 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F26A6CA90E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE666CA8FD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 17:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232889AbjC0Pbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 11:31:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50970 "EHLO
+        id S230264AbjC0Pa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 11:30:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232850AbjC0PbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:31:24 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 297A6420A;
-        Mon, 27 Mar 2023 08:31:17 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32RBVw8H016582;
-        Mon, 27 Mar 2023 17:30:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=ixnILKsgBi9TvS6HO90ML++Q6G9R7trXLt0wLVy6PdQ=;
- b=GGBTR1sSZEGrHJsv/GE+uBAoBPsLPb36Ui1dbkHxefdLThwIpWQBkVMCzmVgONx1QgbL
- 6D/c0dLtpOX2QFFk4u7/k7ULLkLJFNoN/Bn/ATiJhKWAFr2Y53+c7DIhDWHPpxjlk+kS
- WjT7eNFK1Gie94/v5WIOXCX7N1aas5AsNiqkR2jnJC68OzHeNhSv7OzIHwBgwKCh/aL1
- /gEU7Asq06FWBmH6mA+RQAZfJWCqJ7PsTjvq4BeATNMknSNLas/mAvAkAYHfz5ruzlHO
- sDozlbHagYi9FRW+8R7l4Ld2mdgUDdnN8Xi/jbeznaT3cAQBcIwf8kcliiVgFBH1HK09 fQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3phsn2uyhd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 17:30:59 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F1FA0100039;
-        Mon, 27 Mar 2023 17:30:47 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E84F721A206;
-        Mon, 27 Mar 2023 17:30:47 +0200 (CEST)
-Received: from localhost (10.201.20.168) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Mon, 27 Mar
- 2023 17:30:47 +0200
-From:   Valentin Caron <valentin.caron@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/7] ARM: dts: stm32: change USART1 clock to an SCMI clock on stm32mp15 boards
-Date:   Mon, 27 Mar 2023 17:29:42 +0200
-Message-ID: <20230327152948.274743-2-valentin.caron@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230327152948.274743-1-valentin.caron@foss.st.com>
-References: <20230327152948.274743-1-valentin.caron@foss.st.com>
+        with ESMTP id S232541AbjC0Pa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 11:30:26 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646FA126;
+        Mon, 27 Mar 2023 08:30:23 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id l39-20020a9d1b2a000000b006a121324abdso3160893otl.7;
+        Mon, 27 Mar 2023 08:30:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679931022;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GyK2fUsSPD/ZhKF2aRPOTaEqWirYfYdqwsIGEX2UYRY=;
+        b=wqJc3AamYZ6QNJO/LpTwJdTDEmfJK6bJBraBw+wsxZt7iuyB1ZMjk42dfERUlgTJ8m
+         yBfmcvDozxx8O9kWJmMcjsVlot7203jD1nsktdNKd6ZlZWn1syXbHwVQBCHlwi6o0VyW
+         HwVBhOU0WTBK/kgfoP32htWYtW9XXzOD9Q2EhWxzDF+hx+ZCVE1XzwYYJhVz2rn7Gd/5
+         fgDrqRBzgki7nhJvQm89t6l57Pb39wURUhgw4HsnuQis4Cy8t/yNY/Jmb9/xU2vCvS9p
+         qlnpmFJsWIEGx8G01KKQwQgN1RQKJ8u0mjsRVnfQvivPZRSff0nxPYEZmfdeLLcTmeZO
+         yitg==
+X-Gm-Message-State: AO0yUKWSEpjbToTvBxHXolvFa5K5KD+I8X8R3W8MSnA130R2f3gyhglW
+        7JJkxTNXEeyF9Vcbjo6oiw==
+X-Google-Smtp-Source: AK7set/gGvswDR9Qi8QEAjTtwuOiAplRhNhucwkwiCcY/K2JNpIB9iD2QrPd5kmkGr8CtufM0mCkUA==
+X-Received: by 2002:a9d:6642:0:b0:690:a6b3:a2f6 with SMTP id q2-20020a9d6642000000b00690a6b3a2f6mr6294603otm.0.1679931022551;
+        Mon, 27 Mar 2023 08:30:22 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j15-20020a9d7f0f000000b0069fb32837a9sm4748248otq.42.2023.03.27.08.30.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Mar 2023 08:30:22 -0700 (PDT)
+Received: (nullmailer pid 3908955 invoked by uid 1000);
+        Mon, 27 Mar 2023 15:30:21 -0000
+Date:   Mon, 27 Mar 2023 10:30:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-sunxi@lists.linux.dev, Conor Dooley <conor@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        kernel@collabora.com, Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-serial@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 01/10] dt-bindings: serial: snps-dw-apb-uart: Switch
+ dma-names order
+Message-ID: <167993102075.3908904.11641161105077047331.robh@kernel.org>
+References: <20230321215624.78383-1-cristian.ciocaltea@collabora.com>
+ <20230321215624.78383-2-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.168]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230321215624.78383-2-cristian.ciocaltea@collabora.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On ST stm32mp15 boards, change clock of USART1 node to SCMI clock
-"CK_SCMI_USART1"
 
-Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
----
- arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts | 4 ++++
- arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts | 4 ++++
- arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts | 4 ++++
- arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts | 4 ++++
- 4 files changed, 16 insertions(+)
+On Tue, 21 Mar 2023 23:56:15 +0200, Cristian Ciocaltea wrote:
+> Commit 370f696e4474 ("dt-bindings: serial: snps-dw-apb-uart: add dma &
+> dma-names properties") documented dma-names property to handle Allwinner
+> D1 dtbs_check warnings, but relies on the rx->tx ordering, which is the
+> reverse of what a different board expects:
+> 
+>   rk3326-odroid-go2.dtb: serial@ff030000: dma-names:0: 'rx' was expected
+> 
+> A quick and incomplete check shows the inconsistency is present in many
+> other DTS files:
+> 
+> $ git grep -A10 snps,dw-apb-uart | grep dma-names | sort -u
+> arch/arm64/boot/dts/rockchip/px30.dtsi-         dma-names = "tx", "rx";
+> arch/arm64/boot/dts/rockchip/rk3328.dtsi-       dma-names = "tx", "rx";
+> arch/arm64/boot/dts/rockchip/rk3588s.dtsi-      dma-names = "tx", "rx";
+> arch/arm/boot/dts/rk3066a.dtsi-                 dma-names = "tx", "rx";
+> arch/arm/boot/dts/rk3128.dtsi-                  dma-names = "tx", "rx";
+> arch/arm/boot/dts/rk3288.dtsi-                  dma-names = "tx", "rx";
+> arch/arm/boot/dts/rv1126.dtsi-                  dma-names = "tx", "rx";
+> arch/arm/boot/dts/socfpga.dtsi-                 dma-names = "tx", "rx";
+> arch/arm/boot/dts/sun6i-a31.dtsi-               dma-names = "rx", "tx";
+> arch/arm/boot/dts/sun8i-a23-a33.dtsi-           dma-names = "rx", "tx";
+> arch/arm/boot/dts/sun8i-v3s.dtsi-               dma-names = "rx", "tx";
+> arch/arm/boot/dts/sunxi-h3-h5.dtsi-             dma-names = "rx", "tx";
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dma-names = "rx", "tx";
+> 
+> The initial proposed solution was to allow a flexible dma-names order in
+> the binding, due to potential ABI breakage concerns after fixing the DTS
+> files. But luckily the Allwinner boards are not really affected, since
+> all of them are using a shared DMA channel for rx and tx:
+> 
+> $ git grep -A10 snps,dw-apb-uart | grep 'sun.*dmas' | sort -u
+> arch/arm/boot/dts/sun6i-a31.dtsi-       dmas = <&dma 10>, <&dma 10>;
+> arch/arm/boot/dts/sun6i-a31.dtsi-       dmas = <&dma 22>, <&dma 22>;
+> arch/arm/boot/dts/sun6i-a31.dtsi-       dmas = <&dma 6>, <&dma 6>;
+> arch/arm/boot/dts/sun6i-a31.dtsi-       dmas = <&dma 7>, <&dma 7>;
+> arch/arm/boot/dts/sun6i-a31.dtsi-       dmas = <&dma 8>, <&dma 8>;
+> arch/arm/boot/dts/sun6i-a31.dtsi-       dmas = <&dma 9>, <&dma 9>;
+> arch/arm/boot/dts/sun8i-a23-a33.dtsi-   dmas = <&dma 10>, <&dma 10>;
+> arch/arm/boot/dts/sun8i-a23-a33.dtsi-   dmas = <&dma 6>, <&dma 6>;
+> arch/arm/boot/dts/sun8i-a23-a33.dtsi-   dmas = <&dma 7>, <&dma 7>;
+> arch/arm/boot/dts/sun8i-a23-a33.dtsi-   dmas = <&dma 8>, <&dma 8>;
+> arch/arm/boot/dts/sun8i-a23-a33.dtsi-   dmas = <&dma 9>, <&dma 9>;
+> arch/arm/boot/dts/sun8i-v3s.dtsi-       dmas = <&dma 6>, <&dma 6>;
+> arch/arm/boot/dts/sun8i-v3s.dtsi-       dmas = <&dma 7>, <&dma 7>;
+> arch/arm/boot/dts/sun8i-v3s.dtsi-       dmas = <&dma 8>, <&dma 8>;
+> arch/arm/boot/dts/sunxi-h3-h5.dtsi-     dmas = <&dma 6>, <&dma 6>;
+> arch/arm/boot/dts/sunxi-h3-h5.dtsi-     dmas = <&dma 7>, <&dma 7>;
+> arch/arm/boot/dts/sunxi-h3-h5.dtsi-     dmas = <&dma 8>, <&dma 8>;
+> arch/arm/boot/dts/sunxi-h3-h5.dtsi-     dmas = <&dma 9>, <&dma 9>;
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dmas = <&dma 14>, <&dma 14>;
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dmas = <&dma 15>, <&dma 15>;
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dmas = <&dma 16>, <&dma 16>;
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dmas = <&dma 17>, <&dma 17>;
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dmas = <&dma 18>, <&dma 18>;
+> arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi-  dmas = <&dma 19>, <&dma 19>;
+> 
+> Switch dma-names order to tx->rx as the first step in fixing the
+> inconsistency. The remaining DTS fixes will be handled by separate
+> patches.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
-index e539cc80bef8..5c8164c10e46 100644
---- a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
-@@ -77,3 +77,7 @@ &rng1 {
- &rtc {
- 	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
- };
-+
-+&usart1 {
-+	clocks = <&scmi_clk CK_SCMI_USART1>;
-+};
-diff --git a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
-index 97e4f94b0a24..2c9a207a9d49 100644
---- a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
-@@ -83,3 +83,7 @@ &rng1 {
- &rtc {
- 	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
- };
-+
-+&usart1 {
-+	clocks = <&scmi_clk CK_SCMI_USART1>;
-+};
-diff --git a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
-index 9cf0a44d2f47..21c8169f0e82 100644
---- a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
-@@ -82,3 +82,7 @@ &rng1 {
- &rtc {
- 	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
- };
-+
-+&usart1 {
-+	clocks = <&scmi_clk CK_SCMI_USART1>;
-+};
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
-index 3b9dd6f4ccc9..0084abbeb60e 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
-@@ -88,3 +88,7 @@ &rng1 {
- &rtc {
- 	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
- };
-+
-+&usart1 {
-+	clocks = <&scmi_clk CK_SCMI_USART1>;
-+};
--- 
-2.25.1
+Reviewed-by: Rob Herring <robh@kernel.org>
 
