@@ -2,55 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 300186CAE78
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0527C6CAE7D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 21:24:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbjC0TW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 15:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46844 "EHLO
+        id S229985AbjC0TYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 15:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbjC0TW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:22:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 577F7C2;
-        Mon, 27 Mar 2023 12:22:55 -0700 (PDT)
+        with ESMTP id S229505AbjC0TYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 15:24:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9F9CD;
+        Mon, 27 Mar 2023 12:24:01 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E3EA5614A7;
-        Mon, 27 Mar 2023 19:22:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46E4DC433D2;
-        Mon, 27 Mar 2023 19:22:54 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE46C6147A;
+        Mon, 27 Mar 2023 19:24:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94616C433EF;
+        Mon, 27 Mar 2023 19:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679944974;
-        bh=fMuF76hCf3xIdNYzMoDMNZlhgXHUJC+l8bYr8xz5Ofs=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=g8SdnVGd1OLHBfXF6K9rKG0Gz0cIeX6dxl19xqIGq6jk6GKcswE+RGT7HGTqfh1tY
-         4qNU73++3r58RC5IrNcnOXQBLBItO/DERzLrDOB0xWkPxeAS0fTK1nZNHVKpftbMuH
-         F+nGH9ahQ/mQWabzqVZHpQIrZhpEfgcYK0rBkOluNIJ2jfm7EtXZeLlGWUYsrsgBNS
-         jnvuialK28dpgZEGo9D8k9Ghx0pv52aj1KTsIJfuNiKjU/3CC6MHX9xmFxhEDNzswe
-         1rqSE1ZVP5s65giKJdmGvevP7IDQTNrNcal+mj4mAYI/fHNrQ9DpYEKmenDrixPTAA
-         gOz+7iSdAe0pA==
-Message-ID: <1b9f86fce565b1476072f4f5711f5ee9.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230323025229.2971-2-zhuyinbo@loongson.cn>
-References: <20230323025229.2971-1-zhuyinbo@loongson.cn> <20230323025229.2971-2-zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v16 2/2] clk: clk-loongson2: add clock controller driver support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        s=k20201202; t=1679945040;
+        bh=iujBnATPdseZ2OyDbUQdNGaFQkW0LiQ28bu7WznPQQc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S8HupFN2ydPYE0W7hyZpOHT9iHChgB2KA0DLs1Glti21Pfff1QyFCgp1gmaCAFRcr
+         CkByPMdUjBGkOVyXDxkaa77lWPhlt0U5jfdinFnOCCpV2ikccWqU+5ELj/SsGNE1IM
+         c7KF3o8yZUsB9BxgLBJV1qtq0/boxa0b9PMBEtPQl9YtZmIiJPsSoSySTgmw6WeRh4
+         amys3xKJVaCnEYA2qZ0D0vLKNyfvcKceog76ZPjfHFyiU0I9bT5EJ9HrxffrCejRxw
+         ad/g6bBKOKzTO6tmUClJkzBrz64F6epSP28/NtmeUhP6fwp6Aa21LfCN1jff55xQfA
+         yElep5IED3pOg==
+Date:   Mon, 27 Mar 2023 12:27:04 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Mon, 27 Mar 2023 12:22:52 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH v4 4/7] soc: qcom: Make the Qualcomm UFS/SDCC ICE a
+ dedicated driver
+Message-ID: <20230327192704.ywczpr2otbwxnsh5@ripper>
+References: <20230327134734.3256974-1-abel.vesa@linaro.org>
+ <20230327134734.3256974-5-abel.vesa@linaro.org>
+ <20230327185358.c4emwquhouq42itf@ripper>
+ <20230327190954.GE73752@sol.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327190954.GE73752@sol.localdomain>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,13 +73,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Yinbo Zhu (2023-03-22 19:52:29)
-> This driver provides support for clock controller on Loongson-2 SoC,
-> the Loongson-2 SoC uses a 100MHz clock as the PLL reference clock,
-> there are five independent PLLs inside, each of which PLL can
-> provide up to three sets of frequency dependent clock outputs.
->=20
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
+On Mon, Mar 27, 2023 at 12:09:54PM -0700, Eric Biggers wrote:
+> On Mon, Mar 27, 2023 at 11:53:58AM -0700, Bjorn Andersson wrote:
+> > > +int qcom_ice_program_key(struct qcom_ice *ice,
+> > > +			 u8 algorithm_id, u8 key_size,
+> > > +			 const u8 crypto_key[], u8 data_unit_size,
+> > > +			 int slot)
+> > > +{
+> > > +	struct device *dev = ice->dev;
+> > > +	union {
+> > > +		u8 bytes[AES_256_XTS_KEY_SIZE];
+> > > +		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
+> > > +	} key;
+> > > +	int i;
+> > > +	int err;
+> > > +
+> > > +	/* Only AES-256-XTS has been tested so far. */
+> > > +	if (algorithm_id != QCOM_ICE_CRYPTO_ALG_AES_XTS ||
+> > > +	    key_size != QCOM_ICE_CRYPTO_KEY_SIZE_256) {
+> > > +		dev_err_ratelimited(dev,
+> > > +				    "Unhandled crypto capability; algorithm_id=%d, key_size=%d\n",
+> > > +				    algorithm_id, key_size);
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	memcpy(key.bytes, crypto_key, AES_256_XTS_KEY_SIZE);
+> > > +
+> > > +	/*
+> > > +	 * The SCM call byte-swaps the 32-bit words of the key.
+> > > +	 * So we have to do the same, in order for the final key be correct.
+> > 
+> > Does it actually byte swap the words, or is the API just specified to
+> > take the words in big endian format?
+> 
+> [Note, this is existing code I wrote that Abel is just moving to a new file.]
+> 
 
-Applied to clk-next
+Ah right, then I'm inclined to keep it untouched.
+
+> It doesn't write to the input array, if that is what you are asking.  I was
+> thinking of this as one byte swap cancelling out another.  But sure, the comment
+> could be simplified to something like the following:
+> 
+> 	/* The SCM call requires that the key words be byte-swapped. */
+> 
+
+Last time I looked at a crypto driver, it was full of "switch the
+endian" operations, back and forth. So my request here was simply to
+make it clear which endian is actually expected.
+So I'm guessing the appropriate comment is:
+
+	/* The SCM call requires that the key words are encoded in big endian */
+
+> > How come you memcpy + swap in place, instead of loop over the words and
+> > cpu_to_be32() them into a __be words[] array?
+> > 
+> > > +	 */
+> > > +	for (i = 0; i < ARRAY_SIZE(key.words); i++)
+> > > +		__cpu_to_be32s(&key.words[i]);
+> 
+> With this approach there is no need to worry about unaligned memory accesses.
+
+That's a valid reason that I was looking for. Wouldn't this be a common
+problem, something other parts of the stack would like to avoid?
+Or it's just a byte array until we get here?
+
+> It could be done with unaligned memory accesses, though, if you prefer that:
+> 
+
+No need to jump through the hoops, but a comment would have saved
+(robbed?) me from wondering.
+
+Regards,
+Bjorn
+
+> 	union {
+> 		[...]
+> 		__be32 words[...];
+> 	} key;
+> 
+> 	[...]
+> 		key.words[i] = cpu_to_be32(get_unaligned((__u32 *)crypto_key + i));
+> 
+> - Eric
