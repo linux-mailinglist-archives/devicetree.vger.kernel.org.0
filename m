@@ -2,57 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06D306CAC3A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 19:50:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 546476CAC3F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 19:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231873AbjC0RuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 13:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56184 "EHLO
+        id S231932AbjC0Ruu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 13:50:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231375AbjC0RuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 13:50:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8112106;
-        Mon, 27 Mar 2023 10:50:11 -0700 (PDT)
+        with ESMTP id S230287AbjC0Rut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 13:50:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F0D1B0;
+        Mon, 27 Mar 2023 10:50:48 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D06736145B;
-        Mon, 27 Mar 2023 17:50:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33617C433D2;
-        Mon, 27 Mar 2023 17:50:10 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 70E54B818A3;
+        Mon, 27 Mar 2023 17:50:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CC50C433D2;
+        Mon, 27 Mar 2023 17:50:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679939410;
-        bh=iEBkCyHBRxCPsptsyJpeOitfV6bXqpS4Fosucz4PPqY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=S4zS/LRqvNuad3gzhdGoUMi0IxO5La9gxAsZT+W90KTBeFjQD45whS84D8Q6fJaAS
-         CGEP8OrbOPUAqGKL9U49Bve1B6TLL9QfKzlnoZKUhf0mXU1qRViFb3RHN/IQYqTpI9
-         3NR+D9pbFYKz+mei794QfnxBFBzJt2eiLowszok0z0v/GPjsX/ubvPgFG4A4zveMvj
-         c1M38EDfUc85CplkemXG8uLbkGjMYV89kq2cvUD7qpC+UmhPd5rTuaKsSYesmQHD6d
-         nOxWTsrg/Gl8wfWBfgMQ/gGhJSWNOdmnt53GBoPMwWc6KDFyn9GR+YDqCSLEeAStAD
-         h+FeSsaGxiCPQ==
-Message-ID: <ed6ca4e15fe718116d0d22347e5c3c80.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230118191521.15544-2-marex@denx.de>
-References: <20230118191521.15544-1-marex@denx.de> <20230118191521.15544-2-marex@denx.de>
-Subject: Re: [PATCH v3 2/2] clk: si521xx: Clock driver for Skyworks Si521xx I2C PCIe clock generators
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>,
+        s=k20201202; t=1679939446;
+        bh=4ugmWmuiMl+/hfzeF3U78kUMmtkCW7+chKe6rQSQdr8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NV3XYmmC26ZpHzeMGTq5WauPcmXuah88PnxJS8WSJY54JWtJYsRlEWRHYQVSD7onE
+         3+KmlDginzIoz4Thr0D1MC8o8sWCejzKaO5pvnqZwQqcPjvHyZhS44RxuaAMiR+wNT
+         Wb+GS8FRqCIOcAX7WoHGV7YmItOULSLamBS+acl6py4Vv9MJH1kvTjICyNEegkgTPL
+         d9kGJc2lyNt7URlOIBFYvjJmXPFVl6Sw9jsdsSzKw9agOQBurWXuM3FzO/zeahTgK6
+         dyeY+LP9+ZmJa4UCSTpnRiPBdmHWAdhBEQ25kjpx2Lg/V1eYPRzFxkIqc6Nc1KyIFZ
+         j89B7r6hlW76g==
+Date:   Mon, 27 Mar 2023 10:50:43 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-riscv@lists.infradead.org
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Mon, 27 Mar 2023 10:50:06 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/7] dt-bindings: crypto: Add Qualcomm Inline Crypto
+ Engine
+Message-ID: <20230327175043.GA1882@sol.localdomain>
+References: <20230327134734.3256974-1-abel.vesa@linaro.org>
+ <20230327134734.3256974-2-abel.vesa@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327134734.3256974-2-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,14 +72,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2023-01-18 11:15:21)
-> Add driver for the Skyworks Si521xx PCIe clock generators. Supported mode=
-ls
-> are Si52144/Si52146/Si52147, tested model is Si52144. It should be possib=
-le
-> to add Si5213x series as well.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Mon, Mar 27, 2023 at 04:47:28PM +0300, Abel Vesa wrote:
+> Add schema file for new Qualcomm Inline Crypto Engine driver.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 
-Applied to clk-next
+Reviewed-by: Eric Biggers <ebiggers@google.com>
+
+- Eric
