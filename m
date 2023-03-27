@@ -2,207 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B556CA54B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A41A6CA56D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 15:19:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbjC0NMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 09:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52180 "EHLO
+        id S229525AbjC0NTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 09:19:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbjC0NMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:12:46 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19C83DF;
-        Mon, 27 Mar 2023 06:12:46 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id d22-20020a9d5e16000000b0069b5252ced7so4485882oti.13;
-        Mon, 27 Mar 2023 06:12:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679922765;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qy+LGO1hZYQteOYXAi2MTuV8EwkfENi7/3mKtvfcWcM=;
-        b=77P7Uo9xpDiHaQcNIszSm+0rbECSvGQw0dhk4l2BwIxiN49fdWK6iMkuEj8hv9C/Er
-         Ba9u0HVI8BuxOp887m3un8nYcYoegIBkKA/YpZJQ4eORcugo2nOzGElNOUfP4cM171+I
-         ki9Gjtwhv4j9DMN++1zF4YhxqT3+YWPYdBYRY87OKB1O8OHIr3sZ6IVgKmMaX7ILMHT6
-         FDGCarGC+arG652PyYsJpuK4Chjqb5GxEdpkPEMUTKRTXO/tqGt5tVE2mGZjwh02+499
-         qwWRiNq5B1bid8b0HD8K0ixFCF0dUpFM5axVuinnM5zyeHgAHCBb5tLb93n+J8Jj5qvH
-         ebDA==
-X-Gm-Message-State: AO0yUKXt1bwYzSaOcMW+8Ew+ZUoL3it9qibiYv6IOJIYBUsjVzgd2MKD
-        38Xuxtm5iMz5kYlX0I5OPh1/FSu0ug==
-X-Google-Smtp-Source: AK7set+my+8Ru1KWMv/XxGqRnLq6lS4KUJdHjR1C70GN6oF7hoORRk1bGIe0330UCVf/M435x7q+3A==
-X-Received: by 2002:a05:6830:1606:b0:69f:9d13:5692 with SMTP id g6-20020a056830160600b0069f9d135692mr5844838otr.23.1679922765239;
-        Mon, 27 Mar 2023 06:12:45 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b12-20020a9d6b8c000000b0069fa7b738b3sm5419345otq.27.2023.03.27.06.12.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 06:12:44 -0700 (PDT)
-Received: (nullmailer pid 3279071 invoked by uid 1000);
-        Mon, 27 Mar 2023 13:12:43 -0000
-Date:   Mon, 27 Mar 2023 08:12:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        imx@lists.linux.dev, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: usb: cdns-imx8qm: add imx8qm cdns3
- glue layer
-Message-ID: <20230327131243.GA3238130-robh@kernel.org>
-References: <20230323163116.2921999-1-Frank.Li@nxp.com>
- <20230323163116.2921999-2-Frank.Li@nxp.com>
+        with ESMTP id S229498AbjC0NTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 09:19:34 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03411723;
+        Mon, 27 Mar 2023 06:19:31 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id E3E965FD0E;
+        Mon, 27 Mar 2023 16:19:28 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1679923168;
+        bh=r/g6+1aexCmhn5DuTBkJmHKaVN7SrHEXHCMTnOGbfJA=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=UG02xd1YhnsoOGv+yDroIOFfRc0vXcEdUtR+Wfc8JyP8Tpky/BHcm7CV7WBFbKP4Q
+         LN3mWA+KlG1ni8SHmlHSiye63+akHBCbBEEK/h+y6NeEslobTAnuKDmQFxWBYOv8Q+
+         sFZzw42jkdVFkYPP0NAJg0DRPt1uw36Tn/DwixzYLVokkTNP0ifh1IF6uaw1iEjdNw
+         Xmr7AoDkYQc1/lDxaQgUi3Qijkcaezd3b+c0qN52V+E2m7S2sMXc84PgX1xtATFtyn
+         Rvem93hXYk8d6fFJHjJ0BeqP7jx3FXj+Ybt3I3Yr96Cb1/VQu9BNbqZ8yuXlfpxJu9
+         L9fn3s23yujEQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon, 27 Mar 2023 16:19:28 +0300 (MSK)
+Date:   Mon, 27 Mar 2023 16:19:27 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     <neil.armstrong@linaro.org>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
+        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v11 3/5] dt-bindings: clock: meson: add A1 PLL and
+ Peripherals clkcs bindings
+Message-ID: <20230327131927.k7uswfn6i3jqjrzv@CAB-WSD-L081021>
+References: <20230321193014.26349-1-ddrokosov@sberdevices.ru>
+ <20230321193014.26349-4-ddrokosov@sberdevices.ru>
+ <1jmt3yo5r0.fsf@starbuckisacylon.baylibre.com>
+ <20230327105115.ury3w4xpzhcpnqjg@CAB-WSD-L081021>
+ <1jilemo1r9.fsf@starbuckisacylon.baylibre.com>
+ <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230323163116.2921999-2-Frank.Li@nxp.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <ae367a80-e617-42a6-f873-73a1ecfe7c0d@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/03/27 05:49:00 #21016052
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 23, 2023 at 12:31:14PM -0400, Frank Li wrote:
-> NXP imx8qm integrates 1 cdns3 IP. This is glue layer device bindings.
+On Mon, Mar 27, 2023 at 02:03:25PM +0200, neil.armstrong@linaro.org wrote:
+> On 27/03/2023 13:39, Jerome Brunet wrote:
+> > 
+> > On Mon 27 Mar 2023 at 13:51, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> > 
+> > > On Mon, Mar 27, 2023 at 11:51:21AM +0200, Jerome Brunet wrote:
+> > > > 
+> > > > On Tue 21 Mar 2023 at 22:30, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> > > > 
+> > > > > Add the documentation for Amlogic A1 PLL and Amlogic A1 Peripherals
+> > > > > clock drivers.
+> > > > > Introduce Amlogic A1 PLL and Amlogic A1 Peripherals device tree
+> > > > > bindings and include them to MAINTAINERS.
+> > > > > 
+> > > > > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > > > > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > > > > ---
+> > > > >   .../bindings/clock/amlogic,a1-clkc.yaml       |  73 +++++++++++
+> > > > >   .../bindings/clock/amlogic,a1-pll-clkc.yaml   |  59 +++++++++
+> > > > >   MAINTAINERS                                   |   1 +
+> > > > >   include/dt-bindings/clock/amlogic,a1-clkc.h   | 113 ++++++++++++++++++
+> > > > >   .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |  21 ++++
+> > > > >   5 files changed, 267 insertions(+)
+> > > > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> > > > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > > > 
+> > > > There is two drivers (and 2 independent patches). There should be 2
+> > > > bindings patches as well.
+> > > > 
+> > > 
+> > > Before, in previous versions I had two versions, but it wasn't bisectable
+> > > approach.
+> > 
+> > You are confusing bisectable and Rob's robot. Splitting patches is more
+> > that likely to help bisect (and patches backport) - not the other way around.
+> > 
+> > > a1-clkc schema depends on a1-pll-clkc headers and vice versa.
+> > > It means dt schemas checkers will show us failure if we split them into two
+> > > patchsets.
+> > 
+> > Only because you are patches are not upstream yet ...
+> > 
+> > > I know, that we can use raw digits instead of CLKID names, but IMO it doesn't
+> > > look like production schema and it requires one more patchset above the
+> > > series with proper CLKID definitons usage and proper header including.
+> > > 
+> > > BTW, there is an example of Rob's test bot failure found in the previous
+> > > v10 patch series due to chicken or the egg problem.
+> > > https://lore.kernel.org/all/167769997208.7087.5344356236212731922.robh@kernel.org/
+> > > 
+> > > Please advise what's the best practice to resolve that..
+> > 
+> > Don't use the header in your example would solve the problem and
+> > still be correct DT wise.
+> > 
+> > The examples are just examples, they are not required to actually
+> > matches a real HW, as far as I know.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v3 to v4
-> - Drop all clock-assign
+> Exact, you can use fake lables instead of defined:
 > 
-> Change from v2 to v3
-> - Drop two fixed frequency clocks, it is system reset value, no need set now.
-> If need, futher work/discuss on driver or dts change. It will not block this
-> basic enablement work.
-> - Drop lable
-> - Drop some descriptions
-> - Reg as second property.
+> <&clkc_pll CLKID_FCLK_DIV2>,
 > 
-> Change from v1 to v2.
-> - new add binding doc
+> =>
+> remove "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
 > 
->  .../bindings/usb/fsl,imx8qm-cdns3.yaml        | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
+> <&clkc_pll_fclk_div2>,
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml b/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
-> new file mode 100644
-> index 000000000000..654d8704aa6f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/fsl,imx8qm-cdns3.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2020 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/fsl,imx8qm-cdns3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP iMX8QM Soc USB Controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8qm-usb3
-> +
-> +  reg:
-> +    items:
-> +      - description: Register set for iMX USB3 Platform Control
-> +
-> +  "#address-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  "#size-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +  clocks:
-> +    items:
-> +      - description: Standby clock. Used during ultra low power states.
-> +      - description: USB bus clock for usb3 controller.
-> +      - description: AXI clock for AXI interface.
-> +      - description: ipg clock for register access.
-> +      - description: Core clock for usb3 controller.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: usb3_lpm_clk
-> +      - const: usb3_bus_clk
-> +      - const: usb3_aclk
-> +      - const: usb3_ipg_clk
-> +      - const: usb3_core_pclk
+> is perfectly ok and will permit have 2 separate patches.
+> 
+> The dependency is only if you have a common yaml file for
+> both bindings files, but this is not the case here.
 
-lpm, bus, aclk, ipg, core (or core_pclk) are sufficient.
+Simple removal of "#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>"
+header doesn't work, dt_binding_check make rule is failed:
 
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +# Required child node:
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    $ref: cdns,usb3.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8-lpcg.h>
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    usb@5b110000 {
-> +      compatible = "fsl,imx8qm-usb3";
-> +      reg = <0x5b110000 0x10000>;
-> +      ranges;
-> +      clocks = <&usb3_lpcg IMX_LPCG_CLK_1>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_0>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_7>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_4>,
-> +               <&usb3_lpcg IMX_LPCG_CLK_5>;
-> +      clock-names = "usb3_lpm_clk", "usb3_bus_clk", "usb3_aclk",
-> +                    "usb3_ipg_clk", "usb3_core_pclk";
-> +      assigned-clocks = <&clk IMX_SC_R_USB_2 IMX_SC_PM_CLK_MST_BUS>;
-> +      assigned-clock-rates = <250000000>;
-> +      power-domains = <&pd IMX_SC_R_USB_2>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      usb@5b120000 {
-> +        compatible = "cdns,usb3";
-> +        reg = <0x5b120000 0x10000>,   /* memory area for OTG/DRD registers */
-> +              <0x5b130000 0x10000>,   /* memory area for HOST registers */
-> +              <0x5b140000 0x10000>;   /* memory area for DEVICE registers */
-> +        reg-names = "otg", "xhci", "dev";
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "host", "peripheral", "otg", "wakeup";
-> +        phys = <&usb3_phy>;
-> +        phy-names = "cdns3,usb3-phy";
-> +      };
-> +    };
-> -- 
-> 2.34.1
-> 
+Error: Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:28.37-38 syntax error
+FATAL ERROR: Unable to parse input tree
+
+It happens, because 'dt_binding_check' generates simple dts example and
+tries to compile it:
+
+cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
+===
+
+/dts-v1/;
+/plugin/; // silence any missing phandle references
+
+
+/{
+    compatible = "foo";
+    model = "foo";
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+
+
+    example-0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        
+
+        apb {
+            #address-cells = <2>;
+            #size-cells = <2>;
+        
+            clock-controller@800 {
+                compatible = "amlogic,a1-clkc";
+                reg = <0 0x800 0 0x104>;
+                #clock-cells = <1>;
+                clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+                         <&clkc_pll CLKID_FCLK_DIV3>,
+                         <&clkc_pll CLKID_FCLK_DIV5>,
+                         <&clkc_pll CLKID_FCLK_DIV7>,
+                         <&clkc_pll CLKID_HIFI_PLL>,
+                         <&xtal>;
+                clock-names = "fclk_div2", "fclk_div3",
+                              "fclk_div5", "fclk_div7",
+                              "hifi_pll", "xtal";
+            };
+        };
+
+    };
+};
+===
+
+As you can see, header is required.
+
+But looks like, dt binding checker is happy with the fake references hack :)
+Below there is generated example dts:
+
+cat Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts
+===
+
+/dts-v1/;
+/plugin/; // silence any missing phandle references
+
+
+/{
+    compatible = "foo";
+    model = "foo";
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+
+
+    example-0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        
+
+        apb {
+            #address-cells = <2>;
+            #size-cells = <2>;
+        
+            clock-controller@800 {
+                compatible = "amlogic,a1-clkc";
+                reg = <0 0x800 0 0x104>;
+                #clock-cells = <1>;
+                clocks = <&clkc_pll_fclk_div2>,
+                         <&clkc_pll_fclk_div3>,
+                         <&clkc_pll_fclk_div5>,
+                         <&clkc_pll_fclk_div7>,
+                         <&clkc_pll_hifi_pll>,
+                         <&xtal>;
+                clock-names = "fclk_div2", "fclk_div3",
+                              "fclk_div5", "fclk_div7",
+                              "hifi_pll", "xtal";
+            };
+        };
+
+    };
+};
+===
+
+Yep, we are able to cheat dt checkers, but we don't help dt developers
+with such example.
+May be, it's better to prepare two patches in such hierarchy:
+
+1) A1 PLL clkc bindings with fake references without clkc headers
+2) A1 clkc bindings with real CLKID bindings + A1 PLL clkc bindings fix
+with real CLKID A1 clkc bindings + header.
+
+The such approach resolves DT checkers failures and split DT bindings
+into two patchsets.
+
+[...]
+
+-- 
+Thank you,
+Dmitry
