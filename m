@@ -2,138 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FE346C9F32
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C7DA6C9F3C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 11:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbjC0JRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 05:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
+        id S232875AbjC0JV1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 Mar 2023 05:21:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233156AbjC0JRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:17:43 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E72640F6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 02:17:41 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id fy10-20020a17090b020a00b0023b4bcf0727so8106720pjb.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 02:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679908661;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8mIlFqMV9d89wi6csnHS/oc3l29TOANOLwnVmh6EklU=;
-        b=m5lY8QxQZ0em7HwJf6c7V0l86IAttwNQyyrz33Gj9g1k695EpGA05fmdEXooiLdb9V
-         r7mpONYjf+xdXc07BZjllghmFhDQN2YUi2X2WbA+dfW92OYxQKg4uu9KNCYkN9XLIX+i
-         TxkWJKFR8taGG2jL3/VMcGhjbupRMyxt/nIMii4iQQZBxwwYgHrb0avPzZvaQSVFrGWz
-         ++JH8qzyDuigY/E/S4SnhnqQkUcqRn3L3tSFURzIUDbMlKNsCbBP90ll7CbN8ek8GVYe
-         TDfAY6AX+DayqKsF0DNdaswkD2Y0SBGpsV/uf+pLNmBc2VF8WqwIkEfd/3NXwmT22Pe+
-         qgqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679908661;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8mIlFqMV9d89wi6csnHS/oc3l29TOANOLwnVmh6EklU=;
-        b=X4tNRuzzXrI2ydxc0YhDmgcQoBbfyZXWTSDhSxspa6ZLIVWHl4zi0IdCKvoedy7r71
-         DF2kHAt2fJegtXkdpjpKK2McnpBuEGnac8GlWlVZhKPYiSYiDxE4TjVcq/6igHSMw9NI
-         Cc31MwCZLF710EHjVGL91MkxR2tgvq5FCmOWvUImIxwvfa+pWLkePtWRE7B63eOQTNiN
-         XWg87bmXoLSVxY9Ouii17ZfxkQiSeD3A6jzbXIlNBXR+Yhme7tc8VH8NC6rVTkpe4ydT
-         nf0xrdZwxh4qkBG28cddbgQJQGjp23eSzTuck7eXtyLsikN9Ga00CcKLVf8neO/XfbSb
-         IsDw==
-X-Gm-Message-State: AAQBX9epNBCNdyiN9uyl30Zlr0EqmbNmhRhaLGbuJr3nmG8qnutPrcsf
-        OFHabCax9Woqo2BlcrDVMhjW
-X-Google-Smtp-Source: AKy350ZKV1z8I1+zYZBVU06068fGT+zSUq84NLAwH3mY5YDa0HpOY6nq35oIOGrwdWbz7qEnib0TmQ==
-X-Received: by 2002:a17:90b:1c88:b0:234:28ac:ec4a with SMTP id oo8-20020a17090b1c8800b0023428acec4amr12338314pjb.2.1679908661023;
-        Mon, 27 Mar 2023 02:17:41 -0700 (PDT)
-Received: from thinkpad ([117.217.184.83])
-        by smtp.gmail.com with ESMTPSA id nm13-20020a17090b19cd00b00231227781d5sm4053560pjb.2.2023.03.27.02.17.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 02:17:40 -0700 (PDT)
-Date:   Mon, 27 Mar 2023 14:47:33 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
-        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/5] usb: dwc3: qcom: Allow runtime PM
-Message-ID: <20230327091733.GA14584@thinkpad>
-References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
- <cc7392c1-0ea1-29b3-fab6-19c843413724@linaro.org>
+        with ESMTP id S232738AbjC0JV0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 05:21:26 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9BC2D210D;
+        Mon, 27 Mar 2023 02:21:24 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9704B3;
+        Mon, 27 Mar 2023 02:22:08 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E10CE3F6C4;
+        Mon, 27 Mar 2023 02:21:21 -0700 (PDT)
+Date:   Mon, 27 Mar 2023 10:21:18 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Belisko Marek <marek.belisko@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] ARM: dts: sunxi: add MangoPi MQ-R-T113 board
+Message-ID: <20230327102118.2ef356e3@donnerap.cambridge.arm.com>
+In-Reply-To: <CAAfyv34PerH2XEFUv5G9_V2x5xaM6Dz2+vz8Rt_UbCEv4OGg7Q@mail.gmail.com>
+References: <20230320005249.13403-1-andre.przywara@arm.com>
+        <20230320005249.13403-5-andre.przywara@arm.com>
+        <CAAfyv34PerH2XEFUv5G9_V2x5xaM6Dz2+vz8Rt_UbCEv4OGg7Q@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cc7392c1-0ea1-29b3-fab6-19c843413724@linaro.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 11:01:35AM +0200, Konrad Dybcio wrote:
+On Mon, 27 Mar 2023 10:30:33 +0200
+Belisko Marek <marek.belisko@gmail.com> wrote:
+
+Hi Marek,
+
+thanks for testing!
+
+> On Mon, Mar 20, 2023 at 1:53 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > The MangoPi MQ-R-T113 is a small SBC with the Allwinner T113-s3 SoC.
+> > The SoC features two Arm Cortex-A7 cores and 128 MB of co-packaged DDR3
+> > DRAM. The board adds mostly connectors and the required regulators, plus
+> > a Realtek RTL8189FTV WiFi chip.
+> > Power comes in via a USB-C connector wired as a peripheral, and there is
+> > a second USB-C connector usable as a host port.
+> >
+> > Add a .dtsi file describing most of the board's peripherals, and include
+> > that from the actual board .dts file. This allows to re-use the .dtsi
+> > for the MQ-R-F113 RISC-V variant of that board.
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  arch/arm/boot/dts/Makefile                    |   1 +
+> >  .../dts/sun8i-t113s-mangopi-mq-r-t113.dts     |  35 +++++
+> >  .../boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi | 126 ++++++++++++++++++
+> >  3 files changed, 162 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
+> >  create mode 100644 arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
+> >
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index efe4152e5846d..3367e24146da8 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1397,6 +1397,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+> >         sun8i-s3-elimo-initium.dtb \
+> >         sun8i-s3-lichee-zero-plus.dtb \
+> >         sun8i-s3-pinecube.dtb \
+> > +       sun8i-t113s-mangopi-mq-r-t113.dtb \
+> >         sun8i-t3-cqa3t-bv3.dtb \
+> >         sun8i-v3-sl631-imx179.dtb \
+> >         sun8i-v3s-licheepi-zero.dtb \
+> > diff --git a/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
+> > new file mode 100644
+> > index 0000000000000..94e24b5926dd7
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r-t113.dts
+> > @@ -0,0 +1,35 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > +// Copyright (C) 2022 Arm Ltd.
+> > +
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sun8i-t113s.dtsi"
+> > +#include "sunxi-d1s-t113-mangopi-mq-r.dtsi"
+> > +
+> > +/ {
+> > +       model = "MangoPi MQ-R-T113";
+> > +       compatible = "widora,mangopi-mq-r-t113", "allwinner,sun8i-t113s";
+> > +
+> > +       aliases {
+> > +               ethernet0 = &rtl8189ftv;
+> > +       };
+> > +};
+> > +
+> > +&cpu0 {
+> > +       cpu-supply = <&reg_vcc_core>;
+> > +};
+> > +
+> > +&cpu1 {
+> > +       cpu-supply = <&reg_vcc_core>;
+> > +};  
+> Tested on MQ-R-T113 Mangopi on top of 6.3-rc3 and on booted system I
+> have only one CPU available:
+
+Right, thanks for the heads up. The reason is that the current U-Boot
+branch does not enable PSCI services, so the kernel does not know how to
+enable and online the second core. As with the other 32-bit parts, the
+PSCI nodes and properties get inserted into the DT by U-Boot, at runtime:
+arch/arm/lib/psci-dt.c:fdt_psci().
+
+It should be fairly straight-forward to enable that in U-Boot, I will try
+to look into this later this week.
+
+Cheers,
+Andre
+
+> root@t113:~# cat /proc/cpuinfo
+> processor       : 0
+> model name      : ARMv7 Processor rev 5 (v7l)
+> BogoMIPS        : 48.00
+> Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4
+> idiva idivt vfpd32 lpae evtstrm
+> CPU implementer : 0x41
+> CPU architecture: 7
+> CPU variant     : 0x0
+> CPU part        : 0xc07
+> CPU revision    : 5
 > 
+> Hardware        : Generic DT based system
+> Revision        : 0000
+> Serial          : 9340600081169098
 > 
-> On 25.03.2023 17:52, Manivannan Sadhasivam wrote:
-> > Hi,
-> > 
-> > This series allows the dwc3-qcom driver to do runtime PM itself without
-> > userspace intervention. Still, userspace is required to enable runtime PM
-> > for dwc3 glue and xhci drivers as we cannot enable runtime PM for them.
-> > But this series avoids one more additional step.
-> What sort of 'userspace intervention' are we talking about?
-> echo mem > /sys/power/state?
+> bootlog shows:
+> [    0.003515] /cpus/cpu@0 missing clock-frequency property
+> [    0.003601] /cpus/cpu@1 missing clock-frequency property
+> [    0.003640] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+> 
+> > +
+> > +&mmc1 {
+> > +       rtl8189ftv: wifi@1 {
+> > +               reg = <1>;
+> > +               interrupt-parent = <&pio>;
+> > +               interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 = WL_WAKE_AP */
+> > +               interrupt-names = "host-wake";
+> > +       };
+> > +};
+> > diff --git a/arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi b/arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
+> > new file mode 100644
+> > index 0000000000000..e9bc749488bb2
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/sunxi-d1s-t113-mangopi-mq-r.dtsi
+> > @@ -0,0 +1,126 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > +// Copyright (C) 2022 Arm Ltd.
+> > +/*
+> > + * Common peripherals and configurations for MangoPi MQ-R boards.
+> > + */
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +
+> > +/ {
+> > +       aliases {
+> > +               serial3 = &uart3;
+> > +       };
+> > +
+> > +       chosen {
+> > +               stdout-path = "serial3:115200n8";
+> > +       };
+> > +
+> > +       leds {
+> > +               compatible = "gpio-leds";
+> > +
+> > +               led-0 {
+> > +                       color = <LED_COLOR_ID_BLUE>;
+> > +                       function = LED_FUNCTION_STATUS;
+> > +                       gpios = <&pio 3 22 GPIO_ACTIVE_LOW>; /* PD22 */
+> > +               };
+> > +       };
+> > +
+> > +       /* board wide 5V supply directly from the USB-C socket */
+> > +       reg_vcc5v: regulator-5v {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "vcc-5v";
+> > +               regulator-min-microvolt = <5000000>;
+> > +               regulator-max-microvolt = <5000000>;
+> > +               regulator-always-on;
+> > +       };
+> > +
+> > +       /* SY8008 DC/DC regulator on the board */
+> > +       reg_3v3: regulator-3v3 {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "vcc-3v3";
+> > +               regulator-min-microvolt = <3300000>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +               vin-supply = <&reg_vcc5v>;
+> > +       };
+> > +
+> > +       /* SY8008 DC/DC regulator on the board, also supplying VDD-SYS */
+> > +       reg_vcc_core: regulator-core {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "vcc-core";
+> > +               regulator-min-microvolt = <880000>;
+> > +               regulator-max-microvolt = <880000>;
+> > +               vin-supply = <&reg_vcc5v>;
+> > +       };
+> > +
+> > +       /* XC6206 LDO on the board */
+> > +       reg_avdd2v8: regulator-avdd {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "avdd2v8";
+> > +               regulator-min-microvolt = <2800000>;
+> > +               regulator-max-microvolt = <2800000>;
+> > +               vin-supply = <&reg_3v3>;
+> > +       };
+> > +
+> > +       wifi_pwrseq: wifi-pwrseq {
+> > +               compatible = "mmc-pwrseq-simple";
+> > +               reset-gpios = <&pio 6 12 GPIO_ACTIVE_LOW>; /* PG12 */
+> > +       };
+> > +};
+> > +
+> > +&dcxo {
+> > +       clock-frequency = <24000000>;
+> > +};
+> > +
+> > +&ehci1 {
+> > +       status = "okay";
+> > +};
+> > +
+> > +&mmc0 {
+> > +       pinctrl-0 = <&mmc0_pins>;
+> > +       pinctrl-names = "default";
+> > +       vmmc-supply = <&reg_3v3>;
+> > +       cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
+> > +       disable-wp;
+> > +       bus-width = <4>;
+> > +       status = "okay";
+> > +};
+> > +
+> > +&mmc1 {
+> > +       pinctrl-0 = <&mmc1_pins>;
+> > +       pinctrl-names = "default";
+> > +       vmmc-supply = <&reg_3v3>;
+> > +       non-removable;
+> > +       bus-width = <4>;
+> > +       mmc-pwrseq = <&wifi_pwrseq>;
+> > +       status = "okay";
+> > +};
+> > +
+> > +&ohci1 {
+> > +       status = "okay";
+> > +};
+> > +
+> > +&pio {
+> > +       vcc-pb-supply = <&reg_3v3>;
+> > +       vcc-pd-supply = <&reg_3v3>;
+> > +       vcc-pe-supply = <&reg_avdd2v8>;
+> > +       vcc-pf-supply = <&reg_3v3>;
+> > +       vcc-pg-supply = <&reg_3v3>;
+> > +};
+> > +
+> > +&uart3 {
+> > +       pinctrl-names = "default";
+> > +       pinctrl-0 = <&uart3_pb_pins>;
+> > +       status = "okay";
+> > +};
+> > +
+> > +/* The USB-C socket has its CC pins pulled to GND, so is hardwired as a UFP. */
+> > +&usb_otg {
+> > +       dr_mode = "peripheral";
+> > +       status = "okay";
+> > +};
+> > +
+> > +&usbphy {
+> > +       usb1_vbus-supply = <&reg_vcc5v>;
+> > +       status = "okay";
+> > +};
+> > --
+> > 2.35.7
+> >  
+> 
+> BR,
+> 
+> marek
 > 
 
-I forgot to add that bit:
-
-echo auto > /sys/devices/platform/soc@0/a8f8800.usb/a800000.usb/xhci-hcd.1.auto/power/control
-echo auto > /sys/devices/platform/soc@0/a8f8800.usb/a800000.usb/power/control
-
-You need to set "auto" for the runtime control for both xhci and dwc drivers.
-
-Then if you don't connect a usb device, all 3 drivers (dwc3-qcom, dwc3, and
-xhci) will become runtime suspended after a delay of 5s (default delay).
-
-This can be confirmed by:
-
-cat /sys/devices/platform/soc@0/a8f8800.usb/power/runtime_status
-
-After connecting a usb device, they will all become "active".
-
-Thanks,
-Mani
-
-> Konrad
-> > 
-> > While enabling runtime PM, I noticed that the xhci driver suspends before
-> > catching the xhci interrupts during resume. This ended up deferring the
-> > device enumeration for some time. So I included a patch adding autosuspend
-> > delay of 200ms to the xhci driver. With this delay, usb enumeration happens
-> > properly.
-> > 
-> > This series has been tested on SC8280XP-CRD and RB5 devices.
-> > 
-> > Thanks,
-> > Mani
-> > 
-> > Manivannan Sadhasivam (5):
-> >   arm64: dts: qcom: sc8280xp: Add missing dwc3 quirks
-> >   xhci: host: Use 200ms autosuspend delay for runtime suspend
-> >   usb: dwc3: qcom: Fix null ptr access during runtime_suspend()
-> >   usb: dwc3: qcom: Clear pending interrupt before enabling wake
-> >     interrupt
-> >   usb: dwc3: qcom: Allow runtime PM
-> > 
-> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 14 ++++++++++++++
-> >  drivers/usb/dwc3/dwc3-qcom.c           | 13 +++++++++----
-> >  drivers/usb/host/xhci-plat.c           |  2 ++
-> >  3 files changed, 25 insertions(+), 4 deletions(-)
-> > 
-
--- 
-மணிவண்ணன் சதாசிவம்
