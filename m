@@ -2,372 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8BF6C9B0A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 07:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A5346C9B24
+	for <lists+devicetree@lfdr.de>; Mon, 27 Mar 2023 07:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232019AbjC0Fo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 01:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44944 "EHLO
+        id S231196AbjC0Fxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 01:53:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbjC0Fo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 01:44:26 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC894C2B;
-        Sun, 26 Mar 2023 22:44:25 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32R4FwgK010547;
-        Mon, 27 Mar 2023 05:44:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=jaSpJzbnuH1nfhIFJcuWIyzDNFQ81oF5rq5TFzLet/k=;
- b=GUEHTXnVxwrNbm12b7mAEv1fWAkBpD/pOKeHajXPYLkRevVY2JZ+h0Q4ps/iU0uU0vCS
- h660rE9rQ1xFmuCAamBmYu8Z7OcyqaOuKWRdpIYBaQeewNJ0O2wPWZCuxd3Nv5639ruZ
- lWFUX95cIMLjhNWs6+cCF25+imkt8uABbcIkS3RRcdcXPswCQ3mkqBWdf8OLOsndWXM3
- g8wxF9kAD9lReiAa9+oYamR63UIHJhfMiPsorDQtRf1h+XTUUpn6N9P6iLM8Z9zbv7OH
- Uqr5xsg+TGsGiJVht+PWWhFAOVZc2FwtOkg1rK1iDojfP+mcJMjvkYw5Vg3G6xt7e4sE BQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pht50uds3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 05:44:05 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32R5i4l0031718
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Mar 2023 05:44:04 GMT
-Received: from [10.253.35.148] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Sun, 26 Mar
- 2023 22:43:57 -0700
-Message-ID: <5f027f1b-ad01-b7f6-fee2-8ffaef20446f@quicinc.com>
-Date:   Mon, 27 Mar 2023 13:43:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/3] Coresight: Add coresight dummy driver
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
+        with ESMTP id S230020AbjC0Fxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 01:53:41 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A215A40FB;
+        Sun, 26 Mar 2023 22:53:35 -0700 (PDT)
+X-UUID: b3077204cc6311eda9a90f0bb45854f4-20230327
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Euq4PBlvcHMpGhj/9zgc5wuCxxsRvkDTzLUdB9pnetI=;
+        b=FFJbj7xk05wBV8/O6hp7IuXweFNICEouvzQ3oiIZoqGaZoojYeO4APlpEm9a7xE3cOgzc1p7sOoqxMMAUugygE3SR449XnE1EfWS1ksyS23eaBT/ohc3/ACg7s3I0+caQ0758siHJ+OPEcenSfqziBfzCtQ86ZRthSoXzw0BD18=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22,REQID:b01db998-7d7a-4fac-a893-608d25a33eb7,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:70
+X-CID-INFO: VERSION:1.1.22,REQID:b01db998-7d7a-4fac-a893-608d25a33eb7,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:70
+X-CID-META: VersionHash:120426c,CLOUDID:ab4203f7-ddba-41c3-91d9-10eeade8eac7,B
+        ulkID:2303271353315J7EH7G9,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: b3077204cc6311eda9a90f0bb45854f4-20230327
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 22917222; Mon, 27 Mar 2023 13:53:29 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.25; Mon, 27 Mar 2023 13:53:28 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.25 via Frontend Transport; Mon, 27 Mar 2023 13:53:27 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-doc@vger.kernel.org>
-References: <20230324061608.33609-1-quic_hazha@quicinc.com>
- <20230324061608.33609-2-quic_hazha@quicinc.com>
- <0c1d60f7-0d01-832f-a49c-12527665e86e@arm.com>
-Content-Language: en-US
-From:   Hao Zhang <quic_hazha@quicinc.com>
-In-Reply-To: <0c1d60f7-0d01-832f-a49c-12527665e86e@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v3,0/7] media: mediatek: vcodec: Add debugfs file for decode and encode
+Date:   Mon, 27 Mar 2023 13:53:08 +0800
+Message-ID: <20230327055315.13936-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: x6rw_R6JRCMJ7kkLgTrVBbUWJv27MG6V
-X-Proofpoint-ORIG-GUID: x6rw_R6JRCMJ7kkLgTrVBbUWJv27MG6V
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-24_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 impostorscore=0 adultscore=0 phishscore=0 clxscore=1015
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2303270047
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suzuki,
+Need to change kernel driver to open decode and encode debug log at current period,
+it's very unreasonable. Adding debugfs common interface to support decode and encode,
+using echo command to control debug log level and getting useful information for each
+instance.
 
-On 3/24/2023 6:44 PM, Suzuki K Poulose wrote:
-> On 24/03/2023 06:16, Hao Zhang wrote:
->> Some Coresight devices that HLOS don't have permission to access
->> or configure. Such as Coresight sink EUD, some TPDMs etc. So there
->> need driver to register dummy devices as Coresight devices. Provide
->> Coresight API for dummy device operations, such as enabling and
->> disabling dummy devices. Build the Coresight path for dummy sink or
->> dummy source for debugging.
->>
->> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/Kconfig           |  11 ++
->>   drivers/hwtracing/coresight/Makefile          |   1 +
->>   drivers/hwtracing/coresight/coresight-dummy.c | 176 ++++++++++++++++++
->>   3 files changed, 188 insertions(+)
->>   create mode 100644 drivers/hwtracing/coresight/coresight-dummy.c
->>
->> diff --git a/drivers/hwtracing/coresight/Kconfig 
->> b/drivers/hwtracing/coresight/Kconfig
->> index 2b5bbfffbc4f..06f0a7594169 100644
->> --- a/drivers/hwtracing/coresight/Kconfig
->> +++ b/drivers/hwtracing/coresight/Kconfig
->> @@ -236,4 +236,15 @@ config CORESIGHT_TPDA
->>         To compile this driver as a module, choose M here: the module 
->> will be
->>         called coresight-tpda.
->> +
->> +config CORESIGHT_DUMMY
->> +    tristate "Dummy driver support"
->> +    help
->> +      Enables support for dummy driver. Dummy driver can be used for
->> +      CoreSight sources/sinks that are owned and configured by some
->> +      other subsystem and use Linux drivers to configure rest of trace
->> +      path.
->> +
->> +      To compile this driver as a module, choose M here: the module 
->> will be
->> +      called coresight-dummy.
->>   endif
->> diff --git a/drivers/hwtracing/coresight/Makefile 
->> b/drivers/hwtracing/coresight/Makefile
->> index 33bcc3f7b8ae..995d3b2c76df 100644
->> --- a/drivers/hwtracing/coresight/Makefile
->> +++ b/drivers/hwtracing/coresight/Makefile
->> @@ -30,3 +30,4 @@ obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
->>   coresight-cti-y := coresight-cti-core.o    coresight-cti-platform.o \
->>              coresight-cti-sysfs.o
->>   obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
->> +obj-$(CONFIG_CORESIGHT_DUMMY) += coresight-dummy.o
->> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c 
->> b/drivers/hwtracing/coresight/coresight-dummy.c
->> new file mode 100644
->> index 000000000000..2d4eb3e546eb
->> --- /dev/null
->> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
->> @@ -0,0 +1,176 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->> + */
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/coresight.h>
->> +#include <linux/of.h>
->> +#include <linux/pm_runtime.h>
->> +
->> +#include "coresight-priv.h"
->> +#include "coresight-trace-id.h"
->> +
->> +struct dummy_drvdata {
->> +    struct device            *dev;
->> +    struct coresight_device        *csdev;
->> +    int                traceid;
->> +};
->> +
->> +DEFINE_CORESIGHT_DEVLIST(dummy_devs, "dummy");
->> +
->> +static int dummy_source_enable(struct coresight_device *csdev,
->> +                   struct perf_event *event, u32 mode)
->> +{
->> +    struct dummy_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    dev_info(drvdata->dev, "Dummy source enabled\n");
-> 
-> Please use dev_dbg everywher.
+patch 1 add dbgfs common interface.
+patch 2~5 support decode.
+patch 6~7 support encode
+---
+changed with v2:
+- using pr_debug and dev_dbg instead of pr_info for patch 2.
+- fix word fail: informatiaoin -> information for patch 3.
+- used to print each instance format information for patch 5.
+changed with v1:
+- add new patch 4 and 5.
+- using cmd 'cat vdec' to show debug information instead of pr_info directly.
+---
+Yunfei Dong (7):
+  media: mediatek: vcodec: Add debugfs interface to get debug
+    information
+  media: mediatek: vcodec: Add debug params to control different log
+    level
+  media: mediatek: vcodec: Add a debugfs file to get different useful
+    information
+  media: mediatek: vcodec: Get each context resolution information
+  media: mediatek: vcodec: Get each instance format type
+  media: mediatek: vcodec: Change dbgfs interface to support encode
+  media: mediatek: vcodec: Add encode to support dbgfs
 
-Sure, I will change to dev_dbg in the next patch series.
+ .../media/platform/mediatek/vcodec/Makefile   |   6 +
+ .../mediatek/vcodec/mtk_vcodec_dbgfs.c        | 196 ++++++++++++++++++
+ .../mediatek/vcodec/mtk_vcodec_dbgfs.h        |  72 +++++++
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   4 +
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |   4 +
+ .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |   2 +
+ .../mediatek/vcodec/mtk_vcodec_util.c         |   8 +
+ .../mediatek/vcodec/mtk_vcodec_util.h         |  26 ++-
+ 8 files changed, 315 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.h
 
-> 
->> +
->> +    return 0;
->> +}
->> +
->> +static void dummy_source_disable(struct coresight_device *csdev,
->> +                 struct perf_event *event)
->> +{
->> +    struct dummy_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    dev_info(drvdata->dev, "Dummy source disabled\n");
->> +}
->> +
->> +static int dummy_sink_enable(struct coresight_device *csdev, u32 mode,
->> +                void *data)
->> +{
->> +    struct dummy_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    dev_info(drvdata->dev, "Dummy sink enabled\n");
->> +
->> +    return 0;
->> +}
->> +
->> +static int dummy_sink_disable(struct coresight_device *csdev)
->> +{
->> +    struct dummy_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    dev_info(drvdata->dev, "Dummy sink disabled\n");
->> +
->> +    return 0;
->> +}
->> +
->> +static const struct coresight_ops_source dummy_source_ops = {
->> +    .enable        = dummy_source_enable,
->> +    .disable    = dummy_source_disable,
->> +};
->> +
->> +static const struct coresight_ops_sink dummy_sink_ops = {
->> +    .enable        = dummy_sink_enable,
->> +    .disable    = dummy_sink_disable,
->> +};
->> +
->> +static const struct coresight_ops dummy_cs_ops = {
->> +    .source_ops    = &dummy_source_ops,
->> +    .sink_ops    = &dummy_sink_ops,
->> +};
->> +
->> +static int dummy_probe(struct platform_device *pdev)
->> +{
->> +    int ret, trace_id;
->> +    struct device *dev = &pdev->dev;
->> +    struct coresight_platform_data *pdata;
->> +    struct dummy_drvdata *drvdata;
->> +    struct coresight_desc desc = { 0 };
->> +
->> +    desc.name = coresight_alloc_device_name(&dummy_devs, dev);
->> +    if (!desc.name)
->> +        return -ENOMEM;
->> +
->> +    pdata = coresight_get_platform_data(dev);
->> +    if (IS_ERR(pdata))
->> +        return PTR_ERR(pdata);
->> +    pdev->dev.platform_data = pdata;
->> +
->> +    drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
->> +    if (!drvdata)
->> +        return -ENOMEM;
->> +
->> +    drvdata->dev = &pdev->dev;
->> +    platform_set_drvdata(pdev, drvdata);
->> +
->> +    if (of_property_read_bool(pdev->dev.of_node, "qcom,dummy-source")) {
-> 
-> I don't see any reason why this should be qcom,...
-> 
-> Please could we use : "arm,coresight-", everywhere including the "dt"
-> compatible ?
+-- 
+2.18.0
 
-It's not only for qcom device, I will update this according to your 
-advice in the next patch series.
-
->> +        desc.type = CORESIGHT_DEV_TYPE_SOURCE;
->> +        desc.subtype.source_subtype =
->> +                    CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS;
->> +    } else if (of_property_read_bool(pdev->dev.of_node,
->> +                     "qcom,dummy-sink")) {
->> +        desc.type = CORESIGHT_DEV_TYPE_SINK;
->> +        desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
->> +    } else {
->> +        dev_info(dev, "Device type not set\n");
->> +        return -EINVAL;
->> +    }
->> +
->> +    desc.ops = &dummy_cs_ops;
->> +    desc.pdata = pdev->dev.platform_data;
->> +    desc.dev = &pdev->dev;
->> +    drvdata->csdev = coresight_register(&desc);
->> +    if (IS_ERR(drvdata->csdev))
->> +        return PTR_ERR(drvdata->csdev);
->> +
->> +    trace_id = coresight_trace_id_get_system_id();
->> +    if (trace_id < 0) {
->> +        ret = trace_id;
->> +        goto cs_unregister;
->> +    }
->> +    drvdata->traceid = (u8)trace_id;
->> +
->> +    pm_runtime_enable(dev);
->> +    dev_info(dev, "Dummy device initialized\n");
->> +
->> +    return 0;
->> +
->> +cs_unregister:
->> +    coresight_unregister(drvdata->csdev);
->> +
->> +    return ret;
->> +}
->> +
->> +static int dummy_remove(struct platform_device *pdev)
->> +{
->> +    struct dummy_drvdata *drvdata = platform_get_drvdata(pdev);
->> +    struct device *dev = &pdev->dev;
->> +
->> +    coresight_trace_id_put_system_id(drvdata->traceid);
->> +    pm_runtime_disable(dev);
->> +    coresight_unregister(drvdata->csdev);
->> +    return 0;
->> +}
->> +
->> +static const struct of_device_id dummy_match[] = {
->> +    {.compatible = "qcom,coresight-dummy"},
-> 
-> As mentioned above, "arm,coresight-dummy-device" ? This has
-> nothing to do with qcom IP. qcom has a use for this. So, I would
-> like to keep this "coresight" subsystem specific compatibles.
-> 
-> May be we could even add other types too : i.e,
-> 
-> arm,coresight-dummy-link-split, arm,coresight-dummy-link-merge
-> 
-> Suzuki
->
-
-I will change this it to "arm,coresight-dummy-device" in the next patch 
-series.
-
-Thanks,
-Hao
-
->> +    {},
->> +};
->> +
->> +static struct platform_driver dummy_driver = {
->> +    .probe    = dummy_probe,
->> +    .remove    = dummy_remove,
->> +    .driver    = {
->> +        .name   = "coresight-dummy",
->> +        .of_match_table = dummy_match,
->> +    },
->> +};
->> +
->> +static int __init dummy_init(void)
->> +{
->> +    return platform_driver_register(&dummy_driver);
->> +}
->> +module_init(dummy_init);
->> +
->> +static void __exit dummy_exit(void)
->> +{
->> +    platform_driver_unregister(&dummy_driver);
->> +}
->> +module_exit(dummy_exit);
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_DESCRIPTION("CoreSight dummy source driver");
-> 
