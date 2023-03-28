@@ -2,65 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 701C56CB700
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:22:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D65606CB733
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232565AbjC1GWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 02:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35572 "EHLO
+        id S229670AbjC1Gc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 02:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232725AbjC1GVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:21:50 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB394EDA;
-        Mon, 27 Mar 2023 23:20:32 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8F75C24E2F2;
-        Tue, 28 Mar 2023 14:20:18 +0800 (CST)
-Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 28 Mar
- 2023 14:20:18 +0800
-Received: from starfive-sdk.starfivetech.com (171.223.208.138) by
- EXMBX162.cuchost.com (172.16.6.72) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Tue, 28 Mar 2023 14:20:17 +0800
-From:   Samin Guo <samin.guo@starfivetech.com>
-To:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Tommaso Merciai <tomm.merciai@gmail.com>
-Subject: [net-next v9 6/6] net: stmmac: starfive-dmac: Add phy interface settings
-Date:   Tue, 28 Mar 2023 14:20:09 +0800
-Message-ID: <20230328062009.25454-7-samin.guo@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230328062009.25454-1-samin.guo@starfivetech.com>
-References: <20230328062009.25454-1-samin.guo@starfivetech.com>
+        with ESMTP id S230081AbjC1Gc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:32:26 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6F0DB
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 23:32:24 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id ek18so45281435edb.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 23:32:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679985143;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l7Ds9OPbWWvKWNUXw3BzQf8ZpVZp2Ib3MYCGER5HxUc=;
+        b=a+xFTb2CPn0Pg13SMJkKxCmJBtfRv/qQmijSrQnlbwpob+J88zOt3YVX1rhhjzOZX/
+         SpJ6dIx0WhYI8XFklhKPuK3Qa3EuDWywHT+wAjm7QwubbtVOk0H20dwdDTqU76owU7e1
+         DyAm+w4LJ79ONyZzX7l90oLN9qwhHpzZLSJELtrzqSfUD60YiEMa12QExlG9SctV/3My
+         JKx6A/YMwUIolb286yEYjshV5hzZsR1xcuqC7OF4NwDE2faCaHLulh6ZFwSCJ+jocUyS
+         Ec6c0WdZ0phYbIQmNDwWeIvLnqeTBMnc6Dp3OuWen0+MdDpICAymznx/oo37q1S9wown
+         CAlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679985143;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l7Ds9OPbWWvKWNUXw3BzQf8ZpVZp2Ib3MYCGER5HxUc=;
+        b=N7JpHJmjCu+lUbbIFQTxChsRU++BWallHPQdJhklcAnBi6SYKMAcnc8AsjdFwHVdo5
+         HxeffIjklSJ7r+mNHp8BY6QE8ZgDcq1JTot/Yty6bWY9LtW+LqU2uElP/tXDda9WLuSz
+         e43F/s1N/EcNxngYZDcTrtG6aDujhmhVsqHAFDt6NshBfCXQkT0PAU+mOY9968Iy/0sE
+         u4coUTKTAnZ/R6iJB4Jdv497+atRO3Qa2bmIJrzOdOTTf2dtIPCY7LV2PYuFDYdvVKje
+         GkHVQTDddZcK0pCQYbtds0JtMzz3Y2g7DEzQjpD0UWut7uo1LVtmZXZtNBfupolv5+8p
+         3ybw==
+X-Gm-Message-State: AO0yUKXvvjTYwLRlPu61hIleCsTP22gU/OSQhtpyXaMeMVcBECvQSJ0Y
+        L8xfQ2Qjhs4OTmVL7h7AlHF2uw==
+X-Google-Smtp-Source: AK7set/HTa4U3ix2pfhSUqdWxXnVuo8wE9wAajGZPZ5fhRrBHDzCVoYnG03Bu8vw05CkbzRDqObKaQ==
+X-Received: by 2002:a17:907:2bc7:b0:8ab:b03d:a34f with SMTP id gv7-20020a1709072bc700b008abb03da34fmr21018711ejc.12.1679985143046;
+        Mon, 27 Mar 2023 23:32:23 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
+        by smtp.gmail.com with ESMTPSA id f22-20020a170906825600b00925ce7c7705sm14843911ejx.162.2023.03.27.23.32.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 23:32:22 -0700 (PDT)
+Message-ID: <4fcb67bf-aa12-61c3-ca30-3fb11eaba67a@linaro.org>
+Date:   Tue, 28 Mar 2023 08:32:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX162.cuchost.com
- (172.16.6.72)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: mips: lantiq: Document Lantiq SoC dt
+ bindings
+Content-Language: en-US
+To:     Aleksander Bajkowski <olek2@wp.pl>, tsbogend@alpha.franken.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230326122942.870990-1-olek2@wp.pl>
+ <3871e958-79aa-2b4c-3300-270a2eb8f8e8@linaro.org>
+ <b3e0502b-61d0-430e-8832-dbbec69035a5@wp.pl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b3e0502b-61d0-430e-8832-dbbec69035a5@wp.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,94 +78,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dwmac supports multiple modess. When working under rmii and rgmii,
-you need to set different phy interfaces.
+On 27/03/2023 23:21, Aleksander Bajkowski wrote:
+>>> +properties:
+>>> +  $nodename:
+>>> +    const: "/"
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - description: Boards with Lantiq Amazon-SE SoC
+>>> +        items:
+>>> +          - const: lantiq,ase
+>> This does not look like proper board compatible. Boards have almost
+>> always minimum two compatibles - one for SoC and one for board. With
+>> commit msg this just adds to confusion...
+>>
+> 
+> The added dt-binding contains only the SoC part. The compatible strings
+> for individual boards will be added later together with the dts files. Before
+> sending the dts files I want to document current bindings and clear
+> checkpach warnings about undocumented strings.
 
-According to the dwmac document, when working in rmii, it needs to be
-set to 0x4, and rgmii needs to be set to 0x1.
+Which is incomplete and inaccurate documentation. Instead, document
+proper, full compatibles.
 
-The phy interface needs to be set in syscon, the format is as follows:
-starfive,syscon: <&syscon, offset, shift>
-
-Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
-Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
----
- .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-index ef5a769b1c75..53f517920a72 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-@@ -13,6 +13,10 @@
- 
- #include "stmmac_platform.h"
- 
-+#define STARFIVE_DWMAC_PHY_INFT_RGMII	0x1
-+#define STARFIVE_DWMAC_PHY_INFT_RMII	0x4
-+#define STARFIVE_DWMAC_PHY_INFT_FIELD	0x7U
-+
- struct starfive_dwmac {
- 	struct device *dev;
- 	struct clk *clk_tx;
-@@ -44,6 +48,48 @@ static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed)
- 		dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
- }
- 
-+static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct starfive_dwmac *dwmac = plat_dat->bsp_priv;
-+	struct regmap *regmap;
-+	unsigned int args[2];
-+	unsigned int mode;
-+	int err;
-+
-+	switch (plat_dat->interface) {
-+	case PHY_INTERFACE_MODE_RMII:
-+		mode = STARFIVE_DWMAC_PHY_INFT_RMII;
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+		mode = STARFIVE_DWMAC_PHY_INFT_RGMII;
-+		break;
-+
-+	default:
-+		dev_err(dwmac->dev, "unsupported interface %d\n",
-+			plat_dat->interface);
-+		return -EINVAL;
-+	}
-+
-+	regmap = syscon_regmap_lookup_by_phandle_args(dwmac->dev->of_node,
-+						      "starfive,syscon",
-+						      2, args);
-+	if (IS_ERR(regmap)) {
-+		dev_err(dwmac->dev, "syscon regmap failed.\n");
-+		return -ENXIO;
-+	}
-+
-+	/* args[0]:offset  args[1]: shift */
-+	err = regmap_update_bits(regmap, args[0],
-+				  STARFIVE_DWMAC_PHY_INFT_FIELD << args[1],
-+				  mode << args[1]);
-+	if (err)
-+		return dev_err_probe(dwmac->dev, err, "error setting phy mode\n");
-+
-+	return 0;
-+}
-+
- static int starfive_dwmac_probe(struct platform_device *pdev)
- {
- 	struct plat_stmmacenet_data *plat_dat;
-@@ -89,6 +135,8 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
- 	plat_dat->bsp_priv = dwmac;
- 	plat_dat->dma_cfg->dche = true;
- 
-+	starfive_dwmac_set_mode(plat_dat);
-+
- 	err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
- 	if (err) {
- 		stmmac_remove_config_dt(pdev, plat_dat);
--- 
-2.17.1
+Best regards,
+Krzysztof
 
