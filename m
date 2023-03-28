@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BCF6CC99E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88BA76CC9B8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbjC1Rsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 13:48:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60070 "EHLO
+        id S229816AbjC1RyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 13:54:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbjC1Rsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:48:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9647D301;
-        Tue, 28 Mar 2023 10:48:35 -0700 (PDT)
+        with ESMTP id S229690AbjC1RyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:54:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA86BE05C;
+        Tue, 28 Mar 2023 10:53:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A09B618F1;
-        Tue, 28 Mar 2023 17:48:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCFF2C433D2;
-        Tue, 28 Mar 2023 17:48:34 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5F158B81E34;
+        Tue, 28 Mar 2023 17:53:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1AEDC433EF;
+        Tue, 28 Mar 2023 17:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680025714;
-        bh=ksYek1bvUMLYnCew1+mEmDZuLGTzn7CLWILhJMWLiRE=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=t9PdvvBf1/Bxi8gwVhioMwjJr5XvulDRb/Kz3QjTK9l1v4Z4QHRvF/vNjBCyQ8US4
-         ovWK31oyqwkRF+cowHl0NqatlhxZPETyq+Lba+D+gv2RWaFo3Fp4TfY9GEKvC1j2SX
-         WmQBtjslQQAFODvfh/fAOCIfHqYWrwnFFSfVg+vQHYO56qGzo64rDOrmTE35PWReog
-         wilak6oBWi+QUjiEmXmq3SKoluZkmPfbYzEo3qW/QIcXjayfnAB5veQsdokZYAY0XJ
-         AID65wlSzObTnJ3Lp/JIlfrF7Uj+ZX57pTkV8kQdAn5DbHQsNEvqkq/avhYeq9qZb6
-         asVYKBQHERWEw==
-Message-ID: <81d8a7b18901c85fd24705977e6b9ce3.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1680026032;
+        bh=2YiRa5zMmLavggXXj54qS1KpalIDFc2G9Mo2Yjx/i+s=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=d1Jz9mFoMyg/YgxPBKDO/yvKkTgt8/GT8XBPbHu5QOP0cMWOODHX2SQJDx0RdhGIY
+         PfEuHxmKwpNeM9/KWDoVOMIoXWvmhOAqZSGMPi+6INV0NfxFXJwPdZBt8bSrcZSBHo
+         wh22JAu/Wb4hPdSUzNHGBlTpHi6wScwSpz3Is8zW40fZryc+CaFp/6gC+LKaKqmyuk
+         fR7v0xIKH0mLrldmBA+vdsx4I/XCskuJrnKE/Ab++MVgVttm4ZUb3PtRAfYRvj0x0Y
+         vMnxxs4qigE3avnh6Rfqkon9vbMm9aY7cvnNWLI6ziYfohWeQRgj88fWQd7txEnLl+
+         sK+wMk++drGmg==
+Date:   Tue, 28 Mar 2023 12:53:50 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
+        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        lpieralisi@kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
+        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
+        ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v4 10/10] PCI: tegra194: add interconnect support in
+ Tegra234
+Message-ID: <20230328175350.GA2953686@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230328021912.177301-5-ychuang570808@gmail.com>
-References: <20230328021912.177301-1-ychuang570808@gmail.com> <20230328021912.177301-5-ychuang570808@gmail.com>
-Subject: Re: [PATCH v6 04/12] dt-bindings: reset: nuvoton: add binding for ma35d1 IP reset control
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org
-Date:   Tue, 28 Mar 2023 10:48:32 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327161426.32639-11-sumitg@nvidia.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,39 +59,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jacky Huang (2023-03-27 19:19:04)
-> +description:
-> +  The system reset controller can be used to reset various peripheral
-> +  controllers in MA35D1 SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: nuvoton,ma35d1-reset
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # system reset controller node:
-> +  - |
-> +
-> +    system-management@40460000 {
-> +        compatible =3D "nuvoton,ma35d1-sys", "syscon", "simple-mfd";
-> +        reg =3D <0x40460000 0x200>;
-> +
-> +        reset-controller {
-> +            compatible =3D "nuvoton,ma35d1-reset";
-> +            #reset-cells =3D <1>;
-> +        };
+Capitalize subject line please, to match pcie-tegra194.c history.
 
-This is prescribing driver details to the system-management node. The
-reset-controller node should be removed, the #reset-cells moved up one
-level, and the "nuvoton,ma35d1-sys" should match a driver that registers
-an auxiliary device for reset functionality. Is anything besides child
-nodes like 'reset-controller' using the syscon@40460000?
+On Mon, Mar 27, 2023 at 09:44:26PM +0530, Sumit Gupta wrote:
+> Add support to request DRAM bandwidth with Memory Interconnect
+> in Tegra234 SoC. The DRAM BW required for different modes depends
+> on speed (Gen-1/2/3/4) and width/lanes (x1/x2/x4/x8).
+> 
+> Suggested-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-tegra194.c | 40 +++++++++++++++++-----
+>  1 file changed, 32 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+> index 09825b4a075e..d2513c9d3feb 100644
+> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/gpio.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/interrupt.h>
+> +#include <linux/interconnect.h>
+
+Almost alphabetized, swap interrupt.h and interconnect.h.
+
+>  #include <linux/iopoll.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> @@ -287,6 +288,7 @@ struct tegra_pcie_dw {
+>  	unsigned int pex_rst_irq;
+>  	int ep_state;
+>  	long link_status;
+> +	struct icc_path *icc_path;
+>  };
+>  
+>  static inline struct tegra_pcie_dw *to_tegra_pcie(struct dw_pcie *pci)
+> @@ -309,6 +311,24 @@ struct tegra_pcie_soc {
+>  	enum dw_pcie_device_mode mode;
+>  };
+>  
+> +static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
+> +{
+> +	struct dw_pcie *pci = &pcie->pci;
+> +	u32 val, speed, width;
+> +
+> +	val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
+> +
+> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
+> +
+> +	val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / BITS_PER_BYTE);
+> +
+> +	if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
+> +		dev_err(pcie->dev, "can't set bw[%u]\n", val);
+> +
+> +	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+
+Array bounds violation; PCI_EXP_LNKSTA_CLS is 0x000f, so possible
+speed (CLS) values are 0..0xf and "speed - 1" values are -1..0xe.
+
+pcie_gen_freq[] is of size 4 (valid indices 0..3).
+
+I see that you're just *moving* this code, but might as well fix it.
+
+> +}
+> +
+>  static void apply_bad_link_workaround(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -452,14 +472,12 @@ static irqreturn_t tegra_pcie_ep_irq_thread(int irq, void *arg)
+>  	struct tegra_pcie_dw *pcie = arg;
+>  	struct dw_pcie_ep *ep = &pcie->pci.ep;
+>  	struct dw_pcie *pci = &pcie->pci;
+> -	u32 val, speed;
+> +	u32 val;
+>  
+>  	if (test_and_clear_bit(0, &pcie->link_status))
+>  		dw_pcie_ep_linkup(ep);
+>  
+> -	speed = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA) &
+> -		PCI_EXP_LNKSTA_CLS;
+> -	clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+> +	tegra_pcie_icc_set(pcie);
