@@ -2,149 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EDB86CBE5A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BA76CBE83
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:05:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232896AbjC1MC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 08:02:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56644 "EHLO
+        id S230447AbjC1MFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 08:05:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbjC1MC6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:02:58 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED5E4233;
-        Tue, 28 Mar 2023 05:02:56 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S9sgHF000481;
-        Tue, 28 Mar 2023 14:02:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=VlT8q9AO7WzXKkgQQNzSHFx28HHvMOF6aTI5q0kk19g=;
- b=tup9VkGTqAsOA2iWqWC/d7QmdejbFSZYBR05G9NSmgslKgC5Rbt7EPMc1j7r6VMHpWlO
- a6nEMHrSP5V/K21WzusUEWws0RvQKQny2JTstm/Fp0iexKpjVqzUNALw0C+S5PGhThyh
- /E4uErUYN9G3gRrB7Dm5mdg1Qn0H8QDMS1wzU1fspzAL9p20Ac064AXrUQ62iBJqFIJv
- R+hlQNeUt+tbIbRSWTwF+1uWQqxO0/zeh7/5/hbl5OXNBhDhflHPqpf1VTtIaf3QeIJ2
- toDrJb9nKVTpsbxpLHmoSZFIgtbCzgAOKR0HlXwMHO8ESCUx+6iT9pSc4EUDgq3RJIE7 lQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pkvs4sfvm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 14:02:43 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 386F310002A;
-        Tue, 28 Mar 2023 14:02:42 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 33696212FCC;
-        Tue, 28 Mar 2023 14:02:42 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
- 2023 14:02:41 +0200
-Message-ID: <5c67d003-c893-8540-a971-6954a57399e5@foss.st.com>
-Date:   Tue, 28 Mar 2023 14:02:40 +0200
+        with ESMTP id S230280AbjC1MFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:05:43 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D277DB1;
+        Tue, 28 Mar 2023 05:05:17 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id o2so11413515plg.4;
+        Tue, 28 Mar 2023 05:05:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680005117;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nPmXX1hgKpt/BYBMC6yN1gahjjJEjANZpQyVziEPpes=;
+        b=ST4nocriMAAXBAacSI1ZwetD0Femj7VgBRIjRFPGLYGn7klPoTVq3Sfn5CvaIZQjgR
+         nWUk/l6PWtl9uezfCCSC5EDPyIT4FOsd31j2VeOfesy9AeHwGGga3qvN87/nQo4Eoto5
+         cx38g5oZb49oh/pHnf5FyYb06fQadrLr0l7Chnw7MHQhlSs3CPYBNGkwSE00R45iTjg/
+         AL6Ss8uumL7ynJL6RVW1hsQTA4naoVjpQ3DzP2DMnKWkahwEtrxG/vJ9ea1HVBpXa0M1
+         YSRWodEpr/rttG3N4dw2yHiHzb1KgFV8YyHADn88pTwwsFwZtAkD1SBRWbWSMHaDiWl3
+         dbKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680005117;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nPmXX1hgKpt/BYBMC6yN1gahjjJEjANZpQyVziEPpes=;
+        b=eakc3HVnDXxkQgkvvpT6k7Cq9V8udxn0eb4bHcR0Et2RhFkfXmFhXJWFt7DrSnM7MX
+         K6kXfZv7ov761t6xLi/0xummq7Qdp5HnQknkH3ZmGgMFSf5sD+Zy95r3h2s0dXN0HCp/
+         CXoI4oTM2l49f7/tsyu9i3ehN2pN27twSVzXGGEcnRyJuwLyK1Qyl0YhVW67Xce0FJZq
+         bAv1vSZyImyVgfjp4zZ7CmJUMq36G8l0n+6h3Pccnk/8DO3HGU1u6CDlwta46wOTNlO5
+         dA4VVvAk4oGA0ceFCepGQOHyjRnCzMZyKWhxMVbCyUSA3SjWcBTAtHGmZFjLtKnFb+Ij
+         eBAw==
+X-Gm-Message-State: AAQBX9cEq92J/GF42PE1VF/Djtg6TM1B0RZ76z/NrzxJxePytB9vAPa5
+        y1rJ0qxNTdD6xTpIjPtDG+3jIZ/Pf+/qVA==
+X-Google-Smtp-Source: AKy350ZgxWbNC6s6F1wnOqlzm1o/JQ1Ze0KdehbawRAn6htMsNtoi2+0+LeJiPJMiAByZ/zbgilhcg==
+X-Received: by 2002:a17:902:f2ca:b0:1a1:c54c:1a36 with SMTP id h10-20020a170902f2ca00b001a1c54c1a36mr12338427plc.63.1680005116895;
+        Tue, 28 Mar 2023 05:05:16 -0700 (PDT)
+Received: from kelvin-ThinkPad-L14-Gen-1.. (94.130.220.35.bc.googleusercontent.com. [35.220.130.94])
+        by smtp.gmail.com with ESMTPSA id ju10-20020a170903428a00b0019a83f2c99bsm21013956plb.28.2023.03.28.05.05.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 05:05:16 -0700 (PDT)
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Keguang Zhang <keguang.zhang@gmail.com>
+Subject: [PATCH 0/3] Move Loongson1 PWM timer to clocksource framework
+Date:   Tue, 28 Mar 2023 20:05:03 +0800
+Message-Id: <20230328120506.375864-1-keguang.zhang@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/7] ARM: dts: stm32: change USART1 clock to an SCMI clock
- on stm32mp15 boards
-Content-Language: en-US
-To:     Valentin Caron <valentin.caron@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230327152948.274743-1-valentin.caron@foss.st.com>
- <20230327152948.274743-2-valentin.caron@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230327152948.274743-2-valentin.caron@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-28_01,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=3.4 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Valentin
+Move Loongson1 PWM timer to clocksource framework
+and update the Kconfig/Makefile options accordingly.
 
-On 3/27/23 17:29, Valentin Caron wrote:
-> On ST stm32mp15 boards, change clock of USART1 node to SCMI clock
-> "CK_SCMI_USART1"
+Keguang Zhang (3):
+  MIPS: Loongson32: Remove deprecated PWM timer clocksource
+  dt-bindings: timer: Add Loongson-1 clocksource
+  clocksource: loongson1: Move PWM timer to clocksource framework
 
-I'll change commit title and message as your patch doesn't target 
-STM43MP15 boards but STM32MP15 SCMI boards.
+ .../timer/loongson,ls1x-pwmtimer.yaml         |  48 ++++
+ arch/mips/loongson32/Kconfig                  |  37 ---
+ arch/mips/loongson32/common/time.c            | 210 ----------------
+ drivers/clocksource/Kconfig                   |   9 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-loongson1-pwm.c     | 236 ++++++++++++++++++
+ 6 files changed, 294 insertions(+), 247 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls1x-pwmtimer.yaml
+ create mode 100644 drivers/clocksource/timer-loongson1-pwm.c
 
-Cheers
-Alex
 
-
-
-> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
-> ---
->   arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts | 4 ++++
->   arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts | 4 ++++
->   arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts | 4 ++++
->   arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts | 4 ++++
->   4 files changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
-> index e539cc80bef8..5c8164c10e46 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
-> @@ -77,3 +77,7 @@ &rng1 {
->   &rtc {
->   	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->   };
-> +
-> +&usart1 {
-> +	clocks = <&scmi_clk CK_SCMI_USART1>;
-> +};
-> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
-> index 97e4f94b0a24..2c9a207a9d49 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
-> @@ -83,3 +83,7 @@ &rng1 {
->   &rtc {
->   	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->   };
-> +
-> +&usart1 {
-> +	clocks = <&scmi_clk CK_SCMI_USART1>;
-> +};
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
-> index 9cf0a44d2f47..21c8169f0e82 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
-> @@ -82,3 +82,7 @@ &rng1 {
->   &rtc {
->   	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->   };
-> +
-> +&usart1 {
-> +	clocks = <&scmi_clk CK_SCMI_USART1>;
-> +};
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
-> index 3b9dd6f4ccc9..0084abbeb60e 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
-> @@ -88,3 +88,7 @@ &rng1 {
->   &rtc {
->   	clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->   };
-> +
-> +&usart1 {
-> +	clocks = <&scmi_clk CK_SCMI_USART1>;
-> +};
+base-commit: f7b5a248213f0976c7944925f3f3ab7ff199e581
+-- 
+2.34.1
 
