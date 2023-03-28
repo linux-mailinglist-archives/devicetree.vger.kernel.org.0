@@ -2,150 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDAF26CC0EC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFEDF6CC105
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233157AbjC1Nbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:31:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52880 "EHLO
+        id S233139AbjC1Ndg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233159AbjC1Nbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:31:34 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95ACFC166
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 06:30:57 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id s20so12575993ljp.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 06:30:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680010252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gg3lYt3KoE0McrcY8uu+tDhI/9yJmtbZP7QMSYflkEI=;
-        b=neLigaJNs85v4HvccLAiYFw9i2EX7oanTtSYEnArUPiRtPWURytpUJEi/KgC0H/29s
-         tIoxohaT5snQhHDmAD8EtUklkhTviBuCe0snughWBEZsdPchExAlvrK1StVKMdRu09tr
-         weg0tMgGCSkqpoM0vose++I/9f21NiP+8VqeE0LmDfcO2gTC7+xlYJfp0J2U3XYwZSAU
-         ZTcWY4+8dTpsr745bggmocREbA3MuGw1cgPVNEYRowkxbmv/whS4hHZEb2DrbZuUwOoL
-         +j/w8YMVyTRRlbA0zajHsKA+HAn1S+1diuAWGT4MEoWVfsl97dY1E+tGp6rOySMlMMnj
-         P/Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680010252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gg3lYt3KoE0McrcY8uu+tDhI/9yJmtbZP7QMSYflkEI=;
-        b=XhDTP5ti2KF85XbCYK0gte8HKUXFeTcNSuhqt49Q9+FHF3oWYihY+OBJMXJgYyhMrx
-         cK4mco9Hgd/XAl+li+/gSNsuxH1SkpkhEbkiPEXWc9vG5pBmfZOOLxX751WGnTNRNQfr
-         Blkhhl5yEdVXGiEZMCh4yNnL2hGqSkschOonZtEiy/Wo7NiSv4zuTWMitGnCo2C5zj5G
-         JT4NT0FrycUIugrs+QZSAVRJ0pU9iUaEeE7CGqe2bQHMPyDNGdv4S76Awc5dIpAyqnhW
-         F+7Bi+qdqAzzLGK0ZglPViFRf0CcftnaXn/1A42M5FnbENc4A3CqMe8zP+D8CNLi2JAj
-         1cjg==
-X-Gm-Message-State: AAQBX9cjYsSqSoAWnKYpMmvQ+9qS6sR0noBnof7PTgB6HOAeCv6CdcI3
-        0cAscAiOmQHFopY2M95j0ckCEg==
-X-Google-Smtp-Source: AKy350bUJTEzd90IIRG/iiSwghCm704Zg/Yznz/Kyq7j/pOc02N3i7IEZ3Dd9uMd3shE/X2VacQCew==
-X-Received: by 2002:a2e:9e83:0:b0:293:52f5:2957 with SMTP id f3-20020a2e9e83000000b0029352f52957mr5142979ljk.5.1680010252658;
-        Tue, 28 Mar 2023 06:30:52 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id c1-20020a2e6801000000b002a421ac8629sm1678069lja.49.2023.03.28.06.30.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 06:30:52 -0700 (PDT)
-Message-ID: <ddeb8021-2247-4ec0-4861-56a9f8d617f7@linaro.org>
-Date:   Tue, 28 Mar 2023 15:30:50 +0200
+        with ESMTP id S233188AbjC1Nda (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:33:30 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38332C646;
+        Tue, 28 Mar 2023 06:33:09 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SDWPex089069;
+        Tue, 28 Mar 2023 08:32:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680010345;
+        bh=aB8VDVursHBhSRpjTqNMEt7G12Bx19HNcYhCVoNfJmM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=nrhZA0DS35CDRsS1R1eXfZnyzdYejvfCnOnUDIngnHq3SiFen4uOgOad/78uwuj7s
+         ghvOb1KQmoPvsF+utPXQ081d0SU41WLd3tKWJOcrbQPOMz660VivPeHcYaOWEOE8Se
+         c2PEetdKu1712QOnHn+3jv1JpFol93v5Jkt4N89o=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SDWPiL011196
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 08:32:25 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 08:32:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 08:32:25 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SDWPH8126210;
+        Tue, 28 Mar 2023 08:32:25 -0500
+Date:   Tue, 28 Mar 2023 08:32:25 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jai Luthra <j-luthra@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Aradhya Bhatia <a-bhatia1@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v8 3/6] arm64: dts: ti: k3-am625-sk: Enable audio on AM62
+ SK
+Message-ID: <20230328133225.edi4eynptt5e4oul@headset>
+References: <20230313-mcasp_upstream-v8-0-4408134eb2f3@ti.com>
+ <20230313-mcasp_upstream-v8-3-4408134eb2f3@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 5/5] ARM: dts: qcom: sdx65-mtp: Enable PCIe EP
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mani@kernel.org,
-        lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
-        manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-References: <1679036039-27157-1-git-send-email-quic_rohiagar@quicinc.com>
- <1679036039-27157-6-git-send-email-quic_rohiagar@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1679036039-27157-6-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230313-mcasp_upstream-v8-3-4408134eb2f3@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17.03.2023 07:53, Rohit Agarwal wrote:
-> Enable PCIe Endpoint controller on the SDX65 MTP board based
-> on Qualcomm SDX65 platform.
+On 18:59-20230328, Jai Luthra wrote:
+> Add nodes for audio codec and sound card, enable the audio serializer
+> (McASP1) under use from SK-AM62 E2 [1] onwards and update pinmux.
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> Keep all audio related nodes in the common dtsi as they are exactly the
+> same between SK-AM62 and SK-AM62-LP.
+> 
+> Link: https://www.ti.com/lit/zip/sprr448 [1]
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  arch/arm/boot/dts/qcom-sdx65-mtp.dts | 34 ++++++++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
+>  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts       | 11 ++++
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts         | 11 ++++
+>  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 77 ++++++++++++++++++++++++++
+>  3 files changed, 99 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> index 70720e6..afe970a 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> @@ -245,6 +245,17 @@
->  	status = "okay";
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> index b2ca19e3042e..5ed6b1abe87d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> @@ -70,6 +70,17 @@ vddshv_sdio: regulator-4 {
+>  		states = <1800000 0x0>,
+>  			 <3300000 0x1>;
+>  	};
+> +
+> +	vcc_1v8: regulator-5 {
+> +		/* output of TPS62824DMQ */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_1v8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc_3v3_sys>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
 >  };
 >  
-> +&pcie_ep {
-> +	pinctrl-0 = <&pcie_ep_clkreq_default &pcie_ep_perst_default
-> +			&pcie_ep_wake_default>;
-This seems misaligned, the &s should be one below another
-
-But other than that:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
-> +	pinctrl-names = "default";
+>  &main_pmx0 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> index cdc0858dd1b2..2b861681e548 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> @@ -87,6 +87,17 @@ vdd_sd_dv: regulator-4 {
+>  		states = <1800000 0x0>,
+>  			 <3300000 0x1>;
+>  	};
 > +
-> +	reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+> +	vcc_1v8: regulator-5 {
+> +		/* output of TPS6282518DMQ */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_1v8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc_3v3_sys>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+>  };
+
+If the regulators are common, maybe we should first move the regulators
+to common dtsi?
+
+>  
+>  &main_pmx0 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> index 54318a07d50c..2500cb9ba323 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> @@ -81,6 +81,41 @@ led-0 {
+>  			default-state = "off";
+>  		};
+>  	};
 > +
+> +	tlv320_mclk: clk-0 {
+> +		#clock-cells = <0>;
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <12288000>;
+> +	};
+> +
+> +	codec_audio: sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "AM62x-SKEVM";
+> +		simple-audio-card,widgets =
+> +			"Headphone",	"Headphone Jack",
+> +			"Line",		"Line In",
+> +			"Microphone",	"Microphone Jack";
+> +		simple-audio-card,routing =
+> +			"Headphone Jack",	"HPLOUT",
+> +			"Headphone Jack",	"HPROUT",
+> +			"LINE1L",		"Line In",
+> +			"LINE1R",		"Line In",
+> +			"MIC3R",		"Microphone Jack",
+> +			"Microphone Jack",	"Mic Bias";
+> +		simple-audio-card,format = "dsp_b";
+> +		simple-audio-card,bitclock-master = <&sound_master>;
+> +		simple-audio-card,frame-master = <&sound_master>;
+> +		simple-audio-card,bitclock-inversion;
+> +
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&mcasp1>;
+> +		};
+> +
+> +		sound_master: simple-audio-card,codec {
+> +			sound-dai = <&tlv320aic3106>;
+> +			clocks = <&tlv320_mclk>;
+> +		};
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -175,6 +210,15 @@ main_usb1_pins_default: main-usb1-pins-default {
+>  			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
+>  		>;
+>  	};
+> +
+> +	main_mcasp1_pins_default: main-mcasp1-pins-default {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x090, PIN_INPUT, 2) /* (M24) GPMC0_BE0N_CLE.MCASP1_ACLKX */
+> +			AM62X_IOPAD(0x098, PIN_INPUT, 2) /* (U23) GPMC0_WAIT0.MCASP1_AFSX */
+> +			AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25) GPMC0_WEN.MCASP1_AXR0 */
+> +			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23) GPMC0_ADVN_ALE.MCASP1_AXR2 */
+> +		>;
+> +	};
+>  };
+>  
+>  &wkup_uart0 {
+> @@ -205,6 +249,19 @@ &main_i2c1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_i2c1_pins_default>;
+>  	clock-frequency = <400000>;
+> +
+> +	tlv320aic3106: audio-codec@1b {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "ti,tlv320aic3106";
+> +		reg = <0x1b>;
+> +		ai3x-micbias-vg = <1>;	/* 2.0V */
+> +
+> +		/* Regulators */
+> +		AVDD-supply = <&vcc_3v3_sys>;
+> +		IOVDD-supply = <&vcc_3v3_sys>;
+> +		DRVDD-supply = <&vcc_3v3_sys>;
+> +		DVDD-supply = <&vcc_1v8>;
+> +	};
+>  };
+>  
+>  &sdhci0 {
+> @@ -272,3 +329,23 @@ &usb1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_usb1_pins_default>;
+>  };
+> +
+> +&mcasp1 {
 > +	status = "okay";
+> +	#sound-dai-cells = <0>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_mcasp1_pins_default>;
+> +
+> +	op-mode = <0>;          /* MCASP_IIS_MODE */
+> +	tdm-slots = <2>;
+> +
+> +	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+> +	       1 0 2 0
+> +	       0 0 0 0
+> +	       0 0 0 0
+> +	       0 0 0 0
+> +	>;
+> +	tx-num-evt = <32>;
+> +	rx-num-evt = <32>;
 > +};
-> +
->  &pcie_phy {
->  	vdda-phy-supply = <&vreg_l1b_1p2>;
->  	vdda-pll-supply = <&vreg_l4b_0p88>;
-> @@ -277,6 +288,29 @@
->  	status = "okay";
->  };
->  
-> +&tlmm {
-> +	pcie_ep_clkreq_default: pcie-ep-clkreq-default-state {
-> +		pins = "gpio56";
-> +		function = "pcie_clkreq";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	pcie_ep_perst_default: pcie-ep-perst-default-state {
-> +		pins = "gpio57";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	pcie_ep_wake_default: pcie-ep-wake-default-state {
-> +		pins = "gpio53";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +};
-> +
->  &usb {
->  	status = "okay";
->  };
+> 
+> -- 
+> 2.40.0
+> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
