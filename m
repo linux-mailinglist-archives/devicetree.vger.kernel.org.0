@@ -2,285 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 408CA6CC895
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 18:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15AD86CC842
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 18:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjC1QzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 12:55:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41586 "EHLO
+        id S230226AbjC1QlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 12:41:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232419AbjC1Qyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 12:54:53 -0400
-Received: from 4.mo562.mail-out.ovh.net (4.mo562.mail-out.ovh.net [46.105.38.146])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E571FE39B
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 09:54:48 -0700 (PDT)
-Received: from director4.derp.mail-out.ovh.net (director4.derp.mail-out.ovh.net [79.137.60.37])
-        by mo562.mail-out.ovh.net (Postfix) with ESMTPS id C5D3223DF9;
-        Tue, 28 Mar 2023 16:15:56 +0000 (UTC)
-Received: from director4.derp.mail-out.ovh.net (director4.derp.mail-out.ovh.net. [127.0.0.1])
-        by director4.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
-        for <sven.schwermer@disruptive-technologies.com>; Tue, 28 Mar 2023 16:15:56 +0000 (UTC)
-Received: from pro2.mail.ovh.net (unknown [10.108.16.78])
-        by director4.derp.mail-out.ovh.net (Postfix) with ESMTPS id ADE4D1FE53;
-        Tue, 28 Mar 2023 16:15:56 +0000 (UTC)
-Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
- (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Tue, 28 Mar
- 2023 18:15:56 +0200
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <lee.jones@linaro.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <sven.schwermer@disruptive-technologies.com>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <johan+linaro@kernel.org>, <marijn.suijten@somainline.org>,
-        <andy.shevchenko@gmail.com>, <jacek.anaszewski@gmail.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [PATCH v8 6/6] leds: Add a multicolor LED driver to group monochromatic LEDs
-Date:   Tue, 28 Mar 2023 18:15:41 +0200
-Message-ID: <20230328161541.599463-7-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230328161541.599463-1-jjhiblot@traphandler.com>
-References: <20230328161541.599463-1-jjhiblot@traphandler.com>
+        with ESMTP id S229806AbjC1QlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 12:41:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A0A3C1D;
+        Tue, 28 Mar 2023 09:41:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 80651B81DBB;
+        Tue, 28 Mar 2023 16:41:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C9D2C4339B;
+        Tue, 28 Mar 2023 16:41:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680021675;
+        bh=puCNRpwmEqJetbrROPl1Vggv5627DYtpnEIhZnhgltU=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=f8g1IPFus2nyhjwbRIIMFTOz+6qNnpSGGL2tYJOnKy8VQn9vCMe27AlwPqZPVRs+v
+         tJk0Xn1UVFqiiMlNDq24yvVFfeKa9CJL4p8aXWehSRCyWGAc/2Hpjt2b8JqDQXWH0Q
+         kv2BE1KIbe1Ay7Sepna3QVj20bwfoAP0bwMayGREvVzE0lUs9gi1KMsdbHbiHNED9X
+         xu43/VinAzcXE+y1/xclLIKQGI2DouaM2FiMeHP/wj8fxjx4eAWhiAL0yBNVx9wOt4
+         EIXyIG0g8OjglQDrOeIRlrYWoH53ZYmuNJNhTA7sxNkCYq734gonl4xma03uKIrjgu
+         dDhJ3kxW1p44A==
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230313075551.17290-1-krzysztof.kozlowski@linaro.org>
+References: <20230313075445.17160-1-krzysztof.kozlowski@linaro.org>
+ <20230313075551.17290-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/9] ASoC: add audio digital codecs for Qualcomm
+ SM8550
+Message-Id: <168002167217.51443.3734911880079647013.b4-ty@kernel.org>
+Date:   Tue, 28 Mar 2023 17:41:12 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG8EX1.emp2.local (172.16.2.81) To DAG1EX1.emp2.local
- (172.16.2.1)
-X-Ovh-Tracer-Id: 1349953989888522715
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehgedgleekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeduteevleevvefggfdvueffffejhfehheeuiedtgedtjeeghfehueduudegfeefueenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepughirhgvtghtohhrgedruggvrhhprdhmrghilhdqohhuthdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqlhgvughssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedv
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bd1bf
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Grouping multiple monochrome LEDs into a multicolor LED device has a few
-benefits over handling the group in user-space:
-- The state of the LEDs relative to each other is consistent. In other
-  words, if 2 threads competes to set the LED to green and red, the
-  end-result cannot be black or yellow.
-- The multicolor LED as a whole can be driven through the sysfs LED
-  interface.
+On Mon, 13 Mar 2023 08:55:51 +0100, Krzysztof Kozlowski wrote:
+> Dependencies
+> ============
+> For va-macro bindings:
+> https://lore.kernel.org/r/20221118071849.25506-2-srinivas.kandagatla@linaro.org
+> 
+> NOT a dependency
+> ================
+> The patchset can be applied independently of my previous fix:
+> https://lore.kernel.org/linux-arm-msm/20230310100937.32485-1-krzysztof.kozlowski@linaro.org/T/#u
+> 
+> [...]
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
- drivers/leds/rgb/Kconfig                 |  13 ++
- drivers/leds/rgb/Makefile                |   1 +
- drivers/leds/rgb/leds-group-multicolor.c | 164 +++++++++++++++++++++++
- 3 files changed, 178 insertions(+)
- create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+Applied to
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 204cf470beae..1f85df5b691d 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -2,6 +2,19 @@
- 
- if LEDS_CLASS_MULTICOLOR
- 
-+config LEDS_GROUP_MULTICOLOR
-+	tristate "LEDs group multi-color support"
-+	depends on OF || COMPILE_TEST
-+	help
-+	  This option enables support for monochrome LEDs that are
-+	  grouped into multicolor LEDs.
-+	  This useful in the case where LEDs of different colors are
-+	  physically grouped in a single multi-color LED and driven
-+	  by a controller that doesn't have multi-color support.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-group-multicolor.
-+
- config LEDS_PWM_MULTICOLOR
- 	tristate "PWM driven multi-color LED Support"
- 	depends on PWM
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index 0675bc0f6e18..64d0d7ad5341 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
-+obj-$(CONFIG_LEDS_GROUP_MULTICOLOR)	+= leds-group-multicolor.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
-diff --git a/drivers/leds/rgb/leds-group-multicolor.c b/drivers/leds/rgb/leds-group-multicolor.c
-new file mode 100644
-index 000000000000..27c80c84de88
---- /dev/null
-+++ b/drivers/leds/rgb/leds-group-multicolor.c
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * multi-color LED built with monochromatic LED devices
-+ *
-+ * This driver groups several monochromatic LED devices in a single multicolor LED device.
-+ * Compared to handling this grouping in the user-space, the benefits are:
-+ * - The state of the monochromatic LED relative to each other is always consistent.
-+ * - the sysfs interface of the LEDs can be used for the group as a whole.
-+ *
-+ * Copyright 2023 Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/leds.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+struct leds_multicolor {
-+	struct led_classdev_mc mc_cdev;
-+	struct led_classdev **monochromatics;
-+};
-+
-+static int led_mcg_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
-+	struct leds_multicolor *priv = container_of(mc_cdev, struct leds_multicolor, mc_cdev);
-+	const unsigned int group_max_brightness = mc_cdev->led_cdev.max_brightness;
-+	int i;
-+
-+	for (i = 0; i < mc_cdev->num_colors; i++) {
-+		struct led_classdev *mono = priv->monochromatics[i];
-+		const unsigned int mono_max_brightness = mono->max_brightness;
-+		unsigned int intensity = mc_cdev->subled_info[i].intensity;
-+		int mono_brightness;
-+
-+		/*
-+		 * Scale the brightness according to relative intensity of the
-+		 * color AND the max brightness of the monochromatic LED.
-+		 */
-+		mono_brightness = DIV_ROUND_CLOSEST(brightness * intensity * mono_max_brightness,
-+						    group_max_brightness * group_max_brightness);
-+
-+		led_set_brightness(mono, mono_brightness);
-+	}
-+
-+	return 0;
-+}
-+
-+static void restore_sysfs_access(void *data)
-+{
-+	struct led_classdev *led_cdev = data;
-+
-+	mutex_lock(&led_cdev->led_access);
-+	led_sysfs_enable(led_cdev);
-+	mutex_unlock(&led_cdev->led_access);
-+}
-+
-+static int led_mcg_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct mc_subled *subled;
-+	struct leds_multicolor *priv;
-+	unsigned int max_brightness = 0;
-+	int i, ret, count = 0;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	for (;;) {
-+		struct led_classdev *led_cdev;
-+
-+		led_cdev = devm_of_led_get_optional(dev, count);
-+		if (IS_ERR(led_cdev))
-+			return dev_err_probe(dev, PTR_ERR(led_cdev), "Unable to get LED #%d",
-+					     count);
-+		if (!led_cdev)
-+			break;
-+
-+		priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
-+					count + 1, sizeof(*priv->monochromatics),
-+					GFP_KERNEL);
-+		if (!priv->monochromatics)
-+			return -ENOMEM;
-+
-+		priv->monochromatics[count] = led_cdev;
-+
-+		max_brightness = max(max_brightness, led_cdev->max_brightness);
-+
-+		count++;
-+	}
-+
-+	subled = devm_kcalloc(dev, count, sizeof(*subled), GFP_KERNEL);
-+	if (!subled)
-+		return -ENOMEM;
-+	priv->mc_cdev.subled_info = subled;
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		subled[i].color_index = led_cdev->color;
-+
-+		/* Configure the LED intensity to its maximum */
-+		subled[i].intensity = max_brightness;
-+	}
-+
-+	/* Initialise the multicolor's LED class device */
-+	cdev = &priv->mc_cdev.led_cdev;
-+	cdev->flags = LED_CORE_SUSPENDRESUME;
-+	cdev->brightness_set_blocking = led_mcg_set;
-+	cdev->max_brightness = max_brightness;
-+	cdev->color = LED_COLOR_ID_MULTI;
-+	priv->mc_cdev.num_colors = count;
-+
-+	init_data.fwnode = dev_fwnode(dev);
-+	ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev, &init_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register multicolor LED for %s.\n",
-+				     cdev->name);
-+
-+	ret = led_mcg_set(cdev, cdev->brightness);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set LED value for %s.", cdev->name);
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		/* Make the sysfs of the monochromatic LED read-only */
-+		mutex_lock(&led_cdev->led_access);
-+		led_sysfs_disable(led_cdev);
-+		mutex_unlock(&led_cdev->led_access);
-+
-+		/* Restore sysfs access when the multicolor LED is released */
-+		devm_add_action_or_reset(dev, restore_sysfs_access, led_cdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_led_group_multicolor_match[] = {
-+	{ .compatible = "leds-group-multicolor" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_led_group_multicolor_match);
-+
-+static struct platform_driver led_group_multicolor_driver = {
-+	.probe		= led_mcg_probe,
-+	.driver		= {
-+		.name	= "leds_group_multicolor",
-+		.of_match_table = of_led_group_multicolor_match,
-+	}
-+};
-+module_platform_driver(led_group_multicolor_driver);
-+
-+MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
-+MODULE_DESCRIPTION("LEDs group multicolor driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:leds-group-multicolor");
--- 
-2.25.1
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/9] ASoC: dt-bindings: qcom,lpass-rx-macro: narrow clocks per variants
+      commit: e4cf7805f084772cccf2094b634a16bccf2f444f
+[2/9] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8550 RX macro
+      commit: 0fc109f875721f9cef29bb68095f50d67343b4b7
+[3/9] ASoC: codecs: lpass-rx-macro: add support for SM8550
+      commit: 492fe974fed0754f7076580e069e1e182e7b3603
+[4/9] ASoC: dt-bindings: qcom,lpass-tx-macro: narrow clocks per variants
+      commit: bf4afbf950938d42cf0df1ecd915affeb26f4d76
+[5/9] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM8550 TX macro
+      commit: 050578c6f18c28e95f9659493a52a67b68b4b667
+[6/9] ASoC: codecs: lpass-tx-macro: add support for SM8550
+      commit: 5faf6a1c5256559af98c998b7416e4db8fb09b75
+[7/9] ASoC: dt-bindings: qcom,lpass-va-macro: Add SM8550 VA macro
+      (no commit info)
+[8/9] ASoC: dt-bindings: qcom,lpass-wsa-macro: Add SM8550 WSA macro
+      commit: c1bda22bd2f382f9c3b27fb7a899f8804d92f897
+[9/9] ASoC: codecs: lpass-wsa-macro: add support for SM8550
+      commit: 6b004b836ced4d9ce655b5f1c810833c1a880369
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
