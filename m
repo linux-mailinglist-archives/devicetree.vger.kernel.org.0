@@ -2,83 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E8C6CBC2F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5F66CBC52
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:16:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbjC1KNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 06:13:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
+        id S230468AbjC1KPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 06:15:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230417AbjC1KNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:13:17 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE16B6E9B
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:12:54 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id d22so6871240pgw.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:12:54 -0700 (PDT)
+        with ESMTP id S229459AbjC1KP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:15:29 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187E89F
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:15:22 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id g19so1968752lfr.9
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:15:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679998374;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ur6uKN85TYQWLvCxVJ2c6x3zzJWUhaZqRctpfFiWUIw=;
-        b=jMVlny30ljZY/tcBflSVwe7xsuCk1ZeRa8ALY7gPYkfVb1fk3X/qS20c7qeNCwedo8
-         9fiMHOM1EmovhkAcm1B90c9lq3ijj7SE+2HntzSi8o7fNqelTbWHeSaKXhx8a3SbC23L
-         B3nr5bKH0OlufphI3VzSGZqK/YQJuw504YuT0K4IneZbcXkUocTqRJciPmfe8ARDEzTR
-         8j2aN8JQNZd3qBNZlpSfeJeD3j+hgUIhSUk1UDjMHEyCLLCT64sYQZn2QzOayHSQfzYi
-         vgzAQifxhoSr5QRskxbasBfNmluk69H7SVvuPqVVfDysWz66UMivERFjTNbT2pGqBSTg
-         dqLA==
+        d=linaro.org; s=google; t=1679998520;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=234Hi7RPwwGJcBwZrz6n+zvvJYe2QAil9tHn/ZofszU=;
+        b=eActs3ao0gU+Y4i4jKrSlbPjUHxvkxacebVr41wTlJCloZvD8fTW80If1lmwD/a+IH
+         baJIiDgIzH5G7eB1uBgaFZyN5Kw05e1hGGrMuFcXkLRhYdHej5FTZwPvriqwFcPbDxnj
+         zg2PXRfusffhq1QGralqwzuXYjtR/KP4yZK5p7HL4wo+v7bgf4MGRdSoYySYMCt3Y/qo
+         Bm8OtW6Pv3YG5P93oYBPBEPON1EC9sZbLMvXrCNADWXdVA3UXGME/UTzfqd2hNdLiWxB
+         aS6P+2skdmaDM6hGOuhHMktD49ki4Y50fMu5J/4/o5wCJhMG/cKkZ9p5+2bQXQzx9wZN
+         9yjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679998374;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20210112; t=1679998520;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ur6uKN85TYQWLvCxVJ2c6x3zzJWUhaZqRctpfFiWUIw=;
-        b=GT7F8LyFq0LR1SCyEXxcK1aPOLB/Y2m5gArgJj/JyiPwuTRtUWR/RSnTzZ202vVSPt
-         rgdr73ubjGcQGIBAjehjZM2GAOVT6Nta21/aa4wDLS41zdXU5+1m4gA1XIaeeko4azT/
-         vB2K14+Fhgsvhh2IKAXfKJ9IoCVbZG/NAkxrXPP3TuwJ4qAMl4leK6l21LmrlG3O366d
-         nux52KGngQr06uNkZQW29KFNG3iSD1+q9E3/gUHhEB1X6gQbiIoaV43PmblIuYD27LRY
-         +92EOUpbD52OB2Gy/7W0p+NuoC7rJb0Cx1UIC1I21d4i8T4dRpCagjQmqCoPVFdPZA7u
-         QK1Q==
-X-Gm-Message-State: AAQBX9fktK9hF1NB4ZgpJPbqRnzIhOIsKgTDYfo4EDqjV5SAbp2q8XsE
-        zhms1QY70tkv5nfY/B7j5/K6a56e0TDsYfdzADuukQ==
-X-Google-Smtp-Source: AKy350bA0E0pgZejxVtJ222F9kw3bBsx4EpT493ao0TPM6h4l4h3va196sNgYjfU3tFvV53zdC5WKFAvD4wLwA7gH9k=
-X-Received: by 2002:a05:6a00:1827:b0:622:c6ad:b373 with SMTP id
- y39-20020a056a00182700b00622c6adb373mr8123366pfa.3.1679998373864; Tue, 28 Mar
- 2023 03:12:53 -0700 (PDT)
+        bh=234Hi7RPwwGJcBwZrz6n+zvvJYe2QAil9tHn/ZofszU=;
+        b=5cyeTZEYzP9lzB0LCefWJA8Pv1xhGID/s6PsvjB4utDrmFWZK5RgKCC2On9+DHdfVP
+         8QzFB0fKghMj8E60NHWEcjCzlcwVsO3uZInu1GqRCS54BH/BynJirBI9Muw6TU04x+ih
+         /C1iLRkb/cxw+U4czeRpV62RLRycAuDKSOOzDaZHle2W/xRlPc5MkxPV7DewdeYQ2TYz
+         AgOAbSyAuQ0phsghUuAoorn7B85EA8bmM/WQxoAAAtqgqI8/6vXhpW83IMagbsvnFEHx
+         8Z9KN2gqSJyZmLekSucnMgEFUgk+4jsa3C72OEsFJVMEpywHHc5i62fGQnArsngF4eUP
+         cCNg==
+X-Gm-Message-State: AAQBX9foRQGDGnT2E+HSPOLusDfSdLfRzdswpjIzm5wSgCb3jh4DY95a
+        aCN6CT12B0+YTKPRmaxdKM570w==
+X-Google-Smtp-Source: AKy350bBqxAHsxe1eFJxcFf6vv3BAg51K7HxcgRPi38gAEhuTO0PZ2NpGz/Y+Lu5tPxWOyOpxIET8A==
+X-Received: by 2002:a19:7512:0:b0:4eb:c85:60eb with SMTP id y18-20020a197512000000b004eb0c8560ebmr2513274lfe.36.1679998520295;
+        Tue, 28 Mar 2023 03:15:20 -0700 (PDT)
+Received: from ta1.c.googlers.com.com (61.215.228.35.bc.googleusercontent.com. [35.228.215.61])
+        by smtp.gmail.com with ESMTPSA id o25-20020ac24959000000b004e84d64ab51sm5061405lfi.58.2023.03.28.03.15.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 03:15:19 -0700 (PDT)
+From:   Tudor Ambarus <tudor.ambarus@linaro.org>
+To:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com
+Cc:     alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        tudor.ambarus@linaro.org
+Subject: [PATCH v3 0/4] ARM: dts: at91: Set sst26vf064b SPI NOR flash at its maxumum frequency
+Date:   Tue, 28 Mar 2023 10:15:13 +0000
+Message-Id: <20230328101517.1595738-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
 MIME-Version: 1.0
-References: <20230324061608.33609-1-quic_hazha@quicinc.com>
- <20230324061608.33609-3-quic_hazha@quicinc.com> <e51c200e-6de0-d516-3f32-28367b2f5a95@linaro.org>
- <e6b0a542-17d9-290e-7c84-8356a38d6802@quicinc.com>
-In-Reply-To: <e6b0a542-17d9-290e-7c84-8356a38d6802@quicinc.com>
-From:   Mike Leach <mike.leach@linaro.org>
-Date:   Tue, 28 Mar 2023 11:12:42 +0100
-Message-ID: <CAJ9a7VjC+1m8odyotBoG3EPAL=Cn90fCCY1xPGFyg8uKEar7nQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: Add Coresight Dummy Trace YAML schema
-To:     Hao Zhang <quic_hazha@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>, Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -88,234 +69,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Changes in v3: Update S-o-b tag to match author's email.
+Changes in v2: update value of spi-cs-setup-ns as it was changed to u32
+since the first proposal.
+v1 at: https://lore.kernel.org/linux-mtd/20221117105249.115649-1-tudor.ambarus@microchip.com/
 
-As per my comments in the previous patch in this set....
-
-On Mon, 27 Mar 2023 at 08:38, Hao Zhang <quic_hazha@quicinc.com> wrote:
->
-> Hi Krzysztof,
->
-> On 3/25/2023 7:49 PM, Krzysztof Kozlowski wrote:
-> > On 24/03/2023 07:16, Hao Zhang wrote:
-> >> Add new coresight-dummy.yaml file describing the bindings required
-> >> to define coresight dummy trace in the device trees.
-> >>
-> >
-> > Subject: drop second/last, redundant "YAML schema". The "dt-bindings"
-> > prefix is already stating that these are bindings and all new must be DT
-> > schema. You cannot add anything else, so this is redundant.
-> >
-> I will take your advice to drop redundant part of title in the next
-> version of patch.
-> >
-> >> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
-> >> ---
-> >>   .../bindings/arm/qcom,coresight-dummy.yaml    | 118 ++++++++++++++++++
-> >>   1 file changed, 118 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
-> >> new file mode 100644
-> >> index 000000000000..7b719b084d72
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
-> >> @@ -0,0 +1,118 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> >> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/arm/qcom,coresight-dummy.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: QCOM Coresight Dummy component
-> >> +
-> >> +description: |
-> >> +  The Coresight Dummy component is for the specific devices that HLOS don't have
-> >> +  permission to access or configure. Such as Coresight sink EUD, some TPDMs etc.
-> >> +  So there need driver to register dummy devices as Coresight devices. Provide
-> >> +  Coresight API for dummy device operations, such as enabling and disabling
-> >> +  dummy devices. Build the Coresight path for dummy sink or dummy source for
-> >> +  debugging.
-> >> +
-> >> +  The primary use case of the coresight dummy is to build path for dummy sink or
-> >> +  dummy source.
-> >> +
-> >> +maintainers:
-> >> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> >> +  - Tao Zhang <quic_taozha@quicinc.com>
-> >> +  - Hao Zhang <quic_hazha@quicinc.com>
-> >> +
-> >> +select:
-> >> +  properties:
-> >> +    compatible:
-> >> +      contains:
-> >> +        enum:
-> >> +          - qcom,coresight-dummy
-
-Can we have coresight-dummy-source and coresight-dummy-sink?
-
-> >> +  required:
-> >> +    - compatible
-> >
-> > Why do you need the select?
-> >
-> This is a mistake, will remove it in the next version of patch.
-> >> +
-> >> +properties:
-> >> +  $nodename:
-> >> +    pattern: "^dummy_.*(sink|source)_[0-9]+.*$"
-> >
-> > We do not enforce node names in individual bindings. Why do you need it?
-> > Plus underscore is not even proper character...
-> >
-> I will remove this node.
->
-> >> +  compatible:
-> >> +    items:
-> >
-> > Drop items. You have only one item, so no need for list.
->
-> I will take your advice and update it in the next version of patch.
->
-> >> +      - const: qcom,coresight-dummy
-> >> +
-> >> +  qcom,dummy-sink:
-> >> +    type: boolean
-> >> +    description:
-> >> +      Indicates that the type of this coresight node is dummy sink.
-> >
-> > You just duplicated property name. Write something useful.
-> >
-> >> +
-> >> +  qcom,dummy-source:
-> >> +    type: boolean
-> >> +    description:
-> >> +      Indicates that the type of this coresight node is dummy source.
-> >
-> > You just duplicated property name. Write something useful.
-> >
->
-
-These properties not required if the compatible name is more specific
-
-> Sure, I will add more details for it.
->
-> >> +
-> >> +  out-ports:
-> >> +    description: |
-> >
-> > No need for |
-> >
-> >> +      Output connections from the dummy source to Coresight Trace bus.
-> >> +    $ref: /schemas/graph.yaml#/properties/ports
-> >> +
-> >> +    properties:
-> >> +      port:
-> >> +        description: Output connection from the dummy source to Coresight
-> >> +            Trace bus.
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +
-> >> +  in-ports:
-> >> +    description: |
-> >
-> > Ditto
-> >
-> I will remove it in the next version of patch.
->
-> >> +      Input connections from the CoreSight Trace bus to dummy sink.
-> >> +    $ref: /schemas/graph.yaml#/properties/ports
-> >> +
-> >> +    properties:
-> >> +      port:
-> >> +        description: Input connection from the Coresight Trace bus to
-> >> +            dummy sink.
-> >> +        $ref: /schemas/graph.yaml#/properties/port
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +
-
-The binding should constrain out ports to dummy-source only, and in
-ports to dummy sink only.
-
-Regards
-
-Mike
-
-> >> +additionalProperties: false
-> >> +
-> >> +oneOf:
-> >> +  - required:
-> >> +      - qcom,dummy-sink
-> >> +  - required:
-> >> +      - qcom,dummy-source
-> >> +
-> >> +examples:
-> >> +  # minimum dummy sink definition. dummy sink connect to coresight replicator.
-> >> +  - |
-> >> +    dummy_sink_1 {
-> >
-> > Node names should be generic, so "sink"
-> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> >
-> >> +      compatible = "qcom,coresight-dummy";
-> >> +      qcom,dummy-sink;
-> >> +
-> >> +      in-ports {
-> >> +        port {
-> >> +          eud_in_replicator_swao: endpoint {
-> >> +            remote-endpoint =
-> >> +              <&replicator_swao_out_eud>;
-> >
-> > Why line break after =?
-> >
->
-> >> +          };
-> >> +        };
-> >> +      };
-> >> +    };
-> >> +
-> >> +  # minimum dummy source definition. dummy source connect to coresight funnel.
-> >
-> > If you use sentences, then start with capital letter.
-> >
->
-> I will update it according to your advice in the next version of patch.
->
-> >> +  - |
-> >> +    dummy_source_1 {
-> >> +      compatible = "qcom,coresight-dummy";
-> >> +      qcom,dummy-source;
-> >> +
-> >> +      out-ports {
-> >> +        port {
-> >> +          dummy_riscv_out_funnel_swao: endpoint {
-> >> +            remote-endpoint =
-> >> +              <&funnel_swao_in_dummy_riscv>;
-> >
-> > Why line break?
->
-> I copy it from device tree and keep the original format, will correct
-> the format in the next version of patch.
->
-> Thanks,
-> Hao
->
-> >> +          };
-> >> +        };
-> >> +      };
-> >> +    };
-> >> +
-> >> +...
-> >
-> > Best regards,
-> > Krzysztof
-> >
+---
+SPI NOR flashes have specific cs-setup time requirements without which
+they can't work at frequencies close to their maximum supported frequency,
+as they miss the first bits of the instruction command. Unrecognized
+commands are ignored, thus the flash will be unresponsive. Introduce the
+spi-cs-setup-ns property to allow spi devices to specify their cs setup
+time.
 
 
+Tudor Ambarus (4):
+  ARM: dts: at91-sama5d27_wlsom1: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+  ARM: dts: at91-sama5d27_som1: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+  ARM: dts: at91: sama5d2_icp: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+  ARM: dts: at91: sam9x60ek: Set sst26vf064b SPI NOR flash at its
+    maximum frequency
+
+ arch/arm/boot/dts/at91-sam9x60ek.dts        | 3 ++-
+ arch/arm/boot/dts/at91-sama5d27_som1.dtsi   | 3 ++-
+ arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 3 ++-
+ arch/arm/boot/dts/at91-sama5d2_icp.dts      | 3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
 
 -- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+2.40.0.348.gf938b09366-goog
+
