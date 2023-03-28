@@ -2,124 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E7E66CB9D3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54CB6CB9E8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbjC1IvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 04:51:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46372 "EHLO
+        id S231279AbjC1Iy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 04:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbjC1IvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:51:20 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D51FA;
-        Tue, 28 Mar 2023 01:51:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1679993479; x=1711529479;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=T0f2kgJ9KZyICJJMWIGxZxVKRVW/cJ1iN/Ny6VWy2aE=;
-  b=sk5ESEVWn3myTmsq+cgffAP6RCXuIdPUJpyx2IWbBB+pJzpmyAAcHTrF
-   ae74gTnQeLE50aunfu+7nBTNHCRVGjFT3iOZspjqTpBCxuFuLXuaYWBsC
-   bGfpbV+NGMZTbnGEumuCTUWZnyq8/4amF7ReNEG1hm1gwuXOi/YZSN5od
-   8mJft7e5CKM4Cjp1AQ+n16G4XD/m13cgIfg2RXlVyM60ySZ8t9JYol3u6
-   mJziAJDaIs+1WIEhSHa0F+t32w0bzCMCrefkQ3lRJ0l+Py53lP3xhRdp5
-   EPknN7EMerzzQr+0Gpr69HjjZKjlHaxUV4r28+KswAUfnWEZb5RabMyAM
-   g==;
-X-IronPort-AV: E=Sophos;i="5.98,296,1673938800"; 
-   d="scan'208";a="206642288"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Mar 2023 01:51:14 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 28 Mar 2023 01:51:13 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Tue, 28 Mar 2023 01:51:11 -0700
-Message-ID: <a6fe77b6-4ff4-3c91-0c67-a9da5a638e7b@microchip.com>
-Date:   Tue, 28 Mar 2023 10:51:05 +0200
+        with ESMTP id S232276AbjC1Iyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:54:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B253719A1;
+        Tue, 28 Mar 2023 01:54:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6230DB81BBF;
+        Tue, 28 Mar 2023 08:54:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD22FC433EF;
+        Tue, 28 Mar 2023 08:54:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679993683;
+        bh=FlhEhP6prp2j0gTaGdnVSIx+i5NWL7KCri11ZYnsy3I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SJRGXCjhZkx/iOapcmyPGdXscZHKSIdLVHHLMURh1Rf6qwEnc3Xlad0Qvwr7KT+qF
+         1MENXlQqeB6wAxszDpo0TlZmxkBw9FBjElNI3lmZEwodbevs5J0gzufBZbX0mRJdhf
+         vC8+Ux1CbqncIrFCgHueOAiBJ+SC1rsOFyCvtvF8jIFY1Og2EUQ7iCdVEy7jrzzCGJ
+         YQsXyp4K2PTCsfootJyrObN8PSegqIaDFVCs650s/Kz/BEbhs4gmnYGP3HVngdZrES
+         FvDmZClERmEwCYz3P6muXFqsF2d3ARRaq5wJPoyotbW36VpAoQYf/hmQcGjpBck2D5
+         QfcbOfLgQZHBw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ph56U-0003mE-05; Tue, 28 Mar 2023 10:54:54 +0200
+Date:   Tue, 28 Mar 2023 10:54:53 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
+        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc8280xp: Add missing dwc3 quirks
+Message-ID: <ZCKrXZn7Eu/jvdpG@hovoldconsulting.com>
+References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
+ <20230325165217.31069-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 5/8] ARM: dts: at91-sama5d27_wlsom1: Set sst26vf064b SPI
- NOR flash at its maximum frequency
-Content-Language: en-US
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>
-CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mtd@lists.infradead.org>
-References: <20221117105249.115649-1-tudor.ambarus@microchip.com>
- <20221117105249.115649-6-tudor.ambarus@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20221117105249.115649-6-tudor.ambarus@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230325165217.31069-2-manivannan.sadhasivam@linaro.org>
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tudor,
+On Sat, Mar 25, 2023 at 10:22:13PM +0530, Manivannan Sadhasivam wrote:
+> Add missing quirks for the USB DWC3 IP.
 
-On 17/11/2022 at 11:52, Tudor Ambarus wrote:
-> sama5d27-wlsom1 populates an sst26vf064b SPI NOR flash. Its maximum
-> operating frequency for 2.7-3.6V is 104 MHz. As the flash is operated
-> at 3.3V, increase its maximum supported frequency to 104MHz. The
-> increasing of the spi-max-frequency value requires the setting of the
-> "CE# Not Active Hold Time", thus set the spi-cs-setup-ns to a value of 7.
-> 
-> The sst26vf064b datasheet specifies just a minimum value for the
-> "CE# Not Active Hold Time" and it advertises it to 5 ns. There's no
-> maximum time specified. I determined experimentally that 5 ns for the
-> spi-cs-setup-ns is not enough when the flash is operated close to its
-> maximum frequency and tests showed that 7 ns is just fine, so set the
-> spi-cs-setup-ns dt property to 7.
-> 
-> With the increase of frequency the reads are now faster with ~37%.
-> 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+This is not an acceptable commit message generally and certainly not for
+something that you have tagged for stable.
+
+At a minimum, you need to describe why these are needed and what the
+impact is.
+
+Also, why are you sending as part of a series purporting to enable
+runtime PM when it appears to be all about optimising specific gadget
+applications?
+
+Did you confirm that the below makes any sense or has this just been
+copied verbatim from the vendor devicetree (it looks like that)?
+
+The fact that almost none of the qcom SoCs sets these also indicates
+that something is not right here.
+
+> Cc: stable@vger.kernel.org # 5.20
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->   arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-> index 83bcf9fe0152..20caf40b4755 100644
-> --- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-> +++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-> @@ -220,7 +220,8 @@ qspi1_flash: flash@0 {
->   		#size-cells = <1>;
->   		compatible = "jedec,spi-nor";
->   		reg = <0>;
-> -		spi-max-frequency = <80000000>;
-> +		spi-max-frequency = <104000000>;
-> +		spi-cs-setup-ns = /bits/ 16 <7>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 0d02599d8867..266a94c712aa 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -3040,6 +3040,13 @@ usb_0_dwc3: usb@a600000 {
+>  				iommus = <&apps_smmu 0x820 0x0>;
+>  				phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
+>  				phy-names = "usb2-phy", "usb3-phy";
+> +				snps,hird-threshold = /bits/ 8 <0x0>;
+> +				snps,usb2-gadget-lpm-disable;
 
-Following the different changes that happened to this property after 
-this post, am I right saying that this must now be changed to:
+Here you are disabling LPM for gadget mode, which makes most of the
+other properties entirely pointless.
 
-spi-cs-setup-delay-ns = <7>;
+> +				snps,is-utmi-l1-suspend;
+> +				snps,dis-u1-entry-quirk;
+> +				snps,dis-u2-entry-quirk;
 
-?
+These appear to be used to optimise certain gadget application and
+likely not something that should be set in a dtsi.
 
-Thanks for your insight. Best regards,
-   Nicolas
+> +				snps,has-lpm-erratum;
+> +				tx-fifo-resize;
 
->   		spi-rx-bus-width = <4>;
->   		spi-tx-bus-width = <4>;
->   		m25p,fast-read;
+Same here.
 
--- 
-Nicolas Ferre
+>  				port {
+>  					usb_0_role_switch: endpoint {
 
+Johan
