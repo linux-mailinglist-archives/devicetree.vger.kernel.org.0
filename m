@@ -2,65 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA4E6CB641
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 07:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB01C6CB637
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 07:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229527AbjC1Frs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 01:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38646 "EHLO
+        id S229452AbjC1Fns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 01:43:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjC1Frr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 01:47:47 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C67E9C
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 22:47:46 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id r11so10862459wrr.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 22:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679982465;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6lh60Yr9juv2WyZOUdbsikkbVmvbDkOrRECq1Xjk8w0=;
-        b=hKb91XV0j+RJ4xQ36slziJZbbxrhakQalwhvXw/O1Drrwsl7YnUUc7o0vth3A8ITyk
-         d/OIgXcNEAfQqxyNySKuvhY3hO09+6CYQDdj42CQU0vUm7VXDlLREJAxRoOld+zbAmuG
-         nK/+iJIDUkDB8oJuMEx8w3QWm2o7iEA5yJ2evUg+C+V93rVvy45DaYrrfuR5r44MuF2A
-         vVrdRNcbBtEdlpcPXid7Re2+M2arNA8j1qJrKPu+O6BgjazpSadhfteRkDilxFRfTsn8
-         lB+d68NWoNVT9vuLmItboCwop42GIB3LzD2zlSeXfzath1pP1mqIadKfMPNsS5qotGhm
-         wEuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679982465;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6lh60Yr9juv2WyZOUdbsikkbVmvbDkOrRECq1Xjk8w0=;
-        b=NPCfedG/ofsYLRgdPG91SN924qSiZ3hhLYOdj7oiWRCUEI/kBCsTm+O+d2EpfHuqsd
-         12iyzTYCgKab5f278KDwSD06hFK6FVMHo4T128Ezf9e486qQqr+f1xrYovRskwYKpfSt
-         18kHO3qApZLQeKW5eDRkGEL4lp8KDge8Z2oowJdgeNUQsEw2Je4jnAQ8dHfNHN3hvWnn
-         A10MD9JAFS7sDJuekbS3JU/CxGLCKCuzlKTWiKI05YQLkyInpzMKFrvFUB5HVxd9HHaM
-         Eo14qE3Kgg3Mi/ldno0c/9CrNlZHko5l6YZ+oHFRAlYEc7p4iHQKRAiXbQHvW5D/Bh2E
-         w3tg==
-X-Gm-Message-State: AAQBX9cB2sJpikg9UI77OMBMPVKv062i+j9RMSbbRQlzXQUkYJLi38BH
-        5kWjyoeIpPE9IyeoyRW2eVB1Jt6lOZWaffPpSYc86Q==
-X-Google-Smtp-Source: AKy350bY4T8hh+mpb40iWxB7Rw/cLU14ODPcs3MZGucuLndnUopjiDkmFHPtza0z2LvdN0b4qT1zE7f9jJlYW3hYhJk=
-X-Received: by 2002:adf:ec4e:0:b0:2ce:817b:846d with SMTP id
- w14-20020adfec4e000000b002ce817b846dmr2908654wrn.4.1679982464773; Mon, 27 Mar
- 2023 22:47:44 -0700 (PDT)
+        with ESMTP id S229543AbjC1Fnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 01:43:47 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2065.outbound.protection.outlook.com [40.107.21.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A491AB;
+        Mon, 27 Mar 2023 22:43:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=epVKTDMUzG4Sc1X9nCXgTiKHNpLb6BK2Z6LDx3SaX1yFYVLVx6Bw3Dna1ASBWXFS3QS0X3XQ4ZTdKKKg2EyDY4+Xh7UBZvFs3SBmMERyCK7XSkmtHQYe/WPYXwmKkK45TidNZkT6goCkv3zWsvwUtAJt3I86nDzX9nhBQSQHnQvIY2p12znMhrdR2VwsIoyBhsiXxqJM7CGg5rleDP5qexRB9tyfI7/Ap5GdTTz87RJQ9Bz5TAvBFUiS5w1KB7wC2Cbts0K924WscYX/XVzzg4xyAP50FmdmftwlMyCQtNv5ROmr0byl819ij9T2c4o30QwnGm3Ye4P8WJI9l9nwfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=43JtJWEGZin2m40R8CskKZFH4kwdiG4MtXej0d9ZAos=;
+ b=Vx5xenUde+LlOchkkdjaOHsLGcULvvSB63FDqg49puHnEz35ZBli0HwK/aRUYEJ8vZn7ljfdYC84MY7OYDefrySuCHY7ePnyocsNNm+5Q1J7IkjTu4NC7NFpChqe39jWb8Jjendcy3kEHxkqiCicyRT63AEVCqqPNzeZz6iLouzqpO209/lpMlsRtJkaXU91JqkGQlVtokh+64fnkc7Da7CaLVA0V0NOgWToYDQwQItL42Oio6EtKJ2JbFKy91HtP97+kH1JMKOifRTQeTPUX3uKkbEfPBVZt+DUSgC+9fu9YtbDbivCSCbovFbAl3gCrncxhdiJ+3k7yCwQyZDa8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=43JtJWEGZin2m40R8CskKZFH4kwdiG4MtXej0d9ZAos=;
+ b=V1kvKhjKk8XHhqf60ucmjnpHXRJzeSj/D/aIMUI2rkax9TykEeSiVANJg1ilYD/hxnyrPYYWZg3sUzJxrlG5Z05AxuHGguF122uIilWh/rJvaSxPK836AmXG3JaEJz1MalxSKC6rKfwy2ZR1z0fRD45jj97fAwIJ1iwYInIkicE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM9PR04MB8129.eurprd04.prod.outlook.com (2603:10a6:20b:3ea::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
+ 2023 05:43:27 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::778e:19d0:cba0:5cc0]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::778e:19d0:cba0:5cc0%4]) with mapi id 15.20.6222.028; Tue, 28 Mar 2023
+ 05:43:27 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH] dt-bindings: input: pwm-beeper: convert to dt schema
+Date:   Tue, 28 Mar 2023 13:48:33 +0800
+Message-Id: <20230328054833.1974942-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0041.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::15) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-References: <20230323233735.2131020-1-vladimir.zapolskiy@linaro.org> <20230323233735.2131020-6-vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20230323233735.2131020-6-vladimir.zapolskiy@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 28 Mar 2023 11:17:33 +0530
-Message-ID: <CAH=2Ntz_boSOT2KKURt5eZK03urm8uJ_JVzOn5ZD_z_42Chaaw@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sm8450: add description of Qualcomm
- Crypto Engine IP
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM9PR04MB8129:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0eaae7f6-652a-4df8-ae8d-08db2f4f5ab9
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WxLJEGcE/dOKfh3TjRD2JK/9NzgSedY2mA++fsA70TVW8uvitJ7c3qidPBa01v6N+uqD/w5JTSA6zod8bcrcuEOG063ts4F4GNhJhK3+hLy6ul0hKJbxQilYO6kLmLVm9/hJNoLhafDeaKOfaiaFDmoKi08VqmkbG5QxVk3SPsVzHN71udF5EOhQMjVm5UOvmqum00/pmTibIMC9PrtDJSDCnjV2nZBzpoZnZuznhBv4Ff68ZIpfM7wQEF+9lh3LXAPcvsmQ9Xr2J5vaA7SndW7Gph3xXIBTKbUh9H4jAzEZNl5kdIpGGd8kO5z/1qpEXDXNx4uMxK24m2uJHJ/eIXyBygGB2eX+Z8FnK2GD3T6XhZce2P2DwsK/m4v0ZEUcw3mrMtQVa/jH5P9YNry59kyXHTS6IJrZG8KOwq3pN9MMJom7QNlEwBSo4qv2hb6Nh07O2K5y25fgIHUELsHo+vKXMP5wlM98jNQSQbFC0TA2fGSg8Eep96B6J7ljUl2sQuvrCm/iJ11xME7+VQ5fL0Q0aP2MznPHkVxUOneyRcBGd0M+TO6WxmUUcYV4tpAulJehACsiyP+8WbPa4ZGCd7umgRmcSWHLl07U/7iEzsJ5k+IjA24fqg53rygHJ63SE9nutzxughfWS0xPXzWh5g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(39860400002)(376002)(136003)(366004)(451199021)(8936002)(2906002)(52116002)(38100700002)(478600001)(38350700002)(86362001)(6666004)(6486002)(966005)(316002)(5660300002)(8676002)(4326008)(41300700001)(66556008)(66476007)(66946007)(186003)(26005)(1076003)(6506007)(6512007)(83380400001)(2616005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iHHNGA6Q4fILbwEOLcdXBxFEZ1p/Nz/IRxIbioZTHrdVI9y2+cFOX6soWdtV?=
+ =?us-ascii?Q?Ust/6BpCFqAXwt3lwmBurOJu+c1rz7YcwVmqtvU/LH2bd6ao96eywxBXAJtA?=
+ =?us-ascii?Q?8gbebJW6fOp+skr5zYe9aXdGVXx8l81unJmf5kgd8mnYMisu9fXxSdW9zI7H?=
+ =?us-ascii?Q?QXy/yuSA/XPzE23mMKd7ArEz1VonOOBQLd4dTkE/Ynh/oXS00QohtuJOc4bG?=
+ =?us-ascii?Q?2MXwx5tVjYGGzsgBmYlx026q9ey4ZT+1ZUDSUThOv1KbTgE5EurcupRdRKPD?=
+ =?us-ascii?Q?MAg390mARyOa01GN6t/u/nbKrEX0MwdcrQTokeBJDb8w9hnzuA1UKDioZ9DF?=
+ =?us-ascii?Q?qM0gLkD47O4z366CNlcTcgvy7Gj0WOAMp0nJjYp0ukvJSQlUmlhzDerjraIi?=
+ =?us-ascii?Q?6X6FqIZZy/wzyp8Lk4gdd5nrJAi2TFubtQiJjIJ7AHo/dHrU8JJYLc/5iK9Y?=
+ =?us-ascii?Q?oel648Jxs6XHmHTW10n0nmA06ZHk+J1XsdydEFRxw17wAW1fFXPrqHg3RZeL?=
+ =?us-ascii?Q?RxCWfWHwJa23J/jshDrZuJt5nAriE46T/4cJax5UMf1FOMtKVdSUVbQkU9tU?=
+ =?us-ascii?Q?s7p4M3K88Ajai51j/JgHb1l4SOYS/cOcWPmTz5SiqXlnH1n0nZX991hh51yz?=
+ =?us-ascii?Q?1n6w0xBlO1girFXaXAXSapZDBZJcijD4VzVOK7BPC9TVSyb3XnB8PpSsGrHr?=
+ =?us-ascii?Q?okdZmMZZOYqZ0E2iBLuE/YEcwz6AHq5oEIRYqUvJMiVbVSCDZsOzlAThig/9?=
+ =?us-ascii?Q?5OwvuYeln/ooomG/DdZ/lOsr8992oq8Ogda13CKm1gays5/ND1w7S4cFbDhf?=
+ =?us-ascii?Q?Czo+I/8tU9+UvY2kKO892I795Xfu2MvDvJd/g4Kz1ZOZIjr4O7W6d2+JijQ0?=
+ =?us-ascii?Q?Wu9GM2uUkRYsKhWsQNIAznKeBATMLXNj15KglgRB2km0XbL8GwzR1GICZYpa?=
+ =?us-ascii?Q?lfXRKwKgvvHr8OpOOxuy8k0ePShramogG5zb48iaP8yvl2yrqwhCMz/O14ur?=
+ =?us-ascii?Q?7KkR29ozZOPgbqRRCVW6iHjflDSl3VT0mFSWYXl4SOTy5vYYE7uVq2BDw2fR?=
+ =?us-ascii?Q?akshB0jbQYny6f/iRvZvWCB8i65M394Jw2HpE/5s5eg5s3URy+96N3KKjBlh?=
+ =?us-ascii?Q?c8uIeMZS+dfiiKgdDYs5px8s0WC/JUZaUxd8TziwRh9YBIM7GZqHFqgZ5EVd?=
+ =?us-ascii?Q?cwy2Z/o5i8n8i04xJTcjPr6Gwyu+rV5pM5FpNxoGGpYH1RxAB9D8iQk08d/I?=
+ =?us-ascii?Q?7dAP0etpGV42oT2Cu34rme8O0Uc10InYkInGAhhR9F4AtCx10AQM935gDEgk?=
+ =?us-ascii?Q?+IRN7Wch86LoQKicHrJ90LaBJUsJOtIJHzLtgvts147gZMzuolcZM0cShvd+?=
+ =?us-ascii?Q?pJirfXxye2q/3Uv7UG7ZakibF8v1VWpHHFmzh/UCVC/yQeNnzF7ddDL+HQmu?=
+ =?us-ascii?Q?IPVbFCjHq7vOTpsOJAZlPGiTw3u4kboRsdQzjHjh3LBwp/C3OWrnKc/CMUEq?=
+ =?us-ascii?Q?YNmL7vIptJk0ujUo1LyaeerOqpvunFZ5Pb9bCRyHF36ULx2Fnv5TG8Xx+yhM?=
+ =?us-ascii?Q?DZt4X4uPKgJ5YYmTt8DYujjFWYDNIJcfw4TahQbC?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0eaae7f6-652a-4df8-ae8d-08db2f4f5ab9
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 05:43:27.6341
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ujhXWbGBIyg+l5BoTXmrFaei2nC/DBpa89DngBw3Gd+5dtDVwFFs2a5GHhciAkAkQRQCnJPDZjXEmeGnDBE2Rw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8129
+X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,55 +113,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Mar 2023 at 05:07, Vladimir Zapolskiy
-<vladimir.zapolskiy@linaro.org> wrote:
->
-> Add description of QCE and its corresponding BAM DMA IPs on SM8450 SoC.
->
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index ce4b7d0a09ab..228c26fb9003 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -4081,6 +4081,28 @@ ufs_mem_phy_lanes: phy@1d87400 {
->                         };
->                 };
->
-> +               cryptobam: dma-controller@1dc4000 {
-> +                       compatible = "qcom,bam-v1.7.0";
-> +                       reg = <0x0 0x01dc4000 0x0 0x24000>;
-> +                       interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +                       #dma-cells = <1>;
-> +                       qcom,ee = <0>;
-> +                       qcom,controlled-remotely;
-> +                       num-channels = <8>;
-> +                       qcom,num-ees = <2>;
-> +                       iommus = <&apps_smmu 0x584 0x11>;
-> +               };
-> +
-> +               crypto: crypto@1dfa000 {
-> +                       compatible = "qcom,sm8450-qce", "qcom,sm8150-qce", "qcom,qce";
-> +                       reg = <0x0 0x01dfa000 0x0 0x6000>;
-> +                       dmas = <&cryptobam 4>, <&cryptobam 5>;
-> +                       dma-names = "rx", "tx";
-> +                       interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
-> +                       interconnect-names = "memory";
-> +                       iommus = <&apps_smmu 0x584 0x11>;
-> +               };
-> +
->                 sdhc_2: mmc@8804000 {
->                         compatible = "qcom,sm8450-sdhci", "qcom,sdhci-msm-v5";
->                         reg = <0 0x08804000 0 0x1000>;
-> --
-> 2.33.0
+From: Peng Fan <peng.fan@nxp.com>
 
-Already folded Neil's patch and sent via [1], which includes the
-correct BAM DMA compatible list as well.
+Convert the binding doc to dt schema, and also fixed the
+example from fixed-regulator to regulator-fixed.
 
-[1]. https://lore.kernel.org/linux-arm-msm/20230322114519.3412469-11-bhupesh.sharma@linaro.org/
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+ .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
+ .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
+ 2 files changed, 48 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.txt
+ create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.yaml
 
-Thanks.
+diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.txt b/Documentation/devicetree/bindings/input/pwm-beeper.txt
+deleted file mode 100644
+index 8fc0e48c20db..000000000000
+--- a/Documentation/devicetree/bindings/input/pwm-beeper.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-* PWM beeper device tree bindings
+-
+-Registers a PWM device as beeper.
+-
+-Required properties:
+-- compatible: should be "pwm-beeper"
+-- pwms: phandle to the physical PWM device
+-
+-Optional properties:
+-- amp-supply: phandle to a regulator that acts as an amplifier for the beeper
+-- beeper-hz:  bell frequency in Hz
+-
+-Example:
+-
+-beeper_amp: amplifier {
+-	compatible = "fixed-regulator";
+-	gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+-};
+-
+-beeper {
+-	compatible = "pwm-beeper";
+-	pwms = <&pwm0>;
+-	amp-supply = <&beeper_amp>;
+-};
+diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+new file mode 100644
+index 000000000000..1d7cd58d2a8f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/pwm-beeper.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PWM beeper
++
++maintainers:
++  - Sascha Hauer <s.hauer@pengutronix.de>
++
++properties:
++  compatible:
++    items:
++      - const: pwm-beeper
++
++  pwms:
++    description: Phandle to the physical PWM device
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  amp-supply:
++    description: Phandle to a regulator that acts as an amplifier for the beeper
++
++  beeper-hz:
++    description: bell frequency in Hz
++    minimum: 1
++    maximum: 255
++
++required:
++  - compatible
++  - pwms
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    beeper_amp: amplifier {
++       compatible = "regulator-fixed";
++       gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
++       regulator-name = "beeper_amp";
++    };
++
++    beeper {
++        compatible = "pwm-beeper";
++        pwms = <&pwm0>;
++        amp-supply = <&beeper_amp>;
++    };
+-- 
+2.37.1
+
