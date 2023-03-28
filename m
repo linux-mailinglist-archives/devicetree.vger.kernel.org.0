@@ -2,89 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 576D46CC1C0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70F4D6CC1DF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:16:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230419AbjC1OMR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 28 Mar 2023 10:12:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53384 "EHLO
+        id S232672AbjC1OQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 10:16:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbjC1OMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:12:16 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9B4C179;
-        Tue, 28 Mar 2023 07:11:13 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id b20so50318836edd.1;
-        Tue, 28 Mar 2023 07:11:13 -0700 (PDT)
+        with ESMTP id S233143AbjC1OQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:16:31 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1A1C667;
+        Tue, 28 Mar 2023 07:16:28 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id eh3so50275559edb.11;
+        Tue, 28 Mar 2023 07:16:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680012986;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=o8BF/ehITJBHp3Ju3uwCdwMFMpGd+i7nMGTmDLnuUcI=;
+        b=hnPE4C0Q7h9pxUBmBlrL7oDdySDwCyieYVRBR+zPXoe+EnhBlsUGmJ+Lo9m2V1Urme
+         BsFyMcJdDhSXIHKtizp8DscRzIJX5ob0sk9TRziJMz7nOuqmSUL+v78U+dTlak+xOzOs
+         3s6n1CVJ4/5J+Nz9QBQOP3I6D76p0zV354KnkuHUumz+RweDv7aB3V0qJHJZGQKqABrT
+         egSq6hS4nf7lJUdLwfe0xVur05L58oagCe3pVXY7C0jHN3jCm2eALB2yi8dqe9r/UEwb
+         ies3Z+shbXPoWjpFNDLGcNldcuYd4NBlmDh3t2FlmfOO63RfqnSa2HTWWkoVd2EC8gfY
+         RS5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680012537;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+        d=1e100.net; s=20210112; t=1680012986;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2LthyIzALMSb7MR3hF5OpQlky9r9tzct5FXvwlLfwIU=;
-        b=MFU3XXfUvgdx1HLz/Z5dzLkKMTZuOYZke/Tx6t7HxsVAY8bLPXfKLLtzzmflWGoZCM
-         aceKcgSDybr8zyTfrzs+9kg1ICoBI+X7Lhnw5xnVVxfH5J7fXe61MB0jAzqCjM78t3br
-         Mk7Tc7GbGu+ZN/ZQeH05zv14aC3rlAxjHzgI9GacOGy7MX6/LkMvDI4MbC1M/jCY6fWe
-         DbsjFMvpicnFKc5EkOlbLfch1kmCXXLeG3MLLbQH3mvo+wKs0nO6PiuSLrgCW2GV9M3S
-         XTaMeS4AMfcXwyaBNhy+EUTh2t7jitctOhHEhdL3gbiSR7CTpcfp6uAxdodRmWKuVJAD
-         qmrw==
-X-Gm-Message-State: AAQBX9eZT8zBBPwhXESVqJJmIQ37LKtR3KRC+/O6//D9usUKhAqH/ueQ
-        2mXeZb4TdRvZk4gT2QUdsyEJbDSzKTm1tQ==
-X-Google-Smtp-Source: AKy350aTDpgX5/AnXbBbGtY9splQUoS5BWPJgLJ60joad6YaiZ+uXRPivdu+MSV9Se3+GBTa0yG31Q==
-X-Received: by 2002:a17:906:81d5:b0:93d:ae74:fa9e with SMTP id e21-20020a17090681d500b0093dae74fa9emr16004471ejx.7.1680012537040;
-        Tue, 28 Mar 2023 07:08:57 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id gt6-20020a170906f20600b0092a3b199db8sm15171380ejb.186.2023.03.28.07.08.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 07:08:56 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id v1so12377149wrv.1;
-        Tue, 28 Mar 2023 07:08:56 -0700 (PDT)
-X-Received: by 2002:a5d:5966:0:b0:2e0:cf3d:6f38 with SMTP id
- e38-20020a5d5966000000b002e0cf3d6f38mr1185244wri.7.1680012536372; Tue, 28 Mar
- 2023 07:08:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230325114353.50293-1-krzysztof.kozlowski@linaro.org> <20230328150316.16d880f4@donnerap.cambridge.arm.com>
-In-Reply-To: <20230328150316.16d880f4@donnerap.cambridge.arm.com>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Tue, 28 Mar 2023 22:08:44 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65ARQ7tuFpnF7sf4TkGWVeBeFk8yz2hCCxxw1wwJzdjJA@mail.gmail.com>
-Message-ID: <CAGb2v65ARQ7tuFpnF7sf4TkGWVeBeFk8yz2hCCxxw1wwJzdjJA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mfd: x-powers,axp152: simplify disallowing properties
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        bh=o8BF/ehITJBHp3Ju3uwCdwMFMpGd+i7nMGTmDLnuUcI=;
+        b=I2AWDYR3rQ+WM0qs6UTXQBoupmRAdi1YlU4tkS8GNJiJyVRDyHnuPIU/m6fTneCuTU
+         x5sEhunNZNkSgw5It5hwMQfzKgfPZaA31r8cZKXfTGZfXSiRrJbqT4r+knTCcusUmgJK
+         0OLyIYeANdUdOcUuv+tWGXn63aAGT8lDfvI9gRVMtis77z43VqAX4+cfsLbWPkzGBt+N
+         fCao8N1+b0MGpp9vzgCoxAgTuz5SUvYPTAULccWN4bj5JMzpVJlnPguU9L9V0iEKVf+t
+         Yi/1hZOthDJXUqt5FtdAvfbvh48f/DOirkAzqyPVL+PHJvRJZnSZtfXZr4bu0aH8dQ3f
+         sQLw==
+X-Gm-Message-State: AAQBX9cpOIKZ5nUfisiHPLSyArKNB2FfZe21K4zXe1ZNV5kMuDsub4DU
+        cuHaStRxOzlrnhJ+HKEll9U=
+X-Google-Smtp-Source: AKy350aUbgxsVvLvkC0uqI0pB9Kdq2Lm2z5i6pe5hO+ehJ4J+6KSXoRcrVBESwc7JSsIgNRgUdlnkw==
+X-Received: by 2002:a17:906:a11a:b0:878:54e3:e3e1 with SMTP id t26-20020a170906a11a00b0087854e3e3e1mr15619559ejy.73.1680012986464;
+        Tue, 28 Mar 2023 07:16:26 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef05:8700:853c:3ba5:d710:3c1d? (p200300f6ef058700853c3ba5d7103c1d.dip0.t-ipconnect.de. [2003:f6:ef05:8700:853c:3ba5:d710:3c1d])
+        by smtp.gmail.com with ESMTPSA id e8-20020a170906c00800b008e1509dde19sm15205685ejz.205.2023.03.28.07.16.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 07:16:26 -0700 (PDT)
+Message-ID: <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
+Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Date:   Tue, 28 Mar 2023 16:18:30 +0200
+In-Reply-To: <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
+References: <20230307112835.81886-1-okan.sahin@analog.com>
+         <20230307112835.81886-6-okan.sahin@analog.com>
+         <20230315175223.GI9667@google.com> <20230315175257.GJ9667@google.com>
+         <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+         <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
+         <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
+         <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 10:03 PM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> On Sat, 25 Mar 2023 12:43:53 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->
-> Hi,
->
-> > The syntax to disallow x-powers,drive-vbus-en,
-> > x-powers,self-working-mode and x-powers,master-mode for certain variants
-> > can be made simpler.  Also this produces much nicer warning message when
-> > the condition hits wrong DTS.
->
-> Ah, indeed, that reads much nicer!
->
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> Tested-by: Andre Przywara <andre.przywara@arm.com>
+On Tue, 2023-03-28 at 14:46 +0100, Mark Brown wrote:
+> On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno S=C3=A1 wrote:
+>=20
+> > IIRC, regmap_read() is not really reentrant and it is used in the
+> > IIO
+> > driver on the sysfs interface. So, yeah, I think you need the
+> > regmap
+> > lock and better just leave the config as is. Yes, the lock is opt-
+> > out
+> > so let's not disable it :)
+>=20
+> All the regmap operations are fully thread safe.
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Even if 'config->disable_locking' is set? I think that is what's being
+discussed in here...
+
+- Nuno S=C3=A1
