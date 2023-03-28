@@ -2,144 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD016CBEBD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE046CBEC5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233055AbjC1MKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 08:10:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42230 "EHLO
+        id S229924AbjC1MM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 08:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233020AbjC1MKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:10:51 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B7D93C8
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 05:10:47 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <s.trumtrar@pengutronix.de>)
-        id 1ph8A0-0007AZ-K0; Tue, 28 Mar 2023 14:10:44 +0200
-From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To:     linux-stm32@st-md-mailman.stormreply.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
-Date:   Tue, 28 Mar 2023 14:10:16 +0200
-Message-Id: <20230328121016.2472819-11-s.trumtrar@pengutronix.de>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230328121016.2472819-1-s.trumtrar@pengutronix.de>
-References: <20230328121016.2472819-1-s.trumtrar@pengutronix.de>
+        with ESMTP id S230407AbjC1MM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:12:26 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEC593D1;
+        Tue, 28 Mar 2023 05:12:23 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SCCClG118932;
+        Tue, 28 Mar 2023 07:12:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680005532;
+        bh=bBUSi456e1BUIENl28eny9NwPSGtSu5fNgL73OGAADI=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=YxkLq3sQ2k6jDqDVilN1bo3XWTrlKCXrW8n8PV8VWcflZtZPsPrN321PXTz3f+8GT
+         ld/kyqLNqtM9VftxS0eUlSgmk6YwO664aNnuyrJ9vS6ttZyqDuP6bzQwn27BdyQg1R
+         gNuj39qXNf9KjawmeKgJKP5Xo+zJ8rDeBs/eV+Yw=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SCCCcU039341
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 07:12:12 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 07:12:11 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 07:12:11 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SCCC3H026278;
+        Tue, 28 Mar 2023 07:12:12 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sinthu Raja <sinthu.raja@mistralsolutions.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Update IO EXP GPIO lines for Rev E2
+Date:   Tue, 28 Mar 2023 07:12:10 -0500
+Message-ID: <168000552285.589760.16281695652330219261.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230315120934.16954-1-sinthu.raja@ti.com>
+References: <20230315120934.16954-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec
-stm32m157c-som.
+Hi Sinthu Raja,
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
- arch/arm/boot/dts/Makefile                    |  3 +-
- .../dts/stm32mp157c-phycore-stm32mp1-3.dts    | 65 +++++++++++++++++++
- 2 files changed, 67 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+On Wed, 15 Mar 2023 17:39:34 +0530, Sinthu Raja wrote:
+> Rev E2 of the AM68 SK baseboard has updated the GPIO IO expander pins
+> functionality. To match the Rev E2 schematics, update existing IO expander
+> GPIO line names and the corresponding node which uses the expansion(exp1)
+> node.
+> 
+> 
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index efe4152e5846d..dfa9a7477c825 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1252,7 +1252,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp157c-ev1.dtb \
- 	stm32mp157c-ev1-scmi.dtb \
- 	stm32mp157c-lxa-mc1.dtb \
--	stm32mp157c-odyssey.dtb
-+	stm32mp157c-odyssey.dtb \
-+	stm32mp157c-phycore-stm32mp1-3.dtb
- dtb-$(CONFIG_MACH_SUN4I) += \
- 	sun4i-a10-a1000.dtb \
- 	sun4i-a10-ba10-tvbox.dtb \
-diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-new file mode 100644
-index 0000000000000..b433adc728710
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-@@ -0,0 +1,65 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
-+ * Author: Dom VOVARD <dom.vovard@linrt.com>.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+#include "stm32mp157c-phycore-stm32mp15-som.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
-+	compatible = "phytec,phycore-stm32mp1-3",
-+		     "phytec,phycore-stm32mp157c-som", "st,stm32mp157";
-+
-+	aliases {
-+		mmc0 = &sdmmc1;
-+		mmc1 = &sdmmc2;
-+		mmc2 = &sdmmc3;
-+		serial0 = &uart4;
-+		serial1 = &usart3;
-+		serial2 = &usart1;
-+	};
-+};
-+
-+&cryp1 {
-+	status = "okay";
-+};
-+
-+&dts {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "disabled";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&i2c4_eeprom {
-+	status = "okay";
-+};
-+
-+&i2c4_rtc {
-+	status = "okay";
-+};
-+
-+&qspi {
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	secure-status = "disabled";
-+};
-+
-+&sdmmc2 {
-+	status = "okay";
-+	secure-status = "disabled";
-+};
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/1] arm64: dts: ti: k3-am68-sk-base-board: Update IO EXP GPIO lines for Rev E2
+      commit: 276fa0066b03875f77dba67867d9902361e646fc
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.39.1
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
