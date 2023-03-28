@@ -2,127 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E88A76CC13D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1F76CC157
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233129AbjC1Nm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        id S232537AbjC1NrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:47:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232545AbjC1Nmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:42:53 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3825FBDDC;
-        Tue, 28 Mar 2023 06:42:49 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S232833AbjC1Nqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:46:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062C0CA2E;
+        Tue, 28 Mar 2023 06:46:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 755956603152;
-        Tue, 28 Mar 2023 14:42:47 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680010968;
-        bh=qsVPM3z/5gvfqY0OJHUnJjWl2dyu6dw5XnunJEzfZJU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gJRtMbN8bhOpMo9aGLczdnRGpiM9202XYqLjcbrrxp9dntyv/7Mn45lQpYNtyHWcM
-         O/sUv4uKMTb9xLveJADK6yFkUcUfnPSsuuKHxpxVAlDUhGPnPMGPra0kfXUjUyoAUS
-         OqqPNamE1+8wujXki+tMjPXUjr2s6R8ww1fq57vWZdKOhD0ybk6GGZ0IQAKEoTSMFp
-         iBci9Gb49fW4be44BOH1eG7IxJNM6Ti8XC2+cxwjo44Esg1mJP63/w8swMgZo0idA5
-         TU1aGsa8KEbTEIU6tznM2zaGj60NZZdf4xka/a8juo22DrNQFVMoGtlw+a3hlNEYKu
-         dxLNdhMvzAmhQ==
-Message-ID: <9a9837ce-f800-f960-a82a-55ef6e71e95d@collabora.com>
-Date:   Tue, 28 Mar 2023 15:42:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mediatek: deprecate custom bias
- pull properties for mt8365
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 725F0617BB;
+        Tue, 28 Mar 2023 13:46:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C061C433D2;
+        Tue, 28 Mar 2023 13:46:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680011208;
+        bh=Mt2fPpoCHv3etx/7+GSXPHM6kWNp/CtAN1iv470diNg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ma6q4h3V/SJ64ME5bOW7EdCe+sFNLNZa/J5CRX7A6PXzQ8XdGeo8JXAMTEuIRHrup
+         ozXFaQSxdNy3d53+uAkjJyw2JkrSa8BbiN1UAmlxIC1FSeLdw4r9o75i66HQERu1Ae
+         Y/mqH6dZR3vU5Uih1yKoDKBzcrypGS5JOcduMngz51H3TeYPpokMP04yVV3Hub8qpU
+         BOtE2krS3kig0ps8/L3LYiJv9NBJ10U349A2yuJ8pskXq3ZmiBttfEma1GmeU5DskR
+         iIgKd7nprIXMyCMQcYSU6o6DRvLf0pGR5gMNCqBUOEJ2oatoJiT/h/l5NDmwRm8wCx
+         flL0DkpKeGCHA==
+Date:   Tue, 28 Mar 2023 14:46:40 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230327-cleanup-pinctrl-binding-v1-0-b695e32e4f2e@baylibre.com>
- <20230327-cleanup-pinctrl-binding-v1-2-b695e32e4f2e@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230327-cleanup-pinctrl-binding-v1-2-b695e32e4f2e@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
+References: <20230307112835.81886-1-okan.sahin@analog.com>
+ <20230307112835.81886-6-okan.sahin@analog.com>
+ <20230315175223.GI9667@google.com>
+ <20230315175257.GJ9667@google.com>
+ <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
+ <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="C+bD4dpjGg+/NmqP"
+Content-Disposition: inline
+In-Reply-To: <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
+X-Cookie: Oh, wow!  Look at the moon!
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/03/23 15:06, Alexandre Mergnat ha scritto:
-> In order to be more generic, "mediatek,pull-up-adv" and
-> "mediatek,pull-down-adv" should be deprecated. Use "bias-pull-up" and
-> "bias-pull-down" instead.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->   .../bindings/pinctrl/mediatek,mt8365-pinctrl.yaml  | 32 +++++++++++++++++++---
->   1 file changed, 28 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-> index 347f533776ba..4ebc7f1caf55 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-> @@ -72,12 +72,32 @@ patternProperties:
->             bias-disable: true
->   
->             bias-pull-up:
-> +            oneOf:
-> +              - type: boolean
-> +              - enum: [0, 1, 2, 3]
-> +                description: Pull up R1/R0 type define value.
->               description: |
-> -              Besides generic pinconfig options, it can be used as the pull up
-> -              settings for 2 pull resistors, R0 and R1. User can configure those
-> -              special pins.
-> +              For pull up type is normal, it don't need add R1/R0 define.
-> +              For pull up type is R1/R0 type, it can add value to set different
-> +              resistance. Valid arguments are described as below:
-> +              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-> +              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-> +              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-> +              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
->   
-> -          bias-pull-down: true
-> +          bias-pull-down:
-> +            oneOf:
-> +              - type: boolean
-> +              - enum: [0, 1, 2, 3]
-> +                description: Pull down R1/R0 type define value.
-> +            description: |
-> +              For pull down type is normal, it don't need add R1/R0 define.
-> +              For pull down type is R1/R0 type, it can add value to set
-> +              different resistance. Valid arguments are described as below:
-> +              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-> +              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-> +              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-> +              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
->   
->             input-enable: true
->   
-> @@ -123,7 +143,9 @@ patternProperties:
->               enum: [0, 1, 2, 3, 4, 5, 6, 7]
->   
->             mediatek,pull-up-adv:
-> +            deprecated: true
 
-Same for this one, removing it shouldn't be a ABI breakage.... but please wait
-for Krzysztof or Rob to confirm that before pushing a v2.
+--C+bD4dpjGg+/NmqP
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno S=E1 wrote:
 
+> IIRC, regmap_read() is not really reentrant and it is used in the IIO
+> driver on the sysfs interface. So, yeah, I think you need the regmap
+> lock and better just leave the config as is. Yes, the lock is opt-out
+> so let's not disable it :)
+
+All the regmap operations are fully thread safe.
+
+--C+bD4dpjGg+/NmqP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQi778ACgkQJNaLcl1U
+h9A3jAf/Swfu/yUS1Pclj62j2mBsLC7dH8S8kyafjuDnOqTnv3o6WZJ63VvbqN/P
+4pC3PgTLKZV8GFZL6J6m5n0Km4dO8IseWDSF8fahYnVsSQ0DaBVBLEJNpu01GxDf
+fulyCDV6bA3zwZ5FNOBGtKr9GT2MlBkxIbjo8ZJ6e1l8Imy661DcU8o5mhiv3x0w
+7DvMzE+2BAOjRkp/AH7+8BZ1VbqRTj9NGjl63DycHMg5ADfJD/LfOpNwh8PzjsI+
+MX4aE1SSl2iyLKXKxuBfi+Ciqx3rMr+NJvKBdLLBUQpo+1Ls8YlhqbeNMFzNi/PJ
+0C9FrJbyIZ83jd/GUbd8Bx/YB2PYrw==
+=E507
+-----END PGP SIGNATURE-----
+
+--C+bD4dpjGg+/NmqP--
