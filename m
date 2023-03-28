@@ -2,128 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 512CC6CC8D3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A926CC8F3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbjC1RHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 13:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51620 "EHLO
+        id S229645AbjC1RQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 13:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjC1RHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:07:33 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27F926A1;
-        Tue, 28 Mar 2023 10:07:31 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32SE0b62013741;
-        Tue, 28 Mar 2023 19:07:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=/JFCzUt10vgUA0iE4Gx085JoNqxPpcI3weV0g+exKmA=;
- b=XDCc5TuePvzZlDVEDUg7Ep4ngmPohH+Nurn9JSo/39PE1E0yOTYQB0j10dAr7HQ5xDYx
- mW88WOsre7mDsmrH0g8HSGIoTFGOXM3gfa+8l2ErxzWW7P89TQS8hzVXebUtqQpg5L25
- rCzJQi44znhysUg75LMuTMgL3xzr9WWBl0z4w4lreMLB2/vdBg02hHNQFjqVHUE/33ol
- wPBqQ+gdqZ7Ccbp9+dBwWckwrQ1jgah8jcxMGfd5ZmaHmnFpoSgrTbDYJ6NYn7EIcKT3
- IzoGimuoFSXqYUCJRcFtu+SIYO2nOje5Uch4WO0gukf/WFx/H28wYR549ygpoQb1s0cD eg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3phsqwkn3m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 19:07:19 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 524F710002A;
-        Tue, 28 Mar 2023 19:07:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CB78221BF4A;
-        Tue, 28 Mar 2023 19:07:18 +0200 (CEST)
-Received: from localhost (10.48.0.175) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
- 2023 19:07:18 +0200
-From:   Christophe Kerello <christophe.kerello@foss.st.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>
-Subject: [PATCH v2] ARM: dts: stm32: add FMC support on STM32MP13x SoC family
-Date:   Tue, 28 Mar 2023 19:07:11 +0200
-Message-ID: <20230328170711.247745-1-christophe.kerello@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229606AbjC1RP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:15:59 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B8DA9750;
+        Tue, 28 Mar 2023 10:15:58 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id m16so9607471qvi.12;
+        Tue, 28 Mar 2023 10:15:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680023757;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SgQ1uDWJ12zSyFLa1KL/uO5pZA8CWTbblaTqGRUiRdo=;
+        b=kMK0ic7Qlbdr8IiQGvB14KNwUzwnLDcN3k5kZYiVrk866xZWXej5yNhbPmlwS8pUFT
+         qDQ0KvDTlJzkVHZdYJZrjh6rLIbvg55Ur9P4jzY3UiwOCsiJj9MZRRmBRxNq56TCsAa8
+         GC12vX8Lu7XVDOTxGNCyyTh3VhxsPFLGJFINGm5Gox3apZWsrHKWfpKNiZeIGBqtiQwD
+         7UQlL7vVwYGHzJD1gGQFjC52QMT/Ow6Mm1QwNLW8pCEpGl4c7BGxiAptB9WiqbmAKdQQ
+         2jh0tASRTnTpnjcz49IBZtriyiqEZLlAxLVZfGxYV+IoRCAP3iD78SHJ2C9EHlVK7GjW
+         IzUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680023757;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SgQ1uDWJ12zSyFLa1KL/uO5pZA8CWTbblaTqGRUiRdo=;
+        b=GZXayN/UMzAYNx8O4DyQ2tnBFB85bjXwCeTaVA9x8DyQQvNhYg3XVxuJu4Gwl8UiRg
+         lQ/oyGRJrKsqyUTDwo19259Cyu4Hqof51QcJ/pfIzhGHixDY9Cja8JJa/CvW0lfkoEOq
+         vZkc3EviSpOxCWnxzaYe/ORMQ2gsw7wfRYTaQuVGLBNSXaRwQw7wuyYOzUmbeEBiNxCE
+         HJUvGIp2JMwkPlmln++Xrn8OvZBEQrYv6NOv175rNM38n64+w2gNxsNSwzaVMqhD+mrx
+         7XRANl7D3qRuCrygLbfxxHlCNzvnJTB1eOEwKEBsUvfHPZGkw8JjsprSCzw3hsUkWz48
+         hhcA==
+X-Gm-Message-State: AAQBX9foY73wNBigAqDGWzBpxI9eE2CfEOMuBclOElvVn6ZRQ8UJciGg
+        Bhu/kxszD8wIEgmDqyLZ9iRzGmkIpUBLFp0mjrXWxMvtCyo=
+X-Google-Smtp-Source: AKy350Yybe1XfMVymzn0L1frzoB2YLldHl07lvc360cxEIjLyu4hhU6Szpt8mwrXe8EYLZA7nkl3R289Xr/YU0DVGJ8=
+X-Received: by 2002:ad4:4a6d:0:b0:56f:6925:eb2c with SMTP id
+ cn13-20020ad44a6d000000b0056f6925eb2cmr2803163qvb.10.1680023757607; Tue, 28
+ Mar 2023 10:15:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.175]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-28_02,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230328161541.599463-1-jjhiblot@traphandler.com> <20230328161541.599463-5-jjhiblot@traphandler.com>
+In-Reply-To: <20230328161541.599463-5-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 28 Mar 2023 20:15:21 +0300
+Message-ID: <CAHp75Ve_=Gzpg9GO=2dqTKWuyU-Podezv_YSwHLqFPHXk1DUxg@mail.gmail.com>
+Subject: Re: [PATCH v8 4/6] leds: class: store the color index in struct led_classdev
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
+        sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        marijn.suijten@somainline.org, jacek.anaszewski@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add FMC support on STM32MP13x SoC family.
+On Tue, Mar 28, 2023 at 7:15=E2=80=AFPM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> This information might be useful for more than only deriving the led's
+> name. And since we have this information, we can expose it in the sysfs.
 
-Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
----
-Changes in v2:
- - compatible, reg and ranges properties have been moved at the top of each node
+...
 
- arch/arm/boot/dts/stm32mp131.dtsi | 33 +++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> +Date:          March 2023
+> +KernelVersion: 6.3
 
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index 9ea61687f023..7ea1fe0cd070 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -1232,6 +1232,39 @@ mdma: dma-controller@58000000 {
- 			dma-requests = <48>;
- 		};
- 
-+		fmc: memory-controller@58002000 {
-+			compatible = "st,stm32mp1-fmc2-ebi";
-+			reg = <0x58002000 0x1000>;
-+			ranges = <0 0 0x60000000 0x04000000>, /* EBI CS 1 */
-+				 <1 0 0x64000000 0x04000000>, /* EBI CS 2 */
-+				 <2 0 0x68000000 0x04000000>, /* EBI CS 3 */
-+				 <3 0 0x6c000000 0x04000000>, /* EBI CS 4 */
-+				 <4 0 0x80000000 0x10000000>; /* NAND */
-+			#address-cells = <2>;
-+			#size-cells = <1>;
-+			clocks = <&rcc FMC_K>;
-+			resets = <&rcc FMC_R>;
-+			status = "disabled";
-+
-+			nand-controller@4,0 {
-+				compatible = "st,stm32mp1-fmc2-nfc";
-+				reg = <4 0x00000000 0x1000>,
-+				      <4 0x08010000 0x1000>,
-+				      <4 0x08020000 0x1000>,
-+				      <4 0x01000000 0x1000>,
-+				      <4 0x09010000 0x1000>,
-+				      <4 0x09020000 0x1000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&mdma 24 0x2 0x12000a02 0x0 0x0>,
-+				       <&mdma 24 0x2 0x12000a08 0x0 0x0>,
-+				       <&mdma 25 0x2 0x12000a0a 0x0 0x0>;
-+				dma-names = "tx", "rx", "ecc";
-+				status = "disabled";
-+			};
-+		};
-+
- 		sdmmc1: mmc@58005000 {
- 			compatible = "st,stm32-sdmmc2", "arm,pl18x", "arm,primecell";
- 			arm,primecell-periphid = <0x20253180>;
--- 
-2.25.1
+Outdated version.
 
+...
+
+> +               Color of the led.
+> +
+> +               This is a read-only file. Reading this file returns the c=
+olor
+> +               of the led as a string (ex: "red", "green").
+
+There are no strict rules about colour and I don't think it's a good
+idea. Why in such a case is it different to label? My proposal here at
+least documenting that the colour must follow one of the existing
+naming standards (like RGB in hex, HTML, or name in accordance with
+chosen standard).
+
+Yet, it won't technically prevent abusing that, but at least will show
+the intention and allow pointing out to the bugs or develop user space
+tooling based on existing parsers (if any).
+
+--=20
+With Best Regards,
+Andy Shevchenko
