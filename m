@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D3F66CB9C4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD4F6CB9C7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjC1Irk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 04:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41380 "EHLO
+        id S231929AbjC1IsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 04:48:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbjC1Iri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:47:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A876349E2
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 01:47:37 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1ph4z7-00020w-1P; Tue, 28 Mar 2023 10:47:17 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id EB51019E085;
-        Tue, 28 Mar 2023 08:47:11 +0000 (UTC)
-Date:   Tue, 28 Mar 2023 10:47:10 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        Rob Herring <robh@kernel.org>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        michael@amarulasolutions.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [PATCH v10 0/5] can: bxcan: add support for ST bxCAN controller
-Message-ID: <20230328084710.jnrwvydewx3atxti@pengutronix.de>
-References: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S231174AbjC1IsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:48:08 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDE449E2;
+        Tue, 28 Mar 2023 01:48:00 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id y19so6753181pgk.5;
+        Tue, 28 Mar 2023 01:48:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679993279;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VNI6lV401OYe10HsNLcwnXIFZPlsfUPtF81FXRtAZ3E=;
+        b=j/cEpRRM19UVVeWZS9niuGCxErtarIdoC5kbPGQwNCHySTyUcwjwkGkeQ5z+J6kfzR
+         pYKJm8Dg19Q6o+B3Eo1N1xNf/tfLq46xtFWvSAoMA/yWP+VPQ5IIZPzyg/LPvDHIODtv
+         uFsBwVQpryiNlQuSQksTImQOAvcdT1DhL/WeWgUtCt5GlhKY6bmqB+uO5yD0P7VDZgwG
+         KtJieIxpzUlm3dNPc3a1P6FMu2OdWXIVEMTBGdg6bzMRqfIijzNUOVLOS/VOm5j7jQsr
+         gVwwuLLr/M52JlOmbLFwAqHVVeSlt9PTBkEtjUH3WyrDkomBFsFqqOoCxQ/eFCkQydUp
+         9Blg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679993279;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VNI6lV401OYe10HsNLcwnXIFZPlsfUPtF81FXRtAZ3E=;
+        b=74WVm9SElZttT2PSF3JdkF4CptVv/Q4cp1fm5UUxdTkjzXK+YATWjIZBn/ze9UyMLa
+         r6oU5b4UI6ZQv5hRq7n4CyWubywxexnPzbCmfvXY5T4mwiKeVGCGzZ0MfLnkNdnKfOr4
+         WKJ6OIVtStEc+G3NfSY3vI20tPhBSgoOIptQ32BEkUNnw+5mYhX9VlGAm1XjF7p0yZiR
+         jQmEdbROtQa7aGw+GrKr7BrOWR20cJFjZWmTtoE0ojjSVgYes893XisH3rrtlzm/ihEP
+         3CY8zKvUGwGQaLk+Uq+4/ZDlIxrPmsCSi5tjCcocL2ziVbeI7TkDDcUBtvnh6PTws1zM
+         o2Ng==
+X-Gm-Message-State: AAQBX9eS7nJIDYGeU42YZ/yPc5oNNfUc1GfNjqUU2VRjymsgJZq0gKs8
+        a31S7dzV7YKF6DKHihRrMnk=
+X-Google-Smtp-Source: AKy350Y270PTe8vasybxuEgWv07q7aaaBzY21O1foTzqSD2vg28QsUxiKBuKth5huZcm4YiEF70L5w==
+X-Received: by 2002:a62:8496:0:b0:627:f659:a771 with SMTP id k144-20020a628496000000b00627f659a771mr16150885pfd.12.1679993279393;
+        Tue, 28 Mar 2023 01:47:59 -0700 (PDT)
+Received: from pavilion.. ([2402:e280:2146:a9a:db37:2c9f:dcb8:89a9])
+        by smtp.gmail.com with ESMTPSA id e27-20020a63545b000000b00513092bdca1sm9119548pgm.73.2023.03.28.01.47.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 01:47:59 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org, broonie@kernel.org,
+        daniel.baluta@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, shengjiu.wang@nxp.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Saalim Quadri <danascape@gmail.com>
+Subject: [PATCH v4] ASoC: dt-bindings: ak4458: Convert to dtschema
+Date:   Tue, 28 Mar 2023 14:17:53 +0530
+Message-Id: <20230328084753.55200-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jrabto3ooziwdlnq"
-Content-Disposition: inline
-In-Reply-To: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,63 +70,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the AK4458 audio DAC bindings to DT schema.
 
---jrabto3ooziwdlnq
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Saalim Quadri <danascape@gmail.com>
+---
+Changes:
+V1 -> V2: Use the correct way for dsd-path property
+          Drop ak4458 label form example
+V2 -> V3: ak4458 is the only one that does not support dsd-path, so we
+          do not require to define an array
+V3 -> V4: Add back dsd-path property description
 
-On 28.03.2023 09:33:23, Dario Binacchi wrote:
-> The series adds support for the basic extended CAN controller (bxCAN)
-> found in many low- to middle-end STM32 SoCs.
->=20
-> The driver has been tested on the stm32f469i-discovery board with a
-> kernel version 5.19.0-rc2 in loopback + silent mode:
->=20
-> ip link set can0 type can bitrate 125000 loopback on listen-only on
-> ip link set up can0
-> candump can0 -L &
-> cansend can0 300#AC.AB.AD.AE.75.49.AD.D1
->=20
-> For uboot and kernel compilation, as well as for rootfs creation I used
-> buildroot:
->=20
-> make stm32f469_disco_sd_defconfig
-> make
->=20
-> but I had to patch can-utils and busybox as can-utils and iproute are
-> not compiled for MMU-less microcotrollers. In the case of can-utils,
-> replacing the calls to fork() with vfork(), I was able to compile the
-> package with working candump and cansend applications, while in the
-> case of iproute, I ran into more than one problem and finally I decided
-> to extend busybox's ip link command for CAN-type devices. I'm still
-> wondering if it was really necessary, but this way I was able to test
-> the driver.
+ .../devicetree/bindings/sound/ak4458.txt      | 28 -------
+ .../bindings/sound/asahi-kasei,ak4458.yaml    | 73 +++++++++++++++++++
+ 2 files changed, 73 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ak4458.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
 
-Applied to linux-can-next.
+diff --git a/Documentation/devicetree/bindings/sound/ak4458.txt b/Documentation/devicetree/bindings/sound/ak4458.txt
+deleted file mode 100644
+index 0416c14895d6..000000000000
+--- a/Documentation/devicetree/bindings/sound/ak4458.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-AK4458 audio DAC
+-
+-This device supports I2C mode.
+-
+-Required properties:
+-
+-- compatible : "asahi-kasei,ak4458" or "asahi-kasei,ak4497"
+-- reg : The I2C address of the device for I2C
+-
+-Optional properties:
+-- reset-gpios: A GPIO specifier for the power down & reset pin
+-- mute-gpios: A GPIO specifier for the soft mute pin
+-- AVDD-supply: Analog power supply
+-- DVDD-supply: Digital power supply
+-- dsd-path: Select DSD input pins for ak4497
+-            0: select #16, #17, #19 pins
+-            1: select #3, #4, #5 pins
+-
+-Example:
+-
+-&i2c {
+-	ak4458: dac@10 {
+-		compatible = "asahi-kasei,ak4458";
+-		reg = <0x10>;
+-		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>
+-		mute-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+new file mode 100644
+index 000000000000..608dce956be0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4458.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AK4458 audio DAC
++
++maintainers:
++  - Shengjiu Wang <shengjiu.wang@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - asahi-kasei,ak4458
++      - asahi-kasei,ak4497
++
++  reg:
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog power supply
++
++  dvdd-supply:
++    description: Digital power supply
++
++  reset-gpios:
++    maxItems: 1
++
++  mute-gpios:
++    maxItems: 1
++    description:
++      GPIO used to mute all the outputs
++
++  dsd-path:
++    description: Select DSD input pins for ak4497
++    $ref: /schemas/types.yaml#/definitions/uint32
++    oneOf:
++      - const: 0
++        description: select #16, #17, #19 pins
++      - const: 1
++        description: select #3, #4, #5 pins
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: asahi-kasei,ak4458
++
++    then:
++      properties:
++        dsd-path: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@10 {
++            compatible = "asahi-kasei,ak4458";
++            reg = <0x10>;
++            reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++            mute-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
++        };
++    };
+-- 
+2.34.1
 
-Thanks,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129  |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---jrabto3ooziwdlnq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQiqYsACgkQvlAcSiqK
-BOgCXAf+NWJnGcM64I8QZW2GZ+4p1b5BV4hNDu4ehwwXOtajDqX0icFMJ+ADogBm
-1OPOaNIWM5FLmL8Psn9S2O7DIH30kTJub7X58xxQl2vw9AVvg2ufgXFsrWrNcbR0
-7lrbOzY4ghA7jXXWu7bya2sZ2OPp4xvF4zJRHF1axJ9Y4mWZ5UUomyhMc2It6nNV
-MImbzZWnuFBLQxbUXefUz0CgEMCdi8N1hpJ2rHkNR0LPTVIGFDLtxBkj7rsvn/nj
-eG2Q6WVQEFz/BWdc2e0xMjbvH5cWfp+tDDhh8UAwjSzUFCHm9sbZsXQQ5+j1S2kh
-y2zuT0AX2HJPn+sJLsz9wM8SsswTmQ==
-=7WBc
------END PGP SIGNATURE-----
-
---jrabto3ooziwdlnq--
