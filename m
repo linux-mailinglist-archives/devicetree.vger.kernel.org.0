@@ -2,73 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F57B6CBBA0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 732416CBBCB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232715AbjC1J65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47448 "EHLO
+        id S232689AbjC1KDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 06:03:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232467AbjC1J6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:58:53 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 179C06A58;
-        Tue, 28 Mar 2023 02:58:51 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S9shk6000530;
-        Tue, 28 Mar 2023 11:58:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=WgobufBoN42IEs5ZSFVLsVL/P0UO9CKmIaFyDWY7oXg=;
- b=MQ81+Hk16ObyxQLguF2YIAmUZGFebM8Y/yfQSIKptWESFOrzK0jRQ4cuXeWNK/2zauil
- MEyIEY09orvrN4ffckmH0CQuf9Y9hJzdot2q7W36lGCYzHEdh7fnNJUwwK38C1PmQIDH
- mllTyAVPxcpIU61E/xOOJdjZYr8dN8zhK4cwDD97VWIHWV0CGeJE+G6eIW4mrXmtDTUo
- Cv0YDODhnr7MVPUYuBMuNfz5Z9r+JzyA9zg0sFfadFlzSU9oB1PRjHHW241jZCObxAKf
- kp8M2UWpcAM92bJN9TkyXf8Av6i9Aunhtm2ZggVqLjtnd3FU7S15PmIU4I4sOxugmw8I RQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pkvs4rnts-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 11:58:37 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6C79A10002A;
-        Tue, 28 Mar 2023 11:58:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 65723211F1E;
-        Tue, 28 Mar 2023 11:58:36 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
- 2023 11:58:35 +0200
-Message-ID: <1a2d16c8-8c16-5fcc-7906-7b454a81922f@foss.st.com>
-Date:   Tue, 28 Mar 2023 11:58:34 +0200
+        with ESMTP id S232719AbjC1KDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:03:04 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A73D15BBD
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:03:02 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id h25so15048779lfv.6
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:03:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679997781;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LyqTQFK+uVxsQYwyzlRv5E2d4XzzuOepwBhUJm638mk=;
+        b=PAcNESty8n7ZDp/KEZo9JNWQa6AN4XTktJyIb1sZ/X4ENi7kKl3q7x+l/74NA5lm+t
+         keIv6Tu6cu4i9sh9bS7QAeLG7xv4mWlpIGadaQe4lMeh4hPhpMeOQVl7c4O7Wpozd+BJ
+         sRMCiTdlHUNksMFbc5kKk7axX9fEoOMl+HDYnVv0teDq1acidnFK7GH/IzD9xkaFRbSi
+         pxKZYsbZN7sKHRyHTqQg+EhVF8AVrKoRGsaovmlPXIi6N4ixUqh+45OnD8oG+BFZzmuj
+         hVZKouzjEvDsBxzB6rA9XRz4+Gaj13neYe0lOlwV8/sZOSgcpEyOQuRxZY2ENzD3EXCR
+         jIgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679997781;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LyqTQFK+uVxsQYwyzlRv5E2d4XzzuOepwBhUJm638mk=;
+        b=o3j7PyCqpAWZpMIr9KEIK5HQ2moYz9o0vJAmCaaPiXKmF4QbOAApvbcsaaxf8Nm9Ku
+         3o3L7T3l9xui6Jz7H9BoQvCpfMivQmXFTjJD19s4VpJbv7EfYNWeSuDll/JHiU5yn8P5
+         lRf8d+86f2BORfxDX4jTzWBjaf5AXEALPM/cBGm17v8e4BzV3IXC6qSbOJo9H//bnxzJ
+         rH6K88c5AA+fkE2iiT1zPksKy1HC/q4OiAKBYo0nN/11JwzjKPvqVrwBXjEMFTB7JoAx
+         cdhuqcHcasmw4NvL0lKJhgwWQ/LhxwAG5X0+D5d2lYpzK1ZAqShytXlYRNeH/FcttGeX
+         j6Eg==
+X-Gm-Message-State: AAQBX9dtfGuDJQ2MRytKko7PXhrXBKQ1EpbyDzGFh6KAxchM6i5nLpE+
+        9ONqkqJSmwD3CguWHINTE3mdXQ==
+X-Google-Smtp-Source: AKy350YGbDiP4mhI2oNX77LkOc1pOGIfCa8AEk/jlSS+DxHtn2jn82eGU9gBAH+BT52Bo/Vvx30jcw==
+X-Received: by 2002:ac2:44b4:0:b0:4eb:c85:bdc2 with SMTP id c20-20020ac244b4000000b004eb0c85bdc2mr3113821lfm.2.1679997780947;
+        Tue, 28 Mar 2023 03:03:00 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id f10-20020ac24e4a000000b004db3e330dcesm5008471lfr.178.2023.03.28.03.02.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 03:03:00 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/2] Resolve MPM register space situation
+Date:   Tue, 28 Mar 2023 12:02:51 +0200
+Message-Id: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1] ARM: dts: stm32: prtt1c: Add PoDL PSE regulator nodes
-Content-Language: en-US
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
-CC:     <kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-References: <20230323123242.3763673-1-o.rempel@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230323123242.3763673-1-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+X-B4-Tracking: v=1; b=H4sIAEu7ImQC/x2N0QrCMAwAf2Xk2cBsh1R/RUTaGLfA2pVmijD27
+ ws+3sFxGyg3YYVbt0Hjr6gsxeB86oCmWEZGeRmD653vvQu4LlUIs44t5meuGekSQmKfyF0HsCx
+ FZUwtFposLJ95Nlkbv+X3/9wf+34ARPLR+3cAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1679997779; l=1895;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=lF/bvkNJ7NLlgQqY7yN7AeVawfTeX3/WEciMsVGTE3U=;
+ b=fcbsdJo5+WcFlPqfdWkwDg2oF4yvKNoIHpAZnGXRnPm4LbzWTwVvxhKLcC5BFQOdRQ45U5uZjkeJ
+ hcTDCb0iAdJYaWg+95rEY7hXkXk3FcpPviMvbKzTRNnaZrbl17JO
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,121 +86,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksij
+The MPM (and some other things, irrelevant to this patchset) resides
+(as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
+that's a portion of the RPM (low-power management core)'s RAM, known
+as the RPM Message RAM. Representing this relation in the Device Tree
+creates some challenges, as one would either have to treat a memory
+region as a bus, map nodes in a way such that their reg-s would be
+overlapping, or supply the nodes with a slice of that region.
 
-On 3/23/23 13:32, Oleksij Rempel wrote:
-> This commit introduces Power over Data Line (PoDL) Power Source
-> Equipment (PSE) regulator nodes to the PRTT1C devicetree. The addition
-> of these nodes enables support for PoDL in PRTT1C devices, allowing
-> power delivery and data transmission over a single twisted pair.
-> 
-> The new PoDL PSE regulator nodes provide voltage capability information
-> of the current board design, which can be used as a hint for system
-> administrators when configuring and managing power settings. This
-> update enhances the versatility and simplifies the power management of
-> PRTT1C devices while ensuring compatibility with connected Powered
-> Devices (PDs).
-> 
-> After applying this patch, the power delivery can be controlled from
-> user space with a patched [1] ethtool version using the following commands:
->    ethtool --set-pse t1l2 podl-pse-admin-control enable
-> to enable power delivery, and
->    ethtool --show-pse t1l2
-> to display the PoDL PSE settings.
-> 
-> By integrating PoDL PSE support into the PRTT1C devicetree, users can
-> benefit from streamlined power and data connections in their
-> deployments, improving overall system efficiency and reducing cabling
-> complexity.
-> 
-> [1] https://lore.kernel.org/all/20230317093024.1051999-1-o.rempel@pengutronix.de/
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
+This series implements the third option, by adding a qcom,rpm-msg-ram
+property, which has been used for some drivers poking into this region
+before. Bindings ABI compatibility is preserved through keeping the
+"normal" (a.k.a read the reg property and map that region) way of
+passing the register space.
 
-Please, fix the introduction of those new yaml validation errors:
+Example representation with this patchset:
 
-arch/arm/boot/dts/stm32mp151a-prtt1c.dtb: ethernet-pse-1: $nodename:0: 
-'ethernet-pse-1' does not match '^ethernet-pse(@.*)?$'
-         From schema: 
-/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
-arch/arm/boot/dts/stm32mp151a-prtt1c.dtb: ethernet-pse-2: $nodename:0: 
-'ethernet-pse-2' does not match '^ethernet-pse(@.*)?$'
-         From schema: 
-/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
+/ {
+	[...]
 
+	mpm: interrupt-controller {
+		compatible = "qcom,mpm";
+		qcom,rpm-msg-ram = <&apss_mpm>;
+		[...]
+	};
 
-Thanks
-Alex
+	[...]
 
+	soc: soc@0 {
+		[...]
 
+		rpm_msg_ram: sram@45f0000 {
+			compatible = "qcom,rpm-msg-ram", "mmio-sram";
+			reg = <0 0x045f0000 0 0x7000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0 0x0 0x045f0000 0x7000>;
 
+			apss_mpm: sram@1b8 {
+				reg = <0x1b8 0x48>;
+			};
+		};
+	};
+};
 
->   arch/arm/boot/dts/stm32mp151a-prtt1c.dts | 32 ++++++++++++++++++++++++
->   1 file changed, 32 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp151a-prtt1c.dts b/arch/arm/boot/dts/stm32mp151a-prtt1c.dts
-> index 58bb05a8c685..ca0d3329cfd7 100644
-> --- a/arch/arm/boot/dts/stm32mp151a-prtt1c.dts
-> +++ b/arch/arm/boot/dts/stm32mp151a-prtt1c.dts
-> @@ -23,6 +23,18 @@ clock_sja1105: clock-sja1105 {
->   		clock-frequency = <25000000>;
->   	};
->   
-> +	pse_t1l1: ethernet-pse-1 {
-> +		compatible = "podl-pse-regulator";
-> +		pse-supply = <&reg_t1l1>;
-> +		#pse-cells = <0>;
-> +	};
-> +
-> +	pse_t1l2: ethernet-pse-2 {
-> +		compatible = "podl-pse-regulator";
-> +		pse-supply = <&reg_t1l2>;
-> +		#pse-cells = <0>;
-> +	};
-> +
->   	mdio0: mdio {
->   		compatible = "virtual,mdio-gpio";
->   		#address-cells = <1>;
-> @@ -32,6 +44,24 @@ mdio0: mdio {
->   
->   	};
->   
-> +	reg_t1l1: regulator-pse-t1l1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pse-t1l1";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		gpio = <&gpiog 13 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_t1l2: regulator-pse-t1l2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pse-t1l2";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		gpio = <&gpiog 14 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->   	wifi_pwrseq: wifi-pwrseq {
->   		compatible = "mmc-pwrseq-simple";
->   		reset-gpios = <&gpiod 8 GPIO_ACTIVE_LOW>;
-> @@ -92,6 +122,7 @@ t1l1_phy: ethernet-phy@7 {
->   		reset-gpios = <&gpiog 12 GPIO_ACTIVE_LOW>;
->   		reset-assert-us = <10>;
->   		reset-deassert-us = <35>;
-> +		pses = <&pse_t1l1>;
->   	};
->   
->   	/* TI DP83TD510E */
-> @@ -102,6 +133,7 @@ t1l2_phy: ethernet-phy@10 {
->   		reset-gpios = <&gpiog 11 GPIO_ACTIVE_LOW>;
->   		reset-assert-us = <10>;
->   		reset-deassert-us = <35>;
-> +		pses = <&pse_t1l2>;
->   	};
->   
->   	/* Micrel KSZ9031 */
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: interrupt-controller: mpm: Allow passing reg through phandle
+      irqchip: irq-qcom-mpm: Support passing a slice of SRAM as reg space
+
+ .../bindings/interrupt-controller/qcom,mpm.yaml    |  6 ++++-
+ drivers/irqchip/irq-qcom-mpm.c                     | 30 ++++++++++++++++++----
+ 2 files changed, 30 insertions(+), 6 deletions(-)
+---
+base-commit: a6faf7ea9fcb7267d06116d4188947f26e00e57e
+change-id: 20230328-topic-msgram_mpm-c688be3bc294
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
