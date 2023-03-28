@@ -2,44 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F5256CB800
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654F56CB80D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:31:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbjC1H1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:27:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37216 "EHLO
+        id S230260AbjC1Hbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:31:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbjC1H1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:27:46 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 03682C1;
-        Tue, 28 Mar 2023 00:27:45 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 446108117;
-        Tue, 28 Mar 2023 07:27:44 +0000 (UTC)
-Date:   Tue, 28 Mar 2023 10:27:43 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC 1/2] ARM: dts: omap: Drop ti,omap36xx compatible
-Message-ID: <20230328072743.GP7501@atomide.com>
-References: <20230216153339.19987-1-afd@ti.com>
- <20230216153339.19987-2-afd@ti.com>
- <20230327211838.580af7a9@aktux>
- <20230328050115.GI7501@atomide.com>
- <20230328090603.317196c7@aktux>
- <20230328070844.GN7501@atomide.com>
+        with ESMTP id S229497AbjC1Hbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:31:36 -0400
+Received: from mail.tryweryn.pl (mail.tryweryn.pl [5.196.29.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94FD1B4
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:31:35 -0700 (PDT)
+Received: by mail.tryweryn.pl (Postfix, from userid 1002)
+        id 5F501A258A; Tue, 28 Mar 2023 07:30:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tryweryn.pl; s=mail;
+        t=1679988693; bh=Bo+/jg3TCpOeS79PpZREuOWEeqJV//jojylD9dSrSik=;
+        h=Date:From:To:Subject:From;
+        b=y9zhIHHeiQe7gyaNip0B35kgUUDtOLOxa6umRlCmr+mzIBcwRWN/WoqhY/uzfi2x6
+         IIB8+gLSfPu+Io/s9KKuZ9a9MgwnobF6QNxWYZJx/RpBX5ql7MdH8cAhjB3gG4S2ZS
+         QMRjaOX3R4jC191f00AgNLbummIn8rt8Mh1eRu1SDxE6mdvOpSeC9l8wlq8Qo/0UE5
+         ZqumwrFO7m1vdlXku82g+AKT/lLuZkMyujjp0T/dxaue27UokvnX0+FfcuxL9AaOXC
+         54JqlAsysa6jeVVyndyvf8DW3kwzuH5fARYritQxVC338S+QsGSwCCumJ7nqPSOgOM
+         H9gsf5G4zx3Tw==
+Received: by mail.tryweryn.pl for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:30:39 GMT
+Message-ID: <20230328064501-0.1.8z.35xsj.0.rhojdrew3f@tryweryn.pl>
+Date:   Tue, 28 Mar 2023 07:30:39 GMT
+From:   "Karol Michun" <karol.michun@tryweryn.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Prezentacja
+X-Mailer: mail.tryweryn.pl
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328070844.GN7501@atomide.com>
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_NONE
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,68 +44,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tony Lindgren <tony@atomide.com> [230328 07:08]:
-> * Andreas Kemnade <andreas@kemnade.info> [230328 07:06]:
-> > On Tue, 28 Mar 2023 08:01:15 +0300
-> > Tony Lindgren <tony@atomide.com> wrote:
-> > 
-> > > * Andreas Kemnade <andreas@kemnade.info> [230327 19:18]:
-> > > > On Thu, 16 Feb 2023 09:33:38 -0600
-> > > > Andrew Davis <afd@ti.com> wrote:
-> > > >   
-> > > > > This was not matched anywhere and provides no additional information.
-> > > > > 
-> > > > > Signed-off-by: Andrew Davis <afd@ti.com>
-> > > > > ---
-> > > > >  arch/arm/boot/dts/omap3-beagle-xm.dts              | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-cm-t3730.dts               | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-igep0020-rev-f.dts         | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-igep0020.dts               | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-igep0030-rev-g.dts         | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-igep0030.dts               | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-lilly-dbb056.dts           | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-n9.dts                     | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-n950.dts                   | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-alto35.dts     | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-chestnut43.dts | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-gallop43.dts   | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-palo35.dts     | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-palo43.dts     | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-summit.dts     | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-tobi.dts       | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-overo-storm-tobiduo.dts    | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-pandora-1ghz.dts           | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-sbc-t3730.dts              | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-sniper.dts                 | 2 +-
-> > > > >  arch/arm/boot/dts/omap3-zoom3.dts                  | 2 +-
-> > > > >  21 files changed, 21 insertions(+), 21 deletions(-)
-> > > > >   
-> > > > hmm, we have
-> > > > drivers/clk/ti/dpll.c:         of_machine_is_compatible("ti,omap36xx"))
-> > > > 
-> > > > but that is more completely
-> > > >   if ((of_machine_is_compatible("ti,omap3630") ||
-> > > >              of_machine_is_compatible("ti,omap36xx")) &&
-> > > > 
-> > > > so missing omap36xx will not harm if 3630 is there. SO this should
-> > > > be probably ok.  
-> > > 
-> > > Looks like we still have these that should be patched away first:
-> > > 
-> > > drivers/cpufreq/ti-cpufreq.c-   { .compatible = "ti,omap34xx", .data = &omap34xx_soc_data, },
-> > > drivers/cpufreq/ti-cpufreq.c:   { .compatible = "ti,omap36xx", .data = &omap36xx_soc_data, },
-> > >
-> > seen that but there is also
-> >     { .compatible = "ti,omap3430", .data = &omap34xx_soc_data, },
-> >     { .compatible = "ti,omap3630", .data = &omap36xx_soc_data, },
-> > 
-> > so, no trouble will appear when omap36xx is removed.
-> 
-> Oh OK, thanks for pointing that out, looks like I missed it. Seems like
-> we should apply this patch already if no issues.
+Dzie=C5=84 dobry!
 
-Applied this one to omap-for-v6.4/dt and pushed out.
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 rozwi=C4=85zanie, kt=C3=B3re umo=C5=
+=BCliwia monitoring ka=C5=BCdego auta w czasie rzeczywistym w tym jego po=
+zycj=C4=99, zu=C5=BCycie paliwa i przebieg?
 
-Regards,
+Dodatkowo nasze narz=C4=99dzie minimalizuje koszty utrzymania samochod=C3=
+=B3w, skraca czas przejazd=C3=B3w, a tak=C5=BCe tworzenie planu tras czy =
+dostaw.
 
-Tony
+Z naszej wiedzy i do=C5=9Bwiadczenia korzysta ju=C5=BC ponad 49 tys. Klie=
+nt=C3=B3w. Monitorujemy 809 000 pojazd=C3=B3w na ca=C5=82ym =C5=9Bwiecie,=
+ co jest nasz=C4=85 najlepsz=C4=85 wizyt=C3=B3wk=C4=85.
+
+Bardzo prosz=C4=99 o e-maila zwrotnego, je=C5=9Bli mogliby=C5=9Bmy wsp=C3=
+=B3lnie om=C3=B3wi=C4=87 potencja=C5=82 wykorzystania takiego rozwi=C4=85=
+zania w Pa=C5=84stwa firmie.
+
+
+Pozdrawiam
+Karol Michun
