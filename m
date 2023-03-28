@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2B76CC2C5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:48:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E2406CC310
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbjC1Osl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 10:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
+        id S233479AbjC1OvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 10:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233315AbjC1OsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:48:20 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB726D307
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:48:08 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id h8so50760443ede.8
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:48:08 -0700 (PDT)
+        with ESMTP id S233439AbjC1Oup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:50:45 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12714E385;
+        Tue, 28 Mar 2023 07:50:19 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id i6so15394315ybu.8;
+        Tue, 28 Mar 2023 07:50:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680014885;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hMuegniqFjuWU/AoMlUG2hK0eMl2E6VjLUE5zlLE9e8=;
-        b=ZWL5QiItDi2M5Jnu/IDKggD5lypPhInUpNqPoRKOX6AUYd/MlPgq+fMGTW/lHcAfL+
-         iGACfEQ50cL8VephyPKTmoPYNrY20L5/9jM2tHVcyEqIJZP4q2qx2pv+G5nn3zJV6Gfp
-         pufhnLVAGIeUDOYSzbPC3SDTs6EvtG/nDOkTrJxVBc+hkeIYvLZszrZ3oCJTGBhjylV7
-         hHao/MRzFAtSvfDCcAX+qctJSbqhRxCnaLetsFSzq4r+eALUVlCzy+2DNPLnz2PhK9z6
-         xvM4IrTQoi6soDoMl8AKuxcY2SprCoXBfiCymhZ/DhrhmaNOolZ9OnOQQyeeXjx4INb1
-         354Q==
+        d=gmail.com; s=20210112; t=1680015019;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NiDQyAXhgWCz4KK2SHpIkYv9FCWP7ln2+V7AJtildZ4=;
+        b=oAx3D/IZESQgWeH5/u7nYGbo3gkv70eejPKpr225Vmm66knBU37kofn38W0AKNTGn+
+         x/4pe7fBnIOnazHzKhbu6Ov5SemHVPLZ5WRkKoPINymk8S2yHH5bV1lkGMp9/e8wm+9e
+         Y3KBOmQqODrOdVZqBIOHqzn1IBWbj8UW4B5FlSG8rnPhp8q57ROI3jH3S+3tFs2ypn/V
+         RxNJlGeedBXxyUI2yigo/mGPdA42ft2WLnjpKusmgIbJTrSW+6vkaNEmum49ezotR90m
+         IMZJkGXyS/+7+9E29GIYE1FWPLIrp9vpUPTLsa96ngE8zi6nTtfJ8ypIXrwsPvk0Fxfi
+         jibw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680014885;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hMuegniqFjuWU/AoMlUG2hK0eMl2E6VjLUE5zlLE9e8=;
-        b=JF/iBwZxVyoxdBkYXY842O00Wyoq1m6GjM/deuY/j8xkmxFxvvm7iSnvi/e6vjJFqX
-         9tyXzSSCLA3DN9jmCnPocFDE0VzwHZ/q3zXBJuuWHI8cG0zzKYmnaoUSeIOJjhKSPkd7
-         wLefyFgzM8hhTThM5nKB1vNR8FoFeZs4VqtdwNF4ua43ww1x9CZYe2SJyN5FborJ5vyb
-         Sn4GCcNj6RiLSHtRIuUXeptEYyWb++IuUUiXacYRBlhU6I2oZ17ZqqnHaXVOhYbxYP/H
-         /zoMaCYnfRnuaefld7kQ7CJC7JTTTA+LnY5bxcIALoe/AjDR8RBRDqcus23P236tosK5
-         B6Tw==
-X-Gm-Message-State: AAQBX9eXVsBROlj2eAdw5mGgcWQWD2Q4NcBP713NoNu1Aw5zExlGZxlo
-        3u1UOC57tA4nU+puAXzYQnrssA==
-X-Google-Smtp-Source: AKy350Y2xnQW9raqN0NUOlAtswBML0x4+QcffeGsP0VHcvAkCPvGxPKONFOTBXjvmT1OeAWXMIU+kg==
-X-Received: by 2002:a17:906:4796:b0:93f:3084:d6f with SMTP id cw22-20020a170906479600b0093f30840d6fmr15159453ejc.18.1680014885530;
-        Tue, 28 Mar 2023 07:48:05 -0700 (PDT)
-Received: from [10.105.135.205] ([88.128.92.162])
-        by smtp.gmail.com with ESMTPSA id lj24-20020a170906f9d800b00932ba722482sm14580086ejb.149.2023.03.28.07.48.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 07:48:05 -0700 (PDT)
-Message-ID: <256e7c1e-c741-99f0-59e7-726c53d85c2f@linaro.org>
-Date:   Tue, 28 Mar 2023 16:48:03 +0200
+        d=1e100.net; s=20210112; t=1680015019;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NiDQyAXhgWCz4KK2SHpIkYv9FCWP7ln2+V7AJtildZ4=;
+        b=OW9Wzr4RoiVWOBqsnWu8q75px0DHS20FGkT6iQGHyrCJ0v+00VVUNBKHveVV7cXtAE
+         4UTx3PO1ym8grzs/sWcKxWNz9+/cp2QOnJ3+zvS/nrMcGmZFLTXakdZncy/4m0EQc8Zo
+         fToyWTjwnuYnuo0xK0GsnGW/r72XEKxgeqk8+DFvBdC0vQxzwkN6+t3U40yOIEXI5Ji6
+         c7/oskmzfkbyO49PYZXQ3zo4okBcjuLSc/KcRib2LhSAyId+nL9Lfqq6n4fHZ6DH1Qh1
+         8JU1yBnMWa146/4cavkvstAJ03DhX2HEQDWWRlggLcRl9db+LOXurJb7grhLbFk1XhnS
+         vGuA==
+X-Gm-Message-State: AAQBX9dWR4bJ8UtwDPGBko3SYf82S8W/s9e7aCq49zS/eCkXIjRA4up0
+        me6frmt8EnHimOurys1aZUU=
+X-Google-Smtp-Source: AKy350ZIHS0JDgLGX9+NMLarjPoffiIgQyFp/HsmWdcvG5BWLOJWQI7cUPnqyiUWvUooG8byHw3i+w==
+X-Received: by 2002:a25:468a:0:b0:b3d:5a52:5c6b with SMTP id t132-20020a25468a000000b00b3d5a525c6bmr18947517yba.21.1680015018888;
+        Tue, 28 Mar 2023 07:50:18 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id o137-20020a25418f000000b00b7767ca7496sm2938471yba.51.2023.03.28.07.50.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 07:50:18 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 28 Mar 2023 07:50:16 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org, wim@linux-watchdog.org,
+        agross@kernel.org, andersson@kernel.org,
+        saiprakash.ranjan@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: watchdog: Document Qualcomm SM6115
+ watchdog
+Message-ID: <501ab5b8-568f-43d4-8121-b888cc49cb50@roeck-us.net>
+References: <20230314051351.1754321-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: fsl-imx-gpio: update gpio-ranges
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, stefan@agner.ch, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20230328052912.1957000-1-peng.fan@oss.nxp.com>
- <CAL_JsqJvOZvw7BKYZRTf3gQwyVOmhva8BFHYF8-rf5uyo_HMUA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_JsqJvOZvw7BKYZRTf3gQwyVOmhva8BFHYF8-rf5uyo_HMUA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230314051351.1754321-1-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 15:57, Rob Herring wrote:
-> On Tue, Mar 28, 2023 at 12:24 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->>
->> From: Peng Fan <peng.fan@nxp.com>
->>
->> one is not enough for i.MX8, so enlarge it.
+On Tue, Mar 14, 2023 at 10:43:51AM +0530, Bhupesh Sharma wrote:
+> Add devicetree binding for watchdog present on Qualcomm
+> SM6115 SoC.
 > 
-> But it wasn't 1, it was unbounded. As dtbs_check shows, the new bounds
-> aren't right either.
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-Uh, so 16 is also not enough...
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Best regards,
-Krzysztof
-
+Guenter
