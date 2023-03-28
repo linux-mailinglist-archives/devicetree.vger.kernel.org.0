@@ -2,116 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 972D56CC36E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 035026CC3CE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232888AbjC1Oxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 10:53:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55270 "EHLO
+        id S233609AbjC1O5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 10:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233325AbjC1Oxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:53:48 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08F5BDF4
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:53:46 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id er13so9873858edb.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:53:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680015225;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ntLeAvwYo13KTBL/y3l0lVOyzh8Kzne6sGlhIyPSqF8=;
-        b=PXvhstG7uj98LaXH//8Mek02Wg4U3UZ8zfWHZSNsOZd8YJ4UxzaxecApgTd4fjZ3bj
-         Bbyx2nHV5Jkki3PUzUCenleDE4DicrZVJbxFuqg6V0VUSSuywv7I2S8SHztMCn1otkQQ
-         COj9zRgbEEh1Uy6oA/0mPXK+peu0cCCbTfRYpVKcZLw4HfVDCdzN9yho8QsoqWKlFcCm
-         BhwEXX2U+uUUXKEzzfOKG5bqGYXPJWh/vKncrAAmds6Y6ejr52/Cesq1aSjEpg4UpMqu
-         SOsS3fulziPQ74G83lOibK3hS1iAX/CYFRexVyORkzvtGJNoNR0s+D7VZEdxHUO9OF1/
-         EIVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680015225;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ntLeAvwYo13KTBL/y3l0lVOyzh8Kzne6sGlhIyPSqF8=;
-        b=BOl58UPs8y47Qbj3rIftd0LygZgrsuhel1tafsrGZ4abNj5kB25+M4KtVmw7aKty4l
-         tddOpGhs+HGlAKTIm7wQ1ImCySXUPo5nugFSY6GP5zH0uc0afRpmJ7pjIG/ZGbYR2JYy
-         StxlnIWNjWRqauicIJqj0YLPdZiZYRbPboA//40YqsFY2e2jEzPl9bJFWFEeDy1kflZp
-         7f/gf7PzVS2LQIhBSgl6ABJFDPrKTgTKUPykaDYxLem/yfR1f3ipgkc63xXhDPTuQC6Z
-         zboPe8RXgei+H0e8J2ctTwR221+2ifS3S9bqvWDu+8kFWeKi02Rf4rgPh2c8QpV39ghB
-         6Wcg==
-X-Gm-Message-State: AAQBX9dl+uezTOGT1lK47OZTCytwEVAhOogqRtl8LB1M4dimHfCk0+Wm
-        c2jsyBIl83oLJNQGsvnUgbAZFA==
-X-Google-Smtp-Source: AKy350ZSEV0js3KfJtOUIg3AsvSN0lpPFcekKk98Ii0WXFpPSUOeYbhZinzigEa1AusquOGm8BnhLg==
-X-Received: by 2002:aa7:d815:0:b0:4fd:2533:f56 with SMTP id v21-20020aa7d815000000b004fd25330f56mr15055439edq.39.1680015225030;
-        Tue, 28 Mar 2023 07:53:45 -0700 (PDT)
-Received: from [10.105.135.205] ([88.128.92.162])
-        by smtp.gmail.com with ESMTPSA id x21-20020a50d615000000b004bb810e0b87sm16032493edi.39.2023.03.28.07.53.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 07:53:44 -0700 (PDT)
-Message-ID: <fc0738f5-0494-6142-56a4-ae3d0182a903@linaro.org>
-Date:   Tue, 28 Mar 2023 16:53:43 +0200
+        with ESMTP id S233603AbjC1O5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:57:46 -0400
+Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D406E061;
+        Tue, 28 Mar 2023 07:57:45 -0700 (PDT)
+Date:   Tue, 28 Mar 2023 14:57:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1680015463; x=1680274663;
+        bh=8VYClvItDD5z4B2IZDetMy87zHl4JJwRVsi0b1MCWg4=;
+        h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=eao+F0VqQ4+vZO+XM0/+cXlZmkIj2LPG3t23KlyemYnb00QIv6Ixpn+AC1vguHrr+
+         fs99bpLxcTdGLY8vqMtT5zkbVcXcj4XkP/rwUFqpBtCnoMYWU/C/Bo9fh3dgpzTsOz
+         Q9KP+qA+dR2W2hbjdnb+L0FVK+Wt7nJP+JN2F3J8=
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 09/11] arm64: dts: qcom: sdm845-oneplus: drop invalid panel properties
+Message-ID: <f5521c4c-01d7-7783-bdfd-dadf88396fd6@connolly.tech>
+In-Reply-To: <20230326155753.92007-9-krzysztof.kozlowski@linaro.org>
+References: <20230326155753.92007-1-krzysztof.kozlowski@linaro.org> <20230326155753.92007-9-krzysztof.kozlowski@linaro.org>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] ARM: dts: stm32: add FMC support on STM32MP13x SoC family
-Content-Language: en-US
-To:     Christophe Kerello <christophe.kerello@foss.st.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alexandre.torgue@foss.st.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230328122606.191211-1-christophe.kerello@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328122606.191211-1-christophe.kerello@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 14:26, Christophe Kerello wrote:
-> This patch adds the FMC support on STM32MP13x SoC family.
 
-Do not use "This commit/patch", but imperative mood. See:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-> 
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+On 26/03/2023 16:57, Krzysztof Kozlowski wrote:
+> Panel does not have children with unit-addresses thus address/size-cells
+> are not valid:
+>
+>   panel@0: '#address-cells', '#size-cells' do not match any of the regexe=
+s: 'pinctrl-[0-9]+'
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
 > ---
->  arch/arm/boot/dts/stm32mp131.dtsi | 34 +++++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-> index 5949473cbbfd..7af3eb15c204 100644
-> --- a/arch/arm/boot/dts/stm32mp131.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
-> @@ -1137,6 +1137,40 @@ mdma: dma-controller@58000000 {
->  			dma-requests = <48>;
->  		};
->  
-> +		fmc: memory-controller@58002000 {
-> +			#address-cells = <2>;
-> +			#size-cells = <1>;
-> +			compatible = "st,stm32mp1-fmc2-ebi";
-> +			reg = <0x58002000 0x1000>;
+>  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/a=
+rm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> index b01542d79ae2..0c268c560d37 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> @@ -347,8 +347,6 @@ &dsi0 {
+>  =09display_panel: panel@0 {
+>  =09=09status =3D "disabled";
+>
+> -=09=09#address-cells =3D <1>;
+> -=09=09#size-cells =3D <0>;
+>  =09=09reg =3D <0>;
+>
+>  =09=09vddio-supply =3D <&vreg_l14a_1p88>;
+> --
+> 2.34.1
+>
 
-
-compatible is first, reg is second. ranges if present should be third.
-
-> +			clocks = <&rcc FMC_K>;
-> +			resets = <&rcc FMC_R>;
-> +			status = "disabled";
-> +
-> +			ranges = <0 0 0x60000000 0x04000000>, /* EBI CS 1 */
-
-Best regards,
-Krzysztof
+--
+Kind Regards,
+Caleb
 
