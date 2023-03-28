@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3823E6CBA18
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 785166CBA23
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:09:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbjC1JG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:06:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59098 "EHLO
+        id S229714AbjC1JJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:09:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231435AbjC1JGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:06:21 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218BD5FE5
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:06:08 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id g17so14872379lfv.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:06:08 -0700 (PDT)
+        with ESMTP id S229646AbjC1JJj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:09:39 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841CD10F6;
+        Tue, 28 Mar 2023 02:09:38 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id qe8-20020a17090b4f8800b0023f07253a2cso11799363pjb.3;
+        Tue, 28 Mar 2023 02:09:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679994366;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ogVdg59OvtEGhTTAtCeTATzo7VTOuITJJjSGfK73PZE=;
-        b=dAjWmLzjsnSJ8Zcysv9m6l46+Iqp6eV1esydN03bb/xRSs0HpowY3EyZdoPc4ZA2fk
-         uTjCye7LO+vS8JrAczzEGXl3u4PngMayUMyVVCtRZ3HuOGVAZbyyfUwbOQTTyMieMJ01
-         qHe3EgCQgCL/R7MeC5NYr8VUHs6HTyiFWAxMLztr5VG1bU5U4pf58sy1DmAv4N5868Nx
-         /hTyuBECzYqGriUJIMzel9o6YuxoUxKJhX4jouatLEbtlYHCUthT5VsSIrgyRths6GP8
-         eOlIxGOwUzRMbwvkjzFuhiw7E72U5acuZR98l3JaYNfJVT+Z3O0GDHvZ3p8xppsuqrP/
-         ivCA==
+        d=gmail.com; s=20210112; t=1679994578;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FVfqXcdff5sBvdoyudvkSG88Q0WNyPL7PXC0W5JT+Co=;
+        b=LKOmLEjZIV8d97qPCsmMqm7Epg1lJIHl+exvXBLuo3YVfxrURYCobgqzJNOUcet/W0
+         qd2BkY+m3hkSrYPsOvvM4tEp78FB4/ylIUiIgv+ZAuDPTPO7QFa6oXZD6102kWJU555n
+         ZNw4tLosmcq+A2zQBA+QJYDdsxK2ZmMGWcVP9BxDT+M+YlwbxpL14D04xMJmKuliIH5W
+         G4a1Xpq2St4UPtuShaaKaYpIMxKSweA74ukkrHhp8Llx/QOFi9jbERcyK+3Ahm6GaThw
+         RPNF0/diyk6HtrcbW9nJ9uT3svmhebYhwWQelZ3CPK/NnQaW4secdvhd22pPp1Zj4N5r
+         uN0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679994366;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ogVdg59OvtEGhTTAtCeTATzo7VTOuITJJjSGfK73PZE=;
-        b=RHcD9G8d9h82fTfwp0/4olch0a4gmpxsBUt0V0K2hjUFBoPMtO/qNREVQfnZ9OhebW
-         AtbMnwo0etzgqmpS7VFqY98RF0Gdo0XqyMUBkKFST7W84Wqyu9ECDQO7NMm+fuhBI7Ew
-         SpXKp2sssNpWy+iDshUCX8KI+te2O8O+O1Xe3r/ekSk7CeOpDhN9lZ+sJaqCKfehJkAY
-         wGsJGiyA1o5AZBrZDs31USiiH+f8Yx6oC+ZgVBwyxhcz+QwR+dZOvCIuveexn3ZegjC0
-         vWbIWqIaqgc9z/FlxXLRDd0x/y82O6TrGpl+vCZqAVCMZdWPcmt4gn3vHeQeWLx99/zz
-         vqvw==
-X-Gm-Message-State: AAQBX9d2yIdDLPjmMziiOrwywUOzhRElODA6yVPvafIc14WmPML69vRu
-        SY69Iy+sz0vFXxR9RuZGm0zqvw==
-X-Google-Smtp-Source: AKy350aLWBsBDlf4pkqsGQd4V0rQEatYU3yJjtu5Pp8yX7hyd+wvFIIFc9mM7PQ6h+3SfqTq42S0wA==
-X-Received: by 2002:ac2:596b:0:b0:4d5:d0f9:e57 with SMTP id h11-20020ac2596b000000b004d5d0f90e57mr4249037lfp.21.1679994366456;
-        Tue, 28 Mar 2023 02:06:06 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id y11-20020a2e9d4b000000b00295a5aa9d05sm4929716ljj.120.2023.03.28.02.06.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 02:06:06 -0700 (PDT)
-Message-ID: <75243bf3-180d-ded3-22e6-018eb347a54d@linaro.org>
-Date:   Tue, 28 Mar 2023 11:06:05 +0200
+        d=1e100.net; s=20210112; t=1679994578;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FVfqXcdff5sBvdoyudvkSG88Q0WNyPL7PXC0W5JT+Co=;
+        b=cu5mPHOmHfgrVVnmESAoloVk7kx15BBsrdgmmuo0GOz8shNW1CUC1YSAd1HwdYv3dn
+         fO6MgtzM3TA3Z5/T/uOyQO5TmY24njCyXlmTQk82r20r3mhtPtplmrqfISiJ4HyMl0SQ
+         KzfNUE7x/zEvfAfIlGX6O7cR2TpOs97cR9dENioaV3BzaiI1T+KGBeJvzsFXAPsMXUDk
+         EJLzPcjkyuSTJbI5GS6QXKpR7eM3NSQ0U16ZORSrYc1BQixafFs2IpVbC6TL2VfvSF39
+         BmOSl4rasUCZTms6ijPffknojQHD+1rFmcc7aEjqWTnjkMCGXeNJ0UYpelmxnIqGcyv+
+         PkNg==
+X-Gm-Message-State: AAQBX9eFfG6hLjl9XBV0UPMdCe61GwYqM1u7k6+TAvA0hUomuXgQgVr1
+        ogbE8nqoqlX1QpxO4pzZwnU=
+X-Google-Smtp-Source: AKy350aCLmIqn5fOD3rMtd2U59Wt0WKO0kRHUFDjn/CxdhlzZx47warIbtGER/yadRtEtD+rGk3zXA==
+X-Received: by 2002:a17:902:d4c6:b0:1a1:cc5a:b07 with SMTP id o6-20020a170902d4c600b001a1cc5a0b07mr17809434plg.37.1679994577807;
+        Tue, 28 Mar 2023 02:09:37 -0700 (PDT)
+Received: from pavilion.. ([2402:e280:2146:a9a:db37:2c9f:dcb8:89a9])
+        by smtp.gmail.com with ESMTPSA id jk17-20020a170903331100b0019e88453492sm20742412plb.4.2023.03.28.02.09.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 02:09:37 -0700 (PDT)
+From:   Saalim Quadri <danascape@gmail.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        danascape@gmail.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        leon@leon.nu, lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, leon@kernel.org
+Subject: Re: [PATCH v4] ASoC: dt-bindings: alc5632: Convert to dtschema
+Date:   Tue, 28 Mar 2023 14:39:32 +0530
+Message-Id: <20230328090932.55409-1-danascape@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <0824738d-d431-bb4a-16d8-e4e4064969c5@linaro.org>
+References: <0824738d-d431-bb4a-16d8-e4e4064969c5@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 14/18] arm64: dts: qcom: sa8775p: add PMIC GPIO
- controller nodes
-Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230327125316.210812-1-brgl@bgdev.pl>
- <20230327125316.210812-15-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230327125316.210812-15-brgl@bgdev.pl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,90 +74,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> git format-patch -1 -5
+> scripts/get_maintainer.pl v5-*
+> and you will get a bit different results.
 
+There was a new entry this time, while the rest of the output was same.
+Leon Romanovsky <leon@kernel.org> (in file)
 
-On 27.03.2023 14:53, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add GPIO controller nodes to PMICs that have the GPIO hooked up on
-> sa8775p-ride.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I added him as a CC here
 
-Konrad
->  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 40 +++++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> index be12997a080c..7602cca47bae 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-> @@ -125,6 +125,16 @@ pmm8654au_0_pon_resin: resin {
->  				status = "disabled";
->  			};
->  		};
-> +
-> +		pmm8654au_0_gpios: gpio@8800 {
-> +			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmm8654au_0_gpios 0 0 12>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
->  	};
->  
->  	pmm8654au_1: pmic@2 {
-> @@ -139,6 +149,16 @@ pmm8654au_1_temp_alarm: temp-alarm@a00 {
->  			interrupts-extended = <&spmi_bus 0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
->  			#thermal-sensor-cells = <0>;
->  		};
-> +
-> +		pmm8654au_1_gpios: gpio@8800 {
-> +			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmm8654au_2_gpios 0 0 12>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
->  	};
->  
->  	pmm8654au_2: pmic@4 {
-> @@ -153,6 +173,16 @@ pmm8654au_2_temp_alarm: temp-alarm@a00 {
->  			interrupts-extended = <&spmi_bus 0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
->  			#thermal-sensor-cells = <0>;
->  		};
-> +
-> +		pmm8654au_2_gpios: gpio@8800 {
-> +			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmm8654au_2_gpios 0 0 12>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
->  	};
->  
->  	pmm8654au_3: pmic@6 {
-> @@ -167,5 +197,15 @@ pmm8654au_3_temp_alarm: temp-alarm@a00 {
->  			interrupts-extended = <&spmi_bus 0x6 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
->  			#thermal-sensor-cells = <0>;
->  		};
-> +
-> +		pmm8654au_3_gpios: gpio@8800 {
-> +			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmm8654au_3_gpios 0 0 12>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
->  	};
->  };
+Thank you,
+
+Saalim
