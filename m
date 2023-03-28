@@ -2,85 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D45E86CB84F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B816CB85C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbjC1HiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:38:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48816 "EHLO
+        id S230280AbjC1Hlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbjC1HiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:38:08 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 495D93580
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:37:58 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id x3so45736483edb.10
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:37:58 -0700 (PDT)
+        with ESMTP id S229811AbjC1Hly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:41:54 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9931510F8
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:41:53 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id h8so45838060ede.8
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:41:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679989076;
+        d=linaro.org; s=google; t=1679989312;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=X9cVbOj2hTelYElgGTzqGVtpL3knBAwPGkwPEQbuDv8=;
-        b=G/qGnUlLPAVRx3hZ8ER0OdGVl5WX+lwJmVbL7h0KgQ9Bs25+SIFKTaDvv11v5e/nqN
-         P1XHWSnc0MPYBZegu+r3AkzbfyyIbo9bJKZYGOSKI5qpL6tGKwCNqPpMtnyFsRIki/5L
-         eOh0qpJilgtqd5Oxlezz3+ceJGef2UDiqFefjCR+/mBfxVw4ff1vyDcP7unMp9MmFqw1
-         8xHPedV4rgsuu9GqbF6fHcG2wsI4K/wggiwbb0xx8b22y4e//D/0y+9HBuv7CEwTaECn
-         oo5Gt65coTSTlmsDitMGPKhgDzBpOCIXI543TzeGSXUEKimaB6I1+KWXuMUQPjUGyXC/
-         6FhA==
+        bh=B9ufKZwxlw52D87XJPI1kMvE4zVDD0Zw+DmPa/M3l4I=;
+        b=n3D+VFn8KT+Z+WIdreipgrOuNp9hqIqGj86749q40xAnsceYzojpBCiefiv/MIR3AJ
+         3YNg62QVt+4ZsdMbtJnbYsmhNWRawGvuJH3re+MNp2q4gQBR7VPotlIWsUS5fReWjdU1
+         4CLrrrwYwukZltHPIzUE92V6dxkIzFU2Sh2GHy+1KWVAPgD7/Xh3MJt/CPFS78SHEBui
+         VbavTBqNknYIDkXVYJFT4n39cfhe/BANZwJypNGWFXrj/PxbPC7DkEEjXAy3TPYzvZtF
+         RuId8ppxDdFDnMV/8xNiWtgIWsJkVpChyFpYSnYbZ53rrrp0bwrxGJhPC0OatH1Z0WzN
+         3pFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679989076;
+        d=1e100.net; s=20210112; t=1679989312;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X9cVbOj2hTelYElgGTzqGVtpL3knBAwPGkwPEQbuDv8=;
-        b=K/kIo6rcuYABDGXnsnjt115hUc/nBtUfFlnUHJ5FYQaAJVu5NN/mXxup755b06t1tw
-         J/C2AINk2ds8mFh3Ni4Y8pNReZ+w8KJgntU1gAVuZ76tSZzxXpXqXftmdT1NrXhkth+0
-         3b++b/X0kWSukNmSSjnh1+J8LTmY+t84/flwfDyqNOOOh6ce81yxKOgrxeEhVzY9QNlE
-         EgS4lx5xcVTIuXl7pCdqfQORuNMlwjjscK//UGHrR1o0n0pdKjzWdPOk6GzaXVYBjxLl
-         cbDd5DWtfY8U58czHu9xCJutS7GfgQyavAEolhO6sYgzEOwqSJnEcnVTLoNSpusoVOsA
-         TggQ==
-X-Gm-Message-State: AAQBX9fdYVc6cEtd/s++4TgDnA2dROuAqBa7p+T2/xjUcTy3TXN1joMU
-        MdPZ51/KsTpzwcGaBkiPpVgCYA==
-X-Google-Smtp-Source: AKy350YhSF13sxJjRSritYNctWoIhjA9llZmiG4TT3T8s7wmQMO9euMgGym/RxdMJW0QiCszqoXonA==
-X-Received: by 2002:a17:907:c25:b0:8b2:d30:e722 with SMTP id ga37-20020a1709070c2500b008b20d30e722mr21666345ejc.3.1679989076678;
-        Tue, 28 Mar 2023 00:37:56 -0700 (PDT)
+        bh=B9ufKZwxlw52D87XJPI1kMvE4zVDD0Zw+DmPa/M3l4I=;
+        b=SgHpkjxJRcKXfQwpxz3eFm913LHZJfyii+X8Vkw7aT8WeBQ3WqXn01AqdUrWOiMW8y
+         k0dsG/a5AhHeM/U3yOXXPeESAnbTTReGObBHlVh7e56ikc4k4X2OMzQPOvslWePeZ1zl
+         jtanxSOFCETDka3vJzyOPPKTgC3+SGvjc6GhLjnTmmjAJdDAFjsw9L5sxig6XeFZJ/7B
+         9bn3/x6Ftpuuu2gbiLkYxCH3HxmOdeUEWKXtG1MsknR28fSY4cCNlV8ERaLGdid5riFS
+         9SE7NBfCiTHiQDCj5ACJVvown7boWyhhdV8C+pwMJajna2/LquwdqXUqtNTzObEHvjWQ
+         m4vQ==
+X-Gm-Message-State: AAQBX9dwc9uyhuj8f387t7tzgnD91ZxycwrEJX3Bsw+kPa5KHCn+5O7A
+        MesNngNOVry6osUuqwWGEukq+w==
+X-Google-Smtp-Source: AKy350aNpBP43XpYra0IPKGvGv8JB0eUb3lwNLn7r2yGQg9SzEVJlfP0qpN6OwQahnyS3Lmdb+K9EA==
+X-Received: by 2002:a17:906:780c:b0:921:5e7b:1c27 with SMTP id u12-20020a170906780c00b009215e7b1c27mr15384488ejm.24.1679989312130;
+        Tue, 28 Mar 2023 00:41:52 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
-        by smtp.gmail.com with ESMTPSA id k8-20020a17090627c800b008d1693c212csm14877174ejc.8.2023.03.28.00.37.55
+        by smtp.gmail.com with ESMTPSA id b1-20020a1709065e4100b008ca52f7fbcbsm14946887eju.1.2023.03.28.00.41.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 00:37:56 -0700 (PDT)
-Message-ID: <74d62ddf-8257-3f67-c33d-b6e76314bc3b@linaro.org>
-Date:   Tue, 28 Mar 2023 09:37:55 +0200
+        Tue, 28 Mar 2023 00:41:51 -0700 (PDT)
+Message-ID: <0aea4e60-f835-3bb0-f082-b7b799f2ad95@linaro.org>
+Date:   Tue, 28 Mar 2023 09:41:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
- compatible
+Subject: Re: [PATCH v2 0/3] Add "mclk" support for maxim,max9867
 Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>,
-        "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+To:     Richard Leitner <richard.leitner@linux.dev>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
-References: <20230324073630.3194724-1-sai.krishna.potthuri@amd.com>
- <20230324073630.3194724-2-sai.krishna.potthuri@amd.com>
- <d646d109-d0a6-aedb-a8b2-ac954336e628@linaro.org>
- <BY5PR12MB425806889EE700C1FCC8A465DB8B9@BY5PR12MB4258.namprd12.prod.outlook.com>
- <1f97dec8-d30c-ccc7-3026-713bf9a15850@linaro.org>
- <84d34a5a-c29b-f38d-2a71-6cf39447b03d@amd.com>
+        Ladislav Michl <ladis@linux-mips.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Benjamin Bara <benjamin.bara@skidata.com>,
+        Benjamin Bara <bbara93@gmail.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Richard Leitner <richard.leitner@skidata.com>
+References: <20230302-max9867-v2-0-fd2036d5e825@skidata.com>
+ <167810953075.75807.14829875612499629879.b4-ty@kernel.org>
+ <20230328055916.GA11037@g0hl1n.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <84d34a5a-c29b-f38d-2a71-6cf39447b03d@amd.com>
+In-Reply-To: <20230328055916.GA11037@g0hl1n.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -91,92 +85,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 09:31, Michal Simek wrote:
+On 28/03/2023 07:59, Richard Leitner wrote:
+>> should be sent as incremental updates against current git, existing
+>> patches will not be replaced.
 > 
+> As Krzysztof requested some changes on the clocks property dt-bindings
+> patch (#2) commit message... How should I handle this?
 > 
-> On 3/28/23 09:14, Krzysztof Kozlowski wrote:
->> On 27/03/2023 11:58, Potthuri, Sai Krishna wrote:
->>> Hi Krzysztof,
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: Friday, March 24, 2023 5:14 PM
->>>> To: Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>; Ulf Hansson
->>>> <ulf.hansson@linaro.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
->>>> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Michal Simek
->>>> <michal.simek@xilinx.com>; Adrian Hunter <adrian.hunter@intel.com>
->>>> Cc: linux-mmc@vger.kernel.org; linux-kernel@vger.kernel.org;
->>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git (AMD-
->>>> Xilinx) <git@amd.com>; saikrishna12468@gmail.com
->>>> Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
->>>> compatible
->>>>
->>>> On 24/03/2023 08:36, Sai Krishna Potthuri wrote:
->>>>> Add Xilinx Versal Net compatible to support eMMC 5.1 PHY.
->>>>>
->>>>> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
->>>>> ---
->>>>>   Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 6 ++++++
->>>>>   1 file changed, 6 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>>>> b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>>>> index 8296c34cfa00..cf44a4b988a7 100644
->>>>> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>>>> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>>>> @@ -27,6 +27,7 @@ allOf:
->>>>>               enum:
->>>>>                 - xlnx,zynqmp-8.9a
->>>>>                 - xlnx,versal-8.9a
->>>>> +              - xlnx,versal-net-5.1-emmc
->>>>
->>>> v5.1 is eMMC standard or Versal block version? If the first, it's not suitable for
->>>> compatibles.
->>>>
->>>> Also, what's the difference from xlnx,versal-8.9a?
->>> V5.1 is an eMMC standard and this compatible is defined based on sdhci arasan
->>> eMMC5.1 Host Controller(arasan,sdhci-5.1), where as in Versal, it’s a different
->>> controller and it is based on 4.51 Host Controller(arasan,sdhci-8.9a).
->>
->> Mixing IP block versions and eMMC spec versions in one binding is a
->> great way to confuse.
-> 
-> What do you suggest then?
+> The changes requested on the patch content (dts example) should be sent
+> as incremental patch to the original series, I guess?
 
-Stick to IP block versions or code names. The eMMC spec version would
-only make sense if you had such possibility:
-
-xlnx,versal-net-emmc-5.0
-xlnx,versal-net-emmc-5.1
-xlnx,versal-net-emmc-x.y
-
-So exactly one device with different blocks inside. This is very
-uncommon, but there such SoC (SunPlus IIRC).
-
-> 
->>
->>> Versal Net Compatible is defined it this way to make it inline with the other
->>> existing SoC compatibles like "intel,keembay-sdhci-5.1-emmc".
->>> Please suggest if the compatible need to be renamed to "xlnx,versal-net-emmc"?
->>
->> Is Versal Net uniquely identifying your SoC or IP block?
-> 
-> Yes. versal-net is unique identifier for specific silicon with fixed set if IPs.
-
-Then I suggest xlnx,versal-net-emmc.
-
-> Can you please refresh my mind if we can introduce specific compatible strings 
-> for this SOC or should we used existing one if functionality is the same with 
-> previous SOC family?
-
-It's regular case and recommendation is always (for every SoC) the same:
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-
-You should add new SoC specific compatible followed by existing one
-(fallback).
-
-> There could be currently unknown issues related to SOC wiring out of specific IP 
-> version.
+Incremental updates, so new patch. Rebase on maintainer's tree next
+branch or linux-next (usually linux-next is the easiest but for
+cross-tree patches might create inapplicable series).
 
 Best regards,
 Krzysztof
