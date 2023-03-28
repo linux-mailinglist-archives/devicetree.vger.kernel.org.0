@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3C16CBBF8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBF866CBBF0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232701AbjC1KID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 06:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32832 "EHLO
+        id S230452AbjC1KIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 06:08:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231757AbjC1KIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:08:01 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04AD6E8E
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:07:33 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id h25so15063978lfv.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:07:33 -0700 (PDT)
+        with ESMTP id S232775AbjC1KIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:08:04 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695F37A81
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:07:37 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id c9so4642678lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:07:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679998049;
+        d=linaro.org; s=google; t=1679998050;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QrY1OuDR/+qlCoUvp7xD7ZWzVOeNYJFtAbaI7JDwTWM=;
-        b=hAAal796U+HxnwWZF/jbseBG2s/J6J6okTwD6RMngnFNxbPF0DsSb8oeNgsAerlpW3
-         JtINISEkpC+k003xcvTYpBjP1OMQ3+P+RQI90SUJBJmDOfd6dGCMZIEbRIHh4QoKa8rL
-         p7/1MZ0o5jRVz0unDAXst3BPondXBd7VIRLVHXz4UYdIZLkCey1xsZtZjVH39vb0AS7N
-         vfPrd5FhdOKv8Ig4Dy3lfBEOYVQUYvhQOEomu4GiX3WVT+cugSf7ZEuPK9+16xwLUZOw
-         IZdrRSIxpkNCnMd72yU4lgZanRw+9oubgeA+Gaw68eTPDNtxD9STdWKh1tQ6sEuYKawV
-         SA6A==
+        bh=HWHba6Uu0Ek+kYjlRBQm3S5zfLvA96w4h84b04kVQ3w=;
+        b=gmEA9eVDLVEuSqY30iZ244dRPsGlbiyB2DELO2i4s5GtSoDMUM9hV+PSHoPzWy5SxJ
+         g0RX4lC/YKWIHmAdN8RM3L0vVy5D+vLeinmSa2x24NM9NJ212Ta8hkX9GMvCyYuoyM1d
+         DMivUm02j3CSGcX+2HDicI7kbDXNi39vCbYdSvY+DiDRyRjO9xqBmDXklc5N+qmLQVyk
+         oG6icfSSoW2HuxANWejAi+MAj77T8TZBKRaqfvRVbgUhkfhP/+rUoxVomddaez/EsA0r
+         VAL+fGHgaGPAVA92cIcy06G5vIqXzSsTmw8fxXk533Bttky56f6uL+bRsNS3TQ3uq/3/
+         +/kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679998049;
+        d=1e100.net; s=20210112; t=1679998050;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QrY1OuDR/+qlCoUvp7xD7ZWzVOeNYJFtAbaI7JDwTWM=;
-        b=w2Y7QwgyHlMVjTt78hHMlogFkmdegF+AsLrHdewNwkz3ltHPLnjhmBUQyu+R2zH7mL
-         0Z5oAt/rZ0AeTnN/WInJPn3b3HIBkRthRU+3cv8QexZseceMC7j1Gb6vlmTmlW2T7eIe
-         N09FXlww1JLw1pu5qT6Ka2sHPEEhDDio1ekUi+IoTn4wCDygtO1eeyK6Lr+G4HKEZ/UW
-         zqJCfC6rhBYEjW5ugSOothf5RqfzuHa3lGlnBkuA54mnccq8efS0Va27wt0EuMubIH/k
-         AJ5yZkn9+kcRcgtUVMI5XMeMIsG2gbTvPzv0NPkxh54kLbToj7KWiTisQsCqUkrUpQiw
-         epjA==
-X-Gm-Message-State: AAQBX9fI+Zu+l8lGarbKZ8SQnf3aXzl8U4S/9be2+LWjb8L7qWdW4V9t
-        NLRVOzmK2VGMEGvCpvB1i3amgA==
-X-Google-Smtp-Source: AKy350ZsZw5YeU9rZZh2ZArIM673HB9SUzeWWISkt7rVHV+uwIedYI2WgTUkMLtoUghFlPgLUBKaeQ==
-X-Received: by 2002:ac2:52af:0:b0:4dd:b766:37ae with SMTP id r15-20020ac252af000000b004ddb76637aemr4088978lfm.13.1679998049213;
-        Tue, 28 Mar 2023 03:07:29 -0700 (PDT)
+        bh=HWHba6Uu0Ek+kYjlRBQm3S5zfLvA96w4h84b04kVQ3w=;
+        b=gX5m1HXmqWm2bXBBcUUiafUjb1KgdXGWriJDi5srLyKA477wQqBLOuLPn0/lfFNcyd
+         924qJXs92Vn6aYV/0DL/ZT/OfVWdJt3vjintUBfkFCA4CluE/3dv8ZEK7vfgdXoB8gS3
+         Hd8b4wKEkmtetqLtMtiIS1kgL3JiNAMdYODoHzWBcgr3KPxjcpCtpihHF4otVU8rrdkU
+         QPDmOKpe9ubY5oH0YwgV0lGBJ9dKK2HM3I8uplymmZeMRCRNfAxNh3H5LPKHd3o5gSa4
+         C2VfiufV61SntkQAsiAA1bCxnfhFLnRKRX+0btcIKCcKXPiZGBHS3nIajbCg0HtybqhS
+         WaSQ==
+X-Gm-Message-State: AAQBX9ebI3X9yc45UjNnscBrdvMh9Ix083sjpf0IXmXvvsqL5L1/g4uW
+        Pz4/Af52Fiz/eGG8KMD/F/OAFA==
+X-Google-Smtp-Source: AKy350ZtrujPPVXU4pT+yrqtYxfFvHNujl2xHI00jKUIXRYA9J1Z/6lIUWJ6l23l4tHUvBkykVs6YA==
+X-Received: by 2002:ac2:4434:0:b0:4eb:dd2:f3d2 with SMTP id w20-20020ac24434000000b004eb0dd2f3d2mr2271129lfl.43.1679998050106;
+        Tue, 28 Mar 2023 03:07:30 -0700 (PDT)
 Received: from ta1.c.googlers.com.com (61.215.228.35.bc.googleusercontent.com. [35.228.215.61])
-        by smtp.gmail.com with ESMTPSA id w9-20020a05651203c900b004db2ac3a522sm5039572lfp.62.2023.03.28.03.07.28
+        by smtp.gmail.com with ESMTPSA id w9-20020a05651203c900b004db2ac3a522sm5039572lfp.62.2023.03.28.03.07.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 03:07:28 -0700 (PDT)
+        Tue, 28 Mar 2023 03:07:29 -0700 (PDT)
 From:   Tudor Ambarus <tudor.ambarus@linaro.org>
 To:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com
 Cc:     alexandre.belloni@bootlin.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Tudor Ambarus <tudor.ambarus@microchip.com>
-Subject: [PATCH v2 2/4] ARM: dts: at91-sama5d27_som1: Set sst26vf064b SPI NOR flash at its maximum frequency
-Date:   Tue, 28 Mar 2023 10:07:21 +0000
-Message-Id: <20230328100723.1593864-3-tudor.ambarus@linaro.org>
+Subject: [PATCH v2 3/4] ARM: dts: at91: sama5d2_icp: Set sst26vf064b SPI NOR flash at its maximum frequency
+Date:   Tue, 28 Mar 2023 10:07:22 +0000
+Message-Id: <20230328100723.1593864-4-tudor.ambarus@linaro.org>
 X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
 In-Reply-To: <20230328100723.1593864-1-tudor.ambarus@linaro.org>
 References: <20230328100723.1593864-1-tudor.ambarus@linaro.org>
@@ -74,10 +74,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-sama5d27-som1 populates an sst26vf064b SPI NOR flash. Its maximum
-operating frequency for 2.7-3.6V is 104 MHz. As the flash is operated
-at 3.3V, increase its maximum supported frequency to 104MHz. The
-increasing of the spi-max-frequency value requires the setting of the
+sama5d2_icp populates an sst26vf064b SPI NOR flash. Its maximum operating
+frequency for 2.7-3.6V is 104 MHz. As the flash is operated at 3.3V,
+increase its maximum supported frequency to 104MHz. The increasing of the
+spi-max-frequency value requires the setting of the
 "CE# Not Active Hold Time", thus set the spi-cs-setup-ns to a value of 7.
 
 The sst26vf064b datasheet specifies just a minimum value for the
@@ -91,23 +91,23 @@ With the increase of frequency the reads are now faster with ~37%.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 ---
- arch/arm/boot/dts/at91-sama5d27_som1.dtsi | 3 ++-
+ arch/arm/boot/dts/at91-sama5d2_icp.dts | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-index 8aa9e8dea337..95ecb7d040a8 100644
---- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-+++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-@@ -43,7 +43,8 @@ flash@0 {
- 					#size-cells = <1>;
- 					compatible = "jedec,spi-nor";
- 					reg = <0>;
--					spi-max-frequency = <80000000>;
-+					spi-max-frequency = <104000000>;
-+					spi-cs-setup-ns = <7>;
- 					spi-tx-bus-width = <4>;
- 					spi-rx-bus-width = <4>;
- 					m25p,fast-read;
+diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+index 1346b8f2b259..999adeca6f33 100644
+--- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
++++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+@@ -669,7 +669,8 @@ flash@0 {
+ 		#size-cells = <1>;
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <80000000>;
++		spi-max-frequency = <104000000>;
++		spi-cs-setup-ns = <7>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		m25p,fast-read;
 -- 
 2.40.0.348.gf938b09366-goog
 
