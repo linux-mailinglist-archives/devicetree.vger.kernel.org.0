@@ -2,139 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 977346CC70A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92FBA6CC71D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbjC1PsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 11:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41294 "EHLO
+        id S233416AbjC1Pwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233484AbjC1Prw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:47:52 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D7355A1;
-        Tue, 28 Mar 2023 08:47:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680018471; x=1711554471;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=24T96MRUkvahofWk1u6QPPXpvn4MM1W+NreI36DEZHU=;
-  b=lTGMG+j2+jaoBYJgswpZhkDBYL+9T062CEOna/9PSKwTxrbbABcZD88V
-   oJrHGZI0D2GcHm//fZsf7DzZmawThhgorJJeNomBY9kKTKdGPF+jTD9eE
-   tFzcZJBWt3JJCXAPFNXmlFH9SvHsixcLivR7me2JPQ9ZIHDmQKpz4INpR
-   Bsf/u0F1NAXvPey3M8ulzRmFfMFbA78msf2K1j5CfptuD76Uz6PHIu7He
-   Bh9nXRgZICpRoY7tKjQ8cK7ua1pve5+QMNVB46H0CSYXkBCeEFpZltIO0
-   RIyFQ7eJTv/i49wfhgGWTA/3fftMSkxTevl9L+bCY/9fCnM89qD1iHnrZ
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="324502650"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; 
-   d="scan'208";a="324502650"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2023 08:47:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="929960931"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; 
-   d="scan'208";a="929960931"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006.fm.intel.com with ESMTP; 28 Mar 2023 08:47:45 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1phBXz-009gH3-0h;
-        Tue, 28 Mar 2023 18:47:43 +0300
-Date:   Tue, 28 Mar 2023 18:47:42 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>, Lee Jones <lee@kernel.org>,
+        with ESMTP id S233237AbjC1Pwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:52:31 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB1112B;
+        Tue, 28 Mar 2023 08:52:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E45F6B81D81;
+        Tue, 28 Mar 2023 15:52:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1747FC433EF;
+        Tue, 28 Mar 2023 15:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680018747;
+        bh=Czsqs77qTKp69tt1YlQhbRR69dd/LFM95tDt12Xd6/w=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=CsM9zvkG4StopJR15M7YAm8E1RksC5qq9QlMqFMngi8/eZXtkPNaeqO7ozxvHBhgA
+         Vpl5DDUWKQflJ4J5WpNia6/q4+PKgEdnnyMtxvMVvaezAdIwsC/+WP1Ldq+bX4thPI
+         mXUMubBlrWHZfPiHx7pEzIGjOl2a3Z5Y9DMjf/Zhx9/AgzMLglsaqXrOFSN2TadGFO
+         Tm18JiBlJfAxwxAaR8qwbxl1ddwzRho4N1O5NQ5PfrLIhCz5Wof/nhGAqha7I39XaF
+         R0Jm9yz6PGvsMGyY1gLmgkQyarB17zPWKamyxNJrlTHwq0DHl9+Xy27sBvmSA+xcZx
+         BjYuaPTIbIx6g==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <ZCMMHl5ENSuCstFV@smile.fi.intel.com>
-References: <20230307112835.81886-6-okan.sahin@analog.com>
- <20230315175223.GI9667@google.com>
- <20230315175257.GJ9667@google.com>
- <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
- <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
- <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
- <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
- <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
- <ZCL7J5a7UZVayQVS@smile.fi.intel.com>
- <60bbad1b38b8e3c9c3efefb0fb7b8d3cad7fa98c.camel@gmail.com>
+        Ladislav Michl <ladis@linux-mips.org>,
+        Richard Leitner <richard.leitner@linux.dev>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230328-max9867_dt_example_fix-v1-1-cdf31c3fdfc8@linux.dev>
+References: <20230328-max9867_dt_example_fix-v1-1-cdf31c3fdfc8@linux.dev>
+Subject: Re: [PATCH] ASoC: dt-bindings: maxim,max9867: fix example
+Message-Id: <168001874582.43606.10998197986023512559.b4-ty@kernel.org>
+Date:   Tue, 28 Mar 2023 16:52:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <60bbad1b38b8e3c9c3efefb0fb7b8d3cad7fa98c.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bd1bf
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 04:51:18PM +0200, Nuno Sá wrote:
-> On Tue, 2023-03-28 at 17:35 +0300, Andy Shevchenko wrote:
-> > On Tue, Mar 28, 2023 at 04:18:30PM +0200, Nuno Sá wrote:
-> > > On Tue, 2023-03-28 at 14:46 +0100, Mark Brown wrote:
-> > > > On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno Sá wrote:
-> > > > 
-> > > > > IIRC, regmap_read() is not really reentrant and it is used in
-> > > > > the
-> > > > > IIO
-> > > > > driver on the sysfs interface. So, yeah, I think you need the
-> > > > > regmap
-> > > > > lock and better just leave the config as is. Yes, the lock is
-> > > > > opt-
-> > > > > out
-> > > > > so let's not disable it :)
-> > > > 
-> > > > All the regmap operations are fully thread safe.
-> > > 
-> > > Even if 'config->disable_locking' is set? I think that is what's
-> > > being
-> > > discussed in here...
-> > 
-> > In case the driver has its own lock to serialize IO how on earth the
-> > regmap
-> > lock is needed. That's what I asked the author of the driver. He told
-> > the code
+On Tue, 28 Mar 2023 13:25:14 +0200, Richard Leitner wrote:
+> Remove the common clock node from the example as suggested by
+> Krzysztof Kozlowski in [1].
 > 
-> Well, if the driver has it's own locking, then sure we do not need
-> regmap's lock...
+> [1] https://lore.kernel.org/lkml/45d306d3-8efb-12ac-0a83-f01ca2982b0a@linaro.org/
 > 
-> > doesn't require the regmap lock, and I tend to believe the author.
-> > So, why to
-> > keep it?
 > 
-> However, if you look at the adc driver, I can see plain regmap_read()
-> calls without any "outside" locking.
 
-Then author of the code should know what they are doing. Right?
+Applied to
 
--- 
-With Best Regards,
-Andy Shevchenko
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/1] ASoC: dt-bindings: maxim,max9867: fix example
+      commit: d23d50de4ad9a960b752b8b7f4ffce32e05a8971
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
