@@ -2,71 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 875D76CC165
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0397D6CC17D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:55:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231437AbjC1Nvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59478 "EHLO
+        id S231978AbjC1NzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:55:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231424AbjC1Nvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:51:52 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2E21A5;
-        Tue, 28 Mar 2023 06:51:50 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SDpflv045366;
-        Tue, 28 Mar 2023 08:51:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680011501;
-        bh=6hAV4inCrrJCYNeuaSEf119wT6c2CersccstDiIV3b8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=p0V0Bdbq0amoH/D5D1JsUyitRiihYcXYLzrs2A8ddEOMwOFjhBZZUlvSPPT/ExNJ2
-         q6ME89g9EQtT3yzU32oCtCx9/bxiF4GTwNNq5rOATTu1AnQtKOx9ISeU1pGuDCrr0u
-         TYN+0UIcFMkl0q/13VhzIKObwQbBVi5eEZg5LLqw=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SDpfvR099789
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 Mar 2023 08:51:41 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
- Mar 2023 08:51:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 28 Mar 2023 08:51:40 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SDpe4H018730;
-        Tue, 28 Mar 2023 08:51:40 -0500
-Date:   Tue, 28 Mar 2023 19:21:40 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Aradhya Bhatia <a-bhatia1@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH v8 3/6] arm64: dts: ti: k3-am625-sk: Enable audio on AM62
- SK
-Message-ID: <7qaud2s3xise6fttg4sgh57tokssxhc4wjxppi3ejofi7yjmy7@i2j24ycqxspr>
-References: <20230313-mcasp_upstream-v8-0-4408134eb2f3@ti.com>
- <20230313-mcasp_upstream-v8-3-4408134eb2f3@ti.com>
- <20230328133225.edi4eynptt5e4oul@headset>
+        with ESMTP id S229670AbjC1NzM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:55:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27411AB;
+        Tue, 28 Mar 2023 06:55:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 36327B81D57;
+        Tue, 28 Mar 2023 13:55:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7AECC4339C;
+        Tue, 28 Mar 2023 13:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680011708;
+        bh=vWPCC8VIAiLmllWAWxkbIh73YUZMedg8b7K2aPik8tU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=eMwHxD0O7qXg7BVFwxkwzXPh/z/lddceA+pTDCR4vijn6sIZyBTmH96EWwUHHrFV3
+         cNyO30yKoU3dnN74Z/xR8F7VrrF4/P9BD00xoqzYppLhO+/cs+nQYRH3OiROwuhwDf
+         twmittX/wMDze3cX0Mc3g4OBB8dAB7O1ordpOfPfOHVBrumEt0zFDFwu7mTbyUGVlf
+         MQCD6h3CuEqZ7wZNd8N2luKWsXsqF+wL5d4uVvaiXKeVKXtnBSgCEP4vYKjeaaB1is
+         ToQe8hi3edmnsI/mSC/4AV1/JyuDQSHBtLnjAmW25Jwi5BxUkm7BTerfDoKynIuj+T
+         buzyhzgUIvBMw==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5456249756bso231074817b3.5;
+        Tue, 28 Mar 2023 06:55:08 -0700 (PDT)
+X-Gm-Message-State: AAQBX9cob+ieXPrbQJrb3Go4PyNqtWUYO65CFocWmqeOkgnHpOFLCWws
+        dxcNhGGuybVmpTrqJ6S+wtU2UVGZ1oExeID9TA==
+X-Google-Smtp-Source: AKy350amHwuEhXFg2F8D3n/WuI47BFty9DUkRRbsVRdvL/trAteUVJ8fKx95OaESPKOBM94pIJNNQGvOXBcN+2GyKyY=
+X-Received: by 2002:a81:b50f:0:b0:544:b8d8:339e with SMTP id
+ t15-20020a81b50f000000b00544b8d8339emr7405889ywh.5.1680011707733; Tue, 28 Mar
+ 2023 06:55:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uyz5qo2zrbmtre75"
-Content-Disposition: inline
-In-Reply-To: <20230328133225.edi4eynptt5e4oul@headset>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+References: <20230328054833.1974942-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230328054833.1974942-1-peng.fan@oss.nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 28 Mar 2023 08:54:56 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKbOSQAZhA+Xapgwpqzuoo44ZF13+MziNHm5ye5Js8kfA@mail.gmail.com>
+Message-ID: <CAL_JsqKbOSQAZhA+Xapgwpqzuoo44ZF13+MziNHm5ye5Js8kfA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: pwm-beeper: convert to dt schema
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,229 +63,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---uyz5qo2zrbmtre75
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Mar 28, 2023 at 12:43=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
+om> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> Convert the binding doc to dt schema, and also fixed the
+> example from fixed-regulator to regulator-fixed.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
+>  .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.tx=
+t
+>  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.ya=
+ml
+>
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.txt b/Doc=
+umentation/devicetree/bindings/input/pwm-beeper.txt
+> deleted file mode 100644
+> index 8fc0e48c20db..000000000000
+> --- a/Documentation/devicetree/bindings/input/pwm-beeper.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -* PWM beeper device tree bindings
+> -
+> -Registers a PWM device as beeper.
+> -
+> -Required properties:
+> -- compatible: should be "pwm-beeper"
+> -- pwms: phandle to the physical PWM device
+> -
+> -Optional properties:
+> -- amp-supply: phandle to a regulator that acts as an amplifier for the b=
+eeper
+> -- beeper-hz:  bell frequency in Hz
+> -
+> -Example:
+> -
+> -beeper_amp: amplifier {
+> -       compatible =3D "fixed-regulator";
+> -       gpios =3D <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -beeper {
+> -       compatible =3D "pwm-beeper";
+> -       pwms =3D <&pwm0>;
+> -       amp-supply =3D <&beeper_amp>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Do=
+cumentation/devicetree/bindings/input/pwm-beeper.yaml
+> new file mode 100644
+> index 000000000000..1d7cd58d2a8f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
 
-Hi Nishanth,
+'or-later' is wrong.
 
-On Mar 28, 2023 at 08:32:25 -0500, Nishanth Menon wrote:
-> On 18:59-20230328, Jai Luthra wrote:
-> > Add nodes for audio codec and sound card, enable the audio serializer
-> > (McASP1) under use from SK-AM62 E2 [1] onwards and update pinmux.
-> >=20
-> > Keep all audio related nodes in the common dtsi as they are exactly the
-> > same between SK-AM62 and SK-AM62-LP.
-> >=20
-> > Link: https://www.ti.com/lit/zip/sprr448 [1]
-> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts       | 11 ++++
-> >  arch/arm64/boot/dts/ti/k3-am625-sk.dts         | 11 ++++
-> >  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 77 ++++++++++++++++++=
-++++++++
-> >  3 files changed, 99 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot=
-/dts/ti/k3-am62-lp-sk.dts
-> > index b2ca19e3042e..5ed6b1abe87d 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> > @@ -70,6 +70,17 @@ vddshv_sdio: regulator-4 {
-> >  		states =3D <1800000 0x0>,
-> >  			 <3300000 0x1>;
-> >  	};
-> > +
-> > +	vcc_1v8: regulator-5 {
-> > +		/* output of TPS62824DMQ */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc_1v8";
-> > +		regulator-min-microvolt =3D <1800000>;
-> > +		regulator-max-microvolt =3D <1800000>;
-> > +		vin-supply =3D <&vcc_3v3_sys>;
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +	};
-> >  };
-> > =20
-> >  &main_pmx0 {
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/d=
-ts/ti/k3-am625-sk.dts
-> > index cdc0858dd1b2..2b861681e548 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> > @@ -87,6 +87,17 @@ vdd_sd_dv: regulator-4 {
-> >  		states =3D <1800000 0x0>,
-> >  			 <3300000 0x1>;
-> >  	};
-> > +
-> > +	vcc_1v8: regulator-5 {
-> > +		/* output of TPS6282518DMQ */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc_1v8";
-> > +		regulator-min-microvolt =3D <1800000>;
-> > +		regulator-max-microvolt =3D <1800000>;
-> > +		vin-supply =3D <&vcc_3v3_sys>;
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +	};
-> >  };
->=20
-> If the regulators are common, maybe we should first move the regulators
-> to common dtsi?
->=20
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/pwm-beeper.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PWM beeper
+> +
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-The part number of this particular regulator is different in the=20
-schematics for the two boards.
+Drop 'items' as there is only 1.
 
-For rest of the regulators I did not check, but I see the PMIC=20
-(TPS65219x) is present on SK-AM62-LP but missing on SK-AM62.
+> +      - const: pwm-beeper
+> +
+> +  pwms:
+> +    description: Phandle to the physical PWM device
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-Thanks,
-Jai
+Standard property which already has a type.
 
-> > =20
-> >  &main_pmx0 {
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm6=
-4/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > index 54318a07d50c..2500cb9ba323 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > @@ -81,6 +81,41 @@ led-0 {
-> >  			default-state =3D "off";
-> >  		};
-> >  	};
-> > +
-> > +	tlv320_mclk: clk-0 {
-> > +		#clock-cells =3D <0>;
-> > +		compatible =3D "fixed-clock";
-> > +		clock-frequency =3D <12288000>;
-> > +	};
-> > +
-> > +	codec_audio: sound {
-> > +		compatible =3D "simple-audio-card";
-> > +		simple-audio-card,name =3D "AM62x-SKEVM";
-> > +		simple-audio-card,widgets =3D
-> > +			"Headphone",	"Headphone Jack",
-> > +			"Line",		"Line In",
-> > +			"Microphone",	"Microphone Jack";
-> > +		simple-audio-card,routing =3D
-> > +			"Headphone Jack",	"HPLOUT",
-> > +			"Headphone Jack",	"HPROUT",
-> > +			"LINE1L",		"Line In",
-> > +			"LINE1R",		"Line In",
-> > +			"MIC3R",		"Microphone Jack",
-> > +			"Microphone Jack",	"Mic Bias";
-> > +		simple-audio-card,format =3D "dsp_b";
-> > +		simple-audio-card,bitclock-master =3D <&sound_master>;
-> > +		simple-audio-card,frame-master =3D <&sound_master>;
-> > +		simple-audio-card,bitclock-inversion;
-> > +
-> > +		simple-audio-card,cpu {
-> > +			sound-dai =3D <&mcasp1>;
-> > +		};
-> > +
-> > +		sound_master: simple-audio-card,codec {
-> > +			sound-dai =3D <&tlv320aic3106>;
-> > +			clocks =3D <&tlv320_mclk>;
-> > +		};
-> > +	};
-> >  };
-> > =20
-> >  &main_pmx0 {
-> > @@ -175,6 +210,15 @@ main_usb1_pins_default: main-usb1-pins-default {
-> >  			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
-> >  		>;
-> >  	};
-> > +
-> > +	main_mcasp1_pins_default: main-mcasp1-pins-default {
-> > +		pinctrl-single,pins =3D <
-> > +			AM62X_IOPAD(0x090, PIN_INPUT, 2) /* (M24) GPMC0_BE0N_CLE.MCASP1_ACL=
-KX */
-> > +			AM62X_IOPAD(0x098, PIN_INPUT, 2) /* (U23) GPMC0_WAIT0.MCASP1_AFSX */
-> > +			AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25) GPMC0_WEN.MCASP1_AXR0 */
-> > +			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23) GPMC0_ADVN_ALE.MCASP1_AXR=
-2 */
-> > +		>;
-> > +	};
-> >  };
-> > =20
-> >  &wkup_uart0 {
-> > @@ -205,6 +249,19 @@ &main_i2c1 {
-> >  	pinctrl-names =3D "default";
-> >  	pinctrl-0 =3D <&main_i2c1_pins_default>;
-> >  	clock-frequency =3D <400000>;
-> > +
-> > +	tlv320aic3106: audio-codec@1b {
-> > +		#sound-dai-cells =3D <0>;
-> > +		compatible =3D "ti,tlv320aic3106";
-> > +		reg =3D <0x1b>;
-> > +		ai3x-micbias-vg =3D <1>;	/* 2.0V */
-> > +
-> > +		/* Regulators */
-> > +		AVDD-supply =3D <&vcc_3v3_sys>;
-> > +		IOVDD-supply =3D <&vcc_3v3_sys>;
-> > +		DRVDD-supply =3D <&vcc_3v3_sys>;
-> > +		DVDD-supply =3D <&vcc_1v8>;
-> > +	};
-> >  };
-> > =20
-> >  &sdhci0 {
-> > @@ -272,3 +329,23 @@ &usb1 {
-> >  	pinctrl-names =3D "default";
-> >  	pinctrl-0 =3D <&main_usb1_pins_default>;
-> >  };
-> > +
-> > +&mcasp1 {
-> > +	status =3D "okay";
-> > +	#sound-dai-cells =3D <0>;
-> > +
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&main_mcasp1_pins_default>;
-> > +
-> > +	op-mode =3D <0>;          /* MCASP_IIS_MODE */
-> > +	tdm-slots =3D <2>;
-> > +
-> > +	serial-dir =3D <  /* 0: INACTIVE, 1: TX, 2: RX */
-> > +	       1 0 2 0
-> > +	       0 0 0 0
-> > +	       0 0 0 0
-> > +	       0 0 0 0
-> > +	>;
-> > +	tx-num-evt =3D <32>;
-> > +	rx-num-evt =3D <32>;
-> > +};
-> >=20
-> > --=20
-> > 2.40.0
-> >=20
->=20
-> --=20
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DD=
-B5 849D 1736 249D
+> +
+> +  amp-supply:
+> +    description: Phandle to a regulator that acts as an amplifier for th=
+e beeper
+> +
+> +  beeper-hz:
+> +    description: bell frequency in Hz
+> +    minimum: 1
+> +    maximum: 255
 
---uyz5qo2zrbmtre75
-Content-Type: application/pgp-signature; name="signature.asc"
+doubtful a beeper can generate frequencies of 1-255Hz...
 
------BEGIN PGP SIGNATURE-----
+> +
+> +required:
+> +  - compatible
+> +  - pwms
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    beeper_amp: amplifier {
 
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmQi8OwACgkQQ96R+SSa
-cUUjdhAAjTb9vMWlMkd2Jw/ifSibvvWccEAxgqPTLjbDXKrCmuDxkzJvLLvC2YhO
-SfMJLEI5ZuqmsRR8NobxELz+r5EF5lrH0FKO0TXPC2zOHUxzRMBxVbIxYq6xhp3J
-yeOl6+5Jv0zQDxtsfb8XwgNkK7iZkkwXBluHBD76Ka+hiXrH8LPmSNN9n7SEMH50
-qCKBk46iU0DGGNFMaNSgVZOXY+pkBbzlZ5E96eg8IFJBIDGglR6p8Ie56ddsJkBT
-eO14UcKxzPGlPI0b3/ZLxgzYmB0bnk/1MIzKoZ650sqS5uz6ZmrO4ICIOkMl5CIV
-QqgWAJpBYdwuudCd1IXDiOrOclg6Qbr7Mh0HAasxnKMTyLRblHt61vV6wCJ/HI5S
-jQYSP3ub9llGuHAipKlTtLwfrg1TtTPRfiED8WnEpPthgIrxTB1Sd/PHb03bHhe/
-oeHmRM0YaLnCaz5BDlLexiHNmh3ncNV/LpOyLBTwraJmdO/HKVNa+AW+oWiSBWc1
-7co5eep307gTpEAOqFDw1QB29rYYAgbj9GGnQS9gOnEyzpbBmmj48j3pBBrZVjSc
-NkBTWXDl1h7xMqLnPZAMyR5koGKSrO0/7jotG5BVSRzm8ZWUnGPjkeTWUBR4buez
-NTxCRmqpfM9HARwBm8rG29rd4ENKE9mpSoGZlgth/jYt1OebRWA=
-=UjbL
------END PGP SIGNATURE-----
+Don't need to show providers in examples for the consumer.
 
---uyz5qo2zrbmtre75--
+> +       compatible =3D "regulator-fixed";
+> +       gpios =3D <&gpio0 1 GPIO_ACTIVE_HIGH>;
+> +       regulator-name =3D "beeper_amp";
+> +    };
+> +
+> +    beeper {
+> +        compatible =3D "pwm-beeper";
+> +        pwms =3D <&pwm0>;
+> +        amp-supply =3D <&beeper_amp>;
+
+Make the example complete and add beeper-hz.
+
+> +    };
+> --
+> 2.37.1
+>
