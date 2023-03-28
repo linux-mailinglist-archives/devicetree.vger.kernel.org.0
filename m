@@ -2,105 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79EEE6CC6EA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 977346CC70A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234028AbjC1PoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 11:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57638 "EHLO
+        id S233378AbjC1PsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:48:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233169AbjC1Pns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:43:48 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D174BEFA7;
-        Tue, 28 Mar 2023 08:42:50 -0700 (PDT)
+        with ESMTP id S233484AbjC1Prw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:47:52 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D7355A1;
+        Tue, 28 Mar 2023 08:47:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680018170; x=1711554170;
+  t=1680018471; x=1711554471;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=J7Dc257NEOJMhAqfms5At2NFhQkyHhktedAZR/Cilfk=;
-  b=Z0svZOSUfaQkj0xmeMG7KmN2DoDGPkem03yzsqcOvytR+Hk2ibERLxuH
-   Fy8pQRupX4NSBSKdS/6s3U5V0ROwYqW8gpSDD2pVTBeZ6zjtSgziN1b9Q
-   qGr1KYKvLuvBfvCLApT1XDwWNXK1WwtO5hdqdlQzxY1YRpBu5Ee+dnFtW
-   w6UiPEHzGFqtCpaBGbqI8J9MLBAsHgN/3CY2YpSXji83Lq2BnNLi0Q7zu
-   NR15U0sAOFq08QRNDte/LarPJYKPz0/a/0uQ6dO68TxwTtE0nPSFGCIJK
-   Z0i3KmVI9OgoMxpOW0o7TXwrlTeFOFYkaejw5qFbjzUesY1ziK+dNGMeG
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339326987"
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=24T96MRUkvahofWk1u6QPPXpvn4MM1W+NreI36DEZHU=;
+  b=lTGMG+j2+jaoBYJgswpZhkDBYL+9T062CEOna/9PSKwTxrbbABcZD88V
+   oJrHGZI0D2GcHm//fZsf7DzZmawThhgorJJeNomBY9kKTKdGPF+jTD9eE
+   tFzcZJBWt3JJCXAPFNXmlFH9SvHsixcLivR7me2JPQ9ZIHDmQKpz4INpR
+   Bsf/u0F1NAXvPey3M8ulzRmFfMFbA78msf2K1j5CfptuD76Uz6PHIu7He
+   Bh9nXRgZICpRoY7tKjQ8cK7ua1pve5+QMNVB46H0CSYXkBCeEFpZltIO0
+   RIyFQ7eJTv/i49wfhgGWTA/3fftMSkxTevl9L+bCY/9fCnM89qD1iHnrZ
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="324502650"
 X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; 
-   d="scan'208";a="339326987"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2023 08:42:15 -0700
+   d="scan'208";a="324502650"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2023 08:47:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="858139636"
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="929960931"
 X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; 
-   d="scan'208";a="858139636"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 28 Mar 2023 08:42:10 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1phBSc-000IfH-0O;
-        Tue, 28 Mar 2023 15:42:10 +0000
-Date:   Tue, 28 Mar 2023 23:41:19 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
-        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH v6 06/12] dt-bindings: arm: Add initial bindings for
- Nuvoton platform
-Message-ID: <202303282310.bOWEkwv1-lkp@intel.com>
-References: <20230328021912.177301-7-ychuang570808@gmail.com>
+   d="scan'208";a="929960931"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga006.fm.intel.com with ESMTP; 28 Mar 2023 08:47:45 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1phBXz-009gH3-0h;
+        Tue, 28 Mar 2023 18:47:43 +0300
+Date:   Tue, 28 Mar 2023 18:47:42 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <ZCMMHl5ENSuCstFV@smile.fi.intel.com>
+References: <20230307112835.81886-6-okan.sahin@analog.com>
+ <20230315175223.GI9667@google.com>
+ <20230315175257.GJ9667@google.com>
+ <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
+ <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
+ <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
+ <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
+ <ZCL7J5a7UZVayQVS@smile.fi.intel.com>
+ <60bbad1b38b8e3c9c3efefb0fb7b8d3cad7fa98c.camel@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230328021912.177301-7-ychuang570808@gmail.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <60bbad1b38b8e3c9c3efefb0fb7b8d3cad7fa98c.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
+On Tue, Mar 28, 2023 at 04:51:18PM +0200, Nuno Sá wrote:
+> On Tue, 2023-03-28 at 17:35 +0300, Andy Shevchenko wrote:
+> > On Tue, Mar 28, 2023 at 04:18:30PM +0200, Nuno Sá wrote:
+> > > On Tue, 2023-03-28 at 14:46 +0100, Mark Brown wrote:
+> > > > On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno Sá wrote:
+> > > > 
+> > > > > IIRC, regmap_read() is not really reentrant and it is used in
+> > > > > the
+> > > > > IIO
+> > > > > driver on the sysfs interface. So, yeah, I think you need the
+> > > > > regmap
+> > > > > lock and better just leave the config as is. Yes, the lock is
+> > > > > opt-
+> > > > > out
+> > > > > so let's not disable it :)
+> > > > 
+> > > > All the regmap operations are fully thread safe.
+> > > 
+> > > Even if 'config->disable_locking' is set? I think that is what's
+> > > being
+> > > discussed in here...
+> > 
+> > In case the driver has its own lock to serialize IO how on earth the
+> > regmap
+> > lock is needed. That's what I asked the author of the driver. He told
+> > the code
+> 
+> Well, if the driver has it's own locking, then sure we do not need
+> regmap's lock...
+> 
+> > doesn't require the regmap lock, and I tend to believe the author.
+> > So, why to
+> > keep it?
+> 
+> However, if you look at the adc driver, I can see plain regmap_read()
+> calls without any "outside" locking.
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on clk/clk-next linus/master pza/reset/next v6.3-rc4 next-20230328]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230328021912.177301-7-ychuang570808%40gmail.com
-patch subject: [PATCH v6 06/12] dt-bindings: arm: Add initial bindings for Nuvoton platform
-reproduce:
-        # https://github.com/intel-lab-lkp/linux/commit/d023e63cdc203398c5db3c81ca76d34d22e23fe5
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
-        git checkout d023e63cdc203398c5db3c81ca76d34d22e23fe5
-        make menuconfig
-        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
-        make htmldocs
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303282310.bOWEkwv1-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/arm/npcm/*
+Then author of the code should know what they are doing. Right?
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+With Best Regards,
+Andy Shevchenko
+
+
