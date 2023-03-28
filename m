@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D32F6CC9D7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2AD6CC9DB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:59:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbjC1R6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 13:58:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47902 "EHLO
+        id S229961AbjC1R7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 13:59:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjC1R6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:58:44 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C0E10A84
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:58:26 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id i6so16202885ybu.8
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:58:25 -0700 (PDT)
+        with ESMTP id S229976AbjC1R7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:59:09 -0400
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D385F10240
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:59:00 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5416698e889so245236217b3.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:59:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680026305;
+        d=amarulasolutions.com; s=google; t=1680026340;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VfZn72mHdpGHn/5tkQZH0YGYSOz2tOScf6YCxBUYQ0Q=;
-        b=RaMYP06uIY3kYzM/ESIWeEyOkeoNXiLitIfvAYO5QczB2OqBIfhD6OCkLKLbU/1t+r
-         MtBrE1HCpaF5v+ljbNyxrkAZEe8HHmoZ8yd3vtUy02pQ06gHHzQPJ/obCO30bASDL0e+
-         6Jhk6WrRuc/yywCrMmhiLAgh2YpUzDodHDIpQ=
+        bh=7iCOvJgCRVS4iOzBwVNjZMAZpoPWvfTpuT2EPiIysIw=;
+        b=Ch0LQwXMp6+HwADzQ0NyJIAzXIVM0pylhCRxEWpJYjJwkvYRNIhx5XKxJRBwplWCRU
+         IIqZ8usKRRmvYYH+OUDZF0pn54PJpweLG5zaHaa/2NtfeBzbKHjsMwZGQD7MSv7pMRIp
+         FPgNABLopYdKEfj/eFjrl0iUcaP8lxrzEk/qw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680026305;
+        d=1e100.net; s=20210112; t=1680026340;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VfZn72mHdpGHn/5tkQZH0YGYSOz2tOScf6YCxBUYQ0Q=;
-        b=7ZZCdEXVX30iTFu5ty8nJ+h+Q2NPhuW6gy1Zl43P5SEHt+zihgWnVwkOhq/10xLIFY
-         +rupswTZhllhL3K1IgDHtJ6Tb5KWMj8NmUmhuJQCK+S+kYyo7soY6CGW0MuAxhD/wM/N
-         jvwkdzcI85fE+mEwAAhAnWXB3nXv1+VmHVxqk3sWivz4FFupQ5cnvzKQkK5Onqz8Rl6a
-         lsdDnVzO+BXwUEJjqrxBXkDiUeHmZH2Z9BCSVRDCyI2MjoC3Sc3QkPtAmpn5Lkj7h9SL
-         cv3LzxbaQf/re4308zjxY7kwc0MbV3ih+2J1rHa7mKrG+DhWDraFEfdUmMg3Zfwdzup6
-         XPlQ==
-X-Gm-Message-State: AAQBX9efVvUnTlenEt1/Tuai2BgLQLxwrxWcOX/q46B+82Oi7nI130hh
-        5dfcQLJ2upA25qIQwQ0/yyUQYPOJSjYUmUMeC0XbOQ==
-X-Google-Smtp-Source: AKy350bgVPG6io9JT47uYAvPLrhwFbLdfgwRhCDZXvop6+TTXGiPnx0ASefaxBFQLyTxgs/qcQtxhZ52zLayyuNGkSE=
-X-Received: by 2002:a05:6902:920:b0:b76:ae61:b68b with SMTP id
- bu32-20020a056902092000b00b76ae61b68bmr8179053ybb.5.1680026305274; Tue, 28
- Mar 2023 10:58:25 -0700 (PDT)
+        bh=7iCOvJgCRVS4iOzBwVNjZMAZpoPWvfTpuT2EPiIysIw=;
+        b=tJWsv4yDurn6McZFEyZ4+Ban7dA3vpxqdeBT2XQeUGGzAoJpelSjiS3U3FIhG+Q1XP
+         wWcCrTFNMDqZ3vrhaCRlHFeIrNWzNt3/RT/Rv7fzRTOCgURIr6p4TWeX2Lv1G810EpN5
+         /a1Q8zx0ymZ6Z45H1ebv5pbX+sUNrzQRv+CtVtbpDt6V2s8/2uB+W9AqStPLY4Jyj2Mf
+         Og19fVNFT58eQcH+KINqc1JHhwyxJa1XALH+yXU/jFtTLohvLnHFbiA+GscwS8UZTZio
+         a8CQxB31EkmrXOHS3Vx+4RVvTdszVzMnwm9ECFgCYb85e8I64dwSemsrW5+21SoemHtL
+         R08A==
+X-Gm-Message-State: AAQBX9f0qL/T/u9vBw+67PcX2KylYsf/NL8kel8zvMnzBB/kRAEq8GZo
+        pfH6fEjcJo9PP/vMuxZEyLT1fep7mdfsv0FAY13Zaw==
+X-Google-Smtp-Source: AKy350aHWwgQPBqpJInSBfeAdf479+XA9a6tNgHYvVa5TMgjAFjuSiry7nERAIRBJfEqPmVlwGR+2cS8y4t/5dYPOs8=
+X-Received: by 2002:a81:ac46:0:b0:544:6828:3c09 with SMTP id
+ z6-20020a81ac46000000b0054468283c09mr7950759ywj.0.1680026339915; Tue, 28 Mar
+ 2023 10:58:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230326204224.80181-1-krzysztof.kozlowski@linaro.org> <20230326204224.80181-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230326204224.80181-3-krzysztof.kozlowski@linaro.org>
+References: <20230325074022.9818-1-cnsztl@gmail.com> <20230325074022.9818-2-cnsztl@gmail.com>
+In-Reply-To: <20230325074022.9818-2-cnsztl@gmail.com>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 28 Mar 2023 23:28:13 +0530
-Message-ID: <CAMty3ZC_zJXFESh325736LHJHCtENjmU8twhU8Jy5GwW-bOz1Q@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: display: elida,kd35t133: document port
- and rotation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 28 Mar 2023 23:28:48 +0530
+Message-ID: <CAMty3ZCvzD8hOsHfMvzMsoj10kXuMitF_Par4v3fxDov7crjTg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: Add doc for FriendlyARM NanoPi R2C
+To:     Tianling Shen <cnsztl@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Heiko Stuebner <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Vincent Legoll <vincent.legoll@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -72,16 +74,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 2:12=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Sat, Mar 25, 2023 at 1:10=E2=80=AFPM Tianling Shen <cnsztl@gmail.com> wr=
+ote:
 >
-> Panels are supposed to have one port (defined in panel-common.yaml
-> binding) and can have also rotation:
+> Add devicetree binding documentation for the FriendlyARM NanoPi R2C.
 >
->   rk3326-odroid-go2.dtb: panel@0: 'port', 'rotation' do not match any of =
-the regexes: 'pinctrl-[0-9]+'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
 > ---
 
 Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
