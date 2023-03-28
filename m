@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 013C76CB8A7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764896CB8B3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232385AbjC1Hur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:50:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
+        id S229580AbjC1HwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:52:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232349AbjC1Huq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:50:46 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38943A3
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:50:12 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id p34so6339154wms.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:50:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679989809;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SChvSSb/SRcsLKxwF2svsDucGRCoUm07182sZYmBoNM=;
-        b=oj5Mdf2jkdk5NhG/RmJvDPSKUWbt8I4xdd/RR3JnfnBFAx3J54bf7VzK2Y3pw0NswH
-         rU5AYkv8jYtKHoTGF3ySrsJHBEf2OpbTlflgeXDOexiD2gH456ytvZ9C6TBZlmxtIkyH
-         7l+lh7abddcsUUj2tryK4rGg06QVfcOk9TvygRKfMXOX6IIGfhYPTCp9Cu7J6o1EBd4e
-         040ae/MRjkjLB6ZxeUbVt7a0inP8xsoesHZIuRqbHc0LAYNeQzNEFNZlJ/UdpfdUzmBl
-         dVVCbbNSwl9L1TbrGRFc6ithCohZzunH7YAy+fK+7R3yffRNmYq47+FyhBD4OCLRqWQ9
-         UFyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679989809;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SChvSSb/SRcsLKxwF2svsDucGRCoUm07182sZYmBoNM=;
-        b=B+PvTxoOwHBg4hp055bHwBhex+F6DeIFVYXD04QmqO24r9FsychGz34zcM7AV5GIqa
-         0iIMXxPZ4KhdDXBf4Voc0ozmN1rL5a6oVtSd9Ubo5LN4lQxQjUDEcESMbLYuA94Io6WM
-         3kkh9X2qbdTpSQnrcCoVx1CxNYUdIG2fIVmUby5ciTDrH2lhbl0IcxE7c7MgvEEs0haY
-         FVKW2FeTkPBy7wVRqq/hsI7/IwikuwP6gMUaCXJ7P+/nCWZ4YB1ltRqDYRz/c/DvaRMZ
-         /5EubX9e9QWsOiADSM8Iuhn6/dCBNitzzVAz4IngY/8qFpz1y5bIwAhk8uUh+lKrqSBD
-         ANgA==
-X-Gm-Message-State: AO0yUKWyauC2goIPQMYVaIGgPEBfL07wifpLjIueCSCfuGHP1F6QY8Ne
-        N70yapY53rIIzfg4h/Iy14am/Q==
-X-Google-Smtp-Source: AK7set/L/mW1tAj1qo5ca5xnWMQ4csh1yJ7NP0m5e6IY+5PLNs11lRdHsi5Y6cgsmIrZinxOjMKR6g==
-X-Received: by 2002:a05:600c:22d4:b0:3ed:b56c:9496 with SMTP id 20-20020a05600c22d400b003edb56c9496mr11274673wmg.31.1679989809280;
-        Tue, 28 Mar 2023 00:50:09 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id w2-20020a5d6802000000b002cfe687fc7asm26827310wru.67.2023.03.28.00.50.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 00:50:08 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230327170222.4107746-1-robh@kernel.org>
-References: <20230327170222.4107746-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: soc: amlogic: Drop unneeded quotes
-Message-Id: <167998980857.903588.15028659186028325608.b4-ty@linaro.org>
-Date:   Tue, 28 Mar 2023 09:50:08 +0200
+        with ESMTP id S229809AbjC1HwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:52:17 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAB544494
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:52:08 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S7bG39031640;
+        Tue, 28 Mar 2023 09:51:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=hjcFiiAdU8XBCSGQ/ASQ4ZZpEQVFGAfSjTdSl+f/CLE=;
+ b=NgEcjvhs/T5vq1lSun4MXvOW21LLrHfaH3CV+OY87h+2uCqDzcn51T+/J5oTLPmbeTEx
+ OXYihf9ERT7EgG/DGRuVVhEjWfRgTm7/gOkbKNBRGNKE6RW5ALULzwYpLUcjdx1HG7cd
+ 0quNLeXDLOH7S2W2obebhLYdYGWW3UKKTKkAr1V5gpAMh7FIvIPq6f4ZgwTnVu+gjQ6+
+ /2Gbq7snLVaVMtTgU9p3eXovbjWbc4Y04mJuewjT2Hf+SgYny7BDKrEnutqfKwTvRODI
+ bDESP8A5NTqoGMEQWg/4UVHZLiBDYDduSnmuCt1c9vFtxVRjnlfmkJv7ko4bfnhubCZ6 3Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3phsqwfy81-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Mar 2023 09:51:56 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B9474100040;
+        Tue, 28 Mar 2023 09:51:54 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A1F1F20F2D2;
+        Tue, 28 Mar 2023 09:51:34 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
+ 2023 09:51:34 +0200
+Message-ID: <eb8963a0-a891-8f95-300f-89682188b3a3@foss.st.com>
+Date:   Tue, 28 Mar 2023 09:51:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v5 09/10] ARM: dts: stm32: add STM32MP1-based Phytec SoM
+Content-Language: en-US
+To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230320132755.2150384-1-s.trumtrar@pengutronix.de>
+ <20230320132755.2150384-10-s.trumtrar@pengutronix.de>
+ <a37db3a8-a3e6-8755-2b7c-c33a1fdca469@foss.st.com>
+ <87o7omedqr.fsf@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <87o7omedqr.fsf@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,40 +76,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi steffen
 
-On Mon, 27 Mar 2023 12:02:22 -0500, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+
+On 3/21/23 08:14, Steffen Trumtrar wrote:
 > 
+> Hi Alexandre,
 > 
+> Alexandre TORGUE <alexandre.torgue@foss.st.com> writes:
+> 
+>> [1. text/plain]
+>> Hi Steffen
+>>
+>> On 3/20/23 14:27, Steffen Trumtrar wrote:
+>>> The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to 1 GB
+>>> eMMC, up to 16 MB QSPI and up to 128 GB NAND flash.
+>>> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+>>> ---
+>>> Notes:
+>>>       checkpatch warns about un-documented binding
+>>>            According to checkpatch the binding for "winbond,w25q128"
+>>>       used in this dtsi is un-documented.
+>>>       However, 'jedec,spi-nor.yaml' defines the pattern
+>>>                (winbond,)?w25q(16|32(w|dw)?|64(dw)?|80bl|128(fw)?|256))$"
+>>>            so, this should be good!?
+>>
+>> We recently added some yaml fixes and we continue to send others (i.e., GPU yaml
+>> error fix is under review) so please don't add new ones. Some of follownig
+>> errors are directly linked to your board so please fix them.
+>>
+> 
+> sorry about that, seems like I wasn't using dt_binding_check correctly :(
+> However, how did you generate these?
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.4/drivers)
+I ran make dtbs_check (after updating my schemes).
 
-[1/1] dt-bindings: soc: amlogic: Drop unneeded quotes
-      https://git.kernel.org/amlogic/c/1b61fdfdd656b3940cff24c25c211777389174b0
+Cheers
+Alex
 
-These changes has been applied on the intermediate git tree [1].
 
-The v6.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+> 
+>> arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dtb:
+>> /soc/i2c@40012000/touch@44: failed to match any schema with compatible:
+>> ['st,stmpe811']
+>> arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dtb:
+>> /soc/i2c@40012000/touch@44/touchscreen: failed to match any schema with
+>> compatible: ['st,stmpe-ts']
+>> arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dtb: /soc/i2c@40012000/leds@62:
+>> failed to match any schema with compatible: ['nxp,pca9533']
+> 
+> The bindings are there and if I explicitly run dt_bindings_check with
+> e.g. Documentation/devicetree/bindings/leds there is no warning/error.
+> 
+> I will fixup the rest.
+> 
+> Best regards,
+> Steffen
+> 
+> --
+> Pengutronix e.K.                | Dipl.-Inform. Steffen Trumtrar |
+> Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
