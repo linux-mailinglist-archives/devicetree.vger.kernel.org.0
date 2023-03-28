@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 543316CBB33
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFE416CBB41
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbjC1JjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51994 "EHLO
+        id S229527AbjC1Jjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbjC1JjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:39:05 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB5B134
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:39:03 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id g7so7554037pfu.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:39:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679996343;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9xwdE2IE7PNZO4yNNxVXzXNCrW6RVKY2tviFY/6w78Q=;
-        b=TSY/B0ZRhgYwqc6csVXym8zms317WIvtdacvoLJ8+7m5Myi18vu+5cFWBAzYGX2Hin
-         DB5g33pihRKOQxoLUPq/PLYkPtcQPsbF9Csl5saA1w/pta117XswrEgrFN3gfp2J2kEF
-         oR5OKwS4va6jvBx1tfc67nm9h0ckluQGl2yyyTVogDhvXnoq6NM1OZ+ckJ2V42aYqCfG
-         0FLpwnDGE6blXnGA8AXBjFVMMuQ+OAg4LL/QwFlQfQ6pSG8jbbwx6SzhvM+Q1sTxVgIM
-         8TD1ME8AvReeFWufxfqydo8AWwMOl7T5umd7VYT/e65/abw7ELV0FtJQ/rjqzxyLkwN/
-         ciDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679996343;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9xwdE2IE7PNZO4yNNxVXzXNCrW6RVKY2tviFY/6w78Q=;
-        b=LYHUaqJTsgMaFuriwJmq1nO0/hp0d0cD1vDYtXEMjpnqAI0A70CUlJj5zAEZYJnB68
-         UPacVzULDcaostB7tHKVZ9h7iyPhK734FIuoJdWlFu2Nq2mfvsx/9cw9fLtMADRp2wzW
-         s+FQBIER/DSMO9LLF3/d5/By6q7CIr9Jt3+q8UrDCZw5WwLilz4qIve/0Ok7gYFSsEzo
-         5OU/OO1Fq0OyL6Gl/+ufyaQTP+u9dZjmsA4iTySeXbDkmxM5Pg9QBJUo+mTtWAspRb/C
-         VeNdx7ge5lXHIGbwOC316vSEMbwW1C+lrqtgfPPam9/Q5uCM4U7hAKE0MppstT7o6AXx
-         mmSA==
-X-Gm-Message-State: AAQBX9cVnVpdgu4XxHsUNJmTiQ6QgCmTqi//qodKQEOw6tPJ/jpeY8Az
-        cu8mC43VXLAaKvLHFDUHVwgwwQzz/FS+V3nKuA==
-X-Google-Smtp-Source: AKy350bHDX3Rrj57zUrO/5RLT7vUI0eFxDpGfCXLQUU0RNc8bm08CmNKN9NMIR+qBrhCc73UDpa1EQ==
-X-Received: by 2002:a62:1c57:0:b0:624:f46:7256 with SMTP id c84-20020a621c57000000b006240f467256mr15126001pfc.21.1679996343067;
-        Tue, 28 Mar 2023 02:39:03 -0700 (PDT)
-Received: from thinkpad ([117.193.212.166])
-        by smtp.gmail.com with ESMTPSA id a23-20020a62bd17000000b005a91d570972sm18330448pff.41.2023.03.28.02.38.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 02:39:02 -0700 (PDT)
-Date:   Tue, 28 Mar 2023 15:08:53 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
-        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc8280xp: Add missing dwc3 quirks
-Message-ID: <20230328093853.GA5695@thinkpad>
-References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
- <20230325165217.31069-2-manivannan.sadhasivam@linaro.org>
- <ZCKrXZn7Eu/jvdpG@hovoldconsulting.com>
+        with ESMTP id S230511AbjC1Jjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:39:44 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536C05FF9;
+        Tue, 28 Mar 2023 02:39:33 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S8TEUR024888;
+        Tue, 28 Mar 2023 11:39:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=0RJ1bAOEsbrbBUbktgDCARu+ofitrNwEQZP29DHw0Xc=;
+ b=FclllhCUSri2Sw8fWEu0rOCbbZELP+Wy/xR6/0eWvq4Q/agWyfx2GZEh5kMzDX3xvo/W
+ /V/OA2zJQYmJvEiCVTuza6/33lH4ND65i75ZWVj36rHJvP15PLOM+2Vj4uOfmoE9RP2f
+ zxNkgrXmSVRCcf4skHXVmRofVhDg0Qn1wHhFHAf3JhBBWgEw3B9RC56LgO398QXP8cSD
+ oG0LCCT5jWKnk/hJoxi1ZVPbVWwg4xRu3g77ZkQihSuI/dC8sEAx9MxrH1XlON2RwADG
+ r8GSuebN4fW5SKtpY2ZpILEAsXULJ20g7c3rzSl3evTOoP2hV/wqU0mzm1NdJvHFCbq2 bw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pkvs4rhjk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Mar 2023 11:39:21 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DCE9C10002A;
+        Tue, 28 Mar 2023 11:39:20 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D2B1521160B;
+        Tue, 28 Mar 2023 11:39:20 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
+ 2023 11:39:20 +0200
+Message-ID: <30a9f919-ff6b-57cf-de34-e145a4474643@foss.st.com>
+Date:   Tue, 28 Mar 2023 11:39:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZCKrXZn7Eu/jvdpG@hovoldconsulting.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] ARM: dts: stm32: fix spi1 pin assignment on stm32mp15
+Content-Language: en-US
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux@rempel-privat.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230320171123.6263-1-alexandre.torgue@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230320171123.6263-1-alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,84 +73,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 10:54:53AM +0200, Johan Hovold wrote:
-> On Sat, Mar 25, 2023 at 10:22:13PM +0530, Manivannan Sadhasivam wrote:
-> > Add missing quirks for the USB DWC3 IP.
+On 3/20/23 18:11, Alexandre Torgue wrote:
+> Bank A and B IOs can't be handled by the pin controller 'Z'. This patch
+> assign spi1 pin definition to the correct controller.
 > 
-> This is not an acceptable commit message generally and certainly not for
-> something that you have tagged for stable.
+> Fixes: 9ad65d245b7b ("ARM: dts: stm32: stm32mp15-pinctrl: add spi1-1 pinmux group")
 > 
-> At a minimum, you need to describe why these are needed and what the
-> impact is.
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 > 
+> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> index a9d2bec99014..e15a3b2a9b39 100644
+> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> @@ -1880,6 +1880,21 @@
+>   		};
+>   	};
+>   
+> +	spi1_pins_b: spi1-1 {
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('A', 5, AF5)>, /* SPI1_SCK */
+> +				 <STM32_PINMUX('B', 5, AF5)>; /* SPI1_MOSI */
+> +			bias-disable;
+> +			drive-push-pull;
+> +			slew-rate = <1>;
+> +		};
+> +
+> +		pins2 {
+> +			pinmux = <STM32_PINMUX('A', 6, AF5)>; /* SPI1_MISO */
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>   	spi2_pins_a: spi2-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('B', 10, AF5)>, /* SPI2_SCK */
+> @@ -2448,19 +2463,4 @@
+>   			bias-disable;
+>   		};
+>   	};
+> -
+> -	spi1_pins_b: spi1-1 {
+> -		pins1 {
+> -			pinmux = <STM32_PINMUX('A', 5, AF5)>, /* SPI1_SCK */
+> -				 <STM32_PINMUX('B', 5, AF5)>; /* SPI1_MOSI */
+> -			bias-disable;
+> -			drive-push-pull;
+> -			slew-rate = <1>;
+> -		};
+> -
+> -		pins2 {
+> -			pinmux = <STM32_PINMUX('A', 6, AF5)>; /* SPI1_MISO */
+> -			bias-disable;
+> -		};
+> -	};
+>   };
 
-I can certainly improve the commit message. But usually the quirks are copied
-from the downstream devicetree where qualcomm engineers would've added them
-based on the platform requirements.
+Applied on stm32-next.
 
-> Also, why are you sending as part of a series purporting to enable
-> runtime PM when it appears to be all about optimising specific gadget
-> applications?
-> 
-
-It's not related to this series I agree but just wanted to group it with a
-series touching usb so that it won't get lost.
-
-I could respin it separately though in v2.
-
-> Did you confirm that the below makes any sense or has this just been
-> copied verbatim from the vendor devicetree (it looks like that)?
-> 
-
-As you've mentioned, most of the quirks are for gadget mode which is not
-supported by the upstream supported boards. So I haven't really tested them but
-for I assumed that Qcom engineers did.
-
-> The fact that almost none of the qcom SoCs sets these also indicates
-> that something is not right here.
-> 
-> > Cc: stable@vger.kernel.org # 5.20
-> > Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > index 0d02599d8867..266a94c712aa 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > @@ -3040,6 +3040,13 @@ usb_0_dwc3: usb@a600000 {
-> >  				iommus = <&apps_smmu 0x820 0x0>;
-> >  				phys = <&usb_0_hsphy>, <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
-> >  				phy-names = "usb2-phy", "usb3-phy";
-> > +				snps,hird-threshold = /bits/ 8 <0x0>;
-> > +				snps,usb2-gadget-lpm-disable;
-> 
-> Here you are disabling LPM for gadget mode, which makes most of the
-> other properties entirely pointless.
-> 
-> > +				snps,is-utmi-l1-suspend;
-> > +				snps,dis-u1-entry-quirk;
-> > +				snps,dis-u2-entry-quirk;
-> 
-> These appear to be used to optimise certain gadget application and
-> likely not something that should be set in a dtsi.
-> 
-
-I will cross check these with Qcom and respin accordingly.
-
-- Mani
-
-> > +				snps,has-lpm-erratum;
-> > +				tx-fifo-resize;
-> 
-> Same here.
-> 
-> >  				port {
-> >  					usb_0_role_switch: endpoint {
-> 
-> Johan
-
--- 
-மணிவண்ணன் சதாசிவம்
+Thanks.
+Alex
