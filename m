@@ -2,153 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC146CC740
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79EEE6CC6EA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232786AbjC1P6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 11:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56186 "EHLO
+        id S234028AbjC1PoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:44:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232748AbjC1P6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:58:45 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680A4187;
-        Tue, 28 Mar 2023 08:58:40 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32SE96Ek005933;
-        Tue, 28 Mar 2023 17:38:42 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=Z8sv+Rag3/oEhkaOzrRfMKQspA/vczhoJ6FwxnVe9qk=;
- b=ZWy2EYNzZACZcuNIXftc9K7FqR7+xxzyopAbLS/mUN0OsQv1BJdXEKbKsc70iX1mLciU
- eGnG7iTT3yHwOy7xeVBjXe0aHVLIAGf7VjNhSziXEUIXk4uG+YDhKo/fANa0SlpVkXuV
- ZflZ+cRhhzlvunvsnrYWgnxzvo/Yx9lnBhaYZF/Eby5vXnMFADK74hyMi9zd5vX0SKBH
- um9TgNPGHx8RbtuZdSBOXnyNYv+qB573QztYZOwuBbYWvPkqpFupRXV5bRwp78tQ2e1t
- hG3qExtnNyKWy+tC63IYssVNCvfqMB0D34zZeh1klqlcUgqYfuBsUDg+Lp/sSU0TCsZz NA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pk5xkjts3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 17:38:42 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 83F5B10002A;
-        Tue, 28 Mar 2023 17:38:41 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7D33A2194F6;
-        Tue, 28 Mar 2023 17:38:41 +0200 (CEST)
-Received: from localhost (10.201.20.168) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
- 2023 17:38:41 +0200
-From:   Valentin Caron <valentin.caron@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Valentin Caron <valentin.caron@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 6/6] ARM: dts: stm32: add uart nodes and uart aliases on stm32mp135f-dk
-Date:   Tue, 28 Mar 2023 17:37:23 +0200
-Message-ID: <20230328153723.498672-7-valentin.caron@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230328153723.498672-1-valentin.caron@foss.st.com>
-References: <20230328153723.498672-1-valentin.caron@foss.st.com>
+        with ESMTP id S233169AbjC1Pns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:43:48 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D174BEFA7;
+        Tue, 28 Mar 2023 08:42:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680018170; x=1711554170;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=J7Dc257NEOJMhAqfms5At2NFhQkyHhktedAZR/Cilfk=;
+  b=Z0svZOSUfaQkj0xmeMG7KmN2DoDGPkem03yzsqcOvytR+Hk2ibERLxuH
+   Fy8pQRupX4NSBSKdS/6s3U5V0ROwYqW8gpSDD2pVTBeZ6zjtSgziN1b9Q
+   qGr1KYKvLuvBfvCLApT1XDwWNXK1WwtO5hdqdlQzxY1YRpBu5Ee+dnFtW
+   w6UiPEHzGFqtCpaBGbqI8J9MLBAsHgN/3CY2YpSXji83Lq2BnNLi0Q7zu
+   NR15U0sAOFq08QRNDte/LarPJYKPz0/a/0uQ6dO68TxwTtE0nPSFGCIJK
+   Z0i3KmVI9OgoMxpOW0o7TXwrlTeFOFYkaejw5qFbjzUesY1ziK+dNGMeG
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339326987"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; 
+   d="scan'208";a="339326987"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2023 08:42:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="858139636"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; 
+   d="scan'208";a="858139636"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 28 Mar 2023 08:42:10 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1phBSc-000IfH-0O;
+        Tue, 28 Mar 2023 15:42:10 +0000
+Date:   Tue, 28 Mar 2023 23:41:19 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, schung@nuvoton.com,
+        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v6 06/12] dt-bindings: arm: Add initial bindings for
+ Nuvoton platform
+Message-ID: <202303282310.bOWEkwv1-lkp@intel.com>
+References: <20230328021912.177301-7-ychuang570808@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.168]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-28_02,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328021912.177301-7-ychuang570808@gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update device-tree stm32mp135f-dk.dts to add usart1, uart8, usart2
-and uart aliases.
+Hi Jacky,
 
-- Usart2 is used to interface a BT device, enable it by default.
-- Usart1 and uart8 are available on expansion connector.
-  They are kept disabled. So, the pins are kept in analog state to
-  lower power consumption by default or can be used as GPIO.
-- Uart4 is used for console.
+Thank you for the patch! Perhaps something to improve:
 
-Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
----
- arch/arm/boot/dts/stm32mp135f-dk.dts | 42 +++++++++++++++++++++++++++-
- 1 file changed, 41 insertions(+), 1 deletion(-)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on clk/clk-next linus/master pza/reset/next v6.3-rc4 next-20230328]
+[cannot apply to pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-index c40686cb2b9a..f0900ca672b5 100644
---- a/arch/arm/boot/dts/stm32mp135f-dk.dts
-+++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-@@ -19,6 +19,13 @@ / {
- 
- 	aliases {
- 		serial0 = &uart4;
-+		serial1 = &usart1;
-+		serial2 = &uart8;
-+		serial3 = &usart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
- 	};
- 
- 	memory@c0000000 {
-@@ -267,8 +274,41 @@ timer@13 {
- };
- 
- &uart4 {
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "sleep", "idle";
- 	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&uart8 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart8_pins_a>;
-+	pinctrl-1 = <&uart8_sleep_pins_a>;
-+	pinctrl-2 = <&uart8_idle_pins_a>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "disabled";
-+};
-+
-+&usart1 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&usart1_pins_a>;
-+	pinctrl-1 = <&usart1_sleep_pins_a>;
-+	pinctrl-2 = <&usart1_idle_pins_a>;
-+	uart-has-rtscts;
-+	status = "disabled";
-+};
-+
-+/* Bluetooth */
-+&usart2 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&usart2_pins_a>;
-+	pinctrl-1 = <&usart2_sleep_pins_a>;
-+	pinctrl-2 = <&usart2_idle_pins_a>;
-+	uart-has-rtscts;
- 	status = "okay";
- };
- 
+url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230328021912.177301-7-ychuang570808%40gmail.com
+patch subject: [PATCH v6 06/12] dt-bindings: arm: Add initial bindings for Nuvoton platform
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/d023e63cdc203398c5db3c81ca76d34d22e23fe5
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
+        git checkout d023e63cdc203398c5db3c81ca76d34d22e23fe5
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303282310.bOWEkwv1-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/arm/npcm/*
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
