@@ -2,133 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65EF56CBD60
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 254A76CBD65
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231927AbjC1LVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 07:21:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32856 "EHLO
+        id S232377AbjC1LWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 07:22:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbjC1LVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:21:54 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB827A8A;
-        Tue, 28 Mar 2023 04:21:51 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id eh3so48068669edb.11;
-        Tue, 28 Mar 2023 04:21:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680002510;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/uV8dWinN4UoTmw9006A8Yi8Nmf//s38L4m1uuCw/6o=;
-        b=Z8IWeCmXyimOyR61VNL6lafjFaK/PgrLtpeBX+Ym3xj3VI17fe7f7cJDSch1CZph2f
-         fzg7PVGr5Iy2ytybSxI7+vrm/1PLfFfPByUuV0lOasqgwTscpRq0xjpqVgL2WTcyZ/QC
-         AB/vtbBDObUQOF5fFzVtBeZEmS+JoYVq34EGdgE5zdFfhm+MmPq0J/KN0mi+eOJBDAKA
-         hmfPx5NG3tPrDnzZDPrqlaC85mlncNponnV/NZ1X/MMXfjxBg3U1PcwurJ3rkCp+lG/3
-         1K8iBq04OB2kozVcFyASya30U+ISjv/0FRoRI+BCyoQx9HCSFpDFikGLosMMJlDoQKPA
-         pBAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680002510;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/uV8dWinN4UoTmw9006A8Yi8Nmf//s38L4m1uuCw/6o=;
-        b=6wujYzTPYfoKEQDncohuTUO+b2HCUCPQ3tKU4y2gW5LaZsYXYW/YPc01tAoLfSeghu
-         yMsRjwJryTPhY8bSRo5rCMnLd9M+VdOZqwl/ALrI2McuIGqlXamcmxpit22gGu6z23Gq
-         VYS1sX7L0oV6zEsJYq6C8hrCX1hY0QGExbKt5MINbH3x9IASsfJL09nMsYR40wuZ5pLZ
-         3Vql1JsQSHbpFrsaWQUj/kn9Gog2UmFU9OUUqqBorEnedypu7qPEFbL0TVWwDMQiATUl
-         v75ZHPyDcVLr7jO3u9zB195igHvGV4vLdAceq/LIS7Bk7hyAA/ku8vXhQbm+BthisxYw
-         PS+A==
-X-Gm-Message-State: AAQBX9e3HMWuG1O4/I0KJvBSsN8wXix0uHii/Bpzlpr0wKeM2Wjqk3dQ
-        VthSgnM9IosOeB43MNwpfFvXvz1u/Uw=
-X-Google-Smtp-Source: AKy350YNJqW2Fdv328B0CnIhA6U3LZ8U501/lms78tE7OXPrOZ21aK+VITMTCPn3H0WQ8FFMnVcd9w==
-X-Received: by 2002:a17:906:4b08:b0:8b1:7de3:cfaa with SMTP id y8-20020a1709064b0800b008b17de3cfaamr16262164eju.3.1680002509658;
-        Tue, 28 Mar 2023 04:21:49 -0700 (PDT)
-Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k19-20020a508ad3000000b00501c0eaf10csm12868133edk.40.2023.03.28.04.21.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 04:21:49 -0700 (PDT)
-Date:   Tue, 28 Mar 2023 13:21:47 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231374AbjC1LWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:22:34 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 501567EF4;
+        Tue, 28 Mar 2023 04:22:22 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxJAztzSJkNA8TAA--.28937S3;
+        Tue, 28 Mar 2023 19:22:21 +0800 (CST)
+Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxOL3kzSJkalgPAA--.9160S2;
+        Tue, 28 Mar 2023 19:22:18 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] Fix sound on ASUS Transformers
-Message-ID: <ZCLNy7jB1H6eClwf@orome>
-References: <20230327150219.13636-1-clamor95@gmail.com>
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v4 0/2] spi: loongson: add bus driver for the loongson spi
+Date:   Tue, 28 Mar 2023 19:22:08 +0800
+Message-Id: <20230328112210.23089-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zp4bjfirGDraf1PA"
-Content-Disposition: inline
-In-Reply-To: <20230327150219.13636-1-clamor95@gmail.com>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxOL3kzSJkalgPAA--.9160S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxWFy3Zr48trWrJw4UuFW5Awb_yoW5Gry3pF
+        43Cas8Kr4DJr4xArs3JayUuFyfZ3yrXr9rXFWaq398uryDZ34UZF4vgF4YvFsrAFnIvFyx
+        XFyvgrs5Ga4UZw7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b78Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l
+        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+        vE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+        r2IYc2Ij64vIr41l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026x
+        CaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_
+        JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r
+        1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_
+        Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8Jr
+        UvcSsGvfC2KfnxnUUI43ZEXa7IU1tl1PUUUUU==
+X-Spam-Status: No, score=-0.0 required=5.0 tests=SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Loongson platform support spi hardware controller and this series patch
+was to add spi driver and binding support.
 
---zp4bjfirGDraf1PA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Change in v2:
+		1. This [PATCH v2 1/2] dt-bindings patch need depend on clk patch:
+	 	   https://
+		   lore.kernel.org/all/20230307115022.12846-1-zhuyinbo@loongson.cn/
+		2. Remove the clock-names in spi yaml file.
+		3. Add "loongson,ls7a-spi" compatible in spi yaml file.
+		4. Add an || COMPILE_TEST and drop && PCI then add some CONFIG_PCI
+		   macro to limit some pci code.
+		5. Make the spi driver top code comment block that use C++ style.
+		6. Drop spi->max_speed_hz.
+		7. Add a spin_lock for loongson_spi_setup.
+		8. Add a timeout and cpu_relax() in loongson_spi_write_read_8bit.
+		9. Add spi_transfer_one and drop transfer and rework entire spi
+		   driver that include some necessary changes.
+		10. Use module_init replace subsys_initcall.
+		11. About PM interface that I don't find any issue so I don't add
+		    any changes.
+Change in v3:
+		1. This [PATCH v3 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Drop the unused blank line in loongson,ls-spi.yaml file.
+		3. Replace clock minItems with clock maxItems in yaml file.
+		4. Separate spi driver into platform module, pci module and core
+		   module.
+		5. Replace DIV_ROUND_UP with DIV_ROUND_UP_ULL to fix compile error
+		   "undefined reference to `__aeabi_uldivmod'" and  "__udivdi3 undefined"
+		   that reported by test robot.
+		6. Remove the spin lock.
+		7. Clear the loongson_spi->hz and loongson_spi->mode in setup to fixup
+		   the issue that multiple spi device transfer that maybe cause spi was
+		   be misconfigured.
+Change in v4:
+		1. This [PATCH v4 1/2] dt-bindings patch need depend on clk patch:
+		   https://
+		   lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+		2. Add "#include <linux/io.h>" in spi-loongson-core.c for fix the compile
+		   issue which devm_ioremap no declaration.
+		3. Add "EXPORT_SYMBOL_GPL(loongson_spi_dev_pm_ops)" in
+		   spi-loongson-core.c for fix the compile issue which
+		   loongson_spi_dev_pm_ops undefined.
 
-On Mon, Mar 27, 2023 at 06:02:17PM +0300, Svyatoslav Ryhel wrote:
-> - update dts bindings
->=20
-> ---
-> Changes from v3
-> - fixed typo in wm8903 audio-routing
->=20
-> Changes from v2
-> - dropped already picked patches
-> - adjustments in binding updates (tf101 and tf300t require wm8903
->   codec patch to properly work with internal mic)
->=20
-> Changes from v1
-> - fm34 dropped for re-work
-> - quirk for headset detection and rt5631 bringup splitted
-> - minor adjustments in binding updates
-> - improvement of rt5631 rate asignment
-> ---
->=20
-> Svyatoslav Ryhel (2):
->   ARM: tegra: transformers: update WM8903 sound nodes
->   ARM: tegra: transformers: bind RT5631 sound nodes
+Yinbo Zhu (2):
+  dt-bindings: spi: add loongson spi
+  spi: loongson: add bus driver for the loongson spi controller
 
-Applied, with a slightly modified commit message on the first patch.
+ .../bindings/spi/loongson,ls-spi.yaml         |  43 +++
+ MAINTAINERS                                   |  10 +
+ drivers/spi/Kconfig                           |  31 ++
+ drivers/spi/Makefile                          |   3 +
+ drivers/spi/spi-loongson-core.c               | 304 ++++++++++++++++++
+ drivers/spi/spi-loongson-pci.c                |  89 +++++
+ drivers/spi/spi-loongson-plat.c               |  66 ++++
+ drivers/spi/spi-loongson.h                    |  41 +++
+ 8 files changed, 587 insertions(+)
 
-Thanks,
-Thierry
+-- 
+2.20.1
 
---zp4bjfirGDraf1PA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQizcsACgkQ3SOs138+
-s6Gz4Q/+NOMS5FzvQg5WA+9YZlqgugF7iYmC9iLdDMeRQDBJOH26CNTS6JpYqtxa
-oilauC4jeuVhGVRFQtoESm7cplU0nUdy4tDbdiT46/iLaDXRk+0YXAbo7EOgJoLv
-mm4SmUDNIW5QrAKrgQkQNXCVStSI3c/eaoGoI4/LW4y69LeYUwRz3jmNiPUnFHE7
-MLrYEYqTcWU3eoQeyEF6FZTIkZLob7z08roTRVUEmVa0JPwmZYRZ8ASCGF5X3UOw
-QbJcKTwFoEf9PFBj7mZCWj6cm63crA4+yLAKyvnqImKBbX9XXXw+DoxuzMq7LSCV
-c4ANiAIwngwRbwoGsvY/KCkL78jG3TRtqCtMD4yGowlrL1Q3aIt29fWJ9J+RpRxe
-8LVi5zNDf5eZ1EYSwNhWybJLjzslmC9ihS8aDZg54zXttCcDoXugGlvUd/PRi2oe
-lppGr1c/fC01Tkzyniq2PlnTW2EnfJXdYwfOusJ9z/IbV+UwkKyeiElc0DA4Yq9E
-M+qfj9r/lsjQRiE0yfNx6t+uexZV5Voqw+A8H5P22giNbs0FVHP+cINwJPOe2WrB
-pNgxv+1xgq0oJSrSJ8bXKyc1dMmaUZa1tzJYEjuY37eNccdgaZWvg/FuTnmfb2O+
-VmdOOTsJWZ2cZ11Nz5u/h+RTEdfLuckssJ83pndXlugvSNIIe4I=
-=II9E
------END PGP SIGNATURE-----
-
---zp4bjfirGDraf1PA--
