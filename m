@@ -2,100 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF7526CC114
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2BD36CC134
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232851AbjC1NgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34406 "EHLO
+        id S232673AbjC1NmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232776AbjC1NgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:36:10 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DB072713;
-        Tue, 28 Mar 2023 06:35:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S232842AbjC1NmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:42:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86CE67A88;
+        Tue, 28 Mar 2023 06:41:53 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A4483CE1D0B;
-        Tue, 28 Mar 2023 13:35:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC6ACC4339C;
-        Tue, 28 Mar 2023 13:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680010516;
-        bh=k7B50eOUaIqO0y0tx+624NKxyiYI62MTUuFy5J3oNR4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oFgEPrvuCVNG1w1Ymg3p8HqRstdy/Y66hPoy0MHI/dmhNuf2RvaqVn+3NrixP7Ho5
-         wanGMkr3pqtcjBSM0BbqOGPz7UrGCyraevUnYbCTOsx3V/w7KZrYvJ1GMM+b8A3LSM
-         giAdwHthr2jMeZ8WwdDR3JV4li1FrgHrk8ig8mPlJGYOyYpOnTMOBJln+te1FDqKia
-         OnlvRm4a8cCH3t6rOEFlgTdAGn4gayvZFaeQlf1A+Bt/QelvyxQR2ms0hJ6fExA9O3
-         32OZRgsO0wsTW4qDa0zoBj4guHe3cS+JVod+csfJMeWlAFFAj83bvmaujfjoCY+sRl
-         APO0yNfRO82yA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ph9U1-0008Se-5W; Tue, 28 Mar 2023 15:35:29 +0200
-Date:   Tue, 28 Mar 2023 15:35:29 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
-        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] usb: dwc3: qcom: Allow runtime PM
-Message-ID: <ZCLtITAsPiCnmndQ@hovoldconsulting.com>
-References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
- <20230325165217.31069-6-manivannan.sadhasivam@linaro.org>
- <ZCK3fGkgowvAd6Dw@hovoldconsulting.com>
- <20230328100501.GD5695@thinkpad>
- <ZCLbCJi80AKyVgnq@hovoldconsulting.com>
- <20230328125705.GG5695@thinkpad>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3D5286603152;
+        Tue, 28 Mar 2023 14:41:51 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680010911;
+        bh=mdZaeHtWUcUws+H6KHaUGd/J+/ss4cO3a1++cudlA0E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LZG/eBD8utsG50ZHCgvDv2s5UltJ6GMYEzujJ260sZbFSgxCRB/ndUNYo8UTgpOOL
+         5Cc4T7oYgSQBhbd/KU+xGIwgwNj+ikhxH1KEL/jyD5KGCnGwEjxK/dL/gkCM1YcCiu
+         z0/ido9OaQyUi2aogP5cMgAurotCLPcr4+ay34Pen7CFJViiovacmbEuNv74jRn7Zs
+         OX2nx2h9AG/TjxUkH/3fPUP5eZZ/+lS71Uvmw8cG7Qiyc1TxhAbGXarYODvSfaG8vK
+         /NemcTJ5C6JSYBnZuN76G1gsJd7dWSklXXKPbk5+rRkfI6kLgYDUolu+Xanq10LbL3
+         KizIBlytgiuNg==
+Message-ID: <334089fd-f0e8-bf63-5100-d8632c478ccc@collabora.com>
+Date:   Tue, 28 Mar 2023 15:41:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328125705.GG5695@thinkpad>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: mediatek: deprecate custom
+ drive strength property
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230327-cleanup-pinctrl-binding-v1-0-b695e32e4f2e@baylibre.com>
+ <20230327-cleanup-pinctrl-binding-v1-1-b695e32e4f2e@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230327-cleanup-pinctrl-binding-v1-1-b695e32e4f2e@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=0.2 required=5.0 tests=DKIM_INVALID,DKIM_SIGNED,
+        NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 06:27:05PM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Mar 28, 2023 at 02:18:16PM +0200, Johan Hovold wrote:
-
-> > > > > @@ -948,6 +948,8 @@ static int dwc3_qcom_remove(struct platform_device *pdev)
-> > > > >  	struct device *dev = &pdev->dev;
-> > > > >  	int i;
-> > > > >  
-> > > > > +	pm_runtime_get_sync(dev);
-> > > > 
-> > > > This call needs to be balanced. But this is a fix for a bug in the
-> > > > current implementation that should go in a separate patch.
-> > > 
-> > > Ok. For balancing I could add pm_runtime_put_noidle() before pm_runtime_disable.
-> > 
-> > You should do it after disabling runtime pm.
+Il 28/03/23 15:06, Alexandre Mergnat ha scritto:
+> Deprecate mediatek,drive-strength-adv which shall not exist, that was an
+> unnecessary property that leaked upstream from downstream kernels and
+> there's no reason to use it.
 > 
-> May I know why?
+> The generic property drive-strength-microamp should be used instead.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   .../devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml      | 8 ++++++--
+>   .../devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml      | 6 +++++-
+>   2 files changed, 11 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
+> index c30cd0d010dd..b82a066b91ec 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
 
-The usage counter should be balanced after disabling runtime PM so that
-there is no window where you could get a racing suspend request.
+Thanks for doing MT8183!!!
 
-> > > > > +
-> > > > >  	device_remove_software_node(&qcom->dwc3->dev);
-> > > > >  	of_platform_depopulate(dev);
-> > > > >  
-> > > > > @@ -960,7 +962,6 @@ static int dwc3_qcom_remove(struct platform_device *pdev)
-> > > > >  	dwc3_qcom_interconnect_exit(qcom);
-> > > > >  	reset_control_assert(qcom->resets);
-> > > > >  
-> > > > > -	pm_runtime_allow(dev);
-> > > > >  	pm_runtime_disable(dev);
-> > > > >  
-> > > > >  	return 0;
+> @@ -110,8 +110,13 @@ patternProperties:
+>             drive-strength:
 
-Johan
+..snip..
+
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
+> index 4b96884a1afc..347f533776ba 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
+> @@ -91,8 +91,13 @@ patternProperties:
+>   
+>             input-schmitt-disable: true
+>   
+> +          drive-strength-microamp:
+> +            enum: [125, 250, 500, 1000]
+> +
+>             mediatek,drive-strength-adv:
+> +            deprecated: true
+
+In the case of MT8365, since there's *no* devicetree using this property, *at all*,
+I think you can even just entirely remove this block, as that should not be
+considered an ABI breakage in that case.
+
+Krzysztof, can you please confirm?
+
+Cheers!
+Angelo
