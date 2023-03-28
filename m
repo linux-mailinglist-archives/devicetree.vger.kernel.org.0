@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C216CBAEE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C666CBAFA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:31:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232324AbjC1J3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60324 "EHLO
+        id S232604AbjC1J26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:28:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232556AbjC1J2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:28:49 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17CC36582
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:28:35 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id cm5so1692201pfb.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:28:35 -0700 (PDT)
+        with ESMTP id S232502AbjC1J2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:28:50 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9815BA5
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:28:39 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id a16so10239980pjs.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679995714;
+        d=linaro.org; s=google; t=1679995719;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=45NVBVpYiF52cvaoHl0w4JJTLlfK1ZDLXhzA7w3zmPk=;
-        b=TLDzLsHpth8IUGtp3w8bjw8rLsSWIxS8ABFxLrfGTYx0r+LNV2lWq3Fc5RoKn9h+9K
-         M2xGXjBXY74DTbX9FAQC+vVrV23FZd8lUp9rJnS/6Bw4y0H4h08J9TkxH464A2r2yjD7
-         M8Io1MUbk/JQRJiR3osXoJTbREMOXA7Nlgtp4cEkO99jT1l/psUYQL5rSm0sM4azhUhg
-         C/Hr/ya9ZTamCOqwKgHcEmP4zX3sKvnZEkw/0TGL54k6JcnreNLQ8Q6NqDMaggzrtHsm
-         49jMmjt5yb+uCMSWPQsscFssXWWa9AqhNbgCSVrAjva0uNJjoCUhUeZUZzjAaatiWb/J
-         HiYQ==
+        bh=ZX8cxV4gmi38o9Pi6mmNL+xnFc7tlNvHJgTN5N6z5i8=;
+        b=apzKnvIitSI/0WTFCPr0IhmcMljZeuRif+xWlXzw//hp7biuZMW+mEyGg8x0t72cer
+         /T8HMiCeyZ0338n7h8aiKrGSX5fCGUNfA9xc/PLkwcziR9YOnbc1iqWaIZJ972AVMNGS
+         4vSDNsV3xIDCKYwtWwdNc9hZP/PuMySyy/OqdLHtcXwbgjoknFlmy4x3VkcLZyFMHbqf
+         PIkN55HNJcemfSj3WkfFdGHhiaUNUw/NTzim0J25RpQkeK3HCUg921fR5QMjVCgB7JUp
+         W3Uqf+ERgD5Tld4AxO33d5J/CYAcw/+Bnj8sY6KGmtmXFsR5cAgu8Nxzy/BOKFXyi6uS
+         23WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679995714;
+        d=1e100.net; s=20210112; t=1679995719;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=45NVBVpYiF52cvaoHl0w4JJTLlfK1ZDLXhzA7w3zmPk=;
-        b=hFu0fN90yzdW0E3X4YK3kePkMNjIkzfw9qmYfteLjOF9yisV0cTLtM/iYChqb8s4Bx
-         8zvrydrO1aY0FuGjgAr5VRP+pv6P4ag+Ao32xUEf+4Ub2W3NuGqMBgs9SlLUxdgFxftI
-         dN6w8IcbKgwxd0I8CmFz/C4C0bKVV9BcC4Wv0bjmpA71byGH853e9LJRMid1tsp1vMTv
-         d8pGK5Ai02bLOVarqKZNeeqMlIjye/HpY8toHYCQJqxhl3+h14T2+g6C/3j0XMe69qFs
-         bxefaDBN4hChclKMh8ft8TKm3ze1+vuzdmLiijhZf0nDZYctw5PTpIt0FfuQ494W2m7C
-         kR/Q==
-X-Gm-Message-State: AAQBX9cswfQYI1c0gMPbSLaK4zMVZInGBZbCoCG8ZbtAQ7wxUAKiu8TA
-        N/bCWq5h0n+xtowNlrVexQNbtw==
-X-Google-Smtp-Source: AK7set/vKYNxYmVH9ZWrURDkGe8cq6scklByutM7pu/CGFllb/CT0afm/3FyjaEEREiVQtHevi8R/A==
-X-Received: by 2002:a62:7b95:0:b0:625:ce06:e58 with SMTP id w143-20020a627b95000000b00625ce060e58mr14520157pfc.17.1679995714543;
-        Tue, 28 Mar 2023 02:28:34 -0700 (PDT)
+        bh=ZX8cxV4gmi38o9Pi6mmNL+xnFc7tlNvHJgTN5N6z5i8=;
+        b=CnD4MkIdyd2SPyBFyE7B5aAu4s/lxurA+/6VbbYTHwxPbJTjBv7zKPT8sFVTyJOrRm
+         oowj0WjRxCCXpsOyl0yR34/pizioYnTFwgscb/aauLUaN93coGBz2/5uPDdFqjnubGO6
+         ChhE/kirNQgxHCk7+SpoyhCPcxtOYZYeZZM+sfd3uZ9dKuGfTO6eIqjWbtRIEeer0gNZ
+         MAkOOiKncadYkT2SRhVUlpnVE98dt5DtwIokpDFS+0lHMg8WKr0Fxqe/7U5mCS6xMz7B
+         ivuZUTMJGYYKy7WwU1kojs9UrvUhAwIoNpYmzHUeBzy8BW1LXbbmAlpMfAVGCUV82ysx
+         EXxw==
+X-Gm-Message-State: AO0yUKUDuiZ+GohNTkyvQ1+EjEsGWf52zFoYDsm9+1r2ibqLocw84qh7
+        QbmLau3dixZt5gcTd26i14vevQ==
+X-Google-Smtp-Source: AK7set8smGMl8U9nMCJ3GwkZbTsYCWJDbk3rI8HmACPZpKWp77dqK8lAMva6k047wkQUMjhCNoDWRg==
+X-Received: by 2002:a05:6a20:2a29:b0:db:9131:dd7c with SMTP id e41-20020a056a202a2900b000db9131dd7cmr12890996pzh.39.1679995719309;
+        Tue, 28 Mar 2023 02:28:39 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:1c61:449a:10df:e7c1:9bdd:74f0])
-        by smtp.gmail.com with ESMTPSA id a24-20020aa78658000000b005a8bc11d259sm21261518pfo.141.2023.03.28.02.28.30
+        by smtp.gmail.com with ESMTPSA id a24-20020aa78658000000b005a8bc11d259sm21261518pfo.141.2023.03.28.02.28.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 02:28:34 -0700 (PDT)
+        Tue, 28 Mar 2023 02:28:39 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
@@ -57,9 +57,9 @@ Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
         krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
         konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
         rfoss@kernel.org, neil.armstrong@linaro.org
-Subject: [PATCH v3 2/9] dt-bindings: dma: Increase iommu maxItems for BAM DMA
-Date:   Tue, 28 Mar 2023 14:58:08 +0530
-Message-Id: <20230328092815.292665-3-bhupesh.sharma@linaro.org>
+Subject: [PATCH v3 3/9] dt-bindings: qcom-qce: Fix compatibles combinations for SM8150 and IPQ4019 SoCs
+Date:   Tue, 28 Mar 2023 14:58:09 +0530
+Message-Id: <20230328092815.292665-4-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20230328092815.292665-1-bhupesh.sharma@linaro.org>
 References: <20230328092815.292665-1-bhupesh.sharma@linaro.org>
@@ -74,31 +74,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since SM8450 BAM DMA engine supports five iommu entries,
-increase the maxItems in the iommu property section, without
-which 'dtbs_check' reports the following error:
+Currently the compatible list available in 'qce' dt-bindings does not
+support SM8150 and IPQ4019 SoCs directly, leading to following
+'dtbs_check' error:
 
-  arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb:
-    dma-controller@1dc4000: iommus: is too long
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb:
+  crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,sm8150-qce', 'qcom,qce'] is too long
+	['qcom,sm8150-qce', 'qcom,qce'] is too short
+
+Fix the same.
 
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-index 624208d20a34..5469c9c2a1df 100644
---- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-@@ -46,7 +46,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+index e375bd981300..90ddf98a6df9 100644
+--- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
++++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+@@ -24,6 +24,12 @@ properties:
+         deprecated: true
+         description: Kept only for ABI backward compatibility
  
-   iommus:
-     minItems: 1
--    maxItems: 4
-+    maxItems: 5
- 
-   num-channels:
-     $ref: /schemas/types.yaml#/definitions/uint32
++      - items:
++          - enum:
++              - qcom,ipq4019-qce
++              - qcom,sm8150-qce
++          - const: qcom,qce
++
+       - items:
+           - enum:
+               - qcom,ipq6018-qce
 -- 
 2.38.1
 
