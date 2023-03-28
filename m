@@ -2,234 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0D36CB485
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 05:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 973856CB4A6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 05:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231587AbjC1DJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 23:09:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55470 "EHLO
+        id S232354AbjC1DM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 23:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjC1DJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 23:09:14 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498212128
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 20:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1679972906;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DF8xiGEDG2aydgSMMjZ0jG6716l6RkLPMVKpPTgA1LU=;
-        b=EnH2t3iSn0oj/4pKz0maZmTbKodkXGS0IJ/UmDdMgbO6qHECqA379k5hhb6YUPzuIQ7f/Z
-        uNhvjZoKlCB6HqvYZJEUBlVkirW+4cvvmxyuX4i/rtovj6uw/WLBJdJUz2Z5yfDlrcIdC0
-        RvDDdsEeqkj7XvSpMegAbOEH/OoIyrQ=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-206-nOmUR1DEMtC-qxGxzgA9Tw-1; Mon, 27 Mar 2023 23:08:24 -0400
-X-MC-Unique: nOmUR1DEMtC-qxGxzgA9Tw-1
-Received: by mail-wm1-f72.google.com with SMTP id bi27-20020a05600c3d9b00b003ef6ee937b8so2362972wmb.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 20:08:24 -0700 (PDT)
+        with ESMTP id S230431AbjC1DM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 23:12:58 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660A7A6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 20:12:55 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id i22so7883387uat.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 20:12:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1679973174;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NwOES1uov/pxVLowAE7Sgh3FPfyIsRDoqEMp2uagMQI=;
+        b=NgLG8Q5l9naxBa4Jf7nYrLS8DevbrfmEMMiDB6xIjXmdvmxfcmHG1fu7YA6jdXBu5a
+         I/PLOK860EliMqfH52D0rDFLicN/3jKe4r31PEmIx2OdxRR+0T9OZ962PmLqA7e0KKje
+         CDwaaqQm9fEDg1oG6tSD/I8GzJu/l5G/I1sNI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679972903;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20210112; t=1679973174;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DF8xiGEDG2aydgSMMjZ0jG6716l6RkLPMVKpPTgA1LU=;
-        b=i9KxpkbNZq9bFU5hPV+X7b5AOAL9danW+TGa8ICvQpiavqXLY0Omz2edAD0ncXSIIp
-         +KdnliYo6fTMRmN2eDUajkqC0L4kJcPzpV9G6VzzgoR7LA0F3WaJY3uICrLue2Pc8/5C
-         i/fGFchUl6/NUoe280driW21ukFZqrAslhgnkQqqx7UYSBkFG9ysYP2TZmpzzhIxWlmf
-         kKKFxFXekvSJ9Hwfl0JRnhoIB2fqfnOmFcZ6YGwiRgjuDKetd9g/W6PU3bOdOFhjkqBx
-         7FbkW4tasScLVDRq+quExZJ+Fx42l7SG8cgb13+cgslGgKjtSZFpOtTmpvJDGPP6t4Te
-         2ElA==
-X-Gm-Message-State: AAQBX9dBvtoOH51Tichmbja0tfB0hvZnilc+UIqh5aoK3fZzlrMLnSsD
-        JhOEsOa/D2zuRuL1pjihoxdN3G6Jr/v094cIZW/DBfesnJTrkk2hJuSI+Aa5WrlWEpLD9j+R/cO
-        FkFsfQ1FY3dgqcLkH5L1mkA==
-X-Received: by 2002:adf:f1c3:0:b0:2ce:adbf:cb14 with SMTP id z3-20020adff1c3000000b002ceadbfcb14mr11653874wro.28.1679972903648;
-        Mon, 27 Mar 2023 20:08:23 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZKIAjbXHGpog35RyWxzgmMXVcD6mNpoeRHryb054olGh4cgVbvxNpHT37A2iqHNRx4L23JiQ==
-X-Received: by 2002:adf:f1c3:0:b0:2ce:adbf:cb14 with SMTP id z3-20020adff1c3000000b002ceadbfcb14mr11653856wro.28.1679972903250;
-        Mon, 27 Mar 2023 20:08:23 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id d10-20020adfe88a000000b002c70e60abd4sm26534411wrm.2.2023.03.27.20.08.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Mar 2023 20:08:22 -0700 (PDT)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-Cc:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        linux-kernel@vger.kernel.org,
-        Robert Mader <robert.mader@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Martijn Braam <martijn@brixit.nl>,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: rk3399-pinephone-pro: Add internal
- display support
-In-Reply-To: <20230327194518.qkm5qgap6vkivpeg@core>
-References: <20230327074136.1459212-1-javierm@redhat.com>
- <20230327130147.wgxl2qayhzsi2xak@core>
- <87wn32rynm.fsf@minerva.mail-host-address-is-not-set>
- <1924921.PYKUYFuaPT@diego>
- <87mt3yrwzo.fsf@minerva.mail-host-address-is-not-set>
- <20230327174855.xpxrdfldqcxk463r@core>
- <87jzz2rrfr.fsf@minerva.mail-host-address-is-not-set>
- <20230327194518.qkm5qgap6vkivpeg@core>
-Date:   Tue, 28 Mar 2023 05:08:21 +0200
-Message-ID: <87a5zxshcq.fsf@minerva.mail-host-address-is-not-set>
+        bh=NwOES1uov/pxVLowAE7Sgh3FPfyIsRDoqEMp2uagMQI=;
+        b=6di9ao/DgmpDjRS3S7qwYQWkbCyUZ2icmsvd0QeRgas5gazgAY8b2lT3ajyyjzg8Pm
+         I/u5wK3YgLbzeF5sopps9Ol4JcMghyWgCV4he2WhSI6ol2RhoRPcKN6Dcw1218SvASA3
+         amlUNVeFViXIj/fHnfZNUTL/cu5e/I9XHINh8p7/1QnSxEg/OyNNn+38U7CmF+FRcPWc
+         IIE+hPasVa4EN5o2MPD6GFGGZ7BWhQaSRVJe4i9RJhUDd8lDfFK1ZHhhdUdMEGfEncOS
+         jo0OIako792aDQQLWo6yxsl2z5BAAf/QPfAW60f70nEQhzSMbjTz7kymG7B3r5RGfFtl
+         R7KQ==
+X-Gm-Message-State: AAQBX9dGZ/zFN+/5stBbLmcY72kabSC0TWrtbQDCDH9xAfPf05Faj3Fy
+        2/6urNDLAiFUcn+pNjOxIA21hhIdnmk6sqXQupJJKQ==
+X-Google-Smtp-Source: AKy350bTe0q20Y1kFa3RqGcrtmmaMcfvywJnI4v6r/ZKEb+aF8/ujyJQ/dovvRsfrWL510XzD2Ai4MZ3KVikA5Tw/BY=
+X-Received: by 2002:a05:6130:3a9:b0:68d:6360:77b with SMTP id
+ az41-20020a05613003a900b0068d6360077bmr10737949uab.1.1679973174489; Mon, 27
+ Mar 2023 20:12:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
+ <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
+ <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
+ <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com> <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com>
+In-Reply-To: <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 28 Mar 2023 11:12:43 +0800
+Message-ID: <CAGXv+5GGO76H9Z-X=3nhtmSyp7uhuUF4DE0T527M5z+SBX482Q@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
+To:     Balsam CHIHI <bchihi@baylibre.com>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ond=C5=99ej Jirman <megi@xff.cz> writes:
-
-> On Mon, Mar 27, 2023 at 08:15:52PM +0200, Javier Martinez Canillas wrote:
->> Ond=C5=99ej Jirman <megi@xff.cz> writes:
-
-[...]
-
->> > Just because something is in my tree doesn't mean it's mine, or that I=
- reviewed
->> > it in detail and prepared it for upstreaming, or that I'm interested in
->>=20
->> Thanks for the clarification. Because the patch had your authorship I
->> wrongly assumed that came from you. Sorry about the confusion.
+On Tue, Mar 28, 2023 at 8:21=E2=80=AFAM Balsam CHIHI <bchihi@baylibre.com> =
+wrote:
 >
-> Ever since base DT support for Pinephone Pro was merged, none of the DT p=
-atches
-> in my tree are in the original form as prepared by the authors + fixes I'=
-ve
-> added. That's simply impossible anymore.
+> On Sat, Mar 25, 2023 at 5:33=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org>=
+ wrote:
+> >
+> > On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre.c=
+om> wrote:
+> > >
+> > > Hi Chen-Yu,
+> > >
+> > > I suspect the bug comes from incorrect calibration data offsets for A=
+P
+> > > Domain because you confirm that MCU Domain probe runs without issues.
+> > > Is it possible to test something for us to confirm this theory (i
+> > > don't have an mt8192 board on hand now), when you have the time of
+> > > course?
+> > > We would like to test AP Domain's calibration data offsets with a
+> > > working one, for example :
+> > >
+> > >  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D {
+> > >                 {
+> > > -               .cal_offset =3D { 0x25, 0x28 },
+> > > +               .cal_offset =3D { 0x04, 0x04 },
+> > >                 .lvts_sensor =3D {
+> > >                         { .dt_id =3D MT8192_AP_VPU0 },
+> > >                         { .dt_id =3D MT8192_AP_VPU1 }
+> > > @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
+> > > mt8192_lvts_ap_data_ctrl[] =3D {
+> > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+> > >         },
+> > >         {
+> > > -               .cal_offset =3D { 0x2e, 0x31 },
+> > > +               .cal_offset =3D { 0x04, 0x04 },
+> > >                 .lvts_sensor =3D {
+> > >                         { .dt_id =3D MT8192_AP_GPU0 },
+> > >                         { .dt_id =3D MT8192_AP_GPU1 }
+> > > @@ -1346,7 +1346,7 @@ static const struct lvts_ctrl_data
+> > > mt8192_lvts_ap_data_ctrl[] =3D {
+> > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+> > >         },
+> > >         {
+> > > -               .cal_offset =3D { 0x37, 0x3a },
+> > > +               .cal_offset =3D { 0x04, 0x04 },
+> > >                 .lvts_sensor =3D {
+> > >                         { .dt_id =3D MT8192_AP_INFRA },
+> > >                         { .dt_id =3D MT8192_AP_CAM },
+> > > @@ -1356,7 +1356,7 @@ static const struct lvts_ctrl_data
+> > > mt8192_lvts_ap_data_ctrl[] =3D {
+> > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+> > >         },
+> > >         {
+> > > -               .cal_offset =3D { 0x40, 0x43, 0x46 },
+> > > +               .cal_offset =3D { 0x04, 0x04, 0x04 },
+> > >                 .lvts_sensor =3D {
+> > >                         { .dt_id =3D MT8192_AP_MD0 },
+> > >                         { .dt_id =3D MT8192_AP_MD1 },
+> > >
+> > > This example is tested and works for mt8195,
+> > > (all sensors use the same calibration data offset for testing purpose=
+s).
+> > >
+> > > Thank you in advance for your help.
+> >
+> > The MCU ones are still tripping though. If I change all of them to 0x04=
+,
+> > then nothing trips. There's also a bug in the interrupt handling code
+> > that needs to be dealt with.
+> >
+> > AFAICT the calibration data is stored differently. If you look at Chrom=
+eOS's
+> > downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT81=
+92,
+> > and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
+> > MT8195 has all data sequentially stored, while MT8192 has most data sto=
+red
+> > in lower 24 bits of each 32-bit word, and the highest 8 bits are then u=
+sed
+> > to pack data for the remaining sensors.
+> >
+> > Regards
+> > ChenYu
 >
-> To look up who did what, you'd have to look at older branches, pre-merge.
+> Hi Chen-Yu Tsai,
 >
-> Patches after the merge just came from squashing everything into one patc=
-h,
-> cleaning it up, and re-splitting along some vague functionality boundarie=
-s,
-> while trying to keep best-effort original SoBs as faithfully as possible,=
- so
-> that I can keep maintaining the PPP support in a sane manner.
+> Thank you very much for helping me testing this suggestion.
 >
-
-Go it.
-
-> Anyway, SoB's are added in chronological order. So:
+> Indeed, calibration data is stored differently in the mt8192 compared to =
+mt8195.
+> So, the mt8192's support will be delayed for now, to allow further debugg=
+ing.
 >
-> https://github.com/megous/linux/commit/471c5f33ba74c3d498ccc1eb69c098623b=
-193926
+> In the mean time, we will only continue to upstream the remaining
+> mt8195's source code, so it will get full LVTS support.
+> A new series will be submitted soon.
 >
-> Means the author of the changes is Martijn + Kamil (roughly) and I may ha=
-ve
-> a line of code in there too, since my SoB is last. For some reason, the o=
-rder is
-> inverted in the patch you posted, making it seem I developed these changes
-> originally.
->
+> Would you please point me out to the bug in interrupt handling code?
 
-Since the patch had your authorship I changed the order so that your S-o-B
-was first but I'll then change the author in v3 and make it match the
-first S-o-B entry in your tree (Martijn) then.
+I just sent out two patches and CC-ed you on them. They are here just in ca=
+se:
 
->> > upstreaming it. I'm just trying to help you with your upstreaming effo=
-rt by
->> > testing and review since I got to know the hardware quite well over th=
-e last
->> > years and can check the schematics and datasheets quickly, and I like =
-to think
->> > upstream code is held to higher standard. That's all.
->> >
->>=20
->> Appreciate your help and I agree that upstream code should be held to a
->> high standard. But since the DTS in mainline is pretty basic anyways (you
->> can only boot to serial right now), is not really usable for other thing
->> than development and keep adding the missing support.
->
-> Having wrong frequency used is not a missing support for something. Sorry=
- it's
-> too bothersome to get the review piecemeal, but sometimes people have mor=
-e time to
-> look at patches in-depth, and at other times they don't and you just get =
-surface
-> level or no review.
->
+https://lore.kernel.org/linux-pm/20230328031037.1361048-1-wenst@chromium.or=
+g/
+https://lore.kernel.org/linux-pm/20230328031017.1360976-1-wenst@chromium.or=
+g/
 
-Ok.
-
-> One point of posting patches to the mailing list is to get review. And it=
-'s not
-> that great to do in-depth review for you, up to going through schematics =
-and
-> datasheets, testing, and even proposing and testing solutions for found i=
-ssues,
-> just to be dismissed without technical reason.
->
-> The thing is this review will most likely happen just once, and noone wil=
-l go
-> back, read through the entire huge DT along with a schematic, to look at =
-whether
-> this or that pullup is really necessary, whether some parameter is out of=
- spec
-> from the datasheet for each part, or things like that. That's just not
-> pragmatic.
->
-
-That's fair.
-
-> Instead, people will happily attribute non-obvious issues caused by these
-> omissions of manual review to shoddy or slow or power-inefficient HW. "1k=
-Hz
-> + harmonics interference in codec because high power backlight DC-DC regu=
-lator
-> basically spews off 1kHz of 1-2W load + harmonics because it's driven
-> incorrectly? Ah, the phone just has a shitty audio codec!"
->
-> So, don't take it as some perfectionism. Upstreaming just seems like the =
-best
-> time to look at things that were overlooked in the past in more detail an=
-d get
-> these little things right, because the DT additions are done piecemal and
-> slowly/gradually, so it's more manageable to review and fix right away. T=
-his
-> will just not happen later on for these obscure devices like Pinephone Pr=
-o,
-> where the whole effort that goes into it is like one half of a fulltime
-> developer time split over 4 mildly interested real persons, slowly taperi=
-ng off
-> over time as the device ages.
->
-
-Makes sense. I'll address your comments in v3 then and also include a
-separate patch (again with Martijn as author and the S-o-B as ordered in
-your tree), that includes the touchscreen DT nodes as well. Since Jarrah
-pointed out that there's already the correct compatible string in the
-driver's OF device ID table.
-
-> regards,
-> 	o.
->
-
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+ChenYu
