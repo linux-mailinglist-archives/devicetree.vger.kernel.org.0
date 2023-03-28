@@ -2,124 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4E66CCBD6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 23:03:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 741736CCBDF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 23:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjC1VDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 17:03:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42656 "EHLO
+        id S229667AbjC1VG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 17:06:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbjC1VDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 17:03:03 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B7E535AD
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 14:02:36 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 01A9F5C019F;
-        Tue, 28 Mar 2023 17:02:25 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute5.internal (MEProxy); Tue, 28 Mar 2023 17:02:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-type:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1680037344; x=
-        1680123744; bh=2SxhLpkqCWZPWXZrMakzu/qjNqjhuXytjFfouIQqgOc=; b=W
-        taHw1wSzbX1SwKaWErOYfS//FWF9AOg51RpippiQuMWWmR/lZq1DANa2s02uU5Tx
-        5e7g/38K8Ts8jfGFD6FA6zlqYD+3odyZxB6Cq+8HnJe/DyaY4J+fpj4JM7lxVU16
-        tWuDZGdEVjSXlMkYDkhbhx3vOk4QcLkd5jZ5XGpPKuQTBFwN/rGfkH4uIvyZd4qE
-        veWFjYW5hs6uJr30JPkb/X0iUYDhdfS1OhD/kfqBpa8h23tkp71Gfm8BJxy3HbGs
-        CggFnp4uC0cRUssQenYjcc8V4RQ++vUS2kZuIZq3F+wviRM6FqlJSJd901XbvBAt
-        +lQapP9RDZeuE6bTaxORg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1680037344; x=1680123744; bh=2SxhLpkqCWZPW
-        XZrMakzu/qjNqjhuXytjFfouIQqgOc=; b=fLrxa93H6UP2VYa+34KoOrihAcW6a
-        3ClysLYorYR19pl9FZoFQZyrHA5y4WWUc79LtuP9ZMATzAVlj95Q3hnbJ+YWLJu4
-        Xo1qccAkKCLv/VrbrhJ/FVLd5D1UTyiy8LE306uPD20FnjAy2inrgFR5z+QnnMgc
-        f5XnpiSHmV/E5ZnVAPMnpHpcS8tQRl7RQ6qFT8Yj/nLTOVXx4f7MpFz9tAxw6iMm
-        qKdyRAzTl0YOwg0wCpzFsnscRQlkX1XTixEjC6Ju898OKitgar9kRhM+9b97Ca0j
-        TCEyzoyKg4J4K5ge67vRos/v1ubpEcpBhsFRNbiumceJYCLg6tprd4suA==
-X-ME-Sender: <xms:4FUjZOGa6VFG8u9uRpdVPtnqwsxOgfTb_qlPI4PMlSwnPlvGefLD9g>
-    <xme:4FUjZPUz_-5mrYecHfi3J9X0DZpc93KKMkkI9vbxpX1T0dQpO81PfowJZD4l02qCV
-    F8CLNIk5FLTqQy8bes>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehgedgudehiecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomheptehl
-    ihhsthgrihhruceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtf
-    frrghtthgvrhhnpeeukeffkefhjeethedtieegudejvedvhfejleekheefhfdufffhjefg
-    jeeiheehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:4FUjZIKVk17OSQuQb_8j8H4ZpcglAvu7_-z68XjNX47un_z3lu79lQ>
-    <xmx:4FUjZIHg5LGsdoUbE4o8ZMheNxaT-crvXlmr4Nsbhv_mhwkOD-jm2A>
-    <xmx:4FUjZEVBV3Fq2KpXb8Kazuki4PVMmtMzCefEQjpQHjCMyNWvNVAO4A>
-    <xmx:4FUjZOc5B1H7fKLMraU5XibFsAYy-wCqHM_AC2zQum1f4MkHo1QcZw>
-Feedback-ID: ifd214418:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 051BD2D40087; Tue, 28 Mar 2023 17:02:24 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-237-g62623e8e3f-fm-20230327.001-g62623e8e
-Mime-Version: 1.0
-Message-Id: <c092dfae-835c-4edc-835a-52cbe3fc5c09@app.fastmail.com>
-In-Reply-To: <20230328185147.529718-1-festevam@gmail.com>
-References: <20230328185147.529718-1-festevam@gmail.com>
-Date:   Wed, 29 Mar 2023 07:02:03 +1000
-From:   Alistair <alistair@alistair23.me>
-To:     "Fabio Estevam" <festevam@gmail.com>,
-        "Shawn Guo" <shawnguo@kernel.org>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        philippe.schenker@toradex.com, "Fabio Estevam" <festevam@denx.de>
-Subject: Re: [PATCH 1/2] ARM: dts: imx7d-remarkable2: Remove unnecessary
- #address-cells/#size-cells
-Content-Type: text/plain
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229477AbjC1VG4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 17:06:56 -0400
+Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EFBE2;
+        Tue, 28 Mar 2023 14:06:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1680037585; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=K3l+6cKlXTkJUHIja2qwDUU7cu+a8Rz+Gdw24HGBpKoIzOJ8vfmxi5gomdSRo3hB+ftJsTbY6mDeK9XzqG3ffCHE/07KCrn+FBaF08SbFGiC62IMJ+cJmBvf8cxCYobLT06itKX22R/XHnDvEa/JfKa6u6ajhSfLx5UjqXIkZZE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1680037585; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=dtkb18ovKMaH43unnBPf7khKxODc/lZ7PabQ5gaNQy4=; 
+        b=S9FSj28Nsi6/etwDQlZ5k9YJE4DWFkN43BNMr4YzGYq7DIBj+qaV9IPabOSM8EIK4Ap3BYCvnzhmfWqpMC3N54quSqk52tK6qQFWCSaCrtcAr1Ty2+k943NrNgcAc2kTnc1hqjgT6lVTklKVNh8dMorDvuUHmcj0LVpvzoIGkEo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1680037585;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=dtkb18ovKMaH43unnBPf7khKxODc/lZ7PabQ5gaNQy4=;
+        b=PKmlQKkw4hyHAu+5NoHDphTDP0scndRBlGhQYcooVl0W1DLiU524odRu62YuKRAz
+        hqFKtH3egX7y6vaU9CSe0+KQa5gjR2jmDe6d8GRT1q0tElvBczSJoj8QQapFc6XoaaQ
+        UvmqYhmj6Lw55tHg5hFbk6BpIfeuX3133huAvmNM=
+Received: from [10.10.10.3] (149.91.1.15 [149.91.1.15]) by mx.zohomail.com
+        with SMTPS id 1680037584024831.8337484799076; Tue, 28 Mar 2023 14:06:24 -0700 (PDT)
+Message-ID: <c12d50aa-7485-9ee4-3af1-8374de64eb07@arinc9.com>
+Date:   Wed, 29 Mar 2023 00:06:15 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 01/21] pinctrl: ralink: reintroduce
+ ralink,rt2880-pinmux compatible string
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        William Dean <williamsukatube@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Del Regno <angelogioacchino.delregno@collabora.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20230317213011.13656-1-arinc.unal@arinc9.com>
+ <20230317213011.13656-2-arinc.unal@arinc9.com>
+ <CAL_JsqLDRHs=TfcLsc0RJzF6rj84eXZooejmhx4hBDnpvCTk5A@mail.gmail.com>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <CAL_JsqLDRHs=TfcLsc0RJzF6rj84eXZooejmhx4hBDnpvCTk5A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Mar 2023, at 4:51 AM, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 28/03/2023 23:59, Rob Herring wrote:
+> On Fri, Mar 17, 2023 at 4:30 PM <arinc9.unal@gmail.com> wrote:
+>>
+>> From: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>
+>> There have been stable releases with the ralink,rt2880-pinmux compatible
+>> string included. Having it removed breaks the ABI. Reintroduce it.
 > 
-> Building with W=1 leads to the following dtc warning:
-> 
-> arch/arm/boot/dts/imx7d-remarkable2.dts:319.19-335.4: Warning (avoid_unnecessary_addr_size): /soc/bus@30800000/i2c@30a50000/pmic@62: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-> 
-> Remove unnecessary #address-cells/#size-cells to fix it.
-> 
-> Fixes: 9076cbaa7757 ("ARM: dts: imx7d-remarkable2: Enable silergy,sy7636a")
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ralink,rt2880-pinmux now shows up as an undocumented compatible string
+> in linux-next. Where's the binding for it?
 
-Reviewed-by: Alistair Francis <alistair@alistair23.me>
+This is exactly what I was talking about here:
 
-Alistair
+https://lore.kernel.org/linux-devicetree/3fdc7db4-0df3-f922-3dbf-9f9250c271aa@arinc9.com/
 
-> ---
-> arch/arm/boot/dts/imx7d-remarkable2.dts | 2 --
-> 1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> index dc954e4f63e0..92cb45dacda6 100644
-> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> @@ -321,8 +321,6 @@ sy7636a: pmic@62 {
-> reg = <0x62>;
-> pinctrl-names = "default";
-> pinctrl-0 = <&pinctrl_epdpmic>;
-> - #address-cells = <1>;
-> - #size-cells = <0>;
-> #thermal-sensor-cells = <0>;
-> epd-pwr-good-gpios = <&gpio6 21 GPIO_ACTIVE_HIGH>;
->  
-> -- 
-> 2.34.1
-> 
-> 
+Arınç
