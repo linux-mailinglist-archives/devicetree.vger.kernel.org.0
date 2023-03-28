@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A04356CC9C5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE2B6CC9CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjC1R5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 13:57:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44062 "EHLO
+        id S229849AbjC1R5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 13:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjC1R5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:57:07 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3EB7B446
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:57:06 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id p204so16152307ybc.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:57:06 -0700 (PDT)
+        with ESMTP id S229539AbjC1R5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:57:51 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F67E3B1
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:57:39 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5416698e889so245158297b3.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 10:57:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680026226;
+        d=amarulasolutions.com; s=google; t=1680026258;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VVMjvkUiQpIYhxok9nUkY/T7s0aJ2xwVUiGCBB2sdwo=;
-        b=EFPZM1Py1Dnl1l6LPwbu9pqTYrzH8qNSmgr221CZCa4FklAzrki+HClymGX5wIWR2q
-         8/+lFyXnpI1tF/G65VL6zkCcw8Fqwocikg2eqACXDUa3TRWeOpb/0tt+R43UgqrcILEK
-         YSb57HSDYgG2pNs/pC+MJXsiZlklna94FHeaY=
+        bh=M/zyfhrzpJ8FVGDn0nkToOqRRxGr7JvskPxRAJdP0ZQ=;
+        b=P9CqKo6uPkNWXhAWUEoQg+RZX5rj9LTR1k9IovpkIcV1Su9jdnYvfSFmWp9liCMBL9
+         rAA9SnaN8FfuNHbFD7A7riq5ds8OUm1Q40VhuMz1cjYnj0/35CE8ZROgRBw89QE29qU+
+         ix/fUE8SQbk0TWt+16mmg1blmF9MdLSsVc+pM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680026226;
+        d=1e100.net; s=20210112; t=1680026258;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VVMjvkUiQpIYhxok9nUkY/T7s0aJ2xwVUiGCBB2sdwo=;
-        b=We2l58pDCpRsnpG3EGjtpmPU/IMwdNxXXOLDsGCkXPok38rst5ZbjtHCW/2l1ceXjI
-         oG+VujVwMydm+LB0SpPc2zrXAVNUQDg68Dxcxe9CFVySjm1NZMf3GrRU2Rjy28B15ydK
-         o2iVd5N3Sy/78GH41A91VNFoHDJePlA7nCNnmRDrlGh5a1iVTSYTX/q3/SP3F8x68qKq
-         sn2HKs+DHO610iPpAx2wa7mzG2GlDWQ7FOYxBX8KJ453JnmSP7JUsAs7fPGCoTXEvwfi
-         uLm3+aqkh4b3uOGCuFizl85Q/a4xnBymsFbwcd3XPXjRi22/YBANfgbhEQuuIwT8zxHQ
-         hLOQ==
-X-Gm-Message-State: AAQBX9d/sLfioGS/MOPiKtvFyTKabLgo10SqXWRyxTBKZ9q8F68qNIPe
-        6z7S/W8pNndlLV4W9kBGgrd/ke9l+3MY7hlsv6lTGxxgzhFpCecBars=
-X-Google-Smtp-Source: AKy350ZW2rVwU9TY3Aic68rt7ThnXakit0m4ZvpacupHoz8LSjOf507tB8hwNX+1n2ZAbLJbWHkZa/sHYDfi7IuecIk=
-X-Received: by 2002:a25:d954:0:b0:b7d:9e72:d792 with SMTP id
- q81-20020a25d954000000b00b7d9e72d792mr1556367ybg.5.1680026226171; Tue, 28 Mar
- 2023 10:57:06 -0700 (PDT)
+        bh=M/zyfhrzpJ8FVGDn0nkToOqRRxGr7JvskPxRAJdP0ZQ=;
+        b=NiYKRBB7jyNXFiijxEbza4T+jqfO0O91vJdfpqIOsCwrMFGVWjTBShah3Fyjac1+QQ
+         MY/8MzMt3zlzfS7vWJhwe5bBpa+sGAEcycFT3QGoMDJHxrIlDqHfMmUGp7y5BpJmO5wn
+         /6r7u6LJXCiMrJjV7oytNXwGALrd5GuT8NAywfRDXbWQEoB9BCD4mu5FxECCBhiYhGEb
+         bCHa+D5Sb3jvq5YAaUwHeV7s7sdvTHnQYZmZT4YbjPOE/Teh34IflSXlxZvx7BZ6csjU
+         hc5dVDPn1Vp2IE1fyYll/FV3UptvkGvjde0T+R71ZOqMeVx5rhnh7QAuM8S3bWiPExvC
+         ZMAg==
+X-Gm-Message-State: AAQBX9fg4Gd/JEipFarrVlWXXJtD0XjsJVUpK1Lv1N91lOUQWioDzLRo
+        pj5QWA1XihB2cdZTLAzyzXTfJ57mtH2JmmfdnrYigw==
+X-Google-Smtp-Source: AKy350Yku4oTglKVG+wlRh5yaGjA1O9kEXdbcbbYcByQcSsV3pIVqE85+HIV3u7JHgTOgf8+Vj+p17JSLWs+wk9l7q4=
+X-Received: by 2002:a81:ae23:0:b0:52e:e095:d840 with SMTP id
+ m35-20020a81ae23000000b0052ee095d840mr7886934ywh.0.1680026258625; Tue, 28 Mar
+ 2023 10:57:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230326204224.80181-1-krzysztof.kozlowski@linaro.org> <20230326204224.80181-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230326204224.80181-4-krzysztof.kozlowski@linaro.org>
+References: <20230326204224.80181-1-krzysztof.kozlowski@linaro.org> <20230326204224.80181-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230326204224.80181-2-krzysztof.kozlowski@linaro.org>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 28 Mar 2023 23:26:54 +0530
-Message-ID: <CAMty3ZBznkToP9_zq_LdaoxXcPps9c6tMD4fRH0=YpS98C=swQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: display: sitronix,st7701: document port
- and rotation
+Date:   Tue, 28 Mar 2023 23:27:27 +0530
+Message-ID: <CAMty3ZCr9fH7_w2UMZ9mRw1hHfLn7vij+EpGGUJcTtsn_emJRQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: display: feiyang,fy07024di26a30d:
+ document port
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -76,10 +76,10 @@ On Mon, Mar 27, 2023 at 2:12=E2=80=AFAM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
 > Panels are supposed to have one port (defined in panel-common.yaml
-> binding) and can have also rotation:
+> binding):
 >
->   rk3326-odroid-go3.dtb: panel@0: 'port', 'rotation' do not match any of =
-the regexes: 'pinctrl-[0-9]+'
+>   rk3399-rockpro64.dtb: panel@0: 'port' does not match any of the regexes=
+: 'pinctrl-[0-9]+'
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
