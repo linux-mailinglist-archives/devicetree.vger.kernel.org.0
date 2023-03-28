@@ -2,184 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6CC6CCB48
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 22:16:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2EF6CCBBE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 23:00:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbjC1UQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 16:16:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
+        id S229655AbjC1VAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 17:00:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbjC1UQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 16:16:19 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F0E3A99;
-        Tue, 28 Mar 2023 13:16:18 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-17683b570b8so13974530fac.13;
-        Tue, 28 Mar 2023 13:16:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680034578;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bCPFOdIpNQUFJhPrmeiDu2DdLbGsab44HmyQyVjGzEY=;
-        b=se0GTU860Zvce3ghTGwaZ6IXAGrmAY2/PGcFwDMpYU55m8AEFR9yUyZScojUD3TEa+
-         rBzpX3wqMGCNsPPiTtKz6so1Pq/j6M9oxQv37PYqXnIVkjec0aQsU04312yp2t1iUq4h
-         NrbuREUzYHB6li42IIIzjQGD1t2o+wyp1H6sKKvqOqkyM4v4wpH9mj7+dS0hJ9PjLbsQ
-         UDWXynq9th0muNLH9YiZkYcJZVWTuU8H9SOI66O8KWJdQPVb67XpHYbHb2XDRGcXfq+e
-         U26U4xE0VTu6TX6ULeffVXhGk2iqGsg8sJp16pSW+TcNviqqvU0jnimTvPdSMnH+Dacm
-         vjug==
-X-Gm-Message-State: AAQBX9c0h0UE6f83ZTMkHS0maIONVY8Y+sWOBz4lZNABMQDl5ufWCibe
-        L2UzXc9q5TriOvFbXtJKKA==
-X-Google-Smtp-Source: AK7set/9uPgN0yCrXLJT35rq7Qat3QtTAkbocxc8t5r/+YdjprY4iCDY11yfxUH4UdUAQpsUjhc5qg==
-X-Received: by 2002:a05:6870:a454:b0:177:c8dc:501f with SMTP id n20-20020a056870a45400b00177c8dc501fmr12122129oal.29.1680034578097;
-        Tue, 28 Mar 2023 13:16:18 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v23-20020a056870709700b0017280f7d653sm11129807oae.35.2023.03.28.13.16.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 13:16:17 -0700 (PDT)
-Received: (nullmailer pid 3993737 invoked by uid 1000);
-        Tue, 28 Mar 2023 20:16:10 -0000
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 28 Mar 2023 15:16:00 -0500
-Subject: [PATCH 5/5] of/address: Add of_property_read_reg() helper
+        with ESMTP id S229493AbjC1VAE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 17:00:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3EF210C;
+        Tue, 28 Mar 2023 14:00:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4C580B81E6F;
+        Tue, 28 Mar 2023 21:00:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC535C4339E;
+        Tue, 28 Mar 2023 20:59:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680037199;
+        bh=mRemOyJlSTZydfDBnQsoKur6tteDiG2aVonewiAjXVI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=swM6k5nqSkNiyrl4H4kssVblNKfyIFXJ9KrOJJSpwjJp8ScywQy9pb9ahSetzfJFh
+         doWNdUOT3fiz6UDtldkyG6rIB9/KEZ/xLDYQ4T6Fkly8Eu+rN+OvjuwB9YWjq8HIit
+         q4GowmFkqVbBNqeleLzs6V+JdcCK4iTnfSEpaMnefrc9Olo1UPWjhYoH3CPIGsBZ5l
+         IjtrfN+wiLPrV8bC9UypXpQcrlQRb1G4PX3Xm7EfNa+o2qPplrDuMypHk6Nt6z/glm
+         wq+6D0AEUi3Ua3sd6ccuDmgNNtdXwjp4ojB39asRAOfwdFTGzn7+mp9FDb4yVfCZm6
+         aAlWP3Ble4rfQ==
+Received: by mail-yb1-f177.google.com with SMTP id k17so16827977ybm.11;
+        Tue, 28 Mar 2023 13:59:58 -0700 (PDT)
+X-Gm-Message-State: AAQBX9e6eY0dKJ2MgiZRpu5jPZIdukCxDxr1GDskOMU83dqb4KaDjsB/
+        slwGFHd2TZpPnUJCLCF71pXbT848E2V66DutJQ==
+X-Google-Smtp-Source: AKy350bQAd0umwwy6Pjq2ODxSsyWWuHx17bAz8m65QTtqP6ENEeIBTfpnERA9jESA9S9Pekc0uTdzGhvUFYUQE2xogs=
+X-Received: by 2002:a05:6902:1586:b0:b33:531b:3dd4 with SMTP id
+ k6-20020a056902158600b00b33531b3dd4mr8527630ybu.1.1680037197898; Tue, 28 Mar
+ 2023 13:59:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230328-dt-address-helpers-v1-5-e2456c3e77ab@kernel.org>
-References: <20230328-dt-address-helpers-v1-0-e2456c3e77ab@kernel.org>
-In-Reply-To: <20230328-dt-address-helpers-v1-0-e2456c3e77ab@kernel.org>
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Stuart Yoder <stuyoder@gmail.com>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org
-X-Mailer: b4 0.13-dev
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20230317213011.13656-1-arinc.unal@arinc9.com> <20230317213011.13656-2-arinc.unal@arinc9.com>
+In-Reply-To: <20230317213011.13656-2-arinc.unal@arinc9.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 28 Mar 2023 15:59:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLDRHs=TfcLsc0RJzF6rj84eXZooejmhx4hBDnpvCTk5A@mail.gmail.com>
+Message-ID: <CAL_JsqLDRHs=TfcLsc0RJzF6rj84eXZooejmhx4hBDnpvCTk5A@mail.gmail.com>
+Subject: Re: [PATCH v3 01/21] pinctrl: ralink: reintroduce ralink,rt2880-pinmux
+ compatible string
+To:     arinc9.unal@gmail.com
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        William Dean <williamsukatube@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Del Regno <angelogioacchino.delregno@collabora.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        Daniel Santos <daniel.santos@pobox.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>, erkin.bozoglu@xeront.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a helper, of_property_read_reg(), to read "reg" entries untranslated
-address and size. This function is intended mainly for cases with an
-untranslatable "reg" address (i.e. not MMIO). There's also a few
-translatable cases such as address cells containing a bus chip-select
-number.
+On Fri, Mar 17, 2023 at 4:30=E2=80=AFPM <arinc9.unal@gmail.com> wrote:
+>
+> From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+>
+> There have been stable releases with the ralink,rt2880-pinmux compatible
+> string included. Having it removed breaks the ABI. Reintroduce it.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/address.c       | 23 +++++++++++++++++++++++
- drivers/of/unittest.c      | 22 ++++++++++++++++++++++
- include/linux/of_address.h |  7 +++++++
- 3 files changed, 52 insertions(+)
+ralink,rt2880-pinmux now shows up as an undocumented compatible string
+in linux-next. Where's the binding for it?
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 8cfae24148e0..fdb15c6fb3b1 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -760,6 +760,29 @@ const __be32 *__of_get_address(struct device_node *dev, int index, int bar_no,
- }
- EXPORT_SYMBOL(__of_get_address);
- 
-+/**
-+ * of_property_read_reg - Retrieve the specified "reg" entry index without translating
-+ * @np: device tree node for which to retrieve "reg" from
-+ * @idx: "reg" entry index to read
-+ * @addr: return value for the untranslated address
-+ * @size: return value for the entry size
-+ *
-+ * Returns -EINVAL if "reg" is not found. Returns 0 on success with addr and
-+ * size values filled in.
-+ */
-+int of_property_read_reg(struct device_node *np, int idx, u64 *addr, u64 *size)
-+{
-+	const __be32 *prop = of_get_address(np, idx, size, NULL);
-+
-+	if (!prop)
-+		return -EINVAL;
-+
-+	*addr = of_read_number(prop, of_n_addr_cells(np));
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(of_property_read_reg);
-+
- static int parser_init(struct of_pci_range_parser *parser,
- 			struct device_node *node, const char *name)
- {
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index eaeb58065acc..e73ecbef977b 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1134,6 +1134,27 @@ static void __init of_unittest_bus_3cell_ranges(void)
- 	of_node_put(np);
- }
- 
-+static void __init of_unittest_reg(void)
-+{
-+	struct device_node *np;
-+	int ret;
-+	u64 addr, size;
-+
-+	np = of_find_node_by_path("/testcase-data/address-tests/bus@80000000/device@1000");
-+	if (!np) {
-+		pr_err("missing testcase data\n");
-+		return;
-+	}
-+
-+	ret = of_property_read_reg(np, 0, &addr, &size);
-+	unittest(!ret, "of_property_read_reg(%pOF) returned error %d\n",
-+		np, ret);
-+	unittest(addr == 0x1000, "of_property_read_reg(%pOF) untranslated address (%llx) incorrect\n",
-+		np, addr);
-+
-+	of_node_put(np);
-+}
-+
- static void __init of_unittest_parse_interrupts(void)
- {
- 	struct device_node *np;
-@@ -3772,6 +3793,7 @@ static int __init of_unittest(void)
- 	of_unittest_pci_dma_ranges();
- 	of_unittest_bus_ranges();
- 	of_unittest_bus_3cell_ranges();
-+	of_unittest_reg();
- 	of_unittest_match_node();
- 	of_unittest_platform_populate();
- 	of_unittest_overlay();
-diff --git a/include/linux/of_address.h b/include/linux/of_address.h
-index 5292f62c1baa..95cb6c5c2d67 100644
---- a/include/linux/of_address.h
-+++ b/include/linux/of_address.h
-@@ -72,6 +72,8 @@ void __iomem *of_io_request_and_map(struct device_node *device,
- extern const __be32 *__of_get_address(struct device_node *dev, int index, int bar_no,
- 				      u64 *size, unsigned int *flags);
- 
-+int of_property_read_reg(struct device_node *np, int idx, u64 *addr, u64 *size);
-+
- extern int of_pci_range_parser_init(struct of_pci_range_parser *parser,
- 			struct device_node *node);
- extern int of_pci_dma_range_parser_init(struct of_pci_range_parser *parser,
-@@ -106,6 +108,11 @@ static inline const __be32 *__of_get_address(struct device_node *dev, int index,
- 	return NULL;
- }
- 
-+static int of_property_read_reg(struct device_node *np, int idx, u64 *addr, u64 *size)
-+{
-+	return -ENOSYS;
-+}
-+
- static inline int of_pci_range_parser_init(struct of_pci_range_parser *parser,
- 			struct device_node *node)
- {
-
--- 
-2.39.2
-
+Rob
