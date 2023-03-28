@@ -2,116 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD1506CBE07
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5A3C6CBE1C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:51:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232802AbjC1Lr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 07:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38230 "EHLO
+        id S231396AbjC1Lv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 07:51:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232377AbjC1Lrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:47:55 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56BC05FF7;
-        Tue, 28 Mar 2023 04:47:54 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SBlh76060327;
-        Tue, 28 Mar 2023 06:47:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680004063;
-        bh=nRCPznyG8qPMq1TD0NttucUdDHIhiajZD9URKVA9jYE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=HsM/O1c/VajqKfKZY7Vu1YEbwf0aHPBqJY9KjWFWDZp0bS3GA+2Kze66z6vTRmlW5
-         W+yTX1XmYqZEiIIau4jdpjGNBY+bHCdEapXkT7e4pg56MMth1UJUFzBnWDA+JhIuM5
-         SdgyznJdAvinRp1pl6JfYRPmG1fcG53qNdtup4S4=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SBlh1J026415
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 Mar 2023 06:47:43 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
- Mar 2023 06:47:43 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 28 Mar 2023 06:47:43 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SBlghd120488;
-        Tue, 28 Mar 2023 06:47:42 -0500
-Date:   Tue, 28 Mar 2023 06:47:42 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vaishnav Achath <vaishnav.a@ti.com>
-CC:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [PATCH V3 1/2] arm64: dts: ti: k3-j721s2-mcu-wakeup: Fix IO
- PADCONFIG size for wakeup domain
-Message-ID: <20230328114742.tnaa5hi3qm3rsgld@ecology>
-References: <20230316114102.3602-1-sinthu.raja@ti.com>
- <20230316114102.3602-2-sinthu.raja@ti.com>
- <5f08cb2f-d2de-8e4e-a9be-1ef3a5fd3a39@ti.com>
+        with ESMTP id S231437AbjC1Lv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:51:26 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B0877EFD
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 04:51:23 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id y4so48586149edo.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 04:51:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680004282;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SroYEWWsu7eZpWI/xX9YYbpvlBKlIjSyYMo3wuZnCCo=;
+        b=IPYIScgR8tz/qOQarAmW9/eOp1N7Cyw0eDGXZZ/Yn57F2cz0lkh6OJNBQ2xH9zBLdx
+         m3lnPhT4LbkWsQi9rXvtpQXSANfljQovXxN8NBMPqWrktkpeuVw+9agpAswq44SRekoV
+         kSJjSZFk4naIP1qrhicOFkyqL1pWf0ihs+x4yRKo5DjghDRK68bHxem16cnlik8e9zAZ
+         F+bAQH3hLGo0p2VTEkCrVaK0OyX0mdP6WOCKP6TtQ03FmEzUdVUG/0zpcSLws9YNbv+K
+         +f8tvd/+RWMPXxMxs8sAZdPUkuwnuUPQtC9btY2Z6iAx3hWrZ+b7jIr7Lyt605fhnJXP
+         4vyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680004282;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SroYEWWsu7eZpWI/xX9YYbpvlBKlIjSyYMo3wuZnCCo=;
+        b=DyaQb4Eb0zIl5bPuVUUVX5QnSNXbjFTcUMQ8vgxTNtiIM+MG17YZaeJz6Cuz1dnSVN
+         cIh9YizM2EbESbYJfYj7wZlrUo7YFLuAKWtDs4+gO9g/7Xv9AJlxoOoVFf0TOVUAEaSa
+         6LeTOonWJdNPuUONOjsZtAaozzdmoZ7yTeYi8+9jdWi+HJIRRugsDuv9h9hdpyXYHasi
+         eNn+kFVq7LQUvtI3/CAe8hhMZBMocTgMWg64LS3xuUzYLx/9nbeUgjSj606QnUJoQLwM
+         8xV7rkOHF2zR9d1cchGeShwmH5+0Bjun+bdF2ay8cfmhxvBDQ1loCGHrxZFbz7jmMzCA
+         R9fw==
+X-Gm-Message-State: AAQBX9fYEeOGuMlYz20TFNKWOoRDPAtVg3xJlF33vyKKqM+BgZOy4kbk
+        C1pIdAkJ1SnUNhuqnYUJoCYwbw==
+X-Google-Smtp-Source: AKy350YJGama/E7rVfgouf4YqzNzTkkzVQFL1mmSBUutIoXlhC54kDnezNyqSd2W0XGMjvtVVqvFSg==
+X-Received: by 2002:a05:6402:6c1:b0:4fb:4354:ab2e with SMTP id n1-20020a05640206c100b004fb4354ab2emr15279051edy.28.1680004282416;
+        Tue, 28 Mar 2023 04:51:22 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
+        by smtp.gmail.com with ESMTPSA id s12-20020a50d48c000000b005023aaf52desm4068364edi.95.2023.03.28.04.51.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Mar 2023 04:51:22 -0700 (PDT)
+Message-ID: <9c46103e-c033-73e7-a45a-6278a95e2fc5@linaro.org>
+Date:   Tue, 28 Mar 2023 13:51:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5f08cb2f-d2de-8e4e-a9be-1ef3a5fd3a39@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add Richtek RT4803
+Content-Language: en-US
+To:     cy_huang@richtek.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     lgirdwood@gmail.com, jeff_chang@richtek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1679899572-16182-1-git-send-email-cy_huang@richtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1679899572-16182-1-git-send-email-cy_huang@richtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:48-20230328, Vaishnav Achath wrote:
-> Hi Sinthu,
+On 27/03/2023 08:46, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> On 16/03/23 17:11, Sinthu Raja wrote:
-> > From: Sinthu Raja <sinthu.raja@ti.com>
-> > 
-> > The size of wkup domain I/O PADCONFIG register set is incorrect for J721S2.
-> > Therefore, update the PADCONFIG total offset size to the correct value for
-> > J721S22 SoC.
-> > 
-> > Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
-> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> > ---
-> > 
-> > Changes in V3:
-> > - Added Fix tag
-> > 
-> > Changes in V2:
-> > - Update commit description.
-> > - Update the offset value to 0x194 because 0x190 is the last register of the
-> >   IO PADCONFIG register set.
-> > 
-> 
-> The existing PADCONFIG register region descriptions in the pinctrl nodes seems
-> to be incorrect for j721s2-main and j721s2-mcu-wakeup due to non-addressable
-> holes in the region which causes bus aborts when the registers are read and
-> causes system crash if we read something like,
-> /sys/kernel/debug/pinctrl/4301c000.pinctrl-pinctrl-single/pins
-> 
-> This is what I saw from inspection of the datasheet:
-> 
-> * WKUP_PADCONFIG13, WKUP_PADCONFIG25 missing in WKUP_PADCONFIG region
-> * MAIN_PADCONFIG 64-68 missing in MAIN_PADCONFIG region
-> 
-> I have verified that your patch does not introduce new issues, but since it is a
-> Fix patch, I will defer the decision to the maintainers on whether we should
-> split the nodes to avoid non-addressable regions and fix it completely here or
-> later do a fix for the split.
+> Add the binding document for Richtek RT4803.
 
-Do a single fix-up please.
+Subject prefixes instead:
+regulator: dt-bindings: ......
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../bindings/regulator/richtek,rt4803.yaml         | 68 ++++++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt4803.yaml
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
