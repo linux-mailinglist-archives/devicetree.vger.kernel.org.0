@@ -2,125 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57DA26CC634
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2056CC661
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233958AbjC1P1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 11:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48910 "EHLO
+        id S233922AbjC1PcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:32:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233258AbjC1P0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:26:47 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5731040A;
-        Tue, 28 Mar 2023 08:25:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 4AE63CE1D9E;
-        Tue, 28 Mar 2023 15:24:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3287DC433EF;
-        Tue, 28 Mar 2023 15:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680017092;
-        bh=qGf+OC44axRVj+XT/Z4tuG6YvUk8bQLbHyJdumlNYFU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ATpCBChtUg6pUL3KFBojFCXqzNljH3Fn4vl4Q2jOPQYEVtHOWOCiboqBBQXjGyR4v
-         xcWzFZ1/IzZ9GiAW80DEDvpIj304SUmm09iKmBKB+HPYMKT4ZhSC1xo/VCVvnj+E7m
-         CyjnE1SwPOBJQdABuBrgOMXU1Qfc7WqwfykRZsjhIl/RFThLN6pi3vjulQZIQxiIip
-         C6rGDRMAFxVV6S1mTJGgR9aKNxkumCUbE5+Ie6tG37TCkshzzrGGTfVdDT4YDQzGVX
-         Vyzmg8Kh2NAMSX//QJ5eLaI3xW6uBZNiWHYpV4zqHUYUHRXvjgtpQwIPtuV1qFJf1s
-         1z4x4WL9W445A==
-Date:   Tue, 28 Mar 2023 16:24:44 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>, Lee Jones <lee@kernel.org>,
+        with ESMTP id S234040AbjC1Pbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:31:45 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0379FF38
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 08:30:57 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id s20so12995468ljp.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 08:30:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680017454;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f6Z3hi5xZpY0A+xzxH10t/g2IJeJJpC83ZgAnnPr4r8=;
+        b=ClmAdxKaO+IvbX7WxxMeckWeSwBLmWZS6VF3VOIhXlPLy0T3H1VzIEW1bVGMtqWN1Y
+         I1QUxWfEat758nykrdkLKr5HXj2Vh60Jpk8eas0vs7lW+SQlvmD3Ylnl6BcTIMS/+wnU
+         3ryReA+B9YJgzEe7h/UjssBX8pdqHpB6Jp7goWYlUwqJq/KoHqWQUK14+AflgKT+qWYH
+         sfzh4BuAORKzWYhu/WVwMS4AgNOytzjEq+PqMGpCrRi04T5mJ1RS5gnGK3oEcIx3lZg4
+         IYgN4JfgezD6s461Z8eNyykS1b8LUDQbZt4I853YvlcCoa97VskKGOXlaCimCKYXe2LK
+         r8ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680017454;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f6Z3hi5xZpY0A+xzxH10t/g2IJeJJpC83ZgAnnPr4r8=;
+        b=1ATfudJvZ8Wd0nw3UbY72k5SFOs+VMMdEYdFdllg9r3jJEUxryQbmYU/1d1M6EEiqA
+         r3g2Y1MAIAQXhjRXAP4l0fpyjY3v4dEijL3poCBBDbG0P43wIz9h/qUXq9pneqjavnqJ
+         O0EEk1hPCer4Dz5xlift/YglQrzxvA4BXBKqNiS1BVTv3T5JGKRekLFx5Anx8fPnNi3g
+         84dhyeeZWSfWykjac0yZgMnIpoNM23+maNj1AT2OvwK/evCXAb6zw5WDu+IfVaPyhUot
+         RwqDZMd8NAOt8LC+v0q6xO7/X/CTKXijrv+OOy3o5Ij/UvcEeR/fWc8GLD795m56Ez95
+         o+kw==
+X-Gm-Message-State: AAQBX9dgdujgAI0ihLiKOk806hG1E1QYC9wxYGc/ZvppUIEblD0fb/K3
+        0QPYS988Rax9r80SoBtwLijnpw==
+X-Google-Smtp-Source: AKy350bklgIv21W5yZ/4G5UcuAmEvWzN5s4DIXCp2M2RonQn4ByuJaeNtvsiX9cC+vQau4gr3ZNyUw==
+X-Received: by 2002:a2e:7212:0:b0:2a0:4de2:db88 with SMTP id n18-20020a2e7212000000b002a04de2db88mr5008585ljc.44.1680017454043;
+        Tue, 28 Mar 2023 08:30:54 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id c14-20020a05651c014e00b0029913364649sm5123502ljd.11.2023.03.28.08.30.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Mar 2023 08:30:53 -0700 (PDT)
+Message-ID: <bf424375-6306-35b4-4560-1946695f8fee@linaro.org>
+Date:   Tue, 28 Mar 2023 18:30:52 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 12/14] drm/msm/a6xx: Use adreno_is_aXYZ macros in
+ speedbin matching
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <163f2c26-2cf7-4109-bf1f-efddc95da0d5@sirena.org.uk>
-References: <20230307112835.81886-1-okan.sahin@analog.com>
- <20230307112835.81886-6-okan.sahin@analog.com>
- <20230315175223.GI9667@google.com>
- <20230315175257.GJ9667@google.com>
- <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
- <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
- <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
- <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
- <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cU/jzET003kbiyJi"
-Content-Disposition: inline
-In-Reply-To: <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
-X-Cookie: Oh, wow!  Look at the moon!
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
+ <20230223-topic-gmuwrapper-v4-12-e987eb79d03f@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230223-topic-gmuwrapper-v4-12-e987eb79d03f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/03/2023 17:28, Konrad Dybcio wrote:
+> Before transitioning to using per-SoC and not per-Adreno speedbin
+> fuse values (need another patchset to land elsewhere), a good
+> improvement/stopgap solution is to use adreno_is_aXYZ macros in
+> place of explicit revision matching. Do so to allow differentiating
+> between A619 and A619_holi.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 18 +++++++++---------
+>   drivers/gpu/drm/msm/adreno/adreno_gpu.h | 14 ++++++++++++--
+>   2 files changed, 21 insertions(+), 11 deletions(-)
 
---cU/jzET003kbiyJi
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On Tue, Mar 28, 2023 at 04:18:30PM +0200, Nuno S=E1 wrote:
-> On Tue, 2023-03-28 at 14:46 +0100, Mark Brown wrote:
-> > On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno S=E1 wrote:
+-- 
+With best wishes
+Dmitry
 
-> > > IIRC, regmap_read() is not really reentrant and it is used in the
-> > > IIO
-> > > driver on the sysfs interface. So, yeah, I think you need the
-> > > regmap
-> > > lock and better just leave the config as is. Yes, the lock is opt-
-> > > out
-> > > so let's not disable it :)
-
-> > All the regmap operations are fully thread safe.
-
-> Even if 'config->disable_locking' is set? I think that is what's being
-> discussed in here...
-
-In that case the caller has to ensure that the regmap is only used in a
-thread safe fashion.
-
---cU/jzET003kbiyJi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQjBrsACgkQJNaLcl1U
-h9B/MQf9GFZs2jkpCdNWV9YHg6lazF76/rn3D4icdGkiIzG3k1r5HoAq0JJGNFmA
-0j3maqTeoW+d+v6YX/i6gM6OQ9pY7RDikaRnqeKbKVccDUwYKbbHpPRY7ctWf+uO
-JcVFzACHf8fPGGBK9Qrp1L1llGqXKBU7TVxfI0r9X8QPoh0NmtKqG+/0+P7Sso9Z
-NSZOIlpQ9OStMphPT+5cG4TCa12GVqsNdFHb90eIowzp+mhn1BxGwLx/xi0wXegs
-Gzt7pG8s0om0V1enRMfSWNZQCo/sbKnxGYldP+w5Y17OPGEdaCkk0qUbZk8bAOze
-DH09i76sXgSR4PQ6lGdHGT4gqdZSBw==
-=cY75
------END PGP SIGNATURE-----
-
---cU/jzET003kbiyJi--
