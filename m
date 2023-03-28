@@ -2,89 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B6B6CB6BD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDB06CB6AC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232381AbjC1GQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 02:16:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
+        id S229970AbjC1GOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 02:14:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjC1GQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:16:12 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC4230FC;
-        Mon, 27 Mar 2023 23:16:10 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S6C7jK010531;
-        Tue, 28 Mar 2023 06:15:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=iRrp4ZVtHf6+VfJjNdWEkd8OHn2fcSeeKtKC2EYmZqI=;
- b=oDJO0GnxXGX/pXQnqDScTGS7qLfCVyxGW5Ggatsn9zRS/JRaBGNtMxl5TIdv1Hx3ls04
- gwxSJD5rYPKwPXqibHUvYl2koRaOKuzqFtYQq8rkLeDFp3j0F9jKAerg7COsUp8kS+Ro
- uf6/ezOiBQbhb11pFSpIhwU3RC9OxuKwUAVSzE3xZrnoZdf+ak2Q8X7RucRW1w9TMIix
- 1VNPUfEECqRkXRjEwMkEOETpp1tEVhQ+ZSAf8XGT/5WOSpitHonK14vbPmocLXJ9cy7x
- xjXcxV1qOm8hSC4Xs33OYdVqkDojLYCA7G0lZrqOQB65L2WC9b4BVXPTn/y2cU9x0FaZ ug== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pk7h8tu7p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 06:15:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32S6Fl1R002528
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 06:15:47 GMT
-Received: from [10.216.32.150] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Mar
- 2023 23:15:38 -0700
-Message-ID: <2484518b-bcf6-7fb1-6bfb-b96b3682397b@quicinc.com>
-Date:   Tue, 28 Mar 2023 11:45:35 +0530
+        with ESMTP id S231927AbjC1GOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:14:08 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2042.outbound.protection.outlook.com [40.107.20.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05261173C;
+        Mon, 27 Mar 2023 23:14:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B7nkamfDBTJPsnQBdtqyy0x5R59MpHCdZAGp21+R6AWFo8eUCcgL/3UKQd8emQ0E86kMzgRiD8YWeht8Ph+E5nIgsl5w/6CeZyqKdKjUDjGOc4ZEfe/kEUgB3JQtrkGahnEZrZsHpkiYchPsn6mmxuunC2xgD+7FK1PL2aNQN0EjxJu7GxW4Iz1MofXC53z9EIHUlf2ls8mfA8fDPy3xwGlhsa0BDRxzWOYlTF5OjMBiAwPdWbiw4JfXX108T29pbTa5C4SYCKlJlvb/e+GCfIm01lVdhReBVQDFWpX5Bw9jr1ABhnuWFT74Yrtcd9sX3zcXH/22wluh/WeU5l0SyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KvWjNxRw8fY1V3jCUYc88qCYNGpoa+JPVdWJk4UMj08=;
+ b=PKEoqAxhWFJWEAR2rDMoUgxT+Dg3gNkgavyJqoq8gsEV1K106QqCUE7cw0J7Bvhz03YuYhuv5cqnekJCLmMdB3Gn/7zqa7ncvGUrcmGzZArXBP+OTEZ5lmcgpuJYII+4F7pai5v95FQom4Yd/DVf70EB+E0Hi9CNpU/0T/uIm9suQE0p1U41IWnMapoWL6A5VK4EqqEg+PbPnbJRFKkEkglp1VZHqhGZNiSNYMlDXiAsPrjd8+QVmma1bsqVScrYlbNGiPzFEvqlIrav6exuFE08JncQD+UZFdkIhj5rjvz175BatICpTz/GuJndBRx1dwUrWIZzqH9AD213b8K7lw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KvWjNxRw8fY1V3jCUYc88qCYNGpoa+JPVdWJk4UMj08=;
+ b=HsyDvJxNanCSihFYCj8gyYXbHV92sUN6rMBg/AFD+2dAzCmVrgHv/ZCwXkM0dtYIoFwZTQEfWUZNaRKnKP15TxVBWDGorREgYIqd78LBQexZTaJGKaMM7C525h0TjbkwDc1OaS18ndtpKchLUsGTjWek8sUt1pRJIGZZozZg/Jg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS8PR04MB8834.eurprd04.prod.outlook.com (2603:10a6:20b:42d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
+ 2023 06:14:00 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::778e:19d0:cba0:5cc0]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::778e:19d0:cba0:5cc0%4]) with mapi id 15.20.6222.028; Tue, 28 Mar 2023
+ 06:14:00 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        marcel.ziswiler@toradex.com, laurent.pinchart@ideasonboard.com
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 1/2] arm64: dts: imx8mm-verdin: correct off-on-delay
+Date:   Tue, 28 Mar 2023 14:19:04 +0800
+Message-Id: <20230328061905.1989856-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0024.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::12) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V10 2/4] clk: qcom: Add Global Clock Controller driver for
- IPQ9574
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <arnd@arndb.de>, <broonie@kernel.org>,
-        <catalin.marinas@arm.com>, <devicetree@vger.kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <marcel.ziswiler@toradex.com>, <mturquette@baylibre.com>,
-        <nfraprado@collabora.com>, <p.zabel@pengutronix.de>,
-        <robh+dt@kernel.org>, <shawnguo@kernel.org>, <will@kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
-        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>
-References: <20230327132718.573-1-quic_devipriy@quicinc.com>
- <20230327132718.573-3-quic_devipriy@quicinc.com>
- <0af15083921c5d3c89392209654f0c9b.sboyd@kernel.org>
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <0af15083921c5d3c89392209654f0c9b.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NKZ7h8yzMq3DFkKuh5KMdGewxq-VMlB_
-X-Proofpoint-ORIG-GUID: NKZ7h8yzMq3DFkKuh5KMdGewxq-VMlB_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- clxscore=1015 mlxlogscore=999 phishscore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2303280050
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS8PR04MB8834:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ae7de79-02fc-40db-56e4-08db2f539f32
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +pptk8Vo8zh1Lbz33VKZDFeYGIT/PoDSaSRYtnEcled1PMIgwLMCxXKEE6LcMJ5m7e4ho26UMWtrzGIE8I7xstuki7N4hD5x3X/w44KU7fifwChTErKOk/w1VDjV6gc+deA8ID1Q6jrK9hI2vmnO6lmkP4x8x1FbRwfdIXqlBUIs4boN5weXEnbNP9/7p/HrQeHfj2oqyrGnKfbvbha42ZIcbpaHLr3FYHQc/QppxesyYRv41i5DOtf05OSacEwWivVtqdUA5EC+BuhEkCGZlNPCPSHG7dKd7DIKFL41LVziHoNrjBv0CJxVTGQms28W2bQCT/0Ima77ryN7cuhXBwTlSsVGkReJfFg4gIEt2SRRp86zICdQ7dXdSIFe4MpO+7ZwIQPsHPyF6dSOMGJli7KjyDW+zBc0HKlWzQqnhQUFU6dWKoVzmhvZ0gNQT18xGKm/0Uvo1dCIDxDM3i+CphX+AOwC/2ULCSelM97Iwy9Lz33ZdZHjxP76H7fgUJ+ZNYznYZOdSDZXX2p3uOKjux3Q/TyWcvGMjTvMvjmBDSdtm1DyzC70PV7uC2zGLPWRbP7Yohwdv3ELXt+VqRQPiylZ7y8BAJLlrbVdSYUfARZMG10xS4c+jo7391i/JZN3F2QQJOQh8KQxbai4dfKC6Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(366004)(136003)(39860400002)(396003)(451199021)(5660300002)(8936002)(41300700001)(66946007)(66556008)(66476007)(8676002)(4326008)(2906002)(38100700002)(38350700002)(7416002)(2616005)(83380400001)(6486002)(86362001)(52116002)(6506007)(6512007)(26005)(1076003)(186003)(478600001)(316002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cfaXtc6cboVvzHNfvBd+vvq/mbxRF+CJOL4CfzzTHfjDp+ZIvasr7YgD+rxO?=
+ =?us-ascii?Q?iIisVBYaB8b7zZopfNw2+dO/wT/5Zvhtrz4FgJJNuzEr87Wn8MUurAF8kzfU?=
+ =?us-ascii?Q?hrfZe5k7CLKj6I8XmKNvmHbfn2UROX5R8mA0kYjXTY+QY5HjuViNVM0ATR70?=
+ =?us-ascii?Q?LhWcs3IpwB7HKKawfgxI6UZkMfX//6xtbqO6mwjDP+3jaWCduxqKiD1qz71J?=
+ =?us-ascii?Q?NltB2rRYOJJo4RFYsJdMdJkrfSNAYCJ1+dY2jYmbXJaVxBy3fmT/vXmEaDc8?=
+ =?us-ascii?Q?0xwazzI3fWo4TPjnsyvGW4YSfMm0McLj0leYBEBwahqzxhoynDojG5gEtgDR?=
+ =?us-ascii?Q?Ths9A2x1/1Wbxp5Jr6tLsuPV4ECzMN975L0dvJPIqxWqUbQEzMbU01nVM9g/?=
+ =?us-ascii?Q?jdYfM9PQk6gfabTWU6v8Jt7T/0/LH4meyStrGBVVaeqKb4dDJB2fgovADSg4?=
+ =?us-ascii?Q?PPFrzKNVQQfYmeSIqzMeRC/v0EyEZB58cQK01J/mrAX8DRILo+GFm5tzSkW4?=
+ =?us-ascii?Q?tpKeXsz/v1YWDPzrjpyI+LJZ2op1sAtAxDaWBw77Me0KcZjli0K1MOuWTMEc?=
+ =?us-ascii?Q?HNYPEGHztcPCunJUEFtRPXk3tIKDDmHJ3wyNUMlf/oY2VOPER98uYo6tt2NG?=
+ =?us-ascii?Q?GSWpEBySHKzrXPz8yDbJIfDefRjKdrmyR2eYgL8o2WKBREvPm4O7Yfp5WB/K?=
+ =?us-ascii?Q?l+9tH8GUlgOdMkiM8Ul9CQarmcZX956mT/cij1Ab5S/wOyBuoDiHiWK67M5n?=
+ =?us-ascii?Q?vnS4zr2agbu/B+wJMroDJdTc5q8eYI5hTMBXdOccbJMOiSHieJLv4ATq3Yam?=
+ =?us-ascii?Q?CEk/B8auKgsjbVJyUT4wIftwvpc+BrAKzPb1lWHT4f94VJYH2Q78AnshQ2wt?=
+ =?us-ascii?Q?Oc5K1j08ZJ0dIZVs/LJRywiXO8QiZTLJbE+TNZyQ9n7lBApIBAFMq6ioGZRB?=
+ =?us-ascii?Q?8a9VTeLFNLYS+SyfOSJgXu8vcKJFj8VVr1/kByHXPZWnTH7tPkBXkRnL+QzK?=
+ =?us-ascii?Q?21JRQZ/DCD3w60hX+l5fYU1NN3j0PXmxs940RywN0VNUNfCmqAzmxICmCtxh?=
+ =?us-ascii?Q?ss4nSWUGPe+BOlUCjC6osP/Z8BVdLDxcn6GCgkeQVPU48XQZwETIVRIxc1Cp?=
+ =?us-ascii?Q?38wsANvGxTgiDRo5y2/eQOYXvaFGIwYhfNwN/iGnAU8a/uIWoo+z9Xf1QnnL?=
+ =?us-ascii?Q?0CBuO7acB+2jDhZ586PZv5os06Wb+SdjIh5v8o/dJylKbTQ+S2JL5dGWABAy?=
+ =?us-ascii?Q?cySfBZcjpOHbvOezcwR+Qw5KUIP9uZjxFZT9lvSXW4uNZmxc5sKstLd19SCW?=
+ =?us-ascii?Q?QsjW/pFivLpHbFmw+/qY0xU0gPuBdcn4gt7H7QUyicFFScrWhSTaIOEJ90uY?=
+ =?us-ascii?Q?NyGWMUypeE8MDTN77fJYGRL37B+xlUFN0Gis54wplIV3HTRp4l07rnP6x8JX?=
+ =?us-ascii?Q?LrIJcLaMrYl2AKRiS5UwpwJwG8xvdCKwlVo/9gD1sweMwqdmWHDnyCk4S6S8?=
+ =?us-ascii?Q?FRCP1YpmIGH0gjC1NSow2af8hbYHPO9YYZuj61SsMi37aTBltsfdvw1gwxyj?=
+ =?us-ascii?Q?HqBnyxsoi4PDkMXs3X4oPmlgNpYkzHUbdmFw45UZ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ae7de79-02fc-40db-56e4-08db2f539f32
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 06:14:00.6686
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h5abhjrPRlmUrOn1gBgZaFcINSHrPVT0I/K4Y+3PiCGyjcdY238zXIjPux0I4f6s4gn5NkKT3XEszqx1/S4dzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8834
+X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,112 +116,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Peng Fan <peng.fan@nxp.com>
 
+The property should be off-on-delay-us, not off-on-delay
 
-On 3/27/2023 10:18 PM, Stephen Boyd wrote:
-> Quoting Devi Priya (2023-03-27 06:27:16)
->> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq9574.c
->> new file mode 100644
->> index 000000000000..b2a2d618a5ec
->> --- /dev/null
->> +++ b/drivers/clk/qcom/gcc-ipq9574.c
->> @@ -0,0 +1,4248 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +/*
->> + * Copyright (c) 2023 The Linux Foundation. All rights reserved.
->> + */
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/err.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_device.h>
-> 
-> What is this include for?
-This include actually don't seem necessary. But, I see that of.h & 
-platform_device.h are being included via of_device.h
-Would you suggest to drop of_device.h or the other two
-headers instead?
-> 
->> +#include <linux/regmap.h>
-> 
-> Need to include clk-provider.h
-> 
->> +
->> +#include <linux/reset-controller.h>
-> 
-> Put a newline here.
-Okay
-> 
->> +#include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->> +#include <dt-bindings/reset/qcom,ipq9574-gcc.h>
->> +
->> +#include "clk-rcg.h"
->> +#include "clk-branch.h"
->> +#include "clk-alpha-pll.h"
->> +#include "clk-regmap-divider.h"
->> +#include "clk-regmap-mux.h"
->> +#include "clk-regmap-phy-mux.h"
->> +#include "reset.h"
->> +
->> +/* Need to match the order of clocks in DT binding */
->> +enum {
->> +       DT_XO,
->> +       DT_SLEEP_CLK,
->> +       DT_BIAS_PLL_UBI_NC_CLK,
->> +       DT_PCIE30_PHY0_PIPE_CLK,
->> +       DT_PCIE30_PHY1_PIPE_CLK,
->> +       DT_PCIE30_PHY2_PIPE_CLK,
->> +       DT_PCIE30_PHY3_PIPE_CLK,
->> +       DT_USB3PHY_0_CC_PIPE_CLK,
->> +};
->> +
->> +enum {
->> +       P_XO,
->> +       P_PCIE30_PHY0_PIPE,
->> +       P_PCIE30_PHY1_PIPE,
->> +       P_PCIE30_PHY2_PIPE,
->> +       P_PCIE30_PHY3_PIPE,
->> +       P_USB3PHY_0_PIPE,
->> +       P_GPLL0,
->> +       P_GPLL0_DIV2,
->> +       P_GPLL0_OUT_AUX,
->> +       P_GPLL2,
->> +       P_GPLL4,
->> +       P_PI_SLEEP,
->> +       P_BIAS_PLL_UBI_NC_CLK,
->> +};
->> +
->> +static const struct parent_map gcc_xo_map[] = {
->> +       { P_XO, 0 },
->> +};
->> +
->> +static const struct clk_parent_data gcc_xo_data[] = {
->> +       { .index = DT_XO },
->> +};
->> +
->> +static const struct clk_parent_data gcc_sleep_clk_data[] = {
->> +       { .index = DT_SLEEP_CLK },
->> +};
->> +
->> +static struct clk_alpha_pll gpll0_main = {
->> +       .offset = 0x20000,
->> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
->> +       .clkr = {
->> +               .enable_reg = 0x0b000,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(struct clk_init_data) {
-> 
-> All these clk_init_data structs should be const.
-Okay
-> 
->> +                       .name = "gpll0_main",
->> +                       .parent_data = gcc_xo_data,
->> +                       .num_parents = ARRAY_SIZE(gcc_xo_data),
->> +                       .ops = &clk_alpha_pll_ops,
->> +               },
->> +       },
->> +};
-Thanks,
-Devi Priya
+Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index 88321b5b0693..6f0811587142 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -99,7 +99,7 @@ reg_ethphy: regulator-ethphy {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>; /* PMIC_EN_ETH */
+-		off-on-delay = <500000>;
++		off-on-delay-us = <500000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_reg_eth>;
+ 		regulator-always-on;
+@@ -139,7 +139,7 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		enable-active-high;
+ 		/* Verdin SD_1_PWR_EN (SODIMM 76) */
+ 		gpio = <&gpio3 5 GPIO_ACTIVE_HIGH>;
+-		off-on-delay = <100000>;
++		off-on-delay-us = <100000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_usdhc2_pwr_en>;
+ 		regulator-max-microvolt = <3300000>;
+-- 
+2.37.1
+
