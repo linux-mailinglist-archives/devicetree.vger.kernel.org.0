@@ -2,63 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C3D6CBF6C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAB46CBF3E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232241AbjC1Mm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 08:42:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57216 "EHLO
+        id S232484AbjC1Mga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 08:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbjC1MmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:42:25 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E2C0BA5C1;
-        Tue, 28 Mar 2023 05:41:58 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 45B75C14;
-        Tue, 28 Mar 2023 05:34:09 -0700 (PDT)
-Received: from [10.57.54.240] (unknown [10.57.54.240])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 986B73F6C4;
-        Tue, 28 Mar 2023 05:33:21 -0700 (PDT)
-Message-ID: <c3f5af31-b6ef-dc45-25f0-4e52d93fcaa7@arm.com>
-Date:   Tue, 28 Mar 2023 13:33:20 +0100
+        with ESMTP id S232345AbjC1Mg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:36:29 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on20629.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eaa::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0760DA5E0;
+        Tue, 28 Mar 2023 05:36:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N70gmgFgs+4yLDYprIIaAuGWuQkvR7dr7e+N4hFEVstAY5DvmIvVuRp+phTzMNkWf90Z4Okoxl0pSaH/thVkPejqz8skiGuHGnCYe9o4Ag6rXSbDR6b3q3A8678S48WccCkE16+Us222rxrKGqRFeCKj/EHnizQqUU4Pq7oZhOTAfQOI43gSHjScf4ieSNJTN76SlLZAq7+hV7l7svsn8YQlVnV5qFmmMQs7vtjvCg7IlQVoWQsvyYe/XViigDrjzxl93jIVb+18GkP7Zu167S/+fMbbK2pIlO8taIhhIQrj0GvMeHVK/DaAwiImlaozzz1jLIygYSDVrK6PdXEdqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g88IRCFz5dM5RtmHZGUDQNCP9oPjwuqMIcc1TspUo6w=;
+ b=eRH78wUL4bO0hXzmhh6nsOtOhghFVCEuAYXIv6iUZkKgM8NkAH1WRfhD+/B4Zdb+D5nDJR1x0SWPTUBcMWQzBfAt3NPXGefA235qT+6KpbCMtirAgwHPDXsjIjG+yYP0eq9jFDC4CQJorjZNw2aP9gF5PB9KtSzukFGoA5Jh5PitohvPromlroCLxbLdw7HhqFeIc6VWsF23adRjpOoakVwKp1fRRU6RfRB7V8mw79ATycpiVWRdSAmv6aqQruhkv3WHm4dDltH8jBCrqYubFabcWGhEcrsmSljnpv2lp2Xba7gT3rrNAvhKRtON2hesEzw3HH4fcukbGy7GjyGvFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g88IRCFz5dM5RtmHZGUDQNCP9oPjwuqMIcc1TspUo6w=;
+ b=F1CKwIeLWYUfEeUVKMMaHxp2q3xoyfKrldTnhSZgJxwQRKoZVzS4/ZZZU1dATHGIhMFM9b41U8OBOAjGKxNHN5fgWsoiICIzZ2eAdOB0czBcjlGkRFNTN6iQhqp/nIE2cwMyoK3y8uVPj/WhA33cQFY2GwzPPmegcX1eZ6zKq0+YA3yPP6urw3dhrx/7QBWQWuof1sKN6ux5EZ28EzfwADE4HZqMM0b0lnvmHnTZcuh1CMAhCLz8Y0COLv0CAQueDPQNOixWZpetcOZeWEcfyrh1lhA6X9Lu0TfcUaCvhjiTXnAaVSg0yzocGaTvy8jj8dbJ5oHbYBSaCYNU768weA==
+Received: from MW4PR02CA0018.namprd02.prod.outlook.com (2603:10b6:303:16d::17)
+ by SJ1PR12MB6171.namprd12.prod.outlook.com (2603:10b6:a03:45a::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Tue, 28 Mar
+ 2023 12:34:56 +0000
+Received: from CO1NAM11FT097.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:16d:cafe::72) by MW4PR02CA0018.outlook.office365.com
+ (2603:10b6:303:16d::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.43 via Frontend
+ Transport; Tue, 28 Mar 2023 12:34:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CO1NAM11FT097.mail.protection.outlook.com (10.13.175.185) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6222.22 via Frontend Transport; Tue, 28 Mar 2023 12:34:56 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 28 Mar 2023
+ 05:34:45 -0700
+Received: from [10.41.21.79] (10.126.231.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Tue, 28 Mar
+ 2023 05:34:39 -0700
+Message-ID: <34631b30-7589-9b9d-4dd0-2e2606f62887@nvidia.com>
+Date:   Tue, 28 Mar 2023 18:04:37 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.9.0
-Subject: Re: [PATCH v3 02/11] coresight-tpda: Add DSB dataset support
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        James Clark <james.clark@arm.com>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>
-References: <1679551448-19160-1-git-send-email-quic_taozha@quicinc.com>
- <1679551448-19160-3-git-send-email-quic_taozha@quicinc.com>
- <e578790c-4794-5609-16e8-15d63082760e@arm.com>
- <51ad3cb3-bd83-51c9-52bc-f700cd17103c@quicinc.com>
- <48f31b84-573f-fe1d-bcd7-e55ec7f47831@arm.com>
- <595568c3-d2bc-e37e-83b3-2adfd3fa4193@quicinc.com>
- <6f8b087d-77a7-512e-6504-e4841447eda9@arm.com>
- <edbd1f10-70e5-1fd4-44de-da59b387e9dd@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <edbd1f10-70e5-1fd4-44de-da59b387e9dd@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [Patch v4 03/10] memory: tegra: add interconnect support for DRAM
+ scaling in Tegra234
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <treding@nvidia.com>, <dmitry.osipenko@collabora.com>,
+        <viresh.kumar@linaro.org>, <rafael@kernel.org>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <lpieralisi@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <mmaddireddy@nvidia.com>,
+        <kw@linux.com>, <bhelgaas@google.com>, <vidyas@nvidia.com>,
+        <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
+        <bbasu@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>
+References: <20230327161426.32639-1-sumitg@nvidia.com>
+ <20230327161426.32639-4-sumitg@nvidia.com>
+ <8b04a266-20eb-f1c1-278f-764b1b06b78b@linaro.org>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <8b04a266-20eb-f1c1-278f-764b1b06b78b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.231.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT097:EE_|SJ1PR12MB6171:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25e68f07-af5b-475b-f637-08db2f88d675
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UxrjGKoImP6apgizhhXjnLqTrFk0jmXamaOnxrF88xPEcXK0vLFmeKpzLCKqQhoqhJJhnXyFVESaMlBYzi3gj/japLcOGQtutvLnH/k+cwgTpwLmBJdLDdKo+IhaI0CqDaVUMe8AARR4CV5/8xwk4EY0Vk2RV35JYuaaII8U+foe3i3CwYD54KUY2NJ26WlieLxtt+/6E3ZTF3fHLrTiCU2yZn5u2uBz1tVnYYICZAx1k8p44Amq3rntNRbEcpXdRzLphmhfFRvpMUAFvfz34MVBRdYQaJz+aDHsPLVDztbaWWFwbWAR4FbZJlhe73EIkyDIKOuu0o5+vdw0l1LZ9taTltLNx/LHT22eE9r/Yddi8Ow0e8CtMv6kRhm02aj+xpEfmjd3n8X6S3W4/eeUm9mO3TXKe1/gEE0l/4RZceB83XZYiD2Gt/zu4qYY6cjim+8ewpiJE+n4V/yuR8P0nb4wY6whLemUB0kzLwomWgEgk4MNX1ESjCy9hKjQ/B89lp4XxS7CGhTS78R/fkpQlIX8+4E1jl/Ht2sXESl8wJ83VFnIlMnJSQddl6RobSjFHhwMEdSQiCoHuJz8OIHI9mP9AbAnZhp3byvnpyaWVu6GsE3YPsTTh7271p5gxW8iUJQ6/SPNREiw291h+lJFnS64ecbGLj7V4gYzLRj4q66ULr0BK09I8HQZwCrbOxWIWZKT2XVcdKEK7ZKSTsZy5pAUzZ+U71dB8RfQBT8LBEWlzNBAO2wsOnzdxy73VmDvmAZm17pz3oVceHVyXjpO3rrlilhjbNRxEwagrABkpKiC/xvd0V1GJGEcaNPwq/7N
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199021)(36840700001)(46966006)(40470700004)(54906003)(5660300002)(478600001)(8936002)(7416002)(186003)(16576012)(82310400005)(316002)(2906002)(82740400003)(26005)(31696002)(40480700001)(107886003)(70206006)(36756003)(110136005)(426003)(16526019)(40460700003)(4326008)(83380400001)(41300700001)(31686004)(47076005)(336012)(36860700001)(70586007)(34020700004)(53546011)(8676002)(86362001)(356005)(2616005)(7636003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 12:34:56.1451
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25e68f07-af5b-475b-f637-08db2f88d675
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT097.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6171
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,191 +116,331 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 12:31, Tao Zhang wrote:
-> Hi Suzuki,
-> 
-> On 3/27/2023 5:43 PM, Suzuki K Poulose wrote:
->> On 27/03/2023 04:31, Tao Zhang wrote:
->>>
->>> On 3/26/2023 3:31 AM, Suzuki K Poulose wrote:
->>>> On 24/03/2023 14:58, Tao Zhang wrote:
->>>>> Hi Suzuki,
->>>>>
->>>>> 在 3/23/2023 7:51 PM, Suzuki K Poulose 写道:
->>>>>> On 23/03/2023 06:03, Tao Zhang wrote:
->>>>>>> Read the DSB element size from the device tree. Set the register
->>>>>>> bit that controls the DSB element size of the corresponding port.
->>>>>>>
->>>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>>>>> ---
->>>>>>>   drivers/hwtracing/coresight/coresight-tpda.c | 58 
->>>>>>> ++++++++++++++++++++++++++++
->>>>>>>   drivers/hwtracing/coresight/coresight-tpda.h |  4 ++
->>>>>>>   2 files changed, 62 insertions(+)
->>>>>>>
->>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
->>>>>>> b/drivers/hwtracing/coresight/coresight-tpda.c
->>>>>>> index f712e11..8dcfc4a 100644
->>>>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->>>>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->>>>>>> @@ -21,6 +21,47 @@
->>>>>>>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
->>>>>>>   +/* Search and read element data size from the TPDM node in
->>>>>>> + * the devicetree. Each input port of TPDA is connected to
->>>>>>> + * a TPDM. Different TPDM supports different types of dataset,
->>>>>>> + * and some may support more than one type of dataset.
->>>>>>> + * Parameter "inport" is used to pass in the input port number
->>>>>>> + * of TPDA, and it is set to 0 in the recursize call.
->>>>>>> + * Parameter "parent" is used to pass in the original call.
->>>>>>> + */
->>>>>>
->>>>>> I am still not clear why we need to do this recursively ?
->>>>>
->>>>> Some TPDMs are not directly output connected to the TPDAs. So here I
->>>>>
->>>>> use a recursive method to check from the TPDA input port until I find
->>>>>
->>>>> the connected TPDM.
->>>>>
->>>>> Do you have a better suggestion besides a recursive method?
->>>>>
->>>>>>
->>>>>>> +static int tpda_set_element_size(struct tpda_drvdata *drvdata,
->>>>>>> +               struct coresight_device *csdev, int inport, bool 
->>>>>>> parent)
->>>>>>
->>>>>> Please could we renamse csdev => tpda_dev
->>>>>
->>>>> Since this is a recursively called function, this Coresight device 
->>>>> is not
->>>>>
->>>>> necessarily TPDA, it can be other Coresight device.
->>>>>
->>>>>>
->>>>>>> +{
->>>>>>> +    static int nr_inport;
->>>>>>> +    int i;
->>>>>>> +    struct coresight_device *in_csdev;
->>>>>>
->>>>>> similarly tpdm_dev ?
->>>>> Same as above, this variable may not necessarily be a TPDM.
->>>>>>
->>>>>> Could we not add a check here to see if the dsb_esize[inport] is 
->>>>>> already
->>>>>> set and then bail out, reading this over and over ?
->>>>>>
->>>>> I will update this in the next patch series.
->>>>>>> +
->>>>>>> +    if (inport > (TPDA_MAX_INPORTS - 1))
->>>>>>> +        return -EINVAL;
->>>>>>> +
->>>>>>> +    if (parent)
->>>>>>> +        nr_inport = inport;
->>>>>>> +
->>>>>>> +    for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->>>>>>> +        in_csdev = csdev->pdata->in_conns[i].remote_dev;
->>>>>>
->>>>>> Please note, the names of the structure field might change in the
->>>>>> next version of James' series
->>>>> Got it. I will keep an eye out for the James' patch series.
->>>>>>
->>>>>>> +        if (!in_csdev)
->>>>>>> +            break;
->>>>>>> +
->>>>>>> +        if (parent)
->>>>>>> +            if (csdev->pdata->in_conns[i].port != inport)
->>>>>>> +                continue;
->>>>>>> +
->>>>>>> +        if (in_csdev && strstr(dev_name(&in_csdev->dev), "tpdm")) {
->>>>>>
->>>>>> Isn't there a better way to distinguish a device to be TPDM ? May 
->>>>>> be we
->>>>>> could even add a source_sub_type - SOURCE_TPDM instead of using
->>>>>> SOURCE_OTHERS ? Do you expect other sources to be connected to TPDA?
->>>>>> e.g., STMs ?
->>>>>
->>>>> I can add "SOURCE_TPDM" as a source_sub_type, but SOURCE_OTHERS needs
->>>>>
->>>>> to be kept since the other Coresight component we will upstream 
->>>>> later may
->>>>>
->>>>> need it.
->>>>>
->>>>>>
->>>>>>> + of_property_read_u32(in_csdev->dev.parent->of_node,
->>>>>>> +                    "qcom,dsb-element-size", 
->>>>>>> &drvdata->dsb_esize[nr_inport]);
->>>>>>> +            break;
->>>>>>> +        }
->>>>>>> +        tpda_set_element_size(drvdata, in_csdev, 0, false);
->>>>>>
->>>>>> What is the point of this ? Is this for covering the a TPDA 
->>>>>> connected to
->>>>>> another TPDA ?
->>>>>>
->>>>>> e.g., { TPDM0, TPDM1 } -> TPDA0 -> TPDA1 ?
->>>>>
->>>>> A TPDM may not connect to the TPDA directly, for example,
->>>>>
->>>>> TPDM0 ->FUNNEL0->FUNNEL1->TPDA0
->>>>>
->>>>> And many TPDMs can connect to one TPDA, one input port on TPDA only 
->>>>> has
->>>>>
->>>>> one TPDM connected. Therefore, we use a recursive method to find 
->>>>> the TPDM
->>>>>
->>>>> corresponding to the input port of TPDA.
->>>>
->>>> How do you find out decide what to choose, if there are multiple TPDMs
->>>> connected to FUNNEL0 or even FUNNEL1 ?
->>>>
->>>> e.g
->>>>
->>>> TPDM0->FUNNEL0->FUNNEL1->TPDA0
->>>>                 /
->>>>           TPDM1
->>>
->>> We can find out the corresponding TPDM by the input port number of TPDA.
->>>
->>> Each input port is connected to a TPDM. So we have an input port 
->>> number in
->>>
->>> the input parameter of the recursive lookup function 
->>> "tpda_set_element_size".
->>
->> I don't understand, how you would figure out, in the above situation.
->> i.e., FUNNEL1 is connected to TPDA0, but there are two TPDMs that could
->> be pumping the trace. They both arrive via FUNNEL1. So, how does that
->> solve your problem ?
-> 
-> In our HW design, the input ports of TPDA and TPDM are one-one-one 
-> corresponding.  Only one
-> 
-> TPDM can be found connected from one TPDA's input port. The path to a 
-> TPDA input port doesn't
-> 
-> connect more than one TPDM. It's by HW design.
-
-Your current designs may be like that. But as far as the driver is
-concerned, I would like to add in extra measures to ensure that it
-encounters a variation from the above on a future platform. So, please
-could you add a check to detect this case and add a WARNING ?
-
-Suzuki
 
 
+On 28/03/23 13:01, Krzysztof Kozlowski wrote:
+> External email: Use caution opening links or attachments
 > 
 > 
-> Tao
+> On 27/03/2023 18:14, Sumit Gupta wrote:
+>> Add Interconnect framework support to dynamically set the DRAM
+>> bandwidth from different clients. Both the MC and EMC drivers are
+>> added as ICC providers. The path for any request is:
+>>   MC-Client[1-n] -> MC -> EMC -> EMEM/DRAM
+>>
+>> MC client's request for bandwidth will go to the MC driver which
+>> passes the client request info like BPMP Client ID, Client type
+>> and the Bandwidth to the BPMP-FW. The final DRAM freq to achieve
+>> the requested bandwidth is set by the BPMP-FW based on the passed
+>> parameters.
+>>
+>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+>> ---
+>>   drivers/memory/tegra/mc.c           |   5 +
+>>   drivers/memory/tegra/tegra186-emc.c | 125 ++++++++++++++++++++++++
+>>   drivers/memory/tegra/tegra186.c     |   3 +
+>>   drivers/memory/tegra/tegra234.c     | 143 +++++++++++++++++++++++++++-
+>>   include/linux/tegra-icc.h           |  65 +++++++++++++
+>>   include/soc/tegra/mc.h              |   7 ++
+>>   6 files changed, 347 insertions(+), 1 deletion(-)
+>>   create mode 100644 include/linux/tegra-icc.h
+>>
+>> diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
+>> index 9082b6c3763d..983455b1f98d 100644
+>> --- a/drivers/memory/tegra/mc.c
+>> +++ b/drivers/memory/tegra/mc.c
+>> @@ -15,6 +15,7 @@
+>>   #include <linux/platform_device.h>
+>>   #include <linux/slab.h>
+>>   #include <linux/sort.h>
+>> +#include <linux/tegra-icc.h>
+>>
+>>   #include <soc/tegra/fuse.h>
+>>
+>> @@ -792,6 +793,8 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>>        mc->provider.data = &mc->provider;
+>>        mc->provider.set = mc->soc->icc_ops->set;
+>>        mc->provider.aggregate = mc->soc->icc_ops->aggregate;
+>> +     mc->provider.get_bw = mc->soc->icc_ops->get_bw;
+>> +     mc->provider.xlate = mc->soc->icc_ops->xlate;
+>>        mc->provider.xlate_extended = mc->soc->icc_ops->xlate_extended;
+>>
+>>        icc_provider_init(&mc->provider);
+>> @@ -824,6 +827,8 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>>                err = icc_link_create(node, TEGRA_ICC_MC);
+>>                if (err)
+>>                        goto remove_nodes;
+>> +
+>> +             node->data = (struct tegra_mc_client *)&(mc->soc->clients[i]);
+>>        }
+>>
+>>        err = icc_provider_register(&mc->provider);
+>> diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra/tegra186-emc.c
+>> index e935ad4e95b6..1eefcf2ac0c7 100644
+>> --- a/drivers/memory/tegra/tegra186-emc.c
+>> +++ b/drivers/memory/tegra/tegra186-emc.c
+>> @@ -7,9 +7,11 @@
+>>   #include <linux/debugfs.h>
+>>   #include <linux/module.h>
+>>   #include <linux/mod_devicetable.h>
+>> +#include <linux/of_platform.h>
+>>   #include <linux/platform_device.h>
+>>
+>>   #include <soc/tegra/bpmp.h>
+>> +#include "mc.h"
+>>
+>>   struct tegra186_emc_dvfs {
+>>        unsigned long latency;
+>> @@ -29,8 +31,15 @@ struct tegra186_emc {
+>>                unsigned long min_rate;
+>>                unsigned long max_rate;
+>>        } debugfs;
+>> +
+>> +     struct icc_provider provider;
+>>   };
+>>
+>> +static inline struct tegra186_emc *to_tegra186_emc(struct icc_provider *provider)
+>> +{
+>> +     return container_of(provider, struct tegra186_emc, provider);
+>> +}
+>> +
+>>   /*
+>>    * debugfs interface
+>>    *
+>> @@ -146,11 +155,104 @@ DEFINE_DEBUGFS_ATTRIBUTE(tegra186_emc_debug_max_rate_fops,
+>>                          tegra186_emc_debug_max_rate_get,
+>>                          tegra186_emc_debug_max_rate_set, "%llu\n");
+>>
+>> +/*
+>> + * tegra_emc_icc_set_bw() - Set BW api for EMC provider
+>> + * @src: ICC node for External Memory Controller (EMC)
+>> + * @dst: ICC node for External Memory (DRAM)
+>> + *
+>> + * Do nothing here as info to BPMP-FW is now passed in the BW set function
+>> + * of the MC driver. BPMP-FW sets the final Freq based on the passed values.
+>> + */
+>> +static int tegra_emc_icc_set_bw(struct icc_node *src, struct icc_node *dst)
+>> +{
+>> +     return 0;
+>> +}
+>> +
+>> +static struct icc_node *
+>> +tegra_emc_of_icc_xlate(struct of_phandle_args *spec, void *data)
+>> +{
+>> +     struct icc_provider *provider = data;
+>> +     struct icc_node *node;
+>> +
+>> +     /* External Memory is the only possible ICC route */
+>> +     list_for_each_entry(node, &provider->nodes, node_list) {
+>> +             if (node->id != TEGRA_ICC_EMEM)
+>> +                     continue;
+>> +
+>> +             return node;
+>> +     }
+>> +
+>> +     return ERR_PTR(-EPROBE_DEFER);
+>> +}
+>> +
+>> +static int tegra_emc_icc_get_init_bw(struct icc_node *node, u32 *avg, u32 *peak)
+>> +{
+>> +     *avg = 0;
+>> +     *peak = 0;
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static int tegra_emc_interconnect_init(struct tegra186_emc *emc)
+>> +{
+>> +     struct tegra_mc *mc = dev_get_drvdata(emc->dev->parent);
+>> +     const struct tegra_mc_soc *soc = mc->soc;
+>> +     struct icc_node *node;
+>> +     int err;
+>> +
+>> +     emc->provider.dev = emc->dev;
+>> +     emc->provider.set = tegra_emc_icc_set_bw;
+>> +     emc->provider.data = &emc->provider;
+>> +     emc->provider.aggregate = soc->icc_ops->aggregate;
+>> +     emc->provider.xlate = tegra_emc_of_icc_xlate;
+>> +     emc->provider.get_bw = tegra_emc_icc_get_init_bw;
+>> +
+>> +     icc_provider_init(&emc->provider);
+>> +
+>> +     /* create External Memory Controller node */
+>> +     node = icc_node_create(TEGRA_ICC_EMC);
+>> +     if (IS_ERR(node)) {
+>> +             err = PTR_ERR(node);
+>> +             goto err_msg;
+>> +     }
+>> +
+>> +     node->name = "External Memory Controller";
+>> +     icc_node_add(node, &emc->provider);
+>> +
+>> +     /* link External Memory Controller to External Memory (DRAM) */
+>> +     err = icc_link_create(node, TEGRA_ICC_EMEM);
+>> +     if (err)
+>> +             goto remove_nodes;
+>> +
+>> +     /* create External Memory node */
+>> +     node = icc_node_create(TEGRA_ICC_EMEM);
+>> +     if (IS_ERR(node)) {
+>> +             err = PTR_ERR(node);
+>> +             goto remove_nodes;
+>> +     }
+>> +
+>> +     node->name = "External Memory (DRAM)";
+>> +     icc_node_add(node, &emc->provider);
+>> +
+>> +     err = icc_provider_register(&emc->provider);
+>> +     if (err)
+>> +             goto remove_nodes;
+>> +
+>> +     return 0;
 > 
+> Blank line
+> 
+>> +remove_nodes:
+>> +     icc_nodes_remove(&emc->provider);
+>> +err_msg:
+>> +     dev_err(emc->dev, "failed to initialize ICC: %d\n", err);
+>> +
+>> +     return err;
+>> +}
+>> +
+>>   static int tegra186_emc_probe(struct platform_device *pdev)
+>>   {
+>>        struct mrq_emc_dvfs_latency_response response;
+>>        struct tegra_bpmp_message msg;
+>>        struct tegra186_emc *emc;
+>> +     struct tegra_mc *mc;
+>>        unsigned int i;
+>>        int err;
 >>
->> Suzuki
+>> @@ -158,6 +260,9 @@ static int tegra186_emc_probe(struct platform_device *pdev)
+>>        if (!emc)
+>>                return -ENOMEM;
 >>
->>
->>>
->>>> Suzuki
->>>>
->>>>
->>
+>> +     platform_set_drvdata(pdev, emc);
+>> +     emc->dev = &pdev->dev;
+> 
+> This patch looks like stiched from two or more patches... emc->dev does
+> not look like new member of emc, thus why do you set in exisitng
+> function in this patch? Why it wasn't needed before?
+> 
+> Same about line before.
+> 
+Replied in other mail. will fix this.
 
+>> +
+>>        emc->bpmp = tegra_bpmp_get(&pdev->dev);
+>>        if (IS_ERR(emc->bpmp))
+>>                return dev_err_probe(&pdev->dev, PTR_ERR(emc->bpmp), "failed to get BPMP\n");
+>> @@ -236,6 +341,25 @@ static int tegra186_emc_probe(struct platform_device *pdev)
+>>        debugfs_create_file("max_rate", S_IRUGO | S_IWUSR, emc->debugfs.root,
+>>                            emc, &tegra186_emc_debug_max_rate_fops);
+>>
+>> +     mc = dev_get_drvdata(emc->dev->parent);
+>> +     if (mc && mc->soc->icc_ops) {
+>> +             /*
+>> +              * Initialize the ICC even if BPMP-FW doesn't support 'MRQ_BWMGR_INT'.
+>> +              * Use the flag 'mc->bwmgr_mrq_supported' within MC driver and return
+>> +              * EINVAL instead of passing the request to BPMP-FW later when the BW
+>> +              * request is made by client with 'icc_set_bw()' call.
+>> +              */
+>> +             err = tegra_emc_interconnect_init(emc);
+>> +             if (err)
+>> +                     goto put_bpmp;
+>> +
+>> +             if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_BWMGR_INT))
+>> +                     mc->bwmgr_mrq_supported = true;
+>> +             else
+>> +
+> 
+> Drop blank line.
+> 
+>> +                     dev_info(&pdev->dev, "MRQ_BWMGR_INT not present\n");
+> 
+> And what user is supposed to do with this? Either make it descriptive or
+> drop.
+> 
+Replied in other mail. will fix this.
+
+
+>> +     }
+>> +
+>>        return 0;
+>>
+>>   put_bpmp:
+>> @@ -272,6 +396,7 @@ static struct platform_driver tegra186_emc_driver = {
+>>                .name = "tegra186-emc",
+>>                .of_match_table = tegra186_emc_of_match,
+>>                .suppress_bind_attrs = true,
+>> +             .sync_state = icc_sync_state,
+>>        },
+>>        .probe = tegra186_emc_probe,
+>>        .remove = tegra186_emc_remove,
+>> diff --git a/drivers/memory/tegra/tegra186.c b/drivers/memory/tegra/tegra186.c
+>> index 7bb73f06fad3..386e029e41bb 100644
+>> --- a/drivers/memory/tegra/tegra186.c
+>> +++ b/drivers/memory/tegra/tegra186.c
+>> @@ -10,6 +10,7 @@
+>>   #include <linux/of_device.h>
+>>   #include <linux/platform_device.h>
+>>
+>> +#include <soc/tegra/bpmp.h>
+>>   #include <soc/tegra/mc.h>
+>>
+>>   #if defined(CONFIG_ARCH_TEGRA_186_SOC)
+>> @@ -65,6 +66,8 @@ static int tegra186_mc_probe(struct tegra_mc *mc)
+>>   static void tegra186_mc_remove(struct tegra_mc *mc)
+>>   {
+>>        of_platform_depopulate(mc->dev);
+>> +
+>> +     tegra_bpmp_put(mc->bpmp);
+>>   }
+>>
+>>   #if IS_ENABLED(CONFIG_IOMMU_API)
+>> diff --git a/drivers/memory/tegra/tegra234.c b/drivers/memory/tegra/tegra234.c
+>> index 02dcc5748bba..4f34247c9bda 100644
+>> --- a/drivers/memory/tegra/tegra234.c
+>> +++ b/drivers/memory/tegra/tegra234.c
+>> @@ -1,18 +1,24 @@
+>>   // SPDX-License-Identifier: GPL-2.0-only
+>>   /*
+>> - * Copyright (C) 2021-2022, NVIDIA CORPORATION.  All rights reserved.
+>> + * Copyright (C) 20212-2023, NVIDIA CORPORATION.  All rights reserved.
+> 
+> Typo, 2021.
+> 
+Will fix.
+
+>>    */
+>>
+>>   #include <soc/tegra/mc.h>
+>>
+>>   #include <dt-bindings/memory/tegra234-mc.h>
+>> +#include <linux/interconnect.h>
+>> +#include <linux/of_device.h>
+> 
+> One more suprising change...
+> 
+Will remove the header file "of_device.h".
+
+>> +#include <linux/tegra-icc.h>
+>>
+>> +#include <soc/tegra/bpmp.h>
+>>   #include "mc.h"
+>>
+>>   static const struct tegra_mc_client tegra234_mc_clients[] = {
+>>        {
+>>                .id = TEGRA234_MEMORY_CLIENT_MGBEARD,
+>>                .name = "mgbeard",
+>> +             .bpmp_id = TEGRA_ICC_BPMP_EQOS,
+>> +             .type = TEGRA_ICC_NISO,
+>>                .sid = TEGRA234_SID_MGBE,
+>>                .regs = {
+>>                        .sid = {
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
