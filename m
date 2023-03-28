@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CCA76CBCBB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A64F6CBCBF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:45:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232071AbjC1KnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 06:43:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47692 "EHLO
+        id S231978AbjC1Ko7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 06:44:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231979AbjC1KnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:43:14 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C2835B3
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:43:11 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id eg48so47606676edb.13
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:43:11 -0700 (PDT)
+        with ESMTP id S230228AbjC1Ko6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:44:58 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E46128
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:44:57 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id b20so47798768edd.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:44:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680000190;
+        d=linaro.org; s=google; t=1680000295;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zgOiq+AtOeciCdmH4CfKTQkHujujZJqW/oCAjnkxQJQ=;
-        b=z2fbJCUs40UgcqDVbQGQh4kmhI6WeRhHxPmP8pKs0i8yh52/eine8xe/tM/6QfvHbP
-         QJ84tlX3SNKaesXQdNLzBBkJHTcBgYG7l2PiH0gk90E2Chf5Q8oxKOxEQZzjceExb8vV
-         IFVjPu6VDsTPVaDViZGIefeYhR1c4k5DYYYwxvCTyMrdGYlVYsbct9l4o4yRFTLvE6pt
-         vlLybW/hJd+JVIsi5Xs53rx0D2PkCx0duxyHUGoPHLLWQol/hyhwBr1dgVwtULDJqQw7
-         732Bg4O/RimTRXeC9m48hFh3Q2utdgpE4jfJ1dLpIrMKbGJz/F2vu4hnYh454T3cAXpQ
-         ckeQ==
+        bh=O3Nwzai/k+t3Bul1ZLhEZGrjjWzVfoUwvHmHLjUTkxA=;
+        b=PkDhtt59JduMICfvcc86YjyVfuyxjuEmbr/2N9n+/bmJd7FbM4X73NFWCKtEKv5mmI
+         QvKzla9utcval07ZW5WHjv8fCpddLfbEqBKK3aO6lvTD0fn78c1odj0ij5cUnfhMcseE
+         gje40mGTziiDZ20jEzoU+YUo82qQ6r5+WSmSco72Wcu/vLfBGRbpzETVCj/5xK/xmNZi
+         L/qkNW+YQDWta+dGGbRmmDcFQjqJvq6qmApkE+VGsqPrW3wXGfJRXa/g5GLArGsc7SlE
+         NLTHYPWb1BmG4kI5LsvF/0wYMQ5yPjZxIY6IjhkQp6uUVXJdicRB92qL6MEEgm0mxqhF
+         IOmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680000190;
+        d=1e100.net; s=20210112; t=1680000295;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zgOiq+AtOeciCdmH4CfKTQkHujujZJqW/oCAjnkxQJQ=;
-        b=bYQVYi0qxdn1Lw7rgemcBtSOfMa5CRfs18WoCIVMk0zshnRN04Ha+lsAFUuaImBrYi
-         aRyn0PwSmna3u2iiw1lxdukDVANW5a8tqIoHXTQ112+r5qLIbYOA5j0u52TzrfmfEL1H
-         2NiMduOKDp08EbTp52quk6L5gBguOqz3/EzK867a77IbIyMaTLFknOPH7XpUhKhXbR5g
-         buJbKeGp1/Vlmt33OIb2v4+6QAB2dtZM9GQOSSJaIfCYl7EuOknrMeMz2nAia4UA5LAV
-         Swq0nIvFDUNWQhdBI2SYAkrpsM9ASn7mruvvVYz3TF9yNjXpBvx6KxKs4wAsVB0qen3U
-         TkOg==
-X-Gm-Message-State: AAQBX9eI1i9FXceCeNSD/KdePOIvc5gVDqGNpYA94vumi8tiU8YD+gbT
-        n0byNdIngZbxCeik30bG6TPA1g==
-X-Google-Smtp-Source: AKy350Zfnrc8ZewffEwh0R/rtujIhidB2cKU4fpAUyOT7kpfXTOeG5IhvfNxPAEsI9UYX+OUDcVZNQ==
-X-Received: by 2002:a17:906:3f8e:b0:939:ad91:adf5 with SMTP id b14-20020a1709063f8e00b00939ad91adf5mr17014758ejj.25.1680000189965;
-        Tue, 28 Mar 2023 03:43:09 -0700 (PDT)
+        bh=O3Nwzai/k+t3Bul1ZLhEZGrjjWzVfoUwvHmHLjUTkxA=;
+        b=rOywFguVxojA0QI/kK6+r4L3oVK3IV5jFbtPj/rH5gWnmMCi3jmI9in+ICpzZl1xkj
+         2sTuOVqK03UpHRwkl+SA/7gA73qUVGIDbTaFisjW+1LFafNuAP9rPrG6k1MhxBJaMZy1
+         BahCxwUMBO9ZNTGjBu3eHpGfGTvRSyEf/fz+mfinbOMOy0DOx+45rGcRKmUS6tzslgDH
+         d5TJ4uoL7FLia39c2Nrg3r/6OjP1JZz5K46sWMiQoqim5XTmMtBlDasl9RH0FCabiBSe
+         4QENwpN97jRCZ4hLq9XPj8h/3Casm3qEC5HbNcYdH3Xg44fnMCMT2ruIGlBRP4HPTwwd
+         Q5Pw==
+X-Gm-Message-State: AAQBX9ct5/9O3qUKZ/7Y50DFMpqMBiDl8A8xFyqBZWd04bDrwPCLl0fE
+        HI8LsCBPXpeeESTqf5X6JbgcOw==
+X-Google-Smtp-Source: AKy350ZiRVpB+l55R6+jIJtxAvh9aWVefXU7IEU13jrFin0zF8M8n7+gPJaEED5hSZeW2QNN+srzeg==
+X-Received: by 2002:a17:906:3988:b0:8b0:f277:5cde with SMTP id h8-20020a170906398800b008b0f2775cdemr15490744eje.32.1680000295707;
+        Tue, 28 Mar 2023 03:44:55 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
-        by smtp.gmail.com with ESMTPSA id lj24-20020a170906f9d800b00932ba722482sm14366953ejb.149.2023.03.28.03.43.09
+        by smtp.gmail.com with ESMTPSA id be8-20020a1709070a4800b0093f822321fesm4085544ejc.137.2023.03.28.03.44.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 03:43:09 -0700 (PDT)
-Message-ID: <aec9e01b-c358-0982-3090-ef980d4a5623@linaro.org>
-Date:   Tue, 28 Mar 2023 12:43:08 +0200
+        Tue, 28 Mar 2023 03:44:55 -0700 (PDT)
+Message-ID: <7554941f-0b90-5cef-48e4-eda12ef92674@linaro.org>
+Date:   Tue, 28 Mar 2023 12:44:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: usb: typec-tcpci: convert to DT schema
- format
+Subject: Re: [PATCH v5] ASoC: dt-bindings: ak4458: Convert to dtschema
 Content-Language: en-US
-To:     Jun Li <jun.li@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
-References: <20230323065824.3857573-1-peng.fan@oss.nxp.com>
- <5675373c-af4f-906f-9906-7853a85f8ed6@linaro.org>
- <PA4PR04MB96405A3B0B5158561D9E068F89889@PA4PR04MB9640.eurprd04.prod.outlook.com>
+To:     Saalim Quadri <danascape@gmail.com>, broonie@kernel.org,
+        daniel.baluta@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, shengjiu.wang@nxp.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230328091831.55690-1-danascape@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PA4PR04MB96405A3B0B5158561D9E068F89889@PA4PR04MB9640.eurprd04.prod.outlook.com>
+In-Reply-To: <20230328091831.55690-1-danascape@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,133 +76,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 11:24, Jun Li wrote:
-> Hi Krzysztof,
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Monday, March 27, 2023 3:41 PM
->> To: Peng Fan (OSS) <peng.fan@oss.nxp.com>; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; gregkh@linuxfoundation.org; Jun Li
->> <jun.li@nxp.com>
->> Cc: linux-usb@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-kernel@vger.kernel.org; Peng Fan <peng.fan@nxp.com>
->> Subject: Re: [PATCH] dt-bindings: usb: typec-tcpci: convert to DT schema
->> format
->>
->> On 23/03/2023 07:58, Peng Fan (OSS) wrote:
->>> From: Peng Fan <peng.fan@nxp.com>
->>>
->>> Convert the binding to DT schema format. The default speed is HS, so
->>> add a dummy port@0 in the example.
->>>
->>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>> ---
->>>
->>> V1:
->>>  The default speed is HS, so port@0 is not added for some device tree,
->>> however the usb-c-connector requires port@0. Not sure we should drop
->>> the required port@0 from usb-c-connector schema or add a dummy port@0
->>> for tcpci as what this patch does.
->>
->> imx8mq-librem5-devkit has full port@0 so just use similar approach.
->>
->>>
->>>  .../devicetree/bindings/usb/typec-tcpci.txt   | 49 ------------
->>>  .../devicetree/bindings/usb/typec-tcpci.yaml  | 80
->>> +++++++++++++++++++
->>>  2 files changed, 80 insertions(+), 49 deletions(-)  delete mode
->>> 100644 Documentation/devicetree/bindings/usb/typec-tcpci.txt
->>>  create mode 100644
->>> Documentation/devicetree/bindings/usb/typec-tcpci.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/typec-tcpci.txt
->>> b/Documentation/devicetree/bindings/usb/typec-tcpci.txt
->>> deleted file mode 100644
->>> index 2082522b1c32..000000000000
->>> --- a/Documentation/devicetree/bindings/usb/typec-tcpci.txt
->>> +++ /dev/null
->>> @@ -1,49 +0,0 @@
->>> -TCPCI(Typec port cotroller interface) binding
->>> ----------------------------------------------
->>> -
->>> -Required properties:
->>> -- compatible:       should be set one of following:
->>> -		    - "nxp,ptn5110" for NXP USB PD TCPC PHY IC ptn5110.
->>> -
->>> -- reg:              the i2c slave address of typec port controller device.
->>> -- interrupt-parent: the phandle to the interrupt controller which provides
->>> -                    the interrupt.
->>> -- interrupts:       interrupt specification for tcpci alert.
->>> -
->>> -Required sub-node:
->>> -- connector: The "usb-c-connector" attached to the tcpci chip, the
->>> bindings
->>> -  of connector node are specified in
->>> -  Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> -
->>> -Example:
->>> -
->>> -ptn5110@50 {
->>> -	compatible = "nxp,ptn5110";
->>> -	reg = <0x50>;
->>> -	interrupt-parent = <&gpio3>;
->>> -	interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->>> -
->>> -	usb_con: connector {
->>> -		compatible = "usb-c-connector";
->>> -		label = "USB-C";
->>> -		data-role = "dual";
->>> -		power-role = "dual";
->>> -		try-power-role = "sink";
->>> -		source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
->>> -		sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)
->>> -			     PDO_VAR(5000, 12000, 2000)>;
->>> -		op-sink-microwatt = <10000000>;
->>> -
->>> -		ports {
->>> -			#address-cells = <1>;
->>> -			#size-cells = <0>;
->>> -
->>> -			port@1 {
->>> -				reg = <1>;
->>> -				usb_con_ss: endpoint {
->>> -					remote-endpoint = <&usb3_data_ss>;
->>> -				};
->>> -			};
->>> -		};
->>> -	};
->>> -};
->>> diff --git a/Documentation/devicetree/bindings/usb/typec-tcpci.yaml
->>> b/Documentation/devicetree/bindings/usb/typec-tcpci.yaml
->>> new file mode 100644
->>> index 000000000000..067d3b032e3d
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/usb/typec-tcpci.yaml
->>
->> Is this a binding for PTN5110 or for generic tcpci? Looks like the first,
->> thus name should be rather device specific, so nxp,ptn5110.
->> Specially that there are other tcpci chips in separate bindings.
+On 28/03/2023 11:18, Saalim Quadri wrote:
+> Convert the AK4458 audio DAC bindings to DT schema.
 > 
-> This binding doc is target for generic tcpci, ptn5110 is the one
+> Signed-off-by: Saalim Quadri <danascape@gmail.com>
+> ---
+> Changes:
+> V1 -> V2: Use the correct way for dsd-path property
+>           Drop ak4458 label form example
+> V2 -> V3: ak4458 is the only one that does not support dsd-path, so we
+>           do not require to define an array
+> V3 -> V4: Add back dsd-path property description
+> V4 -> V5: Fix yaml format as per example-schema
 
+Although I did not ask to send a new version, but if you did it, then
+you must include my tag. Standard boiler plate below:
 
-Does this mean that TCPCI requires every device to have exactly one
-interrupt (no 0, no 2, exactly 1), no supplies and no additional GPIOs
-(like reset GPIO)?
+This is a friendly reminder during the review process.
 
-Because this is what this binding is saying.
+It looks like you received a tag and forgot to add it.
 
-> fully compliance with tcpci spec, if change it to be only specific
-> to nxp,ptn5110, my understanding is then other chips need duplicate
-> a binding doc even common tcpci binding and driver is enough for them.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
 
-Depends. Usually we have common schema used by actual device schemas. If
-TCPCI-compliant device cannot have additional properties, then this one
-here looks fine.
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
-One more thing - typec-tcpci is a bit redundant "tc" means typec, so
-basicaly you said "typec-typec-pci". This shouold be then just typec-pci
-or tcpci.
+If a tag was not added on purpose, please state why and what changed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
