@@ -2,136 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4846CC0C4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD446CC0CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:29:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232433AbjC1N3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:29:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48842 "EHLO
+        id S232720AbjC1N3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:29:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231238AbjC1N3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:29:07 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48EE69EF2
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 06:29:04 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id a21so5378126ljq.10
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 06:29:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680010142;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AYY5Dr1Z1I9hb8CrXHC9U6DlzlFB2ypBISlRnxmPY3I=;
-        b=LSUtWT/AWGybRwLerH/91aATgi4rurZprloou1LoGbGck955eT2qPbsBESu3GGovM1
-         Ef82KFLSrfncXdZPa+HO0VHz6/FWeQDOYPZtXTBvOcftd29V/kbshbm89jeOhdgNv72z
-         tIBltFQthZyxbP6DnlXHUCQvj7zsXrtmWMZmNso1w1Vz49P7zG/ASg7HQ7r4ifogj/ws
-         eRl3o9x5JWVcUPqx5/Wt8dKS6a6guAPmnjP/QFyjmsxcN542w9RqBqdCOFTBbSRGNeMg
-         tJ/FR4tWEHOoOd6iME5heju7i64W4GuYfqI6w2KVY5O6997+lc7nztRn7DyHHjQcYCvg
-         3g2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680010142;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AYY5Dr1Z1I9hb8CrXHC9U6DlzlFB2ypBISlRnxmPY3I=;
-        b=tlZPUYiExbNdiGfl9xLCwi8ytUySU3zWj/mePy+zBpcv6hD0Ujm0GP0pxl+op6/p1G
-         n3j/Sv2qX92K9S2/oZsXQFQ5a0Y8m16E0f7Gw3gsORv+wBAAmkyk9X43pF6YQycFjUIu
-         yT5z27kVx17lxl/shK4/lakKdd32+6aWNZxwbI3+ll5FY1B0kswCw/i4/mRRGb7XcvwC
-         pehDl0n3ula1CbgnAjywu70dHclBJGEK2/E9z1lkO1uvVT/d9OLBe0HcpJk2sxliMyqF
-         5vV8T16MGJGFHEv4JRKAOzKhL6quMz0LK5uwPwu0z4Tcl/4fi0PA7w/0sgL5dZwPi9it
-         yDSg==
-X-Gm-Message-State: AAQBX9fmcgqAc/jtKsKDCow/64bzY2080gCvA62btu3S7H9LlsFk4f8u
-        fWZJL8dD/3d5/zYjs2VywMeR1Q==
-X-Google-Smtp-Source: AKy350YAExXR6RZ2krFV7pgEcgdlDZBlWD13Eq4CYLuYxlMIcsU/t+DkcS1rzXhKdXibAB8k4462cA==
-X-Received: by 2002:a2e:9a8e:0:b0:2a0:7d07:edba with SMTP id p14-20020a2e9a8e000000b002a07d07edbamr5228469lji.43.1680010142574;
-        Tue, 28 Mar 2023 06:29:02 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e904c000000b00299f0194108sm5049811ljg.31.2023.03.28.06.29.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 06:29:02 -0700 (PDT)
-Message-ID: <76c5b46c-82d6-847c-aaca-7380d310d012@linaro.org>
-Date:   Tue, 28 Mar 2023 15:29:00 +0200
+        with ESMTP id S233092AbjC1N3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:29:45 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0A9BDFE;
+        Tue, 28 Mar 2023 06:29:41 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SDTVHB088142;
+        Tue, 28 Mar 2023 08:29:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680010171;
+        bh=wPFEHvMoRk1iQxWnoSLx5fYVpt8cuqTHjmfDRQ67MEg=;
+        h=From:Subject:Date:To:CC;
+        b=tLIeOr7AJ5UzO8CzHRhtC1X2UabUBYRc5t494+ocr9WxewHTyUnHVobwjKbCgOvdf
+         tZG+DtUT+G5cIy1OQMelXhAC/hKTTL/QDf7EtjNYvRg1DHxKNacdQRaRSjMCR8dqsM
+         f5bPSoSIy2OsUCyzxA1tXA7UGTvll2PqfZWaUEas=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SDTVoS113888
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 08:29:31 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 08:29:31 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 08:29:30 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SDTUti031386;
+        Tue, 28 Mar 2023 08:29:30 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v8 0/6] arm64: ti: Enable audio on AM62 and AM62A
+Date:   Tue, 28 Mar 2023 18:59:18 +0530
+Message-ID: <20230313-mcasp_upstream-v8-0-4408134eb2f3@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 2/5] ARM: dts: qcom: sdx65: Add support for PCIe PHY
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mani@kernel.org,
-        lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
-        manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-References: <1679036039-27157-1-git-send-email-quic_rohiagar@quicinc.com>
- <1679036039-27157-3-git-send-email-quic_rohiagar@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1679036039-27157-3-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAK7rImQC/33NzQ6CMBAE4FchPVtTKGWLJ9/DGLMtizThLy0Sj
+ eHdLRxMPMhxJvlm3iyQdxTYKXkzT7MLbuhj0IeE2Qb7O3FXxcwykUkhU8k7i2G8PcYwecKOC0o
+ liFQKVRoWkcFA3HjsbRNZ/2jbWI6eavfcXi7XmBsXpsG/ttNZre3f/VlxwatC5zkIQNR4ntzRD
+ h1bd+Zi3xbRAhRaVWANGf1jYd9CtHmNtrSgVVaWX7ssywfnzvr6NgEAAA==
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Aradhya Bhatia <a-bhatia1@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Andrew Davis <afd@ti.com>, Jai Luthra <j-luthra@ti.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2207; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=hqhtZaABsuLkdxGbaQQZwQfzGeZ9OECjFCO8UHvrkmM=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkIuu04zva18HDAXC8qJfPerPxrNmyUmD4rssrB
+ LfoZNvhh6OJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZCLrtAAKCRBD3pH5JJpx
+ RWBqD/0aqLwP4RqhSP+7/RBkK+3HxQANG7OMP7fN380XoU0vZWs9o1sil1m+lJhC8/ssQSyNpvR
+ VyD1aeQKOieZ7qKQmZ+jt4LLZXY6Cfi1R/eVAcQhjrLF9SzSs0T6CpwjaTjwQAIt/dw9D85E+oh
+ F41noSKGbeYNFMUzvtdYC0JWo2sTE0I9E44aI72yhrbfU4t3s1tGKU8qhzp5oNrcbaHXbFBT4sE
+ 9d0MgJklzi7c8GGdAjTGewyu6SWtcdpmTGY2HZbrSZtDLZycEZj4CMSYxgBeOgmBTaFUpe6yriu
+ jqTqv3U1f6BumgLj6r/vOZPxA5bKJDafpkuzZ811wQ4vWzVwRRGIVu4K0ZlGQf6WloQSNanT48I
+ wj3Id6KPENH82hIWXUrxVA2yNeFXg8xv/6XHIvmY9AoDA7T9N4L3xtVgK9FQGbUavrmLaId78Ow
+ 2hDiNUDNgiyhGGpooTlRf7QGjT9FeWzrev3eY8rO/A7f3/orvhgMR92w19pjg3gCr06wU4G91Vg
+ jHt+ef8/TxLDSlA8ayXt/Hw7twjliRDrY410Jp5oekSlWSy5REAGqnYbO8TUgtyfnM2o2VZmOtz
+ o5fHU4uXe947Y9H+ZG7xPw8eWaujPEZyHBjTO7NrtgvfDZm8ze1Lp/BI2mDHH5bxskpY57kTAEt
+ Cl87PoaTOwP6K4A==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds support for audio via headphone jack on SK-AM62
+(E2+) and SK-AM62A boards. The jack is wired to TLV320AIC3106 (codec),
+which is connected to McASP1 (serializer) on the SoC.
 
+The TRRS 3.5mm jack can be used for simultaneous playback and recording.
 
-On 17.03.2023 07:53, Rohit Agarwal wrote:
-> Add devicetree support for PCIe PHY used in SDX65 platform. This PHY is
-> used by the PCIe EP controller.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v8:
+- Rebase on top of
+  https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git/log/?h=ti-k3-dts-next
+  keeping audio nodes in the common dtsi
+- Link to v7: https://lore.kernel.org/r/20230313-mcasp_upstream-v7-1-88168d0df9b8@ti.com
 
-Konrad
->  arch/arm/boot/dts/qcom-sdx65.dtsi | 31 +++++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> index 192f9f9..084daf8 100644
-> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> @@ -293,6 +293,37 @@
->  			status = "disabled";
->  		};
->  
-> +		pcie_phy: phy@1c06000 {
-> +			compatible = "qcom,sdx65-qmp-gen4x2-pcie-phy";
-> +			reg = <0x01c06000 0x2000>;
-> +
-> +			clocks = <&gcc GCC_PCIE_AUX_PHY_CLK_SRC>,
-> +				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_0_CLKREF_EN>,
-> +				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>,
-> +				 <&gcc GCC_PCIE_PIPE_CLK>;
-> +			clock-names = "aux",
-> +				      "cfg_ahb",
-> +				      "ref",
-> +				      "rchng",
-> +				      "pipe";
-> +
-> +			resets = <&gcc GCC_PCIE_PHY_BCR>;
-> +			reset-names = "phy";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE_RCHNG_PHY_CLK>;
-> +			assigned-clock-rates = <100000000>;
-> +
-> +			power-domains = <&gcc PCIE_GDSC>;
-> +
-> +			#clock-cells = <0>;
-> +			clock-output-names = "pcie_pipe_clk";
-> +
-> +			#phy-cells = <0>;
-> +
-> +			status = "disabled";
-> +		};
-> +
->  		tcsr_mutex: hwlock@1f40000 {
->  			compatible = "qcom,tcsr-mutex";
->  			reg = <0x01f40000 0x40000>;
+Changes in v7:
+- Add links to schematics in commit messages
+- Link to v6: https://lore.kernel.org/r/20230313-mcasp_upstream-v6-0-77685d7cbeb8@ti.com
+
+Changes in v6:
+- Use generic node names (audio-controller@) for McASP
+- Fix labels, indentation and spacing issues
+- For SK-AM62A:
+	- Remove redundant status property from codec
+	- Add a note in commit message about missing DVDD regulator
+	- Supply OCMV level manually to the codec
+- Link to v5: https://lore.kernel.org/r/20230313-mcasp_upstream-v5-0-d6844707aa8a@ti.com
+
+---
+Jai Luthra (5):
+      arm64: defconfig: Enable audio drivers for TI K3 SoCs
+      arm64: dts: ti: k3-am625-sk: Enable audio on AM62 SK
+      arm64: dts: ti: k3-am62a-main: Add nodes for McASP
+      arm64: dts: ti: k3-am62a7-sk: Split vcc_3v3 regulators
+      arm64: dts: ti: k3-am62a7-sk: Enable audio on AM62A
+
+Jayesh Choudhary (1):
+      arm64: dts: ti: k3-am62-main: Add McASP nodes
+
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts       | 11 +++
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi       | 60 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts         | 11 +++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi      | 60 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 92 +++++++++++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 77 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                   |  2 +
+ 7 files changed, 311 insertions(+), 2 deletions(-)
+---
+base-commit: e1ecd17c0d1e2219c58e5152243e4702bae4f0a4
+change-id: 20230313-mcasp_upstream-0e137013059b
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
+
