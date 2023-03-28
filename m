@@ -2,100 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D80D6CBCA9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 093E36CBCAD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbjC1Kjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 06:39:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
+        id S229510AbjC1KlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 06:41:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232134AbjC1Kjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:39:42 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691AC6A58
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:39:41 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id i5so47876233eda.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:39:41 -0700 (PDT)
+        with ESMTP id S231820AbjC1KlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:41:19 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24AE7618A
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:41:18 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id r187so14399498ybr.6
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679999980;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6Rp6VZo9LId3BX033N14P3CvaNIPCBV06I8wC19k9S4=;
-        b=IC1gzxtz1oG3wkhY1SGJbyjAopyj4+cuFnb6DHovrkLVwPC1n1MvhFVfj8xQqN/eSi
-         HX9zgt4WbUeZ+GH9dt6RSV3kvCUJ5Z9E8yZqMVTQA2SboqnfBbCTQ/y2DN3J4Xi7bUK4
-         GXiwVHhyCwe5x3l5KDdJZTSs/E99IoeSe3bQzuidTMNWLEIRZz75LuI1vu/56D1rNR4M
-         Jd0do6CLI4JHT5D0en0S+4RaX9rPRfv7eqnUq/KLlblUmhaRkHjl3wBI91j2KQuONyf+
-         3yng0iLbssqZrH0x7HqeMoHjrxAg1GDn93TcV1Zf2uqi0S/0jhHToGMYBfPHkvv+g/33
-         26qQ==
+        d=linaro.org; s=google; t=1680000077;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ScncozdRfE1mQa4+nAK0Jtn2/gS2SKLxxgCN6MI5Phg=;
+        b=H8oqCcILOHHKdyyXrpcOAQHKtYJ2R0EHXcQyxGEJjfqnmd65oxyqvV/KLS0RWopNJX
+         Bk7WhfFL4NLKT25hUFYeNxGmxs41HJy7haUypio2700XOEz3BVSLnDHurA2FmhON4kKN
+         yQcC59eumRN+Lf1cbDncVhl8Vmlj5FFy02C3vc2LhT426HTg/j5PDdIj1wT3U9gJNOVo
+         SX0PNrdLVKrOWxwye4Njt6BQKEuF2bgwYb/dSXnYUxJMwubfctDv4kVrnsR4UJzXn8hV
+         d82478pWw5hE2oGzI98Q0G5Muogq/5IAcrrFPZV0nmWdqzBhYsYKK8FTPIF14zb3GUFo
+         0X2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679999980;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Rp6VZo9LId3BX033N14P3CvaNIPCBV06I8wC19k9S4=;
-        b=qZiErY+fnuHjBp63ro3x6gUdWeeDTLdZt3jwSbUDXxErvlwDaGWmLa4h4/Oi08WOu+
-         l+YPHd6Bf1XzP3ttBPbFlirVI+VAwlETUaJpWZEytrfVUgAcSBXAZ6EobRiQ53GdfoNx
-         ixtnxfk05AfhcPO7EC+/8wUFyPz87LKYkFf/gB2FmUiaU+sbfq9k+Dc++c9uLWd/PjYl
-         y7LNYkunI7RicHrHK09813S8rU/BpYGqhVEsSnZVe2uAV+LE7cx6KHILGPEsjDzFAsHI
-         zD1MoCuqoAPMiiQ4zJQ+jraZttvKDT+cR0j5jXhWANyFXrAPru/aNpFPKEM4TUkqmXAs
-         p03A==
-X-Gm-Message-State: AAQBX9dmhoyY/a5jBc4ecyWTSYEKLD/tK+Nklu+QdfGh15pg7+z5qdiW
-        7GYiae73X3/+OKgTW05ZtkDJcA==
-X-Google-Smtp-Source: AKy350aeR+l2QHShByGShBsM2Crvf40sRkJF4PZYF6Y+FbeRMaArabxY1QQn39ltc8XEMe8dPD7unA==
-X-Received: by 2002:a17:906:bcec:b0:926:8992:4310 with SMTP id op12-20020a170906bcec00b0092689924310mr16185642ejb.38.1679999949968;
-        Tue, 28 Mar 2023 03:39:09 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
-        by smtp.gmail.com with ESMTPSA id k19-20020a1709063fd300b00928de86245fsm15118289ejj.135.2023.03.28.03.39.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 03:39:09 -0700 (PDT)
-Message-ID: <2dc9dc13-62e0-2b2a-b235-bc6e21d64dbc@linaro.org>
-Date:   Tue, 28 Mar 2023 12:39:08 +0200
+        d=1e100.net; s=20210112; t=1680000077;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ScncozdRfE1mQa4+nAK0Jtn2/gS2SKLxxgCN6MI5Phg=;
+        b=Epb/o5iNu4qyG5ZJpldqSqQYzLykkfpc35BRy2z4ZtwilFN7K7DTJCOqIO7wAiFo/R
+         s48XZXRvuONgmhQX2oUOY0Y9M4hiZgwf0+E+02IirlBJozMI0DZ5LFWS8a84gxWkuQRh
+         3034P4Fb7IFAN29SkIK3u3Jmvito6O2GvuxUqX07WCf3LivRLO9toQ5BgLKl9aWSYslr
+         lp8qjEAHv0Ow+VjiErQtJvPNUYAbyeLwlUBQyWpK5WT3AKUD46T99cDxOIHGESDBtW6m
+         HwDTCtPom1rUXND1BUzqITwvWqosP7drP55ebSQI0KOqoTo9bJN23f2apuUjbX4ga6Eh
+         vbUw==
+X-Gm-Message-State: AAQBX9cVG/2YlDzZ62EJat3wukdR+ANKozqNL/9yj8n7OeqpOLTDa38p
+        eN8KMPfsDuZYzIxlTl6WAmndNb5VnWUtXu6lYmPHZQ==
+X-Google-Smtp-Source: AKy350ZgEE/D6adiyj/0Gd6S8pM8rCmiMKgPbfnz/d61Gs6OOEUXmjzkmasYyqUwfhInm+ReDGrgAg0kgVptOTmf+cU=
+X-Received: by 2002:a05:6902:168d:b0:b6c:2d28:b3e7 with SMTP id
+ bx13-20020a056902168d00b00b6c2d28b3e7mr9261489ybb.9.1680000077344; Tue, 28
+ Mar 2023 03:41:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 1/5] dt-bindings: mfd: Add the Lantiq PEF2256 E1/T1/J1
- framer
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+References: <20230326005733.2166354-1-dmitry.baryshkov@linaro.org>
+ <20230326005733.2166354-2-dmitry.baryshkov@linaro.org> <72f744cc-21ea-0eab-2778-53ec0f3e4964@linaro.org>
+In-Reply-To: <72f744cc-21ea-0eab-2778-53ec0f3e4964@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 28 Mar 2023 13:41:06 +0300
+Message-ID: <CAA8EJpq7VRsrA9++kV1E1NZ2GzoLFC6o19YDCnw=0B4kePVCEA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] dt-bindings: phy: migrate combo QMP PHY bindings
+ to qcom,sc8280xp-qmp-usb43dp-phy.yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230328092645.634375-1-herve.codina@bootlin.com>
- <20230328092645.634375-2-herve.codina@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328092645.634375-2-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 11:26, Herve Codina wrote:
-> The Lantiq PEF2256 is a framer and line interface component designed to
-> fulfill all required interfacing between an analog E1/T1/J1 line and the
-> digital PCM system highway/H.100 bus.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  .../bindings/mfd/lantiq,pef2256.yaml          | 267 ++++++++++++++++++
->  1 file changed, 267 insertions(+)
+On Tue, 28 Mar 2023 at 10:02, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/03/2023 01:57, Dmitry Baryshkov wrote:
+> > Migrate legacy bindings (described in qcom,sc7180-qmp-usb3-dp-phy.yaml)
+> > to qcom,sc8280xp-qmp-usb43dp-phy.yaml. This removes a need to declare
+> > the child PHY node or split resource regions.
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> > -  resets:
+> > -    items:
+> > -      - description: reset of phy block.
+> > -      - description: phy common block reset.
+> > -
+> > -  reset-names:
+> > -    items:
+> > -      - const: phy
+> > -      - const: common
+> > -
+> > -  vdda-phy-supply:
+> > -    description:
+> > -      Phandle to a regulator supply to PHY core block.
+> > -
+> > -  vdda-pll-supply:
+> > -    description:
+> > -      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> > -
+> > -  vddp-ref-clk-supply:
+> > -    description:
+> > -      Phandle to a regulator supply to any specific refclk pll block.
+>
+> What about this supply. It's missing in the new binding. Don't we need
+> it? Isn't it a real supply?
 
+I think it is a leftover from the QMP split. This is a real supply,
+but it is used only by UFS PHYs. So, while we are clearing old
+bindings, let's drop this unused thing.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
