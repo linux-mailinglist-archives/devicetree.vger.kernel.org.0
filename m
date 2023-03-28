@@ -2,89 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 035026CC3CE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7F56CC54E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233609AbjC1O5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 10:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33396 "EHLO
+        id S233248AbjC1PNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233603AbjC1O5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:57:46 -0400
-Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D406E061;
-        Tue, 28 Mar 2023 07:57:45 -0700 (PDT)
-Date:   Tue, 28 Mar 2023 14:57:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1680015463; x=1680274663;
-        bh=8VYClvItDD5z4B2IZDetMy87zHl4JJwRVsi0b1MCWg4=;
-        h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=eao+F0VqQ4+vZO+XM0/+cXlZmkIj2LPG3t23KlyemYnb00QIv6Ixpn+AC1vguHrr+
-         fs99bpLxcTdGLY8vqMtT5zkbVcXcj4XkP/rwUFqpBtCnoMYWU/C/Bo9fh3dgpzTsOz
-         Q9KP+qA+dR2W2hbjdnb+L0FVK+Wt7nJP+JN2F3J8=
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH 09/11] arm64: dts: qcom: sdm845-oneplus: drop invalid panel properties
-Message-ID: <f5521c4c-01d7-7783-bdfd-dadf88396fd6@connolly.tech>
-In-Reply-To: <20230326155753.92007-9-krzysztof.kozlowski@linaro.org>
-References: <20230326155753.92007-1-krzysztof.kozlowski@linaro.org> <20230326155753.92007-9-krzysztof.kozlowski@linaro.org>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S231934AbjC1PMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:12:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10026FF05
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 08:12:32 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1phAyU-00013x-BO; Tue, 28 Mar 2023 17:11:02 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1phAyS-0007PR-P8; Tue, 28 Mar 2023 17:11:00 +0200
+Date:   Tue, 28 Mar 2023 17:11:00 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Greg Ungerer <gerg@linux-m68k.org>
+Cc:     peng.fan@nxp.com,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        abailon@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        festevam@gmail.com, abelvesa@kernel.org, marex@denx.de,
+        Markus.Niebel@ew.tq-group.com,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        paul.elder@ideasonboard.com, gerg@kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, linux-pm@vger.kernel.org,
+        s.hauer@pengutronix.de, robh+dt@kernel.org, aford173@gmail.com,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, djakov@kernel.org, shawnguo@kernel.org,
+        l.stach@pengutronix.de
+Subject: Re: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk
+ ctrl
+Message-ID: <20230328151100.msl46qupstwplkgw@pengutronix.de>
+References: <20220703091451.1416264-8-peng.fan@oss.nxp.com>
+ <20230327045037.593326-1-gerg@linux-m68k.org>
+ <2678294.mvXUDI8C0e@steina-w>
+ <b23a44ab-3666-8a41-d2a0-0d2fbdbd9f00@pengutronix.de>
+ <ecd3a92b-ba1e-e7c1-088a-371bd1a2c100@linux-m68k.org>
+ <20230328073302.jj64u5hvdpc6axa5@pengutronix.de>
+ <426b4776-104c-cb47-c8cc-c26515fcb6e3@linux-m68k.org>
+ <20230328134201.yaxrdtetjygkgkmz@pengutronix.de>
+ <20230328135100.rbmnfelphe7juhxo@pengutronix.de>
+ <c368a0f8-41f0-69ac-04f4-459e5fc8b9d6@linux-m68k.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c368a0f8-41f0-69ac-04f4-459e5fc8b9d6@linux-m68k.org>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Greg,
 
+On 23-03-29, Greg Ungerer wrote:
+> Hi Marco,
 
-On 26/03/2023 16:57, Krzysztof Kozlowski wrote:
-> Panel does not have children with unit-addresses thus address/size-cells
-> are not valid:
->
->   panel@0: '#address-cells', '#size-cells' do not match any of the regexe=
-s: 'pinctrl-[0-9]+'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
 
-Reviewed-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/a=
-rm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index b01542d79ae2..0c268c560d37 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -347,8 +347,6 @@ &dsi0 {
->  =09display_panel: panel@0 {
->  =09=09status =3D "disabled";
->
-> -=09=09#address-cells =3D <1>;
-> -=09=09#size-cells =3D <0>;
->  =09=09reg =3D <0>;
->
->  =09=09vddio-supply =3D <&vreg_l14a_1p88>;
-> --
-> 2.34.1
->
+> > I forgot to ask: Does your i.MX8MP have a VPU? There are i.MX8MP devices
+> > (don't know the name) which don't have support for certain IPs. If this
+> 
+> The hardware platform I have is using the MIMX8ML4CVNKZAB "i.MX 8M Plus QuadLite"
+> (https://www.nxp.com/part/MIMX8ML4CVNKZAB#/) which does not have the hardware
+> video encode/decoder module (like the "i.MX 8M Plus Quad" parts).
 
---
-Kind Regards,
-Caleb
+and that's the problem :) You need to update your bootloader to a
+version which support disabling the VPU nodes else you will always see
+the errors.
 
+> > is the case the bootloader will fixup your devicetree by disable the
+> > corresponding nodes, we call this feature-controller:
+> > 
+> > https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/imx8mp.dtsi
+> > 
+> > As you can see the imx8mp.dtsi is missing the feature bits for the VPU
+> > but you can check the i.mx8mm.dtsi. Here you can see that barebox will
+> > check the availability of the vpu:
+> > 
+> > https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/imx8mm.dtsi
+> 
+> Ok, thanks, I'll take a look.
+
+Patches are welcome if you use barebox :)
+
+Regards,
+  Marco
