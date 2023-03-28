@@ -2,96 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D280E6CB9A7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D3F66CB9C4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbjC1IoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 04:44:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35330 "EHLO
+        id S229972AbjC1Irk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 04:47:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230396AbjC1IoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:44:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307DF46B7;
-        Tue, 28 Mar 2023 01:44:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A31B4615E8;
-        Tue, 28 Mar 2023 08:43:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29C9DC433EF;
-        Tue, 28 Mar 2023 08:43:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679993039;
-        bh=AlNQBO+6ZRz6UYSPWubZy6WiSLJFBORuZaf7fG3oWe8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X0qS0MrS+ITx2XHH32iBaoDei8A9+eMFKPZGdqi0fFCCJuOWLrSZZ0IK6rRJjDQR/
-         orqheWjd7YS2iqyK8C0JQzVUluWjsMSYh1KizoVRd2SgQxsHOH8jXd7SiFbFlUYGik
-         nLYEyUBtWuym9jtT7aH2X7wJVqomFKnYV72ZHTw41MggksME9N9Yx+dGHCMqPFIW83
-         wQ+FwP/1oM/wPSIxpnOeyPu4O+YqKqB3yCN1YMv4Q228/RB7zz0fKwC1fjGPVVh8D5
-         0EFob/EBKGbGevR6RJ2vddXeKV0Cpq9ewMztOFE2WEychAwppVTgo5ZHQbQBxrddF6
-         sFzQt9g92KPlg==
-Date:   Tue, 28 Mar 2023 14:13:54 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231144AbjC1Iri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:47:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A876349E2
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 01:47:37 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1ph4z7-00020w-1P; Tue, 28 Mar 2023 10:47:17 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id EB51019E085;
+        Tue, 28 Mar 2023 08:47:11 +0000 (UTC)
+Date:   Tue, 28 Mar 2023 10:47:10 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+        Rob Herring <robh@kernel.org>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/12] dt-bindings: usb: qcom,dwc3: Add SC8180x binding
-Message-ID: <ZCKoysdcEZ2arUUS@matsya>
-References: <20230325122444.249507-1-vkoul@kernel.org>
- <20230325122444.249507-5-vkoul@kernel.org>
- <76b5c861-708f-c2ff-4eb8-9a868237b333@linaro.org>
+        Mark Brown <broonie@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: Re: [PATCH v10 0/5] can: bxcan: add support for ST bxCAN controller
+Message-ID: <20230328084710.jnrwvydewx3atxti@pengutronix.de>
+References: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jrabto3ooziwdlnq"
 Content-Disposition: inline
-In-Reply-To: <76b5c861-708f-c2ff-4eb8-9a868237b333@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-03-23, 09:55, Krzysztof Kozlowski wrote:
-> On 25/03/2023 13:24, Vinod Koul wrote:
-> > Document the USB dwc3 controller for SC8180x SoC
-> > 
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > index 4875c5b7d5b5..54e24c3abd29 100644
-> > --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > @@ -24,6 +24,7 @@ properties:
-> >            - qcom,qcs404-dwc3
-> >            - qcom,sc7180-dwc3
-> >            - qcom,sc7280-dwc3
-> > +          - qcom,sc8180x-dwc3
-> >            - qcom,sc8280xp-dwc3
-> >            - qcom,sdm660-dwc3
-> >            - qcom,sdm670-dwc3
-> > @@ -324,6 +325,7 @@ allOf:
-> >          compatible:
-> >            contains:
-> >              enum:
-> > +              - qcom,sc8180x-dwc3
-> >                - qcom,sm8350-dwc3
-> 
-> You need to update/add also block for interrupts.
 
-Thanks for spotting that, updated now
+--jrabto3ooziwdlnq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-~Vinod
+On 28.03.2023 09:33:23, Dario Binacchi wrote:
+> The series adds support for the basic extended CAN controller (bxCAN)
+> found in many low- to middle-end STM32 SoCs.
+>=20
+> The driver has been tested on the stm32f469i-discovery board with a
+> kernel version 5.19.0-rc2 in loopback + silent mode:
+>=20
+> ip link set can0 type can bitrate 125000 loopback on listen-only on
+> ip link set up can0
+> candump can0 -L &
+> cansend can0 300#AC.AB.AD.AE.75.49.AD.D1
+>=20
+> For uboot and kernel compilation, as well as for rootfs creation I used
+> buildroot:
+>=20
+> make stm32f469_disco_sd_defconfig
+> make
+>=20
+> but I had to patch can-utils and busybox as can-utils and iproute are
+> not compiled for MMU-less microcotrollers. In the case of can-utils,
+> replacing the calls to fork() with vfork(), I was able to compile the
+> package with working candump and cansend applications, while in the
+> case of iproute, I ran into more than one problem and finally I decided
+> to extend busybox's ip link command for CAN-type devices. I'm still
+> wondering if it was really necessary, but this way I was able to test
+> the driver.
+
+Applied to linux-can-next.
+
+Thanks,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129  |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--jrabto3ooziwdlnq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmQiqYsACgkQvlAcSiqK
+BOgCXAf+NWJnGcM64I8QZW2GZ+4p1b5BV4hNDu4ehwwXOtajDqX0icFMJ+ADogBm
+1OPOaNIWM5FLmL8Psn9S2O7DIH30kTJub7X58xxQl2vw9AVvg2ufgXFsrWrNcbR0
+7lrbOzY4ghA7jXXWu7bya2sZ2OPp4xvF4zJRHF1axJ9Y4mWZ5UUomyhMc2It6nNV
+MImbzZWnuFBLQxbUXefUz0CgEMCdi8N1hpJ2rHkNR0LPTVIGFDLtxBkj7rsvn/nj
+eG2Q6WVQEFz/BWdc2e0xMjbvH5cWfp+tDDhh8UAwjSzUFCHm9sbZsXQQ5+j1S2kh
+y2zuT0AX2HJPn+sJLsz9wM8SsswTmQ==
+=7WBc
+-----END PGP SIGNATURE-----
+
+--jrabto3ooziwdlnq--
