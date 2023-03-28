@@ -2,204 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCD4F6CB9C7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E7E66CB9D3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 10:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbjC1IsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 04:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42646 "EHLO
+        id S229975AbjC1IvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 04:51:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231174AbjC1IsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:48:08 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDE449E2;
-        Tue, 28 Mar 2023 01:48:00 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id y19so6753181pgk.5;
-        Tue, 28 Mar 2023 01:48:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679993279;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VNI6lV401OYe10HsNLcwnXIFZPlsfUPtF81FXRtAZ3E=;
-        b=j/cEpRRM19UVVeWZS9niuGCxErtarIdoC5kbPGQwNCHySTyUcwjwkGkeQ5z+J6kfzR
-         pYKJm8Dg19Q6o+B3Eo1N1xNf/tfLq46xtFWvSAoMA/yWP+VPQ5IIZPzyg/LPvDHIODtv
-         uFsBwVQpryiNlQuSQksTImQOAvcdT1DhL/WeWgUtCt5GlhKY6bmqB+uO5yD0P7VDZgwG
-         KtJieIxpzUlm3dNPc3a1P6FMu2OdWXIVEMTBGdg6bzMRqfIijzNUOVLOS/VOm5j7jQsr
-         gVwwuLLr/M52JlOmbLFwAqHVVeSlt9PTBkEtjUH3WyrDkomBFsFqqOoCxQ/eFCkQydUp
-         9Blg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679993279;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VNI6lV401OYe10HsNLcwnXIFZPlsfUPtF81FXRtAZ3E=;
-        b=74WVm9SElZttT2PSF3JdkF4CptVv/Q4cp1fm5UUxdTkjzXK+YATWjIZBn/ze9UyMLa
-         r6oU5b4UI6ZQv5hRq7n4CyWubywxexnPzbCmfvXY5T4mwiKeVGCGzZ0MfLnkNdnKfOr4
-         WKJ6OIVtStEc+G3NfSY3vI20tPhBSgoOIptQ32BEkUNnw+5mYhX9VlGAm1XjF7p0yZiR
-         jQmEdbROtQa7aGw+GrKr7BrOWR20cJFjZWmTtoE0ojjSVgYes893XisH3rrtlzm/ihEP
-         3CY8zKvUGwGQaLk+Uq+4/ZDlIxrPmsCSi5tjCcocL2ziVbeI7TkDDcUBtvnh6PTws1zM
-         o2Ng==
-X-Gm-Message-State: AAQBX9eS7nJIDYGeU42YZ/yPc5oNNfUc1GfNjqUU2VRjymsgJZq0gKs8
-        a31S7dzV7YKF6DKHihRrMnk=
-X-Google-Smtp-Source: AKy350Y270PTe8vasybxuEgWv07q7aaaBzY21O1foTzqSD2vg28QsUxiKBuKth5huZcm4YiEF70L5w==
-X-Received: by 2002:a62:8496:0:b0:627:f659:a771 with SMTP id k144-20020a628496000000b00627f659a771mr16150885pfd.12.1679993279393;
-        Tue, 28 Mar 2023 01:47:59 -0700 (PDT)
-Received: from pavilion.. ([2402:e280:2146:a9a:db37:2c9f:dcb8:89a9])
-        by smtp.gmail.com with ESMTPSA id e27-20020a63545b000000b00513092bdca1sm9119548pgm.73.2023.03.28.01.47.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 01:47:59 -0700 (PDT)
-From:   Saalim Quadri <danascape@gmail.com>
-To:     krzysztof.kozlowski@linaro.org, broonie@kernel.org,
-        daniel.baluta@nxp.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, shengjiu.wang@nxp.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Saalim Quadri <danascape@gmail.com>
-Subject: [PATCH v4] ASoC: dt-bindings: ak4458: Convert to dtschema
-Date:   Tue, 28 Mar 2023 14:17:53 +0530
-Message-Id: <20230328084753.55200-1-danascape@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229654AbjC1IvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 04:51:20 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D51FA;
+        Tue, 28 Mar 2023 01:51:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1679993479; x=1711529479;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=T0f2kgJ9KZyICJJMWIGxZxVKRVW/cJ1iN/Ny6VWy2aE=;
+  b=sk5ESEVWn3myTmsq+cgffAP6RCXuIdPUJpyx2IWbBB+pJzpmyAAcHTrF
+   ae74gTnQeLE50aunfu+7nBTNHCRVGjFT3iOZspjqTpBCxuFuLXuaYWBsC
+   bGfpbV+NGMZTbnGEumuCTUWZnyq8/4amF7ReNEG1hm1gwuXOi/YZSN5od
+   8mJft7e5CKM4Cjp1AQ+n16G4XD/m13cgIfg2RXlVyM60ySZ8t9JYol3u6
+   mJziAJDaIs+1WIEhSHa0F+t32w0bzCMCrefkQ3lRJ0l+Py53lP3xhRdp5
+   EPknN7EMerzzQr+0Gpr69HjjZKjlHaxUV4r28+KswAUfnWEZb5RabMyAM
+   g==;
+X-IronPort-AV: E=Sophos;i="5.98,296,1673938800"; 
+   d="scan'208";a="206642288"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Mar 2023 01:51:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 28 Mar 2023 01:51:13 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Tue, 28 Mar 2023 01:51:11 -0700
+Message-ID: <a6fe77b6-4ff4-3c91-0c67-a9da5a638e7b@microchip.com>
+Date:   Tue, 28 Mar 2023 10:51:05 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 5/8] ARM: dts: at91-sama5d27_wlsom1: Set sst26vf064b SPI
+ NOR flash at its maximum frequency
+Content-Language: en-US
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mtd@lists.infradead.org>
+References: <20221117105249.115649-1-tudor.ambarus@microchip.com>
+ <20221117105249.115649-6-tudor.ambarus@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20221117105249.115649-6-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the AK4458 audio DAC bindings to DT schema.
+Hi Tudor,
 
-Signed-off-by: Saalim Quadri <danascape@gmail.com>
----
-Changes:
-V1 -> V2: Use the correct way for dsd-path property
-          Drop ak4458 label form example
-V2 -> V3: ak4458 is the only one that does not support dsd-path, so we
-          do not require to define an array
-V3 -> V4: Add back dsd-path property description
+On 17/11/2022 at 11:52, Tudor Ambarus wrote:
+> sama5d27-wlsom1 populates an sst26vf064b SPI NOR flash. Its maximum
+> operating frequency for 2.7-3.6V is 104 MHz. As the flash is operated
+> at 3.3V, increase its maximum supported frequency to 104MHz. The
+> increasing of the spi-max-frequency value requires the setting of the
+> "CE# Not Active Hold Time", thus set the spi-cs-setup-ns to a value of 7.
+> 
+> The sst26vf064b datasheet specifies just a minimum value for the
+> "CE# Not Active Hold Time" and it advertises it to 5 ns. There's no
+> maximum time specified. I determined experimentally that 5 ns for the
+> spi-cs-setup-ns is not enough when the flash is operated close to its
+> maximum frequency and tests showed that 7 ns is just fine, so set the
+> spi-cs-setup-ns dt property to 7.
+> 
+> With the increase of frequency the reads are now faster with ~37%.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> ---
+>   arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+> index 83bcf9fe0152..20caf40b4755 100644
+> --- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+> +++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+> @@ -220,7 +220,8 @@ qspi1_flash: flash@0 {
+>   		#size-cells = <1>;
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0>;
+> -		spi-max-frequency = <80000000>;
+> +		spi-max-frequency = <104000000>;
+> +		spi-cs-setup-ns = /bits/ 16 <7>;
 
- .../devicetree/bindings/sound/ak4458.txt      | 28 -------
- .../bindings/sound/asahi-kasei,ak4458.yaml    | 73 +++++++++++++++++++
- 2 files changed, 73 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/ak4458.txt
- create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+Following the different changes that happened to this property after 
+this post, am I right saying that this must now be changed to:
 
-diff --git a/Documentation/devicetree/bindings/sound/ak4458.txt b/Documentation/devicetree/bindings/sound/ak4458.txt
-deleted file mode 100644
-index 0416c14895d6..000000000000
---- a/Documentation/devicetree/bindings/sound/ak4458.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--AK4458 audio DAC
--
--This device supports I2C mode.
--
--Required properties:
--
--- compatible : "asahi-kasei,ak4458" or "asahi-kasei,ak4497"
--- reg : The I2C address of the device for I2C
--
--Optional properties:
--- reset-gpios: A GPIO specifier for the power down & reset pin
--- mute-gpios: A GPIO specifier for the soft mute pin
--- AVDD-supply: Analog power supply
--- DVDD-supply: Digital power supply
--- dsd-path: Select DSD input pins for ak4497
--            0: select #16, #17, #19 pins
--            1: select #3, #4, #5 pins
--
--Example:
--
--&i2c {
--	ak4458: dac@10 {
--		compatible = "asahi-kasei,ak4458";
--		reg = <0x10>;
--		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>
--		mute-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
-new file mode 100644
-index 000000000000..608dce956be0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4458.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AK4458 audio DAC
-+
-+maintainers:
-+  - Shengjiu Wang <shengjiu.wang@nxp.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - asahi-kasei,ak4458
-+      - asahi-kasei,ak4497
-+
-+  reg:
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analog power supply
-+
-+  dvdd-supply:
-+    description: Digital power supply
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  mute-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO used to mute all the outputs
-+
-+  dsd-path:
-+    description: Select DSD input pins for ak4497
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    oneOf:
-+      - const: 0
-+        description: select #16, #17, #19 pins
-+      - const: 1
-+        description: select #3, #4, #5 pins
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: asahi-kasei,ak4458
-+
-+    then:
-+      properties:
-+        dsd-path: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@10 {
-+            compatible = "asahi-kasei,ak4458";
-+            reg = <0x10>;
-+            reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+            mute-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
+spi-cs-setup-delay-ns = <7>;
+
+?
+
+Thanks for your insight. Best regards,
+   Nicolas
+
+>   		spi-rx-bus-width = <4>;
+>   		spi-tx-bus-width = <4>;
+>   		m25p,fast-read;
+
 -- 
-2.34.1
+Nicolas Ferre
 
