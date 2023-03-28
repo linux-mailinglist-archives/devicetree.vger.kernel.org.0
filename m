@@ -2,113 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C9436CBF0C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C3D6CBF6C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232377AbjC1MbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 08:31:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33678 "EHLO
+        id S232241AbjC1Mm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 08:42:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbjC1Ma7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:30:59 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12hn2229.outbound.protection.outlook.com [52.100.165.229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83BEB93CE;
-        Tue, 28 Mar 2023 05:30:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z1ME4TQKbIpSbwkWPZVQUC3+H1ytxNe3+apZ7PkIJkY1s2QjDnEPaGgwKXMNZ/WBaWMT+Gt+hD/z2Uwz5nlsfDAeswTwQSTX2mqWQRjfPbWZa8mBBGh5yex7yBuAqCJtiKjrOQZy1KZCqCFgznutXVaQzFU/qqBOcnSvPQK5/QV3j9aPVMV2YqnX4nNyPUEIxQFPSBjvthxjfrF9h21IAtgoNoHqhiCMlJG9CnsOg9nM4uJAccaZ9SxPuE3bimaFPAkPxlBsMSftFWRhSILM4kbKNINikI7LnT9LJkFcypc7ilhD2SrwXYsv8tcZJj8HK/seOSS0Bie0OiabkUoCaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=trYyPnFc9/lt/ky83OY9EH8qkN+Cstbnm/KPxWwQapo=;
- b=Aeplxk7ed8QfZ6LdE9E1mitWtlNYqb0XfAKOGseGB67wyQDyc2KM9g5gFAX8Hww22AKgWApl1QHMp6CUK8AlewqENUYLXxgzReA9Gj746H91+q/OVAViLFK4dK4Y8Fkmuk1PTillCN4uNKBMpkFHh407qBReFyzRIC6ST9jopYj2TQ7U/1N0PCSMaDljagymlmc+R5qKbwpbUlkENH7ND4/IX+idbWmgRzFaxjBaNcLlsmGkHbJSxEQquch4vb6bSbTqTKkcJ+Yr0o0YDh0j4F9xiNYtXMJdG7+S4jIKt2TAZ01aeSyyYiyRH4dxk1Gcps3kn/nH/anFBDwiaxUTtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=trYyPnFc9/lt/ky83OY9EH8qkN+Cstbnm/KPxWwQapo=;
- b=rPsDJkBDAivnV1tvfMyulNcRoY4f49XVXj/h9i9wsXUr8MU9YGuf1Mz1yQoy57nGJpT29FZHjPr6pTvuk0d757ED9hK7l/Ekm9wLVK11TP4o8GfIRqLT9oMBsUDsKyMoP73l3jd8uNqeSGxmFv5TPk/6E3h33lxlSfD6WFF3MIXEG7smmq88JG3S1A5vRKbj5VvZWF/lc2dtS5a9cxDEwBlH06KYBX6NF2wfMNvDVOX33ejACO5oGfftxFMH74F+7toaW4Zxt7jlqMw589TV66omWwj0F1DvDIn+44rKKYZXZoMOVKoTSOJjpB9OiOp929d0Gz2Yf4yKncqDmmGh6w==
-Received: from BN9PR03CA0043.namprd03.prod.outlook.com (2603:10b6:408:fb::18)
- by DS7PR12MB9043.namprd12.prod.outlook.com (2603:10b6:8:db::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6222.30; Tue, 28 Mar 2023 12:30:55 +0000
-Received: from BN8NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fb:cafe::7c) by BN9PR03CA0043.outlook.office365.com
- (2603:10b6:408:fb::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.42 via Frontend
- Transport; Tue, 28 Mar 2023 12:30:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BN8NAM11FT009.mail.protection.outlook.com (10.13.176.65) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6199.32 via Frontend Transport; Tue, 28 Mar 2023 12:30:55 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 28 Mar 2023
- 05:30:41 -0700
-Received: from [10.41.21.79] (10.126.230.37) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Tue, 28 Mar
- 2023 05:30:34 -0700
-Message-ID: <8139e102-677d-6850-b1c3-7a35e0e36904@nvidia.com>
-Date:   Tue, 28 Mar 2023 18:00:32 +0530
+        with ESMTP id S230339AbjC1MmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:42:25 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E2C0BA5C1;
+        Tue, 28 Mar 2023 05:41:58 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 45B75C14;
+        Tue, 28 Mar 2023 05:34:09 -0700 (PDT)
+Received: from [10.57.54.240] (unknown [10.57.54.240])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 986B73F6C4;
+        Tue, 28 Mar 2023 05:33:21 -0700 (PDT)
+Message-ID: <c3f5af31-b6ef-dc45-25f0-4e52d93fcaa7@arm.com>
+Date:   Tue, 28 Mar 2023 13:33:20 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [Patch v4 03/10] memory: tegra: add interconnect support for DRAM
- scaling in Tegra234
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <treding@nvidia.com>, <dmitry.osipenko@collabora.com>,
-        <viresh.kumar@linaro.org>, <rafael@kernel.org>,
-        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
-        <lpieralisi@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <mmaddireddy@nvidia.com>, <kw@linux.com>, <bhelgaas@google.com>,
-        <vidyas@nvidia.com>, <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>,
-        <ishah@nvidia.com>, <bbasu@nvidia.com>,
-        Sumit Gupta <sumitg@nvidia.com>
-References: <20230327161426.32639-1-sumitg@nvidia.com>
- <20230327161426.32639-4-sumitg@nvidia.com>
- <8b04a266-20eb-f1c1-278f-764b1b06b78b@linaro.org> <ZCLJ895gHPXQE+Lz@orome>
-From:   Sumit Gupta <sumitg@nvidia.com>
-In-Reply-To: <ZCLJ895gHPXQE+Lz@orome>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.126.230.37]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT009:EE_|DS7PR12MB9043:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0016396-0b92-4598-330a-08db2f8846e8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: o7B11kIsEyN4zPD60xq2tZ7SYbmTXrPBC+kyqflqkHk1FMcTQAMxI6vRkvc8v5QdoXoaWx8yiiy1Du+2RJAw/x52S1Unv1ZxyufZNtox56h1N52xI4dPTzRXIcO4GjOGXEmN60wjBD4zMwKoJ9drmB5eTWRgwHkKt5ayVpwL1W7cCuO19In9+MYGY2zADyxUW51FwFm3z1OzAQWNDsHaL0D6lFv86ri8CLRCkbI7Uq8L/CBBlEyXa2j4hBzwyGZKrWwkw7dgz8Wbx2A8dyBuBuQzYz1SNpR8Y3lbZ8qRBng6HpXmwSxr+BGTw8P+9I/7W/fJKpljUm87r+fv0c7NmL1mr2G5TlfAhyJj9i302q/wUz57xWClWlHjK3F4gfswm5g4bGsU5+EITNVmRyX/w1iVX2fDWEBIVoj+Qr4oPWlSvFUeEAfjDVzLj3mXejV1eMa5zdpxZOpzgJ6ubbjVBmj1RBlDov6GPlJdPosJx00B/xqbr19k4Fm83D8Sj+2JyrofA5JFFALdC4uhFRh1Fdsb0QnHrYXcUx/WV3AyxND1vmCj2+lT14nhBAjs9finjOeG+OX6UJCc0OHbLjRyX1czdqYcLGZ5H0ABZve3RWbHGliY6JaqvvkVSAUZsVy75A7fBoujznAUUJQFNgCbgYshTTBnlWuLjEgKPT7vNvjD3EQDy0l8nzGhXYjmIhIGxD8aFLj676cyr4AZgBTJGXbgnzAnYVVddEe9mon+gPa+zsDKhzZAivCG3yo/XVzVSXnA6k/VPfyDSy7YQw/WCHNB3bYZEMHdg/rZqpwGSDwtEaFQhH3Iv6lYqiIGPBm/Es/6DxkCNoBVsgI/CJnLGPhuyOgoW128fhHQVU557OU=
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(136003)(39860400002)(5400799015)(451199021)(36840700001)(40470700004)(46966006)(356005)(7636003)(7416002)(8936002)(5660300002)(82310400005)(40480700001)(36756003)(53546011)(186003)(26005)(2616005)(16526019)(2906002)(107886003)(86362001)(31696002)(47076005)(36860700001)(83380400001)(426003)(336012)(34020700004)(82740400003)(40460700003)(4326008)(54906003)(70586007)(8676002)(41300700001)(70206006)(478600001)(110136005)(16576012)(316002)(31686004)(43740500002)(12100799027);DIR:OUT;SFP:1501;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 12:30:55.2706
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0016396-0b92-4598-330a-08db2f8846e8
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT009.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9043
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_NONE autolearn=unavailable
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH v3 02/11] coresight-tpda: Add DSB dataset support
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        James Clark <james.clark@arm.com>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>
+References: <1679551448-19160-1-git-send-email-quic_taozha@quicinc.com>
+ <1679551448-19160-3-git-send-email-quic_taozha@quicinc.com>
+ <e578790c-4794-5609-16e8-15d63082760e@arm.com>
+ <51ad3cb3-bd83-51c9-52bc-f700cd17103c@quicinc.com>
+ <48f31b84-573f-fe1d-bcd7-e55ec7f47831@arm.com>
+ <595568c3-d2bc-e37e-83b3-2adfd3fa4193@quicinc.com>
+ <6f8b087d-77a7-512e-6504-e4841447eda9@arm.com>
+ <edbd1f10-70e5-1fd4-44de-da59b387e9dd@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <edbd1f10-70e5-1fd4-44de-da59b387e9dd@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -116,75 +66,191 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 28/03/23 16:35, Thierry Reding wrote:
-> On Tue, Mar 28, 2023 at 09:31:58AM +0200, Krzysztof Kozlowski wrote:
->> On 27/03/2023 18:14, Sumit Gupta wrote:
-> [...]
->>> diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra/tegra186-emc.c
-> [...]
->>> @@ -158,6 +260,9 @@ static int tegra186_emc_probe(struct platform_device *pdev)
->>>   	if (!emc)
->>>   		return -ENOMEM;
->>>   
->>> +	platform_set_drvdata(pdev, emc);
->>> +	emc->dev = &pdev->dev;
+On 28/03/2023 12:31, Tao Zhang wrote:
+> Hi Suzuki,
+> 
+> On 3/27/2023 5:43 PM, Suzuki K Poulose wrote:
+>> On 27/03/2023 04:31, Tao Zhang wrote:
+>>>
+>>> On 3/26/2023 3:31 AM, Suzuki K Poulose wrote:
+>>>> On 24/03/2023 14:58, Tao Zhang wrote:
+>>>>> Hi Suzuki,
+>>>>>
+>>>>> 在 3/23/2023 7:51 PM, Suzuki K Poulose 写道:
+>>>>>> On 23/03/2023 06:03, Tao Zhang wrote:
+>>>>>>> Read the DSB element size from the device tree. Set the register
+>>>>>>> bit that controls the DSB element size of the corresponding port.
+>>>>>>>
+>>>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>>>>> ---
+>>>>>>>   drivers/hwtracing/coresight/coresight-tpda.c | 58 
+>>>>>>> ++++++++++++++++++++++++++++
+>>>>>>>   drivers/hwtracing/coresight/coresight-tpda.h |  4 ++
+>>>>>>>   2 files changed, 62 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
+>>>>>>> b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>>>>> index f712e11..8dcfc4a 100644
+>>>>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+>>>>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>>>>> @@ -21,6 +21,47 @@
+>>>>>>>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
+>>>>>>>   +/* Search and read element data size from the TPDM node in
+>>>>>>> + * the devicetree. Each input port of TPDA is connected to
+>>>>>>> + * a TPDM. Different TPDM supports different types of dataset,
+>>>>>>> + * and some may support more than one type of dataset.
+>>>>>>> + * Parameter "inport" is used to pass in the input port number
+>>>>>>> + * of TPDA, and it is set to 0 in the recursize call.
+>>>>>>> + * Parameter "parent" is used to pass in the original call.
+>>>>>>> + */
+>>>>>>
+>>>>>> I am still not clear why we need to do this recursively ?
+>>>>>
+>>>>> Some TPDMs are not directly output connected to the TPDAs. So here I
+>>>>>
+>>>>> use a recursive method to check from the TPDA input port until I find
+>>>>>
+>>>>> the connected TPDM.
+>>>>>
+>>>>> Do you have a better suggestion besides a recursive method?
+>>>>>
+>>>>>>
+>>>>>>> +static int tpda_set_element_size(struct tpda_drvdata *drvdata,
+>>>>>>> +               struct coresight_device *csdev, int inport, bool 
+>>>>>>> parent)
+>>>>>>
+>>>>>> Please could we renamse csdev => tpda_dev
+>>>>>
+>>>>> Since this is a recursively called function, this Coresight device 
+>>>>> is not
+>>>>>
+>>>>> necessarily TPDA, it can be other Coresight device.
+>>>>>
+>>>>>>
+>>>>>>> +{
+>>>>>>> +    static int nr_inport;
+>>>>>>> +    int i;
+>>>>>>> +    struct coresight_device *in_csdev;
+>>>>>>
+>>>>>> similarly tpdm_dev ?
+>>>>> Same as above, this variable may not necessarily be a TPDM.
+>>>>>>
+>>>>>> Could we not add a check here to see if the dsb_esize[inport] is 
+>>>>>> already
+>>>>>> set and then bail out, reading this over and over ?
+>>>>>>
+>>>>> I will update this in the next patch series.
+>>>>>>> +
+>>>>>>> +    if (inport > (TPDA_MAX_INPORTS - 1))
+>>>>>>> +        return -EINVAL;
+>>>>>>> +
+>>>>>>> +    if (parent)
+>>>>>>> +        nr_inport = inport;
+>>>>>>> +
+>>>>>>> +    for (i = 0; i < csdev->pdata->nr_inconns; i++) {
+>>>>>>> +        in_csdev = csdev->pdata->in_conns[i].remote_dev;
+>>>>>>
+>>>>>> Please note, the names of the structure field might change in the
+>>>>>> next version of James' series
+>>>>> Got it. I will keep an eye out for the James' patch series.
+>>>>>>
+>>>>>>> +        if (!in_csdev)
+>>>>>>> +            break;
+>>>>>>> +
+>>>>>>> +        if (parent)
+>>>>>>> +            if (csdev->pdata->in_conns[i].port != inport)
+>>>>>>> +                continue;
+>>>>>>> +
+>>>>>>> +        if (in_csdev && strstr(dev_name(&in_csdev->dev), "tpdm")) {
+>>>>>>
+>>>>>> Isn't there a better way to distinguish a device to be TPDM ? May 
+>>>>>> be we
+>>>>>> could even add a source_sub_type - SOURCE_TPDM instead of using
+>>>>>> SOURCE_OTHERS ? Do you expect other sources to be connected to TPDA?
+>>>>>> e.g., STMs ?
+>>>>>
+>>>>> I can add "SOURCE_TPDM" as a source_sub_type, but SOURCE_OTHERS needs
+>>>>>
+>>>>> to be kept since the other Coresight component we will upstream 
+>>>>> later may
+>>>>>
+>>>>> need it.
+>>>>>
+>>>>>>
+>>>>>>> + of_property_read_u32(in_csdev->dev.parent->of_node,
+>>>>>>> +                    "qcom,dsb-element-size", 
+>>>>>>> &drvdata->dsb_esize[nr_inport]);
+>>>>>>> +            break;
+>>>>>>> +        }
+>>>>>>> +        tpda_set_element_size(drvdata, in_csdev, 0, false);
+>>>>>>
+>>>>>> What is the point of this ? Is this for covering the a TPDA 
+>>>>>> connected to
+>>>>>> another TPDA ?
+>>>>>>
+>>>>>> e.g., { TPDM0, TPDM1 } -> TPDA0 -> TPDA1 ?
+>>>>>
+>>>>> A TPDM may not connect to the TPDA directly, for example,
+>>>>>
+>>>>> TPDM0 ->FUNNEL0->FUNNEL1->TPDA0
+>>>>>
+>>>>> And many TPDMs can connect to one TPDA, one input port on TPDA only 
+>>>>> has
+>>>>>
+>>>>> one TPDM connected. Therefore, we use a recursive method to find 
+>>>>> the TPDM
+>>>>>
+>>>>> corresponding to the input port of TPDA.
+>>>>
+>>>> How do you find out decide what to choose, if there are multiple TPDMs
+>>>> connected to FUNNEL0 or even FUNNEL1 ?
+>>>>
+>>>> e.g
+>>>>
+>>>> TPDM0->FUNNEL0->FUNNEL1->TPDA0
+>>>>                 /
+>>>>           TPDM1
+>>>
+>>> We can find out the corresponding TPDM by the input port number of TPDA.
+>>>
+>>> Each input port is connected to a TPDM. So we have an input port 
+>>> number in
+>>>
+>>> the input parameter of the recursive lookup function 
+>>> "tpda_set_element_size".
 >>
->> This patch looks like stiched from two or more patches... emc->dev does
->> not look like new member of emc, thus why do you set in exisitng
->> function in this patch? Why it wasn't needed before?
+>> I don't understand, how you would figure out, in the above situation.
+>> i.e., FUNNEL1 is connected to TPDA0, but there are two TPDMs that could
+>> be pumping the trace. They both arrive via FUNNEL1. So, how does that
+>> solve your problem ?
 > 
-> This looks like it may be leftover from some development. These two
-> lines exist in this driver a few lines further down. Either one pair
-> should be removed. I don't see why this would need to be moved, so
-> probably the above additions can just be dropped.
+> In our HW design, the input ports of TPDA and TPDM are one-one-one 
+> corresponding.  Only one
 > 
-> Thierry
+> TPDM can be found connected from one TPDA's input port. The path to a 
+> TPDA input port doesn't
 > 
-Yes, sorry i was left over. Will remove this.
-Thank you for catching.
+> connect more than one TPDM. It's by HW design.
 
->>>   	emc->bpmp = tegra_bpmp_get(&pdev->dev);
->>>   	if (IS_ERR(emc->bpmp))
->>>   		return dev_err_probe(&pdev->dev, PTR_ERR(emc->bpmp), "failed to get BPMP\n");
->>> @@ -236,6 +341,25 @@ static int tegra186_emc_probe(struct platform_device *pdev)
->>>   	debugfs_create_file("max_rate", S_IRUGO | S_IWUSR, emc->debugfs.root,
->>>   			    emc, &tegra186_emc_debug_max_rate_fops);
->>>   
->>> +	mc = dev_get_drvdata(emc->dev->parent);
->>> +	if (mc && mc->soc->icc_ops) {
->>> +		/*
->>> +		 * Initialize the ICC even if BPMP-FW doesn't support 'MRQ_BWMGR_INT'.
->>> +		 * Use the flag 'mc->bwmgr_mrq_supported' within MC driver and return
->>> +		 * EINVAL instead of passing the request to BPMP-FW later when the BW
->>> +		 * request is made by client with 'icc_set_bw()' call.
->>> +		 */
->>> +		err = tegra_emc_interconnect_init(emc);
->>> +		if (err)
->>> +			goto put_bpmp;
->>> +
->>> +		if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_BWMGR_INT))
->>> +			mc->bwmgr_mrq_supported = true;
->>> +		else
->>> +
+Your current designs may be like that. But as far as the driver is
+concerned, I would like to add in extra measures to ensure that it
+encounters a variation from the above on a future platform. So, please
+could you add a check to detect this case and add a WARNING ?
+
+Suzuki
+
+
+> 
+> 
+> Tao
+> 
 >>
->> Drop blank line.
+>> Suzuki
 >>
-Ok.
-
->>> +			dev_info(&pdev->dev, "MRQ_BWMGR_INT not present\n");
 >>
->> And what user is supposed to do with this? Either make it descriptive or
->> drop.
-> 
-> Agreed. I think we can just drop this. If the intention was to provide a
-> quick way for people to detect whether BWMGR is available or not, using
-> something from sysfs/debugfs would be preferable.
-> 
-> Thierry
+>>>
+>>>> Suzuki
+>>>>
+>>>>
+>>
 
-Sure, will drop this.
-
-Thank you,
-Sumit Gupta
