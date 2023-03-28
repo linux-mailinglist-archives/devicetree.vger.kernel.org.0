@@ -2,112 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 599896CB694
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B6B6CB6BD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:16:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbjC1GKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 02:10:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53842 "EHLO
+        id S232381AbjC1GQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 02:16:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjC1GKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:10:18 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2075.outbound.protection.outlook.com [40.107.7.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4721995;
-        Mon, 27 Mar 2023 23:10:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jl2ISrWKDe+/X2KxnFHml7pZM0kVBuTrxUhMSwGz3aVqH+orThV9ksmD+j0GJf4Svfqq+UJl+N6V4Gi9V8RN6xIfWFCZpwDgqwGOFfQPRRCLoIpGvmcTUsYnJxvcMSDzvg00xBdgFW0MO/Z6sxK/YgSqJ1PJN9Y8iOC52/O6xpxTNTG3y8IY2CW6xO4g1j7x538lXmD9L0QUkcdNcFC41/Vde0rUBT4CMKSQT0pNbnS5qzgk6krLKlAH7k72fSVqCe3pyzBxq/o8+Nk6Phc2PPWJaAnrVN6u3R+70g6iHbVY08j6K/aBvA3nIUCD5Sqcav2vNQ2hdEIz2KXNCNK1/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RFaAJTc4KBz8p7rysd8hNMsfJYL6COW5LqrtJJ5ieI0=;
- b=d2J9TLjH9XHodosKcJRgesVEGPh7OBOp6qK1jLlmzaZNwbi2AxJczy89icGsZigoQUA2z9D/IeAUMAA3WtxhmoQif+JkCUHMrQyPhmNzmdPtf3jw9oEQ0Vj5wASySeqSXTFOdLY3r5sIlXzC1E5X+i5ILGYVsfeOBDWrD3oL7x2tCRF1KH/BquuTmqf8Ap3q7qf4pj9aMmMkDtJK+gODksTYifH93vowV/f/e9v33oI6sf+En/S5M5rDMz9fRUlUOWs3/LRuBk+8j44IPAITdihgmsaP6xZz3faIOqVAUZwS4gY5bLQF1ymQerTUjyy4Lrq3GukuRkAnxRqhDDaG8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RFaAJTc4KBz8p7rysd8hNMsfJYL6COW5LqrtJJ5ieI0=;
- b=HK+gVV/IescuIQC8mLNf9qGj5NnU44L2d35e6aV3oSwBtxVRUZlBK1012ytO41KsWQfOvkB1PoJfN4EupNbHn9SkiVtuSuhg1R+LCNklmJimncvwbmBacBCGxN1C93ge1Pbc5KoxUUhIUBaLO97z/rxD/cYb67LF8Ru5e+uDAis=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM9PR04MB8923.eurprd04.prod.outlook.com (2603:10a6:20b:40a::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 06:10:13 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::778e:19d0:cba0:5cc0]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::778e:19d0:cba0:5cc0%4]) with mapi id 15.20.6222.028; Tue, 28 Mar 2023
- 06:10:13 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     wei.fang@nxp.com, shenwei.wang@nxp.com, xiaoning.wang@nxp.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org
-Cc:     linux-imx@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] dt-bindings: net: fec: add power-domains property
-Date:   Tue, 28 Mar 2023 14:15:18 +0800
-Message-Id: <20230328061518.1985981-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGAP274CA0023.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::35)
- To DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+        with ESMTP id S232345AbjC1GQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:16:12 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC4230FC;
+        Mon, 27 Mar 2023 23:16:10 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S6C7jK010531;
+        Tue, 28 Mar 2023 06:15:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=iRrp4ZVtHf6+VfJjNdWEkd8OHn2fcSeeKtKC2EYmZqI=;
+ b=oDJO0GnxXGX/pXQnqDScTGS7qLfCVyxGW5Ggatsn9zRS/JRaBGNtMxl5TIdv1Hx3ls04
+ gwxSJD5rYPKwPXqibHUvYl2koRaOKuzqFtYQq8rkLeDFp3j0F9jKAerg7COsUp8kS+Ro
+ uf6/ezOiBQbhb11pFSpIhwU3RC9OxuKwUAVSzE3xZrnoZdf+ak2Q8X7RucRW1w9TMIix
+ 1VNPUfEECqRkXRjEwMkEOETpp1tEVhQ+ZSAf8XGT/5WOSpitHonK14vbPmocLXJ9cy7x
+ xjXcxV1qOm8hSC4Xs33OYdVqkDojLYCA7G0lZrqOQB65L2WC9b4BVXPTn/y2cU9x0FaZ ug== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pk7h8tu7p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Mar 2023 06:15:49 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32S6Fl1R002528
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Mar 2023 06:15:47 GMT
+Received: from [10.216.32.150] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Mar
+ 2023 23:15:38 -0700
+Message-ID: <2484518b-bcf6-7fb1-6bfb-b96b3682397b@quicinc.com>
+Date:   Tue, 28 Mar 2023 11:45:35 +0530
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM9PR04MB8923:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff260929-8530-4588-8035-08db2f5317f5
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7J0675Mqd5kQVu0APcybGr012wZIKuO2J6GiUhZMzzCs1zafC8rTttVPFHBYt0eD3tP25ohHpyS4EF8BQYc6gC2jfe2pACdcF3BYMFViNTQjIRZX2bqUe2VoZr7LtH5ZX4tmT2jde5AkyE05MIHrx0VQh1d9SenH8sTPunFLVzF8egg7RiM5w583y7Tq98+8DV9aIGKIlfuIbDiA9dPbzwOIcrVwUQ7FuHnD785CcLw+Ufj69sACylqWRfAuiLfuSbj4mUnP3op/CuPU9kYOON8kASmHC/Cs++VgbxiBJ1XPMS+q+d/vVsvoBZcb8ZxLdlYjL8hnUkdoYZL778up1/1M8Mab+KKG7Lf91x+3be8hCRdechKelXSZASml1Uj3sLCX+9vLU6WVlrdSIPUTCNEwE5I1K/9jy4p5nnAe0RQhxmQxbI2FsFP4JMtTNtoGxJ2x+XHEBSKhC+U+oRRyTaMS3m3QOqfQxkSw3JGHCrKx4YnjS5VCiQIezd9CKkjEHYFe3qj88vZ6pC99f9jGwT4D0SetgOQ2vuRTj62mRfx1S6YRopcU743wciuyc868ZJbk/pM3a+cF4AoAJSRgVn0OcS9siTekdDciqTVrcTc/SwyP97QvfFusW2bomW7NIJpaFRsrLjxBZLG7mZBAjA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(366004)(136003)(39860400002)(396003)(451199021)(5660300002)(921005)(8936002)(41300700001)(66946007)(66556008)(66476007)(8676002)(4326008)(2906002)(38100700002)(38350700002)(7416002)(4744005)(2616005)(6486002)(86362001)(52116002)(6506007)(6512007)(26005)(1076003)(186003)(478600001)(316002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m9jLKQ3BsxNgAzM2G7AWR1A82nmDGLJqphrQPn4AhHRWhT+9IYP7BZV0wsW4?=
- =?us-ascii?Q?Xzz14X/QeBd/59kh9wDJjURoyiLvvcRAmhhP25kqxgR/egkeo+KLD+CmA8Lk?=
- =?us-ascii?Q?+3GVQH/GOOi9PRMLd7aKDm9aLQ+p1WlV9BBJeihBhdLI1eUsuNBN0lFDJh5P?=
- =?us-ascii?Q?5rnq0+XV6IsUSbSDhpeRWEHQ781lmB+aweDc91uLhP6cNhGh16gBi+aFo7/B?=
- =?us-ascii?Q?JOqpxrQZ9vX5/RD6NKkUzE5vCLfTe/H/3A7dx4jHvq3aXmtXGkDWe2RHYIM6?=
- =?us-ascii?Q?3I+f+109H+0v2EIp6L7eyzW+niR/3ehLop8zL5yu4XcbLb1m9FUu5lyoXGJv?=
- =?us-ascii?Q?omRhkoDmQNPyKGYxVRNrO55B33nJtyDAYcMrJbnJE0enX2nqE+OcEDml5Lux?=
- =?us-ascii?Q?Rq5sNO9Lux+qUNHb9Ku9BJA3TlA4qK792ov6FyOzkYWI/hIxjZmCN4IhzLg+?=
- =?us-ascii?Q?3UULV4wjCgttPfWY3BshqWdtVEpPoOv1Mrk4hXAUkyg8Qdn7ZP2YHuzdOfwD?=
- =?us-ascii?Q?9BSrlgPijEyCXBkNgN2K91oo6MY9S7JIVndebjpAT5xDHTNJdmQuXKvCfr1C?=
- =?us-ascii?Q?OxJg17TpcXQn9oH7SDoYTzhoFEDWDuZLeZ40bZO2PqTFafq8qQegGucxEbC5?=
- =?us-ascii?Q?cizTumJpRKFcupf5pwXbACLMkRZutIS+g2iynYWRADQM6QJAszeR/U35jNf+?=
- =?us-ascii?Q?LeAP7R4xkv9yfW6BOHUl27MSJz6Xl35IdPhZK5Hc/BM3XD/NSuqk1SzuQIfd?=
- =?us-ascii?Q?hrIz2VF1kcxkyMM8Jg8Zt2mAmB9PtYHHEDh/Xyb4IIgIyVq++oo2xhU/pHmK?=
- =?us-ascii?Q?ZbUwpTFcXenb2iMv2agaaOi2CpOHi8H3LYxB9Zy9Jse/wAzz0pUcHQoho87G?=
- =?us-ascii?Q?i0ErJ0DbFcX7tzFSoMb0DstoQfbW09Y6vxPH8xvh3l4yp4DgDqaUGMD/LLBz?=
- =?us-ascii?Q?Bb4feovCJPp6EaxjD1cHaQVyfZbELHZ/N3nYacTBEIcIxsN2YlfRvA198wzf?=
- =?us-ascii?Q?tnTDN5wDAg0ZTAm+hAJ7bsD64ofovsbVz4YMZY91L9d9jgSeZhrh5tRsvlR8?=
- =?us-ascii?Q?9ZvNyP6grqqmis09eim9EUi4/bC7qCrXH55DYtxT2AKQwEkNcO5B5zAprtHG?=
- =?us-ascii?Q?+zQ8MjDHXEN9axaqbDFxB+2MdjLylhS1hhM89M1HPDa+xzd6aTVlcShBh9y4?=
- =?us-ascii?Q?oQs4j+IC9EuuhNFOtTR7jgObREkhkhaAUK3Ld5DoAE0KJvYInP7bfRxOCakD?=
- =?us-ascii?Q?L4GSvsNr7NukE5wx05PHUXCd2JW/4N/Gdw7QVGv8M+dMb0eB9ilSb74tyYwE?=
- =?us-ascii?Q?Ysu7B9ChlURErHIjCeJ+PzaaNwTzwHfY025redgaQnI4K+l+EzaZgX95tsva?=
- =?us-ascii?Q?IUt0tdeNSw/SRinbvBtdnh8Lp1W4nJNtXVUEFisXUTJ1TZqnVUe6TkLllTOY?=
- =?us-ascii?Q?8cvJbeHyPmoEjOhdIg8O/edf1tVSyT5BDnqoQbb444TSX37NjZXIlMrTTU+y?=
- =?us-ascii?Q?RDfcb1fGWN6a5Xz4WJcMhkeAWkVM9BgDCtYOsgVkCgamm5s4iSUZv5+szPL6?=
- =?us-ascii?Q?wILlumOzNaz0Ryz7zBE/RhHgAnH42U7CmXomvVgW?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff260929-8530-4588-8035-08db2f5317f5
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 06:10:13.7416
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: p66fAQ+jpkGvxdeYDYBnoboGsZ/P3Igazx+aJ8UweRZEF1rZbHobJnPzOfgciK+OARJPMtB6P9xyXbFqiwo6KA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8923
-X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V10 2/4] clk: qcom: Add Global Clock Controller driver for
+ IPQ9574
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <arnd@arndb.de>, <broonie@kernel.org>,
+        <catalin.marinas@arm.com>, <devicetree@vger.kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <marcel.ziswiler@toradex.com>, <mturquette@baylibre.com>,
+        <nfraprado@collabora.com>, <p.zabel@pengutronix.de>,
+        <robh+dt@kernel.org>, <shawnguo@kernel.org>, <will@kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>
+References: <20230327132718.573-1-quic_devipriy@quicinc.com>
+ <20230327132718.573-3-quic_devipriy@quicinc.com>
+ <0af15083921c5d3c89392209654f0c9b.sboyd@kernel.org>
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <0af15083921c5d3c89392209654f0c9b.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NKZ7h8yzMq3DFkKuh5KMdGewxq-VMlB_
+X-Proofpoint-ORIG-GUID: NKZ7h8yzMq3DFkKuh5KMdGewxq-VMlB_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1015 mlxlogscore=999 phishscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2303280050
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -115,29 +92,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
 
-Add optional power domains property
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- Documentation/devicetree/bindings/net/fsl,fec.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-index e6f2045f05de..b494e009326e 100644
---- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
-+++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-@@ -144,6 +144,9 @@ properties:
-     description:
-       Regulator that powers the Ethernet PHY.
- 
-+  power-domains:
-+    maxItems: 1
-+
-   fsl,num-tx-queues:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
--- 
-2.37.1
-
+On 3/27/2023 10:18 PM, Stephen Boyd wrote:
+> Quoting Devi Priya (2023-03-27 06:27:16)
+>> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq9574.c
+>> new file mode 100644
+>> index 000000000000..b2a2d618a5ec
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/gcc-ipq9574.c
+>> @@ -0,0 +1,4248 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +/*
+>> + * Copyright (c) 2023 The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/err.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+> 
+> What is this include for?
+This include actually don't seem necessary. But, I see that of.h & 
+platform_device.h are being included via of_device.h
+Would you suggest to drop of_device.h or the other two
+headers instead?
+> 
+>> +#include <linux/regmap.h>
+> 
+> Need to include clk-provider.h
+> 
+>> +
+>> +#include <linux/reset-controller.h>
+> 
+> Put a newline here.
+Okay
+> 
+>> +#include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+>> +#include <dt-bindings/reset/qcom,ipq9574-gcc.h>
+>> +
+>> +#include "clk-rcg.h"
+>> +#include "clk-branch.h"
+>> +#include "clk-alpha-pll.h"
+>> +#include "clk-regmap-divider.h"
+>> +#include "clk-regmap-mux.h"
+>> +#include "clk-regmap-phy-mux.h"
+>> +#include "reset.h"
+>> +
+>> +/* Need to match the order of clocks in DT binding */
+>> +enum {
+>> +       DT_XO,
+>> +       DT_SLEEP_CLK,
+>> +       DT_BIAS_PLL_UBI_NC_CLK,
+>> +       DT_PCIE30_PHY0_PIPE_CLK,
+>> +       DT_PCIE30_PHY1_PIPE_CLK,
+>> +       DT_PCIE30_PHY2_PIPE_CLK,
+>> +       DT_PCIE30_PHY3_PIPE_CLK,
+>> +       DT_USB3PHY_0_CC_PIPE_CLK,
+>> +};
+>> +
+>> +enum {
+>> +       P_XO,
+>> +       P_PCIE30_PHY0_PIPE,
+>> +       P_PCIE30_PHY1_PIPE,
+>> +       P_PCIE30_PHY2_PIPE,
+>> +       P_PCIE30_PHY3_PIPE,
+>> +       P_USB3PHY_0_PIPE,
+>> +       P_GPLL0,
+>> +       P_GPLL0_DIV2,
+>> +       P_GPLL0_OUT_AUX,
+>> +       P_GPLL2,
+>> +       P_GPLL4,
+>> +       P_PI_SLEEP,
+>> +       P_BIAS_PLL_UBI_NC_CLK,
+>> +};
+>> +
+>> +static const struct parent_map gcc_xo_map[] = {
+>> +       { P_XO, 0 },
+>> +};
+>> +
+>> +static const struct clk_parent_data gcc_xo_data[] = {
+>> +       { .index = DT_XO },
+>> +};
+>> +
+>> +static const struct clk_parent_data gcc_sleep_clk_data[] = {
+>> +       { .index = DT_SLEEP_CLK },
+>> +};
+>> +
+>> +static struct clk_alpha_pll gpll0_main = {
+>> +       .offset = 0x20000,
+>> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+>> +       .clkr = {
+>> +               .enable_reg = 0x0b000,
+>> +               .enable_mask = BIT(0),
+>> +               .hw.init = &(struct clk_init_data) {
+> 
+> All these clk_init_data structs should be const.
+Okay
+> 
+>> +                       .name = "gpll0_main",
+>> +                       .parent_data = gcc_xo_data,
+>> +                       .num_parents = ARRAY_SIZE(gcc_xo_data),
+>> +                       .ops = &clk_alpha_pll_ops,
+>> +               },
+>> +       },
+>> +};
+Thanks,
+Devi Priya
