@@ -2,189 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 722F46CBA82
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F53D6CBA86
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjC1J0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:26:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
+        id S229975AbjC1J05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbjC1J0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:26:02 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2054.outbound.protection.outlook.com [40.107.15.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1833B61A5
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:25:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cVfItfSS8ik/rNPlbLEcEnBg1R7qvXM2OfB3OtTj4k9BIVgrhR1Iii4ztcLHcru9UCG1ePfofFAgqgVWM75ulYg21oExY64dhsOlJyUk3htP2DLhmLzGsXI0AcP7Y/4x6EpJVMZDU7oDJTci+f1a+IZG3wqkDFYxom/zONJJK+0hx14sgOyLgXMe0ITczru60gQJtx71YjlwNQRqSu0gh6rZH6m4vqyyu/Fz+36nM0w2o5ELR2QaHWSKKlH5+qBz4Et8wGVg9MmUEloD71EDdddnLyfR6zVOFHsRFyP6bBCG8Qcb+d9Uxesee0S3U91emxbgCeFY0d9qMW05jpwhGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RSO0NKF8/hxKy6iYDnOj4iZUPfsYoJdhZHSt3FvIO9o=;
- b=ZWip522fOd/Lveq6mpbhhX+D0bVYVFGx9OJ92BSAkwzS6ZxJNNMmGyXPOzR2xRwLC1gPrNg5M8IcpK+dfqrYtagNzM/sgsehZV2rU6nR6O3/7Bt6uBladsZLtwsxO8DN/A1/kyFb8k5NU1SipinD9/4B0BL2z2bNd3EQtEqB0YQoRxQM9S9+Oz5PekcNW69Nvt++KEmV0hqOZF489KvtwyHIeFERi91Ky8In4pE6gLCSRFTSYQFrbfXT0eMq9neV8vTizBaxEy31GNW8zrBx3WxNQ3lXDcgklxaa9ecZBTCqFME0eGpY9JhCzzEMHr3oOY+hkEtXIFkd+KoGBSz1NQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RSO0NKF8/hxKy6iYDnOj4iZUPfsYoJdhZHSt3FvIO9o=;
- b=dxev/6uHn72YZoKp8XYKgmAz5RvW5t6/+y1MqKnIVtmfJd01rNMCylW45BvfuAIrt9dALr2OBUkNUFPxNssPFYNeoHOewpv1YQwSshTvK2Sev5heih30JQJODxmiXxAbvAC47pr9L4ewxG9c5kbrhRAhac4aAGWlL/jbnAQ6o9I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GV1PR04MB9055.eurprd04.prod.outlook.com (2603:10a6:150:1e::22)
- by AS1PR04MB9581.eurprd04.prod.outlook.com (2603:10a6:20b:470::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.41; Tue, 28 Mar
- 2023 09:25:46 +0000
-Received: from GV1PR04MB9055.eurprd04.prod.outlook.com
- ([fe80::9c6d:d40c:fbe5:58bd]) by GV1PR04MB9055.eurprd04.prod.outlook.com
- ([fe80::9c6d:d40c:fbe5:58bd%7]) with mapi id 15.20.6222.030; Tue, 28 Mar 2023
- 09:25:45 +0000
-Date:   Tue, 28 Mar 2023 12:25:41 +0300
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229611AbjC1J04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:26:56 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC7513594;
+        Tue, 28 Mar 2023 02:26:54 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id D3CBD1BF205;
+        Tue, 28 Mar 2023 09:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1679995612;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=6NjejileKHabvnysWZ9xKIzVt8LkBmegZGrRHYKkZSE=;
+        b=JQvunm9dX1UBZeOs83yLCbxNSJ5Uh+2B8aYOeF8IlQ5hRsAwX+lZva35fSg/mfshUD8Ikv
+        bAloscB+zrqCsx4uJifjpzPwV7D/44sCwgqlFPDdk7/zbuAu64sDAwQJaK3s9PJ0hdKUDC
+        Vo0S5HFKbEQaKq90jgGUAZQ3dRPRnXY4/Qs9q+u2LlL+6jacqhcgbIUF/AkjxGTXp4eocl
+        nFcOUeyPMUmJ98r9PCid+E5dzXtxAhtYPM1+2ybyGwPxctfv9uXBfFhQmIEncm9kPwiuZl
+        G35X7q5DcF+yKwKiQu4h/LXH/wJJnvxIYvoib0w/KhCXXruS/aKnht0JmPYgGw==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, Li Yang <leoyang.li@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v12 13/13] arm64: dts: ls1088ardb: Add serdes descriptions
-Message-ID: <20230328092541.og7mexyh4espbh6t@LXL00007.wbi.nxp.com>
-References: <20230321201313.2507539-1-sean.anderson@seco.com>
- <20230321201313.2507539-14-sean.anderson@seco.com>
- <20230324131701.4ucxf65sxfdtqcai@LXL00007.wbi.nxp.com>
- <5ca4aeba-db2c-4c0c-c620-d380b4b839bb@seco.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ca4aeba-db2c-4c0c-c620-d380b4b839bb@seco.com>
-X-ClientProxiedBy: VI1PR07CA0227.eurprd07.prod.outlook.com
- (2603:10a6:802:58::30) To GV1PR04MB9055.eurprd04.prod.outlook.com
- (2603:10a6:150:1e::22)
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v5 0/5] Add the Lantiq PEF2256 audio support
+Date:   Tue, 28 Mar 2023 11:26:40 +0200
+Message-Id: <20230328092645.634375-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9055:EE_|AS1PR04MB9581:EE_
-X-MS-Office365-Filtering-Correlation-Id: 292bc19f-f653-4a03-7a64-08db2f6e6897
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kFt82b6VzR/iZdbPj+L18xRjQDBZ6uBKL03ukRe+nF1RYHn/g0t7Wz33ip1cyqtWy8Omz5rHiKRWOY6SsMmsu9FPIkgK+2YG+asrIaHWiDQttFzhQead8Im4Rq6T2pmMgij8JDh8LkO8vtv1Uw2dvwblTYhSSoRv6ERGOqAyxB4Fv70bSv1OWK0tnuz7l4czscx5Sl6PHJaaUgPVvLG0o4NfiFaFW+djBIZvtuA1JSWByhSGudSAz/Kdwk8s/gcwIV+7NXtMLwbTxMjq2KRA8WIeikUESAz2073juV9wCKCBhHS/Ko67LWBr/0gFuepKZGT8Nn/gPf/IkWcLXemrgSXhJLWiW8k/Bm9UiD3ebn8J5EyzK61uNbidMuXESoRrj98xQEQGHOpa2Q1Wf2xEJxM2+d+pRiEZHzrrNZPq062gr4dDoP3jAPgFBTRr9q8svIS/E0NnbsHfTBICPGczE1IVMGdOESXhzLRNTxRso4pggG9Me2hBtD8sNSt1rPS3KVLcCzeAurr9bn0uT+sdO+A6Ysd5hXnL863uoZOfwnJdFhuL4GyvKsxKexDUaUWI
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9055.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(136003)(39860400002)(366004)(376002)(451199021)(86362001)(44832011)(2906002)(478600001)(6666004)(26005)(83380400001)(54906003)(6486002)(1076003)(4326008)(66476007)(316002)(66556008)(66946007)(8676002)(186003)(6916009)(53546011)(38100700002)(5660300002)(6506007)(8936002)(7416002)(6512007)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?b6JJsn8n46P610PVHv/NQEU6pwZ7Uoe3KC2wAFZHU6KWTdXAQQVthPsw4LHQ?=
- =?us-ascii?Q?TDHpSf6JOmcJnb64dQ2ksO/vML9SWH3rMTPtl8A5NOqzAmoo4MXL/vUgILMn?=
- =?us-ascii?Q?HAtEV3qX3lZbgJI5jkQmc16wqLSQTSmwRdhqxFrTlOKNfqE/6JoQNL3ozkDQ?=
- =?us-ascii?Q?tlAJTRIGa3rYHCiLPXN0quZzvS7W5v+F23m0BpxwSIAE7CamSG+scD1JT/qa?=
- =?us-ascii?Q?+S6RRSX4x4ipVQi7WJGIcCif4jFCTafw0lNZ88VMUObThdGoS580iF16X/Yx?=
- =?us-ascii?Q?WS5smP7lvWouZFpWxKbTMLHwWq2r5Y6ER2Lc3YVyVLerSJ530MeFtJNBFl8/?=
- =?us-ascii?Q?fNZ9kITuMb/QG0eDqGGz3ggC1tmngHCvhig7UPYB0WMd6D46p12PsAYQSy7X?=
- =?us-ascii?Q?1AV7OGTkpS3kdGnDdMn5vCk5s2pehIpgZZOdzogk7FiATG6B3LdzM3IumYk7?=
- =?us-ascii?Q?tAQkHRYX76YgdX6AJ5JooJrQV9dUeFV/YmyIvD2yZDO528ruteNfkoOZkvTZ?=
- =?us-ascii?Q?gmehNb+AKliQZ0tlEQ+q15TH73LLLxs6x8+EI+yYTq25+fak1SmJKQMyTnqn?=
- =?us-ascii?Q?i3MFOhI7BVWtzSt1jp1TJdqYC9pWFsW1bnXlpLNx4UFQKzMGUwViypvGfavL?=
- =?us-ascii?Q?uV3dW933q0yn9r8gKCBTNhtQmt5/eZ4QerjlXNQ8t1cFcc+8BhPjUd92XazQ?=
- =?us-ascii?Q?98512/eMBqqmlXLLfH75fiW8zliokoe9XSRkQ+ecN3+JQbLREZFdq9m4/ZQv?=
- =?us-ascii?Q?YpBvqBjOY8yyqa9kvnMOji4hLoyCZL3ZNAMxjwk17tnXbmH2At0NiKIqYimw?=
- =?us-ascii?Q?0Q9eAGIcvGGGkNZjU6Exvj6rc9Rzrt2SP9uudPcpkpwrFAlYJKTJUh2246+B?=
- =?us-ascii?Q?2dc2S1Ni+df7Zds2iIMarVSm1yXNElBwPeD9chx1g+/vff8koqv1A9WwuTpU?=
- =?us-ascii?Q?wUnd851sv3MH2dTPgwkvqcAnRSXTrgndonRxvRC9esd8Ct7KCFoGamzw9NOm?=
- =?us-ascii?Q?ao0j1jyQFuDmQyw9NVRSM4iLh2BsoK+MHpOofdv+BEZ6LdIw1klF5rW/XILO?=
- =?us-ascii?Q?0/QBrhT4M/goVZ5h3pkO8Ah0A6Zdq5+90IC4rxTkznxGMw0J3UdZRSMF0uvE?=
- =?us-ascii?Q?hmPSOWy7cDjMYq6V/4vFsCGajTe8V35oqWb1nCkBi7n7y/HPkJ6/820ulvki?=
- =?us-ascii?Q?PVafdiLKwzzSMpPzzuNf1Y9/A9fbfJegFkSGWY0oB98JIko+9tYd0/I0gaLN?=
- =?us-ascii?Q?Y6xKpfwPPW4ThMZ9/9wEAgij2FubZJ3IMGxKhjLSfPn2ACalMudNZlNEeBa7?=
- =?us-ascii?Q?Cp+OcLY6Rjecsvd6xljlmu8Bd9TFxD6kE+MiW93NjgHf70mTMJrn4/HZkQ72?=
- =?us-ascii?Q?8VxLwMztv7TZlFU8/icdyfON7wBOQQM1xglJc/KKiZwVFWKyGplmF53wKKFE?=
- =?us-ascii?Q?dADjH9AZvUEK+JIElc8e5xj5pF+KAZ7YthW97CrA9qLT0kaNtzaDha741B3K?=
- =?us-ascii?Q?V4vc4hqg3/mjohmupt97lXJiQ7naI5QGlUkCm+TOrigTc74tuD/Q5hnnxFQS?=
- =?us-ascii?Q?xs/mWShN/5UUeiCB+PmUv+j7WDdS/Czl72RMErxm?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 292bc19f-f653-4a03-7a64-08db2f6e6897
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9055.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 09:25:45.4329
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mhPU9oEpcEQYozoLK91kTOsuKQ7fNb21ZIbgsM4iSGxQNapsQR8qdTldi8Spqp+Ckf481VTXhwZT20guxrcXQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9581
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 02:15:47PM -0400, Sean Anderson wrote:
-> On 3/24/23 09:17, Ioana Ciornei wrote:
-> > On Tue, Mar 21, 2023 at 04:13:12PM -0400, Sean Anderson wrote:
-> >> This adds serdes support to the LS1088ARDB. I have tested the QSGMII
-> >> ports as well as the two 10G ports. The SFP slot is now fully supported,
-> >> instead of being modeled as a fixed-link.
-> >> 
-> >> Linux hangs around when the serdes is initialized if the si5341 is
-> >> enabled with the in-tree driver, so I have modeled it as a two fixed
-> >> clocks instead. There are a few registers in the QIXIS FPGA which
-> >> control the SFP GPIOs; I have modeled them as discrete GPIO controllers
-> >> for now. I never saw the AQR105 interrupt fire; not sure what was going
-> >> on, but I have removed it to force polling.
-> > 
-> > So you didn't see the interrupt fire even without these patches?
-> 
-> Not sure. I went to check this, and discovered I could no longer get the
-> link to come up in Linux, even on v6.0 (before the rate adaptation
-> tuff). I see the LEDs blinking in U-Boot, so presumably it's some
-> configuration problem. I'm going to look into this further when I have
-> more time.
-> 
-> > I just tested this on a LS1088ARDB and it works.
-> > 
-> > 	root@localhost:~# cat /proc/interrupts | grep extirq
-> > 	 99:          5  ls-extirq   2 Level     0x0000000008b97000:00
-> > 	root@localhost:~# ip link set dev endpmac2 up
-> > 	root@localhost:~# cat /proc/interrupts | grep extirq
-> > 	 99:          6  ls-extirq   2 Level     0x0000000008b97000:00
-> > 	root@localhost:~# ip link set dev endpmac2 down
-> > 	root@localhost:~# cat /proc/interrupts | grep extirq
-> > 	 99:          7  ls-extirq   2 Level     0x0000000008b97000:00
-> > 
-> > Please don't just remove things.
-> 
-> Well, polling isn't the worst thing for a single interface... I do
-> remember having a problem with the interrupt. If this series works
-> with interrupts enabled, I can leave it in.
-> 
-> Did you have a chance to look at the core (patches 7 and 8) of this
-> series? Does it make sense to you? Am I missing something which would
-> allow switching from 1G->10G?
-> 
+Hi,
 
-For a bit of context, I also attempted dynamic switching from 1G to 10G
-on my own even before this patch set but I did not get a link up on the
-PCS (CDR lock was there through). Pretty much the same state as you.
+This series adds support for audio using the Lantiq PEF2256 framer.
 
-What I propose is to take this whole endeavor step by step.
-I am also interrested in getting this feature to actually work but I
-just didn't have the time to investigate in depth was is missing.
-And without the dynamic switching I cannot say that I find the addition
-of the SerDes PHY driver useful.
+The Lantiq PEF2256 is a framer and line interface component designed to
+fulfill all required interfacing between an analog E1/T1/J1 line and the
+digital PCM system highway/H.100 bus.
 
-I have the Lynx 10G on my TODO list but I still have some other tasks
-on the Lynx 28G for the next 2-3 weeks. Once I get those done, I will
-look closer at the patches.
+The first part of this series (patches 1 to 3) adds the Lantiq PEF2256
+driver core.
+The second part (patch 4) adds the audio support using the Lantiq
+PEF2256 driver core.
+The last patch adds myself as the PEF2256 maintainer.
 
-In the meantime, some small thigs from this patch set can be submitted
-separately. For example, describing the SFP cage on the LS1088ARDB.
-I still have some small questions on the DTS implementation for the gpio
-controllers but I would be able to submit this myself if you do not find
-the time (with your authorship of course).
+The consumer/provider relation between the codec and the driver core
+allows to use the PEF2256 framer for other purpose than audio support.
 
-Ioana
+Compared to the previous iteration
+  https://lore.kernel.org/linux-kernel/20230328074811.594361-1-herve.codina@bootlin.com/
+This v5 series mainly:
+  - Fixes the binding
+
+Best regards,
+Herve Codina
+
+Changes v4 -> v5
+  - Patch 1
+    Fix 'additionalProperties' and 'unevaluatedProperties' positions
+    Fix sub-nodes names suffixes
+
+Changes v3 -> v4
+  - Patch 1
+    Merge the codec sub-node description.
+    Move the 'allOf' property after the 'required' property.
+    Rework the example to be more complete.
+
+  - Patches 2 and 5
+    Drop of_match_ptr()
+
+  - Patch 2
+    Add 'depends on OF' as pinconf_generic_dt_node_to_map_pin() needs OF
+    support to be compiled (error raised by the kernel test robot).
+
+  - Patch 4
+    Remove patch (merged in patch 1)
+
+Changes v2 -> v3
+  - Patch 1
+    Remove unneeded 'allOf' and quotes.
+    Add several 'additionalProperties: false'
+    Fix example (node name, interrupts and reg properties)
+    Replace the lantiq,sysclk-rate-hz property by sclkr and sclkx clocks.
+    Define 'lantiq,frame-format' property in top level.
+    Move to MFD
+
+  - Patch 2
+    Fix some #define.
+    Compact the register accessor helpers.
+    Rework pef2256_get_version().
+    Merge v1.2 and v2.x GCM setup functions into one pef2256_setup_gcm().
+    Update comments, avoid duplicates and change some conditionals.
+    Remove the carrier spinlock and use atomic_t.
+    Make exported symbol consistent and use EXPORT_SYMBOL_GPL.
+    Remove the no more needed pef2256_get_byphandle() and
+    devm_pef2256_get_byphandle().
+    Replace the lantiq,sysclk-rate-hz property by sclkr and sclkx clocks.
+    Move to MFD
+
+  - Patch 4
+    Remove, merged with patch 7
+
+  - Patch 4 (patch 5 in v2)
+    Update title and description.
+    Remove incorrect SPI reference.
+    Remove the 'lantiq,pef2256' phandle.
+    Fix commit log
+
+  - Patch 5 (patch 6 in v2)
+    Remove devm_pef2256_get_byphandle().
+    Fix commit log
+
+  - Patch 6 (patch 7 in v2)
+    Merge v2 patch 4. One entry only for PEF2256
+
+Changes v1 -> v2
+  - Patch 2
+    Remove duplicate const qualifiers.
+    Add HAS_IOMEM as a dependency
+
+  - Patch 3
+    Fix a "Block quote ends without a blank line; unexpected unindent"
+    syntax issue.
+
+Herve Codina (5):
+  dt-bindings: mfd: Add the Lantiq  PEF2256 E1/T1/J1 framer
+  mfd: Add support for the Lantiq PEF2256 framer
+  Documentation: sysfs: Document the Lantiq PEF2256 sysfs entry
+  ASoC: codecs: Add support for the Lantiq PEF2256 codec
+  MAINTAINERS: Add the Lantiq PEF2256 driver entry
+
+ .../sysfs-bus-platform-devices-pef2256        |   12 +
+ .../bindings/mfd/lantiq,pef2256.yaml          |  267 ++++
+ MAINTAINERS                                   |    9 +
+ drivers/mfd/Kconfig                           |   17 +
+ drivers/mfd/Makefile                          |    1 +
+ drivers/mfd/pef2256.c                         | 1355 +++++++++++++++++
+ include/linux/mfd/pef2256.h                   |   28 +
+ sound/soc/codecs/Kconfig                      |   14 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/pef2256-codec.c              |  390 +++++
+ 10 files changed, 2095 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-pef2256
+ create mode 100644 Documentation/devicetree/bindings/mfd/lantiq,pef2256.yaml
+ create mode 100644 drivers/mfd/pef2256.c
+ create mode 100644 include/linux/mfd/pef2256.h
+ create mode 100644 sound/soc/codecs/pef2256-codec.c
+
+-- 
+2.39.2
+
