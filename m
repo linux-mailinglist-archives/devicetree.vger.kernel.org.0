@@ -2,119 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D416CB83A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:37:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C20196CB84B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbjC1Hgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47962 "EHLO
+        id S229501AbjC1HiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:38:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbjC1Hgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:36:43 -0400
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2057.outbound.protection.outlook.com [40.107.96.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7042A4229
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:36:07 -0700 (PDT)
+        with ESMTP id S232374AbjC1Hhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:37:45 -0400
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2065.outbound.protection.outlook.com [40.107.96.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D3640E3;
+        Tue, 28 Mar 2023 00:37:28 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CNpTRtX9kjfaBh/APNNkVREDFMztL7WB/y7mt8G64YfsDugdfn/7bjR7PPhxhvQoWPPAju5j4NIYHdmPQWYEAhdij7xLYe2rvopH16AGOAluEAPzSLqja4LTo0TsDj2Gmbb1dynxlg7oFh+t8d6QjKHl3Kp9xkjkhRK75EI3x0gfsfPPxTKsRtBvm+YoCm1wvoXxZPLd3riCzxH4HfNWHoGqaXayplvPLdwThpFV9J0CEEcvHMqZIShwvQtxb/86seZ34CxPhjoppTvaOzF8QIbF++4T0GOgJuVoEJk6EHb9Gdwo4Jfn3O5f5yl34+sVKPZ7RllR7V0V2Epb3AhhzA==
+ b=Si7h4AjwjcafVGtXPZjKebLv3dU14a8F2cXVn8+Jsq/NJcSgImG1liYx9NKL8yAzwJaE/OdOm2Vyl3OnGDVJLl90vzb34j+2ZNM3UnpN1gP9G0yPuXq3gdaUYm9CVXp9xY0zvjNwLVDOKgGSxkES7i+9wc9hxoX8xGPQiAU9NS6vAyN8IkwCZbnhag3VSPw+0OXD2lcda5dPuIbV06HrBJaIsfV9tK2+uxBL7okGnLSpfqEhwk4njLc592JyCtdi30oXis4F2sz9OByJuST0YMZGocrRBFwOW5aDctR5ebLJ5lwt6AWQW3JcPAWkMHtxe2qoZzE4nPNF4jJmMQFp0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kg7TY3ahQqL88EAXu0u8zrMkhYREXYFjjVp3xMnE7uQ=;
- b=SD0Ts+4toJQaI7UoyultpR5meqdV1NU59sfwIsBG09jWR3D51FLcpscaMoNttBtA66q0DVodDHpaochq4iT0mF0YqwfCeT7mR0e8+7nqwh7CHD3omFMBjwMee2nAnVrljejFobXXUgSagOrGzPYeh+LB6yVO71DDm96J9E7jnAALvm2KGBzWv0GtnLC+kSw1SCgnPRMO7CUpDPg4HUujKNEo6LwWjecF5WiNNYzp1RSIXrBSZ790cGZu4t8r5jFjxlqj3WhKbzAKt/xjfLq03T3UyUOcKoCwjq8SonG61ety8daRWY2SwKxPyxmusILwD7/wFu7iR11hGhXiTEeQiA==
+ bh=LU2xXcs5kdtqd5uXrIaRVdV9uzPE5WUJXolVwcAaWFI=;
+ b=Wi4EVYmTyMP0DfJWDIlqzX6TRi9xkyNpgpj4HtcHNHLrgsYgGkv8PWkY9cLflC78KTqDSTw1CeAHbaBSEtAH2w2qd7HUGZE5wg6XpAi+PGrsLUFaV6HUAJ0NrOVpBZSsii8NoMBT7bDG4PQE+rifT/JWfiq22Vxy4cDpFAiiDiTlidcgxr9u40pkDH76hmjcWiOjZ9HUC5K4PNjeIwncWvGQcxx7qwt+/jFZzyeFRS4+fklUsr9eOStFWO1F7qBqZ1kYYEaubxvQQ5V6pu2NaYNUyVzEkH+7vgO7EGJ1Lv9HV9/nfxufliXMzAB+FBvK2hsz/tZEXu7TyvYj2qTTLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kg7TY3ahQqL88EAXu0u8zrMkhYREXYFjjVp3xMnE7uQ=;
- b=lrI7LIbQO4NCaAyoi+CtdMaNmUwp5J6FI4gsEN/A3GGGBUB+Co3MwFyRhvzMPTwA9VAHmYzH+o/lmavyJ7ENq3h1EkMhIFTww8wtdANndHnKzoYromJBmaq2HRREb9CTwG8lonGrXIV05f2aZjrZL6z1TR7swM0FVoJIcCQcRwM=
+ bh=LU2xXcs5kdtqd5uXrIaRVdV9uzPE5WUJXolVwcAaWFI=;
+ b=xdzdHoAXI2j7hIgDAfnOLoNSjCppmJ5vbZZs1u/LD1yX2fTF560SsTfTXQdmoudIj+w6ENmRheknwNg0GmeaKfI0IwgF6DSD8XU8F0xXn8exuliv3WC5UgoOh+KeptwWMikCnOgcE6macWsAw7SwqQuwFAjYr7rl0zdEexH8c6Y=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
  by SJ0PR12MB5664.namprd12.prod.outlook.com (2603:10b6:a03:42b::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.41; Tue, 28 Mar
- 2023 07:35:18 +0000
+ 2023 07:37:16 +0000
 Received: from BYAPR12MB4758.namprd12.prod.outlook.com
  ([fe80::4d07:7f52:c833:9603]) by BYAPR12MB4758.namprd12.prod.outlook.com
  ([fe80::4d07:7f52:c833:9603%6]) with mapi id 15.20.6178.041; Tue, 28 Mar 2023
- 07:35:18 +0000
-Message-ID: <6aed6e71-20e8-ad91-da82-145eeb80c49a@amd.com>
-Date:   Tue, 28 Mar 2023 09:35:02 +0200
+ 07:37:16 +0000
+Message-ID: <6c37d6f5-95d3-71a3-760f-68be535cceab@amd.com>
+Date:   Tue, 28 Mar 2023 09:37:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 0/2] arm64: zynqmp: Update MALI 400 interrupt and clock
- names
+Subject: Re: [PATCH] soc: xilinx: Use of_property_present() for testing DT
+ property presence
 Content-Language: en-US
-To:     Parth Gajjar <parth.gajjar@amd.com>, robh@kernel.org,
-        mripard@kernel.org, heiko@sntech.de
-Cc:     git-dev@xilinx.com, varunkumar.allagadapa@amd.com,
-        vishal.sagar@amd.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230321070619.29440-1-parth.gajjar@amd.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michal Simek <michal.simek@xilinx.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230310144725.1545315-1-robh@kernel.org>
+ <c6a5dc7f-46bf-8f1e-0a9c-2614d5f1824d@amd.com>
+ <CAL_JsqKy7qWDkU3z1p0oTn1umLzWchKw86Zu8mKzugDWQXJF-w@mail.gmail.com>
 From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20230321070619.29440-1-parth.gajjar@amd.com>
+In-Reply-To: <CAL_JsqKy7qWDkU3z1p0oTn1umLzWchKw86Zu8mKzugDWQXJF-w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0501CA0042.eurprd05.prod.outlook.com
- (2603:10a6:800:60::28) To BYAPR12MB4758.namprd12.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1P195CA0008.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:800:d0::18) To BYAPR12MB4758.namprd12.prod.outlook.com
  (2603:10b6:a03:a5::28)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|SJ0PR12MB5664:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ed4525a-9f23-4786-f5a9-08db2f5efa4c
+X-MS-Office365-Filtering-Correlation-Id: 285b1775-bc24-451d-090f-08db2f5f40d3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O2E2NSd99jZQle+jfcxfjl5ghjXkJ9Ruc3bcat3t2p01elEYZAGo2Me2GCoDSYNeuOp1UrUQD9ZGQEEnrraJ5oyOkoZDRFYC4YRInAzOAxcB3KAti3Tceg5WL6fqzLS0mWdBKroMoLqiOSEmVJUDGjkXxtpsiqhX6sdnDfcP88NWmbJTXF6BeNtqEnESI1+TDI2LgnTjUeLRUsBYjPoZJd9hhjFpezmDYzAOcR23ltZtwUf4JFlwl+KZZ71KIJWiuqVcqZdAcMmOB9NU6Hb7cfVFHVhFqDX+JB2nWtuDU/Q7ZunqedM80eWM9v6tsffq4smXqhi3FRlAy8e7IgXrREy+Dy7VpwX44ij0TmXgAAy/ALWN+QvXIHwNgZOt19tGqA3qyWrdrgF1yKAPhoO0HNKF/E/pW0yE1YhPjrX3MEBVnfTrPbhoeGfKKhV0G/vgPdLS+U2rXf7t3xZNqBlRDKqPo7H/5acyCka7dafRHvHO1DjD8VVq7cswAN9YIQk61vwpkhMOglP/zDkeQ1N89TloTlM0AxL97KyQfX2umYg+0gwNkp86DRCX2J4dbewrvgPIqckw542+2KQisKSXZrC2AQjPVVlMO4XYOWEXDlDubgGkS8aIWvlTRMXTnLWu0az4b+RUksABiXEk1OlWlQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(376002)(366004)(39860400002)(396003)(451199021)(86362001)(31696002)(44832011)(36756003)(2906002)(31686004)(26005)(6666004)(2616005)(6486002)(478600001)(66476007)(316002)(4326008)(6512007)(66556008)(66946007)(8676002)(186003)(8936002)(53546011)(6506007)(5660300002)(38100700002)(41300700001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: x0jXf+ub9skz6YODmNeumHiRRh9tyZoCyc6UcQfskSWc2z0J/ODhCLrp0gwYOOTOO6odIWtIWVd96YZSeFwJnBRj2apCTaYgRJ6QyE/4nPJy1Cvj6Jjub+UIC51eGqrBVxffABwni6+1NcO/d0tBqcwV9VRNq8hMAV0i7KWywcFJgtcJ/FIL7jcmwgt5oEyUr37VUHURNlEGDeBLqhjiDxSMbM/ugY0kq+utbwcLIX86fXD6dWrHtk6/jxLNb6noiF5akVQXWQhZK+k7ChMHzp7TtAW0VCdq7bTwNEtzY4GwWEK4X/baw68xIM1KFWHYivLiIyBrVjwLXCb+tGpoQTQYu8Im10G7l1f9b6vQyXIudy53OzauLnPCkOTWGO9glekA28JwcWmmGSTVv2dYNMefr+WFJ3XxNlAdyXIQ+wpUZ06wkjjAc7xVjlFDywysUUWEL3Qe7TjJgfBb/8pX9pJ5Wd6/nCuICZTCO6LfQIpa1rzf2w8qn9LAhoYKoLl5FO5dpmpTvol6O1rB877sJQLJ0aeAUtMTkW+05srO+kQ9oI6Je6P8hEWXeLGrqhTvQ5wL/Ewg0HbAPseFiLSkTzj6und5W4+hVVwCQMCHj6sh4hydy/38WyPox1besTFZF7mJZATeXcLBYiDCeBrBBw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(376002)(366004)(39860400002)(396003)(451199021)(86362001)(31696002)(44832011)(36756003)(2906002)(31686004)(26005)(6916009)(6666004)(83380400001)(966005)(2616005)(6486002)(478600001)(66476007)(316002)(4326008)(6512007)(66556008)(66946007)(8676002)(186003)(8936002)(53546011)(6506007)(5660300002)(38100700002)(41300700001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGszcGlRMS9OSCtER28zODArZTJ3WHBKQWdvbFJUN2RiS2tQeE91S3BPZWxW?=
- =?utf-8?B?SHIzSGxqSVc0L0czbVlKbXRHOHJlb080Y21oWWFoMUJJeDFkQ2RPcU4yWHBa?=
- =?utf-8?B?ZjFOK3JNYkFtb1ppUUcwRkxVS0drc1lXMXd1YytOYVBKL3l0bmdHbmR0akxC?=
- =?utf-8?B?c1AyQnVRMHFqbHF3ZG94cENYUnNPNi8wUmptZ2djLzlza2pxSTBjd0o3bjFB?=
- =?utf-8?B?QVZiT1l1Rll6c2xLeU5hZm9HaitPNWhoVXVYSUhtb0lCTGREcjNKWUp3RWVq?=
- =?utf-8?B?VS84dzN3K0F6YmwzdlQvc1NmalJzNWZDYml4Q0ZlS3dBZXV6WkFaSnZraWFB?=
- =?utf-8?B?T2tzQUY2TnBLbzk5YmJGM0JyRHdPZGlvTjJRSE5RVGV0SDU4K0lJaE9KR2sv?=
- =?utf-8?B?NzBDK1V0ODUycU16TmhMRmFOdTdIU3ZEUGVxUk5iREZRODl3K1EyTS90RmxT?=
- =?utf-8?B?Ti8rd25oSVVHYXd1ZjdQRndDc1JkcVpKckFBcXdWbndQYncxR2JwL0RIVFNS?=
- =?utf-8?B?MTl6czBqcUE3UVpHcmxOTjVKUVVYMW9wc3orK0RyRlZpWHZzbExGdEZSK0pE?=
- =?utf-8?B?ZVZhREJHWmV1OWRpaTBqK0d3NXRONXozdFlsTE5yb1pQZkJOMHlxVHlkbERz?=
- =?utf-8?B?QkU0UlVQMEpKRDdhYXZybzMzYk9hK0xpaGVjckNsRkpaS0dlN2tNS3YvOWFK?=
- =?utf-8?B?elFMRFd0V2VQOWcrV2RRL3RWcEJneStYRktndG95L1MwTy8vTGk3ZWV2Tkk5?=
- =?utf-8?B?VWxzU2VhdHlOc0tFOC9CSXArMXc4YnQzRDNLamp1U2FoZEFCaFRlZ2l0Ymsx?=
- =?utf-8?B?SFFRTS9rWmRySXVuU0MwemN4c3o0NTRHM0FKc0Y2MlNNSDF2c3l4aHN4Z0w0?=
- =?utf-8?B?aUplT0JRSmlyWU1uKzZuWEJCME15ZWRFVS92UzZNbzlGMFlsbGVKU3NXV2Fu?=
- =?utf-8?B?YWZCWFk2WHVCaTVlTUEramxkUFhtTFFVeE1BcGttanF2WWxFanU3eEUxYnYz?=
- =?utf-8?B?cm8rc0xNSWRaM0Y5TTVPd3lUSUxJY1RDQWVndGpaSkJiQ1BIeFhIbnI3QUlz?=
- =?utf-8?B?Q1F0WW82MG5WbzQxT2l5WklPZzRON3NDZHRab0JiaHByTVlHY0FWUmdjS3hi?=
- =?utf-8?B?OXhTYzRRRll6bndPTGVzODJGQ0FPWEpSRE90KzllMEhqYXcrNGZ6VFhjRGJi?=
- =?utf-8?B?TGFtWEVQNWk3V29zNFUzUTF1YitCNlJWVlpSanlMK2J0bGdLemswaU9jc1RL?=
- =?utf-8?B?TnlhbWhjUDFGWm1ObkxaazVuM0Z2aHpudjlxT3RwVk5POVhGR2h3dC82Mklv?=
- =?utf-8?B?M0Q4ZHYxUGI1YmpYZWthSkU5RTVwc21DSHJOMDM5NkVicEZkMUUzOERnaTVF?=
- =?utf-8?B?L2ZUV0Fhb295SGxZR21uT2hBaHFyazJ4VkdaRHRFdUtDbFhLWU1ZK1NIOFVk?=
- =?utf-8?B?dnhodW83VUxQUFA3Y0tkSEhibGp6cTRzeVVBVy9uQWQyVjhiYUk1ek9QNVVx?=
- =?utf-8?B?VU5OckFETHhaZHpSSWpSelJYR0tORVoxK3N1VkVtRkl6eWNzOEszWkpBc3M1?=
- =?utf-8?B?UFdkWXltRWEwWWRZQVQzcW4za1lmeUthanlIUE9XL0NzcjFyTW11UWJLRHZG?=
- =?utf-8?B?MFEwWWZBazhhdFVseC9HWVc5b1ZvZENvckRUVExESGVoellRallYQzV3ZS9H?=
- =?utf-8?B?ZGRBT0gwZG5UVFFwRUZOdnNkRC82MTg5VWlJbEVSTzVLTUZxUzZhVVRwMjNk?=
- =?utf-8?B?Q2JjeTc2RUVGNmxWZkhVRWpOVi8ycmcweEpaOFdwaC9KQ2JGWS9TY1lQN0Uv?=
- =?utf-8?B?L2phVWh0cEV0bmkvMTE5M0YvbUE0TGVPM1htdElTK3c4aEVOZTNxSTNRclEw?=
- =?utf-8?B?M1VGcGthR0VSKzNva0N1dWRPbS80Z0pFeStlenE0bHZaWk9tWER2TUVHaXpU?=
- =?utf-8?B?OW11eHJPV1IyQVBRTmY3TEtxKzJuR21WK2lCT3JENHdFSTZVTWRCVnJMZkRN?=
- =?utf-8?B?VmVLemtESEJaM1BPdHZHVDh6RmcrcFE3ay9qdy80a0ZTWTB6L3ZvUVdOcFM5?=
- =?utf-8?B?ZVl3WnNqaGZDOUlSb0FkcXY1NWd1RVNQY1I4Qm13T0NxWUdaRjMzQkd4RGdj?=
- =?utf-8?Q?JroJYYav2BgGoUexs/PqSHVSF?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZGErNDJJOHVkc0w2dXdwMTR6aHdYTDFjMU0wNGxVSlNrMTM0S2p6a2sxdlIr?=
+ =?utf-8?B?ZXVWTDFSV1c1WDJ5Q0dPQVA3U2xhT2JCM08renpSenpzUmlGdS95TWUxK1NS?=
+ =?utf-8?B?M1hFYTRJTjBoMG11aXdzSElzRXRib3dmbWtGUjVKUGQzaUJWRU14R3lVR3JN?=
+ =?utf-8?B?Z3VpTW5odThQMnRaSkFjcU95eDE0Yjl4VS9GM2hOMm51K0o1OGlMWUt5YzNw?=
+ =?utf-8?B?djhSczc5UG9wMGJBV0hTbTJqd1BTNi9iTHl6YUl5YWk2MTJEUlluSi9jNkhS?=
+ =?utf-8?B?MWNEOFV5NlcwQjBkekl2d3ZKa1RTbGJCS0FXcU9tVWpDOGpxYndySkZhVWI5?=
+ =?utf-8?B?QnBMeDdDTEkvVXUrdmJaeXhqMDNvUUM5d0ZaWUpGL2NHa2p4NERpZThBUFVx?=
+ =?utf-8?B?MWdVZVJTVmRMUS81QWxIK2VSSjk5M3k4Zi9LeFY3SU5uUzE2RVh4M0pQMWFE?=
+ =?utf-8?B?eHBxTjZ3MWpSRGNocEtXOVMveDJOZi8vbWg5VFVwV1pZNnJuSXJoa2QwQ0Jp?=
+ =?utf-8?B?aWtPTmpvTjZKMVhZbE1iZ2RXdEcwQi8yK3ZTMEFjc2RjMWNrcUU3aVU5cXVF?=
+ =?utf-8?B?eEc2L2lKTUVaRXYwQ2pWbDA5Z25VS0dKeVpWUG9MQXRsR2drMTRReXA0RFJF?=
+ =?utf-8?B?dDZ3Wjg5V0JKVGZvY3MyWlpEVklEeWxWcWprTEhNdnJDSEJkdnNTbUdYYWkz?=
+ =?utf-8?B?NXA3VjVuK2hsMXFJR0NmR3p3SWM5RERYL1JqcVphaWhTMkpwMWVEZnphSjZK?=
+ =?utf-8?B?ZHZPSWd5bFNsRzhuOWt2ekV5NW5sd2hDZ3Y4TGRyRURLcGI5RlJQK1ZxSHla?=
+ =?utf-8?B?SmgvMUxYcERBN2htelNtTUc5Y2dUcmFpQkRheU9vejVnSWpXSm0zZWErRXR1?=
+ =?utf-8?B?RXAwdllySS9CRS9YYzhWbjZ2N1k3VHJFbVQ4c1BaVVEydktlMUJ1TWJhVzl6?=
+ =?utf-8?B?OFkrQ3hQWkRHU05RLzZnSy83TzBpbGNrSitGdVBqYVpSM3F5THJkSVRoeTA0?=
+ =?utf-8?B?OERFd0VkSlVvL2QzSThQcTZvOFpUU2lXVU1DS2ZJRE1LU2MwU0psTi81TlVl?=
+ =?utf-8?B?TjRNMGdPMHAvRFpOdlgrMkJXWTYwajRWREc0TCs4L3pQV1lHUUJVVWNqOXBG?=
+ =?utf-8?B?WlVMQ3Q4L09DazNnSlNDSnZaUkZtYkNLOEVrZ29SRkEvOXdiK0xvck80NjVx?=
+ =?utf-8?B?dDh0QjV6RGhueVVmVWRCdDVRRlRmRy9ka09sbnREM1F0UFBNS1o5OS9tTldp?=
+ =?utf-8?B?ZDV6RWZtcHMzeVRERTRicFFTQUtTN1lvbmVETkpnUngwSm9KV2xqWHRDdzZa?=
+ =?utf-8?B?MHdqVW1PYnBLdGpkTTErYVQ5VHlTVGo3amJmKzNoRjlVRllIN0FQSXcwaTVl?=
+ =?utf-8?B?TkdMQUVuSDFiNUw4MVlaNVVOMFZGVHU0YXhRT0RyQ3FjSnVnOUlsU29HWUJE?=
+ =?utf-8?B?WmFiTVNaRE5xbUpvbUZUK1hwN2VmdHVKRS9nQkpkVU80Wi9aemZvajh6Zlpo?=
+ =?utf-8?B?ZTByVGd5eUZkaFBtaThwV29xejllaWQ3MXBZU0NVVyt3UGhXRUgwditrTkl4?=
+ =?utf-8?B?WGZjY2dLYnh1T2tPOElIV29HZ3JXejVvQkFrMjZseWFyd2M0Z1BWTlE1eHJ6?=
+ =?utf-8?B?TVk1U1dWWW5WcW0xdWxabjRKU1JnSFNuS2FISjhtRG52THA0cGhITWtZaHVR?=
+ =?utf-8?B?cTZ6TUM3V2JTamJkcmtsa3NyWWYxaThHOU5CVFoveFdvM0w2VmIwTG0xMVFV?=
+ =?utf-8?B?T2N5c2ZBbjlnUk44VFZzS3RsMk5hR0xnQ25hazMybUR1a2ZFdEJKMVRpVUhI?=
+ =?utf-8?B?K0RyQVYyN0RpY2VKcWd4VitTRklqeXgwTWZ2RUpyMEJYQ0J2SjgzYW5uS2g0?=
+ =?utf-8?B?S21VcEoyNGRGVVVsUE43UjdOWkNyWGUvQnVnbHNlRGp2dXA3TjdZemVVUmx4?=
+ =?utf-8?B?cTFrcjU2ZWM3UlBTenpSVUg5NnFGeFI0aThnR2owRUhRVUpxalZEb1RwVXNz?=
+ =?utf-8?B?VEtRdWFnM3cwRUg5Q3VwaE1LTFM1dk95RndCZ2hNdlZrc2Z3VXdiVnNFeita?=
+ =?utf-8?B?djVkMWlWVmllRCswQnZidHN1WlI4MUVaZ0RLRDNGcFBUeVJCVU4wMWM3WC9m?=
+ =?utf-8?Q?+tIMZtF1FtiMuBLdRuHG0/0Lm?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ed4525a-9f23-4786-f5a9-08db2f5efa4c
+X-MS-Exchange-CrossTenant-Network-Message-Id: 285b1775-bc24-451d-090f-08db2f5f40d3
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 07:35:17.7710
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 07:37:16.0434
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n1oaBKkndVhb/nV4DM77LRau2fZ1luJZFhnFO0MpsCahVorNPiWDmBpSxPuHNmaq
+X-MS-Exchange-CrossTenant-UserPrincipalName: iO0qKMEbKH2LnT9mOByF4yBaHOh3BsPT7Fh5uJZJj493LAx7Y2cP2/n9w/O5HQFD
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5664
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
@@ -128,35 +128,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 3/21/23 08:06, Parth Gajjar wrote:
-> Motivation for the commit is to utilize the upstream community
-> device tree so that the either modified ARM Mali 400 driver
-> or upstream lima driver can be used.
-> Added gpu node for zynqmp.
-> Enabled gpu node for xilinx boards.
+On 3/14/23 14:23, Rob Herring wrote:
+> On Mon, Mar 13, 2023 at 5:19 AM Michal Simek <michal.simek@amd.com> wrote:
+>>
+>>
+>>
+>> On 3/10/23 15:47, Rob Herring wrote:
+>>> It is preferred to use typed property access functions (i.e.
+>>> of_property_read_<type> functions) rather than low-level
+>>> of_get_property/of_find_property functions for reading properties. As
+>>> part of this, convert of_get_property/of_find_property calls to the
+>>> recently added of_property_present() helper when we just want to test
+>>> for presence of a property and nothing more.
+>>>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>    drivers/soc/xilinx/zynqmp_power.c | 4 ++--
+>>>    1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/soc/xilinx/zynqmp_power.c b/drivers/soc/xilinx/zynqmp_power.c
+>>> index 78a8a7545d1e..641dcc958911 100644
+>>> --- a/drivers/soc/xilinx/zynqmp_power.c
+>>> +++ b/drivers/soc/xilinx/zynqmp_power.c
+>>> @@ -218,7 +218,7 @@ static int zynqmp_pm_probe(struct platform_device *pdev)
+>>>           } else if (ret != -EACCES && ret != -ENODEV) {
+>>>                   dev_err(&pdev->dev, "Failed to Register with Xilinx Event manager %d\n", ret);
+>>>                   return ret;
+>>> -       } else if (of_find_property(pdev->dev.of_node, "mboxes", NULL)) {
+>>> +       } else if (of_property_present(pdev->dev.of_node, "mboxes")) {
+>>>                   zynqmp_pm_init_suspend_work =
+>>>                           devm_kzalloc(&pdev->dev,
+>>>                                        sizeof(struct zynqmp_pm_work_struct),
+>>> @@ -240,7 +240,7 @@ static int zynqmp_pm_probe(struct platform_device *pdev)
+>>>                           dev_err(&pdev->dev, "Failed to request rx channel\n");
+>>>                           return PTR_ERR(rx_chan);
+>>>                   }
+>>> -       } else if (of_find_property(pdev->dev.of_node, "interrupts", NULL)) {
+>>> +       } else if (of_property_present(pdev->dev.of_node, "interrupts")) {
+>>>                   irq = platform_get_irq(pdev, 0);
+>>>                   if (irq <= 0)
+>>>                           return -ENXIO;
+>>> --
+>>> 2.39.2
+>>>
+>>
+>> Waiting for v2 because of missing of.h header reported by lkp.
+>> https://lore.kernel.org/all/202303120017.BIw01Y21-lkp@intel.com/
 > 
-> v2 change:
-> - Added gpu node for zynqmp
-> - Enabled gpu node for xilinx boards
-> 
-> Parth Gajjar (2):
->    dt-bindings: gpu: mali-utgard: Add xlnx,zynqmp-mali compatible
->    arm64: zynqmp: Add mali-400 gpu node for zynqmp
-> 
->   .../devicetree/bindings/gpu/arm,mali-utgard.yaml     |  1 +
->   arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi       |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts    |  4 ++++
->   .../boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts      |  3 +++
->   .../boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts      |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts    |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts    |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts    |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts    |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts    |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts    |  4 ++++
->   arch/arm64/boot/dts/xilinx/zynqmp.dtsi               | 12 ++++++++++++
->   12 files changed, 52 insertions(+)
-> 
+> It's a false positive. The header change is in v6.3-rc1, but 0-day is
+> applying these to branches not yet updated to rc1.
 
-Applied.
-M
+ok. applied.
+
+Thanks,
+Michal
+
