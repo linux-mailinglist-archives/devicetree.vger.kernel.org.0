@@ -2,56 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0397D6CC17D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BE96CC189
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:57:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231978AbjC1NzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35014 "EHLO
+        id S232766AbjC1N5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbjC1NzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:55:12 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27411AB;
-        Tue, 28 Mar 2023 06:55:11 -0700 (PDT)
+        with ESMTP id S232709AbjC1N5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:57:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6447AA9;
+        Tue, 28 Mar 2023 06:57:50 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 36327B81D57;
-        Tue, 28 Mar 2023 13:55:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7AECC4339C;
-        Tue, 28 Mar 2023 13:55:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 41617617E3;
+        Tue, 28 Mar 2023 13:57:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A01BDC4339B;
+        Tue, 28 Mar 2023 13:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680011708;
-        bh=vWPCC8VIAiLmllWAWxkbIh73YUZMedg8b7K2aPik8tU=;
+        s=k20201202; t=1680011869;
+        bh=c4euR0Zd/JmQDuRN94iXNF8EoUEzpV1yUc9zAbWxy8o=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eMwHxD0O7qXg7BVFwxkwzXPh/z/lddceA+pTDCR4vijn6sIZyBTmH96EWwUHHrFV3
-         cNyO30yKoU3dnN74Z/xR8F7VrrF4/P9BD00xoqzYppLhO+/cs+nQYRH3OiROwuhwDf
-         twmittX/wMDze3cX0Mc3g4OBB8dAB7O1ordpOfPfOHVBrumEt0zFDFwu7mTbyUGVlf
-         MQCD6h3CuEqZ7wZNd8N2luKWsXsqF+wL5d4uVvaiXKeVKXtnBSgCEP4vYKjeaaB1is
-         ToQe8hi3edmnsI/mSC/4AV1/JyuDQSHBtLnjAmW25Jwi5BxUkm7BTerfDoKynIuj+T
-         buzyhzgUIvBMw==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5456249756bso231074817b3.5;
-        Tue, 28 Mar 2023 06:55:08 -0700 (PDT)
-X-Gm-Message-State: AAQBX9cob+ieXPrbQJrb3Go4PyNqtWUYO65CFocWmqeOkgnHpOFLCWws
-        dxcNhGGuybVmpTrqJ6S+wtU2UVGZ1oExeID9TA==
-X-Google-Smtp-Source: AKy350amHwuEhXFg2F8D3n/WuI47BFty9DUkRRbsVRdvL/trAteUVJ8fKx95OaESPKOBM94pIJNNQGvOXBcN+2GyKyY=
-X-Received: by 2002:a81:b50f:0:b0:544:b8d8:339e with SMTP id
- t15-20020a81b50f000000b00544b8d8339emr7405889ywh.5.1680011707733; Tue, 28 Mar
- 2023 06:55:07 -0700 (PDT)
+        b=HoC6h7QU4XWblNdAiVGhRKVv9EmdFymQkbE2FWmAu2SiD0CIjYkyGvvpOGMiA4Ccx
+         RjRSwHjaNhaeDy3y08Hq7vOR2WxCx7o0QaPTg6uqD8bLrVXZVqCA/aWwbFkZPtNpd8
+         hmMyAiMec4EsjjTqkRnut6UhjQ9vDfte3ZjjlJfDLPa74oxO7g4uW6ymYrlaFwYvZw
+         mO9GcFUmi3nWIAMCTRzkvXc6W18kzgQWvMINkVemukvzff0Yc6+ZPq9/42Qo+sUghM
+         CAjkUp1Q4BTITN/W2b1Vff7BitGUaYo6Mtydz6boxAk0bvyiUmbA+3udCC+YlRuG9h
+         lgCGJjHOWVktw==
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5419d4c340aso230970667b3.11;
+        Tue, 28 Mar 2023 06:57:49 -0700 (PDT)
+X-Gm-Message-State: AAQBX9ctDLKIDq7l0UyFEEP/cdw55LiP0YND1XG048eD2uiZ0lRBK10k
+        pdhKvEtKDv4c8UZL4wcMBv5LENolX5zm9kapdA==
+X-Google-Smtp-Source: AKy350bNpz7Bd9Ci5RKAGrw9sEV5urpvR4mBLxm8yWSi0X2LA+KdtSuZf7hKYv3CptV9NNhk2Tgm4cfMKtlSJaP0l5k=
+X-Received: by 2002:a81:4410:0:b0:545:a7d8:f278 with SMTP id
+ r16-20020a814410000000b00545a7d8f278mr6922784ywa.5.1680011868714; Tue, 28 Mar
+ 2023 06:57:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230328054833.1974942-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20230328054833.1974942-1-peng.fan@oss.nxp.com>
+References: <20230328052912.1957000-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230328052912.1957000-1-peng.fan@oss.nxp.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 28 Mar 2023 08:54:56 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKbOSQAZhA+Xapgwpqzuoo44ZF13+MziNHm5ye5Js8kfA@mail.gmail.com>
-Message-ID: <CAL_JsqKbOSQAZhA+Xapgwpqzuoo44ZF13+MziNHm5ye5Js8kfA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: input: pwm-beeper: convert to dt schema
+Date:   Tue, 28 Mar 2023 08:57:37 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJvOZvw7BKYZRTf3gQwyVOmhva8BFHYF8-rf5uyo_HMUA@mail.gmail.com>
+Message-ID: <CAL_JsqJvOZvw7BKYZRTf3gQwyVOmhva8BFHYF8-rf5uyo_HMUA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: fsl-imx-gpio: update gpio-ranges
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, stefan@agner.ch, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
@@ -63,130 +65,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 12:43=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
+On Tue, Mar 28, 2023 at 12:24=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
 om> wrote:
 >
 > From: Peng Fan <peng.fan@nxp.com>
 >
-> Convert the binding doc to dt schema, and also fixed the
-> example from fixed-regulator to regulator-fixed.
+> one is not enough for i.MX8, so enlarge it.
+
+But it wasn't 1, it was unbounded. As dtbs_check shows, the new bounds
+aren't right either.
+
 >
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../devicetree/bindings/input/pwm-beeper.txt  | 24 ----------
->  .../devicetree/bindings/input/pwm-beeper.yaml | 48 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.tx=
-t
->  create mode 100644 Documentation/devicetree/bindings/input/pwm-beeper.ya=
-ml
+>  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.txt b/Doc=
-umentation/devicetree/bindings/input/pwm-beeper.txt
-> deleted file mode 100644
-> index 8fc0e48c20db..000000000000
-> --- a/Documentation/devicetree/bindings/input/pwm-beeper.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -* PWM beeper device tree bindings
-> -
-> -Registers a PWM device as beeper.
-> -
-> -Required properties:
-> -- compatible: should be "pwm-beeper"
-> -- pwms: phandle to the physical PWM device
-> -
-> -Optional properties:
-> -- amp-supply: phandle to a regulator that acts as an amplifier for the b=
-eeper
-> -- beeper-hz:  bell frequency in Hz
-> -
-> -Example:
-> -
-> -beeper_amp: amplifier {
-> -       compatible =3D "fixed-regulator";
-> -       gpios =3D <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> -};
-> -
-> -beeper {
-> -       compatible =3D "pwm-beeper";
-> -       pwms =3D <&pwm0>;
-> -       amp-supply =3D <&beeper_amp>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/input/pwm-beeper.yaml b/Do=
-cumentation/devicetree/bindings/input/pwm-beeper.yaml
-> new file mode 100644
-> index 000000000000..1d7cd58d2a8f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/pwm-beeper.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-
-'or-later' is wrong.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/pwm-beeper.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/D=
+ocumentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> index be56c3faec0f..e303455eadce 100644
+> --- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> @@ -66,7 +66,10 @@ properties:
+>
+>    gpio-controller: true
+>    gpio-line-names: true
+> -  gpio-ranges: true
 > +
-> +title: PWM beeper
-> +
-> +maintainers:
-> +  - Sascha Hauer <s.hauer@pengutronix.de>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-
-Drop 'items' as there is only 1.
-
-> +      - const: pwm-beeper
-> +
-> +  pwms:
-> +    description: Phandle to the physical PWM device
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-Standard property which already has a type.
-
-> +
-> +  amp-supply:
-> +    description: Phandle to a regulator that acts as an amplifier for th=
-e beeper
-> +
-> +  beeper-hz:
-> +    description: bell frequency in Hz
-> +    minimum: 1
-> +    maximum: 255
-
-doubtful a beeper can generate frequencies of 1-255Hz...
-
-> +
-> +required:
-> +  - compatible
-> +  - pwms
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    beeper_amp: amplifier {
-
-Don't need to show providers in examples for the consumer.
-
-> +       compatible =3D "regulator-fixed";
-> +       gpios =3D <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> +       regulator-name =3D "beeper_amp";
-> +    };
-> +
-> +    beeper {
-> +        compatible =3D "pwm-beeper";
-> +        pwms =3D <&pwm0>;
-> +        amp-supply =3D <&beeper_amp>;
-
-Make the example complete and add beeper-hz.
-
-> +    };
+> +  gpio-ranges:
+> +    minItems: 1
+> +    maxItems: 16
+>
+>    power-domains:
+>      maxItems: 1
 > --
 > 2.37.1
 >
