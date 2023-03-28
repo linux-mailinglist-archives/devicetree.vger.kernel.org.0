@@ -2,95 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7CD6CBA9D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E19E16CBB0A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232591AbjC1J2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:28:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60532 "EHLO
+        id S232770AbjC1JbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:31:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232324AbjC1J2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:28:48 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDEB5FCD;
-        Tue, 28 Mar 2023 02:28:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 04243B81BC1;
-        Tue, 28 Mar 2023 09:28:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4BEEC433EF;
-        Tue, 28 Mar 2023 09:28:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1679995700;
-        bh=G65V8ZSmWgqOfTfYMpsqw0YM7nxoxWjuZLzADzcJo/c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VPUrkLqTCdFVVTpAeaasOlU4oK1zTntK6p1/CB8wgSTbpEN9dKQiSBoDwODlTt3Vu
-         nYqHKWNYL0YuKokuPpEUe3rILAK3I4iiNO9HK4pxxoRmv0lbeg74UFPD5XaYwfnatg
-         PA5xR00B1bkmYiUobcyB9A6SnPQh7T1vnVWNWE1wuXqHftDa6xwWot0v6ZYLKARNV2
-         I4yl6cvqIapGLj5xEWhHVB4mGPKBGc3h1MD4CXIjEMsJMdCg4aEH0jMlRTNI12dJ95
-         tUJA5mD0Or4s9buLcHXFtN/x5/RaNd2kMjehm/3OiSC1yuMUb0r2fqeLBSe/feNGWE
-         8x0E0RGstg6IA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ph5d2-0004Hy-Ji; Tue, 28 Mar 2023 11:28:32 +0200
-Date:   Tue, 28 Mar 2023 11:28:32 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
-        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 4/5] usb: dwc3: qcom: Clear pending interrupt before
- enabling wake interrupt
-Message-ID: <ZCKzQA1YhXQ/6n3L@hovoldconsulting.com>
-References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
- <20230325165217.31069-5-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S232628AbjC1JaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:30:23 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22367686
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:29:17 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id i7so14230254ybt.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:29:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1679995751;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yFB98fl8c+VxJhat2aITQJylt85+D41Na+tueFpnBAE=;
+        b=h6Vz5hHsFbSVlybmIlvV3llRGY6zxdMBPqd7vuRnJb91gssIrU+JkHC8x3k8jk99aZ
+         TUV+/AV65p6lGjzaxQBmfrutizEWwOo+EZeXN/NHKK4LwatIFW/QwCXbyNZ7bW8Vvnd5
+         K2dz4isaG3Fg9/yhee6xJqIWq4kl98h+rwO8U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679995751;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yFB98fl8c+VxJhat2aITQJylt85+D41Na+tueFpnBAE=;
+        b=o9j8kQ9JJnP8mtRJenL+1s+0xHcUQTQ+SirLrEJxKKLHWvWNos3camfxrFhfGO5iJn
+         4ayOsUH8cRg9e/BM7QQ5dSMyoZ/axafPLa9RFCVQwpNf4b0zZfJdcHTGQWeYKHGk4BV6
+         IoKKpm+oifnf7DHjADjvx9pKwPKqG+4c9OQiIGo/YN5vgleg8VfNBmaW422IFssR+/95
+         rN2+5icGIX9Smypygw6cUmmmP1hXQT+EknmsZRFmuqz/weo1ZS/KZanMbN+Qo7PX6LMY
+         1OK+agnb3jhG6122W1v+aUlj3MKYqZKn4b2c4Bt/VQYxyDXCw9TEh68DPOXWFiz4UeN1
+         wNGw==
+X-Gm-Message-State: AAQBX9d4OsNa0okgUEQhpSjNDzMM3J774Io4rcTajPrK6HRicdHY1QU+
+        05W0Z8rHFf/nW/OeXZR3W7oEJoVyF3Q7881hP6jIQw==
+X-Google-Smtp-Source: AKy350afBwmCZQBALVcAA/Tbw4Xqq5Zxd871dGI57F78yPyqoxYIijJLMdgmt6M0w+Y8hISHOAZdDyJishaV0ICRHKo=
+X-Received: by 2002:a05:6902:188f:b0:b78:bced:2e3d with SMTP id
+ cj15-20020a056902188f00b00b78bced2e3dmr7396712ybb.3.1679995751012; Tue, 28
+ Mar 2023 02:29:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230325165217.31069-5-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230328073328.3949796-1-dario.binacchi@amarulasolutions.com> <20230328084710.jnrwvydewx3atxti@pengutronix.de>
+In-Reply-To: <20230328084710.jnrwvydewx3atxti@pengutronix.de>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Tue, 28 Mar 2023 11:28:59 +0200
+Message-ID: <CABGWkvq0gOMw2J9GpLS=w+qg-3xhAst6KN9kvCuZnV9bSBJ3CA@mail.gmail.com>
+Subject: Re: [PATCH v10 0/5] can: bxcan: add support for ST bxCAN controller
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     linux-kernel@vger.kernel.org,
+        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+        Rob Herring <robh@kernel.org>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 25, 2023 at 10:22:16PM +0530, Manivannan Sadhasivam wrote:
-> It is possible that there may be a pending interrupt logged into the dwc IP
-> while the interrupts were disabled in the driver. And when the wakeup
-> interrupt is enabled, the pending interrupt might fire which is not
-> required to be serviced by the driver.
-> 
-> So always clear the pending interrupt before enabling wake interrupt.
-> 
-> Cc: stable@vger.kernel.org # 5.20
-> Fixes: 360e8230516d ("usb: dwc3: qcom: Add helper functions to enable,disable wake irqs")
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index bbf67f705d0d..f1059dfcb0e8 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -346,6 +346,8 @@ static void dwc3_qcom_enable_wakeup_irq(int irq, unsigned int polarity)
->  	if (!irq)
->  		return;
->  
-> +	irq_set_irqchip_state(irq, IRQCHIP_STATE_PENDING, 0);
-> +
+Hi Marc,
 
-This looks like a hack (and a layering violation). Note that there are
-no other non-irqchip drivers calling this function.
+On Tue, Mar 28, 2023 at 10:47=E2=80=AFAM Marc Kleine-Budde <mkl@pengutronix=
+.de> wrote:
+>
+> On 28.03.2023 09:33:23, Dario Binacchi wrote:
+> > The series adds support for the basic extended CAN controller (bxCAN)
+> > found in many low- to middle-end STM32 SoCs.
+> >
+> > The driver has been tested on the stm32f469i-discovery board with a
+> > kernel version 5.19.0-rc2 in loopback + silent mode:
+> >
+> > ip link set can0 type can bitrate 125000 loopback on listen-only on
+> > ip link set up can0
+> > candump can0 -L &
+> > cansend can0 300#AC.AB.AD.AE.75.49.AD.D1
+> >
+> > For uboot and kernel compilation, as well as for rootfs creation I used
+> > buildroot:
+> >
+> > make stm32f469_disco_sd_defconfig
+> > make
+> >
+> > but I had to patch can-utils and busybox as can-utils and iproute are
+> > not compiled for MMU-less microcotrollers. In the case of can-utils,
+> > replacing the calls to fork() with vfork(), I was able to compile the
+> > package with working candump and cansend applications, while in the
+> > case of iproute, I ran into more than one problem and finally I decided
+> > to extend busybox's ip link command for CAN-type devices. I'm still
+> > wondering if it was really necessary, but this way I was able to test
+> > the driver.
+>
+> Applied to linux-can-next.
 
->  	if (polarity)
->  		irq_set_irq_type(irq, polarity);
+Just one last question:
+To test this series, as described in the cover letter, I could not use
+the iproute2
+package since the microcontroller is without MMU. I then extended busybox f=
+or
+the ip link command. I actually also added the rtnl-link-can.c
+application to the
+libmnl library. So now I find myself with two applications that have
+been useful
+to me for this type of use case.
+Did I do useless work because I could use other tools? If instead the tools=
+ for
+this use case are missing, what do you think is better to do?
+Submit to their respective repos or add this functionality to another
+project that
+I haven't considered ?
 
-Johan
+Thanks and regards,
+Dario
+
+>
+> Thanks,
+> Marc
+>
+> --
+> Pengutronix e.K.                 | Marc Kleine-Budde           |
+> Embedded Linux                   | https://www.pengutronix.de  |
+> Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129  |
+> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+
+
+--=20
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
