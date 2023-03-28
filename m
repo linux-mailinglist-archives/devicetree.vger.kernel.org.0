@@ -2,80 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B1186CBCCD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 884C06CBCF3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:00:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231978AbjC1KsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 06:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
+        id S230187AbjC1LAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 07:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbjC1KsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:48:14 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA8151BC0;
-        Tue, 28 Mar 2023 03:48:12 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id b20so47831354edd.1;
-        Tue, 28 Mar 2023 03:48:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680000491;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uz8Pl8WK2K/AxyiPlw/QBeRKltTTW7plDyOjg6UNN7A=;
-        b=hTKG3N9oSG9lNz3XYhJXArrzvHRZBPVgp7kMJNOkepNhqNThr9px8JDpLjTuAfhjhi
-         UeCeFrVwrQTDtbnLQ9bDb9my4m9JQQnvWnZ7KucFQs9WL3H5pVo+Tgwek+SoTqhXtEaH
-         sfFvEMQg9KUu4rMx7qiLXmeotkx4rSHkt7Glvm2jANNh1J85/fKnUqFwtWb9LESAk9Fm
-         JS2xnINRueIV9+gvtkSSr2T1HHYKHBnGHhTVaXmcC204ZnTNAsslX5owg8aHLCM9/Nlh
-         GPeraieZSv4qiqto1peGe9ufZp1DKVOuG1NdOt4NAq/HLOTLrDk/eSHLqcEjBC9Ct4Iv
-         gO7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680000491;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uz8Pl8WK2K/AxyiPlw/QBeRKltTTW7plDyOjg6UNN7A=;
-        b=xM/vHx2dFxnyG5m26so2O0rL37oLXF2lS6Jj8Inqjk94mG62C5MJlxetwLTiOMnYGs
-         5sqjBUwhe4vTqKr85/Sigb4bvl7mvKKdSpZGGsDaXND6BCTb21pm1bQqnDL8Jejt1lgR
-         Wx0NvIaitYh9gl05+V/1nEPUB0V/KY683jt8jRdmeRvK0+xt/6dv7+ZZ4u8LrFBve07a
-         Qmzy87Py+81vvPpi/l87BdKzYsjPi6k448ujMCHKTyBapM14+eWWqxpLImSie2JLIi7m
-         sNJhW78skgXWhMuEC5sS2hhdX24f0NcrfIXwhxuJyfX+Q2uYVk2DV7jXvv/BS/3COtuv
-         jlTg==
-X-Gm-Message-State: AAQBX9cJL5AM179uk8HRRJgJn4uhl/bimNbq6dtYQjt65m7z78QyiUS7
-        Cqg7LwuQmry7phCGefhkQcw=
-X-Google-Smtp-Source: AKy350ajJ+7AtREN27j25f/lTyWUssyru0oV3QPRLPWfSQHRbol/vW3kiuHHbkdP/nuHcbn3YuSXyA==
-X-Received: by 2002:a17:906:5850:b0:935:3028:ff58 with SMTP id h16-20020a170906585000b009353028ff58mr15239656ejs.55.1680000491234;
-        Tue, 28 Mar 2023 03:48:11 -0700 (PDT)
-Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ce20-20020a170906b25400b00929fc8d264dsm15297997ejb.17.2023.03.28.03.48.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 03:48:10 -0700 (PDT)
-Date:   Tue, 28 Mar 2023 12:48:09 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lpieralisi@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
-        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
-        ishah@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v4 01/10] dt-bindings: memory: tegra: add bpmp ref in
- tegra234-mc node
-Message-ID: <ZCLF6ZRH528pu/r3@orome>
-References: <20230327161426.32639-1-sumitg@nvidia.com>
- <20230327161426.32639-2-sumitg@nvidia.com>
- <787f656a-223d-5eed-e311-9cc7a6c46452@linaro.org>
+        with ESMTP id S230390AbjC1LAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:00:48 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB4672AA;
+        Tue, 28 Mar 2023 04:00:47 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SB0V3d051190;
+        Tue, 28 Mar 2023 06:00:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680001231;
+        bh=U1OB3FpwLw4cNA/QLGoGAvYKQx2PHrwBiewZVPjRFbI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=bylDAu502PuQyjsQLRPOe0Y9/2Ak80wq70i6EX1XUqJGEyqowh9gA3F20hNED3qKE
+         owm7ZZ5tSCnOKaJMIOLIM/MPObyqFrmADqruyhJ0kC/LYphq6JXfi/rrzW45Rsy94a
+         RETxLcX3nfDhB/7p51bktKnybOdVtOmGDYz3TTC8=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SB0Vct028455
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 06:00:31 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 06:00:31 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 06:00:31 -0500
+Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SB0RXA009578;
+        Tue, 28 Mar 2023 06:00:28 -0500
+Message-ID: <da0e31a6-2304-984c-35ea-41e29b2eb418@ti.com>
+Date:   Tue, 28 Mar 2023 16:30:27 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="unaT5uGr1XXNjnaA"
-Content-Disposition: inline
-In-Reply-To: <787f656a-223d-5eed-e311-9cc7a6c46452@linaro.org>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V3 2/2] arm64: dts: ti: k3-am68-sk-base-board: Add pinmux
+ for RPi Header
+Content-Language: en-US
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>
+References: <20230316114102.3602-1-sinthu.raja@ti.com>
+ <20230316114102.3602-3-sinthu.raja@ti.com>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20230316114102.3602-3-sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,77 +72,140 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sinthu,
 
---unaT5uGr1XXNjnaA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16/03/23 17:11, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> Add pinmux required to bring out the i2c and gpios on 40-pin RPi
+> expansion header on the AM68 SK board.
+> 
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> ---
+> 
+> No Changes in V3.
+> 
 
-On Tue, Mar 28, 2023 at 09:23:04AM +0200, Krzysztof Kozlowski wrote:
-> On 27/03/2023 18:14, Sumit Gupta wrote:
-> > For Tegra234, add the "nvidia,bpmp" property within the Memory
-> > Controller (MC) node to reference BPMP node. This is needed in
-> > the MC driver to pass the client info to the BPMP-FW when memory
-> > interconnect support is available.
-> >=20
-> > Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> > ---
-> >  .../bindings/memory-controllers/nvidia,tegra186-mc.yaml    | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidi=
-a,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/n=
-vidia,tegra186-mc.yaml
-> > index 935d63d181d9..398d27bb2373 100644
-> > --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra=
-186-mc.yaml
-> > +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra=
-186-mc.yaml
-> > @@ -58,6 +58,10 @@ properties:
-> >    "#interconnect-cells":
-> >      const: 1
-> > =20
-> > +  nvidia,bpmp:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle of the node representing the BPMP
->=20
-> Why do you need this multiple times? Both in parent and all external-mc
-> children?
+It looks like you missed to carry the tested tag from Rahul on V2,
+was that intentional?
 
-We've had nvidia,bpmp in the external memory controller node since
-basically the beginning because we've always needed it there. For newer
-chips we now also need it for the memory controller.
+https://lore.kernel.org/all/20230125200427.2bqlpym5tzz43yqq@uda0490373/
 
-Ideally I think we would only have this in the MC and have the EMC
-driver reference it via the EMC's parent (i.e. MC), but that would break
-backwards-compatibility. Reaching into the EMC's DT node from the MC was
-another option that we discussed internally, but it didn't look right
-given how this is also needed by the MC.
+Thanks and Regards,
+Vaishnav
 
-One thing we could potentially do is deprecate the nvidia,bpmp phandle
-in the EMC and only keep it as a fallback in the drivers in case the
-parent MC doesn't find it's own in the DT.
+>  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 70 ++++++++++++++++++-
+>  1 file changed, 69 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> index 27a43a8ecffd..118308cfdd75 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> @@ -173,6 +173,32 @@ J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
+>  			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
+>  		>;
+>  	};
+> +
+> +	main_i2c4_pins_default: main-i2c4-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721S2_IOPAD(0x010, PIN_INPUT_PULLUP, 7) /* (AF28) MCAN13_RX.I2C4_SDA */
+> +			J721S2_IOPAD(0x014, PIN_INPUT_PULLUP, 7) /* (AD25) MCAN14_TX.I2C4_SCL */
+> +		>;
+> +	};
+> +
+> +	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721S2_IOPAD(0x0a8, PIN_INPUT, 7) /* (U24)  MCASP0_AXR14.GPIO0_42 */
+> +			J721S2_IOPAD(0x090, PIN_INPUT, 7) /* (W24) MCASP0_AXR8.GPIO0_36 */
+> +			J721S2_IOPAD(0x0bc, PIN_INPUT, 7) /* (V28) MCASP1_AFSX.GPIO0_47 */
+> +			J721S2_IOPAD(0x06c, PIN_INPUT, 7) /* (V26) MCAN1_TX.GPIO0_27 */
+> +			J721S2_IOPAD(0x004, PIN_INPUT, 7) /* (W25) MCAN12_TX.GPIO0_1 */
+> +			J721S2_IOPAD(0x008, PIN_INPUT, 7) /* (AC24) MCAN12_RX.GPIO0_2 */
+> +			J721S2_IOPAD(0x0b8, PIN_INPUT, 7) /* (AA24) MCASP1_ACLKX.GPIO0_46 */
+> +			J721S2_IOPAD(0x00c, PIN_INPUT, 7) /* (AE28) MCAN13_TX.GPIO0_3 */
+> +			J721S2_IOPAD(0x034, PIN_INPUT, 7) /* (AD24) PMIC_WAKE0.GPIO0_13 */
+> +			J721S2_IOPAD(0x0a4, PIN_INPUT, 7) /* (T23) MCASP0_AXR13.GPIO0_41 */
+> +			J721S2_IOPAD(0x0c0, PIN_INPUT, 7) /* (T28) MCASP1_AXR0.GPIO0_48 */
+> +			J721S2_IOPAD(0x0b4, PIN_INPUT, 7) /* (U25) MCASP1_AXR4.GPIO0_45 */
+> +			J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
+> +			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
+> +		>;
+> +	};
+>  };
+>  
+>  &wkup_pmx0 {
+> @@ -214,12 +240,39 @@ J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
+>  		>;
+>  	};
+>  
+> +	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721S2_WKUP_IOPAD(0x100, PIN_INPUT, 0) /*(H24) WKUP_GPIO0_63.MCU_I2C0_SCL*/
+> +			J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /*(H27) WKUP_GPIO0_64.MCU_I2C0_SDA*/
+> +		>;
+> +	};
+> +
+>  	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
+>  			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
+>  		>;
+>  	};
+> +
+> +	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721S2_WKUP_IOPAD(0x180, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
+> +			J721S2_WKUP_IOPAD(0x190, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
+> +			J721S2_WKUP_IOPAD(0x0c4, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
+> +			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) MCU_SPI1_D1.WKUP_GPIO0_2 */
+> +			J721S2_WKUP_IOPAD(0x0c0, PIN_INPUT, 7) /* (D26) MCU_SPI1_CLK.WKUP_GPIO0_0 */
+> +			J721S2_WKUP_IOPAD(0x0fc, PIN_INPUT, 7) /* (D25) MCU_SPI1_CS2.WKUP_GPIO0_15*/
+> +			J721S2_WKUP_IOPAD(0x120, PIN_INPUT, 7) /* (G27) WKUP_GPIO0_56 */
+> +			J721S2_WKUP_IOPAD(0x17c, PIN_INPUT, 7) /* (J26) WKUP_GPIO0_57 */
+> +			J721S2_WKUP_IOPAD(0x184, PIN_INPUT, 7) /* (J27) WKUP_GPIO0_67 */
+> +			J721S2_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
+> +		>;
+> +	};
+> +};
+> +
+> +&main_gpio0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
+>  };
+>  
+>  &main_gpio2 {
+> @@ -235,7 +288,8 @@ &main_gpio6 {
+>  };
+>  
+>  &wkup_gpio0 {
+> -	status = "disabled";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
+>  };
+>  
+>  &wkup_gpio1 {
+> @@ -271,6 +325,20 @@ exp1: gpio@21 {
+>  	};
+>  };
+>  
+> +&main_i2c4 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c4_pins_default>;
+> +	clock-frequency = <400000>;
+> +};
+> +
+> +&mcu_i2c0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
+> +	clock-frequency = <400000>;
+> +};
+> +
+>  &main_sdhci0 {
+>  	/* Unused */
+>  	status = "disabled";
 
-Thierry
-
---unaT5uGr1XXNjnaA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQixegACgkQ3SOs138+
-s6E+6A/+LQ807xpRoYSk/O3Els2KulVl39Ed9W6futtmBD/gwAEfsEH6/uoHriVq
-rlliNDA64PntpqyTfhMdwMt6WeT/XZkrbp6Gbl5ichCVeSu0V7MsMTedkQqKdhfM
-qnruufTe5Vg9pNi7mfp9520gq0Bj6kLPQlBMPiIh3VuzjC0xczw/MREQs1hHfop8
-K6U/agFxZ6Od+9u/gxs5PsfncHQ5pBDdBSe+QbfK95VOpWVOG3kRdGO0WwhPo3cx
-X9DKKm9YXh/JGzc460OHbnv1a9cRCYFUdAvE/pfheO9uhSEelRR6Me6R2YcnVlRP
-SOV6/B0b6i0ax0fijJgsCF96MucF284Dtj9DUD7SLrxTH7Oon4T941eEOx63bz4h
-whmS9ayKDJ7ykfuQfzLp0/0fhP4M4R7xXyryKFqFuBO5jnz+96T9QDVhGj2YzYgU
-7eI/buACia3BN5BIy/hJQaJxU7aFjrgwAkR/XNvtc2Ub8RUJnbWl3IamrQ4A5Uiw
-38lW1xG0MvrhXHdR/kWcmi9fNIos2k9HCPgsItRXHj2qZX0DXLjRcLqhWl0rxCq9
-FuvXEc60jca7OeFXt8p3HBzwZIXNRzAXfWD4q9eUCygEiPJbP/hKuW00FSSicIFC
-q79aM7CBVjgkazCsNVbJ/hMg3DobMTJ73w4tFYPD6f1sDsEr8s4=
-=fGu3
------END PGP SIGNATURE-----
-
---unaT5uGr1XXNjnaA--
+-- 
+Regards,
+Vaishnav
