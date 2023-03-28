@@ -2,199 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6056CCAE4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 21:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E258E6CCB3E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 22:16:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbjC1Tq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 15:46:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
+        id S229655AbjC1UQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 16:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjC1Tqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 15:46:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BA926B7;
-        Tue, 28 Mar 2023 12:46:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9ED6961902;
-        Tue, 28 Mar 2023 19:46:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07BA1C433D2;
-        Tue, 28 Mar 2023 19:46:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680032813;
-        bh=Lmu/Mq2nMz3/AF7qQFtIhYKDY1SCuBIjyGhCVC4C96g=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=sz4ARuzNm8dKti0tdjEdSeHll5ISYj6remDDdQ4Heml9kiLskkVRYbkhTq/bjSwhW
-         R8hzgRlumr+NzSxuzHeRaxopEsJxIYhAJrDBiGByQdo2ZdVwu2GFnweD3VYQVIdHtc
-         xkHbqxp1WPZh+nVQKAOWP6k2trSzSaN4tSgh9DWWjGhL3VEoDwVrk78JpGumcvKXLS
-         AdvTTBFciEUM8pF/JZwRXb5EiUcsoGGzd0BiCGwUedkHSeMlRz4nTQ4XQCEwygmmEj
-         P6wNkRds2hG4W2DSFU3ewcqXKCX9wMNigGBFLiXVFLRB6EFGzlM3dtRM3ZrfzO5BuH
-         tTcB1gzjfocZw==
-Message-ID: <39cb4f8c-d10f-f543-ddca-8a8507757f4c@kernel.org>
-Date:   Tue, 28 Mar 2023 22:46:48 +0300
+        with ESMTP id S229468AbjC1UQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 16:16:13 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B217A3C22;
+        Tue, 28 Mar 2023 13:16:12 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id f19-20020a9d5f13000000b00693ce5a2f3eso7058745oti.8;
+        Tue, 28 Mar 2023 13:16:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680034572;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LJY6pOPdDa4oqX5OXa+Badi5ySmgsIj2CbDDOIk/1F8=;
+        b=WiJTrU2iskz/zd2OuLc0a5V3v/lk457P47G6oCK1uFAbpjnyX6a4AIOZimGhmjCAr0
+         NV7dO3+gsicKGzwOMtLLYhAidt4jX8wZp8MaXv4bA0ndHhF66M/5gIA1eL1pCp6I3ba0
+         SZ46ZmfzuWpFA39mdcvKM0noS6l5Idr1vlwzj6lbA8aZcEbsJv3fd7YPqJIiiQ960M28
+         iusXNCCGR5LrXPSR1Az8lk+3Co4ICaCQTr4j/T+DC3nQ6eA4LvtK3XpSgRtVl1+jJcle
+         qgNsHu2xdlY5JmLkONkcr0VeoXT52Rsuw/FRSHU+25vGwQS3p36+X1FRbJoLeOM7hLAw
+         8dMQ==
+X-Gm-Message-State: AO0yUKXK1GuHeJbGz/NFWLmEmhbuht6EY54QLQ/dkoPld2haf693iJF0
+        +IRz2a59K3/raN3ZnLTCRg==
+X-Google-Smtp-Source: AK7set9GAgC93luzWNZuofJauP57z3vXyLI4sRAP80NLLCHRI4Txb9cd8obWGvd6gSVOAMPakodRgQ==
+X-Received: by 2002:a9d:6d82:0:b0:69f:8da7:5463 with SMTP id x2-20020a9d6d82000000b0069f8da75463mr8887322otp.31.1680034571938;
+        Tue, 28 Mar 2023 13:16:11 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l26-20020a0568301d7a00b0069fa776d3c2sm6931170oti.18.2023.03.28.13.16.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 13:16:11 -0700 (PDT)
+Received: (nullmailer pid 3993665 invoked by uid 1000);
+        Tue, 28 Mar 2023 20:16:10 -0000
+From:   Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/5] of: More address parsing helpers
+Date:   Tue, 28 Mar 2023 15:15:55 -0500
+Message-Id: <20230328-dt-address-helpers-v1-0-e2456c3e77ab@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am625-sk: Enable Type-C port
- for USB0
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-Cc:     vigneshr@ti.com, kristo@kernel.org, srk@ti.com,
-        r-gunasekaran@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328124315.123778-1-rogerq@kernel.org>
- <20230328124315.123778-3-rogerq@kernel.org>
- <20230328131810.x2j6uvwzhniclvwf@evoke>
- <3bd6191c-caa4-15a8-92ad-17a07ec085e2@kernel.org>
- <20230328133024.ow6cvm22o2c5heem@untrimmed>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230328133024.ow6cvm22o2c5heem@untrimmed>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAPxKI2QC/x2N0QrCMAwAf2Xk2UDXTRB/RXxI28wGSh2JDmHs3
+ w17vIPjdjBWYYP7sIPyJibv7jBeBsiV+otRijPEEKcwxRuWD1IpymZYua2shnEJIV/zyIlm8DC
+ RMSalnqun/duay1V5kd95ejyP4w80lXgveQAAAA==
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Stuart Yoder <stuyoder@gmail.com>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org
+X-Mailer: b4 0.13-dev
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is part of some clean-ups to reduce the open coded parsing 
+of "reg" and "ranges" in the kernel. As those are standard properties, 
+the common DT code should be able to handle parsing them. However, there 
+are a few gaps in the API for what some drivers need which this series 
+addresses (pun intended).
 
+I intend to add these helpers for v6.4 and then convert the users in 
+v6.5 to avoid any dependency issues. This series and the WIP conversions 
+are on this branch[1].
 
-On 28/03/2023 16:30, Nishanth Menon wrote:
-> On 16:20-20230328, Roger Quadros wrote:
->>
->>
->> On 28/03/2023 16:18, Nishanth Menon wrote:
->>> On 15:43-20230328, Roger Quadros wrote:
->>>> USB0 is a Type-C port with dual data role and power sink.
->>>>
->>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>>> ---
->>>>  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts      |  4 ++
->>>>  arch/arm64/boot/dts/ti/k3-am625-sk.dts        | 44 ++++++++++++++++++-
->>>>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  4 --
->>>>  3 files changed, 47 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
->>>> index b2ca19e3042e..a3c3609833fd 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
->>>> @@ -225,3 +225,7 @@ ldo4_reg: ldo4 {
->>>>  		};
->>>>  	};
->>>>  };
->>>> +
->>>> +&usb0 {
->>>> +	dr_mode = "peripheral";
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>> index cdc0858dd1b2..13fdaa9ce4e7 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
->>>> @@ -136,6 +136,35 @@ AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
->>>>  	};
->>>>  };
->>>>  
->>>> +&main_i2c0 {
->>>> +	typec_pd: tps6598x@3f {
->>>> +		compatible = "ti,tps6598x";
->>>> +		reg = <0x3f>;
->>>> +		interrupt-parent = <&exp1>;
->>>> +		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
->>>> +		interrupt-names = "irq";
->>>> +
->>>> +		connector {
->>>> +			compatible = "usb-c-connector";
->>>> +			label = "USB-C";
->>>> +			self-powered;
->>>> +			data-role = "dual";
->>>> +			power-role = "sink";
->>>> +			ports {
->>>> +				#address-cells = <1>;
->>>> +				#size-cells = <0>;
->>>> +
->>>> +				port@0 {
->>>> +					reg = <0>;
->>>> +					usb_con_hs: endpoint {
->>>> +						remote-endpoint = <&usb0_hs_ep>;
->>>> +					};
->>>> +				};
->>>> +			};
->>>> +		};
->>>> +	};
->>>> +};
->>>> +
->>>>  &main_i2c1 {
->>>>  	exp1: gpio@22 {
->>>>  		compatible = "ti,tca6424";
->>>> @@ -150,7 +179,7 @@ exp1: gpio@22 {
->>>>  				   "UART1_FET_BUF_EN", "WL_LT_EN",
->>>>  				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
->>>>  				   "CSI_GPIO2", "PRU_3V3_EN",
->>>> -				   "HDMI_INTn", "TEST_GPIO2",
->>>> +				   "HDMI_INTn", "PD_I2C_IRQ",
->>>>  				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
->>>>  				   "MCASP1_FET_SEL", "UART1_FET_SEL",
->>>>  				   "TSINT#", "IO_EXP_TEST_LED";
->>>> @@ -256,3 +285,16 @@ partition@3fc0000 {
->>>>  		};
->>>>  	};
->>>>  };
->>>> +
->>>> +&usb0 {
->>>> +	#address-cells = <1>;
->>>> +	#size-cells = <0>;
->>>> +	usb-role-switch;
->>>> +
->>>> +	port@0 {
->>>> +		reg = <0>;
->>>> +		usb0_hs_ep: endpoint {
->>>> +		    remote-endpoint = <&usb_con_hs>;
->>>> +	       };
->>>> +	};
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->>>> index 80e8b9b9a5f5..e3223088b90c 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->>>> @@ -264,10 +264,6 @@ &usbss1 {
->>>>  	ti,vbus-divider;
->>>>  };
->>>>  
->>>> -&usb0 {
->>>> -	dr_mode = "peripheral";
->>>> -};
->>>> -
->>>
->>> 	How about sk-lp ?
->>
->> moved it to sk-lp. see above in this patch.
->>
-> 
-> A bit confused. Looking at [1] vs [2], it seems to indicate pd controller at
-> 0x3f as well? Am I misreading the schematics?
-> 
-> [1] https://www.ti.com/tool/SK-AM62-LP#design-files
-> [2] https://www.ti.com/tool/SK-AM62#design-files
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git dt/address-helpers
 
-Yes PD controller is at 0x3f for both boards but IRQ is not routed on AM62-LP.
-I tried to explain this the cover letter. ;)
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Rob Herring (5):
+      of: unittest: Add bus address range parsing tests
+      of/address: Add of_range_to_resource() helper
+      of/address: Add support for 3 address cell bus
+      of/address: Add of_range_count() helper
+      of/address: Add of_property_read_reg() helper
 
-Pasting here for convenience.
+ drivers/of/address.c                        |  76 +++++++++++++-
+ drivers/of/unittest-data/tests-address.dtsi |   9 +-
+ drivers/of/unittest.c                       | 150 ++++++++++++++++++++++++++++
+ include/linux/of_address.h                  |  31 ++++++
+ 4 files changed, 262 insertions(+), 4 deletions(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230328-dt-address-helpers-2f00c5c1eba4
 
-> Although k3-am625-lp-sk USB is exactly the same as on k3-am625-sk,
-> it is missing the IRQ line from Type-C chip which is currently
-> required as per chip's DT binding. So we don't add Type-C support
-> for k3-am625-lp-sk till h/w is fixed or polling mode support for
-> Type-C chip is accepted [2]
-> 
-> [2] - https://lore.kernel.org/lkml/20230324133741.43408-1-rogerq@kernel.org/T/
+Best regards,
+-- 
+Rob Herring <robh@kernel.org>
 
-
-cheers,
--roger
