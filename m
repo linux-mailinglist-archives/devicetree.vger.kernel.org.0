@@ -2,166 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 448616CC161
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 875D76CC165
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbjC1NvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58256 "EHLO
+        id S231437AbjC1Nvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:51:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230437AbjC1NvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:51:10 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649861A5
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 06:51:09 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ph9j4-0006rX-Iq; Tue, 28 Mar 2023 15:51:02 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ph9j2-0002cQ-JR; Tue, 28 Mar 2023 15:51:00 +0200
-Date:   Tue, 28 Mar 2023 15:51:00 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Greg Ungerer <gerg@linux-m68k.org>
-Cc:     peng.fan@nxp.com,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        abailon@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
-        festevam@gmail.com, abelvesa@kernel.org, marex@denx.de,
-        Markus.Niebel@ew.tq-group.com,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        paul.elder@ideasonboard.com, gerg@kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, linux-pm@vger.kernel.org,
-        s.hauer@pengutronix.de, robh+dt@kernel.org, aford173@gmail.com,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S231424AbjC1Nvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:51:52 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2E21A5;
+        Tue, 28 Mar 2023 06:51:50 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SDpflv045366;
+        Tue, 28 Mar 2023 08:51:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680011501;
+        bh=6hAV4inCrrJCYNeuaSEf119wT6c2CersccstDiIV3b8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=p0V0Bdbq0amoH/D5D1JsUyitRiihYcXYLzrs2A8ddEOMwOFjhBZZUlvSPPT/ExNJ2
+         q6ME89g9EQtT3yzU32oCtCx9/bxiF4GTwNNq5rOATTu1AnQtKOx9ISeU1pGuDCrr0u
+         TYN+0UIcFMkl0q/13VhzIKObwQbBVi5eEZg5LLqw=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SDpfvR099789
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 08:51:41 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 08:51:40 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 08:51:40 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SDpe4H018730;
+        Tue, 28 Mar 2023 08:51:40 -0500
+Date:   Tue, 28 Mar 2023 19:21:40 +0530
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, djakov@kernel.org, shawnguo@kernel.org,
-        l.stach@pengutronix.de
-Subject: Re: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk
- ctrl
-Message-ID: <20230328135100.rbmnfelphe7juhxo@pengutronix.de>
-References: <20220703091451.1416264-8-peng.fan@oss.nxp.com>
- <20230327045037.593326-1-gerg@linux-m68k.org>
- <2678294.mvXUDI8C0e@steina-w>
- <b23a44ab-3666-8a41-d2a0-0d2fbdbd9f00@pengutronix.de>
- <ecd3a92b-ba1e-e7c1-088a-371bd1a2c100@linux-m68k.org>
- <20230328073302.jj64u5hvdpc6axa5@pengutronix.de>
- <426b4776-104c-cb47-c8cc-c26515fcb6e3@linux-m68k.org>
- <20230328134201.yaxrdtetjygkgkmz@pengutronix.de>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Aradhya Bhatia <a-bhatia1@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v8 3/6] arm64: dts: ti: k3-am625-sk: Enable audio on AM62
+ SK
+Message-ID: <7qaud2s3xise6fttg4sgh57tokssxhc4wjxppi3ejofi7yjmy7@i2j24ycqxspr>
+References: <20230313-mcasp_upstream-v8-0-4408134eb2f3@ti.com>
+ <20230313-mcasp_upstream-v8-3-4408134eb2f3@ti.com>
+ <20230328133225.edi4eynptt5e4oul@headset>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uyz5qo2zrbmtre75"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230328134201.yaxrdtetjygkgkmz@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230328133225.edi4eynptt5e4oul@headset>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-03-28, Marco Felsch wrote:
-> Hi Greg,
-> 
-> On 23-03-28, Greg Ungerer wrote:
-> > Hi Marco,
-> > 
-> > On 28/3/23 17:33, Marco Felsch wrote:
-> > > Hi Greg,
-> > > 
-> > > On 23-03-27, Greg Ungerer wrote:
-> > > > Hi Ahmad,
-> > > > 
-> > > > On 27/3/23 17:16, Ahmad Fatoum wrote:
-> > > > > On 27.03.23 08:27, Alexander Stein wrote:
-> > > > > > Am Montag, 27. März 2023, 06:50:37 CEST schrieb Greg Ungerer:
-> > > > > > > Any thoughts on why this breaks USB?
-> > > > > > 
-> > > > > > Maybe you are missing CONFIG_INTERCONNECT_IMX8MP?
-> > > > > 
-> > > > > And if that's the case, did you check /sys/kernel/debug/devices_deferred
-> > > > > to see if there was any indication that this is the reason?
-> > > > 
-> > > > Yeah, it does:
-> > > > 
-> > > >      # cat /sys/kernel/debug/devices_deferred
-> > > >      32f10100.usb	platform: supplier 32f10000.blk-ctrl not ready
-> > > >      32f10108.usb	platform: supplier 32f10000.blk-ctrl not ready
-> > > >      32ec0000.blk-ctrl	imx8m-blk-ctrl: failed to get noc entries
-> > > >      381f0040.usb-phy	platform: supplier 32f10000.blk-ctrl not ready
-> > > >      382f0040.usb-phy	platform: supplier 32f10000.blk-ctrl not ready
-> > > >      imx-pgc-domain.11	
-> > > >      imx-pgc-domain.12	
-> > > >      imx-pgc-domain.13	
-> > > >      38330000.blk-ctrl	platform: supplier imx-pgc-domain.11 not ready
-> > > >      32f10000.blk-ctrl	imx8mp-blk-ctrl: failed to get noc entries
-> > > > 
-> > > > As far as I can tell blk-ctrl should be good:
-> > > > 
-> > > >      #
-> > > >      # i.MX SoC drivers
-> > > >      #
-> > > >      CONFIG_IMX_GPCV2_PM_DOMAINS=y
-> > > >      CONFIG_SOC_IMX8M=y
-> > > >      # CONFIG_SOC_IMX9 is not set
-> > > >      CONFIG_IMX8M_BLK_CTRL=y
-> > > >      # end of i.MX SoC drivers
-> > > > 
-> > > > 
-> > > > > If you didn't find any hint there, you might want to place a
-> > > > > dev_err_probe with a suitable message at the place where -EPROBE_DEFER
-> > > > > was returned.
-> > > > 
-> > > > I will try that.
-> > > 
-> > > Can you check that CONFIG_ARM_IMX_BUS_DEVFREQ is enabled? This is the
-> > > noc/interconnect driver. This could also the problem for you vpu issue.
-> > 
-> > I do not have that enabled. Enabling that fixes the USB probing.
-> > So that is good, thanks.
-> > 
-> > It doesn't fix the other problem I mentioned with the vpu pgc nodes though.
-> > I do get some extra messages now with this enabled and the 6.1 kernel:
-> > 
-> >     imx-pgc imx-pgc-domain.8: failed to command PGC
-> >     imx-pgc imx-pgc-domain.8: failed to command PGC
-> >     imx8m-blk-ctrl 38330000.blk-ctrl: deferred probe timeout, ignoring dependency
-> >     imx8m-blk-ctrl 38330000.blk-ctrl: error -110: failed to attach power domain "g1"
-> >     imx8m-blk-ctrl: probe of 38330000.blk-ctrl failed with error -110
-> 
-> Okay, this seems more like a "real" issue not related to some missing
-> drivers. I followed the code and found a poll within the
-> imx_pgc_power_up() in gpcv2.c. Power-domain 8 is the vpumix domain which
-> is used as power-domain for the g1 power-domain. My assumption is that
-> this poll does run into the timeout. Maybe Peng can support you here
-> since I didn't had the time for to test the VPUs yet and he did the
-> integration patches.
-> 
-> Just ignore the errors if you don't use the VPUs or disable the
-> blk-ctrl@38330000 node via status = "disabled".
+--uyz5qo2zrbmtre75
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I forgot to ask: Does your i.MX8MP have a VPU? There are i.MX8MP devices
-(don't know the name) which don't have support for certain IPs. If this
-is the case the bootloader will fixup your devicetree by disable the
-corresponding nodes, we call this feature-controller:
+Hi Nishanth,
 
-https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/imx8mp.dtsi
+On Mar 28, 2023 at 08:32:25 -0500, Nishanth Menon wrote:
+> On 18:59-20230328, Jai Luthra wrote:
+> > Add nodes for audio codec and sound card, enable the audio serializer
+> > (McASP1) under use from SK-AM62 E2 [1] onwards and update pinmux.
+> >=20
+> > Keep all audio related nodes in the common dtsi as they are exactly the
+> > same between SK-AM62 and SK-AM62-LP.
+> >=20
+> > Link: https://www.ti.com/lit/zip/sprr448 [1]
+> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts       | 11 ++++
+> >  arch/arm64/boot/dts/ti/k3-am625-sk.dts         | 11 ++++
+> >  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 77 ++++++++++++++++++=
+++++++++
+> >  3 files changed, 99 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot=
+/dts/ti/k3-am62-lp-sk.dts
+> > index b2ca19e3042e..5ed6b1abe87d 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> > @@ -70,6 +70,17 @@ vddshv_sdio: regulator-4 {
+> >  		states =3D <1800000 0x0>,
+> >  			 <3300000 0x1>;
+> >  	};
+> > +
+> > +	vcc_1v8: regulator-5 {
+> > +		/* output of TPS62824DMQ */
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc_1v8";
+> > +		regulator-min-microvolt =3D <1800000>;
+> > +		regulator-max-microvolt =3D <1800000>;
+> > +		vin-supply =3D <&vcc_3v3_sys>;
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +	};
+> >  };
+> > =20
+> >  &main_pmx0 {
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/d=
+ts/ti/k3-am625-sk.dts
+> > index cdc0858dd1b2..2b861681e548 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> > @@ -87,6 +87,17 @@ vdd_sd_dv: regulator-4 {
+> >  		states =3D <1800000 0x0>,
+> >  			 <3300000 0x1>;
+> >  	};
+> > +
+> > +	vcc_1v8: regulator-5 {
+> > +		/* output of TPS6282518DMQ */
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc_1v8";
+> > +		regulator-min-microvolt =3D <1800000>;
+> > +		regulator-max-microvolt =3D <1800000>;
+> > +		vin-supply =3D <&vcc_3v3_sys>;
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +	};
+> >  };
+>=20
+> If the regulators are common, maybe we should first move the regulators
+> to common dtsi?
+>=20
 
-As you can see the imx8mp.dtsi is missing the feature bits for the VPU
-but you can check the i.mx8mm.dtsi. Here you can see that barebox will
-check the availability of the vpu:
+The part number of this particular regulator is different in the=20
+schematics for the two boards.
 
-https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/imx8mm.dtsi
+For rest of the regulators I did not check, but I see the PMIC=20
+(TPS65219x) is present on SK-AM62-LP but missing on SK-AM62.
 
-Regards,
-  Marco
+Thanks,
+Jai
+
+> > =20
+> >  &main_pmx0 {
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm6=
+4/boot/dts/ti/k3-am62x-sk-common.dtsi
+> > index 54318a07d50c..2500cb9ba323 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> > @@ -81,6 +81,41 @@ led-0 {
+> >  			default-state =3D "off";
+> >  		};
+> >  	};
+> > +
+> > +	tlv320_mclk: clk-0 {
+> > +		#clock-cells =3D <0>;
+> > +		compatible =3D "fixed-clock";
+> > +		clock-frequency =3D <12288000>;
+> > +	};
+> > +
+> > +	codec_audio: sound {
+> > +		compatible =3D "simple-audio-card";
+> > +		simple-audio-card,name =3D "AM62x-SKEVM";
+> > +		simple-audio-card,widgets =3D
+> > +			"Headphone",	"Headphone Jack",
+> > +			"Line",		"Line In",
+> > +			"Microphone",	"Microphone Jack";
+> > +		simple-audio-card,routing =3D
+> > +			"Headphone Jack",	"HPLOUT",
+> > +			"Headphone Jack",	"HPROUT",
+> > +			"LINE1L",		"Line In",
+> > +			"LINE1R",		"Line In",
+> > +			"MIC3R",		"Microphone Jack",
+> > +			"Microphone Jack",	"Mic Bias";
+> > +		simple-audio-card,format =3D "dsp_b";
+> > +		simple-audio-card,bitclock-master =3D <&sound_master>;
+> > +		simple-audio-card,frame-master =3D <&sound_master>;
+> > +		simple-audio-card,bitclock-inversion;
+> > +
+> > +		simple-audio-card,cpu {
+> > +			sound-dai =3D <&mcasp1>;
+> > +		};
+> > +
+> > +		sound_master: simple-audio-card,codec {
+> > +			sound-dai =3D <&tlv320aic3106>;
+> > +			clocks =3D <&tlv320_mclk>;
+> > +		};
+> > +	};
+> >  };
+> > =20
+> >  &main_pmx0 {
+> > @@ -175,6 +210,15 @@ main_usb1_pins_default: main-usb1-pins-default {
+> >  			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
+> >  		>;
+> >  	};
+> > +
+> > +	main_mcasp1_pins_default: main-mcasp1-pins-default {
+> > +		pinctrl-single,pins =3D <
+> > +			AM62X_IOPAD(0x090, PIN_INPUT, 2) /* (M24) GPMC0_BE0N_CLE.MCASP1_ACL=
+KX */
+> > +			AM62X_IOPAD(0x098, PIN_INPUT, 2) /* (U23) GPMC0_WAIT0.MCASP1_AFSX */
+> > +			AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25) GPMC0_WEN.MCASP1_AXR0 */
+> > +			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23) GPMC0_ADVN_ALE.MCASP1_AXR=
+2 */
+> > +		>;
+> > +	};
+> >  };
+> > =20
+> >  &wkup_uart0 {
+> > @@ -205,6 +249,19 @@ &main_i2c1 {
+> >  	pinctrl-names =3D "default";
+> >  	pinctrl-0 =3D <&main_i2c1_pins_default>;
+> >  	clock-frequency =3D <400000>;
+> > +
+> > +	tlv320aic3106: audio-codec@1b {
+> > +		#sound-dai-cells =3D <0>;
+> > +		compatible =3D "ti,tlv320aic3106";
+> > +		reg =3D <0x1b>;
+> > +		ai3x-micbias-vg =3D <1>;	/* 2.0V */
+> > +
+> > +		/* Regulators */
+> > +		AVDD-supply =3D <&vcc_3v3_sys>;
+> > +		IOVDD-supply =3D <&vcc_3v3_sys>;
+> > +		DRVDD-supply =3D <&vcc_3v3_sys>;
+> > +		DVDD-supply =3D <&vcc_1v8>;
+> > +	};
+> >  };
+> > =20
+> >  &sdhci0 {
+> > @@ -272,3 +329,23 @@ &usb1 {
+> >  	pinctrl-names =3D "default";
+> >  	pinctrl-0 =3D <&main_usb1_pins_default>;
+> >  };
+> > +
+> > +&mcasp1 {
+> > +	status =3D "okay";
+> > +	#sound-dai-cells =3D <0>;
+> > +
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&main_mcasp1_pins_default>;
+> > +
+> > +	op-mode =3D <0>;          /* MCASP_IIS_MODE */
+> > +	tdm-slots =3D <2>;
+> > +
+> > +	serial-dir =3D <  /* 0: INACTIVE, 1: TX, 2: RX */
+> > +	       1 0 2 0
+> > +	       0 0 0 0
+> > +	       0 0 0 0
+> > +	       0 0 0 0
+> > +	>;
+> > +	tx-num-evt =3D <32>;
+> > +	rx-num-evt =3D <32>;
+> > +};
+> >=20
+> > --=20
+> > 2.40.0
+> >=20
+>=20
+> --=20
+> Regards,
+> Nishanth Menon
+> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DD=
+B5 849D 1736 249D
+
+--uyz5qo2zrbmtre75
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmQi8OwACgkQQ96R+SSa
+cUUjdhAAjTb9vMWlMkd2Jw/ifSibvvWccEAxgqPTLjbDXKrCmuDxkzJvLLvC2YhO
+SfMJLEI5ZuqmsRR8NobxELz+r5EF5lrH0FKO0TXPC2zOHUxzRMBxVbIxYq6xhp3J
+yeOl6+5Jv0zQDxtsfb8XwgNkK7iZkkwXBluHBD76Ka+hiXrH8LPmSNN9n7SEMH50
+qCKBk46iU0DGGNFMaNSgVZOXY+pkBbzlZ5E96eg8IFJBIDGglR6p8Ie56ddsJkBT
+eO14UcKxzPGlPI0b3/ZLxgzYmB0bnk/1MIzKoZ650sqS5uz6ZmrO4ICIOkMl5CIV
+QqgWAJpBYdwuudCd1IXDiOrOclg6Qbr7Mh0HAasxnKMTyLRblHt61vV6wCJ/HI5S
+jQYSP3ub9llGuHAipKlTtLwfrg1TtTPRfiED8WnEpPthgIrxTB1Sd/PHb03bHhe/
+oeHmRM0YaLnCaz5BDlLexiHNmh3ncNV/LpOyLBTwraJmdO/HKVNa+AW+oWiSBWc1
+7co5eep307gTpEAOqFDw1QB29rYYAgbj9GGnQS9gOnEyzpbBmmj48j3pBBrZVjSc
+NkBTWXDl1h7xMqLnPZAMyR5koGKSrO0/7jotG5BVSRzm8ZWUnGPjkeTWUBR4buez
+NTxCRmqpfM9HARwBm8rG29rd4ENKE9mpSoGZlgth/jYt1OebRWA=
+=UjbL
+-----END PGP SIGNATURE-----
+
+--uyz5qo2zrbmtre75--
