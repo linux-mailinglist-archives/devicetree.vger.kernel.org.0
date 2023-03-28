@@ -2,69 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 884C06CBCF3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF296CBCFA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 13:03:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbjC1LAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 07:00:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33348 "EHLO
+        id S230187AbjC1LC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 07:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbjC1LAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:00:48 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB4672AA;
-        Tue, 28 Mar 2023 04:00:47 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SB0V3d051190;
-        Tue, 28 Mar 2023 06:00:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680001231;
-        bh=U1OB3FpwLw4cNA/QLGoGAvYKQx2PHrwBiewZVPjRFbI=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=bylDAu502PuQyjsQLRPOe0Y9/2Ak80wq70i6EX1XUqJGEyqowh9gA3F20hNED3qKE
-         owm7ZZ5tSCnOKaJMIOLIM/MPObyqFrmADqruyhJ0kC/LYphq6JXfi/rrzW45Rsy94a
-         RETxLcX3nfDhB/7p51bktKnybOdVtOmGDYz3TTC8=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SB0Vct028455
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 Mar 2023 06:00:31 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
- Mar 2023 06:00:31 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 28 Mar 2023 06:00:31 -0500
-Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SB0RXA009578;
-        Tue, 28 Mar 2023 06:00:28 -0500
-Message-ID: <da0e31a6-2304-984c-35ea-41e29b2eb418@ti.com>
-Date:   Tue, 28 Mar 2023 16:30:27 +0530
+        with ESMTP id S229778AbjC1LC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 07:02:58 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89617199E
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 04:02:57 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ph76I-0005mW-Es; Tue, 28 Mar 2023 13:02:50 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ph76F-0003Or-5S; Tue, 28 Mar 2023 13:02:47 +0200
+Date:   Tue, 28 Mar 2023 13:02:47 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1] ARM: dts: stm32: prtt1c: Add PoDL PSE regulator nodes
+Message-ID: <20230328110247.GE15196@pengutronix.de>
+References: <20230323123242.3763673-1-o.rempel@pengutronix.de>
+ <1a2d16c8-8c16-5fcc-7906-7b454a81922f@foss.st.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V3 2/2] arm64: dts: ti: k3-am68-sk-base-board: Add pinmux
- for RPi Header
-Content-Language: en-US
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20230316114102.3602-1-sinthu.raja@ti.com>
- <20230316114102.3602-3-sinthu.raja@ti.com>
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20230316114102.3602-3-sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1a2d16c8-8c16-5fcc-7906-7b454a81922f@foss.st.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,140 +59,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sinthu,
-
-On 16/03/23 17:11, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
+On Tue, Mar 28, 2023 at 11:58:34AM +0200, Alexandre TORGUE wrote:
+> Hi Oleksij
 > 
-> Add pinmux required to bring out the i2c and gpios on 40-pin RPi
-> expansion header on the AM68 SK board.
+> On 3/23/23 13:32, Oleksij Rempel wrote:
+> > This commit introduces Power over Data Line (PoDL) Power Source
+> > Equipment (PSE) regulator nodes to the PRTT1C devicetree. The addition
+> > of these nodes enables support for PoDL in PRTT1C devices, allowing
+> > power delivery and data transmission over a single twisted pair.
+> > 
+> > The new PoDL PSE regulator nodes provide voltage capability information
+> > of the current board design, which can be used as a hint for system
+> > administrators when configuring and managing power settings. This
+> > update enhances the versatility and simplifies the power management of
+> > PRTT1C devices while ensuring compatibility with connected Powered
+> > Devices (PDs).
+> > 
+> > After applying this patch, the power delivery can be controlled from
+> > user space with a patched [1] ethtool version using the following commands:
+> >    ethtool --set-pse t1l2 podl-pse-admin-control enable
+> > to enable power delivery, and
+> >    ethtool --show-pse t1l2
+> > to display the PoDL PSE settings.
+> > 
+> > By integrating PoDL PSE support into the PRTT1C devicetree, users can
+> > benefit from streamlined power and data connections in their
+> > deployments, improving overall system efficiency and reducing cabling
+> > complexity.
+> > 
+> > [1] https://lore.kernel.org/all/20230317093024.1051999-1-o.rempel@pengutronix.de/
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
 > 
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> ---
+> Please, fix the introduction of those new yaml validation errors:
 > 
-> No Changes in V3.
-> 
+> arch/arm/boot/dts/stm32mp151a-prtt1c.dtb: ethernet-pse-1: $nodename:0:
+> 'ethernet-pse-1' does not match '^ethernet-pse(@.*)?$'
+>         From schema:
+> /Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
+> arch/arm/boot/dts/stm32mp151a-prtt1c.dtb: ethernet-pse-2: $nodename:0:
+> 'ethernet-pse-2' does not match '^ethernet-pse(@.*)?$'
+>         From schema: /local/home/frq08678/STLINUX/kernel/my-kernel/stm32/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
 
-It looks like you missed to carry the tested tag from Rahul on V2,
-was that intentional?
+Using ethernet-pse@1 will require to use "reg" or "ranges" properties.
+Which makes no sense in this use case. I need to fix the schema instead by
+allowing this patter with following regex: "^ethernet-pse(@.*|-[0-9a-f])*$"
 
-https://lore.kernel.org/all/20230125200427.2bqlpym5tzz43yqq@uda0490373/
+Should I send schema fix together with this patch?
 
-Thanks and Regards,
-Vaishnav
-
->  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 70 ++++++++++++++++++-
->  1 file changed, 69 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> index 27a43a8ecffd..118308cfdd75 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -173,6 +173,32 @@ J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
->  			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
->  		>;
->  	};
-> +
-> +	main_i2c4_pins_default: main-i2c4-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x010, PIN_INPUT_PULLUP, 7) /* (AF28) MCAN13_RX.I2C4_SDA */
-> +			J721S2_IOPAD(0x014, PIN_INPUT_PULLUP, 7) /* (AD25) MCAN14_TX.I2C4_SCL */
-> +		>;
-> +	};
-> +
-> +	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x0a8, PIN_INPUT, 7) /* (U24)  MCASP0_AXR14.GPIO0_42 */
-> +			J721S2_IOPAD(0x090, PIN_INPUT, 7) /* (W24) MCASP0_AXR8.GPIO0_36 */
-> +			J721S2_IOPAD(0x0bc, PIN_INPUT, 7) /* (V28) MCASP1_AFSX.GPIO0_47 */
-> +			J721S2_IOPAD(0x06c, PIN_INPUT, 7) /* (V26) MCAN1_TX.GPIO0_27 */
-> +			J721S2_IOPAD(0x004, PIN_INPUT, 7) /* (W25) MCAN12_TX.GPIO0_1 */
-> +			J721S2_IOPAD(0x008, PIN_INPUT, 7) /* (AC24) MCAN12_RX.GPIO0_2 */
-> +			J721S2_IOPAD(0x0b8, PIN_INPUT, 7) /* (AA24) MCASP1_ACLKX.GPIO0_46 */
-> +			J721S2_IOPAD(0x00c, PIN_INPUT, 7) /* (AE28) MCAN13_TX.GPIO0_3 */
-> +			J721S2_IOPAD(0x034, PIN_INPUT, 7) /* (AD24) PMIC_WAKE0.GPIO0_13 */
-> +			J721S2_IOPAD(0x0a4, PIN_INPUT, 7) /* (T23) MCASP0_AXR13.GPIO0_41 */
-> +			J721S2_IOPAD(0x0c0, PIN_INPUT, 7) /* (T28) MCASP1_AXR0.GPIO0_48 */
-> +			J721S2_IOPAD(0x0b4, PIN_INPUT, 7) /* (U25) MCASP1_AXR4.GPIO0_45 */
-> +			J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
-> +			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
-> +		>;
-> +	};
->  };
->  
->  &wkup_pmx0 {
-> @@ -214,12 +240,39 @@ J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
->  		>;
->  	};
->  
-> +	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x100, PIN_INPUT, 0) /*(H24) WKUP_GPIO0_63.MCU_I2C0_SCL*/
-> +			J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /*(H27) WKUP_GPIO0_64.MCU_I2C0_SDA*/
-> +		>;
-> +	};
-> +
->  	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
->  		pinctrl-single,pins = <
->  			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
->  			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
->  		>;
->  	};
-> +
-> +	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_WKUP_IOPAD(0x180, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
-> +			J721S2_WKUP_IOPAD(0x190, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
-> +			J721S2_WKUP_IOPAD(0x0c4, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
-> +			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) MCU_SPI1_D1.WKUP_GPIO0_2 */
-> +			J721S2_WKUP_IOPAD(0x0c0, PIN_INPUT, 7) /* (D26) MCU_SPI1_CLK.WKUP_GPIO0_0 */
-> +			J721S2_WKUP_IOPAD(0x0fc, PIN_INPUT, 7) /* (D25) MCU_SPI1_CS2.WKUP_GPIO0_15*/
-> +			J721S2_WKUP_IOPAD(0x120, PIN_INPUT, 7) /* (G27) WKUP_GPIO0_56 */
-> +			J721S2_WKUP_IOPAD(0x17c, PIN_INPUT, 7) /* (J26) WKUP_GPIO0_57 */
-> +			J721S2_WKUP_IOPAD(0x184, PIN_INPUT, 7) /* (J27) WKUP_GPIO0_67 */
-> +			J721S2_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
-> +		>;
-> +	};
-> +};
-> +
-> +&main_gpio0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
->  };
->  
->  &main_gpio2 {
-> @@ -235,7 +288,8 @@ &main_gpio6 {
->  };
->  
->  &wkup_gpio0 {
-> -	status = "disabled";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
->  };
->  
->  &wkup_gpio1 {
-> @@ -271,6 +325,20 @@ exp1: gpio@21 {
->  	};
->  };
->  
-> +&main_i2c4 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_i2c4_pins_default>;
-> +	clock-frequency = <400000>;
-> +};
-> +
-> +&mcu_i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +};
-> +
->  &main_sdhci0 {
->  	/* Unused */
->  	status = "disabled";
-
--- 
 Regards,
-Vaishnav
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
