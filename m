@@ -2,75 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F04706CC624
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:24:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869686CC62C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233106AbjC1PYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 11:24:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49276 "EHLO
+        id S231126AbjC1P0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233258AbjC1PX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:23:59 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C698EF745;
-        Tue, 28 Mar 2023 08:22:31 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32SEBd7o005936;
-        Tue, 28 Mar 2023 17:21:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=3sl3gaodW7BicjGmVlR6sK/D2fcnxp6E1ErIi0k9bhc=;
- b=IgjZwH/52DBT+sjCMLfoF+gi2dHoas0bL/boWHnDG1mnLKJ1Nluxd0FmEpbDEiObgsAB
- q3ZhS60MZil9FfQGpL0g/Y9RsCEJAfhmXDtHtBvnNqTfAKWQ4S3PAdVOhHBEeaplTMUP
- WUHBL9eweB2bontmSdbnNTdnm5OJDTpJe0lS8U/Znx7HdhsPcFqSyGIiUMnUzhB/sAj+
- 7/Z5OEuYYkotU+mLsWxa+lBviRYPCMo6V0xISmymDx2DlCuPb6SzgUEkGrqlTeCxP5nx
- tQXLgRIfHW2BQAtvlIhQDTFiT1+5BM/AxfuDdiJ0re0cLPjaMyjlAhHt6ERFtWKrJ+r3 8g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pk5xkjq9q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Mar 2023 17:21:10 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C77A310002A;
-        Tue, 28 Mar 2023 17:21:09 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C1C252194CB;
-        Tue, 28 Mar 2023 17:21:09 +0200 (CEST)
-Received: from [10.201.20.168] (10.201.20.168) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
- 2023 17:21:09 +0200
-Message-ID: <50e8d0ee-fe6f-7e31-98f0-ea4eceb597d6@foss.st.com>
-Date:   Tue, 28 Mar 2023 17:21:01 +0200
-MIME-Version: 1.0
+        with ESMTP id S233158AbjC1PZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:25:48 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2047.outbound.protection.outlook.com [40.107.94.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925C3FF00;
+        Tue, 28 Mar 2023 08:24:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iZpYSLBhbEhxCPmhfOZbxFdWtpJoznrz56d9THMHjzy4pUFPLmjNmXaux0a6U5dwziNp5PtG1sCYQs/qlf9T7REvUvfRNQi8GVeVbsP+6g2C8Z3ET62TH/3yo5+buqzfYHX0UmzC38VMS8wksK/pAHAPnaC4YNLlsrGozWw3Hv17iD9HbiQxYpw2yMDLwaOFXvVWGa4GOF70k1oSaog3lPW4rEHfS0pMec6G+HlIqPKBl4y0ie+uONw9XmCURzsjQiK46oZqxxk64ayUiYpb8J+FUEwepCWDNeYZ8GROkzq7979ZQAYg/fXyHJMsu/7echZTpzoRtAZ4Nw894pstxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6EfJgFb+MwvigHm+lTZ+PGuiHXFZRq3X76pWqSGXN7A=;
+ b=GBzyA13hgUWjz+yTZRhslMUwikuzpLbhJF9JWPVfjp7Bw7CxmE5yVG3OWQ4q+CaAebGTPZK6k8R9Ue46xbVNC6pjYodhdS1XqLstdzsAyT+DV7C5l/NMhb1fpzQZNW9sk+LLSg9rQsEoIAbvvmC9+ag6UXjr3zWZTLrKczFHv6cJrrF6eNTWSr1D0L4vKFJr3tOQBgEDH+tlgRDAEJfAbgRh6Kdx3dn0oKdmP6GDzxphW2vlBjxSL4/TImOnUZ6jrvhBD7nU1Dh/b335f6kbSpA4B3kXceOYXYBBX7fNbs4TTEtAzdbY8oQra/PLa5J2Idw9FEes1ht1mI8zQQAraQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6EfJgFb+MwvigHm+lTZ+PGuiHXFZRq3X76pWqSGXN7A=;
+ b=P7isUqMpJzhEB4JQ/70Ys9/ZMTr2FFfMo5HJzld8VRFjJZ2pbI+0Or6Yp9GWkNlBN8HOr/t9Xi75UB+LdCiAKVtEkrUKSpWlen0XK62R8v8wqmnM0aVEhL544Yx54oWkpjCQFIqep8GC4/WuCrK8ih7e+R1Ebl7la8w6ljUqPWTK5L3bGabNY0If8QC2uhVGk2cgCYCDUwfF1N1QTGbs9WzBJNP48xslsqpdJFyF1h04fRtHsJlO8HfZC12k7g+z6ebHCJhX360JTiUZtOmkhZY7vvF8X2cNfeTqnW314jm0Wcn1kasNDyJ9ZNJNbIYcIhWRhqGvdopRWdpbSgfX6g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ LV2PR12MB5965.namprd12.prod.outlook.com (2603:10b6:408:172::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
+ 2023 15:23:42 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::abe1:c2f2:c4bb:ba78]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::abe1:c2f2:c4bb:ba78%2]) with mapi id 15.20.6222.033; Tue, 28 Mar 2023
+ 15:23:39 +0000
+Message-ID: <fb0fe429-7e70-eeea-fa4c-f77b24591efa@nvidia.com>
+Date:   Tue, 28 Mar 2023 16:23:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/7] ARM: dts: stm32: change USART1 clock to an SCMI clock
- on stm32mp15 boards
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230327152948.274743-1-valentin.caron@foss.st.com>
- <20230327152948.274743-2-valentin.caron@foss.st.com>
- <5c67d003-c893-8540-a971-6954a57399e5@foss.st.com>
+Subject: Re: [PATCH 4/4] arm64: tegra: Add support for P3768+P3767
 Content-Language: en-US
-From:   Valentin CARON <valentin.caron@foss.st.com>
-In-Reply-To: <5c67d003-c893-8540-a971-6954a57399e5@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.20.168]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-28_02,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230302093353.3873247-1-thierry.reding@gmail.com>
+ <20230302093353.3873247-4-thierry.reding@gmail.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20230302093353.3873247-4-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0500.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:1ab::19) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|LV2PR12MB5965:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9cda8fb8-e96a-4a6e-c604-08db2fa06805
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WqqUNeYUfXNpr1wZbJX4BniWUXeJCJ+vJ8nvFPdoDwuRhFPXBh/+SclXiak3Ow3DVZKGzuYeshxiW1kbNKVzg9rBgeSSNNASK7EM+w6qWzZrxN8TLVAlLTdPc/hot/R4vIcgbbOIsU2dqCIAO+vtnRajT7x2t/F3aNS1bs096Pa+0PVj0IA6C+Q5NDzJ2x6Zi5vTcNzvD8KcOzWEnPkZDqe9BaNlpf9WURLtRCl0HwgOrtXvaZI7tY4D6Mbm5N6TAvvT7UYgCiXii5On/eDgtw/lmGYpjPRIXP/Fi4lp7bol2TrO2ZsL+F+J6gf5wSDaTGrxKyGeXpcZA6Knl///afAd+2yUXB767PVFEzQFf5z0NtlKtde9J4MWB4T1qVynLw32+yLAQS0Bm7InmWHE89DqYMbDJC09wJL42C5e+tkD6lLM5i+qVt6lhvQDBOJhu0MrX41yGlwSAe6If8tlegetJdxlUl2T5gRhgOe2+fGFC16KYrTfPmXzKWhPV5yv+9HFX08znCONGawszoAH+N8WTnJAfthUpnDtxBPYPyO5DkpnFskxLwFfhgTrV9cg4Kk2O63YJTK8wIRB/3Auw/lWA/X81HEElaG8cHD/GDpNQzehZ4D66/Xn9zuqZ9roI4OSjxGDoH4vHMg1xuMjxA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(39860400002)(396003)(136003)(346002)(451199021)(2906002)(38100700002)(4326008)(41300700001)(8936002)(5660300002)(31696002)(86362001)(36756003)(6916009)(31686004)(478600001)(316002)(6666004)(6486002)(26005)(55236004)(53546011)(6506007)(6512007)(83380400001)(2616005)(66946007)(66556008)(66476007)(8676002)(186003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFhieUxzZFhoWURWMnY0dit2NFdyQmJ1aGkzR2RVbUFiblJWTm1yUjdIVk4x?=
+ =?utf-8?B?MFRNWG9maW4wU2hIV3Q3bGN2TXlJRi9aQ0dPYzJOMGFFK1RiZmxVR1JxQVMy?=
+ =?utf-8?B?dGFGcEVPR2lmVGtaYjg1SEFqejZkNFhIeVcvRVdOS01KZFRUQmg3eld4WDVU?=
+ =?utf-8?B?RHBWeDdIZGVvaGRPcXlIYUVpRkJKNURrNTM1YklHK2tDZ1N4ekpTNm0yQUta?=
+ =?utf-8?B?a0tjV01iS0EwWnJaaVNqdzNwU0xsSkdKVittTVZCMUZDNXhoWUJObUFXVkFz?=
+ =?utf-8?B?SEN0OVB3L1dkVGpOemxqcDY3TkhFT3RUbXNQTGtBNnZrYjVnVUs3NTE4SUV4?=
+ =?utf-8?B?RXVaV2hqTVhCVU1scisyK29rRXh2N2wyRC9vMGhXdnBJandkY3BaWGRJUUhW?=
+ =?utf-8?B?RXVoRzN2ellVTlNsWjBTSG96Y2pSY3J2RmU5Nko3Tkk3UGFTNGt1WWFPVEZv?=
+ =?utf-8?B?TjY0ckhtRG1ydzZneDQyRUZySVJPbzc3TUhoYWdZU2lCT2JaNDg0SHg5Z094?=
+ =?utf-8?B?SituRjZGTU1zZWttRlVwbE41ZHM1RWY4cUxvVGg2ZC9CeUc4MUJvWlU3M3A3?=
+ =?utf-8?B?aUh1UWx3QkdMN1ZTMXlJdlJBblpJTWtsZzJPVGxGVlhqbm9uZjJYYXlKNFJD?=
+ =?utf-8?B?dWxwbG4xdVZpWi94aVVyQWxNNFdNN1k1NU5JL2tEOWJEVkRoTGFpSjVPVzV2?=
+ =?utf-8?B?Z0dPdm1GK0ttMG5sK05CYUxpN2IweU1RYlBlMU9ieDhFS2NOZzZuOU1kcXJt?=
+ =?utf-8?B?dFV3VzI1M1ZzQkRHRmNaVXk0WFVVRzRsU0lBZDNKSENPUE5FZzY0NmcybGdl?=
+ =?utf-8?B?NVVxUW5nMllRcTVpellmTFllYmduTVNIYlMya1VBZmthY3prcndKNmhzd09S?=
+ =?utf-8?B?ZVVNU0s0R1hXYWF3TWxHa2d0ZXhwaDRYeGxwbm9tNFYxbVQyd0V0emJ2a29q?=
+ =?utf-8?B?ZzRZY0JQT01RdXUvOHFmNjRabUJhYVZObmtRNkxzODNweGs5c0lPZTNROGM1?=
+ =?utf-8?B?QnJOc3lSNFVDTTg5eEpQL2NlR0xTemEycWNjdVdyV0ltc2FVdEtlUktXVEFa?=
+ =?utf-8?B?TVkzS01SSWl0TTRQM2VlYmM4WTk1YkFmMkcxd3lzdlFDRUlSczg4UWluUFFv?=
+ =?utf-8?B?MHpVUzdnaytqNFB2cFcxVlRuWnBPb1RmMnBtZENVVVdPS09zbW0weVdVaU5k?=
+ =?utf-8?B?YStieEs5dWFaOEx3MWQwZ25ndjlOZHhtWE9uaUdiaE85VU5uNjRMSzc5YkdH?=
+ =?utf-8?B?UThSblVRcGt0aTFUZXYvMmJsSlJ3dmN1UExiOWlXUWhpNkVPRDVRSmhTYmJ3?=
+ =?utf-8?B?WVRHL1NBUWNJd1A1ZEkwSHZLampOa1JtUW9Pc0ZxdnB6ZXVKUmNSbWNmeTQ3?=
+ =?utf-8?B?VlRrdG8vNjh4T0FWR2NFOGxPREIrRlhmZCtxbWtqVVpLTFZaMVk3RTRyeC96?=
+ =?utf-8?B?Ri9ZSTVHZ3QrSTdjZU9CV2ltZ1dJSHN4UHBRU0xTK20xWDVXOXU2TTR5cmtX?=
+ =?utf-8?B?c1JLcHNpa0JrZDR3RmwxL3dLSVRIRkZhVTlWcW5IUEJSTmRwQUc5Qi80S0pt?=
+ =?utf-8?B?MEZJL2RLbkIrU1llcUlqV2ZDbTJNN1l3eUw4eWF2anh5cytqbi9rYXUzNTNC?=
+ =?utf-8?B?MFlmSjBXNGZIeUdtNlloalZ6aGZ0VlM4amQvRHd3akFaY0NrQ3ZrYVFlUERu?=
+ =?utf-8?B?OXlBTW1TZXdpQlJkbUZpS25ISU1rWFhCeUFlQ2hEblZXckFocDRxSWcwQzVC?=
+ =?utf-8?B?ckZwRjR2ME5MWWc2eWNqNENpcTFpTFZmRDBpcVRuZ3E4a3hnWXZTZjJ2RTdK?=
+ =?utf-8?B?YTVOYXdlQ0lZY0E5NmFWWWJ3K1hQT0piajlDNkY3dzRqNjJMNjdkN0NodFFz?=
+ =?utf-8?B?VUJreEh5dmw2NDJhNk1LRUhZbDQzWXdWU3cvQVAwVlUvMWY5ZUR5REJXNlda?=
+ =?utf-8?B?Zm9GQW9Fd0RyS3YzcHhRWU5GcVE2Nkk4RWRNaUEzYjVaTURXZld4SWdsRk1h?=
+ =?utf-8?B?dys0SHVIWjRQU2VVWDAxK2JHYStQdXJiVWFmTUczdkt5bmdIZ2tWZUNlK1JD?=
+ =?utf-8?B?ZjlBRFJkNit3cXR6Rjk1UFA2OUVZbVp0NFZZenh5Rm1tQWx4ajhWcjF5THBu?=
+ =?utf-8?Q?6QhEP5lRQeWjcAUjBotZDhprL?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cda8fb8-e96a-4a6e-c604-08db2fa06805
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:23:39.2971
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zz6VFG4xdZhvm+SlJKTePvPRNmWQNTXa6EmXKgYCPxLr4trkWwvM4JPVmb0Cn44l7d5A8Dt0fBEQ54RQH8k4Rw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5965
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,87 +125,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex,
 
-I think this patch is useless.
-I will send you a V2 without.
+On 02/03/2023 09:33, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Add support for the combination of the NVIDIA Jetson Orin NX (P3767)
+> module and the P3768 carrier board.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>   .../nvidia/tegra234-p3768-0000+p3767-0000.dts | 218 ++++++++++++++++++
+>   .../boot/dts/nvidia/tegra234-p3768-0000.dtsi  | 133 +++++++++++
+>   2 files changed, 351 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
+>   create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
 
-Thank you,
-Valentin
+...
 
-On 3/28/23 14:02, Alexandre TORGUE wrote:
-> Hi Valentin
->
-> On 3/27/23 17:29, Valentin Caron wrote:
->> On ST stm32mp15 boards, change clock of USART1 node to SCMI clock
->> "CK_SCMI_USART1"
->
-> I'll change commit title and message as your patch doesn't target 
-> STM43MP15 boards but STM32MP15 SCMI boards.
->
-> Cheers
-> Alex
->
->
->
->> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
->> ---
->>   arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts | 4 ++++
->>   arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts | 4 ++++
->>   arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts | 4 ++++
->>   arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts | 4 ++++
->>   4 files changed, 16 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts 
->> b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
->> index e539cc80bef8..5c8164c10e46 100644
->> --- a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
->> +++ b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
->> @@ -77,3 +77,7 @@ &rng1 {
->>   &rtc {
->>       clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->>   };
->> +
->> +&usart1 {
->> +    clocks = <&scmi_clk CK_SCMI_USART1>;
->> +};
->> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts 
->> b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
->> index 97e4f94b0a24..2c9a207a9d49 100644
->> --- a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
->> +++ b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
->> @@ -83,3 +83,7 @@ &rng1 {
->>   &rtc {
->>       clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->>   };
->> +
->> +&usart1 {
->> +    clocks = <&scmi_clk CK_SCMI_USART1>;
->> +};
->> diff --git a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts 
->> b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
->> index 9cf0a44d2f47..21c8169f0e82 100644
->> --- a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
->> +++ b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
->> @@ -82,3 +82,7 @@ &rng1 {
->>   &rtc {
->>       clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->>   };
->> +
->> +&usart1 {
->> +    clocks = <&scmi_clk CK_SCMI_USART1>;
->> +};
->> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts 
->> b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
->> index 3b9dd6f4ccc9..0084abbeb60e 100644
->> --- a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
->> +++ b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
->> @@ -88,3 +88,7 @@ &rng1 {
->>   &rtc {
->>       clocks = <&scmi_clk CK_SCMI_RTCAPB>, <&scmi_clk CK_SCMI_RTC>;
->>   };
->> +
->> +&usart1 {
->> +    clocks = <&scmi_clk CK_SCMI_USART1>;
->> +};
->
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
+> new file mode 100644
+> index 000000000000..3ccb17be17fb
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
+> @@ -0,0 +1,133 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +/ {
+> +	compatible = "nvidia,p3768-0000";
+> +
+> +	bus@0 {
+> +		i2c@3160000 {
+> +			status = "okay";
+> +
+> +			eeprom@56 {
+> +				compatible = "atmel,24c02";
+> +				reg = <0x56>;
+> +
+> +				label = "system";
+> +				vcc-supply = <&vdd_1v8_sys>;
+> +				address-width = <8>;
+> +				pagesize = <8>;
+> +				size = <256>;
+> +				read-only;
+> +			};
+> +		};
+
+
+On the board I have, this eeprom appears to be location at address 0x57 
+and not 0x56. Can you confirm 0x56 works for you? If so, I wonder if 
+there is a board revision issue here?
+
+Thanks
+Jon
+
+-- 
+nvpublic
