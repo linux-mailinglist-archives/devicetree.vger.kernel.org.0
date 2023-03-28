@@ -2,41 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6567B6CB5B8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 07:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9241C6CB5CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 07:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbjC1FBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 01:01:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41148 "EHLO
+        id S229784AbjC1FND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 01:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbjC1FBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 01:01:20 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DE8D31BDC;
-        Mon, 27 Mar 2023 22:01:17 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id CD7348108;
-        Tue, 28 Mar 2023 05:01:16 +0000 (UTC)
-Date:   Tue, 28 Mar 2023 08:01:15 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC 1/2] ARM: dts: omap: Drop ti,omap36xx compatible
-Message-ID: <20230328050115.GI7501@atomide.com>
-References: <20230216153339.19987-1-afd@ti.com>
- <20230216153339.19987-2-afd@ti.com>
- <20230327211838.580af7a9@aktux>
+        with ESMTP id S229970AbjC1FNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 01:13:02 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7AB10DE
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 22:12:58 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id r19-20020a05600c459300b003eb3e2a5e7bso6566492wmo.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 22:12:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679980376;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7NL5B2zEB3jTPHtWtDx1iz+SHXOLfKNEdYRThYQwGLc=;
+        b=zlnoQGiVIjJQBluz7v2YslRDbX63SbDbQkVOJkD/dKCrBo2xUDsMADewjEASdH0oTk
+         MT3kPwB22TWJZA0dWtYlg7kZ0x+102BmK2n40Dvk1lWEbInKiGKNLB8nL1EJ9PreJf4d
+         +IOuTuIsy0HD/Wg+rP3J56aUUchOwePBSkrtueL7/e7e7ATfA+mIApkDVsMndN/JkZPT
+         PrRQOWE9/8o8fPS7IpCV7aCBpNFwBKRaB2mq/Kbxp2sdXqSVWO8EQd4raCQGPgxV4mEC
+         cLyOPnMYmrFYyt8vKCo1vkW/bgA5MWrF2MTJWzyMMrTHphDU0FTSncc9pJpkEzrxwjsO
+         jYDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679980376;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7NL5B2zEB3jTPHtWtDx1iz+SHXOLfKNEdYRThYQwGLc=;
+        b=voLxdKyJSqJ7+CP/OBjZ4Vwu/fRNhisNUfMO1U9ZH4Ti4yQYF0KVDLZV78/AJ7c4Tq
+         plyUtOJ31hxypxVm/QCcpT9ExSxN8QBp41W4TFJ1qCkJVGcZW6ro5K0CBDB4+DfEhLQ3
+         7TGWIxCdwtvpOngVQUYDtslxtpFgFS81pJFTxNslupjioKPpJScb1bv86/gPquqQ3A+y
+         6yWaoeSE1PBNVjtqKRkf0V6BguMky2FtCMP+j5rsAeEk37MeixM8QNuD98zmez1SVrLz
+         /tM1DnWinV+HAkATzXA1f0AyR/5ct3gaYnNI8sXfP6KZXtcBWZzQrg5BAboneDH1ZHhe
+         J5Qg==
+X-Gm-Message-State: AO0yUKWeUXyQdL5+4xhcppI7LBjkrHqvwIubofY6KVlYy1F/z+94PePp
+        wvUaGl9CcRonDBeuPcSBF3fIDy5bq5zdpSHRYlW0Bjb00rc8xDM+Tig=
+X-Google-Smtp-Source: AK7set9bejMNLadUHItCJEY+tvClPEZKRImqA5n8bQgifJgLS2Xs4Uk1TMn55w2Pog1JrL8aEtG93Bl3lse9l0tEV+0=
+X-Received: by 2002:a7b:cd17:0:b0:3ed:526c:25cb with SMTP id
+ f23-20020a7bcd17000000b003ed526c25cbmr3217797wmj.8.1679980376495; Mon, 27 Mar
+ 2023 22:12:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327211838.580af7a9@aktux>
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_NONE
+References: <20230322114519.3412469-1-bhupesh.sharma@linaro.org>
+ <20230322114519.3412469-4-bhupesh.sharma@linaro.org> <333081a2-6b31-3fca-1a95-4273b5a46fb7@linaro.org>
+ <d5821429-032d-e1e6-3a4e-ca19eb4a60ed@linaro.org>
+In-Reply-To: <d5821429-032d-e1e6-3a4e-ca19eb4a60ed@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 28 Mar 2023 10:42:45 +0530
+Message-ID: <CAH=2NtypbmwuXgHTdCiaY6zRZEMrVvZipkoYRW=d_WmOMqE3Og@mail.gmail.com>
+Subject: Re: [PATCH v2 03/10] dt-bindings: qcom-qce: Fix compatibles
+ combinations for SM8150 and IPQ4019 SoCs
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, rfoss@kernel.org,
+        neil.armstrong@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,52 +73,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Andreas Kemnade <andreas@kemnade.info> [230327 19:18]:
-> On Thu, 16 Feb 2023 09:33:38 -0600
-> Andrew Davis <afd@ti.com> wrote:
-> 
-> > This was not matched anywhere and provides no additional information.
-> > 
-> > Signed-off-by: Andrew Davis <afd@ti.com>
-> > ---
-> >  arch/arm/boot/dts/omap3-beagle-xm.dts              | 2 +-
-> >  arch/arm/boot/dts/omap3-cm-t3730.dts               | 2 +-
-> >  arch/arm/boot/dts/omap3-igep0020-rev-f.dts         | 2 +-
-> >  arch/arm/boot/dts/omap3-igep0020.dts               | 2 +-
-> >  arch/arm/boot/dts/omap3-igep0030-rev-g.dts         | 2 +-
-> >  arch/arm/boot/dts/omap3-igep0030.dts               | 2 +-
-> >  arch/arm/boot/dts/omap3-lilly-dbb056.dts           | 2 +-
-> >  arch/arm/boot/dts/omap3-n9.dts                     | 2 +-
-> >  arch/arm/boot/dts/omap3-n950.dts                   | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-alto35.dts     | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-chestnut43.dts | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-gallop43.dts   | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-palo35.dts     | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-palo43.dts     | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-summit.dts     | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-tobi.dts       | 2 +-
-> >  arch/arm/boot/dts/omap3-overo-storm-tobiduo.dts    | 2 +-
-> >  arch/arm/boot/dts/omap3-pandora-1ghz.dts           | 2 +-
-> >  arch/arm/boot/dts/omap3-sbc-t3730.dts              | 2 +-
-> >  arch/arm/boot/dts/omap3-sniper.dts                 | 2 +-
-> >  arch/arm/boot/dts/omap3-zoom3.dts                  | 2 +-
-> >  21 files changed, 21 insertions(+), 21 deletions(-)
-> > 
-> hmm, we have
-> drivers/clk/ti/dpll.c:         of_machine_is_compatible("ti,omap36xx"))
-> 
-> but that is more completely
->   if ((of_machine_is_compatible("ti,omap3630") ||
->              of_machine_is_compatible("ti,omap36xx")) &&
-> 
-> so missing omap36xx will not harm if 3630 is there. SO this should
-> be probably ok.
+On Mon, 27 Mar 2023 at 17:49, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/03/2023 13:49, Vladimir Zapolskiy wrote:
+> > Hi Bhupesh,
+> >
+> > On 3/22/23 13:45, Bhupesh Sharma wrote:
+> >> Currently the compatible list available in 'qce' dt-bindings does not
+> >> support SM8150 and IPQ4019 SoCs directly, leading to following
+> >> 'dtbs_check' error:
+> >>
+> >>   arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dtb:
+> >>    crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
+> >>      ['qcom,sm8150-qce', 'qcom,qce'] is too long
+> >>      ['qcom,sm8150-qce', 'qcom,qce'] is too short
+> >>
+> >> Fix the same.
+> >>
+> >> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> >> ---
+> >>   Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 6 ++++++
+> >>   1 file changed, 6 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> >> index e375bd981300..90ddf98a6df9 100644
+> >> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> >> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> >> @@ -24,6 +24,12 @@ properties:
+> >>           deprecated: true
+> >>           description: Kept only for ABI backward compatibility
+> >>
+> >> +      - items:
+> >> +          - enum:
+> >> +              - qcom,ipq4019-qce
+> >> +              - qcom,sm8150-qce
+> >> +          - const: qcom,qce
+> >> +
+> >
+> > thank you for the fix, the change is correct, please apply the tag:
+> >
+> > Fixes: 00f3bc2db351 ("dt-bindings: qcom-qce: Add new SoC compatible strings for Qualcomm QCE IP")
+> >
+> > But let me ask you to split the "items" into two:
+> >
+> >        - items:
+> >            - const: qcom,ipq4019-qce
+> >            - const: qcom,qce
+> >
+> >        - items:
+> >            - const: qcom,sm8150-qce
+> >            - const: qcom,qce
+> >
+>
+> Why splitting these? The enum is the preferred way usually, so why here
+> do it differently?
 
-Looks like we still have these that should be patched away first:
+Exactly, so our compatibles as per my patch can be :
+"qcom,ipq4019-qce", "qcom,qce" or "qcom,sm8150-qce", "qcom,qce" which
+is what we want to achieve as these are the base compatible versions
+for further socs, with compatible strings as:
 
-drivers/cpufreq/ti-cpufreq.c-   { .compatible = "ti,omap34xx", .data = &omap34xx_soc_data, },
-drivers/cpufreq/ti-cpufreq.c:   { .compatible = "ti,omap36xx", .data = &omap36xx_soc_data, },
+"qcom,<new-soc-with-crypto-same-as-ipq4019-qce", "qcom,ipq4019-qce",
+"qcom,qce" , or
+"qcom,<new-soc-with-crypto-same-as-sm8150-qce", "qcom,sm8150-qce", "qcom,qce"
 
-Regards,
-
-Tony
+Thanks,
+Bhupesh
