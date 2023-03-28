@@ -2,113 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A2946CBA61
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B57E06CBA65
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbjC1JWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49342 "EHLO
+        id S230470AbjC1JXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:23:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbjC1JWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:22:14 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB3659C9
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:22:13 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id z83so14183002ybb.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:22:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1679995333;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WfEbC+QvlmYRFEpM334dDDmHLZzT53TFZ7pAp7zhwe4=;
-        b=O+6rpHUxMrocg+PNRSUNrl09ruDw8nFucVYoEuKiSkUoYU+rAaaZhtmXvt6TdGkwNP
-         M1b8yBJvevc5Zt7Jyzawt3sUx2+8btHWzfMFZYbqpV5ujpvuCnm6uUn66khGbaDrI4/b
-         BnOZaXOaZ1QBeFNUU7FRBwi2CjsBQzbK8g1XLS5nhmorHOweLMGd0v+/YX2qMdHObYeV
-         flOhgDotNum9SI+7uxyc4MfExqnGRtrmIxceFdg59KEnFajy5Cv80DUd+NdLRx8k3RA4
-         7LEesg4hoH8OgLFhlxClH+aKYg8loDZNrIsxSLEo9AIGjCJ+YOTdQbIxwY0yUZUkHLT6
-         Rexg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679995333;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WfEbC+QvlmYRFEpM334dDDmHLZzT53TFZ7pAp7zhwe4=;
-        b=fq8Vobf3I609DmOvheYVEMKXe97o4+PgR9K6wZdS393A9Trrp8P0Mv6kcLaYXpHGlb
-         RrFy8wObn4Mqk/RnH8svGfgbN46kW+1X8I+PVdId6t13igF3Hp7wwKid9b+dhd49aeHE
-         3PE8aaSdaKwqV69XiHc8p28ETlH8fKiJ9WcoDD90tR2nK5EiA3Q7MZJTfBxBrBHvaKm7
-         tKZzuwPcg+uECSTd3EnWw7HPno2VFZriuL1NekOLJWEleF2ssGBxtTmFw4PlEpTWgE9T
-         QfE7S+L+NFvARXMxfeb7+hQZxpNVCk+mYzOdVeRvZdkvYG48WNjX/HXFR9tkIVcEdd4q
-         ZfHA==
-X-Gm-Message-State: AAQBX9eZ04kYx4OtOnP50CuWktB9HQwZYc7eLvLVLEFB888LpxnCJ4pT
-        A+QYysvmq7aMD6oqk1dyNJs6GLZbDNbwqOOqhcxsKw==
-X-Google-Smtp-Source: AKy350auimLGCr8ILoBzGItiYAiR4pgO8LPEdWrnD1Vk5Z4GVtmW4pyg+5kEg5lZTH5zOTSGFwsCl8xX2CPkdVQT06U=
-X-Received: by 2002:a25:a2c3:0:b0:b78:1b26:a642 with SMTP id
- c3-20020a25a2c3000000b00b781b26a642mr6658558ybn.1.1679995333140; Tue, 28 Mar
- 2023 02:22:13 -0700 (PDT)
+        with ESMTP id S230425AbjC1JX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:23:29 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8DA6423A;
+        Tue, 28 Mar 2023 02:23:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3A39AB81BD0;
+        Tue, 28 Mar 2023 09:23:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D266AC433EF;
+        Tue, 28 Mar 2023 09:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1679995401;
+        bh=V73OwOijyghiIZHH02OXNarVU22urwxS1fjmBBDAzFE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SUDWsY3a4lZHcPsvDQsE/TxGVASbGPvYzkKAsr/+sqDuFyRmeOy9oN5x62QhrmVup
+         j3sh23QeLFmkHZvtqRyTTk+b5y944fMtpouwaf9ryPMMotEksqj3idhl0G3HkyQWgf
+         oJ9xi/0mI8+2Sc5JlE96UHcVTgiE/R6TMxWlunz0WAIzbBTZcE9wLNCpuAvC8/fNme
+         Dt04rlnezRXM2vQRhWPnn3GdIC5lKoqXgGBHXrq7uFfOwhk7jPTUfKSSZgxitwOras
+         R2c72tfrKbU03/cVvQp0bzeeaDDVgURY9jG+KXfDXY0JF+b/ZxQSrGqKxS0s95f+vQ
+         jkb2E8GpWCF1w==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ph5YC-0004C0-V1; Tue, 28 Mar 2023 11:23:33 +0200
+Date:   Tue, 28 Mar 2023 11:23:32 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, Thinh.Nguyen@synopsys.com,
+        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] usb: dwc3: qcom: Fix null ptr access during
+ runtime_suspend()
+Message-ID: <ZCKyFEc087xoypdo@hovoldconsulting.com>
+References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
+ <20230325165217.31069-4-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-References: <20230324094205.33266-1-angelogioacchino.delregno@collabora.com> <20230324094205.33266-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230324094205.33266-4-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 28 Mar 2023 11:22:02 +0200
-Message-ID: <CAFGrd9pjm97+Et-auw2rh4nWUJAcqXzy2cix42QJRx4UHNzq2g@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] soc: mediatek: pwrap: Add kerneldoc for struct pwrap_slv_type
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, flora.fu@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230325165217.31069-4-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le ven. 24 mars 2023 =C3=A0 10:42, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
->
-> In preparation for adding new members with name abbreviations describe
-> the struct pwrap_slv_type with kerneldoc to enhance human readability.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On Sat, Mar 25, 2023 at 10:22:15PM +0530, Manivannan Sadhasivam wrote:
+> When runtime PM is enabled during probe, the PM core suspends this driver
+> before probing the dwc3 driver. Due to this, the dwc3_qcom_is_host()
+> function dereferences the driver data of the dwc platform device which
+> will only be set if the dwc driver has been probed. This causes null
+> pointer dereference during boot time.
+
+So this does not really appear to be an issue before your later patch
+which enables runtime PM at probe.
+
+But the layering violations we have in this driver are indeed fragile
+and should be fixed properly at some point.
+
+> So let's add a check for dwc drvdata in the callers of dwc3_qcom_is_host()
+> such as dwc3_qcom_suspend() and dwc3_qcom_resume() functions. There is no
+> need to add the same check in another caller dwc3_qcom_resume_irq() as the
+> wakeup IRQs will only be enabled at the end of dwc3_qcom_suspend().
+> 
+> Note that the check should not be added to dwc3_qcom_is_host() function
+> itself, as there is no provision to pass the context to callers.
+> 
+> Fixes: a872ab303d5d ("usb: dwc3: qcom: fix use-after-free on runtime-PM wakeup")
+
+This is not the right fixes tag in any case as this layering violation
+was first added by:
+
+6895ea55c385 ("usb: dwc3: qcom: Configure wakeup interrupts during suspend")
+
+which started accessing the dwc3 platform data and xhci host data from
+the glue driver (and broke gadget mode).
+
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  drivers/soc/mediatek/mtk-pmic-wrap.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/=
-mtk-pmic-wrap.c
-> index 5c500be48f7c..a33a1b1820cb 100644
-> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> @@ -1218,11 +1218,17 @@ struct pwrap_slv_regops {
->         int (*pwrap_write)(struct pmic_wrapper *wrp, u32 adr, u32 wdata);
->  };
->
-> +/**
-> + * struct pwrap_slv_type - PMIC device wrapper definitions
-> + * @dew_regs:      Device Wrapper (DeW) register offsets
-> + * @type:          PMIC Type (model)
-> + * @regops:        Register R/W ops
-> + * @caps:          Capability flags for the target device
-> + */
->  struct pwrap_slv_type {
->         const u32 *dew_regs;
->         enum pmic_type type;
->         const struct pwrap_slv_regops *regops;
-> -       /* Flags indicating the capability for the target slave */
->         u32 caps;
->  };
+>  drivers/usb/dwc3/dwc3-qcom.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index 959fc925ca7c..bbf67f705d0d 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -411,10 +411,11 @@ static void dwc3_qcom_enable_interrupts(struct dwc3_qcom *qcom)
+>  
+>  static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
+>  {
+> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
+>  	u32 val;
+>  	int i, ret;
+>  
+> -	if (qcom->is_suspended)
+> +	if (qcom->is_suspended || !dwc)
+>  		return 0;
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+I think we should try to keep the layering violations confined to the
+helper functions. So how about amending dwc3_qcom_is_host() and check
+for NULL before dereferencing the xhci pointer?
 
-Regards,
-Alexandre
+If the dwc3 driver hasn't probed yet, we're clearly not in host mode
+either...
+
+Johan
