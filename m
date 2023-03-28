@@ -2,296 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4B06CC758
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 18:01:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 156306CC789
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 18:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjC1QBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 12:01:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
+        id S232873AbjC1QJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 12:09:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230470AbjC1QBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 12:01:33 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2744422B;
-        Tue, 28 Mar 2023 09:01:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lGndWMe34YvY/IGm9zPo/ziXJAGlcFmd2ZGCPU1l3t6hb3psJdX+fZnqe6Nr0zlhKDc1BBy33RLT99MUq1owxnuXK9hLdH/kULFJ8Qjc5+La9Ii3AZ9BICJh/oE0KTK20y2I/0I+4WyQihLj4xYLwGVRg0JU3p4iPPjT1bcbBY2PhlN4n4gB4QOIfRy0Q5knqnQj8lwWjqXk0eJM5CEPV4CgGYGQ8UHQFakuncXfbAoj5KwfMXxqNx5zaNqC3vn1eikEnZlPWqriVkzAxNHxYiOZL3rtJg8dLqNXFNYzdmt1oWTVbwrS6Y/2YIbEFVk6IeJOB3RpN/ZtaZ5zRCxiUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eV0MDhUS/Sp4AWv6uxM35X8Fy5EQrPdmpg7E/8jN+sQ=;
- b=NoM0r16WJfKdm6eEYq4k2FGBTx1i6l5yE/w44euej7UXDQdIZNFT/d4WGClLMh9qmlS5UKdvOxWYR1qZFlE/tx8Q/DnLwo1NddyPgJxPx3tLuW3/FbquMD3T0/m+fGotpp4YqtwUdq6nvBtP+qc4oTNFpVHTNiIkxNAK6mR2CVREgG8uLj16AWd9Wf8VE62UyNREKNY8phfpkAWv8gAdaDm+MnqJ2l08Mn2+57lGsu+VWTyHWmzxntqMF8LY+8U+Uu1Mpo653Wg/C2Y24xTnJFw7T3B3QBSm5+P+TB/FREyD4Sca+BaR5DHz/XnzXY1pJaOGWcUnkdaIqtyLxTwC8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eV0MDhUS/Sp4AWv6uxM35X8Fy5EQrPdmpg7E/8jN+sQ=;
- b=l3ix/pReLYGHW/2sj+tTGWfva1g/KDPyZcc+8hHTmzqoVasOjrbSVf7uhPeYSfVJfVfINfGZc/Sg9Vn1tjY8nJL15wPQHqgLZ47KZMOo0sgV4/WaG6CO99JKx+KIVUuK8RLXqxq5v2rvJFIt31JvincBTCoA1IwxXCiPGyoj1c0=
-Received: from MW5PR12MB5598.namprd12.prod.outlook.com (2603:10b6:303:193::11)
- by DS0PR12MB6582.namprd12.prod.outlook.com (2603:10b6:8:d2::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Tue, 28 Mar
- 2023 16:01:26 +0000
-Received: from MW5PR12MB5598.namprd12.prod.outlook.com
- ([fe80::9d4f:fc5e:1bae:3654]) by MW5PR12MB5598.namprd12.prod.outlook.com
- ([fe80::9d4f:fc5e:1bae:3654%7]) with mapi id 15.20.6178.041; Tue, 28 Mar 2023
- 16:01:26 +0000
-From:   "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
-        "Katakam, Harini" <harini.katakam@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet: convert
- bindings document to yaml
-Thread-Topic: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet: convert
- bindings document to yaml
-Thread-Index: AQHZUYT4JLsiahlKOkOq6wiaqDsKBK76dskAgBXCyhCAAD18MA==
-Date:   Tue, 28 Mar 2023 16:01:26 +0000
-Message-ID: <MW5PR12MB5598678BB9AB6EC2FFC424F487889@MW5PR12MB5598.namprd12.prod.outlook.com>
-References: <20230308061223.1358637-1-sarath.babu.naidu.gaddam@amd.com>
- <5d074e6b-7fe1-ab7f-8690-cfb1bead6927@linaro.org>
- <MW5PR12MB559880B0E220BDBD64E06D2487889@MW5PR12MB5598.namprd12.prod.outlook.com>
-In-Reply-To: <MW5PR12MB559880B0E220BDBD64E06D2487889@MW5PR12MB5598.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW5PR12MB5598:EE_|DS0PR12MB6582:EE_
-x-ms-office365-filtering-correlation-id: 4c84ddf2-4cb7-4662-25f0-08db2fa5af92
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ZaxgPxWAMGEWwcCBj3kaysJAyb7M0oQLebaw/17kBA+7wUDLRuztySGcRhavszu3BH1maI9MirtjRTyN0lraNYblj44B44SQ1FygqFXKcSTLn0F5Jn0AFGLxJHJIFY5JUQAYCsaE0cRlC67qJ2dIJuftVROdFwnbQYrWN84vC9hnzqIEFl/iOXeXOSB4VkzKP0ap+4YEGKkrg+TgZyEpJAHJ/0r56BPmujcIEgJfyUe9pHd5RhRB/iue/QXOgiIdlDnHMEID2cJZ1atDp0ntuixEKy4j80qLqZud1z5pS7hgImnTiU54Q0tBxZNrVUUiDVnQBk4ZULiV34rzhLITpn/qh6xg/mGxCFljY5tmCsjJ8R2YyF0LPXs4ozXB2tlTkyMipgX/ae2phHo6DegdW6aq1sOSvTNFBK+I5y+ZVyfY2KAH21ToZtD/oEtXYRyauPlH76IvyWvyqMHexc67qp81IRwY2lCYPfIiDeOn2QOx4B1In8OUTa2NDvU/cF1V19oZZwEPuXVHwWjmFgxpy/ak+xVZGm8yNhtMR+0353bsCeBt0P5vhwJymZlAcHe6278/lyl7Ja7z5kcx9n0m4GlzYUOtG5/pJNnEEp4YOzOW7bVxaAZRXpffiayxMhzh
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW5PR12MB5598.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(396003)(136003)(376002)(366004)(451199021)(8936002)(83380400001)(41300700001)(52536014)(86362001)(38100700002)(5660300002)(33656002)(122000001)(66446008)(478600001)(71200400001)(76116006)(54906003)(7696005)(66946007)(66556008)(64756008)(2906002)(8676002)(66476007)(4326008)(7416002)(55016003)(6506007)(2940100002)(186003)(316002)(9686003)(110136005)(38070700005)(26005)(53546011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RisyZXE2aDVGWWJCQ21FRW1MTVpWUWhNWGEvMUJmT3VPS2dLU2l1MVFvTzdV?=
- =?utf-8?B?NERwdU1vdGxMMzU2ZUpxRys5K0MzNnFsalpaNnpmaXVJSzgzSkF4R0pxc2lH?=
- =?utf-8?B?Z1RaK1YweE1iT0xoUmxRb3BTbEppdlFqTVBQMUR3SUZsdGI0U2NxQ053L0l0?=
- =?utf-8?B?bmNqTnN0OFNER3h4Qm0yQm1qcVJUdy9EaW03RS9MRFNVUnJhNCtuQmt6VTBU?=
- =?utf-8?B?NVNNNWJlRkRYTzhXVWdQT2Q4dWl2SFBaY2JKZy9SME1sMWtNZDJjZUg5Y1B5?=
- =?utf-8?B?YzMvelhoK2RNb2RBQitTbHBsOFZlNngwMmM3MGMxdnYxZGlDeFZTdUdTQzg3?=
- =?utf-8?B?V0pmSXlHV2hkaTRQaXBXTk1qS1lkT0s5N09Cb1Zaa2srU0RTL2lZczRCeGFv?=
- =?utf-8?B?WE5yV2RxaXRLTHQxdXJMZVZETW11UXRmSVB3dXR4NVg5bmFnT2RVaDU2WGgz?=
- =?utf-8?B?QUpvdkJWTjA3cnBFQkNvSnNOQWdMVmI3NUFMQXJwdis1VnBJR3VxY0NEcng3?=
- =?utf-8?B?NTBBQmhSQTF1R1VrZ01CL3BpeFh3SWNiamVJalRSRmNXR1kzaGs5c2lLbmZQ?=
- =?utf-8?B?L2ZDNCs2enZrSElCZ0xTMXlvM0xhVi9DZW1iS1A4K0JiYldZVXZCWHZPOExs?=
- =?utf-8?B?OGViSTBTckEwY2hraGFHUG9YS0pNTzlLcmFrRVpPZWR2emVqQTJGeVFQTnFl?=
- =?utf-8?B?U09tODdiaG40VDhXZ3dWRUJJcXJJN2FmR1pUNGJOOEpoaDdnaVFzckF1YVdF?=
- =?utf-8?B?TDNUOXJUS0ZQVmdhN1dsSldYS05iOEsxdHcrSTVCKzArc3Mvd1BQNDlWaGd4?=
- =?utf-8?B?OEVzd1BlamlCWkRoZnNGNHJ4cGZTbzhYQU5SOUhuVElxMzFaVTdrNVZtdGNU?=
- =?utf-8?B?Zlg0WXRlZ0NITFFjVmNnN2tyU1EvbWlvb2JSQ2kzT2Vibi9jV2JXclQ1MmNM?=
- =?utf-8?B?dk15Q1h6SktlOUh0ZFhvYlJ6dzZ5SWVTdGlZTHNjREliQzVHeGFoeTlwYldm?=
- =?utf-8?B?MXFhS0p0RGkrNGwzOTZMZVlCTEhIU2pPcS9yVVpBdkw5eHpUekNZZy82a0Ur?=
- =?utf-8?B?MzBnZ0xJNEtEZm42YlVhbGNVMkJ0SExMQWhOTVJQU1JlakxQWWVObWZ5aEdP?=
- =?utf-8?B?ZjVEUlMvOHVqMU1MVG82b2FyVzBIM0R1aVJza2RMOW1DbWRJanFDbzhlSXBI?=
- =?utf-8?B?WjIrRnNKMENNKzMvWFlNZG83d24xSlJMZThsOGsyZTZBUkxBb2lCMzZZb05h?=
- =?utf-8?B?aExVSFlVdW9RMzhwbnJ6clFDdk42M3dKSjQvYmdpT0g1RzBQaHB5RWkvMjNM?=
- =?utf-8?B?dTd6SWtkeFBmKzFTY3dFK2RsTmJ0S1VobFZwa0c3WTJPQU02Zm1ySGVDeDFC?=
- =?utf-8?B?RG9ZM2hNdlkzUDhORGNVV3lIcDBjWityUDZEbnJWd0w1a1AyTnJEbXl6YlBJ?=
- =?utf-8?B?NGdNcHBTRHFqaW5wU0pyYjhlUVRLR2JISUFTM2c1blc0SHFiV2NRZU1NN1Z3?=
- =?utf-8?B?MzVvazB6Y3NYY2NaK0FlMVgyOFRRWURGUjkzc3UxbmU3czRpbGg0Z2loRTZs?=
- =?utf-8?B?K2pkcGtHbW5WL3hPdFkreUtWWmVxeGdSbzV5Qkh2OFJFMjg2VC83WlBucmd0?=
- =?utf-8?B?U1FZSXNQVzRMSFVyNEk5bkFreERGK3hPNHBmRzVMWmtJNUZLOTIvUW5lODRr?=
- =?utf-8?B?Mnlsdk5LdU9OS3lablYzU3lDK1AzZEhpaHROSm14VzRtNnhGcGJpRWZzaDJm?=
- =?utf-8?B?MFhFZkVhYVdlcHRsVFd4Zm9PdVpzN0F4VS9VMmhhdnQzdlI5aHFneUxtSGdv?=
- =?utf-8?B?QWloYnIvUjFzN1JVaUd3SDBVRWcrUEY2OFFhMXAwaHBXTUxRaHVQSThNQ0l1?=
- =?utf-8?B?cGZBOG9Oa3pBM2p1V21CUG9aMG1QRmlsSVlYL0pkSWRpWDltRjNMUVBaK0pr?=
- =?utf-8?B?dkwraVd6RElrQ0JHVjZRaWRCWGdRbDNlYzllYU4za1F3YzMxREgwdjFUNWNz?=
- =?utf-8?B?RjhMMnVNV0Z5S3FyYlVNSmFqNWhyOFhiV3JreWs0b0xGQkM4eVorRjk4aFpC?=
- =?utf-8?B?MkFRR0pnczE3ekw2Y00xemxzUWQ4YUpNaUFLZGRvVHZ4Zk5vemZ4OUx4V2pW?=
- =?utf-8?Q?/07M=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S232220AbjC1QI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 12:08:58 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844F4E187;
+        Tue, 28 Mar 2023 09:08:48 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32SG8dQJ077852;
+        Tue, 28 Mar 2023 11:08:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680019719;
+        bh=2VVefX+qtIG2/6m++0mwqFs5UXcjQLHh8rcU9bAgqPQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=iDgVk564h57MvTKhQ0UlO6gLAXRbECffcsufyKgG5RVpi9+fOM/iMwduw6LLzA/qd
+         w31DHLam2s5czxjOlmjViKq4WMr9m0/IE85pz/sUmGFekpNtXkkQOtUxefLzVaeNZV
+         rVdMoYIAbuvdn+ppYp+/ofcxEj0VbQwxvyy/RA00=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32SG8d0u089843
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 11:08:39 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 11:08:38 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 11:08:39 -0500
+Received: from [10.250.148.71] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32SG8VLi016153;
+        Tue, 28 Mar 2023 11:08:32 -0500
+Message-ID: <1a24f99a-99c1-bf00-e5e7-1085cfd8faf5@ti.com>
+Date:   Tue, 28 Mar 2023 21:38:30 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW5PR12MB5598.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c84ddf2-4cb7-4662-25f0-08db2fa5af92
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2023 16:01:26.4132
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k1JODhOP615xezGFMW6Rhk05O7VqCQgY9/Vc72x6JbJZwBAjU0BixkEivUvqMo9YhMTFIUj8betiU9TtWuUbbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6582
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v7 3/3] remoteproc: k3-r5: Use separate compatible string
+ for TI AM62x SoC family
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <p.zabel@pengutronix.de>, <linux-remoteproc@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>,
+        <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>
+References: <20230310162544.3468365-1-devarsht@ti.com>
+ <20230310162544.3468365-4-devarsht@ti.com> <20230317161757.GA2471094@p14s>
+ <f08e550b-2f15-0f84-c0ca-05e0b803481a@kernel.org>
+From:   Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <f08e550b-2f15-0f84-c0ca-05e0b803481a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogR2FkZGFtLCBTYXJhdGgg
-QmFidSBOYWlkdQ0KPiA8c2FyYXRoLmJhYnUubmFpZHUuZ2FkZGFtQGFtZC5jb20+DQo+IFNlbnQ6
-IFR1ZXNkYXksIE1hcmNoIDI4LCAyMDIzIDY6MjIgUE0NCj4gVG86IEtyenlzenRvZiBLb3psb3dz
-a2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz47DQo+IGRhdmVtQGRhdmVtbG9mdC5u
-ZXQ7IGVkdW1hemV0QGdvb2dsZS5jb207IGt1YmFAa2VybmVsLm9yZzsNCj4gcGFiZW5pQHJlZGhh
-dC5jb207IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5h
-cm8ub3JnDQo+IENjOiBtaWNoYWwuc2ltZWtAeGlsaW54LmNvbTsgcmFkaGV5LnNoeWFtLnBhbmRl
-eUB4aWxpbnguY29tOw0KPiBuZXRkZXZAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIu
-a2VybmVsLm9yZzsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGlu
-dXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgU2FyYW5naSwNCj4gQW5pcnVkaGEgPGFuaXJ1ZGhh
-LnNhcmFuZ2lAYW1kLmNvbT47IEthdGFrYW0sIEhhcmluaQ0KPiA8aGFyaW5pLmthdGFrYW1AYW1k
-LmNvbT47IGdpdCAoQU1ELVhpbGlueCkgPGdpdEBhbWQuY29tPg0KPiBTdWJqZWN0OiBSRTogW1BB
-VENIIG5ldC1uZXh0IFY3XSBkdC1iaW5kaW5nczogbmV0OiB4bG54LGF4aS1ldGhlcm5ldDoNCj4g
-Y29udmVydCBiaW5kaW5ncyBkb2N1bWVudCB0byB5YW1sDQo+IA0KPiANCj4gDQo+ID4gLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5
-c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+ID4gU2VudDogVHVlc2RheSwgTWFyY2ggMTQs
-IDIwMjMgOToyMiBQTQ0KPiA+IFRvOiBHYWRkYW0sIFNhcmF0aCBCYWJ1IE5haWR1DQo+ID4gPHNh
-cmF0aC5iYWJ1Lm5haWR1LmdhZGRhbUBhbWQuY29tPjsgZGF2ZW1AZGF2ZW1sb2Z0Lm5ldDsNCj4g
-PiBlZHVtYXpldEBnb29nbGUuY29tOyBrdWJhQGtlcm5lbC5vcmc7IHBhYmVuaUByZWRoYXQuY29t
-Ow0KPiA+IHJvYmgrZHRAa2VybmVsLm9yZzsga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8u
-b3JnDQo+ID4gQ2M6IG1pY2hhbC5zaW1la0B4aWxpbnguY29tOyByYWRoZXkuc2h5YW0ucGFuZGV5
-QHhpbGlueC5jb207DQo+ID4gbmV0ZGV2QHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2Vy
-Lmtlcm5lbC5vcmc7IGxpbnV4LWFybS0NCj4gPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsg
-bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgU2FyYW5naSwNCj4gPiBBbmlydWRoYSA8YW5p
-cnVkaGEuc2FyYW5naUBhbWQuY29tPjsgS2F0YWthbSwgSGFyaW5pDQo+ID4gPGhhcmluaS5rYXRh
-a2FtQGFtZC5jb20+OyBnaXQgKEFNRC1YaWxpbngpIDxnaXRAYW1kLmNvbT4NCj4gPiBTdWJqZWN0
-OiBSZTogW1BBVENIIG5ldC1uZXh0IFY3XSBkdC1iaW5kaW5nczogbmV0OiB4bG54LGF4aS1ldGhl
-cm5ldDoNCj4gPiBjb252ZXJ0IGJpbmRpbmdzIGRvY3VtZW50IHRvIHlhbWwNCj4gPg0KPiA+IE9u
-IDA4LzAzLzIwMjMgMDc6MTIsIFNhcmF0aCBCYWJ1IE5haWR1IEdhZGRhbSB3cm90ZToNCj4gPiA+
-IEZyb206IFJhZGhleSBTaHlhbSBQYW5kZXkgPHJhZGhleS5zaHlhbS5wYW5kZXlAeGlsaW54LmNv
-bT4NCj4gPiA+DQo+ID4gPiBDb252ZXJ0IHRoZSBiaW5kaW5ncyBkb2N1bWVudCBmb3IgWGlsaW54
-IEFYSSBFdGhlcm5ldCBTdWJzeXN0ZW0NCj4gZnJvbQ0KPiA+ID4gdHh0IHRvIHlhbWwuIE5vIGNo
-YW5nZXMgdG8gZXhpc3RpbmcgYmluZGluZyBkZXNjcmlwdGlvbi4NCj4gPiA+DQo+ID4NCj4gPiAo
-Li4uKQ0KPiA+DQo+ID4gPiArcHJvcGVydGllczoNCj4gPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4g
-PiArICAgIGVudW06DQo+ID4gPiArICAgICAgLSB4bG54LGF4aS1ldGhlcm5ldC0xLjAwLmENCj4g
-PiA+ICsgICAgICAtIHhsbngsYXhpLWV0aGVybmV0LTEuMDEuYQ0KPiA+ID4gKyAgICAgIC0geGxu
-eCxheGktZXRoZXJuZXQtMi4wMS5hDQo+ID4gPiArDQo+ID4gPiArICByZWc6DQo+ID4gPiArICAg
-IGRlc2NyaXB0aW9uOg0KPiA+ID4gKyAgICAgIEFkZHJlc3MgYW5kIGxlbmd0aCBvZiB0aGUgSU8g
-c3BhY2UsIGFzIHdlbGwgYXMgdGhlIGFkZHJlc3MNCj4gPiA+ICsgICAgICBhbmQgbGVuZ3RoIG9m
-IHRoZSBBWEkgRE1BIGNvbnRyb2xsZXIgSU8gc3BhY2UsIHVubGVzcw0KPiA+ID4gKyAgICAgIGF4
-aXN0cmVhbS1jb25uZWN0ZWQgaXMgc3BlY2lmaWVkLCBpbiB3aGljaCBjYXNlIHRoZSByZWcNCj4g
-PiA+ICsgICAgICBhdHRyaWJ1dGUgb2YgdGhlIG5vZGUgcmVmZXJlbmNlZCBieSBpdCBpcyB1c2Vk
-Lg0KPiA+DQo+ID4gRGlkIHlvdSB0ZXN0IGl0IHdpdGggYXhpc3RyZWFtLWNvbm5lY3RlZD8gVGhl
-IHNjaGVtYSBhbmQgZGVzY3JpcHRpb24NCj4gPiBmZWVsIGNvbnRyYWRpY3RvcnkgYW5kIHRlc3Rz
-IHdvdWxkIHBvaW50IHRoZSBpc3N1ZS4NCj4gDQo+IFRoYW5rcyBmb3IgcmV2aWV3IGNvbW1lbnRz
-LiBXZSB0ZXN0ZWQgd2l0aCBheGlzdHJlYW0tY29ubmVjdGVkIGFuZA0KPiBkaWQgbm90IG9ic2Vy
-dmUgYW55IGVycm9ycy4gRG8geW91IGFudGljaXBhdGUgYW55IGlzc3Vlcy9lcnJvcnMgPw0KDQpK
-dXN0IHRvIGFkZCBtb3JlIGRldGFpbHMsIHdlIGhhdmUgdGVzdGVkIGl0IHVzaW5nIGJlbG93IGR0
-IG5vZGUNCgkJDQoJYXhpZW5ldEAwIHsJDQoJICAgICAgICBheGlzdHJlYW0tY29ubmVjdGVkID0g
-PCZkbWE+Ow0KICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MDAgMHg4MDAwMDAwMCAw
-eDAwIDB4NDAwMDA+Ow0KICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJ4bG54
-LGF4aS1ldGhlcm5ldC0yLjAxLmEiOw0KICAgICAgICAgICAgICAgICAgICAgICAgY2xvY2stbmFt
-ZXMgPSAic19heGlfbGl0ZV9jbGtcMGF4aXNfY2xrXDByZWZfY2xrIjsNCiAgICAgICAgICAgICAg
-ICAgICAgICAgIGNsb2NrcyA9IDwweDAzIDB4NDcgMHgwMyAweDQ3IDB4MTg+Ow0KICAgICAgICAg
-ICAgICAgICAgICAgICAgcGh5LW1vZGUgPSAic2dtaWkiOw0KICAgICAgICAgICAgICAgICAgICAg
-ICAgeGxueCxyeGNzdW0gPSA8MHgwMj47DQogICAgICAgICAgICAgICAgICAgICAgICB4bG54LHJ4
-bWVtID0gPDB4MTAwMD47DQogICAgICAgICAgICAgICAgICAgICAgICB4bG54LHR4Y3N1bSA9IDww
-eDAyPjsNCiAgICAgICAgICAgICAgICAgICAgICAgIHBjcy1oYW5kbGUgPSA8MHgxOT47DQogICAg
-ICAgICAgICAgICAgICAgICAgICBwaHktaGFuZGxlID0gPDB4Nzg+Ow0KICAgICAgICAgICAgICAg
-ICAgICAgICAgZG1hcyA9IDwweDE3IDB4MDAgMHgxNyAweDAxPjsNCiAgICAgICAgICAgICAgICAg
-ICAgICAgIGRtYS1uYW1lcyA9ICJ0eF9jaGFuMFwwcnhfY2hhbjAiOw0KICAgICAgICAgICAgICAg
-ICAgICAgICAgbWFjLWFkZHJlc3MgPSBbZmYgZmYgZmYgZmYgZmYgZmZdOw0KICAgICAgICAgICAg
-ICAgICAgICAgICAgbWFuYWdlZCA9ICJpbi1iYW5kLXN0YXR1cyI7DQogICAgICAgICAgICAgICAg
-ICAgICAgICBwaGFuZGxlID0gPDB4Nzk+Ow0KCQltZGlvIHsNCiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MHgwMT47DQogICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDB4MDA+Ow0KDQogICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHBoeUAwIHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBjb21wYXRpYmxlID0gImV0aGVybmV0LXBoeS1pZWVlODAyLjMtYzIyIjsNCiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHgwMD47DQogICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGhhbmRsZSA9IDwweDc4PjsNCiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgfTsNCg0KICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBldGhlcm5ldC1waHlAMiB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgZGV2aWNlX3R5cGUgPSAiZXRoZXJuZXQtcGh5IjsNCiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHgwMj47DQogICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgcGhhbmRsZSA9IDwweDE5PjsNCiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgfTsNCiAgICAgICAgICAgICAgICAgICAgICAgIH07DQoJfTsNClRoaXMgRFQg
-bm9kZSB3b3JrcyB3aXRoIG91ciBib2FyZC4gIiZkbWEiIGlzIHRoZSBkbWEgRFQgbm9kZSAgYW5k
-ICANCnRvIHRlc3QgdGhlIHNlY29uZCBjYXNlIHdoZXJlIGRtYSAgYWRkcmVzcyBhbmQgbGVuZ3Ro
-ICBpbmNsdWRlZCAgaW4gDQp0aGUgYXhpZW5ldCByZWcncyBwcm9wZXJ0eSBhcyBiZWxvdyANCiJy
-ZWcgPSA8MHgwMCAweDgwMDAwMDAwIDB4MDAgMHg0MDAwMCAweDAgMHg4MDA0MDAwMCAweDAgMHgx
-MDAwPjsiDQoNCkkgZGlkIG5vdCBvYnNlcnZlIGFueSBpc3N1ZSB3aXRoIGFib3ZlIHR3byBjYXNl
-cy4gVXNlZCBiZWxvdyBjb21tYW5kDQogdG8gdmFsaWRhdGUgdGhlIHlhbWwgdXNpbmcgYWJvdmUg
-RFQgbm9kZS4NCm1ha2UgZHRic19jaGVjayBEVF9TQ0hFTUFfRklMRVM9RG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL25ldC94bG54LGF4aS1ldGhlcm5ldC55YW1sDQoNClRoYW5rcywN
-ClNhcmF0aA0KDQo+ID4gPiArICAgIG1heEl0ZW1zOiAyDQo+ID4gPiArDQo+ID4gPiArICBpbnRl
-cnJ1cHRzOg0KPiA+ID4gKyAgICBpdGVtczoNCj4gPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBF
-dGhlcm5ldCBjb3JlIGludGVycnVwdA0KPiA+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IFR4IERN
-QSBpbnRlcnJ1cHQNCj4gPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBSeCBETUEgaW50ZXJydXB0
-DQo+ID4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ID4gKyAgICAgIEV0aGVybmV0IGNvcmUgaW50
-ZXJydXB0IGlzIG9wdGlvbmFsLiBJZiBheGlzdHJlYW0tY29ubmVjdGVkDQo+ID4gcHJvcGVydHkg
-aXMNCj4gPiA+ICsgICAgICBwcmVzZW50IERNQSBub2RlIHNob3VsZCBjb250YWlucyBUWC9SWCBE
-TUEgaW50ZXJydXB0cyBlbHNlDQo+ID4gRE1BIGludGVycnVwdA0KPiA+ID4gKyAgICAgIHJlc291
-cmNlcyBhcmUgbWVudGlvbmVkIG9uIGV0aGVybmV0IG5vZGUuDQo+ID4gPiArICAgIG1pbkl0ZW1z
-OiAxDQo+ID4gPiArDQo+ID4gPiArICBwaHktaGFuZGxlOiB0cnVlDQo+ID4gPiArDQo+ID4gPiAr
-ICB4bG54LHJ4bWVtOg0KPiA+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiA+ICsgICAgICBTZXQg
-dG8gYWxsb2NhdGVkIG1lbW9yeSBidWZmZXIgZm9yIFJ4L1R4IGluIHRoZSBoYXJkd2FyZS4NCj4g
-PiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyDQo+
-ID4gPiArDQo+ID4gPiArICBwaHktbW9kZToNCj4gPiA+ICsgICAgaXRlbXM6DQo+ID4gPiArICAg
-ICAgLSBkZXNjcmlwdGlvbjogTUlJDQo+ID4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogR01JSQ0K
-PiA+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IFJHTUlJDQo+ID4gPiArICAgICAgLSBkZXNjcmlw
-dGlvbjogU0dNSUkNCj4gPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiAxMDAwQmFzZVgNCj4gPg0K
-PiA+IEkgaGF2ZSBkb3VidHMgeW91IHRlc3RlZCBpdC4uLiBTaW5jZSB3aGVuIHRoaXMgaXMgYSBs
-aXN0PyBIb3cgZG9lcyBpdA0KPiA+IGV4YWN0bHkgd29yayBhbmQgd2hhdCBkbyB5b3Ugd2FudCB0
-byBzaG93IGhlcmU/DQo+ID4NCj4gPiBjb25uZWN0aW9uIHR5cGUgaXMgZW51bS4NCj4gPg0KPiA+
-DQo+ID4gPiArICAgIG1pbkl0ZW1zOiAxDQo+ID4gPiArDQo+ID4gPiArICB4bG54LHBoeS10eXBl
-Og0KPiA+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiA+ICsgICAgICBEbyBub3QgdXNlLCBidXQg
-c3RpbGwgYWNjZXB0ZWQgaW4gcHJlZmVyZW5jZSB0byBwaHktbW9kZS4NCj4gPiA+ICsgICAgZGVw
-cmVjYXRlZDogdHJ1ZQ0KPiA+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZp
-bml0aW9ucy91aW50MzINCj4gPiA+ICsNCj4gPiA+ICsgIHhsbngsdHhjc3VtOg0KPiA+ID4gKyAg
-ICBkZXNjcmlwdGlvbjoNCj4gPiA+ICsgICAgICBUWCBjaGVja3N1bSBvZmZsb2FkLiAwIG9yIGVt
-cHR5IGZvciBkaXNhYmxpbmcgVFggY2hlY2tzdW0NCj4gPiBvZmZsb2FkLA0KPiA+ID4gKyAgICAg
-IDEgdG8gZW5hYmxlIHBhcnRpYWwgVFggY2hlY2tzdW0gb2ZmbG9hZCBhbmQgMiB0byBlbmFibGUg
-ZnVsbCBUWA0KPiA+ID4gKyAgICAgIGNoZWNrc3VtIG9mZmxvYWQuDQo+ID4gPiArICAgICRyZWY6
-IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ID4gKyAgICBlbnVt
-OiBbMCwgMSwgMl0NCj4gPiA+ICsNCj4gPiA+ICsgIHhsbngscnhjc3VtOg0KPiA+ID4gKyAgICBk
-ZXNjcmlwdGlvbjoNCj4gPiA+ICsgICAgICBSWCBjaGVja3N1bSBvZmZsb2FkLiAwIG9yIGVtcHR5
-IGZvciBkaXNhYmxpbmcgUlggY2hlY2tzdW0NCj4gPiBvZmZsb2FkLA0KPiA+ID4gKyAgICAgIDEg
-dG8gZW5hYmxlIHBhcnRpYWwgUlggY2hlY2tzdW0gb2ZmbG9hZCBhbmQgMiB0byBlbmFibGUgZnVs
-bCBSWA0KPiA+ID4gKyAgICAgIGNoZWNrc3VtIG9mZmxvYWQuDQo+ID4gPiArICAgICRyZWY6IC9z
-Y2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ID4gKyAgICBlbnVtOiBb
-MCwgMSwgMl0NCj4gPiA+ICsNCj4gPiA+ICsgIHhsbngsc3dpdGNoLXgtc2dtaWk6DQo+ID4gPiAr
-ICAgIHR5cGU6IGJvb2xlYW4NCj4gPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gPiArICAgICAg
-SW5kaWNhdGUgdGhlIEV0aGVybmV0IGNvcmUgaXMgY29uZmlndXJlZCB0byBzdXBwb3J0IGJvdGgN
-Cj4gPiA+ICsgMTAwMEJhc2VYDQo+ID4gYW5kDQo+ID4gPiArICAgICAgU0dNSUkgbW9kZXMuIElm
-IHNldCwgdGhlIHBoeS1tb2RlIHNob3VsZCBiZSBzZXQgdG8gbWF0Y2ggdGhlDQo+ID4gbW9kZQ0K
-PiA+ID4gKyAgICAgIHNlbGVjdGVkIG9uIGNvcmUgcmVzZXQgKGkuZS4gYnkgdGhlIGJhc2V4X29y
-X3NnbWlpIGNvcmUgaW5wdXQNCj4gbGluZSkuDQo+ID4gPiArDQo+ID4gPiArICBjbG9ja3M6DQo+
-ID4gPiArICAgIGl0ZW1zOg0KPiA+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IENsb2NrIGZvciBB
-WEkgcmVnaXN0ZXIgc2xhdmUgaW50ZXJmYWNlLg0KPiA+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246
-IEFYSTQtU3RyZWFtIGNsb2NrIGZvciBUWEQgUlhEIFRYQyBhbmQgUlhTDQo+ID4gaW50ZXJmYWNl
-cy4NCj4gPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBFdGhlcm5ldCByZWZlcmVuY2UgY2xvY2ss
-IHVzZWQgYnkgc2lnbmFsIGRlbGF5DQo+ID4gcHJpbWl0aXZlcw0KPiA+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgIGFuZCB0cmFuc2NlaXZlcnMuDQo+ID4gPiArICAgICAgLSBkZXNjcmlwdGlvbjog
-TUdUIHJlZmVyZW5jZSBjbG9jayAodXNlZCBieSBvcHRpb25hbCBpbnRlcm5hbA0KPiA+ID4gKyBQ
-Q1MvUE1BIFBIWSkNCj4gPiA+ICsNCj4gPiA+ICsgIGNsb2NrLW5hbWVzOg0KPiA+ID4gKyAgICBp
-dGVtczoNCj4gPiA+ICsgICAgICAtIGNvbnN0OiBzX2F4aV9saXRlX2Nsaw0KPiA+ID4gKyAgICAg
-IC0gY29uc3Q6IGF4aXNfY2xrDQo+ID4gPiArICAgICAgLSBjb25zdDogcmVmX2Nsaw0KPiA+ID4g
-KyAgICAgIC0gY29uc3Q6IG1ndF9jbGsNCj4gPiA+ICsNCj4gPiA+ICsgIGF4aXN0cmVhbS1jb25u
-ZWN0ZWQ6DQo+ID4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25z
-L3BoYW5kbGUNCj4gPiA+ICsgICAgZGVzY3JpcHRpb246IFBoYW5kbGUgb2YgQVhJIERNQSBjb250
-cm9sbGVyIHdoaWNoIGNvbnRhaW5zIHRoZQ0KPiA+IHJlc291cmNlcw0KPiA+ID4gKyAgICAgIHVz
-ZWQgYnkgdGhpcyBkZXZpY2UuIElmIHRoaXMgaXMgc3BlY2lmaWVkLCB0aGUgRE1BLXJlbGF0ZWQN
-Cj4gcmVzb3VyY2VzDQo+ID4gPiArICAgICAgZnJvbSB0aGF0IGRldmljZSAoRE1BIHJlZ2lzdGVy
-cyBhbmQgRE1BIFRYL1JYIGludGVycnVwdHMpDQo+ID4gPiArIHJhdGhlcg0KPiA+IHRoYW4NCj4g
-PiA+ICsgICAgICB0aGlzIG9uZSB3aWxsIGJlIHVzZWQuDQo+ID4gPiArDQo+ID4gPiArICBtZGlv
-Og0KPiA+ID4gKyAgICB0eXBlOiBvYmplY3QNCj4gPiA+ICsNCj4gPiA+ICsgIHBjcy1oYW5kbGU6
-DQo+ID4NCj4gPiBtYXhJdGVtczogMQ0KPiA+DQo+ID4gPiArICAgIGRlc2NyaXB0aW9uOiBQaGFu
-ZGxlIHRvIHRoZSBpbnRlcm5hbCBQQ1MvUE1BIFBIWSBpbiBTR01JSSBvcg0KPiA+IDEwMDBCYXNl
-LVgNCj4gPiA+ICsgICAgICBtb2Rlcywgd2hlcmUgInBjcy1oYW5kbGUiIHNob3VsZCBiZSB1c2Vk
-IHRvIHBvaW50IHRvIHRoZQ0KPiA+IFBDUy9QTUEgUEhZLA0KPiA+ID4gKyAgICAgIGFuZCAicGh5
-LWhhbmRsZSIgc2hvdWxkIHBvaW50IHRvIGFuIGV4dGVybmFsIFBIWSBpZiBleGlzdHMuDQo+ID4N
-Cj4gPiBCZXN0IHJlZ2FyZHMsDQo+ID4gS3J6eXN6dG9mDQoNCg==
+Hi Roger,
+
+On 28/03/23 13:22, Roger Quadros wrote:
+> Hi Devarsh,
+> 
+> On 17/03/2023 18:17, Mathieu Poirier wrote:
+>> On Fri, Mar 10, 2023 at 09:55:44PM +0530, Devarsh Thakkar wrote:
+>>> AM62 and AM62A SoCs use single core R5F which is a new scenario
+>>> different than the one being used with CLUSTER_MODE_SINGLECPU which is
+>>> for utilizing a single core from a set of cores available in R5F cluster
+>>> present in the SoC.
+>>>
+>>> To support this single core scenario map it with newly defined
+>>> CLUSTER_MODE_SINGLECORE and use it when compatible is set to
+>>> ti,am62-r5fss.
+>>>
+>>> Also set PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE config for
+>>> CLUSTER_MODE_SINGLECORE too as it is required by R5 core when it is
+>>> being as general purpose core instead of device manager.
+>>>
+>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>>> ---
+>>> V2:
+>>> - Fix indentation and ordering issues as per review comments
+>>> V3:
+>>> - Change CLUSTER_MODE_NONE value to -1
+>>> V4:
+>>> - No change
+>>> V5:
+>>> - No change (fixing typo in email address)
+>>> V6:
+>>>     - Use CLUSTER_MODE_SINGLECORE for AM62x
+>>>     - Set PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE for single core.
+>>> V7:
+>>>     - Simplify and rebase on top of base commit "[PATCH v7] remoteproc: k3-r5: Simplify cluster
+>>>       mode setting"
+>>> ---
+>>>   drivers/remoteproc/ti_k3_r5_remoteproc.c | 59 +++++++++++++++++++-----
+>>>   1 file changed, 48 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+>>> index c2ec0f432921..df32f6bc4325 100644
+>>> --- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
+>>> +++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+>>> @@ -71,14 +71,16 @@ struct k3_r5_mem {
+>>>   /*
+>>>    * All cluster mode values are not applicable on all SoCs. The following
+>>>    * are the modes supported on various SoCs:
+>>> - *   Split mode      : AM65x, J721E, J7200 and AM64x SoCs
+>>> - *   LockStep mode   : AM65x, J721E and J7200 SoCs
+>>> - *   Single-CPU mode : AM64x SoCs only
+>>> + *   Split mode       : AM65x, J721E, J7200 and AM64x SoCs
+>>> + *   LockStep mode    : AM65x, J721E and J7200 SoCs
+>>> + *   Single-CPU mode  : AM64x SoCs only
+>>> + *   Single-Core mode : AM62x, AM62A SoCs
+>>>    */
+>>>   enum cluster_mode {
+>>>   	CLUSTER_MODE_SPLIT = 0,
+>>>   	CLUSTER_MODE_LOCKSTEP,
+>>>   	CLUSTER_MODE_SINGLECPU,
+>>> +	CLUSTER_MODE_SINGLECORE
+> 
+> What is the difference in device driver behaviour between
+> SINGLECPU and SINGLECORE?
+> 
+Yeah there is quite a bit of common code flow between the two but the 
+fundamental difference is that you use CLUSTER_MODE_SINGLECPU when
+you have two R5F cores but you want to use only single R5F core albeit
+with using TCM of both the cores whereas CLUSTER_MODE_SINGLECORE is
+for the scenario where you have single core R5F's only.
+
+Also the bindings for CLUSTER_MODE_SINGLECPU are already upstream so did
+not want to break them either : 
+https://gitlab.com/linux-kernel/linux-next/-/blob/next-20230328/Documentation/devicetree/bindings/remoteproc/ti%2Ck3-r5f-rproc.yaml#L20.
+
+Regards
+Devarsh
+
+> If there is no difference then you should not introduce
+> a new enum. >
+>>>   };
+>>>   
+>>>   /**
+>>> @@ -86,11 +88,13 @@ enum cluster_mode {
+>>>    * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
+>>>    * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
+>>>    * @single_cpu_mode: flag to denote if SoC/IP supports Single-CPU mode
+>>> + * @is_single_core: flag to denote if SoC/IP has only single core R5
+>>>    */
+>>>   struct k3_r5_soc_data {
+>>>   	bool tcm_is_double;
+>>>   	bool tcm_ecc_autoinit;
+>>>   	bool single_cpu_mode;
+>>> +	bool is_single_core;
+>>>   };
+>>>   
+>>>   /**
+>>> @@ -838,7 +842,8 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
+>>>   
+>>>   	core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
+>>>   	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+>>> -	    cluster->mode == CLUSTER_MODE_SINGLECPU) {
+>>> +	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
+>>> +	    cluster->mode == CLUSTER_MODE_SINGLECORE) {
+>>>   		core = core0;
+>>>   	} else {
+>>>   		core = kproc->core;
+>>> @@ -877,7 +882,8 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
+>>>   		 * with the bit configured, so program it only on
+>>>   		 * permitted cores
+>>>   		 */
+>>> -		if (cluster->mode == CLUSTER_MODE_SINGLECPU) {
+>>> +		if (cluster->mode == CLUSTER_MODE_SINGLECPU ||
+>>> +		    cluster->mode == CLUSTER_MODE_SINGLECORE) {
+>>>   			set_cfg = PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE;
+>>>   		} else {
+>>>   			/*
+>>> @@ -1069,6 +1075,7 @@ static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
+>>>   
+>>>   	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+>>>   	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
+>>> +	    cluster->mode == CLUSTER_MODE_SINGLECORE ||
+>>>   	    !cluster->soc_data->tcm_is_double)
+>>>   		return;
+>>>   
+>>> @@ -1145,6 +1152,8 @@ static int k3_r5_rproc_configure_mode(struct k3_r5_rproc *kproc)
+>>>   	if (cluster->soc_data->single_cpu_mode) {
+>>>   		mode = cfg & PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE ?
+>>>   				CLUSTER_MODE_SINGLECPU : CLUSTER_MODE_SPLIT;
+>>> +	} else if (cluster->soc_data->is_single_core) {
+>>> +		mode = CLUSTER_MODE_SINGLECORE;
+>>
+>> I have commented twice on this before - whether it is soc_data->single_cpu_mode or
+>> soc_data->is_single_core, I don't want to see them used elsewhere than in a
+>> single function.  Either in probe() or another function, use them once to set
+>> cluster->mode and never again.
+>>
+>> I will silently drop any other patchset that doesn't address this.
+>>
+>>>   	} else {
+>>>   		mode = cfg & PROC_BOOT_CFG_FLAG_R5_LOCKSTEP ?
+>>>   				CLUSTER_MODE_LOCKSTEP : CLUSTER_MODE_SPLIT;
+>>> @@ -1264,9 +1273,12 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
+>>>   			goto err_add;
+>>>   		}
+>>>   
+>>> -		/* create only one rproc in lockstep mode or single-cpu mode */
+>>> +		/* create only one rproc in lockstep, single-cpu or
+>>> +		 * single core mode
+>>> +		 */
+>>>   		if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+>>> -		    cluster->mode == CLUSTER_MODE_SINGLECPU)
+>>> +		    cluster->mode == CLUSTER_MODE_SINGLECPU ||
+>>> +		    cluster->mode == CLUSTER_MODE_SINGLECORE)
+>>>   			break;
+>>>   	}
+>>>   
+>>> @@ -1709,19 +1721,33 @@ static int k3_r5_probe(struct platform_device *pdev)
+>>>   		/*
+>>>   		 * default to most common efuse configurations - Split-mode on AM64x
+>>>   		 * and LockStep-mode on all others
+>>> +		 * default to most common efuse configurations -
+>>> +		 * Split-mode on AM64x
+>>> +		 * Single core on AM62x
+>>> +		 * LockStep-mode on all others
+>>>   		 */
+>>> -		cluster->mode = data->single_cpu_mode ?
+>>> +		if (!data->is_single_core)
+>>> +			cluster->mode = data->single_cpu_mode ?
+>>>   					CLUSTER_MODE_SPLIT : CLUSTER_MODE_LOCKSTEP;
+>>> +		else
+>>> +			cluster->mode = CLUSTER_MODE_SINGLECORE;
+>>>   	}
+>>>   
+>>> -	if (cluster->mode == CLUSTER_MODE_SINGLECPU && !data->single_cpu_mode) {
+>>> +	if  ((cluster->mode == CLUSTER_MODE_SINGLECPU && !data->single_cpu_mode) ||
+>>> +	     (cluster->mode == CLUSTER_MODE_SINGLECORE && !data->is_single_core)) {
+>>>   		dev_err(dev, "Cluster mode = %d is not supported on this SoC\n", cluster->mode);
+>>>   		return -EINVAL;
+>>>   	}
+>>>   
+>>>   	num_cores = of_get_available_child_count(np);
+>>> -	if (num_cores != 2) {
+>>> -		dev_err(dev, "MCU cluster requires both R5F cores to be enabled, num_cores = %d\n",
+>>> +	if (num_cores != 2 && !data->is_single_core) {
+>>> +		dev_err(dev, "MCU cluster requires both R5F cores to be enabled but num_cores is set to = %d\n",
+>>> +			num_cores);
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	if (num_cores != 1 && data->is_single_core) {
+>>> +		dev_err(dev, "SoC supports only single core R5 but num_cores is set to %d\n",
+>>>   			num_cores);
+>>>   		return -ENODEV;
+>>>   	}
+>>> @@ -1763,18 +1789,28 @@ static const struct k3_r5_soc_data am65_j721e_soc_data = {
+>>>   	.tcm_is_double = false,
+>>>   	.tcm_ecc_autoinit = false,
+>>>   	.single_cpu_mode = false,
+>>> +	.is_single_core = false,
+>>>   };
+>>>   
+>>>   static const struct k3_r5_soc_data j7200_j721s2_soc_data = {
+>>>   	.tcm_is_double = true,
+>>>   	.tcm_ecc_autoinit = true,
+>>>   	.single_cpu_mode = false,
+>>> +	.is_single_core = false,
+>>>   };
+>>>   
+>>>   static const struct k3_r5_soc_data am64_soc_data = {
+>>>   	.tcm_is_double = true,
+>>>   	.tcm_ecc_autoinit = true,
+>>>   	.single_cpu_mode = true,
+>>> +	.is_single_core = false,
+>>> +};
+>>> +
+>>> +static const struct k3_r5_soc_data am62_soc_data = {
+>>> +	.tcm_is_double = false,
+>>> +	.tcm_ecc_autoinit = true,
+>>> +	.single_cpu_mode = false,
+>>> +	.is_single_core = true,
+>>>   };
+>>>   
+>>>   static const struct of_device_id k3_r5_of_match[] = {
+>>> @@ -1782,6 +1818,7 @@ static const struct of_device_id k3_r5_of_match[] = {
+>>>   	{ .compatible = "ti,j721e-r5fss", .data = &am65_j721e_soc_data, },
+>>>   	{ .compatible = "ti,j7200-r5fss", .data = &j7200_j721s2_soc_data, },
+>>>   	{ .compatible = "ti,am64-r5fss",  .data = &am64_soc_data, },
+>>> +	{ .compatible = "ti,am62-r5fss",  .data = &am62_soc_data, },
+>>>   	{ .compatible = "ti,j721s2-r5fss",  .data = &j7200_j721s2_soc_data, },
+>>>   	{ /* sentinel */ },
+>>>   };
+>>> -- 
+>>> 2.34.1
+>>>
+> 
+> cheers,
+> -roger
