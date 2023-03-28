@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F1CF6CBAE4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D90D96CBB2E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 11:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232867AbjC1Jar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 05:30:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34358 "EHLO
+        id S232606AbjC1JhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 05:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232730AbjC1JaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:30:05 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199F14EE8
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:29:10 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id g17so14948126lfv.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:29:10 -0700 (PDT)
+        with ESMTP id S232590AbjC1JhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 05:37:11 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D822D6A45
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:36:43 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id e18so11429999wra.9
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 02:36:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679995744;
+        d=linaro.org; s=google; t=1679996202;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dk18DfrsZuq+WUDLgd3KU7WGbTjCqrV4Y3VCrkv2ukQ=;
-        b=nIDsD/3Uhou4S/AMUshlZp4REkr/B0iWYEkE6L4/jPyZHbFH8Ch8zzK4aJkHXXUrnT
-         /2PQz1XFLXG8rsvASOXccqnRhAN8CSqqo9WhYimiuuWhoRZkfX1r1tRs5Jd0lJJ00Wd7
-         e2LtZarRRPsvnEjVInvK0//wLA0tte8jIWd9f5xKCWaW+Nl/6YDMEJLwW6etgjayPXiG
-         8exy33d9pFfkBFGK6lrxOn05rm6OhrUp+pQEX/YnpVd6O7krqhIatLwbPiUNgv/MVJtf
-         0p47OKaHBOV1RQcaCTaUHC5eXtr0tz4hjKC1q0IjQ53D1LGfAXQr1qKrz5JS2OOiaXUV
-         kqfQ==
+        bh=XQV5jAujDsjlmJ7i4zzoeSJ8msTMIxUMBP2P8RrksF8=;
+        b=Mig5vyIslkZvEXRrGtnwNDJ79tHpngfDxYk99Sqqz63WsvDJV6ZCXlLQWmKNLfO8H8
+         2FFB/dIPxmrnuorZKOlXk168FTqEzjMfV2cYS/GntQADcvY2y50Su0U+3+zBlPzeQRoH
+         B3LwTgwGUSoekmwy9sWGdWUvU0QrIYCdAV3hAen5URjiP1YLl4lnrS8RpYe3TBR+xfkk
+         GjXj+EZJH6xAr1nNQDpgzzHa/3fhOBI55ZEsFA5MONcVQs1XA7IGDwbzJUtlBXeYf16B
+         BFHQcmXCO0zxSpGBxmsEK2vWjevflJAX/amSeJlJ4L047/GZgTuuPAnRuNRg13LcwONs
+         k4/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679995744;
+        d=1e100.net; s=20210112; t=1679996202;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dk18DfrsZuq+WUDLgd3KU7WGbTjCqrV4Y3VCrkv2ukQ=;
-        b=V/jJX8EUlyWpDSO9hVS37FGqmwlGXJ+tRxC612v1+Xzxaghx5XmtQXGwxyy0veXdkW
-         C2iLIdfiq+2Bc1htF9q536ePiQZCCBkye+be27wsP5tTYHaajFXnyVeZ/kg77o34FPLd
-         sMjkKp/iAeIWCLYgeGR1/Fypr9wa5umswCpvtwIi1lJDDyhfatGXFWQ+i7n49SiTIoGW
-         L6L/QFHUwCnGG9UzdoMhvAVTp6Y2b+QAtZ76rbygLYhL59ITdQdsEbYtpl78hA7qFBm6
-         gZCPLuRBzmTVQ5JZvv5zE1A1YPiuHJKVxK8kHCq9jWOv/7eLZCjXWc2mwB7TK+dgPvMm
-         7gcw==
-X-Gm-Message-State: AAQBX9c7XwvI5Hyf/qfHgq0Z2HPXMGCiVvpK/qEl2UxWEw5uSIu7p+bx
-        eH6gv5/S7MNpKK2x6lZQIL2YBw==
-X-Google-Smtp-Source: AKy350Y28HG8gD7zXHaAV6SDfZ00y0AiPHuQdsm7OVeyfnyXgpemP5e6hR/H2LQr0pjNDeREEXw+WQ==
-X-Received: by 2002:ac2:5a04:0:b0:4e8:487a:7c2e with SMTP id q4-20020ac25a04000000b004e8487a7c2emr4639191lfn.14.1679995743748;
-        Tue, 28 Mar 2023 02:29:03 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id w18-20020a056512099200b004dab932248fsm4980080lft.180.2023.03.28.02.29.02
+        bh=XQV5jAujDsjlmJ7i4zzoeSJ8msTMIxUMBP2P8RrksF8=;
+        b=LDlTD1Vrnkkr1dmQNKx7RuWmsbtyvcSa45ty/ugHidpZnZ+u49707Xsq6rEqSWfKPK
+         V0+ZcWFru9USt8DjiYbcZYSklaedD/Ywwn8ft3560SuL7e7lrcRFHAGVQHlQJ/V8TZhq
+         7uYivi59rMdSWYPgzmgzv3lZ6CE3QWQfOlmrNzF+fajHHLgw+fxixwBauhLdzbdcVvXo
+         G3pFVstvJd3ggPkaL0uR8iaXG136Xk9tXvpDZmD5OMXTBFtnWcYOllsxE/MbTai8D/ky
+         RP+N+dn008MpOZUZxcLua8JUR81BOswPkLxemsnlfk60q8sTJX6gOI2phwwhmKdYKizL
+         ryBA==
+X-Gm-Message-State: AAQBX9fTwwhe9xab+TL0c7S4XM7rC9tYrEjgvYIkk7KDznGqw2oHqFvD
+        /2y6clniOj5rXe6f7uPvwn4jiA==
+X-Google-Smtp-Source: AKy350a+LASx+WRjrECQYarn1n17idhSsDraP6ddv/ReLQYmMPK4bvDvhWHQ4zmmyRarSWf+n10QFg==
+X-Received: by 2002:adf:f78b:0:b0:2ce:aed4:7f22 with SMTP id q11-20020adff78b000000b002ceaed47f22mr12920141wrp.50.1679996202349;
+        Tue, 28 Mar 2023 02:36:42 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.91])
+        by smtp.gmail.com with ESMTPSA id n12-20020adfe34c000000b002da75c5e143sm14794062wrj.29.2023.03.28.02.36.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 02:29:03 -0700 (PDT)
-Message-ID: <ce24ffc4-3c0c-bf1b-354e-e5ee9db5d5c3@linaro.org>
-Date:   Tue, 28 Mar 2023 11:29:01 +0200
+        Tue, 28 Mar 2023 02:36:42 -0700 (PDT)
+Message-ID: <4b8b629b-62f8-8e0d-5de2-9020a955f0e2@linaro.org>
+Date:   Tue, 28 Mar 2023 10:36:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 17/18] regulator: qcom-rpmh: add support for pmm8654au
- regulators
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 5/8] ARM: dts: at91-sama5d27_wlsom1: Set sst26vf064b SPI
+ NOR flash at its maximum frequency
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-References: <20230327125316.210812-1-brgl@bgdev.pl>
- <20230327125316.210812-18-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230327125316.210812-18-brgl@bgdev.pl>
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org
+References: <20221117105249.115649-1-tudor.ambarus@microchip.com>
+ <20221117105249.115649-6-tudor.ambarus@microchip.com>
+ <a6fe77b6-4ff4-3c91-0c67-a9da5a638e7b@microchip.com>
+From:   Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <a6fe77b6-4ff4-3c91-0c67-a9da5a638e7b@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -84,114 +82,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 27.03.2023 14:53, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add the RPMH regulators exposed by the PMM8654au PMIC and its variants.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> ---
-I can't check the validity of the regulator types and ranges, but
-for the overall picture:
+On 3/28/23 09:51, Nicolas Ferre wrote:
+> Hi Tudor,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi!
 
-Konrad
->  drivers/regulator/qcom-rpmh-regulator.c | 55 +++++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
 > 
-> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-> index 4826d60e5d95..b0a58c62b1e2 100644
-> --- a/drivers/regulator/qcom-rpmh-regulator.c
-> +++ b/drivers/regulator/qcom-rpmh-regulator.c
-> @@ -694,6 +694,16 @@ static const struct rpmh_vreg_hw_data pmic5_pldo_lv = {
->  	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
->  };
->  
-> +static const struct rpmh_vreg_hw_data pmic5_pldo515_mv = {
-> +	.regulator_type = VRM,
-> +	.ops = &rpmh_regulator_vrm_drms_ops,
-> +	.voltage_range = REGULATOR_LINEAR_RANGE(1800000, 0, 187, 8000),
-> +	.n_voltages = 188,
-> +	.hpm_min_load_uA = 10000,
-> +	.pmic_mode_map = pmic_mode_map_pmic5_ldo,
-> +	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
-> +};
-> +
->  static const struct rpmh_vreg_hw_data pmic5_nldo = {
->  	.regulator_type = VRM,
->  	.ops = &rpmh_regulator_vrm_drms_ops,
-> @@ -704,6 +714,16 @@ static const struct rpmh_vreg_hw_data pmic5_nldo = {
->  	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
->  };
->  
-> +static const struct rpmh_vreg_hw_data pmic5_nldo515 = {
-> +	.regulator_type = VRM,
-> +	.ops = &rpmh_regulator_vrm_drms_ops,
-> +	.voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 210, 8000),
-> +	.n_voltages = 211,
-> +	.hpm_min_load_uA = 30000,
-> +	.pmic_mode_map = pmic_mode_map_pmic5_ldo,
-> +	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
-> +};
-> +
->  static const struct rpmh_vreg_hw_data pmic5_hfsmps510 = {
->  	.regulator_type = VRM,
->  	.ops = &rpmh_regulator_vrm_ops,
-> @@ -749,6 +769,15 @@ static const struct rpmh_vreg_hw_data pmic5_ftsmps525_mv = {
->  	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
->  };
->  
-> +static const struct rpmh_vreg_hw_data pmic5_ftsmps527 = {
-> +	.regulator_type = VRM,
-> +	.ops = &rpmh_regulator_vrm_ops,
-> +	.voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 215, 8000),
-> +	.n_voltages = 215,
-> +	.pmic_mode_map = pmic_mode_map_pmic5_smps,
-> +	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
-> +};
-> +
->  static const struct rpmh_vreg_hw_data pmic5_hfsmps515 = {
->  	.regulator_type = VRM,
->  	.ops = &rpmh_regulator_vrm_ops,
-> @@ -937,6 +966,28 @@ static const struct rpmh_vreg_init_data pmm8155au_vreg_data[] = {
->  	{}
->  };
->  
-> +static const struct rpmh_vreg_init_data pmm8654au_vreg_data[] = {
-> +	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps527,  "vdd-s1"),
-> +	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps527,  "vdd-s2"),
-> +	RPMH_VREG("smps3",  "smp%s3",  &pmic5_ftsmps527,  "vdd-s3"),
-> +	RPMH_VREG("smps4",  "smp%s4",  &pmic5_ftsmps527,  "vdd-s4"),
-> +	RPMH_VREG("smps5",  "smp%s5",  &pmic5_ftsmps527,  "vdd-s5"),
-> +	RPMH_VREG("smps6",  "smp%s6",  &pmic5_ftsmps527,  "vdd-s6"),
-> +	RPMH_VREG("smps7",  "smp%s7",  &pmic5_ftsmps527,  "vdd-s7"),
-> +	RPMH_VREG("smps8",  "smp%s8",  &pmic5_ftsmps527,  "vdd-s8"),
-> +	RPMH_VREG("smps9",  "smp%s9",  &pmic5_ftsmps527,  "vdd-s9"),
-> +	RPMH_VREG("ldo1",   "ldo%s1",  &pmic5_nldo515,    "vdd-s9"),
-> +	RPMH_VREG("ldo2",   "ldo%s2",  &pmic5_nldo515,    "vdd-l2-l3"),
-> +	RPMH_VREG("ldo3",   "ldo%s3",  &pmic5_nldo515,    "vdd-l2-l3"),
-> +	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_nldo515,    "vdd-s9"),
-> +	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_nldo515,    "vdd-s9"),
-> +	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_nldo515,    "vdd-l6-l7"),
-> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_nldo515,    "vdd-l6-l7"),
-> +	RPMH_VREG("ldo8",   "ldo%s8",  &pmic5_pldo515_mv, "vdd-l8-l9"),
-> +	RPMH_VREG("ldo9",   "ldo%s9",  &pmic5_pldo,       "vdd-l8-l9"),
-> +	{}
-> +};
-> +
->  static const struct rpmh_vreg_init_data pm8350_vreg_data[] = {
->  	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps510, "vdd-s1"),
->  	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps510, "vdd-s2"),
-> @@ -1431,6 +1482,10 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
->  		.compatible = "qcom,pmm8155au-rpmh-regulators",
->  		.data = pmm8155au_vreg_data,
->  	},
-> +	{
-> +		.compatible = "qcom,pmm8654au-rpmh-regulators",
-> +		.data = pmm8654au_vreg_data,
-> +	},
->  	{
->  		.compatible = "qcom,pmx55-rpmh-regulators",
->  		.data = pmx55_vreg_data,
+> On 17/11/2022 at 11:52, Tudor Ambarus wrote:
+>> sama5d27-wlsom1 populates an sst26vf064b SPI NOR flash. Its maximum
+>> operating frequency for 2.7-3.6V is 104 MHz. As the flash is operated
+>> at 3.3V, increase its maximum supported frequency to 104MHz. The
+>> increasing of the spi-max-frequency value requires the setting of the
+>> "CE# Not Active Hold Time", thus set the spi-cs-setup-ns to a value of 7.
+>>
+>> The sst26vf064b datasheet specifies just a minimum value for the
+>> "CE# Not Active Hold Time" and it advertises it to 5 ns. There's no
+>> maximum time specified. I determined experimentally that 5 ns for the
+>> spi-cs-setup-ns is not enough when the flash is operated close to its
+>> maximum frequency and tests showed that 7 ns is just fine, so set the
+>> spi-cs-setup-ns dt property to 7.
+>>
+>> With the increase of frequency the reads are now faster with ~37%.
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+>> ---
+>>   arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+>> b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+>> index 83bcf9fe0152..20caf40b4755 100644
+>> --- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+>> +++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+>> @@ -220,7 +220,8 @@ qspi1_flash: flash@0 {
+>>           #size-cells = <1>;
+>>           compatible = "jedec,spi-nor";
+>>           reg = <0>;
+>> -        spi-max-frequency = <80000000>;
+>> +        spi-max-frequency = <104000000>;
+>> +        spi-cs-setup-ns = /bits/ 16 <7>;
+> 
+> Following the different changes that happened to this property after
+> this post, am I right saying that this must now be changed to:
+> 
+> spi-cs-setup-delay-ns = <7>;
+> 
+> ?
+> 
+
+Yes, that should do it. I'm amending the series right now. Can you do a
+little test on your side so that we make sure everything is in place?
+After the update, something like that should be run on any board (maybe
+wlsom1-ek?):
+#!/bin/sh
+
+dd if=/dev/urandom of=./qspi_test bs=1M count=6
+mtd_debug write /dev/mtd5 0 6291456 qspi_test
+mtd_debug erase /dev/mtd5 0 6291456
+mtd_debug read /dev/mtd5 0 6291456 qspi_read
+hexdump qspi_read
+mtd_debug write /dev/mtd5 0 6291456 qspi_test
+mtd_debug read /dev/mtd5 0 6291456 qspi_read
+sha1sum qspi_test qspi_read
+
+brb,
+ta
