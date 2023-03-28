@@ -2,68 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B66496CBC7F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F986CBCA7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 12:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbjC1K1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 06:27:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60314 "EHLO
+        id S230514AbjC1KjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 06:39:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbjC1K1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:27:15 -0400
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC767618B;
-        Tue, 28 Mar 2023 03:27:13 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B85844248B;
-        Tue, 28 Mar 2023 10:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1679999231; bh=zT2koom/7W4xUS4Q4Sf76XmaDUMDIN5TnyETV511rOM=;
-        h=Date:Subject:To:Cc:From;
-        b=fDoF7aexA/9AcvnCA66GAgO+W9WNbjW5AWw4xVFwRwX9SZRxm/JPZSkZkNOrLK+c+
-         egHT+pqKAUs0KaLPXW5Tz7oQiNFzxR3gg2KH3rHVq4GJqPIgJ4e2QZcP9v+xl3PYlf
-         Ba09NK6CXwdD0KmVF3zHVZQlCdPYimKf327UbEI5io6hyajxtf/PxTwOk9+0hvnOuj
-         jhudG2tMYp6U/rOZ9iOh2gonmOvIx+5FS6rHEjvAXr4RlOKxQrx8S9uxtxQBithol3
-         l9ursIrP/XS41teW5MAscmRFYEUAeVJ7fiIeAiQ8q+Bpuu+wWcIZvaed1JbJ2CUk2k
-         ZhobpJ87npbHQ==
-Message-ID: <871beead-1cc8-bb94-7c15-0173dfb11e71@marcan.st>
-Date:   Tue, 28 Mar 2023 19:27:02 +0900
+        with ESMTP id S229968AbjC1KjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 06:39:19 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112216184
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:39:17 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-54601d90118so65790907b3.12
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 03:39:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1679999956;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WeJvOmb4UiZDVdrpjbdoZEi88r2fueDviw4j3TobD+s=;
+        b=in30x2eTX3jMdB5lq1/bDRTxEHiNx9CtvD7goZQ6srXY+8gNricGHD/FTz0kAZsX9h
+         ry0Ldo03nV1VdMZBxhOiz0iMe1BRmASe+mD65YEruCVXoY0kbUsM/FgZLzv4q1n6Ll0z
+         GVUioTnM9Eejmtvl5rRwz/3cwRjYeG2w5D9ULfltX9JSeLE9ixzw9M/O45MFf6240+qe
+         d2lTNggLA6nKiLPBrpxqqlEqBXcbUQFTRY3MQ3HPDrzVtvSk+C3SvbaQrtA3Wek29dHU
+         VcwRILvcyIQWn84anR+3PRXriNK7zyc07nGzltmgzqqyHmk3BywN1lNyUfLfgtFs836/
+         lVkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679999956;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WeJvOmb4UiZDVdrpjbdoZEi88r2fueDviw4j3TobD+s=;
+        b=Z1y939jJF69qMnJrg89fF5PAvDhHOiFcYDxOeVLM8k6Kr0k9N2rNsGW9rAJEKv3zc5
+         eQ/m5nVovX6TJRgasZnWJlMJbQVPfXg81byydfFh+1cm+6guImwL67UtDG/PL4axI4v0
+         Ldd2If4mWarZq1Fckc0MvqC15e+26E0kvNpUT34bjhxdjpV6tJOeP5YkHfS6rnr9ubR+
+         EYHY1YrAVGLQxVEAbxtqheaUZXlPXMTszJGsy0S+kVuW1ZjOwVzaxAt8eZ5iq1R2Cfsh
+         W2RPVDWa7VNlBXzwGzaDhpTPS0hubSL11OWmxSWApvUkjkhbA02FKABoogD1fOsf7UPu
+         49Kg==
+X-Gm-Message-State: AAQBX9cQJFaf3vIiytD0bE7owljaPOjJJ2jQjGm3H64e2pjCXQ9651gn
+        xuKcIhuPj7EfG2y9Ohn088vVbou4NpwPcW+ez2vcbw==
+X-Google-Smtp-Source: AKy350brQY738lvkF7Rq2rzNE3EKxx6So7gaAZKzG1faUECV9zEl3gL5esGUxz85xxrR5C20f9Chy1kDFvI+CQ0wU18=
+X-Received: by 2002:a81:4410:0:b0:545:a7d8:f278 with SMTP id
+ r16-20020a814410000000b00545a7d8f278mr6595880ywa.5.1679999956113; Tue, 28 Mar
+ 2023 03:39:16 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: i2c: Drop unneeded quotes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Peter Rosin <peda@axentia.se>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-From:   Hector Martin <marcan@marcan.st>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230327132718.573-1-quic_devipriy@quicinc.com>
+ <20230327132718.573-4-quic_devipriy@quicinc.com> <CAA8EJprTm1sZ8fnfNee+NJTiaFq17QwWaEnSoJWVYs_GY65xFg@mail.gmail.com>
+ <a6225636-7abb-3c5c-c78f-8d40c25167b9@quicinc.com>
+In-Reply-To: <a6225636-7abb-3c5c-c78f-8d40c25167b9@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 28 Mar 2023 13:39:05 +0300
+Message-ID: <CAA8EJprgcMOX-WRXP2i9k850La1A1UKaKuODd-fVi27nOxMbyA@mail.gmail.com>
+Subject: Re: [PATCH V10 3/4] arm64: dts: qcom: Add support for ipq9574 SoC and
+ RDP433 variant
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, shawnguo@kernel.org, arnd@arndb.de,
+        marcel.ziswiler@toradex.com, nfraprado@collabora.com,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, quic_srichara@quicinc.com,
+        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com, quic_poovendh@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,25 +79,195 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2023 02.35, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml | 4 ++--
->  Documentation/devicetree/bindings/i2c/apple,i2c.yaml          | 4 ++--
->  Documentation/devicetree/bindings/i2c/atmel,at91sam-i2c.yaml  | 2 +-
->  Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml     | 4 ++--
->  Documentation/devicetree/bindings/i2c/i2c-mux-gpio.yaml       | 4 ++--
->  Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++--
->  Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml       | 2 +-
->  .../devicetree/bindings/i2c/xlnx,xps-iic-2.00.a.yaml          | 4 ++--
->  8 files changed, 14 insertions(+), 14 deletions(-)
+On Tue, 28 Mar 2023 at 10:31, Devi Priya <quic_devipriy@quicinc.com> wrote:
+> On 3/27/2023 8:15 PM, Dmitry Baryshkov wrote:
+> > On Mon, 27 Mar 2023 at 16:28, Devi Priya <quic_devipriy@quicinc.com> wrote:
+> >>
+> >> Add initial device tree support for Qualcomm IPQ9574 SoC and
+> >> Reference Design Platform(RDP) 433 which is based on IPQ9574
+> >> family of SoCs
+> >>
+> >> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
+> >> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> >> Co-developed-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+> >> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+> >> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> >> ---
+> >>   Changes in V10:
+> >>          - Renamed the Board Device Tree Source to use the RDP numbers
+> >>          - Updated the Makefile, subject and commit message accordingly
+> >>
+> >>   arch/arm64/boot/dts/qcom/Makefile           |   1 +
+> >>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts |  84 ++++++
+> >>   arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 270 ++++++++++++++++++++
+> >>   3 files changed, 355 insertions(+)
+> >>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> >> index 1a29403400b7..52f1f92c5195 100644
+> >> --- a/arch/arm64/boot/dts/qcom/Makefile
+> >> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> >> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_QCOM) += ipq6018-cp01-c1.dtb
+> >>   dtb-$(CONFIG_ARCH_QCOM)        += ipq8074-hk01.dtb
+> >>   dtb-$(CONFIG_ARCH_QCOM)        += ipq8074-hk10-c1.dtb
+> >>   dtb-$(CONFIG_ARCH_QCOM)        += ipq8074-hk10-c2.dtb
+> >> +dtb-$(CONFIG_ARCH_QCOM)        += ipq9574-rdp433.dtb
+> >>   dtb-$(CONFIG_ARCH_QCOM)        += msm8916-acer-a1-724.dtb
+> >>   dtb-$(CONFIG_ARCH_QCOM)        += msm8916-alcatel-idol347.dtb
+> >>   dtb-$(CONFIG_ARCH_QCOM)        += msm8916-asus-z00l.dtb
+> >> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >> new file mode 100644
+> >> index 000000000000..2ce8e09e7565
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> >> @@ -0,0 +1,84 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> >> +/*
+> >> + * IPQ9574 RDP433 board device tree source
+> >> + *
+> >> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+> >> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> >> + */
+> >> +
+> >> +/dts-v1/;
+> >> +
+> >> +#include "ipq9574.dtsi"
+> >> +
+> >> +/ {
+> >> +       model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7";
+> >> +       compatible = "qcom,ipq9574-ap-al02-c7", "qcom,ipq9574";
+> >> +
+> >> +       aliases {
+> >> +               serial0 = &blsp1_uart2;
+> >> +       };
+> >> +
+> >> +       chosen {
+> >> +               stdout-path = "serial0:115200n8";
+> >> +       };
+> >> +};
+> >> +
+> >> +&blsp1_uart2 {
+> >> +       pinctrl-0 = <&uart2_pins>;
+> >> +       pinctrl-names = "default";
+> >> +       status = "okay";
+> >> +};
+> >> +
+> >> +&sdhc_1 {
+> >> +       pinctrl-0 = <&sdc_default_state>;
+> >> +       pinctrl-names = "default";
+> >> +       mmc-ddr-1_8v;
+> >> +       mmc-hs200-1_8v;
+> >> +       mmc-hs400-1_8v;
+> >> +       mmc-hs400-enhanced-strobe;
+> >> +       max-frequency = <384000000>;
+> >> +       bus-width = <8>;
+> >> +       status = "okay";
+> >> +};
+> >> +
+> >> +&sleep_clk {
+> >> +       clock-frequency = <32000>;
+> >> +};
+> >> +
+> >> +&tlmm {
+> >> +       sdc_default_state: sdc-default-state {
+> >> +               clk-pins {
+> >> +                       pins = "gpio5";
+> >> +                       function = "sdc_clk";
+> >> +                       drive-strength = <8>;
+> >> +                       bias-disable;
+> >> +               };
+> >> +
+> >> +               cmd-pins {
+> >> +                       pins = "gpio4";
+> >> +                       function = "sdc_cmd";
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-up;
+> >> +               };
+> >> +
+> >> +               data-pins {
+> >> +                       pins = "gpio0", "gpio1", "gpio2",
+> >> +                              "gpio3", "gpio6", "gpio7",
+> >> +                              "gpio8", "gpio9";
+> >> +                       function = "sdc_data";
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-up;
+> >> +               };
+> >> +
+> >> +               rclk-pins {
+> >> +                       pins = "gpio10";
+> >> +                       function = "sdc_rclk";
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-down;
+> >> +               };
+> >> +       };
+> >> +};
+> >> +
+> >> +&xo_board_clk {
+> >> +       clock-frequency = <24000000>;
+> >> +};
+> >> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> >> new file mode 100644
+> >> index 000000000000..3bb7435f5e7f
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> >> @@ -0,0 +1,270 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> >> +/*
+> >> + * IPQ9574 SoC device tree source
+> >> + *
+> >> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+> >> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+> >> + */
+> >> +
+> >> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> >> +#include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+> >> +#include <dt-bindings/reset/qcom,ipq9574-gcc.h>
+> >> +
+> >> +/ {
+> >> +       interrupt-parent = <&intc>;
+> >> +       #address-cells = <2>;
+> >> +       #size-cells = <2>;
+> >> +
+> >> +       clocks {
+> >> +               bias_pll_ubi_nc_clk: bias-pll-ubi-nc-clk {
+> >> +                       compatible = "fixed-clock";
+> >> +                       clock-frequency = <353000000>;
+> >> +                       #clock-cells = <0>;
+> >> +               };
+> >
+> > What is the source for this clock? With it clocking at 353 MHz, I
+> > doubt that it is an external clock.
+> bias_pll_ubi_nc_clk (353MHz)is a backup source
+> for Q6_AXIM2_CLK/PCIE2_AXIM_CLK/PCIE3_AXIM_CLK/SNOC-CLK
+> It is from the CMN_PLL, and is the same as that of PPE core clock.
+> Do you suggest to move its clock-frequency to Board DT similar to
+> xo/sleep clock?
 
-For apple:
+No, I suggest moving it to the device where it originates. If it comes
+from GCC, it should be provided by the GCC, not by the top-level fixed
+clock.
 
-Reviewed-by: Hector Martin <marcan@marcan.st>
+> >
+> >> +
+> >> +               sleep_clk: sleep-clk {
+> >> +                       compatible = "fixed-clock";
+> >> +                       #clock-cells = <0>;
+> >> +               };
+> >> +
+> >> +               xo_board_clk: xo-board-clk {
+> >> +                       compatible = "fixed-clock";
+> >> +                       #clock-cells = <0>;
+> >> +               };
+> >> +       };
+> >
+> > [skipped the rest]
+> >
+> Regards,
+> Devi Priya
 
-- Hector
 
+
+-- 
+With best wishes
+Dmitry
