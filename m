@@ -2,137 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 566146CCACB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 21:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6056CCAE4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 21:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjC1Tg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 15:36:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50456 "EHLO
+        id S229681AbjC1Tq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 15:46:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbjC1Tgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 15:36:52 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58063AA5
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 12:36:49 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id m6-20020a05600c3b0600b003ee6e324b19so8247857wms.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 12:36:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1680032208;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MnMzj7ZL79LUqbUVPGQil7x2FOJbb8kWmQlz9dfo7dA=;
-        b=xWi7Hv9NpattlAgLrE5n4/25XF6YG9IMjnz6bom/kF+tMy3RnLf1pW5INeMugCkSyw
-         SASbBVXtYrWuX/fXcxoapxKAcIZPYh8hsfbHEclxV4iUj41b1SkVQ2/XFO3NMWQTa7BJ
-         2OxTiaEye4sH0t2nUGfqsBJZt++ifJ84wbpfejsSuhlsIrsbvmeOhh3TpDgaJn8Fj45a
-         xmsGaRLSyvqkpUYmnR14iw26U5+TFs+ZyWwTUvIwle0pv+IR+viJ/D3//quffnFzGBBI
-         uo7v2+7FNCqAEdRLMg72+rOAKHDZVtbgaW7YZIcNhIsVwextLdSL0Sr7OiNFtaRBsT8Z
-         iOxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680032208;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MnMzj7ZL79LUqbUVPGQil7x2FOJbb8kWmQlz9dfo7dA=;
-        b=1DKQJFdWnEjN+GFQtlglVE9GHRwLv6vqkMFCS2a63hVcgqyVWTgBYlTelqugK2DDYL
-         Om6wy/YN80IWx2Eu+LeSKFNPYFQQmNBEIpZNJLofqCrCw60b1BAcuxnOATCVxAC2cj8R
-         GsdYWUgE3UUmMFUBD0fYSgp7Hdi0EERLbHNgJHS4jh1JEBr6IPgeHMBV1RVX4TrjnAPB
-         0EffAuqwoO9B5fwfeyQRw0cQghX3+hjsjGWg0pI894OB5l+OFH1QtlFLtA9q4gLLTWI0
-         Ps1eXTBI9q095MTFhgDWKz7xEG68kdaD4+Enwfd6bD76SwGykiVfkeJG/mkAboANSpwX
-         MDfA==
-X-Gm-Message-State: AO0yUKU3ceoLy4yNHugawk2iEnNotEd4bEsYjAYe8Naj//a4LpbrIIZK
-        kONuQhDYF5zRlfWnqAP5HYAEiQ==
-X-Google-Smtp-Source: AK7set/amkAAst5aN5iawLGDEAZKdW/QVQ5cwY3lBH30XnzTf2CTyiV7lWHVjHV2Dk6mjnns57wW9g==
-X-Received: by 2002:a7b:cb81:0:b0:3ee:1a70:7ea2 with SMTP id m1-20020a7bcb81000000b003ee1a707ea2mr12434106wmi.3.1680032208496;
-        Tue, 28 Mar 2023 12:36:48 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:7b39:552d:b2f1:d7e8])
-        by smtp.gmail.com with ESMTPSA id g23-20020a7bc4d7000000b003eb5ce1b734sm18060544wmk.7.2023.03.28.12.36.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 12:36:48 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 7/7] arm64: dts: qcom: sa8775p: add the GPU IOMMU node
-Date:   Tue, 28 Mar 2023 21:36:32 +0200
-Message-Id: <20230328193632.226095-8-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20230328193632.226095-1-brgl@bgdev.pl>
-References: <20230328193632.226095-1-brgl@bgdev.pl>
+        with ESMTP id S229461AbjC1Tqz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 15:46:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BA926B7;
+        Tue, 28 Mar 2023 12:46:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9ED6961902;
+        Tue, 28 Mar 2023 19:46:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07BA1C433D2;
+        Tue, 28 Mar 2023 19:46:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680032813;
+        bh=Lmu/Mq2nMz3/AF7qQFtIhYKDY1SCuBIjyGhCVC4C96g=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=sz4ARuzNm8dKti0tdjEdSeHll5ISYj6remDDdQ4Heml9kiLskkVRYbkhTq/bjSwhW
+         R8hzgRlumr+NzSxuzHeRaxopEsJxIYhAJrDBiGByQdo2ZdVwu2GFnweD3VYQVIdHtc
+         xkHbqxp1WPZh+nVQKAOWP6k2trSzSaN4tSgh9DWWjGhL3VEoDwVrk78JpGumcvKXLS
+         AdvTTBFciEUM8pF/JZwRXb5EiUcsoGGzd0BiCGwUedkHSeMlRz4nTQ4XQCEwygmmEj
+         P6wNkRds2hG4W2DSFU3ewcqXKCX9wMNigGBFLiXVFLRB6EFGzlM3dtRM3ZrfzO5BuH
+         tTcB1gzjfocZw==
+Message-ID: <39cb4f8c-d10f-f543-ddca-8a8507757f4c@kernel.org>
+Date:   Tue, 28 Mar 2023 22:46:48 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am625-sk: Enable Type-C port
+ for USB0
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>
+Cc:     vigneshr@ti.com, kristo@kernel.org, srk@ti.com,
+        r-gunasekaran@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230328124315.123778-1-rogerq@kernel.org>
+ <20230328124315.123778-3-rogerq@kernel.org>
+ <20230328131810.x2j6uvwzhniclvwf@evoke>
+ <3bd6191c-caa4-15a8-92ad-17a07ec085e2@kernel.org>
+ <20230328133024.ow6cvm22o2c5heem@untrimmed>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230328133024.ow6cvm22o2c5heem@untrimmed>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add the GPU IOMMU for sa8775p-based platforms.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 29 +++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+On 28/03/2023 16:30, Nishanth Menon wrote:
+> On 16:20-20230328, Roger Quadros wrote:
+>>
+>>
+>> On 28/03/2023 16:18, Nishanth Menon wrote:
+>>> On 15:43-20230328, Roger Quadros wrote:
+>>>> USB0 is a Type-C port with dual data role and power sink.
+>>>>
+>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts      |  4 ++
+>>>>  arch/arm64/boot/dts/ti/k3-am625-sk.dts        | 44 ++++++++++++++++++-
+>>>>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  4 --
+>>>>  3 files changed, 47 insertions(+), 5 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+>>>> index b2ca19e3042e..a3c3609833fd 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+>>>> @@ -225,3 +225,7 @@ ldo4_reg: ldo4 {
+>>>>  		};
+>>>>  	};
+>>>>  };
+>>>> +
+>>>> +&usb0 {
+>>>> +	dr_mode = "peripheral";
+>>>> +};
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>> index cdc0858dd1b2..13fdaa9ce4e7 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+>>>> @@ -136,6 +136,35 @@ AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
+>>>>  	};
+>>>>  };
+>>>>  
+>>>> +&main_i2c0 {
+>>>> +	typec_pd: tps6598x@3f {
+>>>> +		compatible = "ti,tps6598x";
+>>>> +		reg = <0x3f>;
+>>>> +		interrupt-parent = <&exp1>;
+>>>> +		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
+>>>> +		interrupt-names = "irq";
+>>>> +
+>>>> +		connector {
+>>>> +			compatible = "usb-c-connector";
+>>>> +			label = "USB-C";
+>>>> +			self-powered;
+>>>> +			data-role = "dual";
+>>>> +			power-role = "sink";
+>>>> +			ports {
+>>>> +				#address-cells = <1>;
+>>>> +				#size-cells = <0>;
+>>>> +
+>>>> +				port@0 {
+>>>> +					reg = <0>;
+>>>> +					usb_con_hs: endpoint {
+>>>> +						remote-endpoint = <&usb0_hs_ep>;
+>>>> +					};
+>>>> +				};
+>>>> +			};
+>>>> +		};
+>>>> +	};
+>>>> +};
+>>>> +
+>>>>  &main_i2c1 {
+>>>>  	exp1: gpio@22 {
+>>>>  		compatible = "ti,tca6424";
+>>>> @@ -150,7 +179,7 @@ exp1: gpio@22 {
+>>>>  				   "UART1_FET_BUF_EN", "WL_LT_EN",
+>>>>  				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
+>>>>  				   "CSI_GPIO2", "PRU_3V3_EN",
+>>>> -				   "HDMI_INTn", "TEST_GPIO2",
+>>>> +				   "HDMI_INTn", "PD_I2C_IRQ",
+>>>>  				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
+>>>>  				   "MCASP1_FET_SEL", "UART1_FET_SEL",
+>>>>  				   "TSINT#", "IO_EXP_TEST_LED";
+>>>> @@ -256,3 +285,16 @@ partition@3fc0000 {
+>>>>  		};
+>>>>  	};
+>>>>  };
+>>>> +
+>>>> +&usb0 {
+>>>> +	#address-cells = <1>;
+>>>> +	#size-cells = <0>;
+>>>> +	usb-role-switch;
+>>>> +
+>>>> +	port@0 {
+>>>> +		reg = <0>;
+>>>> +		usb0_hs_ep: endpoint {
+>>>> +		    remote-endpoint = <&usb_con_hs>;
+>>>> +	       };
+>>>> +	};
+>>>> +};
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+>>>> index 80e8b9b9a5f5..e3223088b90c 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+>>>> @@ -264,10 +264,6 @@ &usbss1 {
+>>>>  	ti,vbus-divider;
+>>>>  };
+>>>>  
+>>>> -&usb0 {
+>>>> -	dr_mode = "peripheral";
+>>>> -};
+>>>> -
+>>>
+>>> 	How about sk-lp ?
+>>
+>> moved it to sk-lp. see above in this patch.
+>>
+> 
+> A bit confused. Looking at [1] vs [2], it seems to indicate pd controller at
+> 0x3f as well? Am I misreading the schematics?
+> 
+> [1] https://www.ti.com/tool/SK-AM62-LP#design-files
+> [2] https://www.ti.com/tool/SK-AM62#design-files
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 4c45ad1cc7ff..de5e8449397c 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
- #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-@@ -603,6 +604,34 @@ gpucc: clock-controller@3d90000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		kgsl_smmu: iommu@3da0000 {
-+			compatible = "qcom,sa8775p-smmu-500", "qcom,smmu-500", "arm,mmu-500";
-+			reg = <0x0 0x03da0000 0x0 0x20000>;
-+			#iommu-cells = <2>;
-+			#global-interrupts = <2>;
-+			dma-coherent;
-+			power-domains = <&gpucc GPU_CC_CX_GDSC>;
-+			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
-+				 <&gpucc GPU_CC_AHB_CLK>,
-+				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-+				 <&gpucc GPU_CC_CX_GMU_CLK>,
-+				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-+				 <&gpucc GPU_CC_HUB_AON_CLK>;
-+			interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sa8775p-pdc", "qcom,pdc";
- 			reg = <0x0 0x0b220000 0x0 0x30000>,
--- 
-2.37.2
+Yes PD controller is at 0x3f for both boards but IRQ is not routed on AM62-LP.
+I tried to explain this the cover letter. ;)
 
+Pasting here for convenience.
+
+> Although k3-am625-lp-sk USB is exactly the same as on k3-am625-sk,
+> it is missing the IRQ line from Type-C chip which is currently
+> required as per chip's DT binding. So we don't add Type-C support
+> for k3-am625-lp-sk till h/w is fixed or polling mode support for
+> Type-C chip is accepted [2]
+> 
+> [2] - https://lore.kernel.org/lkml/20230324133741.43408-1-rogerq@kernel.org/T/
+
+
+cheers,
+-roger
