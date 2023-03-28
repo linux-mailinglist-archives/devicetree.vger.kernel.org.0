@@ -2,184 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 973856CB4A6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 05:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C608D6CB4CB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 05:25:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232354AbjC1DM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Mar 2023 23:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57946 "EHLO
+        id S232547AbjC1DZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Mar 2023 23:25:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230431AbjC1DM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 23:12:58 -0400
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660A7A6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 20:12:55 -0700 (PDT)
-Received: by mail-ua1-x92e.google.com with SMTP id i22so7883387uat.8
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 20:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1679973174;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NwOES1uov/pxVLowAE7Sgh3FPfyIsRDoqEMp2uagMQI=;
-        b=NgLG8Q5l9naxBa4Jf7nYrLS8DevbrfmEMMiDB6xIjXmdvmxfcmHG1fu7YA6jdXBu5a
-         I/PLOK860EliMqfH52D0rDFLicN/3jKe4r31PEmIx2OdxRR+0T9OZ962PmLqA7e0KKje
-         CDwaaqQm9fEDg1oG6tSD/I8GzJu/l5G/I1sNI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679973174;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NwOES1uov/pxVLowAE7Sgh3FPfyIsRDoqEMp2uagMQI=;
-        b=6di9ao/DgmpDjRS3S7qwYQWkbCyUZ2icmsvd0QeRgas5gazgAY8b2lT3ajyyjzg8Pm
-         I/u5wK3YgLbzeF5sopps9Ol4JcMghyWgCV4he2WhSI6ol2RhoRPcKN6Dcw1218SvASA3
-         amlUNVeFViXIj/fHnfZNUTL/cu5e/I9XHINh8p7/1QnSxEg/OyNNn+38U7CmF+FRcPWc
-         IIE+hPasVa4EN5o2MPD6GFGGZ7BWhQaSRVJe4i9RJhUDd8lDfFK1ZHhhdUdMEGfEncOS
-         jo0OIako792aDQQLWo6yxsl2z5BAAf/QPfAW60f70nEQhzSMbjTz7kymG7B3r5RGfFtl
-         R7KQ==
-X-Gm-Message-State: AAQBX9dGZ/zFN+/5stBbLmcY72kabSC0TWrtbQDCDH9xAfPf05Faj3Fy
-        2/6urNDLAiFUcn+pNjOxIA21hhIdnmk6sqXQupJJKQ==
-X-Google-Smtp-Source: AKy350bTe0q20Y1kFa3RqGcrtmmaMcfvywJnI4v6r/ZKEb+aF8/ujyJQ/dovvRsfrWL510XzD2Ai4MZ3KVikA5Tw/BY=
-X-Received: by 2002:a05:6130:3a9:b0:68d:6360:77b with SMTP id
- az41-20020a05613003a900b0068d6360077bmr10737949uab.1.1679973174489; Mon, 27
- Mar 2023 20:12:54 -0700 (PDT)
+        with ESMTP id S232324AbjC1DZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Mar 2023 23:25:27 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5D8752139;
+        Mon, 27 Mar 2023 20:25:23 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxMMwhXiJkEt0SAA--.28861S3;
+        Tue, 28 Mar 2023 11:25:21 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxAeUcXiJkD+0OAA--.46439S3;
+        Tue, 28 Mar 2023 11:25:19 +0800 (CST)
+Subject: Re: [PATCH v3 2/2] spi: loongson: add bus driver for the loongson spi
+ controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230324063317.14664-1-zhuyinbo@loongson.cn>
+ <20230324063317.14664-3-zhuyinbo@loongson.cn>
+ <0fff1e01-678b-a26a-084b-9aa30a0deea5@linaro.org>
+ <2a24cce4-3211-3440-cc42-55499ded275e@loongson.cn>
+ <0c43019f-01b6-c466-c7d4-c2b91116b7db@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <96c4b0e8-2b3b-1eb9-a922-807894fbc06d@loongson.cn>
+Date:   Tue, 28 Mar 2023 11:25:16 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
- <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
- <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
- <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com> <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com>
-In-Reply-To: <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 28 Mar 2023 11:12:43 +0800
-Message-ID: <CAGXv+5GGO76H9Z-X=3nhtmSyp7uhuUF4DE0T527M5z+SBX482Q@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
-To:     Balsam CHIHI <bchihi@baylibre.com>
-Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <0c43019f-01b6-c466-c7d4-c2b91116b7db@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxAeUcXiJkD+0OAA--.46439S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7KryUAF4UZF4UGFW5Ar4rAFb_yoW8Xr45pa
+        18CF4YkFWUJr1Ikr1Sqas8CFyYvayfGrZ8G3srKw1rXr9Yv34ayF1UtFy5CrZxXF18WFyI
+        qF4jgr97Ga15XFJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bxxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x
+        8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
+        x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrw
+        CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI
+        42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
+        80aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUzgAwDUUUU
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 8:21=E2=80=AFAM Balsam CHIHI <bchihi@baylibre.com> =
-wrote:
->
-> On Sat, Mar 25, 2023 at 5:33=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org>=
- wrote:
-> >
-> > On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre.c=
-om> wrote:
-> > >
-> > > Hi Chen-Yu,
-> > >
-> > > I suspect the bug comes from incorrect calibration data offsets for A=
-P
-> > > Domain because you confirm that MCU Domain probe runs without issues.
-> > > Is it possible to test something for us to confirm this theory (i
-> > > don't have an mt8192 board on hand now), when you have the time of
-> > > course?
-> > > We would like to test AP Domain's calibration data offsets with a
-> > > working one, for example :
-> > >
-> > >  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D {
-> > >                 {
-> > > -               .cal_offset =3D { 0x25, 0x28 },
-> > > +               .cal_offset =3D { 0x04, 0x04 },
-> > >                 .lvts_sensor =3D {
-> > >                         { .dt_id =3D MT8192_AP_VPU0 },
-> > >                         { .dt_id =3D MT8192_AP_VPU1 }
-> > > @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
-> > > mt8192_lvts_ap_data_ctrl[] =3D {
-> > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
-> > >         },
-> > >         {
-> > > -               .cal_offset =3D { 0x2e, 0x31 },
-> > > +               .cal_offset =3D { 0x04, 0x04 },
-> > >                 .lvts_sensor =3D {
-> > >                         { .dt_id =3D MT8192_AP_GPU0 },
-> > >                         { .dt_id =3D MT8192_AP_GPU1 }
-> > > @@ -1346,7 +1346,7 @@ static const struct lvts_ctrl_data
-> > > mt8192_lvts_ap_data_ctrl[] =3D {
-> > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
-> > >         },
-> > >         {
-> > > -               .cal_offset =3D { 0x37, 0x3a },
-> > > +               .cal_offset =3D { 0x04, 0x04 },
-> > >                 .lvts_sensor =3D {
-> > >                         { .dt_id =3D MT8192_AP_INFRA },
-> > >                         { .dt_id =3D MT8192_AP_CAM },
-> > > @@ -1356,7 +1356,7 @@ static const struct lvts_ctrl_data
-> > > mt8192_lvts_ap_data_ctrl[] =3D {
-> > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
-> > >         },
-> > >         {
-> > > -               .cal_offset =3D { 0x40, 0x43, 0x46 },
-> > > +               .cal_offset =3D { 0x04, 0x04, 0x04 },
-> > >                 .lvts_sensor =3D {
-> > >                         { .dt_id =3D MT8192_AP_MD0 },
-> > >                         { .dt_id =3D MT8192_AP_MD1 },
-> > >
-> > > This example is tested and works for mt8195,
-> > > (all sensors use the same calibration data offset for testing purpose=
-s).
-> > >
-> > > Thank you in advance for your help.
-> >
-> > The MCU ones are still tripping though. If I change all of them to 0x04=
-,
-> > then nothing trips. There's also a bug in the interrupt handling code
-> > that needs to be dealt with.
-> >
-> > AFAICT the calibration data is stored differently. If you look at Chrom=
-eOS's
-> > downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT81=
-92,
-> > and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
-> > MT8195 has all data sequentially stored, while MT8192 has most data sto=
-red
-> > in lower 24 bits of each 32-bit word, and the highest 8 bits are then u=
-sed
-> > to pack data for the remaining sensors.
-> >
-> > Regards
-> > ChenYu
->
-> Hi Chen-Yu Tsai,
->
-> Thank you very much for helping me testing this suggestion.
->
-> Indeed, calibration data is stored differently in the mt8192 compared to =
-mt8195.
-> So, the mt8192's support will be delayed for now, to allow further debugg=
-ing.
->
-> In the mean time, we will only continue to upstream the remaining
-> mt8195's source code, so it will get full LVTS support.
-> A new series will be submitted soon.
->
-> Would you please point me out to the bug in interrupt handling code?
 
-I just sent out two patches and CC-ed you on them. They are here just in ca=
-se:
 
-https://lore.kernel.org/linux-pm/20230328031037.1361048-1-wenst@chromium.or=
-g/
-https://lore.kernel.org/linux-pm/20230328031017.1360976-1-wenst@chromium.or=
-g/
+在 2023/3/27 下午4:53, Krzysztof Kozlowski 写道:
+> On 27/03/2023 10:42, zhuyinbo wrote:
+>>
+>>
+>> 在 2023/3/24 下午7:31, Krzysztof Kozlowski 写道:
+>>> On 24/03/2023 07:33, Yinbo Zhu wrote:
+>>>> This bus driver supports the Loongson spi hardware controller in the
+>>>> Loongson platforms and supports to use DTS and PCI framework to
+>>>> register spi device resources.
+>>>>
+>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>> ---
+>>>>    MAINTAINERS                     |   4 +
+>>>>    drivers/spi/Kconfig             |  31 ++++
+>>>>    drivers/spi/Makefile            |   3 +
+>>>>    drivers/spi/spi-loongson-core.c | 302 ++++++++++++++++++++++++++++++++
+>>>>    drivers/spi/spi-loongson-pci.c  |  89 ++++++++++
+>>>>    drivers/spi/spi-loongson-plat.c |  66 +++++++
+>>>>    drivers/spi/spi-loongson.h      |  41 +++++
+>>>>    7 files changed, 536 insertions(+)
+>>>>    create mode 100644 drivers/spi/spi-loongson-core.c
+>>>>    create mode 100644 drivers/spi/spi-loongson-pci.c
+>>>>    create mode 100644 drivers/spi/spi-loongson-plat.c
+>>>>    create mode 100644 drivers/spi/spi-loongson.h
+>>>
+>>> Your patches still have build warnings. Are these false postives or you
+>>> forgot to build it? Anyway, please respond to the report.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> thanks your reminder, I have already provided feedback about compile issue.
+> 
+> Then please test your patches before sending...
+That's for sure, I tested it on LoongArch platform.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-ChenYu
