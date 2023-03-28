@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8516CB83D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFF306CB841
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232202AbjC1Hem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42666 "EHLO
+        id S231932AbjC1Heh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232144AbjC1HeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:34:17 -0400
+        with ESMTP id S232221AbjC1HeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:34:19 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E142840CD
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:33:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE902681
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:33:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1679988799;
+        s=mimecast20190719; t=1679988800;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=3RKROZr4GzDPgqMOFWqSLDrRs2RHwcu0c+oEbFcDZ1s=;
-        b=VXLxhGwmdRMsdQ5YLXj/5mWi/XBO22/+EIiJ/GDTKvAHpnW5+rDn3S7rak9Ils/OnODCT7
-        jXlFRJkKJ+2aBYPMtyXUyeJWSS6nR/iPtWpObpFGB3cTp2uqIGSV7B04fMVhRwEZarZBJp
-        rrYFw9MO9cS+ULOxXaa02BNTokD45Cs=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=nNdM7KSyRgCrr4mbIGjnmBDUe48JVTbvN2evKlFTHYo=;
+        b=f41Ho/HE/6AR+eNMByiUdffxM3nSOt/4aKn9kGWPk8ZMOgfkeVsYAmS2XoMfed9/pZTrmE
+        085ZFHGYmeE+4PSCs0AOqLjG1szVU/rLcllJBEIqykHRjZFfw8b71c7e0OreFMqFnnmUZH
+        x8ZqXmIeM8VtQhaQ3xgYG917FfqynT4=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-93-tvefePKOO3-eWoQ5ISpErw-1; Tue, 28 Mar 2023 03:33:17 -0400
-X-MC-Unique: tvefePKOO3-eWoQ5ISpErw-1
-Received: by mail-wm1-f72.google.com with SMTP id bh19-20020a05600c3d1300b003ee93fac4a9so6505429wmb.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:33:17 -0700 (PDT)
+ us-mta-635-1i4AcE0ROFuJl7cqR01Z0Q-1; Tue, 28 Mar 2023 03:33:19 -0400
+X-MC-Unique: 1i4AcE0ROFuJl7cqR01Z0Q-1
+Received: by mail-wm1-f70.google.com with SMTP id l16-20020a05600c4f1000b003ef6ed5f645so2570609wmq.9
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:33:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679988796;
+        d=1e100.net; s=20210112; t=1679988798;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3RKROZr4GzDPgqMOFWqSLDrRs2RHwcu0c+oEbFcDZ1s=;
-        b=dUA1GtnfWFYETUEUoXPqlD/mkJXYim/HQcqhCOHOrDnw5ZQHHYljwGCmXp35jvObBu
-         e+DazxhhFqi6UCpq8FSnzKvRnIzwAUpcC3PKPdP1myVgnGEOCga0BK+rXg0/d5+N97bl
-         D+2hl7o7mOninctx/ErofHBVj7wCS8XupAJheFeM7Fl+WZpXLlSGasANJoGUdix7T+9s
-         vuZuC9YoKiQDnvghpYbpLfWXR+njNyXNjWOoxHPzmBXs9oP/1tDPJfh5d1BuLR9MhYY6
-         b95VqS9AyofP4O+JTmfokhUuN88Wfnx6FojyGu+UCQVgdRn8uz7nUJCDjX8laPSbEXc3
-         XD3A==
-X-Gm-Message-State: AO0yUKVdg1a34FYIMQA+IJJQ8uWb8nSRzy1R/X5IlnwvxkqWp348kzKf
-        tH2lDOaEFEVxu0UODwmL0PsdwoI3uWk0F5D7VF24zsuugpsAgRTlx/0yr+X3PexhPv6MJ/ik8te
-        0AVmCuogk+JrJRVEJ5qy6qQ==
-X-Received: by 2002:a05:600c:287:b0:3ed:cc22:23db with SMTP id 7-20020a05600c028700b003edcc2223dbmr11833336wmk.3.1679988796652;
-        Tue, 28 Mar 2023 00:33:16 -0700 (PDT)
-X-Google-Smtp-Source: AK7set+E7Hunz2KKt4RZvQ903yvOLNFadeK9bEOzN8DCEVH3HEHCePFn8XpKOb8OMCb77RgGdWB2qw==
-X-Received: by 2002:a05:600c:287:b0:3ed:cc22:23db with SMTP id 7-20020a05600c028700b003edcc2223dbmr11833309wmk.3.1679988796327;
-        Tue, 28 Mar 2023 00:33:16 -0700 (PDT)
+        bh=nNdM7KSyRgCrr4mbIGjnmBDUe48JVTbvN2evKlFTHYo=;
+        b=1oitSQ8t7FWvRH9Kydm8aZ4FzohJdSTlsYiyEmzYbLO6LoVZU+jr/sVOF40xN6jlwd
+         PM/VhZwgODur3Ca/5wZZ4oxy/sFpo90Zjb/kKDCpRV+ROZFqNR1Igi0as7aXbdw2VDBg
+         kiPTgp+3+NLU0Ub8q2uS3zbRjM1674sNlluGsuCXxInqHehNBV9EeX4C0hHdt4lfYrB4
+         Vgt3q52vh4MjaIGA2sG8tillSZZ1uAbw4cxXdJ/XasVnD7hfBADSmWbUk+vPfITT7ro9
+         CXIeLtMZex19mNxRqOGMhlKP18kdk76Ar5R4F0y8HA+fAGAyGa9t1+37M2f+vtLyoX+0
+         8lJQ==
+X-Gm-Message-State: AO0yUKWiywY1CSekI5eObyB2wHuFkEwcdNwIPfoUF8V6VcoN47KGHVaP
+        zDuVUOIN2zqzf0puGBgCpTOLqk0CHcpOXqbs0Zmc7SwIHW9BITHpfZx6FTOkj3yW/aanL+RHTP0
+        e668+BtCr+wt48yoq+ha44Q==
+X-Received: by 2002:a05:600c:c6:b0:3ef:df3:1693 with SMTP id u6-20020a05600c00c600b003ef0df31693mr11393765wmm.32.1679988798071;
+        Tue, 28 Mar 2023 00:33:18 -0700 (PDT)
+X-Google-Smtp-Source: AK7set98gCyXpnG4Ha5cE59btAVfSKxfqXI1RJYKrRZnSKKWGrx+Oi6U2VNaI7A9EVKO8nI+cTTlEQ==
+X-Received: by 2002:a05:600c:c6:b0:3ef:df3:1693 with SMTP id u6-20020a05600c00c600b003ef0df31693mr11393735wmm.32.1679988797783;
+        Tue, 28 Mar 2023 00:33:17 -0700 (PDT)
 Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id j6-20020a05600c190600b003ef6bc71cccsm7527075wmq.27.2023.03.28.00.33.15
+        by smtp.gmail.com with ESMTPSA id j6-20020a05600c190600b003ef6bc71cccsm7527075wmq.27.2023.03.28.00.33.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 00:33:16 -0700 (PDT)
+        Tue, 28 Mar 2023 00:33:17 -0700 (PDT)
 From:   Javier Martinez Canillas <javierm@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Peter Robinson <pbrobinson@gmail.com>,
@@ -65,15 +65,16 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
         =?UTF-8?q?Kamil=20Trzci=C5=84ski?= <ayufan@ayufan.eu>,
         Javier Martinez Canillas <javierm@redhat.com>,
+        Caleb Connolly <kc@postmarketos.org>,
         Heiko Stuebner <heiko@sntech.de>,
         Jarrah Gosbell <kernel@undef.tools>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-Subject: [PATCH v3 1/2] arm64: dts: rk3399-pinephone-pro: Add internal display support
-Date:   Tue, 28 Mar 2023 09:33:08 +0200
-Message-Id: <20230328073309.1743112-2-javierm@redhat.com>
+Subject: [PATCH v3 2/2] arm64: dts: rk3399-pinephone-pro: Add touchscreen support
+Date:   Tue, 28 Mar 2023 09:33:09 +0200
+Message-Id: <20230328073309.1743112-3-javierm@redhat.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230328073309.1743112-1-javierm@redhat.com>
 References: <20230328073309.1743112-1-javierm@redhat.com>
@@ -92,8 +93,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Martijn Braam <martijn@brixit.nl>
 
-The phone's display is using a Hannstar LCD panel. Support it by adding a
-panel DT node and all needed nodes (backlight, MIPI DSI, regulators, etc).
+The phone has a Goodix GT1158 touchscreen, add a DT node for it.
 
 Signed-off-by: Martijn Braam <martijn@brixit.nl>
 Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
@@ -101,164 +101,45 @@ Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
 Co-developed-by: Ondrej Jirman <megi@xff.cz>
 Signed-off-by: Ondrej Jirman <megi@xff.cz>
 Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-Tested-by: Ondrej Jirman <megi@xff.cz>
 ---
 
 Changes in v3:
-- Fix some ./scripts/checkpatch.pl --strict warnings.
-- Add Ondrej Jirman Tested-by tag.
-- Change PWM period to 50000 since 20 kHz is recommended (Ondrej Jirman).
-- Remove useless comments for the panel regulators (Ondrej Jirman).
-- Drop unneeded pinctrl pull down conf for pins that either already have
-  a pull-down resistor or are already driven by the SoC (Ondrej Jirman).
-- Remove "pwm-delay-us" property not supported in mainline (Ondrej Jirman).
+- Use the correct "goodix,gt1158" compatible string (Ondrej Jirman).
+- Remove "poweroff-in-suspend" not supported in mainline (Ondrej Jirman).
 
-Changes in v2:
-- Drop touchscreen node because used the wrong compatible (Ondrej Jirman).
-- Fix assigned-clock-parents in vopb node (Ondrej Jirman).
-- Add vopl and vopl nodes.
-
- .../dts/rockchip/rk3399-pinephone-pro.dts     | 95 +++++++++++++++++++
- 1 file changed, 95 insertions(+)
+ .../dts/rockchip/rk3399-pinephone-pro.dts     | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index a0795a2b1cb1..539b36e8bff5 100644
+index 539b36e8bff5..475ba78acc09 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -29,6 +29,11 @@ chosen {
- 		stdout-path = "serial2:115200n8";
+@@ -367,6 +367,25 @@ regulator-state-mem {
  	};
- 
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm0 0 50000 0>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -102,6 +107,30 @@ wifi_pwrseq: sdio-wifi-pwrseq {
- 		/* WL_REG_ON on module */
- 		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
- 	};
-+
-+	/* MIPI DSI panel 1.8v supply */
-+	vcc1v8_lcd: vcc1v8-lcd {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		regulator-name = "vcc1v8_lcd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+		gpio = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+	};
-+
-+	/* MIPI DSI panel 2.8v supply */
-+	vcc2v8_lcd: vcc2v8-lcd {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		regulator-name = "vcc2v8_lcd";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+		gpio = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+	};
  };
  
- &cpu_alert0 {
-@@ -139,6 +168,11 @@ &emmc_phy {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_gpu>;
++&i2c3 {
++	i2c-scl-rising-time-ns = <450>;
++	i2c-scl-falling-time-ns = <15>;
 +	status = "okay";
-+};
 +
- &i2c0 {
- 	clock-frequency = <400000>;
- 	i2c-scl-rising-time-ns = <168>;
-@@ -362,6 +396,39 @@ &io_domains {
- 	status = "okay";
- };
- 
-+&mipi_dsi {
-+	status = "okay";
-+	clock-master;
-+
-+	ports {
-+		mipi_out: port@1 {
-+			#address-cells = <0>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			mipi_out_panel: endpoint {
-+				remote-endpoint = <&mipi_in_panel>;
-+			};
-+		};
-+	};
-+
-+	panel@0 {
-+		compatible = "hannstar,hsd060bhw4";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		reset-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&vcc2v8_lcd>;
-+		iovcc-supply = <&vcc1v8_lcd>;
-+		pinctrl-names = "default";
-+
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
-+			};
-+		};
++	touchscreen@14 {
++		compatible = "goodix,gt1158";
++		reg = <0x14>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <RK_PB5 IRQ_TYPE_EDGE_RISING>;
++		irq-gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_HIGH>;
++		AVDD28-supply = <&vcc3v0_touch>;
++		VDDIO-supply = <&vcc3v0_touch>;
++		touchscreen-size-x = <720>;
++		touchscreen-size-y = <1440>;
 +	};
 +};
 +
- &pmu_io_domains {
- 	pmu1830-supply = <&vcc_1v8>;
- 	status = "okay";
-@@ -429,6 +496,10 @@ &sdio0 {
- 	status = "okay";
- };
- 
-+&pwm0 {
-+	status = "okay";
-+};
-+
- &sdmmc {
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -479,3 +550,27 @@ bluetooth {
- &uart2 {
- 	status = "okay";
- };
-+
-+&vopb {
-+	status = "okay";
-+	assigned-clocks = <&cru DCLK_VOP0_DIV>, <&cru DCLK_VOP0>,
-+			  <&cru ACLK_VOP0>, <&cru HCLK_VOP0>;
-+	assigned-clock-rates = <0>, <0>, <400000000>, <100000000>;
-+	assigned-clock-parents = <&cru PLL_GPLL>, <&cru DCLK_VOP0_DIV>;
-+};
-+
-+&vopb_mmu {
-+	status = "okay";
-+};
-+
-+&vopl {
-+	status = "okay";
-+	assigned-clocks = <&cru DCLK_VOP1_DIV>, <&cru DCLK_VOP1>,
-+			  <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
-+	assigned-clock-rates = <0>, <0>, <400000000>, <100000000>;
-+	assigned-clock-parents = <&cru PLL_GPLL>, <&cru DCLK_VOP1_DIV>;
-+};
-+
-+&vopl_mmu {
-+	status = "okay";
-+};
+ &cluster0_opp {
+ 	opp04 {
+ 		status = "disabled";
 -- 
 2.40.0
 
