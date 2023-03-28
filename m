@@ -2,98 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFC16CC8AC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 512CC6CC8D3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 19:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbjC1Q76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 12:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45930 "EHLO
+        id S230516AbjC1RHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 13:07:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjC1Q75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 12:59:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22DCC9ECF;
-        Tue, 28 Mar 2023 09:59:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A129D618C7;
-        Tue, 28 Mar 2023 16:59:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE429C433EF;
-        Tue, 28 Mar 2023 16:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680022796;
-        bh=5JSnUi0WPwXlNlLr2PLygtWZxa1SAMU3aE2taoy2XJ8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=pG0CxzYc2iEAdKBPDBguoug0WhMNqYnXGWZ0vBpoy+o6qPYkfq/te1U0HzBubmaQY
-         Qc8D+RBVRs1+W1SNXJeXhNKBBI9XldesJIStEjChrgsxA4gbMXGDDthNbKmnJm75t/
-         rbiuw9xpcFMA4l9jMzA9x3O4cQgTvHfYJBzKd5tHBS2YxTcl56WOqzpvinvMcLQ6QR
-         ZZZNr2QWvUVX9A5g2OoAj4eUUfQqtuziuEXpF+e38ZnF2Wj0hWFv1NPx+LQ0f+d+u7
-         6i1mCDUrzUQp9f8kbWzJZ1qdkaw6r3WKLHPJQlx2L24KbYY/2fUPQel4IbrAAIC++G
-         gXkxDvMHR41aw==
-Message-ID: <1cfd584a48e1bb453596948a0187ecf1.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229556AbjC1RHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 13:07:33 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27F926A1;
+        Tue, 28 Mar 2023 10:07:31 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32SE0b62013741;
+        Tue, 28 Mar 2023 19:07:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=/JFCzUt10vgUA0iE4Gx085JoNqxPpcI3weV0g+exKmA=;
+ b=XDCc5TuePvzZlDVEDUg7Ep4ngmPohH+Nurn9JSo/39PE1E0yOTYQB0j10dAr7HQ5xDYx
+ mW88WOsre7mDsmrH0g8HSGIoTFGOXM3gfa+8l2ErxzWW7P89TQS8hzVXebUtqQpg5L25
+ rCzJQi44znhysUg75LMuTMgL3xzr9WWBl0z4w4lreMLB2/vdBg02hHNQFjqVHUE/33ol
+ wPBqQ+gdqZ7Ccbp9+dBwWckwrQ1jgah8jcxMGfd5ZmaHmnFpoSgrTbDYJ6NYn7EIcKT3
+ IzoGimuoFSXqYUCJRcFtu+SIYO2nOje5Uch4WO0gukf/WFx/H28wYR549ygpoQb1s0cD eg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3phsqwkn3m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Mar 2023 19:07:19 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 524F710002A;
+        Tue, 28 Mar 2023 19:07:18 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CB78221BF4A;
+        Tue, 28 Mar 2023 19:07:18 +0200 (CEST)
+Received: from localhost (10.48.0.175) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
+ 2023 19:07:18 +0200
+From:   Christophe Kerello <christophe.kerello@foss.st.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <alexandre.torgue@foss.st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>
+Subject: [PATCH v2] ARM: dts: stm32: add FMC support on STM32MP13x SoC family
+Date:   Tue, 28 Mar 2023 19:07:11 +0200
+Message-ID: <20230328170711.247745-1-christophe.kerello@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <2484518b-bcf6-7fb1-6bfb-b96b3682397b@quicinc.com>
-References: <20230327132718.573-1-quic_devipriy@quicinc.com> <20230327132718.573-3-quic_devipriy@quicinc.com> <0af15083921c5d3c89392209654f0c9b.sboyd@kernel.org> <2484518b-bcf6-7fb1-6bfb-b96b3682397b@quicinc.com>
-Subject: Re: [PATCH V10 2/4] clk: qcom: Add Global Clock Controller driver for IPQ9574
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, arnd@arndb.de, broonie@kernel.org,
-        catalin.marinas@arm.com, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        marcel.ziswiler@toradex.com, mturquette@baylibre.com,
-        nfraprado@collabora.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, shawnguo@kernel.org, will@kernel.org
-Date:   Tue, 28 Mar 2023 09:59:53 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.175]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-28_02,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Devi Priya (2023-03-27 23:15:35)
->=20
->=20
-> On 3/27/2023 10:18 PM, Stephen Boyd wrote:
-> > Quoting Devi Priya (2023-03-27 06:27:16)
-> >> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq=
-9574.c
-> >> new file mode 100644
-> >> index 000000000000..b2a2d618a5ec
-> >> --- /dev/null
-> >> +++ b/drivers/clk/qcom/gcc-ipq9574.c
-> >> @@ -0,0 +1,4248 @@
-> >> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +/*
-> >> + * Copyright (c) 2023 The Linux Foundation. All rights reserved.
-> >> + */
-> >> +
-> >> +#include <linux/kernel.h>
-> >> +#include <linux/err.h>
-> >> +#include <linux/platform_device.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_device.h>
-> >=20
-> > What is this include for?
-> This include actually don't seem necessary. But, I see that of.h &=20
-> platform_device.h are being included via of_device.h
-> Would you suggest to drop of_device.h or the other two
-> headers instead?
+Add FMC support on STM32MP13x SoC family.
 
-Include headers for things you use. Don't try to omit includes if you
-see that a header includes other headers that you're using.
+Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+---
+Changes in v2:
+ - compatible, reg and ranges properties have been moved at the top of each node
+
+ arch/arm/boot/dts/stm32mp131.dtsi | 33 +++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+index 9ea61687f023..7ea1fe0cd070 100644
+--- a/arch/arm/boot/dts/stm32mp131.dtsi
++++ b/arch/arm/boot/dts/stm32mp131.dtsi
+@@ -1232,6 +1232,39 @@ mdma: dma-controller@58000000 {
+ 			dma-requests = <48>;
+ 		};
+ 
++		fmc: memory-controller@58002000 {
++			compatible = "st,stm32mp1-fmc2-ebi";
++			reg = <0x58002000 0x1000>;
++			ranges = <0 0 0x60000000 0x04000000>, /* EBI CS 1 */
++				 <1 0 0x64000000 0x04000000>, /* EBI CS 2 */
++				 <2 0 0x68000000 0x04000000>, /* EBI CS 3 */
++				 <3 0 0x6c000000 0x04000000>, /* EBI CS 4 */
++				 <4 0 0x80000000 0x10000000>; /* NAND */
++			#address-cells = <2>;
++			#size-cells = <1>;
++			clocks = <&rcc FMC_K>;
++			resets = <&rcc FMC_R>;
++			status = "disabled";
++
++			nand-controller@4,0 {
++				compatible = "st,stm32mp1-fmc2-nfc";
++				reg = <4 0x00000000 0x1000>,
++				      <4 0x08010000 0x1000>,
++				      <4 0x08020000 0x1000>,
++				      <4 0x01000000 0x1000>,
++				      <4 0x09010000 0x1000>,
++				      <4 0x09020000 0x1000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&mdma 24 0x2 0x12000a02 0x0 0x0>,
++				       <&mdma 24 0x2 0x12000a08 0x0 0x0>,
++				       <&mdma 25 0x2 0x12000a0a 0x0 0x0>;
++				dma-names = "tx", "rx", "ecc";
++				status = "disabled";
++			};
++		};
++
+ 		sdmmc1: mmc@58005000 {
+ 			compatible = "st,stm32-sdmmc2", "arm,pl18x", "arm,primecell";
+ 			arm,primecell-periphid = <0x20253180>;
+-- 
+2.25.1
+
