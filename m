@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A85F6CB7BB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73BDC6CB7CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjC1HLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:11:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52354 "EHLO
+        id S230210AbjC1HOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:14:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229983AbjC1HLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:11:43 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A1F2681
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:11:41 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id cn12so45632585edb.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:11:41 -0700 (PDT)
+        with ESMTP id S230103AbjC1HOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:14:41 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B803AAE
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:14:40 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id x17so14560755lfu.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:14:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679987499;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1679987678;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=a5fyW1eX1RAR+NBmwPpWJ9Jn0eMpcCTBleyehK3tanw=;
-        b=yUYRLQb9IVWEbo20PLorrGnjtm3zZiFX+UHX46vIe6ye583NOm04sdjQJF0ruYxHRO
-         0wltvHNA3PsMmTaKV7r/wcnE5B0u/pExzwBFBABJtuSlm4nhbXQ58ZrrFMLU5E5KkfT4
-         +De9QmNLjfzZ8c85rGnVqsW1mIiSXDoGYpRRDJt7tKagLlUPQ8jV9F33CCKtfUAx1p4T
-         JFTUt/iPM5pVFebaNmS7U/DXABCDUyyN8GRG82xvSFPxE/LG7HfnK5YuoEkl5nqEscps
-         j+7QIwwHdnLT5AF8F2VJRA2i9nJ34uekIaizThFaUCrtjrRvuZFZL7AlfnSVcaBCQnhF
-         m79A==
+        bh=FWBhH9ILBM2tk6yi5ctxIjsW4GlgCAF1zIgHGzXnjFs=;
+        b=T7yC8gSlUBnvB2LJYKAGKjRzLehQRSY8vW/FYMogmCQSVh3JSOadJqtI8IXxhCL4Ya
+         tNdQRCoCUHf9P2Zz9SL+x47SzeLIMGZ+Z27nMfnDjl+ngCGipnaJVD0pkRz9LxKehRs/
+         o7NPPLvXzcNe6IMkEVmXdpUlPYG8RPbEA/m3vqSi0hFZ4zuIOaM7Nw5SKRzC8UZnTuGQ
+         nvl5z0wBQblq5kX4xwjzADjd2A7yZnVWMJbHB1Eal1VCOOsuOQGLcgKfoYzMkciCI39A
+         HR3cHN0PPb+C4VS5WpMCsbx5XVpFho6sGO6Eq5PrRYHB55zJzvX0JGVCQyoHYiSQzpP8
+         FtNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679987499;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1679987678;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a5fyW1eX1RAR+NBmwPpWJ9Jn0eMpcCTBleyehK3tanw=;
-        b=cS1MOv2fhYm3QkiOHpTg7v0QheEErylAtapD0JUO7CMhFi62k22Rk2BprbUnWj+TYr
-         Yp9Z4ee21bz3sJOvvfYy/kHVb2zUhGHPPzlyiS7JZcxF1/fnnB+7tZtqGWOMeGS0bxrj
-         dMyacCd4TFvEFQTlsuaSeH0n511tNjZUyUjRnwRW+GlA0Y5STVmwshckYiRS1+vU/m96
-         MnK+0LdikYWhQ1F24glLMR17jsTTKP3Zkx2kpkFZrVqFDETYSV5Gt3FMSgZBhDJk/R66
-         WTIulmI7Xwe0/W4QntURc58SnqOtzPUXL5ugTvUKPl5v0UdzwziDe2fvJ9IyFHBXtD+t
-         g56g==
-X-Gm-Message-State: AAQBX9dEI2F4HezaoJ2Vq3gOGrVPXNmMsEBSp/aeRXEsIEVL3t1yQFXk
-        88DzbeGO6bvBWyKqKzs0YGv+UQ==
-X-Google-Smtp-Source: AKy350bYJuSxq8c07X8GOgM+6HypZc8my/E583ZMsjqpdiOYZOwxDATAJ8NU9HcdX0ogeGKLpjFyIA==
-X-Received: by 2002:a17:907:c248:b0:931:ce20:db8e with SMTP id tj8-20020a170907c24800b00931ce20db8emr15303083ejc.51.1679987499545;
-        Tue, 28 Mar 2023 00:11:39 -0700 (PDT)
+        bh=FWBhH9ILBM2tk6yi5ctxIjsW4GlgCAF1zIgHGzXnjFs=;
+        b=u++CqLi4G0YckeB+ASjTXDEdwDURyc1Jk14zr2D0KuItVLjdf/SSan8VHC9EcMzmp/
+         qwXpZtgOy3moHFKBxxrm+n6pujLpB+RtPHl6aAY8S+rV78ilzBB38b34QXKpZlMWM3Uo
+         kudj0sCHBvZD+u0v8n0IZCMw26VXk97nAYF8faASRrUMuAnXWVVg6yzlphOSPCCwP0NE
+         5LJP/dXR0ANQr/USg6+u1zTdRnjNck+k2nxFv7h728oMtmXRGHDYLDtAal+IwCPuEyO4
+         VkqsKlEIxAylD39UP1OHdEVzK6bXVOjbrRd8UqODsn3DlsQCtygLgL2MWgH2i8C0k4bF
+         gn6A==
+X-Gm-Message-State: AAQBX9etUvMmkHvq50jRr4YMZhKcLWd3jop1dbfhhhP78JTdDx6cYXzG
+        nDOJv+8gkRlGHV6g3ESNOE4S2g==
+X-Google-Smtp-Source: AKy350Z77Fh+XOqxjbOgg3kmbKAPaExvIk4LSK4qoTm//2gkfvRWguD3omxMa9GSvXBRQ6PX37x0fw==
+X-Received: by 2002:ac2:4c17:0:b0:4ea:f227:c1d6 with SMTP id t23-20020ac24c17000000b004eaf227c1d6mr4258365lfq.67.1679987678426;
+        Tue, 28 Mar 2023 00:14:38 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
-        by smtp.gmail.com with ESMTPSA id o23-20020a170906289700b00922547486f9sm15222236ejd.146.2023.03.28.00.11.38
+        by smtp.gmail.com with ESMTPSA id q27-20020ac25a1b000000b004dc4d26c30dsm4946301lfn.63.2023.03.28.00.14.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 00:11:39 -0700 (PDT)
-Message-ID: <a68c7693-9d43-0aa9-c77b-26183e5a0a06@linaro.org>
-Date:   Tue, 28 Mar 2023 09:11:38 +0200
+        Tue, 28 Mar 2023 00:14:38 -0700 (PDT)
+Message-ID: <1f97dec8-d30c-ccc7-3026-713bf9a15850@linaro.org>
+Date:   Tue, 28 Mar 2023 09:14:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 3/8] dt-bindings: usb: dwc3: Add IPQ9574 compatible
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
+ compatible
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1679909245.git.quic_varada@quicinc.com>
- <526f822a4d2397284f70ba632d92feaa3db0143e.1679909245.git.quic_varada@quicinc.com>
+To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
+References: <20230324073630.3194724-1-sai.krishna.potthuri@amd.com>
+ <20230324073630.3194724-2-sai.krishna.potthuri@amd.com>
+ <d646d109-d0a6-aedb-a8b2-ac954336e628@linaro.org>
+ <BY5PR12MB425806889EE700C1FCC8A465DB8B9@BY5PR12MB4258.namprd12.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <526f822a4d2397284f70ba632d92feaa3db0143e.1679909245.git.quic_varada@quicinc.com>
+In-Reply-To: <BY5PR12MB425806889EE700C1FCC8A465DB8B9@BY5PR12MB4258.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -80,60 +88,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 11:30, Varadarajan Narayanan wrote:
-> Document the IPQ9574 dwc3 compatible.
+On 27/03/2023 11:58, Potthuri, Sai Krishna wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  Changes in v4:
-> 	- Update other relevant sections
-> 	- Remove constraints not applicable to IPQ9574
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Friday, March 24, 2023 5:14 PM
+>> To: Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>; Ulf Hansson
+>> <ulf.hansson@linaro.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+>> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Michal Simek
+>> <michal.simek@xilinx.com>; Adrian Hunter <adrian.hunter@intel.com>
+>> Cc: linux-mmc@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git (AMD-
+>> Xilinx) <git@amd.com>; saikrishna12468@gmail.com
+>> Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
+>> compatible
+>>
+>> On 24/03/2023 08:36, Sai Krishna Potthuri wrote:
+>>> Add Xilinx Versal Net compatible to support eMMC 5.1 PHY.
+>>>
+>>> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+>>> b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+>>> index 8296c34cfa00..cf44a4b988a7 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+>>> @@ -27,6 +27,7 @@ allOf:
+>>>              enum:
+>>>                - xlnx,zynqmp-8.9a
+>>>                - xlnx,versal-8.9a
+>>> +              - xlnx,versal-net-5.1-emmc
+>>
+>> v5.1 is eMMC standard or Versal block version? If the first, it's not suitable for
+>> compatibles.
+>>
+>> Also, what's the difference from xlnx,versal-8.9a?
+> V5.1 is an eMMC standard and this compatible is defined based on sdhci arasan
+> eMMC5.1 Host Controller(arasan,sdhci-5.1), where as in Versal, it’s a different
+> controller and it is based on 4.51 Host Controller(arasan,sdhci-8.9a).
 
-No, that's not way to go. These are required.
+Mixing IP block versions and eMMC spec versions in one binding is a
+great way to confuse.
 
-> ---
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         | 22 +++++++++++++++++++---
->  1 file changed, 19 insertions(+), 3 deletions(-)
+> Versal Net Compatible is defined it this way to make it inline with the other
+> existing SoC compatibles like "intel,keembay-sdhci-5.1-emmc".
+> Please suggest if the compatible need to be renamed to "xlnx,versal-net-emmc"?
+
+Is Versal Net uniquely identifying your SoC or IP block?
+
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index a2aabda..3fc8c3c 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -17,6 +17,7 @@ properties:
->            - qcom,ipq6018-dwc3
->            - qcom,ipq8064-dwc3
->            - qcom,ipq8074-dwc3
-> +          - qcom,ipq9574-dwc3
->            - qcom,msm8953-dwc3
->            - qcom,msm8994-dwc3
->            - qcom,msm8996-dwc3
-> @@ -132,11 +133,8 @@ required:
->    - "#address-cells"
->    - "#size-cells"
->    - ranges
-> -  - power-domains
->    - clocks
->    - clock-names
-> -  - interrupts
-> -  - interrupt-names
->  
->  allOf:
->    - if:
-> @@ -242,6 +240,24 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,ipq9574-dwc3
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 5
-> +        clock-names:
-> +          items:
-> +            - const: sys_noc_axi
-> +            - const: anoc_axi
+> Regards
+> Sai Krishna
+> 
+>>
+>>>      then:
+>>>        properties:
+>>>          clock-output-names:
+>>> @@ -62,6 +63,11 @@ properties:
+>>>          description:
+>>>            For this device it is strongly suggested to include
+>>>            clock-output-names and '#clock-cells'.
+>>> +      - items:
+>>> +          - const: xlnx,versal-net-5.1-emmc     # Versal Net eMMC PHY
 
-Heh, do we really need entirely different clock names for each new variant?
+You do not have items here, so move it to respective place at beginning,
+just like others are defined.
 
 
 Best regards,
