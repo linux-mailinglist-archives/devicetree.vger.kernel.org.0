@@ -2,140 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 035BA6CC00F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD98E6CC01F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 15:06:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230425AbjC1NC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 09:02:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40282 "EHLO
+        id S232648AbjC1NGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 09:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbjC1NC6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:02:58 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ABD1BDC;
-        Tue, 28 Mar 2023 06:02:30 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2497E5C0068;
-        Tue, 28 Mar 2023 09:02:27 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 28 Mar 2023 09:02:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        cc:cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-        1680008547; x=1680094947; bh=RgfOcRz7Y9eemhhj/K9vB90mPZhFUINw5BF
-        WLJTEWvg=; b=XT1bkKRGOh2E/x5JAYAuMLyNiDnIUuvpodvt5driju1aWi80oeN
-        mPc0FqqTR2bqYsXBLvTzWR/01JPImuxllDpvWUHmHHbK6ccdBe4cs1pCTptd/4C6
-        Cai74nhcYmf7d1MGKvueVSauZ1D5LyaEREBsyJy5pKdN0Mv5h1LHjHc3JZKMyOs/
-        1OpH4tfi2KLvjPWyOjiTrRyGnabyS1zzk1qo/3H8c9l6Yc8QNYdFbHLxP/JIH0Xg
-        fjAB+m3OG1Cy4jAsWMBQ3j/3LpGA2tH7LYxwDPG1Pw1E9S54FBLwr+VN/qhb1QzY
-        43YM4j4NrQTCpmO+XA4Ho2pHKstjkg9QQgQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-        1680008547; x=1680094947; bh=RgfOcRz7Y9eemhhj/K9vB90mPZhFUINw5BF
-        WLJTEWvg=; b=Ng4ehF7ju2al1N83yAu1TPFPrqY8x8L44K+/SjGec6oyQfK57hp
-        BAOLQ0pPp1sE0oealjiVsj/Gou+YqDkaT9UZJ0SJGpnQgfQ52iI5RmKL4CRneZL1
-        KTyarNnWIpXVVAJAGXpQNJSmXJUCcQcc9JCfKpzU5YrBxqFR2fA0lMCzDxUuDSyb
-        yMjn2VwXBQDc9MZGRqLd+eFg/8cWcSRjr5aTECiN1I58+CT4zNKyFfwecDrrcu5k
-        L+WZ4ejxgDmPFJyqtcbqQ45pQxwzAlUUwZw9gbdGcpX952vig83kp8ddce4W0/Z0
-        c9EnQ7uUQOH2mRigkfDEIr1RrR9M0Ghg4Pg==
-X-ME-Sender: <xms:YeUiZDu9OG480fT8HAXyiUJiwyAATFHVvxjH3VB-CAFjpZ5PMUZpHA>
-    <xme:YeUiZEewhcybDReytqiXw6s8ezwnOSY7ApkZ9Edsx7gI-RH7AsBnrVtohaavhR7oP
-    E_iA20oDhTblJazl-k>
-X-ME-Received: <xmr:YeUiZGwwIDzGdySRBP3SKo_ItGOA5wjfWoYSHxwydHxCBqvOupm3j-ybPCDBmS-YbuLO>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehgedgheekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurheptggguffhjgffvefgkfhfvffosehtqhhmtdhhtdejnecuhfhrohhmpeflihgr
-    gihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
-    cuggftrfgrthhtvghrnhepuddtjeffteetfeekjeeiheefueeigeeutdevieejveeihfff
-    ledvgfduiefhvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:YeUiZCMSqRV3eaooG1vh72OUOb3OZZBs1PGMZo9g9r4L0XtLzOst5w>
-    <xmx:YeUiZD_vz22qEpX_9pGKYk4PlQSqSh6Tt5h8OlIYeOoF7aFlfvvDvg>
-    <xmx:YeUiZCUUdkNhGjeBz3hWAHzJA5R__gsxJcWyeg1v1L7QnBsYIekjdw>
-    <xmx:Y-UiZGXDEOYvSE_eKUnGgZOtc9OvLtb-xcYXbTgnhv2pd44pm-_4lw>
-Feedback-ID: ifd894703:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 28 Mar 2023 09:02:23 -0400 (EDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.400.51.1.1\))
-Subject: Re: [PATCH v3 0/4] Use dma_default_coherent for devicetree default
- coherency
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-In-Reply-To: <20230328074511.GA6188@alpha.franken.de>
-Date:   Tue, 28 Mar 2023 14:02:12 +0100
-Cc:     Christoph Hellwig <hch@lst.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        mpe@ellerman.id.au, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        Rob Herring <robh+dt@kernel.org>, m.szyprowski@samsung.com,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        frowand.list@gmail.com
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <9CCE7638-91FE-4B1F-9EAC-17362C041CE9@flygoat.com>
-References: <20230321110813.26808-1-jiaxun.yang@flygoat.com>
- <20230323072944.GA18524@lst.de>
- <60D7FE31-D708-4495-949F-3F64DDC11377@flygoat.com>
- <20230323213930.GA7730@lst.de>
- <CB41D3AF-20F6-42F3-9168-C0D6E716431A@flygoat.com>
- <20230328011812.GA21977@lst.de> <20230328074511.GA6188@alpha.franken.de>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-X-Mailer: Apple Mail (2.3731.400.51.1.1)
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232625AbjC1NGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 09:06:46 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FAD8E1;
+        Tue, 28 Mar 2023 06:06:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 7B5F7CE1B5B;
+        Tue, 28 Mar 2023 13:06:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F54C433D2;
+        Tue, 28 Mar 2023 13:06:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680008789;
+        bh=x4cblEk4sOAHylEWs5F6A2qdw79QFRP52N4WmGSIy8s=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=c+eZL4ETzBjnp+yIOByAeNjjF0YLvWNg2ViZc4LPi3i+3n9Jw2OI1bVcGRNbHJYEG
+         2xvgU5S66RLQxyxrex/zd71yU9bolvfhngXdtqHzvqy2dzmqgWT+glhjW+idG6RkuD
+         I0enkVVElhWUjGtjZo2NUAUStLUtjnsRxvcUp5kBzMLhoqJRQSSLlZnELAQq7/cJvu
+         Kh0Z1FMTc8Q+zpv963cofBMV/DS40oIe3o2tgKm0s9X+aaybBETxxoe4LCsALP/LJY
+         j6UIbu4B4qOucDw3Nyz4FQd2jENbb3Ou2KY0oT7ZVjDNKh/acyFiAZSqpSP01LkWt4
+         e431l5ITCNC6w==
+From:   Mark Brown <broonie@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-spi@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Rajesh Patil <rajpat@codeaurora.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230323173019.3706069-1-dianders@chromium.org>
+References: <20230323173019.3706069-1-dianders@chromium.org>
+Subject: Re: (subset) [PATCH 00/14] Control Quad SPI pinctrl better on
+ Qualcomm Chromebooks
+Message-Id: <168000878531.3186355.13214896425216649908.b4-ty@kernel.org>
+Date:   Tue, 28 Mar 2023 14:06:25 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-2eb1a
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 23 Mar 2023 10:30:04 -0700, Douglas Anderson wrote:
+> The main goal of this series is to do a better job of controling the
+> pins related to the "Quad SPI" IP block on Qualcomm Chromebooks. This
+> is essentially 'v2' of my previous attempt in the patch ("arm64: dts:
+> qcom: sc7180: Fix trogdor qspi pull direction") [1] but since it's
+> spiraled out a bit and there are no patches that are exactly the same
+> I've reset to v1.
+> 
+> [...]
 
+Applied to
 
-> 2023=E5=B9=B43=E6=9C=8828=E6=97=A5 08:45=EF=BC=8CThomas Bogendoerfer =
-<tsbogend@alpha.franken.de> =E5=86=99=E9=81=93=EF=BC=9A
->=20
-> On Tue, Mar 28, 2023 at 03:18:12AM +0200, Christoph Hellwig wrote:
->> On Fri, Mar 24, 2023 at 09:17:38AM +0000, Jiaxun Yang wrote:
->>>>=20
->>>> Is patch a 6.3 candidate or should all of it go into 6.4?
->>>=20
->>> Please leave it for 6.4, as corresponding MIPS arch part will be a =
-part of 6.4.
->>=20
->> Ok.  I'll really need review from the MIPS and drivers/of/ =
-maintainers,
->> through.
+   broonie/spi.git for-next
 
-+cc devicetree foks.
+Thanks!
 
->=20
-> I don't see any MIPS changes in the series besides the ifdef =
-CONFIG_MIPS
-> part in patch 1, which gets removed again in patch 4 (chance to drop
-> that completely ?).
+[05/14] spi: spi-qcom-qspi: Support pinctrl sleep states
+        commit: 0098c52745112c4387942a37559ababeaf072f0c
 
-It was suggested by DMA folks to have that patch.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> I've merged the corresponding MIPS patches into mips-next last week.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Thanks
-- Jiaxun
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
->=20
-> Thomas.
->=20
-> --=20
-> Crap can work. Given enough thrust pigs will fly, but it's not =
-necessarily a
-> good idea.                                                [ RFC1925, =
-2.3 ]
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
