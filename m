@@ -2,173 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B9F6CB668
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 07:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 762766CB676
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbjC1Fzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 01:55:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43048 "EHLO
+        id S230224AbjC1GBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 02:01:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjC1Fzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 01:55:31 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2057.outbound.protection.outlook.com [40.107.20.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C522B1BFE;
-        Mon, 27 Mar 2023 22:55:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M1qAuvK6vGAIt8HUy3RrjtN4Wgd/kxi/16dw7dT8W91p2Y/5wmCsMCGQGU7J6kchGhRddC3xFWJbyFTCChPvtj7sSsf8cY9n94hfIAhiLLXrape+UvqOO8JGsr1QZnvWv8GSM0DsmVSx9GTDmBa+CynynK2oZ/nEGJXWvzWgjxJnMudklG/cukzQiVPqfMCnxccKTejpZgYcca/P2wZuOUiasOV+OXTLyeeYMtthVEy486rLB57bVoPEUd74QrYL/xHdPEv6cWmRc7+q1T49PAxJ9ZqL4SOczwmI4wesOTdn3yNwUm6Y7BH2RYyWfkN5E1APrWWKvdQ3q9cFbCdS7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CIAY/4ygkU57Fz9RMxkj7b/XUkuiCfY6HZ2eXMBHOS0=;
- b=ldsYFb96HhMdn84tKgY9Xcoqxi5O/T1HFhfzDbW/JI9njCbwpbNODSluZXORY5ubKLJD8dKuQY4v6NRoyBaljrjTSgDb5a9PmaPy5LRk4LtcOOibkWyrK1C3+dIcVq+eScqH3zCcs25tSM1FYpE2RKQKvRNE7d/LlPhCbtaun7sP4BrUhCPhaazrhpnSN/2sH0FBD5qhsqDwFLfqw0T25nDCVwGX6DgC0UEsgn/28MTNGCTFRYDx064ujtbTHginLN6HFJBovJ0hX4THdgZAYC6ZUGMeppd+akJOItfd7YpiZY+KnSh36pA9uf/iBmR0RS3B7Ow6CRdCDjqIlfnTIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CIAY/4ygkU57Fz9RMxkj7b/XUkuiCfY6HZ2eXMBHOS0=;
- b=SBxw7Hm2dfjEVkdQaaemBbhzvxzNrAuJYPYlHbQcWWOJd7f7PFvGeHl6AUe2iAfF/OMu+9G7tqpo8Eb4Vboq+8Te/BTVfrt0NPzFecxBu7WGAjLWH4s31vKHhSfabWLd10y+t2dVbk9fnDxT9kUPnWmv9Yb+FI+TIgpp2WYANJg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM0PR04MB6788.eurprd04.prod.outlook.com (2603:10a6:208:18e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 05:55:26 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::778e:19d0:cba0:5cc0]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::778e:19d0:cba0:5cc0%4]) with mapi id 15.20.6222.028; Tue, 28 Mar 2023
- 05:55:26 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     jagan@amarulasolutions.com, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, troy.kisky@boundarydevices.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] dt-bindings: regulator: pf8x00: Remove restrictions for regulator-name
-Date:   Tue, 28 Mar 2023 14:00:32 +0800
-Message-Id: <20230328060032.1983381-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0035.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::8) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S229436AbjC1GBk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:01:40 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 025871BF6;
+        Mon, 27 Mar 2023 23:01:37 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32S61D6s073625;
+        Tue, 28 Mar 2023 01:01:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1679983273;
+        bh=zXRPR0/LMqYUvH3KPAGu22WhsJJCxSMAtgRNXt6WQDU=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=E2cVj9hwoNCFEqRRzr0HQCj10yDNrkjh0fsVMllbd5YYTnhGayZrWVYMtFuuzf0De
+         LTIBDQ2tdJZZo+YG92y+ldXqaD3mdT67vDVAGW04dUO/roePBJxxhjK1V2bqCfVa2K
+         +fF1TaBpE9a5sEuQf/ep4MayE+sM8ekAr4w/iHUc=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32S61DAD110393
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Mar 2023 01:01:13 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 28
+ Mar 2023 01:01:13 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 28 Mar 2023 01:01:13 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32S61CO1129343;
+        Tue, 28 Mar 2023 01:01:12 -0500
+Date:   Tue, 28 Mar 2023 11:31:12 +0530
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Martyn Welch <martyn.welch@collabora.com>
+CC:     Vaishnav Achath <vaishnav.a@ti.com>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <mripard@kernel.org>,
+        <mchehab@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <laurent.pinchart@ideasonboard.com>,
+        <sakari.ailus@linux.intel.com>, <tomi.valkeinen@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <bparrot@ti.com>,
+        <niklas.soderlund+renesas@ragnatech.se>, <devarsht@ti.com>,
+        <praneeth@ti.com>, <u-kumar1@ti.com>, <vigneshr@ti.com>,
+        <nm@ti.com>
+Subject: Re: [PATCH v7 00/13] CSI2RX support on J721E
+Message-ID: <vdjxsuaf4zoy4zzc7t2lif2jf2stdwn5ovq2eybdifnbbsknd2@cyotd7s37a3d>
+References: <20230314115516.667-1-vaishnav.a@ti.com>
+ <e184448c9db8df55e03e855f7c7338066f45025a.camel@collabora.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM0PR04MB6788:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1cc7840f-4016-46f9-7f39-08db2f510715
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gbThq7sEx+kKDsU/CcEG8OdQaEpa76SigPuJxzKI2xQbkDd0Xf4xAySbJDV8LVEvt9Kh+dBzXEvd/Z7dXeET4iGid1C9JEE+PS7vadGTvDZ/AgZWyEQ/qRuWPhwzg1rJ95kWTYnI9CjEdDvXjVFpYVFfxRA0TsSg9WrGjmBBbu8an9lpQsiFFd0bvyfN+tw6mCXPEM72mu/zExjAMGi/jWiaulSHANkJt2GgIeXRLnAwjLAjx1fpuzFcCCoj990hWv9RG3pxqH2obfZJ5cY6g/97aEB6fH42jrDR67jZcuSAcl5ZUknXZ8KrqkJbqpe4vkZD7+wP+MzTgC6ZQK3RkL7J8CXA9ZEBBgYix3LhF7fTbpjbOymJgD87BVOHLeicBuddi9LeihTm1zo1Du/tm+iZQYDqpr5o595wQBDku2+UAJroDqHcuGOgXrwqlDwBfSaw7jBwNMLW55hXFOA2ao2Ct9jHKxCJmmziFYBpnuaUaSv7CX7VDH6gSzMyT3D8GVtDBczdoGefzc2w58zb2qtYM9uVZG2Ed9/egYBn2/IluT7MtWdjOgLPD6au0H3XqqfKtsrXUjNVZ9PAtsz0QzXDhrFVSvGyMOi43pKeTHO14HxWMffr5RTWfLfuDF0M
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(366004)(39860400002)(396003)(346002)(451199021)(2616005)(186003)(83380400001)(6506007)(6512007)(1076003)(52116002)(26005)(6486002)(86362001)(478600001)(316002)(66946007)(66556008)(66476007)(8676002)(41300700001)(5660300002)(8936002)(4326008)(2906002)(38350700002)(6666004)(38100700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DR4pgEjBzuWtC5lejMrmgTy7cWSqWoGMct6zYRXAkMDwbKOv98w5Ulxhaj+B?=
- =?us-ascii?Q?edJpSBQ1Mmn6rMDd+5zXZXJOq+krLwjarkNboW12q7ZwkoWMiRtGFZ9OrMQs?=
- =?us-ascii?Q?S8hDWyoYurx/ffvjg3JTqIaZJLCNjNZ0juM8fnBPVlKf/gc5fyf/G19sl06h?=
- =?us-ascii?Q?WJ7pc8alHZxCyCqZ1KlGDgBGSdGruNkMS2L0DTvC/lYP7eyFG7WNrn+C5iUO?=
- =?us-ascii?Q?FXm7uqIGbs9nBdxMR8vZjUykKv4gpRtDhm+g2h+8mSuO26R0n5b1l2GjGMlY?=
- =?us-ascii?Q?0fHjmT6wPEeaGyk23JgiPAnpQn1wFz8CpPGNONTs7RYAy4P5ApAaNW6N/5+3?=
- =?us-ascii?Q?aqATvtrrqezhaHLpAKQFg0D1cJ9qwzyCXG5XvbczfuEYO5kSeaEvVBnJNoTb?=
- =?us-ascii?Q?vcFEWT2m94KZPIh56ZmCIhmdtHMPAxzIHaLJyCd+92mNhCsCgWjTFVp2f4mF?=
- =?us-ascii?Q?de572GfcZsOGU//7QjSGp1v2UtkfuP3zrpfOUC924cjK/D7R68VmfISTy2L7?=
- =?us-ascii?Q?YpENRk/Woro+BrGDIs+RfpTWVkmeOvDrzQTo3j8nPtpabog9qiYHZi/ccx8L?=
- =?us-ascii?Q?1SVd19lKMhDJFiE3Qi0jEOfeNtwnVefrkl2yh5FEPMpDKKSNd6lH3i+7nG+8?=
- =?us-ascii?Q?2OPyHv5rEgmYwtTvB+RuyCTqsWlJKC3sPH1u2IeG7La7PeCLMp9AEDZHc7RF?=
- =?us-ascii?Q?XK8KEuAqq4qBqCkYqUvcAJe+/Ed2mlNPTstAbKUM7n6ZcoP5deQFM9Chgg9k?=
- =?us-ascii?Q?UaCo1Th3c95oDS1RGIY+SqqqRn1speu/1xODwl61fb6L8nczmOU24OiQxmQo?=
- =?us-ascii?Q?1vnpr7oyCkAqR4UEA/fOxxDw/ePksmLgSV3HGiV7n9ReKJ4dFIiz1Pb+z+Uv?=
- =?us-ascii?Q?MoPU9PGGFtIgOeXGyAdh2X8Oj5zJI8p/DhCn6Hjqi1G4u8Ae8osJVu6hxX66?=
- =?us-ascii?Q?tM7kTla/8HdXgs1GvwTJHaLsJsUDw2HZW1WF7WiOMusvC39IwOX8NF5AYLY+?=
- =?us-ascii?Q?NnRaYuuzig7rIgbf0s2fIlrzhrsFLMw9fRj15QXF9LJi7Rtz6zIiw2ab0mEm?=
- =?us-ascii?Q?goQfenSEBK3RWonjtVCpti3pWIxeGAWTd3/xDmpIUOb3l34R3cfzc1Fd9+rH?=
- =?us-ascii?Q?of9foZtEYeYZ/ksL4yOvslAS6KcxV3EbxDoGD7bO7DStzLDQetDJKS+Vu3wA?=
- =?us-ascii?Q?rdsn6fnl0MOVBzgsBQ0LjmX3RZzeHcm8zz7ZfI3I49hXEwzdLLg4r5cfFOAp?=
- =?us-ascii?Q?bw3QB0eklCqcsNn2srlwA6u76GSDYVxqSLvk16igdwaiTwzb+37PLQv88dfZ?=
- =?us-ascii?Q?HpE+0NQ82p6WD2QgKEGutyeqwv7QwJrHcf1ICMkiyXrF98w7EKUFxO4zlsvk?=
- =?us-ascii?Q?RXPs6nfTS/JnoJF1kiou0xhgH7OA5d3pJ/Ip4S/7IlyzZzhAuitZkUNyPC0A?=
- =?us-ascii?Q?qRW9+1W3VUVPfuPuppU5ihf9fte85ftrupWxLKFJLEbYrFTHX6rtTwz+gwpI?=
- =?us-ascii?Q?/B0isFKCxXEuGQPMAVMxbvKCxXdR/gaQODvPFgFUkgkjjsgUCquISZVUkVUs?=
- =?us-ascii?Q?ZJq29PKCaHZBJ1U7ZydSnszQ+HOa32ERfSZPYw1X?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cc7840f-4016-46f9-7f39-08db2f510715
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 05:55:26.4567
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UzWu52wPGf+rhKnwIB9saH5AnJVcjE15xjNumsOvLD4OSL0by0zfQd8AOLfseUHUvGdtOcp3H2pK0LE+f5i6gQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6788
-X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5frzlxni7pxdkqyf"
+Content-Disposition: inline
+In-Reply-To: <e184448c9db8df55e03e855f7c7338066f45025a.camel@collabora.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+--5frzlxni7pxdkqyf
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Following commit b0de7fa706506
-("regulator: pca9450: Remove restrictions for regulator-name") to remove
-the constraints on the regulator-name to allow using arbitrary and
-descriptive names for the regulators.
+Hi Martyn,
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- .../regulator/nxp,pf8x00-regulator.yaml         | 17 -----------------
- 1 file changed, 17 deletions(-)
+Thanks for the tests.
 
-diff --git a/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
-index e094c40a7072..b56fd9c3d5d7 100644
---- a/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/nxp,pf8x00-regulator.yaml
-@@ -38,12 +38,6 @@ properties:
-         description:
-           Properties for single LDO regulator.
- 
--        properties:
--          regulator-name:
--            pattern: "^ldo[1-4]$"
--            description:
--              should be "ldo1", ..., "ldo4"
--
-         unevaluatedProperties: false
- 
-       "^buck[1-7]$":
-@@ -53,11 +47,6 @@ properties:
-           Properties for single BUCK regulator.
- 
-         properties:
--          regulator-name:
--            pattern: "^buck[1-7]$"
--            description:
--              should be "buck1", ..., "buck7"
--
-           nxp,ilim-ma:
-             $ref: "/schemas/types.yaml#/definitions/uint32"
-             minimum: 2100
-@@ -90,12 +79,6 @@ properties:
-         description:
-           Properties for single VSNVS regulator.
- 
--        properties:
--          regulator-name:
--            pattern: "^vsnvs$"
--            description:
--              should be "vsnvs"
--
-         unevaluatedProperties: false
- 
-     additionalProperties: false
--- 
-2.37.1
+On Mar 23, 2023 at 19:36:18 +0000, Martyn Welch wrote:
+> On Tue, 2023-03-14 at 17:25 +0530, Vaishnav Achath wrote:
+> > Hi,
+> >=20
+> > This series adds support for CSI2 capture on J721E. It includes some
+> > fixes to the Cadence CSI2RX driver, and adds the TI CSI2RX wrapper
+> > driver.
+> >=20
+> > This is a V7 of the below V6 series,
+> > https://lore.kernel.org/all/20220121142904.4091481-1-p.yadav@ti.com/
+> >=20
+> > Since Pratyush moved out of TI, I will be working on upstreaming the
+> > TI CSI2RX wrapper support.
+> >=20
+> > Tested on TI's J721E EVM with LI OV5640 sensor module.
+> > https://gist.github.com/vaishnavachath/f030a257d5b6569817bc9deab1c4fa77
+> >=20
+> > Also, Tested on TI AM62-SK with Pcam5C OV5640 module.
+> > https://gist.github.com/vaishnavachath/ff2605faa92f1a6ab5670426da28ccee
+> >=20
+>=20
+> Hi Vaishnav,
+>=20
+> I assume I'm doing something wrong. I have a TI AM62-SK and the Pcam5C
+> OV5640 module. I've been trying to test this with gstreamer using the
+> following command:
+>=20
+> gst-launch-1.0 -v v4l2src device=3D/dev/video0 num-buffers=3D10 ! video/x-
+> raw, width=3D640, height=3D480, format=3DUYVY, framerate=3D30/1 ! jpegenc=
+ !
+> multifilesink location=3Dtest%d.jpg
+>=20
+> However I've not been able to get this working, failing with this
+> failure unless I patch in some changes I found in the TI BSP:
+>=20
+> [   28.083635] cdns-mipi-dphy-rx 30110000.phy: DPHY wait for lane ready
+> timeout
+> [   28.090905] cdns-csi2rx 30101000.csi-bridge: Failed to configure
+> external DPHY: -110
 
+That is expected as currently the DPHY driver does not release the SW=20
+reset which all SoCs since J721E SR1.0 expect. See the patch linked by=20
+Vaishnav below.
+
+>=20
+> The changes (and the device tree nodes I added, which might be
+> wrong...) can be found here:
+>=20
+> https://gitlab.collabora.com/martyn/linux/-/commits/am625-sk-ov5640
+>=20
+> Any ideas what I'm doing wrong?
+>=20
+> Martyn
+>=20
+> > For all newer TI platforms that TI J721E Silicon Revision 1.0, below
+> > update
+> > to DPHY RX driver is needed:
+> > https://lore.kernel.org/all/20230314073137.2153-1-vaishnav.a@ti.com/
+
+^
+
+With that patch and this series on top of linux-next, I was able to get=20
+Pcam5C capturing with SK-AM62. Although I did face issues with the=20
+sensor framerate and had to revert a few recent sensor commits, not sure=20
+why exactly yet. But here is the working branch with all the changes:=20
+https://github.com/jailuthra/linux/commits/b4/csi_single
+
+Let us know if you face any other issues during your tests.
+
+> >=20
+> > Changes in v7:
+> > - For patch 10/13 ("Add CSI2RX upport for J721E"):
+> > - Fix incorrect value written in SHIM_PSI_CFG0_DST_TAG
+> > - Drop support for 2X8 formats.
+> > - Update maintainer to Vaishnav as Pratyush moved out of TI.
+> > - Address Sakari's review comments:
+> > - Update MAX_HEIGHT_LINES, MAX_WIDTH_BYTES to prevent overflow.
+> > - Assign dma_slave_config during declaration, drop memset().
+> > - dma_release_channel() on slave_config failure.
+> > - provide entity ops for the vdev entity with link_validate().
+> > - mutex_destroy() on ti_csi2rx_probe failure path.
+> > - Drop busy check in remove().
+> > - mutex_destroy() in ti_csi2rx_remove().
+> > - Address Laurent's review comments:
+> > - Update entries in Makefile in alphabetical order.
+> > - include headers in alphabetical order.
+> > - Drop redundant CSI DT defines and use from media/mipi-csi2.h.
+> > - Rename csi_df to csi_dt.
+> > - Drop v4l2_colorspace from ti_csi2rx_fmt and set default in
+> > =A0 ti_csi2rx_v4l2_init()
+> > - Adjust field and not return EINVAL in ti_csi2rx_try_fmt_vid_cap().
+> > - inline ti_csi2rx_video_register().
+> > - start DMA before starting source subdev.
+> > - move buffer cleanup to separate function
+> > ti_csi2rx_cleanup_buffers()
+> > =A0 to be used in ti_csi2rx_stop_streaming() and
+> > ti_csi2rx_start_streaming()
+> > =A0 failure path.
+> > - Drop VB2_USERPTR, VB2_READ and V4L2_CAP_READWRITE.
+> > - For patch 4/13 ("media: cadence: csi2rx: Add external DPHY
+> > support"):
+> > - Fix multiplier and divider in v4l2_get_link_freq() which caused
+> > =A0 failures during streaming.
+> >=20
+> > Changes in v6:
+> > - Move the lock around the dereference for framefmt in
+> > =A0 csi2rx_{get,set}_fmt() instead of when we get the pointer.
+> > - Do not return an error when an unsupported format is set. Instead
+> > =A0 adjust the code to the first format in the list.
+> > - Drop variable bpp and use fmt->bpp directly.
+> > - Drop variable got_pm. Call phy_pm_runtime_put() unconditionally
+> > since
+> > =A0 it will just return an error if runtime PM is not enabled.
+> > - Drop transcoding from the commit message.
+> > - Make csi2rx_media_ops const.
+> >=20
+> > Changes in v5:
+> > - Cleanup notifier in csi2rx_parse_dt() after the call to
+> > =A0 v4l2_async_nf_add_fwnode_remote().
+> > - Use YUV 1X16 formats instead of 2X8.
+> > - Only error out when phy_pm_runtime_get_sync() returns a negative
+> > =A0 value. A positive value can be returned if the phy was already
+> > =A0 resumed.
+> > - Do not query the source subdev for format. Use the newly added
+> > =A0 internal format instead.
+> > - Make i unsigned.
+> > - Change %d to %u
+> > - Add dependency on PHY_CADENCE_DPHY_RX instead of PHY_CADENCE_DPHY
+> > =A0 since the Rx mode DPHY now has a separate driver.
+> > - Drop ti_csi2rx_validate_pipeline(). Pipeline validation should be
+> > done
+> > =A0 at media_pipeline_start().
+> > - Do not assign flags.
+> > - Fix error handling in ti_csi2rx_start_streaming(). Free up vb2
+> > buffers
+> > =A0 when media_pipeline_start() fails.
+> > - Move clock description in comments under the clocks property.
+> > - Make ports required.
+> > - Add link validation to cdns-csi2rx driver.
+> >=20
+> > Changes in v4:
+> > - Drop the call to set PHY submode. It is now being done via
+> > compatible
+> > =A0 on the DPHY side.
+> > - Acquire the media device's graph_mutex before starting the graph
+> > walk.
+> > - Call media_graph_walk_init() and media_graph_walk_cleanup() when
+> > =A0 starting and ending the graph walk respectively.
+> > - Reduce max frame height and width in enum_framesizes. Currently
+> > they
+> > =A0 are set to UINT_MAX but they must be a multiple of step_width, so
+> > they
+> > =A0 need to be rounded down. Also, these values are absurdly large
+> > which
+> > =A0 causes some userspace applications like gstreamer to trip up. While
+> > it
+> > =A0 is not generally right to change the kernel for an application bug,
+> > it
+> > =A0 is not such a big deal here. This change is replacing one set of
+> > =A0 absurdly large arbitrary values with another set of smaller but
+> > still
+> > =A0 absurdly large arbitrary values. Both limits are unlikely to be hit
+> > in
+> > =A0 practice.
+> > - Add power-domains property.
+> > - Drop maxItems from clock-names.
+> > - Drop the type for data-lanes.
+> > - Drop uniqueItems from data-lanes. Move it to video-interfaces.yaml
+> > =A0 instead.
+> > - Drop OV5640 runtime pm patch. It seems to be a bit complicated and
+> > it
+> > =A0 is not exactly necessary for this series. Any CSI-2 camera will
+> > work
+> > =A0 just fine, OV5640 just happens to be the one I tested with. I don't
+> > =A0 want it to block this series. I will submit it as a separate patch
+> > =A0 later.
+> >=20
+> > Changes in v3:
+> > - Use v4l2_get_link_freq() to calculate pixel clock.
+> > - Move DMA related fields in struct ti_csi2rx_dma.
+> > - Protect DMA buffer queue with a spinlock to make sure the queue
+> > buffer
+> > =A0 and DMA callback don't race on it.
+> > - Track the current DMA state. It might go idle because of a lack of
+> > =A0 buffers. This state can be used to restart it if needed.
+> > - Do not include the current buffer in the pending queue. It is
+> > slightly
+> > =A0 better modelling than leaving it at the head of the pending queue.
+> > - Use the buffer as the callback argument, and add a reference to csi
+> > in it.
+> > - If queueing a buffer to DMA fails, the buffer gets leaked and DMA
+> > gets
+> > =A0 stalled with. Instead, report the error to vb2 and queue the next
+> > =A0 buffer in the pending queue.
+> > - DMA gets stalled if we run out of buffers since the callback is the
+> > =A0 only one that fires subsequent transfers and it is no longer being
+> > =A0 called. Check for that when queueing buffers and restart DMA if
+> > =A0 needed.
+> > - Do not put of node until we are done using the fwnode.
+> > - Set inital format to UYVY 640x480.
+> > - Add compatible: contains: const: cdns,csi2rx to allow SoC specific
+> > =A0 compatible.
+> > - Add more constraints for data-lanes property.
+> >=20
+> > Changes in v2:
+> > - Use phy_pm_runtime_get_sync() and phy_pm_runtime_put() before
+> > making
+> > =A0 calls to set PHY mode, etc. to make sure it is ready.
+> > - Use dmaengine_get_dma_device() instead of directly accessing
+> > =A0 dma->device->dev.
+> > - Do not set dst_addr_width when configuring slave DMA.
+> > - Move to a separate subdir and rename to j721e-csi2rx.c
+> > - Convert compatible to ti,j721e-csi2rx.
+> > - Move to use Media Controller centric APIs.
+> > - Improve cleanup in probe when one of the steps fails.
+> > - Add colorspace to formats database.
+> > - Set hw_revision on media_device.
+> > - Move video device initialization to probe time instead of register
+> > time.
+> > - Rename to ti,j721e-csi2rx.yaml
+> > - Add an entry in MAINTAINERS.
+> > - Add a description for the binding.
+> > - Change compatible to ti,j721e-csi2rx to make it SoC specific.
+> > - Remove description from dmas, reg, power-domains.
+> > - Remove a limit of 2 from #address-cells and #size-cells.
+> > - Fix add ^ to csi-bridge subnode regex.
+> > - Make ranges mandatory.
+> > - Add unit address in example.
+> > - Add a reference to cdns,csi2rx in csi-bridge subnode.
+> > - Expand the example to include the csi-bridge subnode as well.
+> > - Re-order subject prefixes.
+> > - Convert OV5640 to use runtime PM and drop Cadence CSI2RX s_power
+> > patch.
+> > - Drop subdev call wrappers from cdns-csi2rx.
+> > - Move VPE and CAL to a separate subdir.
+> > - Rename ti-csi2rx.c to j721e-csi2rx.c
+> >=20
+> > Pratyush Yadav (13):
+> > =A0 media: cadence: csi2rx: Unregister v4l2 async notifier
+> > =A0 media: cadence: csi2rx: Cleanup media entity properly
+> > =A0 media: cadence: csi2rx: Add get_fmt and set_fmt pad ops
+> > =A0 media: cadence: csi2rx: Add external DPHY support
+> > =A0 media: cadence: csi2rx: Soft reset the streams before starting
+> > capture
+> > =A0 media: cadence: csi2rx: Set the STOP bit when stopping a stream
+> > =A0 media: cadence: csi2rx: Fix stream data configuration
+> > =A0 media: cadence: csi2rx: Populate subdev devnode
+> > =A0 media: cadence: csi2rx: Add link validation
+> > =A0 media: ti: Add CSI2RX support for J721E
+> > =A0 media: dt-bindings: Make sure items in data-lanes are unique
+> > =A0 media: dt-bindings: Add DT bindings for TI J721E CSI2RX driver
+> > =A0 media: dt-bindings: Convert Cadence CSI2RX binding to YAML
+> >=20
+> > =A0.../devicetree/bindings/media/cdns,csi2rx.txt |=A0 100 --
+> > =A0.../bindings/media/cdns,csi2rx.yaml=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=
+=A0 176 +++
+> > =A0.../bindings/media/ti,j721e-csi2rx.yaml=A0=A0=A0=A0=A0=A0 |=A0 101 ++
+> > =A0.../bindings/media/video-interfaces.yaml=A0=A0=A0=A0=A0 |=A0=A0=A0 1=
+ +
+> > =A0MAINTAINERS=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=A0=A0 7 +
+> > =A0drivers/media/platform/cadence/cdns-csi2rx.c=A0 |=A0 273 ++++-
+> > =A0drivers/media/platform/ti/Kconfig=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 |=A0=A0 12 +
+> > =A0drivers/media/platform/ti/Makefile=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =
+|=A0=A0=A0 1 +
+> > =A0.../media/platform/ti/j721e-csi2rx/Makefile=A0=A0 |=A0=A0=A0 2 +
+> > =A0.../platform/ti/j721e-csi2rx/j721e-csi2rx.c=A0=A0 | 1022
+> > +++++++++++++++++
+> > =A010 files changed, 1580 insertions(+), 115 deletions(-)
+> > =A0delete mode 100644
+> > Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> > =A0create mode 100644
+> > Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+> > =A0create mode 100644 Documentation/devicetree/bindings/media/ti,j721e-
+> > csi2rx.yaml
+> > =A0create mode 100644 drivers/media/platform/ti/j721e-csi2rx/Makefile
+> > =A0create mode 100644 drivers/media/platform/ti/j721e-csi2rx/j721e-
+> > csi2rx.c
+> >=20
+>=20
+
+Thanks,
+Jai
+
+--5frzlxni7pxdkqyf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmQigqYACgkQQ96R+SSa
+cUW4IxAAv/O/HmkE7L/2vf0rgmKUplhz2cBz0GJTef5PlI/gOWtzcRknYE4/HQg8
+5TqmDNy1jbfa7ER1J+1wvXrjL2rvyKXJZ6SmlqLNMCl6b8tvquFrx9rWjVfbf0Lf
+Nu2VmUEDTeVePrp+7ElM7WKvKihWeXCMgHKJhUeQUZJuyKVjLEw8BZIPnFNpp652
+vr2/Zhjtf7nnQloy8r1OrIILqLJFyv9G/cKr3T3iwAtIN+aTOXrKgQsyuGTqTpLx
+UksHACYpFtyTMNorSSZYrAvGC04NquPRg1Zy72DGZkLIBp0AByrmkUgndh0btFqg
+WYkPRzJryIwbr5y6lInN5gzdz/Sj53LoJ3dNq6lqN6+FdYL7iPZEZZtkujomkEey
+Uk5LDjrwD7Gdg15LbDKYbUbC6dNn7zNxXN/QW/Y35VUtteWvsgGaWvHDSC2ox8h3
+fWdt0EcPLUDnbZlzSDMTP3UryUDSSllToZKh0z+sXSwlLoTSwNHOoy6/HsaK4kI7
+VxkB2gyIOFuBsDGg2647Lep97MLgG0yQtFnlKNiPBk5RrxC7WIPO4M8HDewrQ3mD
+8b6nfZv9XBpi7YgO4JaFTJ98rreVYNUM2vhmHeFMoaIg75p3WwV0+wLvRHeW98x1
+6unZvQ6bTCyIya0cGMssgZTUWw0LrG18iHdbn2LIIQFOOcBV4W0=
+=08as
+-----END PGP SIGNATURE-----
+
+--5frzlxni7pxdkqyf--
