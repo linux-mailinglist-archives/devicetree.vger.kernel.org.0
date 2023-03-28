@@ -2,82 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73BDC6CB7CD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 142C56CB7DB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 09:21:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230210AbjC1HOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 03:14:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55570 "EHLO
+        id S229968AbjC1HVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 03:21:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbjC1HOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:14:41 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B803AAE
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:14:40 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id x17so14560755lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:14:40 -0700 (PDT)
+        with ESMTP id S229507AbjC1HVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 03:21:10 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8736630D2
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:21:09 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id eg48so45562337edb.13
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 00:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679987678;
+        d=linaro.org; s=google; t=1679988068;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FWBhH9ILBM2tk6yi5ctxIjsW4GlgCAF1zIgHGzXnjFs=;
-        b=T7yC8gSlUBnvB2LJYKAGKjRzLehQRSY8vW/FYMogmCQSVh3JSOadJqtI8IXxhCL4Ya
-         tNdQRCoCUHf9P2Zz9SL+x47SzeLIMGZ+Z27nMfnDjl+ngCGipnaJVD0pkRz9LxKehRs/
-         o7NPPLvXzcNe6IMkEVmXdpUlPYG8RPbEA/m3vqSi0hFZ4zuIOaM7Nw5SKRzC8UZnTuGQ
-         nvl5z0wBQblq5kX4xwjzADjd2A7yZnVWMJbHB1Eal1VCOOsuOQGLcgKfoYzMkciCI39A
-         HR3cHN0PPb+C4VS5WpMCsbx5XVpFho6sGO6Eq5PrRYHB55zJzvX0JGVCQyoHYiSQzpP8
-         FtNg==
+        bh=M4CYgrnxL/oD4LhNxCijRW1wSvmkQAAax1ssKQ5T4oE=;
+        b=TimBilBJ/4qlKuklhMtkkntEIp2MCOBC0BvhGaTAvMCWbYhcry589vp2bRc9T+zNVs
+         +LaQ2wTJ2rcFawHBLnEgFzXEtxzCEmuH7WuTlqvGH+GmLBnN1Zt/iGY+PhQvJZWyHX0/
+         pGyYghOr/wjgN7Qh9K9+QT6o92dNzoYVO+srLA8rufopIH2d9hmWgsbsMOYHKanCqxkN
+         Uv6qEQIvclCC6dRgY2wg/oT6O6ijp4mTnvPNqLJI6YClpV21jpJfeOxdpQ5yp/1LQkud
+         W9HkZwD0J2eWRv0gKn4oRf7hDjLz1iEyjBon/CWNvoyKYFmY3QVVaPuoj9d7oGEi9IyJ
+         E/Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679987678;
+        d=1e100.net; s=20210112; t=1679988068;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FWBhH9ILBM2tk6yi5ctxIjsW4GlgCAF1zIgHGzXnjFs=;
-        b=u++CqLi4G0YckeB+ASjTXDEdwDURyc1Jk14zr2D0KuItVLjdf/SSan8VHC9EcMzmp/
-         qwXpZtgOy3moHFKBxxrm+n6pujLpB+RtPHl6aAY8S+rV78ilzBB38b34QXKpZlMWM3Uo
-         kudj0sCHBvZD+u0v8n0IZCMw26VXk97nAYF8faASRrUMuAnXWVVg6yzlphOSPCCwP0NE
-         5LJP/dXR0ANQr/USg6+u1zTdRnjNck+k2nxFv7h728oMtmXRGHDYLDtAal+IwCPuEyO4
-         VkqsKlEIxAylD39UP1OHdEVzK6bXVOjbrRd8UqODsn3DlsQCtygLgL2MWgH2i8C0k4bF
-         gn6A==
-X-Gm-Message-State: AAQBX9etUvMmkHvq50jRr4YMZhKcLWd3jop1dbfhhhP78JTdDx6cYXzG
-        nDOJv+8gkRlGHV6g3ESNOE4S2g==
-X-Google-Smtp-Source: AKy350Z77Fh+XOqxjbOgg3kmbKAPaExvIk4LSK4qoTm//2gkfvRWguD3omxMa9GSvXBRQ6PX37x0fw==
-X-Received: by 2002:ac2:4c17:0:b0:4ea:f227:c1d6 with SMTP id t23-20020ac24c17000000b004eaf227c1d6mr4258365lfq.67.1679987678426;
-        Tue, 28 Mar 2023 00:14:38 -0700 (PDT)
+        bh=M4CYgrnxL/oD4LhNxCijRW1wSvmkQAAax1ssKQ5T4oE=;
+        b=mgKHv2WrqgBIIiC8Q9lVtm9BeWQD2iOLgdTID6eAir8xYKDioBa1W/ywxBMObhEFYk
+         GmEMk5XAiYjhECw2IH/6FGFChkLGbwkrtp2I2KSHaaHiemz8uoRfMcPhY7yvCv6JmMYc
+         oFkT8Tih9cwD2foTNHi1C83WADR44TKkjYtAhuORubBnIahTuGacnF7VxKpgWl2Ka0jt
+         VRnOxPVszuZwMUX2D0K8CfgH8VjTTWzS9w1kODEVl6lNy2OJEX6dy7JoRtCtYQk5qc3/
+         04xU6QQ/gLXpFL8U0n+US5L+X9qH2OxzkH7Jvf6Myj/Grj/9uqMM8xoxNtU3bITiqVu3
+         gTkg==
+X-Gm-Message-State: AAQBX9eY4Wz/PBN5nUDwfz8UobBiHrYu5o9u8ThTJ6iJx7MiKhxOA8Fa
+        BdAF32Wn4jQbOG2KwHj3m+IBQg==
+X-Google-Smtp-Source: AKy350boEBP6L5wV56dT/8UCE41l1icRJq861X7V/ttRVdVf35fbUR36SPMnrgi+Gjem8bJPYlbXCw==
+X-Received: by 2002:a17:906:641:b0:8b1:77bf:3bdd with SMTP id t1-20020a170906064100b008b177bf3bddmr15668254ejb.36.1679988067996;
+        Tue, 28 Mar 2023 00:21:07 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
-        by smtp.gmail.com with ESMTPSA id q27-20020ac25a1b000000b004dc4d26c30dsm4946301lfn.63.2023.03.28.00.14.37
+        by smtp.gmail.com with ESMTPSA id g17-20020a170906c19100b00921c608b737sm14912135ejz.126.2023.03.28.00.21.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 00:14:38 -0700 (PDT)
-Message-ID: <1f97dec8-d30c-ccc7-3026-713bf9a15850@linaro.org>
-Date:   Tue, 28 Mar 2023 09:14:36 +0200
+        Tue, 28 Mar 2023 00:21:07 -0700 (PDT)
+Message-ID: <af455119-7178-bed8-4099-ee50c7b6134b@linaro.org>
+Date:   Tue, 28 Mar 2023 09:21:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
- compatible
+Subject: Re: [Patch v4 02/10] arm64: tegra: add bpmp ref in tegra234-mc node
 Content-Language: en-US
-To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
-References: <20230324073630.3194724-1-sai.krishna.potthuri@amd.com>
- <20230324073630.3194724-2-sai.krishna.potthuri@amd.com>
- <d646d109-d0a6-aedb-a8b2-ac954336e628@linaro.org>
- <BY5PR12MB425806889EE700C1FCC8A465DB8B9@BY5PR12MB4258.namprd12.prod.outlook.com>
+To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
+        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        lpieralisi@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
+        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
+        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
+References: <20230327161426.32639-1-sumitg@nvidia.com>
+ <20230327161426.32639-3-sumitg@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <BY5PR12MB425806889EE700C1FCC8A465DB8B9@BY5PR12MB4258.namprd12.prod.outlook.com>
+In-Reply-To: <20230327161426.32639-3-sumitg@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -88,76 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 11:58, Potthuri, Sai Krishna wrote:
-> Hi Krzysztof,
+On 27/03/2023 18:14, Sumit Gupta wrote:
+> Add the "nvidia,bpmp" property within the "memory-controller" node
+> to reference BPMP node. This is needed by the MC driver to pass
+> the client info to the BPMP-FW when memory interconnect support is
+> available.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Friday, March 24, 2023 5:14 PM
->> To: Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>; Ulf Hansson
->> <ulf.hansson@linaro.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
->> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Michal Simek
->> <michal.simek@xilinx.com>; Adrian Hunter <adrian.hunter@intel.com>
->> Cc: linux-mmc@vger.kernel.org; linux-kernel@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git (AMD-
->> Xilinx) <git@amd.com>; saikrishna12468@gmail.com
->> Subject: Re: [PATCH 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal Net
->> compatible
->>
->> On 24/03/2023 08:36, Sai Krishna Potthuri wrote:
->>> Add Xilinx Versal Net compatible to support eMMC 5.1 PHY.
->>>
->>> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
->>> ---
->>>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> index 8296c34cfa00..cf44a4b988a7 100644
->>> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
->>> @@ -27,6 +27,7 @@ allOf:
->>>              enum:
->>>                - xlnx,zynqmp-8.9a
->>>                - xlnx,versal-8.9a
->>> +              - xlnx,versal-net-5.1-emmc
->>
->> v5.1 is eMMC standard or Versal block version? If the first, it's not suitable for
->> compatibles.
->>
->> Also, what's the difference from xlnx,versal-8.9a?
-> V5.1 is an eMMC standard and this compatible is defined based on sdhci arasan
-> eMMC5.1 Host Controller(arasan,sdhci-5.1), where as in Versal, it’s a different
-> controller and it is based on 4.51 Host Controller(arasan,sdhci-8.9a).
+> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
 
-Mixing IP block versions and eMMC spec versions in one binding is a
-great way to confuse.
-
-> Versal Net Compatible is defined it this way to make it inline with the other
-> existing SoC compatibles like "intel,keembay-sdhci-5.1-emmc".
-> Please suggest if the compatible need to be renamed to "xlnx,versal-net-emmc"?
-
-Is Versal Net uniquely identifying your SoC or IP block?
-
-> 
-> Regards
-> Sai Krishna
-> 
->>
->>>      then:
->>>        properties:
->>>          clock-output-names:
->>> @@ -62,6 +63,11 @@ properties:
->>>          description:
->>>            For this device it is strongly suggested to include
->>>            clock-output-names and '#clock-cells'.
->>> +      - items:
->>> +          - const: xlnx,versal-net-5.1-emmc     # Versal Net eMMC PHY
-
-You do not have items here, so move it to respective place at beginning,
-just like others are defined.
-
+DTS goes to the end of patchset. If you put it here to fix
+bisectability, then your patchset is already broken.
 
 Best regards,
 Krzysztof
