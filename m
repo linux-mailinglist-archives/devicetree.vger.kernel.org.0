@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D65606CB733
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBC126CB746
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 08:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjC1Gc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 02:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
+        id S232381AbjC1GhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 02:37:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbjC1Gc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:32:26 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6F0DB
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 23:32:24 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id ek18so45281435edb.6
-        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 23:32:24 -0700 (PDT)
+        with ESMTP id S232208AbjC1Gg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 02:36:59 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF24312E
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 23:36:54 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id ek18so45315167edb.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Mar 2023 23:36:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1679985143;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1679985413;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l7Ds9OPbWWvKWNUXw3BzQf8ZpVZp2Ib3MYCGER5HxUc=;
-        b=a+xFTb2CPn0Pg13SMJkKxCmJBtfRv/qQmijSrQnlbwpob+J88zOt3YVX1rhhjzOZX/
-         SpJ6dIx0WhYI8XFklhKPuK3Qa3EuDWywHT+wAjm7QwubbtVOk0H20dwdDTqU76owU7e1
-         DyAm+w4LJ79ONyZzX7l90oLN9qwhHpzZLSJELtrzqSfUD60YiEMa12QExlG9SctV/3My
-         JKx6A/YMwUIolb286yEYjshV5hzZsR1xcuqC7OF4NwDE2faCaHLulh6ZFwSCJ+jocUyS
-         Ec6c0WdZ0phYbIQmNDwWeIvLnqeTBMnc6Dp3OuWen0+MdDpICAymznx/oo37q1S9wown
-         CAlQ==
+        bh=rg7ln0vtWUz2rX09aiXxcm/NmjbrwQwhmjlO2+xf65c=;
+        b=bJFuoeYvos6lpzBKhbZ13koLXy0NZysEjyNZje4vCdC0hEor+K56w5X94AhomyWBPK
+         +arik7s1GIUOE4i3bp1dViZXfhYiDWje5wDy+VguF6ZE4b6165vuScAkj9h3qnYy50uo
+         +e71NUyCldyEvdC6VjA2F+HGlimCffcz4hiCpLRJMXwHIkuZM2tmuPRNuXiO4zleFvhN
+         kGg4okFvG6lc4W/timUsjP3mJxDN5pwaqqC0LyshnJHCMvuMXvMk5RzW1lrcsArnX9kw
+         4EBXz+ExSJDKrEx10Q1rYaDxrVpXcbRtamA466QBSihz1LtVDDuue1qLjHIRcNKxav84
+         7ysA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679985143;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20210112; t=1679985413;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l7Ds9OPbWWvKWNUXw3BzQf8ZpVZp2Ib3MYCGER5HxUc=;
-        b=N7JpHJmjCu+lUbbIFQTxChsRU++BWallHPQdJhklcAnBi6SYKMAcnc8AsjdFwHVdo5
-         HxeffIjklSJ7r+mNHp8BY6QE8ZgDcq1JTot/Yty6bWY9LtW+LqU2uElP/tXDda9WLuSz
-         e43F/s1N/EcNxngYZDcTrtG6aDujhmhVsqHAFDt6NshBfCXQkT0PAU+mOY9968Iy/0sE
-         u4coUTKTAnZ/R6iJB4Jdv497+atRO3Qa2bmIJrzOdOTTf2dtIPCY7LV2PYuFDYdvVKje
-         GkHVQTDddZcK0pCQYbtds0JtMzz3Y2g7DEzQjpD0UWut7uo1LVtmZXZtNBfupolv5+8p
-         3ybw==
-X-Gm-Message-State: AO0yUKXvvjTYwLRlPu61hIleCsTP22gU/OSQhtpyXaMeMVcBECvQSJ0Y
-        L8xfQ2Qjhs4OTmVL7h7AlHF2uw==
-X-Google-Smtp-Source: AK7set/HTa4U3ix2pfhSUqdWxXnVuo8wE9wAajGZPZ5fhRrBHDzCVoYnG03Bu8vw05CkbzRDqObKaQ==
-X-Received: by 2002:a17:907:2bc7:b0:8ab:b03d:a34f with SMTP id gv7-20020a1709072bc700b008abb03da34fmr21018711ejc.12.1679985143046;
-        Mon, 27 Mar 2023 23:32:23 -0700 (PDT)
+        bh=rg7ln0vtWUz2rX09aiXxcm/NmjbrwQwhmjlO2+xf65c=;
+        b=wLIjm0Il/cdsjlYypb6JfPjNgwUURNs5T25Pr/MOaSXsP5JsfJPYVj+a6Ke2Z3D70u
+         wTxy/N0kxB3WAJCrobEtb5uffSYnrbRsl2NEMD0jJc4Ina1S0slLpKi1j+bCGnF9c3PH
+         SGqpqo6KMuH+BjTqnRpOFEwaz3+QQM0WLIIXvf/VaNjLI0tFm/rVOC1tP770w49PuTjh
+         PLz6VE+VI7OyXOUiHbviSKNsGvN68+E8YuSqFBHtoajjEESolxpDy1iMOGL4sCiLIQ2k
+         AbDRojmX8IsbGl0AVq/iFx0nxXTLB4zfHhA71c7oKRX/uEU/T0XU1LvbxE7emspx6wLc
+         WZxQ==
+X-Gm-Message-State: AAQBX9cf2RPXTqGgUAz0jYEjwQtsu6hHR8DdgGYNLND4w9zY2GqO1aHv
+        AMtuf659c62sLrQXcDJBquGB8g==
+X-Google-Smtp-Source: AKy350YR4kjr4yCk8UnUPhlJWSjLT1aUW1CZ0zwUJkBhu0R6dQMskjbM2t0Zl3BjeL+CDVqDOR++FA==
+X-Received: by 2002:a17:906:d78f:b0:932:40f4:5c49 with SMTP id pj15-20020a170906d78f00b0093240f45c49mr15253200ejb.67.1679985413260;
+        Mon, 27 Mar 2023 23:36:53 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:9e92:dca6:241d:71b6? ([2a02:810d:15c0:828:9e92:dca6:241d:71b6])
-        by smtp.gmail.com with ESMTPSA id f22-20020a170906825600b00925ce7c7705sm14843911ejx.162.2023.03.27.23.32.22
+        by smtp.gmail.com with ESMTPSA id r5-20020a1709064d0500b00923f05b2931sm14868672eju.118.2023.03.27.23.36.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 23:32:22 -0700 (PDT)
-Message-ID: <4fcb67bf-aa12-61c3-ca30-3fb11eaba67a@linaro.org>
-Date:   Tue, 28 Mar 2023 08:32:21 +0200
+        Mon, 27 Mar 2023 23:36:52 -0700 (PDT)
+Message-ID: <1838b760-c911-cb0a-184e-150df2f86c3b@linaro.org>
+Date:   Tue, 28 Mar 2023 08:36:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: mips: lantiq: Document Lantiq SoC dt
- bindings
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Support mailboxes
+ unidirectional channels
 Content-Language: en-US
-To:     Aleksander Bajkowski <olek2@wp.pl>, tsbogend@alpha.franken.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230326122942.870990-1-olek2@wp.pl>
- <3871e958-79aa-2b4c-3300-270a2eb8f8e8@linaro.org>
- <b3e0502b-61d0-430e-8832-dbbec69035a5@wp.pl>
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, sudeep.holla@arm.com,
+        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
+        nicola.mazzucato@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20230327140342.222168-1-cristian.marussi@arm.com>
+ <20230327140342.222168-2-cristian.marussi@arm.com>
+ <dd8d1503-e2bf-7032-4d0a-16d9a5b2aa51@linaro.org>
+ <ZCG154hlWbLMAzIi@e120937-lin>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b3e0502b-61d0-430e-8832-dbbec69035a5@wp.pl>
+In-Reply-To: <ZCG154hlWbLMAzIi@e120937-lin>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -78,27 +81,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 23:21, Aleksander Bajkowski wrote:
->>> +properties:
->>> +  $nodename:
->>> +    const: "/"
->>> +  compatible:
->>> +    oneOf:
->>> +      - description: Boards with Lantiq Amazon-SE SoC
->>> +        items:
->>> +          - const: lantiq,ase
->> This does not look like proper board compatible. Boards have almost
->> always minimum two compatibles - one for SoC and one for board. With
->> commit msg this just adds to confusion...
+On 27/03/2023 17:27, Cristian Marussi wrote:
+>>> +  - |
+>>> +    firmware {
+>>> +        scmi {
+>>> +            compatible = "arm,scmi";
+>>> +            mboxes = <&mhu_U_tx 0 0>, <&mhu_U_rx 0 0>;
+>>> +            shmem = <&cpu_scp_lpri0>;
+>>> +
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>
+>> I don't think adding one more example with difference in only one piece
+>> is needed here.
 >>
 > 
-> The added dt-binding contains only the SoC part. The compatible strings
-> for individual boards will be added later together with the dts files. Before
-> sending the dts files I want to document current bindings and clear
-> checkpach warnings about undocumented strings.
+> Mmm, I thought was sensible to add this example, given that a mailbox
+> transport configuration for a mailbox exposing unidrectional channels is
+> quite different from the usual bidirectional channel config already
+> present in the pre-existent example.
+> 
+> I'll add mbox-names into this example and see if I can change your
+> mind...or I can then finally drop it.
 
-Which is incomplete and inaccurate documentation. Instead, document
-proper, full compatibles.
+And what exactly this one more example changes? Does not validate
+different parts of the binding if only one property differs...
 
 Best regards,
 Krzysztof
