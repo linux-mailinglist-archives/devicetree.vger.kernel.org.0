@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 816056CC217
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D3796CC21D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 16:34:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232877AbjC1Oca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 10:32:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
+        id S230296AbjC1Oes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 10:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232572AbjC1Oc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:32:29 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71FEBC671
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:32:22 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id u10so11833691plz.7
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 07:32:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680013942;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a4/H/T3ZSjio2zX6ZAMl8YINB3FlzRujzGMZDBoATKc=;
-        b=wIB083NZBoyFFLa2cCqZcF7vaqLPcZgB0oWUPN/HTF0RQ44jgi+F9a9jruP9wkD7H/
-         fP535FTR9XH0icJX88bjq66ksKMfm5x2gDmtbvHefrstp0W4XaC92LbDre4Ey28mIpPE
-         L17lxfy2I0braxDObPok75iuaEppz67iiNpwTmh/G6jp9lSsNETpm2dFgEFB3WjIXgHE
-         yIyvh5HZF1xcrQEzB4ydgzhZ5i3cVaKEIUnBAHqIIzxjY7OrOiiPJBe/dj1hPpk8kdsb
-         SvWwVV8EBv5KqiuJ4OKXUa3fccFPvI99fhHXmIe9JF5BOEByYF0xvHGbbxi1wwM3kIDI
-         S5uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680013942;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a4/H/T3ZSjio2zX6ZAMl8YINB3FlzRujzGMZDBoATKc=;
-        b=sQ25PcGTJ1ZdG7dcIYY/aoViE/INSDqFIhD/wGa9APA0xntrFw20GN+026/iHk48wZ
-         pv88MB1e/GnJKZlTee+w2OIFotpNUdXtz7lOw8DnyMZK5UY9nvAFWuh8FZXQvrxBmppQ
-         lcAa3VAsoZVrWhZv22xVJsj03eMBHICl2VIBmSa9GOyhiV76BS+xj/tOj2JE8gfxNr0o
-         SOW+DptErkKl3Oer6oUJtImNOOPtl7I2NBRD+1a6K9qiibk49c4s5VgED5SG5XKg5jtE
-         0qVFjbb4C8NN0wZ3tm/4iP52eJIusCKu1OWkkOy7Vycmb2copOWDSHNS5ZL4JNAhwQxx
-         kXsg==
-X-Gm-Message-State: AAQBX9cDGMPOUCbiQc3rgdSJ2Ti3tkmJ2rIHaHFAphGRGVL7iLNpfcki
-        Rk3UhNqfNW5Ynyb20bHvWGmZ5p3VLg2rHYvF9nheTw==
-X-Google-Smtp-Source: AKy350Z5fgphni1u18mv1/SOTgLyRwUYHXCTwJVsHHhEy9ZWesS7t8yViT26ZXY4FI38D2UdMqJbZdb+EDM/Qh5keRs=
-X-Received: by 2002:a17:902:8f8c:b0:1a2:1ec5:e11f with SMTP id
- z12-20020a1709028f8c00b001a21ec5e11fmr5127547plo.6.1680013941839; Tue, 28 Mar
- 2023 07:32:21 -0700 (PDT)
+        with ESMTP id S232936AbjC1Oeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 10:34:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81F51FD0;
+        Tue, 28 Mar 2023 07:34:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DCF4DB81D6D;
+        Tue, 28 Mar 2023 14:34:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC52C433EF;
+        Tue, 28 Mar 2023 14:34:34 +0000 (UTC)
+Message-ID: <c368a0f8-41f0-69ac-04f4-459e5fc8b9d6@linux-m68k.org>
+Date:   Wed, 29 Mar 2023 00:34:31 +1000
 MIME-Version: 1.0
-References: <20230324061608.33609-1-quic_hazha@quicinc.com>
- <20230324061608.33609-2-quic_hazha@quicinc.com> <CAJ9a7VgAJ25CCGwwdfs2DXKaKYoA-BUQAdyZt5udm4qJf9ZQrA@mail.gmail.com>
- <0faff427-1f01-8783-9585-32dca872fe45@quicinc.com> <883c72a4-0c72-fd08-1b04-577037138b43@arm.com>
- <9fcc59cf-c76e-8cee-d232-830b31e35060@quicinc.com> <CAJ9a7Vj7L1wbc2iad-Tbf+2d_t5z-GpN7WEff0_FupVZVRNymA@mail.gmail.com>
- <19028b1a-d167-07d9-59d4-a8446f2330d6@quicinc.com> <bab8fc7f-77b3-472f-2d2b-b1275d753888@arm.com>
-In-Reply-To: <bab8fc7f-77b3-472f-2d2b-b1275d753888@arm.com>
-From:   Mike Leach <mike.leach@linaro.org>
-Date:   Tue, 28 Mar 2023 15:32:10 +0100
-Message-ID: <CAJ9a7VhhCsRxJGMS5LTkZgjqr2=y4ianSonGFPvG0QDUJJWaCA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] Coresight: Add coresight dummy driver
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     Hao Zhang <quic_hazha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>, Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk
+ ctrl
+Content-Language: en-US
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     peng.fan@nxp.com,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        abailon@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        festevam@gmail.com, abelvesa@kernel.org, marex@denx.de,
+        Markus.Niebel@ew.tq-group.com,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        paul.elder@ideasonboard.com, gerg@kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, linux-pm@vger.kernel.org,
+        s.hauer@pengutronix.de, robh+dt@kernel.org, aford173@gmail.com,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, djakov@kernel.org, shawnguo@kernel.org,
+        l.stach@pengutronix.de
+References: <20220703091451.1416264-8-peng.fan@oss.nxp.com>
+ <20230327045037.593326-1-gerg@linux-m68k.org> <2678294.mvXUDI8C0e@steina-w>
+ <b23a44ab-3666-8a41-d2a0-0d2fbdbd9f00@pengutronix.de>
+ <ecd3a92b-ba1e-e7c1-088a-371bd1a2c100@linux-m68k.org>
+ <20230328073302.jj64u5hvdpc6axa5@pengutronix.de>
+ <426b4776-104c-cb47-c8cc-c26515fcb6e3@linux-m68k.org>
+ <20230328134201.yaxrdtetjygkgkmz@pengutronix.de>
+ <20230328135100.rbmnfelphe7juhxo@pengutronix.de>
+From:   Greg Ungerer <gerg@linux-m68k.org>
+In-Reply-To: <20230328135100.rbmnfelphe7juhxo@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,428 +66,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Marco,
 
-On Tue, 28 Mar 2023 at 13:21, Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
->
-> On 28/03/2023 12:25, Hao Zhang wrote:
-> > Hi Mike,
-> >
-> > On 3/28/2023 6:06 PM, Mike Leach wrote:
-> >> Hi,
-> >>
-> >> A few additional comments....
-> >>
-> >> On Tue, 28 Mar 2023 at 10:24, Hao Zhang <quic_hazha@quicinc.com> wrote:
-> >>>
-> >>> Hi Suzuki,
-> >>>
-> >>> On 3/28/2023 4:35 PM, Suzuki K Poulose wrote:
-> >>>> On 28/03/2023 08:22, Hao Zhang wrote:
-> >>>>> Hi Mike,
-> >>>>>
-> >>>>> On 3/27/2023 11:58 PM, Mike Leach wrote:
-> >>>>>> Hi,
-> >>>>>>
-> >>>>>> On Fri, 24 Mar 2023 at 06:16, Hao Zhang <quic_hazha@quicinc.com>
-> >>>>>> wrote:
-> >>>>>>>
-> >>>>>>> Some Coresight devices that HLOS don't have permission to access
-> >>>>>>> or configure. Such as Coresight sink EUD, some TPDMs etc. So there
-> >>>>>>> need driver to register dummy devices as Coresight devices. Provide
-> >>>>>>> Coresight API for dummy device operations, such as enabling and
-> >>>>>>> disabling dummy devices. Build the Coresight path for dummy sink or
-> >>>>>>> dummy source for debugging.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
-> >>>>>>> ---
-> >>>>>>>    drivers/hwtracing/coresight/Kconfig           |  11 ++
-> >>>>>>>    drivers/hwtracing/coresight/Makefile          |   1 +
-> >>>>>>>    drivers/hwtracing/coresight/coresight-dummy.c | 176
-> >>>>>>> ++++++++++++++++++
-> >>>>>>>    3 files changed, 188 insertions(+)
-> >>>>>>>    create mode 100644 drivers/hwtracing/coresight/coresight-dummy.c
-> >>>>>>>
-> >>>>>>> diff --git a/drivers/hwtracing/coresight/Kconfig
-> >>>>>>> b/drivers/hwtracing/coresight/Kconfig
-> >>>>>>> index 2b5bbfffbc4f..06f0a7594169 100644
-> >>>>>>> --- a/drivers/hwtracing/coresight/Kconfig
-> >>>>>>> +++ b/drivers/hwtracing/coresight/Kconfig
-> >>>>>>> @@ -236,4 +236,15 @@ config CORESIGHT_TPDA
-> >>>>>>>
-> >>>>>>>             To compile this driver as a module, choose M here: the
-> >>>>>>> module will be
-> >>>>>>>             called coresight-tpda.
-> >>>>>>> +
-> >>>>>>> +config CORESIGHT_DUMMY
-> >>>>>>> +       tristate "Dummy driver support"
-> >>>>>>> +       help
-> >>>>>>> +         Enables support for dummy driver. Dummy driver can be used
-> >>>>>>> for
-> >>>>>>> +         CoreSight sources/sinks that are owned and configured
-> >>>>>>> by some
-> >>>>>>> +         other subsystem and use Linux drivers to configure rest of
-> >>>>>>> trace
-> >>>>>>> +         path.
-> >>>>>>> +
-> >>>>>>> +         To compile this driver as a module, choose M here: the
-> >>>>>>> module will be
-> >>>>>>> +         called coresight-dummy.
-> >>>>>>>    endif
-> >>>>>>> diff --git a/drivers/hwtracing/coresight/Makefile
-> >>>>>>> b/drivers/hwtracing/coresight/Makefile
-> >>>>>>> index 33bcc3f7b8ae..995d3b2c76df 100644
-> >>>>>>> --- a/drivers/hwtracing/coresight/Makefile
-> >>>>>>> +++ b/drivers/hwtracing/coresight/Makefile
-> >>>>>>> @@ -30,3 +30,4 @@ obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
-> >>>>>>>    coresight-cti-y := coresight-cti-core.o
-> >>>>>>> coresight-cti-platform.o \
-> >>>>>>>                      coresight-cti-sysfs.o
-> >>>>>>>    obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
-> >>>>>>> +obj-$(CONFIG_CORESIGHT_DUMMY) += coresight-dummy.o
-> >>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c
-> >>>>>>> b/drivers/hwtracing/coresight/coresight-dummy.c
-> >>>>>>> new file mode 100644
-> >>>>>>> index 000000000000..2d4eb3e546eb
-> >>>>>>> --- /dev/null
-> >>>>>>> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
-> >>>>>>> @@ -0,0 +1,176 @@
-> >>>>>>> +// SPDX-License-Identifier: GPL-2.0
-> >>>>>>> +/*
-> >>>>>>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights
-> >>>>>>> reserved.
-> >>>>>>> + */
-> >>>>>>> +
-> >>>>>>> +#include <linux/kernel.h>
-> >>>>>>> +#include <linux/module.h>
-> >>>>>>> +#include <linux/platform_device.h>
-> >>>>>>> +#include <linux/coresight.h>
-> >>>>>>> +#include <linux/of.h>
-> >>>>>>> +#include <linux/pm_runtime.h>
-> >>>>>>> +
-> >>>>>>> +#include "coresight-priv.h"
-> >>>>>>> +#include "coresight-trace-id.h"
-> >>>>>>> +
-> >>>>>>> +struct dummy_drvdata {
-> >>>>>>> +       struct device                   *dev;
-> >>>>>>> +       struct coresight_device         *csdev;
-> >>>>>>> +       int                             traceid;
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +DEFINE_CORESIGHT_DEVLIST(dummy_devs, "dummy");
-> >>>>>>> +
-> >>
-> >> minor nit: can we have dummy_source and dummy_sink as the device names
-> >> to make it clear at the first level what these are without having to
-> >> look at the attributes?
-> >>
-> >
-> > This is a good advice, dummy_source and dummy_sink are two different
-> > components, so it's better to separate it at the first level. I will
-> > take your advice in the next version of patch.
-> >
-> >>>>>>> +static int dummy_source_enable(struct coresight_device *csdev,
-> >>>>>>> +                              struct perf_event *event, u32 mode)
-> >>>>>>> +{
-> >>>>>>> +       struct dummy_drvdata *drvdata =
-> >>>>>>> dev_get_drvdata(csdev->dev.parent);
-> >>>>>>> +
-> >>>>>>> +       dev_info(drvdata->dev, "Dummy source enabled\n");
-> >>>>>>> +
-> >>>>>>> +       return 0;
-> >>>>>>> +}
-> >>>>>>> +
-> >>>>>>> +static void dummy_source_disable(struct coresight_device *csdev,
-> >>>>>>> +                                struct perf_event *event)
-> >>>>>>> +{
-> >>>>>>> +       struct dummy_drvdata *drvdata =
-> >>>>>>> dev_get_drvdata(csdev->dev.parent);
-> >>>>>>> +
-> >>>>>>> +       dev_info(drvdata->dev, "Dummy source disabled\n");
-> >>>>>>> +}
-> >>>>>>> +
-> >>>>>>> +static int dummy_sink_enable(struct coresight_device *csdev, u32
-> >>>>>>> mode,
-> >>>>>>> +                               void *data)
-> >>>>>>> +{
-> >>>>>>> +       struct dummy_drvdata *drvdata =
-> >>>>>>> dev_get_drvdata(csdev->dev.parent);
-> >>>>>>> +
-> >>>>>>> +       dev_info(drvdata->dev, "Dummy sink enabled\n");
-> >>>>>>> +
-> >>>>>>> +       return 0;
-> >>>>>>> +}
-> >>>>>>> +
-> >>>>>>> +static int dummy_sink_disable(struct coresight_device *csdev)
-> >>>>>>> +{
-> >>>>>>> +       struct dummy_drvdata *drvdata =
-> >>>>>>> dev_get_drvdata(csdev->dev.parent);
-> >>>>>>> +
-> >>>>>>> +       dev_info(drvdata->dev, "Dummy sink disabled\n");
-> >>>>>>> +
-> >>>>>>> +       return 0;
-> >>>>>>> +}
-> >>>>>>> +
-> >>>>>>> +static const struct coresight_ops_source dummy_source_ops = {
-> >>>>>>> +       .enable         = dummy_source_enable,
-> >>>>>>> +       .disable        = dummy_source_disable,
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +static const struct coresight_ops_sink dummy_sink_ops = {
-> >>>>>>> +       .enable         = dummy_sink_enable,
-> >>>>>>> +       .disable        = dummy_sink_disable,
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +static const struct coresight_ops dummy_cs_ops = {
-> >>>>>>> +       .source_ops     = &dummy_source_ops,
-> >>>>>>> +       .sink_ops       = &dummy_sink_ops,
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +static int dummy_probe(struct platform_device *pdev)
-> >>>>>>> +{
-> >>>>>>> +       int ret, trace_id;
-> >>>>>>> +       struct device *dev = &pdev->dev;
-> >>>>>>> +       struct coresight_platform_data *pdata;
-> >>>>>>> +       struct dummy_drvdata *drvdata;
-> >>>>>>> +       struct coresight_desc desc = { 0 };
-> >>>>>>> +
-> >>>>>>> +       desc.name = coresight_alloc_device_name(&dummy_devs, dev);
-> >>>>>>> +       if (!desc.name)
-> >>>>>>> +               return -ENOMEM;
-> >>>>>>> +
-> >>>>>>> +       pdata = coresight_get_platform_data(dev);
-> >>>>>>> +       if (IS_ERR(pdata))
-> >>>>>>> +               return PTR_ERR(pdata);
-> >>>>>>> +       pdev->dev.platform_data = pdata;
-> >>>>>>> +
-> >>>>>>> +       drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> >>>>>>> +       if (!drvdata)
-> >>>>>>> +               return -ENOMEM;
-> >>>>>>> +
-> >>>>>>> +       drvdata->dev = &pdev->dev;
-> >>>>>>> +       platform_set_drvdata(pdev, drvdata);
-> >>>>>>> +
-> >>>>>>> +       if (of_property_read_bool(pdev->dev.of_node,
-> >>>>>>> "qcom,dummy-source")) {
-> >>>>>>> +               desc.type = CORESIGHT_DEV_TYPE_SOURCE;
-> >>>>>>> +               desc.subtype.source_subtype =
-> >>>>>>> + CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS;
-> >>>>>>> +       } else if (of_property_read_bool(pdev->dev.of_node,
-> >>>>>>> +                                        "qcom,dummy-sink")) {
-> >>
-> >> It would simplify things if the compatibles were
-> >> arm,coresight-dummy-source and arm,coresight-dummy-sink - and drop the
-> >> two additional attributes, using of_device_is_compatible() here.
-> >>
-> >
-> > Yes, I will update it in the next version of patch.
-> >
-> >>>>>>> +               desc.type = CORESIGHT_DEV_TYPE_SINK;
-> >>>>>>> +               desc.subtype.sink_subtype =
-> >>>>>>> CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
-> >>>>>>
-> >>>>>> This will break the automatic sink selection on a system where
-> >>>>>> perf is
-> >>>>>> looking for a default sink and the dummy sink is closest  / first
-> >>>>>> discovered.
-> >>>>>>
-> >>>>>> i.e. when perf record -e cs_etm// <options>
-> >>>>>> is used to trace a program in linux, a dummy sink appearing in the
-> >>>>>> coresight tree with this designation may be selected.
-> >>>>>>
-> >>>>>> This needs to be corrected, probably with a unique sub-type that
-> >>>>>> appears before the CORESIGHT_DEV_SUBTYPE_SINK_BUFFER value in the
-> >>>>>> enum
-> >>>>>> as the selection is based on >= CORESIGHT_DEV_SUBTYPE_SINK_BUFFER.
-> >>>>>>
-> >>>>
-> >>>> Good point Mike.
-> >>>>
-> >>>>>> By implication adding a new value - will possibly affect other code
-> >>>>>> using the enum values so will need to be checked
-> >>>>>>
-> >>>>>> Regards
-> >>>>>>
-> >>>>>> Mike
-> >>>>>>
-> >>>>>
-> >>>>> Thanks for your comments, I will add a new sub-type for dummy sink and
-> >>>>> check the impact of it.
-> >>>>
-> >>>> Please keep this as the lowest priority, something like:
-> >>>>
-> >>>>    enum coresight_dev_subtype_sink {
-> >>>> +    CORESIGHT_DEV_SUBTYPE_SINK_DUMMY,
-> >>>>           CORESIGHT_DEV_SUBTYPE_SINK_PORT,
-> >>>>           CORESIGHT_DEV_SUBTYPE_SINK_BUFFER,
-> >>>>           CORESIGHT_DEV_SUBTYPE_SINK_SYSMEM,
-> >>>>           CORESIGHT_DEV_SUBTYPE_SINK_PERCPU_SYSMEM,
-> >>>> };
-> >>>>
-> >>>> This should be fine without any impact on the existing code, as we
-> >>>> expect the driver modules to be updated with the new core module.
-> >>>>
-> >>>> Suzuki
-> >>>>
-> >>>
-> >>> Sure, I will take your advice in the next version of patch.
-> >>>
-> >>> Thanks,
-> >>> Hao
-> >>>
-> >>>>
-> >>>>>
-> >>>>> Thanks,
-> >>>>> Hao
-> >>>>>
-> >>>>>>
-> >>>>>>> +       } else {
-> >>>>>>> +               dev_info(dev, "Device type not set\n");
-> >>>>>>> +               return -EINVAL;
-> >>>>>>> +       }
-> >>>>>>> +
-> >>>>>>> +       desc.ops = &dummy_cs_ops;
-> >>>>>>> +       desc.pdata = pdev->dev.platform_data;
-> >>>>>>> +       desc.dev = &pdev->dev;
-> >>>>>>> +       drvdata->csdev = coresight_register(&desc);
-> >>>>>>> +       if (IS_ERR(drvdata->csdev))
-> >>>>>>> +               return PTR_ERR(drvdata->csdev);
-> >>>>>>> +
-> >>>>>>> +       trace_id = coresight_trace_id_get_system_id();
-> >>>>>>> +       if (trace_id < 0) {
-> >>>>>>> +               ret = trace_id;
-> >>>>>>> +               goto cs_unregister;
-> >>>>>>> +       }
-> >>>>>>> +       drvdata->traceid = (u8)trace_id;
-> >>>>>>> +
-> >>
-> >> Number of issues here:-
-> >> 1) Why are sinks being given a trace ID? - they do not need them.
-> >> 2) how is the trace ID communicated to the underlying hardware system?
-> >> - there appears to be no way of doing this here. Without this you
-> >> cannot guarantee that there will not be clashes.
-> >> Although your use case may mitigate against this - for this to be a
-> >> generic module there must be a way to ensure the IDs can be discovered
-> >> externally.
-> >> 3) Trace IDs are a limited resource - most sources allocate on enable,
-> >> release on disable  / reset - this would be preferable.
-> >>
-> >>
-> >> Regards
-> >>
-> >> Mike
->
-> Good points Mike.
->
-> >
-> > 1. It should not be given a trace ID for sink, I will correct it in the
-> > next version of patch.
-> > 2. There are other patches to transmit the trace ID to sub-processor.
-> > But We have an upstream dependency on QMI project. We will sync with
-> > them for the other related patches.
+On 28/3/23 23:51, Marco Felsch wrote:
+> On 23-03-28, Marco Felsch wrote:
+>> Hi Greg,
+>>
+>> On 23-03-28, Greg Ungerer wrote:
+>>> Hi Marco,
+>>>
+>>> On 28/3/23 17:33, Marco Felsch wrote:
+>>>> Hi Greg,
+>>>>
+>>>> On 23-03-27, Greg Ungerer wrote:
+>>>>> Hi Ahmad,
+>>>>>
+>>>>> On 27/3/23 17:16, Ahmad Fatoum wrote:
+>>>>>> On 27.03.23 08:27, Alexander Stein wrote:
+>>>>>>> Am Montag, 27. März 2023, 06:50:37 CEST schrieb Greg Ungerer:
+>>>>>>>> Any thoughts on why this breaks USB?
+>>>>>>>
+>>>>>>> Maybe you are missing CONFIG_INTERCONNECT_IMX8MP?
+>>>>>>
+>>>>>> And if that's the case, did you check /sys/kernel/debug/devices_deferred
+>>>>>> to see if there was any indication that this is the reason?
+>>>>>
+>>>>> Yeah, it does:
+>>>>>
+>>>>>       # cat /sys/kernel/debug/devices_deferred
+>>>>>       32f10100.usb	platform: supplier 32f10000.blk-ctrl not ready
+>>>>>       32f10108.usb	platform: supplier 32f10000.blk-ctrl not ready
+>>>>>       32ec0000.blk-ctrl	imx8m-blk-ctrl: failed to get noc entries
+>>>>>       381f0040.usb-phy	platform: supplier 32f10000.blk-ctrl not ready
+>>>>>       382f0040.usb-phy	platform: supplier 32f10000.blk-ctrl not ready
+>>>>>       imx-pgc-domain.11	
+>>>>>       imx-pgc-domain.12	
+>>>>>       imx-pgc-domain.13	
+>>>>>       38330000.blk-ctrl	platform: supplier imx-pgc-domain.11 not ready
+>>>>>       32f10000.blk-ctrl	imx8mp-blk-ctrl: failed to get noc entries
+>>>>>
+>>>>> As far as I can tell blk-ctrl should be good:
+>>>>>
+>>>>>       #
+>>>>>       # i.MX SoC drivers
+>>>>>       #
+>>>>>       CONFIG_IMX_GPCV2_PM_DOMAINS=y
+>>>>>       CONFIG_SOC_IMX8M=y
+>>>>>       # CONFIG_SOC_IMX9 is not set
+>>>>>       CONFIG_IMX8M_BLK_CTRL=y
+>>>>>       # end of i.MX SoC drivers
+>>>>>
+>>>>>
+>>>>>> If you didn't find any hint there, you might want to place a
+>>>>>> dev_err_probe with a suitable message at the place where -EPROBE_DEFER
+>>>>>> was returned.
+>>>>>
+>>>>> I will try that.
+>>>>
+>>>> Can you check that CONFIG_ARM_IMX_BUS_DEVFREQ is enabled? This is the
+>>>> noc/interconnect driver. This could also the problem for you vpu issue.
+>>>
+>>> I do not have that enabled. Enabling that fixes the USB probing.
+>>> So that is good, thanks.
+>>>
+>>> It doesn't fix the other problem I mentioned with the vpu pgc nodes though.
+>>> I do get some extra messages now with this enabled and the 6.1 kernel:
+>>>
+>>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>>      imx-pgc imx-pgc-domain.8: failed to command PGC
+>>>      imx8m-blk-ctrl 38330000.blk-ctrl: deferred probe timeout, ignoring dependency
+>>>      imx8m-blk-ctrl 38330000.blk-ctrl: error -110: failed to attach power domain "g1"
+>>>      imx8m-blk-ctrl: probe of 38330000.blk-ctrl failed with error -110
+>>
+>> Okay, this seems more like a "real" issue not related to some missing
+>> drivers. I followed the code and found a poll within the
+>> imx_pgc_power_up() in gpcv2.c. Power-domain 8 is the vpumix domain which
+>> is used as power-domain for the g1 power-domain. My assumption is that
+>> this poll does run into the timeout. Maybe Peng can support you here
+>> since I didn't had the time for to test the VPUs yet and he did the
+>> integration patches.
+>>
+>> Just ignore the errors if you don't use the VPUs or disable the
+>> blk-ctrl@38330000 node via status = "disabled".
+> 
+> I forgot to ask: Does your i.MX8MP have a VPU? There are i.MX8MP devices
+> (don't know the name) which don't have support for certain IPs. If this
 
-OK - but this set is not complete without the API for the external
-system to access the allocated ID.
-We need to review and agree this to ensure it fits the generic case.
+The hardware platform I have is using the MIMX8ML4CVNKZAB "i.MX 8M Plus QuadLite"
+(https://www.nxp.com/part/MIMX8ML4CVNKZAB#/) which does not have the hardware
+video encode/decoder module (like the "i.MX 8M Plus Quad" parts).
 
-> > 3. The trace ID of dummy source need to be communicated to the
-> > sub-processor, it's better to be allocated on probe, that would reduce
-> > communications costs. On the other hand, there will be few dummy
-> > sources. I'd perfer to allocate it on probe function.
->
-> Could that be delayed to dynamic allocation when the device is enabled ?
 
-If  there are very few (low single digit) dummy devices, then it is
-perhaps reasonable to allocate on probe - as per the STM
+> is the case the bootloader will fixup your devicetree by disable the
+> corresponding nodes, we call this feature-controller:
+> 
+> https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/imx8mp.dtsi
+> 
+> As you can see the imx8mp.dtsi is missing the feature bits for the VPU
+> but you can check the i.mx8mm.dtsi. Here you can see that barebox will
+> check the availability of the vpu:
+> 
+> https://elixir.bootlin.com/barebox/latest/source/arch/arm/dts/imx8mm.dtsi
 
-> Also, do we need a property for the dummy-source to "allocate" a
-> traceID?
->
-
-Any source must always allocate an ID, so we probably do not need this
-just to enable the allocation. However, if we get into a situation
-where there are many dummy devices then a property to force alloc on
-enable could be used.
-This could be addressed in future should the demand arise,
+Ok, thanks, I'll take a look.
 
 Regards
-
-Mike
-
-> i.e., add a "property" (not compatible)
-> "arm,coresight-dummy-source-traceid" ?
->
-> Suzuki
->
->
-> >
-> > Thanks,
-> > Hao
-> >
-> >>
-> >>>>>>> +       pm_runtime_enable(dev);
-> >>>>>>> +       dev_info(dev, "Dummy device initialized\n");
-> >>>>>>> +
-> >>>>>>> +       return 0;
-> >>>>>>> +
-> >>>>>>> +cs_unregister:
-> >>>>>>> +       coresight_unregister(drvdata->csdev);
-> >>>>>>> +
-> >>>>>>> +       return ret;
-> >>>>>>> +}
-> >>>>>>> +
-> >>>>>>> +static int dummy_remove(struct platform_device *pdev)
-> >>>>>>> +{
-> >>>>>>> +       struct dummy_drvdata *drvdata = platform_get_drvdata(pdev);
-> >>>>>>> +       struct device *dev = &pdev->dev;
-> >>>>>>> +
-> >>>>>>> +       coresight_trace_id_put_system_id(drvdata->traceid);
-> >>>>>>> +       pm_runtime_disable(dev);
-> >>>>>>> +       coresight_unregister(drvdata->csdev);
-> >>>>>>> +       return 0;
-> >>>>>>> +}
-> >>>>>>> +
-> >>>>>>> +static const struct of_device_id dummy_match[] = {
-> >>>>>>> +       {.compatible = "qcom,coresight-dummy"},
-> >>>>>>> +       {},
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +static struct platform_driver dummy_driver = {
-> >>>>>>> +       .probe  = dummy_probe,
-> >>>>>>> +       .remove = dummy_remove,
-> >>>>>>> +       .driver = {
-> >>>>>>> +               .name   = "coresight-dummy",
-> >>>>>>> +               .of_match_table = dummy_match,
-> >>>>>>> +       },
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +static int __init dummy_init(void)
-> >>>>>>> +{
-> >>>>>>> +       return platform_driver_register(&dummy_driver);
-> >>>>>>> +}
-> >>>>>>> +module_init(dummy_init);
-> >>>>>>> +
-> >>>>>>> +static void __exit dummy_exit(void)
-> >>>>>>> +{
-> >>>>>>> +       platform_driver_unregister(&dummy_driver);
-> >>>>>>> +}
-> >>>>>>> +module_exit(dummy_exit);
-> >>>>>>> +
-> >>>>>>> +MODULE_LICENSE("GPL");
-> >>>>>>> +MODULE_DESCRIPTION("CoreSight dummy source driver");
-> >>>>>>> --
-> >>>>>>> 2.17.1
-> >>>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>
-> >>
-> >>
-> >>
->
+Greg
 
 
--- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
