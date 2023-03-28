@@ -2,108 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7786CC679
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF0F6CC6BB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 17:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230093AbjC1PfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 11:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44110 "EHLO
+        id S232764AbjC1PkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 11:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232868AbjC1PfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:35:16 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3CFB3
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 08:35:13 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id c9so5931314lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 08:35:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680017711;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3N8h1DChvaLnm2TUkq7RCFOUn72LEkPBuvQVgji2prc=;
-        b=MWTvY67pF8MEgiGs0jD2F1Vba+LhJPWz/XGiFuofZNJLlEA3NardYys19LQAJ2Nutk
-         m0Fo1FrI6Hi+fJuGrEHQ+pTH1mPbkH11n2Poeu7kSgO6C1LbRjccfRcMXT61KZUorXQe
-         AmuQnfQHrzT2QoYg91RCtwoqwkCgFVd3st/0qc28pr8D04tbsuDjbWUFdABzBDZFoJ0p
-         k4x21jaRhb7KwdYmVywi5vlO/jlQgqOGHQiJzsSwCkOYO10V3g1/BRKivvz0L52A7gM1
-         zJSYmHOo+yIicNDz6RQFY1UmNKvO71ygggA9+Aj8sGVBFeyY6guMH8GWq3Ba3KTpnHi2
-         E6RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680017711;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3N8h1DChvaLnm2TUkq7RCFOUn72LEkPBuvQVgji2prc=;
-        b=KBzvZbgF/AU7CNOvgavj5Qp/ObZu0H2sSvF2inM7l6KmlwMWMDMLuK8yAV1MeR2uns
-         Bagfa+9PbMKK73bWzxGIFjV3FNpvpzE23qwZPTItW+SzHcr6AUKIgSiMTwzsxzZqvsfB
-         wd6/ccGb+0Nv4YIzOtw5BnvfATmus8sZ8l47bB0NNrcm7ZWNw6wGWVvp8KHHMlf9V1B8
-         d+JY3z/nNnLQOk9RZ0oofynKV28jM5C2zixl97n9nd2cwdHknItl5Pi3Gvu7OghPMn7k
-         +NMEhT13C+C1Aa0PZFuXcHMsq0ihQqW7gh6nA04gOf6f2cM7pf6jRmQJfKlYsJ1UVsY7
-         C4Ow==
-X-Gm-Message-State: AAQBX9e9XMLj4w6U2AzqDNBmwTGmZOpgGRrDMBBEpJuVCyIWSKbKdVgu
-        aLiUr4MmuGgbQozmJ8aQbfLkGg==
-X-Google-Smtp-Source: AKy350aVn3vQwYsmxvtq+7/O1t34Z5xIpUuSNYCnORBUR752Ec2avam/4Q48gjVlzD+IBjLDYgwZ7w==
-X-Received: by 2002:ac2:51a1:0:b0:4df:830d:4a3a with SMTP id f1-20020ac251a1000000b004df830d4a3amr5009867lfk.23.1680017711678;
-        Tue, 28 Mar 2023 08:35:11 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id m10-20020ac2428a000000b004b6f00832cesm5086017lfh.166.2023.03.28.08.35.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 08:35:11 -0700 (PDT)
-Message-ID: <2b0506b7-1a3a-b45a-8514-42066231d2ea@linaro.org>
-Date:   Tue, 28 Mar 2023 18:35:10 +0300
+        with ESMTP id S232318AbjC1Pjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 11:39:51 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D2BF778;
+        Tue, 28 Mar 2023 08:38:25 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32SEFZfT005918;
+        Tue, 28 Mar 2023 17:37:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=7FikNAgVQUDv7CDM0c6ACVV1+rjHVWpaEeehVcGfFZU=;
+ b=08e+AyRM5KBwiHBi5930iRvuArBIehmoBzFIxovfEUUFNEwqmOTViog8+akV3QzHb0lb
+ wlY6uWIOm2f63SmMuBLgHrvMvUdjCblaHmSKb97Gl60C6Me3XxSexLNHFPGlfktM1XE8
+ BuvXHCAPzfibtGOl1QPbHplsqKQ7cLjqrqMTntYO0EBhl9fMAIGS1yRbH1ikCch8ANrs
+ PXrQknQK0VXxPBd/+VjTQQFMLM4EgeKdSiGtDcGRUMjEGqqC/+57pw+sZWwOU0hrGyjr
+ 4EMftF/Ri5ByqwnY1GEvn8UCp07t/1tDqLnqNYXq4ECewju2BJzVd0oV9FgHPO9Yt3Oc Zw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pk5xkjtk2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Mar 2023 17:37:36 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 39A1310002A;
+        Tue, 28 Mar 2023 17:37:36 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 33CD82171C4;
+        Tue, 28 Mar 2023 17:37:36 +0200 (CEST)
+Received: from localhost (10.201.20.168) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Tue, 28 Mar
+ 2023 17:37:35 +0200
+From:   Valentin Caron <valentin.caron@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/6] ARM: dts: stm32: stm32mp15 various fixes and add stm32mp13 usart nodes
+Date:   Tue, 28 Mar 2023 17:37:17 +0200
+Message-ID: <20230328153723.498672-1-valentin.caron@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 06/14] drm/msm/a6xx: Remove both GBIF and RBBM GBIF
- halt on hw init
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
- <20230223-topic-gmuwrapper-v4-6-e987eb79d03f@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230223-topic-gmuwrapper-v4-6-e987eb79d03f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.168]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-28_02,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2023 17:28, Konrad Dybcio wrote:
-> Currently we're only deasserting REG_A6XX_RBBM_GBIF_HALT, but we also
-> need REG_A6XX_GBIF_HALT to be set to 0. For GMU-equipped GPUs this is
-> done in a6xx_bus_clear_pending_transactions(), but for the GMU-less
-> ones we have to do it *somewhere*. Unhalting both side by side sounds
-> like a good plan and it won't cause any issues if it's unnecessary.
-> 
-> Also, add a memory barrier to ensure it's gone through.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
+On stm32mp15 device trees:
+  - Fix pins of USART2 of stm32mp15 dk* boards
+  - Remove duplicates serial aliases
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On stm32mp13 device trees:
+  - Add USART nodes in stm32mp131.dtsi
+  - Add USART nodes in stm32mp135f-dk.dts
+  
+Changes in v2:
+  - Drop patch about SCMI clock of USART1.
+
+Valentin Caron (6):
+  ARM: dts: stm32: fix slew-rate of USART2 on stm32mp15xx-dkx
+  ARM: dts: stm32: clean uart aliases on stm32mp15xx-dkx boards
+  ARM: dts: stm32: clean uart aliases on stm32mp15xx-exx boards
+  ARM: dts: stm32: add uart nodes on stm32mp13
+  ARM: dts: stm32: add pins for usart2/1/4/8 in stm32mp13-pinctrl
+  ARM: dts: stm32: add uart nodes and uart aliases on stm32mp135f-dk
+
+ arch/arm/boot/dts/stm32mp13-pinctrl.dtsi | 129 +++++++++++++++++++++++
+ arch/arm/boot/dts/stm32mp131.dtsi        |  97 ++++++++++++++++-
+ arch/arm/boot/dts/stm32mp135f-dk.dts     |  42 +++++++-
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi |   4 +-
+ arch/arm/boot/dts/stm32mp157a-dk1.dts    |   3 -
+ arch/arm/boot/dts/stm32mp157c-dk2.dts    |   3 -
+ arch/arm/boot/dts/stm32mp157c-ed1.dts    |   8 +-
+ arch/arm/boot/dts/stm32mp157c-ev1.dts    |   9 +-
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi   |   6 ++
+ 9 files changed, 282 insertions(+), 19 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
 
