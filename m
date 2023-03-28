@@ -2,160 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D96906CBF7B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 807FD6CBFAE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Mar 2023 14:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230249AbjC1Mnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 08:43:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60408 "EHLO
+        id S233034AbjC1MtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 08:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbjC1Mns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:43:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A41F9ECF;
-        Tue, 28 Mar 2023 05:43:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE9C961764;
-        Tue, 28 Mar 2023 12:43:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B55C2C4339C;
-        Tue, 28 Mar 2023 12:43:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680007409;
-        bh=o05r9h4SbLyiMBOmSHs01/zEhHQ6MFt93kq9kl342Io=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Fm15YRSEEzzRt5CbfNMR4i8z9EsewiMDmbqRURxjXp57gFw508CvBJDCWpFKu+QGW
-         SlMe3g3UMRSw+HhtCB+fExGeGniljesvCnH1QupfcSRRgPC5f/RtamZCb64aLyf7pY
-         cL8C7jIAgoaGWEfv1as9kOn+rGnhjE28GTDQdhUqvAQfUyYVV8wY3UMCGGRCr8f3Fe
-         i1hlecVVvTgjwgjXzUd1TDQRJOvmzxl/IZNtf6el4IO5ski1xY4jaL7/I3lzRFj0hn
-         0D7fCQ5UfTGWZlu/AGYYU0gFa41QtDGDd9Y0eGyIzKDXa8nYI8n1dakTDZrT5C9ggQ
-         oXAWrSrugHdIA==
-From:   Roger Quadros <rogerq@kernel.org>
-To:     nm@ti.com, vigneshr@ti.com
-Cc:     kristo@kernel.org, srk@ti.com, r-gunasekaran@ti.com,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am625-sk: Enable Type-C port for USB0
-Date:   Tue, 28 Mar 2023 15:43:15 +0300
-Message-Id: <20230328124315.123778-3-rogerq@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230328124315.123778-1-rogerq@kernel.org>
-References: <20230328124315.123778-1-rogerq@kernel.org>
+        with ESMTP id S232957AbjC1MtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 08:49:04 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C92FAAD23;
+        Tue, 28 Mar 2023 05:48:18 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id eh3so49146122edb.11;
+        Tue, 28 Mar 2023 05:48:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680007692;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E+j/KJFIrlst+m4MnKU1YhwoFJufXJ+qFFR8aaFj9yI=;
+        b=qDF0RIo7qEWFpLp1V7zg1nyS0Cz1f0niR5wf1JYgREvT++u/jTQXlrbrR3tekciQNy
+         J594QKzqJnW0RS4GCeEsrUgLCtE53jWSGrRuZOfoZUID0U/AyqIqhgRR2Dp6MMIyU2y+
+         u4peTJZIEOFU+iPGZXXljyqnwb/gIcehiAxSMTyenCmcivMGAlVGzH8hOqulA9TQ/Nho
+         0WUTcOReF5uOPFiB0Zl4HaBHwPn/DWfwn0dj1Wy4kx2nErInpbAEo947n8N7Sl9rKwb0
+         zONtFEQeZ6L8GfyOiSRJAVufq1WiZ1mpaGSeVBPSscMia53xEo4GP86qEzeoQShq+4SP
+         pSIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680007692;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E+j/KJFIrlst+m4MnKU1YhwoFJufXJ+qFFR8aaFj9yI=;
+        b=7m/GtTyOIEysY//Bylj4uAcmgOWbBquURaRYAakP332ZoCnJuuIwBnFiRDWa3H4mVw
+         H7IZurUScTdAkPXkXg6ESixin6sa+FWKZ5iI926wBATBYD7dJBtGD03TFcXsf3ELrNT6
+         GBeF1Qh1ZEzudC4fUrcRnAyaYdP72Uz4VjqSHb6Zom13Tl9feo/neaC5DDtNVSOTVrCd
+         WhADPBXWLS+Yczc7s+36yOVgq7Uvfw8Pczgh/KW6OUEj4dvOMEzJuyKQWzLSkS10lLwG
+         n6B/HhntL6O1w8wNyWru7OWwGCoLVsGPRu6vc/kMA26dUZfu5by0RLCnh5A70oDFbRik
+         MVyA==
+X-Gm-Message-State: AAQBX9dTevcxVVCdQ6OOwbv9JiSJK0rj++NGb2E0ZTE3YbTgHvDEajSV
+        Q2xiJjbpyC0eMgrEGvue38Q=
+X-Google-Smtp-Source: AKy350bsYP6Fqx2BMM9UnoL40J+1Zzy9EBO2zL7Vus0MWU2zi2OsOdKythsze4lbrbREF6yEcAMN9g==
+X-Received: by 2002:a17:906:3da:b0:933:2f77:ca78 with SMTP id c26-20020a17090603da00b009332f77ca78mr15915436eja.28.1680007691989;
+        Tue, 28 Mar 2023 05:48:11 -0700 (PDT)
+Received: from orome (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id l11-20020a1709066b8b00b00939faf4be97sm10258789ejr.215.2023.03.28.05.48.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 05:48:11 -0700 (PDT)
+Date:   Tue, 28 Mar 2023 14:48:09 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sumit Gupta <sumitg@nvidia.com>
+Cc:     treding@nvidia.com, dmitry.osipenko@collabora.com,
+        viresh.kumar@linaro.org, rafael@kernel.org, jonathanh@nvidia.com,
+        robh+dt@kernel.org, lpieralisi@kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
+        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
+        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v4 01/10] dt-bindings: memory: tegra: add bpmp ref in
+ tegra234-mc node
+Message-ID: <ZCLiCWRYbO98qwCn@orome>
+References: <20230327161426.32639-1-sumitg@nvidia.com>
+ <20230327161426.32639-2-sumitg@nvidia.com>
+ <787f656a-223d-5eed-e311-9cc7a6c46452@linaro.org>
+ <ZCLF6ZRH528pu/r3@orome>
+ <79d8044f-ce68-463e-66f7-8755e253bc99@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="SOqUr+gSHmGMXo04"
+Content-Disposition: inline
+In-Reply-To: <79d8044f-ce68-463e-66f7-8755e253bc99@linaro.org>
+User-Agent: Mutt/2.2.9 (2022-11-12)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-USB0 is a Type-C port with dual data role and power sink.
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
- arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts      |  4 ++
- arch/arm64/boot/dts/ti/k3-am625-sk.dts        | 44 ++++++++++++++++++-
- .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  4 --
- 3 files changed, 47 insertions(+), 5 deletions(-)
+--SOqUr+gSHmGMXo04
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-index b2ca19e3042e..a3c3609833fd 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-@@ -225,3 +225,7 @@ ldo4_reg: ldo4 {
- 		};
- 	};
- };
-+
-+&usb0 {
-+	dr_mode = "peripheral";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index cdc0858dd1b2..13fdaa9ce4e7 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -136,6 +136,35 @@ AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
- 	};
- };
- 
-+&main_i2c0 {
-+	typec_pd: tps6598x@3f {
-+		compatible = "ti,tps6598x";
-+		reg = <0x3f>;
-+		interrupt-parent = <&exp1>;
-+		interrupts = <17 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-names = "irq";
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			self-powered;
-+			data-role = "dual";
-+			power-role = "sink";
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usb_con_hs: endpoint {
-+						remote-endpoint = <&usb0_hs_ep>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &main_i2c1 {
- 	exp1: gpio@22 {
- 		compatible = "ti,tca6424";
-@@ -150,7 +179,7 @@ exp1: gpio@22 {
- 				   "UART1_FET_BUF_EN", "WL_LT_EN",
- 				   "GPIO_HDMI_RSTn", "CSI_GPIO1",
- 				   "CSI_GPIO2", "PRU_3V3_EN",
--				   "HDMI_INTn", "TEST_GPIO2",
-+				   "HDMI_INTn", "PD_I2C_IRQ",
- 				   "MCASP1_FET_EN", "MCASP1_BUF_BT_EN",
- 				   "MCASP1_FET_SEL", "UART1_FET_SEL",
- 				   "TSINT#", "IO_EXP_TEST_LED";
-@@ -256,3 +285,16 @@ partition@3fc0000 {
- 		};
- 	};
- };
-+
-+&usb0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	usb-role-switch;
-+
-+	port@0 {
-+		reg = <0>;
-+		usb0_hs_ep: endpoint {
-+		    remote-endpoint = <&usb_con_hs>;
-+	       };
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 80e8b9b9a5f5..e3223088b90c 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -264,10 +264,6 @@ &usbss1 {
- 	ti,vbus-divider;
- };
- 
--&usb0 {
--	dr_mode = "peripheral";
--};
--
- &usb1 {
- 	dr_mode = "host";
- 	pinctrl-names = "default";
--- 
-2.34.1
+On Tue, Mar 28, 2023 at 01:22:26PM +0200, Krzysztof Kozlowski wrote:
+> On 28/03/2023 12:48, Thierry Reding wrote:
+> > On Tue, Mar 28, 2023 at 09:23:04AM +0200, Krzysztof Kozlowski wrote:
+> >> On 27/03/2023 18:14, Sumit Gupta wrote:
+> >>> For Tegra234, add the "nvidia,bpmp" property within the Memory
+> >>> Controller (MC) node to reference BPMP node. This is needed in
+> >>> the MC driver to pass the client info to the BPMP-FW when memory
+> >>> interconnect support is available.
+> >>>
+> >>> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> >>> ---
+> >>>  .../bindings/memory-controllers/nvidia,tegra186-mc.yaml    | 7 +++++=
+++
+> >>>  1 file changed, 7 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvi=
+dia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers=
+/nvidia,tegra186-mc.yaml
+> >>> index 935d63d181d9..398d27bb2373 100644
+> >>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,teg=
+ra186-mc.yaml
+> >>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,teg=
+ra186-mc.yaml
+> >>> @@ -58,6 +58,10 @@ properties:
+> >>>    "#interconnect-cells":
+> >>>      const: 1
+> >>> =20
+> >>> +  nvidia,bpmp:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description: phandle of the node representing the BPMP
+> >>
+> >> Why do you need this multiple times? Both in parent and all external-mc
+> >> children?
+> >=20
+> > We've had nvidia,bpmp in the external memory controller node since
+> > basically the beginning because we've always needed it there. For newer
+> > chips we now also need it for the memory controller.
+> >=20
+> > Ideally I think we would only have this in the MC and have the EMC
+> > driver reference it via the EMC's parent (i.e. MC), but that would break
+> > backwards-compatibility. Reaching into the EMC's DT node from the MC was
+> > another option that we discussed internally, but it didn't look right
+> > given how this is also needed by the MC.
+> >=20
+> > One thing we could potentially do is deprecate the nvidia,bpmp phandle
+> > in the EMC and only keep it as a fallback in the drivers in case the
+> > parent MC doesn't find it's own in the DT.
+>=20
+> Yes, deprecation would answer to my question.
 
+Okay, great. Sumit, you can resolve this by adding a "deprecated: true"
+to the EMC's nvidia,bpmp property schema. In the driver we can then try
+to look at the MC's ->bpmp and if it exists reuse that. If it doesn't
+exist, we can keep the existing lookup as a fallback for device trees
+that haven't been updated yet.
+
+--SOqUr+gSHmGMXo04
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmQi4gkACgkQ3SOs138+
+s6G2ZxAAwuGkypHqrXA4QgRFLPxekiFsfb7hu4WNZB/Jrz4Lmvpay4dmkKjHSLA9
+cKJUd3WIGmWES3R9F8xKMFS75/novPJukcYSS9a4X3t3xxYlq7hLgNd9fOcbDkOX
+v2nxKJ616/Ay3Ili6JlD845nmvnBxd1MWkjsF/i6khyJ7k48x1mD5GIJT/J3CXE/
+ikuC7FqzWV2hllEJlqdGu0Y6xzo+84w3sf5BfIvWT4Wvi+LjqJvDfeA7l4nEh9h9
+xRjimc2eqsJ8YXF4Lpwcw30raeYvkBqd7N+dtAa5emU61hi8po1OH+VEmhB2qISw
+UdciYir/o51oDPboXtMguc3Ei13eYNOrYqjwbPXsewCaWF99jR5nQrNDB/It1Kq7
+KJ3P44Qv4x1RMMbWX+cSOtyH+kb9XXJZV1saTu/ns9U+3x54OMM+JGWKCi4ifbJh
+QQk2F0tqdGLmxuCtBL0+AowthUOoK13Zw3jAjsRS1F7suOcqV1kyyl+cmQmCu+sl
+keKQpdLGxlrPRN/mzsLGM3nNLFW0bRtiKO3SLZLp6G3IGE55Ec9qotGN20kUyQVy
+5C0hrICmnEXI4aHt4FCJkiOp55TS9xHO4Nf59oKXJICR8xMHmjQDFf27VaYXKTXR
+FrRHds32doXBh0bnV2S4+7m0/QCjPGQHoXXG/xsFkYnv5TPFOgg=
+=B8Lm
+-----END PGP SIGNATURE-----
+
+--SOqUr+gSHmGMXo04--
