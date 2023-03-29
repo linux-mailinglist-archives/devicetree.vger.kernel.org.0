@@ -2,141 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C236CD970
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 14:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A1356CD982
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 14:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229485AbjC2Mhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 08:37:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47732 "EHLO
+        id S229726AbjC2Mpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 08:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjC2Mhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 08:37:47 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FDB3C31
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 05:37:45 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id y4so62698191edo.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 05:37:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1680093464;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gHb6wEI0W+Q8XNFleXC4qtIxQ5KFkUssnbzkaSWTwt0=;
-        b=HG/XVNTljst0PoADYJ9a1oe2fUatY94AsdKpMHxxOpv6UuoHB6hvijDjhYLE9/25rs
-         152++Pjka5+uGRovDxe9lV+rhf8++TfTk52B//EwPFKlZ8SzAWjTwNLluSshW2RDWPnd
-         srv2pNMrlqDFWWsC173i94ItNlYGVLs5iGdN6EW6KPfp4NGuo04lpjR216LCgKHkG6hm
-         tt8ytMaBacnj2KHpooUNXKvXT476qhRY2eCUHq0XSDr3E6V5f2UW8KmHuS4qM5P/vnYo
-         c7iIw+AdSJaMxFaBxtnvEUmWHYQAhPvuAHIixL2EwShp2QWod24RpXn2eN7OXg5nz4PP
-         a8fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680093464;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gHb6wEI0W+Q8XNFleXC4qtIxQ5KFkUssnbzkaSWTwt0=;
-        b=G0yoiOOMdjq6qKBziLJdMZqL3D7cRKJlzlTtssz+eafFEmDTZFZNLSVckHKhaJ7yRj
-         OY5ChSMy7hoLRmo8CUj1UwqV0ksAj+1nBva/RQV2ZY6U7Fcv3hUKrSAY+3jY0E+7s7qt
-         TzZAvCtTxBz+YtL9424xKDrPKftcljEogqyEhTME1/RuKDqOO2HzeAsMKMqSmcKlWMxI
-         Vv+mRBoO/cWvt8tyMsY/f4YYORMQ48SGlcXYzUayABrShlg3RjB6/mm5NYfLUCnuTiYy
-         Pt10FeEOaqywgJUnaUdWhkNFnANoh/jkKG1gssb1bcGzOi+EGgxw0zdSfX4tIqxS0L94
-         Tw4Q==
-X-Gm-Message-State: AAQBX9dTrM2enDm9gpSlLuxSwvaTTuibL+EQFuVJo6SjeY6xfx38dQcJ
-        rM7g2/K/EjbD+ohoKrh1eyDHFwsE2hfp5B/t5r/iQQ==
-X-Google-Smtp-Source: AKy350aDBwtiG5kWGJciArmsYca1qFgzqg6C3cxeEPeZkvx1P1YMyQqnsAGHM99S4BjGebJTBNJNFDacA5sFHwR7yCY=
-X-Received: by 2002:a17:907:d687:b0:93d:a14f:c9b4 with SMTP id
- wf7-20020a170907d68700b0093da14fc9b4mr9691718ejc.2.1680093463969; Wed, 29 Mar
- 2023 05:37:43 -0700 (PDT)
+        with ESMTP id S229461AbjC2Mpo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 08:45:44 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD1B7422C;
+        Wed, 29 Mar 2023 05:45:41 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32TCjDLQ080552;
+        Wed, 29 Mar 2023 07:45:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680093913;
+        bh=T30HSIhFB4AlhJqlS87v+e+jz8AQ9i+9xzd78l4WP14=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=GPC3aUaYyaWAZhuOD7HZG/+B5bc5wcYwzLP0bFPi0odKQL2kUeSZZc72Y9Y6q8bGc
+         dX0Zj3O4YVnxah2C0VuoTlfhWQLAK7lKRH/JJnPP8o5dgn2VFZLtXivitPrs/+fJ2i
+         4iOfhgNCvngYMRVxLhB/d12zV9UmN1FYazFePGOU=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32TCjD3f014102
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 29 Mar 2023 07:45:13 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
+ Mar 2023 07:45:12 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 29 Mar 2023 07:45:12 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32TCjCsQ036808;
+        Wed, 29 Mar 2023 07:45:12 -0500
+Date:   Wed, 29 Mar 2023 07:45:12 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Apurva Nandan <a-nandan@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Add OSPI0 flash support
+Message-ID: <20230329124512.bjxuywwqrvwe2h5l@translate>
+References: <20230329060057.13654-1-a-nandan@ti.com>
 MIME-Version: 1.0
-References: <20221129161134.2672474-1-Naresh.Solanki@9elements.com>
- <20221129161134.2672474-5-Naresh.Solanki@9elements.com> <20221129163427.dxnqfay6ur6mvivu@pengutronix.de>
- <d2d54a34-56dc-df83-5fde-ad0a9a73a9e0@roeck-us.net> <77c5a9e2-ce25-df19-1eba-ba4808bbeb9d@9elements.com>
-In-Reply-To: <77c5a9e2-ce25-df19-1eba-ba4808bbeb9d@9elements.com>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Wed, 29 Mar 2023 18:07:34 +0530
-Message-ID: <CABqG17h1112TsJ_JtxZkLrObz0v-5dq_6B86RYA_T6efW14t1Q@mail.gmail.com>
-Subject: Re: [PATCH v8 4/4] hwmon: (max6639) Add pwm support
-To:     Guenter Roeck <linux@roeck-us.net>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        linux-pwm@vger.kernel.org, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230329060057.13654-1-a-nandan@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Guenter,
+On 11:30-20230329, Apurva Nandan wrote:
+> Add support for OSPI flash connected to OSPI0 instance through FSS.
+> Also enumerate OSPI1 instance in MCU DTSI.
+> 
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+> 
+> Changelog:
+> - Fixed address 0x0 to 0x00
+> - Fixed dtbs_check errors (removed syscon and created simple bus)
+> - Fixed whitespace error
+> 
 
-I need your inputs & direction on the next step for max6639 driver.
-I'm willing to work & implement changes.
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 45 +++++++++++++++++++
+>  .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 41 +++++++++++++++++
+>  2 files changed, 86 insertions(+)
 
-Thank you for your time and consideration.
+Please split this patch up as SoC and board dts changes.
 
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index b9e23697a63b..cc8c2dda7bd2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -141,12 +141,57 @@ J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
+>  	};
+>  };
+>  
+> +&wkup_pmx0 {
+> +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (E32) MCU_OSPI0_CLK */
+> +			J784S4_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (A32) MCU_OSPI0_CSn0 */
+> +			J784S4_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (B33) MCU_OSPI0_D0 */
+> +			J784S4_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (B32) MCU_OSPI0_D1 */
+> +			J784S4_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (C33) MCU_OSPI0_D2 */
+> +			J784S4_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (C35) MCU_OSPI0_D3 */
+> +			J784S4_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (D33) MCU_OSPI0_D4 */
+> +			J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (D34) MCU_OSPI0_D5 */
+> +			J784S4_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (E34) MCU_OSPI0_D6 */
+> +			J784S4_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (E33) MCU_OSPI0_D7 */
+> +			J784S4_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (C34) MCU_OSPI0_DQS */
+> +			J784S4_WKUP_IOPAD(0x03c, PIN_OUTPUT, 6) /* (C32) MCU_OSPI0_CSn3.MCU_OSPI0_ECC_FAIL */
+> +			J784S4_WKUP_IOPAD(0x038, PIN_OUTPUT, 6) /* (B34) MCU_OSPI0_CSn2.MCU_OSPI0_RESET_OUT0 */
+> +		>;
+> +	};
+> +};
+> +
+>  &main_uart8 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_uart8_pins_default>;
+>  };
+>  
+> +&fss {
+> +	status = "okay";
+> +};
+> +
+> +&ospi0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-tx-bus-width = <8>;
+> +		spi-rx-bus-width = <8>;
+> +		spi-max-frequency = <25000000>;
+> +		cdns,tshsl-ns = <60>;
+> +		cdns,tsd2d-ns = <60>;
+> +		cdns,tchsh-ns = <60>;
+> +		cdns,tslch-ns = <60>;
+> +		cdns,read-delay = <4>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +	};
+> +};
+> +
+>  &main_i2c0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> index 64bd3dee14aa..f825a8e4b452 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> @@ -309,4 +309,45 @@ cpts@3d000 {
+>  			ti,cpts-periodic-outputs = <2>;
+>  		};
+>  	};
+> +
+> +	fss: bus@47000000 {
+> +		compatible = "simple-bus";
+> +		reg = <0x00 0x47000000 0x00 0x100>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ospi0: spi@47040000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x47040000 0x00 0x100>,
+> +			      <0x05 0x0000000 0x01 0x0000000>;
+> +			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			clocks = <&k3_clks 161 7>;
+> +			assigned-clocks = <&k3_clks 161 7>;
+> +			assigned-clock-parents = <&k3_clks 161 9>;
+> +			assigned-clock-rates = <166666666>;
+> +			power-domains = <&k3_pds 161 TI_SCI_PD_EXCLUSIVE>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		ospi1: spi@47050000 {
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+> +			reg = <0x00 0x47050000 0x00 0x100>,
+> +			      <0x07 0x0000000 0x01 0x0000000>;
+> +			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
+> +			clocks = <&k3_clks 162 7>;
+> +			power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +	};
+>  };
+> -- 
+> 2.34.1
+> 
+
+-- 
 Regards,
-Naresh Solanki
-
-Regards,
-Naresh Solanki
-
-
-
-9elements GmbH, Kortumstra=C3=9Fe 19-21, 44787 Bochum, Germany
-Email:  naresh.solanki@9elements.com
-Mobile:  +91 9538631477
-
-Sitz der Gesellschaft: Bochum
-Handelsregister: Amtsgericht Bochum, HRB 17519
-Gesch=C3=A4ftsf=C3=BChrung: Sebastian Deutsch, Eray Basar
-
-Datenschutzhinweise nach Art. 13 DSGVO
-
-
-On Tue, 6 Dec 2022 at 23:15, Naresh Solanki
-<naresh.solanki@9elements.com> wrote:
->
-> Hi Guenter, Rob
->
-> On 29-11-2022 10:11 pm, Guenter Roeck wrote:
-> > On 11/29/22 08:34, Uwe Kleine-K=C3=B6nig wrote:
-> >> On Tue, Nov 29, 2022 at 05:11:34PM +0100, Naresh Solanki wrote:
-> >>> Add pwm support for max6639. Also configure pwm fan speed based on pw=
-m
-> >>> provided in DT.
-> >>
-> >> Did you do anything to resolve the questions I had in reply to v5? If
-> >> yes, I must have missed it.
-> >>
-> >
-> > I don't see a response to my concerns either, especially regarding fan =
-mode
-> > (dc vs. pwm) in the bindings. For that reason, I won't even look at the
-> > series.
-> Best I can think of regulator with voltage control. Because as per my
-> understanding, DC control fan essentially control DC voltage on negative
-> pin of fan.
->
->
-> Regards,
-> Naresh
-> >
-> > Guenter
-> >
-> >> Note that maintainer time is scarce and with sending new versions of a
-> >> patch with no sign that you improved in the aspects that were critized
-> >> before, you're burning that scarce time and loosing the good will of t=
-he
-> >> responsible maintainers.
-> >>
-> >> Best regards
-> >> Uwe
-> >>
-> >
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
