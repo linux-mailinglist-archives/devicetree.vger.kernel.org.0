@@ -2,215 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F6B6CED42
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECA886CED8A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbjC2PsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 11:48:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34848 "EHLO
+        id S229677AbjC2PxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 11:53:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbjC2PsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:48:06 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E42D468B
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:48:04 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id i10so13695854vss.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:48:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1680104882;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zCUeYDCKKdfcC5YGZz1Vanefs7gXguNR6lN7akajdTo=;
-        b=fyp595EnlO4QfHb/DErpjmuid/C75tiRj1hmUzm9K69hscQFswZH/LEJaoHhOhAU4v
-         e9u2qUshpxPXQlww6Hsz6CIHM9R2GQ37FmIiYDl4HnNWBO3w2oCTgz4MMvXBm0/mVO1a
-         h4lTPulrVUkTzXWdVS32p0lI48nIq2OfEsRkY=
+        with ESMTP id S230451AbjC2Pwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:52:54 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2430F4699;
+        Wed, 29 Mar 2023 08:52:48 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-177ca271cb8so16672938fac.2;
+        Wed, 29 Mar 2023 08:52:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680104882;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zCUeYDCKKdfcC5YGZz1Vanefs7gXguNR6lN7akajdTo=;
-        b=s1kQ41W4zBkMe17Lk52PvjwLMmpGeiE6ipLe9HvCA7ZWeV4HBVu2NxNVRBceNH4aY5
-         x3OjX+z9tOYEqumnqw1PhnLVpVVYzLHg1PKQr2N7x8KSzCu6c2R4QaT70fXNOzc9DM+j
-         j+wccFoZQoad5g7VuKRCztTTnV7bSLfqvZI8vrhIomjaKle6Ouwzf4jefT9akvgfptyr
-         Z/8v8Wf+b8FQw8f0g98tiqiH9BYOUgiqqrujCqnprFZSzUBe8TMpwM5bd2ihfRAUlTHt
-         EyG/Zk3GUQsiqhe1/djroda2dhlc329Wyj/ZV9dAWZCo8AXP8qMTCqnfNqUKkG7NT5Wy
-         olrA==
-X-Gm-Message-State: AAQBX9dX6WAeq+s5TdADK+0R9OskQMhrDVYiMIIlkuxc8TvqaylBBxDA
-        GPbErZBXQceXi8XT0/aONMd87hN/Jkk+cd2uB+g=
-X-Google-Smtp-Source: AKy350YRYf+/AKicO43+nsVGfkEcnOJogvGL3+Y7rccRD6UevloKjvkyQAPFwlFE/oSyRxZFQp8jkA==
-X-Received: by 2002:a05:6102:207:b0:426:667b:64f1 with SMTP id z7-20020a056102020700b00426667b64f1mr6857395vsp.7.1680104882164;
-        Wed, 29 Mar 2023 08:48:02 -0700 (PDT)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id r20-20020ab02094000000b0073e44d1a8c8sm4287012uak.35.2023.03.29.08.48.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 08:48:01 -0700 (PDT)
-Received: by mail-vs1-f45.google.com with SMTP id df34so13684465vsb.8
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:48:01 -0700 (PDT)
-X-Received: by 2002:a67:ca16:0:b0:421:eabb:cd6a with SMTP id
- z22-20020a67ca16000000b00421eabbcd6amr10917847vsk.7.1680104880896; Wed, 29
- Mar 2023 08:48:00 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680105167;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=myNahkzgyzJXsmSpdQrVTovV/3CgUWg7sSEu7RQwjG0=;
+        b=ngkOe9Z72mD8HC3/d2+1lk6z5+1V3QH4z5Irmiw976IM9bZPBQplBzSPx7vlr2paUY
+         Clgj2oaSX5WoSz/FJwpGektZCJMLkk8f6m6mfApZl8ZCzVGHkQO+HPE6qcNLhWap3pxw
+         KVRIkh/+fBn/VQDZbHTZjV8exMsuEsUQoSQ7AMQaqlAyKJlE2GSbJ0X9f1zkGZkWLp38
+         o7ZyJ87yM6sBSTpvbVNoA9Xod9aa7ER/8aRt2r2FREwn0ep2Ad/gn24mkEgrqJ6rqNJv
+         24y5hhgMPM33ytXJo1uiC4wz/ujfuTYToh6t/sc+HX0C03pxr8RV0uZwDz3rUTY0IBqg
+         wwiQ==
+X-Gm-Message-State: AAQBX9fiK+xxJYUIlNLZJ3aJ0ZLOqsKxq9STe1oLv4TSHb4uIiMhWKpo
+        Y17BHifALbbc2iEB7vxMGw==
+X-Google-Smtp-Source: AK7set9u04Mn8XGtckt02xXgvmDdYPAodmqaRmO7QbQsn4pMne9ZnJvBTvxw9bjwWx1vNoyCfeyKQg==
+X-Received: by 2002:a05:6870:eca0:b0:177:baf4:5b10 with SMTP id eo32-20020a056870eca000b00177baf45b10mr12821109oab.31.1680105167283;
+        Wed, 29 Mar 2023 08:52:47 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id hv12-20020a056870f98c00b00176209a6d6asm11896178oab.10.2023.03.29.08.52.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 08:52:46 -0700 (PDT)
+Received: (nullmailer pid 3198060 invoked by uid 1000);
+        Wed, 29 Mar 2023 15:52:45 -0000
+From:   Rob Herring <robh@kernel.org>
+Subject: [PATCH 00/19] DT header disentangling, part 1
+Date:   Wed, 29 Mar 2023 10:51:57 -0500
+Message-Id: <20230329-dt-cpu-header-cleanups-v1-0-581e2605fe47@kernel.org>
 MIME-Version: 1.0
-References: <1677774797-31063-1-git-send-email-quic_vpolimer@quicinc.com>
- <1677774797-31063-15-git-send-email-quic_vpolimer@quicinc.com>
- <20230326162723.3lo6pnsfdwzsvbhj@ripper> <20230326163556.iesjkoh3nw3iwvf2@ripper>
- <CAE-0n520ypTRNT1X6kZ8o_Z+DN_68qwqZc1wZGMwsFqV5naktw@mail.gmail.com> <BN0PR02MB81736AFC01FB13F1640068CEE4899@BN0PR02MB8173.namprd02.prod.outlook.com>
-In-Reply-To: <BN0PR02MB81736AFC01FB13F1640068CEE4899@BN0PR02MB8173.namprd02.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 29 Mar 2023 08:47:49 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UjHiEk==KAhbx6QFW++69vDAM44sw-b2MGcJ7NsfbF-A@mail.gmail.com>
-Message-ID: <CAD=FV=UjHiEk==KAhbx6QFW++69vDAM44sw-b2MGcJ7NsfbF-A@mail.gmail.com>
-Subject: Re: [PATCH v14 14/14] drm/msm/dp: set self refresh aware based on PSR support
-To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ1eJGQC/x2NywoCMQwAf2XJ2UBtER+/Ih7SNNpCqaWxi7Dsv
+ xs8zsAwG6iMIgq3ZYMha9HybgbHwwKcqb0ESzIG73xwwV8xfZD7xCyUZCBXoTa7Ip+jpAu7GE4
+ eLI6kgnFQ42x5m7Wa7EOe5fu/3R/7/gPTb5swfQAAAA==
+To:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
-        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Anup Patel <anup@brainfault.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     sparclinux@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org
+X-Mailer: b4 0.13-dev
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is the first of a series of clean-ups to disentangle the DT 
+includes. There's a decade plus old comment in of_device.h:
 
-On Wed, Mar 29, 2023 at 8:16=E2=80=AFAM Vinod Polimera
-<vpolimer@qti.qualcomm.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Stephen Boyd <swboyd@chromium.org>
-> > Sent: Monday, March 27, 2023 9:58 PM
-> > To: Bjorn Andersson <andersson@kernel.org>; Vinod Polimera (QUIC)
-> > <quic_vpolimer@quicinc.com>
-> > Cc: dri-devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
-> > freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; robdclark@gmail.com; dianders@chromium.org;
-> > Kalyan Thota (QUIC) <quic_kalyant@quicinc.com>;
-> > dmitry.baryshkov@linaro.org; Kuogee Hsieh (QUIC)
-> > <quic_khsieh@quicinc.com>; Vishnuvardhan Prodduturi (QUIC)
-> > <quic_vproddut@quicinc.com>; Bjorn Andersson (QUIC)
-> > <quic_bjorande@quicinc.com>; Abhinav Kumar (QUIC)
-> > <quic_abhinavk@quicinc.com>; Sankeerth Billakanti (QUIC)
-> > <quic_sbillaka@quicinc.com>
-> > Subject: Re: [PATCH v14 14/14] drm/msm/dp: set self refresh aware based
-> > on PSR support
-> >
-> > Quoting Bjorn Andersson (2023-03-26 09:35:56)
-> > > On Sun, Mar 26, 2023 at 09:27:23AM -0700, Bjorn Andersson wrote:
-> > > > On Thu, Mar 02, 2023 at 10:03:17PM +0530, Vinod Polimera wrote:
-> > > > > For the PSR to kick in, self_refresh_aware has to be set.
-> > > > > Initialize it based on the PSR support for the eDP interface.
-> > > > >
-> > > >
-> > > > When I boot my sc8280xp devices (CRD and X13s) to console with this
-> > > > patch included I get a login prompt, and then there are no more scr=
-een
-> > > > updates.
-> > > >
-> > > > Switching virtual terminal (ctrl+alt+fN) causes the screen to redra=
-w.
-> > > >
-> > > > Blindly login in and launching Wayland works and from then on scree=
-n
-> > > > updates works as expected.
-> > > >
-> > > > Switching from Wayland to another virtual terminal causes the probl=
-em
-> > to
-> > > > re-appear, no updates after the initial refresh, switching back go =
-the
-> > > > Wayland-terminal crashed the machine.
-> > > >
-> > >
-> > > Also, trying to bring the eDP-screen back from DPMS gives me:
-> > >
-> > > <3>[ 2355.218099] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
-> > *ERROR* set state_bit for link_train=3D1 failed
-> > > <3>[ 2355.218926] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
-> > training #1 failed. ret=3D-110
-> > > <3>[ 2355.262859] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
-> > *ERROR* set state_bit for link_train=3D1 failed
-> > > <3>[ 2355.263600] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
-> > training #1 failed. ret=3D-110
-> > > <3>[ 2355.305211] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
-> > *ERROR* set state_bit for link_train=3D1 failed
-> > > <3>[ 2355.305955] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
-> > training #1 failed. ret=3D-110
-> > > <3>[ 2355.345250] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
-> > *ERROR* set state_bit for link_train=3D1 failed
-> > > <3>[ 2355.346026] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
-> > training #1 failed. ret=3D-110
-> > > <3>[ 2355.405650] [drm:dp_display_process_hpd_high [msm]] *ERROR*
-> > failed to complete DP link training
-> > > <3>[ 2355.668988]
-> > [drm:dpu_encoder_phys_vid_wait_for_commit_done:488] [dpu
-> > error]vblank timeout
-> > > <3>[ 2355.669030] [drm:dpu_kms_wait_for_commit_done:510] [dpu
-> > error]wait for commit done returned -110
-> > > <3>[ 2355.699989] [drm:dpu_encoder_frame_done_timeout:2398] [dpu
-> > error]enc35 frame done timeout
-> > >
-> > > And then the machine just resets.
-> > >
-> >
-> > I saw similar behavior on ChromeOS after we picked the PSR patches into
-> > our kernel. I suspect it's the same problem. I switched back and forth
-> > between VT2 and the OOBE screen with ctrl+alt+forward and that showed
-> > what I typed on the virtual terminal after switching back and forth.
-> > It's like the redraw only happens once on the switch and never again. I
-> > switched back and forth enough times that it eventually crashed the
-> > kernel and rebooted. This was on CRD (sc7280-herobrine-crd.dts).
-> >
-> > There's an animation on the OOBE screen that is working though, so
-> > perhaps PSR is working with the chrome compositor but not the virtual
-> > terminal? I haven't investigated.
->
-> I was able to reproduce the issue where in virtual terminal, I don't see =
-any screen refresh despite typing in.
-> In the VT mode, I see that PSR is entered, but despite typing in there ar=
-e no atomic commits triggered, hence the last buffer was always refreshed.
->
-> Queries from my side to Rob & Doug:
-> 1) In VT mode, does the framework operates in single buffer mode without =
-any commit for new updates ?
-> 2) if above is true then, how does driver know if the framework operates =
-in single buffer mode, to make any appropriate action
-> 3) what is the expected behavior with the driver here ? should it return =
-atomic_check failure, for single buffer mode operation or, it should exit P=
-SR ?
-> 4) is there any HINT passed down to the driver so that we can bank on it =
-and act accordingly?
+ #include <linux/of_platform.h> /* temporary until merge */
 
-I haven't looked at this detail about PSR before, and I left my
-PSR-enabled device at home so I can't easily test this right now. That
-being said, from a bit of searching I would guess that
-msm_framebuffer_dirtyfb() is somehow involved here. Are things better
-if you get rid of the test against 'msm_fb->dirtyfb'?
+Who's this Grant person that wrote this? ;)
 
-I at least used ftrace to confirm that on a different device
-msm_framebuffer_dirtyfb() is not called during normal ChromeOS usage
-but it _is_ called in VT2 usage.
+It gets better. of_device.h also pulls in of.h, and of_platform.h 
+includes of_device.h. So naturally, drivers include all combinations of 
+those 3 headers and sometimes they actually need them. 
 
--Doug
+I started on fixing this years ago, but just dropping the circular 
+includes and fixing all the fallout was massive and didn't sit well. 
+Pulling in of_device.h in all the drivers that happen to call only
+of_device_get_match_data/of_match_device didn't seem great when the rest 
+of of_device.h would never be needed. of_device.h being everything that 
+works on a struct device is not a great split because several types of 
+users deal with struct device. The better split seems to be by user 
+(subsys driver vs. consumer) which several subsystems now do. For 
+of_device.h, the users can primarily be split between bus 
+implementations and device drivers. Device drivers also typically need 
+of.h to read properties. So let's move of_device.h towards just bus 
+related functions and move device driver related functions to of.h.
+
+This series is just the first step. It makes a couple of clean-ups to 
+replace some includes with forward declarations. It moves 
+of_device_get_match_data() and of_cpu_device_node_get() to of.h. The 
+former move is transparent for now and preparation for the next series.
+The last part of the series updates drivers using 
+of_cpu_device_node_get() and/or relying on the implicit cpu.h include 
+which is removed in the last patch.
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Rob Herring (19):
+      of: Make devtree_lock declaration private
+      of: Move of_device_(add|register|unregister) to of_platform.h
+      of: Move of_device_get_match_data() declaration
+      of: Move CPU node related functions to their own file
+      of: Drop unnecessary includes in headers
+      ARM: sunxi: Drop of_device.h include
+      ARM: cpuidle: Drop of_device.h include
+      riscv: Add explicit include for cpu.h
+      riscv: cacheinfo: Adjust includes to remove of_device.h
+      cacheinfo: Adjust includes to remove of_device.h
+      clocksource: ingenic: Add explicit include for cpuhotplug.h
+      thermal: cpuidle_cooling: Adjust includes to remove of_device.h
+      soc: mediatek: mtk-svs: Add explicit include for cpu.h
+      cpufreq: Adjust includes to remove of_device.h
+      cpufreq: sun50i: Add explicit include for cpu.h
+      cpuidle: Adjust includes to remove of_device.h
+      irqchip: loongson-eiointc: Add explicit include for cpuhotplug.h
+      OPP: Adjust includes to remove of_device.h
+      of: Drop cpu.h include from of_device.h
+
+ arch/arm/kernel/cpuidle.c              |   1 -
+ arch/arm/mach-sunxi/mc_smp.c           |   1 -
+ arch/riscv/kernel/cacheinfo.c          |   1 -
+ arch/riscv/kernel/setup.c              |   2 +-
+ arch/sparc/include/asm/prom.h          |   3 +
+ drivers/base/cacheinfo.c               |   2 +-
+ drivers/clocksource/ingenic-timer.c    |   3 +-
+ drivers/cpufreq/cpufreq-dt-platdev.c   |   1 -
+ drivers/cpufreq/kirkwood-cpufreq.c     |   2 +-
+ drivers/cpufreq/maple-cpufreq.c        |   2 +-
+ drivers/cpufreq/pmac32-cpufreq.c       |   2 +-
+ drivers/cpufreq/pmac64-cpufreq.c       |   2 +-
+ drivers/cpufreq/qcom-cpufreq-hw.c      |   4 +-
+ drivers/cpufreq/spear-cpufreq.c        |   2 +-
+ drivers/cpufreq/sun50i-cpufreq-nvmem.c |   3 +-
+ drivers/cpufreq/tegra124-cpufreq.c     |   1 -
+ drivers/cpufreq/tegra20-cpufreq.c      |   2 +-
+ drivers/cpuidle/cpuidle-psci.c         |   1 -
+ drivers/cpuidle/cpuidle-qcom-spm.c     |   3 +-
+ drivers/cpuidle/cpuidle-riscv-sbi.c    |   2 +-
+ drivers/cpuidle/dt_idle_states.c       |   1 -
+ drivers/irqchip/irq-loongson-eiointc.c |   5 +-
+ drivers/of/Makefile                    |   2 +-
+ drivers/of/base.c                      | 187 -----------------------------
+ drivers/of/cpu.c                       | 210 +++++++++++++++++++++++++++++++++
+ drivers/of/of_private.h                |   1 +
+ drivers/opp/of.c                       |   2 +-
+ drivers/soc/mediatek/mtk-svs.c         |   1 +
+ drivers/thermal/cpuidle_cooling.c      |   3 +-
+ include/linux/cpufreq.h                |   1 -
+ include/linux/of.h                     |  28 +++--
+ include/linux/of_device.h              |  24 +---
+ include/linux/of_platform.h            |  10 +-
+ 33 files changed, 261 insertions(+), 254 deletions(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230329-dt-cpu-header-cleanups-c7bed8c0b352
+
+Best regards,
+-- 
+Rob Herring <robh@kernel.org>
+
