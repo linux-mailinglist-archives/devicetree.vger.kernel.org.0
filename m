@@ -2,195 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA32A6CD1DF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 08:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6336CD1E9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 08:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjC2GBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 02:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48880 "EHLO
+        id S229475AbjC2GCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 02:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjC2GBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 02:01:17 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D6126B7;
-        Tue, 28 Mar 2023 23:01:16 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32T611ql038436;
-        Wed, 29 Mar 2023 01:01:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680069661;
-        bh=wt4xSwJPHwVxOeNl90IK8+byuWNvBIrt26I/jQjG7EM=;
-        h=From:To:CC:Subject:Date;
-        b=keala8r/71nsiOuUZhWF0yBddDzie/VV53t/kiCTS+z2pFooKx0pjFE913nYqG9le
-         MzJVPhGo3ITc8UL7XLIgDpkt/t5hKP/Ri8d2SgZIV+qgCCRsGwXMY8Gf3xhcGZO/Wb
-         1QZayNDKMjuvVZ/e4ZGxoLOr5TrSbjCZMm7P8VWQ=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32T611fC050640
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 29 Mar 2023 01:01:01 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
- Mar 2023 01:01:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 29 Mar 2023 01:01:01 -0500
-Received: from LT5CD112GSQZ.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32T60wKN006863;
-        Wed, 29 Mar 2023 01:00:58 -0500
-From:   Apurva Nandan <a-nandan@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Apurva Nandan <a-nandan@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Add OSPI0 flash support
-Date:   Wed, 29 Mar 2023 11:30:57 +0530
-Message-ID: <20230329060057.13654-1-a-nandan@ti.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229853AbjC2GCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 02:02:41 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F36D2270B;
+        Tue, 28 Mar 2023 23:02:35 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id bn14so8605230pgb.11;
+        Tue, 28 Mar 2023 23:02:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680069755;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5S66T5xiGRrp+k6yG6pN7f3HcV4Qzyahsw1kWjbn/ms=;
+        b=C9nQGHQI89wz7pEsdS8kB5OPnWopFfJvvEH8N69Q2aH/FA/hNsnyLaxmdpub9v+6DV
+         wgvRe1PiOXa1ZA7IaCGQ0ZpKSY1CQRXqPcbD098T6KCNcQdJw/AviW5GR/pJolachJOa
+         HqLN9AxcPrRYZ0cz7EORhGFyHT3nvCnrAk1gaGdZ7JMqRJKr4qkpO9fPngm+VpGvIQgF
+         7AC1NQV3bybkhBJ8VEqHfwnSW6erI/NWa8AscmtG9v/H+2jmAqVjHdT8cX8fQdHxOXx/
+         5vODse7MdZwvx2/M+uEVh1zXtZ3AC6Rsxk0E45QLJg1SzIwmYNNnnxrn10DiTzVjtvhL
+         CZ0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680069755;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5S66T5xiGRrp+k6yG6pN7f3HcV4Qzyahsw1kWjbn/ms=;
+        b=UEosJR5orG/vP1DL+AvA3Vx+kvRP+25j6dWeFlPD4Zgkh5okvbptVAsbJETD4vINuF
+         LwbER9IIWJ89twxKa3m9j9X0LrVwVGrkOvASP6VU3JVgo+PJcJN5js7p4wLnNoruBxBP
+         FuoT1+Ai794TbZa5E4ajp8/4g3EAjawiLTrABQcioaMBduQqxXMxUkctj9cxPfnvgpvL
+         f8BDZsIF7yRzt0ZJpc2GEj60f/VDMLSFDuWixRqru+tKk3zxb2O7zB+33Pu5cKdCeZ/Z
+         OEGvR+KSFJIysnuqG/VHiwD0KJJ8YDIf0W/unv5Ol+UlOMg3wXYsucb3yTdpytxM5EEl
+         uU4Q==
+X-Gm-Message-State: AAQBX9c4MLsWx1iF2Rjv0dNP3GREjw2kzuhYrUuNEO0m2F7ogc6YUHFS
+        NggEwKJcvAV6a1QACnA2YEM=
+X-Google-Smtp-Source: AKy350YjNy/Q7ECDuqYmvGOKnhXCgoAs8eeoC6LCoZSHHovOU2/n+F3FgUji1bCT2Z+Os2dWGkKRrw==
+X-Received: by 2002:a62:648d:0:b0:624:fb23:c4df with SMTP id y135-20020a62648d000000b00624fb23c4dfmr16232240pfb.16.1680069755247;
+        Tue, 28 Mar 2023 23:02:35 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id e12-20020a62ee0c000000b005d866d184b5sm21934401pfi.46.2023.03.28.23.02.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Mar 2023 23:02:34 -0700 (PDT)
+Message-ID: <458d454e-64ba-849a-38cb-88bf016f5a2e@gmail.com>
+Date:   Wed, 29 Mar 2023 14:02:31 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device
+ tree
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-9-ychuang570808@gmail.com>
+ <ab4e0bc8834b7e618e9a88ea6a1c30cc.sboyd@kernel.org>
+ <b7977069-4f82-76a1-10c1-b6400862c2c4@gmail.com>
+ <c37e1f3a40c404acd81c2c9d5b28b340.sboyd@kernel.org>
+ <129cf4b6-b3b5-2a12-5911-37e70a624812@gmail.com>
+ <e5221cd020bc60513df6a1c1859e1acc.sboyd@kernel.org>
+ <ad908782-8291-4240-d88e-61dff5a05ef7@gmail.com>
+ <1d379f28f54fd025f687bfcb71e4bae5.sboyd@kernel.org>
+ <dd7940fd-bf63-552c-6e2e-05eff5fdb636@gmail.com>
+ <b816411c301e2b3afe9c3df36728f946.sboyd@kernel.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <b816411c301e2b3afe9c3df36728f946.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for OSPI flash connected to OSPI0 instance through FSS.
-Also enumerate OSPI1 instance in MCU DTSI.
+Dear Stephen,
 
-Signed-off-by: Apurva Nandan <a-nandan@ti.com>
----
 
-Changelog:
-- Fixed address 0x0 to 0x00
-- Fixed dtbs_check errors (removed syscon and created simple bus)
-- Fixed whitespace error
 
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 45 +++++++++++++++++++
- .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 41 +++++++++++++++++
- 2 files changed, 86 insertions(+)
+On 2023/3/29 上午 11:54, Stephen Boyd wrote:
+> Quoting Jacky Huang (2023-03-28 20:43:23)
+>> On 2023/3/29 上午 11:25, Stephen Boyd wrote:
+>>> Quoting Jacky Huang (2023-03-28 20:13:11)
+>>>> I may not explain clearly enough. The lock/unlock register of system
+>>>> controller is more like
+>>>> a kind of write protection for specific registers, rather than
+>>>> preventing hetero-core CPU access.
+>>>> In many different IP of ma35d1 contain write protected registers.
+>>>> In fact, ma35d1 has a "hardware semaphore" IP, and we have implemented
+>>>> the driver in drivers/hwspinlock.
+>>>> Even the control register of "hardware semaphore" is also write protected.
+>>> What's the need to lock and unlock the registers? Is some other
+>>> processor also writing to the registers that we need to synchronize
+>>> against? Or is Linux the only entity reading and writing the registers?
+>>> I'm wondering if we should simply unlock the registers and never lock
+>>> them.
+> Can you answer this question?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index b9e23697a63b..cc8c2dda7bd2 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -141,12 +141,57 @@ J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
- 	};
- };
- 
-+&wkup_pmx0 {
-+	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (E32) MCU_OSPI0_CLK */
-+			J784S4_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (A32) MCU_OSPI0_CSn0 */
-+			J784S4_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (B33) MCU_OSPI0_D0 */
-+			J784S4_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (B32) MCU_OSPI0_D1 */
-+			J784S4_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (C33) MCU_OSPI0_D2 */
-+			J784S4_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (C35) MCU_OSPI0_D3 */
-+			J784S4_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (D33) MCU_OSPI0_D4 */
-+			J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (D34) MCU_OSPI0_D5 */
-+			J784S4_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (E34) MCU_OSPI0_D6 */
-+			J784S4_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (E33) MCU_OSPI0_D7 */
-+			J784S4_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (C34) MCU_OSPI0_DQS */
-+			J784S4_WKUP_IOPAD(0x03c, PIN_OUTPUT, 6) /* (C32) MCU_OSPI0_CSn3.MCU_OSPI0_ECC_FAIL */
-+			J784S4_WKUP_IOPAD(0x038, PIN_OUTPUT, 6) /* (B34) MCU_OSPI0_CSn2.MCU_OSPI0_RESET_OUT0 */
-+		>;
-+	};
-+};
-+
- &main_uart8 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_uart8_pins_default>;
- };
- 
-+&fss {
-+	status = "okay";
-+};
-+
-+&ospi0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-+
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 64bd3dee14aa..f825a8e4b452 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -309,4 +309,45 @@ cpts@3d000 {
- 			ti,cpts-periodic-outputs = <2>;
- 		};
- 	};
-+
-+	fss: bus@47000000 {
-+		compatible = "simple-bus";
-+		reg = <0x00 0x47000000 0x00 0x100>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ospi0: spi@47040000 {
-+			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-+			reg = <0x00 0x47040000 0x00 0x100>,
-+			      <0x05 0x0000000 0x01 0x0000000>;
-+			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+			clocks = <&k3_clks 161 7>;
-+			assigned-clocks = <&k3_clks 161 7>;
-+			assigned-clock-parents = <&k3_clks 161 9>;
-+			assigned-clock-rates = <166666666>;
-+			power-domains = <&k3_pds 161 TI_SCI_PD_EXCLUSIVE>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		ospi1: spi@47050000 {
-+			compatible = "ti,am654-ospi", "cdns,qspi-nor";
-+			reg = <0x00 0x47050000 0x00 0x100>,
-+			      <0x07 0x0000000 0x01 0x0000000>;
-+			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+			clocks = <&k3_clks 162 7>;
-+			power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+	};
- };
--- 
-2.34.1
+Sorry, I miss this.
+The lock and unlock register mechanism is a hardware design of ma35d1 SoC.
+The purpose is to prevent from unexpected write to some registers.
+However, I think this is a redundant design if s/w is done properly.
+Even though I think it's a redundant design, it's out there and we have 
+to deal with it.
+And of course we have unlock and lock pair, I just lost to write in the 
+above.
+
+>>>> So, should we implement a system controller driver to provide
+>>>> register_unlock() function?
+>>>> Is it OK to have such a driver in drivers/mfd?
+>>>> Or, just use syscon in device tree for those devices that have write
+>>>> protect registers.
+>>>>
+>>> The hwspinlock framework doesn't require there to be another entity
+>>> accessing some resource. It's there to implement hardware locks. I don't
+>>> see why it can't be used here.
+>> The current usage of register lock/unlock protect is as the following code:
+>>
+>> static void ma35d1_unlock_regs(struct ma35d1_clk_pll *pll)
+>> {
+>>       int ret;
+>>
+>>       do {
+>>           regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x59);
+>>           regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x16);
+>>           regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x88);
+>>           regmap_read(pll->regmap, REG_SYS_RLKTZNS, &ret);
+>>       } while (ret == 0);
+>> }
+>>
+>> static void ma35d1_lock_regs(struct ma35d1_clk_pll *pll)
+>> {
+>>       regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x0);
+>> }
+>>
+>> And the following code is to unlock registers for write and then lock again.
+>>
+>>       ma35d1_unlock_regs(pll);
+>>       writel_relaxed(reg_ctl[0], pll->ctl0_base);
+>>       writel_relaxed(reg_ctl[1], pll->ctl1_base);
+>>       writel_relaxed(reg_ctl[2], pll->ctl2_base);
+>>       ma35d1_lock_regs(pll);
+>>
+>> The above code is from the clk-ma35d1-pll.c from this patchset.
+> Yeah I understand that you write some registers in the syscon to lock
+> the registers.
+>
+>> We just employ regmap mechansim for the access to REG_SYS_RLKTZNS register.
+>> Is this implementation OK for you?  Thank you.
+>>
+> No. Why can't that be a hwspinlock? Or why can't it be unlocked all the
+> time and rely on software spinlocks in the kernel to prevent concurrent
+> access to the registers accessed by a driver, like a lock for the clk
+> registers and a lock for the reset registers, etc. Or if no two clks or
+> resets exist within one 32-bit word then no lock is necessary.
+
+You gave a good suggestion here. Yes, of course we can let it be 
+unlocked all the time.
+We can unlock the "register lock" before entering Linux.
+As a result, the unlonk and lock register related code is not required.
+Thus, we can remove syscon from the clock controller node.
+
+If you agree with this, we will modify it in the next version.
+
+
+Best regards,
+Jacky Huang
+
+
+
 
