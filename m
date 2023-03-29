@@ -2,268 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E127C6CF6A1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 00:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF8826CF6AF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 01:08:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbjC2W6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 18:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
+        id S229649AbjC2XIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 19:08:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjC2W6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 18:58:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF3346AF;
-        Wed, 29 Mar 2023 15:58:44 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.239])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C6F386603170;
-        Wed, 29 Mar 2023 23:58:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680130722;
-        bh=y7U48RuXUJqEQN0UfcMmQ5lXGvZsqyULU9S+62lSVS0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EQz/cV4BLcpkSriuwlm9SUZ9nNVaOujc2k6wwcJNp8RAu/9dvIL9yY0fj1AFr5U5l
-         fleApFlh/ENyGxmSf3d/VVK8OIyRX5//vRYtKLYATv5qB+bb41JQ7bAn+hNPcKVdu4
-         IOQxyIdJVHXsLST2R4wyy9sWFLRh/oZ5+EgYFx916Ua8f8m1FYnaJ3eo+ELklk78Zl
-         WRIk30HCy8GtMY7LuZpyJrTCV+QNAGReKx6eYotwh9o9ZNAnpLhMQRm2h0ALLcpA6O
-         KNrw9SG/RvvpPyzD4476Cp0knWgZEg/VBQwQu6nPzRv0UDre20oi7b7xwhVMI5elXc
-         Drxbbb5YUWHAw==
-Received: by mercury (Postfix, from userid 1000)
-        id 1BFFE1062665; Thu, 30 Mar 2023 00:58:40 +0200 (CEST)
-Date:   Thu, 30 Mar 2023 00:58:40 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Hermes Zhang <chenhuiz@axis.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Davis <afd@ti.com>, linux-kernel@vger.kernel.org,
-        kernel@axis.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] power: supply: bq256xx: Apply TS_IGNORE from
- devicetree
-Message-ID: <20230329225840.26op4wdgi5cgtpkj@mercury.elektranox.org>
-References: <20230323072347.438932-1-chenhuiz@axis.com>
- <20230323072347.438932-2-chenhuiz@axis.com>
+        with ESMTP id S229457AbjC2XH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 19:07:59 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D33ED30E6
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 16:07:57 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id p15so21407266ybl.9
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 16:07:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680131277;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=17W1Vyy8xywZeBqJlfSIAYU63G4aFCmdnFdPrSLNAkg=;
+        b=jQgPlWdUIryVzMWz5eYCVlqf1Jx9xGi5sRKJqPKAN8hOHtO7Qknopt659dtHlGEmtl
+         qzxvaxV6bJCAaPLVg2CyYOtNFHOdP5+cYM065FUE1aZuAfMYnYP2/OLaip4P55Khk2uS
+         0GAb+mee2/y0d1vdm8svbShyI3AIXYcPC26QfxwbhAbt8xOsYmBtscC2QZpbk7QRSo7Z
+         5wUwof8bZEXyZBP48Y0ZI8q7Mf8SBnRl844jIbwqOUaFR7zHRfHn7LS7bcxf8JlLf0dZ
+         wapKtcuRbKsbfRH3rYQmh1t3AwIqxWFzqArFx9F0IAKNr80DBfu4O+LFnClphXgE6FhC
+         XISQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680131277;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=17W1Vyy8xywZeBqJlfSIAYU63G4aFCmdnFdPrSLNAkg=;
+        b=UbY6i/fwOF7jqInatNJ9F5QkZ0pyqxdT9lOJEDj6Ca5qqua8WNf0tFhuwD+ZENAUnG
+         +qkf9atL1N/V6V1+qSi0wvd54pwBVY+wdS6TTLqsoO5v6sXAm4y270pgdY0hrgKJkFWS
+         PlXawPgLXn82kxuJju9R2cwAejDdW3eIym9f5k2/8UMEwTha3GvlySv4Q3//jscMKVux
+         sfPzr8u23hEFrGHN8hTe4rPhEMilshTtom8ZKOQY6hJBbQ8CI0Bkrgw2A1qRaLxGmXdl
+         yIBIsfxrBQbZBBlRoerSZv6jqPoTK0+Mz1YwPe/YrdH4Q3KGR2vQxhrogCNWexv4Opsx
+         xN7A==
+X-Gm-Message-State: AAQBX9eQPsrRV+3mMgw35hU44p58jG0Acb/6hNPCnAtloA7TF7JCb+FL
+        vVDVDnRALHwbGc9lHIxmRwcOA6RT3XqpLv8NIbBHAQ==
+X-Google-Smtp-Source: AKy350a5GZphBEgM8UisHAQrdtCXXOGmCc4O5BP2CwRX+zobEpWFYGZuSLf5PGCtIbsbkgteYBCmjBU4RiB4peKzOqs=
+X-Received: by 2002:a05:6902:1501:b0:b6d:80ab:8bb6 with SMTP id
+ q1-20020a056902150100b00b6d80ab8bb6mr14095187ybu.1.1680131276952; Wed, 29 Mar
+ 2023 16:07:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xroj6drwz4f3vnyk"
-Content-Disposition: inline
-In-Reply-To: <20230323072347.438932-2-chenhuiz@axis.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230324094205.33266-1-angelogioacchino.delregno@collabora.com> <20230324094205.33266-7-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230324094205.33266-7-angelogioacchino.delregno@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Thu, 30 Mar 2023 01:07:45 +0200
+Message-ID: <CAFGrd9pR+8MVNcXyb2JPoL3wzksNdY08kUGPtH+NmawTW8uU1w@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] soc: mediatek: pwrap: Add support for MT6795 Helio X10
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, flora.fu@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+" or
 
---xroj6drwz4f3vnyk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Thu, Mar 23, 2023 at 03:23:47PM +0800, Hermes Zhang wrote:
-> TS_IGNORE is default off in bq256xx chip. For some HW which doesn't have
-> the NTC, we need to set TS_IGNORE to 1 to make the charge work. The new
-> "ti,no-thermistor" is introduced to toggle it.
->=20
-> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+Le ven. 24 mars 2023 =C3=A0 10:42, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
+>
+> Add the necessary bits to support the MT6795 Helio X10 smartphone SoC:
+> this is always paired with a MT6331 PMIC, with MT6332 companion.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 > ---
-
-Does not apply, please rebase against latest power-supply for-next
-branch.
-
--- Sebastian
-
-> Notes:
->     v2: change property name to ti,no-thermistor
->    =20
->     v3: drop "|" in property description
->=20
->  drivers/power/supply/bq256xx_charger.c | 28 ++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/drivers/power/supply/bq256xx_charger.c b/drivers/power/suppl=
-y/bq256xx_charger.c
-> index 9cf4936440c9..cacaae1d559b 100644
-> --- a/drivers/power/supply/bq256xx_charger.c
-> +++ b/drivers/power/supply/bq256xx_charger.c
-> @@ -41,6 +41,9 @@
->  #define BQ256XX_IINDPM_MAX_uA		3200000
->  #define BQ256XX_IINDPM_DEF_uA		2400000
-> =20
-> +#define BQ256XX_TS_IGNORE		BIT(6)
-> +#define BQ256XX_TS_IGNORE_SHIFT		6
-> +
->  #define BQ256XX_VINDPM_MASK		GENMASK(3, 0)
->  #define BQ256XX_VINDPM_STEP_uV		100000
->  #define BQ256XX_VINDPM_OFFSET_uV	3900000
-> @@ -153,6 +156,7 @@
->   * @vindpm: input voltage limit
->   * @ichg_max: maximum fast charge current
->   * @vbatreg_max: maximum charge voltage
-> + * @ts_ignore: TS_IGNORE flag
->   */
->  struct bq256xx_init_data {
->  	u32 ichg;
-> @@ -163,6 +167,7 @@ struct bq256xx_init_data {
->  	u32 vindpm;
->  	u32 ichg_max;
->  	u32 vbatreg_max;
-> +	bool ts_ignore;
+>  drivers/soc/mediatek/mtk-pmic-wrap.c | 131 ++++++++++++++++++++++++++-
+>  1 file changed, 130 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/=
+mtk-pmic-wrap.c
+> index ceeac43f7bd1..20d32328382a 100644
+> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> @@ -639,6 +639,91 @@ static int mt6779_regs[] =3D {
+>         [PWRAP_WACS2_VLDCLR] =3D          0xC28,
 >  };
-> =20
->  /**
-> @@ -259,6 +264,7 @@ struct bq256xx_device {
->   * @bq256xx_set_iterm: pointer to instance specific set_iterm function
->   * @bq256xx_set_iprechg: pointer to instance specific set_iprechg functi=
-on
->   * @bq256xx_set_vindpm: pointer to instance specific set_vindpm function
-> + * @bq256xx_set_ts_ignore: pointer to instance specific set_ts_ignore fu=
-nction
->   *
->   * @bq256xx_def_ichg: default ichg value in microamps
->   * @bq256xx_def_iindpm: default iindpm value in microamps
-> @@ -290,6 +296,7 @@ struct bq256xx_chip_info {
->  	int (*bq256xx_set_iterm)(struct bq256xx_device *bq, int iterm);
->  	int (*bq256xx_set_iprechg)(struct bq256xx_device *bq, int iprechg);
->  	int (*bq256xx_set_vindpm)(struct bq256xx_device *bq, int vindpm);
-> +	int (*bq256xx_set_ts_ignore)(struct bq256xx_device *bq, bool ts_ignore);
-> =20
->  	int bq256xx_def_ichg;
->  	int bq256xx_def_iindpm;
-> @@ -670,6 +677,12 @@ static int bq25601d_set_chrg_volt(struct bq256xx_dev=
-ice *bq, int vbatreg)
->  						BQ256XX_VBATREG_BIT_SHIFT);
+>
+> +static int mt6795_regs[] =3D {
+> +       [PWRAP_MUX_SEL] =3D               0x0,
+> +       [PWRAP_WRAP_EN] =3D               0x4,
+> +       [PWRAP_DIO_EN] =3D                0x8,
+> +       [PWRAP_SIDLY] =3D                 0xc,
+> +       [PWRAP_RDDMY] =3D                 0x10,
+> +       [PWRAP_SI_CK_CON] =3D             0x14,
+> +       [PWRAP_CSHEXT_WRITE] =3D          0x18,
+> +       [PWRAP_CSHEXT_READ] =3D           0x1c,
+> +       [PWRAP_CSLEXT_START] =3D          0x20,
+> +       [PWRAP_CSLEXT_END] =3D            0x24,
+> +       [PWRAP_STAUPD_PRD] =3D            0x28,
+> +       [PWRAP_STAUPD_GRPEN] =3D          0x2c,
+> +       [PWRAP_EINT_STA0_ADR] =3D         0x30,
+> +       [PWRAP_EINT_STA1_ADR] =3D         0x34,
+> +       [PWRAP_STAUPD_MAN_TRIG] =3D       0x40,
+> +       [PWRAP_STAUPD_STA] =3D            0x44,
+> +       [PWRAP_WRAP_STA] =3D              0x48,
+> +       [PWRAP_HARB_INIT] =3D             0x4c,
+> +       [PWRAP_HARB_HPRIO] =3D            0x50,
+> +       [PWRAP_HIPRIO_ARB_EN] =3D         0x54,
+> +       [PWRAP_HARB_STA0] =3D             0x58,
+> +       [PWRAP_HARB_STA1] =3D             0x5c,
+> +       [PWRAP_MAN_EN] =3D                0x60,
+> +       [PWRAP_MAN_CMD] =3D               0x64,
+> +       [PWRAP_MAN_RDATA] =3D             0x68,
+> +       [PWRAP_MAN_VLDCLR] =3D            0x6c,
+> +       [PWRAP_WACS0_EN] =3D              0x70,
+> +       [PWRAP_INIT_DONE0] =3D            0x74,
+> +       [PWRAP_WACS0_CMD] =3D             0x78,
+> +       [PWRAP_WACS0_RDATA] =3D           0x7c,
+> +       [PWRAP_WACS0_VLDCLR] =3D          0x80,
+> +       [PWRAP_WACS1_EN] =3D              0x84,
+> +       [PWRAP_INIT_DONE1] =3D            0x88,
+> +       [PWRAP_WACS1_CMD] =3D             0x8c,
+> +       [PWRAP_WACS1_RDATA] =3D           0x90,
+> +       [PWRAP_WACS1_VLDCLR] =3D          0x94,
+> +       [PWRAP_WACS2_EN] =3D              0x98,
+> +       [PWRAP_INIT_DONE2] =3D            0x9c,
+> +       [PWRAP_WACS2_CMD] =3D             0xa0,
+> +       [PWRAP_WACS2_RDATA] =3D           0xa4,
+> +       [PWRAP_WACS2_VLDCLR] =3D          0xa8,
+> +       [PWRAP_INT_EN] =3D                0xac,
+> +       [PWRAP_INT_FLG_RAW] =3D           0xb0,
+> +       [PWRAP_INT_FLG] =3D               0xb4,
+> +       [PWRAP_INT_CLR] =3D               0xb8,
+> +       [PWRAP_SIG_ADR] =3D               0xbc,
+> +       [PWRAP_SIG_MODE] =3D              0xc0,
+> +       [PWRAP_SIG_VALUE] =3D             0xc4,
+> +       [PWRAP_SIG_ERRVAL] =3D            0xc8,
+> +       [PWRAP_CRC_EN] =3D                0xcc,
+> +       [PWRAP_TIMER_EN] =3D              0xd0,
+> +       [PWRAP_TIMER_STA] =3D             0xd4,
+> +       [PWRAP_WDT_UNIT] =3D              0xd8,
+> +       [PWRAP_WDT_SRC_EN] =3D            0xdc,
+> +       [PWRAP_WDT_FLG] =3D               0xe0,
+> +       [PWRAP_DEBUG_INT_SEL] =3D         0xe4,
+> +       [PWRAP_DVFS_ADR0] =3D             0xe8,
+> +       [PWRAP_DVFS_WDATA0] =3D           0xec,
+> +       [PWRAP_DVFS_ADR1] =3D             0xf0,
+> +       [PWRAP_DVFS_WDATA1] =3D           0xf4,
+> +       [PWRAP_DVFS_ADR2] =3D             0xf8,
+> +       [PWRAP_DVFS_WDATA2] =3D           0xfc,
+> +       [PWRAP_DVFS_ADR3] =3D             0x100,
+> +       [PWRAP_DVFS_WDATA3] =3D           0x104,
+> +       [PWRAP_DVFS_ADR4] =3D             0x108,
+> +       [PWRAP_DVFS_WDATA4] =3D           0x10c,
+> +       [PWRAP_DVFS_ADR5] =3D             0x110,
+> +       [PWRAP_DVFS_WDATA5] =3D           0x114,
+> +       [PWRAP_DVFS_ADR6] =3D             0x118,
+> +       [PWRAP_DVFS_WDATA6] =3D           0x11c,
+> +       [PWRAP_DVFS_ADR7] =3D             0x120,
+> +       [PWRAP_DVFS_WDATA7] =3D           0x124,
+> +       [PWRAP_SPMINF_STA] =3D            0x128,
+> +       [PWRAP_CIPHER_KEY_SEL] =3D        0x12c,
+> +       [PWRAP_CIPHER_IV_SEL] =3D         0x130,
+> +       [PWRAP_CIPHER_EN] =3D             0x134,
+> +       [PWRAP_CIPHER_RDY] =3D            0x138,
+> +       [PWRAP_CIPHER_MODE] =3D           0x13c,
+> +       [PWRAP_CIPHER_SWRST] =3D          0x140,
+> +       [PWRAP_DCM_EN] =3D                0x144,
+> +       [PWRAP_DCM_DBC_PRD] =3D           0x148,
+> +       [PWRAP_EXT_CK] =3D                0x14c,
+> +};
+> +
+>  static int mt6797_regs[] =3D {
+>         [PWRAP_MUX_SEL] =3D               0x0,
+>         [PWRAP_WRAP_EN] =3D               0x4,
+> @@ -1230,6 +1315,7 @@ enum pwrap_type {
+>         PWRAP_MT2701,
+>         PWRAP_MT6765,
+>         PWRAP_MT6779,
+> +       PWRAP_MT6795,
+>         PWRAP_MT6797,
+>         PWRAP_MT6873,
+>         PWRAP_MT7622,
+> @@ -1650,6 +1736,20 @@ static void pwrap_init_chip_select_ext(struct pmic=
+_wrapper *wrp, u8 hext_write,
+>  static int pwrap_common_init_reg_clock(struct pmic_wrapper *wrp)
+>  {
+>         switch (wrp->master->type) {
+> +       case PWRAP_MT6795:
+> +               if (wrp->slave->type =3D=3D PMIC_MT6331) {
+> +                       const u32 *dew_regs =3D wrp->slave->dew_regs;
+> +
+> +                       pwrap_write(wrp, dew_regs[PWRAP_DEW_RDDMY_NO], 0x=
+8);
+> +
+> +                       if (wrp->slave->comp_type =3D=3D PMIC_MT6332) {
+> +                               dew_regs =3D wrp->slave->comp_dew_regs;
+> +                               pwrap_write(wrp, dew_regs[PWRAP_DEW_RDDMY=
+_NO], 0x8);
+> +                       }
+> +               }
+> +               pwrap_writel(wrp, 0x88, PWRAP_RDDMY);
+> +               pwrap_init_chip_select_ext(wrp, 15, 15, 15, 15);
+> +               break;
+>         case PWRAP_MT8173:
+>                 pwrap_init_chip_select_ext(wrp, 0, 4, 2, 2);
+>                 break;
+> @@ -1744,6 +1844,7 @@ static int pwrap_init_cipher(struct pmic_wrapper *w=
+rp)
+>         case PWRAP_MT2701:
+>         case PWRAP_MT6765:
+>         case PWRAP_MT6779:
+> +       case PWRAP_MT6795:
+>         case PWRAP_MT6797:
+>         case PWRAP_MT8173:
+>         case PWRAP_MT8186:
+> @@ -1914,6 +2015,19 @@ static int pwrap_mt2701_init_soc_specific(struct p=
+mic_wrapper *wrp)
+>         return 0;
 >  }
-> =20
-> +static int bq256xx_set_ts_ignore(struct bq256xx_device *bq, bool ts_igno=
-re)
+>
+> +static int pwrap_mt6795_init_soc_specific(struct pmic_wrapper *wrp)
 > +{
-> +	return regmap_update_bits(bq->regmap, BQ256XX_INPUT_CURRENT_LIMIT,
-> +				BQ256XX_TS_IGNORE, (ts_ignore ? 1 : 0) << BQ256XX_TS_IGNORE_SHIFT);
+> +       pwrap_writel(wrp, 0xf, PWRAP_STAUPD_GRPEN);
+> +
+> +       if (wrp->slave->type =3D=3D PMIC_MT6331)
+> +               pwrap_writel(wrp, 0x1b4, PWRAP_EINT_STA0_ADR);
+> +
+> +       if (wrp->slave->comp_type =3D=3D PMIC_MT6332)
+> +               pwrap_writel(wrp, 0x8112, PWRAP_EINT_STA1_ADR);
+> +
+> +       return 0;
 > +}
 > +
->  static int bq256xx_get_prechrg_curr(struct bq256xx_device *bq)
+>  static int pwrap_mt7622_init_soc_specific(struct pmic_wrapper *wrp)
 >  {
->  	unsigned int prechg_and_term_curr_lim;
-> @@ -1279,6 +1292,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_get_iterm =3D bq256xx_get_term_curr,
->  		.bq256xx_get_iprechg =3D bq256xx_get_prechrg_curr,
->  		.bq256xx_get_vindpm =3D bq256xx_get_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D NULL,
-> =20
->  		.bq256xx_set_ichg =3D bq256xx_set_ichg_curr,
->  		.bq256xx_set_iindpm =3D bq256xx_set_input_curr_lim,
-> @@ -1316,6 +1330,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_set_iterm =3D bq256xx_set_term_curr,
->  		.bq256xx_set_iprechg =3D bq256xx_set_prechrg_curr,
->  		.bq256xx_set_vindpm =3D bq256xx_set_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D NULL,
-> =20
->  		.bq256xx_def_ichg =3D BQ2560X_ICHG_DEF_uA,
->  		.bq256xx_def_iindpm =3D BQ256XX_IINDPM_DEF_uA,
-> @@ -1346,6 +1361,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_set_iterm =3D bq256xx_set_term_curr,
->  		.bq256xx_set_iprechg =3D bq256xx_set_prechrg_curr,
->  		.bq256xx_set_vindpm =3D bq256xx_set_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D NULL,
-> =20
->  		.bq256xx_def_ichg =3D BQ2560X_ICHG_DEF_uA,
->  		.bq256xx_def_iindpm =3D BQ256XX_IINDPM_DEF_uA,
-> @@ -1376,6 +1392,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_set_iterm =3D bq256xx_set_term_curr,
->  		.bq256xx_set_iprechg =3D bq256xx_set_prechrg_curr,
->  		.bq256xx_set_vindpm =3D bq256xx_set_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D NULL,
-> =20
->  		.bq256xx_def_ichg =3D BQ2560X_ICHG_DEF_uA,
->  		.bq256xx_def_iindpm =3D BQ256XX_IINDPM_DEF_uA,
-> @@ -1406,6 +1423,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_set_iterm =3D bq256xx_set_term_curr,
->  		.bq256xx_set_iprechg =3D bq256xx_set_prechrg_curr,
->  		.bq256xx_set_vindpm =3D bq256xx_set_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D bq256xx_set_ts_ignore,
-> =20
->  		.bq256xx_def_ichg =3D BQ25611D_ICHG_DEF_uA,
->  		.bq256xx_def_iindpm =3D BQ256XX_IINDPM_DEF_uA,
-> @@ -1436,6 +1454,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_set_iterm =3D bq25618_619_set_term_curr,
->  		.bq256xx_set_iprechg =3D bq25618_619_set_prechrg_curr,
->  		.bq256xx_set_vindpm =3D bq256xx_set_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D bq256xx_set_ts_ignore,
-> =20
->  		.bq256xx_def_ichg =3D BQ25618_ICHG_DEF_uA,
->  		.bq256xx_def_iindpm =3D BQ256XX_IINDPM_DEF_uA,
-> @@ -1466,6 +1485,7 @@ static const struct bq256xx_chip_info bq256xx_chip_=
-info_tbl[] =3D {
->  		.bq256xx_set_iterm =3D bq25618_619_set_term_curr,
->  		.bq256xx_set_iprechg =3D bq25618_619_set_prechrg_curr,
->  		.bq256xx_set_vindpm =3D bq256xx_set_input_volt_lim,
-> +		.bq256xx_set_ts_ignore =3D bq256xx_set_ts_ignore,
-> =20
->  		.bq256xx_def_ichg =3D BQ25618_ICHG_DEF_uA,
->  		.bq256xx_def_iindpm =3D BQ256XX_IINDPM_DEF_uA,
-> @@ -1582,6 +1602,12 @@ static int bq256xx_hw_init(struct bq256xx_device *=
-bq)
->  	if (ret)
->  		return ret;
-> =20
-> +	if (bq->chip_info->bq256xx_set_ts_ignore) {
-> +		ret =3D bq->chip_info->bq256xx_set_ts_ignore(bq, bq->init_data.ts_igno=
-re);
-> +		if (ret)
-> +			return ret;
-> +	}
+>         pwrap_writel(wrp, 0, PWRAP_STAUPD_PRD);
+> @@ -1949,7 +2063,8 @@ static int pwrap_init(struct pmic_wrapper *wrp)
+>         if (wrp->rstc_bridge)
+>                 reset_control_reset(wrp->rstc_bridge);
+>
+> -       if (wrp->master->type =3D=3D PWRAP_MT8173) {
+> +       if (wrp->master->type =3D=3D PWRAP_MT8173 ||
+> +           wrp->master->type =3D=3D PWRAP_MT6795) {
+
+I would prefer to put a switch case like it's done in
+"pwrap_common_init_reg_clock" or
+"pwrap_init_cipher".
+
+My second choice (which isn't aligned with the current
+implementation), is to add boolean
+capabilities in the "struct pmic_wrapper_type".
+
+>                 /* Enable DCM */
+>                 pwrap_writel(wrp, 3, PWRAP_DCM_EN);
+>                 pwrap_writel(wrp, 0, PWRAP_DCM_DBC_PRD);
+> @@ -2185,6 +2300,19 @@ static const struct pmic_wrapper_type pwrap_mt6779=
+ =3D {
+>         .init_soc_specific =3D NULL,
+>  };
+>
+> +static const struct pmic_wrapper_type pwrap_mt6795 =3D {
+> +       .regs =3D mt6795_regs,
+> +       .type =3D PWRAP_MT6795,
+> +       .arb_en_all =3D 0x3f,
+> +       .int_en_all =3D ~(u32)(BIT(31) | BIT(2) | BIT(1)),
+> +       .int1_en_all =3D 0,
+> +       .spi_w =3D PWRAP_MAN_CMD_SPI_WRITE,
+> +       .wdt_src =3D PWRAP_WDT_SRC_MASK_NO_STAUPD,
+> +       .caps =3D PWRAP_CAP_RESET | PWRAP_CAP_DCM,
+> +       .init_reg_clock =3D pwrap_common_init_reg_clock,
+> +       .init_soc_specific =3D pwrap_mt6795_init_soc_specific,
+
+TBH, I don't know if variables should be reordered in alphabetic order
+or keep the order of other structures.
+it's just to notify.
+
+> +};
 > +
->  	power_supply_put_battery_info(bq->charger, bat_info);
-> =20
->  	return 0;
-> @@ -1616,6 +1642,8 @@ static int bq256xx_parse_dt(struct bq256xx_device *=
-bq,
->  	if (ret)
->  		bq->init_data.iindpm =3D bq->chip_info->bq256xx_def_iindpm;
-> =20
-> +	bq->init_data.ts_ignore =3D device_property_read_bool(bq->dev, "ti,no-t=
-hermistor");
-> +
->  	return 0;
->  }
-> =20
-> --=20
-> 2.30.2
->=20
+>  static const struct pmic_wrapper_type pwrap_mt6797 =3D {
+>         .regs =3D mt6797_regs,
+>         .type =3D PWRAP_MT6797,
+> @@ -2318,6 +2446,7 @@ static const struct of_device_id of_pwrap_match_tbl=
+[] =3D {
+>         { .compatible =3D "mediatek,mt2701-pwrap", .data =3D &pwrap_mt270=
+1 },
+>         { .compatible =3D "mediatek,mt6765-pwrap", .data =3D &pwrap_mt676=
+5 },
+>         { .compatible =3D "mediatek,mt6779-pwrap", .data =3D &pwrap_mt677=
+9 },
+> +       { .compatible =3D "mediatek,mt6795-pwrap", .data =3D &pwrap_mt679=
+5 },
+>         { .compatible =3D "mediatek,mt6797-pwrap", .data =3D &pwrap_mt679=
+7 },
+>         { .compatible =3D "mediatek,mt6873-pwrap", .data =3D &pwrap_mt687=
+3 },
+>         { .compatible =3D "mediatek,mt7622-pwrap", .data =3D &pwrap_mt762=
+2 },
+> --
+> 2.40.0
+>
 
---xroj6drwz4f3vnyk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmQkwpcACgkQ2O7X88g7
-+po4ZA//WTfB+7L6lPnP4bLUiZeBkgF/ej0grZzJtg6bxpKU2IestEF2zvn6159o
-ol+ndgwWUNjmb9PI+OhcP12pOn+rD/rpIpN5hCtPghVUyXjb7SrsX4Tvr/E/9ugm
-my5ikJOCoIpDmRdju+GN/GwOLZjxHuxcOfF09Dzni4VWsOyOnDXAfNLlctPDV/1w
-+2rqcXLtxnQcp6bgc3eJ1QKKOnclfhO979+SBpwYfCVBjsiebP2vsqps00oVYmvh
-b3F5h3WQeUL8dbhwdJr8VhvfXfT7GGKdFZVI8LZvOggUrgHUQV7Oxd4YgLlxPEaz
-XC9+1qrKjO1GCiujrspRwK8h/l62nI+3G/cT/KnutfHUO0kEYwKluwBEjwdFSwhr
-OQoIVuazwtFIzhAHm5/gRhf3iCIMDp84JtbEDYMCINiTrr4omS5Dh9Svk0BUET/m
-ZqlahY73Q43wUz0136eKdzALbjMi6YO5jhdiQ4Y5++/YPPdqqKLErsH/rwCTK8j2
-fTwR7iU8SItNY5xuVY+9td83t2rfbog09Ua6Rpk2gz/5q6hE5L/ds/WQebwp7Vzt
-JxzhqIpENUx8cBSh4ZFhNUwSwQ1/Kw2JyOunGSEUUX9VSkU4xjEMD1lDXKi7ARrj
-igH544WtMs8A0iJ38dSp2Xei2kQ0+kiwWvU1rXQrgfPX3MAmIqc=
-=DA45
------END PGP SIGNATURE-----
-
---xroj6drwz4f3vnyk--
+Regards,
+Alex
