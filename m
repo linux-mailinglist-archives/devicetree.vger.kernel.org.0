@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CFB36CF42D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 22:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D17F6CF45F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 22:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbjC2UNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 16:13:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
+        id S229618AbjC2UTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 16:19:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbjC2UNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 16:13:40 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445C84ED5
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 13:13:37 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id y15so21745543lfa.7
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 13:13:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680120815;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zQCrJvIAi8d5vr9Rmgb3GfKwe2GYjnRcMdwIw2E9S1Q=;
-        b=PBm+HevLzaANAiaOKuKR9wz5q1jaq2klVC3G7CGePfsI7ciPdEvadZ/5ugn9pPydb0
-         pNDZpqc06g+MopXZNlylyBEpMaYKY28YTsUkw92aGyY6ja2bQ/Q+J9M+ufP/UMVjkCxm
-         b4yNpJ9yS52MpUN10wk7Ov2b1BIVxTky08nCz+k9D6osa5WWprSxkr9G2CpgJDzzcKvd
-         wPp6nNA2zSQ1wNO/Hd38HMRKJc17t9ASWPVNjbub4COwB1sbNRnC6M6g6dxhSCE9yMBq
-         Bpp61bKCtEk5V2PRtjf8ROQ+u2U8Z3zLbszk47VsZYuAAW89YJCx7wdPC6uSIvruvxOG
-         9qRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680120815;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zQCrJvIAi8d5vr9Rmgb3GfKwe2GYjnRcMdwIw2E9S1Q=;
-        b=QHCIYj2oQRTTemps05ERXhbhLBlDv78fkgh12mOTRkpwQWFm0lHR5BaqaDK8xkxw52
-         m5v2ldzvLSEM9VnRegauZQYVksANLz8pzOmaBDYwlH151yj6V3vr2p6+tBwVjszZBHc1
-         ZpZIevFG3EPlt/UgHeSKxBA5M1GT3HaONdDsV7jSUwdwr3Y1Y51a4jQedWn3WLAUDAGu
-         GrfzmgLTe9/VnnIUz7Hr5NVoVBmYcd2gbKdrvxhBU5acXRlj3YN8yvd0QcpHF6dG0WTX
-         TjonJo5fm9lIBw5T69i1ZJSEIvCq6CmfnzeRDabJcmAUEKrQYjeeWogg+QmiAtAR2A9I
-         eOdQ==
-X-Gm-Message-State: AAQBX9eK1eNIWfa8Zwrt+ZAXwx0ABnJq1uw8q45lvFxHqCEFQ4iXVC8N
-        mxsZ8EFv/vNh21r1hwbgxxY/eg==
-X-Google-Smtp-Source: AKy350bqFBR1/bLn2+h5C96CNiXHrwe4VeVDilWwnXSAsd4PHM96EcS8ugCMls5mi4Wc9S4QapkSIQ==
-X-Received: by 2002:a19:ad48:0:b0:4ea:f6ad:2975 with SMTP id s8-20020a19ad48000000b004eaf6ad2975mr5918334lfd.60.1680120815483;
-        Wed, 29 Mar 2023 13:13:35 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id h18-20020a197012000000b004e95a1aca1bsm5581253lfc.87.2023.03.29.13.13.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 13:13:35 -0700 (PDT)
-Message-ID: <420b5400-844f-4ca9-a4e3-1f5f6536f7a2@linaro.org>
-Date:   Wed, 29 Mar 2023 23:13:34 +0300
+        with ESMTP id S229481AbjC2UTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 16:19:47 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226FA4ED5;
+        Wed, 29 Mar 2023 13:19:46 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32TKJYro047752;
+        Wed, 29 Mar 2023 15:19:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680121174;
+        bh=T+Eko+LLwZmsGd120Z+3Lj9F1hIzzlrX0hwtefoHhpw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=AkSpg4dwQ0o+NnHt6qWUFm7i/Oh/O0SCDZDY1zxM9usBpUECpx21wdCoIHkuFTD9P
+         wbLSWN/rLzeMmp003zvxBImG7hyX5sChYqjaXHodp0Xt4nClhtW4ER3s04U14sPD3S
+         qA6MV02JIBsQ7yz43A5YVFgsfyGruOv9kU6UFNlw=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32TKJYOw010119
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 29 Mar 2023 15:19:34 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
+ Mar 2023 15:19:34 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 29 Mar 2023 15:19:34 -0500
+Received: from [10.249.48.175] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32TKJYRY021351;
+        Wed, 29 Mar 2023 15:19:34 -0500
+Message-ID: <48c03b5a-6557-9eee-8b85-24d72cfbfcd1@ti.com>
+Date:   Wed, 29 Mar 2023 15:19:33 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 0/7] drm/msm: add support for SM8550
-Content-Language: en-GB
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v3-0-660c3bcb127f@linaro.org>
- <168004255469.1060915.1800625604847213121.b4-ty@linaro.org>
- <CAL_Jsq+VoBkpCT_iUD1Nq_SazCVDa49rn0qtX3Qnm1KBB3gkcg@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAL_Jsq+VoBkpCT_iUD1Nq_SazCVDa49rn0qtX3Qnm1KBB3gkcg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j784s4-main: Add MAIN domain R5F
+ cluster nodes
+To:     Nishanth Menon <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230329093627.30719-1-hnagalla@ti.com>
+ <20230329093627.30719-2-hnagalla@ti.com>
+ <20230329125247.w45k5fjzmcgjdyso@delicate>
+Content-Language: en-US
+From:   Hari Nagalla <hnagalla@ti.com>
+In-Reply-To: <20230329125247.w45k5fjzmcgjdyso@delicate>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,56 +70,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 22:52, Rob Herring wrote:
-> On Tue, Mar 28, 2023 at 5:38 PM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
->>
->>
->> On Mon, 09 Jan 2023 11:15:17 +0100, Neil Armstrong wrote:
->>> This adds support for the MDSS/DPU/DSI on the Qualcomm SM8550 platform.
->>>
->>> This patchset is based on the SM8450 display support serie at [1].
->>>
->>> In order to work, the following patchsets are required:
->>> - PM8550 LDO fix at [2]
->>> - DISPCC driver at [3]
->>>
->>> [...]
->>
->> Applied, thanks!
->>
->> [2/7] dt-bindings: display/msm: document DPU on SM8550
->>        https://gitlab.freedesktop.org/lumag/msm/-/commit/4557e40338d2
->> [3/7] dt-bindings: display/msm: document MDSS on SM8550
->>        https://gitlab.freedesktop.org/lumag/msm/-/commit/0e4205eb8663
+On 3/29/23 07:52, Nishanth Menon wrote:
+>>      MAIN R5FSS0 Core0: j784s4-main-r5f0_0-fw (both in LockStep and Split modes)
+>>      MAIN R5FSS0 Core1: j784s4-main-r5f0_1-fw (needed only in Split mode)
+>>      MAIN R5FSS1 Core0: j784s4-main-r5f1_0-fw (both in LockStep and Split modes)
+>>      MAIN R5FSS1 Core1: j784s4-main-r5f1_1-fw (needed only in Split mode)
+>>      MAIN R5FSS2 Core0: j784s4-main-r5f2_0-fw (both in LockStep and Split modes)
+>>      MAIN R5FSS2 Core1: j784s4-main-r5f2_1-fw (needed only in Split mode)
+> Why are the patches split up into main and mcu - if you are adding r5f
+> cores, do them as a single patch.
 > 
-> And now failing on linux-next just as my bot reported:
-> 
-> Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.example.dts:24:18:
-> fatal error: dt-bindings/interconnect/qcom,sm8550.h: No such file or
-> directory
->     24 |         #include <dt-bindings/interconnect/qcom,sm8550.h>
->        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:419:
-> Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.example.dtb]
-> Error 1
-> Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.example.dts:25:18:
-> fatal error: dt-bindings/interconnect/qcom,sm8550.h: No such file or
-> directory
->     25 |         #include <dt-bindings/interconnect/qcom,sm8550.h>
->        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> 
-> Please fix. And quickly please. Fixes in the DRM tree seem to take
-> forever to get in...
+Thought would be cleaner with separated patches for resolving potential 
+merge conflicts. But, can combine into one for v2.
 
-I pushed the fix, so it will arrive in linux-next tomorrow or the day 
-after tomorrow. Please excuse me for breaking it again. I checked that 
-the patches were merged, but didn't notice that the header name was 
-changed in the process. Mea culpa.
-
--- 
-With best wishes
-Dmitry
-
+ >> +
+ >> +	main_r5fss0: r5fss@5c00000 {
+ >> +		compatible = "ti,j721s2-r5fss";
+ >> +		ti,cluster-mode = <1>;
+ >> +		#address-cells = <1>;
+ >> +		#size-cells = <1>;
+ >> +		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
+ >> +			 <0x5d00000 0x00 0x5d00000 0x20000>;
+ >> +		power-domains = <&k3_pds 336 TI_SCI_PD_EXCLUSIVE>;
+ >> +
+ >> +		main_r5fss0_core0: r5f@5c00000 {
+ >> +			compatible = "ti,j721s2-r5f";
+ >> +			reg = <0x5c00000 0x00010000>,
+ >> +			      <0x5c10000 0x00010000>;
+ >> +			reg-names = "atcm", "btcm";
+ >> +			ti,sci = <&sms>;
+ >> +			ti,sci-dev-id = <339>;
+ >> +			ti,sci-proc-ids = <0x06 0xff>;
+ >> +			resets = <&k3_reset 339 1>;
+ >> +			firmware-name = "j784s4-main-r5f0_0-fw";
+ >> +			ti,atcm-enable = <1>;
+ >> +			ti,btcm-enable = <1>;
+ >> +			ti,loczrama = <1>;
+ >> +			status = "disabled";
+ > Why are these disabled by default?
+Well, the idea is to let the board specific device tree enable needed 
+remote core nodes in *-evm/sk.dts and disable by default in SoC device 
+tree files by default.
