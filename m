@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81CB86CF2EE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3EC6CF2F0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230225AbjC2TRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 15:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53532 "EHLO
+        id S230254AbjC2TRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 15:17:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbjC2TRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:17:49 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AA865B7
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:17:39 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id t14so17289331ljd.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:17:39 -0700 (PDT)
+        with ESMTP id S230232AbjC2TRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:17:51 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10556A67
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:17:40 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id e11so17260559lji.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:17:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680117457;
+        d=linaro.org; s=google; t=1680117459;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i75VT9iHv+RQumVifxqdOqhI73icvNqP22fPvcEQdoU=;
-        b=ubhALSethZ3f57tX9OLKfXZrI7UmEbjyqygzC9f/0RoaLeA0fadM8d/iX861w3RGtM
-         6M2Xp8CTCtvrKlSDSqfuDmvH+eSQaoDxSQkfWdQ8S+CWQJ1O8FmR22mleoW1CBDxHrzU
-         mWQ+qj6i/aft5e7XlmFuLW8kFRmtJHkyMdZeZ7KidKSWkMWp4cqc+psqRjfbE5rJTj78
-         BI1qjAf1GORpcZ+AXr5e3vfJrwYhtWw/hCOKso5L1qDvlDAQ9Moasxs8DyI4QjWleIzX
-         ht2kkmk+DbRqlzMDmJMCQOm/ty+uKB2i9nBlkCM76D9yAeKlMC0Uof+CcDkDmmgWA+/X
-         Dv+g==
+        bh=FkAai3XhfiUPRhW3jICgZ5p+Oa8ltVSaTnDmaflq7J0=;
+        b=h2ZHVxfVjRCAHLr2IjDjiLbFb1+cBIYfc9aUZq26bTziEOKuyjCvaNzR21aZpshJhl
+         0z+e7glfFGvqF5p1LyX266gHOECuCV5VIl8TpbA4Oe8pAU5FbdZKGj6YslqmUY6Vg72s
+         gKagz4V0V3xNGEt73Zy5sk27tYRs8YmoqdEd54ibxlMgObc3z6UExRkmb2jFdYoE9128
+         E2Y+oCYj7e5VUy+PzyI4bp46j+blfd8pFoQllSitaF4g5rFfndNK6koBJtEsmudItEHf
+         a2n+1CHR+0H0+PKkD4mHX9B3DOK9+MuwcJI5XLl0ylGSY4Ca5TmOm8M0sy7eqw+6exWd
+         6fZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680117457;
+        d=1e100.net; s=20210112; t=1680117459;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i75VT9iHv+RQumVifxqdOqhI73icvNqP22fPvcEQdoU=;
-        b=OpvNh965U95xiEFAfXvnumFpT7WDrKSgPr6fKaOpQw0rHOByLfid3kZ8+tMgVTxbAq
-         WIK1XYhn8JD05KuQINvjNivxj0Xzxp1FywuMnGo+qs7oG2Vj8rcgT4SNNZOYk4la8IXw
-         KAvypiJrqByzD7wPt/gCzlbJDurFLmOodXeONCn61r4O6QnkIG28TQpuw77honVijFlg
-         ZEJN12ptPLUpkQdIZ1vnwxfSvDM6KV1DwMaXukcBQjNiRDO7DexOFA2ZkejfBf4FnBER
-         CfltN5S9oCq2/IjBaCRU+6D3L0gmP2h0MsAN8Q66K2GEkbUZbRj8nsujryWExkj6SonD
-         Mvxg==
-X-Gm-Message-State: AAQBX9dhk8AHw++gcY+JejDUXARefbrW3QQAKfwxUhTCaksbLx/T1PWu
-        7m2OgOIMs7Bt5K9UMINcialUIg==
-X-Google-Smtp-Source: AKy350ZfvqbkKUbInO2LPR9pxLn1EXDL65EJxZnE6SDdRR8dw4JsDXmbGJXMSH4xzaiqosqmIyGTEg==
-X-Received: by 2002:a2e:9c04:0:b0:29e:e7b1:1202 with SMTP id s4-20020a2e9c04000000b0029ee7b11202mr5746591lji.43.1680117457657;
-        Wed, 29 Mar 2023 12:17:37 -0700 (PDT)
+        bh=FkAai3XhfiUPRhW3jICgZ5p+Oa8ltVSaTnDmaflq7J0=;
+        b=Xuzuq2CY+mWucs23PZWgBhTjH30DGTMy7KqZVXDPljwHIDEm3wUSU+80z+ExNXsGta
+         fIVzaasHRCd3OiYQPmOfeyRDsJMlr1GriZOlJtCh06dycCL8IuwRkzTRHKTtZS2RTsZk
+         yUMHLhLHfTSFPoX4Omhz7K4x40ZKpn64pwVtpSXFWTPqpbBRd/KDdy3B0Rh1pBs7Eq1a
+         dapcGYfiRTY27igYqv3X5G+p+Du4ld/aI510R8uePF810rH5WvS8Q0uLs+kfMKYKllWX
+         RAzzTlNfI43jzpWIYegTqT1aJz81EnDU1/sE4xQxggxgRe7FDml7I6a6W6/rmeG+YSla
+         0OTg==
+X-Gm-Message-State: AAQBX9fDWNhFdQ9KJddLIZR2WeBZznaWpKkvQVOBatkOJTAE0eVcBOmG
+        qc+TJZ2aNg3vgEAIjFMh1ki+4A==
+X-Google-Smtp-Source: AKy350Y6N2QBFcszpreUAjNB5vbbYZ/x8V1DIVwJGSTWXjpolHT7cCqcTY4tZvENYdTB90Nj9ksMAQ==
+X-Received: by 2002:a2e:6e16:0:b0:2a6:1682:3a1e with SMTP id j22-20020a2e6e16000000b002a616823a1emr107837ljc.31.1680117458981;
+        Wed, 29 Mar 2023 12:17:38 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id f4-20020a2e3804000000b0029ad1fc89b3sm5189658lja.60.2023.03.29.12.17.35
+        by smtp.gmail.com with ESMTPSA id f4-20020a2e3804000000b0029ad1fc89b3sm5189658lja.60.2023.03.29.12.17.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 12:17:37 -0700 (PDT)
+        Wed, 29 Mar 2023 12:17:38 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 29 Mar 2023 21:17:28 +0200
-Subject: [PATCH 1/4] arm64: dts: qcom: msm8998: Improve GPU OPP table
+Date:   Wed, 29 Mar 2023 21:17:29 +0200
+Subject: [PATCH 2/4] arm64: dts: qcom: msm8996: Pass VDDMX to gpu in
+ power-domains
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230329-topic-adreno_opp-v1-1-24d34ac6f007@linaro.org>
+Message-Id: <20230329-topic-adreno_opp-v1-2-24d34ac6f007@linaro.org>
 References: <20230329-topic-adreno_opp-v1-0-24d34ac6f007@linaro.org>
 In-Reply-To: <20230329-topic-adreno_opp-v1-0-24d34ac6f007@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -74,11 +75,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1680117452; l=3231;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680117452; l=1874;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=BuTOgjCT81kJFbrqBabPtOTaRvqV7WCYi0kTMwbrGyM=;
- b=sIueiwaBv29WZYicIP/gR6f1I5FJrtIi4R/EoqLoj5R6f4Cpwk3nADWHqIKjdyJsZQNZ5nsG2rgH
- BOk3yWWuDdxPFGzt0xsYbCEE08QXV0aCsCc9Zw/ZrDReYpsf8AdS
+ bh=B4c/XI1szXxzRjFxiQx3VjZCHnPxGxqsOILu9llcN2Y=;
+ b=Zs9LksiWRztnXYtI4O3NfXHgKmEahbtvCpXjg3ZG98cB1u4HUyqw+s4VmKtPstHhnnUov1foxpUk
+ RR4OCGrFDyd3G9norJZwh8qiAX82Ny9DXokCHV9hL/kqR5rGpXms
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -90,100 +91,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a newline before the first OPP subnode, remove useless
-opp-supported-hw (there's only a single speed bin anyway) and replace
-opp-level with required-opps to make sure the power domain level is
-actually set, as opp-level is not the right property for this..
-Furthermore, correct the levels that were incorrect before (confirmed
-against downstream).
+Since power-domains is used for perf_level pm_genpd scaling, it's only
+fitting that we pass a power domain that's actually supposed to be
+scaled (and not only turned on/off) to the GPU. While we don't quite
+support CPR3 yet, the next best thing we can do is pass VDDMX, so that
+we're at least guaranteed a reasonable vote on the memory side of
+things. Do so and leave a note mentioning CPR3 PD should be used here
+instead when support is added.
 
-Round off frequencies that had uneven fluff on the last two digits.
-
-To top if off, leave a note that we should really be scaling the
-VDD GFX power domain coming from CPR4, which is not yet supported.
-Scaling MX is still very important though and can be considered
-valid for the time being - it's better if we scale at one of
-two voltage rails than if we scaled none..
-
-Fixes: 87cd46d68aea ("arm64: dts: qcom: msm8998: Configure Adreno GPU and related IOMMU")
+Fixes: 69cc3114ab0f ("arm64: dts: Add Adreno GPU definitions")
+Fixes: 3f65d51e9e22 ("arm64: dts: qcom: msm8996: Make GPU node control GPU_GX GDSC")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 39 +++++++++++++++--------------------
- 1 file changed, 17 insertions(+), 22 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 09b222f363c2..11952f9ed9ae 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1396,51 +1396,46 @@ adreno_gpu: gpu@5000000 {
- 			interrupts = <0 300 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 4661a556772e..4dd37f72e018 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1228,7 +1228,8 @@ gpu: gpu@b00000 {
+ 			interconnects = <&bimc MASTER_GRAPHICS_3D &bimc SLAVE_EBI_CH0>;
+ 			interconnect-names = "gfx-mem";
+ 
+-			power-domains = <&mmcc GPU_GX_GDSC>;
++			/* TODO: also scale VDDGFX with CPR3 */
++			power-domains = <&rpmpd MSM8996_VDDMX>;
  			iommus = <&adreno_smmu 0>;
- 			operating-points-v2 = <&gpu_opp_table>;
-+			/* TODO: also scale VDDGFX with CPR4 */
- 			power-domains = <&rpmpd MSM8998_VDDMX>;
- 			status = "disabled";
  
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
--				opp-710000097 {
--					opp-hz = /bits/ 64 <710000097>;
--					opp-level = <RPM_SMD_LEVEL_TURBO>;
--					opp-supported-hw = <0xff>;
-+
-+				opp-710000000 {
-+					opp-hz = /bits/ 64 <710000000>;
-+					required-opps = <&rpmpd_opp_turbo>;
- 				};
+ 			nvmem-cells = <&speedbin_efuse>;
+@@ -2254,7 +2255,13 @@ adreno_smmu: iommu@b40000 {
+ 				 <&mmcc GPU_AHB_CLK>;
+ 			clock-names = "bus", "iface";
  
--				opp-670000048 {
--					opp-hz = /bits/ 64 <670000048>;
--					opp-level = <RPM_SMD_LEVEL_NOM_PLUS>;
--					opp-supported-hw = <0xff>;
-+				opp-670000000 {
-+					opp-hz = /bits/ 64 <670000000>;
-+					required-opps = <&rpmpd_opp_turbo>;
- 				};
- 
--				opp-596000097 {
--					opp-hz = /bits/ 64 <596000097>;
--					opp-level = <RPM_SMD_LEVEL_NOM>;
--					opp-supported-hw = <0xff>;
-+				opp-596000000 {
-+					opp-hz = /bits/ 64 <596000000>;
-+					required-opps = <&rpmpd_opp_nom>;
- 				};
- 
--				opp-515000097 {
--					opp-hz = /bits/ 64 <515000097>;
--					opp-level = <RPM_SMD_LEVEL_SVS_PLUS>;
--					opp-supported-hw = <0xff>;
-+				opp-515000000 {
-+					opp-hz = /bits/ 64 <515000000>;
-+					required-opps = <&rpmpd_opp_nom>;
- 				};
- 
- 				opp-414000000 {
- 					opp-hz = /bits/ 64 <414000000>;
--					opp-level = <RPM_SMD_LEVEL_SVS>;
--					opp-supported-hw = <0xff>;
-+					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-342000000 {
- 					opp-hz = /bits/ 64 <342000000>;
--					opp-level = <RPM_SMD_LEVEL_LOW_SVS>;
--					opp-supported-hw = <0xff>;
-+					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-257000000 {
- 					opp-hz = /bits/ 64 <257000000>;
--					opp-level = <RPM_SMD_LEVEL_MIN_SVS>;
--					opp-supported-hw = <0xff>;
-+					required-opps = <&rpmpd_opp_svs>;
- 				};
- 			};
+-			power-domains = <&mmcc GPU_GDSC>;
++			/*
++			 * We need both GPU_GDSC and GPU_GX_GDSC to be on, but the
++			 * power-domains entry under gpu is occupied by the scaled
++			 * voltage domain. Since GPU_GDSC is a parent of GX_GDSC,
++			 * we can simply pass GX here to turn them both on!
++			 */
++			power-domains = <&mmcc GPU_GX_GDSC>;
  		};
+ 
+ 		venus: video-codec@c00000 {
 
 -- 
 2.40.0
