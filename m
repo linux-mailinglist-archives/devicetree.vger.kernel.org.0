@@ -2,321 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12B936CCF10
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 02:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D52496CCF39
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 03:12:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbjC2An4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 20:43:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
+        id S229507AbjC2BMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 21:12:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjC2Anz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 20:43:55 -0400
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 83C3E210D;
-        Tue, 28 Mar 2023 17:43:49 -0700 (PDT)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 192.168.10.47
-        by mg.richtek.com with MailGates ESMTP Server V5.0(26679:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Wed, 29 Mar 2023 08:43:28 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Wed, 29 Mar
- 2023 08:43:28 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
- Transport; Wed, 29 Mar 2023 08:43:28 +0800
-From:   <cy_huang@richtek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <lgirdwood@gmail.com>, <cy_huang@richtek.com>,
-        <jeff_chang@richtek.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v2 2/2] regulator: Add Richtek RT4803 boost regulator
-Date:   Wed, 29 Mar 2023 08:43:26 +0800
-Message-ID: <1680050606-461-2-git-send-email-cy_huang@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1680050606-461-1-git-send-email-cy_huang@richtek.com>
-References: <1680050606-461-1-git-send-email-cy_huang@richtek.com>
+        with ESMTP id S229493AbjC2BMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 21:12:13 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1CC5E1FE9;
+        Tue, 28 Mar 2023 18:12:10 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8CxidlpkCNkAXQTAA--.18212S3;
+        Wed, 29 Mar 2023 09:12:09 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax271ikCNkSvoPAA--.11731S3;
+        Wed, 29 Mar 2023 09:12:05 +0800 (CST)
+Subject: Re: [PATCH v4 1/2] dt-bindings: spi: add loongson spi
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        Mark Brown <broonie@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, zhuyinbo@loongson.cn
+References: <20230328112210.23089-1-zhuyinbo@loongson.cn>
+ <20230328112210.23089-2-zhuyinbo@loongson.cn>
+ <168000761529.3001360.2224316097077012976.robh@kernel.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <4ed4e0b6-63a8-a5b1-fed9-64a6d036459b@loongson.cn>
+Date:   Wed, 29 Mar 2023 09:12:02 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <168000761529.3001360.2224316097077012976.robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Ax271ikCNkSvoPAA--.11731S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7WF48GFWDWFWkGryxtFWUJwb_yoW8ZrW8pw
+        45CwsayFWqqr17G393ta4xX3WYqr93JayaqFZrKry2kFn0qa4rtr4S9FyDuF47CF4fGFyx
+        Za4Ik34fK348AFJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b4kFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84
+        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc80
+        4VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67
+        AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48I
+        cVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x8Erc
+        xFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2Iq
+        xVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42
+        IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY
+        6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aV
+        CY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUzgAwDUUUU
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+This patch need depend on
+https://lore.kernel.org/all/20230323025229.2971-1-zhuyinbo@loongson.cn/
+then the spi yaml file will build successful. That changelog had record it.
 
-RT4803 is a boost converter that integrates an internal bypass FET. It
-will automatically transform the operation mode between bypass and boost
-based on the voltage difference of the input and output voltage.
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- drivers/regulator/Kconfig  |  10 +++
- drivers/regulator/Makefile |   1 +
- drivers/regulator/rt4803.c | 216 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 227 insertions(+)
- create mode 100644 drivers/regulator/rt4803.c
-
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index aae28d0..fd9a29c 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1082,6 +1082,16 @@ config REGULATOR_RT4801
- 	  This adds support for voltage regulators in Richtek RT4801 Display Bias IC.
- 	  The device supports two regulators (DSVP/DSVN).
- 
-+config REGULATOR_RT4803
-+	tristate "Richtek RT4803 boost regualtor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This adds support for RT4803 boost converter that integrates the
-+	  bypass switch. If the input voltage is low than the required voltage,
-+	  RT4803 will enter boost mode. Otherwise, enable internal bypass
-+	  switch to enter bypass mode.
-+
- config REGULATOR_RT4831
- 	tristate "Richtek RT4831 DSV Regulators"
- 	depends on MFD_RT4831
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index ee383d8..163b599 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -130,6 +130,7 @@ obj-$(CONFIG_REGULATOR_RK808)   += rk808-regulator.o
- obj-$(CONFIG_REGULATOR_RN5T618) += rn5t618-regulator.o
- obj-$(CONFIG_REGULATOR_ROHM)	+= rohm-regulator.o
- obj-$(CONFIG_REGULATOR_RT4801)	+= rt4801-regulator.o
-+obj-$(CONFIG_REGULATOR_RT4803)	+= rt4803.o
- obj-$(CONFIG_REGULATOR_RT4831)	+= rt4831-regulator.o
- obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
- obj-$(CONFIG_REGULATOR_RT5120)	+= rt5120-regulator.o
-diff --git a/drivers/regulator/rt4803.c b/drivers/regulator/rt4803.c
-new file mode 100644
-index 00000000..c96fb02
---- /dev/null
-+++ b/drivers/regulator/rt4803.c
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2023 Richtek Technology Corp.
-+ *
-+ * Author: ChiYuan Huang <cy_huang@richtek.com>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+#define RT4803_AUTO_MODE	1
-+#define RT4803_FPWM_MODE	2
-+
-+#define RT4803_REG_CONFIG	0x01
-+#define RT4803_REG_VSELL	0x02
-+#define RT4803_REG_VSELH	0x03
-+#define RT4803_REG_ILIM		0x04
-+#define RT4803_REG_STAT		0x05
-+
-+#define RT4803_MODE_MASK	GENMASK(1, 0)
-+#define RT4803_VSEL_MASK	GENMASK(4, 0)
-+#define RT4803_ILIM_MASK	GENMASK(3, 0)
-+#define RT4803_TSD_MASK		BIT(7)
-+#define RT4803_HOTDIE_MASK	BIT(6)
-+#define RT4803_FAULT_MASK	BIT(1)
-+#define RT4803_PGOOD_MASK	BIT(0)
-+
-+#define RT4803_VOUT_MINUV	2850000
-+#define RT4803_VOUT_STEPUV	50000
-+#define RT4803_VOUT_NUM		32
-+
-+static int rt4803_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int modeval;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_NORMAL:
-+		modeval = RT4803_AUTO_MODE;
-+		break;
-+	case REGULATOR_MODE_FAST:
-+		modeval = RT4803_FPWM_MODE;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	modeval <<= ffs(RT4803_MODE_MASK) - 1;
-+
-+	return regmap_update_bits(regmap, RT4803_REG_CONFIG, RT4803_MODE_MASK, modeval);
-+}
-+
-+static unsigned int rt4803_get_mode(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int modeval;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT4803_REG_CONFIG, &modeval);
-+	if (ret)
-+		return REGULATOR_MODE_INVALID;
-+
-+	modeval >>= ffs(RT4803_MODE_MASK) - 1;
-+
-+	switch (modeval) {
-+	case RT4803_AUTO_MODE:
-+		return REGULATOR_MODE_NORMAL;
-+	case RT4803_FPWM_MODE:
-+		return REGULATOR_MODE_FAST;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static int rt4803_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int state, events = 0;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT4803_REG_STAT, &state);
-+	if (ret)
-+		return ret;
-+
-+	if (state & RT4803_PGOOD_MASK)
-+		goto out_error_flag;
-+
-+	if (state & RT4803_FAULT_MASK)
-+		events |= REGULATOR_ERROR_FAIL;
-+
-+	if (state & RT4803_HOTDIE_MASK)
-+		events |= REGULATOR_ERROR_OVER_TEMP_WARN;
-+
-+	if (state & RT4803_TSD_MASK)
-+		events |= REGULATOR_ERROR_OVER_TEMP;
-+
-+out_error_flag:
-+	*flags = events;
-+	return 0;
-+}
-+
-+static int rt4803_set_suspend_voltage(struct regulator_dev *rdev, int uV)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int reg, vsel;
-+
-+	if (rdev->desc->vsel_reg == RT4803_REG_VSELL)
-+		reg = RT4803_REG_VSELH;
-+	else
-+		reg = RT4803_REG_VSELL;
-+
-+	vsel = (uV - rdev->desc->min_uV) / rdev->desc->uV_step;
-+	vsel <<= ffs(RT4803_VSEL_MASK) - 1;
-+
-+	return regmap_update_bits(regmap, reg, RT4803_VSEL_MASK, vsel);
-+}
-+
-+static const struct regulator_ops rt4803_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+	.set_mode = rt4803_set_mode,
-+	.get_mode = rt4803_get_mode,
-+	.get_error_flags = rt4803_get_error_flags,
-+	.set_suspend_voltage = rt4803_set_suspend_voltage,
-+};
-+
-+static unsigned int rt4803_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case RT4803_AUTO_MODE:
-+		return REGULATOR_MODE_NORMAL;
-+	case RT4803_FPWM_MODE:
-+		return REGULATOR_MODE_FAST;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static const struct regmap_config rt4803_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT4803_REG_STAT,
-+};
-+
-+static int rt4803_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct regmap *regmap;
-+	struct regulator_desc *desc;
-+	struct regulator_config cfg = {};
-+	struct regulator_dev *rdev;
-+	bool vsel_act_high;
-+	int ret;
-+
-+	desc = devm_kzalloc(dev, sizeof(*desc), GFP_KERNEL);
-+	if (!desc)
-+		return -ENOMEM;
-+
-+	regmap = devm_regmap_init_i2c(i2c, &rt4803_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
-+
-+	/* Always configure the input current limit to max 5A at initial */
-+	ret = regmap_update_bits(regmap, RT4803_REG_ILIM, RT4803_ILIM_MASK, 0xff);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to config ILIM to max\n");
-+
-+	vsel_act_high = device_property_read_bool(dev, "richtek,vsel-active-high");
-+
-+	desc->name = "rt4803-regulator";
-+	desc->type = REGULATOR_VOLTAGE;
-+	desc->owner = THIS_MODULE;
-+	desc->ops = &rt4803_regulator_ops;
-+	desc->min_uV = RT4803_VOUT_MINUV;
-+	desc->uV_step = RT4803_VOUT_STEPUV;
-+	desc->n_voltages = RT4803_VOUT_NUM;
-+	desc->vsel_mask = RT4803_VSEL_MASK;
-+	desc->of_map_mode = rt4803_of_map_mode;
-+	if (vsel_act_high)
-+		desc->vsel_reg = RT4803_REG_VSELH;
-+	else
-+		desc->vsel_reg = RT4803_REG_VSELL;
-+
-+	cfg.dev = dev;
-+	cfg.of_node = dev_of_node(dev);
-+	cfg.init_data = of_get_regulator_init_data(dev, dev_of_node(dev), desc);
-+
-+	rdev = devm_regulator_register(dev, desc, &cfg);
-+	return PTR_ERR_OR_ZERO(rdev);
-+}
-+
-+static const struct of_device_id rt4803_device_match_table[] = {
-+	{ .compatible = "richtek,rt4803" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt4803_device_match_table);
-+
-+static struct i2c_driver rt4803_driver = {
-+	.driver = {
-+		.name = "rt4803",
-+		.of_match_table = rt4803_device_match_table,
-+	},
-+	.probe = rt4803_probe,
-+};
-+module_i2c_driver(rt4803_driver);
-+
-+MODULE_DESCRIPTION("Richtek RT4803 voltage regulator driver");
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+在 2023/3/28 下午8:57, Rob Herring 写道:
+> 
+> On Tue, 28 Mar 2023 19:22:09 +0800, Yinbo Zhu wrote:
+>> Add the Loongson platform spi binding with DT schema format using
+>> json-schema.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+>>   .../bindings/spi/loongson,ls-spi.yaml         | 43 +++++++++++++++++++
+>>   MAINTAINERS                                   |  6 +++
+>>   2 files changed, 49 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1512: dt_binding_check] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230328112210.23089-2-zhuyinbo@loongson.cn
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
