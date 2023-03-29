@@ -2,84 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F266CD04C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A1FD6CD05E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:51:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjC2CqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 22:46:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34078 "EHLO
+        id S229816AbjC2CvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 22:51:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjC2CqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:46:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EBFC2D63;
-        Tue, 28 Mar 2023 19:46:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2A1E9B81E4F;
-        Wed, 29 Mar 2023 02:46:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0543C433EF;
-        Wed, 29 Mar 2023 02:46:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680057972;
-        bh=uzVpXoYVgwiQ/OtqrXaCGv8Q5Ms14GwgyQzDl8dlBPs=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=cD+YUjoLnhnDDR24/kSpmwDdzROIbDGUhjfGVXDHrhROcYGhMkKYP4ggAmv3hyma6
-         A8kkbhss98fD5Mr4YYnQ1ZLz4UtYcdxvv5kO5WJAqQoDNWZrQXKz88RFNYmWwIG+NQ
-         Q9B3D9f92otsHZrHZI5gngArs0FVZyaJfNo71sK8dQFXmQKxHk4aVf/JXn6ZnVVoeD
-         Gskr+bbJqq5dTVJo3DnPAb3+XAzS8kyJApm6qp5j9tIY5KGj7ebtQKjZT1yD75byu9
-         AGlYaWxJxFMJrKaHQ7kCJuzTLpACy1mNNZ4LfrwKM/+jaDbGCokFULkYaVWb+h23kB
-         5cyluoyLxJfMA==
-Message-ID: <e5221cd020bc60513df6a1c1859e1acc.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230007AbjC2CvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:51:13 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CBC2D7F;
+        Tue, 28 Mar 2023 19:51:11 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id eh3so57549389edb.11;
+        Tue, 28 Mar 2023 19:51:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680058270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dIzil1J+XzZVkE7VYxYF65ET2u5OaR0BuUTGA5SK+3A=;
+        b=lGNK9Nvogi60ODmJUdGqiRoAeG692JLaGSJPxyyPBqDx6p3s8leRhzxDJ+/XjXFa5x
+         lyIVL4hM5fAs8w3aSnbYjP2+Jj+BJXOH0o4vj7p+xw/8UoRy43jp3lBXduKr5WFFi37f
+         z7HOHN6w+6nMgaK7eYnmpvJ5zKSHVPvvv8bgQNaIn7HlmstcUwCZSIX0GG/GtgG4SeYX
+         e1kseVRdrS+IvArSeB3bO3nelYX/jn96Io1Ton3GMjyOg8aI8IzWDhuAK7gLL4/N5LX/
+         J6q6Uger7FaAHkNlVtiVDsSpYhqDka1Gapt89RgNCWfO5oXsaKtqTlRphbV7Z3UskFYI
+         YjXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680058270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dIzil1J+XzZVkE7VYxYF65ET2u5OaR0BuUTGA5SK+3A=;
+        b=45GB1uLwG8mWHI+g4yAJzPq1jWNjo5GMaX7NaO0YPQnebOvqMEN6Hn8G1w6q8TS3yF
+         YH6e7f48tj2sPiG/uQJ5dz84qwT1OpAOpByj/uy7Qd2PZsG0KzhLhgh10Su2KNFrzMRg
+         FUQJCbytR44S9RMW5ODFIAndTUZJp7UtbK97kXjJoK3gVa+Wqn9UmDVMfLPFlqY2cojv
+         3yq5x6S5D2z1I6CKZJIqQrgcTs54lDOTOVjtnUVn5EtjRvKnSfhJO10Td4z/NsYnAGfX
+         N7CzECueZOc+ohMjJiw8qsiYY8bk0szdgtm6l+UyYKmTSdy8KV/UJ5dwyHCGv2etnFxd
+         8/iw==
+X-Gm-Message-State: AAQBX9fX6qux6Lrv9yu9b2hyznpSPFmsEILm4pRcUXqLUV8yaUi3WvkQ
+        R/mI4yWZb9h9wBX4g8nmRwP/OO/QxuKDY/Fl17YHogyhj/hlUQ==
+X-Google-Smtp-Source: AKy350bsrVpBT2/hOrtU+Hcf6gmZmN9zv4UBYcj7fxKuRxjEcKxZzyOpQIU+ffxGL6Wgjcnn1vA4rB+hEVxrZs8F96M=
+X-Received: by 2002:a50:875e:0:b0:501:d2f5:7da9 with SMTP id
+ 30-20020a50875e000000b00501d2f57da9mr8498486edv.0.1680058269743; Tue, 28 Mar
+ 2023 19:51:09 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230328120506.375864-1-keguang.zhang@gmail.com>
+ <20230328120506.375864-3-keguang.zhang@gmail.com> <168002881746.3753096.11245437677389006840.robh@kernel.org>
+In-Reply-To: <168002881746.3753096.11245437677389006840.robh@kernel.org>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Wed, 29 Mar 2023 10:50:53 +0800
+Message-ID: <CAJhJPsXBsP9akD9x++r7YCs_P-n2SpKJnJcDoJv93_=8+r1C-Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: timer: Add Loongson-1 clocksource
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <129cf4b6-b3b5-2a12-5911-37e70a624812@gmail.com>
-References: <20230328021912.177301-1-ychuang570808@gmail.com> <20230328021912.177301-9-ychuang570808@gmail.com> <ab4e0bc8834b7e618e9a88ea6a1c30cc.sboyd@kernel.org> <b7977069-4f82-76a1-10c1-b6400862c2c4@gmail.com> <c37e1f3a40c404acd81c2c9d5b28b340.sboyd@kernel.org> <129cf4b6-b3b5-2a12-5911-37e70a624812@gmail.com>
-Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device tree
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org
-Date:   Tue, 28 Mar 2023 19:46:10 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jacky Huang (2023-03-28 19:39:36)
-> On 2023/3/29 =E4=B8=8A=E5=8D=88 10:19, Stephen Boyd wrote:
-> > What do you use the syscon for then? The clock driver must want to use
-> > the syscon for something, implying that they are the same device.
->=20
-> The register lock mechanism is applied to protect many critical=20
-> registers from false written.
-> The register lock control register is one register in system controller.
-> Some registers of the clock controller are lock protected. Not only=20
-> clock controller, but other
-> IP such as RTC, PWM, ADC, etc, also have lock protected registers. All=20
-> these IP requires
-> syscon to access the lock/unlock control register in the system controlle=
-r.
-> That's why we add a <&sys> to the clock controller.
->=20
-> Should we implement a ma35d1-sysctl driver to protect register_lock()=20
-> and register_unlock()
-> and export to those drivers?=C2=A0 If yes, we can remove the <&sys> from =
+Hi Rob,
 
-> clock controller.
->=20
+On Wed, Mar 29, 2023 at 2:52=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+>
+> On Tue, 28 Mar 2023 20:05:05 +0800, Keguang Zhang wrote:
+> > Add devicetree binding document for Loongson-1 clocksource.
+> >
+> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > ---
+> >  .../timer/loongson,ls1x-pwmtimer.yaml         | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls=
+1x-pwmtimer.yaml
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/timer/loongson,ls1x-pwmtimer.example.dt=
+s:21:18: fatal error: dt-bindings/clock/loongson,ls1x-clk.h: No such file o=
+r directory
+>    21 |         #include <dt-bindings/clock/loongson,ls1x-clk.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can implement the lock and unlock in the hwspinlock framework. See
-drivers/hwspinlock.
+This file is contained in commit
+12de2f50244efdbc8e98f89a340255c3c847e1dc, which is already available
+in 6.3-rc4.
+
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings=
+/timer/loongson,ls1x-pwmtimer.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1512: dt_binding_check] Error 2
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202303=
+28120506.375864-3-keguang.zhang@gmail.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+>
+
+
+--=20
+Best regards,
+
+Keguang Zhang
