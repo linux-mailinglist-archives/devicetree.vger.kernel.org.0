@@ -2,112 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8356CD335
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 09:29:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0C466CD38B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 09:46:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbjC2H3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 03:29:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
+        id S229966AbjC2Hq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 03:46:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbjC2H2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 03:28:45 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25DB423A
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:26:46 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id c29so18956649lfv.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:26:46 -0700 (PDT)
+        with ESMTP id S230014AbjC2Hq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 03:46:28 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 610DC40E7
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:46:21 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id y20so19031226lfj.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:46:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680074796;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w7183s01mUhY1MlzNjYfsfxMgMWtxEXCM0G4GVkOYwI=;
-        b=ANSQpbq4MUpCh6lkL0ICYmHOE4118OEHg8b40jiCxIZm18OGvGFLpfDsyyD6QRYEdp
-         giDZinFfnz6lLrVsspEixCHZXDHfo4K+NYzU5JofYizzSvrm2JmcO6/f5H13vIYdRKPb
-         /zZva1KYi1rPEdLh67cka7VzB7c616faD1wHv8eue61KEgnfgLNlJAFFiGsb/ZYzLane
-         zvVHPAyC8qTSlapYgMademg3TAIVO0H/W89Gfu0r5+V6kR7Z1FRWYK3vrthEE8xNysW1
-         4o2jonAUbh22fGO3I0b08h4vz0lpqbY5l9hUYdl8M3fbeuxHBpdXfgO7Q/kGsUgQI4fc
-         EABQ==
+        d=linaro.org; s=google; t=1680075979;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+9X5TqxqvzHj77DLqMsTMoyZMkz7ylJgPTRzw+1zgDY=;
+        b=EaaoWWSospBQxvZvGT9DHMUA9GPfOaNOfI2lZylUglpyJs3D3tyHzuBqCO5JgZdGjU
+         Z44APqw8UlCOl/Tiqj36MdaKT1k4CQGZWoPh6w22RbFP/VkdQbUa3zMGaNv91fa7JU7p
+         s7N8FDupoAsjirL/WabNE3A8IRAYfwaxaJaDbq/wZ/dxNSyftEoEcthpXznwRQdR3dbf
+         uNh12ptQ+J/IUu293ZiQVSvSTMjGRA8lC9NyGfZI6ziiSN/ygqZ+4hFranMeR5SvOhWG
+         +u1o6nyHLrenxAdrNGkpCWwmrnKR6J6F5qhIhJ7nG/5WSZAE8sM5fTT0HOLedjWXhWk1
+         swzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680074796;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w7183s01mUhY1MlzNjYfsfxMgMWtxEXCM0G4GVkOYwI=;
-        b=z06foa5MQBcVa1wxLznLuMVymmuXH7QlsKXtlF7AnvwysfCBmg3rQ8yJhWvZH7F5MD
-         foH2tjrGja86eLgYkvG4DYMI0MHUIsjQkf9dVa8WuIQMO3usKhMp2NuLake9ijl1oYHW
-         /p32Gswa0y65jOC8b4n5nEKbTqxWdxnwhEgM9LqPogSbGwJUpCRHD6ZLJELfbvb5XVwN
-         MPmduyoGffhG88VI34HoO/GtCBAqstCfEWnZkXu8TgMwoMD4EVk6kQH92BkjwutVc/lM
-         2n54ZH2d1z56TYzzyLJ7R4K0EgXXvhShQjF65WpihaESFTttLrbl1RPkH7osMLsebIED
-         eAGg==
-X-Gm-Message-State: AAQBX9eoOgAnewGrwM8LsriToxX/L6qmg1OeWf7693FGPWTtcmIt/sFQ
-        q+Dm3pTICKV3Hg6EAwg3Vet1rw==
-X-Google-Smtp-Source: AKy350ZswhcAA5B+KdmpmE/aqHA9lWxMk4RrmpJihRyPEunFiBluQGwvppgyXlTCBFluxvW3vo6b1w==
-X-Received: by 2002:a19:e01c:0:b0:4d8:86c1:478c with SMTP id x28-20020a19e01c000000b004d886c1478cmr375021lfg.33.1680074795796;
-        Wed, 29 Mar 2023 00:26:35 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u25-20020a056512041900b004e9bf853c27sm4353061lfk.70.2023.03.29.00.26.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 00:26:35 -0700 (PDT)
-Message-ID: <808cf98a-b4f6-4299-bd47-a8adac5ef7ad@linaro.org>
-Date:   Wed, 29 Mar 2023 09:26:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v8 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-Content-Language: en-US
-To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=1e100.net; s=20210112; t=1680075979;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+9X5TqxqvzHj77DLqMsTMoyZMkz7ylJgPTRzw+1zgDY=;
+        b=dMfIo7YrSlT06oi4iMCkUlVH4o0Sm3BpyDOJ7GTLKE+3XIDqFlihBXcYfCcROeIGFb
+         Fcf33VMMgwM0M7HQosUUUDdCZeK8K8ekrPzPKyuO221p/axyEB6dK6BYqVasZnTwF3Z1
+         EQr9bKD81OYWM6g8SP8BrL0IeL9rWkWMtsGGF5ud6x21vp9geP94jo9FubjSO7U3yeRC
+         K9j60+zo0zCLgqljvJJDGJ3MYWlLMfKTkpzuORblAntGY8OIPNWD2VEF0zWygRLw0+bU
+         WTwkYu2mNTuh1Q75cREydfLHsFd8THw9v2jgg+FzVOxJ3ceAYGE2daypqF8joxxE8DP6
+         z/3w==
+X-Gm-Message-State: AAQBX9cSOYY3K9k/wVr/qloxaneqso64OvmM6lpE1dFeUQo2Xy9FMisj
+        HoCHQvkuVt29hhomtLIOZFFh8A==
+X-Google-Smtp-Source: AKy350Z2yDiACAJ8ogkoO/PyrxwnbV+DbcEfLmqS3XiN4wD4vSNJ5xhTwtzwrldDYA8OHEMTBCBLmw==
+X-Received: by 2002:a19:ae0e:0:b0:4e9:cfd2:e2d with SMTP id f14-20020a19ae0e000000b004e9cfd20e2dmr3954091lfc.65.1680075979508;
+        Wed, 29 Mar 2023 00:46:19 -0700 (PDT)
+Received: from Fecusia.lan (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id f9-20020ac25089000000b004e9d2af99c0sm4150972lfm.71.2023.03.29.00.46.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 00:46:19 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>,
-        Johan Hovold <johan@kernel.org>
-References: <20230326233812.28058-1-steev@kali.org>
- <20230326233812.28058-5-steev@kali.org>
- <CABBYNZLh2_dKm1ePH3jMY8=EzsbG1TWkTLsgqY1KyFopLNHN6A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABBYNZLh2_dKm1ePH3jMY8=EzsbG1TWkTLsgqY1KyFopLNHN6A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Denis Ciocca <denis.ciocca@st.com>, devicetree@vger.kernel.org,
+        Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH] dt-bindings: iio: st-sensors: Fix repeated text
+Date:   Wed, 29 Mar 2023 09:46:14 +0200
+Message-Id: <20230329074614.1037625-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 00:24, Luiz Augusto von Dentz wrote:
-> Hi Steev,
-> 
-> On Sun, Mar 26, 2023 at 4:38 PM Steev Klimaszewski <steev@kali.org> wrote:
->>
->> The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
->> add this.
->>
->> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> 
-> I would like to merge this set but this one still doesn't have any
-> Signed-off-by other than yours.
+The description oddly contains a copy of the initial paragraph.
+Let's not repeat ourselves.
 
-Please take only driver and bindings. The DTS should always go via
-Qualcomm SoC tree (as we want to be sure 100% that it is independent of
-driver).
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Denis Ciocca <denis.ciocca@st.com>
+Cc: devicetree@vger.kernel.org
+Reported-by: Diederik de Haas <didi.debian@cknow.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+index c6201976378f..558ae650f218 100644
+--- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
++++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+@@ -11,9 +11,6 @@ description: The STMicroelectronics sensor devices are pretty straight-forward
+   what type of sensor it is.
+   Note that whilst this covers many STMicro MEMs sensors, some more complex
+   IMUs need their own bindings.
+-  The STMicroelectronics sensor devices are pretty straight-forward I2C or
+-  SPI devices, all sharing the same device tree descriptions no matter what
+-  type of sensor it is.
+ 
+ maintainers:
+   - Denis Ciocca <denis.ciocca@st.com>
+-- 
+2.39.2
 
