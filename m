@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD35D6CDA6B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 15:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC5A6CDA6F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 15:18:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbjC2NSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 09:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40874 "EHLO
+        id S230254AbjC2NSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 09:18:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230237AbjC2NSL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 09:18:11 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D544ED5
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 06:18:06 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id om3-20020a17090b3a8300b0023efab0e3bfso18509279pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 06:18:06 -0700 (PDT)
+        with ESMTP id S230286AbjC2NSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 09:18:23 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F039A55BB
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 06:18:12 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id z19so14895985plo.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 06:18:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680095886;
+        d=amarulasolutions.com; s=google; t=1680095892;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cv6/4Vvh1vUo/moG1pbR53z8ML2U7R1WxCNXSlwjPc4=;
-        b=dq2gflaXd3rWznoyd8LJ65hUjiMDXLDqp0a5RSfLfMrNFDFrbLmoQMU43Fdj4z/O58
-         EDaIilmoyGxnNIuc9fNDvnyuCQiqB/pxw2QJFWV4UHFuG+va90m/gzt+D+JUulqQ3WbF
-         sW46WI7QF9fIp0ljJytY4DuJU/0fhAqSLg+iI=
+        bh=d+PX9J3U7p5qZlBeWmtYaZVahtk7x+bKgv0zxDQ5NKg=;
+        b=pNuu1Gkcpj7ou0/NxyX2OGB7HOgjlkfVVree1zpId6rRDygggKC/Odx+8t6UQxJCSH
+         3K+nqLT4ETFZW5uFx2XJALuvcQQIRVGsHyk4MfHSsUCru8tigfcYVsv3aZkd0DLlIYg3
+         n2HCEBT3mtN4hni20h9YKd5wzUcRPY5DNSsVU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680095886;
+        d=1e100.net; s=20210112; t=1680095892;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cv6/4Vvh1vUo/moG1pbR53z8ML2U7R1WxCNXSlwjPc4=;
-        b=iCrdqLWSwyDh7GySM3dT/BLV25ye6Okjfq36jYbmVcVmvPZFkuAihKknnK2UMT+1QW
-         RSBOB2n/XXbqj8CowaOKfcVTweKSVdvhvn6ctXMbRdfeFWC5iZRhlwx1qn2OX8pEHA7K
-         zF8BzjVIAJk76W+isQ5+EjZZ4KycIUfsFM73B6YdJhvABVjtGzUbARS1exWiUi/QRiJ5
-         xAREAs6b0x0TQ2NoKWywZRzZXCGueDu2K1iIp4QTOX0/jj+x1J1ncGhD9XjoitXYUxUT
-         FINHxCxVEYmehQKfE3AbSH/pux3O+i7MbOINxaupwmB2m3ikdCU8ue4YIAMWXcmLn0RD
-         bv1g==
-X-Gm-Message-State: AAQBX9e5a9IImztNSiMGocYO0qBZc4+jCJjICm0yzE/qJUu5bDmA6FjU
-        u+sORMTFVkXlY1CPYEtznyBc8g==
-X-Google-Smtp-Source: AKy350YSAxdStQu5k6BQ8X+TusC/NXLcHiqOIQaUy4h6emrwaIZtDtwCxjujQZcpQ0YsrrHN0GERmw==
-X-Received: by 2002:a17:90a:19d:b0:23f:ebf2:d3de with SMTP id 29-20020a17090a019d00b0023febf2d3demr21536210pjc.27.1680095885930;
-        Wed, 29 Mar 2023 06:18:05 -0700 (PDT)
+        bh=d+PX9J3U7p5qZlBeWmtYaZVahtk7x+bKgv0zxDQ5NKg=;
+        b=g5wsMrRaPcVHtoi6FJNGO8Xkn5ArfB57tbxyCFQkpeNhWBtD5iebNQGHvhiNZQMdDm
+         KZDStdsv6QbG7jFS1l0cZfWxgvEGs8dUuUdkAFxrFVgbv/NVxC9BIUPswP+UsQo6ADwg
+         DVjEnkWgATuos14wyTGhpjSyeoct0iV0muUFaM/tpb0UJoKjQ/ySRzeXs43EmkoXXYv5
+         /+LF7ptGET1mCV5x3bEubCdl20lZ8T5OYYtbvZ9fTz5dTu5GCaWVcOpf8SVOS+IMvcct
+         bYfclu7YJ4q8JfuqvW3rjAsuydgDBZUl/crLIWy5o7oCGUW3yrV/z7KxAcg/cecx3UbZ
+         S9gQ==
+X-Gm-Message-State: AAQBX9ckXSj8D8KvH5hio8dJ6et+dDqatxZp2AplGeyw6+i9nZMEvqpa
+        VKVfEFtFxTfu06hPvGCDZJCLfw==
+X-Google-Smtp-Source: AKy350bokE1By8nbjH4J86bI+d67CKIP38qBgLKevOIo/+cgjC0kVbu1W/gnjsNm0Xt8H7dXZUIQzg==
+X-Received: by 2002:a17:90b:3b44:b0:23b:50ff:59ba with SMTP id ot4-20020a17090b3b4400b0023b50ff59bamr19952654pjb.21.1680095892216;
+        Wed, 29 Mar 2023 06:18:12 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a047:206d:4722:c4fa:e845])
-        by smtp.gmail.com with ESMTPSA id s16-20020a17090b071000b0023f5c867f82sm1400192pjz.41.2023.03.29.06.17.59
+        by smtp.gmail.com with ESMTPSA id s16-20020a17090b071000b0023f5c867f82sm1400192pjz.41.2023.03.29.06.18.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 06:18:05 -0700 (PDT)
+        Wed, 29 Mar 2023 06:18:11 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
         Maxime Ripard <mripard@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         Marek Vasut <marex@denx.de>,
         linux-amarula <linux-amarula@amarulasolutions.com>,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v7 03/12] drm: panel: feiyang-fy07024di26a30d: Enable prepare_prev_first flag
-Date:   Wed, 29 Mar 2023 18:46:09 +0530
-Message-Id: <20230329131615.1328366-4-jagan@amarulasolutions.com>
+Subject: [PATCH v7 04/12] drm: panel: sitronix-st7701: Enable prepare_prev_first for ts8550b
+Date:   Wed, 29 Mar 2023 18:46:10 +0530
+Message-Id: <20230329131615.1328366-5-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230329131615.1328366-1-jagan@amarulasolutions.com>
 References: <20230329131615.1328366-1-jagan@amarulasolutions.com>
@@ -84,10 +84,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the drm panel prepare_prev_first flag for feiyang-fy07024di26a30d
-so-that the previous controller should be prepared first before the
-prepare for the panel is called.
-       
+Enable the drm panel prepare_prev_first flag for ts8550b panel so-that
+the previous controller should be prepared first before the prepare for
+the panel is called.
+           
 This makes sure that the previous controller(sun6i-mipi-dsi), likely to
 be a DSI host controller should be initialized to LP-11 before the panel
 is powered up.
@@ -97,21 +97,37 @@ Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 Changes for v7:
 - new patch
 
- drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c b/drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c
-index df493da50afe..77d66dbe01fe 100644
---- a/drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c
-+++ b/drivers/gpu/drm/panel/panel-feiyang-fy07024di26a30d.c
-@@ -198,6 +198,7 @@ static int feiyang_dsi_probe(struct mipi_dsi_device *dsi)
+diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+index 7eae83aa0ea1..dc7677412023 100644
+--- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
++++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+@@ -105,6 +105,7 @@ struct st7701_panel_desc {
+ 	unsigned int lanes;
+ 	enum mipi_dsi_pixel_format format;
+ 	unsigned int panel_sleep_delay;
++	bool prepare_prev_first;
  
- 	drm_panel_init(&ctx->panel, &dsi->dev, &feiyang_funcs,
+ 	/* TFT matrix driver configuration, panel specific. */
+ 	const u8	pv_gamma[16];	/* Positive voltage gamma control */
+@@ -564,6 +565,7 @@ static const struct st7701_panel_desc ts8550b_desc = {
+ 	.lanes = 2,
+ 	.format = MIPI_DSI_FMT_RGB888,
+ 	.panel_sleep_delay = 80, /* panel need extra 80ms for sleep out cmd */
++	.prepare_prev_first = true,
+ 
+ 	.pv_gamma = {
+ 		CFIELD_PREP(DSI_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
+@@ -875,6 +877,7 @@ static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+ 
+ 	drm_panel_init(&st7701->panel, &dsi->dev, &st7701_funcs,
  		       DRM_MODE_CONNECTOR_DSI);
-+	ctx->panel.prepare_prev_first = true;
++	st7701->panel.prepare_prev_first = desc->prepare_prev_first;
  
- 	ctx->dvdd = devm_regulator_get(&dsi->dev, "dvdd");
- 	if (IS_ERR(ctx->dvdd))
+ 	/**
+ 	 * Once sleep out has been issued, ST7701 IC required to wait 120ms
 -- 
 2.25.1
 
