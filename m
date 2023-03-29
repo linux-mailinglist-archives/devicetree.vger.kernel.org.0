@@ -2,112 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D17F6CF45F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 22:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 835D26CF524
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 23:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjC2UTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 16:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
+        id S229671AbjC2VVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 17:21:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjC2UTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 16:19:47 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226FA4ED5;
-        Wed, 29 Mar 2023 13:19:46 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32TKJYro047752;
-        Wed, 29 Mar 2023 15:19:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680121174;
-        bh=T+Eko+LLwZmsGd120Z+3Lj9F1hIzzlrX0hwtefoHhpw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=AkSpg4dwQ0o+NnHt6qWUFm7i/Oh/O0SCDZDY1zxM9usBpUECpx21wdCoIHkuFTD9P
-         wbLSWN/rLzeMmp003zvxBImG7hyX5sChYqjaXHodp0Xt4nClhtW4ER3s04U14sPD3S
-         qA6MV02JIBsQ7yz43A5YVFgsfyGruOv9kU6UFNlw=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32TKJYOw010119
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 29 Mar 2023 15:19:34 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
- Mar 2023 15:19:34 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 29 Mar 2023 15:19:34 -0500
-Received: from [10.249.48.175] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32TKJYRY021351;
-        Wed, 29 Mar 2023 15:19:34 -0500
-Message-ID: <48c03b5a-6557-9eee-8b85-24d72cfbfcd1@ti.com>
-Date:   Wed, 29 Mar 2023 15:19:33 -0500
+        with ESMTP id S229436AbjC2VVn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 17:21:43 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2343F1711;
+        Wed, 29 Mar 2023 14:21:42 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-17683b570b8so17659270fac.13;
+        Wed, 29 Mar 2023 14:21:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680124901;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c5JObOnJhn7Qa3BJtOdllaC7YuPWVzUh4uR8zZIj5qw=;
+        b=UIMWJFisKjBZbJG8KhqaOmyLuuUtyjz8jPVeNiOlU57ccMw+ibuLsl2TBGsRh/kLPC
+         g1AjoF1BpfCRBQgo3LNO8y83kB3vh9uyEqjrIWrRKcA+2WC1HQhFkjH9Phy7cHKq2OJ9
+         pCb+5JIOiBi80T4pzxR4mkoia+J1WjZGzGnfyvq09Zd4uMk4DkFe1d19K1C/h/QUulpt
+         lYaEKARCs5UVUhTGhCK7fUdcXlXSeRMjUDuEiphQUXumoUn9RGgR7CnoBSKWZBirpDJz
+         V0IXorir+CWkm7uJaXM2e3rwEVyev4d4G39KaeaokfCRfII6PSmjnI/W16weU7slwvcf
+         RoYQ==
+X-Gm-Message-State: AAQBX9dnl+6X/WcZxAmL5mxG8hyBcG5PA1TO9LNR//DRtp7XA4P4bwVB
+        Jd165V53Ft3MrxCwOfSfUFR45FrRWA==
+X-Google-Smtp-Source: AK7set/kayRJ98J+4lkqmTCrvYqUbSg+NPKMc5ZxUa6OI9imoPRJExO5faQF3fCKQ5rShmnmkvcw7Q==
+X-Received: by 2002:a05:6870:899c:b0:17b:1a4f:adfe with SMTP id f28-20020a056870899c00b0017b1a4fadfemr11592033oaq.10.1680124901366;
+        Wed, 29 Mar 2023 14:21:41 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id tk6-20020a05687189c600b0017703cd8ff6sm12167748oab.7.2023.03.29.14.21.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 14:21:40 -0700 (PDT)
+Received: (nullmailer pid 86888 invoked by uid 1000);
+        Wed, 29 Mar 2023 21:21:39 -0000
+From:   Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/5] Remove acpi.h implicit include of of.h
+Date:   Wed, 29 Mar 2023 16:20:41 -0500
+Message-Id: <20230329-acpi-header-cleanup-v1-0-8dc5cd3c610e@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j784s4-main: Add MAIN domain R5F
- cluster nodes
-To:     Nishanth Menon <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230329093627.30719-1-hnagalla@ti.com>
- <20230329093627.30719-2-hnagalla@ti.com>
- <20230329125247.w45k5fjzmcgjdyso@delicate>
-Content-Language: en-US
-From:   Hari Nagalla <hnagalla@ti.com>
-In-Reply-To: <20230329125247.w45k5fjzmcgjdyso@delicate>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-B4-Tracking: v=1; b=H4sIAKmrJGQC/x2N0QrCMAwAf2Xk2cDWaJn+iviQddEGSi0pE2Hs3
+ w0+3sFxO3QxlQ63YQeTj3Z9V4fpNEDKXF+CujpDGAONFK7IqSlm4VUMUxGuW8MYL0TTHOYzRfB
+ y4S64GNeUva1bKS6byVO//9X9cRw/n6ivRnoAAAA=
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org
+X-Mailer: b4 0.13-dev
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/29/23 07:52, Nishanth Menon wrote:
->>      MAIN R5FSS0 Core0: j784s4-main-r5f0_0-fw (both in LockStep and Split modes)
->>      MAIN R5FSS0 Core1: j784s4-main-r5f0_1-fw (needed only in Split mode)
->>      MAIN R5FSS1 Core0: j784s4-main-r5f1_0-fw (both in LockStep and Split modes)
->>      MAIN R5FSS1 Core1: j784s4-main-r5f1_1-fw (needed only in Split mode)
->>      MAIN R5FSS2 Core0: j784s4-main-r5f2_0-fw (both in LockStep and Split modes)
->>      MAIN R5FSS2 Core1: j784s4-main-r5f2_1-fw (needed only in Split mode)
-> Why are the patches split up into main and mcu - if you are adding r5f
-> cores, do them as a single patch.
-> 
-Thought would be cleaner with separated patches for resolving potential 
-merge conflicts. But, can combine into one for v2.
+In the process of cleaning up DT includes, I found that some drivers 
+using DT functions could build without any explicit DT include. I traced 
+the include to be coming from acpi.h via irqdomain.h.
 
- >> +
- >> +	main_r5fss0: r5fss@5c00000 {
- >> +		compatible = "ti,j721s2-r5fss";
- >> +		ti,cluster-mode = <1>;
- >> +		#address-cells = <1>;
- >> +		#size-cells = <1>;
- >> +		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
- >> +			 <0x5d00000 0x00 0x5d00000 0x20000>;
- >> +		power-domains = <&k3_pds 336 TI_SCI_PD_EXCLUSIVE>;
- >> +
- >> +		main_r5fss0_core0: r5f@5c00000 {
- >> +			compatible = "ti,j721s2-r5f";
- >> +			reg = <0x5c00000 0x00010000>,
- >> +			      <0x5c10000 0x00010000>;
- >> +			reg-names = "atcm", "btcm";
- >> +			ti,sci = <&sms>;
- >> +			ti,sci-dev-id = <339>;
- >> +			ti,sci-proc-ids = <0x06 0xff>;
- >> +			resets = <&k3_reset 339 1>;
- >> +			firmware-name = "j784s4-main-r5f0_0-fw";
- >> +			ti,atcm-enable = <1>;
- >> +			ti,btcm-enable = <1>;
- >> +			ti,loczrama = <1>;
- >> +			status = "disabled";
- > Why are these disabled by default?
-Well, the idea is to let the board specific device tree enable needed 
-remote core nodes in *-evm/sk.dts and disable by default in SoC device 
-tree files by default.
+I was pleasantly surprised that there were not 100s or even 10s of 
+warnings when breaking the include chain. So here's the resulting 
+series.
+
+I'd suggest Rafael take the whole series. Alternatively,the fixes can be 
+applied in 6.4 and then the last patch either after rc1 or the 
+following cycle.
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Rob Herring (5):
+      iio: adc: ad7292: Add explicit include for of.h
+      staging: iio: resolver: ad2s1210: Add explicit include for of.h
+      net: rfkill-gpio: Add explicit include for of.h
+      serial: 8250_tegra: Add explicit include for of.h
+      ACPI: Replace irqdomain.h include with struct declarations
+
+ drivers/iio/adc/ad7292.c                | 1 +
+ drivers/staging/iio/resolver/ad2s1210.c | 1 +
+ drivers/tty/serial/8250/8250_tegra.c    | 1 +
+ include/linux/acpi.h                    | 4 +++-
+ net/rfkill/rfkill-gpio.c                | 1 +
+ 5 files changed, 7 insertions(+), 1 deletion(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230329-acpi-header-cleanup-665331828436
+
+Best regards,
+-- 
+Rob Herring <robh@kernel.org>
+
