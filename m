@@ -2,127 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A9566CEFC5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 18:50:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B468C6CEFCD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 18:50:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjC2QuP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 Mar 2023 12:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
+        id S230365AbjC2Qux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 12:50:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229638AbjC2QuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 12:50:14 -0400
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB384C2D;
-        Wed, 29 Mar 2023 09:50:13 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5416698e889so304343637b3.2;
-        Wed, 29 Mar 2023 09:50:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680108612;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E7RQjEBQKcR2AtQw8SbDRBBSVG7qV4SWyEXRN37gXbg=;
-        b=ExhHtqPmqZG4oJR+RXlrAl4+TfvBWZLHllK5jTRoQrqWWEcDNsXqWqZxDPUnJN9oC0
-         /YZsbMujS4HvxQerdlUeFsVjKF5GcDGDD2qwgLGJ6DFynF6ImkEDLWGqqGkwlolwa7Mp
-         t/RetwYwjW66Pe4Pe+iJjnjr0rzStvbLd1YeuvuNoh8ulxy6bEYxjMsv6Xm9AwPr4kBF
-         sXCbAnzZ531TYe8fgnRvRwJcGkHsA6LqTPl+JgWHYQw0MyjnENJlFqksBA3ulOUq0JIA
-         NDD7xWkI3ZJI6u4zEWr2QP5AA5kppKrdXc6M6pwdRAzM+h7AKr0ahvqcCwc4L/24wFmw
-         GwtQ==
-X-Gm-Message-State: AAQBX9dgcR7SJkpFQCwKRxC0+X1n5RERf6WsT31lx0kzwyXy7qlEJ2CS
-        W36h9C77/fHex8v4ljZ17ReSOMen4/uVHw==
-X-Google-Smtp-Source: AKy350aTHpw80JcyaLQWzJvP9A9nFA8YQ9HUX27e0bcIBkk8upB8LSqfXGY9SijVdo3+I3kW+mpdOw==
-X-Received: by 2002:a81:9304:0:b0:53c:d480:f4b1 with SMTP id k4-20020a819304000000b0053cd480f4b1mr20948515ywg.6.1680108611906;
-        Wed, 29 Mar 2023 09:50:11 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id da12-20020a05690c0d8c00b00545a08184efsm3083614ywb.127.2023.03.29.09.50.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 09:50:11 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id i7so20194372ybt.0;
-        Wed, 29 Mar 2023 09:50:11 -0700 (PDT)
-X-Received: by 2002:a05:6902:722:b0:a09:314f:a3ef with SMTP id
- l2-20020a056902072200b00a09314fa3efmr12938566ybt.12.1680108611093; Wed, 29
- Mar 2023 09:50:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
- <a2086a3f-e4c7-5bbf-a24c-522d6723a043@gmail.com>
-In-Reply-To: <a2086a3f-e4c7-5bbf-a24c-522d6723a043@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 29 Mar 2023 18:49:59 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXSn=OuRWcQ08buh7F7Rqbn_hNSB9hpSLQTAvX=EYtFVw@mail.gmail.com>
-Message-ID: <CAMuHMdXSn=OuRWcQ08buh7F7Rqbn_hNSB9hpSLQTAvX=EYtFVw@mail.gmail.com>
-Subject: Re: [PATCH v2] treewide: Fix instantiation of devices in DT overlays
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
+        with ESMTP id S230390AbjC2Quw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 12:50:52 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CA35FF2;
+        Wed, 29 Mar 2023 09:50:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CCB21B823D8;
+        Wed, 29 Mar 2023 16:50:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C88FC4339C;
+        Wed, 29 Mar 2023 16:50:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680108647;
+        bh=CKOyZDv3JQWgNTEg9VeWLRnaO9byzwy9arbDVJ5dC3w=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Bhs4Pi2/PPGsfONY6o5af/Sz8FfzQTQ6DdoLP78cTkekzpSYQ7Jp+kb/d5smuOi1w
+         OP31cZhs6hUvo4olsJ2a1mwoY6hE72ke+3B326NZWbqb3IZdRDGZ9ihQ0MP8jg/1vW
+         6DM3YOzl8B0Omyrtta2sirtNrP7S5Rzs96iyrJNj8gMiWAqKbl8V0JViuXMEshZNps
+         qk5msvzc343cjRR1yIt1G7E413aThAqe3T4TD/2/C9zukHMTAUsBP5UrnqwNhb4x+9
+         1F58WP58KT9wyMKIh+OTda9p+vApAxbjlTb7wyGMwzfjJB2bByTMDgu33phbU/r0qr
+         TA8wwPfuLREZg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Patrick Lai <quic_plai@quicinc.com>
+In-Reply-To: <20230327132254.147975-1-krzysztof.kozlowski@linaro.org>
+References: <20230327132254.147975-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 00/10] ASoC: add audio digital codecs for Qualcomm
+ SM8550
+Message-Id: <168010864198.3244592.2114017565664183933.b4-ty@kernel.org>
+Date:   Wed, 29 Mar 2023 17:50:41 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-2eb1a
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+On Mon, 27 Mar 2023 15:22:44 +0200, Krzysztof Kozlowski wrote:
+> This patchset can be merged as is - no dependencies.
+> 
+> Changes since v2
+> ================
+> 1. Rebase.
+> 2. New patch: ASoC: dt-bindings: qcom,lpass-va-macro: Add missing NPL clock.
+> 3. Add Rb tags.
+> 
+> [...]
 
-On Wed, Mar 29, 2023 at 6:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> On 3/24/23 04:30, Geert Uytterhoeven wrote:
-> > When loading a DT overlay that creates a device, the device is not
-> > instantiated, unless the DT overlay is unloaded and reloaded again.
->
-> Can you elaborate on why this is?  What the relevant code paths are?
+Applied to
 
-Honestly, I don't know.
+   broonie/sound.git for-6.4
 
-From my local quotes collection:
+Thanks!
 
-   "There are two ways of constructing a software design.
-    One way is to make it so simple that there are obviously no deficiencies.
-    And the other way is to make it so complicated that there are no obvious
-    deficiencies."
-                                           -- C.A.R Hoare
+[01/10] ASoC: dt-bindings: qcom,lpass-rx-macro: narrow clocks per variants
+        commit: e4cf7805f084772cccf2094b634a16bccf2f444f
+[02/10] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8550 RX macro
+        commit: 0fc109f875721f9cef29bb68095f50d67343b4b7
+[03/10] ASoC: codecs: lpass-rx-macro: add support for SM8550
+        commit: 492fe974fed0754f7076580e069e1e182e7b3603
+[04/10] ASoC: dt-bindings: qcom,lpass-tx-macro: narrow clocks per variants
+        commit: bf4afbf950938d42cf0df1ecd915affeb26f4d76
+[05/10] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM8550 TX macro
+        commit: 050578c6f18c28e95f9659493a52a67b68b4b667
+[06/10] ASoC: codecs: lpass-tx-macro: add support for SM8550
+        commit: 5faf6a1c5256559af98c998b7416e4db8fb09b75
+[07/10] ASoC: dt-bindings: qcom,lpass-va-macro: Add missing NPL clock
+        (no commit info)
+[08/10] ASoC: dt-bindings: qcom,lpass-va-macro: Add SM8550 VA macro
+        commit: f769fcefa683e150456555e2a280668509d834df
+[09/10] ASoC: dt-bindings: qcom,lpass-wsa-macro: Add SM8550 WSA macro
+        commit: c1bda22bd2f382f9c3b27fb7a899f8804d92f897
+[10/10] ASoC: codecs: lpass-wsa-macro: add support for SM8550
+        commit: 6b004b836ced4d9ce655b5f1c810833c1a880369
 
-The double hierarchies of DT and fw_devlink are just too complicated...
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> > Saravana explains:
-> >   Basically for all overlays (I hope the function is only used for
-> >   overlays) we assume all nodes are NOT devices until they actually
-> >   get added as a device.
-> >
-> > Based on a patch by Saravana Kannan, which covered only platform and spi
-> > devices.
->
-> > Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
->
-> From a quick scan of the fixed commit, I don't see how that commit caused the problem.
-> Can you give a quick clue?  (The clue does not need to be added to the commit message,
-> but please at least put it below the "---" if there are additional versions of this
-> patch.)
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-I bisected the issue to that commit. Reverting the commit fixed the
-issue for me.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Gr{oetje,eeting}s,
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-                        Geert
+Thanks,
+Mark
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
