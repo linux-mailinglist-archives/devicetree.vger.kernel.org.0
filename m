@@ -2,108 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAADE6CCEBF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 02:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE1016CCEC2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 02:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbjC2A1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 20:27:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58952 "EHLO
+        id S229572AbjC2A1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 20:27:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjC2A1O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 20:27:14 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2E3133
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:27:12 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id er13so15714863edb.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:27:12 -0700 (PDT)
+        with ESMTP id S229489AbjC2A1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 20:27:47 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7489F133
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:27:38 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id j11so18007910lfg.13
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1680049631;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dEpY2ODUY5mEqcj9vNQ0ZYZkQmo1P7yFLhuPa4WcepM=;
-        b=SfnATT8MDX4N45OHq834fFTpo5bzClAd9VvPwG/QFM41uPnZ1Nvec8zwAzyYHB8V1U
-         5AvfxRBgtbyHq4hulLOe6wKecl2mWADZWNw2gWPb/pWeF2En4DuJ3w28Ju7mS5HpwpwL
-         vaLOX3x18ByQD5sv1yiZlr/lLpQ4SrByuZASqkwqnL6m+NqERyn/nm424Q5Bcy/gQxiG
-         7P9UvUrsxmuL3mwzfGnhrSHe7NmbBqDq24lA8fTQQGlOS9mHXd64ZNAhUdKIih/qt7St
-         uiGgqgie5BtYzXOkOhHLX1bapebmILjuI4x26PlMAGTgjTZyHFc/OvaowzexvcL6/uh/
-         UPtA==
+        d=linaro.org; s=google; t=1680049657;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QxA5vlXgN1kNv4KKHx2xBHjmppFW0+Wm9O2gbx042ZE=;
+        b=NeiVau98wu7RHndGOd0JF+1LYkdOfx/AFOzmqHomGn9raJnHMRGTmHmZSxTPw9rMZh
+         ES27R/co0ivrMZjpl1TYZmUPsVqeHC0XuV2Gvbmn67qCL38WOMVfHZ6rRcl/4SdN2YLZ
+         gR3kJlsW5d0lUAaHcTRPQzjjRF5RULRAuNsERsJmnQFZWRu3qtxcmFNPGGnEc5joDMya
+         093ABencCfjd1+KBGKLFjT3ZMGP2sZsHqAAMz5WZEOba6iRaHhq9GQABE79Py9hYB9rj
+         TSmhvJhQEq5kij4fowcdIzwaf0sBle1I5MrEWol0YW2jXw1Pp/RoYXR08iHqi3lnXLNA
+         Xz2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680049631;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dEpY2ODUY5mEqcj9vNQ0ZYZkQmo1P7yFLhuPa4WcepM=;
-        b=DiRUZSBwezwyob9XK6W/FJdf3ypdXsB40wFouGWF4Aqr/W2v902NNJnwoRwUdfS92T
-         Fi+Bc/mfgLzm+DPZYCymzFF3IXslxWVYDjamUkP5FmUW+r/RA1puBrt7wHRzNxF3c30Q
-         wmwZyaM2oR2F0y2o1vU6GQ44Kq1Jw9owtFwMIS6uxB9cO+c3x7r19TxAuFGHEgewid3z
-         u2hDPDWNpHnAKMWhuKSi5fWq8QF5mBd21j/M+YdonZFrORUFm9e8l10wW63Iyn6lhaxn
-         lEXyTLEBueC+aGbB8kFYIqXBhCuINqbM8CtWo74XLqjeByix8mWSPBXI0DKvfYNFzGZS
-         55Iw==
-X-Gm-Message-State: AAQBX9f6B3nLGcnsgqi1CjwlEAnlADu7cNcg8fqsOr32hercnYNTu7IP
-        bsC2UqxywFneWCKGoc1nEVWQph8CE4YtyF5B6DSuIg==
-X-Google-Smtp-Source: AKy350a6b0RNSg0qEukxWpVN2dB5p+ti+B0uqThdB7kAShSe5xvwdydY4q/AP6PYlOkUDiuZPxqS5m+rA0BZBXLXUJM=
-X-Received: by 2002:a17:906:524b:b0:877:747d:4a90 with SMTP id
- y11-20020a170906524b00b00877747d4a90mr9121390ejm.14.1680049630974; Tue, 28
- Mar 2023 17:27:10 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680049657;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QxA5vlXgN1kNv4KKHx2xBHjmppFW0+Wm9O2gbx042ZE=;
+        b=J9AWwMYlY2aUBR3ObWaxbQ67kREjQqLfS5ygemSYu6LwjI9aVP/FR+bYabbb8cU3QL
+         /O6V2cIyyp/PdBTMV8BI4H3U5G1Lmf5j4iU+trGcPl1j5cvFNNmThqPH2CXs9i3BapGs
+         iS70Q5kOAfSNVygNG5tAXMIAiTtttD2z43o+AtMReiYWeVBtiWkfABXmzOoVlMcwRW++
+         y5teBIh9nEQC56grWUzhjVsZh5bZP5xkdT9OfZAIrRto6/WDlBmIcdi4GnjHZeAT+pe3
+         zgLzLnLfHWJqCItRSoIjuORL3eAzjjjgqLa8DGR6dkY2XgtJP8vfQIbukLUocD/FWVny
+         hy7A==
+X-Gm-Message-State: AAQBX9dZpqrfGMNyvuPDHEgh/3RbYsI78e19S6W8+Zj1d1fOoD2jIi3D
+        H5AHUsDf3bBGSs1wBd8Yv68Byg==
+X-Google-Smtp-Source: AKy350axWh/lfjhHuFZMwUvSRAjcXlK8bpng80XEWoOriLxYLjqGpLB+OiHDdEkjYQllVSa+ktL+wQ==
+X-Received: by 2002:a05:6512:218c:b0:4dd:9b6b:6b5b with SMTP id b12-20020a056512218c00b004dd9b6b6b5bmr4411319lft.16.1680049656755;
+        Tue, 28 Mar 2023 17:27:36 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id f1-20020ac251a1000000b004e95f1c9e7dsm5213418lfk.78.2023.03.28.17.27.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Mar 2023 17:27:35 -0700 (PDT)
+Message-ID: <9746792b-fd4a-6808-0c6b-4834ffc9c059@linaro.org>
+Date:   Wed, 29 Mar 2023 02:27:34 +0200
 MIME-Version: 1.0
-References: <20230326233812.28058-1-steev@kali.org> <20230326233812.28058-5-steev@kali.org>
- <CABBYNZLh2_dKm1ePH3jMY8=EzsbG1TWkTLsgqY1KyFopLNHN6A@mail.gmail.com>
-In-Reply-To: <CABBYNZLh2_dKm1ePH3jMY8=EzsbG1TWkTLsgqY1KyFopLNHN6A@mail.gmail.com>
-From:   Steev Klimaszewski <steev@kali.org>
-Date:   Tue, 28 Mar 2023 19:26:59 -0500
-Message-ID: <CAKXuJqi_DJ1GEP-rurJqJF5EyooNQO=daBOo0dipCGqS8QV=Dg@mail.gmail.com>
-Subject: Re: [PATCH v8 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: use main pmk8350.dtsi for sc8280xp
+ platform
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>,
-        Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+References: <20230329000833.2507594-1-dmitry.baryshkov@linaro.org>
+ <20230329000833.2507594-4-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230329000833.2507594-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luiz,
 
-On Tue, Mar 28, 2023 at 5:24=E2=80=AFPM Luiz Augusto von Dentz
-<luiz.dentz@gmail.com> wrote:
->
-> Hi Steev,
->
-> On Sun, Mar 26, 2023 at 4:38=E2=80=AFPM Steev Klimaszewski <steev@kali.or=
-g> wrote:
-> >
-> > The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-> > add this.
-> >
-> > Signed-off-by: Steev Klimaszewski <steev@kali.org>
->
-> I would like to merge this set but this one still doesn't have any
-> Signed-off-by other than yours.
->
-> --
-> Luiz Augusto von Dentz
-I don't quite follow - should I be adding others S-o-b?  I know that
-Bjorn had previously sent an R-b, and Johan as well, but since the
-code changed, I didn't bring them forward.  If I'm doing something
-wrong, please let me know!
---steev
+
+On 29.03.2023 02:08, Dmitry Baryshkov wrote:
+> Employ existing PMK8350_SID and switch sc8280xp-pmics to use
+> pmk8350.dtsi to reduce duplication and possible discrepancies.
+> 
+> For example, this changes sc8280xp platforms to use qcom,pmk8350-pon
+> for the pon device compatibility rather than the incorrect
+> qcom,pm8998-pon.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Bit of a loaded patch..
+
+This could probably go like:
+
+1. outer join 8280 on pmk8350 (for feature parity)
+2. rename all labels in 8280 to 8350 (for 3.)
+3. switch over to the actual 8350 file, remove 8280 (with Fixes:)
+
+[...]
+
+> +#define PMK8350_SID 0
+> +#include "pmk8350.dtsi"
+> +#undef PMK8350_SID
+Not sure if this undef is necessary
+
+With or without all that though, the goal lgtm..
+
+Konrad
+
+>  
+> +&spmi_bus {
+>  	pmc8280_1: pmic@1 {
+>  		compatible = "qcom,pm8350", "qcom,spmi-pmic";
+>  		reg = <0x1 SPMI_USID>;
