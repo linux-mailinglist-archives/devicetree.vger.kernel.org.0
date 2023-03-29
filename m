@@ -2,119 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE9B6CEC57
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E5A6CEC5D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjC2PGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 11:06:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49524 "EHLO
+        id S229854AbjC2PHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 11:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbjC2PGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:06:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFE93C1E;
-        Wed, 29 Mar 2023 08:06:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 67A1D61D6D;
-        Wed, 29 Mar 2023 15:06:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28642C433EF;
-        Wed, 29 Mar 2023 15:06:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680102373;
-        bh=5vjINNeKe6LiQmi33iXc8oeTqq9Ju4aWWGikWY46LX0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T3L0kzPOYcISf2hQru30jp3nqSOsML9n7nxJXTRKCsmM325BTEgdUgGTTdKXq9ACB
-         nejfaSLtVvX0PbrYWO3EZGE3OcPxbSC7CELGE/dOupr44RQRqSJ63N0dKvQBFc8AZ9
-         b6UQs8mDb5LVd1h4m9soDbPGAEOE+aSuYtraelvJIBePUTNzz/tm2oErLly1dtVzfV
-         EAxsdJ6aijQG5BHYFX0mS4PpBYKtg7T8Uc/+VolQnVjV/rUc1wBMqtyQCYc6NpOA0d
-         sb2R1/supusKN+77bFDe7s+PQT7rDlTPFRRSmEs7zPZKeNR/4bHH1TwGUtTlSCuvLJ
-         Itni8mXraPbfg==
-Date:   Wed, 29 Mar 2023 16:06:05 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230350AbjC2PHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:07:22 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1F31BC1;
+        Wed, 29 Mar 2023 08:07:16 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id er13so23628949edb.9;
+        Wed, 29 Mar 2023 08:07:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680102435;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YUaRoxoy/mAkwWz2HlijC5NpBR7GQ7Zq08lefa01oKY=;
+        b=OBJSG982Qlt9bYB9ulPeZ27JYRQgjK2Q4S/AFpXsdvSfvdqp6K8TYKeBNkrOuHL4/u
+         lAVuKlEbTyC4TjLXkrTO9u1Wvax0lJwAyHvHNdKhzRPtIXfj0AW47R2qlurq2M8Vrvcc
+         tNmG0DjOICH0zcs1mSDmKnTmH+dZIR8bikyEwnRnbCQaWGxM+svLAK6Ud58NXuH6bC3q
+         WTkAqkfO2DJNJZl6gb9luc7B37r4NSnWMSAcxxO9wWQwz8cOFD2igyIk2Ta5AatRNhkw
+         +cYf3yxaQkF5+YP6ajawHB15F2g9+b3jHgi8u80pv9ocGt+/zOisJsSgGQL0zPehaZoe
+         6yeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680102435;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YUaRoxoy/mAkwWz2HlijC5NpBR7GQ7Zq08lefa01oKY=;
+        b=xfwVrxDUyn8rL93ZefB5tFXViVA/qF6aN8zaFhwvrAUMUhJJQIdBEKku1g6q1khfiX
+         e8LtbXKL77YDCGYHH7jemOz1d993IIgLdwVUJeajqURRWEaFBO5VsFjc0Rjf+WNjFQsj
+         fKDZ9XEYuVkx3j1VTQWIuqetQBd+uZK0snlNm1/gH6w2TrT7vQWqjHZS8n9LjlKiFaCb
+         +784ngPZ8EifO7Nh0D1AqzgipHvoTt8dGj5NF7bGirp9UVD8sSoDJJPqIfbT5HA51UtU
+         7TuvALOgBzzREFFSIDTy5NigzraZTne5QtumO57IkvdEADKYxe9dwAyblXZ+ZQjucuRX
+         65Zw==
+X-Gm-Message-State: AAQBX9eFv0MnkWBzpxofhybYZPEO+uImBdPKX49/jg097ca4wPWM9lZC
+        BtNzMI/tTS4GjIYxpYXFpn8=
+X-Google-Smtp-Source: AKy350ZbAbqxheX2cvCQxM1gA5xPFlaM9mWYXQfOGA0pf1XIv8K+ZdHRoMPONR1Vc3v7j992XtaPww==
+X-Received: by 2002:a05:6402:1002:b0:501:c547:2135 with SMTP id c2-20020a056402100200b00501c5472135mr17940872edu.36.1680102434716;
+        Wed, 29 Mar 2023 08:07:14 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id a18-20020a50c312000000b004c06f786602sm17162435edb.85.2023.03.29.08.07.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 08:07:14 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <20230329150605.GW2673958@google.com>
-References: <20230307112835.81886-1-okan.sahin@analog.com>
- <20230307112835.81886-6-okan.sahin@analog.com>
- <20230315175223.GI9667@google.com>
- <20230315175257.GJ9667@google.com>
- <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230329143615.GS2673958@google.com>
- <ZCROpw0il1VQCLPu@smile.fi.intel.com>
- <20230329145636.GV2673958@google.com>
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/4] arm64: tegra: Add Jetson Orin NX support
+Date:   Wed, 29 Mar 2023 17:07:06 +0200
+Message-Id: <20230329150710.773441-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230329145636.GV2673958@google.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Mar 2023, Lee Jones wrote:
+From: Thierry Reding <treding@nvidia.com>
 
-> On Wed, 29 Mar 2023, Andy Shevchenko wrote:
->
-> > On Wed, Mar 29, 2023 at 03:36:15PM +0100, Lee Jones wrote:
-> > > On Tue, 28 Mar 2023, Sahin, Okan wrote:
-> > > > >On Wed, 15 Mar 2023, Lee Jones wrote:
-> > > > >> On Tue, 07 Mar 2023, Okan Sahin wrote:
-> >
-> > ...
-> >
-> > > > +static const struct i2c_device_id max77541_i2c_id[] = {
-> > > > +	{ "max77540", (kernel_ulong_t)&chip[MAX77540] },
-> > > > +	{ "max77541", (kernel_ulong_t)&chip[MAX77541] },
-> > >
-> > > Just 'MAX77540' is fine.
-> >
-> > I tend to disagree.
-> >
-> > There is an error prone approach esp. when we talk with some functions
-> > that unifies OF/ACPI driver data retrieval with legacy ID tables.
-> > In such a case the 0 from enum is hard to distinguish from NULL when
-> > the driver data is not set or not found. On top of that the simple integer
-> > in the legacy driver data will require additional code to be added in
-> > the ->probe().
->
-> Use a !0 enum?
->
-> The extra handling is expected and normal.
+Hi,
 
-I've always disliked mixing platform initialisation strategies.  Passing
-pointers to MFD structs through I2C/Device Tree registration opens the
-doors to all sorts of funky interlaced nonsense.
+these patches introduce support for the Jetson Orin NX module (P3767)
+and the corresponding internal reference carrier (P3768).
 
-Pass the device ID and then match in C-code please.
+Changes in v2:
+- add a few nodes that UEFI requires
+- fix system EEPROM I2C address
+- enable HDA
 
---
-Lee Jones [李琼斯]
+Thierry Reding (4):
+  dt-bindings: tegra: Document Jetson Orin NX
+  dt-bindings: tegra: Document P3768+P3767 reference platform
+  arm64: tegra: Add Jetson Orin NX support
+  arm64: tegra: Add support for P3768+P3767
+
+ .../devicetree/bindings/arm/tegra.yaml        |   8 +
+ arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+ .../boot/dts/nvidia/tegra234-p3767-0000.dtsi  | 193 ++++++++++++++++++
+ .../nvidia/tegra234-p3768-0000+p3767-0000.dts | 133 ++++++++++++
+ .../boot/dts/nvidia/tegra234-p3768-0000.dtsi  | 133 ++++++++++++
+ 5 files changed, 468 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3767-0000.dtsi
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000.dtsi
+
+-- 
+2.40.0
+
