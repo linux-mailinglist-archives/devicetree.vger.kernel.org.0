@@ -2,64 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7F636CD4D6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:39:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E764B6CD4EA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbjC2IjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
+        id S229838AbjC2Il5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:41:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbjC2IjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:39:21 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C3F195
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:39:20 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id p203so18320920ybb.13
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:39:20 -0700 (PDT)
+        with ESMTP id S230354AbjC2Ily (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:41:54 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87AC21AC
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:41:53 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id y5so18383107ybu.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:41:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680079160;
+        d=linaro.org; s=google; t=1680079313;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Hii9Pv392323NVbPSWjKgjzlCyDkUixB781jbHMzcds=;
-        b=ByBD9gixBbHYEaWqoA3BnSmcJGc2fYKFV0IWIdciv9nSZjDA+qaVd2Q9KqKokMUcuH
-         57bgryObyHgqecMufUre5Nbw+epTaN71b4FlQbhdGPou0toI8asrex9a/nse30ryR1Q8
-         Jci3r/v6dKQr6Q71vOwGwBpYcRdDlmCnB8GaqOSbPVBtJeiKmLT3HHwH8Stf/TH/7W4r
-         Xcz+nRWMDn54xb0aRKcmb+wnksa2zWeYvBVucjT3aMMv4OjCeMVvIsTbsBMneTE+wz1y
-         l/KHgYhm4TIuCCOa7OCVcrHHqV5jP9ob9FwncTtiq1QgFeDm8Ygdu1HetBwAyqLDW+JF
-         eX3g==
+        bh=we/N4oQDR6XoZiEvq5GnI6M0YFT7oJjEt6185k+IGaY=;
+        b=qFyiav9b1zdKBdgJCfyqcCgfBQBBsA1ndNq+BFIggKyw9cQxX1k9udJayM/p50i3Ov
+         XHgtrpALhf5R3F/4m4bplS/w9Tvv1E9IWQhg33ExSmsRqULE+rAmnl2S48M8xvhdWXW4
+         G4vD2EFmWTLP7+0KSCLYgJ7t8VeDgTjz35ekRb1Rts/9dPllu7Rd2oRy1X2EljuLDaDI
+         9cRQOzYkmNzleaiRqiJpaDqAQgtV11V/IFo10uYG4AKrKOQsnVqFhSW5fShFt+ZAAKIz
+         Vv/ALNRwC+zO+YL6b4j8tE8xMp9X8zOtWRykHa61iPEu9d6RxMwIFKs/hEFt8nYQcKwf
+         IGjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680079160;
+        d=1e100.net; s=20210112; t=1680079313;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Hii9Pv392323NVbPSWjKgjzlCyDkUixB781jbHMzcds=;
-        b=2xK4lBmw+hRdDiEILeOEfBjr/LwZVwMYBzoEYPD9XFn9322JH2K5tYfTEC7EEk/kYv
-         IJjQnlpgxRXphYjjKWgx58FcL7WmxZ1KCjjE+uB1ate+Q0uZrS//v051P2gMBMq5WxyF
-         ss0b5XTtR1QODgROpBdtzRVPOipdDRbzN08OyDIpHX8LZPwiHNH85QpbbbPCF5Du5mWJ
-         TkmtknAe02nlZUsJTDASFWi0a9N1HZObs48vkuwFsJHNJVRSVljUdqoRTSLGQlNaSW3R
-         U2NWjzKwskx+sNDscaykxtygiUYRPw1C5aXkmMMUhe5w5zF1o4cr21sjCRJorQjx8yyo
-         kjjw==
-X-Gm-Message-State: AAQBX9dPxVPnnumLMntJDRXKis9xAX0IZlSgiTQcaEWBXT1/1fYj0M5K
-        ZflN1G4IsYkAGT+YJyGTqid7urDb+lytwndtMj1Fww==
-X-Google-Smtp-Source: AKy350bxp7UZ3mjGvig+dK8Sj3jxW0id1gM3+tFFHPekrN78Twkfzq0mg3i8vILowosyl1tMagLq8UYXJP0C7MZI3mI=
-X-Received: by 2002:a25:d0d0:0:b0:b6e:b924:b96f with SMTP id
- h199-20020a25d0d0000000b00b6eb924b96fmr1044917ybg.3.1680079159790; Wed, 29
- Mar 2023 01:39:19 -0700 (PDT)
+        bh=we/N4oQDR6XoZiEvq5GnI6M0YFT7oJjEt6185k+IGaY=;
+        b=kIArTJuQo4XCoOR7ffB6Ex28+YkOCXkUa2BZItg1HnKmHoRWVcQ7Y0Wodt9sf8+hTT
+         fUI/SqDZOkDn5SCYp5aHaVAAzAQDTo00S+dxho5lEFgIqFZU1Wvyjevpin+2/TAisjtN
+         wJ1fnvt8xNgoWdEWTpMjliYdrCHBn39FsP+g7OAXvKYFaK/7fyfjwnoSuSGgXfPSM7O6
+         H+CuBzww/2dkVA3XKt+gOL7kXMlJ3ngwpQNtjTEguILczqjGZ2M01rlPL+3zePHl5Veb
+         5n5fiHLcGXxJwyNQiSv0le+6C90Z1zlKRkXG0va1qthxtAmJwH8QHTYELHZqbSl1LhiO
+         lyyg==
+X-Gm-Message-State: AAQBX9fgpA5b2/XqRQkrL7WBb+sfc7mCwgtFKHVc87JsoY3UlQdgMkHf
+        XQRwb6yP/J1lbdV81mybpG7YPvUYNRbz6vdtKjIwiw==
+X-Google-Smtp-Source: AKy350aor2tRD3I/kJ+6CWloLqkSEKVo/h//FFtfDDrUGgRIOB5h7pz62ZhQRQC3LuXLMNjQOK3qmDTy7PR0MhwWPvs=
+X-Received: by 2002:a05:6902:1586:b0:b23:4649:7ef3 with SMTP id
+ k6-20020a056902158600b00b2346497ef3mr12388881ybu.4.1680079312776; Wed, 29 Mar
+ 2023 01:41:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230329074614.1037625-1-linus.walleij@linaro.org> <23b2de4b-1198-bfcc-fd74-285da9af4fb3@linaro.org>
-In-Reply-To: <23b2de4b-1198-bfcc-fd74-285da9af4fb3@linaro.org>
+References: <20230324084127.29362-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324084127.29362-1-krzysztof.kozlowski@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 29 Mar 2023 10:39:08 +0200
-Message-ID: <CACRpkdbM_Dron8irHbP77MW2=Yq6o2MAUdYSTE1jcfSHsXZfQg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Fix repeated text
+Date:   Wed, 29 Mar 2023 10:41:41 +0200
+Message-ID: <CACRpkdYNPNQRC22KD9gK2BwcEYJKc-2OvKmT9kVzTLDpWkK9-g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sm8550-lpass-lpi: allow
+ input-enabled and bias-bus-hold
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>, devicetree@vger.kernel.org,
-        Diederik de Haas <didi.debian@cknow.org>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -71,22 +74,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 10:25=E2=80=AFAM Krzysztof Kozlowski
+On Fri, Mar 24, 2023 at 9:41=E2=80=AFAM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 
-> Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-> commit msg (Jonathan's, Lars', Rob's, mine, DT list). There is no single
-> need to store automated output of get_maintainers.pl in the git log. It
-> can be easily re-created at any given time, thus its presence in the git
-> history is redundant and obfuscates the log.
+> Add missing common pin configuration properties: input-enabled and
+> bias-bus-hold.
 >
-> If you need it for your own patch management purposes, keep it under the
-> --- separator.
+> Fixes: 268e97ccc311 ("dt-bindings: pinctrl: qcom,sm8550-lpass-lpi-pinctrl=
+: add SM8550 LPASS")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> ---
+>
+> Linus, please take it directly.
 
-Oh yeah I've seen that people do this these days, just (old) bad habits.
+Roger that, patch applied!
 
-I am trying to use b4 for this going forward, it always does the right thin=
-g.
-
-Thanks!
+Yours,
 Linus Walleij
