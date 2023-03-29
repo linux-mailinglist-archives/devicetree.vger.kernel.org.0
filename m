@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 024F16CCE93
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 02:08:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0076CCE97
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 02:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbjC2AIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 20:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
+        id S229980AbjC2AIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 20:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbjC2AIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 20:08:43 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FC92139
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:08:41 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id y15so17992203lfa.7
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:08:41 -0700 (PDT)
+        with ESMTP id S229668AbjC2AIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 20:08:44 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5792D53
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:08:42 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id br6so17957375lfb.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:08:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680048520;
+        d=linaro.org; s=google; t=1680048521;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uv3nXZmu951wyz4rQx8seqOJOpLq5+CWgoV+CHe6mco=;
-        b=VSLWG9u/Vc9NDvKTNYAnkyfZ8xfXYlQHeQqMaL3ylOGuGWhCtFXWwpOWnw2ggMINwC
-         hjz25Ty+32YhpnhEbPgaDVBY5fxJXpQURzoQc9/9KbYuXgBNaPlvjuBoHyH2lsot3MfX
-         +pAVEABnpMO0GEBiv8/aehICdBgT0qEa/7nK4GR0NZ+9EhlCoVNKdM+9qeAKR4XPGLKX
-         WtYdxaKpOjl/6lkLloXE+etx9eRfN1n1wBSBjSRIc8BuV4iZ+2hvEtyLr4x35fNKgs6s
-         HnmoxCM43W30yUEttbjgdXARZhObhX2s7kVRKB3e0liY2L9J/tP+Q7rOnao6Gr7n2k3q
-         aDYQ==
+        bh=Ebf7jyLJf0YeFfOywV30tQ3Yu3KMKIOaI0KbggP0I44=;
+        b=fpDNoe37hld0GXJbbw6UMapmDlKUTjH3G/UFe0O+iDb8qFCa4jRRIl2tEqTYLbSUQ7
+         DM1XVGjDgNSbgM+kpz6I2jgFc9DL1CwqBkhem7aEW08WWhaWoVvMT0UMdNZYElI2OwFj
+         Y5vuAL1bzjdJOD1vr7VWWsRSD5Udg7eVKsNnU6inMM5uNnZ4y9+e89HGei/fWjxEDSF7
+         i45XpB3teDhsxzROXVpKCEplzek4ZLkc6eo39hPEAxgcpL2DU4NS6lDfJjbyzdUnUI1I
+         8n/Kp+f5VCRNpX2smqZDlnDxM3FL8RuUnzVD8RQU+bP1WVFjRo2TEt7zQBQ+VjreCZ9L
+         bPfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680048520;
+        d=1e100.net; s=20210112; t=1680048521;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uv3nXZmu951wyz4rQx8seqOJOpLq5+CWgoV+CHe6mco=;
-        b=bceg46Vzp3JWLmmajXnKWyXqTlDPKeGlHA+Od6M7pCXbszwM+2+pRivlUobZO2dMmd
-         7J/oolXA6YbBJ/n1Y05I3fBxhssHe34x3bAFwU+5gaktgplKKHA8IRYH3kP2SXW5QCzB
-         OYshQTP0Ue5cUmmNFNOKfTcYSMWdiswoZf7nRyfBdxq2bAPI4Buk4Pn1/gZbqu4k1DAF
-         m2qQbFd1cMudpejvV5vfWGppjjnZHeAE4Dn0GfIvGT2VJxRx4H13oxdgE70aEKUv58A/
-         ov66uWBiH6Z5bpoYUm+PyP02uKopxN8G56hloS6zugwuc1uiIAPmsuAErj1W3lUkOYlX
-         hBSw==
-X-Gm-Message-State: AAQBX9eXADsATAdmK7AZ1ETnTxwyFzsrXrsDlMVOS1D2KYViOn4f7R3g
-        0js2zg5n75qI6rOZk6mS5XKZ/A==
-X-Google-Smtp-Source: AKy350bBnYrVYXCQ0LNAkNBhyKHmeWzJ1bfJmZBWhA0on9nYbdiTBPX+mX5pSbmd36iuON4PeQoljw==
-X-Received: by 2002:ac2:5d2c:0:b0:4db:3ddf:2fbd with SMTP id i12-20020ac25d2c000000b004db3ddf2fbdmr4400730lfb.45.1680048520346;
-        Tue, 28 Mar 2023 17:08:40 -0700 (PDT)
+        bh=Ebf7jyLJf0YeFfOywV30tQ3Yu3KMKIOaI0KbggP0I44=;
+        b=KMZvByy/KVr9Y87cJp5erD+yvqy2sW4Wsg4J6E1Ju0jI+TpHqWt87d/YUBTW87aNzW
+         bVkWpeHdiPWqx+ENn7CqHw09FcJ+lGroP4LdXg+WSjWYTRXshjII27WiczU7W2NreHN0
+         H+gFtw07YAAVw0xiXKQz7j+fi3WwVizBB4BzAL+xJKQ9BDDuuZCp1CdhUez2pho5D4wS
+         pQeUzQJNTcOLdfyFgF4ogAEyuUP7ivxHDYQ7zJ6Rt4Rfj2RsSjrhMgpR9Ya5P3If5Ziq
+         XNidE8s+kdJiVlwmLdXVEka9jDEchhvrRyNI+UWZZm4aTNahlTT6VKjgX8SVhWBys8JD
+         MfZg==
+X-Gm-Message-State: AAQBX9fB2KVEvedjk5Wfgb33zhlGUThXST8p0jTyvfYwzj4MlNXL2UZb
+        edF9EfgID+iC+PXplLIFhIJLPQ==
+X-Google-Smtp-Source: AKy350Y/2LQyLvqfj8TEXfojvFP6bCipVPpkwxs4RmfJABUBSMk7uf2ZuaVRC85iF6aENDARp0e1zA==
+X-Received: by 2002:ac2:5519:0:b0:4de:e802:b7e3 with SMTP id j25-20020ac25519000000b004dee802b7e3mr5071162lfk.19.1680048521127;
+        Tue, 28 Mar 2023 17:08:41 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id p21-20020ac246d5000000b004e8011cbaa0sm5238341lfo.111.2023.03.28.17.08.39
+        by smtp.gmail.com with ESMTPSA id p21-20020ac246d5000000b004e8011cbaa0sm5238341lfo.111.2023.03.28.17.08.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Mar 2023 17:08:39 -0700 (PDT)
+        Tue, 28 Mar 2023 17:08:40 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ Cc:     linux-arm-msm@vger.kernel.org,
         Johan Hovold <johan+linaro@kernel.org>,
         devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Subject: [PATCH 5/6] arm64: dts: qcom: sc8280xp*: use pm8350.dtsi
-Date:   Wed, 29 Mar 2023 03:08:32 +0300
-Message-Id: <20230329000833.2507594-6-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 6/6] arm64: dts: qcom: sc8280xp*: use pm8350c.dtsi and pmr735a.dtsi
+Date:   Wed, 29 Mar 2023 03:08:33 +0300
+Message-Id: <20230329000833.2507594-7-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230329000833.2507594-1-dmitry.baryshkov@linaro.org>
 References: <20230329000833.2507594-1-dmitry.baryshkov@linaro.org>
@@ -76,254 +76,141 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Employ PM8350_SID and switch sc8280xp-pmics to use pm8350.dtsi to reduce
-duplication and possible discrepancies.
+Stop duplicating declarations of pm8350c and pmr735a PMICs, use existing
+files to prevent possible future issues.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 12 +--
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 12 +--
- arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  | 98 ++-----------------
- 3 files changed, 19 insertions(+), 103 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  6 +--
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  6 +--
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  | 51 ++-----------------
+ 3 files changed, 11 insertions(+), 52 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index d32594b5a4e7..58a14c39633b 100644
+index 58a14c39633b..aabdacc15aab 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -25,7 +25,7 @@ aliases {
+@@ -24,7 +24,7 @@ aliases {
+ 
  	backlight: backlight {
  		compatible = "pwm-backlight";
- 		pwms = <&pmc8280c_lpg 3 1000000>;
--		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&pm8350_1_gpios 8 GPIO_ACTIVE_HIGH>;
+-		pwms = <&pmc8280c_lpg 3 1000000>;
++		pwms = <&pm8350c_pwm 3 1000000>;
+ 		enable-gpios = <&pm8350_1_gpios 8 GPIO_ACTIVE_HIGH>;
  		power-supply = <&vreg_edp_bl>;
  
- 		pinctrl-names = "default";
-@@ -137,7 +137,7 @@ vreg_edp_bl: regulator-edp-bl {
- 		regulator-min-microvolt = <3600000>;
- 		regulator-max-microvolt = <3600000>;
- 
--		gpio = <&pmc8280_1_gpios 9 GPIO_ACTIVE_HIGH>;
-+		gpio = <&pm8350_1_gpios 9 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 
- 		pinctrl-names = "default";
-@@ -167,7 +167,7 @@ vreg_misc_3p3: regulator-misc-3p3 {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 
--		gpio = <&pmc8280_1_gpios 1 GPIO_ACTIVE_HIGH>;
-+		gpio = <&pm8350_1_gpios 1 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 
- 		pinctrl-names = "default";
-@@ -200,7 +200,7 @@ vreg_wwan: regulator-wwan {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 
--		gpio = <&pmc8280_2_gpios 1 GPIO_ACTIVE_HIGH>;
-+		gpio = <&pm8350_3_gpios 1 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 
- 		pinctrl-names = "default";
-@@ -686,7 +686,7 @@ &xo_board_clk {
- 
- /* PINCTRL - additions to nodes defined in sc8280xp.dtsi */
- 
--&pmc8280_1_gpios {
-+&pm8350_1_gpios {
- 	edp_bl_en: edp-bl-en-state {
- 		pins = "gpio8";
- 		function = "normal";
-@@ -703,7 +703,7 @@ misc_3p3_reg_en: misc-3p3-reg-en-state {
- 	};
- };
- 
--&pmc8280_2_gpios {
-+&pm8350_3_gpios {
- 	wwan_sw_en: wwan-sw-en-state {
- 		pins = "gpio1";
- 		function = "normal";
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 7d61108daede..023ccb7725ef 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -55,7 +55,7 @@ wcd938x: audio-codec {
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
- 		pwms = <&pmc8280c_lpg 3 1000000>;
--		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&pm8350_1_gpios 8 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&vreg_edp_bl>;
- 
- 		pinctrl-names = "default";
-@@ -178,7 +178,7 @@ vreg_edp_bl: regulator-edp-bl {
- 		regulator-min-microvolt = <3600000>;
- 		regulator-max-microvolt = <3600000>;
- 
--		gpio = <&pmc8280_1_gpios 9 GPIO_ACTIVE_HIGH>;
-+		gpio = <&pm8350_1_gpios 9 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 
- 		pinctrl-names = "default";
-@@ -194,7 +194,7 @@ vreg_misc_3p3: regulator-misc-3p3 {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 
--		gpio = <&pmc8280_1_gpios 1 GPIO_ACTIVE_HIGH>;
-+		gpio = <&pm8350_1_gpios 1 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 
- 		pinctrl-names = "default";
-@@ -253,7 +253,7 @@ vreg_wwan: regulator-wwan {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 
--		gpio = <&pmc8280_2_gpios 1 GPIO_ACTIVE_HIGH>;
-+		gpio = <&pm8350_3_gpios 1 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 
- 		pinctrl-names = "default";
-@@ -1148,7 +1148,7 @@ &lpass_tlmm {
+@@ -555,7 +555,7 @@ &pcie4_phy {
  	status = "okay";
  };
  
--&pmc8280_1_gpios {
-+&pm8350_1_gpios {
- 	edp_bl_en: edp-bl-en-state {
- 		pins = "gpio8";
- 		function = "normal";
-@@ -1165,7 +1165,7 @@ misc_3p3_reg_en: misc-3p3-reg-en-state {
+-&pmc8280c_lpg {
++&pm8350c_pwm {
+ 	status = "okay";
+ };
+ 
+@@ -710,7 +710,7 @@ wwan_sw_en: wwan-sw-en-state {
  	};
  };
  
--&pmc8280_2_gpios {
-+&pm8350_3_gpios {
- 	wwan_sw_en: wwan-sw-en-state {
- 		pins = "gpio1";
- 		function = "normal";
+-&pmc8280c_gpios {
++&pm8350c_gpios {
+ 	edp_bl_pwm: edp-bl-pwm-state {
+ 		pins = "gpio8";
+ 		function = "func1";
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index 023ccb7725ef..7e589e5f6a2e 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -54,7 +54,7 @@ wcd938x: audio-codec {
+ 
+ 	backlight: backlight {
+ 		compatible = "pwm-backlight";
+-		pwms = <&pmc8280c_lpg 3 1000000>;
++		pwms = <&pm8350c_pwm 3 1000000>;
+ 		enable-gpios = <&pm8350_1_gpios 8 GPIO_ACTIVE_HIGH>;
+ 		power-supply = <&vreg_edp_bl>;
+ 
+@@ -725,7 +725,7 @@ &pcie4_phy {
+ 	status = "okay";
+ };
+ 
+-&pmc8280c_lpg {
++&pm8350c_pwm {
+ 	status = "okay";
+ };
+ 
+@@ -1172,7 +1172,7 @@ wwan_sw_en: wwan-sw-en-state {
+ 	};
+ };
+ 
+-&pmc8280c_gpios {
++&pm8350c_gpios {
+ 	edp_bl_pwm: edp-bl-pwm-state {
+ 		pins = "gpio8";
+ 		function = "func1";
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-index 781fb6448a52..505bb8f9a13c 100644
+index 505bb8f9a13c..a37fe4b1458c 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-@@ -7,79 +7,19 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
+@@ -15,53 +15,12 @@
+ #include "pm8350.dtsi"
+ #undef PM8350_SID
  
--/ {
--	thermal-zones {
--		pm8280_1_thermal: pm8280-1-thermal {
--			polling-delay-passive = <100>;
--			polling-delay = <0>;
--			thermal-sensors = <&pm8280_1_temp_alarm>;
++/* SID 2 */
++#include "pm8350c.dtsi"
++
+ #define PM8350_SID 3
+ #include "pm8350.dtsi"
+ #undef PM8350_SID
+ 
+-&spmi_bus {
+-	pmc8280c: pmic@2 {
+-		compatible = "qcom,pm8350c", "qcom,spmi-pmic";
+-		reg = <0x2 SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
 -
--			trips {
--				trip0 {
--					temperature = <95000>;
--					hysteresis = <0>;
--					type = "passive";
--				};
--
--				trip1 {
--					temperature = <115000>;
--					hysteresis = <0>;
--					type = "critical";
--				};
--			};
+-		pmc8280c_gpios: gpio@8800 {
+-			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
+-			reg = <0x8800>;
+-			gpio-controller;
+-			gpio-ranges = <&pmc8280c_gpios 0 0 9>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
 -		};
 -
--		pm8280_2_thermal: pm8280-2-thermal {
--			polling-delay-passive = <100>;
--			polling-delay = <0>;
--			thermal-sensors = <&pm8280_2_temp_alarm>;
+-		pmc8280c_lpg: pwm {
+-			compatible = "qcom,pm8350c-pwm";
 -
--			trips {
--				trip0 {
--					temperature = <95000>;
--					hysteresis = <0>;
--					type = "passive";
--				};
+-			#address-cells = <1>;
+-			#size-cells = <0>;
 -
--				trip1 {
--					temperature = <115000>;
--					hysteresis = <0>;
--					type = "critical";
--				};
--			};
+-			#pwm-cells = <2>;
+-
+-			status = "disabled";
+-		};
+-	};
+-
+-	pmr735a: pmic@4 {
+-		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
+-		reg = <0x4 SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pmr735a_gpios: gpio@8800 {
+-			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
+-			reg = <0x8800>;
+-			gpio-controller;
+-			gpio-ranges = <&pmr735a_gpios 0 0 4>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
 -		};
 -	};
 -};
--
- #define PMK8350_SID 0
- #include "pmk8350.dtsi"
- #undef PMK8350_SID
- 
--&spmi_bus {
--	pmc8280_1: pmic@1 {
--		compatible = "qcom,pm8350", "qcom,spmi-pmic";
--		reg = <0x1 SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
-+#define PM8350_SID 1
-+#include "pm8350.dtsi"
-+#undef PM8350_SID
- 
--		pm8280_1_temp_alarm: temp-alarm@a00 {
--			compatible = "qcom,spmi-temp-alarm";
--			reg = <0xa00>;
--			interrupts-extended = <&spmi_bus 0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
--			#thermal-sensor-cells = <0>;
--		};
--
--		pmc8280_1_gpios: gpio@8800 {
--			compatible = "qcom,pm8350-gpio", "qcom,spmi-gpio";
--			reg = <0x8800>;
--			gpio-controller;
--			gpio-ranges = <&pmc8280_1_gpios 0 0 10>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
-+#define PM8350_SID 3
-+#include "pm8350.dtsi"
-+#undef PM8350_SID
- 
-+&spmi_bus {
- 	pmc8280c: pmic@2 {
- 		compatible = "qcom,pm8350c", "qcom,spmi-pmic";
- 		reg = <0x2 SPMI_USID>;
-@@ -108,30 +48,6 @@ pmc8280c_lpg: pwm {
- 		};
- 	};
- 
--	pmc8280_2: pmic@3 {
--		compatible = "qcom,pm8350", "qcom,spmi-pmic";
--		reg = <0x3 SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		pm8280_2_temp_alarm: temp-alarm@a00 {
--			compatible = "qcom,spmi-temp-alarm";
--			reg = <0xa00>;
--			interrupts-extended = <&spmi_bus 0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
--			#thermal-sensor-cells = <0>;
--		};
--
--		pmc8280_2_gpios: gpio@8800 {
--			compatible = "qcom,pm8350-gpio", "qcom,spmi-gpio";
--			reg = <0x8800>;
--			gpio-controller;
--			gpio-ranges = <&pmc8280_2_gpios 0 0 10>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
--
- 	pmr735a: pmic@4 {
- 		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
- 		reg = <0x4 SPMI_USID>;
++/* SID 4 */
++#include "pmr735a.dtsi"
 -- 
 2.30.2
 
