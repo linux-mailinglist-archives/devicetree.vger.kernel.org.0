@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E77E6CD497
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195AF6CD49D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:31:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbjC2IaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39058 "EHLO
+        id S229502AbjC2IbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbjC2IaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:30:07 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2939269E
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:30:04 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id a11so15233150lji.6
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:30:04 -0700 (PDT)
+        with ESMTP id S230489AbjC2IbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:31:23 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447CF35AD
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:31:22 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x17so19137211lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:31:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680078603;
+        d=linaro.org; s=google; t=1680078680;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/EcWROde/fSgB7fPEne2rQ8lUn+CutePNUDujtYA7t0=;
-        b=gL+HFX+UhfxR+hU55ZY21NJKH/JpKaqPvyepmPKZTsgNgUk665G+FybMJpJ7b2UsYU
-         73hEhQOcimb5SzcSUzVLxA2u9Gf/6m+M6cVvbtNLv4gVPEBLZjxMytOvnIY2jwtWh1dv
-         Io0teIfK6CnYj033dYLkwjrrdOmj+e4LxvzC94FM+zEU7IQGQ4apAOrYMQ/hdYy3ZEoY
-         KeKCrqKSNyfPsI+5/GC+u4NqwT6a6fqnkbhK1UhhqqaQZsWuJpVvj9FrBAqH7pL6LTy/
-         mIt8vXuccLZLCbdRRnlZgQvWeSRxQPKvAmXU5LbqBBFOnNciY2/z3Cw5c1o1QeKJCufn
-         mxsg==
+        bh=1rkqB/pSe/Uf7R42daYkgCUwin72MjNO+JZK0n3K2tQ=;
+        b=mK8OljvcAlXLRlURsbzrz8VLrh3qBax49hDLf23vpE/ew2aRk8mDd5l61Y+0vdZzC7
+         a3Tvq3BTHwdduf7flFbMdePnsOzr6iACGE6x6vZi72ZeaOygZ58nDSYsNbIgsif6vsBA
+         EgNtUmaJWp5zgQaoifJadboHZB0cTxPMnlSR6ugO7N7ICPPn5ZJqFx+ec2ml9dLRaM44
+         FYUg5e7ZjdgYbviArSUQbM8dT4KjAHOhbmaMZibdXcer7ok6zvn1vWD7eSeObPlCGrYl
+         LtI0pFu8cgB87X2DRgFh7c+pldh0D0uY5nZfWD3ySf54kt/2EY0Xxg1pdSTyNbtMzbPn
+         b1ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680078603;
+        d=1e100.net; s=20210112; t=1680078680;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/EcWROde/fSgB7fPEne2rQ8lUn+CutePNUDujtYA7t0=;
-        b=aldUSW8ADrZAmfTaPHZChzj1pAdAw5WhyBCqTB+G771mBeHcUZK9dDudT1pNKX9Gqm
-         +nTYYv8b2q+aRyYvpgWVIE+do7iCxQWW+oti5JvJT1YQa3xAEkHTKremf5F2PQFUOmCE
-         +mbXCP2a9i6yBP5Bn0CYsP+L49B9dr21A67nrncslswymQDPxZ27tXwpcz5U7DsgFODv
-         tpqI+xWm+/mqRAgE055/xypcxTIfQchN3Q+RpCQNC//cftakOYogKThFC2RrUn041fD+
-         lG1OcCFy6z23QraGhXp03PE6AGC2+Q0y3YiXyHoYaJp8NrHVlGiAPLr9n4eLRf9M7sm8
-         pdEQ==
-X-Gm-Message-State: AAQBX9fMjkqSPrXlccIAnQKPCe5QQL0RP3yjxtxKO3Nq0uaja+UmVkrT
-        MfVsnk8V4o5vK2kGjZHvhFCICA==
-X-Google-Smtp-Source: AKy350bWalFraWgsfObpbZdx1IhK3P7b5bpTIysDLckqLJGKrj+nH2qcQbBQfYQI+c7C4OLAM80NWA==
-X-Received: by 2002:a05:651c:213:b0:298:6a47:bec6 with SMTP id y19-20020a05651c021300b002986a47bec6mr6274246ljn.35.1680078603212;
-        Wed, 29 Mar 2023 01:30:03 -0700 (PDT)
+        bh=1rkqB/pSe/Uf7R42daYkgCUwin72MjNO+JZK0n3K2tQ=;
+        b=Ji7T/bVVEwMENPaObbzbCdIDUNmmXHHP2hNvcd96swG7psFCiemm63g85rDkEvMJmr
+         ajTNHUnZexPiuBPvYkKWFtIqoCGr48tOZO/t0ulZWpb8+nL9cmwu27XXUpuMRSjaUzGS
+         NgemsPNXndf6nBDyCFWtjlAXo0SS83+9+ADMo4BC+aM68wWQlp0e7RrwdGEvt9SXKMiC
+         bKPfBG33J9pyuu8EGwqKffLgKKqIeZ+rRBj3OsDG7aCp1HEb6zpvzbZxrmEmYJVk3F51
+         MTA+JsViwvZwQwD9/vnAQs93XimMqLjAiyMJdckcwe66h3kHDnfqPex8A7h9V8XzV41j
+         5wYw==
+X-Gm-Message-State: AAQBX9dgVkrxNHUkvbMskoROd11iGwzpUOG5Dnnd7PS1lMM9ppb+5s+N
+        uWL0wlU1btM7aeNAEejPIjOLIQ==
+X-Google-Smtp-Source: AKy350aLnZoE3VH5F+C9qZoroickOae9EztGyVhx2T4moZpvdDOO2NmhS3zjPSDiQb1l+vkSWljpNA==
+X-Received: by 2002:ac2:5966:0:b0:4e9:d85d:9032 with SMTP id h6-20020ac25966000000b004e9d85d9032mr5581749lfp.54.1680078679782;
+        Wed, 29 Mar 2023 01:31:19 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c1-20020a2e6801000000b002a421ac8629sm2005273lja.49.2023.03.29.01.30.02
+        by smtp.gmail.com with ESMTPSA id x6-20020a2e7c06000000b002a5f91380e2sm1030479ljc.84.2023.03.29.01.31.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 01:30:02 -0700 (PDT)
-Message-ID: <cb058c66-7a66-0c3e-4f76-a24b3ecd1767@linaro.org>
-Date:   Wed, 29 Mar 2023 10:30:01 +0200
+        Wed, 29 Mar 2023 01:31:19 -0700 (PDT)
+Message-ID: <14688a5c-c50a-4876-e7b7-565b106b431a@linaro.org>
+Date:   Wed, 29 Mar 2023 10:31:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/7] dt-bindings: clock: qcom: describe the GPUCC clock
- for SA8775P
+Subject: Re: [PATCH 4/7] dt-bindings: iommu: arm,smmu: enable clocks for
+ sa8775p
 Content-Language: en-US
 To:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Andy Gross <agross@kernel.org>,
@@ -68,12 +68,13 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
 References: <20230328193632.226095-1-brgl@bgdev.pl>
- <20230328193632.226095-2-brgl@bgdev.pl>
+ <20230328193632.226095-5-brgl@bgdev.pl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328193632.226095-2-brgl@bgdev.pl>
+In-Reply-To: <20230328193632.226095-5-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -89,26 +90,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 28/03/2023 21:36, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Add bindings for the Qualcomm Graphics Clock control module present on
-> sa8775p platforms.
+> The KGSL iommu will require the clocks property to be set. Enable it for
+> sa8775p in the bindings.
 > 
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-
-Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
-
-If you need it for your own patch management purposes, keep it under the
---- separator.
-
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Joerg Roedel <joro@8bytes.org>
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index 807cb511fe18..74d5164ed1e8 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -375,7 +375,6 @@ allOf:
+>                - nvidia,smmu-500
+>                - qcom,qcm2290-smmu-500
+>                - qcom,qdu1000-smmu-500
+> -              - qcom,sa8775p-smmu-500
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Then you need to describe them, like other variants are doing.
 
 Best regards,
 Krzysztof
