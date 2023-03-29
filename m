@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B42436CCFD6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F5AF6CCFDD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbjC2CPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 22:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34136 "EHLO
+        id S229688AbjC2CRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 22:17:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjC2CPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:15:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D2D2D46;
-        Tue, 28 Mar 2023 19:15:13 -0700 (PDT)
+        with ESMTP id S229611AbjC2CRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:17:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BB08271C;
+        Tue, 28 Mar 2023 19:17:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 571D6B81088;
-        Wed, 29 Mar 2023 02:15:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 135A3C433EF;
-        Wed, 29 Mar 2023 02:15:11 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A5DC3619C4;
+        Wed, 29 Mar 2023 02:17:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 235D6C433EF;
+        Wed, 29 Mar 2023 02:17:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680056111;
-        bh=mmaj+tYf3L24Jfgcy+JEgm6ISFS2CI7kguFMstQHqE0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=IJmMIO3UosSjTvoqQNhEdIbe5ssCUtGU4td0tz1/bOyMjMkGF4+VtXT9Rg9baFN8R
-         7UHWQMknV+asmp4bajLNihXMn5zkg6SgwUlydPvkIVeOEClE6reA3IeILvmCIDmDlo
-         zNxUkh65Nh1vBz6WTDIFJtAqRfzWNEUaLiemmyAS307GZxwv/1YZryiUcE2NCQIqfL
-         saL+Cb+UBjurcPY/t21Pkfv1K2FFM/qP5QUqmo4XnuL1Q1u6H3fg0SJMmO+2BfXBSi
-         w6URsWeq3UwyBw3Cou37UJv+rU8pzLffLSbvLLEa/KPDktg2IHlGdavBOFISNU0Ske
-         sA/yItP0fV8Aw==
-Message-ID: <72286603300630b890705c99b42f05a4.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230328193632.226095-3-brgl@bgdev.pl>
-References: <20230328193632.226095-1-brgl@bgdev.pl> <20230328193632.226095-3-brgl@bgdev.pl>
-Subject: Re: [PATCH 2/7] clk: qcom: add the GPUCC driver for sa8775p
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        s=k20201202; t=1680056238;
+        bh=HFOVDJOz0rbImC9oGs5gHJAEVLKuq6QbRug+jFmJR5Q=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BLYaPxU7FwPY+yezNxX8b+04N3VOjJX1R4VH9FfD2FmrXIPxaWF9GXMx+bR+wGUgq
+         FcTP3nGb5mD360od7UXDV+CsJdl0B/z0xYOLo8t2AueXz9/bvW4nWy0aH19dWvWJCv
+         rngogYAcmgzwCYs3tXrQ/7lJbby6V072F9ly974jhtWzPaAH+94fgAxhMlQNzXni+e
+         /KEc+cgXRrTQnH1mZHNT6HaMDJniM5DwMpw5vejG1mjqLxvp9nMQ9/2q1O7+Q9guV1
+         b7UFbDATJ3YUpZXvh825j2ta0uxs/YMWBNYGBQmv/GtI1SDseD25/1pmvmLmfazqzb
+         9zyosH8AZMpHg==
+Date:   Tue, 28 Mar 2023 19:17:16 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 28 Mar 2023 19:15:08 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+Subject: Re: [net-next v9 5/6] net: stmmac: Add glue layer for StarFive
+ JH7110 SoC
+Message-ID: <20230328191716.18a302a1@kernel.org>
+In-Reply-To: <20230328062009.25454-6-samin.guo@starfivetech.com>
+References: <20230328062009.25454-1-samin.guo@starfivetech.com>
+        <20230328062009.25454-6-samin.guo@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,44 +71,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bartosz Golaszewski (2023-03-28 12:36:27)
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 449bc8314d21..5e1919738aeb 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -437,6 +437,14 @@ config SA_GCC_8775P
->           Say Y if you want to use peripheral devices such as UART, SPI,
->           I2C, USB, UFS, SDCC, etc.
-> =20
-> +config SA_GPUCC_8775P
-> +       tristate "SA8775P Graphics clock controller"
-> +       select SA_GCC_8775P
+On Tue, 28 Mar 2023 14:20:08 +0800 Samin Guo wrote:
+> This adds StarFive dwmac driver support on the StarFive JH7110 SoC.
+> 
+> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
 
-Should select QCOM_GDSC as well.
+Excellent, now it applies cleanly :)
 
-> +       help
-> +         Support for the graphics clock controller on SA8775P devices.
-> +         Say Y if you want to support graphics controller devices and
-> +         functionality such as 3D graphics.
-> +
->  config SC_GCC_7180
->         tristate "SC7180 Global Clock Controller"
->         select QCOM_GDSC
-> diff --git a/drivers/clk/qcom/gpucc-sa8775p.c b/drivers/clk/qcom/gpucc-sa=
-8775p.c
-> new file mode 100644
-> index 000000000000..46d73bd0199b
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gpucc-sa8775p.c
-> @@ -0,0 +1,633 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights =
-reserved.
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-> +
-> +#include <linux/clk.h>
+Our clang build with W=1 complains that:
 
-Is this include used? If not, remove it as this is a clk provider and
-not a clk consumer.
+drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c:37:2: warning: variable 'rate' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+        default:
+        ^~~~~~~
+drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c:42:36: note: uninitialized use occurs here
+        err = clk_set_rate(dwmac->clk_tx, rate);
+                                          ^~~~
+drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c:24:20: note: initialize the variable 'rate' to silence this warning
+        unsigned long rate;
+                          ^
+                           = 0
+
+
+not sure how you prefer to fix this. Maybe return early?
