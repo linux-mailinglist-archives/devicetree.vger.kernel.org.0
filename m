@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B996CD930
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 14:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2736CD937
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 14:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229798AbjC2MOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 08:14:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S229897AbjC2MPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 08:15:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbjC2MOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 08:14:39 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89971A8;
-        Wed, 29 Mar 2023 05:14:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Oeo+KEvsYm/f49phGT3gU523a4ToNAc4s2HOF/f1q4o=; b=dXTmJ0JN2K9XfNF4w7tqdopwOv
-        FPD9DQkqPGU35fStWtRVSgRSIHqn8PsHWKjS5J5ZIQH2SijIv2uoeNNLRwm5ilnv1WUaAuupLsvgL
-        d24ke+dzDTz3Gyr7Aw9Bc5+7erpRYhTXJsJK32VBvHeOLplWE0El3DvZvNOn/DKLdngI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1phUh4-008kk9-Bi; Wed, 29 Mar 2023 14:14:22 +0200
-Date:   Wed, 29 Mar 2023 14:14:22 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "stefan@agner.ch" <stefan@agner.ch>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: gpio: vf610: update gpio-ranges
-Message-ID: <a7e36016-488f-48b2-98d6-107f6e332acf@lunn.ch>
-References: <20230328052912.1957000-1-peng.fan@oss.nxp.com>
- <20230328052912.1957000-2-peng.fan@oss.nxp.com>
- <de82d0ff-3e2f-4822-8430-13e2b1633b3a@lunn.ch>
- <DU0PR04MB9417F31D78A9C998FE3E519888899@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        with ESMTP id S229894AbjC2MPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 08:15:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7321BC5;
+        Wed, 29 Mar 2023 05:15:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 83517B822EF;
+        Wed, 29 Mar 2023 12:15:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AF4DC433EF;
+        Wed, 29 Mar 2023 12:15:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680092139;
+        bh=ooI6Bfj0R2M+5cI2Mb1ScsbOJK9bXNmKBtl2mMblFqU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IltNfQiEhDRH4AoF+ZsHwKkNN89JrD1BldNiWv/KDIs1wfp6E+sR04uHWgeFIsTCE
+         FeX66IdBZI6dMTgI8j0W+gFgUaMR8eFHaWUgqx4Oo9tX5StdUSpgp/KOG39kYefDfK
+         bd8KB9QuV2SFv5HsNR3C6hsLOxL2gKL3BXLU1yLsMCrSbB/I3XpnBSbjgDaqnurGbY
+         RlmI22iXA35WrKfWVDtCu0svv3vpfkTkEOaTMgVwWB+uUdTe9SbrHSoo3mzZfceTyh
+         jgnC3onF+T92VPudm0MNKFkFlZU/+CrDrdmyWwLN8yE9iQXvlBv/KapVNhXhacmR1X
+         E7VfZqsxnVRow==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1phUiY-0006ZQ-Jh; Wed, 29 Mar 2023 14:15:54 +0200
+Date:   Wed, 29 Mar 2023 14:15:54 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org, Thinh.Nguyen@synopsys.com,
+        gregkh@linuxfoundation.org, mathias.nyman@intel.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc8280xp: Add missing dwc3 quirks
+Message-ID: <ZCQr+hGr/9RQUBK1@hovoldconsulting.com>
+References: <20230325165217.31069-1-manivannan.sadhasivam@linaro.org>
+ <20230325165217.31069-2-manivannan.sadhasivam@linaro.org>
+ <ZCKrXZn7Eu/jvdpG@hovoldconsulting.com>
+ <20230328093853.GA5695@thinkpad>
+ <20230329052600.GA5575@thinkpad>
+ <ZCP4MHe+9M24S4nJ@hovoldconsulting.com>
+ <a35bd0e2-b54e-ffa7-e54b-468a3cf77703@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9417F31D78A9C998FE3E519888899@DU0PR04MB9417.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <a35bd0e2-b54e-ffa7-e54b-468a3cf77703@linaro.org>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> i.MX9 reuse the gpio-vf610 driver and yaml dtschema. There are some
-> minor differences from hardware level. The gpio-ranges will also impact
-> vybrid, but this may not matter.
+On Wed, Mar 29, 2023 at 01:24:27PM +0200, Konrad Dybcio wrote:
+> On 29.03.2023 10:34, Johan Hovold wrote:
 
-So maybe use a constraint to limit it to 1 for everything other than
-fsl,imx93-gpio?
+> > Perhaps keeping all of these in in the dtsi is correct, but that's going
+> > to need some more motivation than simply that some vendor does so (as
+> > they often do all sorts of things they should not).
 
-	Andrew
+> I'm looking at the DWC3 code and admittedly I don't understand much,
+> but is there any harm to keeping them? What if somebody decides to
+> plug in a laptop as a gadget device?
+
+We should the add the bits that are really needed with a proper
+descriptions of what they do (like all commit messages should).
+
+Besides the commit message, the problem here is that these have just
+been copied from some vendor kernel and some properties are conflicting
+(e.g. both disabling LPM and configuring LPM settings) while others
+appear to be application specific.
+
+Johan
