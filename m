@@ -2,138 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 668CA6CD894
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 13:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 252B56CD8E0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 13:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbjC2Lho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 07:37:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
+        id S230009AbjC2Lz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 07:55:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbjC2Lhn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 07:37:43 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040C14219
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:37:40 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 20so15759563lju.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:37:40 -0700 (PDT)
+        with ESMTP id S229992AbjC2LzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 07:55:13 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1664C3F
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:54:48 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-545ce8e77fcso211203407b3.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:54:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680089859;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/mPqUZsIheYp4PXF7QUo518QtsktPDNZj6+NdEGhwtc=;
-        b=NpB3I/3t6Lr2Ro2+EJkY6MoU+efyaKtpbJK9meLzt/PnkQ9vfc9GKCjdALUV2XM7tv
-         tBuhn04cg21GiS2DFH5U8oHTeO8uOGuXWiuqRf3OzFUrQoSUeZ06DcuQ+QlL2y4U+gl3
-         uOkXiLElUVfUv+FaFVKv7u/HJDLd7NlNz9PXqLSxs5cQq+Kzel/ytYNTzzDGfXD7+C1i
-         0s5vXwB8fS8D9pp80biD7hzYYp9Jx/CcXaIkTHu2k8l824Laa1blGq2f/Dw7X2jRgwA7
-         NwUfxVEEdJGnFvzA+Ho0dj78IjBb8xQQ3fYA8PHTsbd86od6K8oJtZkk0jlMzQJcVcHa
-         GXiA==
+        d=linaro.org; s=google; t=1680090881;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tjpMMJalxQfUkZZ8222itIWqInHhIjI83LpikQoWUYY=;
+        b=n2Oqz9YFyaYGosKmBW5/zhoJL741BzfYq8rR1BkCUANJgCnfK2uyHLp++X1Y2ffXU7
+         0kXTICzMAYX0N5M2QxhGvEz0a/eZLvl/t8d+2t7JQafuMmIOURGf3NYvFgJOXG6eKheI
+         7mA6OMa+odcErTWgKHgc5/ZgCvgXq3jIxl+BxkatC5jAQJtMCwnMZxD6+g7iuVNNtn0b
+         qllBD0ZFt5FBc/zQOhZeA9z/301/0rtNMnLTb1C6MUz5AwR6EdQtmPyMMCw6amb8ZE94
+         BiVVfJd7fE0K+qqODDOFvQ3bEGAU4WE4XSLBP3VsVTGsbUigPe0z3RnNfTFQQSHn1WIh
+         TQzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680089859;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/mPqUZsIheYp4PXF7QUo518QtsktPDNZj6+NdEGhwtc=;
-        b=EQ/rmjd/8jibnIpbX1P4d/WUO/4kUKBzVGswlrXEY5/K78b4Wb4AaJ51E1XO8wny3a
-         80H4gTw3NsDLYyMrtG2ZtKgAclUaGhG+RWk1RaGr0q1tN4KFnHJ4nDF8MbxTTQ8R6ygG
-         QSBXgZT+KySdvHi9MT1WIKJAkmw9kwDCdtJwPRrUl4TIc4+Ve8Mxhcp8fQjeDXZ7iMDO
-         aIofm1WhQLhVWdSJZGxbJCVsunzBmMXLFFad713mBr6FnHxhGYowQqxcdyy0b/w0oJIP
-         3dHhwznF42g3kXsXPm2pOFMACxYyCJm/YJU6esURcnT3ZBWJi1vJbbImmgUyPxUl8Gyn
-         81+A==
-X-Gm-Message-State: AAQBX9eAn2v2uKR5YmBp1V2rnZ1E6uEVFMJDnSdfPDLN6oq8R+G6k67G
-        qopf3QcJ0tQM4fzidjiHnFjIcA==
-X-Google-Smtp-Source: AKy350Y9MsLYN1pnTgHTW80ELhfO9f2kj3EVc9bx5pgZ5cHDPeoOaEuf4c+eqX8TZxSTOejxy/xHDw==
-X-Received: by 2002:a2e:a174:0:b0:299:aa88:8dd8 with SMTP id u20-20020a2ea174000000b00299aa888dd8mr6285200ljl.50.1680089859145;
-        Wed, 29 Mar 2023 04:37:39 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a18-20020a05651c011200b002a483f01d9csm1902273ljb.85.2023.03.29.04.37.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 04:37:38 -0700 (PDT)
-Message-ID: <f62c07d4-cda8-9873-8890-3411cd2f3b03@linaro.org>
-Date:   Wed, 29 Mar 2023 13:37:36 +0200
+        d=1e100.net; s=20210112; t=1680090881;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tjpMMJalxQfUkZZ8222itIWqInHhIjI83LpikQoWUYY=;
+        b=nw+iNHs7DPg77haY8RXd8FdKBEES6ZkYahrSLOs4H+6Nk8WX7Hj11H4Wu2H7C2mVPf
+         94HqZT2b4g958yvveMRE3Z1OPNxKHCAl7SH8vRe99nR+5YvMhteqJG4XKDd22Y+Zl6vz
+         0KtvN7MBIbsSWMtjA/+y7CqKwVT0YXWZO6Zzwb20CJleoyD/a+phAEr6Y9W7hr4CYWVV
+         AttTEeNa1MGx8euh5Y2lGmZl9m//ofdeUyc3BoKBgiku0EWQcygk+wlQ3aEw4r8l2dG4
+         aRoYzmPCx9+um3P35ezPhGNRgfx/DRtK0LEWhnM+3tdkBinSNnJR5e6MM/ekKBspkHq4
+         8Piw==
+X-Gm-Message-State: AAQBX9ftq7Ji5dbbLJwQXm7ZPAiMsbUDruXflNlHnFbTh7NqMgHENXZn
+        JOqTfNg2hKzodsuputy/yfu6pRTrkZfJI8Qfn/H0Mg==
+X-Google-Smtp-Source: AKy350Zzj++XBCM7DLBHF9YbZ4XqpZy7N+euPwZ3yga/tOc1TDODBWTP9d6GBHLZs9VQRUH1w8784KBwARE1HzshsYk=
+X-Received: by 2002:a81:a9c5:0:b0:545:62cb:3bdd with SMTP id
+ g188-20020a81a9c5000000b0054562cb3bddmr9427518ywh.5.1680090881398; Wed, 29
+ Mar 2023 04:54:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: spi: add loongson spi
-Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+References: <20230329000833.2507594-1-dmitry.baryshkov@linaro.org>
+ <20230329000833.2507594-4-dmitry.baryshkov@linaro.org> <9746792b-fd4a-6808-0c6b-4834ffc9c059@linaro.org>
+ <195dddb5-25f7-ac8c-8609-776ed6724650@linaro.org> <09b97204-514e-1262-04ee-3536a11e7ffc@linaro.org>
+In-Reply-To: <09b97204-514e-1262-04ee-3536a11e7ffc@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 29 Mar 2023 14:54:30 +0300
+Message-ID: <CAA8EJppf8WhNngfDzQBN5xdfLdEsXQ=Ew65oq_AHAGukRT5Phg@mail.gmail.com>
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: use main pmk8350.dtsi for sc8280xp platform
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        Mark Brown <broonie@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org
-References: <20230328112210.23089-1-zhuyinbo@loongson.cn>
- <20230328112210.23089-2-zhuyinbo@loongson.cn>
- <168000761529.3001360.2224316097077012976.robh@kernel.org>
- <8336d5ba-1150-81ca-bd5a-7862bd10ef58@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8336d5ba-1150-81ca-bd5a-7862bd10ef58@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        linux-arm-msm@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 12:39, zhuyinbo wrote:
-> 
-> 
-> 在 2023/3/28 下午8:57, Rob Herring 写道:
->>
->> On Tue, 28 Mar 2023 19:22:09 +0800, Yinbo Zhu wrote:
->>> Add the Loongson platform spi binding with DT schema format using
->>> json-schema.
->>>
->>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>> ---
->>>   .../bindings/spi/loongson,ls-spi.yaml         | 43 +++++++++++++++++++
->>>   MAINTAINERS                                   |  6 +++
->>>   2 files changed, 49 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
->> FATAL ERROR: Unable to parse input tree
->> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> make: *** [Makefile:1512: dt_binding_check] Error 2
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230328112210.23089-2-zhuyinbo@loongson.cn
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
-> Hi Rob,
-> 
-> I'm sorry, actually, I don't know what the specific operation I should 
-> do when I received the check warning
-> from your bot. Does it means that I should add dependency note into this 
-> patch's changelog ? 
+On Wed, 29 Mar 2023 at 03:35, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 29.03.2023 02:29, Konrad Dybcio wrote:
+> >
+> >
+> > On 29.03.2023 02:27, Konrad Dybcio wrote:
+> >>
+> >>
+> >> On 29.03.2023 02:08, Dmitry Baryshkov wrote:
+> >>> Employ existing PMK8350_SID and switch sc8280xp-pmics to use
+> >>> pmk8350.dtsi to reduce duplication and possible discrepancies.
+> >>>
+> >>> For example, this changes sc8280xp platforms to use qcom,pmk8350-pon
+> >>> for the pon device compatibility rather than the incorrect
+> >>> qcom,pm8998-pon.
+> >>>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>> ---
+> >> Bit of a loaded patch..
+> >>
+> >> This could probably go like:
+> >>
+> >> 1. outer join 8280 on pmk8350 (for feature parity)
+> >> 2. rename all labels in 8280 to 8350 (for 3.)
+> >> 3. switch over to the actual 8350 file, remove 8280 (with Fixes:)
+> >>
+> >> [...]
+> >>
+> >>> +#define PMK8350_SID 0
+> >>> +#include "pmk8350.dtsi"
+> >>> +#undef PMK8350_SID
+> >> Not sure if this undef is necessary
+> > It looks like it would be for multiple instances though
+> >
+> > Konrad
+> Also, it'd be a good idea to use interrupt-parent, as:
+>
+> 1) it would be a regression for OpenBSD and friends to remove it
 
-Yes, this is explicitly mentioned in the sentence you quoted.
+Ack, I forgot about interrupts/interrupts-extended. I'll fix that for v2.
 
-> or something else, I really
-> don't know. Actually, I'm always bothered by these things that how to 
-> resolve the dependency issue for two
-> dependent patches that do not belong to the same series.
+> 2) the interrupts=<> is dangerously long with SPMI
 
-Another approach, as Rob suggested last time, would be to just get rid
-of the dependency and open-code the clock IDs...
+I don't think we can do anything about this.
 
-Best regards,
-Krzysztof
+>
+> Konrad
+> >>
+> >> With or without all that though, the goal lgtm..
+> >>
+> >> Konrad
+> >>
+> >>>
+> >>> +&spmi_bus {
+> >>>     pmc8280_1: pmic@1 {
+> >>>             compatible = "qcom,pm8350", "qcom,spmi-pmic";
+> >>>             reg = <0x1 SPMI_USID>;
 
+
+
+-- 
+With best wishes
+Dmitry
