@@ -2,110 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1DC16CEC41
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 16:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AAA66CEC4A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 16:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbjC2O4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 10:56:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43530 "EHLO
+        id S229603AbjC2O7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 10:59:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjC2O4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 10:56:47 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BE712E;
-        Wed, 29 Mar 2023 07:56:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 80B28B8235D;
-        Wed, 29 Mar 2023 14:56:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F10C433EF;
-        Wed, 29 Mar 2023 14:56:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680101804;
-        bh=FCJy/eYSZT7WLb3OmK/7JeXcs8+xQniddc7s7LZp8ko=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CZlNV5JjqH5js/0zQleguzsHeOZkCCPx4jL1M1Y+jBMvpkJ4pvL277nYQ+sGqk2qe
-         4SaOYNFvs/9Q1inf4qDJfx7hQm/4FWZBnQmLbmWFUT0wJMyIn4+rKAXCYtcjlQ9aU7
-         hxzUqHVtVqo/g8ej+ooE9wQEZLslhGn/LFd1FTmo7Sf3inqF9thLJG03Q5QP9aTTcA
-         kXSEAnyKzL9TY/Byv0OpBztC1Dr/4gmr1gxviXXlcVI3HSXvpgxVqXW9JpiNslorVN
-         aYU/dPg06KkIG7Vp45x9JNFH3sEjPCwTKgqEm7NCm1aogS8QwJ58wrn5IJMJQ8mGC7
-         mt4VfNjupKBug==
-Date:   Wed, 29 Mar 2023 15:56:36 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
+        with ESMTP id S230346AbjC2O7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 10:59:46 -0400
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD9E2113
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 07:59:45 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 89213582152;
+        Wed, 29 Mar 2023 10:59:42 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 29 Mar 2023 10:59:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1680101982; x=1680109182; bh=/R
+        f1DBC2WMIYkr+Jb4z1OBHAGwhx+V0jxtj3s2JHCvw=; b=m1v7hQovafx4X39Fr1
+        nAXXtqcTTowIyUnVN4Npm7RonqPcHBDhODQRLpuH2gHj69N6ftuzhHkkCvKN2OZg
+        jRULbaAiru1V6PK3zTxxrkeh+JizuIYLLMR3DAIFgBJUav+1JXYKEX0LVnM+uIyE
+        94Ooonr4P73Zt0WtdxRtEAF2YnCyTrhiJpDUPzceqx63EDSyeQyBuFqJ6u5/U4K2
+        xzIyGBjFNoRUFaG9sN6NKvBAb5CONgWNxUv6ku0OHgW5VBeZ/RESlpLB5bl6OQDQ
+        bYev7JdqmOZiZVDOdX7j5HJdzsMRfJTReE7p4+fEs7d6RHRXbPa4bm1X4INWr3g6
+        19kw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1680101982; x=1680109182; bh=/Rf1DBC2WMIYk
+        r+Jb4z1OBHAGwhx+V0jxtj3s2JHCvw=; b=kMHIWsO1SOZmGAa79IJB54hecQ6S/
+        +U8TJbH+FRh9WPxducMnPcwyTfz/9LBdRWPrYCNsqU2J1ja64Zz9/qiMTJRTm0n0
+        BXxvzgDeHtHWpwvmIJDCPqa/CjA8idpG3+fjDpkf0K56SsA+XU9hmJqMq64PmCAJ
+        596JBWTw6gdZCUyPi2eS3BcZRowvbcECHTJk85MGPuwBfHkEVQmMpRrP74x6uIZ9
+        JwnQZJzXP/XrSpGZ+USm093L/8+V9+NtiLIg/pC7e04bVJUYxpPuhkL/GUk4f/0i
+        N742A6Ue88srdSRjTX4/JSSCcgjGmFgwJZs0+48iCedKcXdVgF+sSQWfA==
+X-ME-Sender: <xms:XVIkZHgtT0gPuwRw9nXiS0Id8VF418hbhxy5k1UZnkwVrLdowgYHCw>
+    <xme:XVIkZEBIJi-4V2rEE2AfrtisgUHFESdubCiSuRgNTIJ5RHm73PFSoJWUq-5T5ugCV
+    nwPtGcVtLpyff6hc5E>
+X-ME-Received: <xmr:XVIkZHGbloo5-4oO3kF5gujdkzOFhdNrLtU_fS18W1O2MWqAiUmpXYPkI18>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehiedgkeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeetfefffefgkedtfefgledugfdtjeefjedvtddtkeetieffjedvgfehheff
+    hfevudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:XVIkZEQh1-DjZir-ksDy4eB9T04PPUBf0nf1BCXisvYw-4hvPV9nSg>
+    <xmx:XVIkZEwGcOLr28Q6yLFYj___AhuNzFDthXSGCHfhreS6NNLUwILz0g>
+    <xmx:XVIkZK6SUUYOw1pkgsmL0C12TaUIVQhaUTtGHEJuRfdpcQOXKsHScw>
+    <xmx:XlIkZBHupX7Y1xm-7sqTSjer9ypR2T-wBft2y2xjwLwdbGjUyQW9nA>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 29 Mar 2023 10:59:40 -0400 (EDT)
+Date:   Wed, 29 Mar 2023 16:59:39 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <20230329145636.GV2673958@google.com>
-References: <20230307112835.81886-1-okan.sahin@analog.com>
- <20230307112835.81886-6-okan.sahin@analog.com>
- <20230315175223.GI9667@google.com>
- <20230315175257.GJ9667@google.com>
- <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230329143615.GS2673958@google.com>
- <ZCROpw0il1VQCLPu@smile.fi.intel.com>
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marek Vasut <marex@denx.de>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH v7 12/12] drm: sun4: dsi: Convert to bridge driver
+Message-ID: <20230329145939.7zcex4x2pipivuj4@penduick>
+References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
+ <20230329131929.1328612-3-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6fhpyyv3p3yi6x2l"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZCROpw0il1VQCLPu@smile.fi.intel.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230329131929.1328612-3-jagan@amarulasolutions.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Mar 2023, Andy Shevchenko wrote:
 
-> On Wed, Mar 29, 2023 at 03:36:15PM +0100, Lee Jones wrote:
-> > On Tue, 28 Mar 2023, Sahin, Okan wrote:
-> > > >On Wed, 15 Mar 2023, Lee Jones wrote:
-> > > >> On Tue, 07 Mar 2023, Okan Sahin wrote:
->
-> ...
->
-> > > +static const struct i2c_device_id max77541_i2c_id[] = {
-> > > +	{ "max77540", (kernel_ulong_t)&chip[MAX77540] },
-> > > +	{ "max77541", (kernel_ulong_t)&chip[MAX77541] },
-> >
-> > Just 'MAX77540' is fine.
->
-> I tend to disagree.
->
-> There is an error prone approach esp. when we talk with some functions
-> that unifies OF/ACPI driver data retrieval with legacy ID tables.
-> In such a case the 0 from enum is hard to distinguish from NULL when
-> the driver data is not set or not found. On top of that the simple integer
-> in the legacy driver data will require additional code to be added in
-> the ->probe().
+--6fhpyyv3p3yi6x2l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Use a !0 enum?
+Hi,
 
-The extra handling is expected and normal.
+The patch prefix should be drm/sun4i:
 
---
-Lee Jones [李琼斯]
+On Wed, Mar 29, 2023 at 06:49:29PM +0530, Jagan Teki wrote:
+> Convert the encoder to bridge driver in order to standardize on a
+> single API by supporting all varients of downstream bridge devices.
+
+Which variant, and why do we need to convert to a bridge to support all of =
+them?
+
+> The drm_encoder can't be removed as it's exposed to userspace, so it
+> then becomes a dumb encoder, without any operation implemented.
+>=20
+> Tested on DSI Panel, DSI Bridge, I2C-Configured DSI Bridge.
+>=20
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+
+[...]
+
+> +static const struct component_ops sun6i_dsi_ops;
+> +
+>  static int sun6i_dsi_attach(struct mipi_dsi_host *host,
+>  			    struct mipi_dsi_device *device)
+>  {
+>  	struct sun6i_dsi *dsi =3D host_to_sun6i_dsi(host);
+> -	struct drm_panel *panel =3D of_drm_find_panel(device->dev.of_node);
+
+That one looks unrelated. Why do you need that change?
+
+Maxime
+
+--6fhpyyv3p3yi6x2l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZCRSWwAKCRDj7w1vZxhR
+xVxjAQDRiN3Xre3IIz1T4C43lttqvpbPqcE2DHMmgqXL79FOnwD+MQuYxHs10wNq
+DIbqsDZm77R7tky3bD6gIHherQx6qw0=
+=ztGu
+-----END PGP SIGNATURE-----
+
+--6fhpyyv3p3yi6x2l--
