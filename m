@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E87DD6CD481
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92546CD48B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231192AbjC2IWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:22:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
+        id S230055AbjC2IZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbjC2IW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:22:28 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38575272E
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:21:45 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id x17so19109576lfu.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:21:45 -0700 (PDT)
+        with ESMTP id S231134AbjC2IZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:25:41 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C644498
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:25:36 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id bi9so19085028lfb.12
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680078103;
+        d=linaro.org; s=google; t=1680078334;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lRbDqq9vIw03wZ46k1c5GQIbp3MsDcHgKH6HMicJQ34=;
-        b=IJ/6/WiY0gZWjaAE7nBEVUFeVIs5w9JhkhPFNsQilBeSB+Mdgv0G9oEmQvoCvFDnyE
-         T2Etyc52i6erCwh3xFy9fEYifbP7uygmcK7SO2O8IHFFlH7Vh5SNZFMpiFj7o/0B9AXw
-         hP5QmQ+DpdlGWmW+X//hH3I9T9hK/J8oitpJ2BBf0BlilUKMkY22LyezsuKa1qRHk0wK
-         ltXwViei9Pga3C4cEfQeS+gw0WlCFSTxlWXEm+UgxjZHMYdOYmwnsB+X4nPAorc/Ii5G
-         oDOa+aJXNLZO1lNZFZk3t269NLUYYMvAi5DCt7n1FBjnD0uwk2GiMl+KhBuJyM/iuUFe
-         rsqQ==
+        bh=nlL5AJavP2hu4YCn4uZIdbxT0MDCMysw5QI/NF+KLhE=;
+        b=xSiwizA2gvOOxGCmFjenUoYz2LFRtI2BWEUqk8KpkI+U/KFbwXDKepKCtSs1emmZwa
+         RbP4NQ0y89exg6fPYHtQFwlBG5AN4LlyZ9mOr2JyHvNd2CCcan67AZAei7xgkKnoOe+J
+         WYEvjpVbwN6eAdPtkxaTmdVN5/fU8JlXu5UcHzkyNHypXPePWMg8tDgjopXle9UTEqLe
+         i5iwJWzxzSzWAOaFIQQuQ3JObslSJi2afyKwDdOwuymWXoJ1Emlc4gpad6C4A6Xd99fd
+         m25oKIg4pV7AYlyW4zFTRzW+RqPk9E4YbUbV6kJ7GuqZ7fP+sstxVK/nPi57mnb/Aw8D
+         4V9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680078103;
+        d=1e100.net; s=20210112; t=1680078334;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lRbDqq9vIw03wZ46k1c5GQIbp3MsDcHgKH6HMicJQ34=;
-        b=3wXopHT7QHq3LQWXG5ms1fdmHeHHWdROiA7UCruGjmsEbii0CD8OOWwgAX1nCkJzRI
-         UIZCR65WXpRBOXaDjSoua3dBARYWxcFs7N50S9DBErslRJtwmvKMUSehxLgUpgKqRbQg
-         bm/gndvnQEuQmFVWrJvusK8bcqFSSiiWoYoQfeJmRKo+l/OncQhqjoHaggA2FGXYxosS
-         sk1UVvNYkxXAVkXleVSO56M/gFbj02PvNFHBeuIvGq2bGuMKFEz9feVazjb2hE9KO3T6
-         mZX2+mVytYsBhw6DINvYamDKNDDIztfleeeeSy8GBP3AQ/OLMLAePHwmst5vjmhhmd3H
-         3oMQ==
-X-Gm-Message-State: AAQBX9dA8bFwXBW5q/Mhyo8RYUQtGbuHudgEMm2QNIwO3WoiBTdzIe8E
-        mnH9samkIqtvo5EhPu1MxCqtSQ==
-X-Google-Smtp-Source: AKy350a5r26p47bAo38Gr8TFyeJ+va7pWduXVogqgpv/VWEmcGXfuoOBI3kLgpj57CmmcDvG8Cc8IA==
-X-Received: by 2002:ac2:4884:0:b0:4e1:7dd:1142 with SMTP id x4-20020ac24884000000b004e107dd1142mr5766576lfc.51.1680078103481;
-        Wed, 29 Mar 2023 01:21:43 -0700 (PDT)
+        bh=nlL5AJavP2hu4YCn4uZIdbxT0MDCMysw5QI/NF+KLhE=;
+        b=hRpC7mAGfglUy5r9qkuna8Bl9rDdVXK2yjf75a9rCACW8qhwAFNl9rhZGXkZtMxkP9
+         KR0JNh8mNaVWQgHeI03Ft0dXv6h8V/L4r0DL69bnEtqN50kLCHQPaHJ/2Kkv7j5XCFjm
+         0fWOhFUsDED6Zc4VjG8BY6ey2rhSUR3rOXwpQB+giD7EgQQcTRo6ZLzblF6ce4qTyStZ
+         ahaW4nBH3OjmsrjuoAwMziD1lljw8WDpNHQ5OYvnUJday2GRJDa5VzALLqUofxGaxfyY
+         4xij/60GZTIZSmAUI/zE+f5caOlbERGpg32b76yu3QTh8d+wd/S5rQ26c4OOCk47nbLJ
+         v/8Q==
+X-Gm-Message-State: AAQBX9c0EdBSSkSeFQu8F0A5RZmXC1CWkwSNV0lVAb5TTUiMjhCCGRcL
+        ioR6dgsJ+RmqCQCe5X7nUXYHtQ==
+X-Google-Smtp-Source: AKy350YIuYx5LJI9QIHguDk4ssPlVpetYFxjbemVIF2kjh1ya13IaopQhgWsbqTv+IUZ/aNBUadH9w==
+X-Received: by 2002:ac2:4352:0:b0:4d5:8f3e:7852 with SMTP id o18-20020ac24352000000b004d58f3e7852mr5278746lfl.49.1680078334494;
+        Wed, 29 Mar 2023 01:25:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d15-20020ac241cf000000b004dc721ea6a1sm5335923lfi.273.2023.03.29.01.21.42
+        by smtp.gmail.com with ESMTPSA id u14-20020a056512094e00b004cb35b31b96sm5372230lft.257.2023.03.29.01.25.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 01:21:43 -0700 (PDT)
-Message-ID: <36f75c71-cf5b-7cbd-8eac-8a8f628d1201@linaro.org>
-Date:   Wed, 29 Mar 2023 10:21:41 +0200
+        Wed, 29 Mar 2023 01:25:34 -0700 (PDT)
+Message-ID: <23b2de4b-1198-bfcc-fd74-285da9af4fb3@linaro.org>
+Date:   Wed, 29 Mar 2023 10:25:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device
- tree
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Fix repeated text
 Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230328021912.177301-1-ychuang570808@gmail.com>
- <20230328021912.177301-9-ychuang570808@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Denis Ciocca <denis.ciocca@st.com>, devicetree@vger.kernel.org,
+        Diederik de Haas <didi.debian@cknow.org>
+References: <20230329074614.1037625-1-linus.walleij@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328021912.177301-9-ychuang570808@gmail.com>
+In-Reply-To: <20230329074614.1037625-1-linus.walleij@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -81,34 +78,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 04:19, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 29/03/2023 09:46, Linus Walleij wrote:
+> The description oddly contains a copy of the initial paragraph.
+> Let's not repeat ourselves.
 > 
-> Add initial device tree support for Nuvoton ma35d1 SoC, including
-> cpu, clock, reset, and serial controllers.
-> Add reference boards som-256m and iot-512m.
-> 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Denis Ciocca <denis.ciocca@st.com>
+> Cc: devicetree@vger.kernel.org
+
+Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
+commit msg (Jonathan's, Lars', Rob's, mine, DT list). There is no single
+need to store automated output of get_maintainers.pl in the git log. It
+can be easily re-created at any given time, thus its presence in the git
+history is redundant and obfuscates the log.
+
+If you need it for your own patch management purposes, keep it under the
+--- separator.
 
 
+> Reported-by: Diederik de Haas <didi.debian@cknow.org>
 
-> +	gic: interrupt-controller@50801000 {
-> +		compatible = "arm,gic-400";
-> +		reg =   <0x0 0x50801000 0 0x1000>, /* GICD */
-> +			<0x0 0x50802000 0 0x2000>, /* GICC */
-> +			<0x0 0x50804000 0 0x2000>, /* GICH */
-> +			<0x0 0x50806000 0 0x2000>; /* GICV */
-> +		#interrupt-cells = <3>;
-> +		interrupt-parent = <&gic>;
-> +		interrupt-controller;
-> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x13) |
-> +			      IRQ_TYPE_LEVEL_HIGH)>;
-> +	};
-> +
-> +	uart0:serial@40700000 {
+I don't think it is a bug yet, so rather:
+Suggested-by:
 
-There is always space after label:.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
