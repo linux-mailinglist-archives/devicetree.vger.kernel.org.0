@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 830A26CD881
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 13:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 668CA6CD894
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 13:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbjC2LdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 07:33:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34504 "EHLO
+        id S229877AbjC2Lho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 07:37:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229754AbjC2LdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 07:33:14 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1BC440DC
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:33:12 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id g19so6579926lfr.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:33:12 -0700 (PDT)
+        with ESMTP id S229885AbjC2Lhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 07:37:43 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040C14219
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:37:40 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 20so15759563lju.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:37:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680089591;
+        d=linaro.org; s=google; t=1680089859;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sohlc8aRdt0ptQ3unHlw5QOmftyBVVlEC9VNICwLo1w=;
-        b=RQ1HZFubaw3Kwxfm/62gAa93r2wx/Vqmsa/0FzpPQNvdjH1lIynHB0C625AWRk/XYB
-         o9gnX+QmtJ9YUjH2tkx8GgM5DwohBvDHfE7+psBcI7/LA4PKncHMGfd+TSHDVoWRJx8O
-         CI+kuQ8odWQe4lk2Hlst0rDS6seABNQkmoqXlt3QBlbAg/Xdq8dGfbj8q7trmrQiCCrE
-         kPt5w2ObOKUgD0HGk9T7VOY4gURn6FZFzVRQqnh6DTJCn0ylCnZkWfijC6pGs+Bj3HCr
-         Y0kqamI7syOBe46m60O+uLtwsk4BYVEUvqmRoYdFXetRVfqSBAAnVhNO1CvnB7CfJEcW
-         uN+A==
+        bh=/mPqUZsIheYp4PXF7QUo518QtsktPDNZj6+NdEGhwtc=;
+        b=NpB3I/3t6Lr2Ro2+EJkY6MoU+efyaKtpbJK9meLzt/PnkQ9vfc9GKCjdALUV2XM7tv
+         tBuhn04cg21GiS2DFH5U8oHTeO8uOGuXWiuqRf3OzFUrQoSUeZ06DcuQ+QlL2y4U+gl3
+         uOkXiLElUVfUv+FaFVKv7u/HJDLd7NlNz9PXqLSxs5cQq+Kzel/ytYNTzzDGfXD7+C1i
+         0s5vXwB8fS8D9pp80biD7hzYYp9Jx/CcXaIkTHu2k8l824Laa1blGq2f/Dw7X2jRgwA7
+         NwUfxVEEdJGnFvzA+Ho0dj78IjBb8xQQ3fYA8PHTsbd86od6K8oJtZkk0jlMzQJcVcHa
+         GXiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680089591;
+        d=1e100.net; s=20210112; t=1680089859;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sohlc8aRdt0ptQ3unHlw5QOmftyBVVlEC9VNICwLo1w=;
-        b=oWmtO6brAYcl9S1Sn/N+u9oM5Va/gpF6mA0hqLFKjAmi9g+2+zxXfG9g9oz6M2I8F8
-         IQfH37cyTgv0OzolP2OeBypC5af+dqY24/7++FHfN459CpIcd6JkSfmhnAEm6Lx7bH1X
-         +IDvvJMkSP7KaAuAJyMhosCM5iWFp2Kd7yYaKnipT8L7DZ6xJ8Vy/0M4+l0wKRn3T/Kn
-         hIQc4MYDJvIX24V/pUaO6YfApnbI9ySubrfXtp4IfDbkxfO6z2RiAh8yqdejSFaDpn6L
-         IEnAHhNPFWmjKzgh3oE8JuqIa7IYanmBt1hDfz7dp35M72JHYz9P/2p9zSCJwKTGTOFM
-         UYpw==
-X-Gm-Message-State: AAQBX9c31yiJwOKuHmcsFvX46TbdJTeGaM6EnyFI+2+vqjgATLWHAnKG
-        h9RecS6DQrThbRwuBWCL75KvQA==
-X-Google-Smtp-Source: AKy350ajcJzhIh0qFeuqDCAoDEJi8t7QXDzrgy34sATyGDAdmmbqC6g3CxoIxWcZ48SqVnGaZ4q1AA==
-X-Received: by 2002:ac2:4c95:0:b0:4d7:58c8:5f44 with SMTP id d21-20020ac24c95000000b004d758c85f44mr6528158lfl.12.1680089591160;
-        Wed, 29 Mar 2023 04:33:11 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id m18-20020a195212000000b004e95f53adc7sm5445662lfb.27.2023.03.29.04.33.10
+        bh=/mPqUZsIheYp4PXF7QUo518QtsktPDNZj6+NdEGhwtc=;
+        b=EQ/rmjd/8jibnIpbX1P4d/WUO/4kUKBzVGswlrXEY5/K78b4Wb4AaJ51E1XO8wny3a
+         80H4gTw3NsDLYyMrtG2ZtKgAclUaGhG+RWk1RaGr0q1tN4KFnHJ4nDF8MbxTTQ8R6ygG
+         QSBXgZT+KySdvHi9MT1WIKJAkmw9kwDCdtJwPRrUl4TIc4+Ve8Mxhcp8fQjeDXZ7iMDO
+         aIofm1WhQLhVWdSJZGxbJCVsunzBmMXLFFad713mBr6FnHxhGYowQqxcdyy0b/w0oJIP
+         3dHhwznF42g3kXsXPm2pOFMACxYyCJm/YJU6esURcnT3ZBWJi1vJbbImmgUyPxUl8Gyn
+         81+A==
+X-Gm-Message-State: AAQBX9eAn2v2uKR5YmBp1V2rnZ1E6uEVFMJDnSdfPDLN6oq8R+G6k67G
+        qopf3QcJ0tQM4fzidjiHnFjIcA==
+X-Google-Smtp-Source: AKy350Y9MsLYN1pnTgHTW80ELhfO9f2kj3EVc9bx5pgZ5cHDPeoOaEuf4c+eqX8TZxSTOejxy/xHDw==
+X-Received: by 2002:a2e:a174:0:b0:299:aa88:8dd8 with SMTP id u20-20020a2ea174000000b00299aa888dd8mr6285200ljl.50.1680089859145;
+        Wed, 29 Mar 2023 04:37:39 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id a18-20020a05651c011200b002a483f01d9csm1902273ljb.85.2023.03.29.04.37.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 04:33:10 -0700 (PDT)
-Message-ID: <b520f8c8-5ab6-79f6-7eef-28f6f14f536e@linaro.org>
-Date:   Wed, 29 Mar 2023 13:33:09 +0200
+        Wed, 29 Mar 2023 04:37:38 -0700 (PDT)
+Message-ID: <f62c07d4-cda8-9873-8890-3411cd2f3b03@linaro.org>
+Date:   Wed, 29 Mar 2023 13:37:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 5/7] arm64: dts: qcom: sa8775p: add the pcie smmu node
+Subject: Re: [PATCH v4 1/2] dt-bindings: spi: add loongson spi
 Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     zhuyinbo <zhuyinbo@loongson.cn>, Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230328193632.226095-1-brgl@bgdev.pl>
- <20230328193632.226095-6-brgl@bgdev.pl>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230328193632.226095-6-brgl@bgdev.pl>
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        Mark Brown <broonie@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org
+References: <20230328112210.23089-1-zhuyinbo@loongson.cn>
+ <20230328112210.23089-2-zhuyinbo@loongson.cn>
+ <168000761529.3001360.2224316097077012976.robh@kernel.org>
+ <8336d5ba-1150-81ca-bd5a-7862bd10ef58@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8336d5ba-1150-81ca-bd5a-7862bd10ef58@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=0.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75 autolearn=no autolearn_force=no
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,105 +82,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 28.03.2023 21:36, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 29/03/2023 12:39, zhuyinbo wrote:
 > 
-> Add the PCIe SMMU node for sa8775p platforms.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 74 +++++++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
+> 在 2023/3/28 下午8:57, Rob Herring 写道:
+>>
+>> On Tue, 28 Mar 2023 19:22:09 +0800, Yinbo Zhu wrote:
+>>> Add the Loongson platform spi binding with DT schema format using
+>>> json-schema.
+>>>
+>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>> ---
+>>>   .../bindings/spi/loongson,ls-spi.yaml         | 43 +++++++++++++++++++
+>>>   MAINTAINERS                                   |  6 +++
+>>>   2 files changed, 49 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls-spi.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> Error: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dts:22.28-29 syntax error
+>> FATAL ERROR: Unable to parse input tree
+>> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/spi/loongson,ls-spi.example.dtb] Error 1
+>> make[1]: *** Waiting for unfinished jobs....
+>> make: *** [Makefile:1512: dt_binding_check] Error 2
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230328112210.23089-2-zhuyinbo@loongson.cn
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+> Hi Rob,
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 2343df7e0ea4..9ab630c7d81b 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -809,6 +809,80 @@ apps_smmu: iommu@15000000 {
->  				     <GIC_SPI 891 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		pcie_smmu: iommu@15200000 {
-> +			compatible = "qcom,sa8775p-smmu-500", "qcom,smmu-500", "arm,mmu-500";
-> +			reg = <0x0 0x15200000 0x0 0x800000>;
-> +			#iommu-cells = <2>;
-> +			#global-interrupts = <2>;
-> +
-> +			interrupts = <GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 921 IRQ_TYPE_LEVEL_HIGH>,
-That's a lot of interrupts!
+> I'm sorry, actually, I don't know what the specific operation I should 
+> do when I received the check warning
+> from your bot. Does it means that I should add dependency note into this 
+> patch's changelog ? 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Yes, this is explicitly mentioned in the sentence you quoted.
 
-Konrad
-> +				     <GIC_SPI 925 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 926 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 927 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 928 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 950 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 951 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 952 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 953 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 954 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 955 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 956 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 957 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 958 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 885 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 886 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 887 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 888 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 820 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 823 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 842 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 843 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 844 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 845 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 846 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 847 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 802 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 804 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 805 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 806 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 807 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 808 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 809 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 810 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 811 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 812 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 813 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 814 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 837 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 838 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 839 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 855 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 856 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 790 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 791 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 792 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 794 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 796 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
->  		intc: interrupt-controller@17a00000 {
->  			compatible = "arm,gic-v3";
->  			reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
+> or something else, I really
+> don't know. Actually, I'm always bothered by these things that how to 
+> resolve the dependency issue for two
+> dependent patches that do not belong to the same series.
+
+Another approach, as Rob suggested last time, would be to just get rid
+of the dependency and open-code the clock IDs...
+
+Best regards,
+Krzysztof
+
