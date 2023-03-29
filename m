@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 357A86CD465
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B5886CD473
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230405AbjC2IU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47594 "EHLO
+        id S230521AbjC2IWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbjC2IUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:20:41 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 448255275
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:19:30 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id q16so19071872lfe.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:19:30 -0700 (PDT)
+        with ESMTP id S230374AbjC2IVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:21:37 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8615F5FDB
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:20:37 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x17so19106265lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:20:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680077966;
+        d=linaro.org; s=google; t=1680078035;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5UBlMMuDB8t3puZJG73DjV36iE47zlqn+c0B/SfjDhw=;
-        b=G9AYEWaOjKIg6s/VF8xl+wi5BXbejFA1wMNYnuWR6LYWP2jV9TrGp+hSMVUVckUH99
-         qM7VN0ZMxxvnuLxWFcZGHAgtBTMnTWe7NAKgO937dzW/f2vJKs8zFWNmY+ZAR7cwG2oT
-         TLaCXrMspF6W4X+g76DNxGkwkFdsMG68NOtmURFCIO1g34MUc8L7OUMwr2LXtTrwHDvS
-         HPJK1DaDJ+XE/72stQBRMl0uUQrsXGlYZinO/RLyxjaTi9g/KG4XuzBgMWOgkNcq57ej
-         7w4E7/22PudZEwmgrVLmx0rHQfMFAO9bY1+Loo6WSzwPPkfQsVw2GTefhZUiHsRnXFJ/
-         YUbg==
+        bh=VDEZImdx7nfwOHvp4OeGgm65ZkjVGi5Ql4SNtee6RD8=;
+        b=sn4gtOWUAijsH+th7lILTt6mPbspY3c9QElMIqDJ8w3lVNCEs7Z8zi7FRabQEgkl0R
+         xsUPvxtPaRoTdwlDw2+Wbs18WSysCU1xw2BtKpNRc8aImg6OmF9YeDVtnrTng+il4QC7
+         c+W8lcBWrVnbIACihneyKtboYiiZm+giGZvSjQWjzzezAYR/XWRE+9iuvtKDE6VSrx7H
+         EYQWV0Cfsp+wk/a9G0TPZC1kuuiiGYKsi7NRZvm/6BD4FMZ9DkCf1dZ1tyqzZqXD/oA+
+         H6jfIWUkcJ68guazfBLNJUZheyVtLrC9gi0VF4QF5XwySB0J48ABf4zebiw4L1yRtAwk
+         NVTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680077966;
+        d=1e100.net; s=20210112; t=1680078035;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5UBlMMuDB8t3puZJG73DjV36iE47zlqn+c0B/SfjDhw=;
-        b=PTCugRgAdTr5LwAFb2+fDnEURlDmQG+7d39KM3Bi6xEkhloGbKiFyDaUwa+vYVT/1q
-         hKVewLzbW5eB/le962zYij/MQz5KEOhkh93E6AMI/HFlhgtpysyZsIFVRkXEwGbdYqo1
-         4LmSV8rGBaFqRtqR+MzDP2iz2sOpQ8jW8dKT/3pQVJzPNnaA4RBKEvQ6D68gTtszdf2s
-         duwBlBKR19mc+2emtQ71UjKto0jMnikMf2VHD24kFZobWLF0tRvR8yE7xuprGheVYp5V
-         7qxb9E3exIJEKjK79SVARPCGjLqALY5kYPeTvnEaNhlRqEp5n3Up0Zw0qO+umK78oqum
-         7eYg==
-X-Gm-Message-State: AAQBX9d/Is5eKHmSTSZnyQAL8aHAsZY6jNX7xjVlCe4URD7CfbEvPb6+
-        KFzJ8kPDqdPeqdNy8Lbts/R9ug==
-X-Google-Smtp-Source: AKy350YN45EncbSPLMyiEe8R1YjUtQTmdEeX00K1ppGIfM9FlVJoRpKWUea2C8VrTuvp/91Z/fzx6A==
-X-Received: by 2002:a19:ae02:0:b0:4ea:129c:528 with SMTP id f2-20020a19ae02000000b004ea129c0528mr5438921lfc.56.1680077965939;
-        Wed, 29 Mar 2023 01:19:25 -0700 (PDT)
+        bh=VDEZImdx7nfwOHvp4OeGgm65ZkjVGi5Ql4SNtee6RD8=;
+        b=phaLsvqGnjjTxyeMhZDIczRE+Ek/6ettCsnPZNVEpu7i3d+gU1UvxDkQtw1l3tlKTN
+         jbgPlZkU+nf+tqhlWcVrDXVEnivoUC+1dRvXQpEjcJZvFz42IulisYVUpmD2yWQUTLoP
+         YC+RU+U19Z90VVLpySNjrm0Mh1vRRSUlGsFwKtpn3W/36ZKktKoedv1Xz8vf+RPEtplj
+         x7FzmDr8pGhEZRZ3nRZrJIr7uXHJKXEZ2phw6KJoWrXR/B0r1a5sX4MAtpQxZKetVA+t
+         SjmJOi+6qIQ6uBHEdu6QrlDMZngLWtTAteKEGXkbCLVi1JLbjiZkId0uDrs3AsNmwmrV
+         bVAw==
+X-Gm-Message-State: AAQBX9ci3+sDUzU0nA/qaJi0s/qpbVn/RNLyyvIy1GbGbtMsRQ6Ni/IB
+        DxhzewHLW+ltRYrmritL4dS9bQ==
+X-Google-Smtp-Source: AKy350YuQqZwb2YTBHv7l0OviW05o4Ewp7fcXR4dK/s6jfhETNu5ZQYcF4+AHDyPTfHKB74qAi3nTQ==
+X-Received: by 2002:a19:c206:0:b0:4ea:f632:474f with SMTP id l6-20020a19c206000000b004eaf632474fmr4916464lfc.40.1680078035478;
+        Wed, 29 Mar 2023 01:20:35 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id m18-20020a195212000000b004e95f53adc7sm5387208lfb.27.2023.03.29.01.19.24
+        by smtp.gmail.com with ESMTPSA id j12-20020a19f50c000000b004b40c1f1c70sm5391002lfb.212.2023.03.29.01.20.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 01:19:25 -0700 (PDT)
-Message-ID: <ba59626b-454b-f7d9-fe51-6e588c1ed40e@linaro.org>
-Date:   Wed, 29 Mar 2023 10:19:24 +0200
+        Wed, 29 Mar 2023 01:20:35 -0700 (PDT)
+Message-ID: <be0bf335-39fc-2eac-ed37-112881bac675@linaro.org>
+Date:   Wed, 29 Mar 2023 10:20:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v6 06/12] dt-bindings: arm: Add initial bindings for
- Nuvoton platform
+Subject: Re: [PATCH v6 07/12] dt-bindings: serial: Document ma35d1 uart
+ controller
 Content-Language: en-US
 To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
@@ -66,9 +66,9 @@ Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
         Jacky Huang <ychuang3@nuvoton.com>
 References: <20230328021912.177301-1-ychuang570808@gmail.com>
- <20230328021912.177301-7-ychuang570808@gmail.com>
+ <20230328021912.177301-8-ychuang570808@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328021912.177301-7-ychuang570808@gmail.com>
+In-Reply-To: <20230328021912.177301-8-ychuang570808@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,19 +84,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 28/03/2023 04:19, Jacky Huang wrote:
 > From: Jacky Huang <ychuang3@nuvoton.com>
 > 
-> Rename the bindings/arm/npcm directory as nuvoton.
-> Add binding for ARMv8 based Nuvotn SoCs and platform boards.
-
-Typo: Nucotn?
-
-> Add initial bindings for ma35d1 series development boards.
+> Add documentation to describe nuvoton ma35d1 uart driver bindings.
 > 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ---
->  .../bindings/arm/nuvoton/nuvoton,ma35d1.yaml  | 30 +++++++++++++++++++
 
-Anyway robot pointed to issues here...
+This depends on clock patches, so it must be taken together.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
