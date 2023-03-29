@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7A36CF0EC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 909046CF0EF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231359AbjC2RVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 13:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47628 "EHLO
+        id S229553AbjC2RVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 13:21:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjC2RVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:21:19 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E235C6198
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 10:21:10 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id i15so10767579pfo.8
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 10:21:10 -0700 (PDT)
+        with ESMTP id S229609AbjC2RVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:21:45 -0400
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A4D30C2
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 10:21:43 -0700 (PDT)
+Received: by mail-ua1-x935.google.com with SMTP id v48so11892803uad.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 10:21:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680110470;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gutUdfZnZGJz80FqANIFD9947ke4IDEKtmrilCP9Asg=;
-        b=uoDbG/Rpr227AQzHfgKoRhIFdGyFDgE38i3QuNOHy1nfld7wbGPfRr9WuTb7JUFFRv
-         5S6IUx5xo+jHf4HvuW37VUeU6CjeSxv7fJ3Xu1nDh3LyiSPOzXMvxx0JIjwsnbFpR5AC
-         h/Z91+pEymRNAWpDcf4quLxfLPS/ZppPxHBsPd6hfixrDpFQxADA7OvslGVMam2HYR1T
-         0nFVVFHIHCF83Qv5QPd7b/P0qCSfQK+pmpvJ/1puEeX934QmJKrQHP2Z5Zao9n2DUn2L
-         gkMFCIk+VFJN3pd6/P7u1g6lhw+g3t5dv0cnLwPs3L7zuHEKDj2kEBENZazXqqiHwvYq
-         f/Yg==
+        d=raspberrypi.com; s=google; t=1680110503;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u/kekKZDVCcsebIf2i6yt2xwj/2zTCqcAVAvAI7dnWA=;
+        b=Xh2EJMk3roX5KmogJpsL0StcrfSo0Fc06ghN/BP5hmiGqBoSHsiRFAGwF1nDAnE4S9
+         s+umt70bR5p9c8w0+8BW2i6kc8o35r/8VEOi6JZTH832qFJuF+bWxWsdC8/mlAQHVMI5
+         LDgWjrkEug2Mxq2v5hTHzE08VB8bOmRtBEpElwvK/9/eeYQubeslFBq90SXmLrnKgbcZ
+         wAuOmaTL3ZMvUc/PtB0d/PINCdCB/9y1POZ8+TBUHqBNgyW+O15wHs69nKfVtyTlOErK
+         B2ZD0KzL4DU1icDAxqNweFNOxkpDw9MBuVF0JTk4KRqXCZPHQVJR6PdnDeU4nGlKwrj4
+         F4LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680110470;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gutUdfZnZGJz80FqANIFD9947ke4IDEKtmrilCP9Asg=;
-        b=eyVqrhrA6R4LMx5k2A6N23w8dpmfd7Qxca8P1l46ympM/OBmKY1qmBCdleCB3oxT7n
-         xLZNitG1zMBhvTJVytmBSP2XA8noBhLfRvYRMDNchg52ngzHSYyUWXc0+88V4PJ2dLsK
-         P/HMul6G5yxhTaB9kXfUYHbfRiDwlLY/56fZY0mdTpFS5b7kar3vGi3swA/dU4IcJrk4
-         wqThVm8+2CDmjoP1jI6ugTAfmXpNE1nqwOGhLWw4YmU+gq8xjK91wBtNU8QPfp/OONVK
-         b9yK01RSpspYbqLsbbNY/OvxCyZ2yd4ewUvKKa+Sc+j/Sgqu/zAT07Ut3pjq4oN0Lcgv
-         4hHw==
-X-Gm-Message-State: AAQBX9clWDH9QspHldVcAtXviPbmlhB4zczsq4rFry5HBH2N1jeRV2SR
-        B7Kb5AZT4EUCabhbLOKF4/qJeA==
-X-Google-Smtp-Source: AKy350Y9SAYyqMx62p9jKSnHqyG110Q69ooC4fMXn9Wpn/gCEjRcEAoPcOxIkdsN6Ap4ln7XX1StRw==
-X-Received: by 2002:aa7:99d2:0:b0:626:7c43:7cb8 with SMTP id v18-20020aa799d2000000b006267c437cb8mr19386468pfi.20.1680110470163;
-        Wed, 29 Mar 2023 10:21:10 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:6b79:83ab:5e33:50a5])
-        by smtp.gmail.com with ESMTPSA id v3-20020a632f03000000b00502e6bfedc0sm21950243pgv.0.2023.03.29.10.21.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 10:21:09 -0700 (PDT)
-Date:   Wed, 29 Mar 2023 11:21:06 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] dt-bindings: remoteproc: Drop unneeded quotes
-Message-ID: <20230329172106.GA3374270@p14s>
-References: <20230327170114.4102315-1-robh@kernel.org>
+        d=1e100.net; s=20210112; t=1680110503;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u/kekKZDVCcsebIf2i6yt2xwj/2zTCqcAVAvAI7dnWA=;
+        b=Lx8qeAR2El6/s8MvjYKS8A2oBHmerECk0MOvIYlioM+p0kaaBXrp8gwMb7CDbCuBjr
+         j6/9cJg8pJ+6E2HeVtjOiboPYEDFtjKAmsFL3mkoNULPPEEfiva74Yai+51/k8geRia0
+         5WAZoDwApitoX01rY1TDWOybZhZ1zqogPWoJv5qI5qEI4I2bEA0S+T7x22tCO1Ym+/sm
+         fUvKB0dR+uscGVnXPPw0lRRnMXB35EBfvJ9+2iSB4AMd2eXv/OeQsncjyjR9vUWfyLFu
+         TQzjFJ1Jh2IN2c2shfSirB3e3z57BkDnozhWAVnZXizxdf2hEPd9uqAx0fRVbQGDzj/D
+         CotA==
+X-Gm-Message-State: AAQBX9esn8aqCnTVnjMKlU+jjNKTQyC1GlzT8oK0QpuoJO6HqAsVq7qt
+        uEe08Ajj049C48I5hS436Pv2WSDHlrQbdUIFjuBjyA==
+X-Google-Smtp-Source: AKy350ZW6k9lUO+uh1XIpejgSS2PYqsimgM7ESvKiOd2N++Wn3Q41Lt0aBPZ7Od1ovCCTw/L+UsD7U6WvWHS7WHGsFg=
+X-Received: by 2002:a1f:3091:0:b0:43c:aa3:bf3d with SMTP id
+ w139-20020a1f3091000000b0043c0aa3bf3dmr1559456vkw.1.1680110502857; Wed, 29
+ Mar 2023 10:21:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230327170114.4102315-1-robh@kernel.org>
+References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
+ <CAPY8ntCJP53uiGNQHUZqma08Vsxfwm7KvAkgMzK=hn4AxJLS3A@mail.gmail.com> <20230329164638.v43la4l7rxut6hk6@penduick>
+In-Reply-To: <20230329164638.v43la4l7rxut6hk6@penduick>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Wed, 29 Mar 2023 18:21:26 +0100
+Message-ID: <CAPY8ntDwJLVLK2MQpsqjDVuNDeWdvjdgQcO2EuDGqZm=LL+yeQ@mail.gmail.com>
+Subject: Re: [PATCH v7 10/12] drm/bridge: Implement enable_next_first to alter
+ bridge init order
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marek Vasut <marex@denx.de>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -87,170 +82,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 12:01:13PM -0500, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../remoteproc/amlogic,meson-mx-ao-arc.yaml        |  4 ++--
->  .../bindings/remoteproc/fsl,imx-rproc.yaml         |  4 ++--
->  .../bindings/remoteproc/ingenic,vpu.yaml           |  4 ++--
->  .../bindings/remoteproc/qcom,glink-edge.yaml       |  2 +-
->  .../bindings/remoteproc/qcom,smd-edge.yaml         |  2 +-
->  .../bindings/remoteproc/renesas,rcar-rproc.yaml    |  4 ++--
->  .../bindings/remoteproc/st,stm32-rproc.yaml        | 14 +++++++-------
->  7 files changed, 17 insertions(+), 17 deletions(-)
+Hi Maxime
+
+On Wed, 29 Mar 2023 at 17:46, Maxime Ripard <maxime@cerno.tech> wrote:
 >
+> On Wed, Mar 29, 2023 at 05:28:28PM +0100, Dave Stevenson wrote:
+> > On Wed, 29 Mar 2023 at 14:19, Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > >
+> > > DSI sink devices typically send the MIPI-DCS commands to the DSI host
+> > > via general MIPI_DSI_DCS read and write API.
+> > >
+> > > The classical DSI sequence mentioned that the DSI host receives MIPI-DCS
+> > > commands from the DSI sink first in order to switch HS mode properly.
+> > > Once the DSI host switches to HS mode any MIPI-DCS commands from the
+> > > DSI sink are unfunctional.
+> >
+> > That statement contradicts the spec.
+> > The DSI spec section 8.11.1 Transmission Packet Sequences says that
+> > during any BLLP (Blanking or Low Power) period the host can do any of:
+> > - remain in LP-11
+> > - transmit one or more non-video packets from host to peripheral in escape mode
+> > - transmit one or more non-video packets from host to peripheral in
+> > using HS mode
+> > - receive one or more packets from peripheral to host using escape mode
+> > - transmit data on a different virtual channel.
+> >
+> > Indeed if the sink doesn't set MIPI_DSI_MODE_LPM /
+> > MIPI_DSI_MSG_USE_LPM, then the expectation is that any data transfer
+> > will be in HS mode.
+> >
+> > That makes me confused as to the need for this patch.
+>
+> Yeah, and it looks like that would break the expectation that, in
+> enable, a bridge can expect its controller to be in HS mode.
+>
+> I think that was Jagan is trying to do is to work around an issue with
+> the Allwinner DSI driver:
+> https://elixir.bootlin.com/linux/v6.3-rc4/source/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c#L775
+>
+> This is working mostly fine since we only have panel support and can
+> control that, but with bridge support added in the latest patch, then it
+> probably doesn't work anymore.
+>
+> The proper way to fix this isn't to put more logic into the framework,
+> it's to make the DSI driver behave as expected by KMS.
+>
+> Unfortunately, that controller is not documented, so it's not clear to
+> me how we can fix it.
+>
+> IIRC, it's basically a state machine where you would encode the
+> transitions between one DSI state and the next depending on what your
+> expectations are.
+>
+> I think there's two problem with the driver that need to be addressed:
+>
+>   - First the driver will drop back to LP11 mode to submit commands. I
+>     don't think it's needed and could even be hurtful to the video
+>     stream if it was to happen during HS mode:
+>     https://elixir.bootlin.com/linux/v6.3-rc4/source/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c#L877
+>
+>   - And then, it looks like, in HSD mode, we never get to go to the
+>     state LPTX is in (LPDT). It would be interesting to test whether
+>     adding a transition to that state makes it work or not.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+Ooh, not fun.
+I'll agree with your assessment - it looks like sunxi driver has
+significant limitations on the modes of operation it supports. If
+there is no information on sending HS commands, I wonder if it's
+possible to note the video state in transfer and stop video, send the
+command, and resume video again. Ugly as heck, but possibly the only
+real option without documentation. It does raise the question of do
+other blocks (eg crtc) need to be stopped as well, or does stopping
+the PHY and/or DSI block stop the pixel data getting clocked out.
 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> index 11cb42a3fdd1..3100cb870170 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/remoteproc/amlogic,meson-mx-ao-arc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Amlogic Meson AO ARC Remote Processor
->  
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index ae2eab4452dd..0c3910f152d1 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: NXP i.MX Co-Processor
->  
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
-> index 85b1e43cab08..8b55dbd909b0 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/remoteproc/ingenic,vpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Ingenic Video Processing Unit
->  
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-> index 15e6851e1ff8..7b43ad3daa56 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml
-> @@ -15,7 +15,7 @@ description:
->  
->  properties:
->    $nodename:
-> -    const: "glink-edge"
-> +    const: glink-edge
->  
->    apr:
->      $ref: /schemas/soc/qcom/qcom,apr.yaml#
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-> index 7ec8a6b6682c..02c85b420c1a 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-> @@ -21,7 +21,7 @@ description:
->  
->  properties:
->    $nodename:
-> -    const: "smd-edge"
-> +    const: smd-edge
->  
->    apr:
->      $ref: /schemas/soc/qcom/qcom,apr.yaml#
-> diff --git a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
-> index 7e0275d31a3c..4bea679a0f61 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Renesas R-Car remote processor controller
->  
-> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> index 66b1e3efdaa3..37c0d7b4ceef 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> @@ -1,8 +1,8 @@
->  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: "http://devicetree.org/schemas/remoteproc/st,stm32-rproc.yaml#"
-> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +$id: http://devicetree.org/schemas/remoteproc/st,stm32-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: STMicroelectronics STM32 remote processor controller
->  
-> @@ -29,7 +29,7 @@ properties:
->  
->    st,syscfg-holdboot:
->      description: remote processor reset hold boot
-> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      items:
->        - items:
->            - description: Phandle of syscon block
-> @@ -39,7 +39,7 @@ properties:
->    st,syscfg-tz:
->      description:
->        Reference to the system configuration which holds the RCC trust zone mode
-> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      items:
->        - items:
->            - description: Phandle of syscon block
-> @@ -95,7 +95,7 @@ properties:
->        (see ../reserved-memory/reserved-memory.txt)
->  
->    st,syscfg-pdds:
-> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: |
->        Reference to the system configuration which holds the remote
->      items:
-> @@ -105,7 +105,7 @@ properties:
->            - description: The field mask of the PDDS selection
->  
->    st,syscfg-m4-state:
-> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: |
->        Reference to the tamp register which exposes the Cortex-M4 state.
->      items:
-> @@ -115,7 +115,7 @@ properties:
->            - description: The field mask of the Cortex-M4 state
->  
->    st,syscfg-rsc-tbl:
-> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: |
->        Reference to the tamp register which references the Cortex-M4
->        resource table address.
-> -- 
-> 2.39.2
-> 
+I can only guess at the meaning of the enum sun6i_dsi_start_inst and
+enum sun6i_dsi_inst_id states. LPTX and LPRX are largely obvious, but
+HSC(ommand) and HSD(ata) perhaps?
+I thought on initial reading that the setup in sun6i_dsi_start made
+sense as a sequence of commands, but looking closer at the bitmasking
+and shifting I'm not so convinced. Are the DSI_INST_ID_xxx defines
+shifts or the bitmask values to or in, as they get used for both.
+
+  Dave
