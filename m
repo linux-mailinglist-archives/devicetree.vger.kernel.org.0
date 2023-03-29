@@ -2,122 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DBE56CEFF4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 18:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 947226CF009
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbjC2Qzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 12:55:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41160 "EHLO
+        id S230177AbjC2RAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 13:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbjC2Qzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 12:55:37 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065C84EC1;
-        Wed, 29 Mar 2023 09:55:26 -0700 (PDT)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 15923C70B4;
-        Wed, 29 Mar 2023 16:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1680108895; bh=YO3NMfmF8k8c2SMDbtovBtifO5Xf9pUHpYiPdojn0RE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=E3itYqlMkUsCTXNp/xPm73NIKtrRkqc9OUpdY6rWG0LQ6qw1TQm5QQMrI2Zw56uHp
-         Su7YzBHDZfEGyfVTnIX3qFIQ5dlidopybq4MJlcU11OugLXcL18azperBZn/amF2k0
-         PRlL+Az4+Kw3BcLBtf1JTuEoGsQpLhF3rGsDoKbw=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Pavel Machek <pavel@ucw.cz>, ~postmarketos/upstreaming@lists.sr.ht
-Cc:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v2 2/2] leds: aw2013: Add vddio regulator
-Date:   Wed, 29 Mar 2023 18:54:54 +0200
-Message-ID: <2672233.mvXUDI8C0e@z3ntu.xyz>
-In-Reply-To: <ZB1gNJBFeFSdagF1@gerhold.net>
-References: <20230320174949.174600-1-linmengbo0689@protonmail.com>
- <ZByp5gzspOVcYyah@duo.ucw.cz> <ZB1gNJBFeFSdagF1@gerhold.net>
+        with ESMTP id S229495AbjC2RAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:00:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B189619B5;
+        Wed, 29 Mar 2023 10:00:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4DD82B820CA;
+        Wed, 29 Mar 2023 17:00:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D4DDC433EF;
+        Wed, 29 Mar 2023 16:59:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680109198;
+        bh=VdnuvhIM2cRnRHD6OIlrF1vM7Xa/zS4dOr/IjqNNj7k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=WGmVkGJxklNiVx1FInWIqUPg+a4lgK5x2N65ZVa820iEqX8AIhS7d7atd8Myt23wC
+         X2Q0weysAdn2Lbmulawv6SRWEHTu7yONn0ZcgcOp0SRZAvuGDjweZcjPz2VcVse/aP
+         jSdZwBRk93rjHWyWyALcl5jVeV0FahOn/vPHKlBKTtwj0l20pXyoKcibpoI5VgSLyA
+         VNPS5MuyCqgBNAk6ydScLCI8EyYtX+zVGiP3U4/ztRdsOMB6bSo+QCZ91+LOpWuWL5
+         p8YVMnS4tdEHgrPfYrxOyaWfJVbveOrlrj4QubImSg1dOQP65Bu5IQyT3W8cZYj64h
+         X8PZMTiWVlYdg==
+Date:   Wed, 29 Mar 2023 11:59:57 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
+        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        lpieralisi@kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        mmaddireddy@nvidia.com, kw@linux.com, bhelgaas@google.com,
+        vidyas@nvidia.com, sanjayc@nvidia.com, ksitaraman@nvidia.com,
+        ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v4 10/10] PCI: tegra194: add interconnect support in
+ Tegra234
+Message-ID: <20230329165957.GA3066317@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8d0e4e2f-a131-ca19-e5ae-ef2349623b39@nvidia.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Freitag, 24. M=E4rz 2023 09:32:52 CEST Stephan Gerhold wrote:
-> Hi Pavel,
->=20
-> On Thu, Mar 23, 2023 at 08:35:02PM +0100, Pavel Machek wrote:
-> > > Some LEDs controllers are used with external pull-up for the interrupt
-> > > line and the I2C lines, so we might need to enable a regulator to bri=
-ng
-> > > the lines into usable state. Otherwise, this might cause spurious
-> > > interrupts and reading from I2C will fail.
-> > >=20
-> > > Implement support for "vddio-supply" that is enabled by the aw2013
-> > > driver
-> > > so that the regulator gets enabled when needed.
-> > >=20
-> > > Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> > >=20
-> > > @@ -348,16 +350,20 @@ static int aw2013_probe(struct i2c_client *clie=
-nt)
-> > >=20
-> > >  		goto error;
-> > >  =09
-> > >  	}
-> > >=20
-> > > -	chip->vcc_regulator =3D devm_regulator_get(&client->dev, "vcc");
-> > > -	ret =3D PTR_ERR_OR_ZERO(chip->vcc_regulator);
-> > > -	if (ret) {
-> > > +	chip->regulators[0].supply =3D "vcc";
-> > > +	chip->regulators[1].supply =3D "vddio";
-> > > +	ret =3D devm_regulator_bulk_get(&client->dev,
-> > > +				      ARRAY_SIZE(chip->regulators),
-> > > +				      chip->regulators);
-> > > +	if (ret < 0) {
-> > >=20
-> > >  		if (ret !=3D -EPROBE_DEFER)
-> > >  	=09
-> > >  			dev_err(&client->dev,
-> > >  		=09
-> > >  				"Failed to request regulator: %d\n",=20
-ret);
-> > >  	=09
-> > >  		goto error;
-> >=20
-> > Won't this cause failures when optional vddio is unavailable?
->=20
-> The regulator core should print a warning "supply vddio not found, using
-> dummy regulator" but then proceed normally.
->=20
-> I think in almost all cases a separate I/O supply should actually exist
-> that could be described in the device tree. It was likely just omitted
-> because it's always-on or indirectly being enabled by other devices.
-> So perhaps having this warning is even a good thing?
+On Wed, Mar 29, 2023 at 02:44:34PM +0530, Sumit Gupta wrote:
+> On 28/03/23 23:23, Bjorn Helgaas wrote:
+> > > +static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
+> > > +{
+> > > +     struct dw_pcie *pci = &pcie->pci;
+> > > +     u32 val, speed, width;
+> > > +
+> > > +     val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
+> > > +
+> > > +     speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
+> > > +     width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
+> > > +
+> > > +     val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / BITS_PER_BYTE);
+> > > +
+> > > +     if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
+> > > +             dev_err(pcie->dev, "can't set bw[%u]\n", val);
+> > > +
+> > > +     clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+> > 
+> > Array bounds violation; PCI_EXP_LNKSTA_CLS is 0x000f, so possible
+> > speed (CLS) values are 0..0xf and "speed - 1" values are -1..0xe.
+> > 
+> > pcie_gen_freq[] is of size 4 (valid indices 0..3).
+> > 
+> > I see that you're just *moving* this code, but might as well fix it.
+> > 
+> Thank you for the review.
+> Will include the below change in the same patch. Please let me know if any
+> issue.
+> 
+>  -       clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+>  +       if (speed && (speed <= ARRAY_SIZE(pcie_gen_freq)))
+>  +               clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
+>  +       else
+>  +               clk_set_rate(pcie->core_clk, pcie_gen_freq[0]);
 
-Just briefly jumping in, there was some activity adding bus_regulator to th=
-e=20
-i2c-core a while back, maybe that can be revived instead? For CCI (camera i=
-2c)=20
-we also need pull-ups and I don't think adding vddio or whatever to all=20
-sensors is a good idea long term...
+I didn't notice that speed is a u32, so -1 is not a possible value.
+Also, it's used earlier for PCIE_SPEED2MBS_ENC(), so you could do
+something like this:
 
-https://lore.kernel.org/lkml/20210527075556.1709140-1-hsinyi@chromium.org/
+  speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val) - 1;
+  if (speed >= ARRAY_SIZE(pcie_gen_freq))
+    speed = 0;
 
-Regards
-Luca
-
->=20
-> Thanks,
-> Stephan
-
-
-
-
+  val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) /
+	BITS_PER_BYTE);
+  ...
+  clk_set_rate(pcie->core_clk, pcie_gen_freq[speed]);
