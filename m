@@ -2,51 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0D96CED09
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0DE6CED1D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbjC2PeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 11:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42902 "EHLO
+        id S230202AbjC2Pib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 11:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230452AbjC2Pdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:33:55 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B33469C;
-        Wed, 29 Mar 2023 08:33:41 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id CCC9824E194;
-        Wed, 29 Mar 2023 23:33:34 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Mar
- 2023 23:33:34 +0800
-Received: from localhost.localdomain (113.72.144.76) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Mar
- 2023 23:33:33 +0800
-From:   Walker Chen <walker.chen@starfivetech.com>
-To:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Walker Chen <walker.chen@starfivetech.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: [PATCH v1 3/3] riscv: dts: starfive: add tdm node and sound card
-Date:   Wed, 29 Mar 2023 23:33:20 +0800
-Message-ID: <20230329153320.31390-4-walker.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230329153320.31390-1-walker.chen@starfivetech.com>
-References: <20230329153320.31390-1-walker.chen@starfivetech.com>
+        with ESMTP id S229974AbjC2Pia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:38:30 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3185E4EEB
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:38:29 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5445009c26bso299951497b3.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:38:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1680104308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BjRFa9g3onI1kC4K0Bhev7+GmSoMwaeDzlNBL5jHj68=;
+        b=Mi6YU1rgntanGu1TnibK+PJaPy357W/mJA63yHdPw3nBV3U0TjPaqtjgyzXcQm1xtO
+         6NMzWsRdpwuqTKCcNbr1TIFRMaxoWQElKew/F6Bo5LPjY8XdkphGmXPwUBH916LfOhQ5
+         rK7ls+5F9RiRE7hN6V/acBEF7evVuF5i1WnGE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680104308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BjRFa9g3onI1kC4K0Bhev7+GmSoMwaeDzlNBL5jHj68=;
+        b=vayj08+U7FI3W9zPLJg5xhMV1lZIdWAcdK89PD6Mxuc4L0sIRP+Mh90WPg7EznBd15
+         Dr7tzgM/mVq5yADJxAmy0ZdbZvCE3YAFBT1Tw/jvaKBPtJk2X46is+pyGB5pgRUoG3x/
+         J2Uc2oHMZJkVq0fQLBdX9NhhwoLOYQMV6Fteup4iBvwxfhGW7D2B/3aUxwHj8hDyrRak
+         TmeVnzNpOwfKTm4lJxIlEKx7OpXHgdnxsw2heIweysdTNWvmfUj3zpY4UnsZMLqwniWB
+         zI0VNyMrZRZmJoW7Oi6ntw/NHn1q+rm/+BKRenacxsEwxpwbStIiPT4n6VzitgYug3nG
+         UoTg==
+X-Gm-Message-State: AAQBX9fKhlzuG7hHKOk//Q3yej8Zo4xsZ7UaAmRURAZf7EwnVKkonIXA
+        yDMIfmyDc/fjS/x2X293FODR+slJNvN1u7ZX0JsJgw==
+X-Google-Smtp-Source: AKy350YYUvrbMDF7TvuD73hFUqxg7MO1EfxmBpZ8yOwn2fCl7O3CFbZEtrIBZxvqLWsEjX5aIvD6D8tDlprGjyT23Xg=
+X-Received: by 2002:a05:690c:b94:b0:541:698b:7bdb with SMTP id
+ ck20-20020a05690c0b9400b00541698b7bdbmr1644187ywb.2.1680104308357; Wed, 29
+ Mar 2023 08:38:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.144.76]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
+References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
+ <20230329131929.1328612-3-jagan@amarulasolutions.com> <20230329145939.7zcex4x2pipivuj4@penduick>
+In-Reply-To: <20230329145939.7zcex4x2pipivuj4@penduick>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 29 Mar 2023 21:08:17 +0530
+Message-ID: <CAMty3ZDWK0xVe7E+gER+TihHf1yv3YAWgZc1GCJQ2V5KD_mN-g@mail.gmail.com>
+Subject: Re: [PATCH v7 12/12] drm: sun4: dsi: Convert to bridge driver
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marek Vasut <marex@denx.de>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,188 +80,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the tdm controller node and sound card for the StarFive JH7110 SoC.
+On Wed, Mar 29, 2023 at 8:29=E2=80=AFPM Maxime Ripard <maxime@cerno.tech> w=
+rote:
+>
+> Hi,
+>
+> The patch prefix should be drm/sun4i:
 
-Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 87 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 34 ++++++++
- 2 files changed, 121 insertions(+)
+I did follow my previous prefix, I will update this.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 1155b97b593d..35137c2edf5d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -62,6 +62,10 @@
- 	clock-frequency = <297000000>;
- };
- 
-+&wm8960_mclk {
-+	clock-frequency = <24576000>;
-+};
-+
- &i2srx_bclk_ext {
- 	clock-frequency = <12288000>;
- };
-@@ -102,6 +106,14 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
- 	status = "okay";
-+
-+	wm8960: codec@1a {
-+		compatible = "wlf,wm8960";
-+		reg = <0x1a>;
-+		#sound-dai-cells = <0>;
-+
-+		wlf,shared-lrclk;
-+	};
- };
- 
- &i2c2 {
-@@ -214,6 +226,40 @@
- 			slew-rate = <0>;
- 		};
- 	};
-+
-+	tdm0_pins: tdm0-pins {
-+		tdm0-pins-tx {
-+			pinmux = <GPIOMUX(44, GPOUT_SYS_TDM_TXD,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		tdm0-pins-rx {
-+			pinmux = <GPIOMUX(61, GPOUT_HIGH,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_TDM_RXD)>;
-+			input-enable;
-+		};
-+
-+		tdm0-pins-sync {
-+			pinmux = <GPIOMUX(63, GPOUT_HIGH,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_TDM_SYNC)>;
-+			input-enable;
-+		};
-+
-+		tdm0-pins-pcmclk {
-+			pinmux = <GPIOMUX(38, GPOUT_HIGH,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_TDM_CLK)>;
-+			input-enable;
-+		};
-+	};
- };
- 
- &uart0 {
-@@ -221,3 +267,44 @@
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&tdm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&tdm0_pins>;
-+	status = "okay";
-+};
-+
-+&sound0 {
-+	simple-audio-card,dai-link@0 {
-+		reg = <0>;
-+		status = "okay";
-+		format = "dsp_a";
-+		bitclock-master = <&dailink_master>;
-+		frame-master = <&dailink_master>;
-+
-+		widgets =
-+				"Microphone", "Mic Jack",
-+				"Line", "Line In",
-+				"Line", "Line Out",
-+				"Speaker", "Speaker",
-+				"Headphone", "Headphone Jack";
-+		routing =
-+				"Headphone Jack", "HP_L",
-+				"Headphone Jack", "HP_R",
-+				"Speaker", "SPK_LP",
-+				"Speaker", "SPK_LN",
-+				"LINPUT1", "Mic Jack",
-+				"LINPUT3", "Mic Jack",
-+				"RINPUT1", "Mic Jack",
-+				"RINPUT2", "Mic Jack";
-+		cpu {
-+			sound-dai = <&tdm>;
-+		};
-+
-+		dailink_master:codec {
-+			sound-dai = <&wm8960>;
-+			clocks = <&wm8960_mclk>;
-+			clock-names = "mclk";
-+		};
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index b503b6137743..a89158d1d7a6 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -210,6 +210,12 @@
- 		#clock-cells = <0>;
- 	};
- 
-+	wm8960_mclk: wm8960_mclk {
-+		compatible = "fixed-clock";
-+		clock-output-names = "wm8960_mclk";
-+		#clock-cells = <0>;
-+	};
-+
- 	i2srx_bclk_ext: i2srx-bclk-ext-clock {
- 		compatible = "fixed-clock";
- 		clock-output-names = "i2srx_bclk_ext";
-@@ -375,6 +381,27 @@
- 			status = "disabled";
- 		};
- 
-+		tdm: tdm@10090000 {
-+			compatible = "starfive,jh7110-tdm";
-+			reg = <0x0 0x10090000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_TDM_AHB>,
-+				 <&syscrg JH7110_SYSCLK_TDM_APB>,
-+				 <&syscrg JH7110_SYSCLK_TDM_INTERNAL>,
-+				 <&syscrg JH7110_SYSCLK_TDM_TDM>,
-+				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
-+				 <&tdm_ext>;
-+			clock-names = "tdm_ahb", "tdm_apb",
-+				      "tdm_internal", "tdm",
-+				      "mclk_inner", "tdm_ext";
-+			resets = <&syscrg JH7110_SYSRST_TDM_AHB>,
-+				 <&syscrg JH7110_SYSRST_TDM_APB>,
-+				 <&syscrg JH7110_SYSRST_TDM_CORE>;
-+			dmas = <&dma 20>, <&dma 21>;
-+			dma-names = "rx","tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		stgcrg: clock-controller@10230000 {
- 			compatible = "starfive,jh7110-stgcrg";
- 			reg = <0x0 0x10230000 0x0 0x10000>;
-@@ -601,5 +628,12 @@
- 			#reset-cells = <1>;
- 			power-domains = <&pwrc JH7110_PD_VOUT>;
- 		};
-+
-+		sound0: snd-card0 {
-+			compatible = "simple-audio-card";
-+			simple-audio-card,name = "Starfive-TDM-Sound-Card";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
- 	};
- };
--- 
-2.17.1
+>
+> On Wed, Mar 29, 2023 at 06:49:29PM +0530, Jagan Teki wrote:
+> > Convert the encoder to bridge driver in order to standardize on a
+> > single API by supporting all varients of downstream bridge devices.
+>
+> Which variant, and why do we need to convert to a bridge to support all o=
+f them?
 
+Downstream bridge variants like DSI panel, DSI bridge and
+I2C-Configured DSI bridges. Bridge conversion would be required for
+the DSI host to access the more variety and complex downstream bridges
+in a standardized bridge chain way which is indeed complex for encoder
+driven DSI hosts.
+
+>
+> > The drm_encoder can't be removed as it's exposed to userspace, so it
+> > then becomes a dumb encoder, without any operation implemented.
+> >
+> > Tested on DSI Panel, DSI Bridge, I2C-Configured DSI Bridge.
+> >
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+>
+> [...]
+>
+> > +static const struct component_ops sun6i_dsi_ops;
+> > +
+> >  static int sun6i_dsi_attach(struct mipi_dsi_host *host,
+> >                           struct mipi_dsi_device *device)
+> >  {
+> >       struct sun6i_dsi *dsi =3D host_to_sun6i_dsi(host);
+> > -     struct drm_panel *panel =3D of_drm_find_panel(device->dev.of_node=
+);
+>
+> That one looks unrelated. Why do you need that change?
+
+This was replaced with drmm_of_dsi_get_bridge for lookup of both panel
+and bridge. I think I will separate this into another patch.
+
+Thanks,
+Jagan.
