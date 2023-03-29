@@ -2,175 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB836CF6C5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 01:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7FB6CF6E7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 01:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbjC2XRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 19:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
+        id S229961AbjC2XVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 19:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjC2XRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 19:17:15 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 289C9449E
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 16:17:14 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-544787916d9so322171237b3.13
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 16:17:14 -0700 (PDT)
+        with ESMTP id S229623AbjC2XVl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 19:21:41 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC4DCD
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 16:21:40 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id j13so15598082pjd.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 16:21:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680131833;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HgH9mKJ5gBSV+mA+S1sr7AZY0jeZJ+IakqUNjPTRKSY=;
-        b=dG8P5fvQu8Q8ZahpDMhQVTZKNXjVO9yiiFMiASUQHI3WOQCfIZDhvLin20Sx5Oyz8R
-         SZK+9JQvd44EYxtNySj+djYvDLOC4t18NU4NoAbLqSZNkBowarYr4KkIsLk+VfnkrjLc
-         hzZX/l0HbyuONypzzeOPNbOnw6ta8bOwQ3sTlRrXSaU/u/BbFDjxq69I+LM7wvk+GG71
-         rLoUUY4MAVM7LI+8f+URd5OOWrWZDrNmyBbdQ4XL1As6mr6DYkIExKtBAVIGCacGLPE+
-         zwYo0s17PaQAAFjg5nhba7muzJfipkqND0xbK8J7ajXxPESryNGgV4BgcS23MQ8XCB49
-         HQjQ==
+        d=linaro.org; s=google; t=1680132099;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=f8qo35RjOtl0n5atRPRPgKBlfz3NPfN74R+gLtzfZno=;
+        b=AN5lakAYU2YwPCZv5IXuj8GImGfbiFxNyWPd3Q/bKzGa9cJwZIwQykHgDyV13HGeIh
+         2+cvZJrWFjI1ZLBjtQ6fLRtYbrs3825m0X8pEzkaEOCKmyqbBltR9IbedLVRxERV6DED
+         L0j+Nl+K5VxahabLRNDTbJ+6dQiovSSGWtO5pytkfsab5slgNL4mFmI0m+bd0vChKsIL
+         8FnfO2py1Xy4T1PpSFdaLntUmgcRioQzFCBTHc2ABf/Hwf8bs45VseM/EAaXUG+gjIFz
+         smY8R09TRfqbAdea1J2LPVDk4+kXbz9mi8IZUfMGxEqaPTu1VwuLfT4sPJPEygZv9uhp
+         /Wdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680131833;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HgH9mKJ5gBSV+mA+S1sr7AZY0jeZJ+IakqUNjPTRKSY=;
-        b=LYxOiPSa+cGAEDkkyMh0KWUVBSlNeANWwRcTFiVqIfeajkwmf11N4xftocPS4Ws7Gp
-         pv3zk2g/dWutaaWeci0BxCKJAy6w//cjOhthNhtTuOsQNSeNJfSA2x+SbXRmNx+os3hH
-         KSMA5WPxFV5CZvdmwg6Bl2SER3rmuf9ZUaRzhSZ9y8wGRC9bYVvvRzp/uUT/cRKR2ijX
-         j4/KRpkMJydq3ixzwrsy+EzNOlshMZG337sAdEARGyFeQlPY4vMxNYEEHIZh2hw8nvFy
-         tDDbnsJvf8/jkCgGunkE7WQVvWBjk8p1fObP0GTB8AC1dz1F5mih3duLxHeONMNr9yOU
-         ZAHg==
-X-Gm-Message-State: AAQBX9c/ojqEB6Z6ucxP1ClWMBtbS+ys+rOUV0iwaQo6DpDdKPTXKZ8E
-        guYS4m7FdnjGWbSpCXWp44lgeGFkxEmXkBPSw1Prhg==
-X-Google-Smtp-Source: AKy350bOR/1/0fZReY1Io91NkJMPTUVQBD8PHVB4inFOb6+jmCb74yhpXKRWMSFEXSqgFEC2ehXh4iqO1uo6CjTFmu0=
-X-Received: by 2002:a81:b617:0:b0:544:b864:5532 with SMTP id
- u23-20020a81b617000000b00544b8645532mr9840430ywh.3.1680131833327; Wed, 29 Mar
- 2023 16:17:13 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680132099;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f8qo35RjOtl0n5atRPRPgKBlfz3NPfN74R+gLtzfZno=;
+        b=cl+zwbxVco7N2BPmsBtBwoq0EKa1r0bhHwIFwGSv/5D8c5QmFY9jRNapTuG0GCjA/k
+         0Nl5Urvmuof1ypGg1Fm4WtH2TyTtTnQEmPytt4CecxhFafLbovBMXqjZ3NXW2RC/5t5v
+         JLu7qtkk5OYmnPiw7WtDeKioO9MZo8azZgVpAI7DLWXhzKBLzQn0EOOKbT9rWy98+cks
+         0fhjaVpRcL2+imCy0pyIQ0uqN9+5z2wV/H5r1q6RcXT4prVzQm/MrqjRH+wTNB6soo4r
+         +7TqvDa4cNZ9kNxtEOuzXDw6KfmRPhfm0kU3vs91syX1I4zS20AJvlbdRkndFbFfxMt2
+         AQjg==
+X-Gm-Message-State: AAQBX9csQ4QcUvD+/fffnziB+TJ5Y+LCxgd0CBmBu82jU5fXWDI/wtCy
+        EMGxJDtkLV9KkvB6KWvPlPSudw==
+X-Google-Smtp-Source: AKy350ZA6kI8qQtbdbWubei9iqLpNRAeZyjVREBI4+sHgF4nxpOQ5nQ6k6XwQ62VniYIKK3I3R7gcQ==
+X-Received: by 2002:a17:90b:1e4f:b0:23f:4dfd:4fc1 with SMTP id pi15-20020a17090b1e4f00b0023f4dfd4fc1mr23913116pjb.43.1680132099571;
+        Wed, 29 Mar 2023 16:21:39 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:6b79:83ab:5e33:50a5])
+        by smtp.gmail.com with ESMTPSA id d5-20020a17090a2a4500b0023efa52d2b6sm1915857pjg.34.2023.03.29.16.21.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 16:21:39 -0700 (PDT)
+Date:   Wed, 29 Mar 2023 17:21:36 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Devarsh Thakkar <devarsht@ti.com>
+Cc:     andersson@kernel.org, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s-anna@ti.com, hnagalla@ti.com,
+        praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
+        j-luthra@ti.com, rogerq@kernel.org
+Subject: Re: [PATCH v8 0/3] Add single core R5F IPC for AM62 SoC family
+Message-ID: <20230329232136.GA3393405@p14s>
+References: <20230327152832.923480-1-devarsht@ti.com>
 MIME-Version: 1.0
-References: <20230324094205.33266-1-angelogioacchino.delregno@collabora.com> <20230324094205.33266-6-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230324094205.33266-6-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 30 Mar 2023 01:17:01 +0200
-Message-ID: <CAFGrd9qS4mzXWRftbR7dFqtvs9Uc4qzBQMAjRo3rAwN70jDoyA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/6] soc: mediatek: mtk-pmic-wrap: Add support for
- MT6331 w/ MT6332 companion
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, flora.fu@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327152832.923480-1-devarsht@ti.com>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+On Mon, Mar 27, 2023 at 08:58:29PM +0530, Devarsh Thakkar wrote:
+> AM62 SoC family don't have a multicore R5F cluster,                             
+> instead they have a single core R5F.                                            
+> This enables IPC support with single core R5F for AM62                          
+> family of SoCs.
+> 
+> While at it, also simplify the cluster mode setting usage
+> by using soc_data specific checks only at probe.
+> 
+> Devarsh Thakkar (3):
+>   remoteproc: k3-r5: Simplify cluster mode setting usage
+>   dt-bindings: remoteproc: ti: Add new compatible for AM62 SoC family
+>   remoteproc: k3-r5: Use separate compatible string for TI AM62x SoC
+>     family
+> 
+>  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  |  76 ++++++++---
+>  drivers/remoteproc/ti_k3_r5_remoteproc.c      | 127 ++++++++++++------
+>  2 files changed, 138 insertions(+), 65 deletions(-)
 
-Regards,
-Alexandre
+I have applied this set.
 
-Le ven. 24 mars 2023 =C3=A0 10:42, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
->
-> Add support for the MT6331 PMIC and for its companion MT6332 PMIC.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+Thanks,
+Mathieu
+
 > ---
->  drivers/soc/mediatek/mtk-pmic-wrap.c | 47 ++++++++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
->
-> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/=
-mtk-pmic-wrap.c
-> index 366e40b802e4..ceeac43f7bd1 100644
-> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> @@ -170,6 +170,40 @@ static const u32 mt6323_regs[] =3D {
->         [PWRAP_DEW_RDDMY_NO] =3D          0x01a4,
->  };
->
-> +static const u32 mt6331_regs[] =3D {
-> +       [PWRAP_DEW_DIO_EN] =3D            0x018c,
-> +       [PWRAP_DEW_READ_TEST] =3D         0x018e,
-> +       [PWRAP_DEW_WRITE_TEST] =3D        0x0190,
-> +       [PWRAP_DEW_CRC_SWRST] =3D         0x0192,
-> +       [PWRAP_DEW_CRC_EN] =3D            0x0194,
-> +       [PWRAP_DEW_CRC_VAL] =3D           0x0196,
-> +       [PWRAP_DEW_MON_GRP_SEL] =3D       0x0198,
-> +       [PWRAP_DEW_CIPHER_KEY_SEL] =3D    0x019a,
-> +       [PWRAP_DEW_CIPHER_IV_SEL] =3D     0x019c,
-> +       [PWRAP_DEW_CIPHER_EN] =3D         0x019e,
-> +       [PWRAP_DEW_CIPHER_RDY] =3D        0x01a0,
-> +       [PWRAP_DEW_CIPHER_MODE] =3D       0x01a2,
-> +       [PWRAP_DEW_CIPHER_SWRST] =3D      0x01a4,
-> +       [PWRAP_DEW_RDDMY_NO] =3D          0x01a6,
-> +};
-> +
-> +static const u32 mt6332_regs[] =3D {
-> +       [PWRAP_DEW_DIO_EN] =3D            0x80f6,
-> +       [PWRAP_DEW_READ_TEST] =3D         0x80f8,
-> +       [PWRAP_DEW_WRITE_TEST] =3D        0x80fa,
-> +       [PWRAP_DEW_CRC_SWRST] =3D         0x80fc,
-> +       [PWRAP_DEW_CRC_EN] =3D            0x80fe,
-> +       [PWRAP_DEW_CRC_VAL] =3D           0x8100,
-> +       [PWRAP_DEW_MON_GRP_SEL] =3D       0x8102,
-> +       [PWRAP_DEW_CIPHER_KEY_SEL] =3D    0x8104,
-> +       [PWRAP_DEW_CIPHER_IV_SEL] =3D     0x8106,
-> +       [PWRAP_DEW_CIPHER_EN] =3D         0x8108,
-> +       [PWRAP_DEW_CIPHER_RDY] =3D        0x810a,
-> +       [PWRAP_DEW_CIPHER_MODE] =3D       0x810c,
-> +       [PWRAP_DEW_CIPHER_SWRST] =3D      0x810e,
-> +       [PWRAP_DEW_RDDMY_NO] =3D          0x8110,
-> +};
-> +
->  static const u32 mt6351_regs[] =3D {
->         [PWRAP_DEW_DIO_EN] =3D            0x02F2,
->         [PWRAP_DEW_READ_TEST] =3D         0x02F4,
-> @@ -1182,6 +1216,8 @@ static int mt8186_regs[] =3D {
->
->  enum pmic_type {
->         PMIC_MT6323,
-> +       PMIC_MT6331,
-> +       PMIC_MT6332,
->         PMIC_MT6351,
->         PMIC_MT6357,
->         PMIC_MT6358,
-> @@ -2041,6 +2077,16 @@ static const struct pwrap_slv_type pmic_mt6323 =3D=
- {
->                 PWRAP_SLV_CAP_SECURITY,
->  };
->
-> +static const struct pwrap_slv_type pmic_mt6331 =3D {
-> +       .dew_regs =3D mt6331_regs,
-> +       .type =3D PMIC_MT6331,
-> +       .comp_dew_regs =3D mt6332_regs,
-> +       .comp_type =3D PMIC_MT6332,
-> +       .regops =3D &pwrap_regops16,
-> +       .caps =3D PWRAP_SLV_CAP_SPI | PWRAP_SLV_CAP_DUALIO |
-> +               PWRAP_SLV_CAP_SECURITY,
-> +};
-> +
->  static const struct pwrap_slv_type pmic_mt6351 =3D {
->         .dew_regs =3D mt6351_regs,
->         .type =3D PMIC_MT6351,
-> @@ -2086,6 +2132,7 @@ static const struct pwrap_slv_type pmic_mt6397 =3D =
-{
->
->  static const struct of_device_id of_slave_match_tbl[] =3D {
->         { .compatible =3D "mediatek,mt6323", .data =3D &pmic_mt6323 },
-> +       { .compatible =3D "mediatek,mt6331", .data =3D &pmic_mt6331 },
->         { .compatible =3D "mediatek,mt6351", .data =3D &pmic_mt6351 },
->         { .compatible =3D "mediatek,mt6357", .data =3D &pmic_mt6357 },
->         { .compatible =3D "mediatek,mt6358", .data =3D &pmic_mt6358 },
-> --
-> 2.40.0
->
+> V2:                                                                             
+>   - dt-bindings: Avoid acronyms, use "Device Manager" instead of "DM"           
+> V3:                                                                             
+>   - dt-bindings: Use separate if block for each compatible for                  
+>     ti,cluster-mode property                                                    
+>   - dt-bindings: Rearrange compatibles as per alphabatical order                
+> V4:                                                                             
+>   - dt-bindings: Place each enum in separate line in allOf                      
+> V5:                                                                             
+>   - No change (fixing typo in email address)                                    
+> V6:                                                                             
+>   - dt-bindings: Remove reviewed-by due to new modifications to use             
+>     cluster-mode=3                                                              
+>     Introduce Simplify cluster-mode setting preamble patch per review           
+> comments                                                                        
+>   - Use CLUSTER_MODE_SINGLECORE for AM62x                                       
+>   - Set PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE for single core.                      
+> V7:                                                                             
+>   - Override to appropriate cluster-mode per firmware status flag               
+>     without checking soc_data                                                   
+>   - Set appropriate mode as default if not provided in DT                       
+>   - Check mode validity against SoC data during probe                           
+>   - Rebase on top of 6.3 linux-next                                             
+> V8:                                                                             
+>   - Avoid using soc_data while overriding cluster mode for IPC-only mode  
+> -- 
+> 2.34.1
+> 
