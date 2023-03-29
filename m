@@ -2,116 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D4C6CD23E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 08:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C02EE6CD263
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 08:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbjC2GoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 02:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
+        id S229456AbjC2G7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 02:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjC2GoF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 02:44:05 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E219A1BC0;
-        Tue, 28 Mar 2023 23:44:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 86010B82012;
-        Wed, 29 Mar 2023 06:44:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2128FC433EF;
-        Wed, 29 Mar 2023 06:43:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680072239;
-        bh=nh9FiwEaOwTEBrwBZ6zuJlCaeUs/sVh8B7364nNJ4vw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SDvohtFr983sjS5qsaneARzdF22qBbj0NiFIBh7uVWjHUd4L5CK7uRXWy8hMBmfjo
-         1sJ98lrgJKJV0kj4b6l5kTzypuRMa6hM3dya/yegS+A2v8BFruiQuKzA3rl/HL0xWo
-         z0Q/0qZ7MqIeY5zktC6CNFBpHSo+uB13cmbNRJGd1bFtsy6plXcqFMETxaU51lazwG
-         9dEl14BmNUJQkR1R9YqUyjq7UWKsqtriNDE7F/KW0uanhlLgN+zA+ghMvzbBkefZtw
-         yeJ4tMyTwQUQ9u9li921WGFThoaCq8A7gAB/TCvnG2ucqwqbHN7cJRvQn3iDE6vUGo
-         rRAFPmkXdthUQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1phPXa-0004PO-0A; Wed, 29 Mar 2023 08:44:14 +0200
-Date:   Wed, 29 Mar 2023 08:44:13 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229448AbjC2G73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 02:59:29 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 527EC213B;
+        Tue, 28 Mar 2023 23:59:28 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id w9so59298958edc.3;
+        Tue, 28 Mar 2023 23:59:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680073167;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=gKh61HV7ZVYfkPUeFh0z5LhhqycdLMzOgNFh+Ol0kxQ=;
+        b=lpeVmmR0EPpW0ZAxv3DjLEVL/YaVkHvRlye2oXLbKgp6r/mZYErD+gPgqNAVh9ayda
+         iZPjydr0jV8Tz4CdcDgpDWlrJEXMnjPMlwy51sqAdMmsFSPxzvIC49M5Hfo7afMlBvX0
+         4/syYPxCt1FvlzwobrKgZB7lV4ttCUkWPI+xg6AhVFNM8EqaG5poM6kL5XbDzIY1AYlU
+         a/63gNDX4+hloupulcaqUp944Jgw5fX2lZp40vcNUj5EfOcP1WT+hYFzU4ab63JBB618
+         84iF3RwNXEG22y4lcwxOcjDcRBK3jQ9vfFvdcVb/HmUkXI2Dq2d5eIxsgmenq/2l6RXF
+         zPqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680073167;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gKh61HV7ZVYfkPUeFh0z5LhhqycdLMzOgNFh+Ol0kxQ=;
+        b=21gBXB5KVj9zgsim8asJJCN4uEPcqOf3bvOwCsN6WLWuQp3fBfFBhLhFmfE1XTcb8x
+         J9BdQ/bYsQaaeHJsQinuM9DGWCPsYbswFsSWxyvyoqOLLaVDLMGbXiinP+C43kxhsXvQ
+         /bnVaKYKm/4YPBM6hAhXtH0pXHe002h92hmkuK0VYO1gJSDARW9cT1fH0TTmbWWFuHTl
+         EifDJwxtshEcAz1Ma6iZqsnO0mOMG9GW/bUSDzAippVs3fyywD1dCCNC7+GXD7Rsbw3A
+         GohXFrxLFVFS5RFzITKFnz8twurjIVz9dsZnhw4vt9Sk7rokhXnzvp/1trqFYJ36KoN1
+         ZLMQ==
+X-Gm-Message-State: AAQBX9eN71BDvcTXihhZWw+qptFi3i7PUVMNQ5nCOjC/1yCANFGYn0jd
+        Ataz3FiMmAuqiU9XoyAasFM=
+X-Google-Smtp-Source: AKy350bYA3PBfYsT2LcUD/djbyPYHeT3YVY9Pbf3IHF9f+2hnCZlWCMJIpi8Gp3ILGgeJBCoF8fipw==
+X-Received: by 2002:a17:906:6dd7:b0:931:c99c:480 with SMTP id j23-20020a1709066dd700b00931c99c0480mr19637141ejt.69.1680073166574;
+        Tue, 28 Mar 2023 23:59:26 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef05:8700:853c:3ba5:d710:3c1d? (p200300f6ef058700853c3ba5d7103c1d.dip0.t-ipconnect.de. [2003:f6:ef05:8700:853c:3ba5:d710:3c1d])
+        by smtp.gmail.com with ESMTPSA id d14-20020a1709064c4e00b009336df45226sm13696666ejw.64.2023.03.28.23.59.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 23:59:26 -0700 (PDT)
+Message-ID: <9ba3c559e2fb685c941b02fcfddaeb82aefed6f7.camel@gmail.com>
+Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        Mark Pearson <markpearson@lenovo.com>
-Subject: Re: [PATCH v8 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
-Message-ID: <ZCPePe1i64OGS0TP@hovoldconsulting.com>
-References: <20230326233812.28058-1-steev@kali.org>
- <20230326233812.28058-5-steev@kali.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Date:   Wed, 29 Mar 2023 09:01:30 +0200
+In-Reply-To: <ZCMMHl5ENSuCstFV@smile.fi.intel.com>
+References: <20230307112835.81886-6-okan.sahin@analog.com>
+         <20230315175223.GI9667@google.com> <20230315175257.GJ9667@google.com>
+         <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+         <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
+         <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
+         <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
+         <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
+         <ZCL7J5a7UZVayQVS@smile.fi.intel.com>
+         <60bbad1b38b8e3c9c3efefb0fb7b8d3cad7fa98c.camel@gmail.com>
+         <ZCMMHl5ENSuCstFV@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230326233812.28058-5-steev@kali.org>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 26, 2023 at 06:38:12PM -0500, Steev Klimaszewski wrote:
-> The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
-> add this.
-> 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> ---
-> Changes since v7:
->  * Drop regulator now in a different patchset from Johan
->  * Fix alphabetization
-> 
-> Changes since v6:
->  * Remove allowed-modes as they aren't needed
->  * Remove regulator-allow-set-load
->  * Set regulator-always-on because the wifi chip also uses the regulator
->  * cts pin uses bias-bus-hold
->  * Alphabetize uart2 pins
-> 
-> Changes since v5:
->  * Update patch subject
->  * Specify initial mode (via guess) for vreg_s1c
->  * Drop uart17 definition
->  * Rename bt_en to bt_default because configuring more than one pin
->  * Correct (maybe) bias configurations
->  * Correct cts gpio
->  * Split rts-tx into two nodes
->  * Drop incorrect link in the commit message
-> 
-> Changes since v4:
->  * Address Konrad's review comments.
-> 
-> Changes since v3:
->  * Add vreg_s1c
->  * Add regulators and not dead code
->  * Fix commit message changelog
-> 
-> Changes since v2:
->  * Remove dead code and add TODO comment
->  * Make dtbs_check happy with the pin definitions
+On Tue, 2023-03-28 at 18:47 +0300, Andy Shevchenko wrote:
+> On Tue, Mar 28, 2023 at 04:51:18PM +0200, Nuno S=C3=A1 wrote:
+> > On Tue, 2023-03-28 at 17:35 +0300, Andy Shevchenko wrote:
+> > > On Tue, Mar 28, 2023 at 04:18:30PM +0200, Nuno S=C3=A1 wrote:
+> > > > On Tue, 2023-03-28 at 14:46 +0100, Mark Brown wrote:
+> > > > > On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno S=C3=A1 wrote:
+> > > > >=20
+> > > > > > IIRC, regmap_read() is not really reentrant and it is used
+> > > > > > in
+> > > > > > the
+> > > > > > IIO
+> > > > > > driver on the sysfs interface. So, yeah, I think you need
+> > > > > > the
+> > > > > > regmap
+> > > > > > lock and better just leave the config as is. Yes, the lock
+> > > > > > is
+> > > > > > opt-
+> > > > > > out
+> > > > > > so let's not disable it :)
+> > > > >=20
+> > > > > All the regmap operations are fully thread safe.
+> > > >=20
+> > > > Even if 'config->disable_locking' is set? I think that is
+> > > > what's
+> > > > being
+> > > > discussed in here...
+> > >=20
+> > > In case the driver has its own lock to serialize IO how on earth
+> > > the
+> > > regmap
+> > > lock is needed. That's what I asked the author of the driver. He
+> > > told
+> > > the code
+> >=20
+> > Well, if the driver has it's own locking, then sure we do not need
+> > regmap's lock...
+> >=20
+> > > doesn't require the regmap lock, and I tend to believe the
+> > > author.
+> > > So, why to
+> > > keep it?
+> >=20
+> > However, if you look at the adc driver, I can see plain
+> > regmap_read()
+> > calls without any "outside" locking.
+>=20
+> Then author of the code should know what they are doing. Right?
+>=20
 
-Looks like we're good to go now. Thanks for sticking with it.
+In theory yes, but you know that's not always the case :)
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Tested-by: Johan Hovold <johan+linaro@kernel.org>
-
-Johan
+- Nuno S=C3=A1
