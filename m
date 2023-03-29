@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B25646CD7D1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 12:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2796CD7D3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 12:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbjC2KlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 06:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46938 "EHLO
+        id S229918AbjC2KmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 06:42:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230167AbjC2KlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 06:41:13 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C3BB3C2B;
-        Wed, 29 Mar 2023 03:41:12 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id q7-20020a05600c46c700b003ef6e809574so5987743wmo.4;
-        Wed, 29 Mar 2023 03:41:12 -0700 (PDT)
+        with ESMTP id S229900AbjC2KmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 06:42:00 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F9E2135;
+        Wed, 29 Mar 2023 03:41:55 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id j18-20020a05600c1c1200b003ee5157346cso11135916wms.1;
+        Wed, 29 Mar 2023 03:41:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680086471;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112; t=1680086514;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SgpY1YthWT3xIQhWwfucwfDtAT6rdZEh8Ao3ZU56Ods=;
-        b=i/2YE1oqVWapZMKkxbz+mbhQ2V5yDDdXydRYWyJXBCK7x1R43vgwgZ5KYHZkF1ByA7
-         QU0ivFZ6NdMog8ERoltE4D7fkriQupBkzPBMlUFC0vWzWYZP4mr5qP/cTjAOCdjzDVEm
-         A5JknFQYA9O6X92dh5xfe9Cn1OkU4WJU8jYjWzrPzwV8E272luJ8CAah6NlSAKULrP28
-         d6UYwY2iOg8NXsdKLiNstV2Fg4ro97GO/oLIpCNrKvdZ0BaWsdWtAKpacFuYmSOCDkmu
-         kts09u1BcAo9J7s2PdqS9WckayVIqcc1EY3z9so+K7zcfGW+ERwKv0zlFKlDHXw8QVIH
-         gs1w==
+        bh=EC9tkwmc75gH+H4hmPLG9arYbdYTuVC7oSrQJMaQnv4=;
+        b=Cc2dmxbQ/7I1964fGShEZ3shF85jMjOc1v14qFyDLTLhqAOSisK8qbpY59K3FmbXGY
+         8UkcjrFtVEsov7au6iHkR7dZb/q3OTVkTeqNscYkpePzZaHOl/Edrp9GF1lm2uMe5KMk
+         Ye7x6u2c727j7gfKY8HM7MnP+FIQspJXmxjkSsaLSi85BQqOPjc+QlaUhoQxEnG2Qz6y
+         fqZCaUmjF+FWoZ1LZCykZvg8l175DTJLZDzOOpJOdHZSMb+L4bsAr717KbuIgx465TNc
+         oXF6hY2OWmjXmJ+3LVBLqsbUuLLuchA5k7Hj1WsG/8eSoZIy06u5B//RA6tsoLrRTZKt
+         ctXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680086471;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20210112; t=1680086514;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SgpY1YthWT3xIQhWwfucwfDtAT6rdZEh8Ao3ZU56Ods=;
-        b=WQe+vxyldPHeFGVeT13sWUvyDSmjy2fvQ+ehtosAqzXUUBjuBMqI+Hu8Ifq9TQEE9O
-         +Of++EzaXcrk5n0oH0vPX0vZ+ZIQsJ0noXRrbmgoygz8mYFGH+2MSAqwQyIlOtTHu7H2
-         5Cr5dC8HaCh/E2samYMi3EzCI9kncjyF/SDF8/CKjRGpWZvXtvIg6QvoiCexKSiiskif
-         OXKXEB9IqA81xUNlZSLFkjIAjVhg4/ta6abdqbiLsmlD+gLt3H+/aMSo6YM5H/tF+Ox1
-         FsJwXqg+woPBtzxTP38nh6YVN6iiFNHJNNkEekiqkIPc0WLua61q0TKnyoKKKzsX4HED
-         WZmQ==
-X-Gm-Message-State: AO0yUKU36L803VN9o4vj76JPq0MlJbQfcjkvfK7/x9CMdlrzzhkTgzt9
-        BficCSPd86Xzi7Er89KRCFM=
-X-Google-Smtp-Source: AK7set/gT5l6g7eCFe8SN97XIH3TnyaG+4JmZEjJXvbkpsWqRF5Cq3gw8GYvkBpmrWMxkXKOvEgfsw==
-X-Received: by 2002:a7b:cc82:0:b0:3eb:42fc:fb30 with SMTP id p2-20020a7bcc82000000b003eb42fcfb30mr14934639wma.32.1680086470913;
-        Wed, 29 Mar 2023 03:41:10 -0700 (PDT)
+        bh=EC9tkwmc75gH+H4hmPLG9arYbdYTuVC7oSrQJMaQnv4=;
+        b=KznW5cFUK2kJZrrruQDsjaPgluj13dP04OhFBQWnk0Ufwtl1JVUIAvEPYNu9DLJVgz
+         q9jvT35R3PVFDHNfL002kj/gce+P/D8CbFR4dE3S2O9A7GGE+OuKDq1oxq4vISTsKZRg
+         HmiUuZzTP87CDLJjzBnIuOr285M80yesP22jm1d0co5ERW+DT6cIfAsMnwC8PqH4ItCP
+         TFGFuqST6/Y4Q0AXtjBUB3McZ8pqv8OyBj7l84r2rvAmN7DQGfQ71QryNRv+Xrxld+i7
+         k1M6QxVh+bOX9e/0tqabvTrVM2at6ubGPKvS0O88WK5dEFiDY32RJ+AgreS0bBD3+ucJ
+         atUA==
+X-Gm-Message-State: AO0yUKWcDjhT3boip3cLhPqcz8CLPgT2QoHOKQh+Ih4mukphljvATn2e
+        aIXbZpkrJbs+9jrBj0ZD2O4=
+X-Google-Smtp-Source: AK7set9MejkHT15VJJ8MLManRzjpXvMRuJPfIzaBWi3Mz4d8r2iGuZRrpmASD5IG5FD1prYen7xdxw==
+X-Received: by 2002:a05:600c:114f:b0:3ed:5eed:555d with SMTP id z15-20020a05600c114f00b003ed5eed555dmr13741150wmz.10.1680086513662;
+        Wed, 29 Mar 2023 03:41:53 -0700 (PDT)
 Received: from [192.168.42.225] ([81.95.8.244])
-        by smtp.gmail.com with ESMTPSA id n19-20020a7bcbd3000000b003ef684c5e32sm1732903wmi.48.2023.03.29.03.41.09
+        by smtp.gmail.com with ESMTPSA id n2-20020a05600c4f8200b003ef5e5f93f5sm1926412wmq.19.2023.03.29.03.41.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 03:41:10 -0700 (PDT)
-Message-ID: <d1dc242d-c381-3307-b939-7bc35c6ce55b@gmail.com>
-Date:   Wed, 29 Mar 2023 12:41:09 +0200
+        Wed, 29 Mar 2023 03:41:52 -0700 (PDT)
+Message-ID: <0e863367-5b24-9559-f782-4d3e5dc06961@gmail.com>
+Date:   Wed, 29 Mar 2023 12:41:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH RESEND 1/6] dt-bindings: memory-controllers:
- mediatek,smi-common: add mt8365
+Subject: Re: [PATCH RESEND 2/6] dt-bindings: memory-controllers:
+ mediatek,smi-larb: add mt8365
+Content-Language: en-US
 To:     Alexandre Mergnat <amergnat@baylibre.com>,
         Yong Wu <yong.wu@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -66,10 +67,9 @@ To:     Alexandre Mergnat <amergnat@baylibre.com>,
 Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230207-iommu-support-v1-0-4a902f9aa412@baylibre.com>
- <20230207-iommu-support-v1-1-4a902f9aa412@baylibre.com>
-Content-Language: en-US
+ <20230207-iommu-support-v1-2-4a902f9aa412@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230207-iommu-support-v1-1-4a902f9aa412@baylibre.com>
+In-Reply-To: <20230207-iommu-support-v1-2-4a902f9aa412@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -85,27 +85,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 3/29/23 11:52, Alexandre Mergnat wrote:
-> Add binding description for mediatek,mt8365-smi-common
+> Add binding description for mediatek,mt8365-smi-larb
 > 
 > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
 Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
->   .../devicetree/bindings/memory-controllers/mediatek,smi-common.yaml   | 4 ++++
+>   .../devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml     | 4 ++++
 >   1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> index a8fda30cccbb..d599a190952f 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
-> @@ -49,6 +49,10 @@ properties:
->             - const: mediatek,mt7623-smi-common
->             - const: mediatek,mt2701-smi-common
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> index 5f4ac3609887..aee7f6cf1300 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> @@ -34,6 +34,10 @@ properties:
+>             - const: mediatek,mt7623-smi-larb
+>             - const: mediatek,mt2701-smi-larb
 >   
 > +      - items:
-> +          - const: mediatek,mt8365-smi-common
-> +          - const: mediatek,mt8186-smi-common
+> +          - const: mediatek,mt8365-smi-larb
+> +          - const: mediatek,mt8186-smi-larb
 > +
 >     reg:
 >       maxItems: 1
