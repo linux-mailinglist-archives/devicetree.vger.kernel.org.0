@@ -2,305 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D82C46CD3F2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 966326CD3FC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:06:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbjC2IEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:04:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58988 "EHLO
+        id S230287AbjC2IGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:06:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbjC2IEf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:04:35 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3123040CF;
-        Wed, 29 Mar 2023 01:04:34 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32T84LCN066906;
-        Wed, 29 Mar 2023 03:04:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680077061;
-        bh=CKF/L9tscayI5JpJptLNCE1LfLUy3gGKS1hSJp9uQTA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=xnmZJVSP5FsoxjxlYkCDkAWgRP4UFFZHFbHRbuwcaq9n43N4dzk/oa3s/Ucbqcnoq
-         h0X8gTfJtsZRieB+NEUmcwo6t79nK2Ce4bk8URqu54gLZR99/kGjGbOp5x2kIfbCyg
-         s6C9dpr3rh6YX2CwoADz9we7oKAMH4c03TvHwAlQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32T84Lsi089656
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 29 Mar 2023 03:04:21 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
- Mar 2023 03:04:21 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 29 Mar 2023 03:04:21 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32T84K1j015948;
-        Wed, 29 Mar 2023 03:04:21 -0500
-Date:   Wed, 29 Mar 2023 13:34:21 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Aradhya Bhatia <a-bhatia1@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH v8 3/6] arm64: dts: ti: k3-am625-sk: Enable audio on AM62
- SK
-Message-ID: <d7j5kcfufwebqs2dvjx37yxyptpx74fdnsvxfpczznfvnaiqeh@dxurdqxpanjx>
-References: <20230313-mcasp_upstream-v8-0-4408134eb2f3@ti.com>
- <20230313-mcasp_upstream-v8-3-4408134eb2f3@ti.com>
- <20230328133225.edi4eynptt5e4oul@headset>
+        with ESMTP id S230107AbjC2IG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:06:27 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8480421E
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:06:19 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id h8so59815577ede.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:06:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680077178;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pgTEvOUqu+byIlNns2PeM/+eklWaDNG6sL3F+Izsnuo=;
+        b=78B+nejVnS9usHWPg0iqljIaK4pxCQzU1+8yHfJq6bvLatsVHbSasFqcUXDAi1w5ty
+         ru6zbvClprRaH6/+61fnfwiWn6Lnt4yCrkUjxEfT9d2AanAzELr4mM8xWdV5scUE0ucB
+         ELWD4r4l6HdyvxOsGNVTOK1rE2t8JO/6sZJR7NvuODLSotPDvmafMutvEUGT7OSU9L3S
+         nayxjkorDtR+YqpRJ9A31V4yJvw82utxCeqHx5lFS+EMO8sDLIlo9DinRejrMiNbXD9S
+         i4Vaheq/9S0knMn8t8VT3MRxm+2Vp1+ViLuycFVSBFcHnBJa6IJNLol+bZGWy4KJ+5Ym
+         rx+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680077178;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pgTEvOUqu+byIlNns2PeM/+eklWaDNG6sL3F+Izsnuo=;
+        b=DxygfCGahZletA4a1NpcW1aacvSE77bzgqYEy2rN9EGWHGweLgeyugaHXU6ezBJycd
+         nCI7TPIPhh/IZMbuWaJotoQTdh298aKCfsq6PmI1jF2lHnyqZR2H1mT5Svk3qkolggd+
+         Lhch96y/jbjf9uCPPek19L287vJmXNEbyDnOSLUSYbn1RACjfdD9Y6N1bRXr5dqgwD7d
+         Ke6Pnr7K9IEZVZc+UjCaxyL4ijtgFZVdNk7UMN1D/jz720bfbzAFqtW9x71Ue+88AHNX
+         3WpzcACwt+5/4JpvBFGYhcS3RY/6KiHHYwrNpITvTpBE+m+495W10ppDuytF+OgUhCqM
+         igAw==
+X-Gm-Message-State: AAQBX9eR8k8rje9cW5GHgoJkAi2yLMF9lv7nDiH0O2pzTb8d8DTuiIYJ
+        T6nkVzMn8kbeQet+EQLS9yp9R2WMogFD2M3zR2JeBg==
+X-Google-Smtp-Source: AKy350YCm9Z8/PIeUFOKRay3tHd8uEY3gEm45xBRMugyFV6UFUnNJW6cauEggJeb48L7uR904b/TwctWGwwl+7M3Ehs=
+X-Received: by 2002:a17:907:d687:b0:93d:a14f:c9b4 with SMTP id
+ wf7-20020a170907d68700b0093da14fc9b4mr9282057ejc.2.1680077178000; Wed, 29 Mar
+ 2023 01:06:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="p5vaf5h5yzeew3b3"
-Content-Disposition: inline
-In-Reply-To: <20230328133225.edi4eynptt5e4oul@headset>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230307163413.143334-1-bchihi@baylibre.com> <CAGXv+5E0wUJYUVD3wx3-=uES612ARQmUE0rxgAruFHxpZCBjzA@mail.gmail.com>
+ <CAGuA+ooi7Kx05gagLzXAN3upDiSqDUNOM_djYdGftw6ogVx5gw@mail.gmail.com>
+ <CAGuA+oqDPPYFJef_8=YrOpHQNVJ3xgm_zXS6fq_HG2Jy_6t-Zg@mail.gmail.com>
+ <CAGXv+5EZPWohGN5CaEiqVrM4MyAar3cPEUhHtGY_9wTJSJNVFQ@mail.gmail.com>
+ <CAGuA+oqF4jFMyEo09VDmCf-_7g0ua3XDKDAJ+t3Gat14pDM9NA@mail.gmail.com> <CAGXv+5GGO76H9Z-X=3nhtmSyp7uhuUF4DE0T527M5z+SBX482Q@mail.gmail.com>
+In-Reply-To: <CAGXv+5GGO76H9Z-X=3nhtmSyp7uhuUF4DE0T527M5z+SBX482Q@mail.gmail.com>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Wed, 29 Mar 2023 10:05:41 +0200
+Message-ID: <CAGuA+or4CvyZVNuMu9tOvpoZ5nJimbp7=KX-85FiF4ghaownAg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add LVTS support for mt8192
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---p5vaf5h5yzeew3b3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Chen-Yu,
 
-Hi,
+On Tue, Mar 28, 2023 at 5:12=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> On Tue, Mar 28, 2023 at 8:21=E2=80=AFAM Balsam CHIHI <bchihi@baylibre.com=
+> wrote:
+> >
+> > On Sat, Mar 25, 2023 at 5:33=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.or=
+g> wrote:
+> > >
+> > > On Wed, Mar 22, 2023 at 8:48=E2=80=AFPM Balsam CHIHI <bchihi@baylibre=
+.com> wrote:
+> > > >
+> > > > Hi Chen-Yu,
+> > > >
+> > > > I suspect the bug comes from incorrect calibration data offsets for=
+ AP
+> > > > Domain because you confirm that MCU Domain probe runs without issue=
+s.
+> > > > Is it possible to test something for us to confirm this theory (i
+> > > > don't have an mt8192 board on hand now), when you have the time of
+> > > > course?
+> > > > We would like to test AP Domain's calibration data offsets with a
+> > > > working one, for example :
+> > > >
+> > > >  static const struct lvts_ctrl_data mt8192_lvts_ap_data_ctrl[] =3D =
+{
+> > > >                 {
+> > > > -               .cal_offset =3D { 0x25, 0x28 },
+> > > > +               .cal_offset =3D { 0x04, 0x04 },
+> > > >                 .lvts_sensor =3D {
+> > > >                         { .dt_id =3D MT8192_AP_VPU0 },
+> > > >                         { .dt_id =3D MT8192_AP_VPU1 }
+> > > > @@ -1336,7 +1336,7 @@ static const struct lvts_ctrl_data
+> > > > mt8192_lvts_ap_data_ctrl[] =3D {
+> > > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+> > > >         },
+> > > >         {
+> > > > -               .cal_offset =3D { 0x2e, 0x31 },
+> > > > +               .cal_offset =3D { 0x04, 0x04 },
+> > > >                 .lvts_sensor =3D {
+> > > >                         { .dt_id =3D MT8192_AP_GPU0 },
+> > > >                         { .dt_id =3D MT8192_AP_GPU1 }
+> > > > @@ -1346,7 +1346,7 @@ static const struct lvts_ctrl_data
+> > > > mt8192_lvts_ap_data_ctrl[] =3D {
+> > > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+> > > >         },
+> > > >         {
+> > > > -               .cal_offset =3D { 0x37, 0x3a },
+> > > > +               .cal_offset =3D { 0x04, 0x04 },
+> > > >                 .lvts_sensor =3D {
+> > > >                         { .dt_id =3D MT8192_AP_INFRA },
+> > > >                         { .dt_id =3D MT8192_AP_CAM },
+> > > > @@ -1356,7 +1356,7 @@ static const struct lvts_ctrl_data
+> > > > mt8192_lvts_ap_data_ctrl[] =3D {
+> > > >                 .hw_tshut_temp =3D LVTS_HW_SHUTDOWN_MT8192,
+> > > >         },
+> > > >         {
+> > > > -               .cal_offset =3D { 0x40, 0x43, 0x46 },
+> > > > +               .cal_offset =3D { 0x04, 0x04, 0x04 },
+> > > >                 .lvts_sensor =3D {
+> > > >                         { .dt_id =3D MT8192_AP_MD0 },
+> > > >                         { .dt_id =3D MT8192_AP_MD1 },
+> > > >
+> > > > This example is tested and works for mt8195,
+> > > > (all sensors use the same calibration data offset for testing purpo=
+ses).
+> > > >
+> > > > Thank you in advance for your help.
+> > >
+> > > The MCU ones are still tripping though. If I change all of them to 0x=
+04,
+> > > then nothing trips. There's also a bug in the interrupt handling code
+> > > that needs to be dealt with.
+> > >
+> > > AFAICT the calibration data is stored differently. If you look at Chr=
+omeOS's
+> > > downstream v5.10 driver, you'll see mt6873_efuse_to_cal_data() for MT=
+8192,
+> > > and mt8195_efuse_to_cal_data() for MT8195. The difference sums up to:
+> > > MT8195 has all data sequentially stored, while MT8192 has most data s=
+tored
+> > > in lower 24 bits of each 32-bit word, and the highest 8 bits are then=
+ used
+> > > to pack data for the remaining sensors.
+> > >
+> > > Regards
+> > > ChenYu
+> >
+> > Hi Chen-Yu Tsai,
+> >
+> > Thank you very much for helping me testing this suggestion.
+> >
+> > Indeed, calibration data is stored differently in the mt8192 compared t=
+o mt8195.
+> > So, the mt8192's support will be delayed for now, to allow further debu=
+gging.
+> >
+> > In the mean time, we will only continue to upstream the remaining
+> > mt8195's source code, so it will get full LVTS support.
+> > A new series will be submitted soon.
+> >
+> > Would you please point me out to the bug in interrupt handling code?
+>
+> I just sent out two patches and CC-ed you on them. They are here just in =
+case:
+>
+> https://lore.kernel.org/linux-pm/20230328031037.1361048-1-wenst@chromium.=
+org/
+> https://lore.kernel.org/linux-pm/20230328031017.1360976-1-wenst@chromium.=
+org/
 
-On Mar 28, 2023 at 08:32:25 -0500, Nishanth Menon wrote:
-> On 18:59-20230328, Jai Luthra wrote:
-> > Add nodes for audio codec and sound card, enable the audio serializer
-> > (McASP1) under use from SK-AM62 E2 [1] onwards and update pinmux.
-> >=20
-> > Keep all audio related nodes in the common dtsi as they are exactly the
-> > same between SK-AM62 and SK-AM62-LP.
-> >=20
-> > Link: https://www.ti.com/lit/zip/sprr448 [1]
-> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts       | 11 ++++
-> >  arch/arm64/boot/dts/ti/k3-am625-sk.dts         | 11 ++++
-> >  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 77 ++++++++++++++++++=
-++++++++
-> >  3 files changed, 99 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot=
-/dts/ti/k3-am62-lp-sk.dts
-> > index b2ca19e3042e..5ed6b1abe87d 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> > @@ -70,6 +70,17 @@ vddshv_sdio: regulator-4 {
-> >  		states =3D <1800000 0x0>,
-> >  			 <3300000 0x1>;
-> >  	};
-> > +
-> > +	vcc_1v8: regulator-5 {
-> > +		/* output of TPS62824DMQ */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc_1v8";
-> > +		regulator-min-microvolt =3D <1800000>;
-> > +		regulator-max-microvolt =3D <1800000>;
-> > +		vin-supply =3D <&vcc_3v3_sys>;
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +	};
-> >  };
-> > =20
-> >  &main_pmx0 {
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/d=
-ts/ti/k3-am625-sk.dts
-> > index cdc0858dd1b2..2b861681e548 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> > @@ -87,6 +87,17 @@ vdd_sd_dv: regulator-4 {
-> >  		states =3D <1800000 0x0>,
-> >  			 <3300000 0x1>;
-> >  	};
-> > +
-> > +	vcc_1v8: regulator-5 {
-> > +		/* output of TPS6282518DMQ */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc_1v8";
-> > +		regulator-min-microvolt =3D <1800000>;
-> > +		regulator-max-microvolt =3D <1800000>;
-> > +		vin-supply =3D <&vcc_3v3_sys>;
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +	};
-> >  };
->=20
-> If the regulators are common, maybe we should first move the regulators
-> to common dtsi?
+Well received. I'm testing it.
+Thanks!
 
-Sorry, please disregard this patch, I went over the schematics again and=20
-found that I made a mistake here.
+Best regards,
+Balsam
 
-On SK-AM62-LP the audio codec gets the 1.8V from PMIC and not from a=20
-dedicated on-board regulator. On SK-AM62 we do have a dedicated on-board=20
-regulator for that.
-
-Will fix this in next version.
-
-Thanks,
-Jai
-
->=20
-> > =20
-> >  &main_pmx0 {
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm6=
-4/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > index 54318a07d50c..2500cb9ba323 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > @@ -81,6 +81,41 @@ led-0 {
-> >  			default-state =3D "off";
-> >  		};
-> >  	};
-> > +
-> > +	tlv320_mclk: clk-0 {
-> > +		#clock-cells =3D <0>;
-> > +		compatible =3D "fixed-clock";
-> > +		clock-frequency =3D <12288000>;
-> > +	};
-> > +
-> > +	codec_audio: sound {
-> > +		compatible =3D "simple-audio-card";
-> > +		simple-audio-card,name =3D "AM62x-SKEVM";
-> > +		simple-audio-card,widgets =3D
-> > +			"Headphone",	"Headphone Jack",
-> > +			"Line",		"Line In",
-> > +			"Microphone",	"Microphone Jack";
-> > +		simple-audio-card,routing =3D
-> > +			"Headphone Jack",	"HPLOUT",
-> > +			"Headphone Jack",	"HPROUT",
-> > +			"LINE1L",		"Line In",
-> > +			"LINE1R",		"Line In",
-> > +			"MIC3R",		"Microphone Jack",
-> > +			"Microphone Jack",	"Mic Bias";
-> > +		simple-audio-card,format =3D "dsp_b";
-> > +		simple-audio-card,bitclock-master =3D <&sound_master>;
-> > +		simple-audio-card,frame-master =3D <&sound_master>;
-> > +		simple-audio-card,bitclock-inversion;
-> > +
-> > +		simple-audio-card,cpu {
-> > +			sound-dai =3D <&mcasp1>;
-> > +		};
-> > +
-> > +		sound_master: simple-audio-card,codec {
-> > +			sound-dai =3D <&tlv320aic3106>;
-> > +			clocks =3D <&tlv320_mclk>;
-> > +		};
-> > +	};
-> >  };
-> > =20
-> >  &main_pmx0 {
-> > @@ -175,6 +210,15 @@ main_usb1_pins_default: main-usb1-pins-default {
-> >  			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
-> >  		>;
-> >  	};
-> > +
-> > +	main_mcasp1_pins_default: main-mcasp1-pins-default {
-> > +		pinctrl-single,pins =3D <
-> > +			AM62X_IOPAD(0x090, PIN_INPUT, 2) /* (M24) GPMC0_BE0N_CLE.MCASP1_ACL=
-KX */
-> > +			AM62X_IOPAD(0x098, PIN_INPUT, 2) /* (U23) GPMC0_WAIT0.MCASP1_AFSX */
-> > +			AM62X_IOPAD(0x08c, PIN_OUTPUT, 2) /* (L25) GPMC0_WEN.MCASP1_AXR0 */
-> > +			AM62X_IOPAD(0x084, PIN_INPUT, 2) /* (L23) GPMC0_ADVN_ALE.MCASP1_AXR=
-2 */
-> > +		>;
-> > +	};
-> >  };
-> > =20
-> >  &wkup_uart0 {
-> > @@ -205,6 +249,19 @@ &main_i2c1 {
-> >  	pinctrl-names =3D "default";
-> >  	pinctrl-0 =3D <&main_i2c1_pins_default>;
-> >  	clock-frequency =3D <400000>;
-> > +
-> > +	tlv320aic3106: audio-codec@1b {
-> > +		#sound-dai-cells =3D <0>;
-> > +		compatible =3D "ti,tlv320aic3106";
-> > +		reg =3D <0x1b>;
-> > +		ai3x-micbias-vg =3D <1>;	/* 2.0V */
-> > +
-> > +		/* Regulators */
-> > +		AVDD-supply =3D <&vcc_3v3_sys>;
-> > +		IOVDD-supply =3D <&vcc_3v3_sys>;
-> > +		DRVDD-supply =3D <&vcc_3v3_sys>;
-> > +		DVDD-supply =3D <&vcc_1v8>;
-> > +	};
-> >  };
-> > =20
-> >  &sdhci0 {
-> > @@ -272,3 +329,23 @@ &usb1 {
-> >  	pinctrl-names =3D "default";
-> >  	pinctrl-0 =3D <&main_usb1_pins_default>;
-> >  };
-> > +
-> > +&mcasp1 {
-> > +	status =3D "okay";
-> > +	#sound-dai-cells =3D <0>;
-> > +
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&main_mcasp1_pins_default>;
-> > +
-> > +	op-mode =3D <0>;          /* MCASP_IIS_MODE */
-> > +	tdm-slots =3D <2>;
-> > +
-> > +	serial-dir =3D <  /* 0: INACTIVE, 1: TX, 2: RX */
-> > +	       1 0 2 0
-> > +	       0 0 0 0
-> > +	       0 0 0 0
-> > +	       0 0 0 0
-> > +	>;
-> > +	tx-num-evt =3D <32>;
-> > +	rx-num-evt =3D <32>;
-> > +};
-> >=20
-> > --=20
-> > 2.40.0
-> >=20
->=20
-> --=20
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DD=
-B5 849D 1736 249D
-
---p5vaf5h5yzeew3b3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmQj8QIACgkQQ96R+SSa
-cUWOxRAAu81bwSHvwZBh0XyuQOd8HKA2OEIiVqqHiPC75FOibDvdbckuLRmd7zxa
-RRjh2Ke4s9/efJHL2RVGWYCwlRAAAW+Rg1o1w/Hwc3yMYBrb+ZSHvIkfwLgLySYq
-+Txv60UQ7notwdgm2NGxxR2nmXXA7X/4MW7VozhObgJXvYpim6kbl0mK4ujbl/DX
-ALCcMTKsx5ZeNVtmyVSAS7idqY0HRHRgNBIOCKqQha4oyRK00klavxBLp4ivS4UW
-udwVMBcLeU6HdrFVqlEVcUu3jns232ian4NxkW5PMXotTdkMb0GqMq/pJJw5PGm5
-UTvkXmVNuAhdzg4a5En7URm26jYf5n8d4eaDeLez8ioOAJQNKRUftHxvJM2nEoNr
-EUsVBAtSVuuvEIF+NlpgQz7u/pQWXvC5hNkw+bVGcVhsIWLbLZRshAwU9WRVrQyd
-lhzKSxAjXToS+AzVpC2QPg+5Jm2K6GKwB2i2fnW6k5CpUGx/eWWRxv4JqgAjmZwB
-pG3LxtMfOTj2XAD6iC8wQ/mleqUmq9UjtWLGs3MXE2dUGi0fR6qMEDgLZoes4s5/
-u5j0ri9pjrQaPE/51Qv4DFbk3pYt+EbcKWfyogkmJr956yBbR/x0t47iCdxh9H2o
-a0w8i5DwlXF9ya6v8QDRvmXZFvEpGglaqM0clNDLrQ0vEAV6CnM=
-=Dim+
------END PGP SIGNATURE-----
-
---p5vaf5h5yzeew3b3--
+>
+> ChenYu
