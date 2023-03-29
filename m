@@ -2,277 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8596CCF3D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 03:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF70F6CCFC1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:03:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbjC2BMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 21:12:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51462 "EHLO
+        id S229756AbjC2CDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 22:03:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjC2BMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 21:12:47 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A941FE9
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 18:12:45 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id x17so18152997lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 18:12:45 -0700 (PDT)
+        with ESMTP id S229484AbjC2CD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:03:29 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E491BFC;
+        Tue, 28 Mar 2023 19:03:28 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id f6-20020a17090ac28600b0023b9bf9eb63so14635326pjt.5;
+        Tue, 28 Mar 2023 19:03:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680052363;
+        d=gmail.com; s=20210112; t=1680055408;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bD0WuHcqP0jnnIO4Z4zALTMiyM+BdS1Or/XHCneUJyo=;
-        b=PP5AoEw3qY9FLNfDXALB5T16AgDALGWht16Gax2DfReMMcjQK6ybgazwrEgRO3EALx
-         TCKvNk/f1a4BGLG0tSLayZNqPA4+0BKCVru9vzqn9YOjGGoQm8UVy4iFh++Cx3D2z6dP
-         l7wpp0uryBScnRDjyn7PiuSBLYP36LuPi9dFzkvop19TP1vpL/Joll8uAEkmLa/NwEQ9
-         Bf1G+ejesGbwF2JL+7CEvUPYHDtjA4/JxZSbFMwHcJXCjSn4F+W7X1MTy0obur1NkgpX
-         0EmB3lwdP+n/BNJ/OngJV3RN9517o1ezJQnuRHLbNFSuXivUAJI+Kmj2ugkn0E99MpwS
-         /6cA==
+        bh=p7SiNS5Tt8HG7sS+rmjltvOQvXGDc1Jn3ZRR7zsPOBU=;
+        b=GyfPKUNjby+p9RTdGu6xQ/gPzYa7haQKt9nCxpw7OhlklYTw3S3lDNqj0fqALWq20i
+         6D0UsSCf4FI9heZNLCRlVrxXnJ4OUwtca+8DAri/Ez125hxUmrXU6GZXhPhgnc8cShIt
+         +PEBkMYxrOQyS79zLjYjia+RLpzfDxuVwE4484cATm+Sb6IjSAKQfwOhpqdLdbDz9kUO
+         mKzFTuvafFv7nlKCg4DIylFn6jNbL3LQTc/WhFpA8nKIXHW/XTMbNnskCVL8yrQWqtIJ
+         QXTprbc8GiRObrDU+V9ywIvjy+p4DM5N3MZufErAevwQYZbppSgmHobK1wT0qJtJNydF
+         2e4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680052363;
+        d=1e100.net; s=20210112; t=1680055408;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bD0WuHcqP0jnnIO4Z4zALTMiyM+BdS1Or/XHCneUJyo=;
-        b=kprnoz92c628WZIkNZiCEXUSLEhu2p2f9wr3lDxIg5imhpH+Wpzv4ECUiezatBQc69
-         1roPfE4Gbz3OpFSOllXEdp8ltV67GqGY90PbDtoECemE2IF/DjHWojtiGbL7z/6tqA2S
-         qGazvwleLG9LWVN17tPZN4HZON44W8uLBJkFGq09Dmnr1bIaiWHwjmafRINPjwVq+lwk
-         PVZ5udn9cm9GASlK/J+ebpfSkGHF+TFzagRJ7rr62RSKEoCWUC+S+xlUQ+mzK441GTVF
-         1nemSXJAexTuFWvgxx9NdX4VVpPVSGkmN5CTt42Lfp6wBx4y7egnM9UJdUUFDq+nQOm6
-         SWQA==
-X-Gm-Message-State: AAQBX9eERXDXcqoMUB/G3dwdIOgOANbQaSkzUf+qnByirgrKj+v/ZiMA
-        OjFkOKFtm5Dd+0N/WswEOLaumA==
-X-Google-Smtp-Source: AKy350YJxJitwRKp+/SoxvP/GkKDIa3U96VIE10QYl7FOdWMNj3XVj2T6lVGbXyC/FJT0lsMV0oaBw==
-X-Received: by 2002:ac2:5fa5:0:b0:4dd:9e4a:4c3b with SMTP id s5-20020ac25fa5000000b004dd9e4a4c3bmr4107519lfe.17.1680052363332;
-        Tue, 28 Mar 2023 18:12:43 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id c18-20020a05651221b200b004dc53353d15sm5248519lft.281.2023.03.28.18.12.41
+        bh=p7SiNS5Tt8HG7sS+rmjltvOQvXGDc1Jn3ZRR7zsPOBU=;
+        b=YarIzOB/GBMogQdLYbanzXW4GIA3qy0hDwWh0b+/susqidadCkFPbhULcF1/Avhzo5
+         d9Z6wqTfVfKwd6iBr8NvWqQgsZg7OBuNYZcov/TdcUe5plCKYgKXwwfuAe6TjY7C4jr+
+         vBLgbBrmleGElX+w1TCR8T+1xXund7ZKoiY55hHFNs5tmzE16K3rr8o+0BpARzXKo4gR
+         SVEBbWbsWTey/JEtHuk/PF1JP0x+M5A61Idj8X2Xpk/jrBMJyswODVAcV84RVFeVD1cI
+         xagtrXmozfl3v73YJ+KLwbUMyk6NyfaOYwhz0EZKQsvqApP7rsLOjLcSYu3J65hqBHgx
+         96tw==
+X-Gm-Message-State: AAQBX9c3xRoCaeD84JVlaG2lCK7/bCIeLQzJg2oT/cfc+JUqyKmcIACG
+        PAWmMI1LT6/2bu26c51/eFw=
+X-Google-Smtp-Source: AKy350Zpgds9UeOT2MW92TTkVp6A2fhLrdm1OHYX0Es+2/MxXjDidNkhAwPpY0BATp4GzAHfTzZfcw==
+X-Received: by 2002:a17:903:120b:b0:1a0:42d4:e38a with SMTP id l11-20020a170903120b00b001a042d4e38amr22998051plh.11.1680055407730;
+        Tue, 28 Mar 2023 19:03:27 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id s14-20020a170902b18e00b001a1ccb37847sm17583175plr.146.2023.03.28.19.03.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 18:12:42 -0700 (PDT)
-Message-ID: <911d3f32-b020-94f7-2ac5-5d72b35ba901@linaro.org>
-Date:   Wed, 29 Mar 2023 03:12:41 +0200
+        Tue, 28 Mar 2023 19:03:27 -0700 (PDT)
+Message-ID: <b7977069-4f82-76a1-10c1-b6400862c2c4@gmail.com>
+Date:   Wed, 29 Mar 2023 10:03:24 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 00/14] GMU-less A6xx support (A610, A619_holi)
+Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device
+ tree
 Content-Language: en-US
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230223-topic-gmuwrapper-v4-0-e987eb79d03f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Stephen Boyd <sboyd@kernel.org>, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-9-ychuang570808@gmail.com>
+ <ab4e0bc8834b7e618e9a88ea6a1c30cc.sboyd@kernel.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <ab4e0bc8834b7e618e9a88ea6a1c30cc.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear Stephen,
 
 
-On 14.03.2023 16:28, Konrad Dybcio wrote:
-> v3 -> v4:
-> - Drop the mistakengly-included and wrong A3xx-A5xx bindings changes
-> - Improve bindings commit messages to better explain what GMU Wrapper is
-> - Drop the A680 highest bank bit value adjustment patch
-> - Sort UBWC config variables in a reverse-Christmass-tree fashion [4/14]
-> - Don't alter any UBWC config values in [4/14]
->   - Do so for a619_holi in [8/14]
-> - Rebase on next-20230314 (shouldn't matter at all)
-After Johan's recent runtime PM fix, this kinda broke..
-When entering the error-fail-retry path (e.g. when not embedding
-the firmware in initrd, then starting a DE and letting the kernel
-get the fw from the root partition), the GPU does not wake up fully:
-
-[   24.744344] msm_dpu 5e01000.display-controller: [drm:adreno_wait_ring] *ERROR* timeout waiting for space in ringbuffer 0
-[   25.744343] [drm:a6xx_idle] *ERROR* A619: a6xx_hw_init: timeout waiting for GPU to idle: status 00800005 irq 00800000 rptr/wptr 12/12
-[   25.744401] msm_dpu 5e01000.display-controller: [drm:adreno_load_gpu] *ERROR* gpu hw init failed: -22
-[   25.744494] adreno 5900000.gpu: [drm:a6xx_irq] *ERROR* gpu fault ring 0 fence ffffff00 status 00800005 rb 000c/000c ib1 0000000000000000/0000 ib2 0000000000000000/0000
-[   25.744544] msm_dpu 5e01000.display-controller: [drm:recover_worker] *ERROR* A619: hangcheck recover!
+Thanks for your advice.
 
 
-Adding a random 1s sleep in hw_init() fixes it. Because of course it does.
-Investigating that, merging this will be suboptimal until then..
+On 2023/3/29 上午 01:57, Stephen Boyd wrote:
+> Quoting Jacky Huang (2023-03-27 19:19:08)
+>> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+>> new file mode 100644
+>> index 000000000000..0740b0b218a7
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+>> @@ -0,0 +1,231 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (C) 2023 Nuvoton Technology Corp.
+>> + * Author: Shan-Chun Hung <schung@nuvoton.com>
+>> + *         Jacky huang <ychuang3@nuvoton.com>
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>> +#include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
+>> +
+>> +/ {
+>> +       compatible = "nuvoton,ma35d1";
+>> +       interrupt-parent = <&gic>;
+>> +       #address-cells = <2>;
+>> +       #size-cells = <2>;
+>> +
+>> +       cpus {
+>> +               #address-cells = <2>;
+>> +               #size-cells = <0>;
+>> +
+>> +               cpu0: cpu@0 {
+>> +                       device_type = "cpu";
+>> +                       compatible = "arm,cortex-a35";
+>> +                       reg = <0x0 0x0>;
+>> +                       enable-method = "psci";
+>> +                       next-level-cache = <&L2_0>;
+>> +               };
+>> +
+>> +               cpu1: cpu@1 {
+>> +                       device_type = "cpu";
+>> +                       compatible = "arm,cortex-a35";
+>> +                       reg = <0x0 0x1>;
+>> +                       enable-method = "psci";
+>> +                       next-level-cache = <&L2_0>;
+>> +               };
+>> +
+>> +               L2_0: l2-cache0 {
+> Just l2-cache for the node name. Doesn't it go under the cpu0 node as
+> well?
 
-Konrad
-> 
-> v3: https://lore.kernel.org/r/20230223-topic-gmuwrapper-v3-0-5be55a336819@linaro.org
-> 
-> v2 -> v3:
-> New dependencies:
-> - https://lore.kernel.org/linux-arm-msm/20230223-topic-opp-v3-0-5f22163cd1df@linaro.org/T/#t
-> - https://lore.kernel.org/linux-arm-msm/20230120172233.1905761-1-konrad.dybcio@linaro.org/
-> 
-> Sidenote: A speedbin rework is in progress, the of_machine_is_compatible
-> calls in A619_holi are ugly (but well, necessary..) but they'll be
-> replaced with socid matching in this or the next kernel cycle.
-> 
-> Due to the new way of identifying GMU wrapper GPUs, configuring 6350
-> to use wrapper would cause the wrong fuse values to be checked, but that
-> will be solved by the conversion + the ultimate goal is to use the GMU
-> whenever possible with the wrapper left for GMU-less Adrenos and early
-> bringup debugging of GMU-equipped ones.
-> 
-> - Ship dt-bindings in this series as we're referencing the compatible now
-> 
-> - "De-staticize" -> "remove static keyword" [3/15]
-> 
-> - Track down all the values in [4/15]
-> 
-> - Add many comments and explanations in [4/15]
-> 
-> - Fix possible return-before-mutex-unlock [5/15]
-> 
-> - Explain the GMU wrapper a bit more in the commit msg [5/15]
-> 
-> - Separate out pm_resume/suspend for GMU-wrapper GPUs to make things
->   cleaner [5/15]
-> 
-> - Don't check if `info` exists, it has to at this point [5/15]
-> 
-> - Assign gpu->info early and clean up following if statements in
->   a6xx_gpu_init [5/15]
-> 
-> - Determine whether we use GMU wrapper based on the GMU compatible
->   instead of a quirk [5/15]
-> 
-> - Use a struct field to annotate whether we're using gmu wrapper so
->   that it can be assigned at runtime (turns out a619 holi-ness cannot
->   be determined by patchid + that will make it easier to test out GMU
->   GPUs without actually turning on the GMU if anybody wants to do so)
->   [5/15]
-> 
-> - Unconditionally hook up gx to the gmu wrapper (otherwise our gpu
->   will not get power) [5/15]
-> 
-> - Don't check for gx domain presence in gmu_wrapper paths, it's
->   guaranteed [5/15]
-> 
-> - Use opp set rate in the gmuwrapper suspend path [5/15]
-> 
-> - Call opp functions on the GPU device and not on the DRM device of
->   mdp4/5/DPU1 half the time (WHOOOOPS!) [5/15]
-> 
-> - Disable the memory clock in a6xx_pm_suspend instead of enabling it
->   (moderate oops) [5/15]
-> 
-> - Call the forgotten clk_bulk_disable_unprepare in a6xx_pm_suspend [5/15]
-> 
-> - Set rate to FMIN (a6xx really doesn't like rate=0 + that's what
->   msm-5.x does anyway) before disabling core clock [5/15]
-> 
-> - pm_runtime_get_sync -> pm_runtime_resume_and_get [5/15]
-> 
-> - Don't annotate no cached BO support with a quirk, as A619_holi is
->   merged into the A619 entry in the big const struct - this means
->   that all GPUs operating in gmu wrapper configuration will be
->   implicitly treated as if they didn't have this feature [7/15]
-> 
-> - Drop OPP rate & icc related patches, they're a part of a separate
->   series now; rebase on it
-> 
-> - Clean up extra parentheses [8/15]
-> 
-> - Identify A619_holi by checking the compatible of its GMU instead
->   of patchlevel [8/15]
-> 
-> - Drop "Fix up A6XX protected registers" - unnecessary, Rob will add
->   a comment explaining why
-> 
-> - Fix existing UBWC values for A680, new patch [10/15]
-> 
-> - Use adreno_is_aXYZ macros in speedbin matching [13/15] - new patch
-> 
-> v2: https://lore.kernel.org/linux-arm-msm/20230214173145.2482651-1-konrad.dybcio@linaro.org/
-> 
-> v1 -> v2:
-> - Fix A630 values in [2/14]
-> - Fix [6/14] for GMU-equipped GPUs
-> 
-> Link to v1: https://lore.kernel.org/linux-arm-msm/20230126151618.225127-1-konrad.dybcio@linaro.org/
-> 
-> This series concludes my couple-weeks-long suffering of figuring out
-> the ins and outs of the "non-standard" A6xx GPUs which feature no GMU.
-> 
-> The GMU functionality is essentially emulated by parting out a
-> "GMU wrapper" region, which is essentially just a register space
-> within the GPU. It's modeled to be as similar to the actual GMU
-> as possible while staying as unnecessary as we can make it - there's
-> no IRQs, communicating with a microcontroller, no RPMh communication
-> etc. etc. I tried to reuse as much code as possible without making
-> a mess where every even line is used for GMU and every odd line is
-> used for GMU wrapper..
-> 
-> This series contains:
-> - plumbing for non-GMU operation, if-ing out GMU calls based on
->   GMU presence
-> - GMU wrapper support
-> - A610 support (w/ speedbin)
-> - A619 support (w/ speedbin)
-> - couple of minor fixes and improvements
-> - VDDCX/VDDGX scaling fix for non-GMU GPUs (concerns more than just
->   A6xx)
-> - Enablement of opp interconnect properties
-> 
-> A619_holi works perfectly fine using the already-present A619 support
-> in mesa. A610 needs more work on that front, but can already replay
-> command traces captures on downstream.
-> 
-> NOTE: the "drm/msm/a6xx: Add support for A619_holi" patch contains
-> two occurences of 0x18 used in place of a register #define, as it's
-> supposed to be RBBM_GPR0_CNTL, but that will only be present after
-> mesa-side changes are merged and headers are synced from there.
-> 
-> Speedbin patches depend on:
-> https://lore.kernel.org/linux-arm-msm/20230120172233.1905761-1-konrad.dybcio@linaro.org/
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Konrad Dybcio (14):
->       dt-bindings: display/msm: gpu: Document GMU wrapper-equipped A6xx
->       dt-bindings: display/msm/gmu: Add GMU wrapper
->       drm/msm/a6xx: Remove static keyword from sptprac en/disable functions
->       drm/msm/a6xx: Extend and explain UBWC config
->       drm/msm/a6xx: Introduce GMU wrapper support
->       drm/msm/a6xx: Remove both GBIF and RBBM GBIF halt on hw init
->       drm/msm/adreno: Disable has_cached_coherent in GMU wrapper configurations
->       drm/msm/a6xx: Add support for A619_holi
->       drm/msm/a6xx: Add A610 support
->       drm/msm/a6xx: Fix some A619 tunables
->       drm/msm/a6xx: Use "else if" in GPU speedbin rev matching
->       drm/msm/a6xx: Use adreno_is_aXYZ macros in speedbin matching
->       drm/msm/a6xx: Add A619_holi speedbin support
->       drm/msm/a6xx: Add A610 speedbin support
-> 
->  .../devicetree/bindings/display/msm/gmu.yaml       |  49 +-
->  .../devicetree/bindings/display/msm/gpu.yaml       |  57 ++-
->  drivers/gpu/drm/msm/adreno/a6xx_gmu.c              |  57 ++-
->  drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |   2 +
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c              | 494 ++++++++++++++++++---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.h              |   1 +
->  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        |  14 +-
->  drivers/gpu/drm/msm/adreno/adreno_device.c         |  17 +-
->  drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  33 +-
->  9 files changed, 632 insertions(+), 92 deletions(-)
-> ---
-> base-commit: 647ef0d33d52a103b50469d7109b63d453686c11
-> change-id: 20230223-topic-gmuwrapper-b4fff5fd7789
-> 
-> Best regards,
+This describes the level-2 cache which is external to and shared by cpu0 
+& cpu1.
+And only level-1 cache is inside of CPU core.
+L2_0 is must, because both cpu0 and cpu1 has a next-level-cache = 
+<&L2_0> property.
+
+Many identical example of l2-cache node can be found in arm64 dts, such 
+as k3-arm642.dtsi,
+rk3328.dtsi, mt8195.dtsi, etc. Here is just a copy of similar arm64 
+multi-core SoCs.
+
+So we would like to keep this unchanged. Is it OK for you? Thanks.
+
+
+>> +                       compatible = "cache";
+>> +                       cache-level = <2>;
+>> +               };
+>> +       };
+>> +
+>> +       psci {
+>> +               compatible = "arm,psci-0.2";
+>> +               method = "smc";
+>> +       };
+>> +
+>> +       timer {
+>> +               compatible = "arm,armv8-timer";
+>> +               interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
+>> +                             IRQ_TYPE_LEVEL_LOW)>, /* Physical Secure */
+>> +                            <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
+>> +                             IRQ_TYPE_LEVEL_LOW)>, /* Physical Non-Secure */
+>> +                            <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
+>> +                             IRQ_TYPE_LEVEL_LOW)>, /* Virtual */
+>> +                            <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
+>> +                             IRQ_TYPE_LEVEL_LOW)>; /* Hypervisor */
+>> +               clock-frequency = <12000000>;
+> Remove this property. The frequency should be read by the driver.
+
+I will remove it.
+
+>> +               interrupt-parent = <&gic>;
+>> +       };
+> Please create an 'soc' node for the SoC to hold all the nodes that have
+> a reg property.
+
+OK, we will use soc node in the next version.
+
+>> +
+>> +       sys: system-management@40460000 {
+>> +               compatible = "nuvoton,ma35d1-sys", "syscon", "simple-mfd";
+>> +               reg = <0x0 0x40460000 0x0 0x200>;
+>> +
+>> +               reset: reset-controller {
+>> +                       compatible = "nuvoton,ma35d1-reset";
+>> +                       #reset-cells = <1>;
+>> +               };
+>> +       };
+>> +
+>> +       clk: clock-controller@40460200 {
+>> +               compatible = "nuvoton,ma35d1-clk", "syscon";
+>> +               reg = <0x00000000 0x40460200 0x0 0x100>;
+>> +               #clock-cells = <1>;
+>> +               clocks = <&clk_hxt>;
+>> +               nuvoton,sys = <&sys>;
+>> +       };
+> It looks like the device at 40460000 is a reset and clock controller.
+> Just make it one node and register the clk or reset device as an
+> auxiliary device.
+
+40460000 is for system control registers, including power contrl, 
+multifunction pin control,
+usb phy control, IP reset control, power-on setting information, and 
+many other miscellaneous controls.
+The registers of reset controller is only a subset of system control 
+registers.
+
+40460200 is for clock controller which is independent of the system 
+control integration
+The register base of clock controller is very close to system 
+controller, but in fact the two are independent.
+
+
+>> +
+>> +       gic: interrupt-controller@50801000 {
+>> +               compatible = "arm,gic-400";
+>> +               reg =   <0x0 0x50801000 0 0x1000>, /* GICD */
+>> +                       <0x0 0x50802000 0 0x2000>, /* GICC */
+>> +                       <0x0 0x50804000 0 0x2000>, /* GICH */
+>> +                       <0x0 0x50806000 0 0x2000>; /* GICV */
+>> +               #interrupt-cells = <3>;
+>> +               interrupt-parent = <&gic>;
+>> +               interrupt-controller;
+>> +               interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x13) |
+>> +                             IRQ_TYPE_LEVEL_HIGH)>;
+>> +       };
+>> +
+>> +       uart0:serial@40700000 {
+> Add a space after :
+
+I will fix it. Thank you.
+
+>> +               compatible = "nuvoton,ma35d1-uart";
+>> +               reg = <0x0 0x40700000 0x0 0x100>;
+>> +               interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+>> +               clocks = <&clk UART0_GATE>;
+>> +               status = "disabled";
+>> +       };
+
+
+Best regards,
+Jacky Huang
+
+
