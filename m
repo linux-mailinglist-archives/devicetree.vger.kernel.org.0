@@ -2,125 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C066CD6FC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D63E56CD706
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231252AbjC2Jwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 05:52:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51518 "EHLO
+        id S231386AbjC2Jxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 05:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbjC2Jwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:52:39 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2914200
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:52:38 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id y14so15023085wrq.4
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:52:38 -0700 (PDT)
+        with ESMTP id S231272AbjC2Jxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:53:44 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD2B46B1
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:53:22 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id k17so18517557ybm.11
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680083557;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KweLqeTYS2Ohdp0JXAvcBR+AYZD2Iz+VUWSRR2JWGMw=;
-        b=HqlZ9sMRyHoUrBFh0KoCVRzDqCmYNLcwoluVryjlRCLLEh1v9Bsj8dwlzExbNulINa
-         yO4mF5JmUHrNy32vFA7Ty7skQ/WMgOb/ZGYoHwAHbZ3y6DFJHWpgE+V/l6Xgm/0E2ae5
-         BUQc5T7UUoID+gpIfNNEQ9wjzyrPw6/mAHBYSva7NI8fda4jLJ1P5euLL2WW9kYRBfgd
-         6zuWzH4XKN/wiNdfk+gQUcoaljLauRZSeSvuWg25cWrWD6J9z2MHIUVT5VF7EfCN/dc5
-         C+Ai95JF/y5bGg5ruxAoAzIP9IojESpOpSvWINRwtZ8kI0/FdQqUdl0x6RM6b59tjhfy
-         MwCA==
+        d=linaro.org; s=google; t=1680083595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4X3khqF5xFkGR6ddfCz2qgESEMRppgaegQNKeKhCKME=;
+        b=pIDID8ycm1GH79KcllagHYSuh0LHg3M9m+Cg2qN2yDkyy7BL4JsDBuR0ZJySBSbgNC
+         FK8/4mr5KhFdlY15orLqTmbSl8Y8kAhNRAgGTICMxtQ0U/R4PzwYwpfb/KgKkX0iWpuu
+         XpBNrsb0PiWZ7f6BFCMW6wVf5cRxT7UV02nZ0DI0MP9uuKAoSiRWrMKr7Z9XTu9C+Wb0
+         4Z/Zhb19McOVziA+YamBIxv0k7qz5LLszB6uwAS5E8iHudfC1xjAPmZgxxzjdQMF5FA6
+         +mSQ00dfyesfzUu1pMU8DFFBDv6ErpspeFu4Vs/sbxXStYxWhHL9jTdniSOGuRzGDV6P
+         LXTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680083557;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KweLqeTYS2Ohdp0JXAvcBR+AYZD2Iz+VUWSRR2JWGMw=;
-        b=qDTmpgZukhQH6dTDcFI5YWYkVj6WTS3gcqdvoz235IW52eZygeS9H+/zuULJhKNtf6
-         PkidZvIo7JioQy8t6WFKqUI/P5N3S/TWKZKlkJoG+w6LWLbcPNIPura9vq81Ie4n0Wi8
-         umqt9ome6uccAarrqdibD11T69WS08k8jWm4RFVGJoV31EVPBsL4Bqp1bY7Z7XDbOsIK
-         If4T2iPWYh/hC5H1O1t+qMDbmEfLYKRhfIQnrlF03LN2IdMsyQ31CVfZIkmjC8ZKHoZV
-         fL3WqxT5/miCF3uhU7tWjD9M+k3R5phmqLKJ8WALClLw8YcY4VmLNChwONAvnVatoMuq
-         FbNQ==
-X-Gm-Message-State: AAQBX9dfPaKUngTsY7y5+eDXcSbj4CtgbCrXGBNAzgGr3R3lKF9LUSV9
-        EmTUIeo9UrVqtLZpRnqD+vBCjQ==
-X-Google-Smtp-Source: AKy350YoxMUJF5MkGRYy9jG13/cYrGjkvHSJkFdz+xhnZvN3qTnjr/up4aM/z3jWL72ETzzkpgXkWA==
-X-Received: by 2002:adf:db0a:0:b0:2df:7c0a:df33 with SMTP id s10-20020adfdb0a000000b002df7c0adf33mr9995255wri.30.1680083557649;
-        Wed, 29 Mar 2023 02:52:37 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id a18-20020a5d4d52000000b002d1e49cff35sm29667158wru.40.2023.03.29.02.52.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 02:52:37 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Wed, 29 Mar 2023 11:52:25 +0200
-Subject: [PATCH RESEND 6/6] arm64: dts: mediatek: add iommu support for
- mt8365 SoC
+        d=1e100.net; s=20210112; t=1680083595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4X3khqF5xFkGR6ddfCz2qgESEMRppgaegQNKeKhCKME=;
+        b=cRLPV86ilFUyqVrFaN8Xvzh1CRD/6CtGNaAV0+YuPPdOCcOIGBuS1J9f8CqUStyvcU
+         myQoNkKIkGD04yPv+JZb5G/3X3cEeDGshDQkUocEJRssemkpzN5PiTYDGBrkIcFrFYJz
+         Fm1Sl2qLLGs53uEtn2JpHYhDnNxuNQ742zY5fLAL37caXJvmcujpiZBBe8UYdG3QYWV8
+         CPceCnTVZrRoaBLPgQixeUg04xBglX80Cwdz6GF+hX3Tj9Ecni/3JeZUXgUgbMNZTXGM
+         h0ynKPTuu1L4jN48QnYCLMVVQEucj9MgVIC90PG0POX9R2WrGQPtvg9NMC77H+i3NKaN
+         fClg==
+X-Gm-Message-State: AAQBX9e69gXmfNbD/6BaDRW9jck6hgkeYCjitHGrPHKKPcx8UCrJ6XY1
+        jnILpJPk9eaD8LhrlKkYxLXdNxxI7ej0iKnFphGc7QhKY2zQg66+
+X-Google-Smtp-Source: AKy350YCRBqvLwyxmkGTN1H7PLM5ya1V6tDSouGzDj2liGJDjszuMmKMzk5SB23ouJDdK71Yr5sfI3x2GuG2d1uL0Vg=
+X-Received: by 2002:a05:6902:72e:b0:b6c:f26c:e5ab with SMTP id
+ l14-20020a056902072e00b00b6cf26ce5abmr12849242ybt.3.1680083595433; Wed, 29
+ Mar 2023 02:53:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230207-iommu-support-v1-6-4a902f9aa412@baylibre.com>
-References: <20230207-iommu-support-v1-0-4a902f9aa412@baylibre.com>
-In-Reply-To: <20230207-iommu-support-v1-0-4a902f9aa412@baylibre.com>
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+References: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 29 Mar 2023 11:52:39 +0200
+Message-ID: <CAPDyKFqP9LbnnwwK3o7+C4K-xJZmDhM+QbXy20RsKVx+hsCgdA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8250: drop incorrect domain idle
+ states properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=966; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=nW+TPcLBymBQumCyH7WLeKWdyOoyUYLYkL7HqpljFxc=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkJApfW1/fAC/a3iYXOsk9RlBGKnGk0HAwAjRg6xvk
- hYEdgMSJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZCQKXwAKCRArRkmdfjHURQqyEA
- CvE6mTUTCNWwjiA70MqDxweWMM/VPe2qK6QHZGay3IFpYohw1Z5F04gtPUJsecxo0gCwGZERF26YMo
- +pZCs3d2+bVfxztMABmi7B4AGQcXpNISVGseGoyVNMVS8Dqd5RoIzl5vVA/vTKpwCPxWaxxuzBtLKT
- dSYTe5I6LK0jBbCzOw/VuJptjQUY6yX5eYUMNsW58ecrVWFsR72ZTSgiTCHdWBSrNeKFQI57W0yhXA
- 4jYf8PUNp2nJhwlapg7QIOueAaJynx9Xra5N17+jk0rVl2/rI3n3RsspgflsrWcOEuijUOcNCE7tYF
- DYGILJecNpQekLdvfjUW0QumB2teAHOk6iTg6hkwsN4TrjddhwvgFMbcK5YrBPyfkFZqLjMRPbSPyu
- SpW13uNZ6B1rSKpNlrDEseKj/ZX1mKxOrfZJIcxyz2AMW4gOlwynnD4Ry9rcdlmQJ8rhf9AgzMfwaP
- cUEpwnti33jNP1tlZrjZhnhiks3vxz4cED4nlyPUdpY9rVDimi+J2rgYejDmv66Q5kWyC+yfT/g1Ez
- aRDFtF4Mxamljws1Rr6xWldfSfurQ1rXxW+J4exwcrs0WVGH5LXS0TXqMxhAdTWx6sNJETzxqak7uV
- 9MbPXIrCMGpQMST4WJWhu8ioojdCaexIp7p2tgYEVerXHMe5arDLtq1XPSGg==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iommu support in the SoC DTS using the 4 local arbiters (LARBs)
+On Fri, 24 Mar 2023 at 08:38, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Domain idle states do not use 'idle-state-name' and 'local-timer-stop':
+>
+>   sm8250-hdk.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
+>
+> Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Link: https://lore.kernel.org/all/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org/
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index db0b897f58bb..c713471c59dc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -456,6 +456,14 @@ sysirq: interrupt-controller@10200a80 {
- 			reg = <0 0x10200a80 0 0x20>;
- 		};
- 
-+		iommu: iommu@10205000 {
-+			compatible = "mediatek,mt8365-m4u";
-+			reg = <0 0x10205000 0 0x1000>;
-+			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_LOW>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>, <&larb3>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		infracfg_nao: infracfg@1020e000 {
- 			compatible = "mediatek,mt8365-infracfg", "syscon";
- 			reg = <0 0x1020e000 0 0x1000>;
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 79d67b466856..9cf2de87c632 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -354,12 +354,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+>                 domain-idle-states {
+>                         CLUSTER_SLEEP_0: cluster-sleep-0 {
+>                                 compatible = "domain-idle-state";
+> -                               idle-state-name = "cluster-llcc-off";
 
--- 
-2.25.1
+FYI: If someone wants to add support for this property, I wouldn't mind.
 
+>                                 arm,psci-suspend-param = <0x4100c244>;
+>                                 entry-latency-us = <3264>;
+>                                 exit-latency-us = <6562>;
+>                                 min-residency-us = <9987>;
+> -                               local-timer-stop;
+>                         };
+>                 };
+>         };
+> --
+> 2.34.1
+>
+
+Kind regards
+Uffe
