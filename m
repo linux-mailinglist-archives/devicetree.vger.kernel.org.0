@@ -2,111 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B867B6CF18B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4E6D6CF192
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbjC2R7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 13:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52598 "EHLO
+        id S229811AbjC2R7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 13:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjC2R7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:59:08 -0400
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2064.outbound.protection.outlook.com [40.107.94.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2C52132;
-        Wed, 29 Mar 2023 10:59:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j8Sa5UAjM5UHRXzXy8UWrBoXwQlVtaA+8jMeuHfUHb7n9z2EOjmt+9Kc0cIooO+z8AuOTLmxQX+Lmbo4UGe8pnOschd4J8JOnlHHBci03O3DymxzSWDjCM4uA0+MBUucItWfrcrJ4k9cb5zC68NzwOWuaTy9TOWq566pt5P8nAaPKzMY/hO5ShD5h0uA011dcwBAq/VKhE5n2AsTgXr6DJErx4raO05o3V0OC75jM4Q2YVTbabr6QV96ne8+mI7AhCht6v2+sKV9W9SsyLyXR58Io5Dc2hxbrSHM0pbhPTMjGEqc9Xt0EuyVvNA2/8MbksAP0TO7+ykUmgHUlUnXMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZOPneTcbaqfS9zLowMOyXCiplcRCbA5JdYHvdLSXTiw=;
- b=hPzA9uRoaPa03i0Vl8Dj7slquXGvM4ypkC2ls/AopuwJzwj6Obu9AzA16j7m00C/G+FG7IJ8DYv+zRMp9pwxM2Bgtqds96EysstW0p6qyJek8tQMRM5/QghrCE4aCtCgpv6dIj6ZJYLuNoFcXRlipBQCSnD1UI7eYmY/I8ky3DqZo3FMcdLmuY1vnmzRz87TAXo6dAYz8F24/DMXq6yFtWX2KDeW3d+O5am5GmSKoA3QrFpkBX5zlVVWtkV9K2WGQGgtMlJaF5dTwNtMQBdu6h1pJ7JyMrP8K0b2at2rTgquLrRgsv608x6z3ZKTh9/Kf1fTGS4DTxlGnqO0puJVwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZOPneTcbaqfS9zLowMOyXCiplcRCbA5JdYHvdLSXTiw=;
- b=hrK5t53NpSfluhr3iXO9DdvYwls3aw9vuuLMF5J5BHN6h2PJ2jY5/Pik0x3VP6dCkd3B/6nL6UETR+kV+xQLmYMqlg+6VuWUcgy6WQwkcCvyqmpJRFYHaNLn2gaAt1eFAz7CcHIoX1xXorBqYjpaVU8MJ+bYyiNEe9CIQ3nWm9JcRXz5eSOC9MNZ58NzLNY78gxQqIy+PaumdszPKwCzuhFgYkPcEwFjsbDy+jNYxnQ++uq3NEtXzDu38dpe2Flcdsla38zWcjfG8quD8AzgtTc7CS3fkpW+ObynrqeCl/B7nSJUA0sk5qFW3KL24BZ43pI8YkFTzZpF7jf3w3Mgzg==
-Received: from CY5PR04CA0010.namprd04.prod.outlook.com (2603:10b6:930:1e::19)
- by SJ2PR12MB7848.namprd12.prod.outlook.com (2603:10b6:a03:4ca::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Wed, 29 Mar
- 2023 17:59:01 +0000
-Received: from CY4PEPF0000C981.namprd02.prod.outlook.com
- (2603:10b6:930:1e:cafe::a0) by CY5PR04CA0010.outlook.office365.com
- (2603:10b6:930:1e::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
- Transport; Wed, 29 Mar 2023 17:59:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CY4PEPF0000C981.mail.protection.outlook.com (10.167.241.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.26 via Frontend Transport; Wed, 29 Mar 2023 17:59:01 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 29 Mar 2023
- 10:58:49 -0700
-Received: from [10.41.21.79] (10.126.230.37) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Wed, 29 Mar
- 2023 10:58:43 -0700
-Message-ID: <1d029226-9749-9211-2baa-7f9188641ce0@nvidia.com>
-Date:   Wed, 29 Mar 2023 23:28:40 +0530
+        with ESMTP id S229451AbjC2R71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:59:27 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3672140F4
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 10:59:22 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id l27so16644564wrb.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 10:59:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680112760;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OJ9nha7AgNmpmpnP4RutaTZzBRrwel6kV4lGuwfHlf8=;
+        b=aLjxdVe/40YaHJHwB6i2tMNnpYc9l4e81zyuv2IPGWApYcCl/erSxKBA2of1bZBHSZ
+         UXzeAjnb1qRkpNRTSjcO0qJ1SrrLsImL1FV2ltdJA66H0R9FFrnTOlufw5jfVbbWj4ls
+         AahADSqGwloxFoHk+PS66/3/6lM0SD9rW8QvEuMILlXm3F8tanC8E2ZjxUCFFanEpa7r
+         YEfVQbaqrqtzv7TfZbLbHdIpq/9Q4+QCC2q5QqBrZXEyPISFLZoBYpL5SzNUlScgqutK
+         F4OpjyeZCMugC0eWcNDcDKMkzY4EXZP0Fshf/4PPBcbQ1PkXLJXg8EIFw4hOJBeVgRjh
+         BX3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680112760;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OJ9nha7AgNmpmpnP4RutaTZzBRrwel6kV4lGuwfHlf8=;
+        b=w0OWrHW0603lyuMXG7JmMaUGabr1+eoBMD34aMAkAAF/l6p1YHaPiant1z4b9/Yroc
+         v0e/IE+W2+2sCtTw76rDaZepn+8Y1loYz7tXwpfCele9mH2lTXoM8ZdjizAXFAH6/zdr
+         EOxkJYeU7ou5Ofzz/lDbhKkSGWswJdKvprs6N+yFaVybL/DAaZY6NAp/Y6n4iEyDDULv
+         vQujoS6sPBcsXKaJzB688I1IviHmORwM2zUQEdid3/Fe+WCW7jDULKjE7f5VIczs6Xq2
+         Y3R1r6bsrTI93FPhDosFfbmOZYGWxAJVoufHdOH9SSSuMJWhz3Tx/dDqQY5FH2GVfQ1o
+         LSUQ==
+X-Gm-Message-State: AAQBX9fHI9Tswpt5JHgzmWBCrFm1uoJG2sPf1FUPZ7pgzsn7UFbJ3k0f
+        cCpzHPVa3ZSCzWQtNrUh2xKdIoXNfUFTKQVH8Lj7Pg==
+X-Google-Smtp-Source: AKy350akP4/NQIx5w9BQvswFfGlbVMz6q4mb9WlohNsWv2IEhZG0HeS9p9EvXUCf7t0U8BCXIWGxBfe111LBZrdT+R0=
+X-Received: by 2002:adf:ec82:0:b0:2d4:167e:854d with SMTP id
+ z2-20020adfec82000000b002d4167e854dmr4219882wrn.2.1680112760643; Wed, 29 Mar
+ 2023 10:59:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [Patch v4 10/10] PCI: tegra194: add interconnect support in
- Tegra234
-Content-Language: en-US
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     <treding@nvidia.com>, <krzysztof.kozlowski@linaro.org>,
-        <dmitry.osipenko@collabora.com>, <viresh.kumar@linaro.org>,
-        <rafael@kernel.org>, <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
-        <lpieralisi@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <mmaddireddy@nvidia.com>, <kw@linux.com>, <bhelgaas@google.com>,
-        <vidyas@nvidia.com>, <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>,
-        <ishah@nvidia.com>, <bbasu@nvidia.com>,
-        Sumit Gupta <sumitg@nvidia.com>
-References: <20230329165957.GA3066317@bhelgaas>
-From:   Sumit Gupta <sumitg@nvidia.com>
-In-Reply-To: <20230329165957.GA3066317@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.126.230.37]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000C981:EE_|SJ2PR12MB7848:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d2c4ae9-e08d-4ffc-51e6-08db307f4720
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: D6kR2wcA3gTet6BsihXBjG0+2Z6/uZ6d9W7moBalrVAHpv/rdjDL8plrL59XH5j8uWZWVNRK6N4lQqVzzNQOlVvkUkMrxnkE+JHZEEemEi/QLn1RMZMf585o9sxKPyBi4nqGeHyo43xMUw5f7G0TFCfvjJI9C3moKrt8k6mwI2epwgcbfmPRV8q9aGMaVzU/uYbiDQuLvDpj5FR1Mgjmg0yvsQOY5VrgQpWaNzRukskknrLpBxF27UeZ+Aga4jBDPH8bQIl9IqToBfsJ/n0y7bodsJz3a5KqRQ9bZuIAL6A6+GTTxNJ6NkANUmV7BKH2nZj5rNIWzpxidbz/FN1rpf2TmQTKhU3Lkl+OZZqPDPdU1pFlnAgdKCTfLriqQ3T+Z0LrFKwjg6OE+em9LcGeQZ2iPPe1XZFMXzZ33ZTSZI47dbQgTaLNertnAg0N4DtHSEeLfo0t8QWiGLLzs+ZqQzXVXOyek9BHuoAi+6sLyUTMzo6y5MshRotLq+6eqqPtww9aoU1jZwdvve9l+BjOsE+em+PijTGwG/I6DZ0YCBiQ5I8B2K1AXLZElUGg/gVRyvChF9WdWZA1CMuTuq9yt9sM9CfDvYCBiPeD42OWUfntI7HkjpU1oyB/6iI6+ohu6V3llkmMG/4BldTvZ6MSO+o1YpNEzspxHk6Ls8wK0iPSHBJuq6pRgRYi8wRETn01sgArMWP9xKGcMsgIZAFdODEcJMjIy+v/GWBLagFqR21RUJ5fBm0koMpzWKR6JLcYF1CALpDzaUtJfJlyLAZo8kFpXU6IK/Ibyu5nEJUEJqk=
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(136003)(346002)(39860400002)(451199021)(46966006)(36840700001)(40470700004)(47076005)(2906002)(2616005)(83380400001)(426003)(336012)(6916009)(8676002)(4326008)(70206006)(70586007)(478600001)(54906003)(53546011)(316002)(16576012)(26005)(16526019)(7416002)(107886003)(82310400005)(186003)(36756003)(86362001)(36860700001)(41300700001)(31696002)(82740400003)(7636003)(5660300002)(356005)(40480700001)(40460700003)(31686004)(8936002)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 17:59:01.3931
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d2c4ae9-e08d-4ffc-51e6-08db307f4720
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C981.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7848
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+References: <20230323062451.2925996-1-danishanwar@ti.com> <20230323062451.2925996-2-danishanwar@ti.com>
+ <20230327205841.GA3158115@p14s> <9d4c7762-615b-0fbd-76d2-87156e691928@ti.com>
+In-Reply-To: <9d4c7762-615b-0fbd-76d2-87156e691928@ti.com>
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+Date:   Wed, 29 Mar 2023 11:59:09 -0600
+Message-ID: <CANLsYkx6Nkrc_qSVWe53bhm9GjTDzXydiaxCB=_nL2R7ppu-qw@mail.gmail.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v5 1/5] soc: ti: pruss: Add
+ pruss_get()/put() API
+To:     Md Danish Anwar <a0501179@ti.com>
+Cc:     MD Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -114,82 +76,250 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 27 Mar 2023 at 23:42, Md Danish Anwar <a0501179@ti.com> wrote:
+>
+> Hi Mathieu,
+>
+> On 28/03/23 02:28, Mathieu Poirier wrote:
+> > Hi Danish
+> >
+> > On Thu, Mar 23, 2023 at 11:54:47AM +0530, MD Danish Anwar wrote:
+> >> From: Tero Kristo <t-kristo@ti.com>
+> >>
+> >> Add two new get and put API, pruss_get() and pruss_put() to the
+> >> PRUSS platform driver to allow client drivers to request a handle
+> >> to a PRUSS device. This handle will be used by client drivers to
+> >> request various operations of the PRUSS platform driver through
+> >> additional API that will be added in the following patches.
+> >>
+> >> The pruss_get() function returns the pruss handle corresponding
+> >> to a PRUSS device referenced by a PRU remoteproc instance. The
+> >> pruss_put() is the complimentary function to pruss_get().
+> >>
+> >> Co-developed-by: Suman Anna <s-anna@ti.com>
+> >> Signed-off-by: Suman Anna <s-anna@ti.com>
+> >> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> >> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> >> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> >> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> >> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> >> ---
+> >>  drivers/remoteproc/pru_rproc.c                |  2 +-
+> >>  drivers/soc/ti/pruss.c                        | 60 ++++++++++++++++++-
+> >>  .../{pruss_driver.h => pruss_internal.h}      |  7 ++-
+> >>  include/linux/remoteproc/pruss.h              | 19 ++++++
+> >>  4 files changed, 83 insertions(+), 5 deletions(-)
+> >>  rename include/linux/{pruss_driver.h => pruss_internal.h} (90%)
+> >>
+> >> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> >> index b76db7fa693d..4ddd5854d56e 100644
+> >> --- a/drivers/remoteproc/pru_rproc.c
+> >> +++ b/drivers/remoteproc/pru_rproc.c
+> >> @@ -19,7 +19,7 @@
+> >>  #include <linux/of_device.h>
+> >>  #include <linux/of_irq.h>
+> >>  #include <linux/remoteproc/pruss.h>
+> >> -#include <linux/pruss_driver.h>
+> >> +#include <linux/pruss_internal.h>
+> >>  #include <linux/remoteproc.h>
+> >>
+> >>  #include "remoteproc_internal.h"
+> >> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
+> >> index 6882c86b3ce5..6c2bb02a521d 100644
+> >> --- a/drivers/soc/ti/pruss.c
+> >> +++ b/drivers/soc/ti/pruss.c
+> >> @@ -6,6 +6,7 @@
+> >>   * Author(s):
+> >>   *  Suman Anna <s-anna@ti.com>
+> >>   *  Andrew F. Davis <afd@ti.com>
+> >> + *  Tero Kristo <t-kristo@ti.com>
+> >>   */
+> >>
+> >>  #include <linux/clk-provider.h>
+> >> @@ -16,8 +17,9 @@
+> >>  #include <linux/of_address.h>
+> >>  #include <linux/of_device.h>
+> >>  #include <linux/pm_runtime.h>
+> >> -#include <linux/pruss_driver.h>
+> >> +#include <linux/pruss_internal.h>
+> >>  #include <linux/regmap.h>
+> >> +#include <linux/remoteproc.h>
+> >>  #include <linux/slab.h>
+> >>
+> >>  /**
+> >> @@ -30,6 +32,62 @@ struct pruss_private_data {
+> >>      bool has_core_mux_clock;
+> >>  };
+> >>
+> >> +/**
+> >> + * pruss_get() - get the pruss for a given PRU remoteproc
+> >> + * @rproc: remoteproc handle of a PRU instance
+> >> + *
+> >> + * Finds the parent pruss device for a PRU given the @rproc handle of the
+> >> + * PRU remote processor. This function increments the pruss device's refcount,
+> >> + * so always use pruss_put() to decrement it back once pruss isn't needed
+> >> + * anymore.
+> >> + *
+> >> + * Return: pruss handle on success, and an ERR_PTR on failure using one
+> >> + * of the following error values
+> >> + *    -EINVAL if invalid parameter
+> >> + *    -ENODEV if PRU device or PRUSS device is not found
+> >> + */
+> >> +struct pruss *pruss_get(struct rproc *rproc)
+> >> +{
+> >> +    struct pruss *pruss;
+> >> +    struct device *dev;
+> >> +    struct platform_device *ppdev;
+> >> +
+> >> +    if (IS_ERR_OR_NULL(rproc))
+> >> +            return ERR_PTR(-EINVAL);
+> >> +
+> >
+> > There is no guarantee that @rproc is valid without calling rproc_get_by_handle()
+> > or pru_rproc_get().
+> >
+>
+> Here in this API, we are checking if rproc is NULL or not. Also we are checking
+> is_pru_rproc() to make sure this rproc is pru-rproc only and not some other rproc.
+>
+> This API will be called from driver (icssg_prueth.c) which I'll post once this
+> series is merged.
+>
+> In the driver we are doing,
+>
+>         prueth->pru[slice] = pru_rproc_get(np, pru, &pruss_id);
+>
+>         pruss = pruss_get(prueth->pru[slice]);
+>
+> So, before calling pruss_get() we are in fact calling pru_rproc_get() to make
+> sure it's a valid rproc.
+>
 
+You are doing the right thing but because pruss_get() is exported
+globally, other people eventually using the interface may not be so
+rigorous.  Add a comment to the pruss_get() function documentation
+clearly mentioning it is expected the caller will have done a
+pru_rproc_get() on @rproc.
 
-On 29/03/23 22:29, Bjorn Helgaas wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> On Wed, Mar 29, 2023 at 02:44:34PM +0530, Sumit Gupta wrote:
->> On 28/03/23 23:23, Bjorn Helgaas wrote:
->>>> +static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
->>>> +{
->>>> +     struct dw_pcie *pci = &pcie->pci;
->>>> +     u32 val, speed, width;
->>>> +
->>>> +     val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
->>>> +
->>>> +     speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
->>>> +     width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
->>>> +
->>>> +     val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / BITS_PER_BYTE);
->>>> +
->>>> +     if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
->>>> +             dev_err(pcie->dev, "can't set bw[%u]\n", val);
->>>> +
->>>> +     clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
->>>
->>> Array bounds violation; PCI_EXP_LNKSTA_CLS is 0x000f, so possible
->>> speed (CLS) values are 0..0xf and "speed - 1" values are -1..0xe.
->>>
->>> pcie_gen_freq[] is of size 4 (valid indices 0..3).
->>>
->>> I see that you're just *moving* this code, but might as well fix it.
->>>
->> Thank you for the review.
->> Will include the below change in the same patch. Please let me know if any
->> issue.
->>
->>   -       clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
->>   +       if (speed && (speed <= ARRAY_SIZE(pcie_gen_freq)))
->>   +               clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
->>   +       else
->>   +               clk_set_rate(pcie->core_clk, pcie_gen_freq[0]);
-> 
-> I didn't notice that speed is a u32, so -1 is not a possible value.
-> Also, it's used earlier for PCIE_SPEED2MBS_ENC(), so you could do
-> something like this:
-> 
->    speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val) - 1;
->    if (speed >= ARRAY_SIZE(pcie_gen_freq))
->      speed = 0;
-> 
->    val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) /
->          BITS_PER_BYTE);
->    ...
->    clk_set_rate(pcie->core_clk, pcie_gen_freq[speed]);
-
-I tried this change but PCIE_SPEED2MBS_ENC gives zero when speed value 
-is one. The speed value ranges from "1 to 4" and for value "1", 
-pcie_link_speed[speed] gives '0xff'.
-
-  const unsigned char pcie_link_speed[] = {
-          PCI_SPEED_UNKNOWN,              /* 0 */
-
-The below change works fine. Please share if its OK to add it in patch.
-
-   speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
-   if (!speed || speed >= ARRAY_SIZE(pcie_gen_freq))
-           speed = 1;
-
-   val = width * (PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]) / 
-BITS_PER_BYTE);
-
-   if (icc_set_bw(pcie->icc_path, MBps_to_icc(val), 0))
-           dev_err(pcie->dev, "can't set bw[%u]\n", val);
-
-   clk_set_rate(pcie->core_clk, pcie_gen_freq[speed - 1]);
-
-
-Thank you,
-Sumit Gupta
+> I think in this API, these two checks (NULL check and is_pru_rproc) should be
+> OK as the driver is already calling pru_rproc_get() before this API.
+>
+> The only way to get a "pru-rproc" is by calling pru_rproc_get(), now the check
+> is_pru_rproc() will only be true if it is a "pru-rproc" implying
+> pru_rproc_get() was called before calling this API.
+>
+> Please let me know if this is OK or if any change is required.
+>
+> >> +    dev = &rproc->dev;
+> >> +
+> >> +    /* make sure it is PRU rproc */
+> >> +    if (!dev->parent || !is_pru_rproc(dev->parent))
+> >> +            return ERR_PTR(-ENODEV);
+> >> +
+> >> +    ppdev = to_platform_device(dev->parent->parent);
+> >> +    pruss = platform_get_drvdata(ppdev);
+> >> +    if (!pruss)
+> >> +            return ERR_PTR(-ENODEV);
+> >> +
+> >> +    get_device(pruss->dev);
+> >> +
+> >> +    return pruss;
+> >> +}
+> >> +EXPORT_SYMBOL_GPL(pruss_get);
+> >> +
+> >> +/**
+> >> + * pruss_put() - decrement pruss device's usecount
+> >> + * @pruss: pruss handle
+> >> + *
+> >> + * Complimentary function for pruss_get(). Needs to be called
+> >> + * after the PRUSS is used, and only if the pruss_get() succeeds.
+> >> + */
+> >> +void pruss_put(struct pruss *pruss)
+> >> +{
+> >> +    if (IS_ERR_OR_NULL(pruss))
+> >> +            return;
+> >> +
+> >> +    put_device(pruss->dev);
+> >> +}
+> >> +EXPORT_SYMBOL_GPL(pruss_put);
+> >> +
+> >>  static void pruss_of_free_clk_provider(void *data)
+> >>  {
+> >>      struct device_node *clk_mux_np = data;
+> >> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_internal.h
+> >> similarity index 90%
+> >> rename from include/linux/pruss_driver.h
+> >> rename to include/linux/pruss_internal.h
+> >> index ecfded30ed05..8f91cb164054 100644
+> >> --- a/include/linux/pruss_driver.h
+> >> +++ b/include/linux/pruss_internal.h
+> >> @@ -6,9 +6,10 @@
+> >>   *  Suman Anna <s-anna@ti.com>
+> >>   */
+> >>
+> >> -#ifndef _PRUSS_DRIVER_H_
+> >> -#define _PRUSS_DRIVER_H_
+> >> +#ifndef _PRUSS_INTERNAL_H_
+> >> +#define _PRUSS_INTERNAL_H_
+> >>
+> >> +#include <linux/remoteproc/pruss.h>
+> >>  #include <linux/types.h>
+> >>
+> >>  /*
+> >> @@ -51,4 +52,4 @@ struct pruss {
+> >>      struct clk *iep_clk_mux;
+> >>  };
+> >>
+> >> -#endif      /* _PRUSS_DRIVER_H_ */
+> >> +#endif      /* _PRUSS_INTERNAL_H_ */
+> >> diff --git a/include/linux/remoteproc/pruss.h b/include/linux/remoteproc/pruss.h
+> >> index 039b50d58df2..93a98cac7829 100644
+> >> --- a/include/linux/remoteproc/pruss.h
+> >> +++ b/include/linux/remoteproc/pruss.h
+> >> @@ -4,12 +4,14 @@
+> >>   *
+> >>   * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+> >>   *  Suman Anna <s-anna@ti.com>
+> >> + *  Tero Kristo <t-kristo@ti.com>
+> >>   */
+> >>
+> >>  #ifndef __LINUX_PRUSS_H
+> >>  #define __LINUX_PRUSS_H
+> >>
+> >>  #include <linux/device.h>
+> >> +#include <linux/err.h>
+> >>  #include <linux/types.h>
+> >>
+> >>  #define PRU_RPROC_DRVNAME "pru-rproc"
+> >> @@ -44,6 +46,23 @@ enum pru_ctable_idx {
+> >>
+> >>  struct device_node;
+> >>  struct rproc;
+> >> +struct pruss;
+> >> +
+> >> +#if IS_ENABLED(CONFIG_TI_PRUSS)
+> >> +
+> >> +struct pruss *pruss_get(struct rproc *rproc);
+> >> +void pruss_put(struct pruss *pruss);
+> >> +
+> >> +#else
+> >> +
+> >> +static inline struct pruss *pruss_get(struct rproc *rproc)
+> >> +{
+> >> +    return ERR_PTR(-EOPNOTSUPP);
+> >> +}
+> >> +
+> >> +static inline void pruss_put(struct pruss *pruss) { }
+> >> +
+> >> +#endif /* CONFIG_TI_PRUSS */
+> >>
+> >>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+> >>
+> >> --
+> >> 2.25.1
+> >>
+>
+> --
+> Thanks and Regards,
+> Danish.
