@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 516CB6CF639
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 00:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B91E6CF64E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 00:23:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjC2WQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 18:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39678 "EHLO
+        id S230325AbjC2WW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 18:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjC2WP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 18:15:59 -0400
+        with ESMTP id S229484AbjC2WW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 18:22:57 -0400
 Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F8D4ED4;
-        Wed, 29 Mar 2023 15:15:57 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06D110D7;
+        Wed, 29 Mar 2023 15:22:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
         Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
         Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
         :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
         List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=gMQbwbQvnYou5tX0hVPmxBnpsbNNqz1dO1zb952RlkU=; b=L98UqyshiA6YAC7C4S7gY/vVMw
-        LTGZFL0SXjA1Hx2f+a9NBJuC34t/ViAgWR+ovrJt7sYKdIc2gIE6KKTHtNGUY7us21wt7Uh6oWA4w
-        LzM8e9HU62bp+U1f3XzELkazJSPDND3N7rI0q/vvQ5imJUbJtxLGR5hejINZFlt4upr7eB93WIG9G
-        P4sOp67ZExFmQ8SrVz1sgehIKLtEiqwzI0+Sat61PN6mmeTJJrEaof7ZlUpP7xG4cn6jLlH16/1xf
-        K/OpZJJgZVN/U0/+t9X6gSFGJCblLGqqP0+0jBTiH2ZA3b19o598aHhSusXFt70p3Pdo0H9HuFIz8
-        n//D/9Rg==;
+        bh=gMQbwbQvnYou5tX0hVPmxBnpsbNNqz1dO1zb952RlkU=; b=R96kFXZJ48c1n9gXxle4XCisZw
+        OdLM2BbuZhDTvtLmfI8knLSifXDpfjl9gdKlVCTqi3AqAUElGbbrs7LckHmRHJZfgcooX0zux5hz7
+        o0GsLJLVy3dDn3+p6QmM1Uw+pyXGOyqUmRXCA5kw55azbuudrPqPpjUW1+RvZlftqle+A2IsJsB5y
+        zcDw7cqtExETdr8zwu9phY9zHOong2x+FM3z4oRU4KStSnlLQXsl6v+YWSSJdaauvdiAmnVNq+eJR
+        OX/jePARWvs9TGaFGBY2nWAyRHowWs+oQvogNYqw+VQ2KgEjw5lOIOgqV4eF4Za22PWyttOA2nYcD
+        /8wMxsYw==;
 Received: from p200300ccff069c001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff06:9c00:1a3d:a2ff:febf:d33a] helo=aktux)
         by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <andreas@kemnade.info>)
-        id 1phe5B-0005pM-6M; Thu, 30 Mar 2023 00:15:53 +0200
+        id 1pheBs-0005q9-PA; Thu, 30 Mar 2023 00:22:49 +0200
 Received: from andi by aktux with local (Exim 4.96)
         (envelope-from <andreas@kemnade.info>)
-        id 1phe5A-00DoYV-2N;
-        Thu, 30 Mar 2023 00:15:52 +0200
+        id 1pheBr-00DobL-0x;
+        Thu, 30 Mar 2023 00:22:47 +0200
 From:   Andreas Kemnade <andreas@kemnade.info>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@kernel.org, Tony Lindgren <tony@atomide.com>
+        linux-omap@vger.kernel.org, tony@atomide.com
 Cc:     Andrew Davis <afd@ti.com>, Andreas Kemnade <andreas@kemnade.info>
 Subject: [PATCH v2] dt-bindings: omap: Convert omap.txt to yaml
-Date:   Thu, 30 Mar 2023 00:07:20 +0200
-Message-Id: <20230329220720.3292481-1-andreas@kemnade.info>
+Date:   Thu, 30 Mar 2023 00:22:46 +0200
+Message-Id: <20230329222246.3292766-1-andreas@kemnade.info>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
