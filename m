@@ -2,77 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B5A6CECE6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 156006CED02
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbjC2Pag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 11:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
+        id S230085AbjC2PeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 11:34:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjC2Paf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:30:35 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF2135A2
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:30:34 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-536af432ee5so300490527b3.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:30:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680103834;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BFZ20rC2XtnWx2HPxJbX0F+YnJR7fgxQcGGmQBwVb7Q=;
-        b=JvMTJc1Gv8vCqVajFRwN5it4gJaKbPCwOgEwFVRfrdnXBaViUYZsElkwGN4srbsCWm
-         gsZfz98f+UB7t9jFdKcTwUfnCNnxIJtdiXlh7MW7KtqKekPhBX9lUbZ7q3Wl0j7mTzEE
-         OcLqTJEyEkBSuD+GbeP4ew9U247+o/1zLS7yE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680103834;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BFZ20rC2XtnWx2HPxJbX0F+YnJR7fgxQcGGmQBwVb7Q=;
-        b=phJMGg/V3KBgpZdUAZ8qYOGLr8qtjKWdbv+Psqd8rs4Akliy+qz6TkGIDmMTw1Lwn6
-         wm0YF3cCi3mIQxm7nXuqcjtAvQf9lo0u61p80uNnEoO+ljgF5L/aclkRGdbdBQ0RGnbw
-         BH/8ttu+8tvzIW+dLszE8sse5T6djm3M97YTlqEsrVUzv36uDFd5X4sWuflTdEtaYckY
-         IytPiJl7FOQ3Br7MmiG6jlabOY3D4DA+waJYPSSZ/aVyqCYwHCJtGIInCmAFwoqmMcbv
-         jpwlGf2xonQ2mUBhO0wjU1ZFp3t2ibEjTa9MtWVlggtog3zJOHBkJ7kEqhPemVnxN4ct
-         AOEQ==
-X-Gm-Message-State: AAQBX9dCA5trKLXV2e5mZQUdcHM9aXYUha+gU65XRz1BG7m5pZPUy5ai
-        /2Z2OH4D9s3CbgHepF7rUJWXZG2j76/ht2NemtLjmw==
-X-Google-Smtp-Source: AKy350aQ+SY5iF10evSeqAQo9VWn7eGBRSp/ouP2R83fRpmRIP36Pn+KT/+JT62aHAr/p3uHoViPy/s3Xmq1TTNqhWs=
-X-Received: by 2002:a81:ae23:0:b0:541:7237:6e6b with SMTP id
- m35-20020a81ae23000000b0054172376e6bmr9262438ywh.0.1680103833995; Wed, 29 Mar
- 2023 08:30:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230329131615.1328366-1-jagan@amarulasolutions.com>
- <20230329131615.1328366-10-jagan@amarulasolutions.com> <20230329150202.3rbjrq6iqum5ybjh@penduick>
-In-Reply-To: <20230329150202.3rbjrq6iqum5ybjh@penduick>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 29 Mar 2023 21:00:22 +0530
-Message-ID: <CAMty3ZDXWw2ajF5DsYCMy0XCa348y8XKKUzAfrU=2iUG23yVow@mail.gmail.com>
-Subject: Re: [PATCH v7 09/12] arm64: dts: rockchip: a64: Add endpoint@0 to dsi_in_tcon0
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230194AbjC2Pdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:33:51 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F20859EE;
+        Wed, 29 Mar 2023 08:33:40 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9F10024E0FC;
+        Wed, 29 Mar 2023 23:33:32 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Mar
+ 2023 23:33:32 +0800
+Received: from localhost.localdomain (113.72.144.76) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Mar
+ 2023 23:33:32 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Marek Vasut <marex@denx.de>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v1 0/3] Add TDM audio on StarFive JH7110
+Date:   Wed, 29 Mar 2023 23:33:17 +0800
+Message-ID: <20230329153320.31390-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.144.76]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,116 +52,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 8:32=E2=80=AFPM Maxime Ripard <maxime@cerno.tech> w=
-rote:
->
-> The commit title is wrong, it's not a rockchip device.
+This patchset adds TDM audio driver for the StarFive JH7110 SoC. The
+first patch adds device tree binding for TDM module. The second patch
+adds tdm driver support for JH7110 SoC. The last patch adds device node
+of tdm and sound card to JH7110 dts.
 
-Thanks for the note, I will fix it in the next version.
+The series has been tested on the VisionFive 2 boards which equip with
+JH7110 SoC and works normally.
 
->
-> On Wed, Mar 29, 2023 at 06:46:15PM +0530, Jagan Teki wrote:
-> > The DSI downstream devices are likely to be Panel, Bridge and
-> > I2C-Configured Bridge.
-> >
-> > It is possible to connect all three devices using upstream OF-graph por=
-t
-> > or ports node however only Panel and Bridge are possible to connect via
-> > child node but not possible to connect I2C-Configured Bridge via child
-> > node since I2C-Configure bridges are child of I2C not upstream DSI host=
-s
-> > and it must represent them via port or ports with endpoint linking.
-> >
-> > Allwinner A64 DSI node already has a port so add endpoint 0 for input
-> > tcon so that the downstream DSI devices can use endpoint 1 to connect
-> > Panel or Bridge or I2C-Configured Bridge.
-> >
-> > An example of the I2C-Configured downstream bridge representation is,
-> >
-> > i2c1 {
-> >        bridge@1b {
-> >            compatible =3D "ti,dlpc3433";
-> >
-> >              ports {
-> >                   port@0 {
-> >                          reg =3D <0>;
-> >
-> >                          bridge_in_dsi: endpoint {
-> >                                 remote-endpoint =3D <&dsi_out_bridge>;
-> >                                 data-lanes =3D <1 2 3 4>;
-> >                          };
-> >                   };
-> >
-> >                 port@2 {
-> >                        reg =3D <2>;
-> >
-> >                          bridge_out_dmd: endpoint {
-> >                                 remote-endpoint =3D <&dmd_out_bridge>;
-> >                          };
-> >                   };
-> >              };
-> >        };
-> > };
-> >
-> > dsi {
-> >        compatible =3D "allwinner,sun50i-a64-mipi-dsi";
-> >
-> >        port {
-> >              dsi_in_tcon0: endpoint@0 {
-> >                 reg =3D <0>;
-> >                 remote-endpoint =3D <tcon0_out_dsi>;
-> >            };
-> >
-> >            dsi_out_bridge: endpoint@1 {
-> >                 reg =3D <1>;
-> >                 remote-endpoint =3D <&bridge_in_dsi>;
-> >            };
-> >       };
-> > };
-> >
-> > Note that existing device bindings are untouched and still represent
-> > the downstream devices via child nodes since the sun6i-mipi-dsi host
-> > will migrate to a standardized single helper to lookup for a
-> > downstream device via child or OF-graph port or port node.
-> >
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> > Changes for v7:
-> > - new patch
-> >
-> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64=
-/boot/dts/allwinner/sun50i-a64.dtsi
-> > index 77b5349f6087..3ed566dc2172 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > @@ -1189,7 +1189,11 @@ dsi: dsi@1ca0000 {
-> >                       #size-cells =3D <0>;
-> >
-> >                       port {
-> > -                             dsi_in_tcon0: endpoint {
-> > +                             #address-cells =3D <1>;
-> > +                             #size-cells =3D <0>;
-> > +
-> > +                             dsi_in_tcon0: endpoint@0 {
-> > +                                     reg =3D <0>;
-> >                                       remote-endpoint =3D <&tcon0_out_d=
-si>;
-> >                               };
->
-> That doesn't match the DT binding anymore, and why can't we add endpoint@=
-1 there too?
+The last patch should be applied after the following patchset:
+https://lore.kernel.org/all/20230322094820.24738-1-walker.chen@starfivetech.com/
 
-Do you mean add endpoint@1 without any remote-endpoint like this?
+Walker Chen (3):
+  dt-bindings: sound: Add TDM for StarFive JH7110
+  ASoC: starfive: Add JH7110 TDM driver
+  riscv: dts: starfive: add tdm node and sound card
 
-dsi_out_bridge: endpoint@1 {
-         reg =3D <1>;
-};
+ .../bindings/sound/starfive,jh7110-tdm.yaml   |  95 +++
+ MAINTAINERS                                   |   6 +
+ .../jh7110-starfive-visionfive-2.dtsi         |  87 +++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  34 +
+ sound/soc/Kconfig                             |   1 +
+ sound/soc/Makefile                            |   1 +
+ sound/soc/starfive/Kconfig                    |  15 +
+ sound/soc/starfive/Makefile                   |   2 +
+ sound/soc/starfive/jh7110_tdm.c               | 579 ++++++++++++++++++
+ sound/soc/starfive/jh7110_tdm.h               | 155 +++++
+ 10 files changed, 975 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+ create mode 100644 sound/soc/starfive/Kconfig
+ create mode 100644 sound/soc/starfive/Makefile
+ create mode 100644 sound/soc/starfive/jh7110_tdm.c
+ create mode 100644 sound/soc/starfive/jh7110_tdm.h
 
-I was supposed to add this, since dtbs_check doesn't give any error. I
-have skipped this, as I thought it wouldn't be needed.
 
-Thanks,
-agan.
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+prerequisite-patch-id: c3a6b87df79b338fc97766406d010fedb79ab428
+prerequisite-patch-id: b49509523cf7c098f684647bdc4fdaece48b61bc
+prerequisite-patch-id: 46cc850aa0e9e03ccf5ed23d8458babfca3d71af
+prerequisite-patch-id: a6975e61ee5803fbd74b1c21ab925fd81c3c0eab
+prerequisite-patch-id: ac150a8c622e858e088df8121093d448df49c245
+prerequisite-patch-id: 044263ef2fb9f1e5a586edbf85d5f67814a28430
+prerequisite-patch-id: 89f049f951e5acf75aab92541992f816fd0acc0d
+prerequisite-patch-id: 9f3dbc9073eee89134e68977e941e457593c2757
+prerequisite-patch-id: 8600b156a235be2b3db53be3f834e7a370e2cfb9
+prerequisite-patch-id: 1b2d0982b18da060c82134f05bf3ce16425bac8d
+prerequisite-patch-id: 090ba4b78d47bc19204916e76fdbc70021785388
+prerequisite-patch-id: a5d9e0f7d4f8163f566678894cf693015119f2d9
+prerequisite-patch-id: 4c12d958e3a3d629d86dddb1e4f099d8909393e0
+prerequisite-patch-id: bb939c0c7c26b08addfccd890f9d3974b6eaec53
+prerequisite-patch-id: 8f5c66dfb14403424044192f6fa05b347ad356a7
+prerequisite-patch-id: fd93763b95469912bde9bdfa4cd827c8d5dba9c6
+prerequisite-patch-id: 6987950c2eb4b3773b2df8f7934eff434244aeab
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: dbb0c0151b8bdf093e6ce79fd2fe3f60791a6e0b
+prerequisite-patch-id: e7773c977a7b37692e9792b21cc4f17fa58f9215
+prerequisite-patch-id: d57e95d31686772abc4c4d5aa1cadc344dc293cd
+prerequisite-patch-id: 9f911969d0a550648493952c99096d26e05d4d83
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: 398744c61913c76a35754de867c4f820ca7a8d99
+prerequisite-patch-id: be3d7a6a13098884ec26cd5e543cc95c39045e35
+prerequisite-patch-id: b3ce7955a80d90d992b7d1bca3409f465810b2bb
+prerequisite-patch-id: db2f66860cc5b2fd2f71747c4428287b6e3153fb
+prerequisite-patch-id: 9da71dcd3af4c68da9d855b43aab6927103e7525
+prerequisite-patch-id: 2d9e4f185631549094b6136cf8717a507b68c5bb
+prerequisite-patch-id: bb8e071ed43998874b9d98292c0dcdeedc0760ca
+prerequisite-patch-id: cd0b464336aabfbfad96c1a3595c0f9ce9401638
+prerequisite-patch-id: 24eab3d30274700c2be4727bece743c76d2618bd
+prerequisite-patch-id: 584c256c9acb52ee2773d0c81c3f4977fc18155a
+prerequisite-patch-id: 2bc43b375b470f7e8bbe937b78678ba3856e3b8f
+prerequisite-patch-id: 32deea16304859842af5c2151bc41d91cf6dfc9b
+prerequisite-patch-id: d85dbedbb3b36bbd6806f4eb84a2129c8f8963aa
+prerequisite-patch-id: c0bdbdd3db98f7ebae0661dd331edac2c84c70f8
+prerequisite-patch-id: 6abf359fa445f4104432ddee27044dfbfb128417
+-- 
+2.17.1
+
