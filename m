@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C6F6CECDA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B5A6CECE6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 17:30:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbjC2P0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 11:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36384 "EHLO
+        id S229629AbjC2Pag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 11:30:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjC2P0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:26:45 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40FD62D41
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:26:42 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id p15so19770018ybl.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:26:42 -0700 (PDT)
+        with ESMTP id S229540AbjC2Paf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 11:30:35 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF2135A2
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:30:34 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-536af432ee5so300490527b3.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 08:30:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680103601;
+        d=amarulasolutions.com; s=google; t=1680103834;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jV2lyvl8ub+2VPRjeHlb+sHmzhDe5z+36U7u39h187Y=;
-        b=koSCDXLrsYInsfC1e0e5FcEjzTsnis9tfFB1SzdjyHQMOpeNNAOVeSjuT0ne4OK/TV
-         qMcGvU5Gyrtt+ebsaKD9jX74i1kdtld413I9Dr3TcitiHoDN/lRfAMYjFubAAx9LKkhK
-         PcTCqvadVbXLItVKNU2nu7tyQRa+LNpEB+5d4=
+        bh=BFZ20rC2XtnWx2HPxJbX0F+YnJR7fgxQcGGmQBwVb7Q=;
+        b=JvMTJc1Gv8vCqVajFRwN5it4gJaKbPCwOgEwFVRfrdnXBaViUYZsElkwGN4srbsCWm
+         gsZfz98f+UB7t9jFdKcTwUfnCNnxIJtdiXlh7MW7KtqKekPhBX9lUbZ7q3Wl0j7mTzEE
+         OcLqTJEyEkBSuD+GbeP4ew9U247+o/1zLS7yE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680103601;
+        d=1e100.net; s=20210112; t=1680103834;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jV2lyvl8ub+2VPRjeHlb+sHmzhDe5z+36U7u39h187Y=;
-        b=Q3qNx/J6C5AWQCTIG4D53vlyqzydpC9xbizTn8EUr9G6rzQUZEWJTY/+MErQpR7o7t
-         q2PO04X0luspHE4p1E27Lp/u/wgl/5xw2G889inVRpvyspWvtl8nEsm3D1BnTLVTJba1
-         UggjvTF8QYtXtR5VLFRTIgwwySZ+IJv7i213F5NX1BhgtcgcEtr7tiGPk7Nso/y7wi4u
-         QiqanXINa/U+bOx4Ev7Q4wX2GLgC9NKZPTNOkfLtcH2MNjZZrqqejGfnty94uf7bXaOK
-         F3o2GiaX4iWgrLpWzGnJWnV5C15tAmoc8yr20g/7zRl59bwYwVB4/mwmHMuw3J8jQwDj
-         Q6Cw==
-X-Gm-Message-State: AAQBX9c7E2L8bkn44JexlQDXcM+vGQBi4fTUDJWNbRT/FMPdS9n4Sglc
-        ZAe3K/SWAmdgFJRayu6nCEx2oubUfajx4WoSZU6G3A==
-X-Google-Smtp-Source: AKy350YMi/rjLaY2uUQ+82h4Hy78c0V90uLZLhiQBJOJ1GZntnfQTG+thdjlp3NT14dkSuRr6AAWA3nZWRje990ICFg=
-X-Received: by 2002:a05:6902:1204:b0:b3b:fb47:8534 with SMTP id
- s4-20020a056902120400b00b3bfb478534mr10616056ybu.5.1680103601331; Wed, 29 Mar
- 2023 08:26:41 -0700 (PDT)
+        bh=BFZ20rC2XtnWx2HPxJbX0F+YnJR7fgxQcGGmQBwVb7Q=;
+        b=phJMGg/V3KBgpZdUAZ8qYOGLr8qtjKWdbv+Psqd8rs4Akliy+qz6TkGIDmMTw1Lwn6
+         wm0YF3cCi3mIQxm7nXuqcjtAvQf9lo0u61p80uNnEoO+ljgF5L/aclkRGdbdBQ0RGnbw
+         BH/8ttu+8tvzIW+dLszE8sse5T6djm3M97YTlqEsrVUzv36uDFd5X4sWuflTdEtaYckY
+         IytPiJl7FOQ3Br7MmiG6jlabOY3D4DA+waJYPSSZ/aVyqCYwHCJtGIInCmAFwoqmMcbv
+         jpwlGf2xonQ2mUBhO0wjU1ZFp3t2ibEjTa9MtWVlggtog3zJOHBkJ7kEqhPemVnxN4ct
+         AOEQ==
+X-Gm-Message-State: AAQBX9dCA5trKLXV2e5mZQUdcHM9aXYUha+gU65XRz1BG7m5pZPUy5ai
+        /2Z2OH4D9s3CbgHepF7rUJWXZG2j76/ht2NemtLjmw==
+X-Google-Smtp-Source: AKy350aQ+SY5iF10evSeqAQo9VWn7eGBRSp/ouP2R83fRpmRIP36Pn+KT/+JT62aHAr/p3uHoViPy/s3Xmq1TTNqhWs=
+X-Received: by 2002:a81:ae23:0:b0:541:7237:6e6b with SMTP id
+ m35-20020a81ae23000000b0054172376e6bmr9262438ywh.0.1680103833995; Wed, 29 Mar
+ 2023 08:30:33 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230329131615.1328366-1-jagan@amarulasolutions.com>
- <20230329131615.1328366-3-jagan@amarulasolutions.com> <20230329150337.ua6qz7rvupk6vizl@penduick>
-In-Reply-To: <20230329150337.ua6qz7rvupk6vizl@penduick>
+ <20230329131615.1328366-10-jagan@amarulasolutions.com> <20230329150202.3rbjrq6iqum5ybjh@penduick>
+In-Reply-To: <20230329150202.3rbjrq6iqum5ybjh@penduick>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 29 Mar 2023 20:56:29 +0530
-Message-ID: <CAMty3ZAEb+ws_9jbdSM1ngfk=N7tePw_pEcALDAMNwzoNvbW3g@mail.gmail.com>
-Subject: Re: [PATCH v7 02/12] drm: bridge: panel: Implement
- drmm_of_dsi_get_bridge helper
+Date:   Wed, 29 Mar 2023 21:00:22 +0530
+Message-ID: <CAMty3ZDXWw2ajF5DsYCMy0XCa348y8XKKUzAfrU=2iUG23yVow@mail.gmail.com>
+Subject: Re: [PATCH v7 09/12] arm64: dts: rockchip: a64: Add endpoint@0 to dsi_in_tcon0
 To:     Maxime Ripard <maxime@cerno.tech>
 Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -81,57 +80,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 8:33=E2=80=AFPM Maxime Ripard <maxime@cerno.tech> w=
+On Wed, Mar 29, 2023 at 8:32=E2=80=AFPM Maxime Ripard <maxime@cerno.tech> w=
 rote:
 >
-> On Wed, Mar 29, 2023 at 06:46:08PM +0530, Jagan Teki wrote:
-> > Implement a DRM-managed action helper that returns the next DSI bridge
-> > in the chain.
+> The commit title is wrong, it's not a rockchip device.
+
+Thanks for the note, I will fix it in the next version.
+
+>
+> On Wed, Mar 29, 2023 at 06:46:15PM +0530, Jagan Teki wrote:
+> > The DSI downstream devices are likely to be Panel, Bridge and
+> > I2C-Configured Bridge.
 > >
-> > Unlike general bridge return helper drmm_of_get_bridge, this helper
-> > uses the dsi specific panel_or_bridge helper to find the next DSI
-> > device in the pipeline.
+> > It is possible to connect all three devices using upstream OF-graph por=
+t
+> > or ports node however only Panel and Bridge are possible to connect via
+> > child node but not possible to connect I2C-Configured Bridge via child
+> > node since I2C-Configure bridges are child of I2C not upstream DSI host=
+s
+> > and it must represent them via port or ports with endpoint linking.
 > >
-> > Helper lookup a given downstream DSI device that has been added via
-> > child or OF-graph port or ports node.
+> > Allwinner A64 DSI node already has a port so add endpoint 0 for input
+> > tcon so that the downstream DSI devices can use endpoint 1 to connect
+> > Panel or Bridge or I2C-Configured Bridge.
 > >
-> > Upstream DSI looks for downstream devices using drm pointer, port and
-> > endpoint number. Downstream devices added via child node don't affect
-> > the port and endpoint number arguments.
+> > An example of the I2C-Configured downstream bridge representation is,
+> >
+> > i2c1 {
+> >        bridge@1b {
+> >            compatible =3D "ti,dlpc3433";
+> >
+> >              ports {
+> >                   port@0 {
+> >                          reg =3D <0>;
+> >
+> >                          bridge_in_dsi: endpoint {
+> >                                 remote-endpoint =3D <&dsi_out_bridge>;
+> >                                 data-lanes =3D <1 2 3 4>;
+> >                          };
+> >                   };
+> >
+> >                 port@2 {
+> >                        reg =3D <2>;
+> >
+> >                          bridge_out_dmd: endpoint {
+> >                                 remote-endpoint =3D <&dmd_out_bridge>;
+> >                          };
+> >                   };
+> >              };
+> >        };
+> > };
+> >
+> > dsi {
+> >        compatible =3D "allwinner,sun50i-a64-mipi-dsi";
+> >
+> >        port {
+> >              dsi_in_tcon0: endpoint@0 {
+> >                 reg =3D <0>;
+> >                 remote-endpoint =3D <tcon0_out_dsi>;
+> >            };
+> >
+> >            dsi_out_bridge: endpoint@1 {
+> >                 reg =3D <1>;
+> >                 remote-endpoint =3D <&bridge_in_dsi>;
+> >            };
+> >       };
+> > };
+> >
+> > Note that existing device bindings are untouched and still represent
+> > the downstream devices via child nodes since the sun6i-mipi-dsi host
+> > will migrate to a standardized single helper to lookup for a
+> > downstream device via child or OF-graph port or port node.
 > >
 > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> > Changes for v7:
+> > - new patch
+> >
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64=
+/boot/dts/allwinner/sun50i-a64.dtsi
+> > index 77b5349f6087..3ed566dc2172 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > @@ -1189,7 +1189,11 @@ dsi: dsi@1ca0000 {
+> >                       #size-cells =3D <0>;
+> >
+> >                       port {
+> > -                             dsi_in_tcon0: endpoint {
+> > +                             #address-cells =3D <1>;
+> > +                             #size-cells =3D <0>;
+> > +
+> > +                             dsi_in_tcon0: endpoint@0 {
+> > +                                     reg =3D <0>;
+> >                                       remote-endpoint =3D <&tcon0_out_d=
+si>;
+> >                               };
 >
-> If you intend to use it with the sun4i driver, then don't. The sun4i
-> driver is barely using drm-managed resources, so chances are all its
-> resources will be freed by the time this action will run.
+> That doesn't match the DT binding anymore, and why can't we add endpoint@=
+1 there too?
 
-Any idea how to check all resources will be freed before this
-DRM-managed action helper runs? I did test the panel insertion and
-removal at runtime and I can see that the action helper
-(drmm_drm_panel_bridge_release) is triggered at removal time.
+Do you mean add endpoint@1 without any remote-endpoint like this?
 
-Here is the log for it.
-# insmod panel-bananapi-s070wv20-icn6211.ko
-[   11.411894] sun4i-drm display-engine: bound
-1e00000.display-frontend (ops 0xc0951eb4)
-[   11.420253] sun4i-drm display-engine: bound 1e60000.display-backend
-(ops 0xc0951620)
-[   11.428128] sun4i-drm display-engine: bound 1e70000.drc (ops 0xc0951150)
-[   11.435574] sun4i-drm display-engine: No panel or bridge found...
-RGB output disabled
-[   11.443484] sun4i-drm display-engine: bound 1c0c000.lcd-controller
-(ops 0xc094fdb0)
-[   11.451264] sun4i-drm display-engine: bound 1ca0000.dsi (ops 0xc0952f04)
-[   11.462479] [drm] Initialized sun4i-drm 1.0.0 20150629 for
-display-engine on minor 1
-[   11.963246] Console: switching to colour frame buffer device 100x30
-[   12.046329] sun4i-drm display-engine: [drm] fb0: sun4i-drmdrmfb
-frame buffer device
-[   12.082641] sun6i-mipi-dsi 1ca0000.dsi: Attached device s070wv20-ct16-ic=
-n62
-# rmmod panel-bananapi-s070wv20-icn6211.ko
-[   16.306388] Console: switching to colour dummy device 80x30
-[   16.466963] drmm_drm_panel_bridge_release: In
+dsi_out_bridge: endpoint@1 {
+         reg =3D <1>;
+};
+
+I was supposed to add this, since dtbs_check doesn't give any error. I
+have skipped this, as I thought it wouldn't be needed.
 
 Thanks,
-Jagan.
+agan.
