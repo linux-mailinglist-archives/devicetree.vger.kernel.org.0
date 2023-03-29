@@ -2,126 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9C86CCDAF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 00:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6926CCE83
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 02:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbjC1Wvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 18:51:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48750 "EHLO
+        id S229962AbjC2AIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 20:08:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229800AbjC1Wvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 18:51:43 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C46139
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 15:51:41 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id z42so14176486ljq.13
-        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 15:51:41 -0700 (PDT)
+        with ESMTP id S229959AbjC2AIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 20:08:39 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12061982
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:08:36 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id g17so18008541lfv.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 17:08:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680043899;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z8tukPuzbITFwXQ+VQmbw/TCmsc9V0UeeBpsR6Rb3oI=;
-        b=OtF1JlgkKDz8NjUSR/BK3P6QXzAl+hBGkksGiF1fVNIbn3onWJOz4wHxUB/YFK+xVx
-         lJk++yEFXkis/CipcmZZ5Rfll/i8E38H1zjQUycYIdxSHxO0JcjVcSPQqpX51Y3BOkaD
-         9+1l0+XDoTF2I0KmdKKAWVjyv+Ram8EE/iz83s3MA82lW86CdJTgzf3xvXigi8TIelfY
-         NhNBSSxf3Lk9yBM76u7+IUuBkwpqI89wDJDqFfoN+i4Zl30iiowz75W7Ti/4Aja2osXK
-         iRsfXrBadKQGzBV3siFONw5SmMQpqf3Of511Vr/u5EQ+ksD5R/jkkJ6pt0G2Ue/A6LzM
-         Kvpw==
+        d=linaro.org; s=google; t=1680048515;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R6v+NVQCPV1S0g7YrDwjpX8zVJI8HxRYTaWqAbSLfFQ=;
+        b=Rkwvx+kc9LdiXyqq+gK7o4FaQTAHyMJGU2UJ1WYlcqzB5nFM2ByuNgdyF+Q2gVmkwf
+         wgBr0vTFrPxmKQsbhLwQ7/xGL2j+D/oyvr++p98rUE/NXONDro7hNKzXm76EQ8hjKuG3
+         qNls2QgbPJTVX7NR9nIAawYvQf6Gdh3Hi0AtKw1k0ZAfBQpkZPtL3ciJyDpMDQcNyT2e
+         XwJgOAWE4euiNknTTCDu8o5jBIKVik+YnoMlTe1l/gR5EIASoEZwObxOnodLz+PR+BrW
+         6huL3TRKJa15oiS3ojeJTo8Ceceq5RBiwA0Cck++B7WSCxJmbmedVTf04cnPCDnqgpp3
+         WIxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680043899;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z8tukPuzbITFwXQ+VQmbw/TCmsc9V0UeeBpsR6Rb3oI=;
-        b=X4+OJoPYT1WbVfiNNUDjgVuKRLiv7nsCKp3moAMbgRB4wliVjyB+DNYQh7YXaB52Du
-         X3fGBZ2kf011fQVl+3buonARs4/1b6v7+jSWpq0NHHpH1RHMddfvT7B1RnuTwOO3jSGv
-         EEsSyRo+yGWwoEtzMJZSlJvSwGrphz3rFqEepVyhFaMPqBaIpoxUCWFUm+rhicJrxwYO
-         vheQrdiJEXlYvqL0iFt97QZIDVfrQrzgapyav4GoA0IL2mgB+2+fF8M6CD8A4m6bqgyz
-         vxpMSaJX0sXpB9y+TO/9C28kKkkKIwOiVK3t5NVl6nAaKaVKzwKMH2vIJBiQrR+v3sy4
-         SAGQ==
-X-Gm-Message-State: AAQBX9dJj7+uWREDTU67YBNk8bnKMTXmIxGLEJkKcBEXnKKYf0+6Ic3c
-        h5/x1wYYiLPsweoN5FB5BffPwA==
-X-Google-Smtp-Source: AKy350YNJYE5GTFBKI8Z5WeXPAyu+utX3qFWTssdO/6m8d6sSYKpsMMIP1XF5VZYmXFfF3vDzDClfw==
-X-Received: by 2002:a05:651c:22d:b0:29b:6521:8869 with SMTP id z13-20020a05651c022d00b0029b65218869mr5218365ljn.20.1680043899545;
-        Tue, 28 Mar 2023 15:51:39 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v18-20020a2e9252000000b002934abfb109sm5267873ljg.45.2023.03.28.15.51.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 15:51:39 -0700 (PDT)
-Message-ID: <880c0932-117f-61cd-dd97-c36076869c3b@linaro.org>
-Date:   Wed, 29 Mar 2023 01:51:38 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8250: drop incorrect domain idle
- states properties
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        d=1e100.net; s=20210112; t=1680048515;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R6v+NVQCPV1S0g7YrDwjpX8zVJI8HxRYTaWqAbSLfFQ=;
+        b=4c3zAxnKOs5PVdf2iakIRPGuTT993xUnbuu3am9YWU1XmRZMCLtXnjJmzlSueOtTHq
+         1/6iA5COVpKWLs2eZfxvip/1G/T35+Rg4iMaQjvMjznzC/0qMTXESfH+t6HMMOdkA4XZ
+         oSAv7BYcCxa9uXPW2JRCmGosrvdo6hxVpf2dKzAJodth3E1atp+EfDKqrMA2VYTgQfe/
+         ET2FYbblh9SgpDiKAo34ey/Qfmqdo2nerGJkVpoZEbmVqATQawgF0mzL9znoKJV6NUpP
+         Skfn8KAob/wiiMhzlP6887xNqM2P82XsJU7QyG6yzocP5D4R+tXCvZCvB4y8qGfmMn+K
+         KcEA==
+X-Gm-Message-State: AAQBX9f0y+dkasPld+gN21M8LnlHQJ1R3qSGtg529nj7mTazKlMeXuWz
+        /SnzAEI5oEEUv39Z/wO1hvdBVg==
+X-Google-Smtp-Source: AKy350Za28zGAfrrbml0T2NM56Ru3yBouMHlRvEj+r1KVgPudhZFpaMuV5kQg+H4u+ELE38DdDft9w==
+X-Received: by 2002:ac2:5d31:0:b0:4e8:5f9d:13d5 with SMTP id i17-20020ac25d31000000b004e85f9d13d5mr5245146lfb.43.1680048515236;
+        Tue, 28 Mar 2023 17:08:35 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id p21-20020ac246d5000000b004e8011cbaa0sm5238341lfo.111.2023.03.28.17.08.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 17:08:34 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-References: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Subject: [PATCH 0/6] arm64: dts: qcom: sc8280xp: remove duplication in PMIC declarations
+Date:   Wed, 29 Mar 2023 03:08:27 +0300
+Message-Id: <20230329000833.2507594-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2023 09:38, Krzysztof Kozlowski wrote:
-> Domain idle states do not use 'idle-state-name' and 'local-timer-stop':
-> 
->    sm8250-hdk.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Link: https://lore.kernel.org/all/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org/
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 --
->   1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 79d67b466856..9cf2de87c632 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -354,12 +354,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->   		domain-idle-states {
->   			CLUSTER_SLEEP_0: cluster-sleep-0 {
->   				compatible = "domain-idle-state";
-> -				idle-state-name = "cluster-llcc-off";
->   				arm,psci-suspend-param = <0x4100c244>;
->   				entry-latency-us = <3264>;
->   				exit-latency-us = <6562>;
->   				min-residency-us = <9987>;
-> -				local-timer-stop;
+The sc8280xp platform uses its own copy of PMIC declarations. This can
+easily end up with the issues that are fixed in the main PMIC include
+file, but are not fixed for sc8280xp (and vice versa). For example
+commit c0ee8e0ba5cc ("arm64: dts: qcom: pmk8350: Use the correct PON
+compatible") changed pmk8350 to use "qcom,pmk8350-pon" compat for the
+PON device, while sc8280xp-pmic.dtsi still has the incorrect
+"qcom,pm8998-pon".
 
-Hmm, so we support setting the broadcast timer when using plain PSCI 
-idle states, but not when using the domain-based idle states.
+Another example is pm8280_2_temp_alarm device, which uses interrupts
+tied to SID 2, while having SID 3. This can be easily left unnoticed.
 
-Ulf, Rafael, Daniel, is that an omission for the domain-based idle 
-support? Or is it handled in some other way?
+Employ a small amount of C preprocessor magic to make
+sc8280xp-pmics.dtsi use standard PMIC include files.
 
->   			};
->   		};
->   	};
+Dmitry Baryshkov (6):
+  dt-bindings: iio: qcom,spmi-adc7-pmk8350.h: include sid into defines
+  arm64: dts: qcom: pmk8350: rename pon label
+  arm64: dts: qcom: use main pmk8350.dtsi for sc8280xp platform
+  arm64: dts: qcom: pm8350: include SID into labels
+  arm64: dts: qcom: sc8280xp*: use pm8350.dtsi
+  arm64: dts: qcom: sc8280xp*: use pm8350c.dtsi and pmr735a.dtsi
+
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml      |   2 +-
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |   4 +-
+ arch/arm64/boot/dts/qcom/pm8350.dtsi          |  31 ++-
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi         |  13 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |   2 +-
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  24 +-
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  52 ++---
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  | 210 ++----------------
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts    |   2 +-
+ arch/arm64/boot/dts/qcom/sm8350-mtp.dts       |   8 +-
+ .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |  12 +-
+ .../dts/qcom/sm8450-sony-xperia-nagara.dtsi   |   8 +-
+ .../dt-bindings/iio/qcom,spmi-adc7-pmk8350.h  |  52 ++---
+ 14 files changed, 128 insertions(+), 294 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.30.2
 
