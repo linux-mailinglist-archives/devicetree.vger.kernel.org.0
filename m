@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D176CD2F5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 09:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B8356CD335
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 09:29:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjC2HY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 03:24:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
+        id S230152AbjC2H3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 03:29:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbjC2HYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 03:24:45 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62183C31
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:24:41 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id h11so11962492lfu.8
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:24:41 -0700 (PDT)
+        with ESMTP id S230039AbjC2H2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 03:28:45 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25DB423A
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:26:46 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id c29so18956649lfv.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:26:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680074680;
+        d=linaro.org; s=google; t=1680074796;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TGS6b5YXn10NcJ5QUB50Aod9B0bqHGHbyiKTOZ3Udps=;
-        b=X3DWfUaGLZ+qgDV7Ty2iJJ2VSoKD4XrKrqluyWJzr4xuawtqqDJMFcoCuyTx9Q19YY
-         n2FkaaO4kjFdjdZCGDhZbE2kueqbR4c7UQnQsyZYajhIfwPTCIhyBTxv5vcPMPqxydU0
-         rcVTlDKqFK2YR4OOQf4f1zft7AtS625bU0l8NCogV5GHeHH9VZ5ju31ttXnSyEMs5fcl
-         Tm2q92dnKc9ZdF95KALp7db/8SYHbPAP9/tp67bCzmMZHj5HN4B1Mvr+BpeqZ8nMGJ3S
-         y3ThvnD+STqrtDhlsybPmMkmXqmK5qkeYCGZRMu4Y+/ku6nRRWsa+vqmM4pkIyKLU8FV
-         Gv+w==
+        bh=w7183s01mUhY1MlzNjYfsfxMgMWtxEXCM0G4GVkOYwI=;
+        b=ANSQpbq4MUpCh6lkL0ICYmHOE4118OEHg8b40jiCxIZm18OGvGFLpfDsyyD6QRYEdp
+         giDZinFfnz6lLrVsspEixCHZXDHfo4K+NYzU5JofYizzSvrm2JmcO6/f5H13vIYdRKPb
+         /zZva1KYi1rPEdLh67cka7VzB7c616faD1wHv8eue61KEgnfgLNlJAFFiGsb/ZYzLane
+         zvVHPAyC8qTSlapYgMademg3TAIVO0H/W89Gfu0r5+V6kR7Z1FRWYK3vrthEE8xNysW1
+         4o2jonAUbh22fGO3I0b08h4vz0lpqbY5l9hUYdl8M3fbeuxHBpdXfgO7Q/kGsUgQI4fc
+         EABQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680074680;
+        d=1e100.net; s=20210112; t=1680074796;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TGS6b5YXn10NcJ5QUB50Aod9B0bqHGHbyiKTOZ3Udps=;
-        b=plqzB3RX879KPZU4ZxFHPTS4mEFjV7n8opnsGI+quYUR4/zONpkQk1seYJKu4shjCv
-         2LsDwQYJ0R2FEu3ha2r0ay9DpC/bPt6Vh1n0FUGtv5RscQQ3UfXDm64/iO8erXBzsu4a
-         Hl9xw+75aX2rQqGGzubQyC28x5byGO5s1q/9h9W9bCOpW0RLRsInajeNd3/rY1NWovI0
-         4YH1Lu2yo2JF/buljAjUG6ppzXMar9DgN/QWWFcgFGc0RZa8KJSGY0V0MzSmAGGU4dBO
-         GS2js0fmZRCl37U2s13ii8ztYjYrWFQapHmt5dcW3zBuMGbf+4f38iYVteNB4pgF1Sa+
-         J/Yg==
-X-Gm-Message-State: AAQBX9dEKd8pi2aVXWDZYECojxYkoXM2f9xr8TTzNMPyGNGL8D+bwjhT
-        GSowO3YCm/GAPHThqHOQaCtugw==
-X-Google-Smtp-Source: AKy350aF6HDKGWSyijeHG5aujpZZx7FNjGf8c7Gy0NPPvWJoyS5Xi1axkQ9kLVhlUUNEBU4qvhm6nA==
-X-Received: by 2002:ac2:5591:0:b0:4ea:e2f8:5edf with SMTP id v17-20020ac25591000000b004eae2f85edfmr5222614lfg.33.1680074679959;
-        Wed, 29 Mar 2023 00:24:39 -0700 (PDT)
+        bh=w7183s01mUhY1MlzNjYfsfxMgMWtxEXCM0G4GVkOYwI=;
+        b=z06foa5MQBcVa1wxLznLuMVymmuXH7QlsKXtlF7AnvwysfCBmg3rQ8yJhWvZH7F5MD
+         foH2tjrGja86eLgYkvG4DYMI0MHUIsjQkf9dVa8WuIQMO3usKhMp2NuLake9ijl1oYHW
+         /p32Gswa0y65jOC8b4n5nEKbTqxWdxnwhEgM9LqPogSbGwJUpCRHD6ZLJELfbvb5XVwN
+         MPmduyoGffhG88VI34HoO/GtCBAqstCfEWnZkXu8TgMwoMD4EVk6kQH92BkjwutVc/lM
+         2n54ZH2d1z56TYzzyLJ7R4K0EgXXvhShQjF65WpihaESFTttLrbl1RPkH7osMLsebIED
+         eAGg==
+X-Gm-Message-State: AAQBX9eoOgAnewGrwM8LsriToxX/L6qmg1OeWf7693FGPWTtcmIt/sFQ
+        q+Dm3pTICKV3Hg6EAwg3Vet1rw==
+X-Google-Smtp-Source: AKy350ZswhcAA5B+KdmpmE/aqHA9lWxMk4RrmpJihRyPEunFiBluQGwvppgyXlTCBFluxvW3vo6b1w==
+X-Received: by 2002:a19:e01c:0:b0:4d8:86c1:478c with SMTP id x28-20020a19e01c000000b004d886c1478cmr375021lfg.33.1680074795796;
+        Wed, 29 Mar 2023 00:26:35 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s12-20020ac25fec000000b004dda80cabf0sm5371135lfg.172.2023.03.29.00.24.38
+        by smtp.gmail.com with ESMTPSA id u25-20020a056512041900b004e9bf853c27sm4353061lfk.70.2023.03.29.00.26.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 00:24:39 -0700 (PDT)
-Message-ID: <7eebc72a-a657-ca67-2c59-60f8e633b878@linaro.org>
-Date:   Wed, 29 Mar 2023 09:24:38 +0200
+        Wed, 29 Mar 2023 00:26:35 -0700 (PDT)
+Message-ID: <808cf98a-b4f6-4299-bd47-a8adac5ef7ad@linaro.org>
+Date:   Wed, 29 Mar 2023 09:26:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH] dt-bindings: usb: typec-tcpci: convert to DT schema
- format
+Subject: Re: [PATCH v8 4/4] arm64: dts: qcom: sc8280xp-x13s: Add bluetooth
 Content-Language: en-US
-To:     Jun Li <jun.li@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
-References: <20230323065824.3857573-1-peng.fan@oss.nxp.com>
- <5675373c-af4f-906f-9906-7853a85f8ed6@linaro.org>
- <PA4PR04MB96405A3B0B5158561D9E068F89889@PA4PR04MB9640.eurprd04.prod.outlook.com>
- <aec9e01b-c358-0982-3090-ef980d4a5623@linaro.org>
- <PA4PR04MB9640866667BFFF292F06388589899@PA4PR04MB9640.eurprd04.prod.outlook.com>
+To:     Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Steev Klimaszewski <steev@kali.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Mark Pearson <markpearson@lenovo.com>,
+        Johan Hovold <johan@kernel.org>
+References: <20230326233812.28058-1-steev@kali.org>
+ <20230326233812.28058-5-steev@kali.org>
+ <CABBYNZLh2_dKm1ePH3jMY8=EzsbG1TWkTLsgqY1KyFopLNHN6A@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PA4PR04MB9640866667BFFF292F06388589899@PA4PR04MB9640.eurprd04.prod.outlook.com>
+In-Reply-To: <CABBYNZLh2_dKm1ePH3jMY8=EzsbG1TWkTLsgqY1KyFopLNHN6A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -85,36 +91,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 09:16, Jun Li wrote:
+On 29/03/2023 00:24, Luiz Augusto von Dentz wrote:
+> Hi Steev,
 > 
-> Per spec below, TCPCI does need interrupt for alert, but no limit on the number.
-> 
-> "The TCPC uses I2C to communicate with the TCPM. The TCPC is an I2C slave
-> with Alert# signal for requesting attention."
-> 
->> no supplies and no additional GPIOs (like reset
->> GPIO)?
-> 
-> Those are out of scope of spec, I think it can be added as optional.
-> 
+> On Sun, Mar 26, 2023 at 4:38 PM Steev Klimaszewski <steev@kali.org> wrote:
 >>
->> Because this is what this binding is saying.
+>> The Lenovo Thinkpad X13s has a WCN6855 Bluetooth controller on uart2,
+>> add this.
 >>
->>> fully compliance with tcpci spec, if change it to be only specific to
->>> nxp,ptn5110, my understanding is then other chips need duplicate a
->>> binding doc even common tcpci binding and driver is enough for them.
->>
->> Depends. Usually we have common schema used by actual device schemas. If
->> TCPCI-compliant device cannot have additional properties,
+>> Signed-off-by: Steev Klimaszewski <steev@kali.org>
 > 
-> My understanding was TCPCI-compliant device can have additional optional
-> properties.
+> I would like to merge this set but this one still doesn't have any
+> Signed-off-by other than yours.
 
-Then I propose to rename it to device-matching name (nxp,ptn5110.yaml).
-Except interrupt and connector, there is nothing here which describes
-actual standard or common class. These can easily be moved to shared
-binding later. I can easily imagine TCPCI devices with a bit different
-interface and different properties.
+Please take only driver and bindings. The DTS should always go via
+Qualcomm SoC tree (as we want to be sure 100% that it is independent of
+driver).
 
 Best regards,
 Krzysztof
