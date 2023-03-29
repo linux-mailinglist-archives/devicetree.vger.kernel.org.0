@@ -2,62 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71A8A6CF301
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF1EA6CF31F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjC2TUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 15:20:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57806 "EHLO
+        id S230194AbjC2TZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 15:25:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjC2TUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:20:05 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0F42135;
-        Wed, 29 Mar 2023 12:20:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 54BD4B8241C;
-        Wed, 29 Mar 2023 19:20:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82966C433D2;
-        Wed, 29 Mar 2023 19:20:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680117601;
-        bh=JIWfpySDq/fAMfCAGE0DghmM+eBV3wrow/0afr4oqY4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r8edZRPS63drSybxKbPBnJ5SGDvGfM/XmXNkwVuAaMQaOhFc6ubW6JhGmL76Xnbh9
-         qzLm22U4f/H3vihskD9sYWSxCLGkA9zH7jnB0/gvz+YO8FFRoh7S35TcNEhoDofT2U
-         bVdS1id/P7xpzO3S1nSv0JCI4g0lOSKb6LWo6TPm1PUNpZdAyHlZCYyvdK5odmRBi3
-         jCOKOYFbVaxL870Il0/wNNeT8duXAqTOhvU0rgZMUAGlmJi2kMNQCYICCl4gJUFJtR
-         G/muyjP0l7l0qIfA2Az4EY3Ru4EZccDj3RtNC89wc8Xk4D5reUuLiDMvlh+9qAaYbL
-         jirm1rsYvdJyQ==
-Date:   Wed, 29 Mar 2023 21:19:57 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] i2c: cadence: Detect maximum transfer size
-Message-ID: <ZCSPXfbfN9/FmLA4@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230317145441.156880-1-lars@metafoo.de>
- <20230317145441.156880-3-lars@metafoo.de>
+        with ESMTP id S229504AbjC2TZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:25:22 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A32F4
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:25:20 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x17so21610363lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:25:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680117919;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3wpiy16R/8+GdOV9YH/3sovb1Ren/VC9veLHKx7+T4U=;
+        b=mpumkhpOwENrYVhzJyze4CBQpIu9AzQ1DdLnH41oDNzz8O1+qEz92f3i4VDv6NGeXi
+         z8q29cPruFvJ2i4yE/xzwKEHKSROKEwQy3Sa0h9NWCsWneaYTvyIJ/jQxhxLi2FVZ9sr
+         uklx1F8j7wlKzGSC8JL/b5e5JbbPH5I9aWDP9/hatz6LWUx5fdpXAQpPA+L1nncpVOxt
+         LhRlIASsMqkvrP6o1qrqAvMsZVN5TAehTxDjQ8cM1QcpA2bXQAh/sbxV3KfqgQ6tx8W+
+         xp5nYNIwVmb7xIolNMZrcgojaQRT2Usth9dOeDRKEaUTsvpE5DJevo88RgEghPPa6fwS
+         Btmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680117919;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3wpiy16R/8+GdOV9YH/3sovb1Ren/VC9veLHKx7+T4U=;
+        b=lrTOek3QIe4rhNuQcXEMBvfeK9dI+98oKrfdFP2DAAxFzEJPaXfYiXknWt9FpnP9L9
+         E5FnhhS7fahfeRBtk4xb4VQWZeIatQ3NasMO6srgmJHE9s3YTjqxo4pqPMCd7P9K86ta
+         SUAFKJgtbvYPfjGStDcS5pZek/IaiQshAZC7AiarPsNTOfGcZTow0UgXWvo9jzSbO2Qt
+         VunpCFtcd1emkMc832/8RMvl351fSUoYtN9uve/JT+Ibpfg39P0pE4CcBw4bx80KVBFM
+         5vrB8upkC4+zP6d9+Y5C2y5aNTBSQS/CAQfaR2J53+Ar3yhwLCRcbhwBx+wPBm9mEbW6
+         hLCQ==
+X-Gm-Message-State: AAQBX9flnqMV8J30sefnx3TjdCNRns7Gu0AtPlfbbpgIMyqxsNyPddNR
+        InNDPqr145CzLG7czKiw3L2GFQ==
+X-Google-Smtp-Source: AKy350YFaKBJCmSEfs4xiSiYMlttEKoeZnWZhi/9ekX3U4AKOErM5tEXQz+yUyLvo3zGNoksJ8ujrw==
+X-Received: by 2002:ac2:43b3:0:b0:4dc:537c:9230 with SMTP id t19-20020ac243b3000000b004dc537c9230mr6195266lfl.8.1680117918722;
+        Wed, 29 Mar 2023 12:25:18 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id a16-20020a056512021000b004e845954a81sm5558088lfo.296.2023.03.29.12.25.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Mar 2023 12:25:18 -0700 (PDT)
+Message-ID: <5d8a7b76-482b-99fe-c55b-6d3e3d2d8394@linaro.org>
+Date:   Wed, 29 Mar 2023 21:25:16 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="GiOq4c6oqa/zRcCv"
-Content-Disposition: inline
-In-Reply-To: <20230317145441.156880-3-lars@metafoo.de>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Split out SA8155P and use correct
+ RPMh power domains
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230214095435.2192153-1-konrad.dybcio@linaro.org>
+ <20230214095435.2192153-3-konrad.dybcio@linaro.org>
+ <20230314001052.7qvgbwkl73x22oll@ripper>
+ <eaf2ca0d-4d90-b68b-3b36-8bb0148cfb95@linaro.org>
+ <ee1ebac4-bf18-019a-f770-5cb88703d06b@linaro.org>
+ <20230315230024.wxuqthay74i5zgrq@ripper>
+ <3d3117d2-b3eb-1174-7061-b899cdcdf6ce@linaro.org>
+ <20230320021957.yzg6zhrhjr36rcz4@ripper>
+ <6ae97b26-b1e7-b382-b6f6-053afe26a1a2@linaro.org>
+In-Reply-To: <6ae97b26-b1e7-b382-b6f6-053afe26a1a2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,64 +87,93 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---GiOq4c6oqa/zRcCv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 17, 2023 at 07:54:41AM -0700, Lars-Peter Clausen wrote:
-> The maximum transfer length is a synthesis configuration parameters of the
-> Cadence I2C IP. Different SoCs might use different values for these
-> parameters.
->=20
-> Currently the driver has the maximum transfer length hardcoded to 255.
-> Trying to use the driver with an IP instance that uses smaller values for
-> these will work for short transfers. But longer transfers will fail.
->=20
-> The maximum transfer length can easily be detected at runtime since the
-> unused MSBs of the transfer length register are hardwired to 0. Writing
-> 0xff and then reading back the value will give the maximum transfer lengt=
-h.
->=20
-> These changes have been tested with
->   1) The Xilinx MPSoC for which this driver was originally written which
->       has the previous hardcoded settings of 16 and 255.
->   2) Another instance of the Cadence I2C IP with FIFO depth of 8 and
->      maximum transfer length of 16.
->=20
-> Without these changes the latter would fail for I2C transfers longer than
-> 16. With the updated driver both work fine even for longer transfers.
->=20
-> Note that the IP core and driver support chaining multiple transfers into=
- a
-> single longer transfer using the HOLD bit. So the maximum transfer size is
-> not the limit for the length of the I2C transfer, but the limit for how
-> much data can be transferred without having to reprogram the control
-> registers.
->=20
-> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
+On 20.03.2023 11:39, Konrad Dybcio wrote:
+> 
+> 
+> On 20.03.2023 03:19, Bjorn Andersson wrote:
+>> On Thu, Mar 16, 2023 at 12:50:49AM +0100, Konrad Dybcio wrote:
+>>> On 16.03.2023 00:00, Bjorn Andersson wrote:
+>>>> On Tue, Mar 14, 2023 at 12:41:45PM +0100, Konrad Dybcio wrote:
+>>>>>
+>>>>>
+>>>>> On 14.03.2023 12:36, Konrad Dybcio wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 14.03.2023 01:10, Bjorn Andersson wrote:
+>>>>>>> On Tue, Feb 14, 2023 at 10:54:35AM +0100, Konrad Dybcio wrote:
+>>>>>>>> The RPMhPD setup on SA8155P is different compared to SM8150. Correct
+>>>>>>>> it to ensure the platform will not try accessing forbidden/missing
+>>>>>>>> RPMh entries at boot, as a bad vote will hang the machine.
+>>>>>>>>
+>>>>>>>
+>>>>>>> I don't see that this will scale, as soon as someone adds a new device
+>>>>>>> in sm8150.dtsi that has the need to scale a power rail this will be
+>>>>>>> forgotten and we will have a mix of references to the SM8150 and SA8155P
+>>>>>>> value space.
+>>>>>>>
+>>>>>>> That said, I think it's reasonable to avoid duplicating the entire
+>>>>>>> sm8150.dtsi.
+>>>>>> Yeah, this problem has no obvious good solutions and even though it's
+>>>>>> not very elegant, this seems to be the less bad one..
+>>>>>>
+>>>>>>>
+>>>>>>> How about making the SA8155P_* macros match the SM8150_* macros?
+>>>>>>> That way things will fail gracefully if a device node references a
+>>>>>>> resource not defined for either platform...
+>>>>>> Okay, let's do that
+>>>>> Re-thinking it, it's good that the indices don't match, as this way the
+>>>>> board will (should) refuse to function properly if there's an oversight,
+>>>>> which may have gone unnoticed if they were matching, so this only guards
+>>>>> us against programmer error which is not great :/
+>>>>>
+>>>>
+>>>> Right, ensuring that the resource indices never collides would be a good
+>>>> way to capture this issue, as well as copy-paste errors etc. My
+>>>> pragmatic proposal is that we make SA8155P_x == SM8150_x where a match
+>>>> exist, and for the ones that doesn't match we pick numbers that doesn't
+>>>> collide between the platforms.
+>>>>
+>>>> The alternative is to start SA8155P_x at 11, but it's different and
+>>>> forces sa8155p.dtsi to redefine every single power-domains property...
+>>>>
+>>>>
+>>>> This does bring back the feeling that it was a mistake to include the
+>>>> platform name in these defines in the first place... Not sure if it's
+>>>> worth mixing generic defines into the picture at this point, given that
+>>>> we I don't see a way to use them on any existing platform.
+>>> TBF we could, think:
+>>>
+>>> sm1234_rpmpds[] = {
+>>> 	[CX] = &foobar1,
+>>> 	[CX_AO] = &foobar1_ao,
+>>>
+>>> 	[...]
+>>>
+>>> 	/* Legacy DT bindings */
+>>> 	[SM1234_CX] = &foobar1,
+>>> 	[SM1234_CX_AO] = &foobar1_ao,
+>>> };
+>>>
+>>> WDYT?
+>>
+>> Given that every platform got these defines different we'd have to start
+>> at the new generic list at 17 (which would throw away 136 bytes per
+>> platform), if we're going to allow the scheme for existing platforms.
+>> Which I don't fancy.
+>>
+>> It's not super-pretty to mix and match, but I think I would be okay
+>> switching to this scheme for new platforms.
+>>
+>> PS. We'd better prefix the defines with something (perhaps RPM_?)
+> Perhaps just VDD_{CX/MX/..}? We reference the rpm(h)pd's phandle
+> each time it's used, anyway.
+So, back to this patch.. do you want me to make any changes or should
+we take it as-is to fix 8155?
 
-Applied to for-next, thanks!
-
-
---GiOq4c6oqa/zRcCv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQkj10ACgkQFA3kzBSg
-KbYk9hAAghutWpgZ1GRN8yfcQeuM6/8wUMELs87EN/Al0vw+7eNxxbNHkTEi64j4
-iMHhutrJhieCs7lrbhoYVkp5CHHkw/vJDBb+Riohn/IcNfUo7WfFTUJ9Nz8Cm5oR
-yy3aN978eg/Q0e3MvlGjapqfOzhYqq+yEarf93JfhEI3PQvrxIlyWudsjUnWotOW
-qsCIfLS//L0SfvX8rc4WwWf2dbm+yDCrEF6HA1NoerHwtpsgxgDEobUHVuASOTmh
-7HaFR2O5b4ebisU9bzQvliGuWQ+4oDoUwXD9qUT0gC+AojZejrTJCKIFZ1Teqvv/
-FHpMhl0vcKtumHrf4Uy73MVyXQODJwIgqgDx7MWry9U5UscrJEUx3dWd6ivteDYd
-XgXO85TwPgj5G9GwIIY0IBIxABxeYuY9gN/1kZ7Q+TUE8Q3xW9llWvWSzQwCpPhV
-VRbcmqGaVBW7qixe4okPCO3J0ElgR4gWPKIHK5pYhKOyPMpgWryeKeTBpJlwB5lt
-DWLWsjANBwavB3jeMft4yiM1lAFes/z0It4moE5afGDQRDr5JZBHe2pNg9ViWN7S
-4lNpyJPh+ZDZM2NRwEisI5oBrmiYI5Z4SmPHkuN4ln79IPovCjAbT30e+UjrhjzM
-XYl67U6mXP77xmlVH7a1o0ixK0Df1yyLa8wiSRvbqh7nze/4dzc=
-=2nfL
------END PGP SIGNATURE-----
-
---GiOq4c6oqa/zRcCv--
+Konrad
+> 
+> Konrad
+>>
+>> Regards,
+>> Bjorn
