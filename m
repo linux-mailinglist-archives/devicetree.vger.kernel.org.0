@@ -2,87 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E236CF370
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A18CE6CF39C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbjC2TpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 15:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54606 "EHLO
+        id S229457AbjC2Ttj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 15:49:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbjC2To7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:44:59 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A9235B90;
-        Wed, 29 Mar 2023 12:44:42 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-17997ccf711so17441632fac.0;
-        Wed, 29 Mar 2023 12:44:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680119075;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S229555AbjC2Tti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:49:38 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 176271FCC
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:49:06 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id dw14so11044024pfb.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112; t=1680119288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gw4BTbq/GKEHZpknHsWKDHl2LDWv94M+hU6ER2t+0i0=;
-        b=qAfe8epRU9bO9aRwl9zLOvj5KJhwhk0onBok+LhJt99dJnSi4wd2vUUW35ym0jv/NH
-         uvgGaaewqlXl6q1jKhdRJUkGhtD0lyiAt0pIStsQuVFrFy2f8OiFheaM/mNc+LbeO4iq
-         pD8FCR3NDUucK+J0Snq6XpxGe3bW35IGcG5qZ+0HuBN4UA5vYSTUMlkqEsarLX4ytifm
-         gCl1WVJ2t1HDAnNhKKkGgeaaSgOT6YjJkBG4IszYHKD8J03PH1rbmKoqbKymyuzQrnJ6
-         xpNoRw2ofybvE8D2pKOor9Ja5/NO5KYfG6mMuyZWb62AgWXOGVYihOEWAfQiCfM7UUAR
-         90wg==
-X-Gm-Message-State: AAQBX9fNUNOuxg+/MGGtJjeb7HsH/Y5yxXPmikqKgX0t2M5N/bXWHEoc
-        TXZPIpLuPaCjg5VsdcEBug==
-X-Google-Smtp-Source: AK7set+O9Odhp1fWLs2DYIMjVAxvfspb1xzgtELXVpLM0P2qPRhdawCZdo1a7m777DWX9U02hiRWpw==
-X-Received: by 2002:a05:6870:65a5:b0:17a:c102:b449 with SMTP id fp37-20020a05687065a500b0017ac102b449mr12497538oab.59.1680119075716;
-        Wed, 29 Mar 2023 12:44:35 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id tk6-20020a05687189c600b0017703cd8ff6sm12085149oab.7.2023.03.29.12.44.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 12:44:35 -0700 (PDT)
-Received: (nullmailer pid 4097012 invoked by uid 1000);
-        Wed, 29 Mar 2023 19:44:34 -0000
-Date:   Wed, 29 Mar 2023 14:44:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Harigovindan P <harigovi@codeaurora.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel-simple: merge Innolux
- p120zdg-bf1
-Message-ID: <20230329194434.GA4096624-robh@kernel.org>
-References: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
+        bh=JkwwcSBRqgS30KhR49UM83c3a69MioP60clbUh2HjpA=;
+        b=Vjb3xT/s1/m7g9V+3JodYQd0vQRs0RZgGOezedG8oJudOay6pylk3yYQ2+36Ew/UIb
+         juTMRwfNvT2SCrUDOGBXYX2WfGtnySA1/ElIFRA6/PZ1aW8c0mBQPLG/1HbonvmAuKVG
+         nuqXcKmGBfCFd+ChSg3orAS1fWQva0XBc7rql8PaZSQWvOxbKW2mCTGOVJBfhPPDs4I+
+         oDs22vkzvITKKvdb66iqt7sHk2sh/Dw5IjGWFsr13+Z6j/cSH1OFYWDYq/a+0eDGiSi1
+         bs/aib9lMbj++PKL/Ym1cxuKbiGmWO+xSCPycd19WBQwnO/pZd6zU6iI9pOdvNqn/YaR
+         Bowg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680119288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JkwwcSBRqgS30KhR49UM83c3a69MioP60clbUh2HjpA=;
+        b=jpkNS6kdPGq7apZkpjuSnWLJZxwIP4XtXlGCkhpVh+rnlSGbhZWdvpnJaWYRqP0z9v
+         DRVG02kOaWRnU8Lry/XmzewI52EF1Y3DUaTMzyFGU5xhpj6FIwu4r1MAk5l3p/VwTcUi
+         JDUv8VVjxT15Oapinp2cBMYtOEIKvmeMVB31PW+GoPe1q8b3/+BlgaRgZtXCuG2FLT6U
+         LmG2kq7QmdJsmaEAKKUkfBXwq1po3/7MLeDhBnrLymyg+i3ZE/RgQ70fgPr13Dm/4Nsq
+         3Yy2nOMOrORf/7ad36A0dyQc7ARCWdkYXqQBCYi6gmBpHzxB7iaqNdUo5lX0KHOSNqdf
+         6Bcg==
+X-Gm-Message-State: AAQBX9dpekJO6ZCFtGBPn4g4Cc4y/kV6VEDhhrskj5zaRdy4zQoURun3
+        Mj0JJl6MXu26nW5pHGsqUQR5I3KsdN7KelFirpSCAVLI/c/aLxCYc2Bgiw==
+X-Google-Smtp-Source: AKy350bTWid512og1XEyH8yXn2SeGT0F4JFf7EpVQQuzB+KNlUFsnJWFBZzX5Pz0KWEq5gW8zQNmpFjZE0Q/yTnojJg=
+X-Received: by 2002:a63:5a47:0:b0:513:2523:1b5f with SMTP id
+ k7-20020a635a47000000b0051325231b5fmr5501254pgm.3.1680119287530; Wed, 29 Mar
+ 2023 12:48:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230326155425.91181-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
+In-Reply-To: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 29 Mar 2023 12:47:31 -0700
+Message-ID: <CAGETcx-5a3ZKRiG1MbZaYiJUPVSPH1O18+E-HoTRnAUz0mc07A@mail.gmail.com>
+Subject: Re: [PATCH v2] treewide: Fix instantiation of devices in DT overlays
+To:     geert+renesas@glider.be
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-15.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 26, 2023 at 05:54:20PM +0200, Krzysztof Kozlowski wrote:
-> There is nothing special in Innolux p120zdg-bf1 panel, so just like
-> other Innolux panels it can be made part of panel-simple.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, Mar 24, 2023 at 2:30=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+
+I saw all the other replies. Let me give more details on the commit
+text and inline comments so it's clearer and not a "he said he said"
+
+> When loading a DT overlay that creates a device, the device is not
+> instantiated,
+
+IIRC I think the devices are instantiated, but not probed.
+
+> unless the DT overlay is unloaded and reloaded again.
+>
+> Saravana explains:
+>   Basically for all overlays (I hope the function is only used for
+>   overlays) we assume all nodes are NOT devices until they actually
+>   get added as a device.
+
+This comment was about what the patch is doing. I think a better
+commit text would be something like below. Feel free to reword as you
+see fit.
+
+After the recent refactor to improve fw_devlink[1], it no longer depends on
+"compatible" property to identify which device tree nodes will
+become struct device. fw_devlink now picks up dangling consumers (consumers
+pointing to descendent device tree nodes of a device that aren't converted
+to child devices) when a device is successfully bound to a driver. See
+__fw_devlink_pickup_dangling_consumers().
+
+However, during DT overlay, a device's device tree node can have sub-nodes
+added/removed without unbinding/rebinding the driver. This difference in
+behavior between the normal device instantiation and probing flow vs the DT
+overlay flow has a bunch of implications that are pointed out elsewhere[2].
+One of them is that the fw_devlink logic to pick up dangling consumers is
+never exercised.
+
+This patch solves the fw_devlink issue by marking all DT nodes added by DT
+overlay with FWNODE_FLAG_NOT_DEVICE (fwnode that won't become device) and
+then clearing the flag when a struct device is actually created for the DT
+node. This way, fw_devlink knows not to have consumers waiting on these
+newly added DT nodes and to propagate the dependency to an ancestor DT node
+that has corresponding struct device.
+
+[1] - https://lore.kernel.org/lkml/20230207014207.1678715-1-saravanak@googl=
+e.com/
+[2] - https://lore.kernel.org/lkml/CAGETcx_bkuFaLCiPrAWCPQz+w79ccDp6=3D9e88=
+1qmK=3Dvx3hBMyg@mail.gmail.com/#t
+
+
+> Based on a patch by Saravana Kannan, which covered only platform and spi
+> devices.
+
+You can keep this in the commit text.
+
+> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
+> Link: https://lore.kernel.org/r/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=3DrWYnkC=
+Z6z5bGX-wj4w@mail.gmail.com
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Mark Brown <broonie@kernel.org>
 > ---
->  .../display/panel/innolux,p120zdg-bf1.yaml    | 43 -------------------
->  .../bindings/display/panel/panel-simple.yaml  |  2 +
->  2 files changed, 2 insertions(+), 43 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/panel/innolux,p120zdg-bf1.yaml
+> v2:
+>   - Add Acked-by,
+>   - Drop RFC.
+> ---
+>  drivers/bus/imx-weim.c    | 1 +
+>  drivers/i2c/i2c-core-of.c | 1 +
+>  drivers/of/dynamic.c      | 1 +
+>  drivers/of/platform.c     | 1 +
+>  drivers/spi/spi.c         | 1 +
+>  5 files changed, 5 insertions(+)
+>
+> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+> index 36d42484142aede2..898e23a4231400fa 100644
+> --- a/drivers/bus/imx-weim.c
+> +++ b/drivers/bus/imx-weim.c
+> @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb, =
+unsigned long action,
+>                                  "Failed to setup timing for '%pOF'\n", r=
+d->dn);
+>
+>                 if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
 
-Series applied to drm-misc-next.
+It's important this flag clearing is done before the device is added.
+So, can you please add a comment before all these clear flag lines
+that's something like:
 
-Rob
+/* Clear the flag before adding the device so that fw_devlink doesn't
+skip adding consumers to this device. */
+
+Thanks,
+Saravana
+
+> +                       rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE=
+;
+>                         if (!of_platform_device_create(rd->dn, NULL, &pde=
+v->dev)) {
+>                                 dev_err(&pdev->dev,
+>                                         "Failed to create child device '%=
+pOF'\n",
+> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+> index aa93467784c29c89..303f9003562eed3d 100644
+> --- a/drivers/i2c/i2c-core-of.c
+> +++ b/drivers/i2c/i2c-core-of.c
+> @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb, u=
+nsigned long action,
+>                         return NOTIFY_OK;
+>                 }
+>
+> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 client =3D of_i2c_register_device(adap, rd->dn);
+>                 if (IS_ERR(client)) {
+>                         dev_err(&adap->dev, "failed to create client for =
+'%pOF'\n",
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 07d93753b12f5f4d..e311d406b1705306 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np)
+>         np->sibling =3D np->parent->child;
+>         np->parent->child =3D np;
+>         of_node_clear_flag(np, OF_DETACHED);
+> +       np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
+>  }
+>
+>  /**
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block *=
+nb,
+>                 if (of_node_check_flag(rd->dn, OF_POPULATED))
+>                         return NOTIFY_OK;
+>
+> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 /* pdev_parent may be NULL when no bus platform device */
+>                 pdev_parent =3D of_find_device_by_node(rd->dn->parent);
+>                 pdev =3D of_platform_device_create(rd->dn, NULL,
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index 8e8af148b1dc371e..66ac67580d2a473b 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -4527,6 +4527,7 @@ static int of_spi_notify(struct notifier_block *nb,=
+ unsigned long action,
+>                         return NOTIFY_OK;
+>                 }
+>
+> +               rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+>                 spi =3D of_register_spi_device(ctlr, rd->dn);
+>                 put_device(&ctlr->dev);
+>
+> --
+> 2.34.1
+>
