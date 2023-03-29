@@ -2,197 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A83AE6CD82B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 13:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C346CD840
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 13:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbjC2LGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 07:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37378 "EHLO
+        id S229681AbjC2LQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 07:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbjC2LGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 07:06:46 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACCA4492
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:06:16 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a21so8453090ljq.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 04:06:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680087973;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=etQbhrM6MU2XcAvOg/pcuO+n7EAOZrzaAg4KJ9fc/1U=;
-        b=L598pYGTk5dQhsP3xakAE1nlbw8icPPUU4fLZTviNSmBOZM47k89eqjMRZSHQI+lJ5
-         r8+UK5FbcFLnnqcfKNAKorjXAJ9DQW77M9f8fkrvF0AVJWZ7rgljGmysBLJj8zTKEVJE
-         wwSx/MyYlxxvnaTLBPNsmLytw7JGs60cNvcCij2wD9wAtpfBHA2AFFNvTlWlgt/zJjxd
-         XjjzRoht2fDeTwKAH3ayCLe0UqKoO+v5RRIOX1pT2NZZwg9R5xOu4AGOPZm+GpNzgLQI
-         AoZKvlW1VYvDsouInb2j3aZCiHTJSwNP3cTImHOQqUvHBWiUwtL57WyRlHBmYrfWAwa3
-         QDEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680087973;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=etQbhrM6MU2XcAvOg/pcuO+n7EAOZrzaAg4KJ9fc/1U=;
-        b=nt14p/Fc3c0wpBTxk07n5FpQi8y7DDsIeePWgQK+zQb2wsX7HdLOhZwLl2ZTHE+cN2
-         HUtdWTLScwU2hJO8AM1smdGK1PLRa/SG479QJZStnN2BAcoFrI/qGkmC5IoKjsjJMLfX
-         eoeIlQA+8ToWxEq9AUSC+DHn+nXcJuUvUTEu/J1d8BlQo0l2S+sL7eRINVcxpTf76kc5
-         ZfwEYcybX3L8IYw5TONHxj4Q4V84kIiM/uZulgvojMi7lAMGzbbUgAykxaakvyrJW3wZ
-         93KHJNnDuvxIVz27WvVZ4qaIwQUuGWQtGSF0j9gW2ImjYoL6kS4BwuOmNSqonmm0ADAA
-         tO1w==
-X-Gm-Message-State: AAQBX9dBQFd8mdk4XvWACc6Tgr6IQyUA7eb0mDbq5FpeEd7VIXD9rd2Z
-        X6M70qJFNJC2rn1dLn+VDjiWJg==
-X-Google-Smtp-Source: AKy350b+/6URBf3qxA94iYZXtupPRGRA1fBUy1YSTEaHaifqR95Qb3k0SvhFQZErzc8p36ToU28zJw==
-X-Received: by 2002:a2e:9997:0:b0:29e:5dc2:903a with SMTP id w23-20020a2e9997000000b0029e5dc2903amr6754833lji.23.1680087973255;
-        Wed, 29 Mar 2023 04:06:13 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id e4-20020ac25464000000b004d58e782886sm5419690lfn.303.2023.03.29.04.06.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 04:06:12 -0700 (PDT)
-Message-ID: <c42b8c24-2159-64ae-d36c-92c69274f24f@linaro.org>
-Date:   Wed, 29 Mar 2023 13:06:11 +0200
+        with ESMTP id S229697AbjC2LQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 07:16:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C38440EA;
+        Wed, 29 Mar 2023 04:16:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD53161CBB;
+        Wed, 29 Mar 2023 11:16:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD5EBC433D2;
+        Wed, 29 Mar 2023 11:16:24 +0000 (UTC)
+Message-ID: <85268d69-3d3b-2c0f-ba26-073f09052362@xs4all.nl>
+Date:   Wed, 29 Mar 2023 13:16:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 2/2] irqchip: irq-qcom-mpm: Support passing a slice of
- SRAM as reg space
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+ Thunderbird/102.8.0
+Subject: Re: [RESEND PATCH v4 03/21] staging: media: tegra-video: fix
+ .vidioc_enum_fmt_vid_cap to return all formats
+Content-Language: en-US
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
- <20230328-topic-msgram_mpm-v1-2-1b788a5f5a33@linaro.org>
- <20230329034958.GC3554086@dragon>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230329034958.GC3554086@dragon>
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+References: <20230309144320.2937553-1-luca.ceresoli@bootlin.com>
+ <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230309144320.2937553-4-luca.ceresoli@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Luca,
 
+I finally found the time to test this series. It looks OK, except for this patch.
+The list of supported formats really has to be the intersection of what the tegra
+supports and what the sensor supports.
 
-On 29.03.2023 05:49, Shawn Guo wrote:
-> On Tue, Mar 28, 2023 at 12:02:53PM +0200, Konrad Dybcio wrote:
->> The MPM hardware is accessible to us from the ARM CPUs through a shared
->> memory region (RPM MSG RAM) that's also concurrently accessed by other
->> kinds of cores on the system (like modem, ADSP etc.). Modeling this
->> relation in a (somewhat) sane manner in the device tree basically
->> requires us to either present the MPM as a child of said memory region
->> (which makes little sense, as a mapped memory carveout is not a bus),
->> define nodes which bleed their register spaces into one another, or
->> passing their slice of the MSG RAM through some kind of a property.
->>
->> Go with the third option and add a way to map a region passed through
->> the "qcom,rpm-msg-ram" property as our register space.
->>
->> The current way of using 'reg' is preserved for ABI reasons.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  drivers/irqchip/irq-qcom-mpm.c | 30 +++++++++++++++++++++++++-----
->>  1 file changed, 25 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
->> index d30614661eea..6fe59f4deef4 100644
->> --- a/drivers/irqchip/irq-qcom-mpm.c
->> +++ b/drivers/irqchip/irq-qcom-mpm.c
->> @@ -14,6 +14,7 @@
->>  #include <linux/mailbox_client.h>
->>  #include <linux/module.h>
->>  #include <linux/of.h>
->> +#include <linux/of_address.h>
->>  #include <linux/of_device.h>
->>  #include <linux/platform_device.h>
->>  #include <linux/pm_domain.h>
->> @@ -322,8 +323,10 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
->>  	struct device *dev = &pdev->dev;
->>  	struct irq_domain *parent_domain;
->>  	struct generic_pm_domain *genpd;
->> +	struct device_node *msgram_np;
->>  	struct qcom_mpm_priv *priv;
->>  	unsigned int pin_cnt;
->> +	struct resource res;
->>  	int i, irq;
->>  	int ret;
->>  
->> @@ -374,9 +377,21 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
->>  
->>  	raw_spin_lock_init(&priv->lock);
->>  
->> -	priv->base = devm_platform_ioremap_resource(pdev, 0);
->> -	if (IS_ERR(priv->base))
->> -		return PTR_ERR(priv->base);
->> +	/* If we have a handle to an RPM message ram partition, use it. */
->> +	msgram_np = of_parse_phandle(np, "qcom,rpm-msg-ram", 0);
->> +	if (msgram_np) {
->> +		ret = of_address_to_resource(msgram_np, 0, &res);
->> +		/* Don't use devm_ioremap_resource, as we're accessing a shared region. */
->> +		priv->base = ioremap(res.start, resource_size(&res));
-> 
-> Are you suggesting that other cores/drivers will also need to access
-> the mpm slice below?
-> 
-> 	apss_mpm: sram@1b8 {
-> 		reg = <0x1b8 0x48>;
-> 	};
-Yes, the RPM M3 core. Other slices may be accessed
-by any core at any time.
+Otherwise you would advertise pixelformats that cannot be used, and the application
+would have no way of knowing that.
 
-Konrad
+This patch needs to be dropped.
+
+I'll run this series through my other checks, and I will let you know today if
+anything else needs to be changed.
+
+Regards,
+
+	Hans
+
+On 09/03/2023 15:43, Luca Ceresoli wrote:
+> The .vidioc_enum_fmt_vid_cap (called tegra_channel_enum_format() here)
+> should return all the supported formats. Instead the current implementation
+> computes the intersection between the formats it supports and those
+> supported by the first subdev in the stream (typically the image sensor).
 > 
-> Shawn
+> Remove all the unnecessary logic that supports such algorithm. In order to
+> do this, also change the Tegra210 CSI TPG formats from the current
+> open-coded implementation in vi_tpg_fmts_bitmap_init() to a const array in
+> tegra210.c, just like the one that describes the regular formats.
 > 
->> +		of_node_put(msgram_np);
->> +		if (IS_ERR(priv->base))
->> +			return PTR_ERR(priv->base);
->> +	} else {
->> +		/* Otherwise, fall back to simple MMIO. */
->> +		priv->base = devm_platform_ioremap_resource(pdev, 0);
->> +		if (IS_ERR(priv->base))
->> +			return PTR_ERR(priv->base);
->> +	}
->>  
->>  	for (i = 0; i < priv->reg_stride; i++) {
->>  		qcom_mpm_write(priv, MPM_REG_ENABLE, i, 0);
->> @@ -387,8 +402,10 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
->>  	}
->>  
->>  	irq = platform_get_irq(pdev, 0);
->> -	if (irq < 0)
->> -		return irq;
->> +	if (irq < 0) {
->> +		ret = irq;
->> +		goto unmap_base;
->> +	}
->>  
->>  	genpd = &priv->genpd;
->>  	genpd->flags = GENPD_FLAG_IRQ_SAFE;
->> @@ -451,6 +468,9 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
->>  	mbox_free_channel(priv->mbox_chan);
->>  remove_genpd:
->>  	pm_genpd_remove(genpd);
->> +unmap_base:
->> +	if (res.start)
->> +		iounmap(priv->base);
->>  	return ret;
->>  }
->>  
->>
->> -- 
->> 2.40.0
->>
+> Fixes: 3d8a97eabef0 ("media: tegra-video: Add Tegra210 Video input driver")
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+> 
+> ---
+> 
+> Changed in v4:
+>  - Added review tags
+> 
+> No changes in v3
+> No changes in v2
+> ---
+>  drivers/staging/media/tegra-video/tegra210.c |   7 +-
+>  drivers/staging/media/tegra-video/vi.c       | 103 +------------------
+>  drivers/staging/media/tegra-video/vi.h       |   4 -
+>  3 files changed, 9 insertions(+), 105 deletions(-)
+> 
+> diff --git a/drivers/staging/media/tegra-video/tegra210.c b/drivers/staging/media/tegra-video/tegra210.c
+> index d58370a84737..eb19dd5107ce 100644
+> --- a/drivers/staging/media/tegra-video/tegra210.c
+> +++ b/drivers/staging/media/tegra-video/tegra210.c
+> @@ -683,8 +683,12 @@ enum tegra210_image_format {
+>  	V4L2_PIX_FMT_##FOURCC,						\
+>  }
+>  
+> -/* Tegra210 supported video formats */
+>  static const struct tegra_video_format tegra210_video_formats[] = {
+> +#if IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG)
+> +	/* VI only support 2 formats in TPG mode */
+> +	TEGRA210_VIDEO_FMT(RAW10,  10, SRGGB10_1X10,      2, T_R16_I,    SRGGB10),
+> +	TEGRA210_VIDEO_FMT(RGB888, 24, RGB888_1X32_PADHI, 4, T_A8B8G8R8, RGBX32),
+> +#else
+>  	/* RAW 8 */
+>  	TEGRA210_VIDEO_FMT(RAW8, 8, SRGGB8_1X8, 1, T_L8, SRGGB8),
+>  	TEGRA210_VIDEO_FMT(RAW8, 8, SGRBG8_1X8, 1, T_L8, SGRBG8),
+> @@ -714,6 +718,7 @@ static const struct tegra_video_format tegra210_video_formats[] = {
+>  	TEGRA210_VIDEO_FMT(YUV422_8, 16, VYUY8_2X8, 2, T_V8_Y8__U8_Y8, YUYV),
+>  	TEGRA210_VIDEO_FMT(YUV422_8, 16, YUYV8_2X8, 2, T_Y8_U8__Y8_V8, VYUY),
+>  	TEGRA210_VIDEO_FMT(YUV422_8, 16, YVYU8_2X8, 2, T_Y8_V8__Y8_U8, UYVY),
+> +#endif
+>  };
+>  
+>  /* Tegra210 VI operations */
+> diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/media/tegra-video/vi.c
+> index 11dd142c98c5..9dba6e97ebdd 100644
+> --- a/drivers/staging/media/tegra-video/vi.c
+> +++ b/drivers/staging/media/tegra-video/vi.c
+> @@ -3,7 +3,6 @@
+>   * Copyright (C) 2020 NVIDIA CORPORATION.  All rights reserved.
+>   */
+>  
+> -#include <linux/bitmap.h>
+>  #include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/host1x.h>
+> @@ -73,15 +72,6 @@ static int tegra_get_format_idx_by_code(struct tegra_vi *vi,
+>  	return -1;
+>  }
+>  
+> -static u32 tegra_get_format_fourcc_by_idx(struct tegra_vi *vi,
+> -					  unsigned int index)
+> -{
+> -	if (index >= vi->soc->nformats)
+> -		return -EINVAL;
+> -
+> -	return vi->soc->video_formats[index].fourcc;
+> -}
+> -
+>  static const struct tegra_video_format *
+>  tegra_get_format_by_fourcc(struct tegra_vi *vi, u32 fourcc)
+>  {
+> @@ -430,19 +420,12 @@ static int tegra_channel_enum_format(struct file *file, void *fh,
+>  				     struct v4l2_fmtdesc *f)
+>  {
+>  	struct tegra_vi_channel *chan = video_drvdata(file);
+> -	unsigned int index = 0, i;
+> -	unsigned long *fmts_bitmap = chan->tpg_fmts_bitmap;
+> -
+> -	if (!IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG))
+> -		fmts_bitmap = chan->fmts_bitmap;
+> +	const struct tegra_vi_soc *soc = chan->vi->soc;
+>  
+> -	if (f->index >= bitmap_weight(fmts_bitmap, MAX_FORMAT_NUM))
+> +	if (f->index >= soc->nformats)
+>  		return -EINVAL;
+>  
+> -	for (i = 0; i < f->index + 1; i++, index++)
+> -		index = find_next_bit(fmts_bitmap, MAX_FORMAT_NUM, index);
+> -
+> -	f->pixelformat = tegra_get_format_fourcc_by_idx(chan->vi, index - 1);
+> +	f->pixelformat = soc->video_formats[f->index].fourcc;
+>  
+>  	return 0;
+>  }
+> @@ -1059,78 +1042,6 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
+>  	return 0;
+>  }
+>  
+> -/* VI only support 2 formats in TPG mode */
+> -static void vi_tpg_fmts_bitmap_init(struct tegra_vi_channel *chan)
+> -{
+> -	int index;
+> -
+> -	bitmap_zero(chan->tpg_fmts_bitmap, MAX_FORMAT_NUM);
+> -
+> -	index = tegra_get_format_idx_by_code(chan->vi,
+> -					     MEDIA_BUS_FMT_SRGGB10_1X10, 0);
+> -	bitmap_set(chan->tpg_fmts_bitmap, index, 1);
+> -
+> -	index = tegra_get_format_idx_by_code(chan->vi,
+> -					     MEDIA_BUS_FMT_RGB888_1X32_PADHI,
+> -					     0);
+> -	bitmap_set(chan->tpg_fmts_bitmap, index, 1);
+> -}
+> -
+> -static int vi_fmts_bitmap_init(struct tegra_vi_channel *chan)
+> -{
+> -	int index, ret, match_code = 0;
+> -	struct v4l2_subdev *subdev;
+> -	struct v4l2_subdev_mbus_code_enum code = {
+> -		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+> -	};
+> -
+> -	bitmap_zero(chan->fmts_bitmap, MAX_FORMAT_NUM);
+> -
+> -	/*
+> -	 * Set the bitmap bits based on all the matched formats between the
+> -	 * available media bus formats of sub-device and the pre-defined Tegra
+> -	 * supported video formats.
+> -	 */
+> -	subdev = tegra_channel_get_remote_source_subdev(chan);
+> -	while (1) {
+> -		ret = v4l2_subdev_call(subdev, pad, enum_mbus_code,
+> -				       NULL, &code);
+> -		if (ret < 0)
+> -			break;
+> -
+> -		index = tegra_get_format_idx_by_code(chan->vi, code.code, 0);
+> -		while (index >= 0) {
+> -			bitmap_set(chan->fmts_bitmap, index, 1);
+> -			if (!match_code)
+> -				match_code = code.code;
+> -			/* look for other formats with same mbus code */
+> -			index = tegra_get_format_idx_by_code(chan->vi,
+> -							     code.code,
+> -							     index + 1);
+> -		}
+> -
+> -		code.index++;
+> -	}
+> -
+> -	/*
+> -	 * Set the bitmap bit corresponding to default tegra video format if
+> -	 * there are no matched formats.
+> -	 */
+> -	if (!match_code) {
+> -		match_code = tegra_default_format.code;
+> -		index = tegra_get_format_idx_by_code(chan->vi, match_code, 0);
+> -		if (WARN_ON(index < 0))
+> -			return -EINVAL;
+> -
+> -		bitmap_set(chan->fmts_bitmap, index, 1);
+> -	}
+> -
+> -	/* initialize channel format to the sub-device active format */
+> -	tegra_channel_set_subdev_active_fmt(chan);
+> -
+> -	return 0;
+> -}
+> -
+>  static void tegra_channel_host1x_syncpts_free(struct tegra_vi_channel *chan)
+>  {
+>  	int i;
+> @@ -1501,7 +1412,6 @@ int tegra_v4l2_nodes_setup_tpg(struct tegra_video_device *vid)
+>  			goto cleanup;
+>  
+>  		v4l2_set_subdev_hostdata(&csi_chan->subdev, vi_chan);
+> -		vi_tpg_fmts_bitmap_init(vi_chan);
+>  		csi_chan = list_next_entry(csi_chan, list);
+>  	}
+>  
+> @@ -1721,13 +1631,6 @@ static int tegra_vi_graph_notify_complete(struct v4l2_async_notifier *notifier)
+>  		goto unregister_video;
+>  	}
+>  
+> -	ret = vi_fmts_bitmap_init(chan);
+> -	if (ret < 0) {
+> -		dev_err(vi->dev,
+> -			"failed to initialize formats bitmap: %d\n", ret);
+> -		goto unregister_video;
+> -	}
+> -
+>  	subdev = tegra_channel_get_remote_csi_subdev(chan);
+>  	if (!subdev) {
+>  		ret = -ENODEV;
+> diff --git a/drivers/staging/media/tegra-video/vi.h b/drivers/staging/media/tegra-video/vi.h
+> index a68e2c02c7b0..183796c8a46a 100644
+> --- a/drivers/staging/media/tegra-video/vi.h
+> +++ b/drivers/staging/media/tegra-video/vi.h
+> @@ -163,8 +163,6 @@ struct tegra_vi_graph_entity {
+>   *
+>   * @ctrl_handler: V4L2 control handler of this video channel
+>   * @syncpt_timeout_retry: syncpt timeout retry count for the capture
+> - * @fmts_bitmap: a bitmap for supported formats matching v4l2 subdev formats
+> - * @tpg_fmts_bitmap: a bitmap for supported TPG formats
+>   * @pg_mode: test pattern generator mode (disabled/direct/patch)
+>   * @notifier: V4L2 asynchronous subdevs notifier
+>   */
+> @@ -205,8 +203,6 @@ struct tegra_vi_channel {
+>  
+>  	struct v4l2_ctrl_handler ctrl_handler;
+>  	unsigned int syncpt_timeout_retry;
+> -	DECLARE_BITMAP(fmts_bitmap, MAX_FORMAT_NUM);
+> -	DECLARE_BITMAP(tpg_fmts_bitmap, MAX_FORMAT_NUM);
+>  	enum tegra_vi_pg_mode pg_mode;
+>  
+>  	struct v4l2_async_notifier notifier;
+
