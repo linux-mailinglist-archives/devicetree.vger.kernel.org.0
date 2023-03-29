@@ -2,137 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13ACF6CD645
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC2E6CD660
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbjC2JVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 05:21:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54874 "EHLO
+        id S230060AbjC2J1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 05:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229869AbjC2JVL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:21:11 -0400
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2054.outbound.protection.outlook.com [40.107.13.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225342D41;
-        Wed, 29 Mar 2023 02:21:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nNnuwcKIDCrs3oqmzxH0ztNVjqyxWonukcYsmKc2m8gxJVzXcZ79nd7m8fSv10vA7/kOElTouIJjJnltxmalts4gq6Sn4G/FphrmZv+JoJ06KUCUCkWuduJyuJhN5Ouviysaeb8aWa9cWu5C5qzfcJww8lZ23mBofTJbbozK0YF4N/dHYLiVw7ev+vQfXmkV/nCFC5v7vKyyFfccDe6lsBfecXzsHwB9i/AUMJazYv8ZDh3rX5hpI8Fnn7oJZRumwvqz0ccnNkv1gE6Se1aqQcQJ46cye5A3ZZVYi0ajaUqzwL4lWBZeJxsKHD7+8L+FNFimUpAy5EJoHpC5kHJWiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0kyI1bj8I+snjeXLKLx6lqqUZp+jauT0QyPj0tAi5G8=;
- b=FVNdhLsfdni1m84aU7KrD4oqxaf1OY/YSsL7zx8U3lP03fbHYFj4P0D/oMD6qLWEEG2NfQZIhFAitRFtPufHFv9vNVS7kbvVmbgXFJZn5qUpeSd45kx51x9wsFawO4YvCHqgDAoMuHv0HoTmY9oKHAie9eCrr8VCc6pDK39URchVaS47lwO3P6PX4G0PYudSR9EGBL0eptGRudBmqiDVE/DO3/x+mPoIjGb7su7PxVQG6CV64WZCiK0sNC2TKK03UzpKJyz59+NjVjDVQ7CIwLN5TcrCIxKnnO2axSsV2k9pnPeFBOOPVXa3dBzdB+GepeENRzIbqs02tLg2dZpHaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0kyI1bj8I+snjeXLKLx6lqqUZp+jauT0QyPj0tAi5G8=;
- b=YEvOW1sy44MbCA77NS6s57PDXRwilgqT0zJGvTfi/x3qc5gGuNHYTUk7gaC9TP6VkKoZoMI9bIR7pGaMEGpNfhdW2vFFe6hGUp535QG5oxokcOELIBcP1H6SdAa2u0vdyurPhfr7o25up9R4x6oJPMaTGva6ndzZyBeyNHSjitE=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PAXPR04MB8271.eurprd04.prod.outlook.com (2603:10a6:102:1ca::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Wed, 29 Mar
- 2023 09:21:07 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::778e:19d0:cba0:5cc0]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::778e:19d0:cba0:5cc0%4]) with mapi id 15.20.6222.028; Wed, 29 Mar 2023
- 09:21:07 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-CC:     "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "stefan@agner.ch" <stefan@agner.ch>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 2/2] dt-bindings: gpio: vf610: update gpio-ranges
-Thread-Topic: [PATCH 2/2] dt-bindings: gpio: vf610: update gpio-ranges
-Thread-Index: AQHZYTWHlLJfadkgwkCFXG+MNPJ2Yq8QRiwAgAE1mCA=
-Date:   Wed, 29 Mar 2023 09:21:07 +0000
-Message-ID: <DU0PR04MB9417F31D78A9C998FE3E519888899@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20230328052912.1957000-1-peng.fan@oss.nxp.com>
- <20230328052912.1957000-2-peng.fan@oss.nxp.com>
- <de82d0ff-3e2f-4822-8430-13e2b1633b3a@lunn.ch>
-In-Reply-To: <de82d0ff-3e2f-4822-8430-13e2b1633b3a@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|PAXPR04MB8271:EE_
-x-ms-office365-filtering-correlation-id: f71f579d-a9d0-413a-777c-08db3036ed5e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BU27LpNuV94SzcRT3mB+eQJWENBXi0Cx26wKiAIgRDLjwfK8SP7PgaNVjoSta0PR833OU/dUnt3jdovhQr8gGrT2brf7QSBYL8jl4e+PdH/Zo3mc27Gf1jJzXU+7ufIolG02dfc4tqwZ4Qp54xPXPO5S2UQ/4CQ817vYQV82B8Xe5RN4p18t/GYR96Zg3LQtxnJXkb1cbZ2sRtdOeZZCfj3JNKzd1Jty9odG2WIh6kCfVi/Kbp9FrVA0GCmK/lz3rna3xh3Pp1vLhdR4JKt3l3LonOJyrbSBAD32brM02cQhtnudiuNe9nwZmreVR15+eAmBaKmDF6NbEmF458XxBtqtATMTRHOXfzjsjUyC6p1V0p/71tk1SPnaYwOcQh4be5mpG8qmaQG2lDtFbe6tQxll51woD7BsCCSOiRZk1mVpj6ZmQ7TRuccqEZYNirypoqZMnGkQrRn88Z3P0+/VfElz8mnXZ6OvhStRhUeDf6XdBi6EsXdxbCYO+BuC6SpH50QWM46LAJ55gO+2Lrc9xmTYI0fj+rL6udZAxAredyxyl7zpA7s1AFGVeKmp3YC7v42qIZl3JQixHSUn9YmiOdvXOaSybXbwcOCls9Z0gXcFynZX4jjmj5ST9qAcZCPI
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(346002)(136003)(376002)(39860400002)(451199021)(83380400001)(6506007)(122000001)(26005)(53546011)(478600001)(54906003)(38070700005)(316002)(7696005)(110136005)(7416002)(52536014)(66946007)(66446008)(64756008)(8676002)(66556008)(76116006)(66476007)(71200400001)(55016003)(4326008)(86362001)(41300700001)(9686003)(38100700002)(44832011)(33656002)(15650500001)(8936002)(2906002)(5660300002)(186003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?gb2312?B?R1J6WXltSjVha0ZqQ0pFS1A2RzJiU2FBSWJOejh4VUp1ZmVOM0xSWDQ5YzhM?=
- =?gb2312?B?VDMxUWtZOHdMUEJaUkJrQ3FYTUJJYk85Vy9wL0pCSnJSV0dEdjBDNys2eVoz?=
- =?gb2312?B?bERoM3NjVzZMR3hwaW1wZENXM2tOTU1LNGtKbWpaK01yKzlyM0U4eTB0Tmph?=
- =?gb2312?B?NEF0ejhoUGI1eWFVR1dEbXo5cEVWMXhheGhIWDJIWlgyQlZQSzVTUk1NWG42?=
- =?gb2312?B?OFBzQ3B4ZCtSMVd0Z3EyejIwd1Y0VkVwZkI3TVB6WnZENVFzL3lXWVl0NWxo?=
- =?gb2312?B?TkNITTFOWXllNElseU5nUnVwRm1WQzVCdU5MZVZORzZvVzNHWDhKQTBLOUZs?=
- =?gb2312?B?OHYwMHo5QUhCOGJWQVJORnpRRHlqdDcxY291RUtkVDV5RmswRXRpRVlCaTFu?=
- =?gb2312?B?dWJyQklCQkw5OWNVSkZUL0ptcVNXUG0rT3BxWjRGWVB1SGZ5a0RwdklaMnNo?=
- =?gb2312?B?elFsYXZoTytYOE0zdDV2RksrODJHWExOZStqbUoveWFzaWp1UytuRVM1VXlR?=
- =?gb2312?B?UEoxcDZwSmVGYmM0aVBWbzhSQVBKK2hid1NERHZCMUhCd0Q3VU5XWXZoUnkx?=
- =?gb2312?B?anJRZ29Fc29ibWRuaDkxV1VhS292eVFUUGpnYVpCNWg0RERNSDR4NnJvNFVk?=
- =?gb2312?B?YVVoNzhhcExIVHBTRWhheWpBV09jYVdrRnptSzdoREd3ZUM2bHNKcENVUVNu?=
- =?gb2312?B?M2UrOGJFQW1IaXYzaTBZdkRMLzBNR3h5ZHNLS05mcHRBM0IveVVCMTN2K0Zn?=
- =?gb2312?B?MXZWVGZka1ZEM3lHWFEwMnlJNVdIdHprdDBFZjF1TTVkdFRlV2V5ZVo3N21D?=
- =?gb2312?B?Y0JMMENwU2NDaXNYZC9lYi9Ea29LRURYOTczSk5kcVd5dVB2VEpYZ2tmZXNj?=
- =?gb2312?B?ZjA1M0J2SEtzK084a3orTlFLVTdFaTREWnR5NzkvRkFMMlV3L2E3MjBXR0wz?=
- =?gb2312?B?bFBMMGJxdkRxclhWQUh4WGxQc0JudXJPb253cGw0SUlidEFMNlRzWlFHT255?=
- =?gb2312?B?MzBvZlA0QzBWWTl1V293UnA0WStiUHRPWjQvZzBFTEJLU1d4TFh6Q3lXdHRW?=
- =?gb2312?B?Zk1VVHFHeE45UG5remQ0K0NjYjZQbHMwMzMyT3hSNTBqdE9KODJic245T25r?=
- =?gb2312?B?ZDJyNWdKSUNMenBCQXgyUWFNZlc3QmpYZE92M05BNW5aK0REVFRkaFZXOUJp?=
- =?gb2312?B?TGZjK0g3TUo4VkJhSGdLS05jYllhNXluQlpBejh1cVZwNnNibjhOTXBYSWhm?=
- =?gb2312?B?Tkpsc25PYUN2dHhZNm1NOHFOdkZOVWZ6N3hTTU55b2krOGErVjdkL09PRStI?=
- =?gb2312?B?elplYXpZdElrUThUb1V3Z1FkMERoKzVLM3RsVGdBZ2ZROUxiTkNRZ1pOVGJI?=
- =?gb2312?B?NkM3WkZ2aFF6cmlqaXI2eWxBcnF3aUdENXJRYmNWWWJ1WldyZXBhamg4cXBE?=
- =?gb2312?B?RHNWbndnK1IzbUs3M3huT3o3LzlucEI4WkZjUWNwb2ZZdk9wdDFYMllMR1Jr?=
- =?gb2312?B?Vm42Yng2NkswOERtZkVZOUVHZmZMZFdCQ1ErRDZmc1FGbk9FVVNZa0RNcENj?=
- =?gb2312?B?b0V3cTVJbnVKMFZyVWYrcjNxR3ZNcy9obGs1SzVldStvaUxnWWV4TUFXWndu?=
- =?gb2312?B?YkpjaVJQaHMyeHUxb1ZIVHZhQmc1bWFtVXFJWUwxcTYxWm5tN1pLNUUzVjFz?=
- =?gb2312?B?TUovZ1RxZFlINVRac2dKTlhrMld0SURiaDFUei9zWHJBZmFpZzl4czBJalVs?=
- =?gb2312?B?M3QwdG5UTWk4d2hJUU1KL1VJbkhDbjkwaitwL2VSckVDZkx2ek4yQmlva2Ew?=
- =?gb2312?B?ZGhtOWo0S1AxS3hDWDFwdVBkK0MyT0l4M2V5M3NyZmhvdllVOUZmUVBZUWRG?=
- =?gb2312?B?NWNxWjlnQk9mZXZkNTlmRnUvK3dReUo1T0xhSGhOSHJnVzZSNDNXN3NmR3Y4?=
- =?gb2312?B?M3dMOXJ6bDZDQlZGQnBiM1kvZnl0b0hNb1FCN0YzNHZqaXZpb0ZSbGNBeEFG?=
- =?gb2312?B?SzhNUkdvck1WUUY0WXZTTEtWL09ydzN2QTJSM3h4T25TMXNIbEpLWXBBV0pX?=
- =?gb2312?B?UW9zUnZEYXR6Ym5RdVpxbFZ1ODZKendzaE0xOUFKQjFZd1hQeStvNDFKNDRM?=
- =?gb2312?Q?3aT4=3D?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229622AbjC2J1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:27:19 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2601269E
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:27:17 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id t14so15393730ljd.5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:27:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680082036;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4E1ihT1bk7FJWhZsymYfujANMixRZZjQV1eBAivQbCc=;
+        b=IIssgv4Nws9KMkhlj1SWdiTR8QeRnUyggLWHGk9OtquP6r1Ty66EXdDq+4yGO82O04
+         xb3pACE4ORMwgSdGT3zziPccod8yVO18IqGIP7m8Edr3VbipssR/2d8YKR/vh+fgZWgE
+         /FRqSX71P0xAbFyKEMCfRGnu5NLyiCOtQC8jPefeqgSjCCaWxu4D4NVzkQZXZCNX9GOg
+         O470eDDSqMC8uhdKs8jex4FJ/yYr/3S9V4Go6a6jdXxJx3td7U7DdAxZlKR/4DzsfzOc
+         hlTXVR2NHvsN1b9eS3LOTAj4rCdvPOGT6kBlLwqxd+5mGiXwviHoffNSVfQlAkUvb3V8
+         6wEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680082036;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4E1ihT1bk7FJWhZsymYfujANMixRZZjQV1eBAivQbCc=;
+        b=g6SMbJYD8Cjd/cqErTl1FwwxL+dDYkjobfaAC4O5yBHCTaNRwsH+hqzyp8X0oSlKNM
+         U4N55h9k1BynGlSIfjpr+fLom7PM+EulEoyOQZevFoRtt04pY0PBdbNC+fHYFjMEsdGX
+         6xSIHpRg8QYl3Prb72kXaZmT2Yeym8EPXkWOHFFYP24CkEuhp+pn+L0lVjm8BnjEhe6E
+         zCsx+HF23aa2aI4A4sPpIAE6PSY4SDSvYuFEteyPF8META7BBp3rz9zAPVkwhPHeGco6
+         DPXICsws87PAaMkbWyrHaP7O4NfzZyY9FM48mS4aknSLeVzxGKBfjJm/ZMy156YCNYfM
+         LQkQ==
+X-Gm-Message-State: AAQBX9eikDdf0Hyy2Rm/c/M1US3vDUTAIYHjZB16p/l+/k7EBAfvkhg3
+        OB1K9J/PmWNA8pWQ1WVV55oUwA==
+X-Google-Smtp-Source: AKy350a3WPd3nLMEIos8we3J7fDWmZ6UZx92CCwawDT5W787jUpRWjhmYBrGbnekUlPP6v6UTiX2Ow==
+X-Received: by 2002:a05:651c:446:b0:29c:88a7:9a96 with SMTP id g6-20020a05651c044600b0029c88a79a96mr6297508ljg.46.1680082036048;
+        Wed, 29 Mar 2023 02:27:16 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s18-20020a2e9c12000000b00295765966d9sm5406109lji.86.2023.03.29.02.27.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Mar 2023 02:27:15 -0700 (PDT)
+Message-ID: <d69a2d6a-bf59-ad4c-2d6b-e520fe9d174d@linaro.org>
+Date:   Wed, 29 Mar 2023 11:27:14 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f71f579d-a9d0-413a-777c-08db3036ed5e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Mar 2023 09:21:07.1329
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9NjXVBOi8gM1Oa2RJPQQI5rZHjnTafxBcrPXLAXVwG663/FLPr+4NqOKtBC+3VJE9432+SaOBx8G+DTJal/1pQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8271
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 04/12] dt-bindings: reset: nuvoton: add binding for
+ ma35d1 IP reset control
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-5-ychuang570808@gmail.com>
+ <96bbb16a-1748-c0cb-0fc6-90804eab01c1@linaro.org>
+ <1ddf53be-3c4f-3f24-de69-9475c82341b1@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1ddf53be-3c4f-3f24-de69-9475c82341b1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -140,27 +83,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmV3IEx1bm4gPGFu
-ZHJld0BsdW5uLmNoPg0KPiBTZW50OiAyMDIzxOoz1MIyOMjVIDIyOjQ4DQo+IFRvOiBQZW5nIEZh
-biAoT1NTKSA8cGVuZy5mYW5Ab3NzLm54cC5jb20+DQo+IENjOiBsaW51cy53YWxsZWlqQGxpbmFy
-by5vcmc7IGJyZ2xAYmdkZXYucGw7IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4ga3J6eXN6dG9mLmtv
-emxvd3NraStkdEBsaW5hcm8ub3JnOyBzaGF3bmd1b0BrZXJuZWwub3JnOw0KPiBzLmhhdWVyQHBl
-bmd1dHJvbml4LmRlOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWlsLmNvbTsN
-Cj4gZGwtbGludXgtaW14IDxsaW51eC1pbXhAbnhwLmNvbT47IHN0ZWZhbkBhZ25lci5jaDsgbGlu
-dXgtDQo+IGdwaW9Admdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsg
-bGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgta2VybmVsQHZn
-ZXIua2VybmVsLm9yZzsgUGVuZyBGYW4NCj4gPHBlbmcuZmFuQG54cC5jb20+DQo+IFN1YmplY3Q6
-IFJlOiBbUEFUQ0ggMi8yXSBkdC1iaW5kaW5nczogZ3BpbzogdmY2MTA6IHVwZGF0ZSBncGlvLXJh
-bmdlcw0KPiANCj4gT24gVHVlLCBNYXIgMjgsIDIwMjMgYXQgMDE6Mjk6MTJQTSArMDgwMCwgUGVu
-ZyBGYW4gKE9TUykgd3JvdGU6DQo+ID4gRnJvbTogUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+
-DQo+ID4NCj4gPiAxIGlzIG5vdCBlbm91Z2ggZm9yIGkuTVg5LCBlbmxhcmdlIGl0Lg0KPiA+DQo+
-ID4gU2lnbmVkLW9mZi1ieTogUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+DQo+ID4gLS0tDQo+
-ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncGlvL2dwaW8tdmY2MTAueWFt
-bCB8IDMgKystDQo+IA0KPiBJJ20gbm90IHRoYXQga25vd2xlZGdlYWJsZSBhYm91dCBpLk1YOSwg
-YnV0IGkgdGhvdWdodCB2ZjYxMCB3YXMgVnlicmlkLA0KPiB3aGljaCBpcyBub3QgYW4gaS5NWDku
-IERvZXMgaS5NWDkgcmV1c2UgdGhlIFZ5YnJpZCBHUElPIGNvbnRyb2xsZXI/IElzIHRoaXMNCj4g
-Y2hhbmdlIGFsc28gdmFsaWQgZm9yIHRoZSBWeWJyaWQ/DQpbUGVuZyBGYW5dIA0KDQppLk1YOSBy
-ZXVzZSB0aGUgZ3Bpby12ZjYxMCBkcml2ZXIgYW5kIHlhbWwgZHRzY2hlbWEuIFRoZXJlIGFyZSBz
-b21lDQptaW5vciBkaWZmZXJlbmNlcyBmcm9tIGhhcmR3YXJlIGxldmVsLiBUaGUgZ3Bpby1yYW5n
-ZXMgd2lsbCBhbHNvIGltcGFjdA0KdnlicmlkLCBidXQgdGhpcyBtYXkgbm90IG1hdHRlci4NCg0K
-UmVnYXJkcywNClBlbmcuDQo+IA0KPiAJQW5kcmV3DQo=
+On 29/03/2023 11:12, Jacky Huang wrote:
+>>> +        };
+>>> +    };
+>>> +...
+>>> +
+>>> diff --git a/include/dt-bindings/reset/nuvoton,ma35d1-reset.h b/include/dt-bindings/reset/nuvoton,ma35d1-reset.h
+>>> new file mode 100644
+>>> index 000000000000..f3088bc0afec
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/reset/nuvoton,ma35d1-reset.h
+>>> @@ -0,0 +1,108 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause) */
+>> Weird license, why 2.0+?
+>>
+>> You already got here comment about license in previous version of this
+>> patch.
+>>
+> 
+> In fact, I always be confused with the license.
+> It should be right if I just copy one from the same directory 
+> /include/dt-bindings/reset/.
+> But, when I find there are several versions there, I was confused and 
+> just select one of them.
+> 
+> /* SPDX-License-Identifier: GPL-2.0-only */
+> /* SPDX-License-Identifier: GPL-2.0+ */
+> /* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)*/
+> /* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> 
+> So, should I fix the license as
+> 
+> /* SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) */
+> 
+> just remove the '+' ?
+
+The simplest is to use the same license as your binding, so
+(GPL-2.0-only OR BSD-2-Clause) .
+
+> 
+>>> +/*
+>>> + * Copyright (C) 2023 Nuvoton Technologies.
+>>> + * Author: Chi-Fen Li <cfli0@nuvoton.com>
+>>> + *
+>>> + * Device Tree binding constants for MA35D1 reset controller.
+>>> + */
+>>> +
+>>> +#ifndef __DT_BINDINGS_RESET_MA35D1_H
+>>> +#define __DT_BINDINGS_RESET_MA35D1_H
+>>> +
+>>> +#define MA35D1_RESET_CHIP	0
+>>> +#define MA35D1_RESET_CA35CR0	1
+>>> +#define MA35D1_RESET_CA35CR1	2
+>>> +#define MA35D1_RESET_CM4	3
+>>> +#define MA35D1_RESET_PDMA0	4
+>>> +#define MA35D1_RESET_PDMA1	5
+>>> +#define MA35D1_RESET_PDMA2	6
+>>> +#define MA35D1_RESET_PDMA3	7
+>>> +#define MA35D1_RESET_DISP	9
+>>> +#define MA35D1_RESET_VCAP0	10
+>>> +#define MA35D1_RESET_VCAP1	11
+>>> +#define MA35D1_RESET_GFX	12
+>>> +#define MA35D1_RESET_VDEC	13
+>>> +#define MA35D1_RESET_WHC0	14
+>>> +#define MA35D1_RESET_WHC1	15
+>>> +#define MA35D1_RESET_GMAC0	16
+>>> +#define MA35D1_RESET_GMAC1	17
+>>> +#define MA35D1_RESET_HWSEM	18
+>>> +#define MA35D1_RESET_EBI	19
+>>> +#define MA35D1_RESET_HSUSBH0	20
+>>> +#define MA35D1_RESET_HSUSBH1	21
+>>> +#define MA35D1_RESET_HSUSBD	22
+>>> +#define MA35D1_RESET_USBHL	23
+>>> +#define MA35D1_RESET_SDH0	24
+>>> +#define MA35D1_RESET_SDH1	25
+>>> +#define MA35D1_RESET_NAND	26
+>>> +#define MA35D1_RESET_GPIO	27
+>>> +#define MA35D1_RESET_MCTLP	28
+>>> +#define MA35D1_RESET_MCTLC	29
+>>> +#define MA35D1_RESET_DDRPUB	30
+>>> +#define MA35D1_RESET_TMR0	34
+>>> +#define MA35D1_RESET_TMR1	35
+>>> +#define MA35D1_RESET_TMR2	36
+>>> +#define MA35D1_RESET_TMR3	37
+>>> +#define MA35D1_RESET_I2C0	40
+>>> +#define MA35D1_RESET_I2C1	41
+>>> +#define MA35D1_RESET_I2C2	42
+>>> +#define MA35D1_RESET_I2C3	43
+>>> +#define MA35D1_RESET_QSPI0	44
+>>> +#define MA35D1_RESET_SPI0	45
+>>> +#define MA35D1_RESET_SPI1	46
+>>> +#define MA35D1_RESET_SPI2	47
+>>> +#define MA35D1_RESET_UART0	48
+>>> +#define MA35D1_RESET_UART1	49
+>>> +#define MA35D1_RESET_UART2	50
+>>> +#define MA35D1_RESET_UAER3	51
+>>> +#define MA35D1_RESET_UART4	52
+>>> +#define MA35D1_RESET_UART5	53
+>>> +#define MA35D1_RESET_UART6	54
+>>> +#define MA35D1_RESET_UART7	55
+>>> +#define MA35D1_RESET_CANFD0	56
+>>> +#define MA35D1_RESET_CANFD1	57
+>>> +#define MA35D1_RESET_EADC0	60
+>> Why do you have gaps here? These should be IDs, not register offsets.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> The reset controller registers are composed of four 32-bits register.
+> And the ID will be translated into the corresponding bit of these register.
+> Each ID is mapped to a unique bit position.
+
+That's not the usual way. IDs start from 0 or 1 and gets incremented by
+1, without gaps. Remember that IDs cannot change and your register bits
+could have some changes (e.g. HW errata).
+
+
+Best regards,
+Krzysztof
+
