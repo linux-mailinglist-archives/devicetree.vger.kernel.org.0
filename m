@@ -2,141 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD626CD696
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBAC26CD6C8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:46:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbjC2Jgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 05:36:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38086 "EHLO
+        id S230512AbjC2Jqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 05:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjC2Jgj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:36:39 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F6335A7;
-        Wed, 29 Mar 2023 02:36:36 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32T9aSO5042835;
-        Wed, 29 Mar 2023 04:36:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680082588;
-        bh=/dcZ283u7X+liMMXtZQycAUY0vYz5Gk7ukRDULWMk/0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=hzT6t7YoteFynG5VOtMjYSdk9ZV3znVqah0ddS/RHkvF34Og70dEWTg52aTpd5OZX
-         GvotwoVScRBC/VUPhs5T29UwRQsiomkqoXwDUFo8eeW6cs4mVoRFjZ5bu6RNQjnPKu
-         mJQ3Y3xLdvykJp5jfAw3FpkOaxdRFrcZpFJo1lw4=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32T9aSIG019916
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 29 Mar 2023 04:36:28 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
- Mar 2023 04:36:28 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 29 Mar 2023 04:36:28 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32T9aSJZ101467;
-        Wed, 29 Mar 2023 04:36:28 -0500
-From:   Hari Nagalla <hnagalla@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>
-CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-j784s4-main: Add C71x DSP nodes
-Date:   Wed, 29 Mar 2023 04:36:27 -0500
-Message-ID: <20230329093627.30719-4-hnagalla@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230329093627.30719-1-hnagalla@ti.com>
-References: <20230329093627.30719-1-hnagalla@ti.com>
+        with ESMTP id S230508AbjC2Jqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:46:38 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39D71736
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:46:35 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id p15so18506009ybl.9
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:46:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680083195;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=29yP5h60lzQ9egSpTFTbdlo7eAPDEAXWr32KHBglSMs=;
+        b=brgqN9+UwXyVawMk0f5rX96beQUS10XnlpZhRCiTME2FUCgGPcKiim8oen7O1dKlL/
+         yBhTiT/aeW6Zjte3Gpg0xWJTjPx/frs81Luaa6fF5YgZ070kk97WS1y8z0RlUvJZs9vW
+         y8nfBagUpIImsEYWr4bMoEYpEZBbREXj3fYQaTDwAtLgulKRXwGhrjx7aIurRh/3C12q
+         3nNbKQhzgNhfoYe+deAUOLdpEsQ9kaCnIV5MAQCR9DQoCREbSXEXIgPVIb7a5zlsTgre
+         jUwGSzv1ALl/rmj5O0GOR6c6MkS3yBtM6jwUTS3fag70jS6OQM3hrQzpA6iRA/Jufe9G
+         6R6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680083195;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=29yP5h60lzQ9egSpTFTbdlo7eAPDEAXWr32KHBglSMs=;
+        b=Nsa56r9zIJVLA5pZo8frKWcj6PZ6iDEbnMDsJ+wPonBO5a/3EFoCDCtv+GUPnmVsxB
+         IzvwFNTLAyhXoOXUYZkicmCm/XTvuGdShepK2ORgNb1TcxWiymIApG4Q7YQ3kjGhoeyv
+         7cam/0kqcWvwZoP0k/M512cXOjcFetmOq1QKANbyhp31ONIPdZ5BpYYG4FTcA/QuectZ
+         snpbeaoCviPOoVn0EEoWCCczE34+WitzdlAYYm6iuUBneWDVH8ZboGa3nD9K6S2HhCvf
+         soqJWdw+ByW53suHlSva+vT3sQtXAHysCh5HkQaBlW431HQYn+4nbLpu/w1Q5YWlJiGf
+         bz2A==
+X-Gm-Message-State: AAQBX9e8PyewK/LugNILy4a6wvlCRKVPvt4nsoY4EUgzy8VZGCC2v1Ov
+        /Bebcju8z4l9KlSgxDMdl1rh7MFgJ3XRCZ7sVyV/jA==
+X-Google-Smtp-Source: AKy350Z1Ta2rwN3XbL2zTMze2j2pM+kqkv5YioDEr56Tznyh/jGgGLFPF5CnnxhxzbefWOUwN+njGklRlyHFu1tyu4c=
+X-Received: by 2002:a05:6902:70a:b0:b6e:361a:c86 with SMTP id
+ k10-20020a056902070a00b00b6e361a0c86mr9993544ybt.3.1680083194908; Wed, 29 Mar
+ 2023 02:46:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org> <880c0932-117f-61cd-dd97-c36076869c3b@linaro.org>
+In-Reply-To: <880c0932-117f-61cd-dd97-c36076869c3b@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 29 Mar 2023 11:45:59 +0200
+Message-ID: <CAPDyKFrnEwkS5p+vQ0htYTBLaZ8iFPnV0kckf6F65cacBB2k4w@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8250: drop incorrect domain idle
+ states properties
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The J784S4 SoCs have four TMS320C71x DSP subsystems in the MAIN voltage
-domain. The functionality of these DSP subsystems is similar to the C71x
-DSP subsystems on earlier k3 device J721S2. Each subsystem has a 48 KB of
-L1D configurable SRAM/Cache and 512 KB of L2 SRAM/Cache. This subsystem
-has a CMMU but is not currently used. The inter-processor communication
-between the main A72 cores and the C71x DSPs is achieved through shared
-memory and mailboxes. Add the DT nodes for these DSP processor sub-systems.
+On Wed, 29 Mar 2023 at 00:51, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 24/03/2023 09:38, Krzysztof Kozlowski wrote:
+> > Domain idle states do not use 'idle-state-name' and 'local-timer-stop':
+> >
+> >    sm8250-hdk.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
+> >
+> > Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Link: https://lore.kernel.org/all/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org/
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 --
+> >   1 file changed, 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > index 79d67b466856..9cf2de87c632 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > @@ -354,12 +354,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> >               domain-idle-states {
+> >                       CLUSTER_SLEEP_0: cluster-sleep-0 {
+> >                               compatible = "domain-idle-state";
+> > -                             idle-state-name = "cluster-llcc-off";
+> >                               arm,psci-suspend-param = <0x4100c244>;
+> >                               entry-latency-us = <3264>;
+> >                               exit-latency-us = <6562>;
+> >                               min-residency-us = <9987>;
+> > -                             local-timer-stop;
+>
+> Hmm, so we support setting the broadcast timer when using plain PSCI
+> idle states, but not when using the domain-based idle states.
+>
+> Ulf, Rafael, Daniel, is that an omission for the domain-based idle
+> support? Or is it handled in some other way?
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 52 ++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+I am not sure that we need a DT binding specifically for this, or do we?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 53d337ea35fb..9af0bab5382a 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -1152,4 +1152,56 @@
- 
- 		};
- 	};
-+
-+	c71_0: dsp@64800000 {
-+		compatible = "ti,j721s2-c71-dsp";
-+		reg = <0x00 0x64800000 0x00 0x00080000>,
-+		      <0x00 0x64e00000 0x00 0x0000c000>;
-+		reg-names = "l2sram", "l1dram";
-+		ti,sci = <&sms>;
-+		ti,sci-dev-id = <30>;
-+		ti,sci-proc-ids = <0x30 0xff>;
-+		resets = <&k3_reset 30 1>;
-+		firmware-name = "j784s4-c71_0-fw";
-+		status = "disabled";
-+	};
-+
-+	c71_1: dsp@65800000 {
-+		compatible = "ti,j721s2-c71-dsp";
-+		reg = <0x00 0x65800000 0x00 0x00080000>,
-+		      <0x00 0x65e00000 0x00 0x0000c000>;
-+		reg-names = "l2sram", "l1dram";
-+		ti,sci = <&sms>;
-+		ti,sci-dev-id = <33>;
-+		ti,sci-proc-ids = <0x31 0xff>;
-+		resets = <&k3_reset 33 1>;
-+		firmware-name = "j784s4-c71_1-fw";
-+		status = "disabled";
-+	};
-+
-+	c71_2: dsp@66800000 {
-+		compatible = "ti,j721s2-c71-dsp";
-+		reg = <0x00 0x66800000 0x00 0x00080000>,
-+		      <0x00 0x66e00000 0x00 0x0000c000>;
-+		reg-names = "l2sram", "l1dram";
-+		ti,sci = <&sms>;
-+		ti,sci-dev-id = <37>;
-+		ti,sci-proc-ids = <0x32 0xff>;
-+		resets = <&k3_reset 37 1>;
-+		firmware-name = "j784s4-c71_2-fw";
-+		status = "disabled";
-+	};
-+
-+	c71_3: dsp@67800000 {
-+		compatible = "ti,j721s2-c71-dsp";
-+		reg = <0x00 0x67800000 0x00 0x00080000>,
-+		      <0x00 0x67e00000 0x00 0x0000c000>;
-+		reg-names = "l2sram", "l1dram";
-+		ti,sci = <&sms>;
-+		ti,sci-dev-id = <40>;
-+		ti,sci-proc-ids = <0x33 0xff>;
-+		resets = <&k3_reset 40 1>;
-+		firmware-name = "j784s4-c71_3-fw";
-+		status = "disabled";
-+	};
- };
--- 
-2.17.1
+So far, the timer is managed from platform specific code. For some
+Qcom based platforms, the timer should be managed in
+rpmh_rsc_write_next_wakeup(), which makes use of
+dev_pm_genpd_get_next_hrtimer().
 
+[...]
+
+Kind regards
+Uffe
