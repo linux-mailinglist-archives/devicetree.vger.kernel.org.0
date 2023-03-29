@@ -2,148 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F876CD4C3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F636CD4D6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:39:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbjC2Ig6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:36:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48240 "EHLO
+        id S229553AbjC2IjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:39:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbjC2Ig4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:36:56 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5937411C
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:36:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id e21so15260490ljn.7
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:36:55 -0700 (PDT)
+        with ESMTP id S229622AbjC2IjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:39:21 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C3F195
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:39:20 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id p203so18320920ybb.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:39:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680079013;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M/xTfrQqdPOr1VUHDT+Xi7DQz6WS1kxLC72o+Ktlx4I=;
-        b=p2o7LkjvWeqhqR1RKjzxBfXlcfSihucbat9diMVrvSv1WD6n2m2KAqwcWb80HfmP+y
-         lKhKbl4FsRTq/u4Q8GMBGoqANkJseRef84IcyepO7CqkYgr0M7QHDfwWuHZAkQ5gWQYB
-         tWrCJFcdSjk2I4Vumg3FQ3x5dXkH2Ht8KE/rp7R+LqZ7YBsH+AOoDX4A8NqXoE4FoqRC
-         micX1WTx9Kreb0JbAF+IBhITjORuKQY3d0iO4edSlYrEn1Y2XJtCuxhmxn/mh5P0xNDB
-         Dq6xvvB1EsWvD8vwLF/by8C5BkOptxQlTaz4eXg8q+DVcqxgAk3bhvuz8thicLLxm+mO
-         aNKQ==
+        d=linaro.org; s=google; t=1680079160;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Hii9Pv392323NVbPSWjKgjzlCyDkUixB781jbHMzcds=;
+        b=ByBD9gixBbHYEaWqoA3BnSmcJGc2fYKFV0IWIdciv9nSZjDA+qaVd2Q9KqKokMUcuH
+         57bgryObyHgqecMufUre5Nbw+epTaN71b4FlQbhdGPou0toI8asrex9a/nse30ryR1Q8
+         Jci3r/v6dKQr6Q71vOwGwBpYcRdDlmCnB8GaqOSbPVBtJeiKmLT3HHwH8Stf/TH/7W4r
+         Xcz+nRWMDn54xb0aRKcmb+wnksa2zWeYvBVucjT3aMMv4OjCeMVvIsTbsBMneTE+wz1y
+         l/KHgYhm4TIuCCOa7OCVcrHHqV5jP9ob9FwncTtiq1QgFeDm8Ygdu1HetBwAyqLDW+JF
+         eX3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680079013;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M/xTfrQqdPOr1VUHDT+Xi7DQz6WS1kxLC72o+Ktlx4I=;
-        b=AlwZxAIVjc0huuAGOUo/TsBsL1sTPhILaFM3KS7gjHkdcbUMnlG+/GpTqVOiEM/DU3
-         Bzt63prcfECJf6GGinFF0xzZk9Y7oBBsbDsJiChBNSQv7P+czDWCWN4gkTW3GE6+Aa0V
-         a1i4+V8EfNpDuJaoPqc4KINfMkajLUr+k756pJpZUB8Xu7qKiAZ55iN5wZ9kMairq5oE
-         Gy2zIozuHv/hrlS3644pLOpCa2Uh9RZfG8+xMXVQfxbDlB1tfbUWUbTexnkWexIobzqk
-         fZFEhuM7uR4PVLNsTo/LRvLQ988a8PUCSjp66F1xYCjp7k3brV9gclVG0KIIcG73DDyz
-         uwqA==
-X-Gm-Message-State: AAQBX9cN36Z9wC01HgxguCgUdnYCZjZVHQadCSjRlWY9YjnnyHBRYOgN
-        YSMIJ7SyOE7hedgGGNUg521EugBMTz3gORB9HhRkRg==
-X-Google-Smtp-Source: AKy350au2Z3WXceuIA+YYWZfaLMQVGEW7Enc0KrPMuuwmNNa7EeF+qBAEs5vHu4zkzvycHr2enqaEg==
-X-Received: by 2002:a2e:a48e:0:b0:290:8289:8cba with SMTP id h14-20020a2ea48e000000b0029082898cbamr434794lji.8.1680079013617;
-        Wed, 29 Mar 2023 01:36:53 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n1-20020ac24901000000b004eb0c18efc2sm1712311lfi.221.2023.03.29.01.36.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 01:36:53 -0700 (PDT)
-Message-ID: <b66f708c-5369-c1c9-5506-c609a245bf4c@linaro.org>
-Date:   Wed, 29 Mar 2023 10:36:52 +0200
+        d=1e100.net; s=20210112; t=1680079160;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Hii9Pv392323NVbPSWjKgjzlCyDkUixB781jbHMzcds=;
+        b=2xK4lBmw+hRdDiEILeOEfBjr/LwZVwMYBzoEYPD9XFn9322JH2K5tYfTEC7EEk/kYv
+         IJjQnlpgxRXphYjjKWgx58FcL7WmxZ1KCjjE+uB1ate+Q0uZrS//v051P2gMBMq5WxyF
+         ss0b5XTtR1QODgROpBdtzRVPOipdDRbzN08OyDIpHX8LZPwiHNH85QpbbbPCF5Du5mWJ
+         TkmtknAe02nlZUsJTDASFWi0a9N1HZObs48vkuwFsJHNJVRSVljUdqoRTSLGQlNaSW3R
+         U2NWjzKwskx+sNDscaykxtygiUYRPw1C5aXkmMMUhe5w5zF1o4cr21sjCRJorQjx8yyo
+         kjjw==
+X-Gm-Message-State: AAQBX9dPxVPnnumLMntJDRXKis9xAX0IZlSgiTQcaEWBXT1/1fYj0M5K
+        ZflN1G4IsYkAGT+YJyGTqid7urDb+lytwndtMj1Fww==
+X-Google-Smtp-Source: AKy350bxp7UZ3mjGvig+dK8Sj3jxW0id1gM3+tFFHPekrN78Twkfzq0mg3i8vILowosyl1tMagLq8UYXJP0C7MZI3mI=
+X-Received: by 2002:a25:d0d0:0:b0:b6e:b924:b96f with SMTP id
+ h199-20020a25d0d0000000b00b6eb924b96fmr1044917ybg.3.1680079159790; Wed, 29
+ Mar 2023 01:39:19 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/2] ARM: dts: aspeed: greatlakes: Add gpio names
-Content-Language: en-US
-To:     Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz,
+References: <20230329074614.1037625-1-linus.walleij@linaro.org> <23b2de4b-1198-bfcc-fd74-285da9af4fb3@linaro.org>
+In-Reply-To: <23b2de4b-1198-bfcc-fd74-285da9af4fb3@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 29 Mar 2023 10:39:08 +0200
+Message-ID: <CACRpkdbM_Dron8irHbP77MW2=Yq6o2MAUdYSTE1jcfSHsXZfQg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Fix repeated text
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230329083235.24123-1-Delphine_CC_Chiu@Wiwynn.com>
- <20230329083235.24123-2-Delphine_CC_Chiu@Wiwynn.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230329083235.24123-2-Delphine_CC_Chiu@Wiwynn.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Denis Ciocca <denis.ciocca@st.com>, devicetree@vger.kernel.org,
+        Diederik de Haas <didi.debian@cknow.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 10:32, Delphine CC Chiu wrote:
-> From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> 
-> Add GPIO names for SOC lines.
-> 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../dts/aspeed-bmc-facebook-greatlakes.dts    | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> index 8c05bd56ce1e..59819115c39d 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
-> @@ -238,4 +238,53 @@
->  &gpio0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_gpiu1_default &pinctrl_gpiu7_default>;
-> +	status = "okay";
+On Wed, Mar 29, 2023 at 10:25=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-Was it disabled before?
+> Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
+> commit msg (Jonathan's, Lars', Rob's, mine, DT list). There is no single
+> need to store automated output of get_maintainers.pl in the git log. It
+> can be easily re-created at any given time, thus its presence in the git
+> history is redundant and obfuscates the log.
+>
+> If you need it for your own patch management purposes, keep it under the
+> --- separator.
 
-> +	gpio-line-names =
-> +	/*A0-A7*/ "","","","","","","","",
-> +	/*B0-B7*/ "power-bmc-nic","presence-ocp-debug",
-> +		  "power-bmc-slot1","power-bmc-slot2",
-> +		  "power-bmc-slot3","power-bmc-slot4","","",
-> +	/*C0-C7*/ "presence-ocp-nic","","","reset-cause-nic-primary",
-> +		  "reset-cause-nic-secondary","","","",
-> +	/*D0-D7*/ "","","","","","","","",
-> +	/*E0-E7*/ "","","","","","","","",
-> +	/*F0-F7*/ "slot1-bmc-reset-button","slot2-bmc-reset-button",
-> +		  "slot3-bmc-reset-button","slot4-bmc-reset-button",
-> +		  "","","","presence-emmc",
-> +	/*G0-G7*/ "","","","","","","","",
-> +	/*H0-H7*/ "","","","",
-> +		  "presence-mb-slot1","presence-mb-slot2",
-> +		  "presence-mb-slot3","presence-mb-slot4",
-> +	/*I0-I7*/ "","","","","","","bb-bmc-button","",
-> +	/*J0-J7*/ "","","","","","","","",
-> +	/*K0-K7*/ "","","","","","","","",
-> +	/*L0-L7*/ "","","","","","","","",
-> +	/*M0-M7*/ "","power-nic-bmc-enable","","usb-bmc-enable","","reset-cause-usb-hub","","",
-> +	/*N0-N7*/ "","","","","bmc-ready","","","",
-> +	/*O0-O7*/ "","","","","","","fan0-bmc-cpld-enable","fan1-bmc-cpld-enable",
-> +	/*P0-P7*/ "fan2-bmc-cpld-enable","fan3-bmc-cpld-enable",
-> +		  "reset-cause-pcie-slot1","reset-cause-pcie-slot2",
-> +		  "reset-cause-pcie-slot3","reset-cause-pcie-slot4","","",
-> +	/*Q0-Q7*/ "","","","","","","","",
-> +	/*R0-R7*/ "","","","","","","","",
-> +	/*S0-S7*/ "","","power-p5v-usb","presence-bmc-tpm","","","","",
-> +	/*T0-T7*/ "","","","","","","","",
-> +	/*U0-U7*/ "","","","","","","","GND",
-> +	/*V0-V7*/ "bmc-slot1-ac-button","bmc-slot2-ac-button",
-> +		  "bmc-slot3-ac-button","bmc-slot4-ac-button",
-> +		  "","","","",
-> +	/*W0-W7*/ "","","","","","","","",
-> +	/*X0-X7*/ "","","","","","","","",
-> +	/*Y0-Y7*/ "","","","reset-cause-emmc","","","","",
-> +	/*Z0-Z7*/ "","","","","","","","";
-> +};
-> +
-> +&gpio1 {
-> +	status = "okay";
+Oh yeah I've seen that people do this these days, just (old) bad habits.
 
-Same question...
-Best regards,
-Krzysztof
+I am trying to use b4 for this going forward, it always does the right thin=
+g.
 
+Thanks!
+Linus Walleij
