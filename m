@@ -2,106 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C346CF1E5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 20:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D15526CF1F2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 20:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbjC2SLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 14:11:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42328 "EHLO
+        id S229790AbjC2SPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 14:15:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjC2SLM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 14:11:12 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05BA861AB
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 11:10:47 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-53d277c1834so308154637b3.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 11:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680113440;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s36Q4sLQX/3/tv2niFl6Gc9T++Xctk19QhnwqMt3BVM=;
-        b=eDsYeqiG8GB4aZVHJzDU7byR1P1jPt7YE7V+7LrQkBjkHGKR65terpAGMEbNbrpWtc
-         GbKOZDyCq7ZL/+Zsg31N3BVfxEvsJ1GDaWJFB38pSjVUW4/6WGSR96i/6pIpJUY1T9+N
-         2W7sklR7qOx9HkWIJmhgVq8bUgKpEeVJ7TTmU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680113440;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s36Q4sLQX/3/tv2niFl6Gc9T++Xctk19QhnwqMt3BVM=;
-        b=T1ZED+NVeU6m9Olz+S2PkYyI/MycOuMJ0reqgYFElYCb1jHZSljV1NlktvoBNOsAof
-         q4SH931gr53WPydZ2qBSOM8UTIcCiN/RjIaQ2r0lQE/EqLsYlIS6lJQE4YEwFUt/6h4B
-         KWn8clISvwV59xaf3JTw02AyXcWVM8MOEM1J8aIPE/s3cPKpkBgd2bmG3rifyRFv9jKr
-         73Cc98XlDYoRCdh/sF6uE19J0o/xCuXVHZpO74jvqPvqra1WuUHev9elccO3ArLwGHpO
-         ZHbkdfBTbTGd0s1mu96E5RWu2KlsIWjAEw1KVLlSKLtvSh7tNcdp4xxpxEKRzs7bFU1i
-         rAig==
-X-Gm-Message-State: AAQBX9e8jLZYPoXYH5ilhviD4BuhWPNpytRxWDKaF3Ui1Ekll7wkLXNN
-        1F5cDdT7Rc9pMEez3ZXNLXsKyinTd09PU+/uLkoyug==
-X-Google-Smtp-Source: AKy350bTV90Nmmdqq5XdDMT52Ufu5ut5fzXMHi+iq0KHhNlusnr1XWTmvpO5LoXs+iXfO3xl7HbVrgeRFLebGR+jpH0=
-X-Received: by 2002:a81:ac46:0:b0:544:6828:3c09 with SMTP id
- z6-20020a81ac46000000b0054468283c09mr10157919ywj.0.1680113440045; Wed, 29 Mar
- 2023 11:10:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230218111712.2380225-1-treapking@chromium.org>
-In-Reply-To: <20230218111712.2380225-1-treapking@chromium.org>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 29 Mar 2023 23:40:28 +0530
-Message-ID: <CAMty3ZD3SY-WCtYK0dexdLxCk8d+2tJ=D9xb5uR06jPGCd=56g@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] Add generic-display-mux driver and bindings
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229806AbjC2SPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 14:15:15 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CB5595B92;
+        Wed, 29 Mar 2023 11:15:06 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B965B2F4;
+        Wed, 29 Mar 2023 11:15:50 -0700 (PDT)
+Received: from bogus (unknown [10.57.52.160])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5F9453F6C4;
+        Wed, 29 Mar 2023 11:14:57 -0700 (PDT)
+Date:   Wed, 29 Mar 2023 19:14:23 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        chrome-platform@lists.linux.dev,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Guenter Roeck <groeck@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Anup Patel <anup@brainfault.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, sparclinux@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH 04/19] of: Move CPU node related functions to their own
+ file
+Message-ID: <20230329181423.6e2z2giwkgdvhshn@bogus>
+References: <20230329-dt-cpu-header-cleanups-v1-0-581e2605fe47@kernel.org>
+ <20230329-dt-cpu-header-cleanups-v1-4-581e2605fe47@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230329-dt-cpu-header-cleanups-v1-4-581e2605fe47@kernel.org>
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 18, 2023 at 4:47=E2=80=AFPM Pin-yen Lin <treapking@chromium.org=
-> wrote:
+On Wed, Mar 29, 2023 at 10:52:01AM -0500, Rob Herring wrote:
+> drivers/of/base.c is quite long and we've accumulated a number of CPU
+> node functions. Let's move them to a new file, cpu.c, along with the
+> lone of_cpu_device_node_get() in of_device.h. Moving the declaration has
+> no effect yet as of.h is included by of_device.h. This serves as
+> preparation to disentangle the includes in of_device.h and
+> of_platform.h.
 >
-> This series is developed for and tested on MT8173 board, and the layout i=
-s:
->
->                                   /-- anx7688
-> -- MT8173 HDMI bridge -- GPIO mux
->                                   \-- native HDMI
 
-What is the part number of this GPIO mux? Does mux gpio interrupt
-based and able to switch output HDMI and DP. If so, how this gpio
-interrupt is different than the HPD in native HDMI? I mean does HPD
-have any detection bottlenecks with mux gpio interrupt?
+Makes sense to have its own file for CPUs, I am sure there will be more
+additions 😉.
 
-I do have GPIO Mux that input DSI and two outputs DMD/HDMI Input and
-HDMI Out. 2x1 with 1x2 mux.
+FWIW,
 
-I'm thinking having a generic mux to select the specific out number of
-outputs with associated interface outputs can be a viable solution to
-address all use cases here.
+Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
 
-Thanks,
-Jagan.
+-- 
+Regards,
+Sudeep
