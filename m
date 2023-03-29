@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8D96CD533
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5176CD545
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231238AbjC2IvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38104 "EHLO
+        id S231376AbjC2Ixa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:53:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231271AbjC2IvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:51:09 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AC91213A
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:50:46 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-54606036bb3so115168087b3.6
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:50:46 -0700 (PDT)
+        with ESMTP id S231311AbjC2IxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:53:21 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF401FEE;
+        Wed, 29 Mar 2023 01:53:19 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id q102so13420372pjq.3;
+        Wed, 29 Mar 2023 01:53:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680079845;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B/cLIW46SmIRvY4RiouMRQ/RQJOiGzxyqmPyutTg+zA=;
-        b=QhOBzkThcCEEP2ZCg5zliykwCig0tej4mEtO5cAaTlCJE7r/I4bMQ4iBSSpjrhnae0
-         L2LF5rs7cU1RatgupQufqFqIBeFvIlZv+NuT+sHNQjGGOFQ+1hgE49sNPzLCJxCdOSUP
-         3GiHOBNJ4kNxbuv07uuvTShV166HoyO9x4tjK8dsgQhMHDuFGpYKNYzU6v85fOH0nA8N
-         BTRDzTAcMumMh174PCFF3cgm5M/IFBYKvPVZzaqtHkv13p8pYzObR23/QK9kSAbFoS1V
-         agkIoyxZgi5fPU94wcu6PdvvGt682AWB+XwG0s6houGBOcUHyk/TLJjCvaFXua8JDf+Q
-         vvdQ==
+        d=gmail.com; s=20210112; t=1680079999;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l5acp6AQhlwlFMbsUP5vy6MLFKcrqnbcflb5MEM8oLg=;
+        b=TUpEINDEFayGGsDrfLfN0rTTbAU05RCkYmXKJG5fm5tCS8FdXpsrf574OqpT8ddkrN
+         Hpjms5xExEkX2Jp17FPQBL9Ev3v93QQTLTO8uWe5ZYb7etzt7LCNUX16iQd2grntbVWK
+         6DLumLoBXJnbYJjv3wtXGVRbwdurgXTuVzJORhqOIfg7f2liUzYLR0fIKcQvHK/k976h
+         Jck0t+YQRXd8yhCX4kvBjWUnP8MWXi63FvWMwE50pYVK9CoZnUML8MkVRprhDecOT9DE
+         0q8rjM5FSd7IdftgKTEx1DUGj54tKD93hOcfdet0tvftt336QAwRrSiW0V+vGcAJvhZs
+         fmUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680079845;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B/cLIW46SmIRvY4RiouMRQ/RQJOiGzxyqmPyutTg+zA=;
-        b=cbpKY/SBUiSUQdv5mUFjTY9NfP2xa+IYNazYcEAFiprjawr8Qm/qqNAeOOE0roDWtL
-         Mhrvw41MQhL2mK1O2RjXkeqjRM7IE/gV5Nhn+fxeXARALjGZ57LkptRZQUugmXJOPKjr
-         JqIWsbgZeeKC2+s3OUaRItiwRh1tOw34Ld7a88RSVdfMaZOpOe5PaccpL63F2f3cAQxi
-         UPwcgb2+rXaKZk4tNewZ+QnmnAJm8Fl0g8VuJEfXCeq3CbVP+UIDBKiiHgZDuI2K4Xf1
-         zGS6GC25GiQYcM+RW12BRm0Kyvx0cy2ZsnY2fA3CH4azdkyTkBc4uvpXtC/ColjQzsDm
-         tGGg==
-X-Gm-Message-State: AAQBX9f5TXQB+kE9hlqBiWDFulA+xcPkDGnwOt15nAnN+gokmhTKq3tC
-        fbsEyyUrtR+G3t2lXPSfhENByXM8gAtAzCq2jIqkcg==
-X-Google-Smtp-Source: AKy350YTOjcMWaqS3odZ4BorOYs3mIxmhScLtgIMGEm9pyUKhYrReflkix3snorSrRrckz5gmqV7SwVJyJWO3XKBcJ8=
-X-Received: by 2002:a81:a709:0:b0:545:4133:fc40 with SMTP id
- e9-20020a81a709000000b005454133fc40mr8817132ywh.9.1680079845742; Wed, 29 Mar
- 2023 01:50:45 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680079999;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l5acp6AQhlwlFMbsUP5vy6MLFKcrqnbcflb5MEM8oLg=;
+        b=TiQ9h+jpc27RzfD3Na6bBEZk1eyuorZh+LdzBoOzG3FzdA1j7H7GdZX+d30i6d3dqs
+         mDdDPGJTfctJwhxPzkpWKwfscBCnZtw6lzf9SAbDh+up5Wa2MFlFzQkUouZQIIZa9hmn
+         vLU1ppTuVkbi0wtK7YDR0NN8cCcbfr9dC7rMaNd0WKZfEQa41EtbkJcw4ysqD0xKetdC
+         dLFrs+e43mviNyXS80kuwMK8FGoU/QEqUdMPjS7c3EP6xbZqgLZK/aSNgHjCFnqvLnLW
+         Q/41jbGiH5h5LKxPFpP/MiUnDSxhsHNXVUusq1w5gP2cA7mo2iGP3Fgn8tnLy6+RYQ9I
+         AelA==
+X-Gm-Message-State: AAQBX9fz3LmuL5EImuZ3gs29rKZIirOlXzglAl6ZznbLNueaewHut/+z
+        YixcqFvFmX79Myk/eIleOfw=
+X-Google-Smtp-Source: AKy350a4gJx8D+PTIaoSFDTqQj66gF2BoV96BDG2IyVDNf4wsQKiAAfCez3ovrd5mXCyjmCqf8wKdQ==
+X-Received: by 2002:a17:90b:4c8b:b0:23f:44da:208d with SMTP id my11-20020a17090b4c8b00b0023f44da208dmr21373666pjb.47.1680079999329;
+        Wed, 29 Mar 2023 01:53:19 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id l3-20020a17090aec0300b002311ae14a01sm946541pjy.11.2023.03.29.01.53.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Mar 2023 01:53:19 -0700 (PDT)
+Message-ID: <a1df76e0-3a60-eeb6-9120-3aa7103c2218@gmail.com>
+Date:   Wed, 29 Mar 2023 16:53:15 +0800
 MIME-Version: 1.0
-References: <20230323173019.3706069-1-dianders@chromium.org>
- <CACRpkdaGpaiOVjEN6Ftq5=-yuAyD0xb7OcvtEsoqbTzias-xxw@mail.gmail.com> <CAD=FV=W6QKfQxGcSrQdgp4VHYxfk7aYZOkYx4ve7QSpoZ-LM=A@mail.gmail.com>
-In-Reply-To: <CAD=FV=W6QKfQxGcSrQdgp4VHYxfk7aYZOkYx4ve7QSpoZ-LM=A@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 29 Mar 2023 10:50:34 +0200
-Message-ID: <CACRpkdaUZbyEfkcHsNuQ=KhyuiKpunZJgvrnq90kQK8Z2V4jtg@mail.gmail.com>
-Subject: Re: [PATCH 00/14] Control Quad SPI pinctrl better on Qualcomm Chromebooks
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-gpio@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-spi@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Rajesh Patil <rajpat@codeaurora.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 04/12] dt-bindings: reset: nuvoton: add binding for
+ ma35d1 IP reset control
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-5-ychuang570808@gmail.com>
+ <81d8a7b18901c85fd24705977e6b9ce3.sboyd@kernel.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <81d8a7b18901c85fd24705977e6b9ce3.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,31 +82,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 27, 2023 at 11:51=E2=80=AFPM Doug Anderson <dianders@chromium.o=
-rg> wrote:
+Dear Stephen,
 
-> 1. Mark could land the SPI patch at any time, assuming he's OK with
-> it. It can land totally independently.
 
-OK this happened.
+On 2023/3/29 上午 01:48, Stephen Boyd wrote:
+> Quoting Jacky Huang (2023-03-27 19:19:04)
+>> +description:
+>> +  The system reset controller can be used to reset various peripheral
+>> +  controllers in MA35D1 SoC.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: nuvoton,ma35d1-reset
+>> +
+>> +  '#reset-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - '#reset-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  # system reset controller node:
+>> +  - |
+>> +
+>> +    system-management@40460000 {
+>> +        compatible = "nuvoton,ma35d1-sys", "syscon", "simple-mfd";
+>> +        reg = <0x40460000 0x200>;
+>> +
+>> +        reset-controller {
+>> +            compatible = "nuvoton,ma35d1-reset";
+>> +            #reset-cells = <1>;
+>> +        };
+> This is prescribing driver details to the system-management node. The
+> reset-controller node should be removed, the #reset-cells moved up one
+> level, and the "nuvoton,ma35d1-sys" should match a driver that registers
+> an auxiliary device for reset functionality. Is anything besides child
+> nodes like 'reset-controller' using the syscon@40460000?
 
-> Option A:
->
-> 3. You land the pinctrl and binding patches in an immutable branch and
-> merge into pinctrl.
->
-> 4. Bjorn merges the immutable branch into the Qulacomm tree and places
-> the last 3 dts patches atop.
+OK, I will modify it as:
 
-Looks most appetizing.
+     sys: system-management@40460000 {
+         compatible = "nuvoton,ma35d1-sys", "syscon",;
+         reg = <0x0 0x40460000 0x0 0x200>;
+         #reset-cells = <1>;
+         };
+     };
 
-I have applied patches 6,7,8 to this immutable branch:
-https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/lo=
-g/?h=3Dib-qcom-quad-spi
+And my reset driver will use compatible "nuvoton,ma35d1-sys", instead of 
+"nuvoton,ma35d1-reset".
+There' no other node like reset-controller.
 
-and I merged that into my "devel" branch for v6.4.
 
-Bjorn can grab the branch if he wants it.
+Best regards,
+Jack Huang
 
-Yours,
-Linus Walleij
+
+
+
+
