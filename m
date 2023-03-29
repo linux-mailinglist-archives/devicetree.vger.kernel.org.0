@@ -2,102 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD2726CF150
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 963696CF176
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 19:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbjC2RpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 13:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38526 "EHLO
+        id S229650AbjC2RwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 13:52:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbjC2RpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:45:09 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3F1ED525E;
-        Wed, 29 Mar 2023 10:45:08 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 295332F4;
-        Wed, 29 Mar 2023 10:45:52 -0700 (PDT)
-Received: from bogus (unknown [10.57.52.160])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3795D3F6C4;
-        Wed, 29 Mar 2023 10:45:05 -0700 (PDT)
-Date:   Wed, 29 Mar 2023 18:44:31 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Cristian Marussi <cristian.marussi@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        nicola.mazzucato@arm.com, Tushar.Khandelwal@arm.com,
-        viresh.kumar@linaro.org, jassisinghbrar@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox : arm,mhuv2: Allow for more RX
- interrupts
-Message-ID: <20230329174431.yga3c233sazimane@bogus>
-References: <20230329153936.394911-1-cristian.marussi@arm.com>
- <20230329153936.394911-2-cristian.marussi@arm.com>
+        with ESMTP id S229517AbjC2RwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 13:52:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 144F4DB;
+        Wed, 29 Mar 2023 10:52:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AF665B823F8;
+        Wed, 29 Mar 2023 17:52:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57552C433EF;
+        Wed, 29 Mar 2023 17:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680112323;
+        bh=w8jUtzScreWIDo7Aw/aAc5jBL+unzSwEx2kU/1yGx60=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=XJeFVsqL56erab6j/2q5XeQRgm0r4cgkDDfbP/DntYv01dBpmrSTKXeflchMEmfdK
+         B+yanwrkDp0DIbDzuTZicO6LQuH3P4k4iJI6rcjs/qOWVPgDkOl4YxWAgKFGEyou3y
+         ZEMHuKqBcTIJKEq0k1juQqqWECXl7m0DV05zh4AwJ98oVG9lz618GdmGsDvoguRN3E
+         IYFKMd1aKt9cbHYrTA3ZF0ZBJFVOHZfOwSx6j2I2W6kOL+dPQqMMpVoOiRXtTuUvCF
+         KrwtRSWsLBbOIRIXmOulQyyaUkCQTexTEn4hW3Y5/zETHAuJsWKQcwVxbmiOAVVsyD
+         /x6aU27LAIQCQ==
+Message-ID: <e45cd7bb6dce2b8b2f08d3b3bd96bb06.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230329153936.394911-2-cristian.marussi@arm.com>
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <458d454e-64ba-849a-38cb-88bf016f5a2e@gmail.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com> <b7977069-4f82-76a1-10c1-b6400862c2c4@gmail.com> <c37e1f3a40c404acd81c2c9d5b28b340.sboyd@kernel.org> <129cf4b6-b3b5-2a12-5911-37e70a624812@gmail.com> <e5221cd020bc60513df6a1c1859e1acc.sboyd@kernel.org> <ad908782-8291-4240-d88e-61dff5a05ef7@gmail.com> <1d379f28f54fd025f687bfcb71e4bae5.sboyd@kernel.org> <dd7940fd-bf63-552c-6e2e-05eff5fdb636@gmail.com> <b816411c301e2b3afe9c3df36728f946.sboyd@kernel.org> <458d454e-64ba-849a-38cb-88bf016f5a2e@gmail.com>
+Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device tree
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+To:     Jacky Huang <ychuang570808@gmail.com>, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org
+Date:   Wed, 29 Mar 2023 10:52:01 -0700
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 04:39:35PM +0100, Cristian Marussi wrote:
-> The ARM MHUv2 Receiver block can indeed support more interrupts, up to the
-> maximum number of available channels, but anyway no more than the maximum
-> number of supported interrupt for an AMBA device.
-> 
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> ---
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: devicetree@vger.kernel.org
-> 
->  .../devicetree/bindings/mailbox/arm,mhuv2.yaml      | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> index a4f1fe63659a..5a57f4e2a623 100644
-> --- a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> @@ -69,10 +69,15 @@ properties:
->  
->    interrupts:
->      description: |
-> -      The MHUv2 controller always implements an interrupt in the "receiver"
-> -      mode, while the interrupt in the "sender" mode was not available in the
-> -      version MHUv2.0, but the later versions do have it.
-> -    maxItems: 1
-> +      The MHUv2 controller always implements at least an interrupt in the
-> +      "receiver" mode, while the interrupt in the "sender" mode was not
-> +      available in the version MHUv2.0, but the later versions do have it.
-> +      In "receiver" mode, beside a single combined interrupt, there could be
-> +      multiple interrupts, up to the number of implemented channels but anyway
-> +      no more than the maximum number of interrupts potentially supported by
-> +      AMBA.
-> +    minItems: 1
-> +    maxItems: 9
+Quoting Jacky Huang (2023-03-28 23:02:31)
+>=20
+> On 2023/3/29 =E4=B8=8A=E5=8D=88 11:54, Stephen Boyd wrote:
+> > Quoting Jacky Huang (2023-03-28 20:43:23)
+> >
+> >> We just employ regmap mechansim for the access to REG_SYS_RLKTZNS regi=
+ster.
+> >> Is this implementation OK for you?=C2=A0 Thank you.
+> >>
+> > No. Why can't that be a hwspinlock? Or why can't it be unlocked all the
+> > time and rely on software spinlocks in the kernel to prevent concurrent
+> > access to the registers accessed by a driver, like a lock for the clk
+> > registers and a lock for the reset registers, etc. Or if no two clks or
+> > resets exist within one 32-bit word then no lock is necessary.
+>=20
+> You gave a good suggestion here. Yes, of course we can let it be=20
+> unlocked all the time.
+> We can unlock the "register lock" before entering Linux.
+> As a result, the unlonk and lock register related code is not required.
+> Thus, we can remove syscon from the clock controller node.
+>=20
+> If you agree with this, we will modify it in the next version.
+>=20
 
-I am not sure 9 is the correct value here. IIUC it is just what Linux defines
-as AMBA_NR_IRQS. Looking at the history it was bumped from 2 to 9 for use
-by PL330 DMA driver. I couldn't find anything to relate this 9 in any
-AMBA or other related specification.
-
-Ideally I would say we don't know what the max here. We just have a platform
-implementing 2 interrupts now. Do we for with 2 for now and change it if some
-new users require more in the future ?
-
-I will leave that to the DT maintainers but 9 is simply random based on Linux
-code so I would rather choose some other random number with a better reasoning
-than 9 as AMBA code in the kernel is limiting it to 9.
-
--- 
-Regards,
-Sudeep
+Sure, that works.
