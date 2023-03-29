@@ -2,60 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A7676CD7D7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 12:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54C556CD7F0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 12:52:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230249AbjC2Knp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 06:43:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49310 "EHLO
+        id S229457AbjC2KwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 06:52:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbjC2Kni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 06:43:38 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5853C29;
-        Wed, 29 Mar 2023 03:43:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680086617; x=1711622617;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5W+blnKT1Yo9sFK/xzAQKVqqGYFjD25kZeGLG5VryJU=;
-  b=N6MOu08pB4ARFwcJrL4lpT1Q2w8xlBjIO6WwGzKq/Of9aGb4FD2UPgRj
-   mPHuJ5ZGBM5E8OPyXta6pOWl4QZLMJl8tvFIioLFrMxG0yIJJCFaXoX6O
-   zfzPnixGAJaIOZfJovj2NCz9HKk45Sa0+LBFnXP8PNGTJSkMAzNzLP2En
-   nuc3fqxuVp373mAgutZs1aXVyOZYbHLGhtRFaMGtGkcaXz7SHNiu1J3c7
-   oc+pvFG6DMxgbEVN4S+XKLJ7zpZcA8aI3zseoQ/w3IM0O9U8He2CPRwC9
-   tNMb1Ih/7sVnEwjcJ8iSsaqaKtvICJycr1DCQcT8SjKocSvEq/SMHLSlA
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="427117010"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; 
-   d="scan'208";a="427117010"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2023 03:43:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="827845454"
-X-IronPort-AV: E=Sophos;i="5.98,300,1673942400"; 
-   d="scan'208";a="827845454"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 29 Mar 2023 03:43:34 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 29 Mar 2023 13:43:33 +0300
-Date:   Wed, 29 Mar 2023 13:43:33 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org, vigneshr@ti.com,
-        srk@ti.com, r-gunasekaran@ti.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: tps6598x: make interrupts optional
-Message-ID: <ZCQWVfyVVecCYHDb@kuha.fi.intel.com>
-References: <20230324131853.41102-1-rogerq@kernel.org>
- <20230324133741.43408-1-rogerq@kernel.org>
- <271f0be0-9cb2-0c74-c112-33020e9a7342@kernel.org>
+        with ESMTP id S229485AbjC2KwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 06:52:09 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E4891FFB
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 03:52:07 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id p15so18689789ybl.9
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 03:52:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680087126;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pYv9M7coslMJJF9TLVoPr0zt34O6GZ1VxBOMD5WWM8g=;
+        b=SikfAN/1ZbiBGg+zmydA9bfihedbZQOop+X5LZrPAALXv6NwuPk8ZorNDnOhtCveb/
+         VrxXg+bB4RdVp+HwYWjDKX9BDmtPOp8fORYDewtQxM5kJvcgV4wxAQA53766Y9WQ0mE7
+         WxCsZStIPbyVp3OBw9fcD/KNnwfgpIlyCgV0AylycYH1hRhehXOtO0z9yMF9EPZd4cIf
+         5nwGp3OA/yNlyF8Jiin8lCt4HKPfH9J+PGLogFZWUek+WZoRClvUtAqZ7Kvx12HKewHN
+         dGGsn0HBZcRu6kZYew1Y+C1nLZFEIcqOllG4Ljuk7mNJe8cnRI90wH94xN1ZF1qh46Z8
+         LRag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680087126;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pYv9M7coslMJJF9TLVoPr0zt34O6GZ1VxBOMD5WWM8g=;
+        b=FnJv4Be2tltRMIauZZqAv0N8x05BIBQDTvRu0bOPpEeE1LPfkxsxryNfv/UiL31c/h
+         +oCzfHHIGCzZPV5qxTznNAm0fbvx6gHDZKkP8lbv0pYkxz+gGNsSmkJBdPx7piweTQoQ
+         Zgw3sraMX6GyheqBgZ68MqCz9LjhMfn6AcWBDm3cURdACVnkcAJ7ZTyMzfsbUV+gtN9v
+         YxbqToFOS2BGwfTLAMos9wVSdwHibAyI7yJIyVPxHfRlABWh7qBvDbB2z+imDk0bUZlc
+         WtIZ/71ruqS/QOdtQg42/+ncKBtDkRxe8lGbknKxHsY0sKsNLbgl82Y7VMEi7TMAyxWr
+         KAyA==
+X-Gm-Message-State: AAQBX9fxHkPsfsDl9Jb74/B67v63bm4CrL8uRtvmqRbCXqHTANXCg5uE
+        bkH9Y8B638+qk8riwyaBAwUsjmN5wTNhwVIsBAUVEA==
+X-Google-Smtp-Source: AKy350b9UYOLX6PmwVyIWe5dGiWYyVV1F8d9u3fYOjbsXwVN0hv3JrowfI+/bMUSRJSpvSpbWHcaVAPuE6pPb/O3G64=
+X-Received: by 2002:a05:6902:1549:b0:b77:be38:6406 with SMTP id
+ r9-20020a056902154900b00b77be386406mr9547201ybu.9.1680087126218; Wed, 29 Mar
+ 2023 03:52:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <271f0be0-9cb2-0c74-c112-33020e9a7342@kernel.org>
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
+References: <20230329000833.2507594-1-dmitry.baryshkov@linaro.org>
+ <20230329000833.2507594-5-dmitry.baryshkov@linaro.org> <281c27da-a0a9-b866-b156-50db681cd656@linaro.org>
+In-Reply-To: <281c27da-a0a9-b866-b156-50db681cd656@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 29 Mar 2023 13:51:55 +0300
+Message-ID: <CAA8EJpoD_8tUO+QmwJtfAPqYAjMUD=hkGORxJEdUByYM0xc0Zg@mail.gmail.com>
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: pm8350: include SID into labels
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,42 +72,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 10:05:33AM +0300, Roger Quadros wrote:
-> Hi Heikki & Rob,
-> 
-> On 24/03/2023 15:37, Roger Quadros wrote:
-> > The driver can poll for interrupt status so interrupts
-> > can be optional. It is still recommended to use the
-> > interrupt line. Polling should only be used for debug
-> > and prototyping.
-> > 
-> > Signed-off-by: Roger Quadros <rogerq@kernel.org>
+On Wed, 29 Mar 2023 at 03:33, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 29.03.2023 02:08, Dmitry Baryshkov wrote:
+> > The platform can use several instances of PM8350 PMIC. Include SID into
+> > all the labels to simplify such platforms configuration.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > > ---
-> >  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 2 --
-> >  1 file changed, 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > index 348a715d61f4..8c2db282735a 100644
-> > --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > @@ -35,8 +35,6 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - interrupts
-> > -  - interrupt-names
-> >  
-> >  additionalProperties: true
-> >  
-> 
-> We need this patch as well along with the driver changes [1]
-> Could you please Ack. Thanks!
+> >  arch/arm64/boot/dts/qcom/pm8350.dtsi          | 31 +++++++++++++------
+> >  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |  4 +--
+> >  .../dts/qcom/sm8450-sony-xperia-nagara.dtsi   |  4 +--
+> >  3 files changed, 26 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/pm8350.dtsi b/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> > index 2dfeb99300d7..f1ef242760f2 100644
+> > --- a/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> > @@ -6,21 +6,30 @@
+> >  #include <dt-bindings/interrupt-controller/irq.h>
+> >  #include <dt-bindings/spmi/spmi.h>
+> >
+> > +/* (Sadly) this PMIC can be configured to be at different SIDs */
+> > +#ifndef PM8350_SID
+> > +     #define PM8350_SID 1
+> > +#endif
+> > +
+> > +#define __LABEL(pmic, sid, name) pmic ## _ ## sid ## _ ## name
+> > +#define _LABEL(pmic, sid, name) __LABEL(pmic, sid, name)
+> Perhaps that should go to some Qcom PMIC-common include now!
 
-I can give my ack FWIW, but we should still wait for Rob.
+I usually prefer to have a "second case" before generalizing things. I
+think we might have it with sa8540p-pmics (which includes 4 instances
+of pmm8540). However I didn't dare to touch that as I do not know if
+they are really the same PMICs or there are some differences, etc.
 
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Also, at one point, an idea came up to stop writing so much dt, I'm
+> not necessarily a fan of creating .dtsc (like ACPI-C sources), but
+> perhaps we could explore having e.g. a "gen_dt.py" which would take
+> in some data and generate device trees based on that.. Not very
+> related to this patch, but I'm just throwing it in the open
 
-thanks,
+Standard issue: one has to find a balance between the generated source
+and the actual code. Given that most of the blocks are more or less
+standard, we might be able to create a DSL for describing PMICs. But
+then we have all kinds of strange nodes (like Type-C handler), which
+do not follow the reset.
+
+>
+>
+> Konrad
+> > +#define LABEL(name) _LABEL(pm8350, PM8350_SID, name)
+> > +
+> >  / {
+> >       thermal-zones {
+> > -             pm8350_thermal: pm8350c-thermal {
+> > +             LABEL(thermal): pm8350c-thermal {
+> >                       polling-delay-passive = <100>;
+> >                       polling-delay = <0>;
+> > -                     thermal-sensors = <&pm8350_temp_alarm>;
+> > +                     thermal-sensors = <&LABEL(temp_alarm)>;
+> >
+> >                       trips {
+> > -                             pm8350_trip0: trip0 {
+> > +                             LABEL(trip0): trip0 {
+> >                                       temperature = <95000>;
+> >                                       hysteresis = <0>;
+> >                                       type = "passive";
+> >                               };
+> >
+> > -                             pm8350_crit: pm8350c-crit {
+> > +                             LABEL(crit): pm8350c-crit {
+> >                                       temperature = <115000>;
+> >                                       hysteresis = <0>;
+> >                                       type = "critical";
+> > @@ -33,25 +42,29 @@ pm8350_crit: pm8350c-crit {
+> >  &spmi_bus {
+> >       pm8350: pmic@1 {
+> >               compatible = "qcom,pm8350", "qcom,spmi-pmic";
+> > -             reg = <0x1 SPMI_USID>;
+> > +             reg = <PM8350_SID SPMI_USID>;
+> >               #address-cells = <1>;
+> >               #size-cells = <0>;
+> >
+> > -             pm8350_temp_alarm: temp-alarm@a00 {
+> > +             LABEL(temp_alarm): temp-alarm@a00 {
+> >                       compatible = "qcom,spmi-temp-alarm";
+> >                       reg = <0xa00>;
+> > -                     interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> > +                     interrupts = <PM8350_SID 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> >                       #thermal-sensor-cells = <0>;
+> >               };
+> >
+> > -             pm8350_gpios: gpio@8800 {
+> > +             LABEL(gpios): gpio@8800 {
+> >                       compatible = "qcom,pm8350-gpio", "qcom,spmi-gpio";
+> >                       reg = <0x8800>;
+> >                       gpio-controller;
+> > -                     gpio-ranges = <&pm8350_gpios 0 0 10>;
+> > +                     gpio-ranges = <&LABEL(gpios) 0 0 10>;
+> >                       #gpio-cells = <2>;
+> >                       interrupt-controller;
+> >                       #interrupt-cells = <2>;
+> >               };
+> >       };
+> >  };
+> > +
+> > +#undef LABEL
+> > +#undef _LABEL
+> > +#undef __LABEL
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> > index e28f49e31b9f..5c09b1d8881b 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> > @@ -72,7 +72,7 @@ key-camera-snapshot {
+> >
+> >               key-google-assist {
+> >                       label = "Google Assistant Key";
+> > -                     gpios = <&pm8350_gpios 9 GPIO_ACTIVE_LOW>;
+> > +                     gpios = <&pm8350_1_gpios 9 GPIO_ACTIVE_LOW>;
+> >                       linux,code = <KEY_LEFTMETA>;
+> >                       debounce-interval = <15>;
+> >                       linux,can-disable;
+> > @@ -564,7 +564,7 @@ &mpss {
+> >       firmware-name = "qcom/sm8350/Sony/sagami/modem.mbn";
+> >  };
+> >
+> > -&pm8350_gpios {
+> > +&pm8350_1_gpios {
+> >       gpio-line-names = "ASSIGN1_THERM", /* GPIO_1 */
+> >                         "LCD_ID",
+> >                         "SDR_MMW_THERM",
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+> > index 99e9b776b93d..d90e3fedb742 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+> > @@ -56,7 +56,7 @@ key-camera-snapshot {
+> >               key-volume-down {
+> >                       label = "Volume Down";
+> >                       linux,code = <KEY_VOLUMEDOWN>;
+> > -                     gpios = <&pm8350_gpios 6 GPIO_ACTIVE_LOW>;
+> > +                     gpios = <&pm8350_1_gpios 6 GPIO_ACTIVE_LOW>;
+> >                       debounce-interval = <15>;
+> >                       linux,can-disable;
+> >                       wakeup-source;
+> > @@ -622,7 +622,7 @@ &pcie0_phy {
+> >       status = "okay";
+> >  };
+> >
+> > -&pm8350_gpios {
+> > +&pm8350_1_gpios {
+> >       gpio-line-names = "ASSIGN1_THERM", /* GPIO_1 */
+> >                         "LCD_ID",
+> >                         "SDR_MMW_THERM",
+
+
 
 -- 
-heikki
+With best wishes
+Dmitry
