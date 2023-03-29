@@ -2,115 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADBC66CD0A1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 05:25:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC146CD0B9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 05:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbjC2DZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 23:25:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54150 "EHLO
+        id S229451AbjC2Def (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 23:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjC2DZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 23:25:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA31270D;
-        Tue, 28 Mar 2023 20:25:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 03FC761A15;
-        Wed, 29 Mar 2023 03:25:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 524DEC433D2;
-        Wed, 29 Mar 2023 03:25:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680060352;
-        bh=rGesu/nbEnFvbtmlz6tgs+4c/cLzd437HpK/3VSCMlA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=LFEQzM13qMc7C5WJrI2LVx8MuRWfOA/rOL5mZSpeoaaGr9GeppcMFsibDn211CaMK
-         C2pn4KIiFGVQvYabOI4zp7Vw3dGvIO3mjMYEeKc/v37cVk9Y38AJBvNDm238WsHCXz
-         Oq/QwUiNRF9CSlriFpkmFdkHDA8ysUFAJTVatpvDa2JpsR3VzOmcBtY1gEvh1vYYfg
-         Qko+pgK1lC1WF/+oJfBjbtJF1TZVxp/xHFkwouQfP3ZMgm/scmw8qfLdC02glQ+I0k
-         sXqVG+KsPCLLmOeXdjPxkO0KbCpktJ2sdjtRQmYmC0gAMn55Llko0CFwcQ6inBfvB7
-         MQnGQYRDzfJAw==
-Message-ID: <1d379f28f54fd025f687bfcb71e4bae5.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229563AbjC2Dee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 23:34:34 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F06726B7
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 20:34:33 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id qe8-20020a17090b4f8800b0023f07253a2cso14778643pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 20:34:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680060872;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lrPg+XcugayUBQdJZA8GlLCHOjk+HPNQA9l1wxAz9XU=;
+        b=oJldNef8Y32GaZkojlBXY8Ne5qhhM7OYnEHZ9LMVhUylSArWs7nJWX7w70BHaLK0z0
+         iqDe9BnG7NW0W0a2PZled8J/32shF0vpEWxosW9v/C77RKGFAzXDico8x5t5u3L13+1q
+         e4sp1DY2wWO0WY7o3b+lYXwFY4696pCaCRA/3hnrNqS0ZI58jny4nbbFioC4TdbfBzb8
+         3ihHvZb85BawvCWKxPVKEIRcrDEIZ1XtnqTD0XF/YFODfUkveZTI469LK4pf6woK22q9
+         /TclUJh4nae9n3OOBCaSyo9j2nmokoHwr7lvJLGUTxWGXcrfg8vy1xmiDdS93XhnhxEK
+         2Oyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680060872;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lrPg+XcugayUBQdJZA8GlLCHOjk+HPNQA9l1wxAz9XU=;
+        b=W7EPOo3iWnWHWorq0rrYd8irVXdgf2mNRVJf+AzHXDr+O5535HkhpepmInL+yV1xAa
+         CMle1mzO4qpY3SThwF8cxEBVgmqNzR1QTn9bYwKerlFLL4ajuUBs1CIATrn5PoI73ird
+         HbWbsSLEGICCfIgnGb+NVu9l3W7cg6oF09ytmzfWb9NBw2X/zTBnOpI2BaSdR2mYF/9I
+         3QSoKOrG+6qQaS82oMgVF68LajUm7Tsr+L57DeUY82l+n9+l+B0IhYLwWZR7L5/BcC/0
+         12LDh6uqXcA6vlDTsjwwqfZjBrcDAe1slnZJKm7QXiWTr1ZReLNZH+NNAQa9mtF7eOvF
+         RjmA==
+X-Gm-Message-State: AAQBX9cD5MLWopwi9bLnSceSPgiSxjN/PEc8MnX6GNbVtKFE6HH60Ag5
+        vzS2qKN0zMIHBSZVaIN8/aEWWw==
+X-Google-Smtp-Source: AKy350Zcf1qWpx9bh/5skLSyvbqEr3AICEnYsjvkYnCs70Cd4uZYr/L0UsgaxcWWxbkcCr4w30fI6A==
+X-Received: by 2002:a17:90b:4b43:b0:23b:4bf6:bbed with SMTP id mi3-20020a17090b4b4300b0023b4bf6bbedmr19446957pjb.24.1680060872613;
+        Tue, 28 Mar 2023 20:34:32 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id bc9-20020a170902930900b001a20b31a23fsm10109449plb.293.2023.03.28.20.34.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 20:34:31 -0700 (PDT)
+Date:   Wed, 29 Mar 2023 11:34:24 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] Resolve MPM register space situation
+Message-ID: <20230329033424.GA3554086@dragon>
+References: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ad908782-8291-4240-d88e-61dff5a05ef7@gmail.com>
-References: <20230328021912.177301-1-ychuang570808@gmail.com> <20230328021912.177301-9-ychuang570808@gmail.com> <ab4e0bc8834b7e618e9a88ea6a1c30cc.sboyd@kernel.org> <b7977069-4f82-76a1-10c1-b6400862c2c4@gmail.com> <c37e1f3a40c404acd81c2c9d5b28b340.sboyd@kernel.org> <129cf4b6-b3b5-2a12-5911-37e70a624812@gmail.com> <e5221cd020bc60513df6a1c1859e1acc.sboyd@kernel.org> <ad908782-8291-4240-d88e-61dff5a05ef7@gmail.com>
-Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device tree
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org
-Date:   Tue, 28 Mar 2023 20:25:50 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jacky Huang (2023-03-28 20:13:11)
-> Dear Stephen,
->=20
->=20
-> On 2023/3/29 =E4=B8=8A=E5=8D=88 10:46, Stephen Boyd wrote:
-> > Quoting Jacky Huang (2023-03-28 19:39:36)
-> >> On 2023/3/29 =E4=B8=8A=E5=8D=88 10:19, Stephen Boyd wrote:
-> >>> What do you use the syscon for then? The clock driver must want to use
-> >>> the syscon for something, implying that they are the same device.
-> >> The register lock mechanism is applied to protect many critical
-> >> registers from false written.
-> >> The register lock control register is one register in system controlle=
-r.
-> >> Some registers of the clock controller are lock protected. Not only
-> >> clock controller, but other
-> >> IP such as RTC, PWM, ADC, etc, also have lock protected registers. All
-> >> these IP requires
-> >> syscon to access the lock/unlock control register in the system contro=
-ller.
-> >> That's why we add a <&sys> to the clock controller.
-> >>
-> >> Should we implement a ma35d1-sysctl driver to protect register_lock()
-> >> and register_unlock()
-> >> and export to those drivers?=C2=A0 If yes, we can remove the <&sys> fr=
-om
-> >> clock controller.
-> >>
-> > You can implement the lock and unlock in the hwspinlock framework. See
-> > drivers/hwspinlock.
->=20
-> I may not explain clearly enough. The lock/unlock register of system=20
-> controller is more like
-> a kind of write protection for specific registers, rather than=20
-> preventing hetero-core CPU access.
-> In many different IP of ma35d1 contain write protected registers.
-> In fact, ma35d1 has a "hardware semaphore" IP, and we have implemented=20
-> the driver in drivers/hwspinlock.
-> Even the control register of "hardware semaphore" is also write protected.
+On Tue, Mar 28, 2023 at 12:02:51PM +0200, Konrad Dybcio wrote:
+> The MPM (and some other things, irrelevant to this patchset) resides
+> (as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
+> that's a portion of the RPM (low-power management core)'s RAM, known
+> as the RPM Message RAM. Representing this relation in the Device Tree
+> creates some challenges, as one would either have to treat a memory
+> region as a bus, map nodes in a way such that their reg-s would be
+> overlapping, or supply the nodes with a slice of that region.
+> 
+> This series implements the third option, by adding a qcom,rpm-msg-ram
+> property, which has been used for some drivers poking into this region
+> before. Bindings ABI compatibility is preserved through keeping the
+> "normal" (a.k.a read the reg property and map that region) way of
+> passing the register space.
 
-What's the need to lock and unlock the registers? Is some other
-processor also writing to the registers that we need to synchronize
-against? Or is Linux the only entity reading and writing the registers?
-I'm wondering if we should simply unlock the registers and never lock
-them.
+I have to admit that I wasn't aware of it, this message RAM is also
+accessed by cores like modem, ADSP etc.  I agree in principle this is
+a good change!
 
->=20
-> So, should we implement a system controller driver to provide=20
-> register_unlock() function?
-> Is it OK to have such a driver in drivers/mfd?
-> Or, just use syscon in device tree for those devices that have write=20
-> protect registers.
->=20
+Shawn
 
-The hwspinlock framework doesn't require there to be another entity
-accessing some resource. It's there to implement hardware locks. I don't
-see why it can't be used here.
+> 
+> Example representation with this patchset:
+> 
+> / {
+> 	[...]
+> 
+> 	mpm: interrupt-controller {
+> 		compatible = "qcom,mpm";
+> 		qcom,rpm-msg-ram = <&apss_mpm>;
+> 		[...]
+> 	};
+> 
+> 	[...]
+> 
+> 	soc: soc@0 {
+> 		[...]
+> 
+> 		rpm_msg_ram: sram@45f0000 {
+> 			compatible = "qcom,rpm-msg-ram", "mmio-sram";
+> 			reg = <0 0x045f0000 0 0x7000>;
+> 			#address-cells = <1>;
+> 			#size-cells = <1>;
+> 			ranges = <0 0x0 0x045f0000 0x7000>;
+> 
+> 			apss_mpm: sram@1b8 {
+> 				reg = <0x1b8 0x48>;
+> 			};
+> 		};
+> 	};
+> };
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Konrad Dybcio (2):
+>       dt-bindings: interrupt-controller: mpm: Allow passing reg through phandle
+>       irqchip: irq-qcom-mpm: Support passing a slice of SRAM as reg space
+> 
+>  .../bindings/interrupt-controller/qcom,mpm.yaml    |  6 ++++-
+>  drivers/irqchip/irq-qcom-mpm.c                     | 30 ++++++++++++++++++----
+>  2 files changed, 30 insertions(+), 6 deletions(-)
+> ---
+> base-commit: a6faf7ea9fcb7267d06116d4188947f26e00e57e
+> change-id: 20230328-topic-msgram_mpm-c688be3bc294
+> 
+> Best regards,
+> -- 
+> Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
