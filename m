@@ -2,154 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3352F6CF2F9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7AD6CF2FD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbjC2TR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 15:17:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53690 "EHLO
+        id S229517AbjC2TTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 15:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230251AbjC2TRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:17:53 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607E56E8B
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:17:43 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 20so17313549lju.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:17:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680117461;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PkKk7Qpt0miI3NiUcSnncqHdyr3DuNCBLMRDZMN+mTU=;
-        b=enBcjGxxUnor9oWLRKL39mGkXt0uM4ukXO4TmIUsx8QDTVJHE+WtDZJp8K6XZtoUsO
-         TtPTRxWK2LFhLrFf4LbFuqwmGw457e0bhK7OydymVlxIrOBf48dOQvOGlTqCzguFflOD
-         YeyL8hWsKo5R0OyIMLU63dzzDWsGQ+Ham8ad67fdl6G+QEbuZp79MnA80woYVwVd5fMF
-         r1slPiC7RNS6x3IwlPQqR7CVKKBuK5VloT4SKHBNqUs9EGlMN7THx2mC1SdSaBCajuH1
-         uUWVG2VleI+tiKgTLS7u+YD4KkyBxjGZqlhzYA8LomlrT+FeMM+t5OxMTSNk6FtSYYEN
-         ZvRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680117461;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PkKk7Qpt0miI3NiUcSnncqHdyr3DuNCBLMRDZMN+mTU=;
-        b=067qQGoWpxU/yBv/uQ3g22WAdviikrimGXGCoSKXv6M01hvt3h9tu9vKEbLOJLQWRw
-         O0wOUdzYJDJMJMmpJKlzKiXBBRnHPzXQXNqgRmJ/xVCPO/FJEH534wOygSRi1km8VM0i
-         Y43n+uyQKjGpsObTl835K//02YMd4bCQrEDODpYpOnZI6/RH2BhfRYzXzbnPCA7xE4QM
-         pY8YUVKFsn8gzghEa6WD/Gd1AADzUaF+c965WpQuBCJ5aIUcCZOiCi1RodhtVrwo0D+R
-         0zXcIygwD3L6LQI6Zs/gNu5nzbRFFgJGtNE89F2ZmzsZNA6mMXJwBHfBjPwWczQDC2Hf
-         Qfhg==
-X-Gm-Message-State: AAQBX9dm4F2a+46pT3u8YTsACUdypJi1P3furGoHihM19WpgoPu67Ec4
-        ZlGamUdWHLXQ0/IJBXDr8CltUVViLTcoDwOlklQ=
-X-Google-Smtp-Source: AKy350Ys71TFalUqyX/0rCk+E386hQB0F1YvA98ANc8+ixU1OZVN8vyGzE0saNWdDU0GDay7QHZOGA==
-X-Received: by 2002:a2e:9bcf:0:b0:29e:a3a0:ee2f with SMTP id w15-20020a2e9bcf000000b0029ea3a0ee2fmr5997809ljj.30.1680117461681;
-        Wed, 29 Mar 2023 12:17:41 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id f4-20020a2e3804000000b0029ad1fc89b3sm5189658lja.60.2023.03.29.12.17.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 12:17:41 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 29 Mar 2023 21:17:31 +0200
-Subject: [PATCH 4/4] arm64: dts: qcom: msm8916: Improve GPU OPP table
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230329-topic-adreno_opp-v1-4-24d34ac6f007@linaro.org>
-References: <20230329-topic-adreno_opp-v1-0-24d34ac6f007@linaro.org>
-In-Reply-To: <20230329-topic-adreno_opp-v1-0-24d34ac6f007@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229481AbjC2TTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:19:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601D3CD;
+        Wed, 29 Mar 2023 12:19:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EEE7C61D50;
+        Wed, 29 Mar 2023 19:19:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0072C4339B;
+        Wed, 29 Mar 2023 19:19:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680117583;
+        bh=gTLU+XR5wtmB0lMQcIufKUrPY/RzhFv150zb3fpFcTw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gZVJdWdg1sOp2uaW74Z8RwFdqeDjh7ImKdE14MzLoa6kTLztVa7uUQmmb3jj6XGdi
+         8MntCLbtyjv6B7K3daLLWjpfNjRsrEz9CCFDSGPfPywyDzysUlkImN9Jm5apzx1BRb
+         3m/VESTcPbYGvnF5bxnqctfjZJS2iVyOZIm+7f4T85FaTco71MOSe2FwCkSyWuyfNd
+         zQ6ZyUz3F4JnlH0HiMq0kTT/Xv1wkvBcumaKNWyqMv8gPmCFmimKph4Fi1NxPgg8RC
+         G2mmQdV/QfoPrEuvgm/+c1Z2cRUxJ4TK3iv2m8P277NFknekM7Fr4TMJcFhG76rs7m
+         8fGWeDwR9dCpw==
+Date:   Wed, 29 Mar 2023 21:19:40 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Lars-Peter Clausen <lars@metafoo.de>
+Cc:     Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <sboyd@codeaurora.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1680117452; l=1898;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=JPOS4C7Jq8MAmse1/02vKyaIWx2AGQSTrD2cYU4Vq9M=;
- b=lR/hlBWa2ERR2A1gCrnw36uoxaK8g9TG5iXuPzYclbj1Ce9GkiXJWntiYjP8oOqkHpGQkzk4jdjf
- xNIJmF5aCXtrCkWWqIkgo6zRBmnrYl36cNeRr/WMJC811dC8QWzk
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: cadence: Document `fifo-depth`
+ property
+Message-ID: <ZCSPTPFfwtTbLYEB@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230317145441.156880-1-lars@metafoo.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6wVRiXzbKERLHBs7"
+Content-Disposition: inline
+In-Reply-To: <20230317145441.156880-1-lars@metafoo.de>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add required-opps to ensure reasonable power domain levels are voted
-for (currently we've been piggybacking off of miracles and MDP
-votes), add missing frequencies and add newlines between each
-subnode.
 
-Fixes: 61b83be9117c ("arm64: dts: qcom: msm8916: Add gpu support")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 22 ++++++++++++++++++----
- 1 file changed, 18 insertions(+), 4 deletions(-)
+--6wVRiXzbKERLHBs7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 639b158b4fbe..13bd0c647c1d 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1287,18 +1287,31 @@ gpu@1c00000 {
- 			    <&gcc GCC_BIMC_GFX_CLK>,
- 			    <&gcc GCC_BIMC_GPU_CLK>,
- 			    <&gcc GFX3D_CLK_SRC>;
--			power-domains = <&gcc OXILI_GDSC>;
-+			power-domains = <&rpmpd MSM8916_VDDCX>;
- 			operating-points-v2 = <&gpu_opp_table>;
- 			iommus = <&gpu_iommu 1>, <&gpu_iommu 2>;
- 
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-+				opp-27000000 {
-+					opp-hz = /bits/ 64 <27000000>;
-+					required-opps = <&rpmpd_opp_svs_krait>;
-+				};
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+					required-opps = <&rpmpd_opp_svs_soc>;
-+				};
-+
-+				opp-310000000 {
-+					opp-hz = /bits/ 64 <310000000>;
-+					required-opps = <&rpmpd_opp_nom>;
-+				};
-+
- 				opp-400000000 {
- 					opp-hz = /bits/ 64 <400000000>;
--				};
--				opp-19200000 {
--					opp-hz = /bits/ 64 <19200000>;
-+					required-opps = <&rpmpd_opp_super_turbo>;
- 				};
- 			};
- 		};
-@@ -1368,6 +1381,7 @@ gpu_iommu: iommu@1f08000 {
- 			clocks = <&gcc GCC_SMMU_CFG_CLK>,
- 				 <&gcc GCC_GFX_TCU_CLK>;
- 			clock-names = "iface", "bus";
-+			power-domains = <&gcc OXILI_GDSC>;
- 			qcom,iommu-secure-id = <18>;
- 
- 			/* GFX3D_USER */
+On Fri, Mar 17, 2023 at 07:54:39AM -0700, Lars-Peter Clausen wrote:
+> The depth of the FIFO of the Cadence I2C controller IP is a synthesis
+> configuration parameter. Different instances of the IP can have different
+> values. For correct operation software needs to be aware of the size of t=
+he
+> FIFO.
+>=20
+> Add the documentation for the devicetree property that describes the FIFO
+> depth of the IP core.
+>=20
+> The default value of 16 is for backwards compatibility reasons with
+> existing hardware descriptions where this property is not specified and
+> software has assumed that the FIFO depth is 16.
+>=20
+> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
 
--- 
-2.40.0
+Applied to for-next, thanks!
 
+
+--6wVRiXzbKERLHBs7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmQkj0sACgkQFA3kzBSg
+KbZTmxAAjEsqU/sNXg23JqS96JG2XWkpArKD+RpogLQk5MQhmI3a+OPW+cPgq5if
+4pEpJI7ZnDq/0QnOKh/jBFIDxi6rj5Bu4ynLjANYMZOn2sOtRaw8NA+aH3LbDvkV
+e6fQytV6Vyy5loYyXCByhbU/ZEJpv96DwQxXdq7MyTCMSCanEd34ngzRT6CMclLJ
+m+PLmbpqxfU3IC76T8hcb81UPM6XuH4fOK7xqSrpYXp+Kk+asgBmImHs1Z0cIbfh
+Vsr+JJlBdVIMCeSaGWqiYij8YR7vfQe48wJorRT/H7PbwyWIMHNYGkmQQ5VUoC0o
+vmz4ltbKWWwBefQaQIfSpQOaueedikoIXDvwffqtoDDJ+gU6Igi1vILy2vXGCZbn
+2uF29pk2HE0C4bsxH7fqylkWk1wCqAW56hpnPkCBmmemOavXt8f77r7TdA4/VUpD
+bTboJWMZJRW8gZWihenrRUjoyMVjutHsdtPWI090hZ1vfmUsriZ7hi7se97ADQcT
+dus0GnQzgCQx/IsdbGLS9DN2ukA73ffrKglqc0wlEMJDLi+/9+ALinJNTQU4EAvZ
+Je5vP/ucWovDy46OovHiHxJ1fXXjtawUkcJ2hsVDwiV0kqQvpTT2375qRL94/9X3
+xSljkDfmve3+ydlNUQ3uywuMyii3j9FhfDbbsjmffBW6eHmWoIY=
+=J5JG
+-----END PGP SIGNATURE-----
+
+--6wVRiXzbKERLHBs7--
