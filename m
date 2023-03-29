@@ -2,117 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B79966CEC0E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 16:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 536E16CEC1C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 16:49:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbjC2OqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 10:46:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50390 "EHLO
+        id S229960AbjC2Ot2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 10:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230356AbjC2OqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 10:46:07 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1FB693C0;
-        Wed, 29 Mar 2023 07:43:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680101039; x=1711637039;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mF5KcYfESzULnMbcHpPg9/Y3X1FNg6NDTzgQz7ayaEc=;
-  b=nMByuSNhu5KCr70AFM0k4PV9tT6hInOq9Wds5kSn2a4KZ5ztdxyLypvF
-   pqBx0tNgNIKEhk4qiDYQ7rEBeRUZh1y2WO4zBxdYB118RKbuIaVJ1Bw6M
-   o1LoK7/22yzOgO8peYoPW4fam750R4oxPHqxYwwVd042Ok76QdSYSr3yV
-   1/RiUlZQrCdtBFWxMqhlgfUzHJ9kDO/ZC36WmWkJgUVWWvcrj5o6bEgif
-   fu8VRTvXbnxhFN0Qf3avVopCApzZIXvUFSs5iyabuK0W1G8M9xpEcyqKQ
-   wIUWsBg1+Ln8IHJcQH6f3KcNdChMX7+7ffH7HCiHxMELzwcsyrf3jkP8Q
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="338393917"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; 
-   d="scan'208";a="338393917"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2023 07:43:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="716906281"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; 
-   d="scan'208";a="716906281"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga001.jf.intel.com with ESMTP; 29 Mar 2023 07:43:54 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1phX1k-00A41k-0n;
-        Wed, 29 Mar 2023 17:43:52 +0300
-Date:   Wed, 29 Mar 2023 17:43:51 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <ZCROpw0il1VQCLPu@smile.fi.intel.com>
-References: <20230307112835.81886-1-okan.sahin@analog.com>
- <20230307112835.81886-6-okan.sahin@analog.com>
- <20230315175223.GI9667@google.com>
- <20230315175257.GJ9667@google.com>
- <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230329143615.GS2673958@google.com>
+        with ESMTP id S230160AbjC2OtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 10:49:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16B519D;
+        Wed, 29 Mar 2023 07:49:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 583E0B820FE;
+        Wed, 29 Mar 2023 14:49:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C3FC433EF;
+        Wed, 29 Mar 2023 14:49:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680101353;
+        bh=QuzV0WgZUW+Ce90V+f1GNE1s5sG5A2f8PEgj3MX3I2o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hILp44YByGwuSIDgnacysUdAkWzZyYTKTTwGUhg0utt48W1WGsXrQY50adiiTkCLH
+         48RXVMoID+VOKaQFwsw5zDuxuPelYhNFqX09aBu67LAGSjG/eblbUkfYERZ0TTlaN1
+         +CER1E1NekhXP2KJvBJbnx6DKQe+o99zV6MGKd0RiY0xzPHiiMhKqC8Iwwsjb3FaOs
+         vHRmtGfrv62bcSJT/teg+Diyhd+j/uvDJgSzC5NvO4sYWJ1re+WpqDybVaUMlI8ABo
+         eH+028WfqfvSI/5HTrbhS6w2yDLGPscoYW/YhxqWHVMKquR5tdUdOB3kSNms+vSZ/K
+         AqAtWTC6/O9KA==
+Date:   Wed, 29 Mar 2023 15:49:04 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        corbet@lwn.net, arnd@arndb.de, gregkh@linuxfoundation.org,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        eric.auger@redhat.com, jgg@ziepe.ca, razor@blackwall.org,
+        stephen@networkplumber.org, davem@davemloft.net,
+        christian.koenig@amd.com, contact@emersion.fr,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
+        eblanc@baylibre.com, jneanne@baylibre.com
+Subject: Re: [PATCH v3 2/4] mfd: tps6594: Add driver for TI TPS6594 PMIC
+Message-ID: <20230329144904.GT2673958@google.com>
+References: <20230321171020.74736-1-jpanis@baylibre.com>
+ <20230321171020.74736-3-jpanis@baylibre.com>
+ <2ea21982-485a-d052-2e25-84907e263743@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230329143615.GS2673958@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2ea21982-485a-d052-2e25-84907e263743@baylibre.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 03:36:15PM +0100, Lee Jones wrote:
-> On Tue, 28 Mar 2023, Sahin, Okan wrote:
-> > >On Wed, 15 Mar 2023, Lee Jones wrote:
-> > >> On Tue, 07 Mar 2023, Okan Sahin wrote:
+On Mon, 27 Mar 2023, Julien Panis wrote:
 
-...
+>
+>
+> On 3/21/23 18:10, Julien Panis wrote:
+> > This patch adds support for TPS6594 PMIC MFD core. It provides
+> > communication through the I2C and SPI interfaces, and supports
+> > protocols with embedded CRC data fields for safety applications.
+> >
+> > Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> > Acked-for-MFD-by: Lee Jones <lee@kernel.org>
+>
+> Lee, I will have to drop your ack for next version (v4).
+> A bug will be fixed in tps6594-core (a couple of lines
+> will be added/moved in 2 functions, it will be explained
+> in the coverletter changelog so that you can easily see
+> the diff).
+> Sorry for the disturbance.
 
-> > +static const struct i2c_device_id max77541_i2c_id[] = {
-> > +	{ "max77540", (kernel_ulong_t)&chip[MAX77540] },
-> > +	{ "max77541", (kernel_ulong_t)&chip[MAX77541] },
-> 
-> Just 'MAX77540' is fine.
+No problem.
 
-I tend to disagree.
-
-There is an error prone approach esp. when we talk with some functions
-that unifies OF/ACPI driver data retrieval with legacy ID tables.
-In such a case the 0 from enum is hard to distinguish from NULL when
-the driver data is not set or not found. On top of that the simple integer
-in the legacy driver data will require additional code to be added in
-the ->probe().
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--
+Lee Jones [李琼斯]
