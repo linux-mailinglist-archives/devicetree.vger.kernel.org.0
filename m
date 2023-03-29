@@ -2,140 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A1FD6CD05E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F49A6CD064
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 04:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjC2CvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 22:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38430 "EHLO
+        id S229814AbjC2C5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 22:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230007AbjC2CvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:51:13 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CBC2D7F;
-        Tue, 28 Mar 2023 19:51:11 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id eh3so57549389edb.11;
-        Tue, 28 Mar 2023 19:51:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680058270;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dIzil1J+XzZVkE7VYxYF65ET2u5OaR0BuUTGA5SK+3A=;
-        b=lGNK9Nvogi60ODmJUdGqiRoAeG692JLaGSJPxyyPBqDx6p3s8leRhzxDJ+/XjXFa5x
-         lyIVL4hM5fAs8w3aSnbYjP2+Jj+BJXOH0o4vj7p+xw/8UoRy43jp3lBXduKr5WFFi37f
-         z7HOHN6w+6nMgaK7eYnmpvJ5zKSHVPvvv8bgQNaIn7HlmstcUwCZSIX0GG/GtgG4SeYX
-         e1kseVRdrS+IvArSeB3bO3nelYX/jn96Io1Ton3GMjyOg8aI8IzWDhuAK7gLL4/N5LX/
-         J6q6Uger7FaAHkNlVtiVDsSpYhqDka1Gapt89RgNCWfO5oXsaKtqTlRphbV7Z3UskFYI
-         YjXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680058270;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dIzil1J+XzZVkE7VYxYF65ET2u5OaR0BuUTGA5SK+3A=;
-        b=45GB1uLwG8mWHI+g4yAJzPq1jWNjo5GMaX7NaO0YPQnebOvqMEN6Hn8G1w6q8TS3yF
-         YH6e7f48tj2sPiG/uQJ5dz84qwT1OpAOpByj/uy7Qd2PZsG0KzhLhgh10Su2KNFrzMRg
-         FUQJCbytR44S9RMW5ODFIAndTUZJp7UtbK97kXjJoK3gVa+Wqn9UmDVMfLPFlqY2cojv
-         3yq5x6S5D2z1I6CKZJIqQrgcTs54lDOTOVjtnUVn5EtjRvKnSfhJO10Td4z/NsYnAGfX
-         N7CzECueZOc+ohMjJiw8qsiYY8bk0szdgtm6l+UyYKmTSdy8KV/UJ5dwyHCGv2etnFxd
-         8/iw==
-X-Gm-Message-State: AAQBX9fX6qux6Lrv9yu9b2hyznpSPFmsEILm4pRcUXqLUV8yaUi3WvkQ
-        R/mI4yWZb9h9wBX4g8nmRwP/OO/QxuKDY/Fl17YHogyhj/hlUQ==
-X-Google-Smtp-Source: AKy350bsrVpBT2/hOrtU+Hcf6gmZmN9zv4UBYcj7fxKuRxjEcKxZzyOpQIU+ffxGL6Wgjcnn1vA4rB+hEVxrZs8F96M=
-X-Received: by 2002:a50:875e:0:b0:501:d2f5:7da9 with SMTP id
- 30-20020a50875e000000b00501d2f57da9mr8498486edv.0.1680058269743; Tue, 28 Mar
- 2023 19:51:09 -0700 (PDT)
+        with ESMTP id S229470AbjC2C5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 22:57:14 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 403632685;
+        Tue, 28 Mar 2023 19:57:12 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 8A5EE24E207;
+        Wed, 29 Mar 2023 10:57:03 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Mar
+ 2023 10:57:03 +0800
+Received: from [192.168.120.42] (171.223.208.138) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 29 Mar
+ 2023 10:57:02 +0800
+Message-ID: <f8be0cf7-fe78-7e63-7fbc-78d083a9f186@starfivetech.com>
+Date:   Wed, 29 Mar 2023 10:57:00 +0800
 MIME-Version: 1.0
-References: <20230328120506.375864-1-keguang.zhang@gmail.com>
- <20230328120506.375864-3-keguang.zhang@gmail.com> <168002881746.3753096.11245437677389006840.robh@kernel.org>
-In-Reply-To: <168002881746.3753096.11245437677389006840.robh@kernel.org>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Wed, 29 Mar 2023 10:50:53 +0800
-Message-ID: <CAJhJPsXBsP9akD9x++r7YCs_P-n2SpKJnJcDoJv93_=8+r1C-Q@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: timer: Add Loongson-1 clocksource
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [net-next v9 5/6] net: stmmac: Add glue layer for StarFive JH7110
+ SoC
+Content-Language: en-US
+To:     Jakub Kicinski <kuba@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+References: <20230328062009.25454-1-samin.guo@starfivetech.com>
+ <20230328062009.25454-6-samin.guo@starfivetech.com>
+ <20230328191716.18a302a1@kernel.org>
+From:   Guo Samin <samin.guo@starfivetech.com>
+In-Reply-To: <20230328191716.18a302a1@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX162.cuchost.com
+ (172.16.6.72)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On Wed, Mar 29, 2023 at 2:52=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
->
-> On Tue, 28 Mar 2023 20:05:05 +0800, Keguang Zhang wrote:
-> > Add devicetree binding document for Loongson-1 clocksource.
-> >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > ---
-> >  .../timer/loongson,ls1x-pwmtimer.yaml         | 48 +++++++++++++++++++
-> >  1 file changed, 48 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls=
-1x-pwmtimer.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/timer/loongson,ls1x-pwmtimer.example.dt=
-s:21:18: fatal error: dt-bindings/clock/loongson,ls1x-clk.h: No such file o=
-r directory
->    21 |         #include <dt-bindings/clock/loongson,ls1x-clk.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Re: [net-next v9 5/6] net: stmmac: Add glue layer for StarFive JH7110 SoC
+From: Jakub Kicinski <kuba@kernel.org>
+to: Samin Guo <samin.guo@starfivetech.com>
+data: 2023/3/29
 
-This file is contained in commit
-12de2f50244efdbc8e98f89a340255c3c847e1dc, which is already available
-in 6.3-rc4.
+> On Tue, 28 Mar 2023 14:20:08 +0800 Samin Guo wrote:
+>> This adds StarFive dwmac driver support on the StarFive JH7110 SoC.
+>>
+>> Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
+>> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+> 
+> Excellent, now it applies cleanly :)
+> 
+> Our clang build with W=1 complains that:
+> 
+> drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c:37:2: warning: variable 'rate' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+>         default:
+>         ^~~~~~~
+> drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c:42:36: note: uninitialized use occurs here
+>         err = clk_set_rate(dwmac->clk_tx, rate);
+>                                           ^~~~
+> drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c:24:20: note: initialize the variable 'rate' to silence this warning
+>         unsigned long rate;
+>                           ^
+>                            = 0
+> 
+> 
+> not sure how you prefer to fix this. Maybe return early?
 
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings=
-/timer/loongson,ls1x-pwmtimer.example.dtb] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1512: dt_binding_check] Error 2
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202303=
-28120506.375864-3-keguang.zhang@gmail.com
->
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->
+Hi Jakub,
+
+Sorry, gcc I used does not report this error (:, and clang compile checks are more stringent.
+Also, if return early at default node, Arun Ramadoss doesn't think it's a good idea because the function is a void type.
+
+I think I can initialize the value of rate first by clk_get_rate (Intel did the same <dwmac-intel-plat.c: kmb_eth_fix_mac_speed >),
+like this:
 
 
---=20
+static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed)
+{
+        struct starfive_dwmac *dwmac = priv;
+        unsigned long rate;
+        int err;
+
+	rate = clk_get_rate(dwmac->tx_clk);
+
+        switch (speed) {
+        case SPEED_1000:
+                rate = 125000000;
+                break;
+        case SPEED_100:
+                rate = 25000000;
+                break;
+        case SPEED_10:
+                rate = 2500000;
+                break;
+        default:
+                dev_err(dwmac->dev, "invalid speed %u\n", speed);
+                break;
+        }   
+
+        err = clk_set_rate(dwmac->clk_tx, rate);
+        if (err)
+                dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
+}
+
+What do you think?
+
+
 Best regards,
-
-Keguang Zhang
+Samin
