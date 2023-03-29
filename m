@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C466CD38B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 09:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E4696CD3AB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 09:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbjC2Hq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 03:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
+        id S230213AbjC2HuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 03:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230014AbjC2Hq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 03:46:28 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 610DC40E7
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:46:21 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id y20so19031226lfj.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 00:46:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680075979;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+9X5TqxqvzHj77DLqMsTMoyZMkz7ylJgPTRzw+1zgDY=;
-        b=EaaoWWSospBQxvZvGT9DHMUA9GPfOaNOfI2lZylUglpyJs3D3tyHzuBqCO5JgZdGjU
-         Z44APqw8UlCOl/Tiqj36MdaKT1k4CQGZWoPh6w22RbFP/VkdQbUa3zMGaNv91fa7JU7p
-         s7N8FDupoAsjirL/WabNE3A8IRAYfwaxaJaDbq/wZ/dxNSyftEoEcthpXznwRQdR3dbf
-         uNh12ptQ+J/IUu293ZiQVSvSTMjGRA8lC9NyGfZI6ziiSN/ygqZ+4hFranMeR5SvOhWG
-         +u1o6nyHLrenxAdrNGkpCWwmrnKR6J6F5qhIhJ7nG/5WSZAE8sM5fTT0HOLedjWXhWk1
-         swzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680075979;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+9X5TqxqvzHj77DLqMsTMoyZMkz7ylJgPTRzw+1zgDY=;
-        b=dMfIo7YrSlT06oi4iMCkUlVH4o0Sm3BpyDOJ7GTLKE+3XIDqFlihBXcYfCcROeIGFb
-         Fcf33VMMgwM0M7HQosUUUDdCZeK8K8ekrPzPKyuO221p/axyEB6dK6BYqVasZnTwF3Z1
-         EQr9bKD81OYWM6g8SP8BrL0IeL9rWkWMtsGGF5ud6x21vp9geP94jo9FubjSO7U3yeRC
-         K9j60+zo0zCLgqljvJJDGJ3MYWlLMfKTkpzuORblAntGY8OIPNWD2VEF0zWygRLw0+bU
-         WTwkYu2mNTuh1Q75cREydfLHsFd8THw9v2jgg+FzVOxJ3ceAYGE2daypqF8joxxE8DP6
-         z/3w==
-X-Gm-Message-State: AAQBX9cSOYY3K9k/wVr/qloxaneqso64OvmM6lpE1dFeUQo2Xy9FMisj
-        HoCHQvkuVt29hhomtLIOZFFh8A==
-X-Google-Smtp-Source: AKy350Z2yDiACAJ8ogkoO/PyrxwnbV+DbcEfLmqS3XiN4wD4vSNJ5xhTwtzwrldDYA8OHEMTBCBLmw==
-X-Received: by 2002:a19:ae0e:0:b0:4e9:cfd2:e2d with SMTP id f14-20020a19ae0e000000b004e9cfd20e2dmr3954091lfc.65.1680075979508;
-        Wed, 29 Mar 2023 00:46:19 -0700 (PDT)
-Received: from Fecusia.lan (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id f9-20020ac25089000000b004e9d2af99c0sm4150972lfm.71.2023.03.29.00.46.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 00:46:19 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>, devicetree@vger.kernel.org,
-        Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH] dt-bindings: iio: st-sensors: Fix repeated text
-Date:   Wed, 29 Mar 2023 09:46:14 +0200
-Message-Id: <20230329074614.1037625-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S230245AbjC2Htc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 03:49:32 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8262A448D;
+        Wed, 29 Mar 2023 00:49:30 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32T7nFdc118968;
+        Wed, 29 Mar 2023 02:49:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680076155;
+        bh=wKSDtopjrHjEd9gLbag8cmZlVFtkAT1owNQfFKFOIzg=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=LapYeVxIEwj5VugZ+8Xlm94LcAjK5dzSmUUcg2EQVI3LWuQAHSy5M7BXR52eIFUEi
+         aGixdNuoGtlLsEv54cZGM8P7I8j+s3sBxXh2QWqv3u9I9c1qhM8QkF6q5Jbd7IuipP
+         9cngmJANveo4a0S+OKAABNWK39VGf+rcCjOvQbLE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32T7nFRV079867
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 29 Mar 2023 02:49:15 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
+ Mar 2023 02:49:14 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 29 Mar 2023 02:49:14 -0500
+Received: from [10.24.69.141] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32T7nAld037259;
+        Wed, 29 Mar 2023 02:49:11 -0500
+Message-ID: <ba4c1323-b462-5f78-c3ea-229efef97e77@ti.com>
+Date:   Wed, 29 Mar 2023 13:19:10 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j784s4-mcu-wakeup: Fix IO
+ PADCONFIG size for wakeup domain
+Content-Language: en-US
+To:     <sabiya.d@mistralsolutions.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya <sabiya.d@ti.com>,
+        <u-kumar1@ti.com>
+References: <20230316104743.482972-1-sabiya.d@ti.com>
+ <20230316104743.482972-2-sabiya.d@ti.com>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20230316104743.482972-2-sabiya.d@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The description oddly contains a copy of the initial paragraph.
-Let's not repeat ourselves.
+Hi Sabiya,
 
-Cc: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Denis Ciocca <denis.ciocca@st.com>
-Cc: devicetree@vger.kernel.org
-Reported-by: Diederik de Haas <didi.debian@cknow.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 3 ---
- 1 file changed, 3 deletions(-)
+On 16/03/23 16:17, sabiya.d@mistralsolutions.com wrote:
+> From: Dasnavis Sabiya <sabiya.d@ti.com>
+> 
+> The size of IO PADCONFIG register set of the wakeup domain is incorrect for
+> J784S4. Update the PADCONFIG offset size to the correct value for
+> J784S4 SoC.
+> 
+> Fixes: 4664ebd8346a ("arm64: dts: ti: Add initial support for J784S4 SoC")
+> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> index 64bd3dee14aa..c0103513c64c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> @@ -50,7 +50,7 @@ mcu_ram: sram@41c00000 {
+>  	wkup_pmx0: pinctrl@4301c000 {
+>  		compatible = "pinctrl-single";
+>  		/* Proxy 0 addressing */
+> -		reg = <0x00 0x4301c000 0x00 0x178>;
+> +		reg = <0x00 0x4301c000 0x00 0x194>;
+>  		#pinctrl-cells = <1>;
+>  		pinctrl-single,register-width = <32>;
+>  		pinctrl-single,function-mask = <0xffffffff>;
 
-diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-index c6201976378f..558ae650f218 100644
---- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-+++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-@@ -11,9 +11,6 @@ description: The STMicroelectronics sensor devices are pretty straight-forward
-   what type of sensor it is.
-   Note that whilst this covers many STMicro MEMs sensors, some more complex
-   IMUs need their own bindings.
--  The STMicroelectronics sensor devices are pretty straight-forward I2C or
--  SPI devices, all sharing the same device tree descriptions no matter what
--  type of sensor it is.
- 
- maintainers:
-   - Denis Ciocca <denis.ciocca@st.com>
+Similar feedback as for the J721S2 PADCONFIG patch, see the discussion below,
+
+https://lore.kernel.org/all/20230328114742.tnaa5hi3qm3rsgld@ecology/
+
+As suggested by Nishanth, let us do a single fixup to avoid non-addressable
+regions and fix the padconfig region size.
+
+From datasheet I can see that the addresses corresponding to WKUP_PADCONFIG13,
+WKUP_PADCONFIG25 are missing for J784S4.
+
 -- 
-2.39.2
-
+Regards,
+Vaishnav
