@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F00C6CD407
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F3016CD42D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 10:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjC2IHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 04:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35754 "EHLO
+        id S230379AbjC2IOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 04:14:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjC2IHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:07:54 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74DCB35A2
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:07:52 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id x20so15170980ljq.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:07:52 -0700 (PDT)
+        with ESMTP id S230380AbjC2IOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 04:14:21 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A97449D7
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:14:10 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id g19so5956234lfr.9
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 01:14:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680077271;
+        d=linaro.org; s=google; t=1680077648;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7KifxtcvbarKwRyuhr/Ufg1uKerUmicIF2vvptJLaYI=;
-        b=ZXyHG4l1WqIzWxT8epXnTXnuCvJZXDvD+/2fWHMq2KM5Z0Vd5HWIgmlEoMbvNAjtbc
-         A24d/WV0DRlI0ER+hwAHxQEeezwJTQk6dhdJAdpiYUxBPRL2zC9myFyO00wPrp1CoNVx
-         w5p265Awmjeqln/IV/u2IJeFCgE27v7CnJJEWWyM4WJAXBrHZHUkmI7NiQsPPRteBFO3
-         qO/h8XmwwQKHnRPASg3Y+RfTu6AWHhtxXrSwzLhFlyPhTMLv+JzBVL4hvc99O9eOOhMA
-         q1xTMYmCHP2+xnmXj/gnPM52A87Nbg4h8yWXD+uEeQLHF509zZ2TXRA8PeZDTSG8L+jJ
-         AbMg==
+        bh=6epDWvuA89IZftBOHmpRGI6nNmDhKZVL9v8m3KDYPMY=;
+        b=KyikktgcRn+2oLGotGbR3cLkZ5AoQE+pkPvCnBj+4WY0K3ggGHjzQk/VtduH8nikOC
+         rQqW1+1hJgYQh8xAZJN8Dyy2BZfTEvVObFm6cJO09yfEXm3JuVrgqaJfmNFK8rg0B9mk
+         gptmmjRJL85VZ3IXZJUBSxECR68U+xspO1AjK16C20bavkiaI4+pyyQ7PiKCWGhdsnz7
+         O9AZ3qWGnBEEVWMKWItA2msmnJCOViSe1ohnukmns8rfK5CtcWHiYkyPXmUaKejBSBqV
+         /amR1c7K1TMpJgA00IPaWJ2mfcOgsI6aN5a7V4OWd5OnjO9StMQHbtX2DiJp5OFsxNMF
+         kSDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680077271;
+        d=1e100.net; s=20210112; t=1680077648;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7KifxtcvbarKwRyuhr/Ufg1uKerUmicIF2vvptJLaYI=;
-        b=QC087P4u4kSnBiyWyEEx+g2dbCfgUinIcoehGA9CY1dYRvMEIG63/GTAIc9EQxI6fD
-         CjF+zOy57es+QPDis6ISTBIjbV6J7fUkIdvpV8gRQ9qLRlzKaAu1jVL0ur/R6J62FO9Q
-         TXVQdB35BA7akGy2uRCCV37BK+ebaGQLjdZ40Jmlh2pUkIrDhpjYL6umaNbgxH9zNXED
-         Bdbwa04lEghOrwSB3OW79quLC9kYclKSwpNzYWmdYxS3JiBvhb4HrBV2j+VN+YWR+imP
-         ywVf6gflCNco+ANIM+dCDhHY5OQkEs39vXVLmQkl4cdBRwoRHUK7F8I/nMmKXrpwKQHt
-         Nk4Q==
-X-Gm-Message-State: AAQBX9fG8l0Nqb0b9xJCifCyoFltxbG6sR8DpowvsSXwziMvtKlIBENB
-        AdhONsnStQ4sg69o2Cx1HcvlnQ==
-X-Google-Smtp-Source: AKy350bMTcCNWTcZWOOrCYdOk1J64lvJehoM/rLLd6gzi5zzF4F09iNN1/n6D4V7bZFsYSBKVEFn0g==
-X-Received: by 2002:a05:651c:446:b0:29c:88a7:9a96 with SMTP id g6-20020a05651c044600b0029c88a79a96mr6212076ljg.46.1680077270753;
-        Wed, 29 Mar 2023 01:07:50 -0700 (PDT)
+        bh=6epDWvuA89IZftBOHmpRGI6nNmDhKZVL9v8m3KDYPMY=;
+        b=PA8f++XVnXE4xAhbjbv5Gia/aT7UxM7094P47UYCuZxE2HXDZ5D2Z17ZFJ1gg9mN7O
+         sYv9LwGzzgY4moUNsSEMkkxxny+QKjgFX4b4Fp9W+TD2JQuR7IrSO1CVPGy2lNE0FXdR
+         zzPy59/x3LkKmArJh23oZPjMK9A/XB6Jcx0wJ3uZMplXdmBXORAO1kWDqBlcOdpZv6oi
+         CvX+B0gYv0TyBaGSxTI2Noxol3OQ/k+awdOW6Q2F0TKn9ej5NUFP/OwIkJxOEmgJNTwO
+         PgV029S308YjbX95GtALT+eU4FmPZxCvK9kV2xXnDoNwiR6jPN/3RnEgo8F1Ls9LzaWV
+         mhIw==
+X-Gm-Message-State: AAQBX9eijLVDz2/oe6ihWPRONHeCO9f4VFfmF20kDqJ4MaO3uVRO456U
+        swasjIknjYB8ZxqQnWVNHDF2Jg==
+X-Google-Smtp-Source: AKy350ZWrzkfe66KC35c/EV/QpRnsJJJywHJ1ynk7vqTGq6hgUz6/3XMtXOvRUqooYqyqbvxk5ZCDg==
+X-Received: by 2002:ac2:5ddb:0:b0:4de:d16f:3938 with SMTP id x27-20020ac25ddb000000b004ded16f3938mr5731648lfq.53.1680077648225;
+        Wed, 29 Mar 2023 01:14:08 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y22-20020a2e95d6000000b0029bfcbeac09sm4513572ljh.41.2023.03.29.01.07.49
+        by smtp.gmail.com with ESMTPSA id m15-20020a056512014f00b004d0b1327b75sm5405102lfo.61.2023.03.29.01.14.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 01:07:50 -0700 (PDT)
-Message-ID: <e9b1b899-9f19-0abd-8e20-fc486bf28b17@linaro.org>
-Date:   Wed, 29 Mar 2023 10:07:49 +0200
+        Wed, 29 Mar 2023 01:14:07 -0700 (PDT)
+Message-ID: <3e907d9a-cfb9-343a-bca1-9de773c98724@linaro.org>
+Date:   Wed, 29 Mar 2023 10:14:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 0/2] spi: loongson: add bus driver for the loongson spi
+Subject: Re: [PATCH v6 03/12] dt-bindings: clock: nuvoton: add binding for
+ ma35d1 clock controller
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Andi Shyti <andi.shyti@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230328112210.23089-1-zhuyinbo@loongson.cn>
- <20230328113536.ldxpvx3hibezcqtb@intel.intel>
- <253f3bf2-a193-69da-79ef-c3771d677478@loongson.cn>
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-4-ychuang570808@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <253f3bf2-a193-69da-79ef-c3771d677478@loongson.cn>
+In-Reply-To: <20230328021912.177301-4-ychuang570808@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -80,57 +81,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 13:53, zhuyinbo wrote:
+On 28/03/2023 04:19, Jacky Huang wrote:
+> From: Jacky Huang <ychuang3@nuvoton.com>
 > 
+> Add the dt-bindings header for Nuvoton ma35d1, that gets shared
+> between the clock controller and clock references in the dts.
+> Add documentation to describe nuvoton ma35d1 clock driver.
 > 
-> 在 2023/3/28 下午7:35, Andi Shyti 写道:
->> Hi Yinbo,
->>
->> before submitting the patches for review... can you please run
->> checkpatch.pl on them?
-> yes, I had used checkpatch.pl to check and no any errors and warnings.
-> 
-> user@user-pc:~/workspace/test/code/www.kernel.org/linux$ 
-> ./scripts/checkpatch.pl *.patch
-> -----------------------
-> 0000-cover-letter.patch
-> -----------------------
-> total: 0 errors, 0 warnings, 0 lines checked
-> 
-> 0000-cover-letter.patch has no obvious style problems and is ready for 
-> submission.
-> -------------------------------------------
-> 0001-dt-bindings-spi-add-loongson-spi.patch
-> -------------------------------------------
-> Traceback (most recent call last):
->    File "scripts/spdxcheck.py", line 6, in <module>
->      from ply import lex, yacc
-> ModuleNotFoundError: No module named 'ply'
-> total: 0 errors, 0 warnings, 55 lines checked
-> 
-> 0001-dt-bindings-spi-add-loongson-spi.patch has no obvious style 
-> problems and is ready for submission.
-> ---------------------------------------------------------------
-> 0002-spi-loongson-add-bus-driver-for-the-loongson-spi-con.patch
-> ---------------------------------------------------------------
-> Traceback (most recent call last):
->    File "scripts/spdxcheck.py", line 6, in <module>
->      from ply import lex, yacc
-> ModuleNotFoundError: No module named 'ply'
-> Traceback (most recent call last):
->    File "scripts/spdxcheck.py", line 6, in <module>
->      from ply import lex, yacc
-> ModuleNotFoundError: No module named 'ply'
-> Traceback (most recent call last):
->    File "scripts/spdxcheck.py", line 6, in <module>
->      from ply import lex, yacc
-> ModuleNotFoundError: No module named 'ply'
-> Traceback (most recent call last):
->    File "scripts/spdxcheck.py", line 6, in <module>
->      from ply import lex, yacc
-> ModuleNotFoundError: No module named 'ply'
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> ---
 
-You have errors here... Fix your setup for spdx check.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
