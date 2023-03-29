@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC956CD0C8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 05:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654346CD0D9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 05:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbjC2Dn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Mar 2023 23:43:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35940 "EHLO
+        id S229563AbjC2DuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Mar 2023 23:50:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbjC2Dn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 23:43:28 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E6726AE;
-        Tue, 28 Mar 2023 20:43:27 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id x15so12852322pjk.2;
-        Tue, 28 Mar 2023 20:43:27 -0700 (PDT)
+        with ESMTP id S229436AbjC2DuG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Mar 2023 23:50:06 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABABC2D4D
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 20:50:05 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id a16so12845106pjs.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Mar 2023 20:50:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680061407;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=soG9eYjjcuk6jHFsZa0MUpEJRHIUPwf3g8BAZmaZsrI=;
-        b=g2RVALlqxyQux/zo4fYq3WFduUHbREsD+BOa9gOCxF8wu4O+IVUTTBXRkD7SuSKVEA
-         1IDVpNQ+eKEIoMEheL/hQ66BD1p1AHudCM3LxAVc0gMnZerjuLWhATZCFJwpWLEe2QGr
-         cv9FBSaC/6G8Rz/aA+yjshk5sB6bxlhgAtDGoYR/DzkndOSlWLkRFwbLOKsvtzwddhbH
-         5I85+kZhuwK6Fb5kmzizBlvnCe2498fra4cVDnttt7cXae1MHCo+PYh+xN0+oL2n2Ft0
-         y7MJZyUadk1htFGUR81dcwqfHewie0UM/PxBLaE6CWCCH/SnJiHTMVpPDuKfd4MvmzCS
-         ttow==
+        d=linaro.org; s=google; t=1680061805;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wC/Ye1bpw03sXj/B+KMS+XtSXrPtzZfQh7aSp7cQCRc=;
+        b=PZ5/DAXdhhrlw/3i5XEyyJ/3ggz4/Ow3xqBgKMIBuhgdKKdl3erVoiLam8XCz2CaYR
+         zYUZ6/CDxEo+dTM0DB8Xo7XPyuoLNzuf4ovD6JNO2OpiM3HEwUaj0cXXOCm1yaUpfsaQ
+         AwbVzC1T8E9goDtTQGtkBo5P3tZ2EuQm+3mLYytxoUsVDlkEvDlCA54umtbAVdqE5hDB
+         Z0CoXuj3djCLkCxjdZx2kv/8dSI1viBYneknRYPii+01coTRFPnw9NUlg2MOoj6/4ICT
+         8qNZnsLmgv5Gy0+DowXt2rfgou8VP0NWun2dG+KKPJgxPH0KPtpblpbtgLK63qe2G02H
+         ZahQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680061407;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=soG9eYjjcuk6jHFsZa0MUpEJRHIUPwf3g8BAZmaZsrI=;
-        b=1MBCAtfxhFRZugwcrxpBezSL+8bXDnKk3NYvBcsaRoA+jI7Ebeti3lw9XEew1bKRbj
-         osZzUOd9CAgFxL3lY2/qyyK0e1Ik/YFj7CeKpamLgh+tO9iJ37RZQaJMJSs/j8L7FilI
-         PcYzj/4TTrGdbfpDwgGS24+xwaodDjZcYvuQIol6wIrwuJ7xqI34YYQL52jYJcqwRhbr
-         jL9dpCas+0nxuF70/cxTko+NHCgwSJkVuHQKhmTI+wZXHYd/JrSyTYhxw2HWyCbD8diA
-         xUNbbp3bpBB2bXXh8fHU722HBCht5YZFS8RDGL/ueeUYZ+ZdzyNL6LwoWh/4IbK+srqu
-         Dwxw==
-X-Gm-Message-State: AAQBX9cUta9LW9fQvEJB3gMzPiS/MuOh1EbBJFE0197VscwDHRsDPiqJ
-        sQ8tONLKtB2b2/c0y01xqd7GN/Rrns3bWA==
-X-Google-Smtp-Source: AKy350YQDXOYq2OazIZgXbDCaAi8Ezr6eYbEvK1XyNQL+gwr1QyasH6DYugsoQUJNQ11QYBmIzSEtw==
-X-Received: by 2002:a17:902:f693:b0:19e:6bc5:8769 with SMTP id l19-20020a170902f69300b0019e6bc58769mr18091079plg.69.1680061407022;
-        Tue, 28 Mar 2023 20:43:27 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id p5-20020a1709026b8500b001a1aeb3a7a9sm20543164plk.137.2023.03.28.20.43.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Mar 2023 20:43:26 -0700 (PDT)
-Message-ID: <dd7940fd-bf63-552c-6e2e-05eff5fdb636@gmail.com>
-Date:   Wed, 29 Mar 2023 11:43:23 +0800
+        d=1e100.net; s=20210112; t=1680061805;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wC/Ye1bpw03sXj/B+KMS+XtSXrPtzZfQh7aSp7cQCRc=;
+        b=uRBA1fa6Q/seuSyaF6FEpaQLwbfECyTPGuamXH4V425Y5a1klyPL9p88xmPTE8tZ0l
+         LE1ukH+N19W2q/25liLoyaHHIkcRfvSqbS5Ion75YWSwY7fs+VIKJOSWENatQyXqMxVg
+         htk+Jw4FIlrM/sSJPu3QrckNtD7KWWBvRZWfs+ITqSj+rSF3oV8OCtfhgz2Bg7HkhXGa
+         BNHAmy1RG61WX3HbdUfYGmR2Sdp6jglCOPo9yHopFGAsuHu13KhoJbrM+GA97rf6UiWq
+         0KiJbjY5PkxM5lI9OdSTOGGT2cjPEC4ECch9YPyqdIukiqsFf9Iu+MWovXJB25As8Oqt
+         yXYQ==
+X-Gm-Message-State: AAQBX9dUtFCKf+cb36f9biKMOrBacuj9Z1p3u3zTZ6SAfcLyC2qjCR8O
+        1b1RB1wu2icl0X2PSU9FVsYF4w==
+X-Google-Smtp-Source: AKy350asoNwJSTgVvdCnbLiJmekNA9xGSrJQiNP2xLCGbZyD2WlY7AMonNPxHcu6inb+DhvgyMLWjw==
+X-Received: by 2002:a17:90b:3b90:b0:23d:500f:e826 with SMTP id pc16-20020a17090b3b9000b0023d500fe826mr18967833pjb.14.1680061805127;
+        Tue, 28 Mar 2023 20:50:05 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id g11-20020a17090a300b00b0023fcece8067sm341124pjb.2.2023.03.28.20.50.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Mar 2023 20:50:04 -0700 (PDT)
+Date:   Wed, 29 Mar 2023 11:49:58 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] irqchip: irq-qcom-mpm: Support passing a slice of
+ SRAM as reg space
+Message-ID: <20230329034958.GC3554086@dragon>
+References: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
+ <20230328-topic-msgram_mpm-v1-2-1b788a5f5a33@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v6 08/12] arm64: dts: nuvoton: Add initial ma35d1 device
- tree
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230328021912.177301-1-ychuang570808@gmail.com>
- <20230328021912.177301-9-ychuang570808@gmail.com>
- <ab4e0bc8834b7e618e9a88ea6a1c30cc.sboyd@kernel.org>
- <b7977069-4f82-76a1-10c1-b6400862c2c4@gmail.com>
- <c37e1f3a40c404acd81c2c9d5b28b340.sboyd@kernel.org>
- <129cf4b6-b3b5-2a12-5911-37e70a624812@gmail.com>
- <e5221cd020bc60513df6a1c1859e1acc.sboyd@kernel.org>
- <ad908782-8291-4240-d88e-61dff5a05ef7@gmail.com>
- <1d379f28f54fd025f687bfcb71e4bae5.sboyd@kernel.org>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <1d379f28f54fd025f687bfcb71e4bae5.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328-topic-msgram_mpm-v1-2-1b788a5f5a33@linaro.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,97 +78,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Stephen,
+On Tue, Mar 28, 2023 at 12:02:53PM +0200, Konrad Dybcio wrote:
+> The MPM hardware is accessible to us from the ARM CPUs through a shared
+> memory region (RPM MSG RAM) that's also concurrently accessed by other
+> kinds of cores on the system (like modem, ADSP etc.). Modeling this
+> relation in a (somewhat) sane manner in the device tree basically
+> requires us to either present the MPM as a child of said memory region
+> (which makes little sense, as a mapped memory carveout is not a bus),
+> define nodes which bleed their register spaces into one another, or
+> passing their slice of the MSG RAM through some kind of a property.
+> 
+> Go with the third option and add a way to map a region passed through
+> the "qcom,rpm-msg-ram" property as our register space.
+> 
+> The current way of using 'reg' is preserved for ABI reasons.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/irqchip/irq-qcom-mpm.c | 30 +++++++++++++++++++++++++-----
+>  1 file changed, 25 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
+> index d30614661eea..6fe59f4deef4 100644
+> --- a/drivers/irqchip/irq-qcom-mpm.c
+> +++ b/drivers/irqchip/irq-qcom-mpm.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/mailbox_client.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+> @@ -322,8 +323,10 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+>  	struct device *dev = &pdev->dev;
+>  	struct irq_domain *parent_domain;
+>  	struct generic_pm_domain *genpd;
+> +	struct device_node *msgram_np;
+>  	struct qcom_mpm_priv *priv;
+>  	unsigned int pin_cnt;
+> +	struct resource res;
+>  	int i, irq;
+>  	int ret;
+>  
+> @@ -374,9 +377,21 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+>  
+>  	raw_spin_lock_init(&priv->lock);
+>  
+> -	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(priv->base))
+> -		return PTR_ERR(priv->base);
+> +	/* If we have a handle to an RPM message ram partition, use it. */
+> +	msgram_np = of_parse_phandle(np, "qcom,rpm-msg-ram", 0);
+> +	if (msgram_np) {
+> +		ret = of_address_to_resource(msgram_np, 0, &res);
+> +		/* Don't use devm_ioremap_resource, as we're accessing a shared region. */
+> +		priv->base = ioremap(res.start, resource_size(&res));
 
+Are you suggesting that other cores/drivers will also need to access
+the mpm slice below?
 
-On 2023/3/29 上午 11:25, Stephen Boyd wrote:
-> Quoting Jacky Huang (2023-03-28 20:13:11)
->> Dear Stephen,
->>
->>
->> On 2023/3/29 上午 10:46, Stephen Boyd wrote:
->>> Quoting Jacky Huang (2023-03-28 19:39:36)
->>>> On 2023/3/29 上午 10:19, Stephen Boyd wrote:
->>>>> What do you use the syscon for then? The clock driver must want to use
->>>>> the syscon for something, implying that they are the same device.
->>>> The register lock mechanism is applied to protect many critical
->>>> registers from false written.
->>>> The register lock control register is one register in system controller.
->>>> Some registers of the clock controller are lock protected. Not only
->>>> clock controller, but other
->>>> IP such as RTC, PWM, ADC, etc, also have lock protected registers. All
->>>> these IP requires
->>>> syscon to access the lock/unlock control register in the system controller.
->>>> That's why we add a <&sys> to the clock controller.
->>>>
->>>> Should we implement a ma35d1-sysctl driver to protect register_lock()
->>>> and register_unlock()
->>>> and export to those drivers?  If yes, we can remove the <&sys> from
->>>> clock controller.
->>>>
->>> You can implement the lock and unlock in the hwspinlock framework. See
->>> drivers/hwspinlock.
->> I may not explain clearly enough. The lock/unlock register of system
->> controller is more like
->> a kind of write protection for specific registers, rather than
->> preventing hetero-core CPU access.
->> In many different IP of ma35d1 contain write protected registers.
->> In fact, ma35d1 has a "hardware semaphore" IP, and we have implemented
->> the driver in drivers/hwspinlock.
->> Even the control register of "hardware semaphore" is also write protected.
-> What's the need to lock and unlock the registers? Is some other
-> processor also writing to the registers that we need to synchronize
-> against? Or is Linux the only entity reading and writing the registers?
-> I'm wondering if we should simply unlock the registers and never lock
-> them.
->
->> So, should we implement a system controller driver to provide
->> register_unlock() function?
->> Is it OK to have such a driver in drivers/mfd?
->> Or, just use syscon in device tree for those devices that have write
->> protect registers.
->>
-> The hwspinlock framework doesn't require there to be another entity
-> accessing some resource. It's there to implement hardware locks. I don't
-> see why it can't be used here.
+	apss_mpm: sram@1b8 {
+		reg = <0x1b8 0x48>;
+	};
 
-The current usage of register lock/unlock protect is as the following code:
+Shawn
 
-static void ma35d1_unlock_regs(struct ma35d1_clk_pll *pll)
-{
-     int ret;
-
-     do {
-         regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x59);
-         regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x16);
-         regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x88);
-         regmap_read(pll->regmap, REG_SYS_RLKTZNS, &ret);
-     } while (ret == 0);
-}
-
-static void ma35d1_lock_regs(struct ma35d1_clk_pll *pll)
-{
-     regmap_write(pll->regmap, REG_SYS_RLKTZNS, 0x0);
-}
-
-And the following code is to unlock registers for write and then lock again.
-
-     ma35d1_unlock_regs(pll);
-     writel_relaxed(reg_ctl[0], pll->ctl0_base);
-     writel_relaxed(reg_ctl[1], pll->ctl1_base);
-     writel_relaxed(reg_ctl[2], pll->ctl2_base);
-     ma35d1_lock_regs(pll);
-
-The above code is from the clk-ma35d1-pll.c from this patchset.
-
-We just employ regmap mechansim for the access to REG_SYS_RLKTZNS register.
-Is this implementation OK for you?  Thank you.
-
-
-Best regards,
-Jacky Huang
-
-
-
-
-
+> +		of_node_put(msgram_np);
+> +		if (IS_ERR(priv->base))
+> +			return PTR_ERR(priv->base);
+> +	} else {
+> +		/* Otherwise, fall back to simple MMIO. */
+> +		priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +		if (IS_ERR(priv->base))
+> +			return PTR_ERR(priv->base);
+> +	}
+>  
+>  	for (i = 0; i < priv->reg_stride; i++) {
+>  		qcom_mpm_write(priv, MPM_REG_ENABLE, i, 0);
+> @@ -387,8 +402,10 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+>  	}
+>  
+>  	irq = platform_get_irq(pdev, 0);
+> -	if (irq < 0)
+> -		return irq;
+> +	if (irq < 0) {
+> +		ret = irq;
+> +		goto unmap_base;
+> +	}
+>  
+>  	genpd = &priv->genpd;
+>  	genpd->flags = GENPD_FLAG_IRQ_SAFE;
+> @@ -451,6 +468,9 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+>  	mbox_free_channel(priv->mbox_chan);
+>  remove_genpd:
+>  	pm_genpd_remove(genpd);
+> +unmap_base:
+> +	if (res.start)
+> +		iounmap(priv->base);
+>  	return ret;
+>  }
+>  
+> 
+> -- 
+> 2.40.0
+> 
