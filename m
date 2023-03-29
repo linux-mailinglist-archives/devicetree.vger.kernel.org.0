@@ -2,186 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D9F6CEEC7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 18:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC426CEF0A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 18:16:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbjC2QIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 12:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
+        id S230036AbjC2QQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 12:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbjC2QIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 12:08:01 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56F50658C;
-        Wed, 29 Mar 2023 09:07:29 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id p204so19941770ybc.12;
-        Wed, 29 Mar 2023 09:07:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680106012;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J0buJ+bz6nRSi4h6CRlltq38ZsNDLaTAQVOLOp+rT9g=;
-        b=JyWGqb0rnM6Sjmr5Bl4106EruRjN4ZyrC4ulTrvxI++yyUReLhocOWspATt4I43CCk
-         BRYT6OObG7ovMUKxW98BbgWnujPD4HfiHuN6giihag+OTBsYwORn9VrRIB7o9MQAjt2A
-         i3IMvrTFcT/64rg8vRALYA4XWBdb7R25rE3CnvF1uLUH/gUfcp1uW/sCbxsLJ+3En4Bp
-         D3hG4Blfoc7lc8Bm/FBx1EIGRt0MRsO5hs+28NHIokS4xB3CPof3Vp0SigHAuFKMc76R
-         FtvK0HPYfC6os9KTos1h1DXwsb3IAq5R7ZqqLou9tdrySrKEMhWnTh/G7kK/tpeU/xyK
-         Dfjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680106012;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J0buJ+bz6nRSi4h6CRlltq38ZsNDLaTAQVOLOp+rT9g=;
-        b=04FlYSmym6HlAxt1kqo0ObkFpbj5zqtbQ+q9auIDPPJ9g9Uksa9y7VVI+UIEv40xN4
-         Q+rrZ3rDSliiWnjWG2iue63L5WEjXcBQrHnQZBZkUuYS+za4qLqC5+oWhWAAOzz2qmIf
-         y5Ekv77eGQkiYudK6lsjF26/d3vrQ+effm/1bHrgcLgmcwRYuBEV6BNffve/TZlSBbbv
-         NweqfF3mJcIQKbfiABwloONmS0RzpEzJVJzerihfMRHyCa35Y58D1BzaCeflfwfeZPqf
-         8qiBArkXSJwERAGGAZgeLQGmLCfjDBBnXnxUyxigXqn98lwkwQkB/1IOjZwBIJ43BAe1
-         32FA==
-X-Gm-Message-State: AAQBX9elk6Djyfcptq0dha0TiETt+1AWRFA8HyWuGll15iVJ7m+WmMis
-        ux/1b5uloOlFALv732z0kY8=
-X-Google-Smtp-Source: AKy350aB7U4fI6GzSH5WLeQTGvxrYIlnqRkcNF926bpP1fyvjSIzR/JytVOq1d4Psvk6hnLUvCJ6sA==
-X-Received: by 2002:a05:6902:18d3:b0:b76:1f06:5e53 with SMTP id ck19-20020a05690218d300b00b761f065e53mr23550206ybb.42.1680106012248;
-        Wed, 29 Mar 2023 09:06:52 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:d913:852b:d7c6:7253? ([2600:1700:2442:6db0:d913:852b:d7c6:7253])
-        by smtp.gmail.com with ESMTPSA id 198-20020a250bcf000000b00b7767ca746asm3538614ybl.7.2023.03.29.09.06.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Mar 2023 09:06:51 -0700 (PDT)
-Message-ID: <a2086a3f-e4c7-5bbf-a24c-522d6723a043@gmail.com>
-Date:   Wed, 29 Mar 2023 11:06:50 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v2] treewide: Fix instantiation of devices in DT overlays
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
+        with ESMTP id S229815AbjC2QQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 12:16:25 -0400
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED6D6A60
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 09:15:56 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 06D54581F9B;
+        Wed, 29 Mar 2023 12:06:56 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 29 Mar 2023 12:06:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1680106016; x=1680113216; bh=th
+        Rw2/tFs/SwCLKlW3NOEoR71LT+Ry2A2LqiLKA1wEU=; b=JVNDbc+MY5oREoD06S
+        +DcekfmC36dI9aqn/twmH9eClRsgxHsK1vrEDVVakWUjoHs3a2SYcOGwtUQns7yH
+        3y3QbNzVkl5yhmMvxH5qvJpmSsqOuqifzEQYVNnBl/wO5c7wtnBTo4Prvdd+X+d1
+        +uMiToSbklmYULNWzGSyS5snupaadjApQ4xgMJWM8dLccZadhw/cNViYR3Xg4uql
+        PGCM84fZX+BBzK5USZOcxqojgQkKQaYWr+CcJKlcdz08h3tDxSpxGJ7WUPJuwPgi
+        7ZZzVRup4keNmbrg7XaSUR4oXX7Vo4yQ1ShpJZqbL54tlXFxcpOCaswr8q4Rsbkz
+        ei0g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1680106016; x=1680113216; bh=thRw2/tFs/SwC
+        LKlW3NOEoR71LT+Ry2A2LqiLKA1wEU=; b=LnhyOmWlCJTs8izABKUs7dBWaVgGR
+        3BucKvjdG/ntkSg9I3lUoOINnmOzkKfd8UcpJPsjhs7/nOY2ToiOpP7lYF+KxmgQ
+        UiolKHPGRiK/mW2UCjPnWZrHFuBAf5B4/HdLZTfn+z5JJbYQVOymSZE4SFKAaGwk
+        rFNpPoGe3d08DBccsFO9LnpZ2Gj1X1KwNzItxnYNaDgdOm9WrWT6nMFa+9bySbW5
+        o0LyYuVYWs90nfXlk5/fmSlG4tlmH6JWGh1Y4sB2DQbtIupaeZX48T8b7AZ/vqao
+        0QdiydeLd3v7MIVGEuXq2xA+sCilgI5auVNuCqnUNutnHGbWFWN/8XlQQ==
+X-ME-Sender: <xms:HmIkZE-SnqX_iaot91jNdSjhaQ7y4EfxDy1e3ya7Q5sVO64qjz8eTA>
+    <xme:HmIkZMthwaZTmNTrhP6LVd8fgohlXalf5I3Wr818daH-K98u9r_3hWZg5cDrpyNS1
+    DN5xxPcoe-bsRs80S8>
+X-ME-Received: <xmr:HmIkZKBdt-YtEV7X1Gn-cmVky218D7P4_eBr58fvrQlNhuqFJGG93BRVpfo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehiedgleekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeejgeeiveevvdfgffeftdevuefhheduveejieefgeejveeuhfetkeelgfev
+    teefffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HmIkZEcJlE7QjjE-AxMmQ3DI20HGW5aGXfRI3nj7xDMXpmg-9JEcfQ>
+    <xmx:HmIkZJOBFdEFojvMbY_VLQfwe3Gzy8KOuoCRP4ZeaHSDJi71UsHSJw>
+    <xmx:HmIkZOnZ_MaajWAsTX3I2xO87-qnqHI3jUbS8tbQBzMVpO3vqTtgmw>
+    <xmx:IGIkZGzelhBRWhYudMxTMkNFn9MxFe5Rbr61bTMcvQkZWbr5kn-GeA>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 29 Mar 2023 12:06:53 -0400 (EDT)
+Date:   Wed, 29 Mar 2023 18:06:52 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <240155f20aae47e9f7461e2b7416120ba6238886.1679650087.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marek Vasut <marex@denx.de>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH v7 12/12] drm: sun4: dsi: Convert to bridge driver
+Message-ID: <20230329160652.7gel5qvckzwihjx4@penduick>
+References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
+ <20230329131929.1328612-3-jagan@amarulasolutions.com>
+ <20230329145939.7zcex4x2pipivuj4@penduick>
+ <CAMty3ZDWK0xVe7E+gER+TihHf1yv3YAWgZc1GCJQ2V5KD_mN-g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zrjrrfurl2tflvml"
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZDWK0xVe7E+gER+TihHf1yv3YAWgZc1GCJQ2V5KD_mN-g@mail.gmail.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/24/23 04:30, Geert Uytterhoeven wrote:
-> When loading a DT overlay that creates a device, the device is not
-> instantiated, unless the DT overlay is unloaded and reloaded again.
 
-Can you elaborate on why this is?  What the relevant code paths are?
+--zrjrrfurl2tflvml
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Saravana explains:
->   Basically for all overlays (I hope the function is only used for
->   overlays) we assume all nodes are NOT devices until they actually
->   get added as a device.
-> 
-> Based on a patch by Saravana Kannan, which covered only platform and spi
-> devices.
+On Wed, Mar 29, 2023 at 09:08:17PM +0530, Jagan Teki wrote:
+> On Wed, Mar 29, 2023 at 8:29=E2=80=AFPM Maxime Ripard <maxime@cerno.tech>=
+ wrote:
+> >
+> > Hi,
+> >
+> > The patch prefix should be drm/sun4i:
+>=20
+> I did follow my previous prefix, I will update this.
+>=20
+> >
+> > On Wed, Mar 29, 2023 at 06:49:29PM +0530, Jagan Teki wrote:
+> > > Convert the encoder to bridge driver in order to standardize on a
+> > > single API by supporting all varients of downstream bridge devices.
+> >
+> > Which variant, and why do we need to convert to a bridge to support all=
+ of them?
+>=20
+> Downstream bridge variants like DSI panel, DSI bridge and
+> I2C-Configured DSI bridges. Bridge conversion would be required for
+> the DSI host to access the more variety and complex downstream bridges
+> in a standardized bridge chain way which is indeed complex for encoder
+> driven DSI hosts.
+>=20
+> >
+> > > The drm_encoder can't be removed as it's exposed to userspace, so it
+> > > then becomes a dumb encoder, without any operation implemented.
+> > >
+> > > Tested on DSI Panel, DSI Bridge, I2C-Configured DSI Bridge.
+> > >
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> >
+> > [...]
+> >
+> > > +static const struct component_ops sun6i_dsi_ops;
+> > > +
+> > >  static int sun6i_dsi_attach(struct mipi_dsi_host *host,
+> > >                           struct mipi_dsi_device *device)
+> > >  {
+> > >       struct sun6i_dsi *dsi =3D host_to_sun6i_dsi(host);
+> > > -     struct drm_panel *panel =3D of_drm_find_panel(device->dev.of_no=
+de);
+> >
+> > That one looks unrelated. Why do you need that change?
+>=20
+> This was replaced with drmm_of_dsi_get_bridge for lookup of both panel
+> and bridge. I think I will separate this into another patch.
 
+So, it looks to me that you're doing two (unrelated) things in that patch:
 
-> 
-> Fixes: 4a032827daa89350 ("of: property: Simplify of_link_to_phandle()")
+  - You modify the existing driver to be a bridge
 
-From a quick scan of the fixed commit, I don't see how that commit caused the problem.
-Can you give a quick clue?  (The clue does not need to be added to the commit message,
-but please at least put it below the "---" if there are additional versions of this
-patch.)
+  - And you support downstream device being bridges.
 
-> Link: https://lore.kernel.org/r/CAGETcx_+rhHvaC_HJXGrr5_WAd2+k5f=rWYnkCZ6z5bGX-wj4w@mail.gmail.com
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> ---
-> v2:
->   - Add Acked-by,
->   - Drop RFC.
-> ---
->  drivers/bus/imx-weim.c    | 1 +
->  drivers/i2c/i2c-core-of.c | 1 +
->  drivers/of/dynamic.c      | 1 +
->  drivers/of/platform.c     | 1 +
->  drivers/spi/spi.c         | 1 +
->  5 files changed, 5 insertions(+)
-> 
-> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-> index 36d42484142aede2..898e23a4231400fa 100644
-> --- a/drivers/bus/imx-weim.c
-> +++ b/drivers/bus/imx-weim.c
-> @@ -329,6 +329,7 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
->  				 "Failed to setup timing for '%pOF'\n", rd->dn);
->  
->  		if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
-> +			rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  			if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
->  				dev_err(&pdev->dev,
->  					"Failed to create child device '%pOF'\n",
-> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-> index aa93467784c29c89..303f9003562eed3d 100644
-> --- a/drivers/i2c/i2c-core-of.c
-> +++ b/drivers/i2c/i2c-core-of.c
-> @@ -178,6 +178,7 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
->  			return NOTIFY_OK;
->  		}
->  
-> +		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  		client = of_i2c_register_device(adap, rd->dn);
->  		if (IS_ERR(client)) {
->  			dev_err(&adap->dev, "failed to create client for '%pOF'\n",
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index 07d93753b12f5f4d..e311d406b1705306 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -226,6 +226,7 @@ static void __of_attach_node(struct device_node *np)
->  	np->sibling = np->parent->child;
->  	np->parent->child = np;
->  	of_node_clear_flag(np, OF_DETACHED);
-> +	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
->  }
->  
->  /**
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index b2bd2e783445dd78..17c92cbfb62ee3ef 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -737,6 +737,7 @@ static int of_platform_notify(struct notifier_block *nb,
->  		if (of_node_check_flag(rd->dn, OF_POPULATED))
->  			return NOTIFY_OK;
->  
-> +		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  		/* pdev_parent may be NULL when no bus platform device */
->  		pdev_parent = of_find_device_by_node(rd->dn->parent);
->  		pdev = of_platform_device_create(rd->dn, NULL,
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 8e8af148b1dc371e..66ac67580d2a473b 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -4527,6 +4527,7 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
->  			return NOTIFY_OK;
->  		}
->  
-> +		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->  		spi = of_register_spi_device(ctlr, rd->dn);
->  		put_device(&ctlr->dev);
->  
+Both are orthogonal, can (and should!) be done separately, and I'm
+pretty sure you don't actually need to do the former at all.
 
+Maxime
+
+--zrjrrfurl2tflvml
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZCRiHAAKCRDj7w1vZxhR
+xd68AQC05r3DsJGaU7H1oonM8OgOgjnGl+gioqXGq3ALav5aSgEAuFfH8EvCnOv7
+n0z5dUr5W+RUNtouMyIew97EwKd5ZAk=
+=u1E2
+-----END PGP SIGNATURE-----
+
+--zrjrrfurl2tflvml--
