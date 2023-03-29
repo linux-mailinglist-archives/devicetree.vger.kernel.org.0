@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3BEC6CF55C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 23:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A42D6CF563
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 23:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjC2V13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 17:27:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54088 "EHLO
+        id S229623AbjC2V3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 17:29:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjC2V13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 17:27:29 -0400
-Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365AC2681;
-        Wed, 29 Mar 2023 14:27:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-        Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-        Resent-Cc:Resent-Message-ID; bh=vTEx1qGiRwHQqbRWZ0F0YVEXYMez6RiJLOH+5aThdgE=;
-        t=1680125246; x=1681334846; b=spE3Mu/tZJZwbguWhNkhb04F/VyzKMs5S+EnC7HG/oatr8H
-        Q1q+8HkkN1+FqeaVED8hlbN6/oYYLNep3P7v6UjYf0aQk6j34UzBQC2Ta6PF3PDP5Pj9y+rWUCsJH
-        TxuD/FFgojsMo0V90ZL2wB5TIplvpE0rrKHEYW5HB9jnlShnNIGqxHMoIX74EhGwQPUb0Q5Bix4dR
-        9KvWWFRQW8D8DcRU7JILoU62inBy57SWX+T6vyISIYskWAdKSxgpIrRc8y2HzgEEb6sJHO+PIe+qO
-        ZfJkxJ9lyVP2HcNWY5JdtLw55pt1Yy19tWE5Qnf1LmXMmzRKUXCOvQySu29Qh0Yw==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.96)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1phdJz-000F4W-1q;
-        Wed, 29 Mar 2023 23:27:07 +0200
-Message-ID: <fbad112793615840745195e54eed98634233c415.camel@sipsolutions.net>
-Subject: Re: [PATCH 3/5] net: rfkill-gpio: Add explicit include for of.h
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Rob Herring <robh@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Wed, 29 Mar 2023 23:27:05 +0200
-In-Reply-To: <20230329-acpi-header-cleanup-v1-3-8dc5cd3c610e@kernel.org>
-References: <20230329-acpi-header-cleanup-v1-0-8dc5cd3c610e@kernel.org>
-         <20230329-acpi-header-cleanup-v1-3-8dc5cd3c610e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+        with ESMTP id S229570AbjC2V3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 17:29:43 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A86219A1
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 14:29:41 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id b18so21205005ybp.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 14:29:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680125380;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=D3yNkZuxjV5q0QNma+hUnaAvguI9Ie4RgLhWd7LHbVA=;
+        b=AImXvj1NQS9c8BamFFYhp04cM70SunPi5pDHllZqHMIu4PZpFwi/1m2QWuUVsTtszG
+         jlpiqEph7Zj7mUdW8UztovQ6t2mQbW8YeQAFDgWHcJCZsCdGrLObp/ZstX09+PLzvKgv
+         +VML+6Bh1hmcZCdZ1CWnsjiZmToaXWJHkoS4B39yCOLW/lyo2t97+IJz+8NPwHWcSKr7
+         ZP+bRiH2AQXS/vyVdIknjlWZXOjKMx8Qeb2+PX7y6OxaJj3MyYwA8lx8FsrKrXziQLZG
+         hQ6if1KKoeLTX+VjGvq7HrxciZVLYvcYNF9GIrTUVq7FNbnoyRpqGGUOGO5kS4yqEkh6
+         w2wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680125380;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D3yNkZuxjV5q0QNma+hUnaAvguI9Ie4RgLhWd7LHbVA=;
+        b=UhVT0F4kOCKnE6NX1lzm4P9PRZ3EUnMFmDPBbeoLccZGWSoJtwZkGoTZuqLkp5ubzr
+         Z4teoMUWzm/03RBFWKCWLuP58iaJhTH6NsS8l7H3qbqZ1t3D5Sv4WFod2ZLS4kr8pNio
+         oWAW8l9eTo0VVZeB7NDQm9hZeMWO48Fo1SEBd+rO3oSP6XTfeQTWaoSbPNd5WfHwUMFL
+         AyGx9pNNciJd4PP5I99AaKPZ7d949SX37e7bx6mmYAX5lPneQb+G1Fh27qNusd/6Yr4B
+         tg7vTmrNkpiBX62BqUtMefxXOxgKd25UKA7rAZyr+3Zev6BDKXhpt6JK79QxT4iNzz6M
+         BDRQ==
+X-Gm-Message-State: AAQBX9fUy5BIwNH+4Lyee/EAS8TVoKVCUI/1qaGtRzPbamOnimCgV7dH
+        wHjpzaekoThOBIgMbqv9kYvf3AkE5g1yD2OH0zASJA==
+X-Google-Smtp-Source: AKy350bX//N2Pe5TyFJXCG2bqMqJRp0gtN7CBEweO9QG3wRnDcPzL3DlZZlu4GqCC9Kh42BeFl97vzthCV5oQ0kEaus=
+X-Received: by 2002:a05:6902:1549:b0:b77:be38:6406 with SMTP id
+ r9-20020a056902154900b00b77be386406mr10732365ybu.9.1680125380407; Wed, 29 Mar
+ 2023 14:29:40 -0700 (PDT)
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+References: <20230329-topic-adreno_opp-v1-0-24d34ac6f007@linaro.org> <20230329-topic-adreno_opp-v1-2-24d34ac6f007@linaro.org>
+In-Reply-To: <20230329-topic-adreno_opp-v1-2-24d34ac6f007@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 30 Mar 2023 00:29:29 +0300
+Message-ID: <CAA8EJprbBHTco078ix5=4OrxFm9cLVi0AbhCRVfr=-O2S0V2CQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: msm8996: Pass VDDMX to gpu in power-domains
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,21 +77,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2023-03-29 at 16:20 -0500, Rob Herring wrote:
-> With linux/acpi.h no longer implicitly including of.h, add an explicit
-> include of of.h to fix the following error:
->=20
-> net/rfkill/rfkill-gpio.c:181:21: error: implicit declaration of function =
-'of_match_ptr' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Wed, 29 Mar 2023 at 22:17, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> Since power-domains is used for perf_level pm_genpd scaling, it's only
+> fitting that we pass a power domain that's actually supposed to be
+> scaled (and not only turned on/off) to the GPU. While we don't quite
+> support CPR3 yet, the next best thing we can do is pass VDDMX, so that
+> we're at least guaranteed a reasonable vote on the memory side of
+> things. Do so and leave a note mentioning CPR3 PD should be used here
+> instead when support is added.
+>
+> Fixes: 69cc3114ab0f ("arm64: dts: Add Adreno GPU definitions")
+> Fixes: 3f65d51e9e22 ("arm64: dts: qcom: msm8996: Make GPU node control GPU_GX GDSC")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 4661a556772e..4dd37f72e018 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -1228,7 +1228,8 @@ gpu: gpu@b00000 {
+>                         interconnects = <&bimc MASTER_GRAPHICS_3D &bimc SLAVE_EBI_CH0>;
+>                         interconnect-names = "gfx-mem";
+>
+> -                       power-domains = <&mmcc GPU_GX_GDSC>;
+> +                       /* TODO: also scale VDDGFX with CPR3 */
+> +                       power-domains = <&rpmpd MSM8996_VDDMX>;
+>                         iommus = <&adreno_smmu 0>;
+>
+>                         nvmem-cells = <&speedbin_efuse>;
+> @@ -2254,7 +2255,13 @@ adreno_smmu: iommu@b40000 {
+>                                  <&mmcc GPU_AHB_CLK>;
+>                         clock-names = "bus", "iface";
+>
+> -                       power-domains = <&mmcc GPU_GDSC>;
+> +                       /*
+> +                        * We need both GPU_GDSC and GPU_GX_GDSC to be on, but the
+> +                        * power-domains entry under gpu is occupied by the scaled
+> +                        * voltage domain. Since GPU_GDSC is a parent of GX_GDSC,
+> +                        * we can simply pass GX here to turn them both on!
+> +                        */
 
-Sounds good!
+Ugh. You can pass GX and VDDMX to the gpu. Let me send the patch
+supporting that.
 
-Acked-by: Johannes Berg <johannes@sipsolutions.net>
+> +                       power-domains = <&mmcc GPU_GX_GDSC>;
+>                 };
+>
+>                 venus: video-codec@c00000 {
+>
+> --
+> 2.40.0
+>
 
-I'm happy with Rafael taking the entire series, there's nothing here
-that I expect to conflict, and anyway it'd be trivial.
 
-Thanks,
-johannes
+-- 
+With best wishes
+Dmitry
