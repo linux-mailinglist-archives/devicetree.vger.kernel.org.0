@@ -2,116 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D63E56CD706
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 11:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89D906CD74D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 12:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231386AbjC2Jxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 05:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54438 "EHLO
+        id S230330AbjC2KHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 06:07:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231272AbjC2Jxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 05:53:44 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD2B46B1
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:53:22 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id k17so18517557ybm.11
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 02:53:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680083595;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4X3khqF5xFkGR6ddfCz2qgESEMRppgaegQNKeKhCKME=;
-        b=pIDID8ycm1GH79KcllagHYSuh0LHg3M9m+Cg2qN2yDkyy7BL4JsDBuR0ZJySBSbgNC
-         FK8/4mr5KhFdlY15orLqTmbSl8Y8kAhNRAgGTICMxtQ0U/R4PzwYwpfb/KgKkX0iWpuu
-         XpBNrsb0PiWZ7f6BFCMW6wVf5cRxT7UV02nZ0DI0MP9uuKAoSiRWrMKr7Z9XTu9C+Wb0
-         4Z/Zhb19McOVziA+YamBIxv0k7qz5LLszB6uwAS5E8iHudfC1xjAPmZgxxzjdQMF5FA6
-         +mSQ00dfyesfzUu1pMU8DFFBDv6ErpspeFu4Vs/sbxXStYxWhHL9jTdniSOGuRzGDV6P
-         LXTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680083595;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4X3khqF5xFkGR6ddfCz2qgESEMRppgaegQNKeKhCKME=;
-        b=cRLPV86ilFUyqVrFaN8Xvzh1CRD/6CtGNaAV0+YuPPdOCcOIGBuS1J9f8CqUStyvcU
-         myQoNkKIkGD04yPv+JZb5G/3X3cEeDGshDQkUocEJRssemkpzN5PiTYDGBrkIcFrFYJz
-         Fm1Sl2qLLGs53uEtn2JpHYhDnNxuNQ742zY5fLAL37caXJvmcujpiZBBe8UYdG3QYWV8
-         CPceCnTVZrRoaBLPgQixeUg04xBglX80Cwdz6GF+hX3Tj9Ecni/3JeZUXgUgbMNZTXGM
-         h0ynKPTuu1L4jN48QnYCLMVVQEucj9MgVIC90PG0POX9R2WrGQPtvg9NMC77H+i3NKaN
-         fClg==
-X-Gm-Message-State: AAQBX9e69gXmfNbD/6BaDRW9jck6hgkeYCjitHGrPHKKPcx8UCrJ6XY1
-        jnILpJPk9eaD8LhrlKkYxLXdNxxI7ej0iKnFphGc7QhKY2zQg66+
-X-Google-Smtp-Source: AKy350YCRBqvLwyxmkGTN1H7PLM5ya1V6tDSouGzDj2liGJDjszuMmKMzk5SB23ouJDdK71Yr5sfI3x2GuG2d1uL0Vg=
-X-Received: by 2002:a05:6902:72e:b0:b6c:f26c:e5ab with SMTP id
- l14-20020a056902072e00b00b6cf26ce5abmr12849242ybt.3.1680083595433; Wed, 29
- Mar 2023 02:53:15 -0700 (PDT)
+        with ESMTP id S230073AbjC2KHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 06:07:49 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92198B5;
+        Wed, 29 Mar 2023 03:07:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id D3E70CE1FD3;
+        Wed, 29 Mar 2023 10:07:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D5C4C433EF;
+        Wed, 29 Mar 2023 10:07:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1680084464;
+        bh=jxsrRCmaqY1PZygl7A7OWDWEQs91XASFaSIP4jc/LyM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rcFrOTMN0AG2eJC7VzghJ8ZwGIZcMLBSZvPeWvL+7Cjb9gFOKi/pYTguQ83mPS4Fj
+         vqMKcF9EJ0mZotczB/I6jW1VZR0hQnQxOExV88C0f/i4P5sX4O6i65CDNPkCcx/Ven
+         LAhEhg0cWQ9+iB3T3QP58PSAnsPPJjqoaXGeCxXk=
+Date:   Wed, 29 Mar 2023 12:07:42 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        devicetree@vger.kernel.org, andrew@aj.id.au, joel@jms.id.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        arnd@arndb.de
+Subject: Re: [PATCH v3 1/4] eeprom: ee1004: Enable devices on multiple busses
+Message-ID: <ZCQN7uq7Y3xFY1od@kroah.com>
+References: <20230322140348.569397-1-eajames@linux.ibm.com>
+ <20230322140348.569397-2-eajames@linux.ibm.com>
 MIME-Version: 1.0
-References: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230324073813.22158-1-krzysztof.kozlowski@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 29 Mar 2023 11:52:39 +0200
-Message-ID: <CAPDyKFqP9LbnnwwK3o7+C4K-xJZmDhM+QbXy20RsKVx+hsCgdA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8250: drop incorrect domain idle
- states properties
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230322140348.569397-2-eajames@linux.ibm.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Mar 2023 at 08:38, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Domain idle states do not use 'idle-state-name' and 'local-timer-stop':
->
->   sm8250-hdk.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name', 'local-timer-stop' do not match any of the regexes: 'pinctrl-[0-9]+'
->
-> Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Link: https://lore.kernel.org/all/20230323-topic-sm8450-upstream-dt-bindings-fixes-v1-4-3ead1e418fe4@linaro.org/
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-
+On Wed, Mar 22, 2023 at 09:03:45AM -0500, Eddie James wrote:
+> The driver previously prevented probing devices on more than one
+> bus due to locking constraints with the special page addresses. This
+> constraint can be removed by allocating a reference-counted bus
+> structure containing the lock, rather than using global variables.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 79d67b466856..9cf2de87c632 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -354,12 +354,10 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->                 domain-idle-states {
->                         CLUSTER_SLEEP_0: cluster-sleep-0 {
->                                 compatible = "domain-idle-state";
-> -                               idle-state-name = "cluster-llcc-off";
+> Changes since v2:
+>  - Remove of_device.h include
+> 
+>  drivers/misc/eeprom/ee1004.c | 174 +++++++++++++++++++++--------------
+>  1 file changed, 105 insertions(+), 69 deletions(-)
+> 
+> diff --git a/drivers/misc/eeprom/ee1004.c b/drivers/misc/eeprom/ee1004.c
+> index c8c6deb7ed89..0aed5760e370 100644
+> --- a/drivers/misc/eeprom/ee1004.c
+> +++ b/drivers/misc/eeprom/ee1004.c
+> @@ -9,9 +9,11 @@
+>   * Copyright (C) 2008 Wolfram Sang, Pengutronix
+>   */
+>  
+> +#include <linux/err.h>
+>  #include <linux/i2c.h>
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+> +#include <linux/list.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> @@ -31,20 +33,24 @@
+>   * over performance.
+>   */
+>  
+> -#define EE1004_ADDR_SET_PAGE		0x36
+> +#define EE1004_ADDR_SET_PAGE0		0x36
+> +#define EE1004_ADDR_SET_PAGE1		0x37
+>  #define EE1004_NUM_PAGES		2
+>  #define EE1004_PAGE_SIZE		256
+>  #define EE1004_PAGE_SHIFT		8
+>  #define EE1004_EEPROM_SIZE		(EE1004_PAGE_SIZE * EE1004_NUM_PAGES)
+>  
+> -/*
+> - * Mutex protects ee1004_set_page and ee1004_dev_count, and must be held
+> - * from page selection to end of read.
+> - */
+> -static DEFINE_MUTEX(ee1004_bus_lock);
+> -static struct i2c_client *ee1004_set_page[EE1004_NUM_PAGES];
+> -static unsigned int ee1004_dev_count;
+> -static int ee1004_current_page;
+> +struct ee1004_bus {
+> +	struct kref kref;
+> +	struct list_head list;
+> +	struct mutex lock;
+> +	struct i2c_adapter *adapter;
+> +	struct i2c_client *set_page_clients[EE1004_NUM_PAGES];
+> +	int page;
+> +};
+> +
+> +static LIST_HEAD(ee1004_busses);
+> +static DEFINE_MUTEX(ee1004_busses_lock);
 
-FYI: If someone wants to add support for this property, I wouldn't mind.
+This really looks like you are just emulating a tiny portion of the
+driver core (busses, lists of busses, reference counting, etc.)
 
->                                 arm,psci-suspend-param = <0x4100c244>;
->                                 entry-latency-us = <3264>;
->                                 exit-latency-us = <6562>;
->                                 min-residency-us = <9987>;
-> -                               local-timer-stop;
->                         };
->                 };
->         };
-> --
-> 2.34.1
->
+Why not just use an aux device instead and get all of that logic "for
+free" in a way that will be properly shown to userspace?  Right now it
+has no idea what is happening here with individual portions of the
+device and the like.
 
-Kind regards
-Uffe
+Please look into that instead of this hand-rolled device model.
+
+thanks,
+
+greg k-h
