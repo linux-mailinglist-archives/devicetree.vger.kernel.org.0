@@ -2,339 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 030406CF33E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D936CF352
+	for <lists+devicetree@lfdr.de>; Wed, 29 Mar 2023 21:41:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbjC2TjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 15:39:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
+        id S229475AbjC2Tlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 15:41:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjC2TjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:39:09 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E0E469C;
-        Wed, 29 Mar 2023 12:39:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A1394B8241D;
-        Wed, 29 Mar 2023 19:39:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D33EDC433EF;
-        Wed, 29 Mar 2023 19:39:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680118745;
-        bh=/ZKmyLoYa9YS0DXYnLXFFJPL5/iEPvy2OKhP2ekYTT4=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=PAOWrLl7L61fDDI8YTLYLHQ6TTPdDCbyASFG2/dVFGsCcbM5wtzYmrptlEFO6DqpQ
-         L1bnJR6naswl5+8iIR+BGKvBF9lCCL7bQN5cJgDnrWYAb9n2t7HF9tsgwxJTSNDWEk
-         23n1OItL22vUOaJZLgwPupWdx1dOz2S3EDvRQVhmpgND2bih8roF8QoJKiWCaDmD+q
-         IhpB0WGKxeKpqWQi8c7O0sVEFe/txkt/gpRPQ+Qx0VxaIU7pwnrZ9GTJ5GrF+6UShW
-         MSP62jauG+062S/3+rmI7/9MhUYUwiUd28a03LOGupucyjXEldbo0G8xA3RZ9oo//o
-         bRxFK0AbrXUDg==
-Received: by pali.im (Postfix)
-        id 4599A29F; Wed, 29 Mar 2023 21:39:02 +0200 (CEST)
-Date:   Wed, 29 Mar 2023 21:39:02 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2] arm64: dts: marvell: add DTS for GL.iNet GL-MV1000
-Message-ID: <20230329193902.xu5xqwr5wdqjwg5j@pali>
-References: <20230202093706.30995-1-mrkiko.rs@gmail.com>
- <20230203174618.arqh2gqspoh3rlt6@pali>
+        with ESMTP id S230417AbjC2Tln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 15:41:43 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D344D72BB
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:41:31 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id h25so21639867lfv.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 12:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680118890;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cbt8RYRsNXhKllEm2l6/c935b1na6Cv5pr1oMZejEYk=;
+        b=KhLdI9Au0OcebER4ZU5rq4XlGeI89RYyfLhrCHjSFyGHdxItZaKqMD32y2oZwO6yeX
+         vmTgj7IZElzl7aQ9hvY+b4mvUuhYX5rppPS2UT9nVZDJGM462queAt7cHtRmPMjoRWWN
+         tLNSrZlqht0VGQKX/cNw/fgJKAskYkMMDuzHpnv5YbCP5ykkofXLeRzO6t3Tzcj681CI
+         Vw3GtCMROp2+MM/KOHNLN71DutQFlT38bGI1LnGRP3JpxSH4I12q7+NfK5aDnWkvvbCv
+         +cjhnqb0yn6oKgcNArilmgUgAEsWPy4BhudjMRi/k68PWi9xTxcOBXZAobd4yh2EmKBL
+         qPug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680118890;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cbt8RYRsNXhKllEm2l6/c935b1na6Cv5pr1oMZejEYk=;
+        b=en6b6x8ZyAej8ht8ARmbM/ysEEGwaKqSVRpjY+cFwlgEUbEW4YSCBUq8Na1nWNjGGr
+         /chGhATB01JQqlJ7gxmoKRlhBMUucW6WgB83HfwPBSIkpNOkA80R3/zz4IJZN6qoY9q3
+         rOfxGmMQInbT+ZfjtGD7tIRSuZtVUY8uXf7/jNhMCSpm1EUJS9aFodeYsU5ruD1EeEEb
+         19rQDkH0lxEmnK5xtKX6TUMgYw0eNzqTePUudp7H0v1jmmIkyUv5QAsZr7Yhq5w7EEls
+         BbVX1nPyHMWroqo9Z1NDHHnwQth8cYL42+7B2MCHTN9p8StweG2nP9QMo5UJoZnutOX6
+         KhCg==
+X-Gm-Message-State: AAQBX9e/nF2giuiCxFfYqbazVKucMPAodBz9ZQYNXUO07mbnuOCmrlob
+        QnkK9gY0sPrVZ98NBKEiPJDrcg==
+X-Google-Smtp-Source: AKy350ZKgmPGGLfaVshnM25rJBESXaQ7TB/BO1HogkxbQYLi/glHQpFHiSzC4tr5WMZAhM/TbgGXtg==
+X-Received: by 2002:a05:6512:312c:b0:4db:25bb:ff0b with SMTP id p12-20020a056512312c00b004db25bbff0bmr1224944lfd.2.1680118889820;
+        Wed, 29 Mar 2023 12:41:29 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id q22-20020ac25296000000b004eae672e96bsm3955048lfm.255.2023.03.29.12.41.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 12:41:29 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v3 0/6] Sony SDM845 panel and remoteproc enablement
+Date:   Wed, 29 Mar 2023 21:41:17 +0200
+Message-Id: <20230313-topic-tama_disp-v3-0-2b1567c039d7@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230203174618.arqh2gqspoh3rlt6@pali>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,LOTS_OF_MONEY,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF2UJGQC/3WNQQ6CMBAAv0L27JrSqhhP/MMQs5QtbIItaZFoC
+ H+3cvc4k0xmhcRROMGtWCHyIkmCz2AOBdiBfM8oXWbQShtlSoNzmMTiTE96dJImdOZKZXlxZ90
+ 5yFVLibGN5O2QO/8axyynyE7e++beZB4kzSF+9uuif/b/YNGo0FRs2bqTqSpVj+IphmOIPTTbt
+ n0BUMVii8QAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1680118888; l=2208;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=jy9fJvfWwS1V31GRDu+r4uQToIEw/SFIAP+9psSKVdk=;
+ b=e/OgvB58S/2sqwVed4d/Hfrk8pbcXFiUhuPX2d5w/8Is/ymPSZOwBGp/vKiVNLlDsWHJO69X5ldH
+ xvz52o35BIP4RAKCKZIJ+2b4hYJQmZ/0eFffc9mtwfX4egfNJJ1f
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PING?
+v2 -> v3:
+- Fix pinctrl-n / -names ordering [1/6], [2/6]
+- Drop unnecessary #-cells [1/6]
+- Drop GPIO52 (it's apparently some LCD mode, single vs dual port,
+  not sure how real it is considering it came from messy downstream
+  code and not touching it at all does not seem to break anything) [1/6]
+- Use interrupts-extended instead of interrupt-parent+interrupts [2/6]
 
-On Friday 03 February 2023 18:46:18 Pali Rohár wrote:
-> On Thursday 02 February 2023 10:37:06 Enrico Mioso wrote:
-> > The GL-MV1000 (Brume) is a small form-factor gateway router.
-> > It is based on the Marvell Armada 88F3720 SOC (1GHz), has 3 gigabit ethernet ports, 1 GB RAM, 16M SPI flash, 8GB eMMC and an uSD slot, as well as an USB 2.0 type A and an USB 3.0 type C port.
-> > 
-> > Signed-off-by: Enrico Mioso <mrkiko.rs@gmail.com>
-> > CC: Pali <pali@kernel.org>
-> 
-> Looks good,
-> 
-> Reviewed-by: Pali Rohár <pali@kernel.org>
-> 
-> > ---
-> >  arch/arm64/boot/dts/marvell/Makefile          |   1 +
-> >  .../dts/marvell/armada-3720-gl-mv1000.dts     | 239 ++++++++++++++++++
-> >  2 files changed, 240 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> > index 058237681fe5..79ac09b58a89 100644
-> > --- a/arch/arm64/boot/dts/marvell/Makefile
-> > +++ b/arch/arm64/boot/dts/marvell/Makefile
-> > @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
-> > +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-gl-mv1000.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
-> > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-> > new file mode 100644
-> > index 000000000000..b1b45b4fa9d4
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-> > @@ -0,0 +1,239 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/input.h>
-> > +#include "armada-372x.dtsi"
-> > +
-> > +/ {
-> > +	model = "GL.iNet GL-MV1000";
-> > +	compatible = "glinet,gl-mv1000", "marvell,armada3720";
-> > +
-> > +	aliases {
-> > +		led-boot = &led_power;
-> > +		led-failsafe = &led_power;
-> > +		led-running = &led_power;
-> > +		led-upgrade = &led_power;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0:115200n8";
-> > +	};
-> > +
-> > +	memory@0 {
-> > +		device_type = "memory";
-> > +		reg = <0x00000000 0x00000000 0x00000000 0x20000000>;
-> > +	};
-> > +
-> > +	vcc_sd_reg1: regulator {
-> > +		compatible = "regulator-gpio";
-> > +		regulator-name = "vcc_sd1";
-> > +		regulator-min-microvolt = <1800000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		regulator-boot-on;
-> > +
-> > +		gpios-states = <0>;
-> > +		states = <1800000 0x1
-> > +			3300000 0x0>;
-> > +		enable-active-high;
-> > +	};
-> > +
-> > +	keys {
-> > +		compatible = "gpio-keys";
-> > +
-> > +		reset {
-> > +			label = "reset";
-> > +			linux,code = <KEY_RESTART>;
-> > +			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +
-> > +		switch {
-> > +			label = "switch";
-> > +			linux,code = <BTN_0>;
-> > +			gpios = <&gpiosb 22 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible = "gpio-leds";
-> > +
-> > +		vpn {
-> > +			label = "green:vpn";
-> > +			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +
-> > +		wan {
-> > +			label = "green:wan";
-> > +			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +
-> > +		led_power: power {
-> > +			label = "green:power";
-> > +			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
-> > +			default-state = "on";
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&spi0 {
-> > +	status = "okay";
-> > +
-> > +	flash@0 {
-> > +		reg = <0>;
-> > +		compatible = "jedec,spi-nor";
-> > +		spi-max-frequency = <104000000>;
-> > +		m25p,fast-read;
-> > +		partitions {
-> > +			compatible = "fixed-partitions";
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +
-> > +			partition@0 {
-> > +				label = "firmware";
-> > +				reg = <0 0xf0000>;
-> > +			};
-> > +
-> > +			partition@f0000 {
-> > +				label = "u-boot-env";
-> > +				reg = <0xf0000 0x8000>;
-> > +			};
-> > +
-> > +			factory: partition@f8000 {
-> > +				label = "factory";
-> > +				reg = <0xf8000 0x8000>;
-> > +				read-only;
-> > +			};
-> > +
-> > +			partition@100000 {
-> > +				label = "dtb";
-> > +				reg = <0x100000 0x10000>;
-> > +				read-only;
-> > +			};
-> > +
-> > +			partition@110000 {
-> > +				label = "rescue";
-> > +				reg = <0x110000 0x1000000>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&sdhci1 {
-> > +	wp-inverted;
-> > +	bus-width = <4>;
-> > +	cd-gpios = <&gpionb 17 GPIO_ACTIVE_LOW>;
-> > +	marvell,pad-type = "sd";
-> > +	no-1-8-v;
-> > +	vqmmc-supply = <&vcc_sd_reg1>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&sdhci0 {
-> > +	bus-width = <8>;
-> > +	mmc-ddr-1_8v;
-> > +	mmc-hs400-1_8v;
-> > +	non-removable;
-> > +	no-sd;
-> > +	no-sdio;
-> > +	marvell,pad-type = "fixed-1-8v";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb3 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb2 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart0 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&mdio {
-> > +	switch0: switch0@1 {
-> > +		compatible = "marvell,mv88e6085";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		reg = <1>;
-> > +
-> > +		dsa,member = <0 0>;
-> > +
-> > +		ports: ports {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			port@0 {
-> > +				reg = <0>;
-> > +				label = "cpu";
-> > +				ethernet = <&eth0>;
-> > +			};
-> > +
-> > +			port@1 {
-> > +				reg = <1>;
-> > +				label = "wan";
-> > +				phy-handle = <&switch0phy0>;
-> > +			};
-> > +
-> > +			port@2 {
-> > +				reg = <2>;
-> > +				label = "lan0";
-> > +				phy-handle = <&switch0phy1>;
-> > +
-> > +				nvmem-cells = <&macaddr_factory_6>;
-> > +				nvmem-cell-names = "mac-address";
-> > +			};
-> > +
-> > +			port@3 {
-> > +				reg = <3>;
-> > +				label = "lan1";
-> > +				phy-handle = <&switch0phy2>;
-> > +
-> > +				nvmem-cells = <&macaddr_factory_6>;
-> > +				nvmem-cell-names = "mac-address";
-> > +			};
-> > +		};
-> > +
-> > +		mdio {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			switch0phy0: switch0phy0@11 {
-> > +				reg = <0x11>;
-> > +			};
-> > +			switch0phy1: switch0phy1@12 {
-> > +				reg = <0x12>;
-> > +			};
-> > +			switch0phy2: switch0phy2@13 {
-> > +				reg = <0x13>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&eth0 {
-> > +	nvmem-cells = <&macaddr_factory_0>;
-> > +	nvmem-cell-names = "mac-address";
-> > +	phy-mode = "rgmii-id";
-> > +	status = "okay";
-> > +
-> > +	fixed-link {
-> > +		speed = <1000>;
-> > +		full-duplex;
-> > +	};
-> > +};
-> > +
-> > +&factory {
-> > +	compatible = "nvmem-cells";
-> > +	#address-cells = <1>;
-> > +	#size-cells = <1>;
-> > +
-> > +	macaddr_factory_0: macaddr@0 {
-> > +		reg = <0x0 0x6>;
-> > +	};
-> > +
-> > +	macaddr_factory_6: macaddr@6 {
-> > +		reg = <0x6 0x6>;
-> > +	};
-> > +};
-> > -- 
-> > 2.39.1
-> > 
+2/6 is still a total OF abuse and very RFC-ish, pending comments or ideas!
+
+v2: https://lore.kernel.org/r/20230313-topic-tama_disp-v2-0-37ececf43770@linaro.org
+
+v1 -> v2:
+- Drop akatsuki touch panel as Marijn figures out some sleep-related
+  things
+- No more dependencies, the panel driver has been merged into drm-misc
+  next
+- "*-pin" { -> "*-pins {"
+- treset-gpios -> touch-reset-gpios
+- Drop "Don't use 0x in unit address" (solved)
+- Drop IPA & modem, this keeps crashing for some reason..
+
+2/7 is a total OF abuse and very RFC-ish..
+
+v1: https://lore.kernel.org/lkml/20220930191049.123256-2-konrad.dybcio@somainline.org/
+
+This series enables display and touch panel on XZ2/XZ2c devices
+equipped with a JDI panel with a TD4353 driver IC and just
+touch panel for all XZ3 phones. It also enables the remote
+processors, GPU&GMU and GPI DMA on all Tama devices.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (6):
+      arm64: dts: qcom: sdm845-tama: Add display nodes
+      [RFC] arm64: dts: qcom: sdm845-tama: Add Synaptics Touchscreen
+      arm64: dts: qcom: sdm845-tama: Add regulator-system-load to l14a/l28a
+      arm64: dts: qcom: sdm845-tama: Enable remoteprocs
+      arm64: dts: qcom: sdm845-tama: Enable GPU
+      arm64: dts: qcom: sdm845-tama: Enable GPI_DMA0/1
+
+ .../dts/qcom/sdm845-sony-xperia-tama-akari.dts     |   4 +
+ .../dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts  |  47 ++++-
+ .../dts/qcom/sdm845-sony-xperia-tama-apollo.dts    |   6 +
+ .../boot/dts/qcom/sdm845-sony-xperia-tama.dtsi     | 199 ++++++++++++++++++++-
+ 4 files changed, 253 insertions(+), 3 deletions(-)
+---
+base-commit: 198925fae644b0099b66fac1d972721e6e563b17
+change-id: 20230313-topic-tama_disp-f38a116f52df
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
