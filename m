@@ -2,129 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F4FB6D0DB5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 20:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D3766D0DD2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 20:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjC3S1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 14:27:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57464 "EHLO
+        id S229764AbjC3SgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 14:36:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231254AbjC3S1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 14:27:53 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3123DEC78;
-        Thu, 30 Mar 2023 11:27:47 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32UIRZvH051124;
-        Thu, 30 Mar 2023 13:27:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680200855;
-        bh=iwVvxxRviT6unOdLjY9LnCnWTXA8oTUOvdHCBztIn4Y=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=o8RFiSyoupCLX3l+sReRbvjwU+3QYgCbUgmIU/JM29f1oJhfKsbUfBE622Hp8BqoL
-         nue6EOUT6JoOBGQDYh0G93KHQfUqlICdsSL/KHxqpJ63RElfbI3e8o0IIjAXNfo2GK
-         nLYPcsPA8bt2xykk3ld5e1YlE9mN9sFGhjBXyuZA=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32UIRZPD007347
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 30 Mar 2023 13:27:35 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 30
- Mar 2023 13:27:35 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 30 Mar 2023 13:27:35 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32UIRZPC023276;
-        Thu, 30 Mar 2023 13:27:35 -0500
-Date:   Thu, 30 Mar 2023 13:27:35 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Bhavya Kapoor <b-kapoor@ti.com>
-CC:     Apurva Nandan <a-nandan@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229847AbjC3SgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 14:36:05 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE9F5E050
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 11:35:59 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5416698e889so371272377b3.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 11:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1680201358;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J1mfsAVkmxLwhRt7IlI3jhuOesEA4D6U7D/dfayN2QA=;
+        b=i3dDFAZGt2ZPjNlP60Z4dUpIzuhxBu8puRTDl02gez4hWTzqUwaWxyZJdY6CK6ao2i
+         /DYT45kszQGM8Wta0pdgChvp8e/21VBkc2gyUKzkk5AELRE7gH7nLFFXHNkM/0eprKi4
+         s1N0Nq+yOSKmLMNjD6RoaPbZTeRXhou6nDyd0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680201358;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J1mfsAVkmxLwhRt7IlI3jhuOesEA4D6U7D/dfayN2QA=;
+        b=0ZxlXnxInR6YArjcQNwpcTQ23BktQwPgC6J0B0VwBDQ7/pksU9VxWyTf147943Ujdn
+         Im4rGpMOHulO36IT2QjIf5orRWr8xuAnpxv5G/r+enmWDF2KOGPSyy95UpH3H/Tr6h7Q
+         eHCva+3vaFhJf31ZSgESs0ztdOnLvUONbzKtoXW33rMhDHlgf848C27y3mAUBnNoh1Lx
+         stsOR9jILEV5t1alNPGJj5LLo6cUR4s4tjctUuOb5yqAl2eTlcw8GqaW2UaHeIWYd1PY
+         t6I8vMf6016TaUJqrQN1itYlFzbtmXARJTQ/3ElpUn3FnHL4rIHEVX+EPoNWhs3I9UAC
+         xTOA==
+X-Gm-Message-State: AAQBX9csYQZOGonAtgrgi6rB8MXZkHfuOp0EhXpikyTt0yWC1PvD/kEJ
+        4aF+tSxxLqaVKie3KsO4fOrUgqkM/2EKutWrT3E=
+X-Google-Smtp-Source: AKy350Y/08hWpXUvhgAnfcEwo5tfT68bvqr4cBV6sP4tqDoaWC5DhYgWjkbSoU8k6mE2mzElGYMDDg==
+X-Received: by 2002:a81:9e08:0:b0:541:8920:ce1c with SMTP id m8-20020a819e08000000b005418920ce1cmr24945013ywj.5.1680201358612;
+        Thu, 30 Mar 2023 11:35:58 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id m23-20020a81ae17000000b00545a0818475sm26204ywh.5.2023.03.30.11.35.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 11:35:58 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-54601d90118so215332697b3.12
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 11:35:58 -0700 (PDT)
+X-Received: by 2002:a67:d493:0:b0:426:a319:a226 with SMTP id
+ g19-20020a67d493000000b00426a319a226mr9101769vsj.7.1680200976855; Thu, 30 Mar
+ 2023 11:29:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230324195555.3921170-1-markyacoub@google.com> <20230324195555.3921170-9-markyacoub@google.com>
+In-Reply-To: <20230324195555.3921170-9-markyacoub@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 30 Mar 2023 11:29:25 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wq8Z+rf++08fyYvsBUqdWX23qoUSOBBR5nP=hBUk2mzA@mail.gmail.com>
+Message-ID: <CAD=FV=Wq8Z+rf++08fyYvsBUqdWX23qoUSOBBR5nP=hBUk2mzA@mail.gmail.com>
+Subject: Re: [PATCH v7 08/10] dt-bindings: msm/dp: Add bindings for HDCP registers
+To:     Mark Yacoub <markyacoub@chromium.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Kumar, Udit" <u-kumar1@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add eMMC mmc0 support
-Message-ID: <20230330182735.2lkuplsqcjku5enh@unnoticed>
-References: <20230327083100.12587-1-a-nandan@ti.com>
- <f3be8f20-fe56-489e-440c-53ca66f00508@ti.com>
- <20230330152406.fmpri7nnzybf7uqh@jubilance>
- <8f4e8265-da64-1e53-e1ed-b925e0326cad@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8f4e8265-da64-1e53-e1ed-b925e0326cad@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, seanpaul@chromium.org,
+        suraj.kandpal@intel.com, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        Rob Herring <robh@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23:14-20230330, Bhavya Kapoor wrote:
-> 
-> On 30/03/23 20:54, Nishanth Menon wrote:
-> > On 11:50-20230330, Bhavya Kapoor wrote:
-> >> On 27/03/23 14:01, Apurva Nandan wrote:
-> >>> Add support for eMMC card connected to main sdhci0 instance.
-> >>>
-> >>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> >> Reviewed-by: Bhavya Kapoor <b-kapoor@ti.com>
-> >>
-> >>> ---
-> >>>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 9 +++++++++
-> >>>   1 file changed, 9 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> >>> index 7480f37e89e8..1622a01a4667 100644
-> >>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> >>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> >>> @@ -21,6 +21,7 @@ chosen {
-> >>>
-> >>>   	aliases {
-> >>>   		serial2 = &main_uart8;
-> >>> +		mmc0 = &main_sdhci0;
-> >>>   		mmc1 = &main_sdhci1;
-> >>>   		i2c0 = &main_i2c0;
-> >>>   	};
-> >>> @@ -225,6 +226,14 @@ exp2: gpio@22 {
-> >>>   	};
-> >>>   };
-> >>>
-> >>> +&main_sdhci0 {
-> >>> +	/* eMMC */
-> >>> +	status = "okay";
-> >>> +	non-removable;
-> >>> +	ti,driver-strength-ohm = <50>;
-> >>> +	disable-wp;
-> >>> +};
-> >>> +
-> >>>   &main_sdhci1 {
-> >>>   	/* SD card */
-> >>>   	status = "okay";
-> >>> --
-> >>> 2.34.1
-> >> Looks correct to me.
-> >
-> > Don't you need pinmux?
-> >
-> Hi Nishanth, pinmux is not needed since there is no mux options for emmc pins (mmc0) in datasheet.
-> 
->  -> Kindly refer to datasheet for same : https://www.ti.com/lit/ds/symlink/tda4vh-q1.pdf?ts=1680197698102&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTDA4VH-Q1%253FkeyMatch%253DTDA4VH%2BDATASHEET
+Hi,
 
-Aah, yes - thanks for clarifying.
+On Fri, Mar 24, 2023 at 12:56=E2=80=AFPM Mark Yacoub <markyacoub@chromium.o=
+rg> wrote:
+>
+> From: Sean Paul <seanpaul@chromium.org>
+>
+> Add the bindings for the MSM DisplayPort HDCP registers
+> which are required to write the HDCP key into the display controller as
+> well as the registers to enable HDCP authentication/key
+> exchange/encryption.
+>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+>
+> ---
+> Changes in v2:
+> -Drop register range names (Stephen)
+> -Fix yaml errors (Rob)
+> Changes in v3:
+> -Add new compatible string for dp-hdcp
+> -Add descriptions to reg
+> -Add minItems/maxItems to reg
+> -Make reg depend on the new hdcp compatible string
+> Changes in v4:
+> -Rebase on Bjorn's multi-dp patchset
+> Changes in v4.5:
+> -Remove maxItems from reg (Rob)
+> -Remove leading zeros in example (Rob)
+> Changes in v5:
+> -None
+> Changes in v6:
+> -Rebased: modify minItems instead of adding it as new line.
+> Changes in v7:
+> -Revert the change to minItems
+> -Added the maxItems to Reg
+>
+>  .../devicetree/bindings/display/msm/dp-controller.yaml     | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
