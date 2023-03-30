@@ -2,137 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0662B6D0BDB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CF796D0BDE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbjC3Qww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 12:52:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
+        id S231524AbjC3QxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 12:53:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbjC3Qwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:52:35 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 346D2D32F;
-        Thu, 30 Mar 2023 09:51:54 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32UAmwdB026330;
-        Thu, 30 Mar 2023 16:51:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=AjCj6YxklN3rIrkY0fwU+CfdxLOxUEGlGCK4coYeNmc=;
- b=LOQh6diNSaoHGQvGtzBxa77rAny3oEVYOYQYEO3scyJhFIDfSeIQPE7bjN5o76n6OMak
- gcsd2Zdd5eZhzo/xQGsGGOHgtTL+NemMa4hE9+o2wetqIhLLgMwXdwpBJU87XsaU8qlv
- B1xTRwoAUe/7QnpR8/QO2fHXSB08tz+DZ4D2RdGx5+q6aOOxzrADJlkyk5+jiXccGv0s
- nY74xEEtvPN3MulPlAMCr9HEqAj33Wpb+R1iAu3b/eWNC3dsuxJRP5JTx18b40bi4LR0
- 6vfxsB+FJnYIXwkz81FySU7o5mzfNLMGpfnyk5XaVoGUhWMBKNAqC2CbpGE1WmrE6Umr +g== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pn7m3h6yq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 30 Mar 2023 16:51:33 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32UGpUU0013707
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 30 Mar 2023 16:51:30 GMT
-Received: from hu-gokukris-sd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 30 Mar 2023 09:51:30 -0700
-From:   Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Satya Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        "Guru Das Srinagesh" <quic_gurus@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
-Subject: [PATCH v2 1/1] dt-bindings: firmware: qcom: scm: Updating VMID list
-Date:   Thu, 30 Mar 2023 09:51:17 -0700
-Message-ID: <20230330165117.26348-1-quic_gokukris@quicinc.com>
+        with ESMTP id S231613AbjC3Qwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:52:37 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 626BCEB5B
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 09:51:58 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B2EB42F4;
+        Thu, 30 Mar 2023 09:52:24 -0700 (PDT)
+Received: from eglon.cambridge.arm.com (eglon.cambridge.arm.com [10.1.196.177])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D50C13F6C4;
+        Thu, 30 Mar 2023 09:51:38 -0700 (PDT)
+From:   James Morse <james.morse@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        James Morse <james.morse@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM interconnects
+Date:   Thu, 30 Mar 2023 17:51:22 +0100
+Message-Id: <20230330165128.3237939-1-james.morse@arm.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Hwr0NfvZ_nh9Alr2Q3HfmXIEP1aZhOrl
-X-Proofpoint-GUID: Hwr0NfvZ_nh9Alr2Q3HfmXIEP1aZhOrl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-30_10,2023-03-30_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 adultscore=0 malwarescore=0
- spamscore=0 priorityscore=1501 impostorscore=0 mlxlogscore=730
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2303300133
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding the full list of VMID's, which are used by different clients to
-pass to the secure world.
+Hello!
 
-Signed-off-by: Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
----
-V2 Fixed allignment issues in [1]
+Changes since the RFC?:
+ * Added DT support, in a way that means we don't end up with per-erratum
+   strings, or bloat in the calling code to check for those strings.
+ * Added a commandline argument. (boo)
+ * Changes to support errata affecting features on big-little systems properly.
 
-[1] https://lore.kernel.org/lkml/20230328214703.12093-1-quic_gokukris@quicinc.com/
----
- include/dt-bindings/firmware/qcom,scm.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+~
 
-diff --git a/include/dt-bindings/firmware/qcom,scm.h b/include/dt-bindings/firmware/qcom,scm.h
-index 1a4e68fa0744..7ad6cbe623d3 100644
---- a/include/dt-bindings/firmware/qcom,scm.h
-+++ b/include/dt-bindings/firmware/qcom,scm.h
-@@ -2,6 +2,7 @@
- /*
-  * Copyright (c) 2010-2015, 2018-2019 The Linux Foundation. All rights reserved.
-  * Copyright (C) 2015 Linaro Ltd.
-+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef _DT_BINDINGS_FIRMWARE_QCOM_SCM_H
-@@ -13,4 +14,25 @@
- #define QCOM_SCM_VMID_WLAN_CE		0x19
- #define QCOM_SCM_VMID_NAV		0x2B
- 
-+#define QCOM_SCM_VMID_TZ		0x1
-+#define QCOM_SCM_VMID_CP_TOUCH		0x8
-+#define QCOM_SCM_VMID_CP_BITSTREAM	0x9
-+#define QCOM_SCM_VMID_CP_PIXEL		0xA
-+#define QCOM_SCM_VMID_CP_NON_PIXEL	0xB
-+#define QCOM_SCM_VMID_CP_CAMERA		0xD
-+#define QCOM_SCM_VMID_HLOS_FREE		0xE
-+#define QCOM_SCM_VMID_MSS_NONMSA	0x10
-+#define QCOM_SCM_VMID_CP_SEC_DISPLAY	0x11
-+#define QCOM_SCM_VMID_CP_APP		0x12
-+#define QCOM_SCM_VMID_LPASS		0x16
-+#define QCOM_SCM_VMID_CP_SPSS_SP	0x1A
-+#define QCOM_SCM_VMID_CP_CAMERA_PREVIEW	0x1D
-+#define QCOM_SCM_VMID_CDSP		0x1E
-+#define QCOM_SCM_VMID_CP_SPSS_SP_SHARED	0x22
-+#define QCOM_SCM_VMID_CP_SPSS_HLOS_SHARED	0x24
-+#define QCOM_SCM_VMID_ADSP_HEAP		0x25
-+#define QCOM_SCM_VMID_CP_CDSP		0x2A
-+#define QCOM_SCM_VMID_TVM		0x2D
-+#define QCOM_SCM_VMID_OEMVM		0x31
-+
- #endif
+When stage1 translation is disabled, the SCTRL_E1.I bit controls the
+attributes used for instruction fetch, one of the options results in a
+non-cacheable access. A whole host of CPUs missed the FWB override
+in this case, meaning a KVM guest could fetch stale/junk data instead of
+instructions.
+
+The workaround is to disable FWB, and do the required cache maintenance
+instead.
+
+The good news is, this isn't a problem for systems using Arm's
+interconnect IP. The bad news is: linux can't know this. Arm knows of
+at least one platform that is affected by this erratum.
+
+
+This series adds support for the 'Errata Management Firmware Interface', [0]
+and queries that to determine if the CPU is affected or not. DT support is
+added so that the firmware interface values can be queried directly from the
+DT. This can be used as a fallback for platforms that don't yet support the
+interface.
+
+Unfortunately, no-one has firmware that supports this new interface yet,
+and the least surprising thing to do is to enable the workaround by default,
+meaning FWB is disabled on all these cores, even for unaffected platforms.
+ACPI Platforms that are not-affected can either take a firmware-update to
+support the interface, or if the kernel they run will only run on hardware
+that is unaffected, disable the workaround at build time.
+
+The trusted firmware series to implement the interface is here:
+https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/19835
+the trusted firmware code to advertise a value for this erratum is here:
+https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/20076
+
+The SDEN documents that describe this are:
+Cortex-A78:
+https://developer.arm.com/documentation/SDEN1401784/1800/?lang=en
+Cortex-A78C:
+https://developer.arm.com/documentation/SDEN1707916/1300/?lang=en
+https://developer.arm.com/documentation/SDEN2004089/0700/?lang=en
+(yes, there are two!)
+Cortex-A710:
+https://developer.arm.com/documentation/SDEN1775101/1500/?lang=en
+Cortex-X1:
+https://developer.arm.com/documentation/SDEN1401782/1800/?lang=en
+Cortex-X2:
+https://developer.arm.com/documentation/SDEN1775100/1500/?lang=en
+Cortex-X3:
+https://developer.arm.com/documentation/SDEN2055130/1000/?lang=en
+Cortex-V1:
+https://developer.arm.com/documentation/SDEN1401781/1600/?lang=en
+Cortex-V2:
+https://developer.arm.com/documentation/SDEN2332927/0500/?lang=en
+Cortex-N2:
+https://developer.arm.com/documentation/SDEN1982442/1200/?lang=en
+
+Thanks,
+
+James
+
+[0] https://developer.arm.com/documentation/den0100/1-0/?lang=en
+[RFC] https://lore.kernel.org/linux-arm-kernel/20230216182201.1705406-1-james.morse@arm.com/
+
+James Morse (6):
+  dt-bindings: firmware: Add arm,errata-management
+  firmware: smccc: Add support for erratum discovery API
+  arm64: cputype: Add new part numbers for Cortex-X3, and Neoverse-V2
+  arm64: errata: Disable FWB on parts with non-ARM interconnects
+  firmware: smccc: Allow errata management to be overridden by device
+    tree
+  arm64: errata: Add a commandline option to enable/disable #2701951
+
+ .../admin-guide/kernel-parameters.txt         |   4 +
+ Documentation/arm64/silicon-errata.rst        |  18 ++
+ .../devicetree/bindings/arm/cpus.yaml         |   5 +
+ .../firmware/arm,errata-management.yaml       |  72 +++++
+ arch/arm64/Kconfig                            |  27 ++
+ arch/arm64/include/asm/cpufeature.h           |   1 +
+ arch/arm64/include/asm/cputype.h              |   4 +
+ arch/arm64/kernel/cpu_errata.c                | 123 ++++++++
+ arch/arm64/kernel/cpufeature.c                |  23 +-
+ arch/arm64/tools/cpucaps                      |   1 +
+ drivers/firmware/smccc/Kconfig                |   8 +
+ drivers/firmware/smccc/Makefile               |   1 +
+ drivers/firmware/smccc/em.c                   | 284 ++++++++++++++++++
+ include/linux/arm-smccc.h                     |  28 ++
+ include/linux/arm_smccc_em.h                  |  11 +
+ 15 files changed, 609 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/firmware/arm,errata-management.yaml
+ create mode 100644 drivers/firmware/smccc/em.c
+ create mode 100644 include/linux/arm_smccc_em.h
+
 -- 
 2.39.2
 
