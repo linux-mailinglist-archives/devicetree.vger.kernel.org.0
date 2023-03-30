@@ -2,69 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4F06D0341
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 13:33:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 703D86D032A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 13:30:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231653AbjC3LdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 07:33:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43342 "EHLO
+        id S231154AbjC3LaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 07:30:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231604AbjC3LdM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 07:33:12 -0400
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D8F9B9ECB;
-        Thu, 30 Mar 2023 04:33:03 -0700 (PDT)
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1phqWX-0002LY-00; Thu, 30 Mar 2023 13:32:57 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 60EEFC1D41; Thu, 30 Mar 2023 13:30:03 +0200 (CEST)
-Date:   Thu, 30 Mar 2023 13:30:03 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S229563AbjC3LaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 07:30:19 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C61A10A
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:30:18 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-53d277c1834so348054227b3.10
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680175817;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0Z6cuQ9hIHTdbnLN1pgaiYFS8g/uB5WtYlD8bXBl8g8=;
+        b=UBthkx5ykPrfy0hajs5iWpqWsQfl+OQJsVnlphXPHX8w3694JndAEVdJBTuXCnc0Kq
+         nP1uCUpMIZVQ0PYDdXXonkcnS0LWTZDFbNjD1hpeV5OlzzurRUqGkHLQYVUAXAsfpra4
+         OkVwXU9xu33KbjC1lM3OX5+XLsohPAIbpLm4+O39CY1x3xHXUoMypSjyuhU2yNCS2U+6
+         8i+YvIx3WGbfRuscgl6JPs0FfwBIGZRdg6bOtKlLkNxe0Vk8gCyUwBkmWhSoyh2DJfUM
+         cDiRQ0xR6vyKwvN2zJFEKewLJDr8i8KE/xFEwe7Pkc9s1XtMwyHEe9pCd6Pfi7GHw5d/
+         4vPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680175817;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0Z6cuQ9hIHTdbnLN1pgaiYFS8g/uB5WtYlD8bXBl8g8=;
+        b=oSDPkxn6HRD7xFMp18LM/aL8m7LkUl+HUXX4PDWunh4wMsb9+mLuFOj+EbelSyzH93
+         y7eq2gXGbuwwf+U+JooXRVOtFuy1A+jXxSVUZHhbM8EhUdC2caKROasHHK2577+ueWrK
+         Tv42sUdHBxba+RzeJU0QWfTIGeshYJB/KkJ4PuaQ5ufYTuvSuGsNToCgYqBzQXa6sMk0
+         J+xYLqufJx9iVDO24nvK8drrmdjVVVJOd1qfc/Dh7YxcI0kbXhgQQVyYW9I9h8Y6OAUP
+         tobIVRL6htGL2iUHn1dBY7ToHCm+SYNDZAT/iHxrtW7mrVajwp3AcjtTQsdaKuflIRjA
+         avow==
+X-Gm-Message-State: AAQBX9dYDYTmnT5UXLHkVJvJaSZ3ZMKsb5ULF5IJLPUuRvcPSBT6Kczs
+        JHAgCYt+XhR1guqac+haqabv91TYoaHyaQKHs4LzoA==
+X-Google-Smtp-Source: AKy350YGt/VZZjwJ8RcTGwckSwP2VskFLeTRHe+v6OIVJWT/tuEh4q+I+f8Xbf2gB3tFVnOxTRlce+Uag4DqyXPeuCI=
+X-Received: by 2002:a81:b617:0:b0:541:7f69:aa8b with SMTP id
+ u23-20020a81b617000000b005417f69aa8bmr10804632ywh.5.1680175817633; Thu, 30
+ Mar 2023 04:30:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230329222500.1131836-1-dmitry.baryshkov@linaro.org>
+ <34470797-493c-d99b-4d0c-0f9381c5b7c1@linaro.org> <b9b1ae11-d9cf-0139-41d0-5af4ff2c8e6b@linaro.org>
+ <9ff4fc88-f4bc-3e05-cad9-176449d7258d@linaro.org>
+In-Reply-To: <9ff4fc88-f4bc-3e05-cad9-176449d7258d@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 30 Mar 2023 14:30:06 +0300
+Message-ID: <CAA8EJprwyxOqM6OpgTALgP1phduamETpGFEnwFuVSXX=HgG4AA@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] drm/msm/a5xx: scale MX following the frequency changes
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 1/3] MIPS: Loongson32: Remove deprecated PWM timer
- clocksource
-Message-ID: <20230330113003.GA9674@alpha.franken.de>
-References: <20230330101506.545040-1-keguang.zhang@gmail.com>
- <20230330101506.545040-2-keguang.zhang@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230330101506.545040-2-keguang.zhang@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 06:15:04PM +0800, Keguang Zhang wrote:
-> The Loongson1 PWM timer will be moved to clocksource framework.
-> Then, the old driver is no longer needed.
-> Remove the deprecated code and update the Kconfig.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
-> V1 -> V2: Delete the obsolete header file regs-pwm.h
-> ---
->  .../include/asm/mach-loongson32/regs-pwm.h    |  25 ---
->  arch/mips/loongson32/Kconfig                  |  37 ---
->  arch/mips/loongson32/common/time.c            | 210 ------------------
->  3 files changed, 272 deletions(-)
->  delete mode 100644 arch/mips/include/asm/mach-loongson32/regs-pwm.h
+On Thu, 30 Mar 2023 at 14:16, Konrad Dybcio <konrad.dybcio@linaro.org> wrot=
+e:
+>
+>
+>
+> On 30.03.2023 13:15, Dmitry Baryshkov wrote:
+> > On 30/03/2023 14:06, Konrad Dybcio wrote:
+> >>
+> >>
+> >> On 30.03.2023 00:24, Dmitry Baryshkov wrote:
+> >>> Konrad brought up the topic of scaling the MX domain according to the
+> >>> OPP changes. Here is my RFC for this functionality. I post it as an R=
+FC
+> >>> for two reasons:
+> >>>
+> >>> 1) I'm not sure that we should scale MX if we are not scaling main
+> >>> voltage following the CPR3
+> >> It should be ok, however..
+> >>>
+> >> [...]
+> >>
+> >>> Dmitry Baryshkov (3):
+> >>>    dt-bindings: display/msm/gpu: allow specifying MX domain A5xx
+> >>>    drm/msm/a5xx: scale MX domain following the frequncy changes
+> >> This is a stopgap solution, CPR is a child of MX.
+> >
+> > Not so sure here. Vendor kernel scales voltages and MX levels separatel=
+y. Moreover, please correct me if I'm wrong here, the kernel doesn't scale =
+VDD_GFX directly. It programs GPMU's voltage table and then GPMU handles vo=
+ltage scaling according to performance levels being set. MX is handled in p=
+arallel to switching GPMU's level.
+> >
+> > I have implemented this voltage scaling locally, just need to run more =
+tests before posting (and unfortunately it depends either on CPR3+GFX or on=
+ programming the voltages manually).
+> Oh no.. I forgot about the ugly goblin that we call GPMU.. I'll have
+> to dig into it further. Thanks for reminding me..
 
-Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Let me send the fixed voltage table programming (probably on Friday).
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+>
+> Konrad
+> >
+> >>
+> >> Konrad
+> >>>    arm64: dts: qcom: specify power domains for the GPU
+> >>>
+> >>>   .../devicetree/bindings/display/msm/gpu.yaml  |  9 +++-
+> >>>   arch/arm64/boot/dts/qcom/msm8996.dtsi         | 14 ++++-
+> >>>   drivers/gpu/drm/msm/adreno/a5xx_gpu.c         | 52 ++++++++++++++++=
++++
+> >>>   drivers/gpu/drm/msm/adreno/a5xx_gpu.h         |  3 ++
+> >>>   4 files changed, 76 insertions(+), 2 deletions(-)
+> >>>
+> >
+
+
+
+--=20
+With best wishes
+Dmitry
