@@ -2,127 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 219A16D0438
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 14:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFC816D0494
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 14:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbjC3MAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 08:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33978 "EHLO
+        id S231200AbjC3MWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 08:22:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjC3MAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 08:00:53 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2040.outbound.protection.outlook.com [40.107.93.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923082D4F;
-        Thu, 30 Mar 2023 05:00:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kDjs39rw3svwaCc8Irefhtbt0BV5HIUmlLtNSHyq4MZjzjxXYCLbRj8CfpZW+F2RrmKDWhIYeAGyfdfDI+01EvaGAk/o5e81FnyYCRWSRs5b3+45HFHGHVMHY2dleV+DwHxpc3QZTkMME6wuRw3PkoI9ydztcjqzMu6bHH68m/hMMqmOnpWskJO5qvSLbDpiBZxot2JMc55KcHhKXE2dmB9BEanr2b7wOzGyJxnFx5VIlJACWyDQFeb+QNedk28DNm6MKF2B3a0zkURiQ9fTcBKHojc3goWIOadVslZ5xipigZHodGR/+xNJ0B+zOCItW0GiGOB8xE1wvZQ2MpFxYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WWRa6B0lsPSzr0HtiW4BWoWjgmpc4mnCbWQtDNyMX2w=;
- b=dTxzeGvxGju3ExVw708lkuB/czklWAG59ftq3ATXAtuJnsXA4fURxadEARTejl0QdRPbYcau2N8A/w6tlOcVuaLQi/vHenY1G5dNrOvz+vWJHddM+cGxTm6UwwZ21n70Wac7wFA0AGs8CcAhWBdlqrk5XSXjKWPIu9sHhdIDze9qX4ubKeftvk5olR5PSQ8VlH+RmwvKuarabj/+4nO6T4A+301ePMwUoAOJGR1IUVV1mB5UHh8BjustE56sd6ocDSscdLFkZIcwPIIWpG6aTatQVe8xB3xEJw+pzVx2aZ3KPITP3rRZ3CugA1BrMX78E3xe0zihK+zJUnrqtqTVmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWRa6B0lsPSzr0HtiW4BWoWjgmpc4mnCbWQtDNyMX2w=;
- b=tDHa+GmDBnDquIDe8L+7nrPJyHkUS+A+pp8Qqt219SzHcim3VO21txwCR1GhgkzpQclKjta5/uO8/ciSjgol71PPEa0y+PvTzgLXTmypoGm+XoBBc+ZrGikdMIPDUIxpem8ZSuL6j7xfAZA2rHjY/yTN0lXnQBJCxxooclZfOoI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by MW4PR12MB7381.namprd12.prod.outlook.com (2603:10b6:303:219::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Thu, 30 Mar
- 2023 12:00:49 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::4d07:7f52:c833:9603]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::4d07:7f52:c833:9603%6]) with mapi id 15.20.6222.035; Thu, 30 Mar 2023
- 12:00:49 +0000
-Message-ID: <fc324a64-111d-c7e4-6af4-74e025c4fe10@amd.com>
-Date:   Thu, 30 Mar 2023 14:00:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v1 2/2] drivers: clk: zynqmp: Add versal-net compatible
- string
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org
-Cc:     git@amd.com, linux-clk@vger.kernel.org, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com
-References: <20230330091309.16215-1-shubhrajyoti.datta@amd.com>
- <20230330091309.16215-3-shubhrajyoti.datta@amd.com>
- <910df994-637e-07df-c53c-06a1c0d8d83e@linaro.org>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <910df994-637e-07df-c53c-06a1c0d8d83e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1P195CA0046.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:802:5a::35) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+        with ESMTP id S231592AbjC3MWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 08:22:36 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E17C902E
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 05:22:24 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id e65so23129239ybh.10
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 05:22:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680178943;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fkgvBexVN7YQyw/6jRR4bXfTXLAK3o3NkknPbbqBnUc=;
+        b=FgLWSz9t3sWQkJWIb04amO3ju/Zy/bu1b0klnduPHyBdLRrKnsim8cN2Ap0lh+NJ7v
+         rOQTpRMNLMakHR8lZ4nNZJonc8b50PrHynV4j1bFMhbzJqZgdTKIpwDnXqfnt9i+ZcWv
+         9Of0Fh2TMpywg3h8wZGGu1bj+/R2RQffoS8mFz9WNJgtPkSKN5BgWY9cP4WF3HxAFKIu
+         0tx+1PUXygjYRH07aU38QCzOc1zL2TzxICadf5FnKVrFDVZ8K8O9qbwuoUixmvne8SBq
+         jDwfbNfNKa9Xa2WOpisjstOfQ4wT2jOTgZ++rT/wcEUMIxEE6JBv4hKhgXCpg6t/p110
+         K6uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680178943;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fkgvBexVN7YQyw/6jRR4bXfTXLAK3o3NkknPbbqBnUc=;
+        b=z8kR+vOXmwP0AGXu7dYdtE2gYHR3MrvjzerOO/4afYZpy5EN02xmiab+bYj/6VyqPQ
+         1l6qHkoNxN8XhM4ZhGPg+u+zk3V9wc39gHLbiFyFqHCWxkw67YO3OhlIC9j4ZDJ13hrh
+         4HraTGBXZJA6bCFCEIb1gxrvGcY2LfWxEvcOB+LLie05+QrK0ZNCcxPJ3oBvftiphsi5
+         MLqGjLb8BVeYIqT209OZIomjo54G3H52NrpFElDMNd8xiTKuLVcJbGrQVOXziNEvvmMb
+         u25E8GadqQEAPXaTPcAA2qq1DTkIhryt8moVkoYbHh9bbhZbEBuoC1t1U0KcgiK0Ok4g
+         KJKg==
+X-Gm-Message-State: AAQBX9cx025M+j2GEHKOMCJ2gmAja9o5se21oyaprO8X5cpir5U7GHm6
+        tx7coRZakQhrKjhXtJYxMoMVnI3ickfpcOFYQ1Kviw==
+X-Google-Smtp-Source: AKy350ajq/TmUBLRPZjm2/sWAgQNJKdsLd/pLSNZPUTH6/oDAeLSyRGusPDM5yEZFtErnt+S0DtkjLRkSDFn6ORxK4E=
+X-Received: by 2002:a05:6902:70a:b0:b6e:361a:c86 with SMTP id
+ k10-20020a056902070a00b00b6e361a0c86mr12602065ybt.3.1680178943525; Thu, 30
+ Mar 2023 05:22:23 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|MW4PR12MB7381:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31ecdd42-6048-4688-06b2-08db31166711
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gJSt0IQGJz0EbSAFyEH6Fiq95NCFuH8qPlq/TEUhk9vhyRKhvnMWOzJ1c0lsrvz408IlAO36AtnOB3by+BP0ENyA4BmTkE2g039fGBqQO3zUAJo9iocahsmxntu4tDk9fmqeb2YWPV141QzjYajeM4XEtzdnGo6qgdyDhwtK1ul/lsSt9rYNzF/qF6aAPTjMThu3M6n2YJ+lVefsoZUdIW+x7XH29xg6LcPp319ygZFqygp2wLyl/xbrpaXUAcy4C9mYYnVvb4oUzzLR6qwyF9ZmnlL7KoYGvfXqG9i/LgYcPBQwH0WF1/ya5RqAKq84myrl2Q4Mv3BmINZ8ToIxjFcJkjuNBrdQzNrBcbcLR29d55nAIev/AOlI47Zhceglw/pGkcEg4fovXH2QklARSS9+TpP1DAlCWZ/iWU3ZTCRhNL6EmAuuOztgbiX/vIudkdGt5cZqkVEFjKhF4S1BpjFCJiFx5iNKJvijFkbmQGfn39KmYmkicAvNrntS5uHzFOsb5EYqBGJujWO8mO8ydBtTB6FewjZjge6z8sgq37cGGhJogMVglJ+buy0qBjKTZvuNOkyaPOA26YgKTVypEQ4uMV19v/5yjpYbAOJk5PJwVxz7iXVfizOdppmEcD/KIxmafutetHLq4e56lpGBuA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(136003)(376002)(366004)(39860400002)(451199021)(66476007)(6666004)(53546011)(6506007)(6512007)(26005)(6486002)(478600001)(31686004)(110136005)(316002)(186003)(66556008)(8676002)(83380400001)(66946007)(2616005)(41300700001)(8936002)(4326008)(5660300002)(44832011)(2906002)(38100700002)(31696002)(86362001)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVBST3gzOEtsdVVmSVJOeG1hOUZsWndNT2lUcTBjamlsbmhTd3FIQm5TcHF4?=
- =?utf-8?B?MzhpRDVkWFJ1dDJpNmMrbmhVQTJ3RkhSeGVDTTdFRkk3T3I3YWY1TjBXMWMz?=
- =?utf-8?B?a05pSnpFNm93cVJJckNreTNlTDFaRWlQVEhyeDVGYXJYR21HRzdjRjR3V3p0?=
- =?utf-8?B?SkRMTGljblprZk81NVBjdk44a3Rqd2E0K05jdUdjQlBNK29uMnd0ZTNNV3VT?=
- =?utf-8?B?ZE53amlhblRma3hQWUJpb1dCWFpuQmZNMDNpclJ4TXkyVnp5SzlLSGx6ZURy?=
- =?utf-8?B?SUM4M0JvK3R2TnJ2cWtmak9VSW9WZnY0RERzeVZ6L3R3MXdVZnl3Nnd2RXkw?=
- =?utf-8?B?MWZWd29McEpBdTE3VG40MFQzOE42L2paam05ZE9TV2x2Y2txdENqNFVCdHJH?=
- =?utf-8?B?OGg0UTN6ZFFPOWV5ci9HOUU3Mzh5enFUQWR5ZEh2dWo0ZklpR2t3UXlrdDZB?=
- =?utf-8?B?eFVvL2diM1lKVHFRY1NjeEl1KzhzbmprblBpc2MyUkNEejRJNktmU0ZwU1U5?=
- =?utf-8?B?akpsTlp5elRiZG84TEloVG1PM3NWMVZKNmthQTB1eWk5YnBCblhFejR3Q0lK?=
- =?utf-8?B?d3pQVFVjd0tmV1BtMjd6RFM0TmJHdTlvVjVvQURaYVNmbE5oMDBtR2hqaHZs?=
- =?utf-8?B?UEhUMThVc2lua1dlb3duTnJWd1hIQk5zeW5ROWhKeUxxQVR6bmowMnVQVU1K?=
- =?utf-8?B?NzB3OTFPZVVPYXp1Q0VxaEFyVllxWjVhRmlxZzJ4dkg4R1hhNFBzTmpldWtZ?=
- =?utf-8?B?Y1VJOTZMS1VUWE5wcldXNFdYMVBxb0xFR2UzL0MvUHJUMFQ1aWlVemwvc05R?=
- =?utf-8?B?aytUY0hMazJLSlZNeGFJU29vUHNwYjN3czY0QUpuQ2R4UUY5aFFVSU1wbXNp?=
- =?utf-8?B?ZTN3NzgzdDJMUGFub3NnRlprOE1Nd0ttU1NYa1loVHpFY1lYelhWdmtrN3hP?=
- =?utf-8?B?TmFvNnR5NFBDM1ZIdmtFajF5NHBFSWhyYjZ4RnlIODNpaWFTK0J6ZzZ5dGFK?=
- =?utf-8?B?UzVQQ2xNMnlQRWhnUk1JSlNmNldQK0tLL2JxNHBwOER6QXRWK05pVzdFODAv?=
- =?utf-8?B?NnRtakY5NGRWcTB3QjVUOXpYbS9oVDVxeEVwTjdZMkZFSlV4ditPQzJYWXlZ?=
- =?utf-8?B?L0hXOHZMN2RJelZKZm5aUnpsdVhsZ0Z1ZE42SXNoT1lOeS9tZlJkTGZwY0lN?=
- =?utf-8?B?VkVyR1VlVE5pV2o3R244bmdqdmRUSUsrSDhWalVSTDVVVlBPdjFmMGh3NllS?=
- =?utf-8?B?R2VYQ25mdFptSWpKSXhkeTl5TzEwZnZNTEFuY0oyNHc1bXphY3Bxakdka1NZ?=
- =?utf-8?B?QTVPR2s1MlkxMStiSWdJRjFldVBtOWRjSHZEMW02NjBGY2Z5ZlUxbXhGUTdU?=
- =?utf-8?B?TEkva0hiWStTZHhjMkZTZlBmMS9CK0Rvdm1KRXVVcnpuSlVyOGtHMENZdmhh?=
- =?utf-8?B?NEZnZVFCTWp3L1BUOFhpOFFTd1ViMEFIcjBzUUt3Um5NdksxNzVSbzNBUDh0?=
- =?utf-8?B?dE42SnZGZGoyT0d2M2IwZGJoMzJHMStCVXhUeXVsRW13aVEzU3o1RnRLem1I?=
- =?utf-8?B?cmVKVFpSdGt6L1hISjlDYjFPTUdVdDFnQjRZaGRFRksxSjZDVE0xRnB4em9Z?=
- =?utf-8?B?Y0lpUkJYYWVSZEV6VjR1M3NaVnRxY05xekhrOFQzMGE2UFpjcDJNdU1YUWsw?=
- =?utf-8?B?cVlxN2hqZkN3eE45QjFCeTNwUVNmbUpKdVhEWU14bjBRRnV1c1JocjhzMkRG?=
- =?utf-8?B?V3JKaE1ralRzWFgxZkw0VFFnS3krSjJUV2NDbUZrR2M3RHhVWlQwd1Z5ZjF4?=
- =?utf-8?B?NDZQOCs4S09zVWUwT2YxMzdyYndtZW9IV2NzcU5PRGtaVFVEOVlpcmtwdEFh?=
- =?utf-8?B?K20xaW9YeTRLYTlvZ0tmSlJKdzNLeE5ZZ3NScHVxNHRzMDlCRURjOERyUEJy?=
- =?utf-8?B?NTFLUWp0dDNqUm4wSFlpUkVpZGQ4UW9JVngwS1lCTlFjM3JvQndBdXBvWkQ2?=
- =?utf-8?B?TlFPd0s3c1JlRGNFbGdGOEIvQUlPNlNGeEJIVDlFYnNiVmlIN25qbHhXYWNO?=
- =?utf-8?B?KzkyRTRaYis4Z09WQ0lOeXpDZXVCQ08reC9TL0l2TEsySFd0TlN6SWhjd1hu?=
- =?utf-8?Q?EBihmJffFYzqlg3CvgIRkmwXe?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31ecdd42-6048-4688-06b2-08db31166711
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 12:00:49.4375
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fTifGL9aFjktDrek+KHGq7YOla3r6vJ4ADn/PTrwBndB61F97JInXTU8BcAugvaU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7381
+References: <20230330084250.32600-1-quic_mkshah@quicinc.com> <20230330084250.32600-3-quic_mkshah@quicinc.com>
+In-Reply-To: <20230330084250.32600-3-quic_mkshah@quicinc.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 30 Mar 2023 14:21:47 +0200
+Message-ID: <CAPDyKFoBi_TotpFF-OX2kyL=4zFSHK46nQsWFRqcX5YXTj-gLg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Add power-domains for
+ cpuidle states
+To:     Maulik Shah <quic_mkshah@quicinc.com>
+Cc:     andersson@kernel.org, dianders@chromium.org, swboyd@chromium.org,
+        wingers@google.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        sudeep.holla@arm.com, jwerner@chromium.org, quic_lsrao@quicinc.com,
+        quic_rjendra@quicinc.com, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -130,42 +69,203 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 30 Mar 2023 at 10:43, Maulik Shah <quic_mkshah@quicinc.com> wrote:
+>
+> Add power-domains for cpuidle states to use psci os-initiated idle states.
+>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
 
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-On 3/30/23 13:08, Krzysztof Kozlowski wrote:
-> On 30/03/2023 11:13, Shubhrajyoti Datta wrote:
->> From: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
->>
->> Add compatible string for versal-net.
->>
->> Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
->> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
->> ---
->>
->>   drivers/clk/zynqmp/clkc.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/clk/zynqmp/clkc.c b/drivers/clk/zynqmp/clkc.c
->> index 5636ff1ce552..1ea5fba20d91 100644
->> --- a/drivers/clk/zynqmp/clkc.c
->> +++ b/drivers/clk/zynqmp/clkc.c
->> @@ -789,6 +789,7 @@ static int zynqmp_clock_probe(struct platform_device *pdev)
->>   static const struct of_device_id zynqmp_clock_of_match[] = {
->>   	{.compatible = "xlnx,zynqmp-clk"},
->>   	{.compatible = "xlnx,versal-clk"},
->> +	{.compatible = "xlnx,versal-net-clk"},
-> 
-> Why no driver data? Why do you create new driver matchings if devices
-> are compatible?
+Kind regards
+Uffe
 
-It is the same discussion as we had recently in connection to emmc.
-versal-net is new SOC and if any issue happens we would apply workaround based 
-on DT compatible string. And by using special compatible string directly from 
-beginning will allow us to do changes without change DT.
-
-We actually don't need to update the driver for this. We can just simply list 
-new dt binding and use both compatible string in DT like this.
-"xlnx,versal-net-clk", "xlnx,versal-clk"
-
-Thanks,
-Michal
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
+>  1 file changed, 73 insertions(+), 25 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 5e6f9f441f1a..1a232eb4dde6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -170,9 +170,8 @@
+>                         reg = <0x0 0x0>;
+>                         clocks = <&cpufreq_hw 0>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> -                                          &LITTLE_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD0>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_0>;
+>                         operating-points-v2 = <&cpu0_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -196,9 +195,8 @@
+>                         reg = <0x0 0x100>;
+>                         clocks = <&cpufreq_hw 0>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> -                                          &LITTLE_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD1>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_100>;
+>                         operating-points-v2 = <&cpu0_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -218,9 +216,8 @@
+>                         reg = <0x0 0x200>;
+>                         clocks = <&cpufreq_hw 0>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> -                                          &LITTLE_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD2>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_200>;
+>                         operating-points-v2 = <&cpu0_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -240,9 +237,8 @@
+>                         reg = <0x0 0x300>;
+>                         clocks = <&cpufreq_hw 0>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> -                                          &LITTLE_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD3>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_300>;
+>                         operating-points-v2 = <&cpu0_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -262,9 +258,8 @@
+>                         reg = <0x0 0x400>;
+>                         clocks = <&cpufreq_hw 1>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
+> -                                          &BIG_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD4>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_400>;
+>                         operating-points-v2 = <&cpu4_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -284,9 +279,8 @@
+>                         reg = <0x0 0x500>;
+>                         clocks = <&cpufreq_hw 1>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
+> -                                          &BIG_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD5>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_500>;
+>                         operating-points-v2 = <&cpu4_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -306,9 +300,8 @@
+>                         reg = <0x0 0x600>;
+>                         clocks = <&cpufreq_hw 1>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
+> -                                          &BIG_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD6>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_600>;
+>                         operating-points-v2 = <&cpu4_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -328,9 +321,8 @@
+>                         reg = <0x0 0x700>;
+>                         clocks = <&cpufreq_hw 2>;
+>                         enable-method = "psci";
+> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
+> -                                          &BIG_CPU_SLEEP_1
+> -                                          &CLUSTER_SLEEP_0>;
+> +                       power-domains = <&CPU_PD7>;
+> +                       power-domain-names = "psci";
+>                         next-level-cache = <&L2_700>;
+>                         operating-points-v2 = <&cpu7_opp_table>;
+>                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+> @@ -422,9 +414,11 @@
+>                                 min-residency-us = <5555>;
+>                                 local-timer-stop;
+>                         };
+> +               };
+>
+> +               domain-idle-states {
+>                         CLUSTER_SLEEP_0: cluster-sleep-0 {
+> -                               compatible = "arm,idle-state";
+> +                               compatible = "domain-idle-state";
+>                                 idle-state-name = "cluster-power-down";
+>                                 arm,psci-suspend-param = <0x40003444>;
+>                                 entry-latency-us = <3263>;
+> @@ -790,6 +784,59 @@
+>         psci {
+>                 compatible = "arm,psci-1.0";
+>                 method = "smc";
+> +
+> +               CPU_PD0: cpu0 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD1: cpu1 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD2: cpu2 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD3: cpu3 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD4: cpu4 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD5: cpu5 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD6: cpu6 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CPU_PD7: cpu7 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+> +               };
+> +
+> +               CLUSTER_PD: cpu-cluster0 {
+> +                       #power-domain-cells = <0>;
+> +                       domain-idle-states = <&CLUSTER_SLEEP_0>;
+> +               };
+>         };
+>
+>         qspi_opp_table: opp-table-qspi {
+> @@ -5280,6 +5327,7 @@
+>                                           <SLEEP_TCS   3>,
+>                                           <WAKE_TCS    3>,
+>                                           <CONTROL_TCS 1>;
+> +                       power-domains = <&CLUSTER_PD>;
+>
+>                         apps_bcm_voter: bcm-voter {
+>                                 compatible = "qcom,bcm-voter";
+> --
+> 2.17.1
+>
