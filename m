@@ -2,123 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BE1B6CFE4C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF156CFE6A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:35:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbjC3Ia2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 04:30:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45092 "EHLO
+        id S229602AbjC3Ifo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 04:35:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230420AbjC3IaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:30:09 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8B7CB7EDF;
-        Thu, 30 Mar 2023 01:29:38 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 015C12F4;
-        Thu, 30 Mar 2023 01:30:16 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E6CA3F73F;
-        Thu, 30 Mar 2023 01:29:29 -0700 (PDT)
-Date:   Thu, 30 Mar 2023 09:29:23 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        nicola.mazzucato@arm.com, Tushar.Khandelwal@arm.com,
-        viresh.kumar@linaro.org, jassisinghbrar@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox : arm,mhuv2: Allow for more RX
- interrupts
-Message-ID: <ZCVIVhtSLKTHs+to@e120937-lin>
-References: <20230329153936.394911-1-cristian.marussi@arm.com>
- <20230329153936.394911-2-cristian.marussi@arm.com>
- <20230329174431.yga3c233sazimane@bogus>
+        with ESMTP id S229966AbjC3IfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:35:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E29F36EA5;
+        Thu, 30 Mar 2023 01:35:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4E8EAB82682;
+        Thu, 30 Mar 2023 08:35:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DB43C433EF;
+        Thu, 30 Mar 2023 08:35:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1680165313;
+        bh=VexdsD+y0VorUzO1MJy7DQZ7xA7FoNIWym8yR4KmJ4I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=0qsid/tmIiqipI6TTO1pmVAFTJ5IAuwfkPXVuXigieT2h1COo7U8zUF/yjFQWvnqv
+         4sVpN25psc6F3OU2NBmE6ce+cZJTYaXz0P2l2A4jXNPo+If619sul0c8rrQIIYD3wu
+         80UWeRkhSG8VsRJy+8pjFCRDtlok8OiQegg/aRys=
+Date:   Thu, 30 Mar 2023 10:35:11 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
+        yi.l.liu@intel.com, jgg@ziepe.ca, razor@blackwall.org,
+        stephen@networkplumber.org, prabhakar.csengg@gmail.com,
+        contact@emersion.fr, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        sterzik@ti.com, u-kumar1@ti.com, eblanc@baylibre.com,
+        jneanne@baylibre.com
+Subject: Re: [PATCH v5 4/4] misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
+Message-ID: <ZCVJv-erahM_Jdug@kroah.com>
+References: <20230330082006.11216-1-jpanis@baylibre.com>
+ <20230330082006.11216-5-jpanis@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230329174431.yga3c233sazimane@bogus>
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230330082006.11216-5-jpanis@baylibre.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 06:44:31PM +0100, Sudeep Holla wrote:
-> On Wed, Mar 29, 2023 at 04:39:35PM +0100, Cristian Marussi wrote:
-> > The ARM MHUv2 Receiver block can indeed support more interrupts, up to the
-> > maximum number of available channels, but anyway no more than the maximum
-> > number of supported interrupt for an AMBA device.
-> > 
-> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> > ---
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: devicetree@vger.kernel.org
-> > 
-> >  .../devicetree/bindings/mailbox/arm,mhuv2.yaml      | 13 +++++++++----
-> >  1 file changed, 9 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > index a4f1fe63659a..5a57f4e2a623 100644
-> > --- a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > @@ -69,10 +69,15 @@ properties:
-> >  
-> >    interrupts:
-> >      description: |
-> > -      The MHUv2 controller always implements an interrupt in the "receiver"
-> > -      mode, while the interrupt in the "sender" mode was not available in the
-> > -      version MHUv2.0, but the later versions do have it.
-> > -    maxItems: 1
-> > +      The MHUv2 controller always implements at least an interrupt in the
-> > +      "receiver" mode, while the interrupt in the "sender" mode was not
-> > +      available in the version MHUv2.0, but the later versions do have it.
-> > +      In "receiver" mode, beside a single combined interrupt, there could be
-> > +      multiple interrupts, up to the number of implemented channels but anyway
-> > +      no more than the maximum number of interrupts potentially supported by
-> > +      AMBA.
-> > +    minItems: 1
-> > +    maxItems: 9
+On Thu, Mar 30, 2023 at 10:20:06AM +0200, Julien Panis wrote:
+> This PFSM controls the operational modes of the PMIC:
+> - STANDBY and LP_STANDBY,
+> - ACTIVE state,
+> - MCU_ONLY state,
+> - RETENTION state, with or without DDR and/or GPIO retention.
+> Depending on the current operational mode, some voltage domains
+> remain energized while others can be off.
 > 
+> This PFSM is also used to trigger a firmware update, and provides
+> R/W access to device registers.
 
-Hi,
+What userspace code uses these new ioctls?  Do you have a pointer to it
+anywhere?
 
-> I am not sure 9 is the correct value here. IIUC it is just what Linux defines
-> as AMBA_NR_IRQS. Looking at the history it was bumped from 2 to 9 for use
-> by PL330 DMA driver. I couldn't find anything to relate this 9 in any
-> AMBA or other related specification.
-> 
+> --- /dev/null
+> +++ b/include/uapi/linux/tps6594_pfsm.h
+> @@ -0,0 +1,45 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +/*
+> + * Userspace ABI for TPS6594 PMIC Pre-configurable Finite State Machine
+> + *
+> + * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
+> + */
+> +
+> +#ifndef __TPS6594_PFSM_H
+> +#define __TPS6594_PFSM_H
+> +
+> +#include <linux/const.h>
+> +#include <linux/ioctl.h>
+> +#include <linux/types.h>
+> +
+> +/* PFSM state definitions */
+> +enum pfsm_state {
+> +	PMIC_ACTIVE_STATE,
+> +	PMIC_MCU_ONLY_STATE,
+> +	PMIC_RETENTION_STATE
+> +};
+> +
+> +/**
+> + * struct pmic_state - PMIC state identification
+> + * @state:   PFSM destination state
+> + * @options: options for destination state
+> + */
+> +struct pmic_state {
+> +	enum pfsm_state state;
+> +	__u8 options;
+> +};
+> +
+> +/* Commands */
+> +#define	PMIC_BASE			'P'
+> +
+> +#define	PMIC_GOTO_STANDBY		_IO(PMIC_BASE, 0)
+> +#define	PMIC_GOTO_LP_STANDBY		_IO(PMIC_BASE, 1)
+> +#define	PMIC_UPDATE_PGM			_IO(PMIC_BASE, 2)
+> +#define	PMIC_SET_STATE			_IOW(PMIC_BASE, 3, struct pmic_state)
+> +
+> +/* Options for destination state */
+> +#define PMIC_GPIO_RETENTION		_BITUL(0)
+> +#define PMIC_DDR_RETENTION		_BITUL(1)
+> +#define PMIC_MCU_ONLY_STARTUP_DEST	_BITUL(2)
 
-Yes, I could not find either where the 9 comes from, but it is what
-currently each amba device is limited to, at the software level, in terms of
-interrupts that can be detected.
+Please read Documentation/driver-api/ioctl.rst which says:
 
-> Ideally I would say we don't know what the max here. We just have a platform
-> implementing 2 interrupts now. Do we for with 2 for now and change it if some
-> new users require more in the future ?
-> 
+* Bitfields and enums generally work as one would expect them to,
+  but some properties of them are implementation-defined, so it is
+  better to avoid them completely in ioctl interfaces.
 
-By the spec seems to me that the maximum number of interrupts are equal to
-the maximum possible channels (124), or one combined interrupt.
+For a brand-new ioctl interface, you did both of these unrecommended
+things.  Why set yourself for complexity when you do not need to?
 
-But these in turn, as said, are capped by the AMBA_NR_IRQS and I have
-only seen one system using 2. (for which I need this series to work)
+thanks,
 
-> I will leave that to the DT maintainers but 9 is simply random based on Linux
-> code so I would rather choose some other random number with a better reasoning
-> than 9 as AMBA code in the kernel is limiting it to 9.
-> 
-
-Agreed. Aiming to describe any possible hw in the DT, I would say 124 at
-this point. (even though implausible not to use the combined interrupt
-at that point...)
-
-
-Thanks,
-Cristian
+greg k-h
