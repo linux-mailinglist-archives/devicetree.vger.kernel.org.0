@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 949726CFD00
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 331A86CFD22
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:43:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230340AbjC3Hjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39988 "EHLO
+        id S229555AbjC3HnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:43:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230324AbjC3Hjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:39:41 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D953A423A
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:39:39 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id h25so23361180lfv.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:39:39 -0700 (PDT)
+        with ESMTP id S229579AbjC3HnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:43:16 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A05D4681
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:43:13 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id y20so23411371lfj.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:43:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680161978;
+        d=linaro.org; s=google; t=1680162191;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1BFQFEcp+Yc7eK7+gRqJuLKGd2zLsXk3LDs9OcFmZs=;
-        b=ruldmbq64NM+hwrT/y0is2vQMgd+GIg71Oboaq2lJYwssqBaw6eK86sRZ2/R9RWiWb
-         qZGN+9RZW8Hob34SVoK1OPpL7PTvxVES2P37JZsx/bI5K3VPsMxTmqbIwMAsAFDP3jgR
-         T9C9SpPHR2VTbi2RXgEVjnJ881PG78j/N1bSrbfYc8FyzzmbDrY1kNi4QESoxY7PWhXX
-         Zz+UC8n1m+4CUFohK0Yzqz7RbGeBP6u84ND8MOgCw5xw1EZOC1LX63X5yQwcNFxVM3P0
-         Z3ublQZNxVx67c9jRHkN7OFj4gfp82jHCEmbRP2axY0oiNuIwEHShdjoVOaKESnCGBcB
-         3hZQ==
+        bh=4zuZ7AJ+urGiuWJ6O4WJPaOH0rhv1jf2+srORpX4K/Y=;
+        b=VFgq8bbjUfROWOqUvRrcNQlzsT4ilwA91/7+wugNbVngG3akeaii4iHP53uBR9EcLb
+         Hh56rV0B0S9udnu6ZDFMczEtvJXVwy0onkcaLV5VbrsiDczd+riGAa8hTNBIPANFl92X
+         3KzX4vKfh+vEAbz7AfUKCOkajNPVmK9Hr/VxMWHu+SqKYhEzfTlNxDFYUzvScP54achN
+         IXaGIQvolcSN1bSUu7gesQ1e4W5+12gSoKlzJFBqLYPgtQ1xsUh16R8S2P1s/PIpgdCs
+         LXmljO/YjAyEbuJd3r5mLoku2RelpvshyDOkadbLy24PUTfm4fslCCv4E82JyiZiaYC/
+         dMgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680161978;
+        d=1e100.net; s=20210112; t=1680162191;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1BFQFEcp+Yc7eK7+gRqJuLKGd2zLsXk3LDs9OcFmZs=;
-        b=bONtLUs06b7AmoiOBQBNlv2F8f4WzqFgvBEto9IeZ6TrXcClPKmwg5V1RJD+rtsOxw
-         e6hbeZaSDHDKfSKdlFf6H5Wqj9aMr2Nb1D7sIPeUZA/eBcH10yWBkTi4vj2P0a6/6Pem
-         BJQCSsAN3XKzpXpgJwkXxi4FHijcYkSDx8c5ojT40kXEQDArTZoVU6CUVkqF7vmgcYbz
-         TMPPQHVCoHkCp8/ErsRb7jOsdJrcFOYfcQyc+j4UBc6j/v/KkY+E3QZwnkuspJR/sNDb
-         uCxFhxNE35hL2SXfHID1Vu+KituZzbZF+VxSf7gfFR+YLxoeeGz660SdTaWEz9qlpNE8
-         GRjw==
-X-Gm-Message-State: AAQBX9cl6/JshLKBNQZ7sd9Auc6gejjM8E7nPrArreHxkpnQEZoAJpc7
-        W+iYGIZcRyPYo15qDrZqddLArw==
-X-Google-Smtp-Source: AKy350bAQUuZJ9AdRREDwN63mloWL2b2FNGC4p1ekLCHdHGiBahv9ED14kOttKyL58M6k3Pwu6iDbA==
-X-Received: by 2002:ac2:5458:0:b0:4ea:fabb:4db1 with SMTP id d24-20020ac25458000000b004eafabb4db1mr6418948lfn.1.1680161978106;
-        Thu, 30 Mar 2023 00:39:38 -0700 (PDT)
+        bh=4zuZ7AJ+urGiuWJ6O4WJPaOH0rhv1jf2+srORpX4K/Y=;
+        b=pYYsjyS32ocgWaY6PIWiD/tC2yfuO/M6CEyE7tNo9nReFJblprwRho4Wm5w6aMHBLO
+         L5Du5+1+BrNqkz9xyuZiP5ZoZ8QbrVNcgskDgeaGsuQuq2YjRl2ONIk4Hf0WgLc5jjNV
+         02ccTJPdwAf+kE/pqRNznUK3crUr007Y9ro6EFf8jKrZZqVvnDzcksDXS6HuIRdI7qEZ
+         gRMkQEpQ2DTpY6ywBTaSpdC/4quV/Dr7gsbA40GW7YYwRZAc36/S2Z+d9JQvqN9uSqNV
+         QS5H7nIWFnePGSWBL642MsBDJuk1/S5HLPq3OhgU5bl8X7c980iJmS7Ss5mUNqy3prFW
+         XEZg==
+X-Gm-Message-State: AAQBX9ew2z3FIMw7eDt4sBsns+SSpk5dLSwKgwhI66wgURbnLWUziu0z
+        Ew9eOi7aXomWFtKkSlONvrBU1Q==
+X-Google-Smtp-Source: AKy350ZsAuQmcXRHoK+KQymYwvc+9+fujqTKeBRI50gKJ8CU7idfpzKcaaZoWyt6UOY23zghCl9J5g==
+X-Received: by 2002:a19:ad44:0:b0:4db:38ba:ca61 with SMTP id s4-20020a19ad44000000b004db38baca61mr6228770lfd.53.1680162191597;
+        Thu, 30 Mar 2023 00:43:11 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b16-20020a056512219000b004d85895d7e0sm3956796lft.147.2023.03.30.00.39.37
+        by smtp.gmail.com with ESMTPSA id f16-20020ac25330000000b004e844eeb555sm5801328lfh.214.2023.03.30.00.43.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 00:39:37 -0700 (PDT)
-Message-ID: <c999da90-1cb9-c767-23bc-c28d37708cf2@linaro.org>
-Date:   Thu, 30 Mar 2023 09:39:36 +0200
+        Thu, 30 Mar 2023 00:43:11 -0700 (PDT)
+Message-ID: <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+Date:   Thu, 30 Mar 2023 09:43:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: sound: Add TDM for StarFive JH7110
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: add tdm node and sound card
 Content-Language: en-US
 To:     Walker Chen <walker.chen@starfivetech.com>,
         Jaroslav Kysela <perex@perex.cz>,
@@ -66,9 +66,9 @@ To:     Walker Chen <walker.chen@starfivetech.com>,
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 References: <20230329153320.31390-1-walker.chen@starfivetech.com>
- <20230329153320.31390-2-walker.chen@starfivetech.com>
+ <20230329153320.31390-4-walker.chen@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230329153320.31390-2-walker.chen@starfivetech.com>
+In-Reply-To: <20230329153320.31390-4-walker.chen@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,67 +82,212 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/03/2023 17:33, Walker Chen wrote:
-> Add bindings to describe the TDM driver for the StarFive JH7110 SoC.
+> Add the tdm controller node and sound card for the StarFive JH7110 SoC.
 > 
 > Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
 > ---
->  .../bindings/sound/starfive,jh7110-tdm.yaml   | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+>  .../jh7110-starfive-visionfive-2.dtsi         | 87 +++++++++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 34 ++++++++
+>  2 files changed, 121 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml b/Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
-> new file mode 100644
-> index 000000000000..d65b9ed781ef
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/starfive,jh7110-tdm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 1155b97b593d..35137c2edf5d 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -62,6 +62,10 @@
+>  	clock-frequency = <297000000>;
+>  };
+>  
+> +&wm8960_mclk {
+> +	clock-frequency = <24576000>;
+> +};
 > +
-> +title: StarFive JH7110 TDM Controller
+>  &i2srx_bclk_ext {
+>  	clock-frequency = <12288000>;
+>  };
+> @@ -102,6 +106,14 @@
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c0_pins>;
+>  	status = "okay";
 > +
-> +description: |
-> +  The TDM Controller is a Time Division Multiplexed audio interface
-> +  integrated in StarFive JH7110 SoC, allowing up to 8 channels of
-> +  audio over a serial interface. The TDM controller can operate both
-> +  in master and slave mode.
+> +	wm8960: codec@1a {
+> +		compatible = "wlf,wm8960";
+> +		reg = <0x1a>;
+> +		#sound-dai-cells = <0>;
 > +
-> +maintainers:
-> +  - Walker Chen <walker.chen@starfivetech.com>
+> +		wlf,shared-lrclk;
+> +	};
+>  };
+>  
+>  &i2c2 {
+> @@ -214,6 +226,40 @@
+>  			slew-rate = <0>;
+>  		};
+>  	};
 > +
+> +	tdm0_pins: tdm0-pins {
+> +		tdm0-pins-tx {
+> +			pinmux = <GPIOMUX(44, GPOUT_SYS_TDM_TXD,
+> +					      GPOEN_ENABLE,
+> +					      GPI_NONE)>;
+> +			bias-pull-up;
+> +			drive-strength = <2>;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +
+> +		tdm0-pins-rx {
+> +			pinmux = <GPIOMUX(61, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_TDM_RXD)>;
+> +			input-enable;
+> +		};
+> +
+> +		tdm0-pins-sync {
+> +			pinmux = <GPIOMUX(63, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_TDM_SYNC)>;
+> +			input-enable;
+> +		};
+> +
+> +		tdm0-pins-pcmclk {
+> +			pinmux = <GPIOMUX(38, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_TDM_CLK)>;
+> +			input-enable;
+> +		};
+> +	};
+>  };
+>  
+>  &uart0 {
+> @@ -221,3 +267,44 @@
+>  	pinctrl-0 = <&uart0_pins>;
+>  	status = "okay";
+>  };
+> +
+> +&tdm {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&tdm0_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&sound0 {
+> +	simple-audio-card,dai-link@0 {
+> +		reg = <0>;
+> +		status = "okay";
 
-Missing allOf: with $ref to dai-common.
+Why? Drop.
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - starfive,jh7110-tdm
+> +		format = "dsp_a";
+> +		bitclock-master = <&dailink_master>;
+> +		frame-master = <&dailink_master>;
 > +
-> +  reg:
-> +    maxItems: 1
+> +		widgets =
 
-(...)
+Drop line break.
 
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - dmas
-> +  - dma-names
-> +  - "#sound-dai-cells"
+> +				"Microphone", "Mic Jack",
+> +				"Line", "Line In",
+> +				"Line", "Line Out",
+> +				"Speaker", "Speaker",
+> +				"Headphone", "Headphone Jack";
+> +		routing =
+
+Drop unnecessary line break.
+
+> +				"Headphone Jack", "HP_L",
+> +				"Headphone Jack", "HP_R",
+> +				"Speaker", "SPK_LP",
+> +				"Speaker", "SPK_LN",
+> +				"LINPUT1", "Mic Jack",
+> +				"LINPUT3", "Mic Jack",
+> +				"RINPUT1", "Mic Jack",
+> +				"RINPUT2", "Mic Jack";
+> +		cpu {
+> +			sound-dai = <&tdm>;
+> +		};
 > +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tdm: tdm@10090000 {
+> +		dailink_master:codec {
 
-Drop tdm label, not used.
+Missing space after label:.
+
+> +			sound-dai = <&wm8960>;
+> +			clocks = <&wm8960_mclk>;
+> +			clock-names = "mclk";
+> +		};
+> +	};
+> +};
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index b503b6137743..a89158d1d7a6 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -210,6 +210,12 @@
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	wm8960_mclk: wm8960_mclk {
+
+No underscores in node names. Use consistent naming - do you see here
+any nodes named "mclk"?
+
+Anyway this is some fake clock. Real clock should come out from wm8960.
+
+> +		compatible = "fixed-clock";
+> +		clock-output-names = "wm8960_mclk";
+> +		#clock-cells = <0>;
+> +	};
+> +
+>  	i2srx_bclk_ext: i2srx-bclk-ext-clock {
+>  		compatible = "fixed-clock";
+>  		clock-output-names = "i2srx_bclk_ext";
+> @@ -375,6 +381,27 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		tdm: tdm@10090000 {
+> +			compatible = "starfive,jh7110-tdm";
+> +			reg = <0x0 0x10090000 0x0 0x1000>;
+> +			clocks = <&syscrg JH7110_SYSCLK_TDM_AHB>,
+> +				 <&syscrg JH7110_SYSCLK_TDM_APB>,
+> +				 <&syscrg JH7110_SYSCLK_TDM_INTERNAL>,
+> +				 <&syscrg JH7110_SYSCLK_TDM_TDM>,
+> +				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
+> +				 <&tdm_ext>;
+> +			clock-names = "tdm_ahb", "tdm_apb",
+> +				      "tdm_internal", "tdm",
+> +				      "mclk_inner", "tdm_ext";
+> +			resets = <&syscrg JH7110_SYSRST_TDM_AHB>,
+> +				 <&syscrg JH7110_SYSRST_TDM_APB>,
+> +				 <&syscrg JH7110_SYSRST_TDM_CORE>;
+> +			dmas = <&dma 20>, <&dma 21>;
+> +			dma-names = "rx","tx";
+> +			#sound-dai-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		stgcrg: clock-controller@10230000 {
+>  			compatible = "starfive,jh7110-stgcrg";
+>  			reg = <0x0 0x10230000 0x0 0x10000>;
+> @@ -601,5 +628,12 @@
+>  			#reset-cells = <1>;
+>  			power-domains = <&pwrc JH7110_PD_VOUT>;
+>  		};
+> +
+> +		sound0: snd-card0 {
+
+1. Why card0?
+2. Where is this node located? In MMIO bus? Run some basic checks on
+your DTS before submitting upstream.
+dtbs_check
+dtbs W=1
+
+3. Why this is even in the DTSI? This really looks wrong.
+
+> +			compatible = "simple-audio-card";
+> +			simple-audio-card,name = "Starfive-TDM-Sound-Card";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 
 Best regards,
 Krzysztof
