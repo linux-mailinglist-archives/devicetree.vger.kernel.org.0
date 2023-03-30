@@ -2,133 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 391E96D0DC4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 20:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7D96D0DFB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 20:42:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbjC3Sbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 14:31:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60884 "EHLO
+        id S231387AbjC3SmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 14:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbjC3Sbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 14:31:52 -0400
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756B74681
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 11:31:51 -0700 (PDT)
-Received: by mail-vs1-xe41.google.com with SMTP id dg15so5413734vsb.13
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 11:31:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1680201110;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6bmgWM4VeyB5ih4GlZbThd/2eiyQX/X/Evx0/5WbwLA=;
-        b=FcAPCmOi8kd46tiur46X+HJQ0QvfkHoCXSefLC+keO6eO2vi28w47YYGEtBDxbcHQA
-         AAqk5jSkJ8HaZeolw6cJGb/rLhohHT9f5CrP1QxFO8H2qZwbgk7o9rF1OWvxPTC2YZXz
-         VFj0Jx6bQyqMyqZzT0BI/9Cs0YpjwVmCUzsmk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680201110;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6bmgWM4VeyB5ih4GlZbThd/2eiyQX/X/Evx0/5WbwLA=;
-        b=P64aO6j8pj+vD9+W8P3rFxhhWdEXV1x1HGvEJKnmbTun7OPi64MrEOGyAQzrcKg5k1
-         BuzngNrm7qQaCuSpFgzidCYO9MTJFmEi1nTexG3i1sooWZL1ccbk6xjZ/Nm0FTC1vN+T
-         qYqT4E2L/xEFxRwzpMZ4L1oYy19lXRPa1DIwjCnLud48w5M3ePLiDmid4zFOr8kyYiqE
-         oTIsAXtiVKN/RkMRR4IOQtcoy5edQueUEajsDipqkIWj2SKANmyPBU9ofMknm74Myz2c
-         hiyeAakZOTVFXONy6Fi1jJ6st+LIq0VXhtKNWJ0jbJHKizzfHuVvQ0POlmIHFLHStNzj
-         StlA==
-X-Gm-Message-State: AAQBX9euX8W8Hv8bkLwuzeTSyri1V4LWcQ/mnjAFUTsFyT90Smy/JsjL
-        fi1S4ajov63pDXHN0VuUZ2o4m4UQaUAmu3f335ok7A==
-X-Google-Smtp-Source: AKy350ZW+shoLk5NMgLx02gB1cVOQAgj6/TjFVclF2B/NAOvGzglj6NmtlFaBAvYDweqJv1EXQqEKg==
-X-Received: by 2002:a67:e40a:0:b0:416:5a81:caf8 with SMTP id d10-20020a67e40a000000b004165a81caf8mr9076980vsf.32.1680201110628;
-        Thu, 30 Mar 2023 11:31:50 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id n13-20020a9f314d000000b0074b2d26801dsm40667uab.8.2023.03.30.11.31.50
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 11:31:50 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id cz11so17037385vsb.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 11:31:50 -0700 (PDT)
-X-Received: by 2002:a67:c18a:0:b0:425:cf00:e332 with SMTP id
- h10-20020a67c18a000000b00425cf00e332mr13402479vsj.7.1680201109830; Thu, 30
- Mar 2023 11:31:49 -0700 (PDT)
+        with ESMTP id S231578AbjC3SmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 14:42:02 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26ACF10250;
+        Thu, 30 Mar 2023 11:41:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680201696; x=1711737696;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=2lhEavYsX0XeKONGXX9Iu6NgQrMHJIVeCVJEWC8FSVk=;
+  b=OgTqmzldJhLyMYaEfuV9Y6Z4DZ4/8BSfEfyROmmNuqeoKDs0/ZIV7mZ5
+   PslHL29E2MafVlDxS05DxzD/HAHfKBeK/O91F6+ppuZUf75OCBK3ZznPz
+   ozesecyUNYJ9TU6RvSK/HpT+K5L93GwWrUfA8eBkLKYX87pzQwkiXuCx5
+   GYaeK/QaM7hpAUGFtsB4tHjdy1v7ZCk1eXSlLOI0yd7evGkHnamyd7j29
+   1/UHEQrpVXo28KmsE4620UZmGVlOvFcmyKDskVLnBA6gB7AcU6vpeWptL
+   1zXA6XBtP8ummyivQGYqnT9ZqV268LibWdxLlflmN2jMusKxhnBdV7Wwd
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,305,1673938800"; 
+   d="scan'208";a="208114310"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Mar 2023 11:41:35 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 30 Mar 2023 11:41:34 -0700
+Received: from [10.171.246.14] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Thu, 30 Mar 2023 11:41:32 -0700
+Message-ID: <4328668b-26c7-ebe7-f839-b6accd0a38f9@microchip.com>
+Date:   Thu, 30 Mar 2023 20:41:30 +0200
 MIME-Version: 1.0
-References: <20230324195555.3921170-1-markyacoub@google.com> <20230324195555.3921170-10-markyacoub@google.com>
-In-Reply-To: <20230324195555.3921170-10-markyacoub@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 30 Mar 2023 11:31:38 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xvu++Bvkkq+xORUB0OWq_49nupFgCqsbX0XJz8vgy0Zw@mail.gmail.com>
-Message-ID: <CAD=FV=Xvu++Bvkkq+xORUB0OWq_49nupFgCqsbX0XJz8vgy0Zw@mail.gmail.com>
-Subject: Re: [PATCH v7 09/10] arm64: dts: qcom: sc7180: Add support for HDCP
- in dp-controller
-To:     Mark Yacoub <markyacoub@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        seanpaul@chromium.org, suraj.kandpal@intel.com,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 3/4] ARM: dts: at91: sama5d2_icp: Set sst26vf064b SPI
+ NOR flash at its maximum frequency
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        <claudiu.beznea@microchip.com>
+CC:     <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Tudor Ambarus" <tudor.ambarus@microchip.com>
+References: <20230328101517.1595738-1-tudor.ambarus@linaro.org>
+ <20230328101517.1595738-4-tudor.ambarus@linaro.org>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230328101517.1595738-4-tudor.ambarus@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 28/03/2023 at 12:15, Tudor Ambarus wrote:
+> From: Tudor Ambarus <tudor.ambarus@microchip.com>
+> 
+> sama5d2_icp populates an sst26vf064b SPI NOR flash. Its maximum operating
+> frequency for 2.7-3.6V is 104 MHz. As the flash is operated at 3.3V,
+> increase its maximum supported frequency to 104MHz. The increasing of the
+> spi-max-frequency value requires the setting of the
+> "CE# Not Active Hold Time", thus set the spi-cs-setup-ns to a value of 7.
+> 
+> The sst26vf064b datasheet specifies just a minimum value for the
+> "CE# Not Active Hold Time" and it advertises it to 5 ns. There's no
+> maximum time specified. I determined experimentally that 5 ns for the
+> spi-cs-setup-ns is not enough when the flash is operated close to its
+> maximum frequency and tests showed that 7 ns is just fine, so set the
+> spi-cs-setup-ns dt property to 7.
+> 
+> With the increase of frequency the reads are now faster with ~37%.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 
-On Fri, Mar 24, 2023 at 12:56=E2=80=AFPM Mark Yacoub <markyacoub@chromium.o=
-rg> wrote:
->
-> From: Sean Paul <seanpaul@chromium.org>
->
-> Add the register ranges required for HDCP key injection and
-> HDCP TrustZone interaction as described in the dt-bindings for the
-> sc7180 dp controller.
->
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
->
+Tested-by: Nicolas Ferre <nicolas.ferre@microchip.com> # on sama5d2 ICP 
+board with a linux-next kernel today.
+
+Thanks Tudor!
+
+Best regards,
+   Nicolas
+
 > ---
-> Changes in v3:
-> -Split off into a new patch containing just the dts change (Stephen)
-> -Add hdcp compatible string (Stephen)
-> Changes in v4:
-> -Rebase on Bjorn's multi-dp patchset
-> Changes in v5:
-> -Put the tz register offsets in trogdor dtsi (Rob C)
-> Changes in v6:
-> -Rebased: Removed modifications in sc7180.dtsi as it's already upstream
-> Changes in v7:
-> -Change registers offset
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/bo=
-ot/dts/qcom/sc7180-trogdor.dtsi
-> index 47f39c547c41a..63183ac9c3c48 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -816,6 +816,14 @@ &mdss_dp {
->         status =3D "okay";
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&dp_hot_plug_det>;
-> +
-> +       reg =3D <0 0x0ae90000 0 0x200>,
-> +             <0 0x0ae90200 0 0x200>,
-> +             <0 0x0ae90400 0 0xc00>,
-> +             <0 0x0ae91000 0 0x400>,
-> +             <0 0x0ae91400 0 0x400>,
-> +             <0 0x0aed1000 0 0x174>,
-> +             <0 0x0aee1000 0 0x2c>;
+>   arch/arm/boot/dts/at91-sama5d2_icp.dts | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+> index 1346b8f2b259..999adeca6f33 100644
+> --- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+> @@ -669,7 +669,8 @@ flash@0 {
+>                  #size-cells = <1>;
+>                  compatible = "jedec,spi-nor";
+>                  reg = <0>;
+> -               spi-max-frequency = <80000000>;
+> +               spi-max-frequency = <104000000>;
+> +               spi-cs-setup-ns = <7>;
+>                  spi-tx-bus-width = <4>;
+>                  spi-rx-bus-width = <4>;
+>                  m25p,fast-read;
+> --
+> 2.40.0.348.gf938b09366-goog
+> 
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+-- 
+Nicolas Ferre
+
