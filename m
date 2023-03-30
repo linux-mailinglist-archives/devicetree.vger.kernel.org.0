@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 715516D075B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 456366D0777
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232190AbjC3Nyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 09:54:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42058 "EHLO
+        id S231475AbjC3N66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 09:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232063AbjC3Nyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:54:39 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE8675B86
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:54:36 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id x17so24634966lfu.5
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:54:36 -0700 (PDT)
+        with ESMTP id S231710AbjC3N65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:58:57 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B83B4EDE
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:58:55 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id bi9so24610873lfb.12
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680184475;
+        d=linaro.org; s=google; t=1680184733;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3bDS+NZkCHNjcglyIFTFfiCpIuz6atTUwaUlX4EZFO0=;
-        b=ErhbzUuJagPIYLAc87qPWesX4OphTqSHbJlUJVBxYSuQj1F7by1TnBjfmXPMkVWe/a
-         Iu3m3k0LswZfbS3vZSMywRkPsQYArihDnUmFaAlH9Mb5bDzCTXzj65gkKQEv8OjR0RaW
-         tk2xX9+JDRLkNBdGasPWY23zteZ+ErxBVxkMgmShPfqCN4VTvlxDrfVRhfkIxXHpvln6
-         H9nocYvLcFCWlp5ljTC3t37lWhVXndOUFUgZlKgZtImqwfm4Lyh6vXhHz85Xpc9D8Mp2
-         HMrch5hd8A5/8XdkknaU0barZxVPKTAysNeuqgUcUpAqqj0ns4VD7Y0p7AhEIYB9G8Or
-         uJHw==
+        bh=27unI8wWC3xyBQDKcEdRsVirNoZHmyXbsED4WP7a6fY=;
+        b=R460FUeBKM5rkTRImdau+2e0dozel2XbOR0qZruDlE8L/xUhXFsZRHki7d86pQ+xMu
+         zHhjAC7o1JRGVZUyU9ldQmE9oGGkO1Ytd2TOOzQTlwbGbBOUIak/xAYXM3paPpU3nRx4
+         YtEuLE2+rMCEMDx+VzoMf+i/lS9ZtklEqlTIRiim22SH6OfDlCCiGUuPOuZQZdNI/9x3
+         OU28D00XuvAr60s7wxZgTSGfu4ttOAcODklrWQo3RH06E+D4ENQMS7cZ3r+PKX1CTw12
+         XCnA5pAxWfluiwAY/yJgtztiQYsbmZerdzNb75DvbANq12MTLyvzMt+kWhs9YZHlnxGo
+         fVaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680184475;
+        d=1e100.net; s=20210112; t=1680184733;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3bDS+NZkCHNjcglyIFTFfiCpIuz6atTUwaUlX4EZFO0=;
-        b=ZjbpNHBCvyc67dEj6qXr+oizGHtMzuNGZDwsRkqUwfp6UkwLY/1Wosl+rDVD0te/rH
-         tzOV5QWGuwvvGJcNE6dxwEfrcvlvdvau4LLOweEppBqfPuHqhNLWzr2PTyD4WtsOk4Eq
-         Z9ghrIPSlawuFRW5JBGDqmuJSabgmXAXA1vfnMMSs352B2yVNl+EPlhrlQQBOZnMufz7
-         ufY/+UHMiUkXSAeKsyMZcugH4v5AmYiw6/7exejGJDp7gOatYjekc/IwtnT+KE+CYsau
-         v0kKniEgXx+/BcLb8i3jB9CT8jhqfYA6mz/MGvNKdEX3m5dmycLFAD+V+xW0QpkVLW40
-         XwLQ==
-X-Gm-Message-State: AAQBX9f1//IC5GI138PfIJWbsLgCRHYmrJIpWP1BJcYZV7gb2uIbI3a7
-        KWSPwLHqWvowpu+CV6BLbU90Lw==
-X-Google-Smtp-Source: AKy350bscyofmdfis+7MYVvAX6/F+FXHo4829Gg5E4cWInBN+17SyFn1NzTYtImeQD2Xg1dAOF4b9w==
-X-Received: by 2002:a05:6512:985:b0:4e9:605e:b470 with SMTP id w5-20020a056512098500b004e9605eb470mr1821024lft.26.1680184474901;
-        Thu, 30 Mar 2023 06:54:34 -0700 (PDT)
+        bh=27unI8wWC3xyBQDKcEdRsVirNoZHmyXbsED4WP7a6fY=;
+        b=KgyfvAn+IcFWycnPtYdgDScMi6C4i0D0aaaGLxkX7uCiNUmSd3gFllDKyOp+Z+qEyq
+         /6Jfpj/ZGsytfFGXDf6axRl5dVYvAAIaADEv8OlvUDNMEAH3ccaC92KfUA3mHVRUFI3J
+         1IFlcSnpvURZXfwaDu8jVEU0Mg8B2g5Jtu9LsecDwJS8Yo/YZisV8rN5tE4Cj0lQFCZB
+         74K3eFkMIqo74pO5bxYvorm0niOEVEHIrumEqQq+6IQ9tPWPuqF4fZQEWKNdv/QuG6FI
+         hpbYezkqNwQJqdcrWGIllPD2KXvKBEoWG3APajaE6bmYea0mnmogWT6rgXmzNlyDXbzg
+         8QJw==
+X-Gm-Message-State: AAQBX9dpp1O6xRuETTMQzI4HwweuvJCBsusw4NMmnHC0VymiXsNZBrJa
+        RmvIuJv5QrM4M8HpQDdYTa7DGyaBTJusBmSQwFk=
+X-Google-Smtp-Source: AKy350by6kwTXHDqM6Rl2aSlGzj+St4CNnAP2EEj5N8lRCc7Lq7O0jplsZ81SDolQvMQfsI9IvFl6g==
+X-Received: by 2002:a19:700e:0:b0:4de:3774:2d97 with SMTP id h14-20020a19700e000000b004de37742d97mr5524564lfc.13.1680184733578;
+        Thu, 30 Mar 2023 06:58:53 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q28-20020ac2529c000000b004eaf8613bc3sm3525907lfm.284.2023.03.30.06.54.33
+        by smtp.gmail.com with ESMTPSA id n22-20020a195516000000b004eafac09d8esm3278848lfe.240.2023.03.30.06.58.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 06:54:34 -0700 (PDT)
-Message-ID: <7c4af740-1cf5-6b20-4642-8657ef31c9d8@linaro.org>
-Date:   Thu, 30 Mar 2023 15:54:33 +0200
+        Thu, 30 Mar 2023 06:58:53 -0700 (PDT)
+Message-ID: <0b39b19e-e5ee-2751-cd57-68278354da5f@linaro.org>
+Date:   Thu, 30 Mar 2023 15:58:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 2/8] dt-bindings: phy: qcom,qmp-usb: Add IPQ9574 USB3
- PHY
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1679909245.git.quic_varada@quicinc.com>
- <4a21defe3320eb11d0e43bc7f02b3168ecefd458.1679909245.git.quic_varada@quicinc.com>
- <3d49b4b0-587c-f7e5-4122-65b3e9f11583@linaro.org>
- <20230330071016.GB13508@varda-linux.qualcomm.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Prathamesh Shete <pshete@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Suresh Mangipudi <smangipudi@nvidia.com>
+References: <20230207115617.12088-1-pshete@nvidia.com>
+ <a1395eb2-da3a-e080-fa6b-50f20d879655@linaro.org> <Y+OGdMFQkL9Dtaq/@orome>
+ <9e7e1762-1c2e-28cd-c7a7-b0577addf51e@linaro.org>
+ <DM5PR12MB24066CE3175B74150235FE55B7B49@DM5PR12MB2406.namprd12.prod.outlook.com>
+ <3b9d4177-ebd9-e341-294d-41860fa8c5ac@linaro.org> <ZBxeLIXJDbM2ebyt@orome>
+ <e06977ab-8112-1e45-4392-df36e358e772@linaro.org> <ZCLgEhrQiYHGGZ6S@orome>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330071016.GB13508@varda-linux.qualcomm.com>
+In-Reply-To: <ZCLgEhrQiYHGGZ6S@orome>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,49 +87,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 09:10, Varadarajan Narayanan wrote:
-> On Mon, Mar 27, 2023 at 01:02:52PM +0300, Dmitry Baryshkov wrote:
->> On 27/03/2023 12:30, Varadarajan Narayanan wrote:
->>> Add dt-bindings for USB3 PHY found on Qualcomm IPQ9574
+On 28/03/2023 14:39, Thierry Reding wrote:
+> On Sun, Mar 26, 2023 at 02:19:45PM +0200, Krzysztof Kozlowski wrote:
+>> On 23/03/2023 15:11, Thierry Reding wrote:
+>>> On Wed, Mar 08, 2023 at 01:24:04PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 08/03/2023 12:45, Prathamesh Shete wrote:
+>>>>>
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>> Sent: Wednesday, February 8, 2023 5:28 PM
+>>>>>> To: Thierry Reding <thierry.reding@gmail.com>
+>>>>>> Cc: Prathamesh Shete <pshete@nvidia.com>; Jonathan Hunter
+>>>>>> <jonathanh@nvidia.com>; linus.walleij@linaro.org; robh+dt@kernel.org;
+>>>>>> krzysztof.kozlowski+dt@linaro.org; devicetree@vger.kernel.org; linux-
+>>>>>> tegra@vger.kernel.org; linux-gpio@vger.kernel.org; Suresh Mangipudi
+>>>>>> <smangipudi@nvidia.com>
+>>>>>> Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: tegra234: Add DT binding doc
+>>>>>>
+>>>>>> External email: Use caution opening links or attachments
+>>>>>>
+>>>>>>
+>>>>>> On 08/02/2023 12:24, Thierry Reding wrote:
+>>>>>>> On Tue, Feb 07, 2023 at 04:33:08PM +0100, Krzysztof Kozlowski wrote:
+>>>>>>
+>>>>>>
+>>>>>>>>> +          type: object
+>>>>>>>>> +          additionalProperties:
+>>>>>>>>> +            properties:
+>>>>>>>>> +              nvidia,pins:
+>>>>>>>>> +                description: An array of strings. Each string contains the name
+>>>>>>>>> +                  of a pin or group. Valid values for these names are listed
+>>>>>>>>> +                  below.
+>>>>>>>>
+>>>>>>>> Define properties in top level, which points to the complexity of
+>>>>>>>> your if-else, thus probably this should be split into two bindings.
+>>>>>>>> Dunno, your other bindings repeat this pattern :(
+>>>>>>>
+>>>>>>> The property itself is already defined in the common schema found in
+>>>>>>> nvidia,tegra-pinmux-common.yaml and we're overriding this here for
+>>>>>>> each instance since each has its own set of pins.
+>>>>>>>
+>>>>>>> This was a compromise to avoid too many bindings. Originally I
+>>>>>>> attempted to roll all Tegra pinctrl bindings into a single dt-schema,
+>>>>>>> but that turned out truly horrible =) Splitting this into per-SoC
+>>>>>>> bindings is already causing a lot of duplication in these files,
+>>>>>>
+>>>>>> What would be duplicated? Almost eveerything should be coming from
+>>>>>> shared binding, so you will have only compatible,
+>>>>>> patternProperties(pinmux) and nvidia,pins. And an example. Maybe I miss
+>>>>>> something but I would say this would create many but very easy to read
+>>>>>> bindings, referencing common pieces.
+>>>>>>
+>>>>>>> though splitting
+>>>>>>> off the common bits into nvidi,tegra-pinmux-common.yaml helps a bit
+>>>>>>> with that already. Splitting this into per-instance bindings would
+>>>>>>> effectively duplicate everything but the pin array here, so we kind of
+>>>>>>> settled on this compromise for Tegra194.
+>>>>>>
+>>>>>> OK, but are you sure it is now readable? You have if:then: with
+>>>>>> patternProperties: with additionalProperties: with properties: with
+>>>>>> nvidia,pins.
+>>>>> This is inline with the existing bindings and I think this is the compromise that was reached during review when the bindings were submitted,
+>>>>
+>>>> So the code might be totally unreadable, but it is inline with existing
+>>>> code, thus it should stay unreadable. Great.
 >>>
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> ---
->>>  Changes in v4:
->>> 	- Remove constraints not applicable to IPQ9574
->>>  Changes in v3:
->>> 	- Update other mandatory fields to accomodate IPQ9574
->>>  Changes in v2:
->>> 	- Updated sections missed in previous patch
->>> ---
->>>  .../bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml    | 25 ++++++++++++++++++++--
->>>  1 file changed, 23 insertions(+), 2 deletions(-)
+>>> I'd say this is very subjective. I personally don't find the current
+>>> version hard to read, but that's maybe because I wrote it... =)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
->>> index e81a382..aa5b58c 100644
->>> --- a/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
->>> @@ -21,6 +21,7 @@ properties:
->>>      enum:
->>>        - qcom,ipq6018-qmp-usb3-phy
->>>        - qcom,ipq8074-qmp-usb3-phy
->>> +      - qcom,ipq9574-qmp-usb3-phy
->>>        - qcom,msm8996-qmp-usb3-phy
->>>        - qcom,msm8998-qmp-usb3-phy
->>>        - qcom,qcm2290-qmp-usb3-phy
->>> @@ -122,8 +123,6 @@ required:
->>>    - clock-names
->>>    - resets
->>>    - reset-names
->>> -  - vdda-phy-supply
->>> -  - vdda-pll-supply
+>>>>> offer to rework if a better alternative can be found, but that only makes sense if all the other bindings get changed as well, so I think it'd be good if we can merge in the same format as the existing bindings for now and change all of them later on.
+>>>>
+>>>> Cleanup should happen before adding new bindings.
+>>>
+>>> I don't recall the exact problems that I ran into last time, but I do
+>>> remember that pulling out the common bindings to the very top-level was
+>>> the main issue.
+>>>
+>>> If I understand correctly what you're saying, the main problem that
+>>> makes this hard to read is the if and else constructs for AON/MAIN
+>>> variants on Tegra194/Tegra234. These should be quite easy to pull out
+>>> into separate bindings. I'll do that first and then see if there's
+>>> anything that could be done to further improve things.
 >>
->> Same questions as for the qusb2 PHY. How is the PHY powered?
+>> One problem is allowing characters here which are not allowed. Second
+>> problem is reluctance to change it with argument "existing bindings also
+>> have this problem". It's explanation like "there is already bug like
+>> this, so I am allowed to add similar one".
 > 
-> It is powered by always on regulators. Will create fixed
-> regulators and assign them to these.
+> This is not a bug that we're trying to replicate. We're basing this
+> binding on a existing bindings that were already reviewed upstream a
+> long time ago. It uses a shared binding that's in use by these other
+> bindings, so making any changes to this new binding means either the
+> other ones need to be changed as well or we can't reuse the existing
+> shared binding.
 
-always-on where? in DTS? Then it is not really related to this patch...
-or you meant always-on power domains? Yet still device has power supplies.
+Are you sure? I did not see here conflict. The specific device binding
+can narrow the pattern defined in common binding.
+
+What's more, where do you see this pattern at all in shared binding?
+
+I am sorry, but this does not fit my arguments at all. This pattern is
+clearly wrong and argument to keep duplicating it because other (not
+common!) binding also has it is by design invalid.
+
+> 
+>> Now third is that defining properties in allOf is not the style we want
+>> to have, because it does not work with additionalProperties and is
+>> difficult to read. Again using argument "existing code also does like
+>> this" is a very poor argument.
+> 
+> As far as I can tell, it does work as expected in this case because
+> we're not actually adding any *new* properties in the allOf/if branches.
+
+The if:else: defines type and additionalProperties, so I am sorry but
+this is not a readable solution.
+
+> If we were, then yes, we would need to use unevaluatedProperties and
+> that can get complicated. But again, in this case we're merely
+> overriding existing properties with more specific values, which means
+> that both the standard binding applies and then things are narrowed down
+> by the values defined for each compatible.
+
 
 Best regards,
 Krzysztof
