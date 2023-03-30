@@ -2,66 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B4E6D090D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECEE86D0943
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232725AbjC3PGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 11:06:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
+        id S232757AbjC3PTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 11:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232635AbjC3PGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:06:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2C09C;
-        Thu, 30 Mar 2023 08:06:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DBBC620AE;
-        Thu, 30 Mar 2023 15:06:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB65C433EF;
-        Thu, 30 Mar 2023 15:06:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680188766;
-        bh=dPa5iDYVqXA+hqQv91TzUwfoTYRtbylD49pBAZ3DPC8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YowgVcF2cjsefmg/giP3q7hz6zgKCBJiarScxQNJH5GK7Yq65JVHiF5zfcFVb7v3w
-         HEReYbZVskzgs3RJk0V6vtTiMWV5BXfjBeg+PDuoQJvHEtEILoqYj57aVEEfqGyD3N
-         sbzcUeVJzl4HiVB25Fmnlu1YbblBhy/gOaybGjh1OcwjW716wvCiy9Iea66q5bQQLw
-         wIKMUO8+tMBTj7zAodk2VJ5q2Cn1zth2/d84bfE6fSe3YhhTUWU4iMHotY+xOBn/uA
-         vYFwzLMvNxW/cRgI3VDdO3+J3H37ZwabOBBom9pezPOeRW5horpJT0VQxgGng5Oodt
-         XiAf2cmyYSrzg==
-Message-ID: <d42c8881-72f3-dbce-f1ea-5ba998f7427c@kernel.org>
-Date:   Thu, 30 Mar 2023 18:06:00 +0300
+        with ESMTP id S232801AbjC3PTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:19:10 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E22CDC8;
+        Thu, 30 Mar 2023 08:18:08 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9596F24DEAE;
+        Thu, 30 Mar 2023 23:16:09 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 30 Mar
+ 2023 23:16:09 +0800
+Received: from [192.168.125.96] (113.72.144.76) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 30 Mar
+ 2023 23:16:08 +0800
+Message-ID: <2d5a8dae-73fd-b1f8-089e-041637d66b0d@starfivetech.com>
+Date:   Thu, 30 Mar 2023 23:16:08 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [EXTERNAL] Re: [PATCH v5 3/5] soc: ti: pruss: Add
- pruss_cfg_read()/update() API
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: add tdm node and sound card
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230329153320.31390-1-walker.chen@starfivetech.com>
+ <20230329153320.31390-4-walker.chen@starfivetech.com>
+ <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+ <af015701-f1ff-4b1e-9b1b-c635fc684ce6@spud>
 Content-Language: en-US
-To:     Md Danish Anwar <a0501179@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-Cc:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230323062451.2925996-1-danishanwar@ti.com>
- <20230323062451.2925996-4-danishanwar@ti.com> <20230327210126.GC3158115@p14s>
- <4e239000-c5f7-a42e-157e-5b668c6b2908@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <4e239000-c5f7-a42e-157e-5b668c6b2908@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <af015701-f1ff-4b1e-9b1b-c635fc684ce6@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.76]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -70,205 +63,85 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 30/03/2023 13:00, Md Danish Anwar wrote:
-> Hi Mathieu,
+On 2023/3/30 15:58, Conor Dooley wrote:
+> On Thu, Mar 30, 2023 at 09:43:10AM +0200, Krzysztof Kozlowski wrote:
+>> On 29/03/2023 17:33, Walker Chen wrote:
+>> > Add the tdm controller node and sound card for the StarFive JH7110 SoC.
 > 
-> On 28/03/23 02:31, Mathieu Poirier wrote:
->> On Thu, Mar 23, 2023 at 11:54:49AM +0530, MD Danish Anwar wrote:
->>> From: Suman Anna <s-anna@ti.com>
->>>
->>> Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
->>> the PRUSS platform driver to read and program respectively a register
->>> within the PRUSS CFG sub-module represented by a syscon driver.
->>>
->>> These APIs are internal to PRUSS driver. Various useful registers
->>> and macros for certain register bit-fields and their values have also
->>> been added.
->>>
->>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>> ---
->>>  drivers/soc/ti/pruss.c |   1 +
->>>  drivers/soc/ti/pruss.h | 112 +++++++++++++++++++++++++++++++++++++++++
->>>  2 files changed, 113 insertions(+)
->>>  create mode 100644 drivers/soc/ti/pruss.h
->>>
->>
->> This patch doesn't compile without warnings.
->>
+>> > +		compatible = "fixed-clock";
+>> > +		clock-output-names = "wm8960_mclk";
+>> > +		#clock-cells = <0>;
+>> > +	};
+>> > +
+>> >  	i2srx_bclk_ext: i2srx-bclk-ext-clock {
+>> >  		compatible = "fixed-clock";
+>> >  		clock-output-names = "i2srx_bclk_ext";
+>> > @@ -375,6 +381,27 @@
+>> >  			status = "disabled";
+>> >  		};
+>> >  
+>> > +		tdm: tdm@10090000 {
+>> > +			compatible = "starfive,jh7110-tdm";
+>> > +			reg = <0x0 0x10090000 0x0 0x1000>;
+>> > +			clocks = <&syscrg JH7110_SYSCLK_TDM_AHB>,
+>> > +				 <&syscrg JH7110_SYSCLK_TDM_APB>,
+>> > +				 <&syscrg JH7110_SYSCLK_TDM_INTERNAL>,
+>> > +				 <&syscrg JH7110_SYSCLK_TDM_TDM>,
+>> > +				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
+>> > +				 <&tdm_ext>;
+>> > +			clock-names = "tdm_ahb", "tdm_apb",
+>> > +				      "tdm_internal", "tdm",
+>> > +				      "mclk_inner", "tdm_ext";
+>> > +			resets = <&syscrg JH7110_SYSRST_TDM_AHB>,
+>> > +				 <&syscrg JH7110_SYSRST_TDM_APB>,
+>> > +				 <&syscrg JH7110_SYSRST_TDM_CORE>;
+>> > +			dmas = <&dma 20>, <&dma 21>;
+>> > +			dma-names = "rx","tx";
+>> > +			#sound-dai-cells = <0>;
+>> > +			status = "disabled";
+>> > +		};
+>> > +
+>> >  		stgcrg: clock-controller@10230000 {
+>> >  			compatible = "starfive,jh7110-stgcrg";
+>> >  			reg = <0x0 0x10230000 0x0 0x10000>;
+>> > @@ -601,5 +628,12 @@
+>> >  			#reset-cells = <1>;
+>> >  			power-domains = <&pwrc JH7110_PD_VOUT>;
+>> >  		};
+>> > +
+>> > +		sound0: snd-card0 {
+>> 
+>> 1. Why card0?
+>> 2. Where is this node located? In MMIO bus? Run some basic checks on
+>> your DTS before submitting upstream.
+>> dtbs_check
+>> dtbs W=1
+>> 
+>> 3. Why this is even in the DTSI? This really looks wrong.
 > 
-> I checked the warnings. Below are the warnings that I am getting for these patch.
+> Excuse me for not following here, but Walker, could you point me at
+> where in the schematic for the VisionFive 2 that this wm8960 actually
+> is?
+> I know ~nothing about audio, but good old Google tells me that this is a
+> dedicated codec chip and I was looking at [1] and could not easily find
+> it on the schematic.
 > 
-> In file included from drivers/soc/ti/pruss.c:24:
-> drivers/soc/ti/pruss.h:103:12: warning: ‘pruss_cfg_update’ defined but not used
-> [-Wunused-function]
->   103 | static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->       |            ^~~~~~~~~~~~~~~~
-> drivers/soc/ti/pruss.h:84:12: warning: ‘pruss_cfg_read’ defined but not used
-> [-Wunused-function]
->    84 | static int pruss_cfg_read(struct pruss *pruss, unsigned int reg,
-> unsigned int *val)
+> Thanks,
+> Conor.
 > 
-> These warnings are coming because pruss_cfg_read() / update() APIs are
-> introduced in this patch but they are used later.
-> 
-> One way to resolve this warning is to make this API "inline". I compiled after
-> making these APIs inline, it got compiled without any warnings.
-> 
-> The other solution is to merge a user API of these APIs in this patch. Patch 4
-> and 5 introduces some APIs that uses pruss_cfg_read() / update() APIs. If we
-> squash patch 5 (as patch 5 uses both read() and update() APIs where as patch 4
-> only uses update() API) with this patch and make it a single patch where
-> pruss_cfg_read() / update() is introduced as well as used, then this warning
-> will be resolved.
-> 
-> I still think making these APIs "inline" is a better option as these APIs
-> implement very simple one line logic and can be made inline.
-> 
-> Please let me know what do you think and which approach sounds better.
+> 1 https://doc-en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.pdf
 
-You should squash this patch with the next one.
+Hi Conor,
 
-> 
-> 
->>> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
->>> index 126b672b9b30..2fa7df667592 100644
->>> --- a/drivers/soc/ti/pruss.c
->>> +++ b/drivers/soc/ti/pruss.c
->>> @@ -21,6 +21,7 @@
->>>  #include <linux/regmap.h>
->>>  #include <linux/remoteproc.h>
->>>  #include <linux/slab.h>
->>> +#include "pruss.h"
->>>  
->>>  /**
->>>   * struct pruss_private_data - PRUSS driver private data
->>> diff --git a/drivers/soc/ti/pruss.h b/drivers/soc/ti/pruss.h
->>> new file mode 100644
->>> index 000000000000..4626d5f6b874
->>> --- /dev/null
->>> +++ b/drivers/soc/ti/pruss.h
->>> @@ -0,0 +1,112 @@
->>> +/* SPDX-License-Identifier: GPL-2.0-only */
->>> +/*
->>> + * PRU-ICSS Subsystem user interfaces
->>> + *
->>> + * Copyright (C) 2015-2023 Texas Instruments Incorporated - http://www.ti.com
->>> + *	MD Danish Anwar <danishanwar@ti.com>
->>> + */
->>> +
->>> +#ifndef _SOC_TI_PRUSS_H_
->>> +#define _SOC_TI_PRUSS_H_
->>> +
->>> +#include <linux/bits.h>
->>> +#include <linux/regmap.h>
->>> +
->>> +/*
->>> + * PRU_ICSS_CFG registers
->>> + * SYSCFG, ISRP, ISP, IESP, IECP, SCRP applicable on AMxxxx devices only
->>> + */
->>> +#define PRUSS_CFG_REVID         0x00
->>> +#define PRUSS_CFG_SYSCFG        0x04
->>> +#define PRUSS_CFG_GPCFG(x)      (0x08 + (x) * 4)
->>> +#define PRUSS_CFG_CGR           0x10
->>> +#define PRUSS_CFG_ISRP          0x14
->>> +#define PRUSS_CFG_ISP           0x18
->>> +#define PRUSS_CFG_IESP          0x1C
->>> +#define PRUSS_CFG_IECP          0x20
->>> +#define PRUSS_CFG_SCRP          0x24
->>> +#define PRUSS_CFG_PMAO          0x28
->>> +#define PRUSS_CFG_MII_RT        0x2C
->>> +#define PRUSS_CFG_IEPCLK        0x30
->>> +#define PRUSS_CFG_SPP           0x34
->>> +#define PRUSS_CFG_PIN_MX        0x40
->>> +
->>> +/* PRUSS_GPCFG register bits */
->>> +#define PRUSS_GPCFG_PRU_GPO_SH_SEL              BIT(25)
->>> +
->>> +#define PRUSS_GPCFG_PRU_DIV1_SHIFT              20
->>> +#define PRUSS_GPCFG_PRU_DIV1_MASK               GENMASK(24, 20)
->>> +
->>> +#define PRUSS_GPCFG_PRU_DIV0_SHIFT              15
->>> +#define PRUSS_GPCFG_PRU_DIV0_MASK               GENMASK(15, 19)
->>> +
->>> +#define PRUSS_GPCFG_PRU_GPO_MODE                BIT(14)
->>> +#define PRUSS_GPCFG_PRU_GPO_MODE_DIRECT         0
->>> +#define PRUSS_GPCFG_PRU_GPO_MODE_SERIAL         BIT(14)
->>> +
->>> +#define PRUSS_GPCFG_PRU_GPI_SB                  BIT(13)
->>> +
->>> +#define PRUSS_GPCFG_PRU_GPI_DIV1_SHIFT          8
->>> +#define PRUSS_GPCFG_PRU_GPI_DIV1_MASK           GENMASK(12, 8)
->>> +
->>> +#define PRUSS_GPCFG_PRU_GPI_DIV0_SHIFT          3
->>> +#define PRUSS_GPCFG_PRU_GPI_DIV0_MASK           GENMASK(7, 3)
->>> +
->>> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE_POSITIVE   0
->>> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE_NEGATIVE   BIT(2)
->>> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE            BIT(2)
->>> +
->>> +#define PRUSS_GPCFG_PRU_GPI_MODE_MASK           GENMASK(1, 0)
->>> +#define PRUSS_GPCFG_PRU_GPI_MODE_SHIFT          0
->>> +
->>> +#define PRUSS_GPCFG_PRU_MUX_SEL_SHIFT           26
->>> +#define PRUSS_GPCFG_PRU_MUX_SEL_MASK            GENMASK(29, 26)
->>> +
->>> +/* PRUSS_MII_RT register bits */
->>> +#define PRUSS_MII_RT_EVENT_EN                   BIT(0)
->>> +
->>> +/* PRUSS_SPP register bits */
->>> +#define PRUSS_SPP_XFER_SHIFT_EN                 BIT(1)
->>> +#define PRUSS_SPP_PRU1_PAD_HP_EN                BIT(0)
->>> +#define PRUSS_SPP_RTU_XFR_SHIFT_EN              BIT(3)
->>> +
->>> +/**
->>> + * pruss_cfg_read() - read a PRUSS CFG sub-module register
->>> + * @pruss: the pruss instance handle
->>> + * @reg: register offset within the CFG sub-module
->>> + * @val: pointer to return the value in
->>> + *
->>> + * Reads a given register within the PRUSS CFG sub-module and
->>> + * returns it through the passed-in @val pointer
->>> + *
->>> + * Return: 0 on success, or an error code otherwise
->>> + */
->>> +static int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsigned int *val)
->>> +{
->>> +	if (IS_ERR_OR_NULL(pruss))
->>> +		return -EINVAL;
->>> +
->>> +	return regmap_read(pruss->cfg_regmap, reg, val);
->>> +}
->>> +
->>> +/**
->>> + * pruss_cfg_update() - configure a PRUSS CFG sub-module register
->>> + * @pruss: the pruss instance handle
->>> + * @reg: register offset within the CFG sub-module
->>> + * @mask: bit mask to use for programming the @val
->>> + * @val: value to write
->>> + *
->>> + * Programs a given register within the PRUSS CFG sub-module
->>> + *
->>> + * Return: 0 on success, or an error code otherwise
->>> + */
->>> +static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
->>> +			    unsigned int mask, unsigned int val)
->>> +{
->>> +	if (IS_ERR_OR_NULL(pruss))
->>> +		return -EINVAL;
->>> +
->>> +	return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
->>> +}
->>> +
->>> +#endif  /* _SOC_TI_PRUSS_H_ */
->>> -- 
->>> 2.25.1
->>>
-> 
+The TDM need work together with external codec WM8960 by plugging the raspberry pie
+ audio board into the 40-pin, which is found in sheet 21 of the schematic. Because the
+ 40-pin of VisionFive2 is fully compatible with the pins of Raspberry pie audio board. 
 
---
-cheers,
--roger
+For more information of the audio board, you can take a look at the following webpage:
+https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/
+
+The schematic of audio board:
+https://files.seeedstudio.com/wiki/MIC_HATv1.0_for_raspberrypi/src/ReSpeaker%202-Mics%20Pi%20HAT_SCH.pdf
+
+Best regards,
+Walker
