@@ -2,134 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AAF26CF9AA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 05:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D980A6CF9C0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 05:54:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbjC3Dqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 23:46:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58532 "EHLO
+        id S229532AbjC3Dyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 23:54:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjC3Dqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 23:46:42 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B3C2F4C27;
-        Wed, 29 Mar 2023 20:46:38 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxEk4dBiVkhDMUAA--.19613S3;
-        Thu, 30 Mar 2023 11:46:37 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cxur0aBiVkJ_UQAA--.13166S3;
-        Thu, 30 Mar 2023 11:46:34 +0800 (CST)
-Subject: Re: [PATCH v4 0/2] spi: loongson: add bus driver for the loongson spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andi Shyti <andi.shyti@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230328112210.23089-1-zhuyinbo@loongson.cn>
- <20230328113536.ldxpvx3hibezcqtb@intel.intel>
- <253f3bf2-a193-69da-79ef-c3771d677478@loongson.cn>
- <e9b1b899-9f19-0abd-8e20-fc486bf28b17@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <c881aa81-10c1-06f5-de9c-8948e9f6ebe8@loongson.cn>
-Date:   Thu, 30 Mar 2023 11:46:34 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229588AbjC3Dyf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 23:54:35 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA355266
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 20:54:33 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id r7-20020a17090b050700b002404be7920aso16679762pjz.5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 20:54:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680148473;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rif9SVht3Xq5rHKwiENZowsz+awWs141IU0VAwjN1vg=;
+        b=fV9FgxnApIXbe1N5pM4jjR9lUZGUI9IHgwkMnRZ43spPTOEuCOBgE6jom5YYd5NaSw
+         hO3BaFodAmNdmeJnu/2X1bnm5xCDXutVF46Q4qkwiWvp0QD7VT2G+FS8VK6si5hM24E1
+         cmhd1+iI264Fr/t7n/mmHq+QUCu9AJBXrHRE5NMw2hhSYMEgz0n/xxhnwIpLUx49DXMe
+         3cXje5lTdqWVmeRk8+mxVWjAALckaFIQEvLAfdbfPdG7pkmLiTnNEoZXurcL3Sjcbenu
+         TxKvKkOO0B7xmXzmAWEmob+khrROpJZhtq4GhLIFBe54WEv6nH0q1+rtBdjUdUgdh/Qs
+         KpwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680148473;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rif9SVht3Xq5rHKwiENZowsz+awWs141IU0VAwjN1vg=;
+        b=g7yU+sGLHIu1FVDAt+OWQadBhDlHkuZK2ukGYuIq3at+uTmX+mhaW0En809bpgKwyB
+         tapKbrNOIXzKOf4vVoOzw9ogpe5cuPXDIkHmVyklb5UooqgyyZA5Gmc5sG1k7Bl87rfs
+         Hp91G2KAQV6zGWs1CLTGT2U3YJi6EAfSrPwnmusIa1oaFFZ4MvLhkV5HebLg84wnIMSR
+         vudriwc9x9IiklXbHnI3XaqaTP6NzObo1OZ2a42yKg+lQo/znMi4sKYR1iWCy+Kp/gdq
+         Y20/nFw0uPGCWp92OTk8VjwGlvOe27iDOpEhFp1zFfnKEUEU31GpSalxO1YAm7Jl192Z
+         VaIA==
+X-Gm-Message-State: AO0yUKW+uMi2WzBH03OkTCWKocZSIQCzejgKhp45jS/Vid6vlEkzmv6L
+        PHwKyr2kp03FEizYhDmtYfcHnA==
+X-Google-Smtp-Source: AK7set+6CKB9aX3Y+69CYgYb8mvQ9d90t+LT0/3dtpbyQgu7Ff5u0kg7CAes3wOVIzKhF5KBg4AuvA==
+X-Received: by 2002:a05:6a20:c119:b0:d4:77a6:156f with SMTP id bh25-20020a056a20c11900b000d477a6156fmr18152236pzb.53.1680148472791;
+        Wed, 29 Mar 2023 20:54:32 -0700 (PDT)
+Received: from localhost ([122.172.85.168])
+        by smtp.gmail.com with ESMTPSA id a24-20020a62e218000000b00627f2f23624sm20068315pfi.159.2023.03.29.20.54.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Mar 2023 20:54:32 -0700 (PDT)
+Date:   Thu, 30 Mar 2023 09:24:30 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Anup Patel <anup@brainfault.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, sparclinux@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH 14/19] cpufreq: Adjust includes to remove of_device.h
+Message-ID: <20230330035430.z6x3escbvr7nlya5@vireshk-i7>
+References: <20230329-dt-cpu-header-cleanups-v1-0-581e2605fe47@kernel.org>
+ <20230329-dt-cpu-header-cleanups-v1-14-581e2605fe47@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <e9b1b899-9f19-0abd-8e20-fc486bf28b17@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Cxur0aBiVkJ_UQAA--.13166S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7Zw13WFyrtF1DCFWkKw1xKrg_yoW8KrW5pF
-        nxJ3ZxJay3JF4DArs7twn8Jr1UW3yxJr4rJFW7JF18KF1qkF1UAry5Ar1rG34UXry5Ga47
-        WF4UZryxGr18WFDanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j0HqcUUUUU=
-X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230329-dt-cpu-header-cleanups-v1-14-581e2605fe47@kernel.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2023/3/29 下午4:07, Krzysztof Kozlowski 写道:
-> On 28/03/2023 13:53, zhuyinbo wrote:
->>
->>
->> 在 2023/3/28 下午7:35, Andi Shyti 写道:
->>> Hi Yinbo,
->>>
->>> before submitting the patches for review... can you please run
->>> checkpatch.pl on them?
->> yes, I had used checkpatch.pl to check and no any errors and warnings.
->>
->> user@user-pc:~/workspace/test/code/www.kernel.org/linux$
->> ./scripts/checkpatch.pl *.patch
->> -----------------------
->> 0000-cover-letter.patch
->> -----------------------
->> total: 0 errors, 0 warnings, 0 lines checked
->>
->> 0000-cover-letter.patch has no obvious style problems and is ready for
->> submission.
->> -------------------------------------------
->> 0001-dt-bindings-spi-add-loongson-spi.patch
->> -------------------------------------------
->> Traceback (most recent call last):
->>     File "scripts/spdxcheck.py", line 6, in <module>
->>       from ply import lex, yacc
->> ModuleNotFoundError: No module named 'ply'
->> total: 0 errors, 0 warnings, 55 lines checked
->>
->> 0001-dt-bindings-spi-add-loongson-spi.patch has no obvious style
->> problems and is ready for submission.
->> ---------------------------------------------------------------
->> 0002-spi-loongson-add-bus-driver-for-the-loongson-spi-con.patch
->> ---------------------------------------------------------------
->> Traceback (most recent call last):
->>     File "scripts/spdxcheck.py", line 6, in <module>
->>       from ply import lex, yacc
->> ModuleNotFoundError: No module named 'ply'
->> Traceback (most recent call last):
->>     File "scripts/spdxcheck.py", line 6, in <module>
->>       from ply import lex, yacc
->> ModuleNotFoundError: No module named 'ply'
->> Traceback (most recent call last):
->>     File "scripts/spdxcheck.py", line 6, in <module>
->>       from ply import lex, yacc
->> ModuleNotFoundError: No module named 'ply'
->> Traceback (most recent call last):
->>     File "scripts/spdxcheck.py", line 6, in <module>
->>       from ply import lex, yacc
->> ModuleNotFoundError: No module named 'ply'
+On 29-03-23, 10:52, Rob Herring wrote:
+> Now that of_cpu_device_node_get() is defined in of.h, of_device.h is just
+> implicitly including other includes, and is no longer needed. Adjust the
+> include files with what was implicitly included by of_device.h (cpu.h and
+> of.h) and drop including of_device.h.
 > 
-> You have errors here... Fix your setup for spdx check.
-I installed ply and gitpython package locally, and then there was no 
-spdxcheck and other error when use checkpatch.pl to check this series patch.
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Please ack and I will take the series via the DT tree.
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 -
+>  drivers/cpufreq/kirkwood-cpufreq.c   | 2 +-
+>  drivers/cpufreq/maple-cpufreq.c      | 2 +-
+>  drivers/cpufreq/pmac32-cpufreq.c     | 2 +-
+>  drivers/cpufreq/pmac64-cpufreq.c     | 2 +-
+>  drivers/cpufreq/qcom-cpufreq-hw.c    | 4 ++--
+>  drivers/cpufreq/spear-cpufreq.c      | 2 +-
+>  drivers/cpufreq/tegra124-cpufreq.c   | 1 -
+>  drivers/cpufreq/tegra20-cpufreq.c    | 2 +-
+>  include/linux/cpufreq.h              | 1 -
+>  10 files changed, 8 insertions(+), 11 deletions(-)
 
-Thanks.
-> 
-> Best regards,
-> Krzysztof
-> 
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
+-- 
+viresh
