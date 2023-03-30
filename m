@@ -2,109 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 306B06CFEE4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33256CFEE9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbjC3IqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 04:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41480 "EHLO
+        id S229825AbjC3IrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 04:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230136AbjC3Ipz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:45:55 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 488647D98;
-        Thu, 30 Mar 2023 01:45:36 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9256D2F4;
-        Thu, 30 Mar 2023 01:46:15 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 83F2E3F73F;
-        Thu, 30 Mar 2023 01:45:29 -0700 (PDT)
-Date:   Thu, 30 Mar 2023 09:45:19 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        sudeep.holla@arm.com, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
-        Tushar.Khandelwal@arm.com, viresh.kumar@linaro.org,
-        jassisinghbrar@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229459AbjC3IrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:47:12 -0400
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72DAC5B92
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:47:11 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.west.internal (Postfix) with ESMTP id 04CF52B0040A;
+        Thu, 30 Mar 2023 04:47:08 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Thu, 30 Mar 2023 04:47:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+        1680166028; x=1680173228; bh=a+Yl4odf/Ot+biMN+Oi3kAyv0TNIqouyp5L
+        beLQZr2E=; b=eBNrcwuvrgSp6+31rIiAsOUqG6uMQ6QFUsakEPSuzePgk29YCc9
+        21MTLTzN/CS0cDbj3MgHTvLlawIIABhYB8tVeUZEdCU8RP3ThpWear5ZNazut7is
+        4EugKtcsijnzVHcF55TsVXS6TzzZY6irtPiRkPTWrn1r4CNa/05h86omoJNJtNXi
+        lbHMqIU1TKVINClq2tEFyQFx7ljJNTIKaLpi+9f46H7Oz/Bv+XiK+UQmwWuciXUX
+        Cq2bSBsUWwoNuOkvF05OHpxgYiGPykeRSkgrtDPU+Q/CgPi3PkKK7elxOxeTopVa
+        2nvMkUmUjwfFU6aZJgdR2PLMxDB0HPklJGw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1680166028; x=1680173228; bh=a+Yl4odf/Ot+biMN+Oi3kAyv0TNIqouyp5L
+        beLQZr2E=; b=KkP5NinBZ4i5Z6uDBmt2PRMh0y9QwGRsc8RKAe+yyjm14UEENU2
+        x4I8MnhE5eD9QkL9kXH8kYjxy8DyHublTEpcbm8q4phweNClOmzuhXeNu76/LYfR
+        dJ7HXAXUTn8FFPMXf97wpWYdynZ5cbq/nG5wnnx5GZs2zEYcpJ08+mzSefkH00yL
+        uwBmNG4iHfDCEWSkMP/yUEjl/uxT3Q8Bo16PEdLMO3UsfhQu73q2Yj57/3f5gyXm
+        m/l09tx5q0EcIvvrHoLn13GgJorLeqUc6g1cfeJ+78dRyh/a6STxiyHVh8t2uenY
+        4MUgufUmIOHkwTsAOdfPbGqr6C3eBO+StFQ==
+X-ME-Sender: <xms:i0wlZEaCuddUGW3jdsi1wq7rmrszioz9WVwxAcnOIa6OML_F-SrrJA>
+    <xme:i0wlZPZ3hZnrNNMycM1rbJQwJfIadvqKckk_Tk1wMYR5b_nmtttrcPBHk5aHYitNF
+    OQten1IKIWL3iZZTCg>
+X-ME-Received: <xmr:i0wlZO9vwyktcZDHfmGyVtQII-wK1UCSTqeteVjM82YF3q2FAMBJ8QHicGw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehkedgtdejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggugfgjsehtqhertddttdejnecuhfhrohhmpeforgig
+    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+    grthhtvghrnhepffdttdeufefgffegtdejffevuddvudfhudegjeegkeetuefgfefhheek
+    udfhvdfhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:i0wlZOrO_hXCHB3ELpkaKAIkTZqrj-3baqEvgaXmy7j_ZC8oYvW2KQ>
+    <xmx:i0wlZPoZYDPlHfH2bjN05cmvHZSmOtHeTHduCz8BG3H_4ixPVvZV6Q>
+    <xmx:i0wlZMRHoHZzk5RsIQlsS-a9MP614RbJWYSq1EdvF4BmRnsGWqCGag>
+    <xmx:jEwlZGcRbtHfHw87r7_jkOL4MI8KkEmBkky7_2yEOHqiulDfD187H2SZVRo>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 30 Mar 2023 04:47:07 -0400 (EDT)
+Date:   Thu, 30 Mar 2023 10:47:06 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox : arm,mhuv2: Allow for more RX
- interrupts
-Message-ID: <ZCVL+zzCtItSPkr+@e120937-lin>
-References: <20230329153936.394911-1-cristian.marussi@arm.com>
- <20230329153936.394911-2-cristian.marussi@arm.com>
- <7e93c0c9-0a84-c1ce-a978-c4743963012b@linaro.org>
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Marek Vasut <marex@denx.de>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH v7 12/12] drm: sun4: dsi: Convert to bridge driver
+Message-ID: <20230330084706.lw5r6ll2r6lk5d2z@penduick>
+References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
+ <20230329131929.1328612-3-jagan@amarulasolutions.com>
+ <20230329145939.7zcex4x2pipivuj4@penduick>
+ <CAMty3ZDWK0xVe7E+gER+TihHf1yv3YAWgZc1GCJQ2V5KD_mN-g@mail.gmail.com>
+ <20230329160652.7gel5qvckzwihjx4@penduick>
+ <CAMty3ZB=R0RfU+o7LZWpS=4-ny00ocCxBu-M6yicY4q0-eYL9A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7e93c0c9-0a84-c1ce-a978-c4743963012b@linaro.org>
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMty3ZB=R0RfU+o7LZWpS=4-ny00ocCxBu-M6yicY4q0-eYL9A@mail.gmail.com>
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 09:36:06AM +0200, Krzysztof Kozlowski wrote:
-> On 29/03/2023 17:39, Cristian Marussi wrote:
-> > The ARM MHUv2 Receiver block can indeed support more interrupts, up to the
-> > maximum number of available channels, but anyway no more than the maximum
-> > number of supported interrupt for an AMBA device.
-> > 
-> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> > ---
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: devicetree@vger.kernel.org
-> > 
-> >  .../devicetree/bindings/mailbox/arm,mhuv2.yaml      | 13 +++++++++----
-> >  1 file changed, 9 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > index a4f1fe63659a..5a57f4e2a623 100644
-> > --- a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-> > @@ -69,10 +69,15 @@ properties:
-> >  
-> >    interrupts:
-> >      description: |
-> > -      The MHUv2 controller always implements an interrupt in the "receiver"
-> > -      mode, while the interrupt in the "sender" mode was not available in the
-> > -      version MHUv2.0, but the later versions do have it.
-> > -    maxItems: 1
-> > +      The MHUv2 controller always implements at least an interrupt in the
-> > +      "receiver" mode, while the interrupt in the "sender" mode was not
-> > +      available in the version MHUv2.0, but the later versions do have it.
-> > +      In "receiver" mode, beside a single combined interrupt, there could be
-> > +      multiple interrupts, up to the number of implemented channels but anyway
-> > +      no more than the maximum number of interrupts potentially supported by
-> > +      AMBA.
-> 
+On Thu, Mar 30, 2023 at 12:15:49PM +0530, Jagan Teki wrote:
+> On Wed, Mar 29, 2023 at 9:36=E2=80=AFPM Maxime Ripard <maxime@cerno.tech>=
+ wrote:
+> >
+> > On Wed, Mar 29, 2023 at 09:08:17PM +0530, Jagan Teki wrote:
+> > > On Wed, Mar 29, 2023 at 8:29=E2=80=AFPM Maxime Ripard <maxime@cerno.t=
+ech> wrote:
+> > > >
+> > > > Hi,
+> > > >
+> > > > The patch prefix should be drm/sun4i:
+> > >
+> > > I did follow my previous prefix, I will update this.
+> > >
+> > > >
+> > > > On Wed, Mar 29, 2023 at 06:49:29PM +0530, Jagan Teki wrote:
+> > > > > Convert the encoder to bridge driver in order to standardize on a
+> > > > > single API by supporting all varients of downstream bridge device=
+s.
+> > > >
+> > > > Which variant, and why do we need to convert to a bridge to support=
+ all of them?
+> > >
+> > > Downstream bridge variants like DSI panel, DSI bridge and
+> > > I2C-Configured DSI bridges. Bridge conversion would be required for
+> > > the DSI host to access the more variety and complex downstream bridges
+> > > in a standardized bridge chain way which is indeed complex for encoder
+> > > driven DSI hosts.
+> > >
+> > > >
+> > > > > The drm_encoder can't be removed as it's exposed to userspace, so=
+ it
+> > > > > then becomes a dumb encoder, without any operation implemented.
+> > > > >
+> > > > > Tested on DSI Panel, DSI Bridge, I2C-Configured DSI Bridge.
+> > > > >
+> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > >
+> > > > [...]
+> > > >
+> > > > > +static const struct component_ops sun6i_dsi_ops;
+> > > > > +
+> > > > >  static int sun6i_dsi_attach(struct mipi_dsi_host *host,
+> > > > >                           struct mipi_dsi_device *device)
+> > > > >  {
+> > > > >       struct sun6i_dsi *dsi =3D host_to_sun6i_dsi(host);
+> > > > > -     struct drm_panel *panel =3D of_drm_find_panel(device->dev.o=
+f_node);
+> > > >
+> > > > That one looks unrelated. Why do you need that change?
+> > >
+> > > This was replaced with drmm_of_dsi_get_bridge for lookup of both panel
+> > > and bridge. I think I will separate this into another patch.
+> >
+> > So, it looks to me that you're doing two (unrelated) things in that pat=
+ch:
+>=20
+> Correct.
+>=20
+> >
+> >   - You modify the existing driver to be a bridge
+>=20
+> Yes, Convert to bridge driver - register drm_bridge_add and replace
+> encoder ops with bridge ops.
+>=20
+> >
+> >   - And you support downstream device being bridges.
+>=20
+> Yes, Support the downstream bridge. (If I'm correct we can still use
+> encoder ops with this).
+>=20
+> If we see the hierarchy of support it would
+> 1. support the downstream bridge.
+> 2. convert to the bridge driver.
+>=20
+> >
+> > Both are orthogonal, can (and should!) be done separately, and I'm
+> > pretty sure you don't actually need to do the former at all.
+>=20
+> Do you mean converting to bridge driver is not needed?
 
-Hi,
+Yes, and given the current state of the DCS-in-HS discussion, I even
+think it's does more harm than good.
 
-> Last sentence indicates that TX mode has something else, e.g. max 1
-> interrupt. Either correct the sentence or add if:then: narrowing it for TX.
-> 
-
-By the spec really you can have up to 124 rx interrupt (one per channel) and
-optionally 124 tx interrupt too. At least one RX is mandatory, while the TX
-clear channel iterrupt is optional (and not supported at all for spec < 2.1)
-
-In both cases you could just have one single combined interrupt, though,
-and this is what the driver did, and still do (I have noot changed this), on
-the TX side: it just supports one single combined tx interrupt.
-
-So on the TX side, at the HW level, there could be really 124 interrupts
-BUT the driver still only support a single combined one.
-
-So I think my statement above is anyway ambiguos and I'll fix it, but how to
-fix it, really depends if we want to describe fully what the HW potentially
-supports OR what the driver really can cope with as of now.
-
-Thanks,
-Cristian
+Maxime
