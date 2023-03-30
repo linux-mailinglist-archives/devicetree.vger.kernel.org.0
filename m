@@ -2,153 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA74B6D017B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 12:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DA86D0227
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 12:52:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjC3Kmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 06:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
+        id S230134AbjC3Kwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 06:52:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbjC3Kmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 06:42:46 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536F27EEB
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 03:42:44 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6a11f365f87so484718a34.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 03:42:44 -0700 (PDT)
+        with ESMTP id S229608AbjC3Kwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 06:52:44 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22EE3C9;
+        Thu, 30 Mar 2023 03:52:16 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id om3-20020a17090b3a8300b0023efab0e3bfso21497014pjb.3;
+        Thu, 30 Mar 2023 03:52:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680172963; x=1682764963;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YIFxKXVUHfM0d37cCgcyId44UL4K5UZcuNyUe7CoHHo=;
-        b=iH6EM5IzodKNooc3/YPq+ikNsCYCS7pJvQ1ElswrmhWkbw2/JUGY14Z9zsUppR4twv
-         iAkHFqc2PO9/CNiJ7rawYw1NQeexnUCPCnt2p5HNT1urI3xqZsapXqE1/s9tie2sDVJo
-         tv4uaz+/bL9tePUifbHEOBoGBmZJEUHQMFI/qafDN60Kkp6Zd+tj24xkGQft8Mr9fgwh
-         /DNkftZb6SGT9qbCZyTKXesNj/gvJFqM89pEftZ2jU4SohXNf/b4TjgvUB41jkSVM5VC
-         HfvJANY+qSQOkwD8KJK7njVyls3gUW9F/9ozuDJKvfTQEuFuztEpfLqyrTh+pX7TIMfz
-         dC2g==
+        d=gmail.com; s=20210112; t=1680173535;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QTW1KNElMTqle5HEHRBSAcEJNim2iyioQE5RQEzYbdw=;
+        b=BvWvc7f13UO2dZkYEfqF5+pb5eMP0PVyqrKRxbwY+t1pZ4oh3Hcvn2bFPjeytGynvW
+         R0Lw4+lumQyLU69bs8HVLqw7JItlOf2Sscgpn7nioTkM1SD3FiMygwXYiYM44L6j2fdh
+         WrVd7AeVXWTjJxjA6DLlGJtgFDTJ9zaDKD9AOfzz74BRxaGmaP1Zt30OdCtnoL5w7a5S
+         zdCOZGbYDJyuAJyq4Cal2Bg2pqnnM014WvqRRxSitEIdLz/FfeL/xbsYeC34Pe+IjuOl
+         kfmpnoQOVXEu8BPXMH4xsEXb88CUqURNtGwxfdvHIWYo37WyLHive+ekUmnU3Pf0Iy9C
+         /8cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680172963; x=1682764963;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YIFxKXVUHfM0d37cCgcyId44UL4K5UZcuNyUe7CoHHo=;
-        b=LtR4+IawotJ8Wmm7efdIg4fIebIbQ359cCzNzjsrrHP3W9anUPVTTC4Z+EzhPEFIA3
-         Ob+gmO4VUB297xiZMU2m1Cf6m2oz0h/FRLLvU/E/lItxsZG9x7c4Lqg6yGaRHz4lGMfN
-         kcQopSg3NAbNQasJR8WSl4F0WXKfhWps1lBN/PtCfWR3bfIcjZIHdyi4rVCSY4X9IZiO
-         UHnrd0N1euKi6l6nS19+mp+eYOyy1nb7az3lX0TWj3K+jLGNpny7EfUtgfsZmufRkqYq
-         lS+Wftv+DgX7PtQViaRMaNauOjUiedjs0ckmaf5dNaAZtWxL2nZR4iL5Xw+bYsQ5pB/Q
-         Sgvw==
-X-Gm-Message-State: AAQBX9clL0soLsJISuIMJ9Enh3vqGjZX4M7UueJUD8rAh88DP+CHxc/O
-        4VP+XC6tXI6UqmQSH1qhHvY=
-X-Google-Smtp-Source: AKy350bqzOqY/SUHhX3cPZyuOYVwT5EZUxpKO1hjiP8LYcVD/4N9yUgs5ozQrBYWQTkOeqJojkeX8A==
-X-Received: by 2002:a05:6870:65a3:b0:180:1519:35d6 with SMTP id fp35-20020a05687065a300b00180151935d6mr921996oab.1.1680172963631;
-        Thu, 30 Mar 2023 03:42:43 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:bb2:6db6:1a29:3df5])
-        by smtp.gmail.com with ESMTPSA id s4-20020a0568080b0400b0038755008179sm8414071oij.26.2023.03.30.03.42.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 03:42:43 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     neil.armstrong@linaro.org
-Cc:     marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 2/2] drm/bridge: fsl-ldb: Add i.MX6SX support
-Date:   Thu, 30 Mar 2023 07:42:33 -0300
-Message-Id: <20230330104233.785097-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230330104233.785097-1-festevam@gmail.com>
-References: <20230330104233.785097-1-festevam@gmail.com>
+        d=1e100.net; s=20210112; t=1680173535;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QTW1KNElMTqle5HEHRBSAcEJNim2iyioQE5RQEzYbdw=;
+        b=onHA3EKces5QkYXlP7k7Akxn/4T3wwCvtYXj/aaudbmAR2yJHwVRMgTgSvkNlC8caM
+         pm6QkCLKWYOcUK/azcbvXrCREX1Hxw8Dr5D8cxIUc2QjwauJ2pnXH2C8mcY6yRJBAmPO
+         3MrFTijEpcdGmskW/5JLMT3LgXIY8XK9so7fslD0tjTr9Ut2RK2JT8gBzzpeaIT4PLFS
+         LPn5YqEuSQQrCvvufXJL/fJ9OZQAEPRo4XLFDEymK8HI/omXOQBNCjY4AhJZ/xivyYLb
+         B+j7AVvUhmwL7p+Gg1QCIyUgfzIQhJ+MoXVKyeKQs46Arpo4e5YZmHcedOuYeIBvepq+
+         m0kw==
+X-Gm-Message-State: AAQBX9dNKV4GVPg9SD5G+lXU8kLuAHhYgZdOcWFNWxgYa78aTBlodVQj
+        elUXmsCoBPRqTJmkQw3Yy/I=
+X-Google-Smtp-Source: AKy350bRC/GtaxNa5mRK4IrBQlZWHOdOCh3e9bfrlRbD5TncI8syNL+EJ55MVS0+Us5TjIgEq+X/Rg==
+X-Received: by 2002:a17:902:ec8b:b0:1a2:87a2:c910 with SMTP id x11-20020a170902ec8b00b001a287a2c910mr3559370plg.53.1680173535575;
+        Thu, 30 Mar 2023 03:52:15 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id jk5-20020a170903330500b001a01bb92273sm24428522plb.279.2023.03.30.03.52.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 03:52:15 -0700 (PDT)
+Message-ID: <8bf559ec-0f5f-7ac5-6400-ccd2395b3b95@gmail.com>
+Date:   Thu, 30 Mar 2023 18:52:11 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 07/12] dt-bindings: serial: Document ma35d1 uart
+ controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-8-ychuang570808@gmail.com>
+ <be0bf335-39fc-2eac-ed37-112881bac675@linaro.org>
+ <7b5e42bc-0788-5208-e97e-10502da1c238@gmail.com>
+ <4c1fa450-79c9-2c66-4bb8-b880f2cf07a5@linaro.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <4c1fa450-79c9-2c66-4bb8-b880f2cf07a5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
 
-i.MX6SX has a single LVDS port and share a similar LDB_CTRL register layout
-with i.MX8MP and i.MX93.
 
-There is no LVDS CTRL register on the i.MX6SX, so only write to
-this register on the appropriate SoCs.
+On 2023/3/30 下午 03:33, Krzysztof Kozlowski wrote:
+> On 29/03/2023 10:44, Jacky Huang wrote:
+>> Dear Krzysztof,
+>>
+>>
+>> Thanks for your review.
+>>
+>>
+>> On 2023/3/29 下午 04:20, Krzysztof Kozlowski wrote:
+>>> On 28/03/2023 04:19, Jacky Huang wrote:
+>>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>>
+>>>> Add documentation to describe nuvoton ma35d1 uart driver bindings.
+>>>>
+>>> This depends on clock patches, so it must be taken together.
+>>>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> OK, I will combine this patch with the clock patch.
+> I don't know what you mean by "combine", but I don't think this is what
+> we want. You must clearly state all dependencies and patch merging
+> strategy/way.
+>
+> Best regards,
+> Krzysztof
+>
 
-Add support for the i.MX6SX LDB.
+Dear Krzysztof,
 
-Tested on a imx6sx-sdb board with a Hannstar HSD100PXN1 LVDS panel
-and also on a custom i.MX6SX-based board.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- None
+I may be misunderstanding your request.
+I thought it was moving the "nuvoton,ma35d1-serial.yaml" to the patch of 
+nuvoton,ma35d1-clk.h.
+Would you please provide guidance what should I do next on this [PATCH 
+v6 07/12]. Thank you.
 
- drivers/gpu/drm/bridge/fsl-ldb.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/fsl-ldb.c b/drivers/gpu/drm/bridge/fsl-ldb.c
-index 450b352914f4..f8e5d8ab98e3 100644
---- a/drivers/gpu/drm/bridge/fsl-ldb.c
-+++ b/drivers/gpu/drm/bridge/fsl-ldb.c
-@@ -56,6 +56,7 @@
- #define LVDS_CTRL_VBG_ADJ_MASK			GENMASK(19, 17)
- 
- enum fsl_ldb_devtype {
-+	IMX6SX_LDB,
- 	IMX8MP_LDB,
- 	IMX93_LDB,
- };
-@@ -64,9 +65,14 @@ struct fsl_ldb_devdata {
- 	u32 ldb_ctrl;
- 	u32 lvds_ctrl;
- 	bool lvds_en_bit;
-+	bool not_lvds_ctrl;
- };
- 
- static const struct fsl_ldb_devdata fsl_ldb_devdata[] = {
-+	[IMX6SX_LDB] = {
-+		.ldb_ctrl = 0x18,
-+		.not_lvds_ctrl = true,
-+	},
- 	[IMX8MP_LDB] = {
- 		.ldb_ctrl = 0x5c,
- 		.lvds_ctrl = 0x128,
-@@ -202,6 +208,9 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
- 
- 	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, reg);
- 
-+	if (fsl_ldb->devdata->not_lvds_ctrl)
-+		return;
-+
- 	/* Program LVDS_CTRL */
- 	reg = LVDS_CTRL_CC_ADJ(2) | LVDS_CTRL_PRE_EMPH_EN |
- 	      LVDS_CTRL_PRE_EMPH_ADJ(3) | LVDS_CTRL_VBG_EN;
-@@ -228,7 +237,8 @@ static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
- 		regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl,
- 			     LVDS_CTRL_LVDS_EN);
- 	else
--		regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, 0);
-+		if (!fsl_ldb->devdata->not_lvds_ctrl)
-+			regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, 0);
- 	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, 0);
- 
- 	clk_disable_unprepare(fsl_ldb->clk);
-@@ -355,6 +365,8 @@ static void fsl_ldb_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id fsl_ldb_match[] = {
-+	{ .compatible = "fsl,imx6sx-ldb",
-+	  .data = &fsl_ldb_devdata[IMX6SX_LDB], },
- 	{ .compatible = "fsl,imx8mp-ldb",
- 	  .data = &fsl_ldb_devdata[IMX8MP_LDB], },
- 	{ .compatible = "fsl,imx93-ldb",
--- 
-2.34.1
+Best regards,
+Jacky Huang
+
+
+
+
+
+
 
