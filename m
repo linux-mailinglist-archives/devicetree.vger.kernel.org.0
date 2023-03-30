@@ -2,172 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 790B86D0D53
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 20:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 784C16D0DAE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 20:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbjC3SFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 14:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
+        id S229973AbjC3SY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 14:24:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbjC3SFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 14:05:10 -0400
-Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E619EB5D;
-        Thu, 30 Mar 2023 11:05:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-        s=default2002; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=OD1GRLossTYVkVcV+tE14r5zBCaoYQBNIgKYBXxbTMQ=; b=lAJLdUGQxtvbtwlzUgxQ+wZSOp
-        KsPmkj7Qpxf+Eaw8vVxRiCZaj8Z0i8jMyltZsvLY0Qn+x9h39PZwsvUCQePetoXJzU21MhZjZIgEK
-        tK7qMwVlYPC5qwplFDsvutsGAFtlcS0ChbuGIjtlIfDQLqzbyyCCDf0W2W4NlTr3A+/sShypzN+Lt
-        E3CfSt4UYTN2MTj2skWS93KqkvVOrLX+ml2nIRO51UUzJ6s/XMEQrRnL3PwwMMJW75KForlpKHQFE
-        PcTlvj1QUL3QJbQPmleLWeU3qterfEwVAChyucLjHEcekP5TBUpU9TVA4REsZ5lgp+KbJsFcWtNSH
-        VyKyAEUQ==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <lars@metafoo.de>)
-        id 1phwe1-0003M7-Tz; Thu, 30 Mar 2023 20:05:05 +0200
-Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b] (helo=lars-desktop.lan)
-        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1phwe1-0004Kt-CK; Thu, 30 Mar 2023 20:05:05 +0200
-From:   Lars-Peter Clausen <lars@metafoo.de>
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>
-Subject: [PATCH 2/2] i2c: cadence: Add reset controller support
-Date:   Thu, 30 Mar 2023 11:04:48 -0700
-Message-Id: <20230330180448.269635-2-lars@metafoo.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230330180448.269635-1-lars@metafoo.de>
-References: <20230330180448.269635-1-lars@metafoo.de>
+        with ESMTP id S231376AbjC3SYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 14:24:54 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6BDD517;
+        Thu, 30 Mar 2023 11:24:53 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id h8so80075232ede.8;
+        Thu, 30 Mar 2023 11:24:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680200692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vOmbHXxgl5AIX4hLwyDtng0AW8nkrnwi8e/O7fTQX2I=;
+        b=UlzQKSnTOcb/dH8AASCRMK8obXyE/Y+zy8xNqxm4Pbq18AQHfXoneaLQHzt2o4Esa5
+         mG5WTba90pRPp+/wXKfuMpMFN1aahy5Az682K8EJ9jeQNt438a2TDvh4AnM4qI9ehils
+         7MMxZP7M3j3TP9PZ6uKOnW53bQtz2cOYDRaT/RCLZ6fqrbj/4plvkCyM/xzX4W62NaB6
+         whXHrvc/JYdqr4znDnvZETXnpkh8DQGIEa2AQOO4Koy2JOz7bfGgT3WYRz2ddBhgpiIp
+         /tN1LJC2AXbmP4cZdsi6Z+FWBQEfrfcBM30cp8u6qLDOUO+VchyeubKS0Y+ciZfPmQb0
+         wohg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680200692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vOmbHXxgl5AIX4hLwyDtng0AW8nkrnwi8e/O7fTQX2I=;
+        b=TedFq56na0ILOkVfI9R0Lk8SghaNnCwHVWZIRacR1xkTtCvaZoR0E3eJycIZL7QrwW
+         02Jk47J3/ze3we1j2HLnFYNHkRH6clKe0AreQ7QfXBftkxvXGH1p/hnllTUS6noa+nna
+         7L5bhQHUId6tGNXRC7mVKw1H0MbZTfGZmpQXuwrQtTpX68rsC8iqCdBOgeWes4S3WpkC
+         5tHZOLqd1s4Q/zz0GkukNgMVDiI84UxQAThcA5MzjyQt7Hr/lFRKLV7wZHRg16pt9lMP
+         TDv3VVgf1hrsSJiUiWoo58G4Q9vlWhFMuyN1yycwsRi9wEr4j/SdGZRutE/vb5pozvxZ
+         ZUvA==
+X-Gm-Message-State: AAQBX9d0Jo4gRThXtDEP5DiPUo3Cqqo7DU7ZH+X44YYZOCZWeeEjYiJi
+        bt5e3uuJM/g8/Jt/z1/nI50=
+X-Google-Smtp-Source: AKy350YBrOqbBAi66TRuaaQ1mnLn7kuv/imUBVsaeduC4hdggeZjE1wQf+b8FXAy+ZMjBDAVtqBJ2A==
+X-Received: by 2002:aa7:c7cf:0:b0:500:50f6:dd27 with SMTP id o15-20020aa7c7cf000000b0050050f6dd27mr20835611eds.26.1680200692048;
+        Thu, 30 Mar 2023 11:24:52 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8109:8c00:3b40:1039:1167:a648:b315])
+        by smtp.gmail.com with ESMTPSA id i24-20020a508718000000b005024aff3bb5sm202714edb.80.2023.03.30.11.24.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Mar 2023 11:24:51 -0700 (PDT)
+From:   Nikita Bondarenko <n2h9z4@gmail.com>
+To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
+        rjui@broadcom.com, sbranden@broadcom.com
+Cc:     Nikita Bondarenko <n2h9z4@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] Convert brcm,kona-wdt.txt to brcm,kona-wdt.yaml
+Date:   Thu, 30 Mar 2023 20:24:47 +0200
+Message-Id: <20230330182447.51674-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26859/Thu Mar 30 09:24:22 2023)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Cadence I2C controller has an external reset signal that needs to be
-de-asserted before the I2C controller can be used.
-
-Add support to the driver to be able to take the peripheral out of reset
-using the reset controller API. The reset is optional in the driver for
-compatibility to systems where the reset managed by the bootloader.
-
-Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
+Signed-off-by: Nikita Bondarenko <n2h9z4@gmail.com>
 ---
- drivers/i2c/busses/i2c-cadence.c | 26 ++++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
+ .../bindings/watchdog/brcm,kona-wdt.txt       | 15 -------
+ .../bindings/watchdog/brcm,kona-wdt.yaml      | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 15 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
 
-diff --git a/drivers/i2c/busses/i2c-cadence.c b/drivers/i2c/busses/i2c-cadence.c
-index 8f61a633c42c..102774ab2497 100644
---- a/drivers/i2c/busses/i2c-cadence.c
-+++ b/drivers/i2c/busses/i2c-cadence.c
-@@ -16,6 +16,7 @@
- #include <linux/of.h>
- #include <linux/pm_runtime.h>
- #include <linux/pinctrl/consumer.h>
-+#include <linux/reset.h>
- 
- /* Register offsets for the I2C device. */
- #define CDNS_I2C_CR_OFFSET		0x00 /* Control Register, RW */
-@@ -178,6 +179,7 @@ enum cdns_i2c_slave_state {
-  * @bus_hold_flag:	Flag used in repeated start for clearing HOLD bit
-  * @clk:		Pointer to struct clk
-  * @clk_rate_change_nb:	Notifier block for clock rate changes
-+ * @reset:		Reset control for the device
-  * @quirks:		flag for broken hold bit usage in r1p10
-  * @ctrl_reg:		Cached value of the control register.
-  * @ctrl_reg_diva_divb: value of fields DIV_A and DIV_B from CR register
-@@ -204,6 +206,7 @@ struct cdns_i2c {
- 	unsigned int bus_hold_flag;
- 	struct clk *clk;
- 	struct notifier_block clk_rate_change_nb;
-+	struct reset_control *reset;
- 	u32 quirks;
- 	u32 ctrl_reg;
- 	struct i2c_bus_recovery_info rinfo;
-@@ -1325,10 +1328,22 @@ static int cdns_i2c_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, PTR_ERR(id->clk),
- 				     "input clock not found.\n");
- 
-+	id->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-+	if (IS_ERR(id->reset))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(id->reset),
-+							 "Failed to request reset.\n");
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
+deleted file mode 100644
+index 2b86a00e351d..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-Broadcom Kona Family Watchdog Timer
+------------------------------------
+-
+-This watchdog timer is used in the following Broadcom SoCs:
+-  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
+-
+-Required properties:
+-  - compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
+-  - reg: memory address & range
+-
+-Example:
+-	watchdog@35002f40 {
+-		compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
+-		reg = <0x35002f40 0x6c>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
+new file mode 100644
+index 000000000000..ffc4870bdb57
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/brcm,kona-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	ret = clk_prepare_enable(id->clk);
- 	if (ret)
- 		dev_err(&pdev->dev, "Unable to enable clock.\n");
- 
-+	ret = reset_control_deassert(id->reset);
-+	if (ret) {
-+		dev_err_probe(&pdev->dev, ret,
-+					  "Failed to de-assert reset.\n");
-+		goto err_clk_dis;
-+	}
++title: Broadcom Kona Family Watchdog Timer
 +
- 	pm_runtime_set_autosuspend_delay(id->dev, CNDS_I2C_PM_TIMEOUT);
- 	pm_runtime_use_autosuspend(id->dev);
- 	pm_runtime_set_active(id->dev);
-@@ -1360,28 +1375,30 @@ static int cdns_i2c_probe(struct platform_device *pdev)
- 	if (ret) {
- 		dev_err(&pdev->dev, "invalid SCL clock: %u Hz\n", id->i2c_clk);
- 		ret = -EINVAL;
--		goto err_clk_dis;
-+		goto err_clk_notifier_unregister;
- 	}
- 
- 	ret = devm_request_irq(&pdev->dev, irq, cdns_i2c_isr, 0,
- 				 DRIVER_NAME, id);
- 	if (ret) {
- 		dev_err(&pdev->dev, "cannot get irq %d\n", irq);
--		goto err_clk_dis;
-+		goto err_clk_notifier_unregister;
- 	}
- 	cdns_i2c_init(id);
- 
- 	ret = i2c_add_adapter(&id->adap);
- 	if (ret < 0)
--		goto err_clk_dis;
-+		goto err_clk_notifier_unregister;
- 
- 	dev_info(&pdev->dev, "%u kHz mmio %08lx irq %d\n",
- 		 id->i2c_clk / 1000, (unsigned long)r_mem->start, irq);
- 
- 	return 0;
- 
--err_clk_dis:
-+err_clk_notifier_unregister:
- 	clk_notifier_unregister(id->clk, &id->clk_rate_change_nb);
-+	reset_control_assert(id->reset);
-+err_clk_dis:
- 	clk_disable_unprepare(id->clk);
- 	pm_runtime_disable(&pdev->dev);
- 	pm_runtime_set_suspended(&pdev->dev);
-@@ -1406,6 +1423,7 @@ static int cdns_i2c_remove(struct platform_device *pdev)
- 
- 	i2c_del_adapter(&id->adap);
- 	clk_notifier_unregister(id->clk, &id->clk_rate_change_nb);
-+	reset_control_assert(id->reset);
- 	clk_disable_unprepare(id->clk);
- 
- 	return 0;
++description: |
++  This watchdog timer is used in the following Broadcom SoCs:
++  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm11351-wdt
++      - brcm,kona-wdt
++
++  reg:
++    maxItems: 1
++    description: memory address & range
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@35002f40 {
++      compatible = "brcm,bcm11351-wdt";
++      reg = <0x35002f40 0x6c>;
++    };
++  - |
++    watchdog@35002f40 {
++      compatible = "brcm,kona-wdt";
++      reg = <0x35002f40 0x6c>;
++    };
 -- 
-2.30.2
+2.34.1
 
