@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 414CE6D1047
+	by mail.lfdr.de (Postfix) with ESMTP id E1C306D1049
 	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 22:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbjC3Uu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 16:50:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51006 "EHLO
+        id S229830AbjC3Uu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 16:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbjC3Uu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 16:50:56 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC28072A3
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 13:50:55 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id bl22so1234583oib.11
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 13:50:55 -0700 (PDT)
+        with ESMTP id S229934AbjC3Uu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 16:50:57 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF91749CF;
+        Thu, 30 Mar 2023 13:50:56 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id k14-20020a9d700e000000b0069faa923e7eso10743886otj.10;
+        Thu, 30 Mar 2023 13:50:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680209455;
+        d=1e100.net; s=20210112; t=1680209456;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=iSrR/4Gk4S9c2a7Moq5Mdq3AKWmLJGZNw6jbQ7au9DA=;
-        b=Rp/9GRmXmiutTif4KK+oNuq55s2VyRtvzqmm26SDEBtR0DQR7lbUlAZ8V2jo6IPxB2
-         kukWMHFWt5iQdrfAAlM4y05eZFWxDDE9vZKhG1R41ct9Y+b8AsdnBh462kyAIPJDa96U
-         PP7poE8cVk4l79rPSmZTlH2qf/ubgn4R66aGQGNLDnd7CUdpY3Xh8uQXexciPiQauvo4
-         MOt8IQU9iLfrDf5A7bpOWggLx4R9Q1mHpj1SzD6M1oVguM/Tm28OL+oDBGXa0+rquwhg
-         6xDy2GzMaK3BVYtw1kEKvvKeHQcXnt2BEA5sNJwFQIf8tzyrldDBBcC2RZ+lshg1LnBS
-         KnIQ==
-X-Gm-Message-State: AAQBX9eZFKIWmvxjmo+PtB4DPAfx5k7k8qacqh5I+QjJCa9VA30z5Tyu
-        4jPcSO86JnoPjRuoxitT5it6nDBMow==
-X-Google-Smtp-Source: AKy350bdHHV21iLPm41gDwmUEUfKk5KsEUstWlNhdLYdIinpA4mBrBOeNMvfXAJVTPxZsZRx3M98rw==
-X-Received: by 2002:aca:1114:0:b0:386:9fff:b848 with SMTP id 20-20020aca1114000000b003869fffb848mr3214328oir.4.1680209455056;
-        Thu, 30 Mar 2023 13:50:55 -0700 (PDT)
+        bh=e5eLhRpS5QUemU171kaJZBbMWe4s/0L9/7Btk4sk5Zs=;
+        b=IY5mjdkikKw049rAsr2hbu4Ku3p2j9tWTApP6le5uijxRZeNmZZqTvkSAnxnsRIpVs
+         LcOzERom++aK1/kBmregw9CpHtLTuJ1MN/MAWYG43otHTHlxpGyCPoeINhtskwI8VrYm
+         nycedgX1dgT+ENOau3rZDFzEfKeUvGyOnEeI0WNTJKerTZqYOZwLSg02+PjiaHtasY30
+         HIWc6TWq1vTTtPWHBeMVlZ8y0fhS319gNPW76rOiNSFIuhZdR9VzzA1/trwkRzwfTJH7
+         avM6fX5+jDbnxipbGOUNOYwVmQ2en5MaW0BxGP437wmXPNtZ0L3Nh1P+dadyRZE6ZqMt
+         brqA==
+X-Gm-Message-State: AO0yUKWJgYS4DbAVsuLLz1Qz6sg731FW4IMMGbwK4Gnxfx9yFmnq5AzV
+        UG6CdbM1OBeLII5qzc4tIw==
+X-Google-Smtp-Source: AK7set/GHdEnabZLNc3Ajn9m0NHgQ0cQjBi09b9EvaWxQBT1iWIQnNEzMxA9287IJxFAsT7DwLzeHA==
+X-Received: by 2002:a05:6830:146:b0:68c:1b5f:96de with SMTP id j6-20020a056830014600b0068c1b5f96demr11920049otp.2.1680209456174;
+        Thu, 30 Mar 2023 13:50:56 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e15-20020a056830200f00b00697be532609sm331045otp.73.2023.03.30.13.50.54
+        by smtp.gmail.com with ESMTPSA id l26-20020a9d6a9a000000b0069fb690b38esm371652otq.21.2023.03.30.13.50.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 13:50:54 -0700 (PDT)
-Received: (nullmailer pid 2782001 invoked by uid 1000);
+        Thu, 30 Mar 2023 13:50:55 -0700 (PDT)
+Received: (nullmailer pid 2782004 invoked by uid 1000);
         Thu, 30 Mar 2023 20:50:54 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     James Morse <james.morse@arm.com>
-Cc:     devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-In-Reply-To: <20230330165128.3237939-2-james.morse@arm.com>
-References: <20230330165128.3237939-1-james.morse@arm.com>
- <20230330165128.3237939-2-james.morse@arm.com>
-Message-Id: <168020932256.2779369.8695788073285138890.robh@kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: firmware: Add arm,errata-management
+To:     Nikita Bondarenko <n2h9z4@gmail.com>
+Cc:     rjui@broadcom.com, linux-watchdog@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sbranden@broadcom.com,
+        linux@roeck-us.net, robh+dt@kernel.org, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org, wim@linux-watchdog.org,
+        bcm-kernel-feedback-list@broadcom.com
+In-Reply-To: <20230330182447.51674-1-n2h9z4@gmail.com>
+References: <20230330182447.51674-1-n2h9z4@gmail.com>
+Message-Id: <168020932908.2779835.7122491631340015762.robh@kernel.org>
+Subject: Re: [PATCH] Convert brcm,kona-wdt.txt to brcm,kona-wdt.yaml
 Date:   Thu, 30 Mar 2023 15:50:54 -0500
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,60 +65,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 30 Mar 2023 17:51:23 +0100, James Morse wrote:
-> The Errata Management SMCCC interface allows firmware to advertise whether
-> the OS is affected by an erratum, or if a higher exception level has
-> mitigated the issue. This allows properties of the device that are not
-> discoverable by the OS to be described. e.g. some errata depend on the
-> behaviour of the interconnect, which is not visible to the OS.
-> 
-> Deployed devices may find it significantly harder to update EL3
-> firmware than the device tree. Erratum workarounds typically have to
-> fail safe, and assume the platform is affected putting correctness
-> above performance.
-> 
-> Instead of adding a device-tree entry for any CPU errata that is
-> relevant (or not) to the platform, allow the device-tree to describe
-> firmware's responses for the SMCCC interface. This could be used as
-> the data source for the firmware interface, or be parsed by the OS if
-> the firmware interface is missing.
-> 
-> Most errata can be detected from CPU id registers. These mechanisms
-> are only needed for the rare cases that external knowledge is needed.
-> 
-> Suggested-by: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: James Morse <james.morse@arm.com>
+On Thu, 30 Mar 2023 20:24:47 +0200, Nikita Bondarenko wrote:
+> Signed-off-by: Nikita Bondarenko <n2h9z4@gmail.com>
 > ---
->  .../devicetree/bindings/arm/cpus.yaml         |  5 ++
->  .../firmware/arm,errata-management.yaml       | 77 +++++++++++++++++++
->  2 files changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/arm,errata-management.yaml
+>  .../bindings/watchdog/brcm,kona-wdt.txt       | 15 -------
+>  .../bindings/watchdog/brcm,kona-wdt.yaml      | 45 +++++++++++++++++++
+>  2 files changed, 45 insertions(+), 15 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/firmware/arm,errata-management.yaml:48:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/firmware/arm,errata-management.yaml:50:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/firmware/arm,errata-management.yaml:52:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230330182447.51674-1-n2h9z4@gmail.com
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230330165128.3237939-2-james.morse@arm.com
+watchdog@35002f40: compatible: ['brcm,bcm11351-wdt', 'brcm,kona-wdt'] is too long
+	arch/arm/boot/dts/bcm28155-ap.dtb
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+watchdog@35002f40: Unevaluated properties are not allowed ('compatible' was unexpected)
+	arch/arm/boot/dts/bcm28155-ap.dtb
 
