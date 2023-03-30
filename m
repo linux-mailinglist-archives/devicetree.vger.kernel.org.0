@@ -2,139 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EBED6CFC04
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 08:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B3696CFC16
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 08:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjC3G4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 02:56:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47978 "EHLO
+        id S229889AbjC3G7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 02:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbjC3G4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 02:56:10 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7DC19F
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 23:56:09 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-544f7c176easo337629637b3.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 23:56:08 -0700 (PDT)
+        with ESMTP id S229595AbjC3G7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 02:59:17 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F697210C
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 23:59:16 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id q14so18567896ljm.11
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 23:59:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1680159368;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3A+wpr19CmQ1TBVKKYT6GbRWSRYO793ifnsMOlUiwbE=;
-        b=OABucgc84fkecsB2apt/ogKzIf6bvpjaTQB9vmPKnxOjgqC3jbY5/6bWVmEs92Cyfb
-         nUeuA2iJSLy46uwgpJxLgHKX6VHnAIltBZ5zi+aR26/iSoPeYRGWPUWbCU/pLnwSqLG0
-         KcCsjBrSKWMx3nX1saQmuhKlPvarup2xrLNt0=
+        d=linaro.org; s=google; t=1680159554;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DpkyCgvj4WryLDUxuD+mVvNVV1z1ICnLVaYscONhSWI=;
+        b=kBhe+XYF6lQ6UpQYErty3sNRIodLnvM+8CvBtSwIQUAs5pkvL7ASV7yPppeJ3GCEqB
+         8EugfSd9EgGB41P8zO/BUazCufcku8KpkSFzYvfzsygLOoLs3UfUFwNYpCfmqn2/QuAt
+         sKjJIC1qu8GhDdxGHgomUQdHBvSil7rWAWwkRUU25GodxC1bZnZT7Wd4RsxyFwUduI38
+         qamzW4vRVU3a6652VYjKWY6wSxUQ3ljWDAh69vcUq33Crc/RGD5zRcaNWadE8Gmrkh/L
+         xyhQAPtUjHMEaBaNLZ3gvejwPA+09gVhLK791Sh3W9uZumXLQdd5ZgeiPSJeVfYf8cSq
+         fSuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680159368;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3A+wpr19CmQ1TBVKKYT6GbRWSRYO793ifnsMOlUiwbE=;
-        b=d9OxkXKGE06SxcG35vI56BapPONmyxGnfcV2QlZZKXP0omY4HwTZeb/3bf/US0S3sN
-         0faZOcBAS3TuMCklGXmQO99+BOAmf2v94jqBo9x39FlBuNGyIXU+PbKTztSXFtc3CqHg
-         jrO5gQuDgaZWtdfsZTByCOOwziBqALV4UxeB9xgZuZlVtMxebayaTP3wzhvG7iy3vOzz
-         lzYNe0+rIVMZECUTRTCg1MIyEoRTpixS1sDXCNrHzlgAQTRJ67jrMCxafQLqu968LOed
-         sbP2y/vbVl3LEDVZqsl/RWDX3VCTgOiCpLuG8TJ+yeZv1KzDGxgZm6mASNrl79wA7j29
-         RQag==
-X-Gm-Message-State: AAQBX9cekniDa60vfUafg7Y3vii27ET5xrCSD6v7w8g3joP1nBiOLeI1
-        dwYt67Rg2l8fc25KLXr/b3UIRFSn8ZVUpOhoRJG7EL2cMq4pymAA8Jt0zg==
-X-Google-Smtp-Source: AKy350ZHJjZhJJwBBtdUqfaY6RG/76vwwThMMt3oK5B3TbQQEDFWJx0IY4u2AwSvrLkQBQtu5ALiwx0jgs6FaeAsOf0=
-X-Received: by 2002:a81:ac46:0:b0:544:6828:3c09 with SMTP id
- z6-20020a81ac46000000b0054468283c09mr11139395ywj.0.1680159368210; Wed, 29 Mar
- 2023 23:56:08 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680159554;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DpkyCgvj4WryLDUxuD+mVvNVV1z1ICnLVaYscONhSWI=;
+        b=tn265Xn/qNuTZh3RWEhXoOZRMa3SeIXqxltUo+6lmXxAAtT3fnNMoD1bCGzXJGSpmy
+         Y/wlMyxoXX5L848eIPBPgYSXMY4ls7WHhqlbccUCFhLDNZolnKDKsaAbIZ7i8k1wSZ8N
+         qc9wPyqraDBM5rNhkteJjjfS2ICklAAX9go6Say5IcycAeB1DHu9ISpK3Yb/WCW8y7Th
+         EK1qqsrhQop+Yb+HvCULQ6xSlBYvGXYWZBs36wKjvtkSAjzuVpdZ6nUpbQ8RHIjQciFP
+         DeqHfRjkoIeAKoaH2xQ3JNpkQG+tq9AAp/ubIQOf3nwYq0Yv6UYbyj6zUYYaBKLS8dGU
+         vxGA==
+X-Gm-Message-State: AAQBX9f3kg9lQJv382V1lOw1rtMk/yDK49SUPUVqNOjz7eUyv/BIUblr
+        Olwy8DtRaQWrMkgYHFCnaES7+g==
+X-Google-Smtp-Source: AKy350aUPwktkt+XR5pPPg5JY4SayHpX8STy4rc7Xv9y8lUqG2IKYfYEJjZu05zEfyutuNS6yKfvfw==
+X-Received: by 2002:a2e:9ece:0:b0:298:b362:6258 with SMTP id h14-20020a2e9ece000000b00298b3626258mr5972086ljk.52.1680159554253;
+        Wed, 29 Mar 2023 23:59:14 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id w3-20020a2e9bc3000000b00298c7f21105sm5622272ljj.66.2023.03.29.23.59.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Mar 2023 23:59:13 -0700 (PDT)
+Message-ID: <3bb3f40f-39da-2fe6-f5ca-2848a9e5c49b@linaro.org>
+Date:   Thu, 30 Mar 2023 08:59:12 +0200
 MIME-Version: 1.0
-References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
- <CAPY8ntCJP53uiGNQHUZqma08Vsxfwm7KvAkgMzK=hn4AxJLS3A@mail.gmail.com> <20230329164638.v43la4l7rxut6hk6@penduick>
-In-Reply-To: <20230329164638.v43la4l7rxut6hk6@penduick>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 30 Mar 2023 12:25:56 +0530
-Message-ID: <CAMty3ZCsn6OR1-TvqFXP48iamG-k5sPU1_CH2fNLBQP3Ofb0QA@mail.gmail.com>
-Subject: Re: [PATCH v7 10/12] drm/bridge: Implement enable_next_first to alter
- bridge init order
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 07/10] ASoC: dt-bindings: qcom,lpass-va-macro: Add
+ missing NPL clock
+To:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Marek Vasut <marex@denx.de>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Takashi Iwai <tiwai@suse.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Patrick Lai <quic_plai@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+References: <20230327132254.147975-1-krzysztof.kozlowski@linaro.org>
+ <20230327132254.147975-8-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230327132254.147975-8-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 10:16=E2=80=AFPM Maxime Ripard <maxime@cerno.tech> =
-wrote:
->
-> On Wed, Mar 29, 2023 at 05:28:28PM +0100, Dave Stevenson wrote:
-> > On Wed, 29 Mar 2023 at 14:19, Jagan Teki <jagan@amarulasolutions.com> w=
-rote:
-> > >
-> > > DSI sink devices typically send the MIPI-DCS commands to the DSI host
-> > > via general MIPI_DSI_DCS read and write API.
-> > >
-> > > The classical DSI sequence mentioned that the DSI host receives MIPI-=
-DCS
-> > > commands from the DSI sink first in order to switch HS mode properly.
-> > > Once the DSI host switches to HS mode any MIPI-DCS commands from the
-> > > DSI sink are unfunctional.
-> >
-> > That statement contradicts the spec.
-> > The DSI spec section 8.11.1 Transmission Packet Sequences says that
-> > during any BLLP (Blanking or Low Power) period the host can do any of:
-> > - remain in LP-11
-> > - transmit one or more non-video packets from host to peripheral in esc=
-ape mode
-> > - transmit one or more non-video packets from host to peripheral in
-> > using HS mode
-> > - receive one or more packets from peripheral to host using escape mode
-> > - transmit data on a different virtual channel.
-> >
-> > Indeed if the sink doesn't set MIPI_DSI_MODE_LPM /
-> > MIPI_DSI_MSG_USE_LPM, then the expectation is that any data transfer
-> > will be in HS mode.
-> >
-> > That makes me confused as to the need for this patch.
->
-> Yeah, and it looks like that would break the expectation that, in
-> enable, a bridge can expect its controller to be in HS mode.
->
-> I think that was Jagan is trying to do is to work around an issue with
-> the Allwinner DSI driver:
-> https://elixir.bootlin.com/linux/v6.3-rc4/source/drivers/gpu/drm/sun4i/su=
-n6i_mipi_dsi.c#L775
+On 27/03/2023 15:22, Krzysztof Kozlowski wrote:
+> Several devices (e.g. SC8280XP and SM8450) expect a NPL (Near Pad Logic)
+> clock.  Add the clock and customize allowed clocks per each variant.
+> The clocks are also required by ADSP in all variants.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. New patch.
+> ---
+>  .../bindings/sound/qcom,lpass-va-macro.yaml   | 68 ++++++++++++++++---
 
-Correct and I can see it seems to be a classic DSI sequence observed
-in dw-mipi-dsi as well - based on Neil's comments.
-https://lore.kernel.org/all/9aa3d19d-4378-aaf3-6857-c40be5d252c7@baylibre.c=
-om/
+Mark,
 
-In fact, I did follow and initialize the command-mode mode_set which
-set low-speed DCS and switch back to video-mode @enable and switch to
-HS but could see the same issue as the host cannot accept DCS as
-before (I might implement improper sequence, but not sure due to lack
-of documentation). But this sequence has issues with calling
-post_disable twice even on dw-mipi-dsi.
+It seems you applied v2, not v3, so this patch is missing and the
+binding needs fixes.
 
-May be Neill, can comment here?
+I will send a new version of this.
 
-Thanks,
-Jagan.
+
+Best regards,
+Krzysztof
+
