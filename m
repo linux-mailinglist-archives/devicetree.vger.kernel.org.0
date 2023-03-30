@@ -2,67 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EAAA6CFD8E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201896CFDAF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjC3IAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 04:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
+        id S229927AbjC3IFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 04:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbjC3IAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:00:44 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC571708
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:00:43 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id x20so18695398ljq.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:00:43 -0700 (PDT)
+        with ESMTP id S229988AbjC3IFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:05:04 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C975FF7
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:04:56 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id c29so23471345lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:04:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680163242;
+        d=linaro.org; s=google; t=1680163495;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UCXqykby8X/tl5h21vtaDyXKQvYghY/9t0bakulrVps=;
-        b=bgLKba6nlOaiPDuVTpaGm6/l+URd9XzaayQuh+SB7f4ZLhh6O2BqmKNncjYe9qsgJ+
-         gXZjTLBW8O+nATp2AZo3Fcj4aoD7jEn6x2kzpt8kDnxif14FnjB3R7zB57SD1zYNqH/a
-         Za78+teMToROYI1ESBFOv2I6AnqTEJR/xHDKkQT1xVTQadDNAK1sS9+5VwgM1FVZZn3X
-         u7EkSfsh0Zh8djElwenEml8f+oh9t+RoblKAuYG2WROYSy/F520FrmU1IPeLW05B9nJb
-         d88p6B7+QQyFQXWXu1OzFAkH2BU773qX+Gt6PGvczAHDsARC6/XFr3qVjIdvfBEU6UpM
-         zjDA==
+        bh=AlXibMxlWDb3fE7PPlx7SqRIaOU+iY/my4CtWS+AFz0=;
+        b=gOm82s6MR20hI+r3IB7/L5e+uq1Zz3OLh840E7iYyoP2gDecLH48lajqbgYV8NVJvN
+         xPEboB8255TuCoxzCDS2+FESyUM8H0DhzpSgt6mSkF1+zD57sDtkfqqKjdz5imIVuC6f
+         7Du2uERLeJwYowtYMBIhB9Hcua+RgXPLS7WipJy2D7Lb3gVmOeNQ4r5787/YFt6FiewJ
+         0x1mjZQeTGeal2MrM9jN8pYGDKU7wrfJZNIizTJnKnAa3SNiPQ5NSgA+SkXVNpxh8rn+
+         jCOjqHT2gK8MX4yF5DZaiUk4FAGkQARmVJdKtMKnj2vzq9ClK5XtNHyzUvItu1Lj3z2o
+         3AyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680163242;
+        d=1e100.net; s=20210112; t=1680163495;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UCXqykby8X/tl5h21vtaDyXKQvYghY/9t0bakulrVps=;
-        b=nDyuMDUKW/yaMSR/fEsRxjw0PlPIpMgkMeS1P5WWKwHAYlv7CdMuYyco+cdJHcZFR5
-         HWCNLpQZ0DjQY4dQKxuiR9rQLeVZQx0lQ3+EXcr6K1maRcPc6vKggsfA/c3xDVpRZqME
-         H9cNwOReq/2Yxsx8HiC9y3B7kKKZ4791CEWKSAlbH/uqqs17rv99hGOh+MxHP05gVoVq
-         7J8alL0OIpHmqglALvswc5ML3zUSeTYB0DXzZV5RFYOTy/pbnFJZfnrD7uSggtSiDtsi
-         q7i6xl11nDW2xZm+lHCeFNRKRzdGqU5PL5lm4Kl1/k2ifpHGfnYg1gPF93n9+oLDX/yw
-         vAoQ==
-X-Gm-Message-State: AAQBX9cfZ3/97ovkTUViG3DYlZc0ljCuhGGbDAJs6XwsJpNSDSsch0QO
-        1bi4znj6A2KvjYU/SjBDmZSIDQ==
-X-Google-Smtp-Source: AKy350YZXpl4ZSBECyvaIS1VGyO/P1SK3601QviNmQb4rz3HxRu6lXPhZLI5GSPCpUibhNe49dYz3g==
-X-Received: by 2002:a2e:87ca:0:b0:2a1:8a96:d5c with SMTP id v10-20020a2e87ca000000b002a18a960d5cmr7516879ljj.9.1680163241728;
-        Thu, 30 Mar 2023 01:00:41 -0700 (PDT)
+        bh=AlXibMxlWDb3fE7PPlx7SqRIaOU+iY/my4CtWS+AFz0=;
+        b=z45GOPWpKmAMZdP+sg1CyWr1/B8ljCU5jGgr8ogakvdCDMdD9HwVGIHI209NkE1M1e
+         ClFIXyqJ9zDdhXZdPsS44X8Q4UDzuFpoxhNPpriTYrWlAe4C0J76LNdI+JD21Kbut66g
+         spyGbtc/gu5KM3iu+RhusDdG+GCqVT45SYoNzcsHz3Co0AoMGkF5QVgLfhQ0cw9mzsbs
+         AOcuq2XtyG7SUeCvOcF0LI5VGaoI5kWvQvAP5PDQDyZ/T5/b7MPUcJu25LNfYSOTO0H3
+         i62apzc97MLZ3tdfr5qxHCcpGs9sASuHSkmfBQyRlLv8BI/oAjYT1bxtUtBCJ1KCkL3F
+         YlTw==
+X-Gm-Message-State: AAQBX9d8dZ26DEz5mrEcYOik8/b2rpEtHcrxdaVBWUJyHhjYpWgJbIve
+        AfpyjjBPz+JqksY+2netQC1TKA==
+X-Google-Smtp-Source: AKy350Zv08/gNl3jEoV0yNCaazw9HNMb60MNBg0qFkoa7eUW7f3+7ydFURsCh+73MMnQG62wHJ3aMA==
+X-Received: by 2002:ac2:4db7:0:b0:4e8:3d0:84b4 with SMTP id h23-20020ac24db7000000b004e803d084b4mr1673498lfe.24.1680163495153;
+        Thu, 30 Mar 2023 01:04:55 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id l22-20020a2e8356000000b0029e967c1dfesm4236840ljh.8.2023.03.30.01.00.40
+        by smtp.gmail.com with ESMTPSA id q17-20020ac25151000000b004d5a6dcb94fsm5810324lfd.33.2023.03.30.01.04.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 01:00:41 -0700 (PDT)
-Message-ID: <250dd9d8-7592-6ebd-e63f-98ae5aad542c@linaro.org>
-Date:   Thu, 30 Mar 2023 10:00:40 +0200
+        Thu, 30 Mar 2023 01:04:54 -0700 (PDT)
+Message-ID: <f4692540-4be0-4140-0a9c-e38f2e9515ba@linaro.org>
+Date:   Thu, 30 Mar 2023 10:04:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: Add nxp,qoriq-efuse
+Subject: Re: [PATCH v6 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
 Content-Language: en-US
-To:     Richard Alpe <richard@bit42.se>, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        niklas.soderlund+renesas@ragnatech.se
-References: <20230328082701.2569114-1-richard@bit42.se>
+To:     Lee Jones <lee@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+References: <20230307112835.81886-1-okan.sahin@analog.com>
+ <20230307112835.81886-6-okan.sahin@analog.com>
+ <20230315175223.GI9667@google.com> <20230315175257.GJ9667@google.com>
+ <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230329143615.GS2673958@google.com> <ZCROpw0il1VQCLPu@smile.fi.intel.com>
+ <20230329145636.GV2673958@google.com> <20230329150605.GW2673958@google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328082701.2569114-1-richard@bit42.se>
+In-Reply-To: <20230329150605.GW2673958@google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -75,75 +100,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 10:27, Richard Alpe wrote:
-> Add a schema for the NVMEM eFuse (SFP) layout on the NXP QorIQ SOC.
+On 29/03/2023 17:06, Lee Jones wrote:
+> On Wed, 29 Mar 2023, Lee Jones wrote:
 > 
-> Signed-off-by: Richard Alpe <richard@bit42.se>
-> ---
->  .../bindings/nvmem/nxp,qoriq-efuse.yaml       | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/nxp,qoriq-efuse.yaml
-
-Filename matching compatible.
+>> On Wed, 29 Mar 2023, Andy Shevchenko wrote:
+>>
+>>> On Wed, Mar 29, 2023 at 03:36:15PM +0100, Lee Jones wrote:
+>>>> On Tue, 28 Mar 2023, Sahin, Okan wrote:
+>>>>>> On Wed, 15 Mar 2023, Lee Jones wrote:
+>>>>>>> On Tue, 07 Mar 2023, Okan Sahin wrote:
+>>>
+>>> ...
+>>>
+>>>>> +static const struct i2c_device_id max77541_i2c_id[] = {
+>>>>> +	{ "max77540", (kernel_ulong_t)&chip[MAX77540] },
+>>>>> +	{ "max77541", (kernel_ulong_t)&chip[MAX77541] },
+>>>>
+>>>> Just 'MAX77540' is fine.
+>>>
+>>> I tend to disagree.
+>>>
+>>> There is an error prone approach esp. when we talk with some functions
+>>> that unifies OF/ACPI driver data retrieval with legacy ID tables.
+>>> In such a case the 0 from enum is hard to distinguish from NULL when
+>>> the driver data is not set or not found. On top of that the simple integer
+>>> in the legacy driver data will require additional code to be added in
+>>> the ->probe().
+>>
+>> Use a !0 enum?
+>>
+>> The extra handling is expected and normal.
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/nxp,qoriq-efuse.yaml b/Documentation/devicetree/bindings/nvmem/nxp,qoriq-efuse.yaml
-> new file mode 100644
-> index 000000000000..e1d4d3849519
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/nxp,qoriq-efuse.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/nxp,qoriq-efuse.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP QorIQ eFuse support
-> +
-> +maintainers:
-> +  - Richard Alpe <richard@bit42.se>
-> +
-> +description: |
+> I've always disliked mixing platform initialisation strategies.  Passing
+> pointers to MFD structs through I2C/Device Tree registration opens the
+> doors to all sorts of funky interlaced nonsense.
+> 
+> Pass the device ID and then match in C-code please.
 
-Do not need '|'.
-
-> +  Read support for the eFuses (SFP) on NXP QorIQ series SoC's.
-> +
-> +allOf:
-> +  - $ref: "nvmem.yaml#"
-
-Drop quotes.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-Drop oneOf, no need for it. You can put description as comment.
-
-> +      - description: Trust architecture 2.0
-> +        items:
-
-One items, so no need for "items:"
-
-> +          - const: fsl,t1023-sfp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    efuse@e8000 {
-> +        compatible = "fsl,t1023-sfp";
-> +        reg = <0xe8000 0x1000>;
-> +    };
-> +...
+I agree. Especially that casting through ulong_t drops the const, so the
+cast back needs const which can be forgotten. The patch already makes
+here mistake!
 
 Best regards,
 Krzysztof
