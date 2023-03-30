@@ -2,90 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C21676D099B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C88006D09A2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233057AbjC3Pbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 11:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
+        id S233041AbjC3PcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 11:32:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233085AbjC3Pbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:31:34 -0400
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDF0CA0C;
-        Thu, 30 Mar 2023 08:31:18 -0700 (PDT)
-Received: by mail-oo1-f41.google.com with SMTP id l7-20020a4abe07000000b0053e1205c84bso2658268oop.9;
-        Thu, 30 Mar 2023 08:31:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680190278;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fnDjYGmEqOEcX6BV3D3Xoo9yGR2TRiur28JejHxdE3w=;
-        b=pTD4y+W8fF1+NtRJ6Sl80ayFjxvhl97qVLcgqNTvNEpWizlvCdAat9w7UOjnnQgVE6
-         FyNK04O6vyKVGG4gQ0T/X55WooCsqgCTQOQzuOOpdwgR6F0/NXmslBMSVskhyw8e+ilu
-         Hj3nhhnJK8tWHT0xph19tVok6dCW9ytsDC7goRxCPKsZphE4rHValCe6K6uCR7WXLGpI
-         g78jXZoHdEFxHKmoFK0ReN8O8r9AUCssQVzVSO6tcQeGfSX+BOKj/BFVCIsPSd9W1OOw
-         20+k1JVkP3SGrVEYcMIp/IzBuRDEuW9vLDaH3xOxzq7YlsDzKX7BxyywcUhQXAH4dvFs
-         n7og==
-X-Gm-Message-State: AAQBX9do2ssw9/d8katdmfthWgDBLc9h/zbphiVVLWGTpPr45xsrdpyF
-        n9QjG6LF04TUOvRRY9Ew1Q==
-X-Google-Smtp-Source: AKy350abjVDUmX8OWlEBXnmhH2hwWTbeugExUUvnY6Mez9tAhkValHyWVltMFvpiHlfSl2td0DikgQ==
-X-Received: by 2002:a4a:bd8c:0:b0:53c:5f89:eb85 with SMTP id k12-20020a4abd8c000000b0053c5f89eb85mr3363326oop.2.1680190277775;
-        Thu, 30 Mar 2023 08:31:17 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o79-20020a4a2c52000000b0053b8ae294f3sm9069976ooo.11.2023.03.30.08.31.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 08:31:17 -0700 (PDT)
-Received: (nullmailer pid 2213086 invoked by uid 1000);
-        Thu, 30 Mar 2023 15:31:16 -0000
-Date:   Thu, 30 Mar 2023 10:31:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S233115AbjC3Pb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:31:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B207B7EC4;
+        Thu, 30 Mar 2023 08:31:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 29088620BE;
+        Thu, 30 Mar 2023 15:31:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F9F6C433A0;
+        Thu, 30 Mar 2023 15:31:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680190295;
+        bh=zWpYYIuYTJgHtpRIFKGjq97qGd3ak9fMCXilbjSs6k8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CeZlAwWxbJ/bSZ4un7FNN3IwfDFkF57yLnYL5VB3GqWTc+RtBL1ZbCJKgkCiCyhCe
+         W9bxnsrfYa3nY8YragtJajwGpLOlNq8xCJ1l6N5NW+wggEG2DHJN+mIHJi4BYBgAKi
+         X+3u/R3OTq8wo6QU2I82zI6SaRv2we2sUxJkjfTHyldFPo0uefwu6seN2mMgB/LWTN
+         lZ2HHx84EA4CQrTwxkVnV2r6HHpn4QGib1M01Jyr8EQTyF+xGTfknYGoRuej3EV4v4
+         CM90jK5JiAUGUPj40gfJQsD/wZjyqbdCQ7dOed1fdDTIvoUVFSQYUscQs+BAtuLdYh
+         xmrs4ZPpbL+TQ==
+Date:   Thu, 30 Mar 2023 16:31:30 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Walker Chen <walker.chen@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: usb: gpio-sbu-mux: Add OnSemi
- NB7VPQ904M mux
-Message-ID: <20230330153116.GA2181381-robh@kernel.org>
-References: <20230321-topic-sagami_dp-v1-0-340c8bce4276@linaro.org>
- <20230321-topic-sagami_dp-v1-1-340c8bce4276@linaro.org>
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: add tdm node and sound card
+Message-ID: <0d108d6c-e892-418b-b9af-6c2dd133dd71@spud>
+References: <20230329153320.31390-1-walker.chen@starfivetech.com>
+ <20230329153320.31390-4-walker.chen@starfivetech.com>
+ <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+ <af015701-f1ff-4b1e-9b1b-c635fc684ce6@spud>
+ <2d5a8dae-73fd-b1f8-089e-041637d66b0d@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="524gvXDbAwMwRBbT"
 Content-Disposition: inline
-In-Reply-To: <20230321-topic-sagami_dp-v1-1-340c8bce4276@linaro.org>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <2d5a8dae-73fd-b1f8-089e-041637d66b0d@starfivetech.com>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 21, 2023 at 11:12:28PM +0100, Konrad Dybcio wrote:
-> The OnSemi NB7VPQ904M Type-C DP altmode redriver provides SBU signals
-> that can be used in with the gpio-sbu-mux driver. Document it.
-> 
-> Note that the -mux suffix is there to indicate that the gpio-sbu-mux
-> driver interacts with the mux part of this otherwise quite sophisticated
-> chip, leaving the "onnn,nb7vpq904m" compatible free for when a proper
-> driver taking care of all of the chip's capabilities is introduced.
 
-You should define a proper and complete binding. If you want to bind the 
-gpio-sbu-mux driver to it now until you have a proper driver then that's 
-fine. When you have such a driver, then you drop the compatible from the 
-gpio-sbu-mux driver.
+--524gvXDbAwMwRBbT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Note that having the fallback "gpio-sbu-mux" is somewhat problematic 
-because the kernel has no mechanism to ensure you bind the most specific 
-driver. For that to happen, it would have to support (automatically) 
-unbinding one driver and binding to the more specific driver since one 
-driver could be built-in and the other a module.
+On Thu, Mar 30, 2023 at 11:16:08PM +0800, Walker Chen wrote:
+> On 2023/3/30 15:58, Conor Dooley wrote:
 
-Rob
+> > Excuse me for not following here, but Walker, could you point me at
+> > where in the schematic for the VisionFive 2 that this wm8960 actually
+> > is?
+> > I know ~nothing about audio, but good old Google tells me that this is a
+> > dedicated codec chip and I was looking at [1] and could not easily find
+> > it on the schematic.
+
+> > 1 https://doc-en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.p=
+df
+
+> The TDM need work together with external codec WM8960 by plugging the ras=
+pberry pie
+>  audio board into the 40-pin, which is found in sheet 21 of the schematic=
+=2E Because the
+>  40-pin of VisionFive2 is fully compatible with the pins of Raspberry pie=
+ audio board.=20
+>=20
+> For more information of the audio board, you can take a look at the follo=
+wing webpage:
+> https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/
+>=20
+> The schematic of audio board:
+> https://files.seeedstudio.com/wiki/MIC_HATv1.0_for_raspberrypi/src/ReSpea=
+ker%202-Mics%20Pi%20HAT_SCH.pdf
+
+Ahh, I feared that this was the case. If it's not on the board, then it
+shouldn't be in the dts (and certainly nothing should be in
+jh7110.dtsi!).
+I suppose this should be a dt-overlay, but I don't know anything about
+the upstream infrastructure for those. Nor do I know what is permitted
+in terms of overlays.
+
+Thanks,
+Conor.
+
+--524gvXDbAwMwRBbT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCWrTgAKCRB4tDGHoIJi
+0thyAP9IOF81Os1a6pA5/JU5Af3gbxCn4Cc3tX9CYpHYnbRm9gD/VG+H1kKtvfr1
+pLpzYaEOOfN3raDJEzVDTJIcLmCSJwg=
+=ORTa
+-----END PGP SIGNATURE-----
+
+--524gvXDbAwMwRBbT--
