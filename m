@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FFC6CF8C1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 03:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 260256CF8D9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 03:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbjC3Be7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 21:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55004 "EHLO
+        id S229834AbjC3BuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 21:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjC3Be6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 21:34:58 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A3E49F5
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 18:34:57 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id e15-20020a17090ac20f00b0023d1b009f52so20480801pjt.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 18:34:57 -0700 (PDT)
+        with ESMTP id S229816AbjC3BuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 21:50:20 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CA714EFE
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 18:50:19 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id kc4so16691031plb.10
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 18:50:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680140097;
+        d=linaro.org; s=google; t=1680141018;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+s3/7avJ4jXfEL/EcHu+vdSVHrfTZ0GFVAw0Oijq+5s=;
-        b=Fvg2Ut9YmRIdGmiIGn0vAOuc+ZHU1m8fZpC4dHiKI+1SK3oXa61qaRx2rkr1rYJkz7
-         i71lQU96Xbnmo3P8Dm2QC5r4YMCmnyhURdPljQ0WbKGuIg5TjeepcD9nwIs+AyWbls4Z
-         dOUZJxDUKTwc7uYxe5h4TO9zFvALEqUiriR8Vqw8frJhrO2ByWApDe4Rnhngohf619Tw
-         jd0wN9xKEJE+8QkMXbMmmzFZ8npJ36rxqt/Y2GSc3kSpURapwoo871F6ib3hpTujXKKz
-         ONoDrfZ+S6fDV7zxFpxXPghWFE5b/HvloxI9WCxYdjk/KyNrDY1rm+sDl3KblEKSNSi0
-         zMhQ==
+        bh=FfJuXAZwwMt2q3i7x/R+WrAISquLwqszrcGXTUw+Vps=;
+        b=SoHH4pd3Bc7J8Rv0eluoB8kn+Qs9EFEc7n8L/SaBs92gA9/+iBJzRqgLPSCZyokbld
+         PWvDkGdFK2wF0XjgWZvZe5oSKmRc8WTV9Jh/fEPNJavQDXIWGBTL1FHNclq3iV5rqe4b
+         W5fgIPlA1MqCh1eZGQPpkMR3d5Vpab3t6UNHeeQvmXSirxNQbG8WeerdiEyKVNhoJ8hb
+         q6cFqD7W17yeTMFehAwoHY97xIoikLJ4ocxmcilGFgGAzmWn9LFLyFiLpxZydSyL0y9z
+         XwIAjNQAJTtD6EwQn3z0vgtRbVdUe/9eKxf7yZ9e76DuZTdZtSYTFAFGtWe7zh5tKOgf
+         +JSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680140097;
+        d=1e100.net; s=20210112; t=1680141018;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+s3/7avJ4jXfEL/EcHu+vdSVHrfTZ0GFVAw0Oijq+5s=;
-        b=0pYjYLE6vT/kaDo7JgvP0wxRGlMmhXS2WiSSrNK4Z3zkQ4OVi+aTzQ+TXCVFgLgJWK
-         YgyxCN1AHe2E7zMwcHMcAiyE6taugMq+i2nmVS6RHOG5+NUrDQXrF2W1hFiaUSqKhKj9
-         FCyjUW+PHv9vG4QmwXbPyJ4Z6Uw8PkKfgTbRtp/YcnOqWAfvc81TsxCXWC1fnZ8RMLj8
-         wT/tXQqi6zTd+zrABO32qDW7ad0MfFyuWP2wDojTQ7tRS8BpM16EfEIZ7dbEqpqQtUas
-         YG6ILSivGBUEYRlE1j3Uqczw2uU819NXxQQpnD48X1hE/VWN6rz3YoC9e6YnwA3ivkK7
-         SqAQ==
-X-Gm-Message-State: AAQBX9cfibvwwb1uBdYOardfzmSiGWe8+F5usLEcKNWSmeabymXVzg2e
-        cLGZ6V/lbssMuJo2loGto2O1qQ==
-X-Google-Smtp-Source: AKy350byhc7BcOIWgRDGMh3ui2tHi24Dd3KnN1ayQaCGu36TkkQY/yVUP2ZTbD6kyTEXIQN2psP5VA==
-X-Received: by 2002:a17:90a:198e:b0:237:9cc7:28a4 with SMTP id 14-20020a17090a198e00b002379cc728a4mr23166855pji.14.1680140097081;
-        Wed, 29 Mar 2023 18:34:57 -0700 (PDT)
+        bh=FfJuXAZwwMt2q3i7x/R+WrAISquLwqszrcGXTUw+Vps=;
+        b=ckZ2YSKYgtmdbFjsYO3tsVTgJJWcwUPWl84V3rfkQErrwuuDUhp4oPzgbAElA0ECCa
+         vvodGIzWfD+OiToFQk4HykYqTx13XzWjZo/r6Kg2gGNYgDer+ZzpfhCoOc3dE5/fM0Ab
+         3gCiXPLAGGB/T0YoE/ksyvovXEVqt2Sy6PhKBnHB9X3wYYHh04JbGHYGSg5dXAOf9/zm
+         UQN7j2dS7RYD87ijlfRaKgXO9vYhCo/vye2e8Vqne/KdUYt3QiejndDWCqEEls5dvB5A
+         w60qwshbXn1t+t1M2No0wsMpFn7kWBMo4r/a/RH8Y5NDOxXgrYlpao8EKmQK/tNQ7Ta6
+         4XLw==
+X-Gm-Message-State: AO0yUKVHPlJlaa44XtzdHzC/q/B209ITzdJct2Tinh1/zzy0+Sw5Wc3x
+        bf1tu1gnkluko2HUAsxh46cEbA==
+X-Google-Smtp-Source: AK7set/mYZvEMF6zOOWb+taaijHH50+bz+y3pAQiS004LoNFAdTHzOkAmbYZlfiMkFZkCb8A24CDrQ==
+X-Received: by 2002:a05:6a20:4faa:b0:cc:eb3b:56e9 with SMTP id gh42-20020a056a204faa00b000cceb3b56e9mr17240657pzb.1.1680141018648;
+        Wed, 29 Mar 2023 18:50:18 -0700 (PDT)
 Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id ij21-20020a17090af81500b0023b3d80c76csm2081346pjb.4.2023.03.29.18.34.53
+        by smtp.gmail.com with ESMTPSA id b11-20020aa7870b000000b005ac419804d5sm15070347pfo.98.2023.03.29.18.50.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 18:34:56 -0700 (PDT)
-Date:   Thu, 30 Mar 2023 09:34:49 +0800
+        Wed, 29 Mar 2023 18:50:17 -0700 (PDT)
+Date:   Thu, 30 Mar 2023 09:50:12 +0800
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -62,7 +62,7 @@ Cc:     Andy Gross <agross@kernel.org>,
         devicetree@vger.kernel.org
 Subject: Re: [PATCH 2/2] irqchip: irq-qcom-mpm: Support passing a slice of
  SRAM as reg space
-Message-ID: <20230330013449.GB3590215@dragon>
+Message-ID: <20230330015012.GC3590215@dragon>
 References: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
  <20230328-topic-msgram_mpm-v1-2-1b788a5f5a33@linaro.org>
  <20230329034958.GC3554086@dragon>
@@ -83,38 +83,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, Mar 29, 2023 at 03:30:12PM +0200, Konrad Dybcio wrote:
-> >>>> @@ -374,9 +377,21 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
-> >>>>  
-> >>>>  	raw_spin_lock_init(&priv->lock);
-> >>>>  
-> >>>> -	priv->base = devm_platform_ioremap_resource(pdev, 0);
-> >>>> -	if (IS_ERR(priv->base))
-> >>>> -		return PTR_ERR(priv->base);
-> >>>> +	/* If we have a handle to an RPM message ram partition, use it. */
-> >>>> +	msgram_np = of_parse_phandle(np, "qcom,rpm-msg-ram", 0);
-> >>>> +	if (msgram_np) {
-> >>>> +		ret = of_address_to_resource(msgram_np, 0, &res);
-> >>>> +		/* Don't use devm_ioremap_resource, as we're accessing a shared region. */
-> >>>> +		priv->base = ioremap(res.start, resource_size(&res));
-> >>>
-> >>> Are you suggesting that other cores/drivers will also need to access
-> >>> the mpm slice below?
-> >>>
-> >>> 	apss_mpm: sram@1b8 {
-> >>> 		reg = <0x1b8 0x48>;
-> >>> 	};
-> >> Yes, the RPM M3 core. Other slices may be accessed
-> >> by any core at any time.
-> > 
-> > Hmm, let me reword my question.  Other than irq-qcom-mpm, is there any
-> > other Linux drivers that also need to request this slice region?
-> No.
-> 
 > > Otherwise, I do not understand why devm_ioremap_resource() cannot be
 > > used.
 > drivers/rpmsg/qcom_glink_rpm.c calls devm_ioremap on the entire
 > RPM MSG RAM.
 
-Can we use devm_ioremap() too instead of ioremap() here?
+qcom_glink_rpm driver remaps the entire RPM MSG RAM, but it doesn't seem
+to request any region.  So MPM can still call devm_ioremap_resource() on
+its slice, no?
 
 Shawn
