@@ -2,101 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 898266CFD7F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A72076CFD83
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbjC3H50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33754 "EHLO
+        id S229651AbjC3H62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:58:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjC3H50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:57:26 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E48B133
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:57:25 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id z42so18684310ljq.13
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:57:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680163043;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DLkKastoj3clquifzZUKvXNqIt+nCRl1uFBKZuCZA80=;
-        b=LrDuAcuHdM9umfID1Z2eAjmckSPZ/BO5XT1+jIKUxEKs+ia43pHHeXl72JO4xXiM6s
-         ynWGvFvdvegAEe5aDPKeN6dVreEldxQS6m/Pf/a6Oaj81LiqI9/X8NpC4WArs5r+R3Gd
-         E5ELlL/4K3Yynyb+8Q7fHzH/mO7WtNOBGt9mA/gurweXvvPDWJT3jrZlemvH0ApPmBmT
-         RPpPwjyEA6C/fQrNg3fIcCQgROPrLrJqSARw/C1n2fIBsRk3CC3SSV85qjtViEgJ7NuG
-         4np9tK4d9NXHGii2Cy5sEaCNBjxw/Mz0MQMCyctcv0SxVWJ1uX6PyXNWb/3yRjflIZiX
-         8VmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680163043;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DLkKastoj3clquifzZUKvXNqIt+nCRl1uFBKZuCZA80=;
-        b=ENLL3TFsC+cjzwPzfV2vSQNAXy4F26goZlrIMO46rZdYJW14CFdObwTbYJ5pmHy1k0
-         28poDYXVBHIyQ3f96V22Ne2RiR0L4VJVpG1putn00VQmCwvJr2LOptaKloV+OZVs2107
-         nd+jHeS33vDzNWVSwzyZA5E6paCR5x4TEexqogLd4HqcE5QMbRGz+oku37kD2pjYNaF5
-         oSR/CrdGxRQy2ERGpOBcO9QXKDqvV7GMV5KGG/3SpVXD+KX3fjP+0k0hGtRItIiMB3ad
-         1toxNmReLECPjW62tB0HiauNa/7MAjdwqpzI00oa3869TQkn9I1Gk/b9K14RCRKUj35V
-         4gNQ==
-X-Gm-Message-State: AAQBX9fCSoOoYvwBHSVojqtAYbCpHyVEcl2UNtnsRCN9htfw3YxHGb8e
-        UDMMmqJOs5/w5d/n2EGcY/KsKA==
-X-Google-Smtp-Source: AKy350Ymv489oo31a+5RM+l+K+AAeuMj//R61n1h7YjpBb7TNuA4R5OatFecVWy/s+B37LoJn6Xhdw==
-X-Received: by 2002:a2e:9e16:0:b0:298:a636:28 with SMTP id e22-20020a2e9e16000000b00298a6360028mr7019435ljk.5.1680163043444;
-        Thu, 30 Mar 2023 00:57:23 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p15-20020a2ea40f000000b00295a8d1ecc7sm5831500ljn.18.2023.03.30.00.57.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 00:57:23 -0700 (PDT)
-Message-ID: <023c9b41-9f09-e127-d6c1-426c3408eb86@linaro.org>
-Date:   Thu, 30 Mar 2023 09:57:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox : arm,mhuv2: Allow for more RX
- interrupts
-Content-Language: en-US
-To:     Cristian Marussi <cristian.marussi@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     sudeep.holla@arm.com, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
-        Tushar.Khandelwal@arm.com, viresh.kumar@linaro.org,
-        jassisinghbrar@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229459AbjC3H61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:58:27 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F41D10A;
+        Thu, 30 Mar 2023 00:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680163106; x=1711699106;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=A06o++GEZF1cEl6Qfofe3vUwyO2hA9xPd0Uh8TRXZRI=;
+  b=2ns5yjDBXih4YtRAqmIczfMIXCEPZXehGtpQQ07i758R5eEiWJS6eWhv
+   KTB9XLQyqYB1R/+c9TJVhW7rj5TG3wlBop/wG7o6/0/KTdCLtfT6ya/oq
+   b472lfRt/aqrBOUkXEhX4k791avDi5Uv3U30mDAMN8HIQRzjpFoRjc9rJ
+   5fExxBoKevyiZlsTCXMsY9wovr/h20EhAH8OCacun5YveYR5RD1qUVhOh
+   oZjpNt4ZSCPY4DASb/ORuKYCquiTcB7zAoVcU1MyE0h1Yfah7MWGd23rn
+   23hoHpY/3Z/RD1BlHEJuXjn2HqimDwoqi6A985ua7NDNtgRwvken9R+73
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,303,1673938800"; 
+   d="asc'?scan'208";a="218651809"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Mar 2023 00:58:25 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 30 Mar 2023 00:58:25 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 30 Mar 2023 00:58:23 -0700
+Date:   Thu, 30 Mar 2023 08:58:09 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <walker.chen@starfivetech.com>
+CC:     Walker Chen <walker.chen@starfivetech.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <20230329153936.394911-1-cristian.marussi@arm.com>
- <20230329153936.394911-2-cristian.marussi@arm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230329153936.394911-2-cristian.marussi@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: add tdm node and sound card
+Message-ID: <af015701-f1ff-4b1e-9b1b-c635fc684ce6@spud>
+References: <20230329153320.31390-1-walker.chen@starfivetech.com>
+ <20230329153320.31390-4-walker.chen@starfivetech.com>
+ <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="QNdQWFvvxmlEs8o1"
+Content-Disposition: inline
+In-Reply-To: <d455a90a-7e63-2254-75cb-70cb26ae7483@linaro.org>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 17:39, Cristian Marussi wrote:
-> The ARM MHUv2 Receiver block can indeed support more interrupts, up to the
-> maximum number of available channels, but anyway no more than the maximum
-> number of supported interrupt for an AMBA device.
+--QNdQWFvvxmlEs8o1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Subject: no spaces before colon.
+On Thu, Mar 30, 2023 at 09:43:10AM +0200, Krzysztof Kozlowski wrote:
+> On 29/03/2023 17:33, Walker Chen wrote:
+> > Add the tdm controller node and sound card for the StarFive JH7110 SoC.
 
-> 
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-> ---
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: devicetree@vger.kernel.org
+> > +		compatible =3D "fixed-clock";
+> > +		clock-output-names =3D "wm8960_mclk";
+> > +		#clock-cells =3D <0>;
+> > +	};
+> > +
+> >  	i2srx_bclk_ext: i2srx-bclk-ext-clock {
+> >  		compatible =3D "fixed-clock";
+> >  		clock-output-names =3D "i2srx_bclk_ext";
+> > @@ -375,6 +381,27 @@
+> >  			status =3D "disabled";
+> >  		};
+> > =20
+> > +		tdm: tdm@10090000 {
+> > +			compatible =3D "starfive,jh7110-tdm";
+> > +			reg =3D <0x0 0x10090000 0x0 0x1000>;
+> > +			clocks =3D <&syscrg JH7110_SYSCLK_TDM_AHB>,
+> > +				 <&syscrg JH7110_SYSCLK_TDM_APB>,
+> > +				 <&syscrg JH7110_SYSCLK_TDM_INTERNAL>,
+> > +				 <&syscrg JH7110_SYSCLK_TDM_TDM>,
+> > +				 <&syscrg JH7110_SYSCLK_MCLK_INNER>,
+> > +				 <&tdm_ext>;
+> > +			clock-names =3D "tdm_ahb", "tdm_apb",
+> > +				      "tdm_internal", "tdm",
+> > +				      "mclk_inner", "tdm_ext";
+> > +			resets =3D <&syscrg JH7110_SYSRST_TDM_AHB>,
+> > +				 <&syscrg JH7110_SYSRST_TDM_APB>,
+> > +				 <&syscrg JH7110_SYSRST_TDM_CORE>;
+> > +			dmas =3D <&dma 20>, <&dma 21>;
+> > +			dma-names =3D "rx","tx";
+> > +			#sound-dai-cells =3D <0>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> >  		stgcrg: clock-controller@10230000 {
+> >  			compatible =3D "starfive,jh7110-stgcrg";
+> >  			reg =3D <0x0 0x10230000 0x0 0x10000>;
+> > @@ -601,5 +628,12 @@
+> >  			#reset-cells =3D <1>;
+> >  			power-domains =3D <&pwrc JH7110_PD_VOUT>;
+> >  		};
+> > +
+> > +		sound0: snd-card0 {
+>=20
+> 1. Why card0?
+> 2. Where is this node located? In MMIO bus? Run some basic checks on
+> your DTS before submitting upstream.
+> dtbs_check
+> dtbs W=3D1
+>=20
+> 3. Why this is even in the DTSI? This really looks wrong.
 
+Excuse me for not following here, but Walker, could you point me at
+where in the schematic for the VisionFive 2 that this wm8960 actually
+is?
+I know ~nothing about audio, but good old Google tells me that this is a
+dedicated codec chip and I was looking at [1] and could not easily find
+it on the schematic.
 
+Thanks,
+Conor.
 
-Best regards,
-Krzysztof
+1 https://doc-en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.pdf
 
+--QNdQWFvvxmlEs8o1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCVBBAAKCRB4tDGHoIJi
+0vwwAP9ZaSwYSns7mnKRth/7zaYJio+DGrk7Decdat0PRkCAKgD/V+oWJQb4k4XP
+/cV4orJwQtUvav3dglridCNAmArKkQQ=
+=3gLi
+-----END PGP SIGNATURE-----
+
+--QNdQWFvvxmlEs8o1--
