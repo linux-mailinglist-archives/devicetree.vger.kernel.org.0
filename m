@@ -2,190 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C33256CFEE9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2537E6CFEF2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229825AbjC3IrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 04:47:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43978 "EHLO
+        id S229706AbjC3Is4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 04:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjC3IrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:47:12 -0400
-Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72DAC5B92
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:47:11 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 04CF52B0040A;
-        Thu, 30 Mar 2023 04:47:08 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 30 Mar 2023 04:47:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-        1680166028; x=1680173228; bh=a+Yl4odf/Ot+biMN+Oi3kAyv0TNIqouyp5L
-        beLQZr2E=; b=eBNrcwuvrgSp6+31rIiAsOUqG6uMQ6QFUsakEPSuzePgk29YCc9
-        21MTLTzN/CS0cDbj3MgHTvLlawIIABhYB8tVeUZEdCU8RP3ThpWear5ZNazut7is
-        4EugKtcsijnzVHcF55TsVXS6TzzZY6irtPiRkPTWrn1r4CNa/05h86omoJNJtNXi
-        lbHMqIU1TKVINClq2tEFyQFx7ljJNTIKaLpi+9f46H7Oz/Bv+XiK+UQmwWuciXUX
-        Cq2bSBsUWwoNuOkvF05OHpxgYiGPykeRSkgrtDPU+Q/CgPi3PkKK7elxOxeTopVa
-        2nvMkUmUjwfFU6aZJgdR2PLMxDB0HPklJGw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-        1680166028; x=1680173228; bh=a+Yl4odf/Ot+biMN+Oi3kAyv0TNIqouyp5L
-        beLQZr2E=; b=KkP5NinBZ4i5Z6uDBmt2PRMh0y9QwGRsc8RKAe+yyjm14UEENU2
-        x4I8MnhE5eD9QkL9kXH8kYjxy8DyHublTEpcbm8q4phweNClOmzuhXeNu76/LYfR
-        dJ7HXAXUTn8FFPMXf97wpWYdynZ5cbq/nG5wnnx5GZs2zEYcpJ08+mzSefkH00yL
-        uwBmNG4iHfDCEWSkMP/yUEjl/uxT3Q8Bo16PEdLMO3UsfhQu73q2Yj57/3f5gyXm
-        m/l09tx5q0EcIvvrHoLn13GgJorLeqUc6g1cfeJ+78dRyh/a6STxiyHVh8t2uenY
-        4MUgufUmIOHkwTsAOdfPbGqr6C3eBO+StFQ==
-X-ME-Sender: <xms:i0wlZEaCuddUGW3jdsi1wq7rmrszioz9WVwxAcnOIa6OML_F-SrrJA>
-    <xme:i0wlZPZ3hZnrNNMycM1rbJQwJfIadvqKckk_Tk1wMYR5b_nmtttrcPBHk5aHYitNF
-    OQten1IKIWL3iZZTCg>
-X-ME-Received: <xmr:i0wlZO9vwyktcZDHfmGyVtQII-wK1UCSTqeteVjM82YF3q2FAMBJ8QHicGw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehkedgtdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggugfgjsehtqhertddttdejnecuhfhrohhmpeforgig
-    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
-    grthhtvghrnhepffdttdeufefgffegtdejffevuddvudfhudegjeegkeetuefgfefhheek
-    udfhvdfhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:i0wlZOrO_hXCHB3ELpkaKAIkTZqrj-3baqEvgaXmy7j_ZC8oYvW2KQ>
-    <xmx:i0wlZPoZYDPlHfH2bjN05cmvHZSmOtHeTHduCz8BG3H_4ixPVvZV6Q>
-    <xmx:i0wlZMRHoHZzk5RsIQlsS-a9MP614RbJWYSq1EdvF4BmRnsGWqCGag>
-    <xmx:jEwlZGcRbtHfHw87r7_jkOL4MI8KkEmBkky7_2yEOHqiulDfD187H2SZVRo>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 30 Mar 2023 04:47:07 -0400 (EDT)
-Date:   Thu, 30 Mar 2023 10:47:06 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Marek Vasut <marex@denx.de>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH v7 12/12] drm: sun4: dsi: Convert to bridge driver
-Message-ID: <20230330084706.lw5r6ll2r6lk5d2z@penduick>
-References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
- <20230329131929.1328612-3-jagan@amarulasolutions.com>
- <20230329145939.7zcex4x2pipivuj4@penduick>
- <CAMty3ZDWK0xVe7E+gER+TihHf1yv3YAWgZc1GCJQ2V5KD_mN-g@mail.gmail.com>
- <20230329160652.7gel5qvckzwihjx4@penduick>
- <CAMty3ZB=R0RfU+o7LZWpS=4-ny00ocCxBu-M6yicY4q0-eYL9A@mail.gmail.com>
+        with ESMTP id S230014AbjC3Isx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:48:53 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2065.outbound.protection.outlook.com [40.107.94.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E5E04224;
+        Thu, 30 Mar 2023 01:48:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LRBrZnvfhg1TCFfX2tZnoW3HEUx7yXo+NtOtIIDJquqNuJ9iiem1ObMV+qKm6XAPAJomKhorNdVpAEBZok9EbCKFYxoaQqeSEmnEEDM9v8FNr9eV+UP7n6vK//OtfK9YXcP/YFZ/KxOec20AbsKRfcAcuns98UrTQko0VOY+k4ZnaFCc6BA/ttghqWhHpOm+IxC2ssySAOYt1dPC2TuH5fphZVMYOKoxHl3t3byDEwekUcdWxb8vYSlWBSZfqVQ5kGjcP5mR2FzAEW/IoQL5AEC0GQoNBzUDEbp8kwkauOBgg74G18dwC2c7P2wcN+UOWHduB6D1Y++2e9YOGGFVAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jzY7Wnam7l7FEx9d8cEIMfy88seld3IkIkNvh6CPbaA=;
+ b=NHdY780YTBQfEFcNOHi5sZs7tcFzoETaCpXc2B/nTvAUH7nuGfed8j1NZ+KzRduJKJNSLbAomZlasUK/oRn9z5//ZYFX7McI4NjKRLgf8yGoh+KvUXSnc2IRaB8YYGowQcBwWzBhINMi76W4tebdk1oezA1eBsE9Jj3Hk4J0CkhsfJPUnNTK/ZrCfQE213YOLXmP4l4OhW2jj65LiixWT4D12sQJTXCf8/FuzbCKke04osArtgtvwPxn+70rZKoUB9pAnhtUbjSN4SAS6UElTEkSj3nY3XBV+GP9dYLFYFlQZXC+Qa4HEEfkmdrgMODFlOjJQdrngcMSb8+k/YR7MQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jzY7Wnam7l7FEx9d8cEIMfy88seld3IkIkNvh6CPbaA=;
+ b=4i0xs/HSYomWjDdA5QoND/hYGJ4mJNCAJiNTEesY8ueo3kDhsiQeHNpPq8f9PQOQrHsWOsn9tSiL2jJFa2wQVY+F3sO0gOLOflc3v/gvKlsX4PwQxYRIL+8X/YiRY4FtYw+4T32HX7K9IxEaPPIRdn3356E83Z/Ve1M0jAalhpw=
+Received: from BN1PR10CA0007.namprd10.prod.outlook.com (2603:10b6:408:e0::12)
+ by CY5PR12MB6477.namprd12.prod.outlook.com (2603:10b6:930:36::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.27; Thu, 30 Mar
+ 2023 08:48:50 +0000
+Received: from BN8NAM11FT065.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e0:cafe::57) by BN1PR10CA0007.outlook.office365.com
+ (2603:10b6:408:e0::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
+ Transport; Thu, 30 Mar 2023 08:48:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT065.mail.protection.outlook.com (10.13.177.63) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6254.22 via Frontend Transport; Thu, 30 Mar 2023 08:48:50 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 30 Mar
+ 2023 03:48:49 -0500
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Thu, 30 Mar 2023 03:48:47 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <git@amd.com>, <linux-clk@vger.kernel.org>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <michal.simek@xilinx.com>
+Subject: [PATCH] dt-bindings: clock: versal: Correct example dts
+Date:   Thu, 30 Mar 2023 14:18:46 +0530
+Message-ID: <20230330084846.14516-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAMty3ZB=R0RfU+o7LZWpS=4-ny00ocCxBu-M6yicY4q0-eYL9A@mail.gmail.com>
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT065:EE_|CY5PR12MB6477:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f81be99-e9d8-4403-97d5-08db30fb9538
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: P/TxOd9mmmTEoVHD95s0D8TOQ2RMEdeDJfDwewfl3oDniSRe0fx0xJ8eZx2c+iGYUCkMOcDOjgWUt4aIKaFeDR59bJWQ83dVV+3ij1df2xpsqNzazMMNS36HdvtRqUD/GOwvp9JbAU9qFDa6EA97Lo0ornVgIKh2WGD9QnaOIlOiezM5M6thETZ9KFCbCknvZ1Q2fsYxqsFfEb/fX9x99KvAFXzLkksrXJUMKPMMiQIkXvvLcf7dk8lfO4dQx9RsLq6jAj4U1BHSHB+anIk7FB8rg6//98z8HQHp5lG1d8C1XfKqrtNoheP2u7ANk6pZBK3Nv2AnRkBGy4j7b2NSD8LbL2BLGN7DX8rjLfonmlIA3q63V+CGg8bIjZ8pSNmvmG4i4xZRKndIpGURDVwiakzBVanV1Bu+QxUcK6XviU0XebCTYCzyMv0fYB6g9Icie+Hc3EZ++eZ/K4fzJvaCBQkhtk3DL6zr3OGLyxIcGn8CVL9BNs7BEBqvCQYhALD7P4PA+j6S82v/StXLEV0xDAj8mPWV/1ePfIiSfMZOXW3igi0jEwCAWbH9bg4u29LhAGf1MgsgTHzcyT/H+Y5XwW9XOm1lofQM8zGt5C7xy3wZrn/LmQHM4pVFtijSlZjl1KVDAgFbPROk7rp0ojaABCtGndPG+J0aKTDrumpAu9PlEZdqsimBlW4vKBE4V161Ui+Ie+MXad4Wdtsvhz6oMQJPEuoetSDomn4UQ5CcdHk=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(346002)(136003)(396003)(451199021)(46966006)(36840700001)(40470700004)(70586007)(44832011)(478600001)(83380400001)(86362001)(82740400003)(40480700001)(4326008)(8936002)(186003)(1076003)(40460700003)(81166007)(70206006)(54906003)(336012)(2906002)(8676002)(316002)(82310400005)(6916009)(47076005)(426003)(36756003)(356005)(41300700001)(26005)(2616005)(36860700001)(4744005)(5660300002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 08:48:50.1027
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f81be99-e9d8-4403-97d5-08db30fb9538
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT065.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6477
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 12:15:49PM +0530, Jagan Teki wrote:
-> On Wed, Mar 29, 2023 at 9:36=E2=80=AFPM Maxime Ripard <maxime@cerno.tech>=
- wrote:
-> >
-> > On Wed, Mar 29, 2023 at 09:08:17PM +0530, Jagan Teki wrote:
-> > > On Wed, Mar 29, 2023 at 8:29=E2=80=AFPM Maxime Ripard <maxime@cerno.t=
-ech> wrote:
-> > > >
-> > > > Hi,
-> > > >
-> > > > The patch prefix should be drm/sun4i:
-> > >
-> > > I did follow my previous prefix, I will update this.
-> > >
-> > > >
-> > > > On Wed, Mar 29, 2023 at 06:49:29PM +0530, Jagan Teki wrote:
-> > > > > Convert the encoder to bridge driver in order to standardize on a
-> > > > > single API by supporting all varients of downstream bridge device=
-s.
-> > > >
-> > > > Which variant, and why do we need to convert to a bridge to support=
- all of them?
-> > >
-> > > Downstream bridge variants like DSI panel, DSI bridge and
-> > > I2C-Configured DSI bridges. Bridge conversion would be required for
-> > > the DSI host to access the more variety and complex downstream bridges
-> > > in a standardized bridge chain way which is indeed complex for encoder
-> > > driven DSI hosts.
-> > >
-> > > >
-> > > > > The drm_encoder can't be removed as it's exposed to userspace, so=
- it
-> > > > > then becomes a dumb encoder, without any operation implemented.
-> > > > >
-> > > > > Tested on DSI Panel, DSI Bridge, I2C-Configured DSI Bridge.
-> > > > >
-> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > >
-> > > > [...]
-> > > >
-> > > > > +static const struct component_ops sun6i_dsi_ops;
-> > > > > +
-> > > > >  static int sun6i_dsi_attach(struct mipi_dsi_host *host,
-> > > > >                           struct mipi_dsi_device *device)
-> > > > >  {
-> > > > >       struct sun6i_dsi *dsi =3D host_to_sun6i_dsi(host);
-> > > > > -     struct drm_panel *panel =3D of_drm_find_panel(device->dev.o=
-f_node);
-> > > >
-> > > > That one looks unrelated. Why do you need that change?
-> > >
-> > > This was replaced with drmm_of_dsi_get_bridge for lookup of both panel
-> > > and bridge. I think I will separate this into another patch.
-> >
-> > So, it looks to me that you're doing two (unrelated) things in that pat=
-ch:
->=20
-> Correct.
->=20
-> >
-> >   - You modify the existing driver to be a bridge
->=20
-> Yes, Convert to bridge driver - register drm_bridge_add and replace
-> encoder ops with bridge ops.
->=20
-> >
-> >   - And you support downstream device being bridges.
->=20
-> Yes, Support the downstream bridge. (If I'm correct we can still use
-> encoder ops with this).
->=20
-> If we see the hierarchy of support it would
-> 1. support the downstream bridge.
-> 2. convert to the bridge driver.
->=20
-> >
-> > Both are orthogonal, can (and should!) be done separately, and I'm
-> > pretty sure you don't actually need to do the former at all.
->=20
-> Do you mean converting to bridge driver is not needed?
+From: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
 
-Yes, and given the current state of the DCS-in-HS discussion, I even
-think it's does more harm than good.
+Correct firmware node name and compatible string in versal clock
+dt-bindings.
 
-Maxime
+Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+---
+
+ Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+index 229af98b1d30..4bbf96484b56 100644
+--- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+@@ -50,8 +50,8 @@ additionalProperties: false
+ examples:
+   - |
+     firmware {
+-      zynqmp_firmware: zynqmp-firmware {
+-        compatible = "xlnx,zynqmp-firmware";
++      versal_firmware: versal-firmware {
++        compatible = "xlnx,versal-firmware";
+         method = "smc";
+         versal_clk: clock-controller {
+           #clock-cells = <1>;
+-- 
+2.17.1
+
