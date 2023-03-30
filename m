@@ -2,95 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 863426CFDF1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6DA36CFE1D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbjC3IQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 04:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57936 "EHLO
+        id S230457AbjC3IUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 04:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbjC3IQk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:16:40 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B9EF7A80
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:16:25 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id h25so23472075lfv.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:16:25 -0700 (PDT)
+        with ESMTP id S230390AbjC3IUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:20:19 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A78769A
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:20:10 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id o24-20020a05600c511800b003ef59905f26so11164333wms.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:20:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680164183;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KaDyW6z6XuYhRtr0QA2BxgBT9mFk6zOPgn6BDQB/clc=;
-        b=tceJLeFJ1+iCkdm97eVxZvU9flLgSis4gO3XGnszaE4I82F7leGqF306RA7Pu3W4pL
-         +BmVBDBfMpSUvfoPlbQv+F+WsJJrJnXnrzPa+dQ30P0KsvfGFClkHH71INxqIDStBRJa
-         Se6qWPZxa0tvkqYR6VVXHUGHv8YkqXD0NIjXcuXA6pLdHlH4AvflPxGiSreK5p9pr300
-         CpoRvx1iYHTLk4x83BV6pIR/N7XRwqNncxWsHDktw5zhBReNI2PQdEWJLBjIVxvtHBzE
-         7WpGBtuA6q5zeGpErkGy4eHHvLqGACFnDwrHRdMaWebPoTfyB244f+KKxPD1NrFQ01Et
-         xdHA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680164409; x=1682756409;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=88rMzBbRlhYI6KPx7O+R7CtYmO6UoeLS/Yo2Sd7KQT4=;
+        b=frsx0h/yO9f/vVrsghxVfoMxpVTPjPGuFcE/f/LGYsxRrFAMROA3dI9Nb5Gl9MRZbS
+         45RxZYszNU0BMMqy3+NrZ/vynSowy5kOaJ1aogwajNg3AV1qAroXhwf/3geygSBe12ak
+         DIbAXIPRlyt00P+oMrCQbXLzlEy4h89IyD/Z5DfI1z0XQssCikFhSvczVNunMA5c5+e1
+         M84aPqqvDn/xEJMejxHh75c3T9tRyua37GO/yHvy98MydhCM6zn8oa9n4dmZFMaIWflh
+         ZjWjZqIwcYHMD5Zw3sJYFvXpiJ0l/3uEul4yl2nNWttBihEZOB5bGKsOrRvZzQAyJH9g
+         K0AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680164183;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KaDyW6z6XuYhRtr0QA2BxgBT9mFk6zOPgn6BDQB/clc=;
-        b=fwIOd21sP3Y18rdhHirRQ19wS76pfz5lbi2LeF7RmLGJRfcscZnwcRI3PmDNH6VXHR
-         eYJQJwaciBz50Hm8QvHkl0m95Iu9uA+gbRZO6q3N19kWOJg2J43jBpvXRrG4Lizgn2en
-         qBivHbIR73bMbbLBV8MliHquUO7FDzFNzlT0r0xKaY66Fi56PUgmtavlOEYQKgkGGO5v
-         2Y+eoHgkWkpgqnZ/DroAMoKEWRluNQeJ0X2NUOjqcX9N3NwLqIHMQG9fDnVtiR/MiRy3
-         8J1QCcSR9hgwTsrfpGuk/8xyATw196HnJIVZQY0wQOaED/BJplk8j14DRzh/ADq5n1IY
-         F8cg==
-X-Gm-Message-State: AAQBX9f3p1lqhAYuKJyWwljJ7s7WIEUTuuHOji9zed7AD8QndkIOk+LP
-        Yu6CYFD8OaJTN3DAZiPKzsL00A==
-X-Google-Smtp-Source: AKy350YHij+FTXrBHe1yofTEvB7NvFe8x3XC5Pl4Mkxm+AfAM30UwgMEBfzreMB46mYkPwd0+PHcKQ==
-X-Received: by 2002:a19:ad48:0:b0:4ea:ea00:5d45 with SMTP id s8-20020a19ad48000000b004eaea005d45mr6342262lfd.44.1680164183388;
-        Thu, 30 Mar 2023 01:16:23 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05651238d000b004e8508899basm5823667lft.86.2023.03.30.01.16.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 01:16:23 -0700 (PDT)
-Message-ID: <05535da9-474d-eb14-44af-4621020400fb@linaro.org>
-Date:   Thu, 30 Mar 2023 10:16:22 +0200
+        d=1e100.net; s=20210112; t=1680164409; x=1682756409;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=88rMzBbRlhYI6KPx7O+R7CtYmO6UoeLS/Yo2Sd7KQT4=;
+        b=wnCAi/D9SVcNv8VG+r+agRNh5nDi0/IfTEEWbVqV6E1btUrHJYWoVwSou38fmtXWq1
+         UaB0HsRSefEvMtNmOWkN6NX0j3D2pG6P7/cJ52xA90XyD/SHfUpheH12WdiYOIlG9vy+
+         j8PS9XAmslsYn3hcDoeyGiVm2iyhQrrOs/GQ1iZp3oaPYO5KdoOAGL0vDoKKxtfzzVVy
+         JkOIqobg0z/hc74sXX6/DSjGw0QgdodTZEi+2A7FIlgONoxYZoGx3K8+8+4S9IB/HX4a
+         LKhM2sazKDPMD3/Z5VdwpkEu3dyoS+uZIaw93H5ebBzfXB21YUNPJYpfH+VOZ3ANn4KT
+         Th1w==
+X-Gm-Message-State: AO0yUKV2lJh0yjNlHg3ZPeDL1+p771AZT6dWMShWxGssljDUfRmT6J/H
+        E4C/Jy8bKMKaiT7j3R12+Yg1Jg==
+X-Google-Smtp-Source: AK7set+8BV+ajlC3pkzfwaGF1+JMY0UETtvwLPzUGI1XTzWSocmN9pYfYgFzCGVtFngsiAI25At5mA==
+X-Received: by 2002:a05:600c:cb:b0:3ed:66e0:b6de with SMTP id u11-20020a05600c00cb00b003ed66e0b6demr17920607wmm.22.1680164409316;
+        Thu, 30 Mar 2023 01:20:09 -0700 (PDT)
+Received: from baylibre-ThinkPad-T14s-Gen-2i.. (151.31.102.84.rev.sfr.net. [84.102.31.151])
+        by smtp.gmail.com with ESMTPSA id e13-20020a5d4e8d000000b002ceacff44c7sm32286588wru.83.2023.03.30.01.20.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Mar 2023 01:20:09 -0700 (PDT)
+From:   Julien Panis <jpanis@baylibre.com>
+To:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
+        gregkh@linuxfoundation.org, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com
+Cc:     yi.l.liu@intel.com, jgg@ziepe.ca, razor@blackwall.org,
+        stephen@networkplumber.org, prabhakar.csengg@gmail.com,
+        contact@emersion.fr, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        sterzik@ti.com, u-kumar1@ti.com, eblanc@baylibre.com,
+        jneanne@baylibre.com
+Subject: [PATCH v5 0/4] TI TPS6594 PMIC support (Core, ESM, PFSM)
+Date:   Thu, 30 Mar 2023 10:20:02 +0200
+Message-Id: <20230330082006.11216-1-jpanis@baylibre.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 4/9] dt-bindings: qcom-qce: Add compatibles for SM6115
- and QCM2290
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org
-References: <20230328092815.292665-1-bhupesh.sharma@linaro.org>
- <20230328092815.292665-5-bhupesh.sharma@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230328092815.292665-5-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2023 11:28, Bhupesh Sharma wrote:
-> Crypto Engine block on Qualcomm SoCs SM6115 and QCM2290
-> do not require clocks strictly, so add compatibles for these
-> SoCs, indicating that they are similar to the flavour
-> found on SM8150.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
+TPS6594 is a Power Management IC which provides regulators and others
+features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+communicate through the I2C or SPI interfaces.
+TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series adds support to TI TPS6594 PMIC and its derivatives.
 
-Best regards,
-Krzysztof
+The features implemented in this series are:
+- Core (MFD I2C and SPI entry points)
+- ESM (child device)
+- PFSM (child device)
+
+- Core description:
+I2C and SPI interface protocols are implemented, with and without
+the bit-integrity error detection feature (CRC mode).
+In multi-PMIC configuration, all instances share a single GPIO of
+the SoC to generate interrupt requests via their respective nINT
+output pin.
+
+- ESM description:
+This device monitors the SoC error output signal at its nERR_SOC
+input pin. In error condition, ESM toggles its nRSTOUT_SOC pin
+to reset the SoC.
+Basically, ESM driver starts ESM hardware.
+
+- PFSM description:
+Strictly speaking, PFSM is not hardware. It is a piece of code.
+PMIC integrates a state machine which manages operational modes.
+Depending on the current operational mode, some voltage domains
+remain energized while others can be off.
+PFSM driver can be used to trigger transitions between configured
+states.
+
+Changes since v4:
+* [dt-bindings] Modify 'compatible' strings.
+* [dt-bindings] Remove 'ti,multi-phase-id' property.
+* [dt-bindings] Remove rtc/watchdog nodes.
+* [MFD i2c/spi drivers] Modify 'compatible' strings.
+* [All] Remove 'X' from 'LP8764X' string and enum value.
+
+Link to v4:
+https://lore.kernel.org/all/20230327154101.211732-1-jpanis@baylibre.com/
+
+Others series will be submitted over the next few weeks, providing
+drivers for others child devices like GPIOs (pinctrl), RTC, and
+regulators. Board support will also be added (device trees).
+
+Julien Panis (4):
+  dt-bindings: mfd: Add TI TPS6594 PMIC
+  mfd: tps6594: Add driver for TI TPS6594 PMIC
+  misc: tps6594-esm: Add driver for TI TPS6594 ESM
+  misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
+
+ .../devicetree/bindings/mfd/ti,tps6594.yaml   |  193 ++++
+ .../userspace-api/ioctl/ioctl-number.rst      |    1 +
+ drivers/mfd/Kconfig                           |   32 +
+ drivers/mfd/Makefile                          |    3 +
+ drivers/mfd/tps6594-core.c                    |  462 ++++++++
+ drivers/mfd/tps6594-i2c.c                     |  244 ++++
+ drivers/mfd/tps6594-spi.c                     |  129 +++
+ drivers/misc/Kconfig                          |   23 +
+ drivers/misc/Makefile                         |    2 +
+ drivers/misc/tps6594-esm.c                    |  132 +++
+ drivers/misc/tps6594-pfsm.c                   |  304 +++++
+ include/linux/mfd/tps6594.h                   | 1020 +++++++++++++++++
+ include/uapi/linux/tps6594_pfsm.h             |   45 +
+ 13 files changed, 2590 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+ create mode 100644 drivers/mfd/tps6594-core.c
+ create mode 100644 drivers/mfd/tps6594-i2c.c
+ create mode 100644 drivers/mfd/tps6594-spi.c
+ create mode 100644 drivers/misc/tps6594-esm.c
+ create mode 100644 drivers/misc/tps6594-pfsm.c
+ create mode 100644 include/linux/mfd/tps6594.h
+ create mode 100644 include/uapi/linux/tps6594_pfsm.h
+
+
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+-- 
+2.37.3
 
