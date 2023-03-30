@@ -2,112 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBBC76CFB6F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 08:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE796CFB81
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 08:28:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjC3GUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 02:20:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45864 "EHLO
+        id S230227AbjC3G2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 02:28:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjC3GUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 02:20:52 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F2575FE5;
-        Wed, 29 Mar 2023 23:20:48 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32U6KalT021983;
-        Thu, 30 Mar 2023 01:20:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680157236;
-        bh=H5Uk/wARPWsfe6DJM9bh6gUd8k3OEc+odUh/r1fOGRo=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=Fthu3oTLQbvnW/P/sNKfsMOSE9zDcoOYhBr9nkONB2RoQYsTI1w8Kp6enPP1Sbckm
-         hcbhYDduMF5OG0tCfsB1sQKR9z0/H8R4AwFuX6o6Yeg+ov6pP/gzegiupG+5LKyf00
-         s4WbFOj5WSao/OrfHlgN2qVz1wHX99P8Nq/cc+Ck=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32U6KZch102898
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 30 Mar 2023 01:20:36 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 30
- Mar 2023 01:20:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 30 Mar 2023 01:20:35 -0500
-Received: from [172.24.145.83] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32U6KWp1055089;
-        Thu, 30 Mar 2023 01:20:32 -0500
-Message-ID: <f3be8f20-fe56-489e-440c-53ca66f00508@ti.com>
-Date:   Thu, 30 Mar 2023 11:50:31 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add eMMC mmc0 support
-Content-Language: en-US
-To:     Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S230217AbjC3G2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 02:28:54 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA634ED2;
+        Wed, 29 Mar 2023 23:28:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680157733; x=1711693733;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wD8GKP3B56Z03DGtVse0/Ba7FvgZ/IA3mt3zB6FExL4=;
+  b=WaPIrW9y11NDiJNJD5SdAcNbVnCddLw/NCjqNl76V5DOwJpNMb+CSEra
+   B0qAFHzOdakXN6EVGO1mZ2X7cxegNS2qROxkEU2uReGk9d/hRCW7S3zvK
+   YmAPNwMthP9OFxiGHxRYQ6WFxMLibXQ9To4tkD65O9QKxHzE9sh61rQTI
+   LKIePFcV7jr/ZEvNO+UPKfbzwu4rOLhw6XprYPIju1WbLukh7+Vvx9TlR
+   GDRhQ890NvusJUIQWRFIEKrTNMuJNwthhHZuWNX3DiT2l+rIpwexhOaMh
+   a0d62d6miDygkSd4AMzvEj2PRvMGRBXYLxHd9fBGXn0ki0oQvHexlz862
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="325003986"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; 
+   d="scan'208";a="325003986"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2023 23:28:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="753872393"
+X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; 
+   d="scan'208";a="753872393"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 29 Mar 2023 23:28:39 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1phllx-000KRS-38;
+        Thu, 30 Mar 2023 06:28:33 +0000
+Date:   Thu, 30 Mar 2023 14:28:12 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Brenda Streiff <brenda.streiff@ni.com>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Brenda Streiff <brenda.streiff@ni.com>,
+        Gratian Crisan <gratian.crisan@ni.com>,
+        Jason Smith <jason.smith@ni.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230327083100.12587-1-a-nandan@ti.com>
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-In-Reply-To: <20230327083100.12587-1-a-nandan@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
+Message-ID: <202303301456.qfo36qC0-lkp@intel.com>
+References: <20230329154235.615349-3-brenda.streiff@ni.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230329154235.615349-3-brenda.streiff@ni.com>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Brenda,
 
-On 27/03/23 14:01, Apurva Nandan wrote:
-> Add support for eMMC card connected to main sdhci0 instance.
->
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+I love your patch! Perhaps something to improve:
 
-Reviewed-by: Bhavya Kapoor <b-kapoor@ti.com>
+[auto build test WARNING on tty/tty-testing]
+[also build test WARNING on tty/tty-next tty/tty-linus linus/master v6.3-rc4 next-20230330]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> ---
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 9 +++++++++
->   1 file changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index 7480f37e89e8..1622a01a4667 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -21,6 +21,7 @@ chosen {
->
->   	aliases {
->   		serial2 = &main_uart8;
-> +		mmc0 = &main_sdhci0;
->   		mmc1 = &main_sdhci1;
->   		i2c0 = &main_i2c0;
->   	};
-> @@ -225,6 +226,14 @@ exp2: gpio@22 {
->   	};
->   };
->
-> +&main_sdhci0 {
-> +	/* eMMC */
-> +	status = "okay";
-> +	non-removable;
-> +	ti,driver-strength-ohm = <50>;
-> +	disable-wp;
-> +};
-> +
->   &main_sdhci1 {
->   	/* SD card */
->   	status = "okay";
-> --
-> 2.34.1
-Looks correct to me.
+url:    https://github.com/intel-lab-lkp/linux/commits/Brenda-Streiff/serial-8250-add-driver-for-NI-UARTs/20230330-010726
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+patch link:    https://lore.kernel.org/r/20230329154235.615349-3-brenda.streiff%40ni.com
+patch subject: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
+config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20230330/202303301456.qfo36qC0-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install powerpc cross compiling tool for clang build
+        # apt-get install binutils-powerpc-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/6c50983e6760b2db288e3f8b7254cea537c0f052
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Brenda-Streiff/serial-8250-add-driver-for-NI-UARTs/20230330-010726
+        git checkout 6c50983e6760b2db288e3f8b7254cea537c0f052
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/tty/serial/8250/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303301456.qfo36qC0-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/tty/serial/8250/8250_ni.c:423:36: warning: unused variable 'ni16550_acpi_match' [-Wunused-const-variable]
+   static const struct acpi_device_id ni16550_acpi_match[] = {
+                                      ^
+   1 warning generated.
+
+
+vim +/ni16550_acpi_match +423 drivers/tty/serial/8250/8250_ni.c
+
+   422	
+ > 423	static const struct acpi_device_id ni16550_acpi_match[] = {
+   424		{ "NIC7750",	(kernel_ulong_t)&nic7750 },
+   425		{ "NIC7772",	(kernel_ulong_t)&nic7772 },
+   426		{ "NIC792B",	(kernel_ulong_t)&nic792b },
+   427		{ "NIC7A69",	(kernel_ulong_t)&nic7a69 },
+   428		{ },
+   429	};
+   430	MODULE_DEVICE_TABLE(acpi, ni16550_acpi_match);
+   431	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
