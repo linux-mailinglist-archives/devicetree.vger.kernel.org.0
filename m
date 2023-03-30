@@ -2,103 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE5A46D029F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 13:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E7116D02B4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 13:13:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230389AbjC3LJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 07:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46364 "EHLO
+        id S231550AbjC3LNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 07:13:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231402AbjC3LJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 07:09:58 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E55CCB8
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:09:57 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id c4so880552pjs.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:09:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680174597; x=1682766597;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t0rkIZY3O/B/p2Ezr8FRIFleghoZRYVaBL+ys1poDDI=;
-        b=B/r8lZqi8Rz2e1A6uRzfKVFPdomEky7k68pupksU1nDL317QoZDAvxBz+y6EyFNByS
-         d2qTNTH/SIXT6lQvykgV4pptB+zsHnE2hbYmZ49SBhi6pv/qilPBpS65e04ibzzEp4xk
-         Q0XixVz3VqFG0jp6oBAIuJqsFiYfN3ECoTVlrvJcm7LCWvE/bPpxrN5QZ8f/SeMQxdWB
-         /4AO5dpV69fQRUK3U/jtu5ybDF+d4KmCPGh5X41o05U9laUgsVl/OI7PwTbq7umEYwP8
-         kMPX6j5T9v3VYKjntbmVyScBotojEfGtgGcB1ZG9GkLvIp6wjqHBmjfgkKhUCLFfw5ul
-         lPUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680174597; x=1682766597;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t0rkIZY3O/B/p2Ezr8FRIFleghoZRYVaBL+ys1poDDI=;
-        b=36D2s8CEsqpIO+wGuSDQUfAH35Mwi+T8xphYEhGnjZQV1ZKljKqwj34YV6BwlKo3WP
-         otazChW8+Ea98kPV2hzzWmHO9iaJ5BvAlzjgoDjqS+qrOVa+bXg6MEZZBtvyW+1pOA1L
-         +m58tCU98CRfZp6qsbVEHvym7Mf0ZzN5gXFPcGEqnbj5DSpBLdvUrzNh4nLvNkR7u9cO
-         h6NESWRbTBH5S6+UhGcH3LXTe79L8hz/c5Pif6zBPKUvGtzaO/sAbEdiBEkSlv17ovWs
-         ZafyHy+opw5c+VHkgSksRn75N64aqoTLkmgFHIUgabgDbbqchw90ITnAV0pKY7nojXJT
-         Eofg==
-X-Gm-Message-State: AAQBX9cRd+bkC+2B6v68JqXI5DtswCDZEhbwF2zMRA+cwcdILj+iz2bk
-        t5pBujLMd9LLUTH9Wnz22Ffi0gCf9ImacUfTelxeOFynKqu9IA==
-X-Google-Smtp-Source: AKy350Zf/XyJ4RpHApDgYWO9FKBL8kuFndbl+vrb5NsTjg02WRHH32778W+DXM/1yQQzbdgHMQGRwXO9rXUFiy2/b/g=
-X-Received: by 2002:a17:90a:690f:b0:23f:a26e:daa3 with SMTP id
- r15-20020a17090a690f00b0023fa26edaa3mr7068320pjj.9.1680174597353; Thu, 30 Mar
- 2023 04:09:57 -0700 (PDT)
+        with ESMTP id S231400AbjC3LNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 07:13:35 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9473040DC;
+        Thu, 30 Mar 2023 04:13:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id EE50FCE2982;
+        Thu, 30 Mar 2023 11:13:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 385C1C433EF;
+        Thu, 30 Mar 2023 11:13:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680174811;
+        bh=ukBEhWrw/ajFJGkVU2++82d/hl2/pJctfu+fiaMHW7I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=a7LcQIvbyx7HpDMExhi0iZUT+YkyF6a8Ahe17BEHusojPX7S8t7ZhOnRBnYTgF6+3
+         d91W6s+c8uv75MVWCsIjmTI8WKR63Ki65wdRLalRWD9Kuxr34MMMdfxd2NoBcy7K05
+         TS5JyobUdu8koooM2vi/ffjuEbrVQESlPWeOg1YInAsImoUx7co19tEbRgEayYgUjE
+         XyL8QwH0cxRH0Ldxp48VFEQKA2U/vRTV8MgzghQ6Jh2irGTXeZ/KY7KQwAIBdfOY0F
+         WWKH8Tv94CrI/MqWMNV/Q6PRQWwCwYfUOsbhWbx3HGdBmnGGZsQ/3sC1LTM8+iydCu
+         GBGf3QK/3bHzw==
+Date:   Thu, 30 Mar 2023 12:13:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Takashi Iwai <tiwai@suse.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Patrick Lai <quic_plai@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH v3 07/10] ASoC: dt-bindings: qcom,lpass-va-macro: Add
+ missing NPL clock
+Message-ID: <ZCVu11dHay8ktiRl@sirena.org.uk>
+References: <20230327132254.147975-1-krzysztof.kozlowski@linaro.org>
+ <20230327132254.147975-8-krzysztof.kozlowski@linaro.org>
+ <3bb3f40f-39da-2fe6-f5ca-2848a9e5c49b@linaro.org>
 MIME-Version: 1.0
-References: <20230329144155.699196-1-festevam@gmail.com> <ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org>
- <CAMty3ZBHvR8OxgNgKG--TA_LQF41vjPiruHx-Pw2PwbjNKMFog@mail.gmail.com>
-In-Reply-To: <CAMty3ZBHvR8OxgNgKG--TA_LQF41vjPiruHx-Pw2PwbjNKMFog@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 30 Mar 2023 08:09:44 -0300
-Message-ID: <CAOMZO5BwSFZr7BDaU4KDkwvTcW0U28FeDDaF7eDrhgvgdN47Mg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: exynos: dsim: Add 'lane-polarities'
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        neil.armstrong@linaro.org, inki.dae@samsung.com, marex@denx.de,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="IsDYuCYOQLYYOx2V"
+Content-Disposition: inline
+In-Reply-To: <3bb3f40f-39da-2fe6-f5ca-2848a9e5c49b@linaro.org>
+X-Cookie: Single tasking: Just Say No.
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
 
-On Thu, Mar 30, 2023 at 4:55=E2=80=AFAM Jagan Teki <jagan@amarulasolutions.=
-com> wrote:
+--IsDYuCYOQLYYOx2V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> I have a previous iteration of this conversion. Can I resend it on top
-> of drm-misc-next?
-> https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutions=
-.com/
+On Thu, Mar 30, 2023 at 08:59:12AM +0200, Krzysztof Kozlowski wrote:
 
-I tried applying your patch against linux-next, but I get the following err=
-or:
+> It seems you applied v2, not v3, so this patch is missing and the
+> binding needs fixes.
 
-$ make dt_binding_check DT_SCHEMA_FILES=3Dsamsung,mipi-dsim.yaml
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-/home/fabio/linux-next/Documentation/devicetree/bindings/display/bridge/sam=
-sung,mipi-dsim.yaml:
-properties:samsung,power-domain:maxItems: False schema does not allow
-1
-hint: Scalar properties should not have array keywords
-from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-  DTEX    Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsi=
-m.example.dts
-  DTC_CHK Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsi=
-m.example.dtb
+I'd queued v2 already when you sent v3, and you're sending a lot
+of serieses right now.
 
-Could you please take a look?
+--IsDYuCYOQLYYOx2V
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmQlbtMACgkQJNaLcl1U
+h9AXegf/RDW+9ZdRUx8ufviZmnmZibB7wVYT4S9MOFBHzXu5Xs9hFd60Nl2uhGsi
+VloXjO2lGlAuStck5I02NIMUNC1kEP/YExTGWadOY92CggJTGsUxhf4OGPKh5ib4
+bDn37PhNH6IRdcH/rNTSyLmzxqWkrPt610U7gdgsLAjB6JYIT2lREX6ZqW3Ssizw
+Qvq7IUXtcrs7DFEahV3ipkhBHB+RpZz++k0kWS42IlQo4Ij8pGanusKT5f5gzPoz
+rYEEkTmIZWyUzUPkBa22IE7ROpvkyc+dCaYfAyLhBOBBq7TVn6JfQErggPhridD/
+/S7VdzM5YXqVgwVHI/1nwAnvoumvNQ==
+=NJ5a
+-----END PGP SIGNATURE-----
+
+--IsDYuCYOQLYYOx2V--
