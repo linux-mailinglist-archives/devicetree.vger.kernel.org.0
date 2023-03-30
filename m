@@ -2,92 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBD56CFCDE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95BD76CFCE5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbjC3Hf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:35:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36932 "EHLO
+        id S230312AbjC3HgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjC3Hf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:35:26 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD62E3
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:35:25 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id e18so18049113wra.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:35:25 -0700 (PDT)
+        with ESMTP id S229942AbjC3HgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:36:13 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF2A49FE
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:36:09 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id g17so23373758lfv.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:36:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680161723;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wUsyas2g7pXcAt6kmQAIPXQR1m5yxNLHw2NuTLXyTvA=;
-        b=kj4dR7j8wi9fDhWyKWSUz+RC1XBKZvSgaMCcAQ+KOse0mSvFQKB8sp7NeUTSFwhnik
-         fZW4TBqEnfVlKiZXDb/bJKiFRYlTYwXRV2otd/oS+0jbbGTHjPDHByOlrtpYMpUuaDoU
-         PU29VgNQ/OVsmS8Dqfm2BYnlSb89gkR0lGLZrnOQCIncKup/tSA4As/0Mx08PmAIR05v
-         AM6oqzKRJYpN7IATxmoxY8ESZ/iKYNB/mtF/0s3kjuCq4Pn7Gz0KF+HKqGq3fbBg+jHy
-         ShqN/lQ/3qTRCwRPW2HrGJQR46lL7a+Vqs8jiFqTfHmhMaDRQ7H4X0YS+o/06179jX6A
-         OHzg==
+        d=linaro.org; s=google; t=1680161767;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=76aJWbUWsdK9RGoxvHvablA/jheCBXLESrz/qwRI/4M=;
+        b=xNA+hiC1s8qd6uyQFCaLtk65m2NO3EmHH/YxypEzDyl3LtCIU+3wrZD1iK0aFIdkwA
+         mIAHFZAkJwfCPi9dGS6L5U0ZqH94ElOiJ9cj+90WPBalORBXyCnKKrJBX/j7qahJCzRZ
+         PxE8ZLWGEdrWTS9Fm5yz0CKndLiEjtL2LdWahblUL+kW1CkOvxrXkuMBUfzRmwFdml7G
+         y5SFxV1NAaaKglxLMbcrWuX9nicH7w+TCHeWjNUe36T6arnGp4AClzqrxy01iR0cvz/m
+         qmESakOVTb6yrTKCcQLBzIsJegnV5JESMug3NG60/CweJPP0oh3V76A5Z0ABick8eVQe
+         mW3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680161723;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wUsyas2g7pXcAt6kmQAIPXQR1m5yxNLHw2NuTLXyTvA=;
-        b=Ooqjn4pWU/DJUVA3ejdeCh1bjoC0UX9aQMuQVw0WSpzirBAX0ePx0aVfc8QJuc1vV3
-         n4jzBbW455wYdMmlUI+YO5awn97IwGGnQNXXpZEubeUexzF/QlHI4iqRHz9cCyNEIUNU
-         Vq5OGvagxwIcz8dplzoGkcnASe3HOgrN45xJ7n35yOaZkl3LOsVDLawOFKadEi8+wYSD
-         2zvtfNpILdUsSZ9ViKBeSL22grbO6+jDXuC0+xyrqFo0tgag2HXjC6ve3jz9TJRKyqOK
-         A+z4KPiszS9cxtKZrrb7JixyevGo/rrVKW+kpPnRckQNtHq4TiiCYf+GbRmCAmjaIMxV
-         qCrQ==
-X-Gm-Message-State: AAQBX9fD3C7jRqSDnOjRA27jwC4nl9ZImc1mp1gKqPAZ8+b2ILAmmLd6
-        CCCll6cl+t/CzlZmCob1kjU4rODf8pTQ76+ALC7L5Q==
-X-Google-Smtp-Source: AKy350Zhek0IM8+FPIzpitnwEAtcdRvQCBSMF25dquE+PRBVL/WxyWP8+w3v36GzzaPpUoEPJaeODg==
-X-Received: by 2002:adf:ea49:0:b0:2ce:82f8:812d with SMTP id j9-20020adfea49000000b002ce82f8812dmr16663518wrn.54.1680161723155;
-        Thu, 30 Mar 2023 00:35:23 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id v13-20020a5d6b0d000000b002daf0b52598sm18885206wrw.18.2023.03.30.00.35.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 00:35:22 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, marcofrk@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-In-Reply-To: <20230329201150.741106-1-festevam@gmail.com>
-References: <20230329201150.741106-1-festevam@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: display: seiko,43wvf1g: Change the
- maintainer's contact
-Message-Id: <168016172250.3866055.13177104315800219942.b4-ty@linaro.org>
-Date:   Thu, 30 Mar 2023 09:35:22 +0200
+        d=1e100.net; s=20210112; t=1680161767;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=76aJWbUWsdK9RGoxvHvablA/jheCBXLESrz/qwRI/4M=;
+        b=SkQL5IHQO2EcgnniYUNUjUlA5UK8gPfYZ80DRXN+Ju20ohbYdop3gFRABGGQRDq+p4
+         8/aesf762e/TxR3LAnVRygP3FvAATFiCWaUXreFNrXuzYtTNNIX3FiX4UGPOEnyHjdXT
+         j2biGltOzn0LRYqCHFfwn+C6ffHO7U4gCPAZGt1HytKMYPIksvAJtcJ+/Jy5csdHweWk
+         Ja7g0Mtoi94d3PN2zJ12JlRnj/9ZjGXLZtL38Qn2YHK2K/ZnGqyIA+EgHGJ6m/242ZXA
+         kJPfFWZSfxg+8KxzzFy6LGkWrp9cl76zynQwGBlZg6i1aotslBAq6CJO0zGJzQItBnS6
+         jIng==
+X-Gm-Message-State: AAQBX9cuT58SyRoY44QXhBkSdYLrmfyMXG8hJtu13KLwp9MzRrcMYDSt
+        CNPiHrimUFvRoH7LO4E/jMtiyA==
+X-Google-Smtp-Source: AKy350azUAlNkIGGkonG3ti8573pFtntXxPHUEJSCWt7ET2qDNeE1BbTm2NDbr8OkWmpoUkzfHomBQ==
+X-Received: by 2002:ac2:48b4:0:b0:4de:7dec:ca34 with SMTP id u20-20020ac248b4000000b004de7decca34mr7049792lfg.48.1680161767681;
+        Thu, 30 Mar 2023 00:36:07 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x3-20020ac259c3000000b004db2c5c895bsm5722965lfn.234.2023.03.30.00.36.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 00:36:07 -0700 (PDT)
+Message-ID: <7e93c0c9-0a84-c1ce-a978-c4743963012b@linaro.org>
+Date:   Thu, 30 Mar 2023 09:36:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox : arm,mhuv2: Allow for more RX
+ interrupts
+Content-Language: en-US
+To:     Cristian Marussi <cristian.marussi@arm.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     sudeep.holla@arm.com, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, nicola.mazzucato@arm.com,
+        Tushar.Khandelwal@arm.com, viresh.kumar@linaro.org,
+        jassisinghbrar@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+References: <20230329153936.394911-1-cristian.marussi@arm.com>
+ <20230329153936.394911-2-cristian.marussi@arm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230329153936.394911-2-cristian.marussi@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, 29 Mar 2023 17:11:50 -0300, Fabio Estevam wrote:
-> Marco's NXP email is no longer valid.
+On 29/03/2023 17:39, Cristian Marussi wrote:
+> The ARM MHUv2 Receiver block can indeed support more interrupts, up to the
+> maximum number of available channels, but anyway no more than the maximum
+> number of supported interrupt for an AMBA device.
 > 
-> Marco told me offline that he has no interest to be listed as the
-> maintainer contact for this binding, so add my contact.
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> ---
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: devicetree@vger.kernel.org
 > 
+>  .../devicetree/bindings/mailbox/arm,mhuv2.yaml      | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+> index a4f1fe63659a..5a57f4e2a623 100644
+> --- a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+> @@ -69,10 +69,15 @@ properties:
+>  
+>    interrupts:
+>      description: |
+> -      The MHUv2 controller always implements an interrupt in the "receiver"
+> -      mode, while the interrupt in the "sender" mode was not available in the
+> -      version MHUv2.0, but the later versions do have it.
+> -    maxItems: 1
+> +      The MHUv2 controller always implements at least an interrupt in the
+> +      "receiver" mode, while the interrupt in the "sender" mode was not
+> +      available in the version MHUv2.0, but the later versions do have it.
+> +      In "receiver" mode, beside a single combined interrupt, there could be
+> +      multiple interrupts, up to the number of implemented channels but anyway
+> +      no more than the maximum number of interrupts potentially supported by
+> +      AMBA.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Last sentence indicates that TX mode has something else, e.g. max 1
+interrupt. Either correct the sentence or add if:then: narrowing it for TX.
 
-[1/1] dt-bindings: display: seiko,43wvf1g: Change the maintainer's contact
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=b2d2d8decc8d239875420af6e412158ac5a2cb1f
 
--- 
-Neil
+Best regards,
+Krzysztof
 
