@@ -2,106 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01E376D0704
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3F56D0719
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232088AbjC3Ng0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 09:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
+        id S232120AbjC3Nmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 09:42:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232081AbjC3NgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:36:25 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2043.outbound.protection.outlook.com [40.107.100.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC438A5B;
-        Thu, 30 Mar 2023 06:35:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XtTZP8Re2WuynsDln26R00dxsNqUR6MN5YetxmgWN6QgnlsuS6soZ36F6zduBq+lTV5nS4HGWRWFCZj1sK6AQidOv1Tp4G6InVEdycgUCyfmCXF2FFo8xzrspf+h2VjVJ1YxnRSoOIVF6VQGGJ8/a+f7k/a4VZ9WTP/zn6kvgE+ETiq2zee9XUz5xfgAVVSgKNf68n2wwsG3uY6drpUDWew8T60Ek+6k5aEpyuqwBhR47QUrOXu+7h3OSHxZLxqo6E+6sUuMYAM3jGC299i3d7xv+N3unm2oQTdTYvuk3Hdp4bECzhTJWxX7vvRb+TxqtIsGmUbX2NQdzXPxzvO70w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cxvKHL4caozilROvR5+TnU4HO09jiXCkfL3FawQRZXI=;
- b=Mma2mtoReElBvu3n2QCadTUgL+MEgfMmrh35ljU01NO0BmbZlsLFO5FFP8uay7CW3dcTPo1BXvTlxuGFUFcVWOjrAk/TM0pRGwtRPU9QdzmpOzZww4SnqPjr3JnAkBo0YzKxn0Q+OWnnTQovEnYq0zyi1N0aFeBhog7J3GtcNJkegmgG0uIxWKisu7OEF64IQbGXNt+mNOy6+y7XkIqj+e/iX1j4k4QCVydHgd5/J+IMRdRWEHFhblh1A5dpbP8KbisbTmqNZ3HmYfHrCoM3Rp6tPyIEBLBOJ4D4ENLsWDTNaI9Rpx9x6NMc0DJ8sctF8MyBaQTIup3uTuElPAExBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cxvKHL4caozilROvR5+TnU4HO09jiXCkfL3FawQRZXI=;
- b=pch9ye6YZsNFWzJkhPXRGn5ZweBVIWb42NPOVZgvyh6KRqwc5lyBO6vDR0pFlz1boje4io6hQ6RQX+NR2KwCvNn7Z8Pd3XbUoXxUuGooEyx7qNE5/3UJIiafWOalvl7gPl2X9xSFRgrBhyY5Qhtuiq2RZDFVx9EFScHSQEErf7tGP63lJRAN5rR7C5gwt+AD8TlHCoRXfagEIHrJ7GVgrBNYuNwz0r5KsBBhIY9VHFRuFlt7bahtrZtAnSeSLBXZ+LOWrLiJ4B2A/t/Kcylrc4U0m1278zXC+sMeYUDJA0VJ3sGJ4upmXOmplwPhqkkSbkYOeb+VNV8a/6Ir+Iz6bQ==
-Received: from DM5PR07CA0097.namprd07.prod.outlook.com (2603:10b6:4:ae::26) by
- IA0PR12MB9047.namprd12.prod.outlook.com (2603:10b6:208:402::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6222.33; Thu, 30 Mar 2023 13:35:45 +0000
-Received: from DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ae:cafe::bf) by DM5PR07CA0097.outlook.office365.com
- (2603:10b6:4:ae::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
- Transport; Thu, 30 Mar 2023 13:35:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- DM6NAM11FT049.mail.protection.outlook.com (10.13.172.188) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6254.22 via Frontend Transport; Thu, 30 Mar 2023 13:35:45 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Thu, 30 Mar 2023
- 06:35:43 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.37; Thu, 30 Mar 2023 06:35:42 -0700
-Received: from sumitg-l4t.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.986.37 via Frontend
- Transport; Thu, 30 Mar 2023 06:35:37 -0700
-From:   Sumit Gupta <sumitg@nvidia.com>
-To:     <treding@nvidia.com>, <krzysztof.kozlowski@linaro.org>,
-        <dmitry.osipenko@collabora.com>, <viresh.kumar@linaro.org>,
-        <rafael@kernel.org>, <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
-        <lpieralisi@kernel.org>, <helgaas@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <mmaddireddy@nvidia.com>,
-        <kw@linux.com>, <bhelgaas@google.com>, <vidyas@nvidia.com>,
-        <sanjayc@nvidia.com>, <ksitaraman@nvidia.com>, <ishah@nvidia.com>,
-        <bbasu@nvidia.com>, <sumitg@nvidia.com>
-Subject: [Patch v5 8/8] arm64: tegra: Add cpu OPP tables and interconnects property
-Date:   Thu, 30 Mar 2023 19:03:54 +0530
-Message-ID: <20230330133354.714-9-sumitg@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230330133354.714-1-sumitg@nvidia.com>
-References: <20230330133354.714-1-sumitg@nvidia.com>
-X-NVConfidentiality: public
+        with ESMTP id S232143AbjC3Nmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:42:33 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446FFBBB6
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:42:11 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5445009c26bso354617897b3.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:42:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1680183723;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X+8nDQV8WyAMGcMV8E7jzqCDnqvFEFAghtcnwD7ujG4=;
+        b=mLMExJoF4PGUb5r1ARvsMCskqu01O1GrOaR3OBiaZLRdKtDDgCc1b0EGv9zHEqnemU
+         5se4KLUK2YGDLDK/ZUK3kp/6sW9MFEfOKRaUadskgb3YhCs3zc4hSrRqMr8PsiGr4jZU
+         Ig5sQsBRvUp+TJNNv+26ekVHa/83Okz16GKB4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680183723;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=X+8nDQV8WyAMGcMV8E7jzqCDnqvFEFAghtcnwD7ujG4=;
+        b=mbHxn13e/scrLzUxPbSM5/jfFm+GKpwtcXAuKUEUZ3+9FTzPkckJ3Ekk/+xtLpy2zZ
+         /P7HMZnYRsXl+gfQGVM4eD2jr1g7AA+0wz5SX7COvzKfhz6u7+xW7C89VXujRIKHZl5X
+         F6OlQkkO2z15FDEZLj5DyPXF+wwR7pd4r11UsCd5X5g302ba5TQyEu22PloqMGwJJ/ub
+         Ki8rSfG9IYN93JrWZzm4dGpRSZrZQgdObcizFgDXNqFfBV7Ad9VHj1oIX85xZzIYlG7j
+         4kmMBGj7BdQZvM9BaUuo7LdEON3DDOANmkErpCTEP5Ylk9HVUcyqya1Jou/BZ7MtpuPy
+         HoYQ==
+X-Gm-Message-State: AAQBX9cIzcakEq0Un51n41C4E5EtFqW19e263oSeaxFHzLKCgztlJTLK
+        +T52RoZ1Ll94LLXYOO4jdit91qjtznf1JOyWpSDAvg==
+X-Google-Smtp-Source: AKy350ZVcQzRTyx6h4eVa+NacLvUw4LkPo4Rkn0pPCq25Y6d+1SyB2YL5XdN/iC/2EfH4VUWdCTmgaUjVQs3yt+0S9s=
+X-Received: by 2002:a81:e546:0:b0:546:1ef:54f9 with SMTP id
+ c6-20020a81e546000000b0054601ef54f9mr6321590ywm.0.1680183723296; Thu, 30 Mar
+ 2023 06:42:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT049:EE_|IA0PR12MB9047:EE_
-X-MS-Office365-Filtering-Correlation-Id: db18f6de-1f09-41af-5aa5-08db3123aa32
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +KVwLpvyYb0mWJolel677Mn27/IbpLnLJMWhOvzaVd6IVw2FLfQNk9v116RfDgZs6TwZRzcym20erpqnC4dvOcczptFwYZ40uom3FJdVQNs0QyvKsthjwxmSKIxIpXuCxRmWuO7+GPgqBxkjefYpvWwyZtuaZHVzQW2oB9vPaJxK0K6Wgfbviu9xOjqG0eyXM0AWQecfPejrM68FVMPZw991RMh4M6rPQ0snIFkeVTnnISrNDMUK8gZ1jJHep6KuZJs9djoz/BOpfdoOxnPrDyTvaoMfsSUmXUT0R/A/jHhlEcs6WENnmKWYEPTsjQHXfq6OOKIRW3UxRDHKhVH6UG0FyBUEuCCnwUEzwEaOlmzjQjjirkulR3LOd4ESe9s3FxjFavkVcjrODg+EJ5Bjj7PIIVV/vTyN9MreOYu3JLG+Y87VSD6hHdOpkY16JJvNOPM+FTBd4vyS8DKH7E3/5VTX38pOJ7EJ5B4U6Ud3gm8Mjv9jP5nqcc4/c6EjyO02lc7Gr9A9qjq+atxqu2wlnZxX1KS2ZWxPRxvsTMnlsAzvwBlhukTtHuEhmL5uebSYUCjzW/RGo81VFQ22iPo9H6kd/Ofr94wo0/9XdASGl2Tl2dnYgxGOaLy93vPGUsuJKUsV4BmUrh307+Mkh4J+blTFrDSD2TvOIqHXcMfnUdCeqIchD5Mad6gk5JTYHUpLMsiUE03lUBxVKz/ARjaTctKDSycMNjNRRGFIvVfiZVlohLNcfbjah4xI1RBlxhB6uPtxVURvs1l3zuIr2RJ/0yVDkVKfO+5nOkLVJgrdOwc=
-X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(376002)(346002)(39860400002)(451199021)(40470700004)(46966006)(36840700001)(40460700003)(7696005)(70206006)(36756003)(4326008)(8676002)(356005)(34020700004)(2906002)(41300700001)(36860700001)(5660300002)(40480700001)(86362001)(82740400003)(8936002)(70586007)(7636003)(7416002)(82310400005)(316002)(110136005)(1076003)(26005)(186003)(107886003)(6666004)(478600001)(83380400001)(2616005)(54906003)(47076005)(426003)(336012);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 13:35:45.0694
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: db18f6de-1f09-41af-5aa5-08db3123aa32
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB9047
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+References: <20230329144155.699196-1-festevam@gmail.com> <ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org>
+ <CAMty3ZBHvR8OxgNgKG--TA_LQF41vjPiruHx-Pw2PwbjNKMFog@mail.gmail.com> <CAOMZO5BwSFZr7BDaU4KDkwvTcW0U28FeDDaF7eDrhgvgdN47Mg@mail.gmail.com>
+In-Reply-To: <CAOMZO5BwSFZr7BDaU4KDkwvTcW0U28FeDDaF7eDrhgvgdN47Mg@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 30 Mar 2023 19:11:51 +0530
+Message-ID: <CAMty3ZBZC_yKR0wszA-ax2-hKoUDHBSg8G_unvYL0rU8742yvw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: exynos: dsim: Add 'lane-polarities'
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        neil.armstrong@linaro.org, inki.dae@samsung.com, marex@denx.de,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -109,392 +68,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add OPP table and interconnects property to scale DDR frequency with
-CPU frequency for better performance. Each operating point entry of
-the OPP table has CPU freq to per MC channel bandwidth mapping.
-One table is added for each cluster even though the table data is
-same because the bandwidth request is per cluster. This is done
-because OPP framework creates a single icc path and hence single
-bandwidth request if the table is marked as 'opp-shared' and shared
-among all clusters. For us, the OPP table data is same but the MC
-Client ID argument to interconnects property is different for each
-cluster. So, having per cluster table makes different icc path for
-each cluster and helps to make per cluster BW requests.
+Hi Fabio,
 
-Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 276 +++++++++++++++++++++++
- 1 file changed, 276 insertions(+)
+On Thu, Mar 30, 2023 at 4:39=E2=80=AFPM Fabio Estevam <festevam@gmail.com> =
+wrote:
+>
+> Hi Jagan,
+>
+> On Thu, Mar 30, 2023 at 4:55=E2=80=AFAM Jagan Teki <jagan@amarulasolution=
+s.com> wrote:
+>
+> > I have a previous iteration of this conversion. Can I resend it on top
+> > of drm-misc-next?
+> > https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutio=
+ns.com/
+>
+> I tried applying your patch against linux-next, but I get the following e=
+rror:
+>
+> $ make dt_binding_check DT_SCHEMA_FILES=3Dsamsung,mipi-dsim.yaml
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> /home/fabio/linux-next/Documentation/devicetree/bindings/display/bridge/s=
+amsung,mipi-dsim.yaml:
+> properties:samsung,power-domain:maxItems: False schema does not allow
+> 1
+> hint: Scalar properties should not have array keywords
+> from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+>   DTEX    Documentation/devicetree/bindings/display/bridge/samsung,mipi-d=
+sim.example.dts
+>   DTC_CHK Documentation/devicetree/bindings/display/bridge/samsung,mipi-d=
+sim.example.dtb
+>
+> Could you please take a look?
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 959d659dd5cd..d735ad2eb84f 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -3011,6 +3011,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl0_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER0 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3027,6 +3030,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl0_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER0 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3043,6 +3049,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl0_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER0 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3059,6 +3068,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl0_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER0 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3075,6 +3087,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl1_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER1 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3091,6 +3106,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl1_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER1 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3107,6 +3125,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl1_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER1 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3123,6 +3144,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl1_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER1 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3139,6 +3163,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl2_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER2 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3155,6 +3182,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl2_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER2 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3171,6 +3201,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl2_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER2 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3187,6 +3220,9 @@
- 
- 			enable-method = "psci";
- 
-+			operating-points-v2 = <&cl2_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER2 &emc>;
-+
- 			i-cache-size = <65536>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -3443,4 +3479,244 @@
- 		interrupt-parent = <&gic>;
- 		always-on;
- 	};
-+
-+	cl0_opp_tbl: opp-table-cluster0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cl0_ch1_opp1: opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp2: opp-268800000 {
-+			opp-hz = /bits/ 64 <268800000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp3: opp-422400000 {
-+			opp-hz = /bits/ 64 <422400000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp4: opp-576000000 {
-+			opp-hz = /bits/ 64 <576000000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp5: opp-729600000 {
-+			opp-hz = /bits/ 64 <729600000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp6: opp-883200000 {
-+			opp-hz = /bits/ 64 <883200000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp7: opp-1036800000 {
-+			opp-hz = /bits/ 64 <1036800000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp8: opp-1190400000 {
-+			opp-hz = /bits/ 64 <1190400000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl0_ch1_opp9: opp-1344000000 {
-+			opp-hz = /bits/ 64 <1344000000>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		cl0_ch1_opp10: opp-1497600000 {
-+			opp-hz = /bits/ 64 <1497600000>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		cl0_ch1_opp11: opp-1651200000 {
-+			opp-hz = /bits/ 64 <1651200000>;
-+			opp-peak-kBps = <2660000>;
-+		};
-+
-+		cl0_ch1_opp12: opp-1804800000 {
-+			opp-hz = /bits/ 64 <1804800000>;
-+			opp-peak-kBps = <2660000>;
-+		};
-+
-+		cl0_ch1_opp13: opp-1958400000 {
-+			opp-hz = /bits/ 64 <1958400000>;
-+			opp-peak-kBps = <3200000>;
-+		};
-+
-+		cl0_ch1_opp14: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <6400000>;
-+		};
-+
-+		cl0_ch1_opp15: opp-2201600000 {
-+			opp-hz = /bits/ 64 <2201600000>;
-+			opp-peak-kBps = <6400000>;
-+		};
-+	};
-+
-+	cl1_opp_tbl: opp-table-cluster1 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cl1_ch1_opp1: opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp2: opp-268800000 {
-+			opp-hz = /bits/ 64 <268800000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp3: opp-422400000 {
-+			opp-hz = /bits/ 64 <422400000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp4: opp-576000000 {
-+			opp-hz = /bits/ 64 <576000000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp5: opp-729600000 {
-+			opp-hz = /bits/ 64 <729600000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp6: opp-883200000 {
-+			opp-hz = /bits/ 64 <883200000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp7: opp-1036800000 {
-+			opp-hz = /bits/ 64 <1036800000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp8: opp-1190400000 {
-+			opp-hz = /bits/ 64 <1190400000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl1_ch1_opp9: opp-1344000000 {
-+			opp-hz = /bits/ 64 <1344000000>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		cl1_ch1_opp10: opp-1497600000 {
-+			opp-hz = /bits/ 64 <1497600000>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		cl1_ch1_opp11: opp-1651200000 {
-+			opp-hz = /bits/ 64 <1651200000>;
-+			opp-peak-kBps = <2660000>;
-+		};
-+
-+		cl1_ch1_opp12: opp-1804800000 {
-+			opp-hz = /bits/ 64 <1804800000>;
-+			opp-peak-kBps = <2660000>;
-+		};
-+
-+		cl1_ch1_opp13: opp-1958400000 {
-+			opp-hz = /bits/ 64 <1958400000>;
-+			opp-peak-kBps = <3200000>;
-+		};
-+
-+		cl1_ch1_opp14: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <6400000>;
-+		};
-+
-+		cl1_ch1_opp15: opp-2201600000 {
-+			opp-hz = /bits/ 64 <2201600000>;
-+			opp-peak-kBps = <6400000>;
-+		};
-+	};
-+
-+	cl2_opp_tbl: opp-table-cluster2 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cl2_ch1_opp1: opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp2: opp-268800000 {
-+			opp-hz = /bits/ 64 <268800000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp3: opp-422400000 {
-+			opp-hz = /bits/ 64 <422400000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp4: opp-576000000 {
-+			opp-hz = /bits/ 64 <576000000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp5: opp-729600000 {
-+			opp-hz = /bits/ 64 <729600000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp6: opp-883200000 {
-+			opp-hz = /bits/ 64 <883200000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp7: opp-1036800000 {
-+			opp-hz = /bits/ 64 <1036800000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp8: opp-1190400000 {
-+			opp-hz = /bits/ 64 <1190400000>;
-+			opp-peak-kBps = <816000>;
-+		};
-+
-+		cl2_ch1_opp9: opp-1344000000 {
-+			opp-hz = /bits/ 64 <1344000000>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		cl2_ch1_opp10: opp-1497600000 {
-+			opp-hz = /bits/ 64 <1497600000>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		cl2_ch1_opp11: opp-1651200000 {
-+			opp-hz = /bits/ 64 <1651200000>;
-+			opp-peak-kBps = <2660000>;
-+		};
-+
-+		cl2_ch1_opp12: opp-1804800000 {
-+			opp-hz = /bits/ 64 <1804800000>;
-+			opp-peak-kBps = <2660000>;
-+		};
-+
-+		cl2_ch1_opp13: opp-1958400000 {
-+			opp-hz = /bits/ 64 <1958400000>;
-+			opp-peak-kBps = <3200000>;
-+		};
-+
-+		cl2_ch1_opp14: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <6400000>;
-+		};
-+
-+		cl2_ch1_opp15: opp-2201600000 {
-+			opp-hz = /bits/ 64 <2201600000>;
-+			opp-peak-kBps = <6400000>;
-+		};
-+	};
- };
--- 
-2.17.1
+I will rework this patch and update the next version.
 
+Thanks,
+Jagan.
