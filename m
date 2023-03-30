@@ -2,162 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73B56CFFD8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 11:31:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DB86CFFEA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 11:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbjC3Jbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 05:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58572 "EHLO
+        id S229950AbjC3Jjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 05:39:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjC3Jbq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 05:31:46 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329BB7ABA;
-        Thu, 30 Mar 2023 02:31:45 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id i5-20020a05600c354500b003edd24054e0so13036231wmq.4;
-        Thu, 30 Mar 2023 02:31:45 -0700 (PDT)
+        with ESMTP id S229486AbjC3Jjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 05:39:42 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E186A63
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 02:39:41 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-544787916d9so343313757b3.13
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 02:39:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680168703;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2wlyXiuObJJjktYiyreCZzL3rjA4zKtmBixPoT6R+F0=;
-        b=Y4OoQAhVGOqI+uv0pxKJRu4ZsIvPkStPkTUbv/2I6V3iDEot8HwhvO6dInlCxKYWBc
-         bad03C5wA4wX8bLnfeOGwydUjNhDacl6qyErhJ2XmtoyJipMNSIuJ1eD0afSmtPlZgv4
-         3VuwgNhG0xmkrhPVS/AXsIONapDnDoANbq/0JoqJeAPqulZOOfuZrfaZBgRa0YZ0KX0u
-         61yL6jG5GqP/yUlIdvtrRqUjOZF0scdaKVObg3LqAyb5EKJ4mfh/IaXPNwt82a0C2uVA
-         p1cSHvykOG99d3Br0z5fqhMb+1v5wFHN0KyfDnZosrZ35uNnKUJeCCd1mdcAp3mYgcH/
-         YFXw==
+        d=linaro.org; s=google; t=1680169181;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+KF3Ej0zA5vUsAy03E3uvbCGHCj2rR2h+cgAo56vcSY=;
+        b=XMzC2GHrO/8LfQ2aF3jdBJuAoAavxiNQuWfxljRs8SSZB223Vy6gKXq8lIxlvbo5Rh
+         61k6tYXlbAGXehWTjVPqLri1D03gVJoGcUXUOH3PsPIHJc/noOjuYYqooeFFg70dSNjo
+         J8X8pl4w2xqanq7XlhVxGBqwbB39cp4zM3CYYGZ3A6180YwGKiXfkRrFVRSEeEMxllvf
+         BH83sjDB5BmtIX7D/eKKrPxH3sAEqcldv4ha47iuHa7Z3Tf3JV7WlJnqKJ42NY0SShVq
+         bO4jsOO7inoRCS2pNoUY+O3iSCI+0NqnrtUaX3tZobzpuU/fM2EXaflsdDLgvfQkpeRp
+         b18g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680168703;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2wlyXiuObJJjktYiyreCZzL3rjA4zKtmBixPoT6R+F0=;
-        b=SjpmeYc0ydaYmQd4AQLrQncp7jGv27FrvtutQHKIZsLPNM7ajWh+GgVbHC+ENOuolu
-         eEHkHGaySLvuUKB+2hnJiBVbfZJNJCHW3iOOwYUdbOYT2fTmLr8GCOgr/0Pf7JsR7S+p
-         33nvRt8IbA+qlLteYYIf/swvT+1pTgeYKXl6RPL9zhhnA9V29kCc5dwST9qbmi8FBWLp
-         +MamhNz9n6fMLCLPhg0Vk04eIagZ/4pqwNoD91GCmk8AjF3wBd0pPZOb/d9P2gCMlyh8
-         XW+UIL1CkG+z9iNOb1gJaQy6+euQhzZdj729YlutDEa2290TBHg6LRpvT/J0e17QHL6s
-         TTsQ==
-X-Gm-Message-State: AO0yUKWy8/yb9COKHg4eXA+Ye5fXmM26sglMXRfJVs8Ainuc0xVNlarD
-        QkiwnCHOlxKji5FMYIepJPVdwjsjdapSfMFG
-X-Google-Smtp-Source: AK7set8MoRoP1u28J2KlqIRCUvbhxPNq5qX8D5y1gRGG9mTbXEF5Z82DXD5g1HsNB5h8AJgc4McNiQ==
-X-Received: by 2002:a7b:ca4a:0:b0:3ea:e582:48dd with SMTP id m10-20020a7bca4a000000b003eae58248ddmr17293179wml.34.1680168703616;
-        Thu, 30 Mar 2023 02:31:43 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m18-20020a7bcb92000000b003ee58e8c971sm5107057wmi.14.2023.03.30.02.31.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 02:31:42 -0700 (PDT)
-Message-ID: <5a1b22cb-4597-8137-e802-ca81ceb99c7c@gmail.com>
-Date:   Thu, 30 Mar 2023 11:31:41 +0200
+        d=1e100.net; s=20210112; t=1680169181;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+KF3Ej0zA5vUsAy03E3uvbCGHCj2rR2h+cgAo56vcSY=;
+        b=6gYBaWCI+2+1c/u48k60DFhtMGua4zgbcyKHROd/0CZ9+NGviRjik1fZGmp+/Z6HWw
+         GwJz02LqiHsSv7tj08bW3jKJCre0SFbXoD39dmiUUuYqvj/UOi6I8RcKJ0boj7fQKEKQ
+         DemjrmlzWNqsgwCrbW5/Mux1aiKCVaqTSGnL2f+tNGAYjTDZR4AckpVdEMwJzNVLmK2w
+         h0IWQKigythuSL8FOoap2EOZY8pV/KAGqp0IclC9VbdT5OBwJczdr3Mg5ZCWarHMBKmv
+         lNwSJ5GnVshel9HM+daZaJplk4XyS4CjHJ/fK9XrA5OF+QMcZDEidsqqY2gMQNUM+uWS
+         Ebqg==
+X-Gm-Message-State: AAQBX9c4Bj6bbycUdGXMpui7wm0J4FmEK5ed6lmcuAe4JNtv0qluNe8W
+        cBPyWcSwMklzM8AngK6JKFqCX/BkrKippLfSBtaelw==
+X-Google-Smtp-Source: AKy350Y9NxPb3viIr2gzUpn3/4183c/Hd9fNIbqB/+mt9JjjNP5tyVonZiZsUTV2u+aJtwZ2ZC3uPbmUCiAJfBuAGXU=
+X-Received: by 2002:a81:ae4f:0:b0:545:ed8e:f4f6 with SMTP id
+ g15-20020a81ae4f000000b00545ed8ef4f6mr7051275ywk.5.1680169180845; Thu, 30 Mar
+ 2023 02:39:40 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v5 3/3] soc: mediatek: mtk-svs: add thermal voltage
- compensation if needed
-Content-Language: en-US
-To:     =?UTF-8?B?Um9nZXIgTHUgKOmZuOeRnuWCkSk=?= <Roger.Lu@mediatek.com>,
-        "eballetbo@gmail.com" <eballetbo@gmail.com>,
-        "khilman@kernel.org" <khilman@kernel.org>,
-        "drinkcat@google.com" <drinkcat@google.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?SmlhLXdlaSBDaGFuZyAo5by15L2z5YGJKQ==?= 
-        <Jia-wei.Chang@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>
-References: <20230202124104.16504-1-roger.lu@mediatek.com>
- <20230202124104.16504-4-roger.lu@mediatek.com>
- <26837308-4837-f252-d162-f8af4859b63e@gmail.com>
- <fd62705e1abf8124706da6520fde5b77846bfd2c.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <fd62705e1abf8124706da6520fde5b77846bfd2c.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <cover.1680162377.git.quic_varada@quicinc.com> <cb8f2ba0ff39951aeada479ed3895d19c9f72617.1680162377.git.quic_varada@quicinc.com>
+In-Reply-To: <cb8f2ba0ff39951aeada479ed3895d19c9f72617.1680162377.git.quic_varada@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 30 Mar 2023 12:39:30 +0300
+Message-ID: <CAA8EJprQhrqWo5s8hNq=z4DL=hw9wde4ZHHwb+JoKCMQk3rU7w@mail.gmail.com>
+Subject: Re: [PATCH v5 3/8] dt-bindings: usb: dwc3: Add IPQ9574 compatible
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 30 Mar 2023 at 11:42, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> Document the IPQ9574 dwc3 compatible.
+>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  Changes in v5:
+>         - Restore removed constraints
+>
+>  Changes in v4:
+>         - Update other relevant sections
+>         - Remove constraints not applicable to IPQ9574
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index a2aabda..8def6a3 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -17,6 +17,7 @@ properties:
+>            - qcom,ipq6018-dwc3
+>            - qcom,ipq8064-dwc3
+>            - qcom,ipq8074-dwc3
+> +          - qcom,ipq9574-dwc3
+>            - qcom,msm8953-dwc3
+>            - qcom,msm8994-dwc3
+>            - qcom,msm8996-dwc3
+> @@ -242,6 +243,24 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - qcom,ipq9574-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 5
+> +        clock-names:
+> +          items:
+> +            - const: sys_noc_axi
+> +            - const: anoc_axi
+> +            - const: master
+> +            - const: sleep
+> +            - const: mock_utmi
+
+Is there any chance of using clock names that are close to the names
+used by existing platforms?
+
+I think this fits into the third 'if' bucket:
+
+cfg_noc = sys_noc_axi
+core = master
+iface = anoc_axi
+sleep = sleep
+mock_utmi = mock_utmi
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+>                - qcom,msm8994-dwc3
+>                - qcom,qcs404-dwc3
+>      then:
+> --
+> 2.7.4
+>
 
 
-On 11/02/2023 12:12, Roger Lu (陸瑞傑) wrote:
-> Hi Matthias Sir,
-> 
-> Sorry for the late reply.
-> 
-> ... [snip] ...
-> 
->>> @@ -2127,6 +2123,7 @@ static struct svs_bank svs_mt8192_banks[] = {
->>>    		.type			= SVSB_LOW,
->>>    		.set_freq_pct		= svs_set_bank_freq_pct_v3,
->>>    		.get_volts		= svs_get_bank_volts_v3,
->>> +		.tzone_name		= "gpu1",
->>>    		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT,
->>>    		.mode_support		= SVSB_MODE_INIT02,
->>>    		.opp_count		= MAX_OPP_ENTRIES,
->>> @@ -2144,6 +2141,10 @@ static struct svs_bank svs_mt8192_banks[] = {
->>>    		.core_sel		= 0x0fff0100,
->>>    		.int_st			= BIT(0),
->>>    		.ctl0			= 0x00540003,
->>> +		.tzone_htemp		= 85000,
->>> +		.tzone_htemp_voffset	= 0,
->>> +		.tzone_ltemp		= 25000,
->>> +		.tzone_ltemp_voffset	= 7,
->>
->> Which is the exact same tzone then in the other bank. Which brings me to a
->> good
->> point:
->> Is the tzone bank specific or the same for all banks?
-> 
-> Thermal zone (tzone) isn't for all SVS banks. In other words, tzone is specific
-> for corresponding DVFS domain like SVS GPU tzone is for GPU DVFS domain. Let's
-> take MT8183 SVS and MT8192 SVS as examples.
-> 
-> MT8192 SVS applies 2-line HW design (High/low 2 banks optimize the same DVFS
-> domain). So, SVS GPU High/low bank uses the same GPU tzone.
-> 
-> MT8183 SVS applies 1-line HW design (1 bank optimizes 1 DVFS domain)
-> Therefore, SVS CPU/GPU/CCI bank use different tzone because they are different
-> DVFS domain.
-> 
->> At least for mt8192 they are not. I suppose with this change to the code
->> mt8183
->> could take advantage of this on all it's banks as well.
->> In that case, can we
->> start to restructure the struct svs_bank to only have the tzone values
->> declared
->> once?
-> 
-> Since tzone isn't for all banks, we cannot declare it once for all IC supports
-> from this point of view.
-> 
-
-Thanks for clarification, applied now.
-
->>
->> Background is that I'm very unhappy with the svs_bank data strucutre. It
->> seems
->> like a "throw it all in here". It should be structured for functional parts
->> of
->> the banks. Maybe using structs, maybe unions where possible. In any case
->> having
->> a flat struct of over 50 members isn't really what we want.
-> 
-> My apology. We'll structure svs_bank for functional parts of them.
-> 
->>
->> Regards,
->> Matthias
+-- 
+With best wishes
+Dmitry
