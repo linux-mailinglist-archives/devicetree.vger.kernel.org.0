@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CE646D11F2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 00:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAEC16D11F3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 00:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230366AbjC3WHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 18:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S230330AbjC3WHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 18:07:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbjC3WGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 18:06:36 -0400
+        with ESMTP id S230332AbjC3WGz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 18:06:55 -0400
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7270811E8D;
-        Thu, 30 Mar 2023 15:05:18 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32UM53WE036623;
-        Thu, 30 Mar 2023 17:05:03 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC4F11EB3;
+        Thu, 30 Mar 2023 15:05:31 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32UM5RVa036682;
+        Thu, 30 Mar 2023 17:05:27 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680213903;
-        bh=hQX8ZGRSkAFqB9rT9Eyb5zMJYRFIr3F9aSEjRb7Qqww=;
+        s=ti-com-17Q1; t=1680213927;
+        bh=PmPK+IVzbpj0pAN69Fj02Y+N/9HsSjkH1sYzOwsJz7E=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=hybJwzRIZyA+/p+sMe5oVzS2lA7/nO0/3Tx2Dyump8sHAiawGun1aSD0Rdsr5vImS
-         hnEoHJ+DHSae9+75xL15IlxChnWBLeXzjvBgZgYxr7xvL1IYDVepp2rF73RxPdh2iJ
-         N21NKvA1JSR2d8P99BC5cz9Mp/TCtHnRfHx864fc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32UM53cI003827
+        b=OPfmewrfSEeWw8Oj6GH0ZKL545BPOHGuNYvV1BSI37Hujd3rCIOL8o9B2M6hulJyW
+         Rgbf4OGbOL+TDE+LpIK0MZIBQ0kw/eSHyA/qeGhK9U37+Q5TTqqk0UgZsSxBSg0MNP
+         o/ERxvRn32+djSx+jVNrYb6UevpCJcGPXZcr3BcU=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32UM5Rw9038683
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 30 Mar 2023 17:05:03 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 30 Mar 2023 17:05:27 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 30
- Mar 2023 17:05:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2023 17:05:26 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 30 Mar 2023 17:05:02 -0500
+ Frontend Transport; Thu, 30 Mar 2023 17:05:26 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32UM52nX085540;
-        Thu, 30 Mar 2023 17:05:02 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32UM5QSM086077;
+        Thu, 30 Mar 2023 17:05:26 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH -next 0/2] arm64: dts: ti: Fixes for Beagleplay SD
-Date:   Thu, 30 Mar 2023 17:05:01 -0500
-Message-ID: <168021381989.189465.7612644484912733056.b4-ty@ti.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Apurva Nandan <a-nandan@ti.com>
+CC:     Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add eMMC mmc0 support
+Date:   Thu, 30 Mar 2023 17:05:26 -0500
+Message-ID: <168021391422.190551.3017686634766059961.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230330105921.3639185-1-vigneshr@ti.com>
-References: <20230330105921.3639185-1-vigneshr@ti.com>
+In-Reply-To: <20230327083100.12587-1-a-nandan@ti.com>
+References: <20230327083100.12587-1-a-nandan@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -69,24 +67,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vignesh Raghavendra,
+Hi Apurva Nandan,
 
-On Thu, 30 Mar 2023 16:29:19 +0530, Vignesh Raghavendra wrote:
-> Couple of fixups on top of ti-next branch:
+On Mon, 27 Mar 2023 14:01:00 +0530, Apurva Nandan wrote:
+> Add support for eMMC card connected to main sdhci0 instance.
 > 
-> The SD supply on Beagle is really coming from PMIC LDO1 even though its
-> controllable via GPIO, hence fix the DT accordingly, this also means
-> PMIC regulator drivers need to be built-in to allow SD card rootfs
 > 
-> Nishanth,
-> Better to squash into respetive commits if possible
-> 
-> [...]
 
-I have fixed the following to branch ti-k3-dts-next and ti-k3-config-next on [1].
-I had to rewrite history a bit here, but anyways..
-
+I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
+
+[1/1] arm64: dts: ti: k3-j784s4-evm: Add eMMC mmc0 support
+      commit: 891db0c48efb48c3af334006f9d7ea6a0aa49cb9
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
