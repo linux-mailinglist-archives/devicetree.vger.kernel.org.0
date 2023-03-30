@@ -2,122 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCB726D102B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 22:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88EE16D103C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 22:45:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229891AbjC3UnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 16:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44884 "EHLO
+        id S229945AbjC3Up3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 16:45:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbjC3Um6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 16:42:58 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFDA113DB;
-        Thu, 30 Mar 2023 13:42:47 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r29so20327296wra.13;
-        Thu, 30 Mar 2023 13:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680208967; x=1682800967;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LVLJ+jvYtKAHw9uWehWmKzg7iwxnJbw0QCzpAvbBm74=;
-        b=W7fVzssA8QDCapvKTkoy/XagVfFnxYrLEzjjz8EEr9aqhofp2hVnw8T+E3Jr+nEdNa
-         97dIWkEbf3FORLwLZE/5HArDgiFztVrOgFjz5hxh1jmA6tjNbhheZt3RWJcyaDjN9d5C
-         LGWKU1Ceue5VI2if/h8CyKWHHUO2bN6I3O50fpCnM+VtfM8ZFsQPPztuALBtlfENa6ft
-         YtwUfM/3ASZcD5pylRfLVPvV/BOl1WCNFBmTdMwJqPu5XQp12OIeZD8Oce9m1qZDFFDa
-         RC5c3OwCzvRrbwjIshLD20LU0IonkECsfK766VhHOvAG9yQIskRzqu0j8ZWStESC3bUl
-         hRZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680208967; x=1682800967;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LVLJ+jvYtKAHw9uWehWmKzg7iwxnJbw0QCzpAvbBm74=;
-        b=z4CGPZB2HaWm0/8ajzm40PwBjFLHQt1HCpE1hTUCKR+MfzHMgpJz5mbhBEfsRzb0Y+
-         Zx+QgNBaTN7msY2suMGtWEiZ6Gt8WYq9dMyBSWU0RSeyg89+PLpq6ihOXY9qrFQC+WRE
-         5y1/DpvBFWW04P5TpMbTLNIqKf5lfShKnK9AxjUEc2fp0qSvzEB3+H5n5i2bkqSeJqPs
-         y0PHKm/4+Q3q3dcVykoz9qoygfIXWG9fhHSnxjDaHlcgKSCW+/xGlfHnPoOuFFVz5W8j
-         oz8x8g3fXt4HYLNMMf97JFgNnEEdRoxV/wP25JqzEHh/Je+Ynq93re0PKtSuKTF6+bhA
-         a2jw==
-X-Gm-Message-State: AAQBX9cvIeGrCcWFREBCeo3HXzcnMD4UDN40QqbtnjmlRT6DihjnoVZ1
-        nRTBEQpUSv6wr72whIhU1uE=
-X-Google-Smtp-Source: AKy350aAvzzQW67L9QzCg0QWZlDe/xWID6JRpmXb9cTLENUc1XfQLzXnwUJG9YMad8I19gvPKRQjlQ==
-X-Received: by 2002:adf:fac5:0:b0:2cf:f2f9:df7a with SMTP id a5-20020adffac5000000b002cff2f9df7amr18208641wrs.38.1680208967130;
-        Thu, 30 Mar 2023 13:42:47 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:30f2:5b7:ab32:c3f])
-        by smtp.gmail.com with ESMTPSA id v12-20020a5d4b0c000000b002cfed482e9asm297981wrq.61.2023.03.30.13.42.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 13:42:46 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v7 6/6] soc: renesas: Kconfig: Select the required configs for RZ/Five SoC
-Date:   Thu, 30 Mar 2023 21:42:17 +0100
-Message-Id: <20230330204217.47666-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229865AbjC3UpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 16:45:22 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F22F7E1AD
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 13:45:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680209114; x=1711745114;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=idS/b7faLBak6wmc6fg6lSllhfUDEdrqCTQkRRUG23Q=;
+  b=jmf1cCww11FX25GTBwkdKmBtFqlw7jvGS8yMKaC8lCdxjJF+NSLWJtVL
+   +I5NpfLsse7bgBqzqCsHoCCjHYgxX0dK9BjsQUPV4GFTDA0LiqyI1MyZH
+   mRdfWRxeea3hni3lXuTZyg5aZrvmrO/+mxbisaS+sahZ56Nm07hXsVERO
+   XWu6Tn8t4WuXKx5+RQnpopRZqgO2V/1Plw42IkWFkcqXUxb116znnPYoD
+   8uIWqFYQzbhvtooBklk6yCQOPvL1uyQCIEnpksGRqOponMtl9SKPon6OC
+   +hTafg8sUkVtF9Sfqyvj5PvDpww43/MPx0FFoA0Bshd6MXesiazte/RPq
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329804632"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; 
+   d="scan'208";a="329804632"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2023 13:45:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="795813702"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; 
+   d="scan'208";a="795813702"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 30 Mar 2023 13:45:10 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1phz8v-000LCJ-1e;
+        Thu, 30 Mar 2023 20:45:09 +0000
+Date:   Fri, 31 Mar 2023 04:44:26 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     James Morse <james.morse@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
+        James Morse <james.morse@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 5/6] firmware: smccc: Allow errata management to be
+ overridden by device tree
+Message-ID: <202303310444.3JHIsByA-lkp@intel.com>
+References: <20230330165128.3237939-6-james.morse@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230330165128.3237939-6-james.morse@arm.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi James,
 
-Explicitly select the required Cache management and Errata configs
-required for the RZ/Five SoC.
+I love your patch! Perhaps something to improve:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
-v6->v7
-* Included RB tag from Conor
+[auto build test WARNING on arm64/for-next/core]
+[also build test WARNING on robh/for-next arm/for-next arm/fixes kvmarm/next soc/for-next linus/master v6.3-rc4 next-20230330]
+[cannot apply to xilinx-xlnx/master]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-v5->v6
-* New patch
----
- drivers/soc/renesas/Kconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/James-Morse/dt-bindings-firmware-Add-arm-errata-management/20230331-005505
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-next/core
+patch link:    https://lore.kernel.org/r/20230330165128.3237939-6-james.morse%40arm.com
+patch subject: [PATCH 5/6] firmware: smccc: Allow errata management to be overridden by device tree
+config: arm64-randconfig-r032-20230329 (https://download.01.org/0day-ci/archive/20230331/202303310444.3JHIsByA-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/79e2d2cd6684ebd4e8c4787905486b63301117a9
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review James-Morse/dt-bindings-firmware-Add-arm-errata-management/20230331-005505
+        git checkout 79e2d2cd6684ebd4e8c4787905486b63301117a9
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/firmware/smccc/
 
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index de31589ed054..67604f24973e 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -334,6 +334,10 @@ if RISCV
- config ARCH_R9A07G043
- 	bool "RISC-V Platform support for RZ/Five"
- 	select ARCH_RZG2L
-+	select AX45MP_L2_CACHE
-+	select DMA_GLOBAL_POOL
-+	select ERRATA_ANDES
-+	select ERRATA_ANDES_CMO
- 	help
- 	  This enables support for the Renesas RZ/Five SoC.
- 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303310444.3JHIsByA-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/firmware/smccc/em.c:142:5: warning: no previous prototype for 'arm_smccc_em_dt_alloc_tbl_entry' [-Wmissing-prototypes]
+     142 | int arm_smccc_em_dt_alloc_tbl_entry(struct device_node *np, const char *name,
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/arm_smccc_em_dt_alloc_tbl_entry +142 drivers/firmware/smccc/em.c
+
+   141	
+ > 142	int arm_smccc_em_dt_alloc_tbl_entry(struct device_node *np, const char *name,
+   143					    struct arm_em_dt_supplement_array *entry)
+   144	{
+   145		int ret = of_property_count_u32_elems(np, name);
+   146	
+   147		if (ret <= 0)
+   148			return 0;
+   149		if (ret > ARRAY_SIZE(entry->val))
+   150			return -E2BIG;
+   151	
+   152		entry->num = ret;
+   153		return of_property_read_u32_array(np, name, entry->val, entry->num);
+   154	}
+   155	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
