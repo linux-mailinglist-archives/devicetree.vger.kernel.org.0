@@ -2,62 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E43B6CF964
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 05:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AAF26CF9AA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 05:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbjC3DBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 23:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42898 "EHLO
+        id S229597AbjC3Dqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 23:46:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbjC3DBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 23:01:05 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3316C59DA;
-        Wed, 29 Mar 2023 20:01:01 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32U30lbZ049077;
-        Wed, 29 Mar 2023 22:00:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680145247;
-        bh=OcCwE395WH/NUHl18D/5rlo2l+Ejn/+/wFOqolmzQhA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=vOCulW2lJ0vZPyz40lFGIEW70umemc8dJanffwW7+KqDn6rtNHcHmsC9otgLrjU/w
-         CASzqqOcH7RvXDD9WVntaaGA3hgEKTflHn7JTkdm42R0ZyP8rYc+bOdPV+AzqxxDoY
-         zYnuD+QHYde4E7wyyBcQ4r97bud8fjS0wj0Jt1JA=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32U30lil113092
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 29 Mar 2023 22:00:47 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 29
- Mar 2023 22:00:46 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 29 Mar 2023 22:00:46 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32U30kjj020074;
-        Wed, 29 Mar 2023 22:00:46 -0500
-Date:   Wed, 29 Mar 2023 22:00:46 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Esteban Blanc <eblanc@baylibre.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sterzik@ti.com>, <u-kumar1@ti.com>, <jneanne@baylibre.com>,
-        <jpanis@baylibre.com>
-Subject: Re: [PATCH v1 0/4] Add TPS6594 PMIC support on several boards
-Message-ID: <20230330030046.qr5dnft6klejkxkp@ungreased>
-References: <20230329142948.833800-1-eblanc@baylibre.com>
+        with ESMTP id S229456AbjC3Dqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 23:46:42 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B3C2F4C27;
+        Wed, 29 Mar 2023 20:46:38 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8AxEk4dBiVkhDMUAA--.19613S3;
+        Thu, 30 Mar 2023 11:46:37 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cxur0aBiVkJ_UQAA--.13166S3;
+        Thu, 30 Mar 2023 11:46:34 +0800 (CST)
+Subject: Re: [PATCH v4 0/2] spi: loongson: add bus driver for the loongson spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230328112210.23089-1-zhuyinbo@loongson.cn>
+ <20230328113536.ldxpvx3hibezcqtb@intel.intel>
+ <253f3bf2-a193-69da-79ef-c3771d677478@loongson.cn>
+ <e9b1b899-9f19-0abd-8e20-fc486bf28b17@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <c881aa81-10c1-06f5-de9c-8948e9f6ebe8@loongson.cn>
+Date:   Thu, 30 Mar 2023 11:46:34 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230329142948.833800-1-eblanc@baylibre.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+In-Reply-To: <e9b1b899-9f19-0abd-8e20-fc486bf28b17@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Cxur0aBiVkJ_UQAA--.13166S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7Zw13WFyrtF1DCFWkKw1xKrg_yoW8KrW5pF
+        nxJ3ZxJay3JF4DArs7twn8Jr1UW3yxJr4rJFW7JF18KF1qkF1UAry5Ar1rG34UXry5Ga47
+        WF4UZryxGr18WFDanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j0HqcUUUUU=
+X-Spam-Status: No, score=-0.0 required=5.0 tests=NICE_REPLY_A,SPF_HELO_PASS,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,61 +70,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-$subject: minor comment: you don't need a v1 for the first version of
-the patch series.
 
-On 16:29-20230329, Esteban Blanc wrote:
-> TPS6594 is a Power Management IC which provides regulators and others
-> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
-> communicate through the I2C or SPI interfaces.
-> TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
-> 
-> This should be applied on top of other patch series:
-> - https://lore.kernel.org/all/20230327154101.211732-1-jpanis@baylibre.com/
->   For core MFD driver
-> - https://lore.kernel.org/all/20230328091448.648452-1-eblanc@baylibre.com/
->   For regulator driver
 
-OK - lets see these driver support get into an kernel rc1 tag before
-looking at these patches for merge in this cycle, though this does
-hold up other series
+在 2023/3/29 下午4:07, Krzysztof Kozlowski 写道:
+> On 28/03/2023 13:53, zhuyinbo wrote:
+>>
+>>
+>> 在 2023/3/28 下午7:35, Andi Shyti 写道:
+>>> Hi Yinbo,
+>>>
+>>> before submitting the patches for review... can you please run
+>>> checkpatch.pl on them?
+>> yes, I had used checkpatch.pl to check and no any errors and warnings.
+>>
+>> user@user-pc:~/workspace/test/code/www.kernel.org/linux$
+>> ./scripts/checkpatch.pl *.patch
+>> -----------------------
+>> 0000-cover-letter.patch
+>> -----------------------
+>> total: 0 errors, 0 warnings, 0 lines checked
+>>
+>> 0000-cover-letter.patch has no obvious style problems and is ready for
+>> submission.
+>> -------------------------------------------
+>> 0001-dt-bindings-spi-add-loongson-spi.patch
+>> -------------------------------------------
+>> Traceback (most recent call last):
+>>     File "scripts/spdxcheck.py", line 6, in <module>
+>>       from ply import lex, yacc
+>> ModuleNotFoundError: No module named 'ply'
+>> total: 0 errors, 0 warnings, 55 lines checked
+>>
+>> 0001-dt-bindings-spi-add-loongson-spi.patch has no obvious style
+>> problems and is ready for submission.
+>> ---------------------------------------------------------------
+>> 0002-spi-loongson-add-bus-driver-for-the-loongson-spi-con.patch
+>> ---------------------------------------------------------------
+>> Traceback (most recent call last):
+>>     File "scripts/spdxcheck.py", line 6, in <module>
+>>       from ply import lex, yacc
+>> ModuleNotFoundError: No module named 'ply'
+>> Traceback (most recent call last):
+>>     File "scripts/spdxcheck.py", line 6, in <module>
+>>       from ply import lex, yacc
+>> ModuleNotFoundError: No module named 'ply'
+>> Traceback (most recent call last):
+>>     File "scripts/spdxcheck.py", line 6, in <module>
+>>       from ply import lex, yacc
+>> ModuleNotFoundError: No module named 'ply'
+>> Traceback (most recent call last):
+>>     File "scripts/spdxcheck.py", line 6, in <module>
+>>       from ply import lex, yacc
+>> ModuleNotFoundError: No module named 'ply'
+> 
+> You have errors here... Fix your setup for spdx check.
+I installed ply and gitpython package locally, and then there was no 
+spdxcheck and other error when use checkpatch.pl to check this series patch.
 
-Such as https://lore.kernel.org/all/20230313-mcasp_upstream-v9-6-6d937efe4ec4@ti.com/
-
+Thanks.
 > 
-> This serie adds device tree nodes for TI TPS6594 PMICs found in the
-> following boards:
-> - j721eXSOMXEVM:
-> Link: https://www.ti.com/tool/J721EXSOMXEVM
-> - j721s2:
-> Link: https://www.ti.com/tool/J721S2XSOMXEVM
-> - j7200XSOMXEVM:
-> Link: https://www.ti.com/tool/J7200XSOMXEVM
-> - AM62A-SKEVM:
-> Link: https://www.ti.com/tool/SK-AM62A-LP
-> 
-> Esteban Blanc (2):
->   arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
->   arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
-> 
-> Jerome Neanne (1):
->   arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
-> 
-> Julien Panis (1):
->   arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
-> 
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts      |  94 +++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 170 +++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  | 169 +++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 208 +++++++++++++++++++
->  4 files changed, 641 insertions(+)
-> 
-> -- 
-> 2.39.2
+> Best regards,
+> Krzysztof
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
