@@ -2,133 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 247AE6D0C82
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 19:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CAE06D0C88
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 19:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbjC3RRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 13:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47586 "EHLO
+        id S232192AbjC3RTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 13:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbjC3RRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 13:17:32 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D485A198C;
-        Thu, 30 Mar 2023 10:17:31 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id r11so19830905wrr.12;
-        Thu, 30 Mar 2023 10:17:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680196650;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9LA2IwV0qcolNLpB1WThWYRy5+wWU9V8bs2U66OhQBA=;
-        b=J93NMGFeVYKEAydswJOWeQn7uOTHHaHwPHnMxNLbBnZY5llx4YPlkkfXPhH9r1dUfl
-         K+JSR2TT+0Vz/JEGLx+X4k49Pui5CsP+7JVlD+VG1La7bGar1xxyfZUU4shACBypaMM5
-         cwh63GiXqAIVe8o2dZm9M1SiPe6u9Obarf0RlindwdSet6HJhhK06JqjLnzqe1uhJAvW
-         0VFUQqgQN2YsqGndsiaoLqWq2N12blhh0ZIIb86hGhFjL6Hwf5BxrItcyRY/Cf2vP2eQ
-         jgLDDObaerOSC0vCGMeMiENZI6Ced0MRzsE/zy7e1jQ0kmzTiae5PB9/HbDTXsn4uV7y
-         7RZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680196650;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9LA2IwV0qcolNLpB1WThWYRy5+wWU9V8bs2U66OhQBA=;
-        b=oCuCiQ1BoovUYFXYZOn9CJuxQt5ikrtSBPhVWZFc5QDCeokLrt/4mk7qmRKwL1W8Ch
-         T/igrnhI4jerYFjZWDHsUVS5rHaRbaY7ObWLn+WszO0o6vtzccwTQe70wLL7EBH3RTkD
-         wRSdghHZl82tdKrf4znvpOng78jkMq4ziK8jWIc/p6k2egF8JJOfC0C9S+ohHjGDaTFn
-         l5YvvKLIEgRPfktYUP+Btiu4fpl6O7faFydB38+BDU5xDmeNv5sZu0xynWAbZWkSKEUS
-         MlNZ+0psbpSYxLE9FbB/jSJaaWytZdX5BY31iGGmOl0XlXQbyc7YGDmGRxmtkPrC0aOp
-         cNiQ==
-X-Gm-Message-State: AAQBX9cVpM9p7H+Pyj5dqWkhlLC4mGSplt/U60feupuGDMSlR1vSY3WC
-        TKGx2Onnz4FWQLgNIU/5o4c=
-X-Google-Smtp-Source: AKy350ZICVwELuVoiqheQx2dXbJAbjZbwpXeu5bLm0jH0vGD3tsNDeyb3+BPitPCwxq1WSnym4K1+A==
-X-Received: by 2002:a5d:62cd:0:b0:2e4:f53a:45a1 with SMTP id o13-20020a5d62cd000000b002e4f53a45a1mr1712752wrv.57.1680196650320;
-        Thu, 30 Mar 2023 10:17:30 -0700 (PDT)
-Received: from [192.168.1.135] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id v6-20020a5d6106000000b002c55521903bsm33155272wrt.51.2023.03.30.10.17.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 10:17:29 -0700 (PDT)
-Message-ID: <b0ef2a0c-9390-65d5-56ec-f7293b87f20c@gmail.com>
-Date:   Thu, 30 Mar 2023 19:17:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 02/17] dt-bindings: pinctrl: mediatek,mt8365-pinctrl:
- add drive strength property
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S231387AbjC3RTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 13:19:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36523DBF5;
+        Thu, 30 Mar 2023 10:18:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CE7D362120;
+        Thu, 30 Mar 2023 17:18:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1624C433D2;
+        Thu, 30 Mar 2023 17:18:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680196737;
+        bh=1LeBbleOCYcy9cFdM70WZ9DDOCH0XV/JPlHXpaI5JEk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JUpxhbXlnlcr8wrSFDFWiHzEp05KmlgPa7UlngjkD4OaLd+NxwbRo6Vas131VM9bo
+         eyWi38UORkBXjKE71wIb1YxQvYVQijaaviYS9UOju+L0W2aUYKEo9L+asfv6TCsxCa
+         arOpTjDgwOoL3OizYxGh9KtLA0XzR7kcJwXvL9bEUmqL+k4ogZvNVhlgev33lCPJbh
+         +FGKaXk5Xx5Cu/EZwhZbbmc1OeOEl2yi3mkO1dmzpzqZevHuwgIUjYMUapdUvqPcSC
+         iC3bB1lGA2OqoiKwV5mVp6dK+zkYCCzCBMzPl6H7YNSMXcBoYpbCowPbyPjbk5Rpr0
+         BwVqDusDexozw==
+Date:   Thu, 30 Mar 2023 18:18:51 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
-References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com>
- <20230203-evk-board-support-v3-2-0003e80e0095@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230203-evk-board-support-v3-2-0003e80e0095@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Nikita Travkin <nikita@trvn.ru>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 1/2] dt-bindings: leds: aw2013: Document vdd-supply
+Message-ID: <20230330171851.GE548901@google.com>
+References: <20230320141638.3378-1-linmengbo0689@protonmail.com>
+ <20230320142103.3440-1-linmengbo0689@protonmail.com>
+ <ea673f62-f462-a559-d0dc-0662efc60f9e@linaro.org>
+ <20230330114633.GD434339@google.com>
+ <5eb0b699-47bb-ebb7-2ea5-0cf05ccf29ab@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5eb0b699-47bb-ebb7-2ea5-0cf05ccf29ab@linaro.org>
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 30 Mar 2023, Krzysztof Kozlowski wrote:
 
+> On 30/03/2023 13:46, Lee Jones wrote:
+> > On Mon, 20 Mar 2023, Krzysztof Kozlowski wrote:
+> >
+> >> On 20/03/2023 15:22, Lin, Meng-Bo wrote:
+> >>> Document vdd-supply, a regulator providing power to the "VDD" pin.
+> >>>
+> >>
+> >> No. This device does not have VDD pin. I checked in datasheet.
+> >
+> > I'm confused.  This patch set much do something?
+> >
+> > I guess a better commit message would help.  Let me request that.
+>
+> There was a v2 - with a discussion - so we wait for v3 which clearly
+> indicates this is supply on controller side. IMHO, this is still wrong
+> because it is controller's property, not device's, but Rob gave here
+> green light, so v3 with proper explanation would be fine.
 
-On 29/03/2023 10:54, Alexandre Mergnat wrote:
-> This SoC is able to drive the following output current:
-> - 2 mA
-> - 4 mA
-> - 6 mA
-> - 8 mA
-> - 10 mA
-> - 12 mA
-> - 14 mA
-> - 16 mA
-> 
-> Then drive-strength property is set with enum to reflect its HW capability.
-> 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Understood, thanks.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->   Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-> index 4b96884a1afc..101871ec6693 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-> @@ -79,6 +79,9 @@ patternProperties:
->   
->             bias-pull-down: true
->   
-> +          drive-strength:
-> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +
->             input-enable: true
->   
->             input-disable: true
-> 
+--
+Lee Jones [李琼斯]
