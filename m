@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C14D46D0BE5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 700AE6D0BE6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231936AbjC3Qxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 12:53:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
+        id S231272AbjC3Qxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 12:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbjC3QxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:53:14 -0400
+        with ESMTP id S231514AbjC3QxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:53:15 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B6BEBEB6C
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 09:52:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F3350EC6A
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 09:52:59 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4BDB62F4;
-        Thu, 30 Mar 2023 09:53:42 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0D7DD1650;
+        Thu, 30 Mar 2023 09:53:44 -0700 (PDT)
 Received: from eglon.cambridge.arm.com (eglon.cambridge.arm.com [10.1.196.177])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 519993F6C4;
-        Thu, 30 Mar 2023 09:52:56 -0700 (PDT)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3183A3F6C4;
+        Thu, 30 Mar 2023 09:52:58 -0700 (PDT)
 From:   James Morse <james.morse@arm.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -32,9 +32,9 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         James Morse <james.morse@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 4/6] arm64: errata: Disable FWB on parts with non-ARM interconnects
-Date:   Thu, 30 Mar 2023 17:51:26 +0100
-Message-Id: <20230330165128.3237939-5-james.morse@arm.com>
+Subject: [PATCH 5/6] firmware: smccc: Allow errata management to be overridden by device tree
+Date:   Thu, 30 Mar 2023 17:51:27 +0100
+Message-Id: <20230330165128.3237939-6-james.morse@arm.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230330165128.3237939-1-james.morse@arm.com>
 References: <20230330165128.3237939-1-james.morse@arm.com>
@@ -49,302 +49,321 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Force Write Back (FWB) allows the hypervisor to force non-cacheable
-accesses made by a guest to be cacheable. This saves the hypervisor
-from doing cache maintenance on all pages the guest can access, to
-ensure the guest doesn't see stale (and possibly sensitive) data when
-making a non-cacheable access.
+The Errata Management SMCCC interface allows firmware to advertise whether
+the OS is affected by an erratum, or if a higher exception level has
+mitigated the issue. This allows properties of the device that are not
+discoverable by the OS to be described. e.g. some errata depend on the
+behaviour of the interconnect, which is not visible to the OS.
 
-When stage1 translation is disabled, the SCTRL_E1.I bit controls the
-attributes used for instruction fetch, one of the options results in a
-non-cacheable access. A whole host of CPUs missed the FWB override
-in this case, meaning a KVM guest could fetch stale/junk data instead of
-instructions.
+Deployed devices may find it significantly harder to update EL3
+firmware than the device tree. Erratum workarounds typically have to
+fail safe, and assume the platform is affected putting correctness
+above performance.
 
-The workaround is to always do the cache maintenance. These parts don't
-have fine-grained-traps, so it isn't feasible to detect the guest
-disabling the MMU. Instead, disable FWB on the host.
+Instead of adding a device-tree entry for any CPU errata that is
+relevant (or not) to the platform, allow the device-tree to provide
+the data firmware should provide via the SMCCC interface. This can be
+used to provide the value if the firmware is not implemented, or
+override the firmware response if the value provided is wrong.
 
-While the CPUs are affected, this erratum doesn't occur on parts using
-Arm's CMN interconnects. Use the Errata Management API to discover whether
-this CPU is affected.
-
-Because guest execution is compromised, the workaround is enabled by
-default. If the Errata Management API isn't implemented by firmware, the
-workaround will be enabled. If a target platform is not affected, and it
-isn't possible to add support for the Errata Management API, the erratum
-can be disabled in Kconfig.
+The vast majority of CPU errata solely depend on the CPU, and can
+be detected from the CPUs id registers. The number of entries in
+these tables is expected to be small.
 
 Signed-off-by: James Morse <james.morse@arm.com>
 ---
-This patch causes the additional output:
-| Stage-2 Force Write-Back disabled due to erratum #2701951
-| CPU features: detected: ARM erratum 2701951
----
- Documentation/arm64/silicon-errata.rst | 18 ++++++
- arch/arm64/Kconfig                     | 27 ++++++++
- arch/arm64/include/asm/cpufeature.h    |  1 +
- arch/arm64/kernel/cpu_errata.c         | 86 ++++++++++++++++++++++++++
- arch/arm64/kernel/cpufeature.c         | 16 ++++-
- arch/arm64/tools/cpucaps               |  1 +
- 6 files changed, 148 insertions(+), 1 deletion(-)
+ drivers/firmware/smccc/em.c | 227 ++++++++++++++++++++++++++++++++++--
+ 1 file changed, 217 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/arm64/silicon-errata.rst b/Documentation/arm64/silicon-errata.rst
-index ec5f889d7681..d6ca86ebc7af 100644
---- a/Documentation/arm64/silicon-errata.rst
-+++ b/Documentation/arm64/silicon-errata.rst
-@@ -106,6 +106,10 @@ stable kernels.
- +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-A77      | #1508412        | ARM64_ERRATUM_1508412       |
- +----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Cortex-A78      | #2712571        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Cortex-A78C     | #2712575,2712572| ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-A510     | #2051678        | ARM64_ERRATUM_2051678       |
- +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-A510     | #2077057        | ARM64_ERRATUM_2077057       |
-@@ -120,12 +124,20 @@ stable kernels.
- +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-A710     | #2224489        | ARM64_ERRATUM_2224489       |
- +----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Cortex-A710     | #2701952        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-A715     | #2645198        | ARM64_ERRATUM_2645198       |
- +----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Cortex-X1       | #2712571        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-X2       | #2119858        | ARM64_ERRATUM_2119858       |
- +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Cortex-X2       | #2224489        | ARM64_ERRATUM_2224489       |
- +----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Cortex-X2       | #2701952        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Cortex-X3       | #2701951        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Neoverse-N1     | #1188873,1418040| ARM64_ERRATUM_1418040       |
- +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Neoverse-N1     | #1349291        | N/A                         |
-@@ -138,6 +150,12 @@ stable kernels.
- +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | Neoverse-N2     | #2253138        | ARM64_ERRATUM_2253138       |
- +----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Neoverse-N2     | #2728475        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Neoverse-V1     | #2701953        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
-+| ARM            | Neoverse-V2     | #2719103        | ARM64_ERRATUM_2701951       |
-++----------------+-----------------+-----------------+-----------------------------+
- | ARM            | MMU-500         | #841119,826419  | N/A                         |
- +----------------+-----------------+-----------------+-----------------------------+
- +----------------+-----------------+-----------------+-----------------------------+
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1023e896d46b..0d07ddd15bfb 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -990,6 +990,33 @@ config ARM64_ERRATUM_2645198
- 
- 	  If unsure, say Y.
- 
-+config ARM64_ERRATUM_2701951
-+	bool "ARM CPUs: 2701951: disable FWB on affected parts"
-+	select ARM_SMCCC_EM
-+	default y
-+	help
-+	  This option adds the workaround for multiple ARM errata titled
-+	  "The core might fetch stale instruction from memory when both Stage 1
-+	   Translation and Instruction Cache are Disabled with Stage 2 forced
-+	   Write-Back".
-+	  This affects Cortex cores: A78, A78C, A710, X1, X2, X3, and Neoverse
-+	  cores: V1, V2 and N2.
-+
-+	  Affected cores fail to apply the FWB override to instruction fetch
-+	  when stage1 translation is disabled, and SCTLR_EL1.I is clear. This
-+	  results in stale data being fetched and executed. Only CPUs that are
-+	  connected to a non-Arm interconnect will exhibit symptoms due to this
-+	  errata.
-+
-+	  Work around this problem in the driver by disabling FWB on affected
-+	  parts. The SMCCC Errata Management API is used to query firmware to
-+	  learn if the part is affected.
-+
-+	  If the SMCCC Errata Management API is not implemented on a platform
-+	  with an affected core, the workaround will be applied.
-+
-+	  If unsure, say Y.
-+
- config CAVIUM_ERRATUM_22375
- 	bool "Cavium erratum 22375, 24313"
- 	default y
-diff --git a/arch/arm64/include/asm/cpufeature.h b/arch/arm64/include/asm/cpufeature.h
-index 6bf013fb110d..435e5d1b49ab 100644
---- a/arch/arm64/include/asm/cpufeature.h
-+++ b/arch/arm64/include/asm/cpufeature.h
-@@ -635,6 +635,7 @@ static inline bool id_aa64pfr1_mte(u64 pfr1)
- 
- void __init setup_cpu_features(void);
- void check_local_cpu_capabilities(void);
-+bool has_stage2_fwb_errata(const struct arm64_cpu_capabilities *entry, int scope);
- 
- u64 read_sanitised_ftr_reg(u32 id);
- u64 __read_sysreg_by_encoding(u32 sys_id);
-diff --git a/arch/arm64/kernel/cpu_errata.c b/arch/arm64/kernel/cpu_errata.c
-index 307faa2b4395..55da9e588b9e 100644
---- a/arch/arm64/kernel/cpu_errata.c
-+++ b/arch/arm64/kernel/cpu_errata.c
-@@ -6,6 +6,7 @@
+diff --git a/drivers/firmware/smccc/em.c b/drivers/firmware/smccc/em.c
+index 2c66240d8707..62e05e6b2140 100644
+--- a/drivers/firmware/smccc/em.c
++++ b/drivers/firmware/smccc/em.c
+@@ -6,14 +6,21 @@
+  * errata. It can also be used to discover erratum where the 'configurations
+  * affected' depends on the integration.
+  *
++ * The interfaces's return codes have negative values. These should always be
++ * converted to linux errno values to avoid confusion.
++ *
+  * Copyright (C) 2022 ARM Limited
   */
  
- #include <linux/arm-smccc.h>
-+#include <linux/arm_smccc_em.h>
- #include <linux/types.h>
- #include <linux/cpu.h>
- #include <asm/cpu.h>
-@@ -137,6 +138,81 @@ cpu_clear_bf16_from_user_emulation(const struct arm64_cpu_capabilities *__unused
- 	raw_spin_unlock(&reg_user_mask_modification);
- }
+ #define pr_fmt(fmt) "arm_smccc_em: " fmt
  
-+bool has_stage2_fwb_errata(const struct arm64_cpu_capabilities *ignored,
-+			   int scope)
++#include <linux/acpi.h>
+ #include <linux/arm_smccc_em.h>
+ #include <linux/arm-smccc.h>
+ #include <linux/errno.h>
++#include <linux/memblock.h>
++#include <linux/of.h>
++#include <linux/percpu.h>
+ #include <linux/printk.h>
+ 
+ #include <asm/alternative.h>
+@@ -22,52 +29,252 @@
+ 
+ static u32 supported;
+ 
++/*
++ * This driver may be called when the boot CPU needs to detect an erratum and
++ * apply alternatives. This happens before page_alloc_init(), so this driver
++ * cannot allocate memory using slab. Allocate a page instead, and re-use it
++ * for CPUs that share a set of errata.
++ */
++#define MAX_EM_ARRAY_SIZE	((PAGE_SIZE / sizeof(u32) / 3) - 1)
++
++struct arm_em_dt_supplement_array {
++	u32 num;
++	u32 val[MAX_EM_ARRAY_SIZE];
++} __packed;
++
++struct arm_em_dt_supplement {
++	struct arm_em_dt_supplement_array affected;
++	struct arm_em_dt_supplement_array not_affected;
++	struct arm_em_dt_supplement_array higher_el_mitigated;
++} __packed;
++
++static DEFINE_PER_CPU(struct arm_em_dt_supplement *, em_table);
++
++static bool arm_smccc_em_search_table(struct arm_em_dt_supplement_array *entry,
++				      u32 erratum_id)
 +{
-+	u64 idr;
-+	bool has_feature;
++	int i;
 +
-+	/* List of CPUs which may have broken FWB support. */
-+	static const struct midr_range cpus[] = {
-+#ifdef CONFIG_ARM64_ERRATUM_2701951
-+		MIDR_ALL_VERSIONS(MIDR_CORTEX_A78),
-+		MIDR_ALL_VERSIONS(MIDR_CORTEX_A78C),
-+		MIDR_ALL_VERSIONS(MIDR_CORTEX_A710),
-+		MIDR_ALL_VERSIONS(MIDR_CORTEX_X1),
-+		MIDR_ALL_VERSIONS(MIDR_CORTEX_X2),
-+		MIDR_RANGE(MIDR_CORTEX_X3, 0, 0, 1, 1),
-+		MIDR_RANGE(MIDR_NEOVERSE_V1, 0, 0, 1, 1),
-+		MIDR_RANGE(MIDR_NEOVERSE_V2, 0, 0, 0, 1),
-+		MIDR_RANGE(MIDR_NEOVERSE_N2, 0, 0, 0, 2),
-+#endif
-+		{ /* sentinel */ },
-+	};
-+
-+	if (scope == ARM64_CPUCAP_SCOPE_SYSTEM)
-+		return cpus_have_cap(ARM64_WORKAROUND_NO_FWB);
-+
-+	idr = read_cpuid(ID_AA64MMFR2_EL1);
-+	has_feature = FIELD_GET(ID_AA64MMFR2_EL1_FWB, idr);
-+	if (!has_feature)
-+		return false;
-+
-+	if (is_midr_in_range_list(read_cpuid_id(), cpus)) {
-+		int i;
-+		bool fwb_broken = true;
-+
-+		/*
-+		 * List of erratum numbers for these CPUs.
-+		 * It isn't possible to match these to their CPUs, as A78C has
-+		 * two erratum numbers. The errata management API will return
-+		 * 'UNKNOWN' for an erratum it doesn't recognise.
-+		 */
-+		static const u32 erratum_nums[] = {
-+			2701951,
-+			2701952,
-+			2701953,
-+			2712571,
-+			2712572,
-+			2712575,
-+			2719103,
-+			2728475,
-+		};
-+
-+		/*
-+		 * The CPU is affected, but what about this configuration?
-+		 * Only firmware has the answer. Assume the part is affected,
-+		 * and query firmware for the set of erratum numbers. If one
-+		 * returns not-affected, the workaround isn't needed.
-+		 */
-+		for (i = 0; i < ARRAY_SIZE(erratum_nums); i++) {
-+			int state = arm_smccc_em_cpu_features(erratum_nums[i]);
-+
-+			if (state == SMCCC_EM_RET_NOT_AFFECTED) {
-+				fwb_broken = false;
-+				break;
-+			}
-+		}
-+
-+		if (fwb_broken) {
-+			pr_info_once("Stage-2 Force Write-Back disabled due to erratum #2701951\n");
++	for (i = 0; i <= entry->num; i++) {
++		if (entry->val[i] == erratum_id)
 +			return true;
-+		}
 +	}
 +
 +	return false;
 +}
 +
- #define CAP_MIDR_RANGE(model, v_min, r_min, v_max, r_max)	\
- 	.matches = is_affected_midr_range,			\
- 	.midr_range = MIDR_RANGE(model, v_min, r_min, v_max, r_max)
-@@ -730,6 +806,16 @@ const struct arm64_cpu_capabilities arm64_errata[] = {
- 		.cpu_enable = cpu_clear_bf16_from_user_emulation,
- 	},
- #endif
-+#ifdef CONFIG_ARM64_ERRATUM_2701951
-+	{
-+		.desc = "ARM erratum 2701951",
-+		.capability = ARM64_WORKAROUND_NO_FWB,
-+		.type = ARM64_CPUCAP_LOCAL_CPU_ERRATUM,
-+		.matches = has_stage2_fwb_errata,
-+
-+	},
-+#endif
-+
- 	{
- 	}
- };
-diff --git a/arch/arm64/kernel/cpufeature.c b/arch/arm64/kernel/cpufeature.c
-index 62f996006783..099bf6ad7552 100644
---- a/arch/arm64/kernel/cpufeature.c
-+++ b/arch/arm64/kernel/cpufeature.c
-@@ -1586,6 +1586,20 @@ static bool has_cache_dic(const struct arm64_cpu_capabilities *entry,
- 	return ctr & BIT(CTR_EL0_DIC_SHIFT);
- }
- 
-+static bool has_stage2_fwb(const struct arm64_cpu_capabilities *entry,
-+			   int scope)
++static int arm_smccc_em_query_dt(u32 erratum_id)
 +{
-+	bool has_feature = has_cpuid_feature(entry, scope);
++	struct arm_em_dt_supplement *tbl = *this_cpu_ptr(&em_table);
 +
-+	if (!has_feature)
-+		return false;
++	if (!tbl)
++		return -ENOENT;
 +
-+	if (has_stage2_fwb_errata(NULL, scope))
-+		return false;
++	if (arm_smccc_em_search_table(&tbl->affected, erratum_id))
++		return SMCCC_EM_RET_AFFECTED;
++	if (arm_smccc_em_search_table(&tbl->not_affected, erratum_id))
++		return SMCCC_EM_RET_NOT_AFFECTED;
++	if (arm_smccc_em_search_table(&tbl->higher_el_mitigated, erratum_id))
++		return SMCCC_EM_RET_HIGHER_EL_MITIGATION;
 +
-+	return has_feature;
++	return -ENOENT;
 +}
 +
- static bool __maybe_unused
- has_useable_cnp(const struct arm64_cpu_capabilities *entry, int scope)
++/* Only call when both values >= 0 */
++static int arm_smccc_em_merge_retval(u32 erratum_id, u32 one, u32 two)
++{
++	if (one == two)
++		return one;
++
++	pr_warn_once("FW/DT mismatch for errataum #%u", erratum_id);
++	pr_warn_once("(Any subsequent mismatch warnings are suppressed)\n");
++
++	if (one == SMCCC_EM_RET_AFFECTED || two == SMCCC_EM_RET_AFFECTED)
++		return SMCCC_EM_RET_AFFECTED;
++
++	if (one == SMCCC_EM_RET_HIGHER_EL_MITIGATION ||
++	    two == SMCCC_EM_RET_HIGHER_EL_MITIGATION)
++		return SMCCC_EM_RET_HIGHER_EL_MITIGATION;
++
++	return SMCCC_EM_RET_NOT_AFFECTED;
++}
++
+ int arm_smccc_em_cpu_features(u32 erratum_id)
  {
-@@ -2438,7 +2452,7 @@ static const struct arm64_cpu_capabilities arm64_features[] = {
- 		.field_pos = ID_AA64MMFR2_EL1_FWB_SHIFT,
- 		.field_width = 4,
- 		.min_field_value = 1,
--		.matches = has_cpuid_feature,
-+		.matches = has_stage2_fwb,
- 	},
- 	{
- 		.desc = "ARMv8.4 Translation Table Level",
-diff --git a/arch/arm64/tools/cpucaps b/arch/arm64/tools/cpucaps
-index 37b1340e9646..2e5f70ec6410 100644
---- a/arch/arm64/tools/cpucaps
-+++ b/arch/arm64/tools/cpucaps
-@@ -86,6 +86,7 @@ WORKAROUND_CAVIUM_TX2_219_PRFM
- WORKAROUND_CAVIUM_TX2_219_TVM
- WORKAROUND_CLEAN_CACHE
- WORKAROUND_DEVICE_LOAD_ACQUIRE
-+WORKAROUND_NO_FWB
- WORKAROUND_NVIDIA_CARMEL_CNP
- WORKAROUND_QCOM_FALKOR_E1003
- WORKAROUND_REPEAT_TLBI
++	int dt_retval;
+ 	struct arm_smccc_res res;
++	bool _supported = READ_ONCE(supported);
+ 
+-	if (!READ_ONCE(supported))
++	dt_retval = arm_smccc_em_query_dt(erratum_id);
++	if (!_supported && dt_retval <= 0)
+ 		return -EOPNOTSUPP;
+ 
+-	arm_smccc_1_1_invoke(ARM_SMCCC_EM_CPU_ERRATUM_FEATURES, erratum_id, 0, &res);
++	if (_supported)
++		arm_smccc_1_1_invoke(ARM_SMCCC_EM_CPU_ERRATUM_FEATURES,
++				     erratum_id, 0, &res);
++	else
++		res.a0 = SMCCC_RET_NOT_SUPPORTED;
++
+ 	switch (res.a0) {
++	/* DT can always override errata firmware doesn't know about */
+ 	case SMCCC_RET_NOT_SUPPORTED:
+-		return -EOPNOTSUPP;
+ 	case SMCCC_EM_RET_INVALID_PARAMTER:
+-		return -EINVAL;
+ 	case SMCCC_EM_RET_UNKNOWN:
+-		return -ENOENT;
++		return dt_retval;
++
++	/*
++	 * But if there is a mismatch - print a warning and prefer to enable
++	 * the erratum workaround.
++	 */
+ 	case SMCCC_EM_RET_HIGHER_EL_MITIGATION:
+ 	case SMCCC_EM_RET_NOT_AFFECTED:
+ 	case SMCCC_EM_RET_AFFECTED:
+-		return res.a0;
++		if (dt_retval > 0)
++			return arm_smccc_em_merge_retval(erratum_id, res.a0,
++							  dt_retval);
++		else
++			return res.a0;
+ 	};
+ 
+ 	return -EIO;
+ }
+ 
++int arm_smccc_em_dt_alloc_tbl_entry(struct device_node *np, const char *name,
++				    struct arm_em_dt_supplement_array *entry)
++{
++	int ret = of_property_count_u32_elems(np, name);
++
++	if (ret <= 0)
++		return 0;
++	if (ret > ARRAY_SIZE(entry->val))
++		return -E2BIG;
++
++	entry->num = ret;
++	return of_property_read_u32_array(np, name, entry->val, entry->num);
++}
++
++static struct arm_em_dt_supplement *arm_smccc_em_dt_alloc_tbl(struct device_node *np)
++{
++	struct arm_em_dt_supplement *tbl = memblock_alloc(PAGE_SIZE, PAGE_SIZE);
++
++	BUILD_BUG_ON(sizeof(struct arm_em_dt_supplement) > PAGE_SIZE);
++
++	if (!tbl)
++		return ERR_PTR(-ENOMEM);
++
++	if (arm_smccc_em_dt_alloc_tbl_entry(np, "arm,erratum-affected",
++					    &tbl->affected)) {
++		memblock_free(tbl, PAGE_SIZE);
++		return ERR_PTR(-EIO);
++	}
++	if (arm_smccc_em_dt_alloc_tbl_entry(np, "arm,erratum-not-affected",
++					    &tbl->not_affected)) {
++		memblock_free(tbl, PAGE_SIZE);
++		return ERR_PTR(-EIO);
++	}
++	if (arm_smccc_em_dt_alloc_tbl_entry(np, "arm,erratum-higher-el-mitigated",
++					    &tbl->higher_el_mitigated)) {
++		memblock_free(tbl, PAGE_SIZE);
++		return ERR_PTR(-EIO);
++	}
++
++	return tbl;
++}
++
++static int __init arm_smccc_em_dt_probe(void)
++{
++	int cpu, cpu2;
++	bool one_entry_found;
++	struct arm_em_dt_supplement *tbl;
++	struct device_node *np, *cpu_np, *np2, *cpu_np2;
++
++	for_each_possible_cpu(cpu) {
++		/* Pre-populated? */
++		if (per_cpu(em_table, cpu))
++			continue;
++
++		cpu_np = of_get_cpu_node(cpu, 0);
++		if (!cpu_np)
++			continue;
++
++		np = of_parse_phandle(cpu_np, "arm,erratum-list", 0);
++		if (!np) {
++			of_node_put(cpu_np);
++			continue;
++		}
++
++		tbl = arm_smccc_em_dt_alloc_tbl(np);
++		if (IS_ERR(tbl)) {
++			pr_err_once("Failed to allocate memory for DT supplement\n");
++			of_node_put(cpu_np);
++			break;
++		}
++		per_cpu(em_table, cpu) = tbl;
++
++		/* Pre-populate all CPUs with the same phandle */
++		for_each_possible_cpu(cpu2) {
++			if (cpu2 == cpu)
++				continue;
++
++			/* Pre-populated? */
++			if (per_cpu(em_table, cpu2))
++				continue;
++
++			cpu_np2 = of_get_cpu_node(cpu2, 0);
++			if (!cpu_np2)
++				continue;
++
++			np2 = of_parse_phandle(cpu_np2, "arm,erratum-list", 0);
++			if (!np) {
++				of_node_put(cpu_np2);
++				continue;
++			}
++
++			if (np2 == np)
++				per_cpu(em_table, cpu2) = tbl;
++
++			of_node_put(cpu_np2);
++			of_node_put(np2);
++		}
++
++		of_node_put(cpu_np);
++		of_node_put(np);
++
++		one_entry_found = true;
++	}
++
++	if (one_entry_found)
++		pr_info("Found DT supplements for SMCCC Errata Management Interface\n");
++
++	return one_entry_found ? 0 : -EOPNOTSUPP;
++}
++
+ int __init arm_smccc_em_init(void)
+ {
++	int dt_supported = false;
+ 	u32 major_ver, minor_ver;
+ 	struct arm_smccc_res res;
+ 	enum arm_smccc_conduit conduit = arm_smccc_1_1_get_conduit();
+ 
++	if (acpi_disabled)
++		dt_supported = arm_smccc_em_dt_probe();
++
+ 	if (conduit == SMCCC_CONDUIT_NONE)
+-		return -EOPNOTSUPP;
++		return dt_supported;
+ 
+ 	arm_smccc_1_1_invoke(ARM_SMCCC_EM_VERSION, &res);
+ 	if (res.a0 == SMCCC_RET_NOT_SUPPORTED)
+-		return -EOPNOTSUPP;
++		return dt_supported;
+ 
+ 	major_ver = PSCI_VERSION_MAJOR(res.a0);
+ 	minor_ver = PSCI_VERSION_MINOR(res.a0);
+ 	if (major_ver != 1)
+-		return -EIO;
++		return dt_supported;
+ 
+ 	arm_smccc_1_1_invoke(ARM_SMCCC_EM_FEATURES,
+ 			     ARM_SMCCC_EM_CPU_ERRATUM_FEATURES, &res);
+ 	if (res.a0 == SMCCC_RET_NOT_SUPPORTED)
+-		return -EOPNOTSUPP;
++		return dt_supported;
+ 
+ 	pr_info("SMCCC Errata Management Interface v%d.%d\n",
+ 		major_ver, minor_ver);
 -- 
 2.39.2
 
