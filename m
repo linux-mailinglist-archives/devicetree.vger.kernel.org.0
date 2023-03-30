@@ -2,122 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 138A86CF882
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 03:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58FFC6CF8C1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 03:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjC3BLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 21:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
+        id S229715AbjC3Be7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 21:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjC3BLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 21:11:10 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7444F55BF;
-        Wed, 29 Mar 2023 18:10:58 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id h22-20020a4ad756000000b0053e4ab58fb5so1701495oot.4;
-        Wed, 29 Mar 2023 18:10:58 -0700 (PDT)
+        with ESMTP id S229570AbjC3Be6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 21:34:58 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A3E49F5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 18:34:57 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id e15-20020a17090ac20f00b0023d1b009f52so20480801pjt.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 18:34:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680138657;
+        d=linaro.org; s=google; t=1680140097;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=U+tJVafNWqOuQPEBzM6fBHEcL9TFwibZa5a2SuWE/Mw=;
-        b=V+tUe7XXMFg4HA9Oko7HdLAlWQOelRQY0PBqFWWzmh+5KOtThPI/G2Jy60G0f1X9m2
-         a0otZN4N9j9ZQMQAF6UBd4x7N+eIuTsWhxWzqdWlkjWL4+EQMfdx24hnpK9D+O+ywZbk
-         gTWIDAP8N/4oHk6GeuPdr+0YqMdgHaFdODb3mWVerfqrR5sxN90+ZukGGKgkSTwT19+g
-         uItG+h1D8aaX0TishHleeXzoEo937TqaHFDccG4PmI333dPPLavyvAW2AC4VLPzZ0TJY
-         GMXqoCAgMLeIThwlfsbe9D71GtqJKhtC+HV+aymwmv5DPqfOPU1wuBvsxScyPkR+Ltpt
-         Oqfg==
+        bh=+s3/7avJ4jXfEL/EcHu+vdSVHrfTZ0GFVAw0Oijq+5s=;
+        b=Fvg2Ut9YmRIdGmiIGn0vAOuc+ZHU1m8fZpC4dHiKI+1SK3oXa61qaRx2rkr1rYJkz7
+         i71lQU96Xbnmo3P8Dm2QC5r4YMCmnyhURdPljQ0WbKGuIg5TjeepcD9nwIs+AyWbls4Z
+         dOUZJxDUKTwc7uYxe5h4TO9zFvALEqUiriR8Vqw8frJhrO2ByWApDe4Rnhngohf619Tw
+         jd0wN9xKEJE+8QkMXbMmmzFZ8npJ36rxqt/Y2GSc3kSpURapwoo871F6ib3hpTujXKKz
+         ONoDrfZ+S6fDV7zxFpxXPghWFE5b/HvloxI9WCxYdjk/KyNrDY1rm+sDl3KblEKSNSi0
+         zMhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680138657;
+        d=1e100.net; s=20210112; t=1680140097;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=U+tJVafNWqOuQPEBzM6fBHEcL9TFwibZa5a2SuWE/Mw=;
-        b=A+7qDArmCLnhgDg2gCZGSSh7Llg6Vg7Foot4TIOJ8LVbbMOvfyl45DH8ChyIXFoCZA
-         TVOZagqRzKJTE1+AFeRxfqmnobFJIqMNm2rwGR5/NtDJLSJCCA61gFbgUg4Jl+6mTL2h
-         ATfiAv9ZIcAxePGGBO54KO5iXe4mDiugqVYnZPTcM5I1W6ZJDzNq1+teRF8nDgBVyibw
-         7rRafGAUde2RWSulnrj13P+uk7G2EDczF2lfV5KHGgnF2Mde35/eV4frEscQ7Ujtz3Vf
-         aJcPJu29vjPBX0EDXJ66M0yVVoZCAErOXsnJPddIVNZNTyBzGeBHFviHu9sI/4iaL4VR
-         HU9A==
-X-Gm-Message-State: AO0yUKXLZeQ3XipnMDbVut+19X0fnoAiLDpCjLGoHvqMwkxJ2bHwFvSD
-        wvEbkdTYRmnRhTUXGYFPjIc=
-X-Google-Smtp-Source: AK7set9QoADutjDVRDgteYOyjw4F3Isfx6K9mtlsnhbTf75K3gN9oJxta4a+1hufvOhSlJw5yjAAiA==
-X-Received: by 2002:a4a:d64a:0:b0:53b:62ee:8bf5 with SMTP id y10-20020a4ad64a000000b0053b62ee8bf5mr9840866oos.3.1680138657397;
-        Wed, 29 Mar 2023 18:10:57 -0700 (PDT)
-Received: from localhost ([2804:30c:900:c000:e02a:5b57:da1d:f7cf])
-        by smtp.gmail.com with ESMTPSA id b7-20020a056830104700b0069d4e5284fdsm8656763otp.7.2023.03.29.18.10.56
+        bh=+s3/7avJ4jXfEL/EcHu+vdSVHrfTZ0GFVAw0Oijq+5s=;
+        b=0pYjYLE6vT/kaDo7JgvP0wxRGlMmhXS2WiSSrNK4Z3zkQ4OVi+aTzQ+TXCVFgLgJWK
+         YgyxCN1AHe2E7zMwcHMcAiyE6taugMq+i2nmVS6RHOG5+NUrDQXrF2W1hFiaUSqKhKj9
+         FCyjUW+PHv9vG4QmwXbPyJ4Z6Uw8PkKfgTbRtp/YcnOqWAfvc81TsxCXWC1fnZ8RMLj8
+         wT/tXQqi6zTd+zrABO32qDW7ad0MfFyuWP2wDojTQ7tRS8BpM16EfEIZ7dbEqpqQtUas
+         YG6ILSivGBUEYRlE1j3Uqczw2uU819NXxQQpnD48X1hE/VWN6rz3YoC9e6YnwA3ivkK7
+         SqAQ==
+X-Gm-Message-State: AAQBX9cfibvwwb1uBdYOardfzmSiGWe8+F5usLEcKNWSmeabymXVzg2e
+        cLGZ6V/lbssMuJo2loGto2O1qQ==
+X-Google-Smtp-Source: AKy350byhc7BcOIWgRDGMh3ui2tHi24Dd3KnN1ayQaCGu36TkkQY/yVUP2ZTbD6kyTEXIQN2psP5VA==
+X-Received: by 2002:a17:90a:198e:b0:237:9cc7:28a4 with SMTP id 14-20020a17090a198e00b002379cc728a4mr23166855pji.14.1680140097081;
+        Wed, 29 Mar 2023 18:34:57 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id ij21-20020a17090af81500b0023b3d80c76csm2081346pjb.4.2023.03.29.18.34.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 18:10:56 -0700 (PDT)
-Date:   Wed, 29 Mar 2023 22:10:55 -0300
-From:   Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] iio: adc: ad7292: Add explicit include for of.h
-Message-ID: <ZCThn87xFr3wGtzP@marsc.168.1.7>
-References: <20230329-acpi-header-cleanup-v1-0-8dc5cd3c610e@kernel.org>
- <20230329-acpi-header-cleanup-v1-1-8dc5cd3c610e@kernel.org>
+        Wed, 29 Mar 2023 18:34:56 -0700 (PDT)
+Date:   Thu, 30 Mar 2023 09:34:49 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] irqchip: irq-qcom-mpm: Support passing a slice of
+ SRAM as reg space
+Message-ID: <20230330013449.GB3590215@dragon>
+References: <20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org>
+ <20230328-topic-msgram_mpm-v1-2-1b788a5f5a33@linaro.org>
+ <20230329034958.GC3554086@dragon>
+ <c42b8c24-2159-64ae-d36c-92c69274f24f@linaro.org>
+ <20230329132819.GA3590215@dragon>
+ <14350eba-edb6-0243-5451-2e2b7d1bd3fd@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230329-acpi-header-cleanup-v1-1-8dc5cd3c610e@kernel.org>
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <14350eba-edb6-0243-5451-2e2b7d1bd3fd@linaro.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/29, Rob Herring wrote:
-> With linux/acpi.h no longer implicitly including of.h, add an explicit
-> include of of.h to fix the following error:
+On Wed, Mar 29, 2023 at 03:30:12PM +0200, Konrad Dybcio wrote:
+> >>>> @@ -374,9 +377,21 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+> >>>>  
+> >>>>  	raw_spin_lock_init(&priv->lock);
+> >>>>  
+> >>>> -	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> >>>> -	if (IS_ERR(priv->base))
+> >>>> -		return PTR_ERR(priv->base);
+> >>>> +	/* If we have a handle to an RPM message ram partition, use it. */
+> >>>> +	msgram_np = of_parse_phandle(np, "qcom,rpm-msg-ram", 0);
+> >>>> +	if (msgram_np) {
+> >>>> +		ret = of_address_to_resource(msgram_np, 0, &res);
+> >>>> +		/* Don't use devm_ioremap_resource, as we're accessing a shared region. */
+> >>>> +		priv->base = ioremap(res.start, resource_size(&res));
+> >>>
+> >>> Are you suggesting that other cores/drivers will also need to access
+> >>> the mpm slice below?
+> >>>
+> >>> 	apss_mpm: sram@1b8 {
+> >>> 		reg = <0x1b8 0x48>;
+> >>> 	};
+> >> Yes, the RPM M3 core. Other slices may be accessed
+> >> by any core at any time.
+> > 
+> > Hmm, let me reword my question.  Other than irq-qcom-mpm, is there any
+> > other Linux drivers that also need to request this slice region?
+> No.
 > 
-> drivers/iio/adc/ad7292.c:307:9: error: implicit declaration of function 'for_each_available_child_of_node'; did you mean 'fwnode_for_each_available_child_node'? [-Werror=implicit-function-declaration]
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> > Otherwise, I do not understand why devm_ioremap_resource() cannot be
+> > used.
+> drivers/rpmsg/qcom_glink_rpm.c calls devm_ioremap on the entire
+> RPM MSG RAM.
 
-Acked-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Can we use devm_ioremap() too instead of ioremap() here?
 
-Thanks,
-Marcelo
-
-> ---
->  drivers/iio/adc/ad7292.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/iio/adc/ad7292.c b/drivers/iio/adc/ad7292.c
-> index a2f9fda25ff3..cccacec5db6d 100644
-> --- a/drivers/iio/adc/ad7292.c
-> +++ b/drivers/iio/adc/ad7292.c
-> @@ -8,6 +8,7 @@
->  #include <linux/bitfield.h>
->  #include <linux/device.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/spi/spi.h>
->  
-> 
-> -- 
-> 2.39.2
-> 
+Shawn
