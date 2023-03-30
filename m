@@ -2,52 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 044B66D05A4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED8576D05CA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjC3NBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 09:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57080 "EHLO
+        id S231893AbjC3NC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 09:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbjC3NBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:01:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D40E44B8;
-        Thu, 30 Mar 2023 06:01:12 -0700 (PDT)
+        with ESMTP id S231837AbjC3NCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:02:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AEE6B45F;
+        Thu, 30 Mar 2023 06:02:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 32500B828BE;
-        Thu, 30 Mar 2023 13:01:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B762C433D2;
-        Thu, 30 Mar 2023 13:01:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id ED9B7B828A3;
+        Thu, 30 Mar 2023 13:02:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C927FC433D2;
+        Thu, 30 Mar 2023 13:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680181270;
-        bh=2xH63X6ch0GT/Dr1bWEuVMA2kF2W/9nwmcWahPFft6c=;
+        s=k20201202; t=1680181358;
+        bh=C6dFmm/p5tMbyA1UIquMV4y+sL1G8AxR93yAzlqeNGQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TdPjnkFHVs6D3MwYM0HOfAjmstMh1oztarQVPx1mRfP/jCKStl68aOf1BALf35HAH
-         IBtf0v6YgpjggDkim3mfTvvGOZUALXya13k36HtlBSwXSdGA176MJ43aretOpZ0Zan
-         J6Aeuxnm8B7xd5Nga0mkdLe7l54SEAOllBsrseqgCzuWrOuFA1GkNNES+OAMz7H/7Z
-         6hSSZg+6sOLwbneATjSW+Tc4b4PwxLEB+GXyIGE50dR0ZrymM4OIA2nDunxiFQpX2l
-         BDiiCWsvFK06WKa/QL3mKj8+XHu68AU0ckbrDk8Dxq9+7fPnizjlw3S9SfNvy4PQjv
-         sslDenIXvJMng==
-Date:   Thu, 30 Mar 2023 14:01:05 +0100
+        b=F7BKkpe0SPmL731XOeBfUzG3VVmW3ICVWpsA5BcknC0GmyB/d9GuFDLsKsB8HY8Pk
+         aWM139TpETbYf5fMXLZfXqZt4Cp4eYj1Ozmj1JfhaYF+980wqW03oYkCV5BXzMYM6m
+         HbHvXOklMhFfh1Fdx32TQU+vmFQX02TzRlxCqQ/8q+cC8zTEjs3oGxoof2qM6oNjqh
+         ZQ+uEJjJLKDs7Jt6UR3IFBUlnLV0Y5802S6ESAiJNBJGkJ/h8Us148IxnsR1cRczvA
+         /iAM5hXsH+vZqjZkZHNX2kpVbakkV7Rqcs1bCp6iCb5+Or3JcdGNn4OP4TY6ULc6lE
+         i0TIHG7rgCgoA==
+Date:   Thu, 30 Mar 2023 14:02:33 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Anjelique Melendez <quic_amelende@quicinc.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_c_skakit@quicinc.com
-Subject: Re: [PATCH 0/3] Add support for high resolution PWMs
-Message-ID: <20230330130105.GO434339@google.com>
-References: <20230316192134.26436-1-quic_amelende@quicinc.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: qcom,spmi-pmic: add nvram function
+Message-ID: <20230330130233.GP434339@google.com>
+References: <20230320135710.1989-1-johan+linaro@kernel.org>
+ <20230320135710.1989-4-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230316192134.26436-1-quic_amelende@quicinc.com>
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+In-Reply-To: <20230320135710.1989-4-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,23 +60,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Mar 2023, Anjelique Melendez wrote:
+On Mon, 20 Mar 2023, Johan Hovold wrote:
 
-> Certain PMICs have a high reolution PWM module which can support from 8-bit
-> to 15-bit PWM. This change series adds support for those PMICs. Thanks!
+> Add an 'nvram' pattern property and a reference to the corresponding
+> SDAM DT schema.
 >
-> Anjelique Melendez (3):
->   dt-bindings: leds-qcom-lpg: Add qcom,pmk8550-pwm compatible string
->   leds: rgb: leds-qcom-lpg: Add support for high resolution PWM
->   leds: rgb: leds-qcom-lpg: Add support for PMK8550 PWM
->
->  .../bindings/leds/leds-qcom-lpg.yaml          |   1 +
->  drivers/leds/rgb/leds-qcom-lpg.c              | 151 +++++++++++++-----
->  2 files changed, 110 insertions(+), 42 deletions(-)
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-I guess you'll be fixing the build issues and resubmitting?
-
-Please retrain the Acks you've collected.
+Applied, thanks
 
 --
 Lee Jones [李琼斯]
