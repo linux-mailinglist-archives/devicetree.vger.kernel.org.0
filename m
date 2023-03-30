@@ -2,292 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86FB76D0A69
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A66D6D0A9D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233461AbjC3PwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 11:52:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43602 "EHLO
+        id S229880AbjC3QFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 12:05:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233419AbjC3PwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:52:04 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29483DBF5
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 08:51:34 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id ja10so18478229plb.5
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 08:51:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680191493;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+UiZ1OnVN4eKK6Y2ubWlnceTNBKlqFHwpFESVYfLs/8=;
-        b=S/vO94S1KrhqZU+6ElYPyVmX/X2aqQ0WwjpCi7kD9I/GGADZwABRLXuThUACybh9fW
-         Jc8vWoM54trxFU9jTD8vT9qv1/YzIAK+t/+iSWqMHV3VvmbMbsFpPNPkLOWtNmQdr2M+
-         NOOglXpvt8QOovjU6tyAronds4rHDHXiVsrcr4pHOxIf4Mkc2kMCPS9E9hbM0FRc8Xap
-         OQzVkVSSJebU6P3/ujxSbgclr7egmG7yYKWaU9hkWjPXB+5srf+8/G/mryMBSsZC5uOk
-         AkZ+twFDDAEi1OvD7mYJUYLc+FXyT2GV6BPHwciyaDhucZPypkEltVKvz07HzD3Kxq9w
-         tEFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680191493;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+UiZ1OnVN4eKK6Y2ubWlnceTNBKlqFHwpFESVYfLs/8=;
-        b=0A3UWozvJbnK3F3WwizIhggudbmUnJffBIJ3a9OyO6LK3qRzQBiSrrCQWRBTqBUkfv
-         JRA/lSFbNjqvvW5zFrK/tN2N39t4DfRSZXN3qgWBYaTyNOBa2juYx0AxUIkxVNJZ79YK
-         ccusGqcLEPQj1JDKHz0EEe0buUTjGX4hYHg9RmxfkeVAWRp+wiyjv1XqW9EBELjBv3Z1
-         KLFDxs+ckZlo8Xm7Y3r8lJ05v7+uUNSrL9e732nyUtQ68xgAx63X93KBfdGN6bITRfZu
-         h59LMcxQnGkv01ZHMtpXDEBl9BO1wJZkDHpsfAhOkM7kkU3/dbw8/mbTgksUqqQwS1Va
-         +u/g==
-X-Gm-Message-State: AAQBX9eJYfVgbVfuF8hTaYYr4atxMqiM4OGpmY81/9LmOEUHRMvarFED
-        0B8H6wTpKoAs1LTUWkPS6Jr3qg==
-X-Google-Smtp-Source: AKy350Z/fQwD6SWUO0Js9b6F9iq2N+n6uG5uCtOKnAI5zH9aI+LgGmdPVVeCxTY1fZdDZEXa5GtkUA==
-X-Received: by 2002:a17:902:f543:b0:1a1:ce5d:5a15 with SMTP id h3-20020a170902f54300b001a1ce5d5a15mr25852068plf.50.1680191492871;
-        Thu, 30 Mar 2023 08:51:32 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c5e:53ce:1f39:30a5:d20f:f205])
-        by smtp.gmail.com with ESMTPSA id b2-20020a170902ed0200b0019c8ef78d52sm24799025pld.21.2023.03.30.08.51.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 08:51:32 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, andersson@kernel.org,
-        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org
-Subject: [PATCH v2 1/1] arm64: dts: qcom: sm6115: Add CPU idle-states
-Date:   Thu, 30 Mar 2023 21:21:22 +0530
-Message-Id: <20230330155122.591099-1-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S229741AbjC3QFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:05:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF7AA900D;
+        Thu, 30 Mar 2023 09:05:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4644662110;
+        Thu, 30 Mar 2023 16:05:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26820C433D2;
+        Thu, 30 Mar 2023 16:05:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680192316;
+        bh=viaViRHbOUE2fhuaH9npts1s3lqVVfNzJID7p/qGxNE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=m6OZfS5Z2VvyJAEylOF2nv/gh9VcA5FP+BQRkidlgpB/DisvueL3Sd/6WTynINVHl
+         +n7axNxIfrchWxNOAnb1Ej6EVtw4BaFq0Sdnqmopp1uO5TBTiiqE+l7OeYcJJCkxrr
+         MDCQUrjfXukhfzXX+LeDpypxjeMOUAs/lPFCBJ93hmMbD2L13rdvW2zawmYSLP5OQ6
+         wOdrM08QFaR3WJPoVfXxiUSLOVZO2b1ELtzeVPh+Y0bFea+2RQg6QIHuriF0h5WAME
+         61J3oK4B7sxLfoeMZIy9ssFDi3CEgSEnWEwN859ZDCv+fxpHc4SarvuLZZa1suYQVW
+         P36jrUUrMRJBQ==
+Date:   Thu, 30 Mar 2023 17:05:10 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
+Message-ID: <20230330160510.GB489249@google.com>
+References: <20230328092645.634375-1-herve.codina@bootlin.com>
+ <20230328092645.634375-3-herve.codina@bootlin.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20230328092645.634375-3-herve.codina@bootlin.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
+On Tue, 28 Mar 2023, Herve Codina wrote:
 
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
-Changes since v1:
-- v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
-- Addressed Konrad's comments on v1 and added GDHS and Power Collapse
-  cluster power states.
+> The Lantiq PEF2256 is a framer and line interface component designed to
+> fulfill all required interfacing between an analog E1/T1/J1 line and the
+> digital PCM system highway/H.100 bus.
 
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 132 +++++++++++++++++++++++++++
- 1 file changed, 132 insertions(+)
+My goodness!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 2a51c938bbcb..c93677e97076 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -45,6 +45,8 @@ CPU0: cpu@0 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-+			power-domains = <&CPU_PD0>;
-+			power-domain-names = "psci";
- 			L2_0: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -61,6 +63,8 @@ CPU1: cpu@1 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-+			power-domains = <&CPU_PD1>;
-+			power-domain-names = "psci";
- 		};
- 
- 		CPU2: cpu@2 {
-@@ -73,6 +77,8 @@ CPU2: cpu@2 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-+			power-domains = <&CPU_PD2>;
-+			power-domain-names = "psci";
- 		};
- 
- 		CPU3: cpu@3 {
-@@ -85,6 +91,8 @@ CPU3: cpu@3 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
-+			power-domains = <&CPU_PD3>;
-+			power-domain-names = "psci";
- 		};
- 
- 		CPU4: cpu@100 {
-@@ -97,6 +105,8 @@ CPU4: cpu@100 {
- 			dynamic-power-coefficient = <282>;
- 			next-level-cache = <&L2_1>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
-+			power-domains = <&CPU_PD4>;
-+			power-domain-names = "psci";
- 			L2_1: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -113,6 +123,8 @@ CPU5: cpu@101 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
-+			power-domains = <&CPU_PD5>;
-+			power-domain-names = "psci";
- 		};
- 
- 		CPU6: cpu@102 {
-@@ -125,6 +137,8 @@ CPU6: cpu@102 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
-+			power-domains = <&CPU_PD6>;
-+			power-domain-names = "psci";
- 		};
- 
- 		CPU7: cpu@103 {
-@@ -137,6 +151,8 @@ CPU7: cpu@103 {
- 			enable-method = "psci";
- 			next-level-cache = <&L2_1>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
-+			power-domains = <&CPU_PD7>;
-+			power-domain-names = "psci";
- 		};
- 
- 		cpu-map {
-@@ -176,6 +192,68 @@ core3 {
- 				};
- 			};
- 		};
-+
-+		idle-states {
-+			entry-method = "psci";
-+
-+			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-+				compatible = "arm,idle-state";
-+				idle-state-name = "silver-rail-power-collapse";
-+				arm,psci-suspend-param = <0x40000003>;
-+				entry-latency-us = <290>;
-+				exit-latency-us = <376>;
-+				min-residency-us = <1182>;
-+				local-timer-stop;
-+			};
-+
-+			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
-+				compatible = "arm,idle-state";
-+				idle-state-name = "gold-rail-power-collapse";
-+				arm,psci-suspend-param = <0x40000003>;
-+				entry-latency-us = <297>;
-+				exit-latency-us = <324>;
-+				min-residency-us = <1110>;
-+				local-timer-stop;
-+			};
-+		};
-+
-+		domain-idle-states {
-+			CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
-+				/* GDHS */
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x40000022>;
-+				entry-latency-us = <360>;
-+				exit-latency-us = <421>;
-+				min-residency-us = <782>;
-+			};
-+
-+			CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
-+				/* Power Collapse */
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x41000044>;
-+				entry-latency-us = <800>;
-+				exit-latency-us = <2118>;
-+				min-residency-us = <7376>;
-+			};
-+
-+			CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
-+				/* GDHS */
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x40000042>;
-+				entry-latency-us = <314>;
-+				exit-latency-us = <345>;
-+				min-residency-us = <660>;
-+			};
-+
-+			CLUSTER_1_SLEEP_1: cluster-sleep-1-1 {
-+				/* Power Collapse */
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x41000044>;
-+				entry-latency-us = <640>;
-+				exit-latency-us = <1654>;
-+				min-residency-us = <8094>;
-+			};
-+		};
- 	};
- 
- 	firmware {
-@@ -199,6 +277,60 @@ pmu {
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
-+
-+		CPU_PD0: power-domain-cpu0 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD1: power-domain-cpu1 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD2: power-domain-cpu2 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD3: power-domain-cpu3 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD4: power-domain-cpu4 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD5: power-domain-cpu5 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD6: power-domain-cpu6 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-+		};
-+
-+		CPU_PD7: power-domain-cpu7 {
-+			#power-domain-cells = <0>;
-+			power-domains = <&CLUSTER_PD>;
-+			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-+		};
-+
-+		CLUSTER_PD: power-domain-cpu-cluster0 {
-+			#power-domain-cells = <0>;
-+			domain-idle-states = <&CLUSTER_0_SLEEP_0>, <&CLUSTER_0_SLEEP_1>,
-+					     <&CLUSTER_1_SLEEP_0>, <&CLUSTER_1_SLEEP_1>;
-+		};
- 	};
- 
- 	reserved_memory: reserved-memory {
--- 
-2.38.1
+It's been a long time since I've seen anything quite like this.
 
+My suggestion to you:
+
+* Split this up into components that fit functional subsystems
+* Run checkpatch.pl
+* Remove all of the debug prints
+* Move all of the defines out to a header file
+* Be more verbose in your documentation / comments
+* Consider using simple-mfd to probe child devices.
+
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  drivers/mfd/Kconfig         |   17 +
+>  drivers/mfd/Makefile        |    1 +
+>  drivers/mfd/pef2256.c       | 1355 +++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/pef2256.h |   28 +
+>  4 files changed, 1401 insertions(+)
+>  create mode 100644 drivers/mfd/pef2256.c
+>  create mode 100644 include/linux/mfd/pef2256.h
+
+--
+Lee Jones [李琼斯]
