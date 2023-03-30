@@ -2,83 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D5C6D0043
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 11:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F2246D004F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 11:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbjC3Jyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 05:54:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55872 "EHLO
+        id S229453AbjC3J4s convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Mar 2023 05:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjC3Jyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 05:54:43 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850FD6582
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 02:54:40 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id z83so22750604ybb.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 02:54:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680170079;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pbyws3H75gB+yatcu0+FBMyILwRxUxSpq4AefwZkLKg=;
-        b=mZsCUYHtWVu0vKKEGZmsGvkF+uy4o1aUwHzHWz89XldmLe8AQt/HxwPKXCnk93KRbH
-         V8UAN9+MMCbN5JvfzvF+7noo3B3ZC1SlListXXAlyAe/Si2dth9gBK0ZYJ1pNZjq9WpB
-         iNKgAFfirtS5iYb0r3mNi+HVpohWdyNPRun52UqeTAcSf+8ut/tE0fXdPt8xlgEB0Xiy
-         Rj4pHSlWP9szJ+wDfC+QfLt2W4ckBGmT2H86xnDFs4tatnn3zZjeDGcEbbnYNyzNRnHm
-         anAKm5idqzYX1EilwXDVQL2PFUkUsY4u2ooCexDw3QuTQhI2n1gfk4TR7i0W9tXx8lZp
-         mHGw==
+        with ESMTP id S230233AbjC3J4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 05:56:43 -0400
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106557EDF;
+        Thu, 30 Mar 2023 02:56:34 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id p203so22693900ybb.13;
+        Thu, 30 Mar 2023 02:56:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680170079;
+        d=1e100.net; s=20210112; t=1680170193;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Pbyws3H75gB+yatcu0+FBMyILwRxUxSpq4AefwZkLKg=;
-        b=YJTH0JrqygO+PUdBi1Bqiw5hyXqooS8izrUj9FR27XKXB5RKcvxPKQYkNYkqj3P1B7
-         FRpy8SxR5gsrupHREO0G0COtZIC3XBoC8wJ71vmD2ElPXbG1sqCljiQewMws6Pn6WMJb
-         pQP9MY2KDvNpo/LEUoPs0BnriWFrVWfkT+vZTPuOXepQAo9rOI40KnfnjDyY5ChwRezB
-         0bHIVHKqRywq1XhS3vIlQLy4c/CwPJLsWGwP5Y4yddJXHvXOu0eR95B2kE84LRHZ1ho+
-         vNufAxqX3F3QDxHhB7zznKfKN6AW9pddvAdUoBETRzOAvcox88xJe5a2SoeAZzpjJtEx
-         20pA==
-X-Gm-Message-State: AAQBX9cCA+bE0uW/rWzt8g72d74QDZOk6Do6WEuEWjExIIDcDFHQ2Wtu
-        YBQ9+uccfqLoaALNQEo9ff5I0EdHKSkOkNFqb3prrg==
-X-Google-Smtp-Source: AKy350bEejlHh/La/ICbG+v0y62RclEvzaIlO/L71B6Mcr7xujU2ePyASX64lF1cgA+JnYGg8IIpcjjXYY2L1pzN96g=
-X-Received: by 2002:a05:6902:1501:b0:b6d:80ab:8bb6 with SMTP id
- q1-20020a056902150100b00b6d80ab8bb6mr15155725ybu.1.1680170079704; Thu, 30 Mar
- 2023 02:54:39 -0700 (PDT)
+        bh=7KJg02eNLPE8a3Rhgt2rU5aLTNAuPmbB5Y1zPg7loDs=;
+        b=quKyQIx4RlXvwwcrrjL302uIQ+FbvaEGCM0UIxbCR3o4P52snOCZF5ORoj7veq5SHE
+         keeom+bLcpRyFf70J8SLes07WCNY3owVsBtAp2Qam8O6/E/9HbeM+vmp+0lZEe5RnLeY
+         KXEbFAXK+WEGxlMlBWMdcm3AWvrSJBHldzifJr1M/3hUJ+/rl+EIx3KMxvCl08oFPr9s
+         Jmhg98FC3cATvfhbbP5VW2bwMGYG5Q15/oUw5YPd4c7Zd4ScfcC02jx/EZzfuj1TTQgJ
+         lN/PlyTEAxtokPFgoaav9x5uPpCZRzegltgOf/yv+EhYLcGjTjPwh6a97/pJy02Apl22
+         Lbbg==
+X-Gm-Message-State: AAQBX9ehs/ZW5Ag3v7DXAHeG9IhS5uQPXAhpiQo4/zo56OVneqQyF0Xv
+        i0ipP1EhjmpYEqpYlF+rq+OUDThmDyg0sw==
+X-Google-Smtp-Source: AKy350ZMyRTu06ORPwgNVQZ4p6pJTn7I2gW7wFuPqzif2rtdw/IPFivUUWn1JbCHSeR341o8b8xALQ==
+X-Received: by 2002:a25:f609:0:b0:b68:129b:6127 with SMTP id t9-20020a25f609000000b00b68129b6127mr22134987ybd.50.1680170193700;
+        Thu, 30 Mar 2023 02:56:33 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id 22-20020a250316000000b00b7767ca7464sm4021690ybd.1.2023.03.30.02.56.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 02:56:33 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id n125so22709627ybg.7;
+        Thu, 30 Mar 2023 02:56:33 -0700 (PDT)
+X-Received: by 2002:a05:6902:154e:b0:b77:d2db:5f8f with SMTP id
+ r14-20020a056902154e00b00b77d2db5f8fmr14607217ybu.12.1680170192917; Thu, 30
+ Mar 2023 02:56:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com> <7h8rffyu9x.fsf@baylibre.com>
-In-Reply-To: <7h8rffyu9x.fsf@baylibre.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 30 Mar 2023 11:54:27 +0200
-Message-ID: <CAFGrd9p7oPvhZ8KL40XYfNi2CAdEd8BZWrXPqfcqu7DTSSg4Kw@mail.gmail.com>
-Subject: Re: [PATCH v3 00/17] Improve the MT8365 SoC and EVK board support
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+References: <20230317123314.145121-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230317123314.145121-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230317123314.145121-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 30 Mar 2023 11:56:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVLb4SWr_5A7m2z5hOMoUtxrts5-8GedaF68ejV+aM+aA@mail.gmail.com>
+Message-ID: <CAMuHMdVLb4SWr_5A7m2z5hOMoUtxrts5-8GedaF68ejV+aM+aA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: rzg2l-smarc: Enable CRU, CSI support
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,39 +70,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeu. 30 mars 2023 =C3=A0 02:09, Kevin Hilman <khilman@baylibre.com> a =
-=C3=A9crit :
->
-> Alexandre Mergnat <amergnat@baylibre.com> writes:
->
-> > This commits are based on the Fabien Parent <fparent@baylibre.com> work=
-.
-> >
-> > The purpose of this series is to add the following HWs / IPs support fo=
-r
-> > the mt8365-evk board:
-> > - Watchdog
-> > - Power Management Integrated Circuit "PMIC" wrapper
-> >   - MT6357 PMIC
-> > - MultiMediaCard "MMC" & Secure Digital "SD" controller
-> > - USB controller
-> > - Ethernet MAC controller
-> >
-> > Add CPU Freq & IDLE support for this board.
-> >
-> > This series depends to another one which add support for MT8365 SoC and
-> > EVK board [1].
->
-> It seems to depend on more than that series.  In order to test this, I
-> tried applying this series on top of Bero's minimal support (now in
-> linux-next), and it does not apply cleanly.
->
-> Could you please list all the dependencies that are not yet upstream.
+Hi Prabhakar,
 
-Hi Kevin,
-You're right, it also depend to
-https://lore.kernel.org/all/20221122-mt8365-i2c-support-v6-0-e1009c8afd53@b=
-aylibre.com/
+On Fri, Mar 17, 2023 at 1:37 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable CRU, CSI on RZ/G2L SMARC EVK and tie the CSI to OV5645 sensor
+> using Device Tree overlay. rz-smarc-cru-csi-ov5645.dtsi is created so
+> that RZ/G2L alike EVKs can make use of it.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Regards,
-Alex
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/rz-smarc-cru-csi-ov5645.dtsi
+
+> +       ov5645_fixed_clk: osc25250_clk {
+
+Please no underscores in device nodes.
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.4, with the above fixed,
+and with the includes moved.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
