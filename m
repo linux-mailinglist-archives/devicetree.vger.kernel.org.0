@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 986C16D0296
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 13:08:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE5A46D029F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 13:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230461AbjC3LIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 07:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44034 "EHLO
+        id S230389AbjC3LJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 07:09:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbjC3LIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 07:08:39 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265F8A251
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:08:15 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id a11so19170376lji.6
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:08:15 -0700 (PDT)
+        with ESMTP id S231402AbjC3LJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 07:09:58 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E55CCB8
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:09:57 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id c4so880552pjs.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 04:09:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680174493;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jLO7vgWzoNzoVqz4+P2GMtPNgHtIDgkZ9eAhGTulXJQ=;
-        b=da4kcW5/pKOK9pEWrnACjJvxTsODnXjZ1lg1vGRREwwMhXqrAC+F5Lbm74iy+lq5zk
-         Ad9O8wqXnqxRoz5FnMmV0ixPkrSd09OZ+oGB4JvCBaObk9ehyF2oeQtqcw48+JVPPUfm
-         0UgveLYsn8SWEq8aVAHJk9maYyMGOcrBw/ftjLg1uH1CEBNwrcHNGx3YP0c1T12m/txP
-         E3zwLVs5Jen38NI9IpXTJF46rcSUePTaEOlR1sYejIfV6x53oUFM2cCliM+u57JWW8vm
-         CFJ9UMuuSRnaL/iXrBFj0Wyyskw3v1H1XZGYjhDAwpmIcmrvjwLnE/a6ocnYG3TfZWC8
-         6vsw==
+        d=gmail.com; s=20210112; t=1680174597; x=1682766597;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t0rkIZY3O/B/p2Ezr8FRIFleghoZRYVaBL+ys1poDDI=;
+        b=B/r8lZqi8Rz2e1A6uRzfKVFPdomEky7k68pupksU1nDL317QoZDAvxBz+y6EyFNByS
+         d2qTNTH/SIXT6lQvykgV4pptB+zsHnE2hbYmZ49SBhi6pv/qilPBpS65e04ibzzEp4xk
+         Q0XixVz3VqFG0jp6oBAIuJqsFiYfN3ECoTVlrvJcm7LCWvE/bPpxrN5QZ8f/SeMQxdWB
+         /4AO5dpV69fQRUK3U/jtu5ybDF+d4KmCPGh5X41o05U9laUgsVl/OI7PwTbq7umEYwP8
+         kMPX6j5T9v3VYKjntbmVyScBotojEfGtgGcB1ZG9GkLvIp6wjqHBmjfgkKhUCLFfw5ul
+         lPUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680174493;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jLO7vgWzoNzoVqz4+P2GMtPNgHtIDgkZ9eAhGTulXJQ=;
-        b=LcszQKax6SshiXMWW1GskvZnMMLrA2/zehw4qAISS7gbvzoqpbEarebACcjTu88gHE
-         bKYH1wj+wsMGbZEzvUnkKEb9YNopPruan6AtXY4TPCddjwVxsPWPkHVIKXNKg8dI/E1M
-         bHYV1PlSYOC34hUOhqm83inoonJs6EMoHYEYJpvYJ9uS2xSYzZ4V/ZDanly/Z7cn//Ah
-         Hec+GD6VfszKruKIm1xz1A6kQNVV1cQgsGRp2ts9X8x48lPugVA51Ck0mqqv9flU1Iba
-         FaWFEVx0nw/+bHJLLAT4g5T21bQzOl0wHfcoWCrgQu9oBy5e6QAf5jfSA82GdLoGDpBA
-         EvVg==
-X-Gm-Message-State: AAQBX9dN/si5TaU40iiqeKqDUnjk0dREAr0I+PgKHAgCFizkzhxbBPPd
-        R9VMrbzhKcCWtBba67VWy81ipw==
-X-Google-Smtp-Source: AKy350YzYy/r7iglaMwNiqAKVDLbtfIQu7X17Cv90RCod/HTAxtiP5MKyiCEggrUFFsS5jML0nnPwg==
-X-Received: by 2002:a2e:9448:0:b0:295:b0c4:845e with SMTP id o8-20020a2e9448000000b00295b0c4845emr7376125ljh.39.1680174493245;
-        Thu, 30 Mar 2023 04:08:13 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h11-20020a2eb0eb000000b002935632b3f8sm5875257ljl.14.2023.03.30.04.08.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 04:08:12 -0700 (PDT)
-Message-ID: <910df994-637e-07df-c53c-06a1c0d8d83e@linaro.org>
-Date:   Thu, 30 Mar 2023 13:08:11 +0200
+        d=1e100.net; s=20210112; t=1680174597; x=1682766597;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t0rkIZY3O/B/p2Ezr8FRIFleghoZRYVaBL+ys1poDDI=;
+        b=36D2s8CEsqpIO+wGuSDQUfAH35Mwi+T8xphYEhGnjZQV1ZKljKqwj34YV6BwlKo3WP
+         otazChW8+Ea98kPV2hzzWmHO9iaJ5BvAlzjgoDjqS+qrOVa+bXg6MEZZBtvyW+1pOA1L
+         +m58tCU98CRfZp6qsbVEHvym7Mf0ZzN5gXFPcGEqnbj5DSpBLdvUrzNh4nLvNkR7u9cO
+         h6NESWRbTBH5S6+UhGcH3LXTe79L8hz/c5Pif6zBPKUvGtzaO/sAbEdiBEkSlv17ovWs
+         ZafyHy+opw5c+VHkgSksRn75N64aqoTLkmgFHIUgabgDbbqchw90ITnAV0pKY7nojXJT
+         Eofg==
+X-Gm-Message-State: AAQBX9cRd+bkC+2B6v68JqXI5DtswCDZEhbwF2zMRA+cwcdILj+iz2bk
+        t5pBujLMd9LLUTH9Wnz22Ffi0gCf9ImacUfTelxeOFynKqu9IA==
+X-Google-Smtp-Source: AKy350Zf/XyJ4RpHApDgYWO9FKBL8kuFndbl+vrb5NsTjg02WRHH32778W+DXM/1yQQzbdgHMQGRwXO9rXUFiy2/b/g=
+X-Received: by 2002:a17:90a:690f:b0:23f:a26e:daa3 with SMTP id
+ r15-20020a17090a690f00b0023fa26edaa3mr7068320pjj.9.1680174597353; Thu, 30 Mar
+ 2023 04:09:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 2/2] drivers: clk: zynqmp: Add versal-net compatible
- string
-Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org
-Cc:     git@amd.com, linux-clk@vger.kernel.org, sboyd@kernel.org,
+References: <20230329144155.699196-1-festevam@gmail.com> <ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org>
+ <CAMty3ZBHvR8OxgNgKG--TA_LQF41vjPiruHx-Pw2PwbjNKMFog@mail.gmail.com>
+In-Reply-To: <CAMty3ZBHvR8OxgNgKG--TA_LQF41vjPiruHx-Pw2PwbjNKMFog@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 30 Mar 2023 08:09:44 -0300
+Message-ID: <CAOMZO5BwSFZr7BDaU4KDkwvTcW0U28FeDDaF7eDrhgvgdN47Mg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: exynos: dsim: Add 'lane-polarities'
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        neil.armstrong@linaro.org, inki.dae@samsung.com, marex@denx.de,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com
-References: <20230330091309.16215-1-shubhrajyoti.datta@amd.com>
- <20230330091309.16215-3-shubhrajyoti.datta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330091309.16215-3-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,31 +72,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 11:13, Shubhrajyoti Datta wrote:
-> From: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
-> 
-> Add compatible string for versal-net.
-> 
-> Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
-> 
->  drivers/clk/zynqmp/clkc.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/clk/zynqmp/clkc.c b/drivers/clk/zynqmp/clkc.c
-> index 5636ff1ce552..1ea5fba20d91 100644
-> --- a/drivers/clk/zynqmp/clkc.c
-> +++ b/drivers/clk/zynqmp/clkc.c
-> @@ -789,6 +789,7 @@ static int zynqmp_clock_probe(struct platform_device *pdev)
->  static const struct of_device_id zynqmp_clock_of_match[] = {
->  	{.compatible = "xlnx,zynqmp-clk"},
->  	{.compatible = "xlnx,versal-clk"},
-> +	{.compatible = "xlnx,versal-net-clk"},
+Hi Jagan,
 
-Why no driver data? Why do you create new driver matchings if devices
-are compatible?
+On Thu, Mar 30, 2023 at 4:55=E2=80=AFAM Jagan Teki <jagan@amarulasolutions.=
+com> wrote:
 
-Best regards,
-Krzysztof
+> I have a previous iteration of this conversion. Can I resend it on top
+> of drm-misc-next?
+> https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutions=
+.com/
 
+I tried applying your patch against linux-next, but I get the following err=
+or:
+
+$ make dt_binding_check DT_SCHEMA_FILES=3Dsamsung,mipi-dsim.yaml
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+/home/fabio/linux-next/Documentation/devicetree/bindings/display/bridge/sam=
+sung,mipi-dsim.yaml:
+properties:samsung,power-domain:maxItems: False schema does not allow
+1
+hint: Scalar properties should not have array keywords
+from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+  DTEX    Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsi=
+m.example.dts
+  DTC_CHK Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsi=
+m.example.dtb
+
+Could you please take a look?
+
+Thanks
