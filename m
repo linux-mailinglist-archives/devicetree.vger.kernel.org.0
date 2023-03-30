@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1CBB6D0A47
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86FB76D0A69
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232917AbjC3Pq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 11:46:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59340 "EHLO
+        id S233461AbjC3PwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 11:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233341AbjC3Pq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:46:27 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFF6D323
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 08:45:51 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id y14so19570784wrq.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 08:45:51 -0700 (PDT)
+        with ESMTP id S233419AbjC3PwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:52:04 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29483DBF5
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 08:51:34 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id ja10so18478229plb.5
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 08:51:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680191147; x=1682783147;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bt3Z+HMoJYIzkmSX3sH1ZTn84Gu0acDcqEVk57vmUoI=;
-        b=3D+C33AbHdSHXYv18ienRAtfdFpzZ3HGGjwnhBgBnkBxOVCdiOOmIxbIs/A17m2jjx
-         Amxp6qXtSLzSwG+IBCtWr+XITprahLzidhD5x+1k35lI2fRsH//KKruBlWHqBrtC5MpQ
-         uQiVV3e/1ePh2wp3gdy707KSaKtT8k/xcbSr27TaYEKSJzlu+XfqCc6Cq80DkXhRMZxD
-         zFrLdIFowEVg1uhzw44jt0ghV6gngV0M5ySA/OKM/ZSqNwT4TqXNRi5/5IJWWZcEzvj+
-         4RiCBQ35FcioVLKonv7WSjsVFS60QuPyBvgdtjjQ7IroBlfsv37Hv9EwP0/4/B/hb4ZA
-         /LAA==
+        d=linaro.org; s=google; t=1680191493;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+UiZ1OnVN4eKK6Y2ubWlnceTNBKlqFHwpFESVYfLs/8=;
+        b=S/vO94S1KrhqZU+6ElYPyVmX/X2aqQ0WwjpCi7kD9I/GGADZwABRLXuThUACybh9fW
+         Jc8vWoM54trxFU9jTD8vT9qv1/YzIAK+t/+iSWqMHV3VvmbMbsFpPNPkLOWtNmQdr2M+
+         NOOglXpvt8QOovjU6tyAronds4rHDHXiVsrcr4pHOxIf4Mkc2kMCPS9E9hbM0FRc8Xap
+         OQzVkVSSJebU6P3/ujxSbgclr7egmG7yYKWaU9hkWjPXB+5srf+8/G/mryMBSsZC5uOk
+         AkZ+twFDDAEi1OvD7mYJUYLc+FXyT2GV6BPHwciyaDhucZPypkEltVKvz07HzD3Kxq9w
+         tEFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680191147; x=1682783147;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bt3Z+HMoJYIzkmSX3sH1ZTn84Gu0acDcqEVk57vmUoI=;
-        b=miEKDNewDi4rf9iSyJ1OPzepIleb3Z5SlrFdqCP7umWzQCN4IPhGJNR2/3vkCcBb/m
-         jjU+ED2C4hsmBI8mGwENALKk80N6Q58/JXmU7P2L+ieN17dIRTvx1G6dOIdiGIErYa1v
-         Wu/UHABRQo3qcMHBi94bn0vxszrLYzUqbnd0jvQQrz7Q4WQKMKIdDxjK46SbnwpOlKjP
-         ZkCMMy7d3nbLZLqd2jxtC0oHroKLq/KlYTyD/4oEvWEccUdQWbsKbMYQ4Dxm12/uC4oT
-         qM8smoC3kEb8iyNgxCctAgBjqpCoSp6uDgNr0ycYqTcCfs8GtApbocJS30iZzdtEIpVv
-         p83g==
-X-Gm-Message-State: AAQBX9fwXlmVzwH528FhAynJQoIcsAW/oUh4ffNM2w23IPnBJzkjK5C4
-        GDZ/3G48Ii2QNx8KhhKNSGEV+A==
-X-Google-Smtp-Source: AKy350aTnQVJ29GM9xhQgheOavkMe1pxyqllfaF/IZQFD2jWnj0+YK6CpqAFqB/fJBS71FuSwSdJkw==
-X-Received: by 2002:a05:6000:1044:b0:2dd:a3:c2e8 with SMTP id c4-20020a056000104400b002dd00a3c2e8mr18562410wrx.44.1680191146970;
-        Thu, 30 Mar 2023 08:45:46 -0700 (PDT)
-Received: from [192.168.1.70] (151.31.102.84.rev.sfr.net. [84.102.31.151])
-        by smtp.gmail.com with ESMTPSA id p10-20020a056000018a00b002c3f9404c45sm33560000wrx.7.2023.03.30.08.45.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 08:45:46 -0700 (PDT)
-Message-ID: <68fb2d6f-9434-7bcd-0f13-2132612888e5@baylibre.com>
-Date:   Thu, 30 Mar 2023 17:45:44 +0200
+        d=1e100.net; s=20210112; t=1680191493;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+UiZ1OnVN4eKK6Y2ubWlnceTNBKlqFHwpFESVYfLs/8=;
+        b=0A3UWozvJbnK3F3WwizIhggudbmUnJffBIJ3a9OyO6LK3qRzQBiSrrCQWRBTqBUkfv
+         JRA/lSFbNjqvvW5zFrK/tN2N39t4DfRSZXN3qgWBYaTyNOBa2juYx0AxUIkxVNJZ79YK
+         ccusGqcLEPQj1JDKHz0EEe0buUTjGX4hYHg9RmxfkeVAWRp+wiyjv1XqW9EBELjBv3Z1
+         KLFDxs+ckZlo8Xm7Y3r8lJ05v7+uUNSrL9e732nyUtQ68xgAx63X93KBfdGN6bITRfZu
+         h59LMcxQnGkv01ZHMtpXDEBl9BO1wJZkDHpsfAhOkM7kkU3/dbw8/mbTgksUqqQwS1Va
+         +u/g==
+X-Gm-Message-State: AAQBX9eJYfVgbVfuF8hTaYYr4atxMqiM4OGpmY81/9LmOEUHRMvarFED
+        0B8H6wTpKoAs1LTUWkPS6Jr3qg==
+X-Google-Smtp-Source: AKy350Z/fQwD6SWUO0Js9b6F9iq2N+n6uG5uCtOKnAI5zH9aI+LgGmdPVVeCxTY1fZdDZEXa5GtkUA==
+X-Received: by 2002:a17:902:f543:b0:1a1:ce5d:5a15 with SMTP id h3-20020a170902f54300b001a1ce5d5a15mr25852068plf.50.1680191492871;
+        Thu, 30 Mar 2023 08:51:32 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c5e:53ce:1f39:30a5:d20f:f205])
+        by smtp.gmail.com with ESMTPSA id b2-20020a170902ed0200b0019c8ef78d52sm24799025pld.21.2023.03.30.08.51.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Mar 2023 08:51:32 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andersson@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org
+Subject: [PATCH v2 1/1] arm64: dts: qcom: sm6115: Add CPU idle-states
+Date:   Thu, 30 Mar 2023 21:21:22 +0530
+Message-Id: <20230330155122.591099-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 4/4] misc: tps6594-pfsm: Add driver for TI TPS6594 PFSM
-Content-Language: en-US
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com,
-        yi.l.liu@intel.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, prabhakar.csengg@gmail.com,
-        contact@emersion.fr, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        sterzik@ti.com, u-kumar1@ti.com, eblanc@baylibre.com,
-        jneanne@baylibre.com
-References: <20230330082006.11216-1-jpanis@baylibre.com>
- <20230330082006.11216-5-jpanis@baylibre.com> <ZCVJv-erahM_Jdug@kroah.com>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <ZCVJv-erahM_Jdug@kroah.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,82 +70,224 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
 
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+Changes since v1:
+- v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
+- Addressed Konrad's comments on v1 and added GDHS and Power Collapse
+  cluster power states.
 
-On 3/30/23 10:35, Greg KH wrote:
-> On Thu, Mar 30, 2023 at 10:20:06AM +0200, Julien Panis wrote:
->> This PFSM controls the operational modes of the PMIC:
->> - STANDBY and LP_STANDBY,
->> - ACTIVE state,
->> - MCU_ONLY state,
->> - RETENTION state, with or without DDR and/or GPIO retention.
->> Depending on the current operational mode, some voltage domains
->> remain energized while others can be off.
->>
->> This PFSM is also used to trigger a firmware update, and provides
->> R/W access to device registers.
-> What userspace code uses these new ioctls?  Do you have a pointer to it
-> anywhere?
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 132 +++++++++++++++++++++++++++
+ 1 file changed, 132 insertions(+)
 
-I will provide a user app in 'samples' directory in v6.
-
->
->> --- /dev/null
->> +++ b/include/uapi/linux/tps6594_pfsm.h
->> @@ -0,0 +1,45 @@
->> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
->> +/*
->> + * Userspace ABI for TPS6594 PMIC Pre-configurable Finite State Machine
->> + *
->> + * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
->> + */
->> +
->> +#ifndef __TPS6594_PFSM_H
->> +#define __TPS6594_PFSM_H
->> +
->> +#include <linux/const.h>
->> +#include <linux/ioctl.h>
->> +#include <linux/types.h>
->> +
->> +/* PFSM state definitions */
->> +enum pfsm_state {
->> +	PMIC_ACTIVE_STATE,
->> +	PMIC_MCU_ONLY_STATE,
->> +	PMIC_RETENTION_STATE
->> +};
->> +
->> +/**
->> + * struct pmic_state - PMIC state identification
->> + * @state:   PFSM destination state
->> + * @options: options for destination state
->> + */
->> +struct pmic_state {
->> +	enum pfsm_state state;
->> +	__u8 options;
->> +};
->> +
->> +/* Commands */
->> +#define	PMIC_BASE			'P'
->> +
->> +#define	PMIC_GOTO_STANDBY		_IO(PMIC_BASE, 0)
->> +#define	PMIC_GOTO_LP_STANDBY		_IO(PMIC_BASE, 1)
->> +#define	PMIC_UPDATE_PGM			_IO(PMIC_BASE, 2)
->> +#define	PMIC_SET_STATE			_IOW(PMIC_BASE, 3, struct pmic_state)
->> +
->> +/* Options for destination state */
->> +#define PMIC_GPIO_RETENTION		_BITUL(0)
->> +#define PMIC_DDR_RETENTION		_BITUL(1)
->> +#define PMIC_MCU_ONLY_STARTUP_DEST	_BITUL(2)
-> Please read Documentation/driver-api/ioctl.rst which says:
->
-> * Bitfields and enums generally work as one would expect them to,
->    but some properties of them are implementation-defined, so it is
->    better to avoid them completely in ioctl interfaces.
->
-> For a brand-new ioctl interface, you did both of these unrecommended
-> things.  Why set yourself for complexity when you do not need to?
-
-I will fix that. Thank you for your feedback.
-
-Julien
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 2a51c938bbcb..c93677e97076 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -45,6 +45,8 @@ CPU0: cpu@0 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -61,6 +63,8 @@ CPU1: cpu@1 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU2: cpu@2 {
+@@ -73,6 +77,8 @@ CPU2: cpu@2 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD2>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU3: cpu@3 {
+@@ -85,6 +91,8 @@ CPU3: cpu@3 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD3>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU4: cpu@100 {
+@@ -97,6 +105,8 @@ CPU4: cpu@100 {
+ 			dynamic-power-coefficient = <282>;
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD4>;
++			power-domain-names = "psci";
+ 			L2_1: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -113,6 +123,8 @@ CPU5: cpu@101 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD5>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU6: cpu@102 {
+@@ -125,6 +137,8 @@ CPU6: cpu@102 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD6>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU7: cpu@103 {
+@@ -137,6 +151,8 @@ CPU7: cpu@103 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD7>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		cpu-map {
+@@ -176,6 +192,68 @@ core3 {
+ 				};
+ 			};
+ 		};
++
++		idle-states {
++			entry-method = "psci";
++
++			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "silver-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <290>;
++				exit-latency-us = <376>;
++				min-residency-us = <1182>;
++				local-timer-stop;
++			};
++
++			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "gold-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <297>;
++				exit-latency-us = <324>;
++				min-residency-us = <1110>;
++				local-timer-stop;
++			};
++		};
++
++		domain-idle-states {
++			CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
++				/* GDHS */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x40000022>;
++				entry-latency-us = <360>;
++				exit-latency-us = <421>;
++				min-residency-us = <782>;
++			};
++
++			CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
++				/* Power Collapse */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x41000044>;
++				entry-latency-us = <800>;
++				exit-latency-us = <2118>;
++				min-residency-us = <7376>;
++			};
++
++			CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
++				/* GDHS */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x40000042>;
++				entry-latency-us = <314>;
++				exit-latency-us = <345>;
++				min-residency-us = <660>;
++			};
++
++			CLUSTER_1_SLEEP_1: cluster-sleep-1-1 {
++				/* Power Collapse */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x41000044>;
++				entry-latency-us = <640>;
++				exit-latency-us = <1654>;
++				min-residency-us = <8094>;
++			};
++		};
+ 	};
+ 
+ 	firmware {
+@@ -199,6 +277,60 @@ pmu {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD2: power-domain-cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD3: power-domain-cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD4: power-domain-cpu4 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD5: power-domain-cpu5 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD6: power-domain-cpu6 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD7: power-domain-cpu7 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CLUSTER_PD: power-domain-cpu-cluster0 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_0_SLEEP_0>, <&CLUSTER_0_SLEEP_1>,
++					     <&CLUSTER_1_SLEEP_0>, <&CLUSTER_1_SLEEP_1>;
++		};
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+-- 
+2.38.1
 
