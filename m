@@ -2,106 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 204F36D0AFF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 581FB6D0B4F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjC3Q04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 12:26:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58130 "EHLO
+        id S229644AbjC3QcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 12:32:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbjC3Q0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:26:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA1EC159;
-        Thu, 30 Mar 2023 09:26:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 496AA620FB;
-        Thu, 30 Mar 2023 16:26:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15D38C433D2;
-        Thu, 30 Mar 2023 16:26:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680193613;
-        bh=OTht3a35wO9ZxOdDuztv9uVBcSe4Zhlcnodcxs7W1WM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=XvgMvf6FdRDzWddB6VRohM5pC+Uj0wFELzD+Z6dy0Qt/Rh2tw0Pt+KGa2GnPr4owc
-         LDj3IFQMi0BqJQqT19paE2ytsuYa+Vj5MUZpmiFEe6kx7e6/o/tsWdAyewr+nGSvk5
-         x6ohs7C7r66BUVk82fDEL7274i+Qupy0Qt6Glyo1xbatObsoOA3UX0XFXbu/8DThY0
-         1o3mxJgKDeF5P6SpeGxjVCujWhUjY2zzrLOoi4PKrwQA8O6c+Ud2zPhH6eAD6obHI0
-         xRmjUFxQplfm+NzytrBeZ3C8F77a6ajgoLM5ynqwmeXLdoUEG0yJDpyhzuVke97g/I
-         GICTG0rfsh2Pw==
-Date:   Thu, 30 Mar 2023 09:26:51 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-Cc:     Max Georgiev <glipus@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231499AbjC3QcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:32:11 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED99CDC5
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 09:32:09 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id l27so19716698wrb.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 09:32:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680193927;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J5iqRDNOsfYjFAg7++f2WTswDCTx1cvQAgPwdrnyaM0=;
+        b=pptlaseNEQzrBWz16Lz87z6I6YeTtAadmZrZvMD2RsPgoAU4pcITcbjV7LXcQmKKH7
+         2a+sajzdUSMDJFBtDY3hkTb4nOUvTSINYca55xI5ECRv9AbLHEP6HIMQlo2vvPKXpfp5
+         e589BpuiC1gHnyLQohuywxLiGzscwRAZGv4WpQItE2K6GQh7GBK4VC9Pwv+E0ls4Z1gA
+         ESD0IX9+Pjrd23yjPeWAWgyNhcv5Q2z7JauQmQbnnlxbvgnYeu+e1WS/yTN7CvfW1ieq
+         q+GgA2YFavr+WZ64VDwd23/40PjY4RcrgF+0KPB0SgJj3FC1ZIQzpjTQA9eoBt1qrSBH
+         FFeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680193927;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J5iqRDNOsfYjFAg7++f2WTswDCTx1cvQAgPwdrnyaM0=;
+        b=lv9wnarkEp1Bd6vQCVwAgl+yMsWaZ9XpHjmySb6EQ+/z8CT+RE2uuYr35biFiFc+b0
+         ogMEK/FwYNRD9OFi65jyMIPCqnbxz7jnN75DiRgWRCT497Wr2u7/Ob0YRBq+UlqEccqf
+         3Eot9Arxe0Mdrh+A6d780qMpJGpGmRelQbngIr5xtsZMrvdvkMxo6xj+NA/fsdMmy2ow
+         Ew8242yzqScyP0L31t6UBkpG6ppImZXyqtHoQBI8Ne3zDtAl83gnw93MbFxwYwt7Ow5H
+         FBHqokZWS+h9bkxcqY+3vzngLP+LfofH6C9ymVcyeAzRn9z4DfXYMc+6tLTKciL4OMPo
+         qGkA==
+X-Gm-Message-State: AAQBX9cfkjrCRP0gcr7A6/3pZ5nfT49uDPpdtsvFd8w0Tk87XfmXu6fI
+        GihBes1cb4U2lZJxVz46Nh7TNA==
+X-Google-Smtp-Source: AKy350Z17UR+1JsQDt8ClL02GrGiOOfkHe+agCOzAElOLfdYL360rlfU3YMntQH5eQJlI5N/ETaI+w==
+X-Received: by 2002:adf:f74d:0:b0:2c7:1e00:d514 with SMTP id z13-20020adff74d000000b002c71e00d514mr16994490wrp.38.1680193927453;
+        Thu, 30 Mar 2023 09:32:07 -0700 (PDT)
+Received: from [172.20.10.2] ([37.166.66.243])
+        by smtp.gmail.com with ESMTPSA id r10-20020adfce8a000000b002cefcac0c62sm33595242wrn.9.2023.03.30.09.32.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 09:32:07 -0700 (PDT)
+Message-ID: <be2c7c24-de19-d14a-639c-657a1ed32573@linaro.org>
+Date:   Thu, 30 Mar 2023 18:32:04 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.9.0
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8350-nagara: Unify status
+ property placement
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jay Vosburgh <j.vosburgh@gmail.com>,
-        Veaceslav Falico <vfalico@gmail.com>,
-        Andy Gospodarek <andy@greyhouse.net>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com, Minghao Chi <chi.minghao@zte.com.cn>,
-        Jie Wang <wangjie125@huawei.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Sean Anderson <sean.anderson@seco.com>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Alexander Lobakin <alexandr.lobakin@intel.com>,
-        Marco Bonelli <marco@mebeim.net>
-Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be
- selectable.
-Message-ID: <20230330092651.4acb7b64@kernel.org>
-In-Reply-To: <20230330143824.43eb0c56@kmaincent-XPS-13-7390>
-References: <20230308135936.761794-4-kory.maincent@bootlin.com>
-        <20230308230321.liw3v255okrhxg6s@skbuf>
-        <20230310114852.3cef643d@kmaincent-XPS-13-7390>
-        <20230310113533.l7flaoli7y3bmlnr@skbuf>
-        <b4ebfd3770ffa5ad1233d2b5e79499ee@walle.cc>
-        <20230310131529.6bahmi4obryy5dsx@soft-dev3-1>
-        <20230310164451.ls7bbs6pdzs4m6pw@skbuf>
-        <20230313084059.GA11063@pengutronix.de>
-        <20230316160920.53737d1c@kmaincent-XPS-13-7390>
-        <20230317152150.qahrr6w5x4o3eysz@skbuf>
-        <20230317120744.5b7f1666@kernel.org>
-        <CAP5jrPHep12hRbbcb5gXrZB5w_uzmVpEp4EhpfqW=9zC+zcu9A@mail.gmail.com>
-        <20230330143824.43eb0c56@kmaincent-XPS-13-7390>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230321-topic-sagami_dp-v1-0-340c8bce4276@linaro.org>
+ <20230321-topic-sagami_dp-v1-4-340c8bce4276@linaro.org>
+Content-Language: en-GB
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20230321-topic-sagami_dp-v1-4-340c8bce4276@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Mar 2023 14:38:24 +0200 K=C3=B6ry Maincent wrote:
-> > I started working on a patch introducing NDO functions for hw
-> > timestamping, but unfortunately put it on hold.
-> > Let me finish it and send it out for review. =20
->=20
-> What is your timeline for it? Do you think of sending it in the followings
-> weeks, months, years? If you don't have much time ask for help, I am not =
-really
-> a PTP core expert but I would gladly work with you on this.
+Le 21/03/2023 à 23:12, Konrad Dybcio a écrit :
+> As we're heading towards getting the status property last everywhere,
+> take care of it for SM8350 SONY Sagami.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   .../boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 30 ++++++++++------------
+>   1 file changed, 14 insertions(+), 16 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> index b2baa81baf5e..95b1ba4ce470 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
+> @@ -189,8 +189,8 @@ vph_pwr: vph-pwr-regulator {
+>   };
+>   
+>   &adsp {
+> -	status = "okay";
+>   	firmware-name = "qcom/sm8350/Sony/sagami/adsp.mbn";
+> +	status = "okay";
+>   };
+>   
+>   &apps_rsc {
+> @@ -542,27 +542,27 @@ pmr735a_l7: ldo7 {
+>   };
+>   
+>   &cdsp {
+> -	status = "okay";
+>   	firmware-name = "qcom/sm8350/Sony/sagami/cdsp.mbn";
+> +	status = "okay";
+>   };
+>   
+>   &i2c1 {
+> -	status = "okay";
+>   	clock-frequency = <1000000>;
+> +	status = "okay";
+>   
+>   	/* Some subset of SONY IMX663 camera sensor @ 38 */
+>   };
+>   
+>   &i2c4 {
+> -	status = "okay";
+>   	clock-frequency = <400000>;
+> +	status = "okay";
+>   
+>   	/* Samsung Touchscreen (needs I2C GPI DMA) @ 48 */
+>   };
+>   
+>   &i2c11 {
+> -	status = "okay";
+>   	clock-frequency = <1000000>;
+> +	status = "okay";
+>   
+>   	cs35l41_l: speaker-amp@40 {
+>   		compatible = "cirrus,cs35l41";
+> @@ -596,31 +596,31 @@ cs35l41_r: speaker-amp@41 {
+>   };
+>   
+>   &i2c12 {
+> -	status = "okay";
+>   	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
+>   	clock-frequency = <100000>;
+> +	status = "okay";
+>   
+>   	/* AMS TCS3490 RGB+IR color sensor @ 72 */
+>   };
+>   
+>   &i2c13 {
+> -	status = "okay";
+>   	/* Clock frequency was not specified downstream, let's park it to 100 KHz */
+>   	clock-frequency = <100000>;
+> +	status = "okay";
+>   
+>   	/* Qualcomm PM8008i/PM8008j (?) @ 8, 9, c, d */
+>   };
+>   
+>   &i2c15 {
+> -	status = "okay";
+>   	clock-frequency = <400000>;
+> +	status = "okay";
+>   
+>   	/* NXP SN1X0 NFC @ 28 */
+>   };
+>   
+>   &i2c17 {
+> -	status = "okay";
+>   	clock-frequency = <1000000>;
+> +	status = "okay";
+>   
+>   	/* Cirrus Logic CS40L25A boosted haptics driver @ 40 */
+>   };
+> @@ -652,8 +652,8 @@ mdss_dp_altmode: endpoint {
+>   };
+>   
+>   &mpss {
+> -	status = "okay";
+>   	firmware-name = "qcom/sm8350/Sony/sagami/modem.mbn";
+> +	status = "okay";
+>   };
+>   
+>   &pm8350_gpios {
+> @@ -719,8 +719,8 @@ &pon_pwrkey {
+>   };
+>   
+>   &pon_resin {
+> -	status = "okay";
+>   	linux,code = <KEY_VOLUMEUP>;
+> +	status = "okay";
+>   };
+>   
+>   &qupv3_id_0 {
+> @@ -748,8 +748,8 @@ &sdhc_2 {
+>   };
+>   
+>   &slpi {
+> -	status = "okay";
+>   	firmware-name = "qcom/sm8350/Sony/sagami/slpi.mbn";
+> +	status = "okay";
+>   };
+>   
+>   &spi14 {
+> @@ -1038,16 +1038,14 @@ usb_1_dwc3_ss: endpoint {
+>   };
+>   
+>   &usb_1_hsphy {
+> -	status = "okay";
+> -
+>   	vdda-pll-supply = <&pm8350_l5>;
+>   	vdda18-supply = <&pm8350c_l1>;
+>   	vdda33-supply = <&pm8350_l2>;
+> +	status = "okay";
+>   };
+>   
+>   &usb_1_qmpphy {
+> -	status = "okay";
+> -
+>   	vdda-phy-supply = <&pm8350_l6>;
+>   	vdda-pll-supply = <&pm8350_l1>;
+> +	status = "okay";
+>   };
+> 
 
-+1 Max, could you push what you have to GitHub or post as an RFC?
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
