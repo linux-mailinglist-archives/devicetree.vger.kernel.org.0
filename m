@@ -2,131 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEF46D1275
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 00:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67EEB6D12AD
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 00:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230511AbjC3WpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 18:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38674 "EHLO
+        id S230490AbjC3W5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 18:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231145AbjC3Woe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 18:44:34 -0400
-Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com [IPv6:2607:f8b0:4864:20::1149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C440B11EAD
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:44:29 -0700 (PDT)
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-545d3b026a8so152311657b3.7
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:44:29 -0700 (PDT)
+        with ESMTP id S231218AbjC3W5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 18:57:03 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389181BF
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:57:01 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id c29so26611621lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:57:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112; t=1680216269;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mcnJNCHDCGQ7Pzom/y/MQEMC0VEcznZRpNuHkAP16dM=;
-        b=h+fWFQgFgIewRQ/oEBbhup3NdEkI7VTVNsuOE+DEbbkPezfcqmPxt821KjIEBRuQbG
-         l0zjD5y2da69givEVl5sGT/LrKzZ3TjBHss675g7X6otDgYpfdh+qN2+RTa4QLDKNv9g
-         PDcFoEuUC2taY6ePkBcT1Z7N0RA9q3bwXricL/gDzEv4dXafQDmGXlIKBeyXeR2sEz8o
-         E9FH3ufwR/fPbEciGQgLYG6zQkSaBSw0BtOfmnkR4YfxaB7/7EETD5gleyNZwM9ywyrO
-         n+i0UKoKt4E+CXqxkN8hBn0e4jSHrCNiFCw+gjvKmBdlUar6F84Pyzh3o9haY+aKhz2B
-         Wi9w==
+        d=linaro.org; s=google; t=1680217019;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IyKfQObvopk17NVpiPNCRsq0j+VPLHa0MW4Rc/CyGMo=;
+        b=Ji7nj7WFIrSFmsSZwyeeP6AwUE/ae3pup9Vl7d7C/X1lI8/RkqVM2oRl/XONGjv25C
+         jjXrxWlQfmEEKKps5mm+WG6JkWPQ5E/cIe8642EMhW4f8NSIW/CU6bKx29rrZ2NxKvtV
+         yjLthdVLQcxDiIh1WXBnoFbR6XIxav+h4O/vXqOAAohbEAxAJykydGNVJK+h8ApU52fi
+         wwgEONFNeOF5j4P+FG+gGgWdbOP51hoNYkpOt2yjY58/9uB54VVpUUu7cB1QjupsBNIQ
+         N4nYW1TWmm3rs7U4G2bp66Jhd6CBDwpeg6sGA7h1TT4rRD4PJpmh3HFF9PLFAfs/KGSh
+         LO7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680216269;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mcnJNCHDCGQ7Pzom/y/MQEMC0VEcznZRpNuHkAP16dM=;
-        b=5Yygz2IR3xpfYp6TTB6FKeuDSP3UV/zZxJ0tTQREf/J8195ml4xbIMbRcIdG81ZOef
-         VTm9zDuAibYN3kiXzm6SpyAMoPdBA6IPOxXac8R7I0zUPK8btupQ192Ye4cDYKGf3G81
-         ncHqPxl18B7wcqqhZhTq4EMd7axqsamgOUcdTX0B4FFl9oKV4DZMIO2T/lTg02z9LYss
-         MqfXkug7z2vEuneuLZRzFzfQkaN82H5DzXFNoVv1Gw20QSjB/9VP0IxQG85yurJpLqFG
-         uneBCatihMs+Mu58ZMgVGgWqVumorFVCs9SYIL/zr3RyWfSmDCZO8wbcWazVDhLbuQk4
-         nQDg==
-X-Gm-Message-State: AAQBX9cUJX7ew/RUCwAi7c/E2BBglBom5fePHpP6k+BwTidLKQ4n+CuZ
-        59r5WthW7urbvUGRPoi5BpI+mOCosVJe
-X-Google-Smtp-Source: AKy350bH+FT4rO63l4r7xqHnuPynxVbMsgCzCxhntsgRkI9CjhoZf4Ra9qEtMvcWq32MGU3qdNWQmk0U4T9r
-X-Received: from davidai2.mtv.corp.google.com ([2620:15c:211:201:c162:24e8:ec5e:d520])
- (user=davidai job=sendgmr) by 2002:a25:c58f:0:b0:b7d:87f:ce3e with SMTP id
- v137-20020a25c58f000000b00b7d087fce3emr8231840ybe.6.1680216269063; Thu, 30
- Mar 2023 15:44:29 -0700 (PDT)
-Date:   Thu, 30 Mar 2023 15:43:40 -0700
-In-Reply-To: <20230330224348.1006691-1-davidai@google.com>
-Mime-Version: 1.0
-References: <20230330224348.1006691-1-davidai@google.com>
-X-Mailer: git-send-email 2.40.0.348.gf938b09366-goog
-Message-ID: <20230330224348.1006691-6-davidai@google.com>
-Subject: [RFC PATCH 5/6] dt-bindings: cpufreq: add bindings for virtual kvm cpufreq
-From:   David Dai <davidai@google.com>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Dai <davidai@google.com>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        d=1e100.net; s=20210112; t=1680217019;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IyKfQObvopk17NVpiPNCRsq0j+VPLHa0MW4Rc/CyGMo=;
+        b=HeMgc3NqnSX5sBqhVOTJFqne7QsGj60Wm2eEwTXirNvtjK7wja7ghBAmNDI3ipENUQ
+         2ncu0dI5qHEpTpSUvSd5t9lUO3jWoAWGBfUX8nEXrL20D5VF7EfR+J+N2fScqTpchei0
+         o83Ez/lO4rEfapJAh75xQ5CRi7u1khlNEqmcIXezEMapftBN6IYnbHvVlseRqueCKZnv
+         ReR4oWgTMCPhjRBP5jPp/0nEQBJctzZYvKi555hfTWSTPv5xArRXA/F2eDg93mWcHPNY
+         BtQocSyAnXQCWhyy/iw2MHwtrZdVnQh54dnwvgi5Eh9RAl2yQjs9+XnuPUNuhy6wIk92
+         Jw2w==
+X-Gm-Message-State: AAQBX9eqc3IG9YLcuQ/AjBj0c8LrgMgkzF3PnsBZzv1uIypNp/XmpHSV
+        I9+oo5IPPdPORH/nJjolnJe04g==
+X-Google-Smtp-Source: AKy350YEKYG2Ghd6pDF92L9f6skCBtKsWaPZ2RHNu3AcQXKQxltWKyLbsUk+nvYX4gucmmlu8Qocgg==
+X-Received: by 2002:ac2:5473:0:b0:4e8:5e39:6234 with SMTP id e19-20020ac25473000000b004e85e396234mr7655500lfn.16.1680217019433;
+        Thu, 30 Mar 2023 15:56:59 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id i13-20020a056512006d00b004e83edd8ce8sm119241lfo.196.2023.03.30.15.56.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 15:56:59 -0700 (PDT)
+Message-ID: <8685b710-b74d-556a-815d-0ffef2b0eeff@linaro.org>
+Date:   Fri, 31 Mar 2023 00:56:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/1] dt-bindings: firmware: qcom: scm: Updating VMID
+ list
+Content-Language: en-US
+To:     Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>
+References: <20230330165117.26348-1-quic_gokukris@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230330165117.26348-1-quic_gokukris@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings for a virtual kvm cpufreq driver.
 
-Co-developed-by: Saravana Kannan <saravanak@google.com>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
-Signed-off-by: David Dai <davidai@google.com>
----
- .../bindings/cpufreq/cpufreq-virtual-kvm.yaml | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yaml
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yaml
-new file mode 100644
-index 000000000000..31e64558a7f1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/cpufreq/cpufreq-virtual-kvm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Virtual KVM CPUFreq
-+
-+maintainers:
-+  - David Dai <davidai@google.com>
-+
-+description: |
-+
-+  KVM CPUFreq is a virtualized driver in guest kernels that sends utilization
-+  of its vCPUs as a hint to the host. The host uses hint to schedule vCPU
-+  threads and select CPU frequency. It enables accurate Per-Entity Load
-+  Tracking for tasks running in the guest by querying host CPU frequency
-+  unless a virtualized FIE exists(Like AMUs).
-+
-+properties:
-+  compatible:
-+    const: virtual,kvm-cpufreq
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      cpufreq {
-+            compatible = "virtual,kvm-cpufreq";
-+      };
-+
-+    };
--- 
-2.40.0.348.gf938b09366-goog
+On 30.03.2023 18:51, Gokul krishna Krishnakumar wrote:
+> Adding the full list of VMID's, which are used by different clients to
+> pass to the secure world.
+> 
+> Signed-off-by: Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
+> ---
+> V2 Fixed allignment issues in [1]
+> 
+> [1] https://lore.kernel.org/lkml/20230328214703.12093-1-quic_gokukris@quicinc.com/
+> ---
+They're weirdly ordered now.. I think Dmitry's comment was
+just about the usage of space/tab such that git would not get
+confused. With that fixed, you should be able to get a diff like:
 
++#define QCOM_SCM_VMID_LPASS		0x16
+#define QCOM_SCM_VMID_WLAN_CE		0x19
++#define QCOM_SCM_VMID_CP_SPSS_SP	0x1A
+[...]
++#define QCOM_SCM_VMID_CP_CDSP		0x2A
+#define QCOM_SCM_VMID_NAV		0x2B
++#define QCOM_SCM_VMID_TVM		0x2D
+
+Still, I really appreciate you providing that information to the kernel!
+
+Konrad
+
+>  include/dt-bindings/firmware/qcom,scm.h | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/include/dt-bindings/firmware/qcom,scm.h b/include/dt-bindings/firmware/qcom,scm.h
+> index 1a4e68fa0744..7ad6cbe623d3 100644
+> --- a/include/dt-bindings/firmware/qcom,scm.h
+> +++ b/include/dt-bindings/firmware/qcom,scm.h
+> @@ -2,6 +2,7 @@
+>  /*
+>   * Copyright (c) 2010-2015, 2018-2019 The Linux Foundation. All rights reserved.
+>   * Copyright (C) 2015 Linaro Ltd.
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  #ifndef _DT_BINDINGS_FIRMWARE_QCOM_SCM_H
+> @@ -13,4 +14,25 @@
+>  #define QCOM_SCM_VMID_WLAN_CE		0x19
+>  #define QCOM_SCM_VMID_NAV		0x2B
+>  
+> +#define QCOM_SCM_VMID_TZ		0x1
+> +#define QCOM_SCM_VMID_CP_TOUCH		0x8
+> +#define QCOM_SCM_VMID_CP_BITSTREAM	0x9
+> +#define QCOM_SCM_VMID_CP_PIXEL		0xA
+> +#define QCOM_SCM_VMID_CP_NON_PIXEL	0xB
+> +#define QCOM_SCM_VMID_CP_CAMERA		0xD
+> +#define QCOM_SCM_VMID_HLOS_FREE		0xE
+> +#define QCOM_SCM_VMID_MSS_NONMSA	0x10
+> +#define QCOM_SCM_VMID_CP_SEC_DISPLAY	0x11
+> +#define QCOM_SCM_VMID_CP_APP		0x12
+> +#define QCOM_SCM_VMID_LPASS		0x16
+> +#define QCOM_SCM_VMID_CP_SPSS_SP	0x1A
+> +#define QCOM_SCM_VMID_CP_CAMERA_PREVIEW	0x1D
+> +#define QCOM_SCM_VMID_CDSP		0x1E
+> +#define QCOM_SCM_VMID_CP_SPSS_SP_SHARED	0x22
+> +#define QCOM_SCM_VMID_CP_SPSS_HLOS_SHARED	0x24
+> +#define QCOM_SCM_VMID_ADSP_HEAP		0x25
+> +#define QCOM_SCM_VMID_CP_CDSP		0x2A
+> +#define QCOM_SCM_VMID_TVM		0x2D
+> +#define QCOM_SCM_VMID_OEMVM		0x31
+> +
+>  #endif
