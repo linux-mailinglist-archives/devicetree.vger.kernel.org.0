@@ -2,110 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE3546D12C6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 01:03:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CD96D12EF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 01:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjC3XDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 19:03:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37412 "EHLO
+        id S231286AbjC3XUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 19:20:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbjC3XDn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 19:03:43 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1DC10ABB
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 16:03:33 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id h11so19640481lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 16:03:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680217411;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WZn4tyYY9BCk7s1Po6/aemP10gDlKI2Kq9xH5VdIvl8=;
-        b=aKcdq2Z5swALULKu0fcI6Tg/BGE3/u0bz80ty7vwu0t4w9Vmt+kLbOGEpgw2lGj1T7
-         6JmOB94VEVARY30TRkoquGGMi0Zt2u8p6wbwebhBBNgcQII9v+cRRgiQNBcCXQ/nRcGa
-         MZh8yedvaUtp1mOlMrv/6+aq8fUTh9oF1nPoY0dVOx7Eby+VoUIvmtaHHcOjjhOcCHM5
-         mcwWEk/TrmO5b9wJIMx2C0FmVWJisimMbl65cKCyniTFets+GwE9FOAMpFHlgFMIY0dZ
-         Yhja6m1+RuERXKcEO+8qIO3STt9QVXuF35zOl8K0Kkyf7DtbVTqe58RM4q0MmJG/U3jg
-         Sw2w==
+        with ESMTP id S230333AbjC3XUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 19:20:19 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758AF10AA7
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 16:19:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1680218370;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Lx021jiSXTc6pYyl7LmIv03tfyJDHewW1CEauW0rIQw=;
+        b=HdP7ivvFtuavef/65yYWZ25hyRexJIqhdGxbBdwRl7PaKBjxK99tfxwEIeuSMKYim+SnCW
+        5V9wnkNnaTW8dKcRyGaLg+m8fdbTTXuegxowpvLh8f4LW06YfXA44EqYhiVegfIW0+dEt/
+        ezREHuK9+YQzcLkkum2KqaJm21RPi2I=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-219-kfIWckYwN4Wu6JsdYAP5ww-1; Thu, 30 Mar 2023 19:19:29 -0400
+X-MC-Unique: kfIWckYwN4Wu6JsdYAP5ww-1
+Received: by mail-wm1-f72.google.com with SMTP id bi27-20020a05600c3d9b00b003ef6ee937b8so6961479wmb.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 16:19:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680217411;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WZn4tyYY9BCk7s1Po6/aemP10gDlKI2Kq9xH5VdIvl8=;
-        b=ToYI1ge5J7EeuF9/7Msz2axcBJZPCxU9M4cchFwNTsfLap3Ev/5I870NuGBus7ILVs
-         pwE0BSmiQE8hNhcrp/z1wPCTv8J+CCByF0QNM7CZlmM2aBxNBXn460DWWToZoqKEDaiJ
-         a0OtVENvD7RA3zM85z1zr+RnX314hnrbNclvUYCizr48Nqkmz6kbJUVzW0XAoBVrDuKI
-         2tN4TubbEu8rGhwWE/ETrzqaKTN2gp57loTQqHqgUy1rSYm+eZSoyLe1+Px6JPXit+wZ
-         mHk+k4hs+fdP25WVR0pnoqySm2x5oUjTqaagKNrFGwPx/LNDDiJA4azxhGoayFGXMh0i
-         tBlQ==
-X-Gm-Message-State: AAQBX9cCXwMgXSo4BCaeN2KTh8TWZvx6X1Bpk/cMQOxYcBIsm8ZcVlWz
-        J8I5D+xDeoPALIssmF3VUId60w==
-X-Google-Smtp-Source: AKy350YRKh/QIHzo45/fUtf7azJj4YT7oA/lSCOramU1kvawSFT12Tm6ZdnXLF+sBh2OXuUdGLIErA==
-X-Received: by 2002:a19:ae17:0:b0:4eb:2529:cbb2 with SMTP id f23-20020a19ae17000000b004eb2529cbb2mr1958614lfc.49.1680217411529;
-        Thu, 30 Mar 2023 16:03:31 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id s5-20020a19ad45000000b004e845b49d81sm122275lfd.140.2023.03.30.16.03.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 16:03:31 -0700 (PDT)
-Message-ID: <39058df7-6080-b38a-f4a8-0a4015982ca6@linaro.org>
-Date:   Fri, 31 Mar 2023 01:03:29 +0200
+        d=1e100.net; s=20210112; t=1680218367;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lx021jiSXTc6pYyl7LmIv03tfyJDHewW1CEauW0rIQw=;
+        b=jtR17HqC0MT8GuHymq8pT4R7+cokwgQy5eQAMWo5g8EuqKAYUmg8kmdVLuKRjBYpgX
+         jhXJjp5n7Y6hEQCTqPzJ4GsaWUoChXN2uwHs9Gf/3cB0gXB0RgvXXqoV6F/zaOjT0obh
+         ZTjoK9sPcbizJwAH3ILhu+T0PDoCq65noF16iXTm6Fz1yStTWiwBZT8B8HnrrSmNrJYy
+         7VGbkOwFWEDW5eN6rlGUNZ0Ax4AQyqoHvbSrP5s1GCHRzu7mz1ifH17WmAV7OIlpaoJ/
+         dOljpnPSnDEGP/4EfCDrYqKoF75gKlRWcB5qhCx7EhRD0bYyuW+O5xagHqMbfz+n6dBc
+         tLxQ==
+X-Gm-Message-State: AAQBX9eChOEC1cCqqVysjLD5odlvYyqx0OAbCeV+yQME+kNYk101SbuY
+        JWE/cSs8LVGIWqcr0PsPmrLXfTdVOBF8qgx2nfbJKmxViHdFGwM1mOdwAfh8gEcSAaW+AbsPl/Z
+        0/GClPcfuN1zbcAbm4gusGQ==
+X-Received: by 2002:adf:d4cc:0:b0:2d0:2d4:958c with SMTP id w12-20020adfd4cc000000b002d002d4958cmr18784575wrk.60.1680218367402;
+        Thu, 30 Mar 2023 16:19:27 -0700 (PDT)
+X-Google-Smtp-Source: AKy350YIJANJD5ndsOw5e6X1tNl3/XEP4RjGZCkemP4f0WMNIUtUXUh4J/Z7TRhR6CnBmTTGwrSw1g==
+X-Received: by 2002:adf:d4cc:0:b0:2d0:2d4:958c with SMTP id w12-20020adfd4cc000000b002d002d4958cmr18784568wrk.60.1680218367087;
+        Thu, 30 Mar 2023 16:19:27 -0700 (PDT)
+Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id f9-20020adfe909000000b002c7163660a9sm536059wrm.105.2023.03.30.16.19.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Mar 2023 16:19:26 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Enric Balletbo i Serra <eballetbo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lin Huang <hl@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, zain wang <wzz@rock-chips.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Remove non-existing pwm-delay-us property
+Date:   Fri, 31 Mar 2023 01:19:23 +0200
+Message-Id: <20230330231924.2404747-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v3 3/3] remoteproc: qcom: pas: add SDM845 SLPI compatible
-Content-Language: en-US
-To:     Dylan Van Assche <me@dylanvanassche.be>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230330164633.117335-1-me@dylanvanassche.be>
- <20230330164633.117335-4-me@dylanvanassche.be>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230330164633.117335-4-me@dylanvanassche.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There is neither a driver that parses this nor a DT binding schema that
+documents it, so let's remove from the DTS files that make use of this.
 
+The properties that exist are post-pwm-on-delay-ms and pwm-off-delay-ms,
+defined in the pwm-backlight DT binding. If the delays are really needed
+then those properties should be used instead.
 
-On 30.03.2023 18:46, Dylan Van Assche wrote:
-> Add a compatible for the SDM845 SLPI to the Qualcomm remoteproc q6v5_pas
-> driver. The SLPI is the same as in SM8150, SM8250, SM8350, and SM8450,
-> so use the same resource in the driver.
-> 
-> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Brian Norris mentioned though that looking at the first downstream usage
+of the pwm-delay-us property for RK3399 Gru systems in ChromiumOS tree,
+he couldn't find a spec reference that said that this was really needed.
 
-Konrad
->  drivers/remoteproc/qcom_q6v5_pas.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index b96020c93e58..f3a7ae503bd1 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -1169,6 +1169,7 @@ static const struct of_device_id adsp_of_match[] = {
->  	{ .compatible = "qcom,sdm660-adsp-pas", .data = &adsp_resource_init},
->  	{ .compatible = "qcom,sdm845-adsp-pas", .data = &sdm845_adsp_resource_init},
->  	{ .compatible = "qcom,sdm845-cdsp-pas", .data = &sdm845_cdsp_resource_init},
-> +	{ .compatible = "qcom,sdm845-slpi-pas", .data = &sdm845_slpi_resource_init},
->  	{ .compatible = "qcom,sdx55-mpss-pas", .data = &sdx55_mpss_resource},
->  	{ .compatible = "qcom,sm6115-adsp-pas", .data = &adsp_resource_init},
->  	{ .compatible = "qcom,sm6115-cdsp-pas", .data = &cdsp_resource_init},
+So perhaps it was unnecessary added and a simple removal would be enough.
+
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Reviewed-by: Brian Norris <briannorris@chromium.org>
+---
+
+Changes in v2:
+- Update commit message with the information provided by Brian Norries.
+- Add Reviewed-by tag from Brian Norries.
+
+ arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi            | 1 -
+ arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi | 1 -
+ arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi    | 1 -
+ 3 files changed, 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi b/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
+index 083452c67711..e47d1398aeca 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi
+@@ -61,7 +61,6 @@ backlight: backlight {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bl_en>;
+ 		pwms = <&pwm0 0 1000000 PWM_POLARITY_INVERTED>;
+-		pwm-delay-us = <10000>;
+ 	};
+ 
+ 	emmc_pwrseq: emmc-pwrseq {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+index ee6095baba4d..5c1929d41cc0 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+@@ -198,7 +198,6 @@ backlight: backlight {
+ 		power-supply = <&pp3300_disp>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bl_en>;
+-		pwm-delay-us = <10000>;
+ 	};
+ 
+ 	gpio_keys: gpio-keys {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+index a47d9f758611..c5e7de60c121 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+@@ -167,7 +167,6 @@ backlight: backlight {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bl_en>;
+ 		pwms = <&pwm1 0 1000000 0>;
+-		pwm-delay-us = <10000>;
+ 	};
+ 
+ 	dmic: dmic {
+
+base-commit: b2bc47e9b2011a183f9d3d3454a294a938082fb9
+-- 
+2.40.0
+
