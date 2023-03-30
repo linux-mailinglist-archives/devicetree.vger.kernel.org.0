@@ -2,145 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAA06D0BE7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADC0D6D0BE9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 18:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231651AbjC3Qxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 12:53:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35998 "EHLO
+        id S230309AbjC3QyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 12:54:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231689AbjC3QxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:53:16 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BF95B1BC3
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 09:53:01 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C46211682;
-        Thu, 30 Mar 2023 09:53:45 -0700 (PDT)
-Received: from eglon.cambridge.arm.com (eglon.cambridge.arm.com [10.1.196.177])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E7FCB3F6C4;
-        Thu, 30 Mar 2023 09:52:59 -0700 (PDT)
-From:   James Morse <james.morse@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        James Morse <james.morse@arm.com>,
+        with ESMTP id S231444AbjC3Qxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 12:53:52 -0400
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [IPv6:2001:67c:2050:0:465::202])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71A7D316;
+        Thu, 30 Mar 2023 09:53:38 -0700 (PDT)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4PnTyQ0XZJz9sTs;
+        Thu, 30 Mar 2023 18:53:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
+        s=MBO0001; t=1680195214;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=yw5UeIZa0PRwQ4TADlzPWSNt+mqlggJWWHWgo8amwkY=;
+        b=VHvP4TAUn0G4VYLbirWKxAbIfZLSF+mEUYKqHQhDtDMa6RiXicVO8ZVKu17hrAUSHBLhIg
+        wRRcYWl9okooTbVr2Xe6zv7LHYcI6TBIDTdaoeZZeF3pHKgw4/rJ+8Ybh9s6BVIK9Z4lRi
+        SeKK3LKIbZTtTTJjPG1AY8Kwdbxv8hM4NH7gMfxdnjCcBzSPOqTZURxPswJ1TW2olDjozx
+        oAXJPXWwjAExyZXcdnNzqxlL48gtltMW8M5glMU5aPCgrYinzUS+YyafU7Z7KQhicDDUIy
+        bXeL9xDLuA6uZzKdsBVDpqJw83vYa0ct0onh0S/qfW2uTdS/UGTXeGkLELH8PA==
+From:   Dylan Van Assche <me@dylanvanassche.be>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 6/6] arm64: errata: Add a commandline option to enable/disable #2701951
-Date:   Thu, 30 Mar 2023 17:51:28 +0100
-Message-Id: <20230330165128.3237939-7-james.morse@arm.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230330165128.3237939-1-james.morse@arm.com>
-References: <20230330165128.3237939-1-james.morse@arm.com>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Dylan Van Assche <me@dylanvanassche.be>
+Subject: [PATCH v3 0/4] dts: qcom: arm64: sdm845: SLPI DSP enablement
+Date:   Thu, 30 Mar 2023 18:53:18 +0200
+Message-Id: <20230330165322.118279-1-me@dylanvanassche.be>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Rspamd-Queue-Id: 4PnTyQ0XZJz9sTs
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Erratum #2701951 affects the FWB feature in a number of CPUs, but is
-only going to be visible on parts that don't use an arm interconnect.
-This is not something the operating system can discover, it has to
-be described by platform firmware.
+* About *
 
-The firmware discovery API is not deployed on existing systems.
+The Qualcomm SDM845 SoC has a separate SLPI (Sensor Low Power Island)
+DSP for sensors connected to the SoC which is responsible for exposing
+sensors to userspace, power saving, and other features. 
+While sensors are connected to GPIOs of the SoC, they cannot be used
+because the hypervisor blocks direct access to the sensors, thus the 
+DSP must be used to access any sensor on this SoC. The SLPI DSP uses a
+GLink edge (dsps) to communicate with the host and has a FastRPC interface
+to load files from the host filesystem such as sensor configuration files.
+The FastRPC interface does not use regular FastRPC Compute Banks
+but instead uses an allocated CMA region through which communication happens.
 
-Add a commandline option to allow the workaround to override the
-value from firmware, or provide a value if the firmware is not
-implemented.
+* Changes *
 
-The property is named arm64.arm-interconnect, as this is the
-description in the 'configurations affected' section of the erratum.
+This patchseries completes support for the SLPI in the Qualcomm SDM845 SoC
+by adding the SLPI to the SDM845 DTS and enable it for 2 hardware devices:
+- Oneplus 6
+- SHIFTPHONES SHIFT6mq
 
-Signed-off-by: James Morse <james.morse@arm.com>
----
- .../admin-guide/kernel-parameters.txt         |  4 +++
- arch/arm64/kernel/cpu_errata.c                | 36 +++++++++++++++++++
- 2 files changed, 40 insertions(+)
+* Related patches *
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 6221a1d057dd..5898fde6a9e4 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -391,6 +391,10 @@
- 	arcrimi=	[HW,NET] ARCnet - "RIM I" (entirely mem-mapped) cards
- 			Format: <io>,<irq>,<nodeID>
- 
-+	arm64.arm-interconnect [ARM64]
-+			Indicates the FWB erratum can be disabled because this
-+			SoC uses an arm interconnect.
-+
- 	arm64.nobti	[ARM64] Unconditionally disable Branch Target
- 			Identification support
- 
-diff --git a/arch/arm64/kernel/cpu_errata.c b/arch/arm64/kernel/cpu_errata.c
-index 55da9e588b9e..c5570904e8b4 100644
---- a/arch/arm64/kernel/cpu_errata.c
-+++ b/arch/arm64/kernel/cpu_errata.c
-@@ -138,6 +138,32 @@ cpu_clear_bf16_from_user_emulation(const struct arm64_cpu_capabilities *__unused
- 	raw_spin_unlock(&reg_user_mask_modification);
- }
- 
-+static enum  {
-+	FWB_WA_FORCED_ON = 1,
-+	FWB_WA_UNKNOWN = 0,
-+	FWB_WA_FORCED_OFF = -1,
-+} __fwb_workaround_forced;
-+#ifdef CONFIG_ARM64_ERRATUM_2701951
-+static int __init parse_fwb_workaround_cmdline_override(char *str)
-+{
-+	bool arm_interconnect;
-+	int ret = kstrtobool(str, &arm_interconnect);
-+
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Erratum #2701951's "Configurations Affected" says the erratum can
-+	 * only be seen on SoC's "that do not use Arm interconnect IP."
-+	 */
-+	if (arm_interconnect)
-+		__fwb_workaround_forced = FWB_WA_FORCED_OFF;
-+	else
-+		__fwb_workaround_forced = FWB_WA_FORCED_ON;
-+	return 0;
-+}
-+early_param("arm64.arm-interconnect", parse_fwb_workaround_cmdline_override);
-+#endif /* CONFIG_ARM64_ERRATUM_2701951 */
- bool has_stage2_fwb_errata(const struct arm64_cpu_capabilities *ignored,
- 			   int scope)
- {
-@@ -205,9 +231,19 @@ bool has_stage2_fwb_errata(const struct arm64_cpu_capabilities *ignored,
- 		}
- 
- 		if (fwb_broken) {
-+			if (__fwb_workaround_forced == FWB_WA_FORCED_OFF) {
-+				pr_info_once("Workaround for erratum #2701951 disabled by command-line option\n");
-+				return false;
-+			}
- 			pr_info_once("Stage-2 Force Write-Back disabled due to erratum #2701951\n");
- 			return true;
- 		}
-+
-+		/* Allow the commandline to override whatever firmware said */
-+		if (has_feature && __fwb_workaround_forced == FWB_WA_FORCED_ON) {
-+			pr_info_once("Workaround for erratum #2701951 enabled by command-line option\n");
-+			return true;
-+		}
- 	}
- 
- 	return false;
+1. Remoteproc changes (v2) to support the SLPI DSP in SDM845:
+https://lore.kernel.org/linux-remoteproc/20230327183736.496170-1-me@dylanvanassche.be/
+2. FastRPC changes (v2) to support the SLPI DSP in SDM845:
+https://lore.kernel.org/linux-arm-msm/20230327184204.498032-1-me@dylanvanassche.be/
+
+This serie does not depend on any serie, but all of them are necessary
+to enable the feature in the end.
+
+* Changelog *
+
+Changes in v2:
+
+- Removed double blank lines
+- Enforce alphabetically order for 'slpi_pas'
+- Reordered 'slpi_pas' properties
+- Fixed FastRPC syntax
+- Dropped qcom,assign-all-mem property as this is not necessary anymore
+
+Changes in v3:
+
+- Dropped FastRPC dt-bindings change, unnecessary to relax the bindings
+- Add reg property to compute-cb for the SLPI on SDM845
+
+Kind regards,
+Dylan Van Assche
+
+Dylan Van Assche (4):
+  dts: arm64: qcom: sdm845: add SLPI remoteproc
+  dts: arm64: qcom: sdm845: add SLPI FastRPC support
+  dts: arm64: qcom: sdm845-oneplus: enable SLPI
+  dts: arm64: qcom: sdm845-shift-axolotl: enable SLPI
+
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |  5 ++
+ .../boot/dts/qcom/sdm845-shift-axolotl.dts    |  5 ++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 60 +++++++++++++++++++
+ 3 files changed, 70 insertions(+)
+
 -- 
 2.39.2
 
