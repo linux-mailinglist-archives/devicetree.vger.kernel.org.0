@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E11586CFCB9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5BF6CFCBC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbjC3Hae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58962 "EHLO
+        id S230336AbjC3Hav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:30:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbjC3Hab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:30:31 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88FD240DC
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:30:30 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id s13so10264573wmr.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:30:30 -0700 (PDT)
+        with ESMTP id S230217AbjC3Hau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:30:50 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95E864693
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:30:48 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id c29so23371730lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680161429;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=R9Sq3GghZPSalrYUSlYEg5rtJO5siyHm45G17IspFvU=;
-        b=W8hTUnm3FJqGZsNDUkrS7U0/MDDiEvivsCWPAiKAiGV6gTQygCCgMMJLJBLIxNu/72
-         mTWPrPQ0wSDPuqljkL60qnzNbV5cQI3W+uAaNjGeB58RVX1W+dyedU45zyjhDkxZK2Em
-         357vQSWIr0qJJaK3kSgE4akGJozICx3gYJTYrcoRlzBXsTrKP/3HsTOpoCjxzbxsBiam
-         pqTDwlWbQ17o1Xr/xaNJnFpImqaW3wRTz50MvER4tnEkH/mlu8FSo0LuhLDgRA2FBPiA
-         7X5sr37GoSALrAtRLsWzv7GYCeNqzNmF8vPkYq3zuhM4KxbUjUpFAN0OHXZdSBJEg/Ro
-         jZlA==
+        d=linaro.org; s=google; t=1680161447;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6ePev2vXiIgB78j8RZMlh8oFnWZXwF4zj7s3jKCDd2Q=;
+        b=idH5GZi7t+zdCK6XFxUczQMxOTmCS2hlZlqm5Oyh+OnxslFaIvG1o7aBLY9RwEaz1r
+         yy8f7uk9HoJEzbLBBQR+X6YLdbyIAx3d5oRHBWmIbi3pGV8HQlR1hjF2psEg1BstQvNG
+         oJwWTmtwB/Ki4zjwzL9QO/5vSuIfkUXfe1Fb7r2+LAWR4io19e262L4NiJTtNC5hupwd
+         FTGLrimFlJkh44Fv5lIRK8F2ypF3nY1ZMekzz6KlXjPsaAGdOaDF6MaKlFq+w8ug3by8
+         Jp63EIlqueGKm2dXOWtVUCIEz6M3BXjWCKl5M8bwG5ItdZ5TIx5fA/L12Lsbfs4dt+ON
+         7Xhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680161429;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R9Sq3GghZPSalrYUSlYEg5rtJO5siyHm45G17IspFvU=;
-        b=cwuNUFIVkuZ4q3Q9wp8jP5NnFy38+ezCbf9sFpKu2kXxWFR07p7WCbtzR/jQSRH1AB
-         mXCV2td9H3YHxRkGZ7G0k9mrPprpqbmsN1ZHAICtRrsHjCzcjPhB6NMZxPhr02ANCUv/
-         L4MI19JnrFM5SdOSzRRKV93wuaLmJaJeyWkBDKvFJwPUHHQ3C62S21d1g6U+dXMYU7yP
-         /FALmiIhwGZ4OUvjzC4A+ishOL9lW9oiV6r3o5I/Sv41e5zA83C3V2QXL9VLjqaJp2lk
-         OpOHoQ7qAs4EilYheBo54WBdC86wfmV5ZwE6BRibVXD1WGkwIHxSvFEUVlaU2G17ZF0i
-         M02Q==
-X-Gm-Message-State: AO0yUKXBqXAeVD/xT51NviLob+YpQnBwm9DJMXT7/NAehgAvaqB8paIq
-        xT+L5wAlUI+rKmwf4NyYOiZVnA==
-X-Google-Smtp-Source: AK7set/990zYxsUocwt1yD0MUSMosyecq1clA1R/FSRQa9PAXq4liR6KvZqs+/7FvnAVteYWRkrvFA==
-X-Received: by 2002:a1c:7406:0:b0:3ed:320a:3721 with SMTP id p6-20020a1c7406000000b003ed320a3721mr17989911wmc.22.1680161428900;
-        Thu, 30 Mar 2023 00:30:28 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f? ([2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c4f8200b003ef5e5f93f5sm5068457wmq.19.2023.03.30.00.30.27
+        d=1e100.net; s=20210112; t=1680161447;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ePev2vXiIgB78j8RZMlh8oFnWZXwF4zj7s3jKCDd2Q=;
+        b=uLviA1Y0Nl//JvNWdZ1O/EJP5EXWHXn+wCihqOy6BDW4Iz+htEXHxJgxt3pQFqMp83
+         5MVVAr/Fi+BJEVkKMYQgLxXHNJKvmp5R7Aw7HPg/2GTjhVcRfzSYfs4Ldn4knlefzEOu
+         m2McHg/Kt7lfHMcYZox7SpllX2fsmrDEPpgB439IBeVuyeHu60dwgvV414pDFhBheC55
+         owtmVp4UQWZarcYaIAmBDj7z7zOjChO8R9wr1FpCnJutDwKQBdlf+dQ9lVdIuDA1g3mc
+         Oqi4EKyU1Wqc2811ItREADu00atC0C4tLobVtuvhL8dQAmoDkUc8XZN+Ov5DbeIaltp/
+         hPqA==
+X-Gm-Message-State: AAQBX9fMKScLsbpWoBf5BzW7Zzyh5mvJ0v06PEQDYpi50fpfr6pjq4KS
+        DLQ97sR30b186WxfIWyAPGvMDQ==
+X-Google-Smtp-Source: AKy350Yu2lXRZoxxaHjgaEkV7zH6CCNC1El5G29BfjKpUdlV+ksDUhprrVcdISepPgR7i+YQFsBwbw==
+X-Received: by 2002:ac2:520c:0:b0:4a4:68b7:deab with SMTP id a12-20020ac2520c000000b004a468b7deabmr1467167lfl.7.1680161446819;
+        Thu, 30 Mar 2023 00:30:46 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id h1-20020ac250c1000000b004e83f386878sm5746221lfm.153.2023.03.30.00.30.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 00:30:28 -0700 (PDT)
-Message-ID: <45c5597b-628e-f1ee-cd48-9ce5291765ee@linaro.org>
-Date:   Thu, 30 Mar 2023 09:30:27 +0200
+        Thu, 30 Mar 2023 00:30:46 -0700 (PDT)
+Message-ID: <0803c821-4206-89b4-f5e5-531bd6548df0@linaro.org>
+Date:   Thu, 30 Mar 2023 09:30:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: serial: Drop unneeded quotes
+ Thunderbird/102.9.0
+Subject: Re: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
+To:     Brenda Streiff <brenda.streiff@ni.com>
+Cc:     Gratian Crisan <gratian.crisan@ni.com>,
+        Jason Smith <jason.smith@ni.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Hammer Hsieh <hammerh0314@gmail.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230327170137.4104272-1-robh@kernel.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230327170137.4104272-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230329154235.615349-1-brenda.streiff@ni.com>
+ <20230329154235.615349-3-brenda.streiff@ni.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230329154235.615349-3-brenda.streiff@ni.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -91,28 +81,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 19:01, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++--
+On 29/03/2023 17:42, Brenda Streiff wrote:
+> The National Instruments (NI) 16550 is a 16550-like UART with larger
+> FIFOs and embedded RS-232/RS-485 transceiver control circuitry. This
+> patch adds a driver that can operate this UART, which is used for
+> onboard serial ports in several NI embedded controller designs.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
->   .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml     | 4 ++--
->   Documentation/devicetree/bindings/serial/renesas,em-uart.yaml | 4 ++--
->   Documentation/devicetree/bindings/serial/renesas,hscif.yaml   | 4 ++--
->   Documentation/devicetree/bindings/serial/renesas,sci.yaml     | 4 ++--
->   Documentation/devicetree/bindings/serial/renesas,scif.yaml    | 4 ++--
->   Documentation/devicetree/bindings/serial/renesas,scifa.yaml   | 4 ++--
->   Documentation/devicetree/bindings/serial/renesas,scifb.yaml   | 4 ++--
->   Documentation/devicetree/bindings/serial/serial.yaml          | 4 ++--
->   Documentation/devicetree/bindings/serial/sprd-uart.yaml       | 4 ++--
->   .../devicetree/bindings/serial/sunplus,sp7021-uart.yaml       | 4 ++--
->   11 files changed, 22 insertions(+), 22 deletions(-)
-> 
+> +
+> +static const struct acpi_device_id ni16550_acpi_match[] = {
+> +	{ "NIC7750",	(kernel_ulong_t)&nic7750 },
+> +	{ "NIC7772",	(kernel_ulong_t)&nic7772 },
+> +	{ "NIC792B",	(kernel_ulong_t)&nic792b },
+> +	{ "NIC7A69",	(kernel_ulong_t)&nic7a69 },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(acpi, ni16550_acpi_match);
 
-<snip>
+Looks like should spark warnings on allyesconfig with !ACPI.
+
+Best regards,
+Krzysztof
 
