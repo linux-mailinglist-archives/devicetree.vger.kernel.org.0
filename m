@@ -2,49 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E556D10C8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 23:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2D76D10ED
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 23:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbjC3VWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 17:22:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50154 "EHLO
+        id S229668AbjC3Ve3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 17:34:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbjC3VWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 17:22:53 -0400
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A234EEF89
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 14:22:33 -0700 (PDT)
-Received: (wp-smtpd smtp.wp.pl 16376 invoked from network); 30 Mar 2023 23:22:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1680211350; bh=g79xrgthvXz8TMVzNGmKJWY+SfQKcMDZEm7G845GCSs=;
-          h=From:To:Cc:Subject;
-          b=tKUuYOJ4uTF3QEtkkjklmSkFfjQAwCbQld0iozVXIgU2AKL4tmcymwbXeATDKnB9j
-           ukKJL+KxZCZwrFT2SGiqPQ/XnV2EZOe6OproNgwQSN1yOQW/D32KpnIB1xiXp5qo1y
-           NJnHRDqnhuxMqKQBkHhNKbR7XOHlZ50kGYB05Eu8=
-Received: from 79.184.247.17.ipv4.supernova.orange.pl (HELO LAPTOP-OLEK.home) (olek2@wp.pl@[79.184.247.17])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <linus.walleij@linaro.org>; 30 Mar 2023 23:22:30 +0200
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH 2/2] dt-bindings: pinctrl: xway: drop the deprecated compatible strings
-Date:   Thu, 30 Mar 2023 23:22:25 +0200
-Message-Id: <20230330212225.10214-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230330212225.10214-1-olek2@wp.pl>
-References: <20230330212225.10214-1-olek2@wp.pl>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                      
-X-WP-MailID: 541786faf83a8cda9f91d4ae700c2945
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [gZNE]                               
-X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        with ESMTP id S229508AbjC3Ve2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 17:34:28 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D790335B5;
+        Thu, 30 Mar 2023 14:34:27 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 5B925320094E;
+        Thu, 30 Mar 2023 17:34:24 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Thu, 30 Mar 2023 17:34:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1680212063; x=1680298463; bh=hp
+        uSAgqfUaqD/ysKyJQwTcBXNZjA8xYFCgAGQ8d1bL8=; b=vPTfmWAyebme5BY4p6
+        J4ucGHGxrN86sr2fRjD+KS3geiZl6TYAyvsUFTPJV9vgZm+YpnhnUAfkJuQyjcZ0
+        HsUAp7qWX2x1XpqS/6Avrs5R6vNIeD2d9e0BclI7l4+Xa85yS7RJ7d4zBfAPteQY
+        IqSl4R+T8FOxkEJWL3lxLJOTpvEslf10gn2QFIk8BUptkGAC1qgV7vk6wPe9Et7X
+        9jJquc17UpAUSDRMARTnPuIVSBD/q6atWEbNYS/Tde0YqW4Rrc97T0IXg06IROeW
+        rxADsu62hJFwbM1wo85cXh3YgY7X/taN2HPLNJWSvyzj1m98x8wrioQ3DIfdaF4V
+        2+0Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1680212063; x=1680298463; bh=hpuSAgqfUaqD/
+        ysKyJQwTcBXNZjA8xYFCgAGQ8d1bL8=; b=ZRndJORL0aLLZMdezjvfovMzjPjgD
+        /SKaR2niKqMry7R8FNFZGjh6xUJlJtOb6rhudt5wAj1K9u1sYHvrZpeqlEDxoKFj
+        CTdphfMnjq0IF2XCIbcOBtcqdVkl5LClq/oTtAv9Q5Ek04a3t4xNLzeteriILCbR
+        wFgeLl4JeUAV7iqsnUT3fP1OZ96KKTukwHGEcPp2mXXWnfg6M875wmv6yXpM9OSy
+        0Yx6bCmmskVhOyGFO/I5Pf+60RdcF2NNRAmXxzKR1nCNajILfNoGjY5Flxnbcdz0
+        NKA2Ph3MOwJlhjfrjqwQjxoLGItm1DUYfekI3VnjvQGVBMEAu6735U2nQ==
+X-ME-Sender: <xms:XwAmZHnJYWMFJmQOZtTITumy-EB4NgW6rRQXnIGt1NOfbyYHegs37w>
+    <xme:XwAmZK2aJx29Qpw-cq6bhpawMaG2yq2NHtOziL7jTMDJDb85mCeqym62zH29mwsxN
+    rKC1pGPxWAiawX49cA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehledgjeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:XwAmZNqhsJPQicXWZvvxtikvnPQm5OVNl49IFAyrhhZRaiF1V9y9SA>
+    <xmx:XwAmZPkxehnn8E_iSkk91ZnWcfXm8zZDhRls891efa4l0d1EpjMgMA>
+    <xmx:XwAmZF3BvN2SH4R7BPA2b39JA-WzPFTCtSkq0rWw-BoDi1Rm7vRXsw>
+    <xmx:XwAmZE3yMMFvvLb-B40Fm_jatYudGBfd4G6AXs6SphEee8iJQan4tQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 01C80B60086; Thu, 30 Mar 2023 17:34:22 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-238-g746678b8b6-fm-20230329.001-g746678b8
+Mime-Version: 1.0
+Message-Id: <6ca5941a-8803-477d-8b40-17292decc5af@app.fastmail.com>
+In-Reply-To: <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Date:   Thu, 30 Mar 2023 23:34:02 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        "Andrew Jones" <ajones@ventanamicro.com>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "Samuel Holland" <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org
+Cc:     "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Biju Das" <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function pointers
+ for cache management
+Content-Type: text/plain
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,77 +98,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This code are marked as deprecated since kernel 4.5[1]. Downstream OpenWRT
-and upstream switched to the new string compatible 7 years ago. The old
-compatible strings can safely be dropped.
+On Thu, Mar 30, 2023, at 22:42, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Currently, selecting which CMOs to use on a given platform is done using
+> and ALTERNATIVE_X() macro. This was manageable when there were just two
+> CMO implementations, but now that there are more and more platforms coming
+> needing custom CMOs, the use of the ALTERNATIVE_X() macro is unmanageable.
+>
+> To avoid such issues this patch switches to use of function pointers
+> instead of ALTERNATIVE_X() macro for cache management (the only drawback
+> being performance over the previous approach).
+>
+> void (*clean_range)(unsigned long addr, unsigned long size);
+> void (*inv_range)(unsigned long addr, unsigned long size);
+> void (*flush_range)(unsigned long addr, unsigned long size);
+>
+> The above function pointers are provided to be overridden for platforms
+> needing CMO.
+>
+> Convert ZICBOM and T-HEAD CMO to use function pointers.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-[1] commit be14811c03cf ("pinctrl/lantiq: introduce new dedicated devicetree bindings")
+This is looking pretty good. There are a few things that I
+still see sticking out, and I think I've mentioned some of 
+them before, but don't remember if there was a reason for
+doing it like this:
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- .../bindings/pinctrl/lantiq,pinctrl-xway.txt  | 35 +------------------
- 1 file changed, 1 insertion(+), 34 deletions(-)
+> +#ifdef CONFIG_ERRATA_THEAD_CMO
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/lantiq,pinctrl-xway.txt b/Documentation/devicetree/bindings/pinctrl/lantiq,pinctrl-xway.txt
-index 4658f105fa09..6bd9bc61becb 100644
---- a/Documentation/devicetree/bindings/pinctrl/lantiq,pinctrl-xway.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/lantiq,pinctrl-xway.txt
-@@ -1,11 +1,7 @@
- Lantiq XWAY pinmux controller
- 
- Required properties:
--- compatible: "lantiq,pinctrl-xway", (DEPRECATED: Use "lantiq,pinctrl-danube")
--	      "lantiq,pinctrl-xr9", (DEPRECATED: Use "lantiq,xrx100-pinctrl" or
--					"lantiq,xrx200-pinctrl")
--	      "lantiq,pinctrl-ase", (DEPRECATED: Use "lantiq,ase-pinctrl")
--	      "lantiq,<chip>-pinctrl", where <chip> is:
-+- compatible:	"lantiq,<chip>-pinctrl", where <chip> is:
- 		"ase" (XWAY AMAZON Family)
- 		"danube" (XWAY DANUBE Family)
- 		"xrx100" (XWAY xRX100 Family)
-@@ -45,29 +41,6 @@ Required subnode-properties:
- 
- Valid values for group and function names:
- 
--XWAY: (DEPRECATED: Use DANUBE)
--  mux groups:
--    exin0, exin1, exin2, jtag, ebu a23, ebu a24, ebu a25, ebu clk, ebu cs1,
--    ebu wait, nand ale, nand cs1, nand cle, spi, spi_cs1, spi_cs2, spi_cs3,
--    spi_cs4, spi_cs5, spi_cs6, asc0, asc0 cts rts, stp, nmi, gpt1, gpt2,
--    gpt3, clkout0, clkout1, clkout2, clkout3, gnt1, gnt2, gnt3, req1, req2,
--    req3
--
--  functions:
--    spi, asc, cgu, jtag, exin, stp, gpt, nmi, pci, ebu
--
--XR9: ( DEPRECATED: Use xRX100/xRX200)
--  mux groups:
--    exin0, exin1, exin2, exin3, exin4, jtag, ebu a23, ebu a24, ebu a25,
--    ebu clk, ebu cs1, ebu wait, nand ale, nand cs1, nand cle, nand rdy,
--    nand rd, spi, spi_cs1, spi_cs2, spi_cs3, spi_cs4, spi_cs5, spi_cs6,
--    asc0, asc0 cts rts, stp, nmi, gpt1, gpt2, gpt3, clkout0, clkout1,
--    clkout2, clkout3, gnt1, gnt2, gnt3, gnt4, req1, req2, req3, req4, mdio,
--    gphy0 led0, gphy0 led1, gphy0 led2, gphy1 led0, gphy1 led1, gphy1 led2
--
--  functions:
--    spi, asc, cgu, jtag, exin, stp, gpt, nmi, pci, ebu, mdio, gphy
--
- AMAZON:
-   mux groups:
-     exin0, exin1, exin2, jtag, spi_di, spi_do, spi_clk, spi_cs1, spi_cs2,
-@@ -139,12 +112,6 @@ Optional subnode-properties:
-     0: none, 1: down, 2: up.
- - lantiq,open-drain: Boolean, enables open-drain on the defined pin.
- 
--Valid values for XWAY pin names: (DEPRECATED: Use DANUBE)
--  Pinconf pins can be referenced via the names io0-io31.
--
--Valid values for XR9 pin names: (DEPRECATED: Use xrX100/xRX200)
--  Pinconf pins can be referenced via the names io0-io55.
--
- Valid values for AMAZON pin names:
-   Pinconf pins can be referenced via the names io0-io31.
- 
--- 
-2.30.2
+I would rename this to not call this an 'ERRATA' but
+just make it a driver. Not important though, and there
+was probably a reason you did it like this.
 
+> +extern struct riscv_cache_ops noncoherent_cache_ops;
+> +
+> +void riscv_noncoherent_register_cache_ops(const struct riscv_cache_ops 
+> *ops);
+> +
+> +static inline void riscv_dma_noncoherent_clean(void *vaddr, size_t 
+> size)
+> +{
+> +	if (noncoherent_cache_ops.clean_range) {
+> +		unsigned long addr = (unsigned long)vaddr;
+> +
+> +		noncoherent_cache_ops.clean_range(addr, size);
+> +	}
+> +}
+
+The type case should not be necessary here. Instead I would 
+make the callbacks use 'void *' as well, not 'unsigned long'.
+
+It's possible that some future cache controller driver requires
+passing physical addresses, as is common for last level cache,
+but as long as all drivers pass virtual addresses, it's easier
+to do the phys_to_virt() in common code.
+
+It also seems wrong to have the fallback be to do nothing
+when the pointer is NULL, since that cannot actually work
+when a device is not cache coherent.
+
+I would either initialize the function pointer to the
+zicbom version and remove the NULL check, or keep the
+pointer NULL and have an explicit
+'else zicbom_clean_range()' fallback.
+
+> +static void zicbom_register_cmo_ops(void)
+> +{
+> +	riscv_noncoherent_register_cache_ops(&zicbom_cmo_ops);
+> +}
+> +#else
+> +static void zicbom_register_cmo_ops(void) {}
+> +#endif
+
+As far as I recall, the #else path here was needed previously
+to work around a binutils dependency, but with the current
+code, it should be possible to just always enable
+CONFIG_RISCV_ISA_ZICBOM when RISCV_DMA_NONCOHERENT is used.
+
+     Arnd
