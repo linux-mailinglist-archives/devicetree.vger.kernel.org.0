@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC4C26CFD5B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A0C6CFD6C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbjC3Hva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:51:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54092 "EHLO
+        id S229665AbjC3Hyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjC3HvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:51:14 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAB67286
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:51:11 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id bi9so23377847lfb.12
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:51:11 -0700 (PDT)
+        with ESMTP id S229584AbjC3Hyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:54:44 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0918810A
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:54:43 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id g17so23428150lfv.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:54:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680162669;
+        d=linaro.org; s=google; t=1680162881;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p5JIbgE4mWmLEPi3Y22j+UqX8dqtBXqktYNQxfeYmYo=;
-        b=AoL2KiCDYrHyxJFF0E2edmitIJYmey+uQaTWcs8HIc8SoIKya8Molw5zfDIsaj1xDN
-         /eghJFpFwiOUFGcfPzSUOCb5y8+6adUMPZKTg6qR4OZKZkdpZUIfMyarWuIrGg5uUOix
-         Rvi8NJkalZU0BUmrVMG7XxfPzReYK/nZX3Y1Xn4Y1/GnHaUMxnmeUufoUMa43VmnansJ
-         em0sYNNUemmmAYXajlkUkIckZL21fJNFzcxsR8rr903aSMCaewo9daCpCv14w1QweqZI
-         365eXJoCPNgeZb3QOpQtHnDh//5GsmoO1iJXuUtrctYvTLkqmmPfUA56jNyAhAlkb5sI
-         4erA==
+        bh=5ddhkThE+AJAUa2yi3Fg+1zmLo5PqMkQ+wXEwb5TWLE=;
+        b=bR8Nf7KYA3VPzvR4BPVFeYVAGYEgqymw2XyOLw45rnG2lOtFTlgJtbq5xg09VqonHu
+         2SrxQdrOtWf+h0mtFqFF+Itxxp/ja2S6YeSnIoqnLXddgL+iqWGVr1tR7QyQDt5mf4Xw
+         dg9QfHkZpJoz98LsewRBaGemOpEcODluIo8TJQKKChn8TGpeUwN7GLCFRZVABjQ/DsGR
+         eGtfr4Z6VBTybP3NwMTzMXbKCzJ0TWU8XhtxyjJubsCXcsARO/Fkz5FxizjqGjwfTgQ+
+         r+IcMFq3p/goU8S0k04L8pa/HQEHBNyEgKL5QQ2YS8RGozbb/42YMurlNzsXM+963+tk
+         yZiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680162669;
+        d=1e100.net; s=20210112; t=1680162881;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p5JIbgE4mWmLEPi3Y22j+UqX8dqtBXqktYNQxfeYmYo=;
-        b=vYfLowBay7Db5hn1TEpjinmMf0KIfoOZhW+kAtQGbGATttOd6SdHd5msBK6iu4Deu3
-         PBOvVFyt1PwLGD4R2WbueJ8jaoMJSuK2VwanD92o3S47LGyqVGMfWghSYT8JP5vTT1aa
-         5zYzfb4Rh7P937KFTSI37O8XK4RkvdYb1oUVlDAmIgJncaUk5ZKrWwqAbE0HImlNT4Hn
-         JrBSMQzJHm9fZSO9o7z5oyLSZdJFDEpC7zVXNTgbHcry41g2KamolUlwfe50h3euPhiZ
-         c0t6AZxp5xEK1h8botEyTm7+vvSKQiygfDgWVkXGPQojQCb1YLKkTwL8Gok3Zd0C9QK8
-         8RbQ==
-X-Gm-Message-State: AAQBX9e108+j3tP38MriacFaqhi4Hgl2YXTpn/gSdLYAZ7+B6TRJqeyV
-        gV6uQd7EzSY+AyyRH663RjuOaA==
-X-Google-Smtp-Source: AKy350ZGwBiegowDdHzkcTznbvKIEMX0rH2V2MxUwjDFRRAeA/N4NsmT8GOmCC3U8yRrE0hK8xQn7g==
-X-Received: by 2002:a05:6512:249:b0:4db:38aa:a2f4 with SMTP id b9-20020a056512024900b004db38aaa2f4mr6685203lfo.14.1680162669380;
-        Thu, 30 Mar 2023 00:51:09 -0700 (PDT)
+        bh=5ddhkThE+AJAUa2yi3Fg+1zmLo5PqMkQ+wXEwb5TWLE=;
+        b=5KOOdDj+bUpvUjcoYXxFf8xXOtLnnpBZv7e7kDgcamg+NEOjmN4s5M2CwbWSLWfEhV
+         v5lFIUjAzvaDZLBz6S3aEkbF3vncze9rh6bH2v+mFmboMAxOiaBSIdgT4Bn0uOIgOYyg
+         F3RQzWTcJDmHMkmL25gpntPsde8HEfxTS8ZzKPuSC2l/eYgDBnsOww+Q4Z6oFwJcLs+x
+         +Q0er1KLst0PyM27hbOqKbg1Z1M1EgGxrJBUV2KDMUNS9WkpqGWTFNfNYfymW/lMooYL
+         gXT7FxDC82OiwtSr9HsbvSt8pWs1FLXGuoHC3fRSsnY5FTtDxexYtD8ms6mVGdUudHVQ
+         9IMg==
+X-Gm-Message-State: AAQBX9evmwfOK1w4iGnW1r2X9wtqlUNaRDIcnipghPCtgNKdsH81o3rd
+        eGjsFuO4lwd6OxwuohM0sHgukA==
+X-Google-Smtp-Source: AKy350ZitQbsiP2xHB7OfFJ3miJV9AvHp04k7JYMEuzI51ar2hQwAAiwR4VuF1AjANXVlrAS+uKMUw==
+X-Received: by 2002:a19:7419:0:b0:4cb:280b:33c9 with SMTP id v25-20020a197419000000b004cb280b33c9mr6769371lfe.24.1680162881266;
+        Thu, 30 Mar 2023 00:54:41 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n22-20020a195516000000b004eafac09d8esm3169103lfe.240.2023.03.30.00.51.08
+        by smtp.gmail.com with ESMTPSA id c26-20020ac244ba000000b004dc4feeb7c6sm5767060lfm.65.2023.03.30.00.54.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 00:51:09 -0700 (PDT)
-Message-ID: <9343a6d4-8cc4-2733-7e46-07f73bb0b4b4@linaro.org>
-Date:   Thu, 30 Mar 2023 09:51:07 +0200
+        Thu, 30 Mar 2023 00:54:40 -0700 (PDT)
+Message-ID: <cc13d781-f6d8-0cb9-17e2-0a6089f60fd2@linaro.org>
+Date:   Thu, 30 Mar 2023 09:54:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v1 6/8] dt-bindings: arm: Add support for TPDM CMB MSR
- register
+Subject: Re: [PATCH v1 8/8] dt-bindings: arm: Add support for TPDM CMB element
+ size
 Content-Language: en-US
 To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
         Alexander Shishkin <alexander.shishkin@linux.intel.com>,
@@ -75,9 +75,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Tao Zhang <quic_taozha@quicinc.com>,
         Hao Zhang <quic_hazha@quicinc.com>
 References: <20230329084744.5705-1-quic_jinlmao@quicinc.com>
- <20230329084744.5705-7-quic_jinlmao@quicinc.com>
+ <20230329084744.5705-9-quic_jinlmao@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230329084744.5705-7-quic_jinlmao@quicinc.com>
+In-Reply-To: <20230329084744.5705-9-quic_jinlmao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -91,14 +91,66 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/03/2023 10:47, Mao Jinlong wrote:
-> Add property "qcom,cmb_msr_num" to support CMB MSR(mux select register)
-> for TPDM. It specifies the number of CMB MSR registers supported by
-> the TDPM.
+> Add property "qcom,cmb-elem-size" to support CMB element for TPDM.
+> The associated aggregator will read this size before it is enabled.
+> CMB element size currently only supports 8-bit, 32-bit and 64-bit.
 > 
 > Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>  .../bindings/arm/qcom,coresight-tpdm.yaml        | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+> index 283dfb39d46f..c5169de81e58 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+> @@ -53,6 +53,14 @@ properties:
+>      minimum: 32
+>      maximum: 64
+>  
+> +  qcom,cmb-element-size:
 
+s/size/bits/
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +    description:
+> +      Specifies the CMB (Continuous multi-bit) element size supported by
+> +      the monitor. The associated aggregator will read this size before it
+> +      is enabled. CMB element size currently supports 8-bit, 32-bit, 64-bit.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [8, 32, 64]
+> +
+>    qcom,dsb_msr_num:
+>      description:
+>        Specifies the number of DSB(Discrete Single Bit) MSR(mux select register)
+> @@ -95,6 +103,12 @@ required:
+>    - clocks
+>    - clock-names
+>  
+> +anyOf:
+> +  - required:
+> +      - qcom,dsb_msr_num
+
+There is no such property.
+
+> +  - required:
+> +      - qcom,cmb-msr-num
+
+Why this is part of this patch?
+
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -105,6 +119,8 @@ examples:
+>        reg = <0x0684c000 0x1000>;
+>  
+>        qcom,dsb-element-size = <32>;
+> +      qcom,cmb-element-size = <32>;
+> +
+>        qcom,dsb_msr_num = <16>;
+>        qcom,cmb-msr-num = <6>;
+>  
 
 Best regards,
 Krzysztof
