@@ -2,112 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55D2A6D08F3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 16:59:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0A3F6D08FD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 17:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232574AbjC3O74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 10:59:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45796 "EHLO
+        id S232641AbjC3PCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 11:02:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232614AbjC3O7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 10:59:51 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9610FC16D;
-        Thu, 30 Mar 2023 07:59:34 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32UExMmc005030;
-        Thu, 30 Mar 2023 09:59:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680188362;
-        bh=8DZkW36nrbs0H4pGSSHQDlmnjQ7hcArGjyRNSZ2ArI0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=DJURShdBb3VPgHDdHzvooZv7J6L1mjzLtc/nkV4akeS/sg06lVKK+K3UR968fWf8D
-         kJ7VwOwnStbpJc0DxY8ZrGPDFUMVyWEXE+89TFRaS+2NZhXoQeDdj9j9bMAGrQysb7
-         uA/oCBpKtZKlybRezd3d9x2GWqX/UEUT7Aq/oK7c=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32UExLqB049658
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 30 Mar 2023 09:59:21 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 30
- Mar 2023 09:59:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 30 Mar 2023 09:59:21 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32UExLdO128517;
-        Thu, 30 Mar 2023 09:59:21 -0500
-Date:   Thu, 30 Mar 2023 09:59:21 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232607AbjC3PCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 11:02:21 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE2F3A2;
+        Thu, 30 Mar 2023 08:02:19 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id AECEA20378;
+        Thu, 30 Mar 2023 17:02:17 +0200 (CEST)
+Date:   Thu, 30 Mar 2023 17:02:13 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH -next 0/2] arm64: dts: ti: Fixes for Beagleplay SD
-Message-ID: <20230330145921.5pnmcjgwl5wllhvq@await>
-References: <20230330105921.3639185-1-vigneshr@ti.com>
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: bridge: sn65dsi83: Add DSI
+ video mode
+Message-ID: <ZCWkdc+x0LXDSohj@francesco-nb.int.toradex.com>
+References: <20230330101752.429804-1-francesco@dolcini.it>
+ <20230330101752.429804-2-francesco@dolcini.it>
+ <CAMty3ZAQPEnCgj9r+tsuqiOzRzHPnKSEXcDqE7LKHH16Zu2Wvw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230330105921.3639185-1-vigneshr@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMty3ZAQPEnCgj9r+tsuqiOzRzHPnKSEXcDqE7LKHH16Zu2Wvw@mail.gmail.com>
+X-Spam-Status: No, score=-0.0 required=5.0 tests=SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:29-20230330, Vignesh Raghavendra wrote:
-> Couple of fixups on top of ti-next branch:
+On Thu, Mar 30, 2023 at 07:56:26PM +0530, Jagan Teki wrote:
+> On Thu, Mar 30, 2023 at 3:48 PM Francesco Dolcini <francesco@dolcini.it> wrote:
+> >
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> >
+> > SN65DSI8[34] device supports burst video mode and non-burst video mode
+> > with sync events or with sync pulses packet transmission as described in
+> > the DSI specification.
+> >
+> > Add property to select the expected mode, this allows for example to
+> > select a mode that is compatible with the DSI host interface.
+> >
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml  | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > index 48a97bb3e2e0..ebee16726b02 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > @@ -35,6 +35,14 @@ properties:
+> >    vcc-supply:
+> >      description: A 1.8V power supply (see regulator/regulator.yaml).
+> >
+> > +  dsi-video-mode:
+> > +    description: |
+> > +      0 - burst-mode
+> > +      1 - non-burst with sync event
+> > +      2 - non-burst with sync pulse
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1, 2]
 > 
-> The SD supply on Beagle is really coming from PMIC LDO1 even though its
-> controllable via GPIO, hence fix the DT accordingly, this also means
-> PMIC regulator drivers need to be built-in to allow SD card rootfs
-> 
-> Nishanth,
-> Better to squash into respetive commits if possible
-> 
-> Vignesh Raghavendra (2):
->   arm64: configs: defconfig: Make TPS65219 regulator built-in
->   arm64: dts: ti: k3-am625-beagleplay: Fixup SD card supply regulator
-> 
->  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 2 +-
->  arch/arm64/configs/defconfig                   | 4 ++--
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> -- 
-> 2.40.0
-> 
-Thanks Vignesh, I will do the fixup.
+> I'm thinking this can go to dsi common code since the video modes are
+> common across all controllers and make the core initialize the default
+> and update if any sink devices are willing to change the modes. Sound
+> like a big move but worth useful.
 
-Chatting with Roger offline, also realized that the board circuitry will
-need the following change as it is using a 1/3 voltage divider on SoC's
-USB1 as well: I will add this fixup while at it.
+Not sure I understood where do you want to move this.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index f75e79e54dfc..a4eb54722743 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -484,6 +484,7 @@ &usb0 {
- };
- 
- &usbss1 {
-+	ti,vbus-divider;
- 	status = "okay";
- };
- 
+In any case this is something about the display side of the DSI video
+connection, with the bridge as a special case, not about the controller.
+To my understanding the controller is supposed to support all the modes.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Francesco
+
