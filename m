@@ -2,90 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB59C6D0CAD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 19:23:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F4946D0CC4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 19:28:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232353AbjC3RXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 13:23:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54868 "EHLO
+        id S232320AbjC3R2v convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Mar 2023 13:28:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232299AbjC3RW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 13:22:56 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 720E2E05A;
-        Thu, 30 Mar 2023 10:22:52 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id l27so19866530wrb.2;
-        Thu, 30 Mar 2023 10:22:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680196971;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pPJs63vkmES77vLWP6h36VSVcoJgnvHBO16dXz7aLLA=;
-        b=HXRk0gSjc7UzTeVlVScMI/bFzbgMX6Yx0jQ7+4jjV6DbiTYXpmzqrCfaC6n/XV5O1s
-         GTmmS93u4AXEG/2sSwLT0vXUqxiJ8DO6xBkmyY3kWOQgjtA1yZr/x0LSK9l0j01p0U5U
-         CWV95X1Lbaur4n4ym0ubz4jziweW0xxdp+Xg9jblSMmG9Pu70RpkNGFWxGr1pYMJu55J
-         FC5/CEsyB7kDishxKTQILkUpwj24mwr/qxifNx+6eZcTxEjXTXokLd71O7ffNfjP1z2Y
-         Wy2VW9ADXsVVW/lCjhTPZ2gvKUUhp+ErKtO0jvW+Hj0JLgkUzyiqpyilqKwOYXA0+tzK
-         IlPg==
+        with ESMTP id S232223AbjC3R2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 13:28:50 -0400
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99D8CDF9;
+        Thu, 30 Mar 2023 10:28:49 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id y4so79505768edo.2;
+        Thu, 30 Mar 2023 10:28:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680196971;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pPJs63vkmES77vLWP6h36VSVcoJgnvHBO16dXz7aLLA=;
-        b=5awsRaPBltqL1GMGhQLZHB3W5SRcLb8MLhRSWVYUgmdDbfsHgQNvSq4KpBFKrP1RjJ
-         j4sKybb0S+LMl5vNrdKf+Z5wQtotff+tuGI/OGm3KOLHf7sJbwfDBH5ifTNuytp/GgXH
-         mSobbOTYOk5JG8Ucg5ByJ4ppaL1LV0xAGzbSMXwnjSENQZQD/VKW3VQcgNwsKlvRVKCx
-         cedOh4jR9duu5wzEw+hAthHn/rcQwFa4i4UuYyD6qyBb9LeJop7awQ9IISj0jPPwxO3Q
-         ZwV17K2CC0wOyWv3IQSvapm4lASRpBrHHWM9OE5dl4yWHggVUqrGFyXcWflChMQ24pHF
-         0uHA==
-X-Gm-Message-State: AAQBX9cZKBXPpv6SAH8BO2bacOeERfl+BXTRLXxRBY4Y8hWbA7dDquz8
-        xiAevmkbZfEYavrhWuQ3pVw=
-X-Google-Smtp-Source: AKy350beiItDOkhHiEWsPQhED+hZbp9xWyCi7X3rVDzlAVAglOScC+nn76KoyGNSMhG9Vj0f6PhHGA==
-X-Received: by 2002:a5d:66ca:0:b0:2d3:bde8:9ff with SMTP id k10-20020a5d66ca000000b002d3bde809ffmr20716784wrw.34.1680196970778;
-        Thu, 30 Mar 2023 10:22:50 -0700 (PDT)
-Received: from [192.168.1.135] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id a18-20020a5d4d52000000b002d1e49cff35sm33258678wru.40.2023.03.30.10.22.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 10:22:49 -0700 (PDT)
-Message-ID: <5e929f59-7565-25c1-51af-ccb346a06036@gmail.com>
-Date:   Thu, 30 Mar 2023 19:22:48 +0200
+        d=1e100.net; s=20210112; t=1680197328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/8hXWy6c7o0Kr1iLcvn9+6HR84nHwK24sk7KgE0uVSc=;
+        b=Y87FxttZtH+8VmlwVn3GRht7KHPnQYOUH/Nakoi38gK5mXSmB8IyMMfH1sePUN9yIn
+         Hy1QLLsk+mwtoepULKT4kbDGg4ZIi9xJOCq/8sLCkLAYH8Xkufx9gHslG/NMNf60vKXW
+         X50R2y+j8PBBmHY2Vi6voxYELFR40swSOac9Yhk55bhkJw/SI/VxuX1PRpND4Zbz4l0H
+         8V6asgQkotYAfsNGGFDjhGxiEvxvpns2/JdwflUCc/xwFPToiRQxmAtPEj7j67a1LPjI
+         J8vBlQSrthhRzho6DV2SbX57LqUzBPVt6ydnhE0KB0EnzOIsWdEKkm+Y4kof8fKI05Hk
+         Z1UA==
+X-Gm-Message-State: AAQBX9e4vdRPEP7JHZGHqrN/mun19HE+t7GDNkcQp+jacxul0JReTR5D
+        8HHEM0+FWPDr91HsHGzHNi+0/raEobvUi/iG7Cc=
+X-Google-Smtp-Source: AKy350bQ8RtXNV+REfnvhajyMgzLRFOmaz5LP0vGAlL2cL8esa5cPkycEr0oW6G/JKFOpqHUz2D0IyapN0eKe+G5X3o=
+X-Received: by 2002:a50:d6d6:0:b0:4fb:c8e3:1adb with SMTP id
+ l22-20020a50d6d6000000b004fbc8e31adbmr11657665edj.3.1680197328309; Thu, 30
+ Mar 2023 10:28:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 06/17] arm64: dts: mediatek: add pwrap support to
- mt8365 SoC
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+References: <20230310144726.1545543-1-robh@kernel.org> <CAJZ5v0hAeRa9xsp6-_um9j-9F6nf=PYuOC2mgMAmmUHP+9=RZg@mail.gmail.com>
+In-Reply-To: <CAJZ5v0hAeRa9xsp6-_um9j-9F6nf=PYuOC2mgMAmmUHP+9=RZg@mail.gmail.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Thu, 30 Mar 2023 19:28:37 +0200
+Message-ID: <CAJZ5v0i-Vum+js8c7fZJiQWwTBYByy2O=UtObR6GciLMLt41Nw@mail.gmail.com>
+Subject: Re: [PATCH] thermal: Use of_property_present() for testing DT
+ property presence
+To:     Rob Herring <robh@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
-References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com>
- <20230203-evk-board-support-v3-6-0003e80e0095@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230203-evk-board-support-v3-6-0003e80e0095@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        linux-omap@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,41 +71,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 27, 2023 at 7:13 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>
+> On Fri, Mar 10, 2023 at 3:48 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > It is preferred to use typed property access functions (i.e.
+> > of_property_read_<type> functions) rather than low-level
+> > of_get_property/of_find_property functions for reading properties. As
+> > part of this, convert of_get_property/of_find_property calls to the
+> > recently added of_property_present() helper when we just want to test
+> > for presence of a property and nothing more.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Daniel, are you going to apply this, or should I take it directly?
 
+Applied as 6.4 material, thanks!
 
-On 29/03/2023 10:54, Alexandre Mergnat wrote:
-> In order to use the PMIC, the pwrap support should be added
-> to allow communication between the SoC and the PMIC.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-
-Applied, thanks.
-
-> ---
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> index e018df6844f6..687011353f69 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> @@ -186,6 +186,18 @@ apmixedsys: syscon@1000c000 {
->   			#clock-cells = <1>;
->   		};
->   
-> +		pwrap: pwrap@1000d000 {
-> +			compatible = "mediatek,mt8365-pwrap";
-> +			reg = <0 0x1000d000 0 0x1000>;
-> +			reg-names = "pwrap";
-> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&infracfg CLK_IFR_PWRAP_SPI>,
-> +				 <&infracfg CLK_IFR_PMIC_AP>,
-> +				 <&infracfg CLK_IFR_PWRAP_SYS>,
-> +				 <&infracfg CLK_IFR_PWRAP_TMR>;
-> +			clock-names = "spi", "wrap", "sys", "tmr";
-> +		};
-> +
->   		keypad: keypad@10010000 {
->   			compatible = "mediatek,mt6779-keypad";
->   			reg = <0 0x10010000 0 0x1000>;
-> 
+> > ---
+> >  drivers/thermal/cpufreq_cooling.c                  | 2 +-
+> >  drivers/thermal/imx8mm_thermal.c                   | 2 +-
+> >  drivers/thermal/imx_thermal.c                      | 4 ++--
+> >  drivers/thermal/ti-soc-thermal/ti-thermal-common.c | 2 +-
+> >  4 files changed, 5 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/thermal/cpufreq_cooling.c b/drivers/thermal/cpufreq_cooling.c
+> > index 9f8b438fcf8f..4608555b7ec3 100644
+> > --- a/drivers/thermal/cpufreq_cooling.c
+> > +++ b/drivers/thermal/cpufreq_cooling.c
+> > @@ -633,7 +633,7 @@ of_cpufreq_cooling_register(struct cpufreq_policy *policy)
+> >                 return NULL;
+> >         }
+> >
+> > -       if (of_find_property(np, "#cooling-cells", NULL)) {
+> > +       if (of_property_present(np, "#cooling-cells")) {
+> >                 struct em_perf_domain *em = em_cpu_get(policy->cpu);
+> >
+> >                 cdev = __cpufreq_cooling_register(np, policy, em);
+> > diff --git a/drivers/thermal/imx8mm_thermal.c b/drivers/thermal/imx8mm_thermal.c
+> > index 72b5d6f319c1..334ce8e9830b 100644
+> > --- a/drivers/thermal/imx8mm_thermal.c
+> > +++ b/drivers/thermal/imx8mm_thermal.c
+> > @@ -282,7 +282,7 @@ static int imx8mm_tmu_probe_set_calib(struct platform_device *pdev,
+> >          * strongly recommended to update such old DTs to get correct
+> >          * temperature compensation values for each SoC.
+> >          */
+> > -       if (!of_find_property(pdev->dev.of_node, "nvmem-cells", NULL)) {
+> > +       if (!of_property_present(pdev->dev.of_node, "nvmem-cells")) {
+> >                 dev_warn(dev,
+> >                          "No OCOTP nvmem reference found, SoC-specific calibration not loaded. Please update your DT.\n");
+> >                 return 0;
+> > diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
+> > index fb0d5cab70af..77d6567a3f47 100644
+> > --- a/drivers/thermal/imx_thermal.c
+> > +++ b/drivers/thermal/imx_thermal.c
+> > @@ -594,7 +594,7 @@ static int imx_thermal_register_legacy_cooling(struct imx_thermal_data *data)
+> >
+> >         np = of_get_cpu_node(data->policy->cpu, NULL);
+> >
+> > -       if (!np || !of_find_property(np, "#cooling-cells", NULL)) {
+> > +       if (!np || !of_property_present(np, "#cooling-cells")) {
+> >                 data->cdev = cpufreq_cooling_register(data->policy);
+> >                 if (IS_ERR(data->cdev)) {
+> >                         ret = PTR_ERR(data->cdev);
+> > @@ -671,7 +671,7 @@ static int imx_thermal_probe(struct platform_device *pdev)
+> >
+> >         platform_set_drvdata(pdev, data);
+> >
+> > -       if (of_find_property(pdev->dev.of_node, "nvmem-cells", NULL)) {
+> > +       if (of_property_present(pdev->dev.of_node, "nvmem-cells")) {
+> >                 ret = imx_init_from_nvmem_cells(pdev);
+> >                 if (ret)
+> >                         return dev_err_probe(&pdev->dev, ret,
+> > diff --git a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
+> > index 8a9055bd376e..dace6591220e 100644
+> > --- a/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
+> > +++ b/drivers/thermal/ti-soc-thermal/ti-thermal-common.c
+> > @@ -223,7 +223,7 @@ int ti_thermal_register_cpu_cooling(struct ti_bandgap *bgp, int id)
+> >          * using DT, then it must be aware that the cooling device
+> >          * loading has to happen via cpufreq driver.
+> >          */
+> > -       if (of_find_property(np, "#thermal-sensor-cells", NULL))
+> > +       if (of_property_present(np, "#thermal-sensor-cells"))
+> >                 return 0;
+> >
+> >         data = ti_bandgap_get_sensor_data(bgp, id);
+> > --
+> > 2.39.2
+> >
