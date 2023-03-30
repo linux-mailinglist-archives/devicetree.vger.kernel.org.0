@@ -2,217 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE966D0CE2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 19:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11ADE6D0CEC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 19:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232506AbjC3Rd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 13:33:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40506 "EHLO
+        id S232474AbjC3Rer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 13:34:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232426AbjC3Rd2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 13:33:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D55E3B9;
-        Thu, 30 Mar 2023 10:33:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3E77F62153;
-        Thu, 30 Mar 2023 17:33:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E270AC4339B;
-        Thu, 30 Mar 2023 17:33:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680197605;
-        bh=TGL8LvZqyVxudl1AdJeWsuMMfvnopGjKpYxAOrJpzy4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Dz70YwfcOg3FFIMMjW+kEPATlY4d4XAso+J4MLhYZCUi8c1MQIJJR9ArlXFXtn6Po
-         WDizL1uUvqCozQYSQxSGBFe8f2C3v7pTaHXUTsCfRis0BTMRd8IM52D+aDAh9Uw5qR
-         XgTB12gaYTU5pfa5zfjNcQyNjaeZnmQO6wtjpPzGTBWflqEkFW6iJ5LEoEH8gGnONb
-         spzh9sQIoTBqSgYRgUeI+AX39IpoaQhu2Fgf7ZaBIwjoezxBbkSiwxrWPsQT9bbfXq
-         2ucqx2MUXVSPeRzhcnFHQUK5mJ43Erp/lrqjCN5cQA/Lm9E89eECLFThDkws4GiOJy
-         Dt5+Es/74O7+g==
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     conor@kernel.org,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Scott Wood <oss@buserror.net>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, linux-arm-msm@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v1] dt-bindings: move cache controller bindings to a cache directory
-Date:   Thu, 30 Mar 2023 18:32:56 +0100
-Message-Id: <20230330173255.109731-1-conor@kernel.org>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S232434AbjC3Req (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 13:34:46 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BE25FD9;
+        Thu, 30 Mar 2023 10:34:45 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id h17so19874022wrt.8;
+        Thu, 30 Mar 2023 10:34:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680197684;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aKcsS9RzCGec1E//KXDqFuO125uv1xUjBzG3GmeKye8=;
+        b=dNK04s5t55ImmI318ms5Q5vMBO6oGsmgyndXUx2HwP0KcT03d4xUijqy9mx9MidUla
+         oqnhQbfNk27Gv4tSdtc9YCZqR9JnL83ry2Ph5XWSSkjhQXQzOFZkN48wR8eRDOMVqh65
+         /zGwapoRE4auJbHsNTt+aaVjCyO+2Y6MvnMKQaTJ1ueAUS8b98TgPaTj3h6ntiSP9O9E
+         wp8IWnm1g7WKdojuXFP1+q7hApx+SmDNfWbnF7oeTOG3QljXLNb7fa35PK6kbTpwxdfT
+         JP53oDnNjI+IOjOMCylwS/S+SqPzybQh93EOpgRw1RW+NaIf/eupOZWphDnVZijch8Tt
+         3Bcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680197684;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aKcsS9RzCGec1E//KXDqFuO125uv1xUjBzG3GmeKye8=;
+        b=uZmkMh9lrozd/lEgN4DnsYzN8oMnGBnKXcaN+Lgic1ZbJZsW10uGsMIxEVJ0TA5yce
+         TPFEJU3tUDh9QNb/LVAO5+ZWG25NLr5yobBkEdJ0wufcB/QlcHapfzK0H59XtcRuWhem
+         zI/A/DNsrVlDOySa9/K0EWFwtPXk2cHYW52sQyE1QtuHsqMsB69+to8A2Iwy1zTJMiST
+         wT46BQZVo4Pm8Tq0Sr6t2HNWglp8RpPcz3lhylyJt4j/3AMg64PZXjkw24gZMyCHORCp
+         rbLQkTj4I+F362JJHNfSYiK3xHak1Zfwo5IAMKHVxqzLI14/v9C1OCgUSSv5WQpSp0Qv
+         YRUA==
+X-Gm-Message-State: AAQBX9d47/1iDPjNPHb6YdeoM+S5vb1k3v5z44oG9B2Aass22H0KqfiO
+        jwEZqfEeYVVXONlO+acGnR8=
+X-Google-Smtp-Source: AKy350aqPaeaRaIzLq93xnKLSwV1qqKksBHcvZw5qKcC1QEWi7p3c+y9jOvEB5VB6d4m4y575WhvRQ==
+X-Received: by 2002:a05:6000:ca:b0:2d6:5afe:7b91 with SMTP id q10-20020a05600000ca00b002d65afe7b91mr4918787wrx.30.1680197684064;
+        Thu, 30 Mar 2023 10:34:44 -0700 (PDT)
+Received: from [192.168.1.135] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id n13-20020a5d67cd000000b002e40d124460sm4189268wrw.97.2023.03.30.10.34.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 10:34:43 -0700 (PDT)
+Message-ID: <8c917be2-e15a-921f-aaa9-b8753d2463de@gmail.com>
+Date:   Thu, 30 Mar 2023 19:34:41 +0200
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7705; i=conor.dooley@microchip.com; h=from:subject; bh=U174NDGDWgBy3a6MdGCxngbevjl5LWTvwwYlkqVhFOU=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmqx4+/W3VH8+eXe3LXF4bmrv5kxlLtPcvql9nNt4wlY kpd3r0yHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZjIv0yGv8IP2QrkFOpE/P6p VB84cOlmx07PxwW2PffnVz7lMOBpL2Fk6Ej/scgw8P6E9Tv7D97XSDn+oOgS24HLK7mm2Vl9nW3 FyAsA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 16/17] arm64: dts: mediatek: fix systimer properties
+Content-Language: en-US
+To:     amergnat@baylibre.com, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com>
+ <20230203-evk-board-support-v3-16-0003e80e0095@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20230203-evk-board-support-v3-16-0003e80e0095@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-There's a bunch of bindings for (mostly l2) cache controllers
-scattered to the four winds, move them to a common directory.
-I renamed the freescale l2cache.txt file, as while that might make sense
-when the parent dir is fsl, it's confusing after the move.
-The two Marvell bindings have had a "marvell," prefix added to match
-their compatibles.
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../{memory-controllers => cache}/baikal,bt1-l2-ctl.yaml        | 2 +-
- .../{powerpc/fsl/l2cache.txt => cache/freescale-l2cache.txt}    | 0
- Documentation/devicetree/bindings/{arm => cache}/l2c2x0.yaml    | 2 +-
- .../{arm/mrvl/feroceon.txt => cache/marvell,feroceon-cache.txt} | 0
- .../{arm/mrvl/tauros2.txt => cache/marvell,tauros2-cache.txt}   | 0
- .../devicetree/bindings/{arm/msm => cache}/qcom,llcc.yaml       | 2 +-
- .../devicetree/bindings/{riscv => cache}/sifive,ccache0.yaml    | 2 +-
- .../socionext => cache}/socionext,uniphier-system-cache.yaml    | 2 +-
- MAINTAINERS                                                     | 2 ++
- 9 files changed, 7 insertions(+), 5 deletions(-)
- rename Documentation/devicetree/bindings/{memory-controllers => cache}/baikal,bt1-l2-ctl.yaml (95%)
- rename Documentation/devicetree/bindings/{powerpc/fsl/l2cache.txt => cache/freescale-l2cache.txt} (100%)
- rename Documentation/devicetree/bindings/{arm => cache}/l2c2x0.yaml (99%)
- rename Documentation/devicetree/bindings/{arm/mrvl/feroceon.txt => cache/marvell,feroceon-cache.txt} (100%)
- rename Documentation/devicetree/bindings/{arm/mrvl/tauros2.txt => cache/marvell,tauros2-cache.txt} (100%)
- rename Documentation/devicetree/bindings/{arm/msm => cache}/qcom,llcc.yaml (96%)
- rename Documentation/devicetree/bindings/{riscv => cache}/sifive,ccache0.yaml (98%)
- rename Documentation/devicetree/bindings/{arm/socionext => cache}/socionext,uniphier-system-cache.yaml (96%)
+On 29/03/2023 10:54, amergnat@baylibre.com wrote:
+> From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> 
+> MT8365 has a SYST timer (System Timer), therefore the compatible node
+> should be "mediatek,mt6765-timer" instead of "mediatek,mt6795-systimer"
+> (which corresponds to ARM/ARM64 System Timer).
+> 
+> Plus, register range should be 0x100 instead of 0x10.
+> 
+> Finally, interrupt polarity of systimer is LEVEL_HIGH.
+> 
+> Fix the above properties accordingly.
+> 
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml b/Documentation/devicetree/bindings/cache/baikal,bt1-l2-ctl.yaml
-similarity index 95%
-rename from Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml
-rename to Documentation/devicetree/bindings/cache/baikal,bt1-l2-ctl.yaml
-index 1fca282f64a2..ec4f367bc0b4 100644
---- a/Documentation/devicetree/bindings/memory-controllers/baikal,bt1-l2-ctl.yaml
-+++ b/Documentation/devicetree/bindings/cache/baikal,bt1-l2-ctl.yaml
-@@ -2,7 +2,7 @@
- # Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/memory-controllers/baikal,bt1-l2-ctl.yaml#
-+$id: http://devicetree.org/schemas/cache/baikal,bt1-l2-ctl.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Baikal-T1 L2-cache Control Block
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/l2cache.txt b/Documentation/devicetree/bindings/cache/freescale-l2cache.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/powerpc/fsl/l2cache.txt
-rename to Documentation/devicetree/bindings/cache/freescale-l2cache.txt
-diff --git a/Documentation/devicetree/bindings/arm/l2c2x0.yaml b/Documentation/devicetree/bindings/cache/l2c2x0.yaml
-similarity index 99%
-rename from Documentation/devicetree/bindings/arm/l2c2x0.yaml
-rename to Documentation/devicetree/bindings/cache/l2c2x0.yaml
-index 6b8f4d4fa580..d7840a5c4037 100644
---- a/Documentation/devicetree/bindings/arm/l2c2x0.yaml
-+++ b/Documentation/devicetree/bindings/cache/l2c2x0.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/arm/l2c2x0.yaml#
-+$id: http://devicetree.org/schemas/cache/l2c2x0.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: ARM L2 Cache Controller
-diff --git a/Documentation/devicetree/bindings/arm/mrvl/feroceon.txt b/Documentation/devicetree/bindings/cache/marvell,feroceon-cache.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/arm/mrvl/feroceon.txt
-rename to Documentation/devicetree/bindings/cache/marvell,feroceon-cache.txt
-diff --git a/Documentation/devicetree/bindings/arm/mrvl/tauros2.txt b/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/arm/mrvl/tauros2.txt
-rename to Documentation/devicetree/bindings/cache/marvell,tauros2-cache.txt
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-similarity index 96%
-rename from Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-rename to Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-index 38efcad56dbd..14eb5175dac4 100644
---- a/Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml
-+++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/arm/msm/qcom,llcc.yaml#
-+$id: http://devicetree.org/schemas/cache/qcom,llcc.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Last Level Cache Controller
-diff --git a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-rename to Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-index eb6ab73c0f31..8a6a78e1a7ab 100644
---- a/Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml
-+++ b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-@@ -2,7 +2,7 @@
- # Copyright (C) 2020 SiFive, Inc.
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/riscv/sifive,ccache0.yaml#
-+$id: http://devicetree.org/schemas/cache/sifive,ccache0.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: SiFive Composable Cache Controller
-diff --git a/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml b/Documentation/devicetree/bindings/cache/socionext,uniphier-system-cache.yaml
-similarity index 96%
-rename from Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
-rename to Documentation/devicetree/bindings/cache/socionext,uniphier-system-cache.yaml
-index 6096c082d56d..3196263685a3 100644
---- a/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
-+++ b/Documentation/devicetree/bindings/cache/socionext,uniphier-system-cache.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/arm/socionext/socionext,uniphier-system-cache.yaml#
-+$id: http://devicetree.org/schemas/cache/socionext,uniphier-system-cache.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: UniPhier outer cache controller
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d5bc223f305..bbb0f252522b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11893,6 +11893,7 @@ M:	Scott Wood <oss@buserror.net>
- L:	linuxppc-dev@lists.ozlabs.org
- S:	Odd fixes
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/scottwood/linux.git
-+F:	Documentation/devicetree/bindings/cache/freescale-l2cache.txt
- F:	Documentation/devicetree/bindings/powerpc/fsl/
- F:	arch/powerpc/platforms/83xx/
- F:	arch/powerpc/platforms/85xx/
-@@ -19073,6 +19074,7 @@ M:	Conor Dooley <conor@kernel.org>
- L:	linux-riscv@lists.infradead.org
- S:	Maintained
- T:	git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
-+F:	Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
- F:	drivers/soc/sifive/
- 
- SILEAD TOUCHSCREEN DRIVER
--- 
-2.39.2
+Patch looks good but does not apply cleanly because of previous patches that I 
+didn't take and need rework. Please resend the patches I didn't queue with the 
+comments addressed.
 
+Regards,
+Matthias
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8365.dtsi | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+> index c3ea3cc97a47..959d8533c24c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+> @@ -575,9 +575,9 @@ system_clk: dummy13m {
+>   	};
+>   
+>   	systimer: timer@10017000 {
+> -		compatible = "mediatek,mt8365-systimer", "mediatek,mt6795-systimer";
+> -		reg = <0 0x10017000 0 0x10>;
+> -		interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_LOW>;
+> +		compatible = "mediatek,mt8365-systimer", "mediatek,mt6765-timer";
+> +		reg = <0 0x10017000 0 0x100>;
+> +		interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+>   		clocks = <&system_clk>;
+>   		clock-names = "clk13m";
+>   	};
+> 
