@@ -2,97 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFFD76CFD29
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 168B26CFD2C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbjC3Hnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44418 "EHLO
+        id S229579AbjC3HoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbjC3Hnn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:43:43 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716546E93;
-        Thu, 30 Mar 2023 00:43:34 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id t10so72809259edd.12;
-        Thu, 30 Mar 2023 00:43:34 -0700 (PDT)
+        with ESMTP id S229609AbjC3Hn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:43:56 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177D255A6
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:43:50 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 20so18713329lju.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680162214;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/5McHHU9pEkMitY9q9hIhM5uXbKy/aKadv++MdbkcNI=;
-        b=GypdNq1aOu9V+5qSsEhe/jbUnH4w6UiVyCT9o3OcNLfy1Ra2Cb5FW9Yi7/Qnk5C/Km
-         fk/cVm9eJB/YaSXtPYI9AthOTMeVmrPupWUH+v2UMx9ji6BUU95DQTQfTeQ+A1xQkG7O
-         fQmxUS4sUEQiYfMYMzIrue4lI49VcU2EkIS/Ady0wArj9l4W/haYwEqM5zVFibzwNHjg
-         gmhYvyK/fhXRZCieXhVTtx8eBqIIHFOGcfWL+zrWlOhs66rZp8lthAkO2RUJpcIdlnJT
-         ZgbBm+RTz32HBuYSXv8IZzKJduzt8Dlf5eeZRigAX78x3zKPFqhyc/WtKGYpflV58jbt
-         Zpzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680162214;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1680162228;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/5McHHU9pEkMitY9q9hIhM5uXbKy/aKadv++MdbkcNI=;
-        b=Cw3aXmKFWPhSQaa/RZZDPBXK2dGgkLIQmLUrNefgK8YEWpTmkQa686c3ZyFJqMu64D
-         kheEXgPZ6hDtB6HufqHiOOEwSoPtK4YrhG2hJWuNpLYOeXdECBe7TMd5m9gg53Kzq2Jm
-         LRSwzWGEmlb/azupW+H5hssIjLrEAx10Adk7dd8jjxXZgGPs+zHUe4YqlC6w4YgL04Ux
-         YVpbGhnDdbBEKKjZ9xFpOKYIAQzWiYYGobyGKB3aPu9uvmRjCm4mx9z7FcDy019IZXXr
-         V5bgrAxMbcbCTzRCil81A0Rn5PjiNQKHX7a3LRtbL9FGezpfVEZ9vs0Q/O9Y2DsaQlmQ
-         CumQ==
-X-Gm-Message-State: AAQBX9fwwHpC7kBZo0L8VGB3EfwZdqygLswZCkPWjZ1El58YnZ8fhJnk
-        Q7GcAlK2Iz/pRjHtvmtA0CEyCv4PkmNOhQwb5Jk=
-X-Google-Smtp-Source: AKy350bgP8iVheLUfsfUMKas/NP5UKRrs/yRXoj8E3n1XC+ufUtJhoSIhdBAXxpzmpRuitYHzaFUmQ==
-X-Received: by 2002:a17:907:6d24:b0:947:40e6:fde3 with SMTP id sa36-20020a1709076d2400b0094740e6fde3mr2587054ejc.35.1680162213707;
-        Thu, 30 Mar 2023 00:43:33 -0700 (PDT)
-Received: from ?IPv6:2001:a61:2b4b:9d01:5416:2b94:da5d:3156? ([2001:a61:2b4b:9d01:5416:2b94:da5d:3156])
-        by smtp.gmail.com with ESMTPSA id u6-20020a50d506000000b004fd2aab4953sm17850126edi.45.2023.03.30.00.43.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 00:43:33 -0700 (PDT)
-Message-ID: <be16ef0f88e74e3dc25d6ba08f384eb182ddd240.camel@gmail.com>
-Subject: Re: [PATCH v6 5/5]  mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Date:   Thu, 30 Mar 2023 09:43:32 +0200
-In-Reply-To: <ZCRG9uilzFjkAtsJ@smile.fi.intel.com>
-References: <MN2PR03MB5168249900206433A082875EE7889@MN2PR03MB5168.namprd03.prod.outlook.com>
-         <ZCLi6MB/aHIf4lMr@smile.fi.intel.com>
-         <cdd53e29ca3d8dbfdfa1a2520935e2bf9418313d.camel@gmail.com>
-         <d2bed74b-9eb9-45af-8f45-ad2c2889024a@sirena.org.uk>
-         <fc07de9af0b691fbd3a5915c8293f0c7ad4c4e06.camel@gmail.com>
-         <ZCL7J5a7UZVayQVS@smile.fi.intel.com>
-         <60bbad1b38b8e3c9c3efefb0fb7b8d3cad7fa98c.camel@gmail.com>
-         <ZCMMHl5ENSuCstFV@smile.fi.intel.com>
-         <MN2PR03MB51688CAF5DDF0628ED6B0B06E7889@MN2PR03MB5168.namprd03.prod.outlook.com>
-         <ZCRGa76BqswH7Bez@smile.fi.intel.com> <ZCRG9uilzFjkAtsJ@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+        bh=Eraa9sHuqgH7RyAn56efSAiZ+xk3KCr0GMWDHbp7zFg=;
+        b=F1w7nkJdJBAGMj6EYTK0HtUKhTNFMC2n+8F1F3IOCG+0lCLVlF31C7gLy11+1C1i7M
+         xtNZngxL1u1tebajBhuWph1yPmJOD/OGSDNzR5qvNtH6EIJTB2O2hvwYdGS/pcbTY9Yv
+         Q6dC5JmKZTlFTNIhHdgVuNlUdh30REGc3defDMST4yNfS80/G6cxBNfyTT+5y5lrZARm
+         t/b1LX5frzetdJT8KHvmk1krVJknvwWertKEYGe1exr9ZFFSukgWirarnbW13p4L7gMT
+         feq/jjF+uGjReO6CT+FUfS5f4TweOiRH9nDTJ5XHkmEc9tHh3MSuK5ypp8cK0b6bO1Ut
+         vxSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680162228;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Eraa9sHuqgH7RyAn56efSAiZ+xk3KCr0GMWDHbp7zFg=;
+        b=Ykm4QKAtVZ6pQoWEX9fgwjEA01wkybKaUfQf2j1L2LiwzubtZ6ak/kEopmPAJq/jDR
+         TgvVHgb827xqKHhGFaSdDpEvcl78pAOKfLuBcqqbSTW+GoLKsyFxq09io5JGhEZE5Rcl
+         L4PpXPwcGDIWz+zoYjFftJuabo2tFbZjHdKHlkxoE8vvfxlfn6K1JcU1UhYLxh2QpVQV
+         a2vLmNSUUHFnQBUGPXTLNU6uYprDJsisxGvkhSrPgg57L9yHHjAaV7QdM4sBK35ZXk2i
+         ZtJ79222vtgMRl6qYVnzBE+FInDSALYDwyvzuIJfeDk9HFKObOjHDAhseE25u4ZEOfBn
+         ZP4w==
+X-Gm-Message-State: AAQBX9e0wnHAELt1PNRhaXpYp3hwt6qZ72LUfhFCcZLKxtD7s8AruRmL
+        AXhpDq8XgQOyeMXjpPf6HTCifQ==
+X-Google-Smtp-Source: AKy350beVQ5WDaefREEkkjIw8TIo67IX2cDXIpr+Jkv8cIQQ/TRItbmRQKRFZ6+jqNQ7RuV8XxayMA==
+X-Received: by 2002:a2e:9210:0:b0:2a6:146:b121 with SMTP id k16-20020a2e9210000000b002a60146b121mr2872398ljg.7.1680162228358;
+        Thu, 30 Mar 2023 00:43:48 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id g27-20020a2eb0db000000b002935a8d9351sm5810006ljl.55.2023.03.30.00.43.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 00:43:48 -0700 (PDT)
+Message-ID: <750fd054-e678-badf-c049-8471565d2b79@linaro.org>
+Date:   Thu, 30 Mar 2023 09:43:47 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 2/4] dt-bindings: tegra: Document P3768+P3767 reference
+ platform
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230329150710.773441-1-thierry.reding@gmail.com>
+ <20230329150710.773441-3-thierry.reding@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230329150710.773441-3-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -101,69 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2023-03-29 at 17:11 +0300, Andy Shevchenko wrote:
-> On Wed, Mar 29, 2023 at 05:08:44PM +0300, Andy Shevchenko wrote:
-> > On Tue, Mar 28, 2023 at 04:01:21PM +0000, Sahin, Okan wrote:
-> > > > On Tue, Mar 28, 2023 at 04:51:18PM +0200, Nuno S=C3=A1 wrote:
-> > > > > On Tue, 2023-03-28 at 17:35 +0300, Andy Shevchenko wrote:
-> > > > > > On Tue, Mar 28, 2023 at 04:18:30PM +0200, Nuno S=C3=A1 wrote:
-> > > > > > > On Tue, 2023-03-28 at 14:46 +0100, Mark Brown wrote:
-> > > > > > > > On Tue, Mar 28, 2023 at 03:26:44PM +0200, Nuno S=C3=A1
-> > > > > > > > wrote:
-> > > > > > > >=20
-> > > > > > > > > IIRC, regmap_read() is not really reentrant and it is
-> > > > > > > > > used in
-> > > > > > > > > the IIO driver on the sysfs interface. So, yeah, I
-> > > > > > > > > think you
-> > > > > > > > > need the regmap lock and better just leave the config
-> > > > > > > > > as is.
-> > > > > > > > > Yes, the lock is
-> > > > > > > > > opt-
-> > > > > > > > > out
-> > > > > > > > > so let's not disable it :)
-> > > > > > > >=20
-> > > > > > > > All the regmap operations are fully thread safe.
-> > > > > > >=20
-> > > > > > > Even if 'config->disable_locking' is set? I think that is
-> > > > > > > what's
-> > > > > > > being discussed in here...
-> > > > > >=20
-> > > > > > In case the driver has its own lock to serialize IO how on
-> > > > > > earth the
-> > > > > > regmap lock is needed. That's what I asked the author of
-> > > > > > the driver.
-> > > > > > He told the code
-> > > > >=20
-> > > > > Well, if the driver has it's own locking, then sure we do not
-> > > > > need
-> > > > > regmap's lock...
-> > > > >=20
-> > > > > > doesn't require the regmap lock, and I tend to believe the
-> > > > > > author.
-> > > > > > So, why to
-> > > > > > keep it?
-> > > > >=20
-> > > > > However, if you look at the adc driver, I can see plain
-> > > > > regmap_read()
-> > > > > calls without any "outside" locking.
-> > > >=20
-> > > > Then author of the code should know what they are doing. Right?
-> >=20
-> > > Actually, I do not want to disable regmap lock that's why I did
-> > > not update it.
-> >=20
-> > If you have something like=20
-> >=20
-> > func1()
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regmap_read(reg1)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regmap_read/write(reg2)
-> >=20
+On 29/03/2023 17:07, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Document the combination of the P3768 carrier board with the P3767
+> (Jetson Orin NX) module.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 
-I would also add that as soon as you have more than one access to
-regmap (or spi, or i2c...) in one func and that function is accessible
-through sysfs (and likely any other userspace interface), then you
-should already take care. So, it might be even the case that func1()
-and func2() don't have to run in parallel.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-- Nuno S=C3=A1
->=20
+Best regards,
+Krzysztof
+
