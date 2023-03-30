@@ -2,85 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 492836CFCCA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01B406CFCD5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231175AbjC3Hbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:31:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
+        id S229548AbjC3Hdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:33:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231178AbjC3HbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:31:24 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED1D6EAF
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:31:21 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id t17-20020a05600c451100b003edc906aeeaso2830612wmo.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:31:21 -0700 (PDT)
+        with ESMTP id S229690AbjC3Hdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:33:42 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1291B3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:33:36 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id x17so23365032lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680161480;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gv8JVciuDxQ0wesT323VY8sddT9TR9dSupeai1kGABw=;
-        b=zSozlUjEPWi4/jPhKpPD0C6ryndKS450YaiCkk5K6zfzdIkAgtnLWUJuqip8reAA+G
-         m8KkCUhyj8NceK3K4vNBbB3vCjptyYz0hDyaYEQk/BGeBbu9xzDi3teEqOZLy2Os7Gtk
-         0DJcwLVFAacIyewhxbY2yA6qQ7BpDyJFnav0KjjJYRDzBOyynQV4MZO8ndEnlquJQtmp
-         uqab2pc6lcF0XsEH7nwODf8J2bSQnKOyKpECAkVtxh3eArxE9o9iXaeK1CzBkDLakEzV
-         u3dkqQKfLey/rKeaXjTYhziIsNYZ//fq7v7pSZN1tfvFHNbqcgU06PUaSU7olCpsiWfD
-         u1Tg==
+        d=linaro.org; s=google; t=1680161615;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/UrwCz/2ptkU0/AeoW0jXW25OTACtteoXP52Ppf7Hdg=;
+        b=XUlVPhJAjGFo0Umn/pfktPavvi4lOjOlIWwN3B7jpn0n44XxUiGHEKHnNfPZplFzYL
+         kr/T3vQqQPTGN4PYg3TGWtTePGZr10weXqyDWDy5S6a5l2fCwMDJk/W/nWBJWmcMLsB4
+         zttLWhNlN1vnY4c4KEa58TDI8cz2aV/K8RZ6l6rr9CA5Mbj1XENaM6hx/qf+LaIXvS3b
+         MGrv17oV9HPy9gPWGj/+tfYxaUqHG5DECmRjkqRqA8HqOfRMCTF0tzBxDMC7+xMFH77U
+         4qV7LCRt8D5Ats/BNM9AxyROavqm6gYOfEllxzbquzaPAlSgnF+9Q4bpJZWC0ovd+Gl/
+         4nvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680161480;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gv8JVciuDxQ0wesT323VY8sddT9TR9dSupeai1kGABw=;
-        b=Ju4umOatQTeLc/sl9/N0mvaux7tcfA7w2cag1mNC/rdcGctntgV/ZfaRJpKiSIu6n/
-         6dmtPHr/HVsKXXe+z+37eIgmQXJR6ulaBEhe6D9p2Z6D8ZISuwNolpQSpil0bV15gtoi
-         DRZ/Nz6ejstHzNdh9OlSmQtsxofcPl47bck10+4kuEDwQw1nN/kxbp0jMMbZ8/7chodv
-         6nNPd3wT37l6QW2x9WgzMS8WpxuqLsb3nQylDq7bLVBc8YTuFlsRJ8MNri9X7jJg8nyF
-         SnuvHCibVch6B7G0Qjhim/qM4JdTDl9B++jJXFkcoJk9jRtBL5HanGXWeprsOSY0MMYh
-         SdlA==
-X-Gm-Message-State: AO0yUKXfGWdBPiuYNKqwy35rybqTFQJBbLHHmmcoKsN6pnDp5QQ3v5PU
-        WpSr+du8YxCNxYrUu09cTq7J6w==
-X-Google-Smtp-Source: AK7set/8syKQO2oLKnczLLSt+e88iWzGJM51xpz2K8yppyOXjZwYcbmpU/VbsF2MocQQGOy4acHhtg==
-X-Received: by 2002:a1c:7516:0:b0:3ef:3ce6:7c69 with SMTP id o22-20020a1c7516000000b003ef3ce67c69mr16845825wmc.8.1680161480232;
-        Thu, 30 Mar 2023 00:31:20 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f? ([2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f])
-        by smtp.gmail.com with ESMTPSA id l10-20020a1ced0a000000b003ee1acdb036sm4833807wmh.17.2023.03.30.00.31.19
+        d=1e100.net; s=20210112; t=1680161615;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/UrwCz/2ptkU0/AeoW0jXW25OTACtteoXP52Ppf7Hdg=;
+        b=WIwuI3L0dfdE6er3S2tmCt/f+myw0d9giHU/Jf+wD3SdD+7rs4nGWjJRZsFBjCKMMB
+         lyQUB4runqksInhitxTEvQ7sXyAbAiscKEPc7OsrS42n+pi2exowJ7AqQOgyBkjawFFL
+         TwzMLyp/54NI5LheGsHD0c0HIrcMn7ZJH+Tl07tYkHRe8AngfuBAUUq9jDWppwuOsaMS
+         gw7A+EC8w970csOenW1OswmJkJB6CzQDEfqJPw/blFnsizuQMHscAbL0gTG10xIN/sLS
+         g7rSxRLu30fr90PyxKkF0mjnTVx8odTiQ15eDKrzO1aQDq50dRN65fSRLw/pimvRSBF/
+         CReQ==
+X-Gm-Message-State: AAQBX9esbAyKt6Cv7R6vW6VZUzXWiOcxh24ponREzKxd1wGQrQ/CT8nM
+        wsdgW4hlvt8cggMsY87Dvg7t2w==
+X-Google-Smtp-Source: AKy350Zta9rmDKv1ETYbF6fe9ZiGwYOA5nVKHKSUOoMhK4VO0b6L3QzNCpN96G5xpCkPdDzJ3XITQw==
+X-Received: by 2002:a19:c206:0:b0:4ea:f632:474f with SMTP id l6-20020a19c206000000b004eaf632474fmr5975137lfc.40.1680161615229;
+        Thu, 30 Mar 2023 00:33:35 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id q5-20020ac25145000000b004d3d43c7569sm5767526lfd.3.2023.03.30.00.33.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 00:31:19 -0700 (PDT)
-Message-ID: <c63d6fb5-fcc4-3370-7b4b-f46846136d19@linaro.org>
-Date:   Thu, 30 Mar 2023 09:31:19 +0200
+        Thu, 30 Mar 2023 00:33:34 -0700 (PDT)
+Message-ID: <4c1fa450-79c9-2c66-4bb8-b880f2cf07a5@linaro.org>
+Date:   Thu, 30 Mar 2023 09:33:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: rng: Drop unneeded quotes
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 07/12] dt-bindings: serial: Document ma35d1 uart
+ controller
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20230327170153.4105594-1-robh@kernel.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230327170153.4105594-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-8-ychuang570808@gmail.com>
+ <be0bf335-39fc-2eac-ed37-112881bac675@linaro.org>
+ <7b5e42bc-0788-5208-e97e-10502da1c238@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7b5e42bc-0788-5208-e97e-10502da1c238@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -91,21 +83,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 19:01, Rob Herring wrote:
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On 29/03/2023 10:44, Jacky Huang wrote:
+> Dear Krzysztof,
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml | 4 ++--
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
->   Documentation/devicetree/bindings/rng/brcm,iproc-rng200.yaml | 4 ++--
->   Documentation/devicetree/bindings/rng/mtk-rng.yaml           | 4 ++--
->   Documentation/devicetree/bindings/rng/ti,keystone-rng.yaml   | 2 +-
->   4 files changed, 7 insertions(+), 7 deletions(-)
 > 
+> Thanks for your review.
+> 
+> 
+> On 2023/3/29 下午 04:20, Krzysztof Kozlowski wrote:
+>> On 28/03/2023 04:19, Jacky Huang wrote:
+>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>
+>>> Add documentation to describe nuvoton ma35d1 uart driver bindings.
+>>>
+>> This depends on clock patches, so it must be taken together.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> OK, I will combine this patch with the clock patch.
 
-<snip>
+I don't know what you mean by "combine", but I don't think this is what
+we want. You must clearly state all dependencies and patch merging
+strategy/way.
+
+Best regards,
+Krzysztof
 
