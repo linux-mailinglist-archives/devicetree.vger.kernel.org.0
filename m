@@ -2,102 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6736CFEA2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204E06CFED8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 10:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjC3IlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 04:41:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58866 "EHLO
+        id S229647AbjC3Iow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 04:44:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbjC3Ik5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:40:57 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C01D165BA
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:40:55 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id g17so23569576lfv.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 01:40:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680165654;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xJ3pf9HBxcQNgME3iTfrvYRl50eXH5YVOiEzPDMyG1A=;
-        b=dHTXX3/vDsIc5grUat7Hk5JTJLCsuN0hNGKtLSGAtv4zFHDK/o7FXlkKDHBK1Buyz9
-         E7kKRASGfvC1FQNaM31jVR90FG+yX9RppvEVjx4KdX95u4JEheBuEfkAqyCi5gRmujTh
-         xYLEsxp/e1JxuAFVumNE2Xcf1rx8M/rdHlRSBem+FKufF+xaixQQIt5H0/6WUtbm1Mb3
-         fHgLFnzWHlFQTgJQLb7SzGNyxym9PNygWM5fBiHvG76uAOXua4z8UREdOj679eUshu7Y
-         G1ae8wldU7XLjny1UDhQyvbRHLneQJmBp6o3bakHsBZJ4ZbgHKCWTcLyTyinUHX4S6Ok
-         kP7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680165654;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xJ3pf9HBxcQNgME3iTfrvYRl50eXH5YVOiEzPDMyG1A=;
-        b=h6jmv4zV8PTrSTYYOtc7ZyLZnreTji22ysBK7qc74dMC0hSzV4o9PZND11EmH3t9FF
-         h1H1cqy6Gxnrz+54F42sgkdaU2Mpq0bnSu/3hYCRyMrEaTEB6RCJoc2gBSILcBU+Y2ip
-         eC6Wp7w96vLwom3XqpArulO8PzQ7PETTS/ttOm6xVET4bca4d3LxmkZEY3M1W9ZcanDa
-         PPoHjpkAiAh224rJqGZs7tfe5UgjohrkhEg9aEbVtdnuebpzRwXZODhZusLCDb1YJpi3
-         ty9SMRel7SJM+D7RqLG0ruw2rwwLG1nOsn9M7bgQoeq1YDwM4Na1frqOh0fW8sdki64/
-         feoQ==
-X-Gm-Message-State: AAQBX9f39d7F9IkwE/togN026CQ08xA4VDLI8WALtpTGXCVaTDRzJblS
-        UCEZcU+FbS1JaaG77If6f1OF7g==
-X-Google-Smtp-Source: AKy350bK7+ODGQ0kYuKKoaUg3Nd52eeMc0V8zS6d0C3VxYezKpqncAWnFMN6pwBt8TFgP3/7OfaYYA==
-X-Received: by 2002:ac2:5304:0:b0:4eb:edf:fb5e with SMTP id c4-20020ac25304000000b004eb0edffb5emr5073501lfh.44.1680165654042;
-        Thu, 30 Mar 2023 01:40:54 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t3-20020ac243a3000000b004d5a5d90d83sm5842141lfl.60.2023.03.30.01.40.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 01:40:53 -0700 (PDT)
-Message-ID: <432568c4-e316-903b-1235-7142bfff0bcf@linaro.org>
-Date:   Thu, 30 Mar 2023 10:40:52 +0200
+        with ESMTP id S229580AbjC3Iov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 04:44:51 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B02587D87;
+        Thu, 30 Mar 2023 01:44:21 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32U4g0Qb008340;
+        Thu, 30 Mar 2023 08:43:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=49Q5JyUQMSYAGwSNEQOCBP+0mXdjzBTrPT7B9ELXkUs=;
+ b=flBoVFCExGq3SJVB/reofqxLxATNfiD3Hp5deKk4mh7y/J0gwBsoRCAZqslg3/XEqlUk
+ mEdhqzCj2wAmPEBdc1HmDlDLdS8Wu5AutMHbyXSIRrRGk8OZMa1MgMii6oUqv5RMGzo9
+ jJmPx14SmZuiSEy4IW8lOmUlZ8crx7qm6UWQFKky3/eOQnlb8tFI/kvEBtVVD92ufGAR
+ pM6Fk20/z4fMp4fKQH1Lvnidz1pR1wP16TCRh3E0DM9NwkZwvGH7NggPCfnZWbp5fj54
+ 6Y2XPJ1iDbUJs5DRO5WpM+ncv+URxpP1IAvAzCUZ7e96RZ4EeKtA1v3e9el9etQhdVea Zw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pn3mf8r1c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 30 Mar 2023 08:43:12 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32U8hCvc012454
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 30 Mar 2023 08:43:12 GMT
+Received: from hu-mkshah-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 30 Mar 2023 01:43:07 -0700
+From:   Maulik Shah <quic_mkshah@quicinc.com>
+To:     <andersson@kernel.org>, <ulf.hansson@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <wingers@google.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <sudeep.holla@arm.com>,
+        <jwerner@chromium.org>, <quic_lsrao@quicinc.com>,
+        <quic_rjendra@quicinc.com>, Maulik Shah <quic_mkshah@quicinc.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Add power-domains for cpuidle states
+Date:   Thu, 30 Mar 2023 14:12:50 +0530
+Message-ID: <20230330084250.32600-3-quic_mkshah@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230330084250.32600-1-quic_mkshah@quicinc.com>
+References: <20230330084250.32600-1-quic_mkshah@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: Add TI TPS6594 PMIC
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        corbet@lwn.net, arnd@arndb.de, gregkh@linuxfoundation.org,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com
-Cc:     yi.l.liu@intel.com, jgg@ziepe.ca, razor@blackwall.org,
-        stephen@networkplumber.org, prabhakar.csengg@gmail.com,
-        contact@emersion.fr, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        sterzik@ti.com, u-kumar1@ti.com, eblanc@baylibre.com,
-        jneanne@baylibre.com
-References: <20230330082006.11216-1-jpanis@baylibre.com>
- <20230330082006.11216-2-jpanis@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330082006.11216-2-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6NowLMuVgq1uUnoC9B-tcoh4RTo6RzVV
+X-Proofpoint-GUID: 6NowLMuVgq1uUnoC9B-tcoh4RTo6RzVV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-30_04,2023-03-30_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ bulkscore=0 mlxscore=0 suspectscore=0 spamscore=0 adultscore=0
+ impostorscore=0 mlxlogscore=943 lowpriorityscore=0 priorityscore=1501
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2303300069
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 10:20, Julien Panis wrote:
-> TPS6594 is a Power Management IC which provides regulators and others
-> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> PFSM (Pre-configurable Finite State Machine) managing the state of the
-> device.
-> TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
-> 
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 193 ++++++++++++++++++
->  1 file changed, 193 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> 
+Add power-domains for cpuidle states to use psci os-initiated idle states.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
+ 1 file changed, 73 insertions(+), 25 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 5e6f9f441f1a..1a232eb4dde6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -170,9 +170,8 @@
+ 			reg = <0x0 0x0>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -196,9 +195,8 @@
+ 			reg = <0x0 0x100>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_100>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -218,9 +216,8 @@
+ 			reg = <0x0 0x200>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD2>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_200>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -240,9 +237,8 @@
+ 			reg = <0x0 0x300>;
+ 			clocks = <&cpufreq_hw 0>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+-					   &LITTLE_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD3>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_300>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -262,9 +258,8 @@
+ 			reg = <0x0 0x400>;
+ 			clocks = <&cpufreq_hw 1>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD4>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_400>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -284,9 +279,8 @@
+ 			reg = <0x0 0x500>;
+ 			clocks = <&cpufreq_hw 1>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD5>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_500>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -306,9 +300,8 @@
+ 			reg = <0x0 0x600>;
+ 			clocks = <&cpufreq_hw 1>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD6>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_600>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -328,9 +321,8 @@
+ 			reg = <0x0 0x700>;
+ 			clocks = <&cpufreq_hw 2>;
+ 			enable-method = "psci";
+-			cpu-idle-states = <&BIG_CPU_SLEEP_0
+-					   &BIG_CPU_SLEEP_1
+-					   &CLUSTER_SLEEP_0>;
++			power-domains = <&CPU_PD7>;
++			power-domain-names = "psci";
+ 			next-level-cache = <&L2_700>;
+ 			operating-points-v2 = <&cpu7_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
+@@ -422,9 +414,11 @@
+ 				min-residency-us = <5555>;
+ 				local-timer-stop;
+ 			};
++		};
+ 
++		domain-idle-states {
+ 			CLUSTER_SLEEP_0: cluster-sleep-0 {
+-				compatible = "arm,idle-state";
++				compatible = "domain-idle-state";
+ 				idle-state-name = "cluster-power-down";
+ 				arm,psci-suspend-param = <0x40003444>;
+ 				entry-latency-us = <3263>;
+@@ -790,6 +784,59 @@
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
++		};
++
++		CPU_PD1: cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
++		};
++
++		CPU_PD2: cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
++		};
++
++		CPU_PD3: cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
++		};
++
++		CPU_PD4: cpu4 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
++		};
++
++		CPU_PD5: cpu5 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
++		};
++
++		CPU_PD6: cpu6 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
++		};
++
++		CPU_PD7: cpu7 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
++		};
++
++		CLUSTER_PD: cpu-cluster0 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_SLEEP_0>;
++		};
+ 	};
+ 
+ 	qspi_opp_table: opp-table-qspi {
+@@ -5280,6 +5327,7 @@
+ 					  <SLEEP_TCS   3>,
+ 					  <WAKE_TCS    3>,
+ 					  <CONTROL_TCS 1>;
++			power-domains = <&CLUSTER_PD>;
+ 
+ 			apps_bcm_voter: bcm-voter {
+ 				compatible = "qcom,bcm-voter";
+-- 
+2.17.1
 
