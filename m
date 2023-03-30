@@ -2,174 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B480D6D0721
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD62C6D0730
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbjC3Nnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 09:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57688 "EHLO
+        id S232048AbjC3Nox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 09:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232151AbjC3Nn3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:43:29 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E943A4C2E
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:43:04 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F21482F4;
-        Thu, 30 Mar 2023 06:43:48 -0700 (PDT)
-Received: from [10.57.54.254] (unknown [10.57.54.254])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCB1F3F663;
-        Thu, 30 Mar 2023 06:43:02 -0700 (PDT)
-Message-ID: <beae35a5-b094-087a-8443-5f669a2a37c6@arm.com>
-Date:   Thu, 30 Mar 2023 14:42:55 +0100
+        with ESMTP id S232224AbjC3Now (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:44:52 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5D7FC
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:44:27 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id c29so24602808lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:44:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680183866;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7dXaODJDga8CYetavWpa2GSFUuU4punKQn75AbRbTHo=;
+        b=fGgdQkXtZ+Vg96kNl4Jfo4Ky/1Dwn2qcO7SAaOoYgQXgvvzGgD3vwjB+h9/LBphXRp
+         YgDfsqtstG1oYIUVcS1YhT7ak60+f6S4pbedPMYlKMxOwJ+tAyizdW/vpsowNg4kV5B9
+         butVVKT4ZHOt9Rdh8RAZv9cQ4HQbyLFvvhV9VUS6Z9vllXHyJ4F/uDYcPIoAX9Cx2hqw
+         Qr63cj7i4PcSkLs84zU5vksKxud6bWUIkVQC2vt3iV6Keg4WruhFNbEsa77vZgK9UjF8
+         0boXRnVr1xCi15P4XzXRZZ2AwJ0TN6YPbOhpwu14ncsZ/guWUyd3WIP4hjhMAlB1n2q3
+         r+QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680183866;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7dXaODJDga8CYetavWpa2GSFUuU4punKQn75AbRbTHo=;
+        b=3K8f/4BYsc64WH952ppemTqD1lUYuRLxVUWcAGGgiWnLLd+NcuelxUl0HTSwNauQPb
+         gWHstyzd1Uood8Ozewg+beTmUaG4X2WGqxcFtqSMWBb3cBM9PzxXUe7KZQHQYAYtFlZg
+         R4baxNn006bKNlmdVkhQEBSp+AXOoKxpimHT3Cl5+iKlUwyMO/b7ynTQEh1QTOiUFFE7
+         dqZns6uCJVbgUZP5Z1cYt3DDcernrNCTBfVoFQVq0tgtX8bUG0fuzn5AE4s94e8P/Ite
+         R6KFovsXEXGajqTs3LY+azWLwdeCtBwDK8Rw5Wk7J5IruHLUSzOXJZAH1OHkyR0fZHlT
+         vNWQ==
+X-Gm-Message-State: AAQBX9cG6tOJpocUzx5iB68pqo1rM7t8Xt8M6u2zumP6YCc3g8shB6v5
+        yrFZSC4ZyeIakopYobYIyWfLfg==
+X-Google-Smtp-Source: AKy350bVOd00ovsH5iQm9RMiEwmifowBDuv+HH+dRpAWlvbaxEV+uPUxMikMuJOtrsg8wMry14eXgg==
+X-Received: by 2002:ac2:48a1:0:b0:4eb:2a26:babf with SMTP id u1-20020ac248a1000000b004eb2a26babfmr702020lfg.0.1680183866026;
+        Thu, 30 Mar 2023 06:44:26 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id m10-20020ac2428a000000b004b6f00832cesm5848545lfh.166.2023.03.30.06.44.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 06:44:25 -0700 (PDT)
+Message-ID: <5eb0b699-47bb-ebb7-2ea5-0cf05ccf29ab@linaro.org>
+Date:   Thu, 30 Mar 2023 15:44:24 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 2/3] iommu/rockchip: Disable the device link during resume
-Content-Language: en-GB
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: leds: aw2013: Document vdd-supply
+Content-Language: en-US
+To:     Lee Jones <lee@kernel.org>
+Cc:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     iommu@lists.linux.dev, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Simon Xue <xxm@rock-chips.com>
-References: <20230330131746.1475514-1-jagan@amarulasolutions.com>
- <20230330131746.1475514-2-jagan@amarulasolutions.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230330131746.1475514-2-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nikita Travkin <nikita@trvn.ru>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230320141638.3378-1-linmengbo0689@protonmail.com>
+ <20230320142103.3440-1-linmengbo0689@protonmail.com>
+ <ea673f62-f462-a559-d0dc-0662efc60f9e@linaro.org>
+ <20230330114633.GD434339@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330114633.GD434339@google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-03-30 14:17, Jagan Teki wrote:
-> Rockchip iommu is trying to enable the associated device at runtime
-> resume however some devices might enable the iommu during their pm
-> runtime resume operation which indeed leads iommu to use the wrong
-> domain and this leads to device iommu page fault.
+On 30/03/2023 13:46, Lee Jones wrote:
+> On Mon, 20 Mar 2023, Krzysztof Kozlowski wrote:
 > 
-> An example of this behavior has been observed in Rockchip RK3328, where
-> iommu stalls request timeout dring VOP device enablement.
+>> On 20/03/2023 15:22, Lin, Meng-Bo wrote:
+>>> Document vdd-supply, a regulator providing power to the "VDD" pin.
+>>>
+>>
+>> No. This device does not have VDD pin. I checked in datasheet.
 > 
-> Here is the dmesg log for the same:
+> I'm confused.  This patch set much do something?
 > 
-> rockchip-drm display-subsystem: bound ff370000.vop (ops vop_component_ops)
-> dwhdmi-rockchip ff3c0000.hdmi: supply avdd-0v9 not found, using dummy regulator
-> rk_iommu ff373f00.iommu: Enable stall request timed out, status: 0x00004b
-> dwhdmi-rockchip ff3c0000.hdmi: supply avdd-1v8 not found, using dummy regulator
-> rk_iommu ff373f00.iommu: Disable paging request timed out, status: 0x00004b
-> dwhdmi-rockchip ff3c0000.hdmi: Detected HDMI TX controller v2.11a with HDCP (inno_dw_hdmi_phy2)
-> dwhdmi-rockchip ff3c0000.hdmi: registered DesignWare HDMI I2C bus driver
-> rockchip-drm display-subsystem: bound ff3c0000.hdmi (ops dw_hdmi_rockchip_ops)
-> [drm] Initialized rockchip 1.0.0 20140818 for display-subsystem on minor 0
-> 
-> This issue is reproduced if we enable the display in U-Boot however
-> U-Boot is not even touched any iommu register as the U-Boot display
-> uses the simple frame buffer like other Rockchip platforms RK3399,
-> and RK3328 do.
-> 
-> When VOP is trying to enable the iommu using runtime resume call
-> pm_runtime_resume_and_get from @vop_enable then the iommu runtime
-> resume call @rk_iommu_resume will try to attach the VOP in the wrong
-> domain via @rk_iommu_enable will lead to the vop iommu page fault.
+> I guess a better commit message would help.  Let me request that.
 
-That sounds like a driver bug. The whole point of the device link is 
-supposed to be that the IOMMU gets suspended after the VOP, and resumed 
-before it, so it can make sure that whatever translations the VOP was 
-using are restored *before* the VOP starts trying to access them again. 
-If the IOMMU driver is failing to restore the correct state on resume, 
-no amount of DT abuse is the right answer.
+There was a v2 - with a discussion - so we wait for v3 which clearly
+indicates this is supply on controller side. IMHO, this is still wrong
+because it is controller's property, not device's, but Rob gave here
+green light, so v3 with proper explanation would be fine.
 
-I can understand if the IOMMU itself expects to be idle for the initial 
-configuration at probe time, and gets unhappy if we try to reset it 
-while (bypass) VOP traffic for the bootloader framebuffer is still going 
-through, but that's an entirely different issue, and again hacking 
-around with runtime PM doesn't seem like the right answer.
+Best regards,
+Krzysztof
 
-Thanks,
-Robin.
-
-> 
-> vop_enable()
->     pm_runtime_resume_and_get()
->        rk_iommu_resume()
->           rk_iommu_enable()
->              ... vop iommu page fault ...
-> 	    rk_iommu ff373f00.iommu: Enable stall request timed out, status: 0x00004b
-> 	    rk_iommu ff373f00.iommu: Disable paging request timed out, status: 0x00004b
-> 
-> So, this patch is trying to disable the device link for those devices
-> that are enabled rockchip,disable-device-link-resume flag assumes here
-> VOP device.
-> 
-> This makes the device enablement for that iommu domain ignored during
-> the rk_iommu_resume call as it assumes it handled iommu device
-> attachment in the associated device itself.
-> 
-> vop_enable()
->     pm_runtime_resume_and_get()
->        rk_iommu_resume()
->           ... ignore the device link ...
-> 	    rockchip_drm_dma_attach_device()
-> 	       iommu_attach_device()
-> 
-> Here is the downstream patch for similar issue,
-> https://github.com/rockchip-linux/kernel/commit/85959f645ba38617233fbf44f442f8a88875d765
-> 
-> Co-developed-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->   drivers/iommu/rockchip-iommu.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-> index f30db22ea5d7..bcff0dc21223 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -111,6 +111,7 @@ struct rk_iommu {
->   	struct clk_bulk_data *clocks;
->   	int num_clocks;
->   	bool reset_disabled;
-> +	bool dlr_disable; /* avoid access iommu when runtime ops called */
->   	struct iommu_device iommu;
->   	struct list_head node; /* entry in rk_iommu_domain.iommus */
->   	struct iommu_domain *domain; /* domain to which iommu is attached */
-> @@ -1250,6 +1251,8 @@ static int rk_iommu_probe(struct platform_device *pdev)
->   
->   	iommu->reset_disabled = device_property_read_bool(dev,
->   					"rockchip,disable-mmu-reset");
-> +	iommu->dlr_disable = device_property_read_bool(dev,
-> +					"rockchip,disable-device-link-resume");
->   
->   	iommu->num_clocks = ARRAY_SIZE(rk_iommu_clocks);
->   	iommu->clocks = devm_kcalloc(iommu->dev, iommu->num_clocks,
-> @@ -1346,6 +1349,9 @@ static int __maybe_unused rk_iommu_suspend(struct device *dev)
->   	if (!iommu->domain)
->   		return 0;
->   
-> +	if (iommu->dlr_disable)
-> +		return 0;
-> +
->   	rk_iommu_disable(iommu);
->   	return 0;
->   }
-> @@ -1357,6 +1363,9 @@ static int __maybe_unused rk_iommu_resume(struct device *dev)
->   	if (!iommu->domain)
->   		return 0;
->   
-> +	if (iommu->dlr_disable)
-> +		return 0;
-> +
->   	return rk_iommu_enable(iommu);
->   }
->   
