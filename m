@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E02E76D074A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3504A6D0756
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 15:53:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231949AbjC3NvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 09:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38682 "EHLO
+        id S231277AbjC3NxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 09:53:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231358AbjC3NvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:51:07 -0400
+        with ESMTP id S231708AbjC3NxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 09:53:16 -0400
 Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B326A71
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:51:01 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j11so24576842lfg.13
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:51:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FB346B3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:53:11 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id bi9so24587768lfb.12
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 06:53:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680184260;
+        d=linaro.org; s=google; t=1680184390;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bFioh8KEjXK9vkYc+hdZvmSiagi9AnGPNz7oxJLFgPg=;
-        b=aqaLZ2C0OW74EnyCVtd7s2XzYVvuqTZHzdqXHT5I26oPOfFJFY0ab9JYTGzVprk2iZ
-         QQkjWXN4Z8NrQc2WI73+dWNCXlMnVw7NawqEy64kYsYWS55rvtQq1ZvQ2Tqr7mpHmKTN
-         qMs4Ca2DqTPUe1rGJgL1TdGfKNj6qb3Hw2Df6Hgnrnl5TwquFwZleL2k1ETqJvs7b4uC
-         Kz9h1KGGy6TQNNT09bSN9YieX113fGt1Zlpe4O5a8fc+cDFHU8sV8cuKsXKhcAYJPJxs
-         Pq2b8Pl6XqjPJTypif6/QvAv6SURe0Kn5l91UtaQ78tbJp5cXZrf5655PlewX4pAlY0k
-         9/tA==
+        bh=FG3LYyeKyzOlPVZDphJojew4K4QdUYrf4yISTJWKKVQ=;
+        b=kEIVUbxLnj1qdLvhXQ1MEJ/mnPJYXkGEboRU+ox1QW9K9B9uz6kvDo68j3yAfQuq4P
+         O6APGuz3fXR8csxAW57NUXRYv9p7I7Ymvy5g2y0Y03GoUjFJ8BkAO0TfL909XVhHTy+7
+         uetj/WFC+mVZYvk1yczP0lR5+wtxv8YYZvqlKxP4JIdphbredkn9Bo2RHiYOyH2Ld+jk
+         eJqChBAkp00O0Tt5EdL0v55EkFYENAMPEoox0M1vvHc8cNn9wtucgYzXGq7seJQMDVwV
+         IvK0OLYGqpISp/sDahxvtSNUc+s+ppIpqzkdj0Pd/RfY0dcXKoOAqaAUWcWRjVArT5Ov
+         3W5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680184260;
+        d=1e100.net; s=20210112; t=1680184390;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bFioh8KEjXK9vkYc+hdZvmSiagi9AnGPNz7oxJLFgPg=;
-        b=aQ66D1nFpDUi0zm7wsbShUNMBLAO/PFEXy3355NuEtF2ltMYpJ2ZKzxhS3GsWopKAC
-         8C4u2k/8akA81xKt5d9uDy8Wi5wq+2PG09vZ6dnaKCP0BYzUWkdGqI7i9HY/tsMS8K7A
-         ksirq5Jz/LXpZPDJ8R+gKgq+NsINr86yzo5d6Xen9ThJPwIQDOiBxLAqVtKwvn6gh1NG
-         hVP9hg95t430VzCguSaZijdHPmK7gWK40SYezL4RfHT/uVhTTuVMrH/cpNYjGrAA+AOR
-         3TbSyFyUjBMHDwY1W09EPXjMymFfKVSjiKbrVu9Z3+3B7S9tZM8GvqY7C5n/yAWKS2Gj
-         vVpA==
-X-Gm-Message-State: AAQBX9c3cxUKYOLRcYLaQW7R0uCs8mVDBsiYcu1Sf9fXof5npYD+L+KU
-        lch+TsDJMEvpjdn2sHBKnnNIyQ==
-X-Google-Smtp-Source: AKy350YBGOQY3S+mf01A6pGyFA/FOJmRXnmaoj9y0eOpGoWFYDZR5RoMaGKb6fDvtOfrGDbYZg+z6w==
-X-Received: by 2002:a05:6512:3881:b0:4de:d6a1:fd71 with SMTP id n1-20020a056512388100b004ded6a1fd71mr6284092lft.50.1680184260036;
-        Thu, 30 Mar 2023 06:51:00 -0700 (PDT)
+        bh=FG3LYyeKyzOlPVZDphJojew4K4QdUYrf4yISTJWKKVQ=;
+        b=ooiKZ/M1wW9JzRVAfYjGrX/nqYVR604kL9pwQ7Qb9ji3ue4dIqPaPJ07D20TQB+iH6
+         RQTJIJo9w+xZhtlUJsi8GwXD9peN1Rvdo5JZr2J7HUq9DDD3Nvsml5INefNsJbEFVelF
+         SFafqPQHsW2FJk9hunRDhyl8IL2QCtec+2PXBNOozWlOByVeSm7zT5HWfakbp+KiYoYP
+         FBvYCK1xy3+7JWXLhJH7riOhO0sg2Am1s1DIdcdBcD1Rqqccv+CgMlWUyjWZRZm6nD5F
+         S+Y+9oKUAe/oSJnn3ZGPrWBxOqtpCuJYCDHr6Kna/bWfcpkEgvxMiBgd/6e2fTrpSpcS
+         gaQA==
+X-Gm-Message-State: AAQBX9ccovXwtYFltqt4Gg0dm5Lg//NzW0l0uMyF9mqrBcDoWehDFiKr
+        gcOuaHGRKsqcwHFYZrwcpndAKA==
+X-Google-Smtp-Source: AKy350bYeOM2mPCk0/HBGXVg/NVXb5IPUO2Bs/RkayxfXkyDj1RLxjlGuBjFokZ8uPZuBo5n+Kvmtw==
+X-Received: by 2002:ac2:5dee:0:b0:4ea:f74f:c077 with SMTP id z14-20020ac25dee000000b004eaf74fc077mr7488939lfq.12.1680184389889;
+        Thu, 30 Mar 2023 06:53:09 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y28-20020ac2447c000000b004eafa141a12sm3343289lfl.9.2023.03.30.06.50.58
+        by smtp.gmail.com with ESMTPSA id x20-20020a05651c105400b0029ee7bc0114sm4042047ljm.64.2023.03.30.06.53.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 06:50:59 -0700 (PDT)
-Message-ID: <500872d5-78e9-0928-17db-81bf20f6306b@linaro.org>
-Date:   Thu, 30 Mar 2023 15:50:58 +0200
+        Thu, 30 Mar 2023 06:53:09 -0700 (PDT)
+Message-ID: <c430a7ca-0778-8262-4a45-11134cf5ad76@linaro.org>
+Date:   Thu, 30 Mar 2023 15:53:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH V2] dt-bindings: usb: typec-tcpci: convert to DT schema
- format
+Subject: Re: [PATCH] dt-bindings: clock: versal: Correct example dts
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
-References: <20230330091736.1873121-1-peng.fan@oss.nxp.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     git@amd.com, linux-clk@vger.kernel.org, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com
+References: <20230330084846.14516-1-shubhrajyoti.datta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330091736.1873121-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230330084846.14516-1-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -80,21 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 11:17, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 30/03/2023 10:48, Shubhrajyoti Datta wrote:
+> From: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
 > 
-> Convert the binding to DT schema format, and rename it to
-> nxp,ptn5110.yaml
+> Correct firmware node name and compatible string in versal clock
+> dt-bindings.
+
+That was a valid compatible, so you need you describe why you are doing
+it. IOW, what was wrong and required correction. Because correcting a
+correct compatible is really not obvious.
+
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 > ---
 > 
-> V2:
->  Rename to nxp,ptn5110.yaml
->  Drop port property
+>  Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> index 229af98b1d30..4bbf96484b56 100644
+> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> @@ -50,8 +50,8 @@ additionalProperties: false
+>  examples:
+>    - |
+>      firmware {
+> -      zynqmp_firmware: zynqmp-firmware {
+> -        compatible = "xlnx,zynqmp-firmware";
+> +      versal_firmware: versal-firmware {
+
+No. If you touch it, at least make it really correct:
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
