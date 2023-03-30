@@ -2,295 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311146D0811
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 16:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8118F6D085E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 16:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbjC3OV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 10:21:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53286 "EHLO
+        id S230374AbjC3Obo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 10:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbjC3OVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 10:21:38 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33DA2BB8E
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 07:21:17 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id j24so19311371wrd.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 07:21:17 -0700 (PDT)
+        with ESMTP id S229995AbjC3Obn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 10:31:43 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E030114
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 07:31:42 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5419d4c340aso357246527b3.11
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 07:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680186071;
+        d=chromium.org; s=google; t=1680186701;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sfjgn2sklT68/0BLeF+AeFT45mcxXZf7FXc0FH6Wl20=;
-        b=GwQkyFczagEwSP/T4r+ynsFphEKSQTfFKzBBpMV3x/6tlPBpBId0PDVaCRQMseg8sA
-         8aTHCb07YgMglNdMTNBcdmkd4B0b8ZE9OQFHG8xwLaiivqxbESFdX29IqrHJbruo1niC
-         dgPT4cmJaXJv35HiEBYb43nXki+IvPyrkox615l/A6abnjFKmYtuJwmn8wVI+KwxFbJp
-         QCXMqp0uhu07kiKfqQGsIlQXlOTMyrx6ZnPCfIDRquePY3zxql2/9xAUwa+CHmgcA6uY
-         VHBRo4nTeVm0WYSFTJLNtVPLMsBKAefnYQ6Y4BDtqnv5GwXtAr3ajAwoAGF6H+qnu5JE
-         XLag==
+        bh=tdDVtbZuDJf8upkh5HvXpNatNcQceszJUO7yYX9Degg=;
+        b=C37Q1cpSP173p1pG74jOqRL55rLxjNLiaypCUILkoajacDJc65zQaSLR0L8MnlYf1Q
+         htQZQAoJofsl5SMs5P7Va9pvWh2FLVx0dpG8rVLR5bQcO0YLgYzSz0/yA7mobKyEK3as
+         6Ln7Wjjdh2MsxKINTkaZw9uJ/gK7dmFkSDoe8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680186071;
+        d=1e100.net; s=20210112; t=1680186701;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sfjgn2sklT68/0BLeF+AeFT45mcxXZf7FXc0FH6Wl20=;
-        b=qun7EZ9kbKy22wKgwyKG+BDk0YDjfLxn59VcMFZuPzfbN6a65E5W5l3nEUh9EVgpBP
-         sNz0Fy4oRT1esUFzeOIm5gJ9jU2juShcFYs8HEWgDdaLliClPQz/FgAAL/YhbVf1h4xT
-         q3kjCepYemTexPEJbtQdxQKEp0YpzU1Tq7hTinykyOUg3BiLD0MCxCQfvcsqjtLbHdVT
-         G5HSimmXm1UCmEULlYRSujyZjElowGftDwT8hqMYEicpIrn9RPDMmJu+qyZvpXFkAQ6G
-         5PikBu/w7g2S96i9MkHKVoixAEPKzOftaKRkPWoeyIMPaAIrQiuRK92atNO89fnuJycE
-         V1cg==
-X-Gm-Message-State: AAQBX9dr2fGSkafAlrFkq3Rz8pQdotSLYlyF1KJI8P9CclTPuhl4f4G0
-        syhuB9dCwR4cJ4q6EyYi3YKyDJDP6PgiQpK5dtWHSg==
-X-Google-Smtp-Source: AKy350YW/TLCSUTasJvb+twytxxuh4IwsLR1qvC1jNpbA1Tx7TAo0p3sJxo1L0jBKBVevjs1xmX0N5y3Go5scX2UhbM=
-X-Received: by 2002:a5d:4349:0:b0:2df:ebbe:7d46 with SMTP id
- u9-20020a5d4349000000b002dfebbe7d46mr2838344wrr.2.1680186071175; Thu, 30 Mar
- 2023 07:21:11 -0700 (PDT)
+        bh=tdDVtbZuDJf8upkh5HvXpNatNcQceszJUO7yYX9Degg=;
+        b=K6l5PMJWwp+Bqmw4R0SX01YgkzpfmqLVuTnJmQ37O7iYkpaC90qUivN9tu5lXvDA1c
+         WX8j3kOFtOUjVJQv+nowLfY2ouiOgMJA/2PGfmSSkn8VZBC8ZeGwZ9YAgGsLbvYPi2SP
+         dZIRxW8COH0AuMMXq6e4rz/7CUEHb0QAa9nBj37MWAbiVkhuT6pdF8Zy6nrIx+9ogSJF
+         ZoI//ZflOjwM8gHM4Dn/R2QImf64IEahrkSpMw8c0WaSDBPE8YFOgCZTF9JUlo43YYc4
+         H5wAAEnTW+O9q0AiE49dkiLjA16JpzDzXVsqK8TLTnGs6561d915IYQB5ZYSkN3WOBfZ
+         x8yw==
+X-Gm-Message-State: AAQBX9fLpjm0znKKrwuJyswiQWPE6VxXpwVDcmvOxM1cyOu3MkDsH+0z
+        SvT0PD4rOSViy6c1eW3Pu2OT/R2jlGREM81o7Uo=
+X-Google-Smtp-Source: AKy350buNubD/x38hmt/2ZO8Yoqa/5LJ17Kzx+DAye7cnTOO60MV4sRmRltHm28Ce9dAhUDYAkMx/w==
+X-Received: by 2002:a81:68d4:0:b0:545:eb3b:2711 with SMTP id d203-20020a8168d4000000b00545eb3b2711mr14628301ywc.35.1680186701023;
+        Thu, 30 Mar 2023 07:31:41 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id q11-20020a81430b000000b00545a081849fsm3553882ywa.47.2023.03.30.07.31.40
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 07:31:40 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-545cb3c9898so282562477b3.7
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 07:31:40 -0700 (PDT)
+X-Received: by 2002:a1f:ac17:0:b0:43b:7928:7a25 with SMTP id
+ v23-20020a1fac17000000b0043b79287a25mr10387566vke.1.1680186230654; Thu, 30
+ Mar 2023 07:23:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230323062451.2925996-1-danishanwar@ti.com> <20230323062451.2925996-4-danishanwar@ti.com>
- <20230327210126.GC3158115@p14s> <4e239000-c5f7-a42e-157e-5b668c6b2908@ti.com>
-In-Reply-To: <4e239000-c5f7-a42e-157e-5b668c6b2908@ti.com>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Thu, 30 Mar 2023 08:21:00 -0600
-Message-ID: <CANLsYkxcprFh4SNxb=TkTLT7PNR6=QPFW5HhqPouPP3+oYk7Sg@mail.gmail.com>
-Subject: Re: [EXTERNAL] Re: [PATCH v5 3/5] soc: ti: pruss: Add
- pruss_cfg_read()/update() API
-To:     Md Danish Anwar <a0501179@ti.com>
-Cc:     MD Danish Anwar <danishanwar@ti.com>,
-        "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+References: <1677774797-31063-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1677774797-31063-15-git-send-email-quic_vpolimer@quicinc.com>
+ <20230326162723.3lo6pnsfdwzsvbhj@ripper> <20230326163556.iesjkoh3nw3iwvf2@ripper>
+ <CAE-0n520ypTRNT1X6kZ8o_Z+DN_68qwqZc1wZGMwsFqV5naktw@mail.gmail.com>
+ <BN0PR02MB81736AFC01FB13F1640068CEE4899@BN0PR02MB8173.namprd02.prod.outlook.com>
+ <CAD=FV=UjHiEk==KAhbx6QFW++69vDAM44sw-b2MGcJ7NsfbF-A@mail.gmail.com>
+In-Reply-To: <CAD=FV=UjHiEk==KAhbx6QFW++69vDAM44sw-b2MGcJ7NsfbF-A@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 30 Mar 2023 07:23:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V7UoA5jP-ANFMNzm3oLbYmT73uDnqs0oKHKb16-NcULg@mail.gmail.com>
+Message-ID: <CAD=FV=V7UoA5jP-ANFMNzm3oLbYmT73uDnqs0oKHKb16-NcULg@mail.gmail.com>
+Subject: Re: [PATCH v14 14/14] drm/msm/dp: set self refresh aware based on PSR support
+To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, srk@ti.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
+        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
+        "robdclark@gmail.com" <robdclark@gmail.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
+        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Mar 2023 at 04:00, Md Danish Anwar <a0501179@ti.com> wrote:
->
-> Hi Mathieu,
->
-> On 28/03/23 02:31, Mathieu Poirier wrote:
-> > On Thu, Mar 23, 2023 at 11:54:49AM +0530, MD Danish Anwar wrote:
-> >> From: Suman Anna <s-anna@ti.com>
-> >>
-> >> Add two new generic API pruss_cfg_read() and pruss_cfg_update() to
-> >> the PRUSS platform driver to read and program respectively a register
-> >> within the PRUSS CFG sub-module represented by a syscon driver.
-> >>
-> >> These APIs are internal to PRUSS driver. Various useful registers
-> >> and macros for certain register bit-fields and their values have also
-> >> been added.
-> >>
-> >> Signed-off-by: Suman Anna <s-anna@ti.com>
-> >> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> >> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> >> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> >> ---
-> >>  drivers/soc/ti/pruss.c |   1 +
-> >>  drivers/soc/ti/pruss.h | 112 ++++++++++++++++++++++++++++++++++++++++=
-+
-> >>  2 files changed, 113 insertions(+)
-> >>  create mode 100644 drivers/soc/ti/pruss.h
-> >>
-> >
-> > This patch doesn't compile without warnings.
-> >
->
-> I checked the warnings. Below are the warnings that I am getting for thes=
-e patch.
->
-> In file included from drivers/soc/ti/pruss.c:24:
-> drivers/soc/ti/pruss.h:103:12: warning: =E2=80=98pruss_cfg_update=E2=80=
-=99 defined but not used
-> [-Wunused-function]
->   103 | static int pruss_cfg_update(struct pruss *pruss, unsigned int reg=
-,
->       |            ^~~~~~~~~~~~~~~~
-> drivers/soc/ti/pruss.h:84:12: warning: =E2=80=98pruss_cfg_read=E2=80=99 d=
-efined but not used
-> [-Wunused-function]
->    84 | static int pruss_cfg_read(struct pruss *pruss, unsigned int reg,
-> unsigned int *val)
->
-> These warnings are coming because pruss_cfg_read() / update() APIs are
-> introduced in this patch but they are used later.
->
-> One way to resolve this warning is to make this API "inline". I compiled =
-after
-> making these APIs inline, it got compiled without any warnings.
->
-> The other solution is to merge a user API of these APIs in this patch. Pa=
-tch 4
-> and 5 introduces some APIs that uses pruss_cfg_read() / update() APIs. If=
- we
-> squash patch 5 (as patch 5 uses both read() and update() APIs where as pa=
-tch 4
-> only uses update() API) with this patch and make it a single patch where
-> pruss_cfg_read() / update() is introduced as well as used, then this warn=
-ing
-> will be resolved.
->
+Hi,
 
-The proper way to do this is to introduce new APIs only when they are neede=
-d.
+On Wed, Mar 29, 2023 at 8:47=E2=80=AFAM Doug Anderson <dianders@chromium.or=
+g> wrote:
+>
+> Hi,
+>
+> On Wed, Mar 29, 2023 at 8:16=E2=80=AFAM Vinod Polimera
+> <vpolimer@qti.qualcomm.com> wrote:
+> >
+> >
+> >
+> > > -----Original Message-----
+> > > From: Stephen Boyd <swboyd@chromium.org>
+> > > Sent: Monday, March 27, 2023 9:58 PM
+> > > To: Bjorn Andersson <andersson@kernel.org>; Vinod Polimera (QUIC)
+> > > <quic_vpolimer@quicinc.com>
+> > > Cc: dri-devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
+> > > freedreno@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
+> > > kernel@vger.kernel.org; robdclark@gmail.com; dianders@chromium.org;
+> > > Kalyan Thota (QUIC) <quic_kalyant@quicinc.com>;
+> > > dmitry.baryshkov@linaro.org; Kuogee Hsieh (QUIC)
+> > > <quic_khsieh@quicinc.com>; Vishnuvardhan Prodduturi (QUIC)
+> > > <quic_vproddut@quicinc.com>; Bjorn Andersson (QUIC)
+> > > <quic_bjorande@quicinc.com>; Abhinav Kumar (QUIC)
+> > > <quic_abhinavk@quicinc.com>; Sankeerth Billakanti (QUIC)
+> > > <quic_sbillaka@quicinc.com>
+> > > Subject: Re: [PATCH v14 14/14] drm/msm/dp: set self refresh aware bas=
+ed
+> > > on PSR support
+> > >
+> > > Quoting Bjorn Andersson (2023-03-26 09:35:56)
+> > > > On Sun, Mar 26, 2023 at 09:27:23AM -0700, Bjorn Andersson wrote:
+> > > > > On Thu, Mar 02, 2023 at 10:03:17PM +0530, Vinod Polimera wrote:
+> > > > > > For the PSR to kick in, self_refresh_aware has to be set.
+> > > > > > Initialize it based on the PSR support for the eDP interface.
+> > > > > >
+> > > > >
+> > > > > When I boot my sc8280xp devices (CRD and X13s) to console with th=
+is
+> > > > > patch included I get a login prompt, and then there are no more s=
+creen
+> > > > > updates.
+> > > > >
+> > > > > Switching virtual terminal (ctrl+alt+fN) causes the screen to red=
+raw.
+> > > > >
+> > > > > Blindly login in and launching Wayland works and from then on scr=
+een
+> > > > > updates works as expected.
+> > > > >
+> > > > > Switching from Wayland to another virtual terminal causes the pro=
+blem
+> > > to
+> > > > > re-appear, no updates after the initial refresh, switching back g=
+o the
+> > > > > Wayland-terminal crashed the machine.
+> > > > >
+> > > >
+> > > > Also, trying to bring the eDP-screen back from DPMS gives me:
+> > > >
+> > > > <3>[ 2355.218099] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
+> > > *ERROR* set state_bit for link_train=3D1 failed
+> > > > <3>[ 2355.218926] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
+> > > training #1 failed. ret=3D-110
+> > > > <3>[ 2355.262859] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
+> > > *ERROR* set state_bit for link_train=3D1 failed
+> > > > <3>[ 2355.263600] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
+> > > training #1 failed. ret=3D-110
+> > > > <3>[ 2355.305211] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
+> > > *ERROR* set state_bit for link_train=3D1 failed
+> > > > <3>[ 2355.305955] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
+> > > training #1 failed. ret=3D-110
+> > > > <3>[ 2355.345250] [drm:dp_catalog_ctrl_set_pattern_state_bit [msm]]
+> > > *ERROR* set state_bit for link_train=3D1 failed
+> > > > <3>[ 2355.346026] [drm:dp_ctrl_setup_main_link [msm]] *ERROR* link
+> > > training #1 failed. ret=3D-110
+> > > > <3>[ 2355.405650] [drm:dp_display_process_hpd_high [msm]] *ERROR*
+> > > failed to complete DP link training
+> > > > <3>[ 2355.668988]
+> > > [drm:dpu_encoder_phys_vid_wait_for_commit_done:488] [dpu
+> > > error]vblank timeout
+> > > > <3>[ 2355.669030] [drm:dpu_kms_wait_for_commit_done:510] [dpu
+> > > error]wait for commit done returned -110
+> > > > <3>[ 2355.699989] [drm:dpu_encoder_frame_done_timeout:2398] [dpu
+> > > error]enc35 frame done timeout
+> > > >
+> > > > And then the machine just resets.
+> > > >
+> > >
+> > > I saw similar behavior on ChromeOS after we picked the PSR patches in=
+to
+> > > our kernel. I suspect it's the same problem. I switched back and fort=
+h
+> > > between VT2 and the OOBE screen with ctrl+alt+forward and that showed
+> > > what I typed on the virtual terminal after switching back and forth.
+> > > It's like the redraw only happens once on the switch and never again.=
+ I
+> > > switched back and forth enough times that it eventually crashed the
+> > > kernel and rebooted. This was on CRD (sc7280-herobrine-crd.dts).
+> > >
+> > > There's an animation on the OOBE screen that is working though, so
+> > > perhaps PSR is working with the chrome compositor but not the virtual
+> > > terminal? I haven't investigated.
+> >
+> > I was able to reproduce the issue where in virtual terminal, I don't se=
+e any screen refresh despite typing in.
+> > In the VT mode, I see that PSR is entered, but despite typing in there =
+are no atomic commits triggered, hence the last buffer was always refreshed=
+.
+> >
+> > Queries from my side to Rob & Doug:
+> > 1) In VT mode, does the framework operates in single buffer mode withou=
+t any commit for new updates ?
+> > 2) if above is true then, how does driver know if the framework operate=
+s in single buffer mode, to make any appropriate action
+> > 3) what is the expected behavior with the driver here ? should it retur=
+n atomic_check failure, for single buffer mode operation or, it should exit=
+ PSR ?
+> > 4) is there any HINT passed down to the driver so that we can bank on i=
+t and act accordingly?
+>
+> I haven't looked at this detail about PSR before, and I left my
+> PSR-enabled device at home so I can't easily test this right now. That
+> being said, from a bit of searching I would guess that
+> msm_framebuffer_dirtyfb() is somehow involved here. Are things better
+> if you get rid of the test against 'msm_fb->dirtyfb'?
+>
+> I at least used ftrace to confirm that on a different device
+> msm_framebuffer_dirtyfb() is not called during normal ChromeOS usage
+> but it _is_ called in VT2 usage.
 
-> I still think making these APIs "inline" is a better option as these APIs
-> implement very simple one line logic and can be made inline.
->
-> Please let me know what do you think and which approach sounds better.
->
->
-> >> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> >> index 126b672b9b30..2fa7df667592 100644
-> >> --- a/drivers/soc/ti/pruss.c
-> >> +++ b/drivers/soc/ti/pruss.c
-> >> @@ -21,6 +21,7 @@
-> >>  #include <linux/regmap.h>
-> >>  #include <linux/remoteproc.h>
-> >>  #include <linux/slab.h>
-> >> +#include "pruss.h"
-> >>
-> >>  /**
-> >>   * struct pruss_private_data - PRUSS driver private data
-> >> diff --git a/drivers/soc/ti/pruss.h b/drivers/soc/ti/pruss.h
-> >> new file mode 100644
-> >> index 000000000000..4626d5f6b874
-> >> --- /dev/null
-> >> +++ b/drivers/soc/ti/pruss.h
-> >> @@ -0,0 +1,112 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0-only */
-> >> +/*
-> >> + * PRU-ICSS Subsystem user interfaces
-> >> + *
-> >> + * Copyright (C) 2015-2023 Texas Instruments Incorporated - http://ww=
-w.ti.com
-> >> + *  MD Danish Anwar <danishanwar@ti.com>
-> >> + */
-> >> +
-> >> +#ifndef _SOC_TI_PRUSS_H_
-> >> +#define _SOC_TI_PRUSS_H_
-> >> +
-> >> +#include <linux/bits.h>
-> >> +#include <linux/regmap.h>
-> >> +
-> >> +/*
-> >> + * PRU_ICSS_CFG registers
-> >> + * SYSCFG, ISRP, ISP, IESP, IECP, SCRP applicable on AMxxxx devices o=
-nly
-> >> + */
-> >> +#define PRUSS_CFG_REVID         0x00
-> >> +#define PRUSS_CFG_SYSCFG        0x04
-> >> +#define PRUSS_CFG_GPCFG(x)      (0x08 + (x) * 4)
-> >> +#define PRUSS_CFG_CGR           0x10
-> >> +#define PRUSS_CFG_ISRP          0x14
-> >> +#define PRUSS_CFG_ISP           0x18
-> >> +#define PRUSS_CFG_IESP          0x1C
-> >> +#define PRUSS_CFG_IECP          0x20
-> >> +#define PRUSS_CFG_SCRP          0x24
-> >> +#define PRUSS_CFG_PMAO          0x28
-> >> +#define PRUSS_CFG_MII_RT        0x2C
-> >> +#define PRUSS_CFG_IEPCLK        0x30
-> >> +#define PRUSS_CFG_SPP           0x34
-> >> +#define PRUSS_CFG_PIN_MX        0x40
-> >> +
-> >> +/* PRUSS_GPCFG register bits */
-> >> +#define PRUSS_GPCFG_PRU_GPO_SH_SEL              BIT(25)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_DIV1_SHIFT              20
-> >> +#define PRUSS_GPCFG_PRU_DIV1_MASK               GENMASK(24, 20)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_DIV0_SHIFT              15
-> >> +#define PRUSS_GPCFG_PRU_DIV0_MASK               GENMASK(15, 19)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_GPO_MODE                BIT(14)
-> >> +#define PRUSS_GPCFG_PRU_GPO_MODE_DIRECT         0
-> >> +#define PRUSS_GPCFG_PRU_GPO_MODE_SERIAL         BIT(14)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_GPI_SB                  BIT(13)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_GPI_DIV1_SHIFT          8
-> >> +#define PRUSS_GPCFG_PRU_GPI_DIV1_MASK           GENMASK(12, 8)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_GPI_DIV0_SHIFT          3
-> >> +#define PRUSS_GPCFG_PRU_GPI_DIV0_MASK           GENMASK(7, 3)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE_POSITIVE   0
-> >> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE_NEGATIVE   BIT(2)
-> >> +#define PRUSS_GPCFG_PRU_GPI_CLK_MODE            BIT(2)
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_GPI_MODE_MASK           GENMASK(1, 0)
-> >> +#define PRUSS_GPCFG_PRU_GPI_MODE_SHIFT          0
-> >> +
-> >> +#define PRUSS_GPCFG_PRU_MUX_SEL_SHIFT           26
-> >> +#define PRUSS_GPCFG_PRU_MUX_SEL_MASK            GENMASK(29, 26)
-> >> +
-> >> +/* PRUSS_MII_RT register bits */
-> >> +#define PRUSS_MII_RT_EVENT_EN                   BIT(0)
-> >> +
-> >> +/* PRUSS_SPP register bits */
-> >> +#define PRUSS_SPP_XFER_SHIFT_EN                 BIT(1)
-> >> +#define PRUSS_SPP_PRU1_PAD_HP_EN                BIT(0)
-> >> +#define PRUSS_SPP_RTU_XFR_SHIFT_EN              BIT(3)
-> >> +
-> >> +/**
-> >> + * pruss_cfg_read() - read a PRUSS CFG sub-module register
-> >> + * @pruss: the pruss instance handle
-> >> + * @reg: register offset within the CFG sub-module
-> >> + * @val: pointer to return the value in
-> >> + *
-> >> + * Reads a given register within the PRUSS CFG sub-module and
-> >> + * returns it through the passed-in @val pointer
-> >> + *
-> >> + * Return: 0 on success, or an error code otherwise
-> >> + */
-> >> +static int pruss_cfg_read(struct pruss *pruss, unsigned int reg, unsi=
-gned int *val)
-> >> +{
-> >> +    if (IS_ERR_OR_NULL(pruss))
-> >> +            return -EINVAL;
-> >> +
-> >> +    return regmap_read(pruss->cfg_regmap, reg, val);
-> >> +}
-> >> +
-> >> +/**
-> >> + * pruss_cfg_update() - configure a PRUSS CFG sub-module register
-> >> + * @pruss: the pruss instance handle
-> >> + * @reg: register offset within the CFG sub-module
-> >> + * @mask: bit mask to use for programming the @val
-> >> + * @val: value to write
-> >> + *
-> >> + * Programs a given register within the PRUSS CFG sub-module
-> >> + *
-> >> + * Return: 0 on success, or an error code otherwise
-> >> + */
-> >> +static int pruss_cfg_update(struct pruss *pruss, unsigned int reg,
-> >> +                        unsigned int mask, unsigned int val)
-> >> +{
-> >> +    if (IS_ERR_OR_NULL(pruss))
-> >> +            return -EINVAL;
-> >> +
-> >> +    return regmap_update_bits(pruss->cfg_regmap, reg, mask, val);
-> >> +}
-> >> +
-> >> +#endif  /* _SOC_TI_PRUSS_H_ */
-> >> --
-> >> 2.25.1
-> >>
->
-> --
-> Thanks and Regards,
-> Danish.
+Indeed, I can confirm that if I comment out the test in
+msm_framebuffer_dirtyfb() and just call straight through to
+drm_atomic_helper_dirtyfb() that typing on VT2 works fine.
+
+...so presumably you need to figure out how to get "dirtyfb" set
+properly when you have a PSR-enabled panel or maybe whenever the panel
+enters PSR mode?
+
+-Doug
