@@ -2,123 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7E3A6D008D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 12:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B406C6D007F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 12:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbjC3KDm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Mar 2023 06:03:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42784 "EHLO
+        id S230110AbjC3KB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 06:01:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231173AbjC3KDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 06:03:38 -0400
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06A67689;
-        Thu, 30 Mar 2023 03:03:22 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-545cb3c9898so269576937b3.7;
-        Thu, 30 Mar 2023 03:03:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680170602;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jYboRTcs8TAcQoasaBSMzn8Hx9VZHVE9Lec1pajFBBU=;
-        b=FGTupM3ahKSwB+Ti+6/4H/uIPvqw3hAyYNad80ZOAJxxHgCzPrNmv6fftQqF96lF9I
-         7sKDtVozkmWwy+taaEGXxqX/SXXkOSYbRIgcbY9zqIQuseVJJoZEG4aX3bq3UetJNYaU
-         k3NoWnRppik9wvOCnqieuztN7JU2YdVCnBvsa1iuX33zYxqKIuCRAQvdMpiSN41sLEFN
-         hy4ny7WiAI90uUT0Zr8RJahDdaOyzLXikucfxCshJN5S9IT0aID0fOS/sngRLb9WTyKG
-         zxCCmuRPDyT4OPKBgJgmUTDusFuhVZtqh3LjTNFpHCLwMabsKC856pJLW6mnKpnrba1b
-         FHWA==
-X-Gm-Message-State: AAQBX9fMqQmdDwjQgc12e1xuCo/MlYmM3Tya2PGAhIE/CxcuB/viNwja
-        CSU7P76rE5BAnnIJqxU4en+S55sq6kyOEQ==
-X-Google-Smtp-Source: AKy350ZkzCTr0/vGWUO4ivfi0ISRRy/YAvHk0mlR2SIc6tXVUumn29fxnEj95uST49naUnTVek/4yQ==
-X-Received: by 2002:a81:7c04:0:b0:546:2a48:804e with SMTP id x4-20020a817c04000000b005462a48804emr4433198ywc.50.1680170601941;
-        Thu, 30 Mar 2023 03:03:21 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id q5-20020a0dec05000000b00545a08184f9sm3455682ywn.137.2023.03.30.03.03.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 03:03:21 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-536af432ee5so345456517b3.0;
-        Thu, 30 Mar 2023 03:03:21 -0700 (PDT)
-X-Received: by 2002:a81:a7c4:0:b0:546:264:a375 with SMTP id
- e187-20020a81a7c4000000b005460264a375mr6032931ywh.4.1680170601247; Thu, 30
- Mar 2023 03:03:21 -0700 (PDT)
+        with ESMTP id S230262AbjC3KBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 06:01:54 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2049.outbound.protection.outlook.com [40.107.20.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903FD7DBA;
+        Thu, 30 Mar 2023 03:01:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=afDUi6k+OTfJ2heCf23QIA5SLoIIq6kbX3V+iVWEAuxCOEQhVUsFqDcmk52VDmAUhXRQIFxKLqJqsQKOGRdi5IKk0KGUqz0pXKj5xIRuv9jLcXjBwpsjCFF+Axby58dvewSFSUh7sTGtKtRO2FWEiqADaFJB19Vi4hgraCr2kC6xQ41uL1y20KGBDKnIdE0W2yaGGAuIbOvY59d+YJxAch25nk3MoEgJ0JrD6d0SbyEL4PJ4+pPfsBY7JLTrVJp0pF1LV7YpFyREvpBdTWayEPBduHEkdShVImQxIsWAVwpCEK/5GZkcxSECdsukOOndxDtE/xdbFcKbvqxcELyfJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rJyxWdi3lAo+5DH2LbWTVHl/Q4h/duUCVp2hix7lE7o=;
+ b=lDbWnm9oTE2Fqydx70xL2dtdqdflOrjUhCXM4obmEsJJ2v6ToRDeuF8ehP1mGJoVo3Rd6TC28xTdNE2rRhQZMea/G5QP8LexLb0F6H1Dx7WlsR4AaNvUnJCqPDmxwcszCl0rcNTEwplHnA/6eGloqj+jlu5N9GC9168bjWLQ2wop3FtV5QITBiSWIK3aaGE+bSWbAUylp8Zd1kgtb9DB9n3VKL2kSiJDpQOCJdMAyftCnrT/QXcLDt6aPq4237wGj2A6Shcqg4oF1ntncA/A/K480ZUQQL4ZjS2RVTyUps/ROaFHFOXZteer9DDJR2d4bTEGjNEkosL+vTmVhuMphA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rJyxWdi3lAo+5DH2LbWTVHl/Q4h/duUCVp2hix7lE7o=;
+ b=OWEiaw79Zw+98bZDmPBXNzcfktztlRNL3M0Qor76mncnQaZnRuxkbZCcKiQQPOxHDBwD4n8xI/iU/6HfAFQlB+wTMFbnQGauMLFz1a4YeXfbRUBvuiQvhO4usi8D3VUIqz70IfnqnONQPqSnHjm/nhKy8CdjBvhLrXOCdyganv8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB8PR04MB6891.eurprd04.prod.outlook.com (2603:10a6:10:112::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Thu, 30 Mar
+ 2023 10:00:49 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::778e:19d0:cba0:5cc0]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::778e:19d0:cba0:5cc0%4]) with mapi id 15.20.6222.028; Thu, 30 Mar 2023
+ 10:00:49 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, stefan@agner.ch,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH V2 1/2] dt-bindings: gpio: fsl-imx-gpio: update gpio-ranges
+Date:   Thu, 30 Mar 2023 18:05:49 +0800
+Message-Id: <20230330100550.2049687-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG3P274CA0019.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::31)
+ To DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
 MIME-Version: 1.0
-References: <20230321114753.75038-1-biju.das.jz@bp.renesas.com> <20230321114753.75038-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230321114753.75038-6-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 30 Mar 2023 12:03:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXvZKVFznf5tK_khH-pscf4J6iX2-05WbrsOZAgoaY45Q@mail.gmail.com>
-Message-ID: <CAMuHMdXvZKVFznf5tK_khH-pscf4J6iX2-05WbrsOZAgoaY45Q@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] arm64: dts: renesas: r9a07g044: Enable sci0 node
- using dt overlay
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB8PR04MB6891:EE_
+X-MS-Office365-Filtering-Correlation-Id: ddabee79-8ecd-4670-f01f-08db3105a2ec
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JHxIX3aRHFST7Zhf0wGXgDxu6k7BDhMbVpovFfclL7KhjAhoR2Be262zMbZyXtN6T4UAJHWOL4UnDvpNNs+30RJaDu9R1pnjRYOzP9oAH3LvlHtp/M4qfdJXX0YlN4G+Fm7EbZjdx5sEprf00y0E5Bd/laMxRzEU2c9eIl32njCscPK68Aypya+eAcZcSxpPwA2VDs+PP84o548uOWl1PsS4a+cmEmArAgOm9GFX8ZY93KcQ1pIc+7NyMBu9rGleWSKdOxLgkINgWokaUv8qV01JNhtizTR4q5o7K5TMtAE+LuBxb+ARfSHkzfVnEt45qTCke9fDFXnpBCh/wzwIQKWc1DwJU6ftXeFNRhzVjKR7d/R5U2p40wwZ7sLU+VjZ6+hsiDXehwIB7eMi6PBnyWANVT2nIS+BqtI0y5j90euuwhkwsgcRDUxPKFmVWjuqqFHiFVGF3Dc5esQTOXuth9ZEoMYDHA+xSyyyZ32zGO+Sjw/Pqepyyco+RNVbbd4D6a5CWp2poeQO8cJbfbTqtrcslCdSMhj+Coe3eRqm1B6X4PIOKL+PVzeTcj6wkmY8n9Xfa5YrUAL5npO8BEbZ9/wLGDgym9ZM+WMxHqA9cULmVmtjFTcOgBY4FKGfx8AE
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(39860400002)(396003)(136003)(376002)(451199021)(316002)(66556008)(8676002)(66476007)(54906003)(5660300002)(38100700002)(38350700002)(41300700001)(4744005)(66946007)(7416002)(4326008)(8936002)(186003)(2616005)(6506007)(6512007)(83380400001)(6486002)(478600001)(26005)(52116002)(1076003)(86362001)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sB0hRN1i4gNjWARHxO9hCZS4ObjYhajTvH7gMhQKWtgEdReZ1vc6gUmflnWp?=
+ =?us-ascii?Q?tGz23cJ2IOwZPQobIk+MvZ6j45damb87fePGJgMIgaq9FmX512aqJge9zPdZ?=
+ =?us-ascii?Q?ll7zTgP5pNTsRyvN7KR9LgrzYrEepZQAppcDgbh/C/FBswb9RpFL1YXkxlZd?=
+ =?us-ascii?Q?mwTonjN4Idm8c1Rb2wOsmN7ia4X9HqbvxYDc8oXunME4gV+W796dfQUNUO8z?=
+ =?us-ascii?Q?l+s3rCB65SQRGnPd+r55stjOnxk4/S1iFMdGw/I84RY7iUaCU/MfRNYcOXDV?=
+ =?us-ascii?Q?5liUj7/BUKq7UCM86vffbqITvPcZWdLrvPTJfnn8iKNk52AzmDANWe+HhLQt?=
+ =?us-ascii?Q?mmPvMpLN4s1Evg+3RXP7PjRrnbILHUv7iT0AO+FqLTBO+uTzCOarkqDQBQa/?=
+ =?us-ascii?Q?gxUpii4yxg62/MxdUCcVauzDY+JeSu+q63f8ZpFptfVqnyfjz+R01jwOl6jk?=
+ =?us-ascii?Q?mUH3Otx2bQxBiCK1ZcIMawSk7hBT/HvmxPIF6Eqo4d+2SvFTPMRBhLkQnZEX?=
+ =?us-ascii?Q?xWdt5TIveEhw/hY257jXMdNyeXCB2Diu8ToUzhCtPxqgRnqD+sPhYX6/pGo7?=
+ =?us-ascii?Q?ZNUpUx9MXfvvaRam/UE3BewvgPZte0rZc3P3f/mlaC+egCjw40tGBPlL4Clo?=
+ =?us-ascii?Q?Kq+tGgBqitsp6PvPHo+G30QWEXeXIz7XZ/v8rwrRyJ5pS1wrvN4xvFw39vX+?=
+ =?us-ascii?Q?xGRIcQWnXU+aVSQ7v861zjWMeyiwLqcVU/KtwaNf119f8sbvESVJZZUFjfwE?=
+ =?us-ascii?Q?JhFZpBo4t/Xa5AAhgKXmEmPt0wnWmDPVpGfLJJfs2e7uFMkdsr8TzR2dPry2?=
+ =?us-ascii?Q?zKFSajHaJRnuVWbc3D66WRamG4LxPZBDzRtxLAyNVanflanJHMsnl8WRyDYr?=
+ =?us-ascii?Q?3rzJSaGijiuANA/VrSKfbHF5NSFZcPzJ2U5VDR5irps78BLAFVmJ2L+AdJOo?=
+ =?us-ascii?Q?2cmNT//pyWakW20AChVmHS0MC7n88JpvVlgsf3ouvnIuud3cZzAOrzFfIVzr?=
+ =?us-ascii?Q?1n5og//AiweI2BybJKIHLbxaXNjCiZ0e4jCdIbxyEr+Nm9U2jFm85Q/E7aov?=
+ =?us-ascii?Q?w/pTGnID7APYqt80BlU0jIlV/Lr6+FhdccyFDj2EVf8YAGXueevx7z2Qjv2W?=
+ =?us-ascii?Q?UsUfpd/5aoPtYa4eEQjYXweE4fQLw3UFAL93JqiNMVTgt1XlDSHh1LP31if1?=
+ =?us-ascii?Q?vPYCyADTDQC/Yhyj9z46ycxjibQt95TPvzGnbpGzNbbG/Hv9l6bdNR771xOE?=
+ =?us-ascii?Q?6JNZgB1eV+Jd+6F3NJD1STvqMdDEnDhSrpm507T4nx4mOsnxh17d3TeHFAtZ?=
+ =?us-ascii?Q?T3OvvdsSKVPRa8XhVvsAfVrpVBFidi+tBNy2VvJrGnGbdhFpk89asFybI93O?=
+ =?us-ascii?Q?fpleUpP7ZBIRMLWj+e7js8aDv6CDB6iiRbW1OSRNgyZcMvjQuZ5EwtFqNrhl?=
+ =?us-ascii?Q?jcariAaxhTioK2j05mE4kQ2w/h65c1vrDehvaPc6SH+4lIOMFELGsHc6vva8?=
+ =?us-ascii?Q?AMRwHTUe6akgzLPqCzJ2yefLPLGvX3dqSQlHRAaCC0kX27Ihx3WeMnSgGsWR?=
+ =?us-ascii?Q?fGFJ1BltHUAZ6d99rr6WlF3b042/qy7jdPtaZOhg?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddabee79-8ecd-4670-f01f-08db3105a2ec
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 10:00:48.7233
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 98uzXF0SHVUy6iVFaDan070REwYQDIrutXcM/Q4YD85Sr3XOTUDeSjnuAg6objkfVgyttNyVeCyy6jR1/ozt/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6891
+X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+From: Peng Fan <peng.fan@nxp.com>
 
-On Tue, Mar 21, 2023 at 12:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable sci0 node using dt overlay and disable can{0,1}-stb-hog
-> nodes in dt overlay as its pins are shared with sci0 pins.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v4:
->  * Updated commit header sci0 nodes->sci0 node
->  * Removed PMOD USBUART reference and connection details as user can connect
->    anything on that PMOD1 pins.
->  * Renamed r9a07g043-smarc.dtso->r9a07g043-smarc-pmod.dtso
->  * Dropped unused header file dt-bindings/gpio/gpio.h
+And bounds for gpio-ranges to address dtbs_error.
 
-Thanks for the update!
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+V2:
+ Enlarge bounds to 32, since it max supports 32 pins
+ Add A-b
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.4.
+ Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043-smarc-pmod.dtso
-> @@ -0,0 +1,42 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the RZ/{G2UL, Five} SMARC EVK PMOD parts
-> + *
-> + * Copyright (C) 2023 Renesas Electronics Corp.
-> + *
-> + *
-> + * [Connection]
-> + *
-> + * SMARC EVK
-> + * +----------------------------+
-> + * |CN7 (PMOD1 PIN HEADER)      |
-> + * |   SCI0_TXD          pin7  |
-> + * |   SCI0_RXD          pin8  |
-
-I'll re-add Gnd/Vcc from v3 while applying, as this is useful info for the user.
-
-> + * +----------------------------+
-
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+index be56c3faec0f..bb9b40ef3112 100644
+--- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+@@ -66,7 +66,10 @@ properties:
+ 
+   gpio-controller: true
+   gpio-line-names: true
+-  gpio-ranges: true
++
++  gpio-ranges:
++    minItems: 1
++    maxItems: 32
+ 
+   power-domains:
+     maxItems: 1
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.37.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
