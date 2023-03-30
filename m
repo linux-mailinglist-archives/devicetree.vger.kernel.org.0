@@ -2,107 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C33C46CF9CC
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 05:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4E56CF9E1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 05:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjC3DzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Mar 2023 23:55:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35782 "EHLO
+        id S229643AbjC3D7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Mar 2023 23:59:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbjC3Dy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 23:54:57 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B5559FD
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 20:54:54 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id f22so12787509plr.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 20:54:54 -0700 (PDT)
+        with ESMTP id S229738AbjC3D7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Mar 2023 23:59:35 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7FEA4ED5
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 20:59:33 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id fb38so11656402pfb.7
+        for <devicetree@vger.kernel.org>; Wed, 29 Mar 2023 20:59:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680148494;
+        d=linaro.org; s=google; t=1680148773;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ORTcc1S4DbhSj9bYXgbzlVEJUmJSEuJEOt6fEFrhs3I=;
-        b=KDkr9GukbLDb5E0cjryjb5Wh0SCZaycf/IUr90YlJNe0yf+CJFbuqVLgseHvC1XTAs
-         Mj696hVP3J+/JyxeccnDx4sbyBLoQR8t6nLYlyTiLLcc21ZTbl5DObP3Sn5N4aoPtg5K
-         vT05+Dy7pELaLbJ3Jtjg4yd67A4IfUXlaie5LW1NfYlipHOIwyXNtqF0se+FNlmkrAW9
-         0bSdtfv+XKaMh8hj340BwSg3B4py1O/ULmxkhI+S+4sADQi7xMUd3Eyip4T50rRfAII+
-         GbYAWTbGyTjtff51zxbKYOhiJVlu3d4/NXIx3s+ZSTQbkwQZhq1bYkwIvzgmP/zufxWD
-         V87Q==
+        bh=Q25BjYFhUOQUROkZ0ZzAszfBEC4NCamXHxL/4xSLcMQ=;
+        b=NbyeVMSimzD6VgEF9mdpMS3oGIirpVhDdWV+jb3dJBm3UCN1sW5PyQN2PccnZbdZcj
+         BsSGJJrDc2l8Ofo0myog1VVI5Aw0F0FjRCfeB5g1ipaDF0gEfpK0Rq8Eqqx9hstfHzwy
+         XX3v36eJIckhmHQFPr/8ZJey/aQ9xvBz784zgT5KPYv81ITpqYMQxNSvh4MNBRCefAK/
+         5VS3VZ2dv3745ORC6O8Z2zrgIhZvxfZSAlCtWGcF3OdhSqCXgHgrwllh2MJr2c18g1dJ
+         HHmoaQRyckis3bYhdzKb17HRjwc6Ka7hkLVr2fFufzbBQq7gXYKIOCFBQNYVRikAkJEH
+         BqKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680148494;
+        d=1e100.net; s=20210112; t=1680148773;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ORTcc1S4DbhSj9bYXgbzlVEJUmJSEuJEOt6fEFrhs3I=;
-        b=51leKZI4PNOLwsQG8jSFjVEX42g3xnEoabGzA3OMpH23GdwTKNev2eYzNMF2R9eiRB
-         NugjfWdi0fbz+3chtmb4gOtl/tJCqT2GMxfXsrXlZ9RmIct62HxNqcNNbo7XXz2x6IVL
-         MszBDON3TMavlYfXoc5CY1wXR6ReqmlTB36XVYn5+HpTXiM+XLPkFpRe+Rh21oKwnOVs
-         o33LWecHTkUuwam8fZtffvqR7qoCdoKydpyDBNF8xp2ZXlpv0GZcVrduoZKkTw40aWch
-         s5uc25AG6xnu3ezUb0tPNibQFIQzFsjkNvdhfvUXLfpXP5oSS/eAi8yFzF0mEzQUsZCH
-         tWhw==
-X-Gm-Message-State: AAQBX9c5HXJFzyGwqs+IfI9Ex+fBQil7Mt0UV5YxYE8cGOovWbNV659y
-        rwqYMGGuEb3+bEMm48eo7j2oOg==
-X-Google-Smtp-Source: AKy350Z3+wrY9ZgUHedACp4BaESa2FvIEkabhjg74d5bnPV2JCYBYbJoHjnYpjGWoPDBynyeKDWcRw==
-X-Received: by 2002:a17:902:d503:b0:19d:1720:3873 with SMTP id b3-20020a170902d50300b0019d17203873mr24981326plg.57.1680148494287;
-        Wed, 29 Mar 2023 20:54:54 -0700 (PDT)
+        bh=Q25BjYFhUOQUROkZ0ZzAszfBEC4NCamXHxL/4xSLcMQ=;
+        b=4Avsu+6cYYRAntSeT86YdVzapE2VqvIlxw3gGf3WQyT54yN5uJjvjfeEfWunm2/PYJ
+         n+dGmM9OE82sQYylvNmfKLIEEtXnss8DIk3BSqx1H9sHt8y1OVU15+02pp6xA7R0OElj
+         01FTgS+eweZCDDFD6ypfQ/coTxH0FLL4n0e+bBaFCGh1b4j7PGhkp55vQ6czhWXqL/bb
+         ODCUdD3c15Lcei/sjfoQi+fhPr7D4phk29W8tlN4WERAQ0Br1JWlCBLZxZqxJRk6e26l
+         QJgfg3wah7ajF5vcwTutwoA/DCm7OucUGJcFwVeT2s5FW9zeRZ1FtOrQjvY+PQKjd2v5
+         DjdA==
+X-Gm-Message-State: AAQBX9dDg/3UcncJMFkp0mE7jBsYvMcodYy/dlCVxOhBP1/6dFVuVJxs
+        uLZ8PmDMps44S55J5/M4nB2myQ==
+X-Google-Smtp-Source: AKy350ZdZDO3PRGGrrT+/YuyGadl5IRqO6n1xJBuLwHHNp/q4reg5l1w/HV8vpa1jUJmhsJ1XknWmA==
+X-Received: by 2002:aa7:98c3:0:b0:62d:9b86:632 with SMTP id e3-20020aa798c3000000b0062d9b860632mr8620120pfm.9.1680148773161;
+        Wed, 29 Mar 2023 20:59:33 -0700 (PDT)
 Received: from localhost ([122.172.85.168])
-        by smtp.gmail.com with ESMTPSA id q9-20020a17090ad38900b002340d317f3esm2154710pju.52.2023.03.29.20.54.53
+        by smtp.gmail.com with ESMTPSA id z18-20020a63e552000000b0050f6add54fcsm19246877pgj.44.2023.03.29.20.59.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Mar 2023 20:54:53 -0700 (PDT)
-Date:   Thu, 30 Mar 2023 09:24:51 +0530
+        Wed, 29 Mar 2023 20:59:32 -0700 (PDT)
+Date:   Thu, 30 Mar 2023 09:29:30 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Anup Patel <anup@brainfault.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, sparclinux@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH 18/19] OPP: Adjust includes to remove of_device.h
-Message-ID: <20230330035451.huc3ae2acvgoh4xs@vireshk-i7>
-References: <20230329-dt-cpu-header-cleanups-v1-0-581e2605fe47@kernel.org>
- <20230329-dt-cpu-header-cleanups-v1-18-581e2605fe47@kernel.org>
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 0/8] qcom-cpufreq-hw binding improvements
+Message-ID: <20230330035930.lv5bz43bkbdfnbhm@vireshk-i7>
+References: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230329-dt-cpu-header-cleanups-v1-18-581e2605fe47@kernel.org>
+In-Reply-To: <20230308-topic-cpufreq_bindings-v1-0-3368473ec52d@linaro.org>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -112,34 +75,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-03-23, 10:52, Rob Herring wrote:
-> Now that of_cpu_device_node_get() is defined in of.h, of_device.h is just
-> implicitly including other includes, and is no longer needed. Adjust the
-> include files with what was implicitly included by of_device.h (cpu.h and
-> of.h) and drop including of_device.h.
+On 08-03-23, 02:26, Konrad Dybcio wrote:
+> This series tries to better sanitize what's actually allowed on which
+> SoC and lowers the minimum frequency domain count to 1, as that's what's
+> present on at least QCM2290.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> Please ack and I will take the series via the DT tree.
-> ---
->  drivers/opp/of.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> index e55c6095adf0..63b126c6215e 100644
-> --- a/drivers/opp/of.c
-> +++ b/drivers/opp/of.c
-> @@ -13,7 +13,7 @@
->  #include <linux/cpu.h>
->  #include <linux/errno.h>
->  #include <linux/device.h>
-> -#include <linux/of_device.h>
-> +#include <linux/of.h>
->  #include <linux/pm_domain.h>
->  #include <linux/slab.h>
->  #include <linux/export.h>
+> Konrad Dybcio (8):
+>       dt-bindings: cpufreq: cpufreq-qcom-hw: Allow just 1 frequency domain
+>       dt-bindings: cpufreq: cpufreq-qcom-hw: Sanitize data per compatible
+>       dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCM2290
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Applied these three, thanks..
 
 -- 
 viresh
