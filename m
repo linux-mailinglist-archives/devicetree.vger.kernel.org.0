@@ -2,130 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE796CFB81
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 08:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15FF56CFBCB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 08:44:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbjC3G2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 02:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51000 "EHLO
+        id S230292AbjC3GoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 02:44:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230217AbjC3G2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 02:28:54 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA634ED2;
-        Wed, 29 Mar 2023 23:28:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680157733; x=1711693733;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wD8GKP3B56Z03DGtVse0/Ba7FvgZ/IA3mt3zB6FExL4=;
-  b=WaPIrW9y11NDiJNJD5SdAcNbVnCddLw/NCjqNl76V5DOwJpNMb+CSEra
-   B0qAFHzOdakXN6EVGO1mZ2X7cxegNS2qROxkEU2uReGk9d/hRCW7S3zvK
-   YmAPNwMthP9OFxiGHxRYQ6WFxMLibXQ9To4tkD65O9QKxHzE9sh61rQTI
-   LKIePFcV7jr/ZEvNO+UPKfbzwu4rOLhw6XprYPIju1WbLukh7+Vvx9TlR
-   GDRhQ890NvusJUIQWRFIEKrTNMuJNwthhHZuWNX3DiT2l+rIpwexhOaMh
-   a0d62d6miDygkSd4AMzvEj2PRvMGRBXYLxHd9fBGXn0ki0oQvHexlz862
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="325003986"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; 
-   d="scan'208";a="325003986"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2023 23:28:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="753872393"
-X-IronPort-AV: E=Sophos;i="5.98,303,1673942400"; 
-   d="scan'208";a="753872393"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 29 Mar 2023 23:28:39 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1phllx-000KRS-38;
-        Thu, 30 Mar 2023 06:28:33 +0000
-Date:   Thu, 30 Mar 2023 14:28:12 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Brenda Streiff <brenda.streiff@ni.com>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Brenda Streiff <brenda.streiff@ni.com>,
-        Gratian Crisan <gratian.crisan@ni.com>,
-        Jason Smith <jason.smith@ni.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
-Message-ID: <202303301456.qfo36qC0-lkp@intel.com>
-References: <20230329154235.615349-3-brenda.streiff@ni.com>
+        with ESMTP id S230301AbjC3GoG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 02:44:06 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDC387695;
+        Wed, 29 Mar 2023 23:43:56 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32U6hiGV052781;
+        Thu, 30 Mar 2023 01:43:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1680158624;
+        bh=bT80fJZkEzcPwq0rZSo29Ml6Els/2Qq5nIx8+2O0vBo=;
+        h=Date:Subject:From:To:CC:References:In-Reply-To;
+        b=wMUGzLLLo32IMr9dfmZz9vd4VQJi5nSpv8NNQZlfkD75WbHZNOoiO5CySMskIezjV
+         JdORohToS0QtKETX2Ny3MWziOMuydCKgLluweYyhsHXaElPN+9hWASVNkUA3bC5t/8
+         SszvNB8XWupj2iwYVjVR+d6+llmZwtvwcHMzm9JA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32U6hinY021752
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 30 Mar 2023 01:43:44 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 30
+ Mar 2023 01:43:44 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 30 Mar 2023 01:43:44 -0500
+Received: from [10.24.69.141] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32U6hefP074293;
+        Thu, 30 Mar 2023 01:43:41 -0500
+Message-ID: <ac2e194a-9b16-eec2-4e1b-a6708d1bb9f1@ti.com>
+Date:   Thu, 30 Mar 2023 12:13:40 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230329154235.615349-3-brenda.streiff@ni.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V3 2/2] arm64: dts: ti: k3-am68-sk-base-board: Add pinmux
+ for RPi Header
+Content-Language: en-US
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>, <u-kumar1@ti.com>,
+        Rahul Ravikumar <r-ravikumar@ti.com>
+References: <20230316114102.3602-1-sinthu.raja@ti.com>
+ <20230316114102.3602-3-sinthu.raja@ti.com>
+ <da0e31a6-2304-984c-35ea-41e29b2eb418@ti.com>
+In-Reply-To: <da0e31a6-2304-984c-35ea-41e29b2eb418@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brenda,
+Hi Sinthu,
 
-I love your patch! Perhaps something to improve:
+On 28/03/23 16:30, Vaishnav Achath wrote:
+> Hi Sinthu,
+> 
+> On 16/03/23 17:11, Sinthu Raja wrote:
+>> From: Sinthu Raja <sinthu.raja@ti.com>
+>>
+>> Add pinmux required to bring out the i2c and gpios on 40-pin RPi
+>> expansion header on the AM68 SK board.
+>>
+>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+>> ---
+>>
+>> No Changes in V3.
+>>
+> 
+> It looks like you missed to carry the tested tag from Rahul on V2,
+> was that intentional?
+> 
+> https://lore.kernel.org/all/20230125200427.2bqlpym5tzz43yqq@uda0490373/
+> 
+> Thanks and Regards,
+> Vaishnav
+> 
+>>  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 70 ++++++++++++++++++-
+>>  1 file changed, 69 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>> index 27a43a8ecffd..118308cfdd75 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>> @@ -173,6 +173,32 @@ J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
+>>  			J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
+>>  		>;
+>>  	};
+>> +
+>> +	main_i2c4_pins_default: main-i2c4-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J721S2_IOPAD(0x010, PIN_INPUT_PULLUP, 7) /* (AF28) MCAN13_RX.I2C4_SDA */
+>> +			J721S2_IOPAD(0x014, PIN_INPUT_PULLUP, 7) /* (AD25) MCAN14_TX.I2C4_SCL */
 
-[auto build test WARNING on tty/tty-testing]
-[also build test WARNING on tty/tty-next tty/tty-linus linus/master v6.3-rc4 next-20230330]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+While reviewing these changes with Udit, we found that these settings for I2C is
+wrong as per the datasheet(or sysconfig), for these PADs the mux mode 7 is GPIO
+and mode 8 is I2C, can you please check and correct this.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Brenda-Streiff/serial-8250-add-driver-for-NI-UARTs/20230330-010726
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20230329154235.615349-3-brenda.streiff%40ni.com
-patch subject: [PATCH tty-next 2/2] serial: 8250: add driver for NI UARTs
-config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20230330/202303301456.qfo36qC0-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install powerpc cross compiling tool for clang build
-        # apt-get install binutils-powerpc-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/6c50983e6760b2db288e3f8b7254cea537c0f052
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Brenda-Streiff/serial-8250-add-driver-for-NI-UARTs/20230330-010726
-        git checkout 6c50983e6760b2db288e3f8b7254cea537c0f052
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/tty/serial/8250/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303301456.qfo36qC0-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/tty/serial/8250/8250_ni.c:423:36: warning: unused variable 'ni16550_acpi_match' [-Wunused-const-variable]
-   static const struct acpi_device_id ni16550_acpi_match[] = {
-                                      ^
-   1 warning generated.
+Thanks and Regards,
+Vaishnav
 
 
-vim +/ni16550_acpi_match +423 drivers/tty/serial/8250/8250_ni.c
-
-   422	
- > 423	static const struct acpi_device_id ni16550_acpi_match[] = {
-   424		{ "NIC7750",	(kernel_ulong_t)&nic7750 },
-   425		{ "NIC7772",	(kernel_ulong_t)&nic7772 },
-   426		{ "NIC792B",	(kernel_ulong_t)&nic792b },
-   427		{ "NIC7A69",	(kernel_ulong_t)&nic7a69 },
-   428		{ },
-   429	};
-   430	MODULE_DEVICE_TABLE(acpi, ni16550_acpi_match);
-   431	
+>> +		>;
+>> +	};
+>> +
+>> +	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J721S2_IOPAD(0x0a8, PIN_INPUT, 7) /* (U24)  MCASP0_AXR14.GPIO0_42 */
+>> +			J721S2_IOPAD(0x090, PIN_INPUT, 7) /* (W24) MCASP0_AXR8.GPIO0_36 */
+>> +			J721S2_IOPAD(0x0bc, PIN_INPUT, 7) /* (V28) MCASP1_AFSX.GPIO0_47 */
+>> +			J721S2_IOPAD(0x06c, PIN_INPUT, 7) /* (V26) MCAN1_TX.GPIO0_27 */
+>> +			J721S2_IOPAD(0x004, PIN_INPUT, 7) /* (W25) MCAN12_TX.GPIO0_1 */
+>> +			J721S2_IOPAD(0x008, PIN_INPUT, 7) /* (AC24) MCAN12_RX.GPIO0_2 */
+>> +			J721S2_IOPAD(0x0b8, PIN_INPUT, 7) /* (AA24) MCASP1_ACLKX.GPIO0_46 */
+>> +			J721S2_IOPAD(0x00c, PIN_INPUT, 7) /* (AE28) MCAN13_TX.GPIO0_3 */
+>> +			J721S2_IOPAD(0x034, PIN_INPUT, 7) /* (AD24) PMIC_WAKE0.GPIO0_13 */
+>> +			J721S2_IOPAD(0x0a4, PIN_INPUT, 7) /* (T23) MCASP0_AXR13.GPIO0_41 */
+>> +			J721S2_IOPAD(0x0c0, PIN_INPUT, 7) /* (T28) MCASP1_AXR0.GPIO0_48 */
+>> +			J721S2_IOPAD(0x0b4, PIN_INPUT, 7) /* (U25) MCASP1_AXR4.GPIO0_45 */
+>> +			J721S2_IOPAD(0x0cc, PIN_INPUT, 7) /* (AE27) SPI0_CS0.GPIO0_51 */
+>> +			J721S2_IOPAD(0x08c, PIN_INPUT, 7) /* (T25) MCASP0_AXR7.GPIO0_35 */
+>> +		>;
+>> +	};
+>>  };
+>>  
+>>  &wkup_pmx0 {
+>> @@ -214,12 +240,39 @@ J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
+>>  		>;
+>>  	};
+>>  
+>> +	mcu_i2c0_pins_default: mcu-i2c0-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J721S2_WKUP_IOPAD(0x100, PIN_INPUT, 0) /*(H24) WKUP_GPIO0_63.MCU_I2C0_SCL*/
+>> +			J721S2_WKUP_IOPAD(0x104, PIN_INPUT, 0) /*(H27) WKUP_GPIO0_64.MCU_I2C0_SDA*/
+>> +		>;
+>> +	};
+>> +
+>>  	mcu_i2c1_pins_default: mcu-i2c1-pins-default {
+>>  		pinctrl-single,pins = <
+>>  			J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
+>>  			J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
+>>  		>;
+>>  	};
+>> +
+>> +	mcu_rpi_header_gpio0_pins_default: mcu-rpi-header-gpio0-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J721S2_WKUP_IOPAD(0x180, PIN_INPUT, 7) /* (G25) WKUP_GPIO0_66 */
+>> +			J721S2_WKUP_IOPAD(0x190, PIN_INPUT, 7) /* (K26) WKUP_GPIO0_49 */
+>> +			J721S2_WKUP_IOPAD(0x0c4, PIN_INPUT, 7) /* (E24) MCU_SPI1_D0.WKUP_GPIO0_1 */
+>> +			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) MCU_SPI1_D1.WKUP_GPIO0_2 */
+>> +			J721S2_WKUP_IOPAD(0x0c0, PIN_INPUT, 7) /* (D26) MCU_SPI1_CLK.WKUP_GPIO0_0 */
+>> +			J721S2_WKUP_IOPAD(0x0fc, PIN_INPUT, 7) /* (D25) MCU_SPI1_CS2.WKUP_GPIO0_15*/
+>> +			J721S2_WKUP_IOPAD(0x120, PIN_INPUT, 7) /* (G27) WKUP_GPIO0_56 */
+>> +			J721S2_WKUP_IOPAD(0x17c, PIN_INPUT, 7) /* (J26) WKUP_GPIO0_57 */
+>> +			J721S2_WKUP_IOPAD(0x184, PIN_INPUT, 7) /* (J27) WKUP_GPIO0_67 */
+>> +			J721S2_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (C27) MCU_SPI1_CS0.WKUP_GPIO0_3 */
+>> +		>;
+>> +	};
+>> +};
+>> +
+>> +&main_gpio0 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
+>>  };
+>>  
+>>  &main_gpio2 {
+>> @@ -235,7 +288,8 @@ &main_gpio6 {
+>>  };
+>>  
+>>  &wkup_gpio0 {
+>> -	status = "disabled";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&mcu_rpi_header_gpio0_pins_default>;
+>>  };
+>>  
+>>  &wkup_gpio1 {
+>> @@ -271,6 +325,20 @@ exp1: gpio@21 {
+>>  	};
+>>  };
+>>  
+>> +&main_i2c4 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&main_i2c4_pins_default>;
+>> +	clock-frequency = <400000>;
+>> +};
+>> +
+>> +&mcu_i2c0 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&mcu_i2c0_pins_default>;
+>> +	clock-frequency = <400000>;
+>> +};
+>> +
+>>  &main_sdhci0 {
+>>  	/* Unused */
+>>  	status = "disabled";
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Regards,
+Vaishnav
