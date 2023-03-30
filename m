@@ -2,154 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67EEB6D12AD
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 00:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C18996D12B4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 01:00:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbjC3W5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 18:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60608 "EHLO
+        id S231163AbjC3XAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 19:00:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbjC3W5D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 18:57:03 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389181BF
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:57:01 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id c29so26611621lfv.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:57:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680217019;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IyKfQObvopk17NVpiPNCRsq0j+VPLHa0MW4Rc/CyGMo=;
-        b=Ji7nj7WFIrSFmsSZwyeeP6AwUE/ae3pup9Vl7d7C/X1lI8/RkqVM2oRl/XONGjv25C
-         jjXrxWlQfmEEKKps5mm+WG6JkWPQ5E/cIe8642EMhW4f8NSIW/CU6bKx29rrZ2NxKvtV
-         yjLthdVLQcxDiIh1WXBnoFbR6XIxav+h4O/vXqOAAohbEAxAJykydGNVJK+h8ApU52fi
-         wwgEONFNeOF5j4P+FG+gGgWdbOP51hoNYkpOt2yjY58/9uB54VVpUUu7cB1QjupsBNIQ
-         N4nYW1TWmm3rs7U4G2bp66Jhd6CBDwpeg6sGA7h1TT4rRD4PJpmh3HFF9PLFAfs/KGSh
-         LO7A==
+        with ESMTP id S229635AbjC3XAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 19:00:12 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3F8D33C
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:59:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1680217169;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=o6OjiitjPwr2q3+VgtTu4P0B7q8Y0XJ2G6/rSSRxlds=;
+        b=iWl/ooRiCgE8BIIG4wHw80TW2kTzeZ9+WMEDXKLsFUC8uTyIYShhNnG0Aw5oDX/Q95re7S
+        AuQZFEuFPQZoT5dwkX3J/ezWyGFekeUCZab//+9xu+82+G8OyT8b/x7fPsLdUyPcd7jPYi
+        GX9i6Zv4dN6S34jXOFolt9HhoD2iudM=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-673-jAmmWPJbPbOeDY8C1ztgsw-1; Thu, 30 Mar 2023 18:59:27 -0400
+X-MC-Unique: jAmmWPJbPbOeDY8C1ztgsw-1
+Received: by mail-wm1-f70.google.com with SMTP id d11-20020a05600c34cb00b003ee89ce8cc3so10150288wmq.7
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 15:59:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680217019;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IyKfQObvopk17NVpiPNCRsq0j+VPLHa0MW4Rc/CyGMo=;
-        b=HeMgc3NqnSX5sBqhVOTJFqne7QsGj60Wm2eEwTXirNvtjK7wja7ghBAmNDI3ipENUQ
-         2ncu0dI5qHEpTpSUvSd5t9lUO3jWoAWGBfUX8nEXrL20D5VF7EfR+J+N2fScqTpchei0
-         o83Ez/lO4rEfapJAh75xQ5CRi7u1khlNEqmcIXezEMapftBN6IYnbHvVlseRqueCKZnv
-         ReR4oWgTMCPhjRBP5jPp/0nEQBJctzZYvKi555hfTWSTPv5xArRXA/F2eDg93mWcHPNY
-         BtQocSyAnXQCWhyy/iw2MHwtrZdVnQh54dnwvgi5Eh9RAl2yQjs9+XnuPUNuhy6wIk92
-         Jw2w==
-X-Gm-Message-State: AAQBX9eqc3IG9YLcuQ/AjBj0c8LrgMgkzF3PnsBZzv1uIypNp/XmpHSV
-        I9+oo5IPPdPORH/nJjolnJe04g==
-X-Google-Smtp-Source: AKy350YEKYG2Ghd6pDF92L9f6skCBtKsWaPZ2RHNu3AcQXKQxltWKyLbsUk+nvYX4gucmmlu8Qocgg==
-X-Received: by 2002:ac2:5473:0:b0:4e8:5e39:6234 with SMTP id e19-20020ac25473000000b004e85e396234mr7655500lfn.16.1680217019433;
-        Thu, 30 Mar 2023 15:56:59 -0700 (PDT)
-Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id i13-20020a056512006d00b004e83edd8ce8sm119241lfo.196.2023.03.30.15.56.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 15:56:59 -0700 (PDT)
-Message-ID: <8685b710-b74d-556a-815d-0ffef2b0eeff@linaro.org>
-Date:   Fri, 31 Mar 2023 00:56:57 +0200
+        d=1e100.net; s=20210112; t=1680217166;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o6OjiitjPwr2q3+VgtTu4P0B7q8Y0XJ2G6/rSSRxlds=;
+        b=ukGsaoqaIZoMeKRo5u6h2FVbxjlD6IPR0hjtL6fwvkFc+GtZ1krA8LGLf2iVYP9txY
+         hh/mdaDeyp5hgJzs55KlG+CzBPKgJRmH1w+941ckFZ+judwQHrd1kUD/gThSIXzhua4y
+         6eo2wXqkuOuaRzY63yBAVnCdsJ7/OozmECoO4Zap5H5GiC/Uggaz7kCrAHJX3twsb4Dp
+         +1VeH0YocyazUBBsWK/81w1OmnUxdmnj6z6Kw9zU4r0YdMKli2zxMesnydNkXyHbrcAe
+         GJDqYdCkcEOP/ioeDnFRRQapd27i/6aqMM7BzXkeh02U1fZDNjGbDQQzBDT9jv7elw8f
+         HJAQ==
+X-Gm-Message-State: AAQBX9cqH+Dc2HKgb3d5UNPO0UulJKNPC9mhGuvMpaF1Y+EmTisyaSFp
+        C9GwCLiUSmwL1mAk8dALVtOndR0qIpyf6P7a8Jb/wO4POa1ABoQoivyzGRRdE0mQvfJ1+kzp7+E
+        r0pggxivrin1caUHU1BrXqQ==
+X-Received: by 2002:a1c:7714:0:b0:3ee:1084:aa79 with SMTP id t20-20020a1c7714000000b003ee1084aa79mr4645670wmi.20.1680217166720;
+        Thu, 30 Mar 2023 15:59:26 -0700 (PDT)
+X-Google-Smtp-Source: AKy350Yecu73nIBzSwX6n9VC0rj75gvI4cfYDMCQVY5s6zogWVJi/S5ieqmyC8RCCI2B/05FAE9b9w==
+X-Received: by 2002:a1c:7714:0:b0:3ee:1084:aa79 with SMTP id t20-20020a1c7714000000b003ee1084aa79mr4645652wmi.20.1680217166385;
+        Thu, 30 Mar 2023 15:59:26 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id v13-20020a05600c444d00b003ee8ab8d6cfsm7846029wmn.21.2023.03.30.15.59.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Mar 2023 15:59:26 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     Brian Norris <briannorris@chromium.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Enric Balletbo i Serra <eballetbo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lin Huang <hl@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, zain wang <wzz@rock-chips.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Remove non-existing pwm-delay-us
+ DT property
+In-Reply-To: <CA+ASDXOtyBgr0o+bhjOScjs2h3oUKdouoAi4m+Z=R=Bho=iRFA@mail.gmail.com>
+References: <20230330220251.2388494-1-javierm@redhat.com>
+ <CA+ASDXOtyBgr0o+bhjOScjs2h3oUKdouoAi4m+Z=R=Bho=iRFA@mail.gmail.com>
+Date:   Fri, 31 Mar 2023 00:59:24 +0200
+Message-ID: <87355lg81f.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/1] dt-bindings: firmware: qcom: scm: Updating VMID
- list
-Content-Language: en-US
-To:     Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>
-References: <20230330165117.26348-1-quic_gokukris@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230330165117.26348-1-quic_gokukris@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Brian Norris <briannorris@chromium.org> writes:
 
+Hello Brian,
 
-On 30.03.2023 18:51, Gokul krishna Krishnakumar wrote:
-> Adding the full list of VMID's, which are used by different clients to
-> pass to the secure world.
-> 
-> Signed-off-by: Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
-> ---
-> V2 Fixed allignment issues in [1]
-> 
-> [1] https://lore.kernel.org/lkml/20230328214703.12093-1-quic_gokukris@quicinc.com/
-> ---
-They're weirdly ordered now.. I think Dmitry's comment was
-just about the usage of space/tab such that git would not get
-confused. With that fixed, you should be able to get a diff like:
+> On Thu, Mar 30, 2023 at 3:03=E2=80=AFPM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
+>>
+>> There is no neither a driver that parses this nor a DT binding schema th=
+at
 
-+#define QCOM_SCM_VMID_LPASS		0x16
-#define QCOM_SCM_VMID_WLAN_CE		0x19
-+#define QCOM_SCM_VMID_CP_SPSS_SP	0x1A
-[...]
-+#define QCOM_SCM_VMID_CP_CDSP		0x2A
-#define QCOM_SCM_VMID_NAV		0x2B
-+#define QCOM_SCM_VMID_TVM		0x2D
+Ups, I noticed now that there's an unnecessary "no" and it should be instea=
+d:
 
-Still, I really appreciate you providing that information to the kernel!
+"There is neither a driver..."
 
-Konrad
+>> documents it so let's remove it from the DTS files that make use of this.
+>>
+>> The properties that exist are post-pwm-on-delay-ms and pwm-off-delay-ms,
+>> defined in the pwm-backlight DT binding. So probably what these DTS want
+>> is something like following:
+>>
+>>         backlight: backlight {
+>>                 compatible =3D "pwm-backlight";
+>>                 enable-gpios =3D <&gpio4 21 GPIO_ACTIVE_HIGH>;
+>>                 pinctrl-names =3D "default";
+>>                 pinctrl-0 =3D <&bl_en>;
+>>                 pwms =3D <&pwm1 0 1000000 0>;
+>>                 post-pwm-on-delay-ms =3D <10>;
+>>                 pwm-off-delay-ms =3D <10>;
+>>         };
+>>
+>> But that should be follow-up change if that is the case. Because otherwi=
+se
+>> it would be change in behaviour, since currently pwm-delay-us is a no-op.
+>>
+>> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+>
+> pwm-delay-us seems to have been a downstream-only ("CHROMIUM", if
+> you're familiar with ChromiumOS kernel parlance) change that seems
+> like a combination of the two now-upstream properties you point at. I
 
->  include/dt-bindings/firmware/qcom,scm.h | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/include/dt-bindings/firmware/qcom,scm.h b/include/dt-bindings/firmware/qcom,scm.h
-> index 1a4e68fa0744..7ad6cbe623d3 100644
-> --- a/include/dt-bindings/firmware/qcom,scm.h
-> +++ b/include/dt-bindings/firmware/qcom,scm.h
-> @@ -2,6 +2,7 @@
->  /*
->   * Copyright (c) 2010-2015, 2018-2019 The Linux Foundation. All rights reserved.
->   * Copyright (C) 2015 Linaro Ltd.
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
->  #ifndef _DT_BINDINGS_FIRMWARE_QCOM_SCM_H
-> @@ -13,4 +14,25 @@
->  #define QCOM_SCM_VMID_WLAN_CE		0x19
->  #define QCOM_SCM_VMID_NAV		0x2B
->  
-> +#define QCOM_SCM_VMID_TZ		0x1
-> +#define QCOM_SCM_VMID_CP_TOUCH		0x8
-> +#define QCOM_SCM_VMID_CP_BITSTREAM	0x9
-> +#define QCOM_SCM_VMID_CP_PIXEL		0xA
-> +#define QCOM_SCM_VMID_CP_NON_PIXEL	0xB
-> +#define QCOM_SCM_VMID_CP_CAMERA		0xD
-> +#define QCOM_SCM_VMID_HLOS_FREE		0xE
-> +#define QCOM_SCM_VMID_MSS_NONMSA	0x10
-> +#define QCOM_SCM_VMID_CP_SEC_DISPLAY	0x11
-> +#define QCOM_SCM_VMID_CP_APP		0x12
-> +#define QCOM_SCM_VMID_LPASS		0x16
-> +#define QCOM_SCM_VMID_CP_SPSS_SP	0x1A
-> +#define QCOM_SCM_VMID_CP_CAMERA_PREVIEW	0x1D
-> +#define QCOM_SCM_VMID_CDSP		0x1E
-> +#define QCOM_SCM_VMID_CP_SPSS_SP_SHARED	0x22
-> +#define QCOM_SCM_VMID_CP_SPSS_HLOS_SHARED	0x24
-> +#define QCOM_SCM_VMID_ADSP_HEAP		0x25
-> +#define QCOM_SCM_VMID_CP_CDSP		0x2A
-> +#define QCOM_SCM_VMID_TVM		0x2D
-> +#define QCOM_SCM_VMID_OEMVM		0x31
-> +
->  #endif
+Yes, that's what I found too. So it seems that this was an oversight when
+the DTS for these Chromebooks were upstreamed.
+
+> looked through the first use of pwm-delay-us on RK3399 Gru systems,
+> and I can't find a spec reference that said it was needed; perhaps it
+> was needless copy/paste imitation?
+>
+> So, simple deletion is probably fine:
+>
+> Reviewed-by: Brian Norris <briannorris@chromium.org>
+>
+
+Thanks for the confirmation and review!
+
+--=20
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
