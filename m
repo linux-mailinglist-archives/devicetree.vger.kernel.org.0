@@ -2,156 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90A0C6CFD6C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1732F6CFD79
+	for <lists+devicetree@lfdr.de>; Thu, 30 Mar 2023 09:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjC3Hyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 03:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58254 "EHLO
+        id S229945AbjC3Hzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 03:55:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbjC3Hyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:54:44 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0918810A
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:54:43 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id g17so23428150lfv.4
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:54:42 -0700 (PDT)
+        with ESMTP id S229883AbjC3Hzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 03:55:40 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435B559FA
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:55:38 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id f188so3979145ybb.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 00:55:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680162881;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5ddhkThE+AJAUa2yi3Fg+1zmLo5PqMkQ+wXEwb5TWLE=;
-        b=bR8Nf7KYA3VPzvR4BPVFeYVAGYEgqymw2XyOLw45rnG2lOtFTlgJtbq5xg09VqonHu
-         2SrxQdrOtWf+h0mtFqFF+Itxxp/ja2S6YeSnIoqnLXddgL+iqWGVr1tR7QyQDt5mf4Xw
-         dg9QfHkZpJoz98LsewRBaGemOpEcODluIo8TJQKKChn8TGpeUwN7GLCFRZVABjQ/DsGR
-         eGtfr4Z6VBTybP3NwMTzMXbKCzJ0TWU8XhtxyjJubsCXcsARO/Fkz5FxizjqGjwfTgQ+
-         r+IcMFq3p/goU8S0k04L8pa/HQEHBNyEgKL5QQ2YS8RGozbb/42YMurlNzsXM+963+tk
-         yZiQ==
+        d=amarulasolutions.com; s=google; t=1680162937;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8TRAXBRH6vuNDmz4+Ct5vgKbo/mRjVW2gW1RnB3gDdg=;
+        b=TYnTo8X28PQN/bpZVTbpJIirV8lHodZlY8A0dbT1xp3tSgoMVv6qmx7oSoQnauJ4Px
+         2BEx1WulTod+AN0I4AlznepNZBjtBfgGzxaajHZ2uShUx1sirLZ5IjrYm2yUXHLoYkNi
+         OCVvhvgFNWXn2SgSUxT9FoSDH2uLn1GPSFrio=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680162881;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ddhkThE+AJAUa2yi3Fg+1zmLo5PqMkQ+wXEwb5TWLE=;
-        b=5KOOdDj+bUpvUjcoYXxFf8xXOtLnnpBZv7e7kDgcamg+NEOjmN4s5M2CwbWSLWfEhV
-         v5lFIUjAzvaDZLBz6S3aEkbF3vncze9rh6bH2v+mFmboMAxOiaBSIdgT4Bn0uOIgOYyg
-         F3RQzWTcJDmHMkmL25gpntPsde8HEfxTS8ZzKPuSC2l/eYgDBnsOww+Q4Z6oFwJcLs+x
-         +Q0er1KLst0PyM27hbOqKbg1Z1M1EgGxrJBUV2KDMUNS9WkpqGWTFNfNYfymW/lMooYL
-         gXT7FxDC82OiwtSr9HsbvSt8pWs1FLXGuoHC3fRSsnY5FTtDxexYtD8ms6mVGdUudHVQ
-         9IMg==
-X-Gm-Message-State: AAQBX9evmwfOK1w4iGnW1r2X9wtqlUNaRDIcnipghPCtgNKdsH81o3rd
-        eGjsFuO4lwd6OxwuohM0sHgukA==
-X-Google-Smtp-Source: AKy350ZitQbsiP2xHB7OfFJ3miJV9AvHp04k7JYMEuzI51ar2hQwAAiwR4VuF1AjANXVlrAS+uKMUw==
-X-Received: by 2002:a19:7419:0:b0:4cb:280b:33c9 with SMTP id v25-20020a197419000000b004cb280b33c9mr6769371lfe.24.1680162881266;
-        Thu, 30 Mar 2023 00:54:41 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac244ba000000b004dc4feeb7c6sm5767060lfm.65.2023.03.30.00.54.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 00:54:40 -0700 (PDT)
-Message-ID: <cc13d781-f6d8-0cb9-17e2-0a6089f60fd2@linaro.org>
-Date:   Thu, 30 Mar 2023 09:54:39 +0200
+        d=1e100.net; s=20210112; t=1680162937;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8TRAXBRH6vuNDmz4+Ct5vgKbo/mRjVW2gW1RnB3gDdg=;
+        b=OSoXxkZdN+uzQQNdW6xEn+qC7Vd2m0liSDOb324lCne4yrSjScAZCyv3eJuEHIUepV
+         xnN9ZTTxscjmmtP7IXyxbOW7dG9DFHA+AvZpASpWBvNyuoqttSWv09Vv4XiZXFqDJP6W
+         mwVr594UCSsgpOJdxqeQCNwsVGIewj+JL133KjZb1B1hAI2BZPj93y5TOwLUK5yZOdOE
+         OROV/mhqCTzETGojbQz8nfVQwre5KAeUsFKvXeZ6xV4CY+ayQBeZemBQC2BT/Hfn7h71
+         sewdZIF8TLArR9D3QGiiNHPAHLb5QsDopmTvH3B8CVMpmoNB+qj25MDfHUlJot4A5SFx
+         hbuw==
+X-Gm-Message-State: AAQBX9fbc6EUXyluEs1i9CXXxOkI47+rXKetHAh7/2oA1JjtBRkczylK
+        /2Ze83r4UNF/EX9tMWVVQldlqLEboTi9/OOxgGXV6A==
+X-Google-Smtp-Source: AKy350bxyUd9g6l4vGryZzbI7Jfljfwd11D0eLMkzSrJUJiOJ/KA63QBnHaVdrHOYG2aLouktTsZ0y9EkQu3jaiYmv4=
+X-Received: by 2002:a05:6902:920:b0:b76:ae61:b68b with SMTP id
+ bu32-20020a056902092000b00b76ae61b68bmr11595302ybb.5.1680162937296; Thu, 30
+ Mar 2023 00:55:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 8/8] dt-bindings: arm: Add support for TPDM CMB element
- size
-Content-Language: en-US
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        coresight@lists.linaro.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>
-References: <20230329084744.5705-1-quic_jinlmao@quicinc.com>
- <20230329084744.5705-9-quic_jinlmao@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230329084744.5705-9-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230329144155.699196-1-festevam@gmail.com> <ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org>
+In-Reply-To: <ff66c8b9-c7f7-1eb2-c730-4812b7ff6824@linaro.org>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 30 Mar 2023 13:25:25 +0530
+Message-ID: <CAMty3ZBHvR8OxgNgKG--TA_LQF41vjPiruHx-Pw2PwbjNKMFog@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: exynos: dsim: Add 'lane-polarities'
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org,
+        inki.dae@samsung.com, marex@denx.de,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2023 10:47, Mao Jinlong wrote:
-> Add property "qcom,cmb-elem-size" to support CMB element for TPDM.
-> The associated aggregator will read this size before it is enabled.
-> CMB element size currently only supports 8-bit, 32-bit and 64-bit.
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->  .../bindings/arm/qcom,coresight-tpdm.yaml        | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-> index 283dfb39d46f..c5169de81e58 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-> @@ -53,6 +53,14 @@ properties:
->      minimum: 32
->      maximum: 64
->  
-> +  qcom,cmb-element-size:
+On Thu, Mar 30, 2023 at 1:08=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 29/03/2023 16:41, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> >
+> > The Samsung DSIM IP block allows the inversion of the clock and
+> > data lanes.
+> >
+> > Add an optional property called 'lane-polarities' that describes the
+> > polarities of the MIPI DSI clock and data lanes.
+> >
+> > This is property is useful for properly describing the hardware
+> > when the board designer decided to switch the polarities of the MIPI DS=
+I
+> > clock and/or data lanes.
+> >
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > ---
+> >  .../devicetree/bindings/display/exynos/exynos_dsim.txt      | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_ds=
+im.txt b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> > index 2a5f0889ec32..65ed8ef7aed7 100644
+> > --- a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> > +++ b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> > @@ -29,6 +29,12 @@ Required properties:
+> >
+> >  Optional properties:
+> >    - power-domains: a phandle to DSIM power domain node
+> > +  - lane-polarities: Array that describes the polarities of the clock =
+and data lanes.
+> > +    1: inverted polarity
+> > +    0: normal polarity
+> > +    The first entry corresponds to the clock lanes. Subsequent entries=
+ correspond to the data lanes.
+> > +    Example of a 4-lane system with only the clock lanes inverted:
+> > +    lane-polarities =3D <1 0 0 0 0>;
+>
+> First, please convert to DT schema.
 
-s/size/bits/
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+I have a previous iteration of this conversion. Can I resend it on top
+of drm-misc-next?
+https://lore.kernel.org/all/20210704090230.26489-9-jagan@amarulasolutions.c=
+om/
 
-> +    description:
-> +      Specifies the CMB (Continuous multi-bit) element size supported by
-> +      the monitor. The associated aggregator will read this size before it
-> +      is enabled. CMB element size currently supports 8-bit, 32-bit, 64-bit.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [8, 32, 64]
-> +
->    qcom,dsb_msr_num:
->      description:
->        Specifies the number of DSB(Discrete Single Bit) MSR(mux select register)
-> @@ -95,6 +103,12 @@ required:
->    - clocks
->    - clock-names
->  
-> +anyOf:
-> +  - required:
-> +      - qcom,dsb_msr_num
-
-There is no such property.
-
-> +  - required:
-> +      - qcom,cmb-msr-num
-
-Why this is part of this patch?
-
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -105,6 +119,8 @@ examples:
->        reg = <0x0684c000 0x1000>;
->  
->        qcom,dsb-element-size = <32>;
-> +      qcom,cmb-element-size = <32>;
-> +
->        qcom,dsb_msr_num = <16>;
->        qcom,cmb-msr-num = <6>;
->  
-
-Best regards,
-Krzysztof
-
+Jagan.
