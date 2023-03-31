@@ -2,379 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D28036D22AD
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7406D22C1
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232791AbjCaO3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 10:29:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57650 "EHLO
+        id S232541AbjCaOi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 10:38:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232827AbjCaO24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:28:56 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D8320635
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:28:28 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id q5so6192056ilg.12
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:28:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680272869; x=1682864869;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yd8a2rRt4CgsuNoaw1uAdWSFVR3asYYuQ3SN1GygOPM=;
-        b=JsNYMn960aSPeOjPjz/EG2ICt2oP8vT4WEz+2/wEatQXwBBjniH11Ht3oxXIhpNirV
-         ZRKxw0w/TxfkEvvhjRaoPWC63JyahCs6YFMLXpovKsgzrTP7jN2kORtiSzOQppqxKddV
-         xtAsWGT3QdOm8DVq5gX/7zqeqqhVk6pCAqmOmhCXDIGyxI0e07q2ra+a+KlJdMkRD3Cm
-         fgop6HfzMGGedbI8y/mBaY4pe1xX9PdampNdKZm08ymzE/d7w7YogSskKtV20Uhfaqrq
-         666vC9iTPeh3i5HP+dgdupI3ZnReqfhlyec9nPFQTN2tgbHizJHoEfKGuPS0K3O1G4Gi
-         UH8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680272869; x=1682864869;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yd8a2rRt4CgsuNoaw1uAdWSFVR3asYYuQ3SN1GygOPM=;
-        b=SfCWX30A3n1Jf/ezpjBn1XOqmNMfjSWBmHlPP3JBfdbNG9Prm4tjJhsBrprabUpZpQ
-         jnZSAM9RaiQLLpxaCYLcRmS+Q/SlrxGVwQvf62sO8UnjYflaM5kgneYsqyvWYuteojNg
-         XM5ZuyD8JX4vI8/ZEwLivW3dxyK67G/SKLKU8m4QoQl1eNagp0XO6y7fqJztIKITRRiC
-         3Vb4obqEbDHIvH6ztg1zeWimer0vtHqn27u31FtrZIm0orgcbVooN3Imr53SKq0mPWuv
-         5S0xi20dj0D1KrgyoBTHLuFf5LZ4KoJhMszim3vGr1oHInrJPhLMBJTl4+vAcY0zSakD
-         uZog==
-X-Gm-Message-State: AAQBX9fEU8F92lo2h52yyR9lbGSRdb7A3xk28eaP/c1ENCaDLhH9bEEe
-        GmFiilom1bpkkZ+OonKIm1P6zg==
-X-Google-Smtp-Source: AKy350aZNorfWB4V2Ge2QcV6oV839CWjp+/XVjrj5bDLpfaK3tmG1dySfUq5FH5Bx1ItFP14N6t75A==
-X-Received: by 2002:a92:c812:0:b0:325:c8ed:6775 with SMTP id v18-20020a92c812000000b00325c8ed6775mr17319062iln.18.1680272868928;
-        Fri, 31 Mar 2023 07:27:48 -0700 (PDT)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id x20-20020a927c14000000b003261bc23979sm649417ilc.57.2023.03.31.07.27.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 07:27:48 -0700 (PDT)
-Message-ID: <88a35ed3-78f9-c8ad-93b0-c7335e39a754@linaro.org>
-Date:   Fri, 31 Mar 2023 09:27:46 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From:   Alex Elder <elder@linaro.org>
-Subject: Re: [PATCH v11 25/26] virt: gunyah: Add ioeventfd
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S232401AbjCaOi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:38:56 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC8A1D91B;
+        Fri, 31 Mar 2023 07:38:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680273535; x=1711809535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=s4bXc6SA5sSnGSuRn29n954qgJk/hR6Pf1DFYwbffoE=;
+  b=hwik/fcREj0ZGGwJSjextlR7JszmDnJ7gDrkfvBz5zxa5sZgRM6g8vgw
+   dwheRx2VKUhYIHmfTN80jtVyWQl5ciuK1XjEdUnGmLsQbx3TX/RB29706
+   E5iOsoBynpw1GU4nCk8ddpWZXsSKCKqMXuoASodmGHMCqp9MutMZtNX4r
+   gvHY7bNxkFjAr6AIKT0j6zQgZ49S8pmGmYvNSx6dSqaSiEc0M7yiey3K7
+   ADoULqNxgUkJFcu0NsSL1kglpYka7V6EMC7cLRRpoxSLzflzlHysUxwkS
+   POqAlqktSA5/FIz1JtZMsh+rXXJX5vEkM9NyMYuhBD6MP5hETFuTyY+Tk
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="343128147"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; 
+   d="scan'208";a="343128147"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 07:38:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="859349319"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; 
+   d="scan'208";a="859349319"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 31 Mar 2023 07:38:47 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1piFtp-000Ls4-38;
+        Fri, 31 Mar 2023 14:38:41 +0000
+Date:   Fri, 31 Mar 2023 22:38:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230304010632.2127470-1-quic_eberman@quicinc.com>
- <20230304010632.2127470-26-quic_eberman@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20230304010632.2127470-26-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jack.zhu@starfivetech.com, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v3 9/9] media: starfive: Add Starfive Camera Subsystem
+ driver
+Message-ID: <202303312218.LXqt9wcT-lkp@intel.com>
+References: <20230331121826.96973-10-jack.zhu@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230331121826.96973-10-jack.zhu@starfivetech.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/3/23 7:06 PM, Elliot Berman wrote:
-> Allow userspace to attach an ioeventfd to an mmio address within the guest.
-> 
-> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+Hi Jack,
 
-Mostly minor suggestions here.	-Alex
+I love your patch! Perhaps something to improve:
 
-> ---
->   Documentation/virt/gunyah/vm-manager.rst |   2 +-
->   drivers/virt/gunyah/Kconfig              |   9 ++
->   drivers/virt/gunyah/Makefile             |   1 +
->   drivers/virt/gunyah/gunyah_ioeventfd.c   | 117 +++++++++++++++++++++++
->   include/uapi/linux/gunyah.h              |  37 +++++++
->   5 files changed, 165 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/virt/gunyah/gunyah_ioeventfd.c
-> 
-> diff --git a/Documentation/virt/gunyah/vm-manager.rst b/Documentation/virt/gunyah/vm-manager.rst
-> index a1dd70f0cbf6..cd41a705849f 100644
-> --- a/Documentation/virt/gunyah/vm-manager.rst
-> +++ b/Documentation/virt/gunyah/vm-manager.rst
-> @@ -124,7 +124,7 @@ the VM starts.
->   The possible types are documented below:
->   
->   .. kernel-doc:: include/uapi/linux/gunyah.h
-> -   :identifiers: GH_FN_VCPU gh_fn_vcpu_arg GH_FN_IRQFD gh_fn_irqfd_arg
-> +   :identifiers: GH_FN_VCPU gh_fn_vcpu_arg GH_FN_IRQFD gh_fn_irqfd_arg GH_FN_IOEVENTFD gh_fn_ioeventfd_arg
->   
->   Gunyah VCPU API Descriptions
->   ----------------------------
-> diff --git a/drivers/virt/gunyah/Kconfig b/drivers/virt/gunyah/Kconfig
-> index 2cde24d429d1..bd8e31184962 100644
-> --- a/drivers/virt/gunyah/Kconfig
-> +++ b/drivers/virt/gunyah/Kconfig
-> @@ -35,3 +35,12 @@ config GUNYAH_IRQFD
->   	  on Gunyah virtual machine.
->   
->   	  Say Y/M here if unsure and you want to support Gunyah VMMs.
-> +
-> +config GUNYAH_IOEVENTFD
-> +	tristate "Gunyah ioeventfd interface"
-> +	depends on GUNYAH
-> +	help
-> +	  Enable kernel support for creating ioeventfds which can alert userspace
-> +	  when a Gunyah virtual machine accesses a memory address.
-> +
-> +	  Say Y/M here if unsure and you want to support Gunyah VMMs.
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> index 6cf756bfa3c2..7347b1470491 100644
-> --- a/drivers/virt/gunyah/Makefile
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -8,3 +8,4 @@ obj-$(CONFIG_GUNYAH) += gunyah_rsc_mgr.o
->   
->   obj-$(CONFIG_GUNYAH_VCPU) += gunyah_vcpu.o
->   obj-$(CONFIG_GUNYAH_IRQFD) += gunyah_irqfd.o
-> +obj-$(CONFIG_GUNYAH_IOEVENTFD) += gunyah_ioeventfd.o
-> diff --git a/drivers/virt/gunyah/gunyah_ioeventfd.c b/drivers/virt/gunyah/gunyah_ioeventfd.c
-> new file mode 100644
-> index 000000000000..517f55706ed9
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/gunyah_ioeventfd.c
-> @@ -0,0 +1,117 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/eventfd.h>
-> +#include <linux/file.h>
-> +#include <linux/fs.h>
-> +#include <linux/gunyah.h>
-> +#include <linux/gunyah_vm_mgr.h>
-> +#include <linux/module.h>
-> +#include <linux/printk.h>
-> +
-> +#include <uapi/linux/gunyah.h>
-> +
-> +struct gh_ioeventfd {
-> +	struct gh_vm_function_instance *f;
-> +	struct gh_vm_io_handler io_handler;
-> +
-> +	struct eventfd_ctx *ctx;
-> +};
-> +
-> +static int gh_write_ioeventfd(struct gh_vm_io_handler *io_dev, u64 addr, u32 len, u64 data)
-> +{
-> +	struct gh_ioeventfd *iofd = container_of(io_dev, struct gh_ioeventfd, io_handler);
-> +
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on robh/for-next linus/master v6.3-rc4 next-20230331]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I think it's interesting that this signals an event even if
-len is zero.  I'm not saying it's wrong, just interesting...
+url:    https://github.com/intel-lab-lkp/linux/commits/Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230331-202001
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20230331121826.96973-10-jack.zhu%40starfivetech.com
+patch subject: [PATCH v3 9/9] media: starfive: Add Starfive Camera Subsystem driver
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230331/202303312218.LXqt9wcT-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/421adbf9815b633e8bac5da7146c33aac01e283c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jack-Zhu/media-dt-bindings-Add-bindings-for-JH7110-Camera-Subsystem/20230331-202001
+        git checkout 421adbf9815b633e8bac5da7146c33aac01e283c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/media/
 
-> +	eventfd_signal(iofd->ctx, 1);
-> +	return 0;
-> +}
-> +
-> +static struct gh_vm_io_handler_ops io_ops = {
-> +	.write = gh_write_ioeventfd,
-> +};
-> +
-> +static long gh_ioeventfd_bind(struct gh_vm_function_instance *f)
-> +{
-> +	const struct gh_fn_ioeventfd_arg *args = f->argp;
-> +	struct eventfd_ctx *ctx = NULL;
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303312218.LXqt9wcT-lkp@intel.com/
 
-No need to initialize ctx.
+All warnings (new ones prefixed by >>):
 
-> +	struct gh_ioeventfd *iofd;
-> +	int ret;
-> +
-> +	if (f->arg_size != sizeof(*args))
-> +		return -EINVAL;
-> +
-> +	/* must be natural-word sized, or 0 to ignore length */
-> +	switch (args->len) {
-> +	case 0:
-> +	case 1:
-> +	case 2:
-> +	case 4:
-> +	case 8:
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* check for range overflow */
-> +	if (args->addr + args->len < args->addr)
+>> drivers/media/platform/starfive/stf_camss.c:41:5: warning: no previous prototype for 'stfcamss_get_mem_res' [-Wmissing-prototypes]
+      41 | int stfcamss_get_mem_res(struct platform_device *pdev,
+         |     ^~~~~~~~~~~~~~~~~~~~
+--
+>> drivers/media/platform/starfive/stf_isp.c:627:5: warning: no previous prototype for 'isp_close' [-Wmissing-prototypes]
+     627 | int isp_close(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+         |     ^~~~~~~~~
+--
+   drivers/media/platform/starfive/stf_vin.c: In function 'stf_vin_map_isp_pad':
+>> drivers/media/platform/starfive/stf_vin.c:99:24: warning: implicit conversion from 'enum isp_line_id' to 'enum isp_pad_id' [-Wenum-conversion]
+      99 |                 pad_id = vin_map_isp_line(line);
+         |                        ^
+   drivers/media/platform/starfive/stf_vin.c: In function 'vin_output_init_addrs':
+>> drivers/media/platform/starfive/stf_vin.c:683:20: warning: variable 'pong_addr' set but not used [-Wunused-but-set-variable]
+     683 |         dma_addr_t pong_addr;
+         |                    ^~~~~~~~~
+   drivers/media/platform/starfive/stf_vin.c: At top level:
+   drivers/media/platform/starfive/stf_vin.c:33:32: warning: 'vin_formats_raw' defined but not used [-Wunused-const-variable=]
+      33 | static const struct vin_format vin_formats_raw[] = {
+         |                                ^~~~~~~~~~~~~~~
 
-I think you could use:
-	if (overflows_type(args->addr + args->len, args->addr))
 
-This is a relatively recent addition (and I haven't been using it
-myself yet) but it's meant for this purpose.  Consider using it
-and its relatives here and anywhere else you're making this kind
-of check.
+vim +/stfcamss_get_mem_res +41 drivers/media/platform/starfive/stf_camss.c
 
-> +		return -EINVAL;
-> +
-> +	/* ioeventfd with no length can't be combined with DATAMATCH */
-> +	if (!args->len && (args->flags & GH_IOEVENTFD_DATAMATCH))
-> +		return -EINVAL;
-> +
+    40	
+  > 41	int stfcamss_get_mem_res(struct platform_device *pdev,
+    42				 struct stfcamss *stfcamss)
+    43	{
+    44		stfcamss->syscon_base =
+    45			devm_platform_ioremap_resource_byname(pdev, "syscon");
+    46		if (IS_ERR(stfcamss->syscon_base))
+    47			return PTR_ERR(stfcamss->syscon_base);
+    48	
+    49		stfcamss->isp_base =
+    50			devm_platform_ioremap_resource_byname(pdev, "isp");
+    51		if (IS_ERR(stfcamss->isp_base))
+    52			return PTR_ERR(stfcamss->isp_base);
+    53	
+    54		return 0;
+    55	}
+    56	
 
-Maybe check for invalid flags before before ensuring
-valid flags are used properly?
-
-> +	/* All other flag bits are reserved for future use */
-> +	if (args->flags & ~GH_IOEVENTFD_DATAMATCH)
-> +		return -EINVAL;
-> +
-> +	ctx = eventfd_ctx_fdget(args->fd);
-> +	if (IS_ERR(ctx))
-> +		return PTR_ERR(ctx);
-> +
-> +	iofd = kzalloc(sizeof(*iofd), GFP_KERNEL);
-> +	if (!iofd) {
-> +		ret = -ENOMEM;
-> +		goto err_eventfd;
-> +	}
-> +
-> +	f->data = iofd;
-> +	iofd->f = f;
-> +
-> +	iofd->ctx = ctx;
-> +
-> +	if (args->flags & GH_IOEVENTFD_DATAMATCH) {
-> +		iofd->io_handler.datamatch = true;
-> +		iofd->io_handler.len = args->len;
-> +		iofd->io_handler.data = args->datamatch;
-
-I think you might want to rename one or the other of these
-fields (datamatch or data).  I might be wrong; I'll explain
-elsewhere what I mean.
-
-> +	}
-> +	iofd->io_handler.addr = args->addr;
-> +	iofd->io_handler.ops = &io_ops;
-> +
-> +	ret = gh_vm_add_io_handler(f->ghvm, &iofd->io_handler);
-> +	if (ret)
-> +		goto err_io_dev_add;
-> +
-> +	return 0;
-> +
-> +err_io_dev_add:
-> +	kfree(iofd);
-> +err_eventfd:
-> +	eventfd_ctx_put(ctx);
-> +	return ret;
-> +}
-> +
-> +static void gh_ioevent_unbind(struct gh_vm_function_instance *f)
-> +{
-> +	struct gh_ioeventfd *iofd = f->data;
-> +
-> +	eventfd_ctx_put(iofd->ctx);
-
-It's not a big deal but I prefer to "undo" everything in the
-reverse order that they are originally "done".  I.e., put the
-eventfd context after removing the I/O handler.
-
-> +	gh_vm_remove_io_handler(iofd->f->ghvm, &iofd->io_handler);
-> +	kfree(iofd);
-> +}
-> +
-> +DECLARE_GH_VM_FUNCTION_INIT(ioeventfd, GH_FN_IOEVENTFD,
-> +				gh_ioeventfd_bind, gh_ioevent_unbind);
-> +MODULE_DESCRIPTION("Gunyah ioeventfds");
-
-s/ioeventfds/ioeventfd/
-
-I understand why you might want it to be plural, but I think it's
-better to just name the abstraction.  (If you take this suggestion,
-check elsewhere and be consistent.)
-
-AND/OR...  You might also somehow incorporate the fact that this is a
-VM *function* that is represented:  "Gunyah ioeventfd VM function(s)"
-
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/uapi/linux/gunyah.h b/include/uapi/linux/gunyah.h
-> index 5617dadc1c7b..f8482ff4cc55 100644
-> --- a/include/uapi/linux/gunyah.h
-> +++ b/include/uapi/linux/gunyah.h
-> @@ -89,6 +89,23 @@ struct gh_vm_dtb_config {
->    */
->   #define GH_FN_IRQFD 		2
->   
-> +/**
-> + * GH_FN_IOEVENTFD - register ioeventfd to trigger when VM faults on parameter
-
-What does "faults on parameter" mean?
-
-> + *
-> + * gh_fn_desc is filled with gh_fn_ioeventfd_arg
-> + *
-> + * Attaches an ioeventfd to a legal mmio address within the guest. A guest write
-> + * in the registered address will signal the provided event instead of triggering
-> + * an exit on the GH_VCPU_RUN ioctl.
-> + *
-> + * If GH_IOEVENTFD_DATAMATCH flag is set, the event will be signaled only if the
-> + * written value to the registered address is equal to datamatch in
-> + * struct gh_fn_ioeventfd_arg.
-> + *
-> + * Return: 0
-> + */
-> +#define GH_FN_IOEVENTFD 	3
-
-If you added another tab before 3, it will align more nicely with the
-next definition.  (If you do that, add a tab in the other function
-definitions as well.)
-
-> +
->   #define GH_FN_MAX_ARG_SIZE		256
->   
->   /**
-> @@ -118,6 +135,26 @@ struct gh_fn_irqfd_arg {
->   
->   #define GH_IOEVENTFD_DATAMATCH		(1UL << 0)
->   
-> +/**
-> + * struct gh_fn_ioeventfd_arg - Arguments to create an ioeventfd function
-> + * @datamatch: data used when GH_IOEVENTFD_DATAMATCH is set
-> + * @addr: Address in guest memory
-> + * @len: Length of access
-> + * @fd: When ioeventfd is matched, this eventfd is written
-> + * @flags: If GH_IOEVENTFD_DATAMATCH flag is set, the event will be signaled
-> + *         only if the written value to the registered address is equal to
-> + *         @datamatch
-> + * @padding: padding bytes
-> + */
-> +struct gh_fn_ioeventfd_arg {
-> +	__u64 datamatch;
-> +	__u64 addr;        /* legal mmio address */
-> +	__u32 len;         /* 1, 2, 4, or 8 bytes; or 0 to ignore length */
-> +	__s32 fd;
-> +	__u32 flags;
-> +	__u32 padding;
-> +};
-> +
->   /**
->    * struct gh_fn_desc - Arguments to create a VM function
->    * @type: Type of the function. See GH_FN_* macro for supported types
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
