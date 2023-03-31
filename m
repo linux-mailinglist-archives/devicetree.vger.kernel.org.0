@@ -2,85 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEA4C6D2855
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63E066D2864
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 21:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232203AbjCaS4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 14:56:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
+        id S230185AbjCaTDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 15:03:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233228AbjCaS4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:56:25 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDA523FDF;
-        Fri, 31 Mar 2023 11:56:14 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id bi31so17391330oib.9;
-        Fri, 31 Mar 2023 11:56:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680288973;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S229441AbjCaTDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 15:03:10 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 063BE22915
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:03:06 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id y15so30179961lfa.7
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:03:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112; t=1680289384;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SRYjfKN3eK3vnBIG5oj6mxdR/iFPW7kkC2GPzDxU+F0=;
-        b=A8WlG5No6f5Frze7s5F2DMIxoVpK73x4ZzadCTmiFJwDsYBduHyGNL5lYcueK9bc72
-         mgk5ajNxtd9EUT45+1DSphP4PE1LdxIxhCpilVFttJIzOf7YWiOmCbB8F5j4OYUKb7Ls
-         ID33zWsUFPvtLpUb2a1Gaq/cyg/r7/zk8bTzX7sqm+Xswp0fYj3+/81UlgjheOl3Nbli
-         Lp8rYMw0BLryhfLSbG8GxHHz9LeVtE48UeBzC4J0L9Bp55qH1Vy2xwZJ/3ux9/vwZ3Cl
-         yYwyASdyN4gkXD5nrz2ktRpVTBQJGhn9dxd/prGGUcTGTQljfRZnGPWoaCT+6v1ZNhlH
-         suDw==
-X-Gm-Message-State: AAQBX9cbinOLBgmYfbd5cofKy+JLQz+Ag0vMPkgFt6YIVnq8z5b1xhiS
-        5PJ3kVIon4jfX+xSGExLIQ==
-X-Google-Smtp-Source: AKy350bIDeTcfXjKXMCdouCUmqZoQzF2jlr3OoSKVKdzBeGpGQzJ5XI0jorXx7xo1T9jDrsYb0ibDg==
-X-Received: by 2002:a05:6808:13cb:b0:389:7d24:def5 with SMTP id d11-20020a05680813cb00b003897d24def5mr3621775oiw.10.1680288972707;
-        Fri, 31 Mar 2023 11:56:12 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w8-20020a056808018800b003896b3269d3sm1263329oic.20.2023.03.31.11.56.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 11:56:12 -0700 (PDT)
-Received: (nullmailer pid 1946699 invoked by uid 1000);
-        Fri, 31 Mar 2023 18:56:11 -0000
-Date:   Fri, 31 Mar 2023 13:56:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH 1/5] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: add
- sm8150 USB+DP PHY
-Message-ID: <168028897102.1946640.12125439806794137069.robh@kernel.org>
-References: <20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
- <20230324215550.1966809-2-dmitry.baryshkov@linaro.org>
+        bh=+Op2hvo1QpmD4q1fBgDvpflzYt4ille90lJOYkm9McQ=;
+        b=I9MBLXscoVftIVV9CjCEAHOLc8es0K+E7ZAIKRZSAuC79s8JCWAbcfd1/wUUY2D1HQ
+         qqYcbYBp9j38efRMctWg4KhDrinDHH5RMfqVpMBTCL4Pk5KAEY8YYLgbdBmp5lNBd4WX
+         WBc1Yn7iuEmqLxYw2OFLb+mQtYK5mlHl0JUwNLCzNVz+0GIhP2VGQ8Kctjbx/6443Naz
+         LZCatuF8uyuce31qb7oKNBD0H88jyGp68xeFcevSTSVJbS9mpFdEBMKyuWIBKJiEr2z3
+         maWg/ujFK92UZ5pkT8/UrO2C4mPvcUCyo0eGZRpGS2QfuAbUsDWyZRFIM1W4el2h38OR
+         Ai8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680289384;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Op2hvo1QpmD4q1fBgDvpflzYt4ille90lJOYkm9McQ=;
+        b=MBpNur1yECZrY5VTLG5BLnH9P7/7FjDODWcIeKj0a8aSRnXsOIXCOKjCO35XhTo2km
+         XVOlzcBnHIeyZ4/RwRg+YFluUOCimjwFrYYisaivBOnridwj4Kldptmwmnbw58/yyA+c
+         Th1DHS75dQK7t1VcasG9TsItdpMqD4gyanuaY4BxmU1BFIPoTGeilVgZCNQIFlgBquUm
+         cwL5ko/L/mY+UVWPlfRydrimozmaaL3Lf+QKK5GxCxZgThbq0jCdrS9KTvMTrndsA7hE
+         YKMn8ZAUwc3F5mJxNpvUHGW0Lm9XsSqQEe1RLS3b0H7FiVpDoG8GQCBvJHgxdo3r1jAV
+         jl0g==
+X-Gm-Message-State: AAQBX9evh79VNhmr++8SQhoI5w/xRH879oFiBZLdOwmMUXr677WKjH5y
+        Rdjh14NzqG5N7IhoEjFTuxvZBx+y/nDRq/TDZX8/hg==
+X-Google-Smtp-Source: AKy350bg046U6kUEdMKJ47xgMoqU+o1btrNpujCJ6vXB3o551Lu3oiJA8WifEc5bExAewh/oNaLY16yV+c/9sUrBP2Y=
+X-Received: by 2002:ac2:4470:0:b0:4eb:304f:66ea with SMTP id
+ y16-20020ac24470000000b004eb304f66eamr823973lfl.13.1680289384305; Fri, 31 Mar
+ 2023 12:03:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230324215550.1966809-2-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230331182727.4062790-1-evan@rivosinc.com> <25837ca5-b709-4d20-912b-ab13e6353069@spud>
+In-Reply-To: <25837ca5-b709-4d20-912b-ab13e6353069@spud>
+From:   Evan Green <evan@rivosinc.com>
+Date:   Fri, 31 Mar 2023 12:02:28 -0700
+Message-ID: <CALs-Hss-W78x04LS7X_RiTmU19Xv6d3f4x5rgeEhV7TVy7_CEA@mail.gmail.com>
+Subject: Re: [RFC PATCH] riscv: dts: nezha-d1: Add memory
+To:     Conor Dooley <conor@kernel.org>
+Cc:     linux-sunxi@lists.linux.dev, conor.dooley@microchip.com,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Trevor Woerner <twoerner@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Mar 31, 2023 at 11:39=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Fri, Mar 31, 2023 at 11:27:27AM -0700, Evan Green wrote:
+> > Add memory info for the D1 Nezha, which seems to be required for it to
+> > boot with the stock firmware. Note that this hardcodes 1GB, which is
+> > not technically correct as they also make models with different amounts
+> > of RAM.
+>
+> > Is the firmware supposed to populate this?
+>
+> Yup. Samuel intentionally did it this way:
+> https://lore.kernel.org/linux-riscv/8a2194bf-93bd-de4d-8d39-0cd72aabb0a9@=
+sholland.org/
+>
+> Since I don't like using the firmware provided stuff to more easily
+> test I do this in my u-boot boot script:
+>
+> tftp 0x54000000 d1-fitImage.fit
+> bootm start 0x54000000
+> bootm loados 0x54000000
+> bootm ramdisk;
+> bootm prep;
+> fdt memory 0x40000000 0x20000000
+> bootm go;
+>
+> Hope either of the above are helpful,
+> Conor.
 
-On Sat, 25 Mar 2023 00:55:46 +0300, Dmitry Baryshkov wrote:
-> Add bindings for sm8150 USB+DP PHY. These bindings follow the older
-> style as this is a quick conversion to simplify further driver cleanup.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml    | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Ah, I see, thanks for the pointers. I've got whatever firmware came
+with the "dd and go" Fedora image I found on the internet somewhere,
+which doesn't seem to do the memory node population for me. I've been
+hesitant to rebuild the firmware as I don't want to break the Fedora
+"safe OS", and if there's a way to get mired in some build
+environment, I seem to have a nose for finding it.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I'll probably just keep the patch locally in my tree, and if I'm
+forced to update the firmware for some other reason I'll try removing
+it.
 
+-Evan
