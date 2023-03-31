@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9456D1AA5
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EE5F6D1AAE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbjCaIn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:43:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37968 "EHLO
+        id S231826AbjCaIpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231932AbjCaInm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:43:42 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CCC1C1CF
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:43:09 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id c29so27970596lfv.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:43:09 -0700 (PDT)
+        with ESMTP id S231307AbjCaIpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:45:30 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738971D927
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:45:06 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id t4so16375741wra.7
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:45:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680252162;
+        d=linaro.org; s=google; t=1680252290;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IevZS0joNS82IencNXfsPkazLIzoG9/Vmz0nPvH8I7o=;
-        b=Xo+gy/WFFx+pso6hhAElvme+rTjYErlFrqUfcvfcHEGUbdxYDrCWKZLg2zFcvofh0w
-         9fB+/LSYS+ZACFMc7N/hvE2/fk3+Kc5SC5StkOBuZq3Mib2fGyxN4WbF4mgYwydTkMPt
-         pe9YGt0e5+r1L9sHyvS8S27nRgowintaETXkWsaE6rP032hN2XqeP8zA2eCVEutjrOaH
-         85JJ5ZO2pYxreEaW2oCas/8BvQE5JZv7AT0e7ch1nFEOSfP/6Q2khH9JW86uypMdj1wh
-         LyHBblU0wnWzkDdgujKgT9J/MVvoBzTlUrVdxKP40aCZWSCdXQuP0meRvvDccOZpSLGI
-         Y7WQ==
+        bh=xxyqdIn+bk4QczcFBL4xE02Qvuk54XzxnYqApbWmQ7E=;
+        b=T/C6VRoG0clsKlt9wMakpFmsJW9/eJik5Xxo338Tq2stTAGKoyZqJ6beLQsP5VWvmP
+         dnvxyj9mU8lu8qyu+XXGY6Fyx7sBjawIsbGYMz4LNzyOGlJ4zg5hf9SLtX0BNdWP1BSv
+         /JAgcDA9GTBLjNk7RJBvssxuXZXcTKGC2xEsWmXKM8OflqZC/C7s03VavwsBazeW+fp/
+         VFAn8Anm+CA3IjUlG62nkGRaMFO+uQBHQj+LBuyZoa7Zvmrv74uKnQWuiaYmIGmaoj/5
+         HsCAL59OWnPfxc3crmgdXrBL0cCCvJ8Z6TD5FAXvAjNxaRdyyQGyHm1UNvm6H0lI9Sx3
+         R5qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680252162;
+        d=1e100.net; s=20210112; t=1680252290;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IevZS0joNS82IencNXfsPkazLIzoG9/Vmz0nPvH8I7o=;
-        b=70Ewlsc2DxfI5Ps9UAlNlP3r4ntfF/cn7J0XnsQpncX0Qrf+ZSqIzG02uMcpdMmJ1T
-         l0tJn5nogeslWt653dxo8ZuwQb6fJNXgTFpo0s3INhAZubZM1MaCQ+FamGAiFqWo25ja
-         /GOWJwPPcmR2ttu1qXD5ZhyuP4PbTKmMHusIHbaDYxeAvIeDleYY6Ohz6AVfG44EqGNq
-         ch3o6oUspiAnma170uPlTru0V6jikwZXJgd+EslYLtfoo9PmwbXB0mXWCdRk1VPUI2I+
-         3aFohZpIvvNJytp+TnQr3j/UB0+DE5SF3vyTM5X+cM5esPMX/7BEe/sdN+JwEZbMCWMu
-         B8xQ==
-X-Gm-Message-State: AAQBX9e742frRl9AN158kmosEuTCFuXeYVDNYFBY+0BpEeDZtTF5D647
-        mIw4UmBL5OEuJZoVJWqc7kYBbQ==
-X-Google-Smtp-Source: AKy350ZG/K6wcHdsuRA1BnkFGsAXfMWNfwKAVZ6IoMpIC2JXLzIFxyS/w3Hpu85ByVgXWbR3W3P0Yw==
-X-Received: by 2002:ac2:5287:0:b0:4cc:a107:82f4 with SMTP id q7-20020ac25287000000b004cca10782f4mr7866348lfm.64.1680252162059;
-        Fri, 31 Mar 2023 01:42:42 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s10-20020a19ad4a000000b004eb15952669sm289570lfd.141.2023.03.31.01.42.41
+        bh=xxyqdIn+bk4QczcFBL4xE02Qvuk54XzxnYqApbWmQ7E=;
+        b=Nby0wbUeiRRKM3XYawrSsVNZI73ZrUwN3mM9hegldWEYHmn8MnEw35tu1JInDmpJfL
+         g51c58mDmtNhTPNb9hEhKcWUicQH/YWmX00eGvpr4oajZck20vyIfIbg4bY5qPGPt70/
+         paudkLCYFe1rJH2Un/x4V3e54zHWxgPSEE3DffWWi7UppQl8Y5iasEArzY6fYA7Z/zcM
+         dFek4q6Qv5J9mijdKMwt5/FYx9a/vLXQcuGmQ31eA7+cW/4BpdAdoRvSDNRzvEZOAPUZ
+         SOszPKBCPFxbXhuSoFmBRb2icVy01dCEGlPKWGAMuYfdplkPejcuLtFyTHun4qPB1FCz
+         fvoA==
+X-Gm-Message-State: AAQBX9enfx7ebG3JV5q/sgIEHzIgNGqXPdgKyeJX2gz6xZaR04TatLsY
+        WtWybaRsFQ4txigxXr063FoWAw==
+X-Google-Smtp-Source: AKy350ZHxE08ANZvF4H7bloNjkiIkHgIWRHOGVefKapS/JJkMMHtS7CHxDmiDoX5QSSpdo+bvMN3Pw==
+X-Received: by 2002:adf:d08e:0:b0:2cf:f312:86dd with SMTP id y14-20020adfd08e000000b002cff31286ddmr17970572wrh.18.1680252290022;
+        Fri, 31 Mar 2023 01:44:50 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:17ff:909e:1b73:8366? ([2a05:6e02:1041:c10:17ff:909e:1b73:8366])
+        by smtp.googlemail.com with ESMTPSA id m7-20020a5d56c7000000b002cea9d931e6sm1590350wrw.78.2023.03.31.01.44.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:42:41 -0700 (PDT)
-Message-ID: <ff88e5d3-4c31-7698-b8d1-8a03b9fea643@linaro.org>
-Date:   Fri, 31 Mar 2023 10:42:40 +0200
+        Fri, 31 Mar 2023 01:44:49 -0700 (PDT)
+Message-ID: <f4592c81-af30-8289-d02d-a44e25e0fe26@linaro.org>
+Date:   Fri, 31 Mar 2023 10:44:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v1 2/6] dt-bindings: display: bridge: toshiba,tc358768:
- Add TC9594
+Subject: Re: [PATCH] thermal: Use of_property_present() for testing DT
+ property presence
 Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        devicetree@vger.kernel.org
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
-References: <20230330095941.428122-1-francesco@dolcini.it>
- <20230330095941.428122-3-francesco@dolcini.it>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330095941.428122-3-francesco@dolcini.it>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org
+References: <20230310144726.1545543-1-robh@kernel.org>
+ <CAJZ5v0hAeRa9xsp6-_um9j-9F6nf=PYuOC2mgMAmmUHP+9=RZg@mail.gmail.com>
+ <CAJZ5v0i-Vum+js8c7fZJiQWwTBYByy2O=UtObR6GciLMLt41Nw@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CAJZ5v0i-Vum+js8c7fZJiQWwTBYByy2O=UtObR6GciLMLt41Nw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -87,45 +90,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 11:59, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 30/03/2023 19:28, Rafael J. Wysocki wrote:
+> On Mon, Mar 27, 2023 at 7:13 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>>
+>> On Fri, Mar 10, 2023 at 3:48 PM Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> It is preferred to use typed property access functions (i.e.
+>>> of_property_read_<type> functions) rather than low-level
+>>> of_get_property/of_find_property functions for reading properties. As
+>>> part of this, convert of_get_property/of_find_property calls to the
+>>> recently added of_property_present() helper when we just want to test
+>>> for presence of a property and nothing more.
+>>>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>
+>> Daniel, are you going to apply this, or should I take it directly?
 > 
-> Add TC9594, from the software point of view this is identical to
-> TC358768 with the main difference being automotive qualified.
-> 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
->  .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
-> index d6dac186ac59..8f22093b61ae 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
-> @@ -4,19 +4,20 @@
->  $id: http://devicetree.org/schemas/display/bridge/toshiba,tc358768.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Toshiba TC358768/TC358778 Parallel RGB to MIPI DSI bridge
-> +title: Toshiba TC358768/TC358778/TC9594 Parallel RGB to MIPI DSI bridge
->  
->  maintainers:
->    - Peter Ujfalusi <peter.ujfalusi@ti.com>
->  
->  description: |
-> -  The TC358768/TC358778 is bridge device which converts RGB to DSI.
-> +  The TC358768/TC358778/TC9594 is bridge device which converts RGB to DSI.
->  
->  properties:
->    compatible:
->      enum:
->        - toshiba,tc358768
->        - toshiba,tc358778
-> +      - toshiba,tc9594
+> Applied as 6.4 material, thanks
 
-If it is the same, why they are not compatible? I got only three patches
-out of six, thus I cannot check by myself. Please explain.
+Sorry, I forgot to answer. I already applied it.
 
-Best regards,
-Krzysztof
+Shall I drop it from my branch ?
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
