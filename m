@@ -2,89 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DECA6D277C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CE26D2782
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbjCaSEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 14:04:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41138 "EHLO
+        id S232674AbjCaSFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 14:05:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbjCaSEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:04:40 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22ACFE393;
-        Fri, 31 Mar 2023 11:04:40 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id x8-20020a9d3788000000b0069f922cd5ceso12275374otb.12;
-        Fri, 31 Mar 2023 11:04:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680285879;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9OfUKZ8f2abaxXoD2WwniaK+VMGx278wFzXMC0ygxEQ=;
-        b=O2D69BBqmtK0TzXFG4N/sa9LV1rXmlgHF/mZx1928p8vUSeJ0VY1FqcxN/Eh/gTHGi
-         jd5VSkFVKs+d3ORqnZL7fOvJcdeEKmqDKr/ceqmS9ebtBjcJCNlFyWbbzEnJ0x/3uQNp
-         T8llyy7rZSB2JaPsAG7l7I9KtC0r9oQKZiSWMDhq4pH9yI59twY9IIdBuVpz9vt/YCVE
-         RMw0ZtjDkfaapOwdYbJXbbwA7HxiOCB4WYl7bo5fCZmODYH5vT0XV1ADN+zkSQvUcqm5
-         Y9O1AQMQIPTsZ2/BeRKTkVbQ1EAubXMXnNg5JrAxiGUNDFHEB6uq7Y9FFYARg6Osu6IV
-         T/lg==
-X-Gm-Message-State: AO0yUKU5/dzR/vHRSH4Tr+0sTlCLqx6kvHJ7m4Dpuxb5MnE/8ZZp5yb3
-        VUKJ01XtKhQk9tefyiS/mw==
-X-Google-Smtp-Source: AK7set+HVh4qD4jVJxKv1wPFRKzEuL5X7/z6zM+rjDs9/MBWSk/RReSx5BuXXsfsMHyxpmVWhbptvA==
-X-Received: by 2002:a05:6830:3a1a:b0:69f:166a:ae60 with SMTP id di26-20020a0568303a1a00b0069f166aae60mr12768958otb.28.1680285879376;
-        Fri, 31 Mar 2023 11:04:39 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f16-20020a9d5f10000000b006a17328e3e7sm1405900oti.42.2023.03.31.11.04.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 11:04:39 -0700 (PDT)
-Received: (nullmailer pid 1762548 invoked by uid 1000);
-        Fri, 31 Mar 2023 18:04:38 -0000
-Date:   Fri, 31 Mar 2023 13:04:38 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        with ESMTP id S230185AbjCaSFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:05:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 429371115F;
+        Fri, 31 Mar 2023 11:05:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A7C38B82EAD;
+        Fri, 31 Mar 2023 18:05:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4836C433EF;
+        Fri, 31 Mar 2023 18:05:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680285915;
+        bh=yhcavFdyZAlXWQO8EApfE+E9GTxovJYaD/pUnichZz0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L0k8seiS11xBTJAujqyXzQ//L9p/LdHzmCHVFeyDUgIsMpM7tSz5hx6qWke2G9xbR
+         BEY/6T0imbYxxl08CO9kcNv/cI4o7XEZqqm4VAN9erLOx6HNoabWTd0rZPxdpKxLSa
+         sOP+IhUAA96DLkD23XgTnI7euo4tZD7iIYFj6fDZOVbNTbmSNmCfsZCXH6NfxurBZT
+         Hwv0LN8fZzUg1mNh/8Lbfg0GKkWvJOLTf5nl9iX1CmM+sQXBkZOEPs/RB4NwcsPlCK
+         ikXaw2381vMyNXIa1lCRKXv5GX1IS6bp71jkkqeeeQVTa0AZ0b+r/+jr/gOeq7zNUL
+         LW8YOT5ZFOsdQ==
+Date:   Fri, 31 Mar 2023 19:05:09 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 1/2] of: create of_root if no dtb provided
-Message-ID: <20230331180438.GA1715677-robh@kernel.org>
-References: <20230317053415.2254616-1-frowand.list@gmail.com>
- <20230317053415.2254616-2-frowand.list@gmail.com>
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v7 0/6] RISC-V non-coherent function pointer based CMO +
+ non-coherent DMA support for AX45MP
+Message-ID: <b2dcda17-5850-47c1-94bc-4ca87f900581@spud>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bVgU0rnp1uDT6zu5"
 Content-Disposition: inline
-In-Reply-To: <20230317053415.2254616-2-frowand.list@gmail.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 17, 2023 at 12:34:14AM -0500, Frank Rowand wrote:
-> When enabling CONFIG_OF on a platform where of_root is not populated by
-> firmware, we end up without a root node. In order to apply overlays and
-> create subnodes of the root node, we need one. Create this root node
-> by unflattening an empty builtin dtb.
-> 
-> If firmware provides a flattened device tree (FDT) then the FDT is
-> unflattened via setup_arch().  Otherwise setup_of(), which is called
-> immediately after setup_arch(), will create the default root node
-> if it does not exist.
 
-I thought of another way to handle this. Every arch except IIRC sparc, 
-s390, and ia64 calls unflatten(_and_copy)?_device_tree already. At 
-least any arch anyone is going to care about for this stuff does. It's 
-just conditional in some cases. So why not make the existing calls 
-unconditional?
+--bVgU0rnp1uDT6zu5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Either way, I think that of_have_populated_dt() calls will need to be 
-checked whether this change.
+On Thu, Mar 30, 2023 at 09:42:11PM +0100, Prabhakar wrote:
 
-Rob
+> - This series requires testing on Cores with zicbom and T-Head SoCs
+
+I don't actually know if there are Zicbom parts, may need to test that
+on QEMU.
+I had to revert unrelated content to boot, but my D1 NFS setup seems to
+work fine with these changes, so where it is relevant:
+Tested-by: Conor Dooley <conor.dooley@microchip.com> # tyre-kicking on D1
+
+Cheers,
+Conor.
+
+--bVgU0rnp1uDT6zu5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCcg0gAKCRB4tDGHoIJi
+0olCAQCODgwigBuDYnHh9SF7jlHE8FV8O/wdkD8XBah6GNMDWAD/djjcC5dOGg3O
++9LnK+BLDW/pLsgfMrjK3UpuiS7xYQ4=
+=R6x2
+-----END PGP SIGNATURE-----
+
+--bVgU0rnp1uDT6zu5--
