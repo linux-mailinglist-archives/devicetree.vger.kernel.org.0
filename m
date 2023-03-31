@@ -2,133 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 016226D1A80
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E856D1A83
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:38:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230449AbjCaIiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:38:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59462 "EHLO
+        id S231719AbjCaIip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:38:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231854AbjCaIhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:37:15 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5921C1FD35
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:35:37 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id q19so18517848wrc.5
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:35:37 -0700 (PDT)
+        with ESMTP id S231904AbjCaIib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:38:31 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC7F1D846
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:36:09 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id x20so22232121ljq.9
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:36:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680251712;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lfco65EqQfHZJxTK1kxWA78ZamfCWUWZKPHL0Bp1xH4=;
-        b=SqOTTD4EeiNGBszaNOzDLqviTo9jI0ZhAKSeRT3l5LeAaBvHoV1VbnUiNYxQjrF5S5
-         UUujdXiQCveG/Iy+PsAnxgkKeorfMhJAmQ2J1mYgkX8eg020zgf6nL/f/EExNZqkpRUx
-         XcdDXQ5bnCtHLOcSYFcdnuXeE9b+QxZG2/mH1nfNDIA7j4YtTmk1Al3zY4k3rR5puTQU
-         l2NatRLdUPmY31rjFWxbQkcwmbAI5FXvErZOPP+aB0G/SM/9J1u6rMIIFKuvCVysu2q3
-         VMSa4Jt860AaDpWD2pjM4fb8tv0/a2sxwe3l0seQy7PhpYace6EYCoZskI6VrPmid9Ji
-         W8oQ==
+        d=linaro.org; s=google; t=1680251743;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tkRYc2zjcEMTlLfWoSafrc84uzK9JDYRl9kYpG33h9E=;
+        b=VDtYvpS72Cb8trEdZVmOD4XrZGTI0kgWf9WAirmYAqK6YXUnVdbBn7gj/IO2OKTFMX
+         awun/DZKunVF7yFL/NqDphNreCz9VxqbyYMCF7ql9WgGuC7y0RN1peGeCe0PPyLga5c7
+         BZ6tUgHyw6X7uxVpo8xxqAcNIHvIbY41ndFtvBqZEa6Em626CPuObX1Cwu7mYtJUtcU+
+         2J4Y5KwVcOR1ufbnbEJ9pJr37KFGNqI1BJ/BUmjyd3mzvaQxEPIDD9A4rlK/Uo22kdik
+         KN4jn7SuA+Yz9+i0bytGyuoa9xckYg4hAOhUp1YsfMUEY9LwZ6tip9uSwTJouX3bHfRJ
+         /Ylw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680251712;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lfco65EqQfHZJxTK1kxWA78ZamfCWUWZKPHL0Bp1xH4=;
-        b=mvHb38QIxctKIsYWMJ/rUOg/wewp5w49hVg29+L48QD+n5/qyn7cd5GpIv/oV7Zqyx
-         Ci+0toL9syectXODVRrY9jMQsjbGZ7sCKyROFiao68ViuPYoTvCjr8VH2s8qd9dFILUJ
-         WCT7ZCWNlfnPzKcqHisqjCZmcKYx2uUAO2Kgq7Uz6PaULAsf1UlK9RhYdq3n8iil01xz
-         GDrCh65sHFNMzQZDrEbm6ovY+hfBgEivO2wgcYGwyxyRkz4AFfrKpsTqVTVu58XlP+pc
-         uaymMTjvJMcVJCMPMxLqgSuX/6VUTL4Yd7nDXCbfPA+rMQDG9Ig8Oxzqf3E42yTg9A6L
-         olhw==
-X-Gm-Message-State: AAQBX9cYEuJGlvUka1niU2j+c37OHxNP3QCJQMfn8J2fZ1d7npUtANAA
-        YI/dVf0+iVu+396zDvjROLL/Fw==
-X-Google-Smtp-Source: AKy350YfLJVXZRDyUNg84s43q40a428Zli09J7iKvodwvFp3SatohdxhFRTG46DXiPWYNxkqIkfYZA==
-X-Received: by 2002:adf:f348:0:b0:2d7:9206:488d with SMTP id e8-20020adff348000000b002d79206488dmr20315336wrp.36.1680251712356;
-        Fri, 31 Mar 2023 01:35:12 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id e11-20020a5d4e8b000000b002cde626cd96sm1563153wru.65.2023.03.31.01.35.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 01:35:11 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 31 Mar 2023 10:34:58 +0200
-Subject: [PATCH RFC 20/20] MAINTAINERS: remove OXNAS entry
+        d=1e100.net; s=20210112; t=1680251743;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tkRYc2zjcEMTlLfWoSafrc84uzK9JDYRl9kYpG33h9E=;
+        b=aoJeCB3/8KLa1Us/R2qp+qws0TQI//Ovhb+6IIyTid45ydQwqEgsrWo4zLxpyelRMS
+         ouogxjXQbraPMQAcsaQ1kI6KHjy/YZgYlTGbIRiIROFkkbAztg9hmpqJD+HJAL8se9Rw
+         D9Tpu5NnzLceaiCedjG4MBIlTMUbr8z+d1C41AE352WI1/Zg3B00VMRVmCGFVkDfy6Te
+         GmGM6aJkfLbCvlcMBbVKcltQ0jnTsYWCOPozltRyx2NMOcwd5FYHKiVrq1V8F7qxWKBF
+         IOxyBxf0dLbRE49q8kp3b7nLWZvV6fwUBSG2sWgzRtXcM//gQbWjBCQfXQTtvG9WhbiZ
+         oz5A==
+X-Gm-Message-State: AAQBX9eAbu7Tn1KrGHS+jUNLwu3mgY/YvrBFxYpCgjo3KjqxFR9dqOuy
+        QPQIxTm0Pk/dMikdcj6HZlPMtg==
+X-Google-Smtp-Source: AKy350biiEiYoHvXX4oy8SYpu5pCoC47zLNvMj4u1cmjiV2eNr3bJd7RLJ2vrzmFKZJOHU5xx0I7dw==
+X-Received: by 2002:a2e:aa8b:0:b0:2a1:ed00:4b9e with SMTP id bj11-20020a2eaa8b000000b002a1ed004b9emr2503411ljb.1.1680251742960;
+        Fri, 31 Mar 2023 01:35:42 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f25-20020a2e6a19000000b002a03f9ffecesm262405ljc.89.2023.03.31.01.35.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 01:35:42 -0700 (PDT)
+Message-ID: <7a81fe59-7076-9ebd-d574-e4f2d55c8ebe@linaro.org>
+Date:   Fri, 31 Mar 2023 10:35:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/3] dt-bindings: iommu: rockchip: Add
+ rockchip,disable-device-link-resume
+Content-Language: en-US
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     iommu@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+References: <20230330131746.1475514-1-jagan@amarulasolutions.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330131746.1475514-1-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230331-topic-oxnas-upstream-remove-v1-20-5bd58fd1dd1f@linaro.org>
-References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
-In-Reply-To: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to lack of maintainance and stall of development for a few years now,
-and since no new features will ever be added upstream, remove MAINTAINERS
-entry for OXNAS files.
+On 30/03/2023 15:17, Jagan Teki wrote:
+> Rockchip iommu is trying to enable the associated device at runtime
+> resume however some devices might enable the iommu during their pm
+> runtime resume operation which indeed leads iommu to use the wrong
+> domain and this leads to device iommu page fault.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- MAINTAINERS | 10 ----------
- 1 file changed, 10 deletions(-)
+That's not a DT property. You now described system behavior and want to
+encode policy in DT.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d5bc223f305..c9a29d839ea2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2551,16 +2551,6 @@ S:	Maintained
- W:	http://www.digriz.org.uk/ts78xx/kernel
- F:	arch/arm/mach-orion5x/ts78xx-*
- 
--ARM/OXNAS platform support
--M:	Neil Armstrong <neil.armstrong@linaro.org>
--L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--L:	linux-oxnas@groups.io (moderated for non-subscribers)
--S:	Maintained
--F:	arch/arm/boot/dts/ox8*.dts*
--F:	arch/arm/mach-oxnas/
--F:	drivers/power/reset/oxnas-restart.c
--N:	oxnas
--
- ARM/QUALCOMM SUPPORT
- M:	Andy Gross <agross@kernel.org>
- M:	Bjorn Andersson <andersson@kernel.org>
 
--- 
-2.34.1
+
+Best regards,
+Krzysztof
 
