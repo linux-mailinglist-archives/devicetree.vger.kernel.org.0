@@ -2,132 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E63D6D242E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3DC6D244E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231956AbjCaPld convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 31 Mar 2023 11:41:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33502 "EHLO
+        id S232994AbjCaPrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 11:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229967AbjCaPlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:41:32 -0400
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22C64C35;
-        Fri, 31 Mar 2023 08:41:31 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-54601d90118so266500797b3.12;
-        Fri, 31 Mar 2023 08:41:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680277290;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PgxC0qijgs744nSQRmKCAm4LhEekXjRl+Ej8SDIB8FI=;
-        b=NH0L8ArU8tRtFM+kaiR/xat1SKfbmQt7Lzzyl5mEYLT8pjJrrxu5Og2kMg1We9Vtyo
-         oq4DgKc/jawvaCGauBgSJ1fNwqXHx817tpvKHT59epYHxNXdE1l8BN17UsFLxvX9zphf
-         MeeOUQp/peeHzcj3KUAm4KQqpTOVf4UOJii3kgIFBIOMAAJHITHUPXSsr+8kSCNzQiMC
-         p22P62og6fmH61He7JgJ/AnoviknAOlkKYPB3SWeszgJ1s6lF+Oott/lv/aCqwd4xaCw
-         3CGNw3keK0/K64A6IMC4Sv6tda1/Hhwutl8jiOmZ/tdQwcno7Ng25Lb/uvtl/9VdLOE2
-         2LeQ==
-X-Gm-Message-State: AAQBX9eO97K5tiPoAWpOCcKOeKxP9a4JksgsRunPwhLu3wEaaUbg5VkZ
-        ABR4mlo4NcrmM+biMbcgLZ5gVpZCQSp9Bg==
-X-Google-Smtp-Source: AKy350ZuvMARbwW4frqW9ccfMEPDz1Su+1tDa9NsuEFcGWzQq1qWXzBLdF56szdXDg1eKSsTLSioig==
-X-Received: by 2002:a0d:c241:0:b0:541:676f:b3e with SMTP id e62-20020a0dc241000000b00541676f0b3emr25840903ywd.39.1680277290588;
-        Fri, 31 Mar 2023 08:41:30 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id t4-20020a817804000000b00545a0818493sm599112ywc.35.2023.03.31.08.41.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 08:41:30 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id r187so27877910ybr.6;
-        Fri, 31 Mar 2023 08:41:29 -0700 (PDT)
-X-Received: by 2002:a25:bb85:0:b0:b7c:1144:a708 with SMTP id
- y5-20020a25bb85000000b00b7c1144a708mr11537151ybg.12.1680277289547; Fri, 31
- Mar 2023 08:41:29 -0700 (PDT)
+        with ESMTP id S231313AbjCaPra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:47:30 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5585D4691;
+        Fri, 31 Mar 2023 08:47:29 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32VDqKvU010304;
+        Fri, 31 Mar 2023 17:47:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=WnaqWGLbrGE8l1DdJGiLovg7YI1781JuH5yhngJ70so=;
+ b=zSTrSxBc/sfgQsuwnBvTWeNOuQFrnJHVRUPWvkEQ/kW2SRJTv/x42zeLeGjdBCZ4KfEr
+ 019lQyD+QK13vhXbRwVnbyWQAFTucsHNhWCfHh98pi0idgU7/UEPCo3puCcgZDOd59oD
+ 59xOCUSHyPVmZwgkYpXyCX50eGCURmR4ptJEr6Fh5ISLewVtR/eBGawkN4v+JkWktQOM
+ p3evJSacFd/B6Ae2qSJJn+lQqSb2eyjKKlNF56Av0/50wvc/l5J15uL7OQ6IszBPfp8J
+ 2NXkTdZ1/D7PPnfByg71URq7ypg6JlHxEi5VxXlsJMuo0cvRH8xLw83YokDlAGkSk/Yl rQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pnw9c24rt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 31 Mar 2023 17:47:17 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8C96010002A;
+        Fri, 31 Mar 2023 17:47:15 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A6384222CAD;
+        Fri, 31 Mar 2023 17:47:15 +0200 (CEST)
+Received: from localhost (10.201.21.178) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Fri, 31 Mar
+ 2023 17:47:14 +0200
+From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH 0/5] stm32mp15: update remoteproc to support SCMI Device tree
+Date:   Fri, 31 Mar 2023 17:46:46 +0200
+Message-ID: <20230331154651.3107173-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230331141032.3817866-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdXANL4RwjqcqGsjJa8_R2ExefnWbsOfayHLegzHsjpP8Q@mail.gmail.com> <ZCb+r/IoEtf6RO5O@oden.dyn.berto.se>
-In-Reply-To: <ZCb+r/IoEtf6RO5O@oden.dyn.berto.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 31 Mar 2023 17:41:16 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWiUwmc29-K7XOUeUk8WQ-cgJAxJm+dNOOX700uCOM6Cw@mail.gmail.com>
-Message-ID: <CAMuHMdWiUwmc29-K7XOUeUk8WQ-cgJAxJm+dNOOX700uCOM6Cw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: maxim,max96712: Require setting
- bus-type property
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.178]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-31_07,2023-03-31_01,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+This series updates the stm32_rproc driver and associated DT node to
+support device tree configuration with and without SCMI server. 
+The impact is mainly on the MCU hold boot management.
 
-On Fri, Mar 31, 2023 at 5:39 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> On 2023-03-31 17:14:42 +0200, Geert Uytterhoeven wrote:
-> > On Fri, Mar 31, 2023 at 4:15 PM Niklas Söderlund
-> > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > The MAX96712 can support both CSI-2 C-PHY and D-PHY bus. Document the
-> > > supported bus-types and make the property mandatory.
-> > >
-> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> > > @@ -65,9 +65,14 @@ properties:
-> > >
-> > >              properties:
-> > >                data-lanes: true
-> > > +              bus-type:
-> > > +                enum:
-> > > +                  - 1 # CSI-2 C-PHY
-> > > +                  - 4 # CSI-2 D-PHY
-> >
-> > Perhaps use/refer to the symbolic names, too?
->
-> I tired that, but dt_binding_check complained.
->
-> $ cat Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> ...
->   bus-type:
->     enum:
->       - MEDIA_BUS_TYPE_CSI2_CPHY
->       - MEDIA_BUS_TYPE_CSI2_DPHY
-> ...
->
-> $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> ...
-> .../obj/Documentation/devicetree/bindings/media/i2c/maxim,max96712.example.dtb:
-> gmsl-deserializer@49: ports:port@4:endpoint:bus-type:0: [4] is not one of ['MEDIA_BUS_TYPE_CSI2_CPHY', 'MEDIA_BUS_TYPE_CSI2_DPHY']
->
-> Or did I misunderstand you? I checked other bindings and the numerical
-> values where used in all media/i2c bindings.
+1) Configuration without SCMI server (legacy): Trusted context not activated
+- The MCU reset is controlled through the Linux RCC reset driver.
+- The MCU HOLD BOOT is controlled through The RCC sysconf.
 
-Yeah, I don't think you can do it that way.
-But this should work:
+2) Configuration with SCMI server: Trusted context activated
+- The MCU reset is controlled through the SCMI reset service.
+- The MCU HOLD BOOT is no more controlled through a SMC call service but
+  through the SCMI reset service.
 
-     - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
-     - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+In consequence this series:
+- Use the SCMI server to manage the MCU hold boot instead of the a SMC
+  call service,
+- determine the configuration to use depending on the presence of the
+  "reset-names" property
+  if ( "reset-names" property contains "hold_boot")
+  then use reset_control services
+  else use regmap access based on "st,syscfg-holdboot" property.
+- Update the bindings and DTs in consequence.
 
-Gr{oetje,eeting}s,
+Arnaud Pouliquen (5):
+  dt-bindings: remoteproc: st,stm32-rproc: Rework reset declarations
+  ARM: dts: stm32: Remove the st,syscfg-tz property
+  remoteproc: stm32: Clean-up the management of the hold boot by smc
+    call
+  remoteproc: stm32: Allow hold boot management by the SCMI reset
+    controller
+  ARM: dts: stm32: fix m4_rproc references to use scmi
 
-                        Geert
+ .../bindings/remoteproc/st,stm32-rproc.yaml   | 52 ++++++++++-----
+ arch/arm/boot/dts/stm32mp151.dtsi             |  2 +-
+ arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts    |  6 +-
+ arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts    |  6 +-
+ arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts    |  6 +-
+ arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts    |  6 +-
+ drivers/remoteproc/stm32_rproc.c              | 64 ++++++++-----------
+ 7 files changed, 82 insertions(+), 60 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
