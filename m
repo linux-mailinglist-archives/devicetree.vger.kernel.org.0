@@ -2,157 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C1CE6D1ABE
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0196B6D1AC2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231324AbjCaIta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:49:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
+        id S230358AbjCaIuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:50:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231134AbjCaIt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:49:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6615C1B7EE;
-        Fri, 31 Mar 2023 01:49:19 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6E1DA6603180;
-        Fri, 31 Mar 2023 09:49:17 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680252557;
-        bh=EIlHy/fOQ4nvThPIDq8IH7bbZG6jRaS0NwuvOWeucNU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HT7tilTwUS2yXnomFHF6Tjq9o6/wAyNNsybgq7DxBT8JuPLcJLov7IcJ091S5eWGu
-         gNyn5DLK/b0uXCPWVBx22d71xpNzg1txgABQW16i8Kd0Ozk0rOGej4Pw15btAUBBoR
-         3JHh7hmTNafjLVoIMs6ozO/MN6NKq5XufWN5m51wy1nWBFLxWxUEfyTll32QTfpAD1
-         m/5oVpAVPpKwfb+DaNJGiHt46yzabfn8GxuObatGQg3z8qdr5vU2PhFHblkgZxPBmZ
-         rPdul/Ib1m24iXdOGSI+1AB2eAmBBbAdjNssJi15zat9kX2K0tjcX77aquPArG35m1
-         6tBKQC+ui0htw==
-Date:   Fri, 31 Mar 2023 10:49:14 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        steven.price@arm.com, robh+dt@kernel.org,
-        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        wenst@chromium.org, kernel@collabora.com
-Subject: Re: [PATCH v1 RESEND 2/2] drm/panfrost: Add basic support for speed
- binning
-Message-ID: <20230331104914.708b194e@collabora.com>
-In-Reply-To: <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
-References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
-        <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
-        <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S231489AbjCaIuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:50:13 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498B31BF52
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:08 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id z42so22255077ljq.13
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680252606;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hm2hIAzlWIlh/HN1Ebjpq4RGvB1b+HCsUGt69FXJxjo=;
+        b=OZzN3gG9tUFUcxAB3ktfT4IXwzPS+VV7TL07b1QYgQ4YiHiWCKfi+cQJMLeoKR7Bzs
+         sjhISVj/7gm/tgojJyvLUSlOQrCN6xWk4Qez5mTfkvlO0kNy77xNbUIBQ+3EN8OKBIzD
+         CL+QZG3i33RjSa14dyrobfjtJPlUyRRkfK/T/E9f7/JpBxQs94h8s1RGrVTPq/sMxj2T
+         i925RhEbmaPPxIR5ciVNZGfvOKyr2RqNMYnfoDaz5gxixNXjJ8kxozn7V4DES7VUfw7Z
+         I7alN4mpWXVMm3HA5WLzfMu/KvAVVHbnDUXPYmn4W1e1RkwO67R/ShCjqC1t/lcb4vhP
+         wJDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680252606;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hm2hIAzlWIlh/HN1Ebjpq4RGvB1b+HCsUGt69FXJxjo=;
+        b=X/TqMfDuHRp6uj2C9GUdGLCE9s8MCtpJ/iBxVo8xHqi2vkDBKtrph2Ws9aXu3xlaP3
+         PlgvfMN9Egqk/xmk28ELAbEtcQ3p/yOjYw3td4kSlKJgrS2zmPzeNk1kBt0lM44geQo7
+         WxljjXPhGMNMicY/vT3c6wR8yJB0yHGe2tditdnPHqiNrmdhH37INXp01QxvMic7ifUf
+         cWwo3zsNYFQs8qrrUhMYz2A5nj5W/coEpy6GXa+uTdw0f0Feg4hfdZ8bTQeJ5UFLTLiK
+         VLGAWHKO7kV4COfG0umFPTS4vsQbXwWoyrEa8nUHbuUrmwe4aYwl3oy+h7zOySDwsLKM
+         NnOg==
+X-Gm-Message-State: AAQBX9cVfvAMiGKfvXxKUZoDa3E1Ww7/MVu5hVYfJWn13hIWowjN1yZ6
+        h/FoCoRNF82ON8QcTvlbEkx8Ug==
+X-Google-Smtp-Source: AKy350b5BwrspfmaEhSZ5j4TtCdA7YCIHmTX5EQVjnvSnXoOPLRYU9gWB7YN5bhQTMIGSMGEAsyNlg==
+X-Received: by 2002:a2e:b548:0:b0:295:9ba2:8a78 with SMTP id a8-20020a2eb548000000b002959ba28a78mr2608023ljn.17.1680252606400;
+        Fri, 31 Mar 2023 01:50:06 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p23-20020a2ea417000000b002934abfb109sm270261ljn.45.2023.03.31.01.50.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 01:50:06 -0700 (PDT)
+Message-ID: <ae7bdc73-3836-fd28-f253-123ab27b7418@linaro.org>
+Date:   Fri, 31 Mar 2023 10:50:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal
+ Net compatible
+Content-Language: en-US
+To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        git@amd.com, saikrishna12468@gmail.com
+References: <20230330065240.3532010-1-sai.krishna.potthuri@amd.com>
+ <20230330065240.3532010-2-sai.krishna.potthuri@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330065240.3532010-2-sai.krishna.potthuri@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 Mar 2023 10:11:07 +0200
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-wrote:
+On 30/03/2023 08:52, Sai Krishna Potthuri wrote:
+> Add Xilinx Versal Net compatible to support eMMC 5.1 PHY.
+> 
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> ---
 
-> Il 23/03/23 10:08, AngeloGioacchino Del Regno ha scritto:
-> > Some SoCs implementing ARM Mali GPUs are subject to speed binning:
-> > this means that some versions of the same SoC model may need to be
-> > limited to a slower frequency compared to the other:
-> > this is being addressed by reading nvmem (usually, an eFuse array)
-> > containing a number that identifies the speed binning of the chip,
-> > which is usually related to silicon quality.
-> > 
-> > To address such situation, add basic support for reading the
-> > speed-bin through nvmem, as to make it possible to specify the
-> > supported hardware in the OPP table for GPUs.
-> > This commit also keeps compatibility with any platform that does
-> > not specify (and does not even support) speed-binning.
-> > 
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
-> 
-> Hello maintainers,
-> I've seen that this got archived in the dri-devel patchwork; because of that and
-> only that, I'm sending this ping to get this patch reviewed.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Looks good to me. If you can get a DT maintainer to review the binding
-(Rob?), I'd be happy to queue the series to drm-misc-next.
-
-> 
-> (perhaps we can even get it picked for v6.4?)
-> 
-> Regards,
-> Angelo
-> 
-> > ---
-> >   drivers/gpu/drm/panfrost/panfrost_devfreq.c | 30 +++++++++++++++++++++
-> >   1 file changed, 30 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/panfrost/panfrost_devfreq.c b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> > index fe5f12f16a63..58dfb15a8757 100644
-> > --- a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> > +++ b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> > @@ -4,6 +4,7 @@
-> >   #include <linux/clk.h>
-> >   #include <linux/devfreq.h>
-> >   #include <linux/devfreq_cooling.h>
-> > +#include <linux/nvmem-consumer.h>
-> >   #include <linux/platform_device.h>
-> >   #include <linux/pm_opp.h>
-> >   
-> > @@ -82,6 +83,31 @@ static struct devfreq_dev_profile panfrost_devfreq_profile = {
-> >   	.get_dev_status = panfrost_devfreq_get_dev_status,
-> >   };
-> >   
-> > +static int panfrost_read_speedbin(struct device *dev)
-> > +{
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	ret = nvmem_cell_read_variable_le_u32(dev, "speed-bin", &val);
-> > +	if (ret) {
-> > +		/*
-> > +		 * -ENOENT means that this platform doesn't support speedbins
-> > +		 * as it didn't declare any speed-bin nvmem: in this case, we
-> > +		 * keep going without it; any other error means that we are
-> > +		 * supposed to read the bin value, but we failed doing so.
-> > +		 */
-> > +		if (ret != -ENOENT) {
-> > +			DRM_DEV_ERROR(dev, "Cannot read speed-bin (%d).", ret);
-> > +			return ret;
-> > +		}
-> > +
-> > +		return 0;
-> > +	}
-> > +	DRM_DEV_DEBUG(dev, "Using speed-bin = 0x%x\n", val);
-> > +
-> > +	return devm_pm_opp_set_supported_hw(dev, &val, 1);
-> > +}
-> > +
-> >   int panfrost_devfreq_init(struct panfrost_device *pfdev)
-> >   {
-> >   	int ret;
-> > @@ -101,6 +127,10 @@ int panfrost_devfreq_init(struct panfrost_device *pfdev)
-> >   		return 0;
-> >   	}
-> >   
-> > +	ret = panfrost_read_speedbin(dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >   	ret = devm_pm_opp_set_regulators(dev, pfdev->comp->supply_names);
-> >   	if (ret) {
-> >   		/* Continue if the optional regulator is missing */  
-> 
-> 
+Best regards,
+Krzysztof
 
