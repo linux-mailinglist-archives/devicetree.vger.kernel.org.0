@@ -2,61 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBD2C6D1C67
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F246D1C62
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232191AbjCaJcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:32:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38914 "EHLO
+        id S232224AbjCaJbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:31:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232190AbjCaJcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:32:15 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D472C1EA23;
-        Fri, 31 Mar 2023 02:31:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680255112; x=1711791112;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=DXN6envxNm0z8Y/R/A2C4vo/itg3XnT3kZkWrelx338=;
-  b=T/wWMN6fMCjnPobxUp8boiDk6+5Oqwk1Kq6AdXPDSdto88sN+waArIMZ
-   z7unPV36npUVKN9HHN4YYoE1nAQF5idzVlS5VlZU4Ni3r53jmXNJ6wVOS
-   dueRGkdlgw6hd8QDjiN7IO9kfmJ3F8zb4dzO1kICEs13ja5UwmFMNxS5D
-   pQHTdrzdxfVQx7d/F3q2KT9UcE74UlW+wgbqbLw/rpTCUNKPSGz/RkUhy
-   3w5E6CD2/wkSb1sK09KADImrdYBgdiyKPFahBq53gYeSElrIIHthzQCcz
-   TcbgbVo4jjhzYK5447+5AddBMgrj4noxuECBwSFG9fgaLMPbSrKfork73
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="340132659"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; 
-   d="scan'208";a="340132659"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 02:31:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="635228628"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; 
-   d="scan'208";a="635228628"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 02:31:23 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
-        by kekkonen.fi.intel.com (Postfix) with ESMTP id B93A11224B6;
-        Fri, 31 Mar 2023 12:31:20 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.94.2)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1piB5D-00DjN7-H5; Fri, 31 Mar 2023 12:30:07 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     linux-media@vger.kernel.org
-Cc:     devicetree@vger.kernel.org
-Subject: [PATCH 2/2] media: dt-bindings: ov8856: Assign maintainership to myself
-Date:   Fri, 31 Mar 2023 12:29:57 +0300
-Message-Id: <20230331092957.3272621-3-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230331092957.3272621-1-sakari.ailus@linux.intel.com>
-References: <20230331092957.3272621-1-sakari.ailus@linux.intel.com>
+        with ESMTP id S232230AbjCaJb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:31:27 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFFE1EA10;
+        Fri, 31 Mar 2023 02:31:07 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id ED7712078C;
+        Fri, 31 Mar 2023 11:30:56 +0200 (CEST)
+Date:   Fri, 31 Mar 2023 11:30:52 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/6] dt-bindings: display: bridge: toshiba,tc358768:
+ Add TC9594
+Message-ID: <ZCaoTDjvAUZJYP3s@francesco-nb.int.toradex.com>
+References: <20230330095941.428122-1-francesco@dolcini.it>
+ <20230330095941.428122-3-francesco@dolcini.it>
+ <ff88e5d3-4c31-7698-b8d1-8a03b9fea643@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ff88e5d3-4c31-7698-b8d1-8a03b9fea643@linaro.org>
+X-Spam-Status: No, score=-0.0 required=5.0 tests=SPF_HELO_PASS,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,32 +52,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dongchun's e-mail mailbox is no longer available, assign the
-maintainership to myself.
+On Fri, Mar 31, 2023 at 10:42:40AM +0200, Krzysztof Kozlowski wrote:
+> On 30/03/2023 11:59, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > Add TC9594, from the software point of view this is identical to
+> > TC358768 with the main difference being automotive qualified.
+> > 
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > index d6dac186ac59..8f22093b61ae 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > @@ -4,19 +4,20 @@
+> >  $id: http://devicetree.org/schemas/display/bridge/toshiba,tc358768.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> > -title: Toshiba TC358768/TC358778 Parallel RGB to MIPI DSI bridge
+> > +title: Toshiba TC358768/TC358778/TC9594 Parallel RGB to MIPI DSI bridge
+> >  
+> >  maintainers:
+> >    - Peter Ujfalusi <peter.ujfalusi@ti.com>
+> >  
+> >  description: |
+> > -  The TC358768/TC358778 is bridge device which converts RGB to DSI.
+> > +  The TC358768/TC358778/TC9594 is bridge device which converts RGB to DSI.
+> >  
+> >  properties:
+> >    compatible:
+> >      enum:
+> >        - toshiba,tc358768
+> >        - toshiba,tc358778
+> > +      - toshiba,tc9594
+> 
+> If it is the same, why they are not compatible?
 
-	The following message to <dongchun.zhu@mediatek.com> was
-	undeliverable. The reason for the problem: 5.1.0 - Unknown address
-	error 550-'Relaying mail to dongchun.zhu@mediatek.com is not
-	allowed'
+I assume I am not understanding something very basic ...
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The register description and SW functionality of all these 3 parts is
+identical.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-index e17288d579812..57f5e48fd8e03 100644
---- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Omnivision OV8856 CMOS Sensor
- 
- maintainers:
--  - Dongchun Zhu <dongchun.zhu@mediatek.com>
-+  - Sakari Ailus <sakari.ailus@linux.intel.com>
- 
- description: |-
-   The Omnivision OV8856 is a high performance, 1/4-inch, 8 megapixel, CMOS
--- 
-2.30.2
+How should be the compatible described in the DT schema in this case?
+
+
+> I got only three patches out of six, thus I cannot check by myself.
+
+Here the whole series: https://lore.kernel.org/all/20230330095941.428122-1-francesco@dolcini.it/
+
+Do you want to me to send the whole series and not just the DT binding
+next time? Happy to do it, if you prefer.
+
+Francesco
 
