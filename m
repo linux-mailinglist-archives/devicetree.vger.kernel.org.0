@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4611B6D292C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 22:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809B36D2930
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 22:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbjCaUMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 16:12:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57184 "EHLO
+        id S230039AbjCaUNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 16:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbjCaUMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 16:12:35 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B0721A81
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:12:33 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id q16so30364588lfe.10
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:12:33 -0700 (PDT)
+        with ESMTP id S231701AbjCaUNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 16:13:00 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785DF21A8E
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:12:53 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id h11so23426833lfu.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:12:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680293552;
+        d=linaro.org; s=google; t=1680293572;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=h3pYGyilJ6BcdJCkUm0wMYU9HfC+VKc1Mkn91BtgB/Q=;
-        b=JJObS8Jb0P1VXNVMxu4cUvGe0LMKzr7kfnKK76FiIafs0Ukrfe2NSXWpaPkHlDcGLk
-         khNm0FswewEfAjpNUz6PeEsEb/XcK7PR/61fKYY1qaX9FV0atWcKRIrNcE0m2W2ExgZ/
-         sSbs6FSbM6s1W3qX1pCgRSiF4do1EGg+sirHB6JAJB4/743gdHlJ2gth17Kewq85MnwQ
-         iQtMN6qV5bGZNJ5GcWX0WOj4DUb+7uRATktpODSUS+vF/NnUYLGEyl0CmebyMH0/NNBD
-         DszhTWl5fK3CHapazGmCWDg1yUIKe/Ta9xInihhXX1rl/TJUScj8nJs1dqk6bBw7iwnT
-         hXVw==
+        bh=W+uWv75XiB4mBucvJIcwW49wtD9v2TTnt4a+oMwIFE4=;
+        b=Xg6yMKc5hYIjfEnwT/NV4qgHjBrbe/PSCJZRlW113qJKyh5fbKCIdSEc2pcG+e1sQO
+         Qe9tby2Uj6khA5xTAHjHx9XWYilAELP4BY0j9xcTdDuMuwZQKaziNi/1gxiwHhuYuHpW
+         n6X6C3uxbUPbqYAMUmPq9HG3mQlAIArP9ahcG9rRXOcQlZSfanNsAMH82cbHI0ARtgEG
+         2zf5kC36KQvR1tUOv18z1KHhpkpL4HJfPcqH4iRtZ7qSTVSkeGASV64NPIqP7xQ37Aaj
+         1apEwcQkc264p2obUif7w84RA1IBUq8b4JNPMC29k7el0zO5fCs4MljSY4Ot//MhRQxH
+         OoCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680293552;
+        d=1e100.net; s=20210112; t=1680293572;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h3pYGyilJ6BcdJCkUm0wMYU9HfC+VKc1Mkn91BtgB/Q=;
-        b=DXGXEmiCU45u442PTZ4PW/nkMnJ0mCuVDfLOfigraU0vTUuhvMchxYGjhJYKUM6dMm
-         GHumenUaIxHXo7kJVnhTFQcC7vEyIJQtczOYC1lYn+78vks1LGZYOV74jyHCwP75F0dQ
-         sxxiToejUhkGVAZoInOQ9nwyhdhiTaCc2LnVRpA/tYaoLfYEL12Zg2iSq3gNxEXMOgyH
-         elipKla7+r8JKhiuRYDnspFcnxRUoodNs832y1iPeBO4x/zIfz/J3w1YtC/4Bw7nsjMX
-         QloLPrDGrVKfLKHDicKdFICl1Nw11mct4w4mRB2osTIm7Ii96vpZ2KJXO5izSgcrjyys
-         N+tA==
-X-Gm-Message-State: AAQBX9eCyo+7n7412zXjPcdTi2cF0u7/d8HX804YCMMcbp0/1CiTM17V
-        UQIGRdgrvI0xOvfd0EJzH9+5MA==
-X-Google-Smtp-Source: AKy350YNFzAU3sTM3M/MFWfY6C7MugDxjTJ4aaT4Al+K76VNuhgyU41HPhXD6E5CBGnFK8iPJtGltQ==
-X-Received: by 2002:ac2:4a6d:0:b0:4ea:e296:fe9e with SMTP id q13-20020ac24a6d000000b004eae296fe9emr7781234lfp.9.1680293552070;
-        Fri, 31 Mar 2023 13:12:32 -0700 (PDT)
+        bh=W+uWv75XiB4mBucvJIcwW49wtD9v2TTnt4a+oMwIFE4=;
+        b=BWt53/aNiVCCeH9A8wyUGOtpXSpMdLY8748vlsmoZ6Ih732nkPs16Phyn2z+/MkGmp
+         8MDZnokkdLV+4q8SsnMuYEAr6XxkqOyGPBLTKUreKJYxS5J6wDvPYfQKN5g+g9Rfg5am
+         9cqgRpxWLewPx/kKdGGY6jmnRwmbRZde4HyTvu1z7vyYTDRPe1EIYgx24f8DnoN2pwsN
+         VRVWsBTQCyCahvb2we8QF8kreVtYjneQFuZ2qB4/C36bzSMZOCxQLOGpONBYgr3DA7IS
+         qEpB5YW1H3eJO5PBrWq7FCfWNGOilsiXmDQu03I5N2LHRHSHQ6KAHPEYkXjkkQkiH1z6
+         zz7w==
+X-Gm-Message-State: AAQBX9dMayz1cRi8+288aUHRT4VNqjAqGhTTrzMomHwqkZI8HnGsGYks
+        VjX1FbFPqnwZgPtmSrByCCv5KQ==
+X-Google-Smtp-Source: AKy350ZjNRpO7ZsLarEjsUNUZhd8Cqj/NoPi89xnmmcG48ZEddfd7nsiQrgrD52K85CqfrG0aQq4tA==
+X-Received: by 2002:a05:6512:38a9:b0:4b5:7a91:70f5 with SMTP id o9-20020a05651238a900b004b57a9170f5mr8321498lft.63.1680293571740;
+        Fri, 31 Mar 2023 13:12:51 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w14-20020a2e9bce000000b00295a5aa9d05sm492863ljj.120.2023.03.31.13.12.30
+        by smtp.gmail.com with ESMTPSA id d20-20020ac244d4000000b004e844eeb555sm495715lfm.214.2023.03.31.13.12.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 13:12:31 -0700 (PDT)
-Message-ID: <0aa3a039-daf3-7e05-6da9-258335a5ca20@linaro.org>
-Date:   Fri, 31 Mar 2023 22:12:30 +0200
+        Fri, 31 Mar 2023 13:12:51 -0700 (PDT)
+Message-ID: <fb72b6fe-bcff-5c1f-50bc-3af0d5731398@linaro.org>
+Date:   Fri, 31 Mar 2023 22:12:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 3/9] media: dt-bindings: cadence-csi2rx: Convert to DT
- schema
+Subject: Re: [PATCH v3 4/9] media: dt-bindings: cadence-csi2rx: Add resets
+ property
 Content-Language: en-US
 To:     Jack Zhu <jack.zhu@starfivetech.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -72,11 +72,11 @@ To:     Jack Zhu <jack.zhu@starfivetech.com>,
 Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
 References: <20230331121826.96973-1-jack.zhu@starfivetech.com>
- <20230331121826.96973-4-jack.zhu@starfivetech.com>
+ <20230331121826.96973-5-jack.zhu@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230331121826.96973-4-jack.zhu@starfivetech.com>
+In-Reply-To: <20230331121826.96973-5-jack.zhu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -88,68 +88,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/03/2023 14:18, Jack Zhu wrote:
-> Convert DT bindings document for Cadence MIPI-CSI2 RX controller
-> to DT schema format.
+> Add resets property for Cadence MIPI-CSI2 RX controller
 > 
 > Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
-> ---
->  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 ----------
->  .../bindings/media/cdns,csi2rx.yaml           | 174 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  3 files changed, 175 insertions(+), 100 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
->  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
-> deleted file mode 100644
-> index 6b02a0657ad9..000000000000
-> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
-> +++ /dev/null
-> @@ -1,100 +0,0 @@
-> -Cadence MIPI-CSI2 RX controller
-> -===============================
-> -
-> -The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
-> -lanes in input, and 4 different pixel streams in output.
-> -
-> -Required properties:
-> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
 
 
-...
-
-> +$id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence MIPI-CSI2 RX controller
-> +
-> +maintainers:
-> +  - Maxime Ripard <mripard@kernel.org>
-> +
-> +description:
-> +  The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
-> +  lanes in input, and 4 different pixel streams in output.
-> +
-> +properties:
-> +  compatible:
-> +    const: cdns,csi2rx
-
-That's not equivalent conversion and your commit msg does no mention any
-drops in compatibles.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: CSI2Rx system clock
-> +      - description: Gated Register bank clock for APB interface
-> +      - description: pixel Clock for Stream interface 0
-> +      - description: pixel Clock for Stream interface 1
-> +      - description: pixel Clock for Stream interface 2
-> +      - description: pixel Clock for Stream interface 3
-> +
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
