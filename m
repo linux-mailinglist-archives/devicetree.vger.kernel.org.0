@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78E76D294E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 22:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFD2C6D295E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 22:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233025AbjCaUVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 16:21:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38106 "EHLO
+        id S232906AbjCaU0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 16:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232462AbjCaUVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 16:21:38 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3736CDCC
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:21:37 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id t14so24342312ljd.5
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:21:37 -0700 (PDT)
+        with ESMTP id S231918AbjCaU0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 16:26:15 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1511C22208
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:26:14 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id q16so30403581lfe.10
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:26:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680294096;
+        d=linaro.org; s=google; t=1680294372;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qzELrsCrqv8grDnMcAf3s0dPIr8Q7GcoNz7aYHYm22o=;
-        b=NuFk4aD7xMfyEJV92Dfjv2ZaTBMqr8gcBE/JuUOXXKu4iyV51zbgdlsgvenD7NTzdB
-         yMEpHSizIDvc0rqM4zNydzt49A88cBwpBkU0HHfurqgxbUJgKxl6/2tyRPj0pSyMJdzp
-         wxVLzw72eOmKNlWhV4TwgQkZhHS1YiXJr97veOiFG3AskT/HVyAIv0/LALrcVy6wh0rb
-         dHP2/LKna2bhILoomohVwts8P60ZJ+dQNUODpAhw3AReQNWXRFbqThqFnVXT/wgCz72Y
-         rmpm5ZmoH5UP6546c6h9q5n+0AORHiYNoOJfhvE5kTf3hIZCaFCnfO6S1X5r/cZwwQU6
-         2TLQ==
+        bh=sD8mbWj1kMVE8NzRJa8GWqijChuvu0jsth7lJ3hShYs=;
+        b=PTKj0SeuGnj2ad7pRobdVdg6QeOoPNb9lLzffLecwX7EmkTZBhSlLZG/SD9Toin8zE
+         gNXEGe199O8Ok0rD+yLXK7li43Fh3tBUA5vJdJRvH+Fwkkl6zM567IxT7uyglJU3oI8c
+         qJQm2RTgHBXM7vgCiT/h7DuOXqXXiMubR3RqObJqgnkMN+3TJgDl6obHnBVBu0/KGM0v
+         ToNQ6plbdkdw0W7T99pLBFJKfoYGa9Q2C7kQ/WpSqZ2sHcJZMA/J+JRG1qb9GV1xhYod
+         1vAkOyGZuwJP0WVtZS2ijP4XKF+qX97KUyE9CGHRodUI1hs0JmsEyIjL9T0g7Lc1ApeP
+         TUQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680294096;
+        d=1e100.net; s=20210112; t=1680294372;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qzELrsCrqv8grDnMcAf3s0dPIr8Q7GcoNz7aYHYm22o=;
-        b=pThDCCtveYT1YtXm/IZT1xUyGkzWFI83xch1kg0S3npJUq0JwibCC18XscFQTkzaqS
-         Hz6KnREOpzmzubqK2OBx5GfMiwHmZjs3cgDG6SYUVifoDldLOAsbyYEm7GuLggQMMWu1
-         8TA5e6OUFQ6LbLFlU5UTHoqtd5O8uM3uSMA7nGyDY1nIaGooawwZuuswwqeqcl1mFDIe
-         l3E/C4Z0Ieei7YjKXouGNWyw8E/I0dCw60cbI0kzpISERVqnTzOOwAkf4ItXdOcLTIOi
-         XsDVCRIA02lynrvF0E2uPUjYPwKSmKKEfbzN8oM/CdvAgfid2S5JzOdLeOWTBA6/OeKQ
-         9q6w==
-X-Gm-Message-State: AAQBX9cb3dOOeheRZFIcQ4ArYJ+KbBFwp8LiM+Gt5HCZ7Kk6gsLJLhHW
-        H1WXen2ZOyD/Kr/57xOFc8+apg==
-X-Google-Smtp-Source: AKy350a0aA0l383SjrgsrToSYWm3xuhMG+cOFy8JceFJBfVgoyuB9iI0CsuBeLRC+AzJLx1136H9fg==
-X-Received: by 2002:a2e:984e:0:b0:293:4b60:419c with SMTP id e14-20020a2e984e000000b002934b60419cmr2876914ljj.18.1680294096118;
-        Fri, 31 Mar 2023 13:21:36 -0700 (PDT)
+        bh=sD8mbWj1kMVE8NzRJa8GWqijChuvu0jsth7lJ3hShYs=;
+        b=RnjcRJEQsjU6cq1CLW3XFNg+2t0DsYiVXjeqNrXPWLkVa6gqtWNI4Jqs24XT9hyObP
+         TmMLmpslSuO0zuAt4DrojYnHDDsHC1TgJTP/DDx7BPFFiGk6EplQqLDNePjaPdIT/vBS
+         dLSBVSparwd2CblYY4OW6o6cZbilBoOIOz+9tbVR1dqcs0yJzfkodHqPK39dXp1lKKlZ
+         p5XW8bt3saQYkNXK+Pcjv7MLFQN5KJ0d42aZ245sABgonsYkSXjpgv9O61BBBKO207gf
+         lFdkWGcK2CUPsyJjgGCzkuGVj/2A5/ftkRgHOK+WKiUbNdatMb7FaRF0SKma7ecINrDG
+         vBBw==
+X-Gm-Message-State: AAQBX9cRMDS9+Zws9NdzSeV2l+3XPh+HHmsTq86VByewm/wvf7BkOwDs
+        XwSsXluCFHD5DMBcKsxQ5wmZew==
+X-Google-Smtp-Source: AKy350ZoqkfOym6kDy4v6Y7zmE6e+052nVQHu0OjlVY4UkTg7CgHAQygrVoeUE2G15qnU7ATKWsL5A==
+X-Received: by 2002:a05:6512:3902:b0:4ea:fa77:e424 with SMTP id a2-20020a056512390200b004eafa77e424mr7644042lfu.65.1680294372326;
+        Fri, 31 Mar 2023 13:26:12 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j7-20020a2e8007000000b0029839faa74fsm502824ljg.134.2023.03.31.13.21.35
+        by smtp.gmail.com with ESMTPSA id l28-20020ac24a9c000000b004db508326c0sm508811lfp.90.2023.03.31.13.26.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 13:21:35 -0700 (PDT)
-Message-ID: <6a1b0764-9b91-602c-057d-95ac5939af1d@linaro.org>
-Date:   Fri, 31 Mar 2023 22:21:34 +0200
+        Fri, 31 Mar 2023 13:26:11 -0700 (PDT)
+Message-ID: <6f57a806-231a-3145-1ce8-1b2a7e3c1e78@linaro.org>
+Date:   Fri, 31 Mar 2023 22:26:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: cadence: Document reset property
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: sdx55-fn980: Move "status" property
+ to the end of node
 Content-Language: en-US
-To:     Lars-Peter Clausen <lars@metafoo.de>, Wolfram Sang <wsa@kernel.org>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230330180448.269635-1-lars@metafoo.de>
- <6b997dfa-1377-8d2e-ce4f-3f8f7407e6b4@linaro.org>
- <292e5efd-1a10-d1e6-0185-1ce113eee233@metafoo.de>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org
+Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230331145915.11653-1-manivannan.sadhasivam@linaro.org>
+ <20230331145915.11653-2-manivannan.sadhasivam@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <292e5efd-1a10-d1e6-0185-1ce113eee233@metafoo.de>
+In-Reply-To: <20230331145915.11653-2-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -79,24 +78,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2023 19:11, Lars-Peter Clausen wrote:
-> On 3/31/23 02:42, Krzysztof Kozlowski wrote:
->> On 30/03/2023 20:04, Lars-Peter Clausen wrote:
->>> The Cadence I2C controller has an external reset that needs to be
->>> de-asserted before the I2C controller can be accessed.
->>>
->>> Document the `resets` devicetree property that can be used to describe how
->>> the reset signal is connected.
->> You could add it also to the example to have complete picture (and
->> validate your change).
->>
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
-> When I resend with it added to the example, do you want me to keep or 
-> drop the acked-by?
+On 31/03/2023 16:59, Manivannan Sadhasivam wrote:
+> To align with rest of the devicetree files, let's move the "status"
+> property to the end of the nodes.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../boot/dts/qcom-sdx55-telit-fn980-tlb.dts   | 20 ++++++++++---------
+>  1 file changed, 11 insertions(+), 9 deletions(-)
 
-Keep the ack, please.
+These are cosmetic changes, so we should not do it board-per-board (see
+recent Alex's commit).
+
+Either two commits (one for entire arm32 and one for arm64) or per SoCs.
+But not per-boards.
 
 Best regards,
 Krzysztof
