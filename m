@@ -2,109 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFE8D6D186E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 067596D189A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbjCaHUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 03:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47780 "EHLO
+        id S229814AbjCaHb2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 31 Mar 2023 03:31:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231415AbjCaHUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:20:04 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA9730F5;
-        Fri, 31 Mar 2023 00:19:44 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32V6evYu022072;
-        Fri, 31 Mar 2023 09:19:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=uTVIHoKwQl0AIaI1qqIaSYKE4Q0LkMlPuiRteO4iDxc=;
- b=X/NWdlUV+WDIn+rQqTmVB0bJvXzgzuMwctnciTLc54vhtEUw2yPLx7v6KTV1oIIor1/M
- UusfBjQFq9pMgSyhgTSmmeI5ZBXyP8VoMw5ScS9nbCvhHqscmxKNblsy4/MwQan/4rt2
- l7aLAxv+GLE8lzH0hdRAjG+oZCmKs3nGP7UU7vC1nQuZcH6MzOPWTUgTf9UOlYtxmq4J
- AlKvJ/foS4HQg25x1PrToesqIWMFQN62Xd1rA1ZAwnLJoa5PdpMBCCjv2OtjLmD4D3DL
- HLBu67LComEGMZANVhwsOGZJvcTHFlP4Czfg4dHVxlAfDctAVf4q1OHVljv3Ej27eM/g Tw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pn8jwe53r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 31 Mar 2023 09:19:14 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7A6E3100040;
-        Fri, 31 Mar 2023 09:19:12 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 64CD72115ED;
-        Fri, 31 Mar 2023 09:19:12 +0200 (CEST)
-Received: from localhost (10.201.21.26) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Fri, 31 Mar
- 2023 09:19:12 +0200
-From:   <patrice.chotard@foss.st.com>
-To:     <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: [PATCH] ARM: dts: stm32: Add QSPI support on STM32MP13x SoC family
-Date:   Fri, 31 Mar 2023 09:19:07 +0200
-Message-ID: <20230331071907.4127388-1-patrice.chotard@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229530AbjCaHb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:31:27 -0400
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B0CB44E;
+        Fri, 31 Mar 2023 00:31:26 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-536af432ee5so400839157b3.0;
+        Fri, 31 Mar 2023 00:31:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680247885;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CUd21DqN56tUJJauxzkykeUBegNuegGhlGwWCjC09Bs=;
+        b=XUsOuEyYJ4pdt/iyo2h3i4Vk9Ewxll9E+PmZPbwSKJxXFh/enZObs4zaeqvYZyqtvB
+         Y271wzwBiLPA53lLUue8cLKora/KZE4EhF3oi6KOhbihln/CoHjCUxpBguNYUM6fIWlB
+         E5KNFClAX7W8M5GBtLepyY7x+FKRE4kJZHfmXFr2Cet0+oHgkSNgfkgBjyutbsiMwPz7
+         JLIq6FaS/lCiKUsxxrB4nhqG1P76+VF5M7tXYrfMFkUpsTS4EmvVvwP46hymSMLgv+0H
+         +oWP+wsAzmj4EUu1z//6lIOUVyBzCSZpgv1Ow4ypQlR4o05YtsiRlrvJ7GL9JUabZ1Vm
+         EwKw==
+X-Gm-Message-State: AAQBX9cXBjLl40lvBD331JGUfSIXnUd4d0/sFS/4mze9l0KrXccQM7v+
+        5mNOCtOFKFXizga6StzSOv8/mhmqQITM2CSM
+X-Google-Smtp-Source: AKy350Y9tjv6c27rnNvCUslBs8mc1G4k6/FF9mARBwAX5wjTJk/yrBTxteLNouqngBMwIJW2pXyYwA==
+X-Received: by 2002:a0d:d6d1:0:b0:53c:8a40:330f with SMTP id y200-20020a0dd6d1000000b0053c8a40330fmr27236603ywd.22.1680247885503;
+        Fri, 31 Mar 2023 00:31:25 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id 188-20020a8114c5000000b00545a081848esm377380ywu.30.2023.03.31.00.31.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 00:31:25 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-545cb3c9898so324939957b3.7;
+        Fri, 31 Mar 2023 00:31:25 -0700 (PDT)
+X-Received: by 2002:a81:b65f:0:b0:545:611c:8d19 with SMTP id
+ h31-20020a81b65f000000b00545611c8d19mr13248405ywk.4.1680247884888; Fri, 31
+ Mar 2023 00:31:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.26]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-31_02,2023-03-30_04,2023-02-09_01
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 31 Mar 2023 09:31:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVseMfkQw5OnTM4CxW9BUCZ0pVZP6px67h8VPah0x3QAA@mail.gmail.com>
+Message-ID: <CAMuHMdVseMfkQw5OnTM4CxW9BUCZ0pVZP6px67h8VPah0x3QAA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrice Chotard <patrice.chotard@foss.st.com>
+Hi Prabhakar,
 
-Add QSPI support on STM32MP13x SoC family
+Thanks for your patch!
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm/boot/dts/stm32mp131.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On Thu, Mar 30, 2023 at 10:42 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Currently, selecting which CMOs to use on a given platform is done using
+> and ALTERNATIVE_X() macro. This was manageable when there were just two
 
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index 5949473cbbfd..544c755b6e67 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -1137,6 +1137,21 @@ mdma: dma-controller@58000000 {
- 			dma-requests = <48>;
- 		};
- 
-+		qspi: spi@58003000 {
-+			compatible = "st,stm32f469-qspi";
-+			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
-+			reg-names = "qspi", "qspi_mm";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&mdma 26 0x2 0x10100002 0x0 0x0>,
-+			       <&mdma 26 0x2 0x10100008 0x0 0x0>;
-+			dma-names = "tx", "rx";
-+			clocks = <&rcc QSPI_K>;
-+			resets = <&rcc QSPI_R>;
-+			status = "disabled";
-+		};
-+
- 		sdmmc1: mmc@58005000 {
- 			compatible = "st,stm32-sdmmc2", "arm,pl18x", "arm,primecell";
- 			arm,primecell-periphid = <0x20253180>;
+the ALTERNATIVE_X()
+
+> CMO implementations, but now that there are more and more platforms coming
+> needing custom CMOs, the use of the ALTERNATIVE_X() macro is unmanageable.
+>
+> To avoid such issues this patch switches to use of function pointers
+
+"the use" or "using"
+
+> instead of ALTERNATIVE_X() macro for cache management (the only drawback
+
+the ALTERNATIVE_X()
+
+> being performance over the previous approach).
+>
+> void (*clean_range)(unsigned long addr, unsigned long size);
+> void (*inv_range)(unsigned long addr, unsigned long size);
+> void (*flush_range)(unsigned long addr, unsigned long size);
+>
+> The above function pointers are provided to be overridden for platforms
+> needing CMO.
+>
+> Convert ZICBOM and T-HEAD CMO to use function pointers.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+> --- a/arch/riscv/errata/thead/errata.c
+> +++ b/arch/riscv/errata/thead/errata.c
+
+> +#ifdef CONFIG_ERRATA_THEAD_CMO
+
+> +static void thead_register_cmo_ops(void)
+> +{
+> +       riscv_noncoherent_register_cache_ops(&thead_cmo_ops);
+> +}
+> +#else
+> +static void thead_register_cmo_ops(void) {}
+> +#endif
+
+> --- a/arch/riscv/mm/dma-noncoherent.c
+> +++ b/arch/riscv/mm/dma-noncoherent.c
+
+> @@ -75,3 +83,12 @@ void riscv_noncoherent_supported(void)
+>              "Non-coherent DMA support enabled without a block size\n");
+>         noncoherent_supported = true;
+>  }
+> +
+> +void riscv_noncoherent_register_cache_ops(const struct riscv_cache_ops *ops)
+> +{
+> +       if (!ops)
+> +               return;
+
+This is never true.
+I guess originally you wanted to call riscv_noncoherent_register_cache_ops()
+unconditionally from common code, instead of the various *register_cmo_ops()?
+But that would have required something like
+
+#ifdef CONFIG_ERRATA_THEAD_CMO
+#define THEAD_CMO_OPS_PTR   (&thead_cmo_ops)
+#else
+#define THEAD_CMO_OPS_PTR   NULL
+#endif
+
+Or can we come up with some macro like pm_ptr(), but that also takes
+care of the "&", so we can do "#define thead_cmo_ops NULL"?
+
+> +
+> +       noncoherent_cache_ops = *ops;
+> +}
+> +EXPORT_SYMBOL_GPL(riscv_noncoherent_register_cache_ops);
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
