@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 986116D1EC0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 13:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F113A6D1ECB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 13:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbjCaLJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 07:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49300 "EHLO
+        id S230217AbjCaLMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 07:12:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232111AbjCaLJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 07:09:16 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A973C1C1C4
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 04:08:55 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id i6so26955929ybu.8
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 04:08:55 -0700 (PDT)
+        with ESMTP id S231148AbjCaLMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 07:12:08 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A3042720
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 04:12:06 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id i5so88336135eda.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 04:12:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680260935;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680261125;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DrZ4nuKFRbdrvkseheS7XRYqEh2EC/QvjKLix2jXZFM=;
-        b=p8HE8uYDQXIMNWouHzNhuIPq4ZYpcpiB2tjtZuopwJd/AlYTllfvkZumoyD3e/aM7a
-         Rsituuiso2kH/VdZb40vv8jtPdJNbYku8HkT1NxamcWm15rgUETuxgZWfce3K4OlsyJT
-         8EYq24i6h1AxbQKxcbsErcKtHV0SISL4sLOHWGtxxHXScAUsEopBmv6kXPUb2UP3kamx
-         7ejJ4g3jcDtINsK2lt0tIFmNU5xb6+K0y6cGos/6qAj9HGe3eQ9yrRkXgJxG1CWCQDv4
-         U50TBQ8X7/8T8XMPSnMernOOPbz8JoPb/BIhGLvpV6JYEt/IuIVi75EXyJsAZUXykI0w
-         2u1A==
+        bh=RnhVEWPY3LI3WG9Svxz8cvgWKx4Gl9EpZwq0srqQMr8=;
+        b=xq4n2KuvPi65onmp9ypTuv04b5ojmuuFLk/ZRJzgD/BrlBvW4YGewuAtP6VC5kbTSK
+         ey80Wblfa744lKvJkqHXJZUCOjYBuBevkWPvH427nbSt1RIMmrX6zvSrtrHivxOS+PK+
+         DSFbRCzORTCoUBAnZklX3646x/DVoZVTJTmH533ybteQVVjrjLzHaLxvp/ZKhNZh4eW+
+         npPQxmLKAF+kM3nsEDNLzUSXafiSa0jEJ8YQXlQkIhtc1YEgc5tPC74TbBki/yS0l9w/
+         jlERXEv38wD5KLwCZgIQ/mIrslbONLdwZmR56vcWt4l6mBE6umNJ4USyv5vn0BYpPGdU
+         rpww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680260935;
+        d=1e100.net; s=20210112; t=1680261125;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DrZ4nuKFRbdrvkseheS7XRYqEh2EC/QvjKLix2jXZFM=;
-        b=iB+VI8Yp2DPDO7gn/he87r9/iudgl5/oatKuoIGuigO0dHMubZIwLAcb9eZD/zArUC
-         qbR/vplc61NstPHf6v+4SSZHwr3ZUc5GU29umm1GL3xSotCqE2MsAVQ+AjQcNIZT8wZN
-         /tGVUbK5dB7YCuU7WNrhZ7qT1ppNhq+0xqXjNlR2CYK7495Tb2BKB5XVXCvOw0CLRfAj
-         lgfMWH2c8NoP3lk3t5EfTLaQ9Q8zVYgcNCtG+JWjFFlrPkOaVhuQObKGADkCvItGNm7v
-         26MGlZfxBN7ZVNT8uA6mkWiHnL6cTpS/Q1M0plmnemSJxJI89glOWQg3W48E0kTltHB+
-         vSyA==
-X-Gm-Message-State: AAQBX9cMi27b8nkLB+PMzZqMnYklStxBGG9rHylJAVscDEtuXUlIRcgo
-        W953SVhOVNBGbE/wQdP5p7w0JJhDvQfDl2PAodBXHA==
-X-Google-Smtp-Source: AKy350bS9SyNRus3dGUyYtiJgys+HJA9rC8VrYDEuvi3iswc8ROzk0fLQpNKXYrIlL5r6jnukfZX+uNeYtTgRvFeeN4=
-X-Received: by 2002:a05:6902:18d5:b0:b75:3fd4:1b31 with SMTP id
- ck21-20020a05690218d500b00b753fd41b31mr18131967ybb.1.1680260934863; Fri, 31
- Mar 2023 04:08:54 -0700 (PDT)
+        bh=RnhVEWPY3LI3WG9Svxz8cvgWKx4Gl9EpZwq0srqQMr8=;
+        b=1iCHBSw0jIjzJz3KdVHMn4kFmkzI/AJRTkEAIepZdCIu8ghfP7HEpx2H1h/dpiwiIR
+         QOT3kmtqaK2F+RlDllmS8jjPJOo59++JhVyzcD/5RrgfxOe2aDfd1tHhn2jWxyeiXql9
+         YB4PQro1HDRQ07NPiOuodl74Z6Ad5tlJNbdv+QefU0r7uSj7mp0jFXCAQO+3p2oooMBC
+         KZ/Rb+hrNqHumJmJZ33SfP3BLr1aKl68/y2KwqbQA70qwWI8BirGEm+RLb1wxPTVmwc8
+         2Z729QR8e/lTD3hFozZjYgzhlDixNROqcz1CsvxIzEWb3Jv4PTh9NSEJm+EgQ4Zr0v4b
+         1PoQ==
+X-Gm-Message-State: AAQBX9fHgfKtpnAO1zgnM3ouBUQjLMmFF7R2mIwYzO+zK17oxfRdACxr
+        FTDkFli7/SAO5sven6JxOISquLXVf4gYeHmqaVDqpA==
+X-Google-Smtp-Source: AKy350azlQfzBnLoPq7rtYMIv00ABiMzIBIBlYFONAJZctR5m3rtXPk16+owY2z1t0tNFwozIYO4yrgn1BJTKVFHSXA=
+X-Received: by 2002:a17:906:4a94:b0:947:c623:2c84 with SMTP id
+ x20-20020a1709064a9400b00947c6232c84mr418421eju.2.1680261124928; Fri, 31 Mar
+ 2023 04:12:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com>
- <20230203-evk-board-support-v3-10-0003e80e0095@baylibre.com> <7b6be990-9e90-8e44-7c5e-f8b7a2701ce7@collabora.com>
-In-Reply-To: <7b6be990-9e90-8e44-7c5e-f8b7a2701ce7@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 31 Mar 2023 13:08:43 +0200
-Message-ID: <CAFGrd9qMEtHVT+P-mBNxh6g1jOm5ifArSxi1bbGnrKgxCf7zSQ@mail.gmail.com>
-Subject: Re: [PATCH v3 10/17] arm64: dts: mediatek: set vmc regulator as
- always on
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+References: <20230209105628.50294-1-bchihi@baylibre.com> <20230209105628.50294-7-bchihi@baylibre.com>
+ <CAGuA+oqOgprdu0dVcmB=qJd5HJjada3d8ZazMpoG-SBPizzuPQ@mail.gmail.com>
+ <80c60f09-56eb-cb84-43f0-7b055ea4b32c@collabora.com> <CAGuA+oqJVTXE5YHm6rSv4pPWsGxR8nZD-T5EM7LS9gPtdcu4HA@mail.gmail.com>
+ <CAGuA+oroM1XmLTDZcFx5F+tHvbOJXUGuj8SnZnUxD56+9XAb2Q@mail.gmail.com> <a1fde974-f392-1493-b48a-b4cce05f3ea3@gmail.com>
+In-Reply-To: <a1fde974-f392-1493-b48a-b4cce05f3ea3@gmail.com>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 31 Mar 2023 13:11:28 +0200
+Message-ID: <CAGuA+opkB0KHm8ngf6+U_o8B91Qv4Keo2XJb4UXfJe-DainRDQ@mail.gmail.com>
+Subject: Re: [PATCH v14 6/6] arm64: dts: mediatek: mt8195: Add temperature
+ mitigation threshold
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        khilman@baylibre.com, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -86,25 +80,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mer. 29 mars 2023 =C3=A0 15:25, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
+Hi Matthias,
+
+On Fri, Mar 31, 2023 at 12:36=E2=80=AFPM Matthias Brugger
+<matthias.bgg@gmail.com> wrote:
 >
-> Il 29/03/23 10:54, amergnat@baylibre.com ha scritto:
-> > From: Fabien Parent <fparent@baylibre.com>
+>
+>
+> On 07/03/2023 12:10, Balsam CHIHI wrote:
+> > Hi Matthias,
 > >
-> > MSDC1 IP block is powered by VMC. Make sure it is always on.
+> > Is it time to apply those last two patches of the series "Add LVTS
+> > Thermal Architecture"?
+> >
+> > [v14,6/6] arm64: dts: mediatek: mt8195: Add temperature mitigation thre=
+shold
+> > https://lore.kernel.org/all/20230209105628.50294-7-bchihi@baylibre.com/
+> > and
+> > [v14,5/6] arm64: dts: mediatek: mt8195: Add thermal zones and thermal n=
+odes
+> > https://lore.kernel.org/all/20230209105628.50294-6-bchihi@baylibre.com/
+> >
+> > Is there anything that I could do from my side, to make it possible?
+> >
 >
-> Why always on?
-> Can't you just set mt6357_vmc_reg as VIN of mt6357_vmch_reg? :-)
+> Both applied now. Thanks!
 
-I'm not sure to get it. mt6357_vmc_reg & mt6357_vmch_reg come from
-PMIC and are supposed to be independent.
-You suggest to link them in the mt8365-evk dts file using something like:
-&mt6357_vmch_reg {
-    vin-supply =3D <&mt6357_vmc_reg>;
-};
+Great, Thank you!
 
-Also, regulator binding probably needs change to support that.
-
-Regards,
-Alex
+Best Regards,
+Balsam
