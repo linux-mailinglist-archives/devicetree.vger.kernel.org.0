@@ -2,133 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2455E6D21BA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 210CE6D21C4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:52:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231664AbjCaNvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 09:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49812 "EHLO
+        id S232408AbjCaNw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 09:52:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231202AbjCaNvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:51:20 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28D82103;
-        Fri, 31 Mar 2023 06:51:18 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1piF8o-00039R-1c;
-        Fri, 31 Mar 2023 15:50:06 +0200
-Date:   Fri, 31 Mar 2023 14:50:02 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mtd@lists.infradead.org, Netdev <netdev@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH RFC 00/20] ARM: oxnas support removal
-Message-ID: <ZCblCsKMHYDZI-H9@makrotopia.org>
-References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
- <df218abb-fa83-49d2-baf5-557b83b33670@app.fastmail.com>
+        with ESMTP id S232311AbjCaNwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:52:25 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A24D2D63
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:52:23 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id q19so19409681wrc.5
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680270741; x=1682862741;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ndIVAAziZobigxMNwiVWE11rlsFi2JwX6ZgxWjCGcm0=;
+        b=wfVZo1AvVtOn8P0YUF7riOYVU8cR8gTb2KvbUwJ6xDOJfb/jGgPyQHz4dX3mEVUDWi
+         LXS+aNq5xsBR8fAHVpLWXfUnLc/m0Aauip2Clt0x2m5Wftz59ylv8eDczWn5zGfN9pNA
+         HT/ROBFKQOtrcD4mTube/ac5/u8lqUfmHAv3mPPL5AQc1UV6djq0rSl1XT8bUmVpqPC5
+         Y7XIP8zEBSW6kf8S+UQZ4+BAI9Ma+I78rwa1W9LilWQer9fKiMqYhG15u7trER3Aqs2Z
+         d/Jckjshd66ZTjTN3jnPh0X3UWnatnEXIAi92bEVa8KYW1tOazyaHZ6Jr8pLuj+yj9rA
+         QCug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680270741; x=1682862741;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ndIVAAziZobigxMNwiVWE11rlsFi2JwX6ZgxWjCGcm0=;
+        b=OsXbx8rHGku7L7ik8lE4y6otLApWWhG+mZcJW3dH6EFFFjJ4Myvj2cnGRac35v+czr
+         WeLkhh02/kui0eN/pPYsRwZzXpZEE9jQO2iXxTWOXwYtSYxbG6nZ0lHDd6tFITC/9fFB
+         MVS30npbELbzv6Wq7S7vs8xLtwiCSctqq9z1WzHXMrJu8Azqwqmx96HYcHNpELue3zYc
+         Arnwejy+yf+cufuF25AiFDFBlWlPDSy5aoOnKLOzhECkRks7jx5g5bA6/l/wdwjeokd8
+         HNC3Qbrim89Ioa8iH27YcxDhRqrOcfT7+UehFDEO4fx3ywj0N6+VFrTfAk6zV5peMPsY
+         jRgw==
+X-Gm-Message-State: AAQBX9ckhDXNgz03wlHgDcVP1tJ8O49k1GZzLnH01+3qymNIRoHoUdAi
+        2wCywshuF8PTfykS6O6FfAg+LA==
+X-Google-Smtp-Source: AKy350aixDCatwepMhXp5kqrMJHuZM0Rv+jW1KnG2xGMYhUC3MpWKKAMVfR0T+o9/WCPWXrV7fJwAQ==
+X-Received: by 2002:adf:ce01:0:b0:2e2:730a:c7dc with SMTP id p1-20020adfce01000000b002e2730ac7dcmr10087378wrn.25.1680270741678;
+        Fri, 31 Mar 2023 06:52:21 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id w18-20020a5d6812000000b002cde25fba30sm2307750wru.1.2023.03.31.06.52.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 06:52:21 -0700 (PDT)
+Message-ID: <233c8e94-d926-c5b2-a0b7-87333d5cdc2a@linaro.org>
+Date:   Fri, 31 Mar 2023 14:52:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <df218abb-fa83-49d2-baf5-557b83b33670@app.fastmail.com>
-X-Spam-Status: No, score=0.0 required=5.0 tests=SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v4 00/18] Add Qualcomm PMIC TPCM support
+Content-Language: en-US
+To:     Luca Weiss <luca.weiss@fairphone.com>, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, caleb.connolly@linaro.org,
+        konrad.dybcio@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
+        robertom@qti.qualcomm.com, lujianhua000@gmail.com
+References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
+ <CREPJP5KTX2D.VCM8IIZIP1ZT@otso>
+ <9c541f81-8501-a142-1df8-6e71509c0d88@linaro.org>
+ <CRKFT6BE3AW9.3OH8GRUPW2TLN@otso>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <CRKFT6BE3AW9.3OH8GRUPW2TLN@otso>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 03:42:15PM +0200, Arnd Bergmann wrote:
-> On Fri, Mar 31, 2023, at 10:34, Neil Armstrong wrote:
-> > With [1] removing MPCore SMP support, this makes the OX820 barely usable,
-> > associated with a clear lack of maintainance, development and migration to
-> > dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
-> >
-> > In addition, the OX810 hasn't been booted for years and isn't even present
-> > in an ARM config file.
-> >
-> > For the OX820, lack of USB and SATA support makes the platform not usable
-> > in the current Linux support and relies on off-tree drivers hacked from the
-> > vendor (defunct for years) sources.
-> >
-> > The last users are in the OpenWRT distribution, and today's removal means
-> > support will still be in stable 6.1 LTS kernel until end of 2026.
-> >
-> > If someone wants to take over the development even with lack of SMP, I'll
-> > be happy to hand off maintainance.
-> >
-> > The plan is to apply the first 4 patches first, then the drivers
-> > followed by bindings. Finally the MAINTAINANCE entry can be removed.
-> >
-> > I'm not sure about the process of bindings removal, but perhaps the bindings
-> > should be marked as deprecated first then removed later on ?
-> >
-> > It has been a fun time adding support for this architecture, but it's time
-> > to get over!
-> >
-> > Patch 2 obviously depends on [1].
-> >
-> > [1] https://lore.kernel.org/all/20230327121317.4081816-1-arnd@kernel.org/
-> >
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On 31/03/2023 09:48, Luca Weiss wrote:
+> Hi Bryan,
 > 
-> Thanks a lot for going through this and preparing the patches!
+> On Fri Mar 24, 2023 at 4:28 PM CET, Bryan O'Donoghue wrote:
+>> On 24/03/2023 15:10, Luca Weiss wrote:
+>>> When plugging in the device with TCPM on into my PC (peripheral mode)
+>>> then the USB device registers and unregisters every couple of seconds,
+>>> never stays stable on. No messages in dmesg when this happens. This only
+>>> happens with the USB-C plug in one direction, in the other it
+>>> works reliable.
+>>
+>> Sounds like we need to do some SoC specific debug on orientation
+>> switching in the PHY.
 > 
-> I've discussed this with Daniel Golle on the OpenWRT channel as well,
-> and he indicated that the timing is probably fine here, as there are
-> already close to zero downloads for oxnas builds, and the 6.1 kernel
-> will only be part of a release in 2024.
+> I also know that the phone has a AW35743 chip in the USB path,
+> controlled by DP_AUX_EN and DP_AUX_SEL gpios but I think this is only
+> for displayport, right?
 > 
-> For the dependency on my other patch, I'd suggest you instead
-> remove the SMP files here as well, which means we can merge either
-> part independently based on just 6.3-rc. I can do that change
-> myself by picking up patches 1-4 of your RFC series, or maybe you
-> can send resend them after rebase to 6.3-rc1.
-> 
-> For the driver removals, I think we can merge those at the same
-> time as the platform removal since there are no shared header files
-> that would cause build time regressions and there are no runtime
-> regressions other than breaking the platform itself. Maybe
-> just send the driver removal separately to the subsystem
-> maintainers with my
-> 
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
 
-Sounds reasonable, so also
+https://www.awinic.com/en/productDetail/AW35743CSR#product-details D+/D- 
+looks like USB 2.x ..
 
-Acked-by: Daniel Golle <daniel@makrotopia.org>
+Your DP should go over TX1+/1 TX2+/- depending on orientation and # of 
+lanes in use.
 
-(but I am a bit sad about it anyway. without SMP it doesn't make sense
-to keep ox820 though)
+https://www.allaboutcircuits.com/uploads/articles/Fig1m11292018.png
+
+>>
+>> I wonder how many lanes dp_opts->lanes says for your part ?
+> 
+> Not sure.. Where is this configured?
+
+Heh - now that I look my lane count == 0, a bug to be fixed..
+
+Hmm, Luca can you test this change
+
+-       if (orientation == TYPEC_ORIENTATION_NONE) {
+-               if (qmp->init_count)
+-                       ret = qmp_combo_dp_power_off(dp_phy);
+-       } else {
+-               if (!qmp->init_count)
+-                       ret = qmp_combo_dp_power_on(dp_phy);
+-       }
++       if (orientation == TYPEC_ORIENTATION_NONE)
++               ret = qmp_combo_dp_power_off(dp_phy);
++       else
++               ret = qmp_combo_dp_power_on(dp_phy);
+
+
+> But I also don't have DisplayPort over USB-C (video out) configured yet.
+> Related question: does video out work on sm8250+pm8150b for you?
+
+Nope - WIP. I see getting TCPM upstream and working as a first step, 
+then we look at introduction of the redriver, DP work, dt etc.
+
+
+> [ 1722.130836] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=cc1
+> 
+> - unplug -
+> 
+> [ 1867.223052] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc 0x00000042 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=cc1
+> ==================================================================================
+> USB unstable (device plug orientation 2):
+> ==================================================================================
+> 
+> [ 1894.263324] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc 0x000000c9 cc1 0x00000002 Rd cc2 0x00000001 Ra attached 1 cc=cc2
+> - unplug -
+> 
+> [ 1907.264840] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc 0x00000040 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=cc2
+
+Normal, correct.
+
+For reference on 8250
+
+Attached orientation reverse / cc2
+
+[   77.719278] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: 
+currsrc=2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=cc2
+
+Detached orientation (none)
+[   82.475667] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: 
+misc 0x000000c0 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=cc2
+
+Attached orientation normal / cc1
+[   82.485375] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: 
+start_toggling: misc 0x00000040 attached 0 port_type 0 current cc 5 new 5
+[   85.247368] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: 
+misc 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=cc1
+
+Anyway I reckon that guard I have in the PHY code is wrong, would 
+appreciate a test.
+
+---
+bod
+
+
