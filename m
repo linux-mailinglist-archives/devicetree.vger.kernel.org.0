@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11CAF6D1CEC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 643C86D1CEF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232018AbjCaJtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39720 "EHLO
+        id S232066AbjCaJtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:49:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbjCaJs1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:48:27 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D6420C38
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:47:22 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id y15so28128285lfa.7
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:47:22 -0700 (PDT)
+        with ESMTP id S231624AbjCaJsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:48:55 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F86C648
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:47:52 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id x17so28162668lfu.5
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:47:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680256040;
+        d=linaro.org; s=google; t=1680256070;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hnzWIFD7E+b4S3TZGTfN6jfs1uPbhSQEaRByhI1df+M=;
-        b=HB+TVMnkqvB7O0R3MzfOeH12788Pp02xIqytld9w5q6ehalIpUQ4NIGCs4FoPNwGtw
-         KjINmDIkY//lZWKGXkAW/6HxoxXWdC32DM4f1uzIesFTa8YPI+RAC1d3WOQUbqGx7nDV
-         lTespHeb2N2brtIIpdtHFxWZN2OOzGN+9/NRxQ+6sQoqnIOdTwI1GHdLu/mnJvAKyz/E
-         RohbWhLih537gFmaFLGYdHiPsS3Jb5lI2sbUbhvksGpoVbf/QRJvjloZzTcOf2OT99fP
-         OS0ixUMKhOi6tHVFED7+FBbzZG3nbCGdfiqHc8K+fc+DtV1WkjcoGRqILKWRvhz9pV62
-         ZRtw==
+        bh=8+FVjc7Vr5u63Aky+QFc4CNm5/6VJEJaY0PE/oQ5V5Y=;
+        b=ezQU1fwlthlnLkzOKfjJOlU8Vs5/eSnmr9Kp1S6uvV/QCN0zH9rfO/hE5raTnlebbz
+         b25EcCa/+TCWFoGRjP+iRjdvnpbdE9nd+x5F6YWd2m/CK4a5+LdFtF9MbsNpgKQUgKSD
+         2nW5MmV09cZ4wU5rIWYaP3uQJ/euxqQJ4ZTlsNxlPb7YVK6M0ip6KC6uApjtvLRrwAaH
+         twUNIusSdJ929h36uDlk6TNck720rAkxa/pPqy1a+ATahXn7qOiVG20zFoiOJCSUgnU3
+         twvqifPVC5JGcCdTqV1GjyLLQYer1PLjPvbgENYNu//RXfB5JnFrfzTwlBrbwN+dWYI0
+         x9hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680256040;
+        d=1e100.net; s=20210112; t=1680256070;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hnzWIFD7E+b4S3TZGTfN6jfs1uPbhSQEaRByhI1df+M=;
-        b=c25hXywE3fQh487gtH1MndkfU6WpP8K/C9Ulrwqi5XXxeXGQnmRoddGLFNiXTMQvAu
-         qSMUxcCtZsd0WARq4oyrLkaG1AAMGegrry1Vhggk8VCEvXikPVU/0T3FYWQcQow3MXUE
-         oFW4OnFdI3w61yZVlfD4YCIvkzUMB4XJVCA1hbl7+K6tOhuNDqLrCiPy9U2bfilM4LPO
-         0Egs13m0//MrZstaRFdLvczqmVhUNJWa7bSzFNKVeEiZBG0SUKYMdSqF4BWzh9yid59+
-         AauWh7hKoqtPKrt+zdKMliEsx/6/zVC78r6tlB3bvztj/uV7ydl2k8dFzxBsmmZHZVcn
-         qSTw==
-X-Gm-Message-State: AAQBX9fFO7t8N5N/zv6Pjr1je47hmC6RoYx0Jrzr5BVEUd5SVqcoinlm
-        qEkt1k3aIN1raCndBUjbkZaxMw==
-X-Google-Smtp-Source: AKy350axKhA1sEScCS2IqTPlAy7H3rF+ckndonIj5tM6RWPZCy4EAumflMTPJ5hdVeFx1W2N/KcT/A==
-X-Received: by 2002:ac2:46e4:0:b0:4dd:995b:feaa with SMTP id q4-20020ac246e4000000b004dd995bfeaamr7880350lfo.24.1680256040470;
-        Fri, 31 Mar 2023 02:47:20 -0700 (PDT)
+        bh=8+FVjc7Vr5u63Aky+QFc4CNm5/6VJEJaY0PE/oQ5V5Y=;
+        b=JriOukoPNOCb68B6bXVxjY5fw93GziXy8bopqUloLh3IZoEF8wXh1QXEMN6Zji+Dgm
+         9UfNWZ49p6LyzWRIvTfi6oxpo1nGDN2UIcd5PlddxPVe1e4ozmBzflcbGm78kC4Gp/uc
+         qYaA/bAePgTILAkUB/NHGLskUgbo+8JT8ipPCJaY4IKCiLfezyhK8xNYotx3kSWBx/gv
+         fOcJ5FMXsnnujY8NSMTxxkeoncuBUq2+5ZSe3bD8bU6szSXkq0pkIrED2XFOYRGk3QH3
+         WqR5grm4r+VL16JFL7UhMMia21zBmtsNhYYCuxCRxK7nRQN2Qyiv9on0MyRvdmRVGQp3
+         KLaw==
+X-Gm-Message-State: AAQBX9dzbWblHXLTrsRho+UwRiZbfmE3ycyccu9pWWpHmp9dQ0ZALhX4
+        DnQf3EuGZdPJba7ywaVgJG1t/w==
+X-Google-Smtp-Source: AKy350Yfe7vvDbdX5/m31I+n1dQH9YM3t6uIDyBc+99lpi+x0QXmahT38KoUxCALt0/tRmw5I5ybGw==
+X-Received: by 2002:a19:ad46:0:b0:4eb:1527:e29d with SMTP id s6-20020a19ad46000000b004eb1527e29dmr3764702lfd.52.1680256070447;
+        Fri, 31 Mar 2023 02:47:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c25-20020ac244b9000000b004e9c983a007sm309559lfm.289.2023.03.31.02.47.19
+        by smtp.gmail.com with ESMTPSA id m14-20020a19520e000000b004cb1de3f487sm310397lfb.104.2023.03.31.02.47.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 02:47:20 -0700 (PDT)
-Message-ID: <304ce3f0-81df-327c-8b42-2471a3a51e43@linaro.org>
-Date:   Fri, 31 Mar 2023 11:47:19 +0200
+        Fri, 31 Mar 2023 02:47:50 -0700 (PDT)
+Message-ID: <08c18374-5d1a-7407-07d3-151bc5ce2511@linaro.org>
+Date:   Fri, 31 Mar 2023 11:47:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
@@ -85,35 +85,13 @@ On 31/03/2023 04:05, André Morishita wrote:
 > Convert the Maxim Integrated MAX98371 audio codec bindings to DT schema.
 > 
 > Signed-off-by: André Morishita <andremorishita@gmail.com>
-> ---
 
-Thank you for your patch. There is something to discuss/improve.
+Ahh, and missing ASoC subject prefix.
 
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        max98371: max98371@31 {
+(which you can get for example with `git log --oneline --
+DIRECTORY_OR_FILE` on the directory your patch is touching).
 
-Generic node names, so: codec
 
-And drop label (max98371:)
-
-> +            compatible = "maxim,max98371";
-> +            reg = <0x31>;
-
-#sound-dai-cells = <0>;
-
-> +        };
-> +    };
 
 Best regards,
 Krzysztof
