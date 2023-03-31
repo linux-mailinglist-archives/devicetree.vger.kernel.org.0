@@ -2,103 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F896D2804
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 196796D280D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:47:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbjCaSqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 14:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50768 "EHLO
+        id S233143AbjCaSrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 14:47:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232901AbjCaSqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:46:11 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23ED61D91E
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 11:46:05 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-53d277c1834so431593237b3.10
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 11:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680288364;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zb6xLZTQTQfDOfnoLhLa6/IVI8QnMb1cauJ4IIp9pzk=;
-        b=T8YJTdeMYbb5+drzr4PfwSAPqM0g2ur1tDsqj0l9TLQw8+V2H3RKsATUpFv8ILGFeF
-         jRgBFoslWA5UWvvGMuGLLKHXjoEfsJxZm/z12TEe2Ri8mBh0nVkcqjnIuPrmYW2OVUyR
-         SGb72wCQFq79qxru/phdmgHFLqNKp0YzEvHeOUu+3ej1ML+s4JtnpHUal4G1GDqGMk65
-         yFegAuuOH8/q7xvzzcfwcOXRA32jXAxxKYjnX3GRrS/h//SZb5nyl+gqSulMDW+8RMYl
-         P2hdl1o9gO5QKMKl9toztNs0lmlfUhD3IU6Y+rJlz3r0Mm1SGP57kPMihEtIJIH/JT1o
-         MrQQ==
+        with ESMTP id S233151AbjCaSrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:47:05 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C35301D90C;
+        Fri, 31 Mar 2023 11:47:02 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id ca2-20020a056830610200b006a11ab58c3fso11671783otb.4;
+        Fri, 31 Mar 2023 11:47:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680288364;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zb6xLZTQTQfDOfnoLhLa6/IVI8QnMb1cauJ4IIp9pzk=;
-        b=YMrKSLtrtW/Ds/rEfICn4J9kmUykCOy2W/dFfpNUWgzp+dGOGoc5ahqasGCy3NbzoZ
-         QigPnNeYZqUM8aw3Iqml7SMW0jrBwaYKnUDwBm+dXK4hDh2EO/g0rkxnk3TJbBVS5/pA
-         QF+3k8jEjmS59NDW1+aRZfnJUYF1pM/7hSxGtY3EQW+a9V5xoPX0Dkdw+g3qiQFZiphy
-         io0IuOpyTOJN+cA5c54jYda3GysIgoSrRS2g/q0SZqEqPwg6pxFa2OKmQvXxeVduD8/h
-         thJ+bciuMl+jjKbkFD3pIAmZfbD3cxK1+lgWiMkjk06tCY709sqLnay1wY2bazsZsXxG
-         xryA==
-X-Gm-Message-State: AAQBX9evVgF/tQ+VHIScomqKW9ZvmoXtoFdes90NUIVYD/ClFhVZw4Pz
-        a3qtJ8cJ/7b2OcmHjo/S8Ut4gIEa17w5TfnZe/C/UA==
-X-Google-Smtp-Source: AKy350bgwepPnwHMRW0YSZuNpQ8dtHQVLT8+IDDu10nrt86RgYns1z2FMH6EnSP3ABnDRvDAIqVyiIAEzbdJAM+G6zI=
-X-Received: by 2002:a81:ac55:0:b0:546:1e9e:aa01 with SMTP id
- z21-20020a81ac55000000b005461e9eaa01mr6163297ywj.3.1680288364273; Fri, 31 Mar
- 2023 11:46:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230203-evk-board-support-v4-0-5cffe66a38c0@baylibre.com> <7hy1ncydtc.fsf@baylibre.com>
-In-Reply-To: <7hy1ncydtc.fsf@baylibre.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 31 Mar 2023 20:45:53 +0200
-Message-ID: <CAFGrd9rKy9a4bUf1dkUtTogtWPFr5eu3jcsdaixi3hs_dWMwrg@mail.gmail.com>
-Subject: Re: [PATCH v4 00/11] Improve the MT8365 SoC and EVK board support
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20210112; t=1680288422;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KkseuN6EQE7Ox7VHfjMNPwBRFbWM28gSepVze7lckmI=;
+        b=KZflzkX6aA6x9JOG0gzo/g/muFMe+tXKQ262h/d1HmHwLHMQ4pFEmBXG7qT5/VzbWc
+         Wc3ZsHR++a1UyXVd0PN9y/xi028hEkp3kzYPoThi2KBBnYlEuGlhtRTjvKU+epzV0yrW
+         mMDaWR5p0DsgI0qew665uPe7iXWK4z1XuzMSIQvyDLLx7Us4v/yOhbZ+zzG2A6Ofacka
+         FvDjUgLAfli9cJAS5jzjza/Lz6bJqbKlCxODUYRONQO10M/eJMuV4QtwloSUZG4AY3bm
+         5mxqGA8U1dJlmjZU7C2qrWoUqg6Isz4C7CgibRCUnJ/UmZ93aOnY8Ls/FPShsyf7qOtC
+         iReA==
+X-Gm-Message-State: AAQBX9cO1FK/19F5+m0zUqny/mILrKNXONwStT82acU3+vm+lno7F+pv
+        Sa43Ge6lcQP22eKF3pzqLg==
+X-Google-Smtp-Source: AKy350b7+lgd07pvqApJZH2J0ZDEybBc2nhXoQp2Y1busPxFSRbfC6apVQYZP57zQ8jv7W1Hx3ywkQ==
+X-Received: by 2002:a9d:77cd:0:b0:6a1:3101:8e2e with SMTP id w13-20020a9d77cd000000b006a131018e2emr8695069otl.29.1680288421913;
+        Fri, 31 Mar 2023 11:47:01 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j5-20020a9d7385000000b006a14579a8besm1441266otk.43.2023.03.31.11.47.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 11:47:01 -0700 (PDT)
+Received: (nullmailer pid 1933933 invoked by uid 1000);
+        Fri, 31 Mar 2023 18:47:00 -0000
+Date:   Fri, 31 Mar 2023 13:47:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Hao Zhang <quic_hazha@quicinc.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>, Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: Add Coresight Dummy Trace YAML
+ schema
+Message-ID: <20230331184700.GA1920623-robh@kernel.org>
+References: <20230324061608.33609-1-quic_hazha@quicinc.com>
+ <20230324061608.33609-3-quic_hazha@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230324061608.33609-3-quic_hazha@quicinc.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-You forgot to apply the patches merged by Matthias:
+On Fri, Mar 24, 2023 at 02:16:07PM +0800, Hao Zhang wrote:
+> Add new coresight-dummy.yaml file describing the bindings required
+> to define coresight dummy trace in the device trees.
 
-Changes in v4:
-- Remove v3 applied patch from the serie:
-  - arm64: dts: mediatek: add ethernet support for mt8365 SoC
-  - arm64: dts: mediatek: add mmc support for mt8365 SoC
-  - arm64: dts: mediatek: add mt6357 device-tree
-  - arm64: dts: mediatek: add pwrap support to mt8365 SoC
-  - arm64: dts: mediatek: Increase the size BL31 reserved memory
+The diff tells me all this. Please explain why this is needed and needs 
+to be in DT here.
 
-...
+> 
+> Signed-off-by: Hao Zhang <quic_hazha@quicinc.com>
+> ---
+>  .../bindings/arm/qcom,coresight-dummy.yaml    | 118 ++++++++++++++++++
+>  1 file changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
+> new file mode 100644
+> index 000000000000..7b719b084d72
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-dummy.yaml
+> @@ -0,0 +1,118 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-dummy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: QCOM Coresight Dummy component
+> +
+> +description: |
+> +  The Coresight Dummy component is for the specific devices that HLOS don't have
+> +  permission to access or configure. Such as Coresight sink EUD, some TPDMs etc.
 
-Changes in v3:
-- Remove v2 applied patch from the serie:
-  - dt-bindings: mmc: mediatek,mtk-sd: add mt8365
+EUD? TPDM?
 
-Regards,
-Alex
+I don't really love 'dummy' used here. Maybe the OS still wants/needs to 
+know where the sink goes to even if not configurable.
+
+You *can* have multiple compatibles for a single generic driver if those 
+compatibles might be useful some day.
+
+> +  So there need driver to register dummy devices as Coresight devices. Provide
+> +  Coresight API for dummy device operations, such as enabling and disabling
+> +  dummy devices. Build the Coresight path for dummy sink or dummy source for
+> +  debugging.
+> +
+> +  The primary use case of the coresight dummy is to build path for dummy sink or
+> +  dummy source.
+> +
+> +maintainers:
+> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> +  - Tao Zhang <quic_taozha@quicinc.com>
+> +  - Hao Zhang <quic_hazha@quicinc.com>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - qcom,coresight-dummy
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^dummy_.*(sink|source)_[0-9]+.*$"
+
+Don't use '_' in node names.
+
+Convention for multiple instances without 'reg' is '-[0-9]+' on the end, 
+but you are allowing anything after that.
+
+> +  compatible:
+> +    items:
+> +      - const: qcom,coresight-dummy
+> +
+> +  qcom,dummy-sink:
+> +    type: boolean
+> +    description:
+> +      Indicates that the type of this coresight node is dummy sink.
+> +
+> +  qcom,dummy-source:
+
+Incorporate source or sink into the compatible strings.
+
+It's also somewhat redundant with 'in-ports' vs. 'out-ports'.
+
+> +    type: boolean
+> +    description:
+> +      Indicates that the type of this coresight node is dummy source.
+> +
+> +  out-ports:
+> +    description: |
+
+Don't need '|' unless you need to preserve formatting.
+
+> +      Output connections from the dummy source to Coresight Trace bus.
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port:
+> +        description: Output connection from the dummy source to Coresight
+> +            Trace bus.
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +  in-ports:
+> +    description: |
+> +      Input connections from the CoreSight Trace bus to dummy sink.
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port:
+> +        description: Input connection from the Coresight Trace bus to
+> +            dummy sink.
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +oneOf:
+> +  - required:
+> +      - qcom,dummy-sink
+> +  - required:
+> +      - qcom,dummy-source
+> +
+> +examples:
+> +  # minimum dummy sink definition. dummy sink connect to coresight replicator.
+> +  - |
+> +    dummy_sink_1 {
+> +      compatible = "qcom,coresight-dummy";
+> +      qcom,dummy-sink;
+> +
+> +      in-ports {
+> +        port {
+> +          eud_in_replicator_swao: endpoint {
+> +            remote-endpoint =
+> +              <&replicator_swao_out_eud>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +  # minimum dummy source definition. dummy source connect to coresight funnel.
+> +  - |
+> +    dummy_source_1 {
+> +      compatible = "qcom,coresight-dummy";
+> +      qcom,dummy-source;
+> +
+> +      out-ports {
+> +        port {
+> +          dummy_riscv_out_funnel_swao: endpoint {
+> +            remote-endpoint =
+> +              <&funnel_swao_in_dummy_riscv>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
+> -- 
+> 2.17.1
+> 
