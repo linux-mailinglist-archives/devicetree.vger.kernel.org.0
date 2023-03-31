@@ -2,93 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 912366D1ACE
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:51:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6821B6D1AD3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbjCaIvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56902 "EHLO
+        id S230383AbjCaIvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbjCaIvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:51:04 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9658D1D879
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:48 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x17so27996621lfu.5
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:48 -0700 (PDT)
+        with ESMTP id S231173AbjCaIve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:51:34 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9291A945
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:51:31 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5419d4c340aso402525597b3.11
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680252647;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fdp8vdGW+YLTG1BB3JW7Fr8RajkHODRqHKvUiYYfQUQ=;
-        b=We753QmPXYE3q0LjNpkAdBaBVojKlF1ElQi/OkqGnh6F2L+avM/A72EzOkW8BMuX+3
-         R1H04uXJsdlz7jr3JiKjs+mAZPwlXXBcUOKtVXuoYy15LmMrmMPzHhy/peO59j5VzORb
-         SRp2L8oItUiYPsj3rHOu7inYRmGsYOxhQLAJvAMJzVlkFyzn4CongHxA76KgCSoxX6J2
-         ISQaS8jHDNYEurFladp43q/r3hs3aYlCmDiCBYbqeGwM7xJGSil0ppuMvIP6bTuIrszx
-         cEk5MtRP0bzvHA+C39nltJfEJwhlAG+n3oOX7EYEff3qnOYOmxOXgDu9ZTQr38FEVK2t
-         2sZw==
+        d=linaro.org; s=google; t=1680252691;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cd/ibuQb3vn5g/cRqzfQk5lg+1/+bjO2UJjaxJoegBM=;
+        b=LNzF1nUPzml+JIWoLM4lEKblSafQMhII427hBVE2fYE/IMt5PPojSCas5egWKg+KRc
+         ygy0xOK7R4RMFkD7vxSF97RyeOmkq6giu97/zXrN5oKidigfgjHuuAX1t0IMgLo4oZBX
+         edyYaG7ch29g3YuQziHv5Jft/d/9abqbc5SVvOGiFX9RiIq31R+jCgvgX/wevIDuGtDP
+         lVYFMvg52OandlxR7J/XbiWCqOgv9i0qUzdZ50A6ItgiyqRbKtSt7NsOXjKBZco8abZe
+         r8h5pQWUotUJdENoR3OCLdyJleXrOQqAExqWGqNIo/gAEedNYR8Bys3HYgJETvQ50stz
+         vW4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680252647;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fdp8vdGW+YLTG1BB3JW7Fr8RajkHODRqHKvUiYYfQUQ=;
-        b=QFvqEgpcTra8eecXn1Iz/BvGdj9g1X1HSY+Jc3ld/+OfRh2ITsWkqXA1jtl2Ie+Q3h
-         025uEveiK+BvxL+oBUgCZbF5VfudDQ6c/Ge1bRX0CTT3/BzlhSNW++SitPZUVXgjfd93
-         ELLEE5Pgbj6ooWDvvi9yJR0OP0fwNyWU1F77lQ83RUCsGMqWpvF0nlZlLeqNLk7NsbZv
-         7voSg84d3i+v5JyDqo+WmQ+C+6UG8Ey6gG6idnxo0SgvEetI1n2ZgHnwjpt/oKqd86K2
-         sfUk1pG1hDj/Jo8H7kfTjLhG7iv/fTelJTBcG8jgQTIdT0fQS2ozRGVG44glz/DJEBlc
-         YRPA==
-X-Gm-Message-State: AAQBX9catxM2vOxXF0vWf7iqznLjg7vnGZRteUQEt02VMNcyFfKaY0vg
-        BYDi1Qvhh8STXHeuhPr459GtnA==
-X-Google-Smtp-Source: AKy350bDYXT2GC7+PqbQLv5V6PQTZCxRn9SZBcOrgl2QdPWUKJa+3waLxJKJA5G6HKBEgSHL0aBpzQ==
-X-Received: by 2002:ac2:5159:0:b0:4e0:ee54:fa23 with SMTP id q25-20020ac25159000000b004e0ee54fa23mr7797113lfd.8.1680252646848;
-        Fri, 31 Mar 2023 01:50:46 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u5-20020ac243c5000000b004cc82b70809sm290259lfl.150.2023.03.31.01.50.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:50:46 -0700 (PDT)
-Message-ID: <1716b085-7471-16c3-7753-992db83348f1@linaro.org>
-Date:   Fri, 31 Mar 2023 10:50:45 +0200
+        d=1e100.net; s=20210112; t=1680252691;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cd/ibuQb3vn5g/cRqzfQk5lg+1/+bjO2UJjaxJoegBM=;
+        b=Pkw3fI0TTzN0ObxAadX2ZVCcvRIAqh+FSWZi7zV1W2likI7jNmFpT1VZzhkPI7o50U
+         u0XyPAjfLGqF63wLJ4IOzstHOzeOf+C8NjFh2vKHxp0gMnv/S3oBI00Aj1QMu09ebNpz
+         yjrCr/eNC/LSpWpLirLakZnPbgpyKdBgGdCczSwELBRui/rCMfzMdI0Go6782WR3RXGo
+         +lP4yhHb2/wdWQvq7ujKRbNwzQ2MLjQXL0sTxp5+yvgfsgLAgTYpHk6+PejfCfuy0iBL
+         b8ucL18KrzbJ3Y7XafF1+Y02Guj3Wd2BjuMaX2G7Q7YcbryCaZ8RqxrnzHcZ8RyYM4ae
+         mu9A==
+X-Gm-Message-State: AAQBX9f9iiFXMSbKc1xTdNOTi0LQumj9RO4mXlF+EsN/twRfMxtT+DVZ
+        MNc4l15W/VG9EbO9C1O6lQsKwaON2/1JKbrdTUqpXQ==
+X-Google-Smtp-Source: AKy350a6johu/GITQvnR+QBZGVCy3Nh12i/zifBxULJFlWKoDA9ufP4RPovIeYwuYMYc7B3Q1GKWJeXUD/WzDxFgGl8=
+X-Received: by 2002:a81:9993:0:b0:544:bbd2:74be with SMTP id
+ q141-20020a819993000000b00544bbd274bemr5121733ywg.4.1680252691054; Fri, 31
+ Mar 2023 01:51:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Add i.MX6SX
- support
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
-Cc:     marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20230330104233.785097-1-festevam@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330104233.785097-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
+In-Reply-To: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 31 Mar 2023 10:51:19 +0200
+Message-ID: <CACRpkdY4GAzE5DbE4yOZ8sFspZoJWWZk+DYTHsKRmm1bpX7WGQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 00/20] ARM: oxnas support removal
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 12:42, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> i.MX6SX has a single LVDS port and share a similar LDB_CTRL register
-> layout with i.MX8MP and i.MX93.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v1:
-> - Do not duplicate the entire if. (Krzysztof)
+On Fri, Mar 31, 2023 at 10:34=E2=80=AFAM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+> associated with a clear lack of maintainance, development and migration t=
+o
+> dt-schema it's clear that Linux support for OX810 and OX820 should be rem=
+oved.
+>
+> In addition, the OX810 hasn't been booted for years and isn't even presen=
+t
+> in an ARM config file.
+>
+> For the OX820, lack of USB and SATA support makes the platform not usable
+> in the current Linux support and relies on off-tree drivers hacked from t=
+he
+> vendor (defunct for years) sources.
+>
+> The last users are in the OpenWRT distribution, and today's removal means
+> support will still be in stable 6.1 LTS kernel until end of 2026.
+>
+> If someone wants to take over the development even with lack of SMP, I'll
+> be happy to hand off maintainance.
+>
+> The plan is to apply the first 4 patches first, then the drivers
+> followed by bindings. Finally the MAINTAINANCE entry can be removed.
+>
+> I'm not sure about the process of bindings removal, but perhaps the bindi=
+ngs
+> should be marked as deprecated first then removed later on ?
+>
+> It has been a fun time adding support for this architecture, but it's tim=
+e
+> to get over!
+>
+> Patch 2 obviously depends on [1].
+>
+> [1] https://lore.kernel.org/all/20230327121317.4081816-1-arnd@kernel.org/
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Best regards,
-Krzysztof
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
+Yours,
+Linus Walleij
