@@ -2,189 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D2CC6D2047
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE7926D2088
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:40:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232215AbjCaM2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 08:28:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47152 "EHLO
+        id S232438AbjCaMkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 08:40:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbjCaM2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:28:37 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2040.outbound.protection.outlook.com [40.107.22.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841581EFFF;
-        Fri, 31 Mar 2023 05:28:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S+ojmDpyl1jQNJdF3JSHzzJXO3YkpDndCwj4sTcj8XUXpVoDj5XZhqAuwBCZ4zomuzVgxmvPmgptM6j+4mQLaZUNzJqZGSPxWRTrpadCbr/rgchJj90shVlekugBP5XaEz9/6gw6wAih5B2jyGPjNc/EqIa18yGtl0Y8xObaQmyHb/Yooxeostb5qSYziDkjs8dNdVymjshGXLLrE7DLdhWLz02yYfUo/WVN6WU4qUn2I1Q3ZBakAmcczQA4vBAFB1HpOM2l2YPr/56aoqz1ChFPT1CfPSWp8WBpCXBhbvvZh2dFol6SZjdnOKdTC5g+EXNm4iD48G58TN7h1H3Tkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hBdfNw9JePE/MlyJmPN1s7AREZnzKi7yeZyymiwBXpo=;
- b=nO3ViVnG1MSwID3lI/W6L+SMRVld7ycawmH4QpXg5W5hfB6vQZntI+LnrYsFH8uEy7Xn99yoaBmwXju8NoP1sP7BQmUoKup3K7iVXjkDP+60ZqmpXryQtr5dWKW8EdkRYWkhlDKWQDRctQ+LkykE3Wb+QcYzH57lphpfpwXZ7ixDbsAizR+HwLbf2s0REIfFxX0D6QBcY/FvUOsTbKstndOBRa7oIkYN+1UUDLo47pFZbhpnZ9ZE2EoyIvsryGWkfZ74EQBnJu6RNqhla5LXxDnNwqYTuPldStTwz73dxQZeODq4rXu5qH8bR9HDHI1Ie6DpWa6Kmr8TKWy4DZ5Gmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hBdfNw9JePE/MlyJmPN1s7AREZnzKi7yeZyymiwBXpo=;
- b=WD843wUXCxymJvfIiy6H2uaCwAF4L8lZtg9b5p4FBs01EzLTpahQEKzN2n7m/c6PhFdBJXc+8N2B1CZDS+3Qo3CIwyaKTol+366+cjazJfvNL2qYCN4276EX7lzygWyBl1Gc3ivCu1XCR3NZJxzLyaZn6nyi0pCgMVFIETG/PFM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by AS2PR08MB8903.eurprd08.prod.outlook.com (2603:10a6:20b:5f7::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Fri, 31 Mar
- 2023 12:28:20 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::6f4d:f868:c89:4db1]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::6f4d:f868:c89:4db1%5]) with mapi id 15.20.6222.033; Fri, 31 Mar 2023
- 12:28:20 +0000
-Message-ID: <a8f0aaa1-e412-18c1-452f-753e0a6b6d51@wolfvision.net>
-Date:   Fri, 31 Mar 2023 14:28:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCHv1 3/7] drm/panel: sitronix-st7789v: add SPI ID table
-Content-Language: en-US
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20230317232355.1554980-1-sre@kernel.org>
- <20230317232355.1554980-4-sre@kernel.org>
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-In-Reply-To: <20230317232355.1554980-4-sre@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ZR2P278CA0041.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:47::10) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+        with ESMTP id S232498AbjCaMjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:39:48 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9815120C03
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:37:33 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-544f7c176easo412069957b3.9
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680266252;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E6lKdgk6THqQzNp4VvxVKewKaHaWOnEhQknxk2acjn0=;
+        b=ZMrC7RQQSpVfgy/SHMpfC+E2QpLMDaY5/yaDkSHUKYAESGTlYtEL7g/qRUeknQy91P
+         zUvgfNL0L6h3FNfh9c8D2HFAFVYOCP9WG625XToYyxYEiXALrCS5KsLDkaIeSbXlXde1
+         eg6UEhsSIBdX6MmhPhtTRLpJ9X4gdd+QI1NZNQSGtPnmNcH0Md5Wv/wDx/8mZJzSNT7K
+         vAZIJkR9VzoIqc5aO0g4o0xB+IpDOheOKDhB6ttu5EMPirHAV26dyaOz/pB9Dw1cQhWl
+         Nw5HjfOlvF3F0OheAjfDdZPbDekSVJ+CefyXJevdAGQrjbRZSi8YsUnd1+evdQw6Mb3h
+         4YIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680266252;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E6lKdgk6THqQzNp4VvxVKewKaHaWOnEhQknxk2acjn0=;
+        b=q1sJBjkYhTPQzEStFIMYZmjzE0+ZFZsVScoORcIwXYJNQeQdj39gNb9YJ6B6qeC2Af
+         tw4bWdHNiTAvYVCD5/bliUaxLjeMv/PusejMJKI2Mbw/NGc3jTIMzzvxn+Shh4d0K7VJ
+         AktcmvYXoDRCYQ/wlMKtqFNou2wRWwxbYJ5vsEjvbb0j36OSFN8BrRQKlTLQF0Qtzs4p
+         qCSxfrFOMozsHPLAEGdy2kZWsBgPcbFRXS+FgYSpmub7Kvpbf01ti4ago9EdEQIySDYj
+         2QcCSi5X6XhUUyCcgwfFYC34H6vbgNA6okhJwzAqVxw+yU+ygfXrxR6KLryHEGnQn4xh
+         Dx3A==
+X-Gm-Message-State: AAQBX9fxnPq5GpMCarrUz4ySNy4OeFDvhf2fFhC7255J1BX/IFC0UKEw
+        itE+nEw3lCWc5IFm+RtyaHYDHoR5Swj+fxGubA+0yg==
+X-Google-Smtp-Source: AKy350aQG4pTb9063C5UpGPTZlWu/1jB1S9bOfbEf1bci1cyW8YxugalTaCiIXNAm4RWMBbCrWxYKS+tBxFA+9FzOXI=
+X-Received: by 2002:a81:c84a:0:b0:541:753d:32f9 with SMTP id
+ k10-20020a81c84a000000b00541753d32f9mr13384037ywl.9.1680266252481; Fri, 31
+ Mar 2023 05:37:32 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AS2PR08MB8903:EE_
-X-MS-Office365-Filtering-Correlation-Id: 333b3f07-8d4c-4354-2fc7-08db31e3697a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4UOL76oHztQlgqUReUnA77ezp7Jm0wyeLFF/lf82/Zk2inAQq4b5eoio01a8QPTnSv9FflXl5UBTJW5RJYY0lybAqY79CgAsHTEOYGccUjVB6qQgkwhZB7u1l3WmnNCTgvEwcnEg8MCnZ0XGQ0pT4qEivpFEoZdQF3VNLeXHJj9zvF4lrYaPA33nCo+BcJ7JfOPoRgjjQk66+4VQckgE7p/VooPJzQ1A6OcWG8XJ3hFoL++T+i6ladKaLgesXIkk1nWhguRWGH9ZI74+AdcRzOA6nmdfvBVsRvHpae4qw739CHjLqo1HFlXXG/PDfZk5x2Td2a3KP3Y/UKolBXg8ok6K/1PBTKhOIotD3YRx5mgaE9ziK3BTeCSJ4Bjl+YokqrOyLZ0tda6LPDtRMl5KZ1UslopEGPOqj07uAYJSQF7pgOiV51VA1TTW4A/Ee9I6XE6WZduDna1SlQJ3Qd4jlXnj6gYcvSq3xmnJM+F+T4a5hka38w0j5+45zPBavTytce62ardcpfudS772VKP81V+n0xpGaQI6EG3XJDnTB6nbHFSRnAz6s5W8D+qlNi+1N5wlM1Sy3PHDfZHsdjtAYGP4icCGM1GNuTkvxiD0FSeXHoju/xNWZVKeKM5CHiLlWl4LG/1GproMKGh3HgodKw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(39850400004)(136003)(366004)(396003)(376002)(451199021)(2906002)(2616005)(31686004)(44832011)(478600001)(41300700001)(54906003)(6666004)(7416002)(66476007)(66556008)(5660300002)(8676002)(36756003)(6486002)(186003)(31696002)(8936002)(316002)(66946007)(6916009)(4326008)(6506007)(6512007)(53546011)(86362001)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkcxY2IxQUE5MkVLQXpjVHQyYnNNUWNlaExGUkhnSGdtVmlyNlExdTVncU5O?=
- =?utf-8?B?RUUvM09wR0RPNjBJWC9TQ3BzRlE3WnQ2WmUyM3RGcHVjNzJFT0krYU1YUjln?=
- =?utf-8?B?S1UwcTFlZVNQVEZwZjlLM1E4aUtwWUV3YWhKY0VpbUJxd2s2ejM1UHJGNTNP?=
- =?utf-8?B?WVVMZDdYNGgrSzFXL3pzYmFVaHdxaUhtUFdQMEJaNm9RT08rK2xha3g4VEVr?=
- =?utf-8?B?ejFmNFNLeWhIamtURjc2RC9JQkJPZGlnVFRTZFFIMzZESkpSUENuL28yOS9j?=
- =?utf-8?B?ZGFZSkV4UVR2YTFQd3BoSWJ6cEEwMGk5cy9BV2R3ZVF2UHlzVWtQVkEzSURQ?=
- =?utf-8?B?Um54aXVSZTd3SFBWaWRhTTc3d3NzS1RwcEJ6cnRBdHFuYnBYYXdYK0pDZVBw?=
- =?utf-8?B?Y3pVeHVGOXhzRmJOQ1kwd3BmbkFaNUlid3lST0pnRCs4UkN5VVdUSnBqM1BF?=
- =?utf-8?B?SWJxd1ZwQnZ1a21NNjJ4UGtXZEZtSmYxUHdQRFVMRThuUGw0bVRUaWVFc0Rs?=
- =?utf-8?B?N3lHS0RrRVV1Z2RJcnJXV3d6cEs1V1QyVkVobjF6UldRMEtXRGJ2UGVwVXpu?=
- =?utf-8?B?dGVZaFhlNVVIanNLNXFBZHIwZEgwdUhaWURWcWg5WG9VdjFxc0VJZjhTSnZV?=
- =?utf-8?B?bmZPNVI1Q2t3c3Y5SkpSckN1ZnhTWUltTURzd1dSbTJrZ0ZET2src1pVb1Mz?=
- =?utf-8?B?bHdLaksvR3ZNQ0phOUd4a0VWczdhb1dHVFNENDJvcXEwdlBLUVg0cWtNOVJU?=
- =?utf-8?B?eHZwQ21RS0JiclRUdnZuRzB0N2JFMmRtVXVrVG1MaU9LbkRnNWtRaGl0NlF3?=
- =?utf-8?B?YWJUUHlVcG9jZXpuamdkYllRemZwYUlsckQ3c0FUdnVoS1daZXVPNVZGTzlo?=
- =?utf-8?B?NERCT3VDQjJPVnRWdWV3NUlLamZ1WEtKSXN6enFWUmNuc0VuLzFKd2Ricloy?=
- =?utf-8?B?aEVoRGVxbVVnc3VWdE1ZaHFpdVhpTGo3N2xPOWZLVm9KNURVdmNvMXA4ZDYy?=
- =?utf-8?B?R0F0bDRuTXcxRFNnNnlXaDY1NFlVMHBtTHI5MG1YaUJwbDQrVW1mVkpDT2dp?=
- =?utf-8?B?MlM5anJoazlFSjd1YjBXYVpIcXJSSDM4Tm9EZUE2c0o5bGhYMWMvdFdnMG1s?=
- =?utf-8?B?RUZLQ3hjbDRYZXJLUDA3bUJ2TzRycXc2emxiU0Y4WTc3RmpTQ0RqSzU3RHdw?=
- =?utf-8?B?N2drTFZOZWR5Rm5zUnh5T080K21QZzRoMEE5Tjd4Z3JMU0MzRTBJT2U3NGxu?=
- =?utf-8?B?OWxrUGx0bndQMHMxRUE2elVtT2FlbGs2SWFFYldmSVFXRzd4bWRNUks2MDh0?=
- =?utf-8?B?WE1hVSttRlliYmlhRXlkd2NPbVRQUnFJNzNndk90dGVMNUtQQ2ovMUZGQjdr?=
- =?utf-8?B?Tm1FNVdlKzB4L3k1NmcxbmNyOGRVdlZzQXVjOElKYUt6TUJ0MUhTUzg4eE1Q?=
- =?utf-8?B?M1JEOGtsUk5qWkJYYW9od3pXZ0pBVWpBa2xseTQzVWFBR3FrMythR3lHVnpw?=
- =?utf-8?B?aFV3R3BVYUkvK0dhc24xalRkMmYrdmtCVFdpYmE4S1lpalpBaCtrMFJlNG05?=
- =?utf-8?B?cWtqMFNoaHBhR1JRUEJDZmtDWVBQUmNWYzI3Ny9xZmMvZUdXYTc1SmRlaXZK?=
- =?utf-8?B?SnRlVFM1aTZrTEJrZjY2dFZ2VlM3RmpQSm1TSHFFelgrY0dDVytKT09mazc1?=
- =?utf-8?B?Q2ZYUzROL3BrdHkzZkp1cm5VNjFGbmErSUlSb3NHY1dvcStndmVIcnZLZklK?=
- =?utf-8?B?Mk1UYUhSTnlJM0xhMDM0NXdsQ1Jzc0VFaTRzK01uMVpTdzhENUxiVjYyL0NR?=
- =?utf-8?B?N1lOSUhvM2xyTnhDQmZmWE0vd0Erd1FVdVJIU1E3T2xrMWVKK1JzMmtLS3hx?=
- =?utf-8?B?RTk2NDl1TmlnMGVTR3cyOUEyaTQrRmtuR0o1U3BJeVB3UG1ncENiMXU5cWhv?=
- =?utf-8?B?c0xwL09Faml6OHk1RGRFRm0vVnFIWnZsOUJVbDZOVHRmdGx0M2c4K1R1YzBR?=
- =?utf-8?B?OFZaLzI3SnZzOGpGeXVkU0FVakduWEQ2ditEYnd3amQxVzhiTkdlUE5TMHdh?=
- =?utf-8?B?SitBRnRnd01PRGZjZElkYzNoTlpjOWdjdC90Wm0xQTk0MWJJN1gyNFM4cTZr?=
- =?utf-8?B?a2N5Z3pwL2JhWURINGczZjBpZVllaVllZlZva2psQ2J2VHdzdG9nZWxUSXZ1?=
- =?utf-8?B?R1NhdkFJclJtdVR1N1MyOVU3WW5tVjhTaFFKZzd6dE4xL282Vjh2Nk5FaG1t?=
- =?utf-8?B?V0ZiQU9Sclk2bFRrTXd1cEthQlZ3PT0=?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 333b3f07-8d4c-4354-2fc7-08db31e3697a
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 12:28:20.1355
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sSwc73q9mRiHmS+VUrvlrVrs0Kz5ea5xo22FmbyCtjNuc7Py+25EDj62JT6TxVenMwmZD7zarEVjqD3YXAtL+zWpOs0MaRG9lMIZNoJjHj0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB8903
+References: <20230330200402.2731992-1-robh@kernel.org>
+In-Reply-To: <20230330200402.2731992-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 31 Mar 2023 14:37:21 +0200
+Message-ID: <CACRpkdYwM5Kw4XB9S5qoqdK-boiYp2iu=LRZ-B-vJb1k9fNnig@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: pinctrl: Drop unneeded quotes
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Dvorkin Dmitry <dvorkin@tibbo.com>,
+        Wells Lu <wellslutw@gmail.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        - <patches@opensource.cirrus.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+On Thu, Mar 30, 2023 at 10:05=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
 
-On 3/18/23 00:23, Sebastian Reichel wrote:
-> SPI device drivers should also have a SPI ID table.
-> 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Acked-by: Hector Martin <marcan@marcan.st>
+> Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de> #rockchip
+> Reviewed-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> index bbc4569cbcdc..e4d8dea1db36 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-> @@ -394,6 +394,12 @@ static void st7789v_remove(struct spi_device *spi)
->  	drm_panel_remove(&ctx->panel);
->  }
->  
-> +static const struct spi_device_id st7789v_spi_id[] = {
-> +	{ "st7789v" },
+> v2:
+>  - Rebase on pinctrl tree
 
-Minor suggestion: The format
+I applied it quickly before something else changes!
 
-static const struct spi_device_id st7789v_spi_id[] = {
-	{
-		.name = "st7789v",
-	},
-	{ }
-};
+Thanks for respinning, and thanks as always for driving these changes.
 
-is more verbose, but can be extended easily.
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(spi, st7789v_spi_id);
-> +
->  static const struct of_device_id st7789v_of_match[] = {
->  	{ .compatible = "sitronix,st7789v" },
->  	{ }
-
-The same holds for this structure here (you may want to consider this
-when adding the .data field in patch 6/7.
-
-Best regards,
-Michael
-
-> @@ -403,6 +409,7 @@ MODULE_DEVICE_TABLE(of, st7789v_of_match);
->  static struct spi_driver st7789v_driver = {
->  	.probe = st7789v_probe,
->  	.remove = st7789v_remove,
-> +	.id_table = st7789v_spi_id,
->  	.driver = {
->  		.name = "st7789v",
->  		.of_match_table = st7789v_of_match,
+Yours,
+Linus Walleij
