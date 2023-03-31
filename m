@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0196B6D1AC2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912366D1ACE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:51:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbjCaIuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:50:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55248 "EHLO
+        id S231634AbjCaIvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:51:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbjCaIuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:50:13 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498B31BF52
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:08 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id z42so22255077ljq.13
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:08 -0700 (PDT)
+        with ESMTP id S231661AbjCaIvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:51:04 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9658D1D879
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:48 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id x17so27996621lfu.5
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:50:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680252606;
+        d=linaro.org; s=google; t=1680252647;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hm2hIAzlWIlh/HN1Ebjpq4RGvB1b+HCsUGt69FXJxjo=;
-        b=OZzN3gG9tUFUcxAB3ktfT4IXwzPS+VV7TL07b1QYgQ4YiHiWCKfi+cQJMLeoKR7Bzs
-         sjhISVj/7gm/tgojJyvLUSlOQrCN6xWk4Qez5mTfkvlO0kNy77xNbUIBQ+3EN8OKBIzD
-         CL+QZG3i33RjSa14dyrobfjtJPlUyRRkfK/T/E9f7/JpBxQs94h8s1RGrVTPq/sMxj2T
-         i925RhEbmaPPxIR5ciVNZGfvOKyr2RqNMYnfoDaz5gxixNXjJ8kxozn7V4DES7VUfw7Z
-         I7alN4mpWXVMm3HA5WLzfMu/KvAVVHbnDUXPYmn4W1e1RkwO67R/ShCjqC1t/lcb4vhP
-         wJDA==
+        bh=Fdp8vdGW+YLTG1BB3JW7Fr8RajkHODRqHKvUiYYfQUQ=;
+        b=We753QmPXYE3q0LjNpkAdBaBVojKlF1ElQi/OkqGnh6F2L+avM/A72EzOkW8BMuX+3
+         R1H04uXJsdlz7jr3JiKjs+mAZPwlXXBcUOKtVXuoYy15LmMrmMPzHhy/peO59j5VzORb
+         SRp2L8oItUiYPsj3rHOu7inYRmGsYOxhQLAJvAMJzVlkFyzn4CongHxA76KgCSoxX6J2
+         ISQaS8jHDNYEurFladp43q/r3hs3aYlCmDiCBYbqeGwM7xJGSil0ppuMvIP6bTuIrszx
+         cEk5MtRP0bzvHA+C39nltJfEJwhlAG+n3oOX7EYEff3qnOYOmxOXgDu9ZTQr38FEVK2t
+         2sZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680252606;
+        d=1e100.net; s=20210112; t=1680252647;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hm2hIAzlWIlh/HN1Ebjpq4RGvB1b+HCsUGt69FXJxjo=;
-        b=X/TqMfDuHRp6uj2C9GUdGLCE9s8MCtpJ/iBxVo8xHqi2vkDBKtrph2Ws9aXu3xlaP3
-         PlgvfMN9Egqk/xmk28ELAbEtcQ3p/yOjYw3td4kSlKJgrS2zmPzeNk1kBt0lM44geQo7
-         WxljjXPhGMNMicY/vT3c6wR8yJB0yHGe2tditdnPHqiNrmdhH37INXp01QxvMic7ifUf
-         cWwo3zsNYFQs8qrrUhMYz2A5nj5W/coEpy6GXa+uTdw0f0Feg4hfdZ8bTQeJ5UFLTLiK
-         VLGAWHKO7kV4COfG0umFPTS4vsQbXwWoyrEa8nUHbuUrmwe4aYwl3oy+h7zOySDwsLKM
-         NnOg==
-X-Gm-Message-State: AAQBX9cVfvAMiGKfvXxKUZoDa3E1Ww7/MVu5hVYfJWn13hIWowjN1yZ6
-        h/FoCoRNF82ON8QcTvlbEkx8Ug==
-X-Google-Smtp-Source: AKy350b5BwrspfmaEhSZ5j4TtCdA7YCIHmTX5EQVjnvSnXoOPLRYU9gWB7YN5bhQTMIGSMGEAsyNlg==
-X-Received: by 2002:a2e:b548:0:b0:295:9ba2:8a78 with SMTP id a8-20020a2eb548000000b002959ba28a78mr2608023ljn.17.1680252606400;
-        Fri, 31 Mar 2023 01:50:06 -0700 (PDT)
+        bh=Fdp8vdGW+YLTG1BB3JW7Fr8RajkHODRqHKvUiYYfQUQ=;
+        b=QFvqEgpcTra8eecXn1Iz/BvGdj9g1X1HSY+Jc3ld/+OfRh2ITsWkqXA1jtl2Ie+Q3h
+         025uEveiK+BvxL+oBUgCZbF5VfudDQ6c/Ge1bRX0CTT3/BzlhSNW++SitPZUVXgjfd93
+         ELLEE5Pgbj6ooWDvvi9yJR0OP0fwNyWU1F77lQ83RUCsGMqWpvF0nlZlLeqNLk7NsbZv
+         7voSg84d3i+v5JyDqo+WmQ+C+6UG8Ey6gG6idnxo0SgvEetI1n2ZgHnwjpt/oKqd86K2
+         sfUk1pG1hDj/Jo8H7kfTjLhG7iv/fTelJTBcG8jgQTIdT0fQS2ozRGVG44glz/DJEBlc
+         YRPA==
+X-Gm-Message-State: AAQBX9catxM2vOxXF0vWf7iqznLjg7vnGZRteUQEt02VMNcyFfKaY0vg
+        BYDi1Qvhh8STXHeuhPr459GtnA==
+X-Google-Smtp-Source: AKy350bDYXT2GC7+PqbQLv5V6PQTZCxRn9SZBcOrgl2QdPWUKJa+3waLxJKJA5G6HKBEgSHL0aBpzQ==
+X-Received: by 2002:ac2:5159:0:b0:4e0:ee54:fa23 with SMTP id q25-20020ac25159000000b004e0ee54fa23mr7797113lfd.8.1680252646848;
+        Fri, 31 Mar 2023 01:50:46 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p23-20020a2ea417000000b002934abfb109sm270261ljn.45.2023.03.31.01.50.05
+        by smtp.gmail.com with ESMTPSA id u5-20020ac243c5000000b004cc82b70809sm290259lfl.150.2023.03.31.01.50.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:50:06 -0700 (PDT)
-Message-ID: <ae7bdc73-3836-fd28-f253-123ab27b7418@linaro.org>
-Date:   Fri, 31 Mar 2023 10:50:04 +0200
+        Fri, 31 Mar 2023 01:50:46 -0700 (PDT)
+Message-ID: <1716b085-7471-16c3-7753-992db83348f1@linaro.org>
+Date:   Fri, 31 Mar 2023 10:50:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: arasan,sdci: Add Xilinx Versal
- Net compatible
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Add i.MX6SX
+ support
 Content-Language: en-US
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        git@amd.com, saikrishna12468@gmail.com
-References: <20230330065240.3532010-1-sai.krishna.potthuri@amd.com>
- <20230330065240.3532010-2-sai.krishna.potthuri@amd.com>
+To:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
+Cc:     marex@denx.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20230330104233.785097-1-festevam@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330065240.3532010-2-sai.krishna.potthuri@amd.com>
+In-Reply-To: <20230330104233.785097-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,13 +76,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 08:52, Sai Krishna Potthuri wrote:
-> Add Xilinx Versal Net compatible to support eMMC 5.1 PHY.
+On 30/03/2023 12:42, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> i.MX6SX has a single LVDS port and share a similar LDB_CTRL register
+> layout with i.MX8MP and i.MX93.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
+> Changes since v1:
+> - Do not duplicate the entire if. (Krzysztof)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
