@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 356916D155F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 03:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951BB6D1564
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 04:00:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbjCaB7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 21:59:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33396 "EHLO
+        id S229839AbjCaCAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 22:00:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjCaB7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 21:59:48 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B53ABBB9
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 18:59:45 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id br6so27004129lfb.11
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 18:59:45 -0700 (PDT)
+        with ESMTP id S229824AbjCaCAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 22:00:07 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D1AE1BA
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 19:00:01 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id h25so27040580lfv.6
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 19:00:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680227984;
+        d=linaro.org; s=google; t=1680227999;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/LrdqQsi+Mv3ed2QJ1tyPoG21t02ZSNOqBkB39/94wo=;
-        b=qB9NCJVH3f7foEU/lFWOL4l1MEcM5bQ47YJ9FMnJZBP6lyBF4JCM+r6AEz8PmgEXvq
-         5Dod30us/1aeeuXeq+vmdY7uktAjE39LblJfgZq14ObZleDQHeqxKnMGYRkAIDse2nTc
-         h1zdzn9iQR3TJvEWlxAnDx4f7WUPVJJ6M/LQa0887qau/KHFQIH7Drq5aMEbbkbGo5Km
-         OUI2y8d8hqnWw1GPxWFLsdAIYa1sWUxJka4GRwVl5v/c40yC/5IBeSwmjvdl+m/WR+F9
-         UKLYxDPsZ33fIlDTNdgv3++lf9cZHEt2tTd59veHamuVALWBttejjQqqCRFYcjcxSudS
-         E4rw==
+        bh=n/Cs9N+JBNHHC68UN10KBHftx7PWk935ziMWBy68/UU=;
+        b=y0+11ekoozy7ddS70UYGrYRiSq7iKD1xpNu2FDf+w7oshkJ2IM8w3ZDTyT6z2B1B/D
+         /YL9W6TpsTZxkzQZf8Dl6ETruZWpwEl3uDpNPUrV59JrKpfcveUkl4Gc/nOP+gclwixq
+         Jn45mCC/ikg2SgbvS9NkqM2cRtk5bg9b7zhvNELZgXYLN3qcDcc6uOzduy+P3euMRqdX
+         RaH24TLSJesNd+NACqpXz/HkHCeRyaEU1ynCrX33DZBsbC3uFj7fC4hti2cur/nSUM1S
+         LSHsVSx7/tqOTOnKB5z5HVN6eD/2VIAUfmjQOhP7jDEE/D/QrZ03blr37AYwemCHpMi7
+         xPgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680227984;
+        d=1e100.net; s=20210112; t=1680227999;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/LrdqQsi+Mv3ed2QJ1tyPoG21t02ZSNOqBkB39/94wo=;
-        b=oVnXy9GlJk3g1G1m5FWQpYU11v8FeO88WSMA2upu5qI/6LaiR2nlvnmM3ewjx3zLQe
-         JFzgcvzHQvwb7YUCNds0f3yQ9g/LAMsAImMbtf4ETBuvGu714YHQvQUfXnr0q/sxm8Vc
-         c3mhYqp0luCHlhlSaEjvwcodrmheAjvyy85PNognHZAEH6nC0rDQE5H/OuBwAMUITm0T
-         DX+/WyTOFOJVKkqzux6JupCHY99yJ72zl1LhtsRZlx1F36abYPqLz3f+7waS8iKuE4yU
-         rwXqpCBclj90Y45F6ncBwYZExlrWf5hx6RchzjsOpaJOghJ1D4DRyE864IEd8g5HcwiJ
-         smtg==
-X-Gm-Message-State: AAQBX9drAshoE6wmXT6czBtCyQeU8Yhydi/+ObVye7I1KZXtLUYPt0RR
-        XzvMjSzpfCmgGAVQwS4HA/e/+w==
-X-Google-Smtp-Source: AKy350YTg42fxzLzvv5IArCBgg9jsiA1Qq4UQ9ia9aY1W9yEjkRlMwePF5gbvqFPyTgqdB52/KIJzg==
-X-Received: by 2002:ac2:5581:0:b0:4e8:3b51:e7ec with SMTP id v1-20020ac25581000000b004e83b51e7ecmr7246518lfg.48.1680227983726;
-        Thu, 30 Mar 2023 18:59:43 -0700 (PDT)
+        bh=n/Cs9N+JBNHHC68UN10KBHftx7PWk935ziMWBy68/UU=;
+        b=UPU6JMTGK6FRTf5119ureXPAtH60+1p3+AwrVAm0bJfkjWTEyTPmKR/oLCr0qSrfwi
+         pqzoE/K1foSdJLQucZp3VoyG+u8cBEgSxu3tcGZUq8oZAZm89BxBl9f29fGr2JI2jeAj
+         HF3IYzNfDJ/QtB62Cfh7Mj0TLRy3EQ85kBZ2D6xcMaTg8cBxLyX6o58/b6JWjDlg2lYP
+         l2+fWDgywGEGODMe4ZGFTHcJdk6Us1gLiUsmyKyPdDKirwYQ8r9pPDidcXHUUoWkhB8T
+         5GIQVGhAWEzSFrvdJe+bUMP9PIZWgoZRneG00kRLSSwQ/HAvThgJizW7CfQCbmJsFFem
+         4DJg==
+X-Gm-Message-State: AAQBX9cuVUpp/P9rTgGBIxBpaOHDd2FhZ6lnKL0iIpfZ3oA950m3IrRE
+        0/LV7ox7ujDUM9ChOdA2Yp/NGw==
+X-Google-Smtp-Source: AKy350atLJ9EP2srAoTJvjirAAVV59z6TRpyvHABLEzzCXDLX1sakEK7UHARpa3ykAYY1IbpVGgZgA==
+X-Received: by 2002:ac2:515e:0:b0:4e2:cb9:e266 with SMTP id q30-20020ac2515e000000b004e20cb9e266mr7130104lfd.50.1680227999049;
+        Thu, 30 Mar 2023 18:59:59 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id w26-20020a05651204da00b004e88a166eb6sm170513lfq.46.2023.03.30.18.59.42
+        by smtp.gmail.com with ESMTPSA id x9-20020a19f609000000b004db51387ad6sm168515lfe.129.2023.03.30.18.59.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 18:59:43 -0700 (PDT)
-Message-ID: <ee6bc89e-fbe1-fda0-e028-f16f78070dd2@linaro.org>
-Date:   Fri, 31 Mar 2023 03:59:41 +0200
+        Thu, 30 Mar 2023 18:59:58 -0700 (PDT)
+Message-ID: <4ffea89c-7b8d-7a3a-4c8a-e5f4dfb9bbcf@linaro.org>
+Date:   Fri, 31 Mar 2023 03:59:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v3 3/4] dts: arm64: qcom: sdm845-oneplus: enable SLPI
+Subject: Re: [PATCH v3 4/4] dts: arm64: qcom: sdm845-shift-axolotl: enable
+ SLPI
 Content-Language: en-US
 To:     Dylan Van Assche <me@dylanvanassche.be>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +66,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
 References: <20230330165322.118279-1-me@dylanvanassche.be>
- <20230330165322.118279-4-me@dylanvanassche.be>
+ <20230330165322.118279-5-me@dylanvanassche.be>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230330165322.118279-4-me@dylanvanassche.be>
+In-Reply-To: <20230330165322.118279-5-me@dylanvanassche.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -83,29 +84,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 30.03.2023 18:53, Dylan Van Assche wrote:
-> Enable the SLPI DSP on the Oneplus 6 phone with a Qualcomm SDM845 SoC.
+> Enable the SLPI DSP on the SHIFTPHONES SHIFT6mq phone with a
+> Qualcomm SDM845 SoC.
 > 
 > Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 5 +++++
+>  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 5 +++++
 >  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index b01542d79ae2..3bd15984990c 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -552,6 +552,11 @@ &qup_uart9_tx {
->  	bias-disable;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> index b54e304abf71..bd9571a258cf 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> @@ -572,6 +572,11 @@ &qupv3_id_1 {
+>  	status = "okay";
 >  };
 >  
 > +&slpi_pas {
-> +	firmware-name = "qcom/sdm845/oneplus6/slpi.mbn";
+> +	firmware-name = "qcom/sdm845/axolotl/slpi.mbn";
 > +	status = "okay";
 > +};
 > +
->  &sound {
->  	compatible = "qcom,sdm845-sndcard";
->  	pinctrl-0 = <&quat_mi2s_active &quat_mi2s_sd0_active &quat_mi2s_sd1_active>;
+>  &tlmm {
+>  	gpio-reserved-ranges = <0 4>, <81 4>;
+>  
