@@ -2,222 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CD96D2197
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69ED86D21A2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232369AbjCaNoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 09:44:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41902 "EHLO
+        id S230493AbjCaNrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 09:47:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230400AbjCaNoY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:44:24 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC292468F
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:44:22 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id bx10so4727088ljb.8
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680270261;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IheJlONFtPM7ki6UXfuwGq3nIRoSOV5Cdp2p/ZTSFZo=;
-        b=yuV7kREdfx12xlHlYMiKVwLBvhg9ce9BHX/pm1IYHQ7flFlOituOxMiiwEgvKXv5Gi
-         uIQIZSyKQwJe9LJc6mDvuPa1cDJq4e/PRPDA5LdGzB58rKGgaqIJPw7labdgwzN/4sQN
-         ujmI/7mRkneoxZcpP7Mzm3gvRYMpxqajsMLT98KeA4RPgs+lvqvSUyb5fQpxYPhW7dBG
-         6A5DluTaNY5WCEfKPO+71ISjx5Q/CCsEc+bziiPn5SYxoePG/FtSdmuv5BquUbtfnXEm
-         gl8CDSC6tBNbsPomzgOyR6CLHAWX7CrMWMYmuwtL1EHl9Lm+AV6JxvFyr2BiglUF890k
-         c6yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680270261;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IheJlONFtPM7ki6UXfuwGq3nIRoSOV5Cdp2p/ZTSFZo=;
-        b=XHU/k0UALX46aB3SYYgl9RX0EorAqZ5vQTggbOH8AcayWQSCGA/JkMYIgYdkAgN++5
-         wdGXuB8beIpCig0hZQ7Zw2qQcSkBmAQp40bFMV5oKMRJbcEwYIboeIfutW6mobXx/6kn
-         nhmJFNfsR5TrReK3X4SOWAaHke5m/OWyTXuMmNZTE15+0sL3FDq4VnvT1MtqWBpKxF3i
-         2IhiR6mCNQZf/jSBLUhr1vx+8rrwnWjZCl2oIrxwN5Qk1Y4cOfBl52dHt4dG/VJwhVmZ
-         2tsXoVxTTl7Y3diooc1w3IZNWeeDo12z02cVH9bqcDGMrWs4I2Ay2DX5Ll3+egUsMpp9
-         gPag==
-X-Gm-Message-State: AAQBX9ckCjxT+oySw50xFzhuUGs65j95rz9gjj8tNXw0HMjQXNymjiCU
-        OWm7WPYYQelcD+pIPHnK2Yqy/A==
-X-Google-Smtp-Source: AKy350bWsdGPWV3KvW7SvF4FPvx7B6jlnZVlmd+/Z5hjH7yj0LVm6SlY8eEM0JoLpn55NYjAj88UEw==
-X-Received: by 2002:a2e:6a0f:0:b0:295:a458:e2ce with SMTP id f15-20020a2e6a0f000000b00295a458e2cemr2810764ljc.6.1680270260918;
-        Fri, 31 Mar 2023 06:44:20 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j15-20020a2e3c0f000000b0029d45b15338sm365817lja.42.2023.03.31.06.44.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 06:44:20 -0700 (PDT)
-Message-ID: <a642e653-e3e2-c3d2-68cb-1efc92be05bb@linaro.org>
-Date:   Fri, 31 Mar 2023 15:44:19 +0200
+        with ESMTP id S230162AbjCaNrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:47:07 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE472468F
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:47:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7B2FBB82FC9
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:47:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A206C433A0
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680270423;
+        bh=uTwS6eyULezYP4QlorhcWySblThe6KTdRA8w+8lqVxE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lg/80dpUovbLuIxivzALPTs8y6V14iR06SNCSMJ5tp1tDhiYUkULoQYXBNr4UNFXe
+         18mNscaeBx1JTZAH6cDmaGu0BcCiBouCd63Nf4MTrB+r+OGK7z8DWxo9vo2Yb7pFv3
+         fIt8OsR56wFM4C4dCIr33LbF4T+ncL8udu/s40Rf89W0Hm9DItwL0VqwM4py/4A78D
+         198uyjIX7mCTcu9gOgDiBKoaHvflEkEppxpw5VWOByw8sUBL5ocbi9UJMSpSbFPft7
+         vivM7hGZq49wGKUQQR2Whtkd0nR+G8tr3mXEzMpTvmhEpT5pVuEqFuwNorn1K8NSpz
+         VGcPG5NPYyVEA==
+Received: by mail-yb1-f180.google.com with SMTP id p203so27393907ybb.13
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:47:03 -0700 (PDT)
+X-Gm-Message-State: AAQBX9f914tlzJBGm+6Fw+WtbRCmNO9b11XCbwCE/EBpcc7gyIqzEqad
+        gij3fy/KKAajvsIUVBlbfmtTnr5dwgxF6V1AuQ==
+X-Google-Smtp-Source: AKy350aHyS+cyklG8Xj5bLYc+RBySboGCWVI/2Bx5nyfEdy6tfwTzBHvDy8/f+21TSZUBXW7/ZAek4DbK9FPv/swb4U=
+X-Received: by 2002:a05:6902:1586:b0:b33:531b:3dd4 with SMTP id
+ k6-20020a056902158600b00b33531b3dd4mr14251575ybu.1.1680270422070; Fri, 31 Mar
+ 2023 06:47:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+References: <20230330165128.3237939-1-james.morse@arm.com> <20230330165128.3237939-2-james.morse@arm.com>
+In-Reply-To: <20230330165128.3237939-2-james.morse@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 31 Mar 2023 08:46:50 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+kejKAY6+kVQ1xL9z0vR=dxneTHKvufW2MUSy3mzgj-A@mail.gmail.com>
+Message-ID: <CAL_Jsq+kejKAY6+kVQ1xL9z0vR=dxneTHKvufW2MUSy3mzgj-A@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: firmware: Add arm,errata-management
+To:     James Morse <james.morse@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oliver.upton@linux.dev>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230328092645.634375-1-herve.codina@bootlin.com>
- <20230328092645.634375-3-herve.codina@bootlin.com>
- <20230330160510.GB489249@google.com> <20230331094208.41ab4420@bootlin.com>
- <6d39e9c3-fb6a-4b2a-9889-8fe8d86716d5@linaro.org>
- <20230331141104.42445da9@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230331141104.42445da9@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Andre Przywara <andre.przywara@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2023 14:11, Herve Codina wrote:
-> Hi Krzysztof, Lee
-> 
-> On Fri, 31 Mar 2023 11:13:30 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 31/03/2023 09:42, Herve Codina wrote:
->>> Hi Lee,
->>>
->>> On Thu, 30 Mar 2023 17:05:10 +0100
->>> Lee Jones <lee@kernel.org> wrote:
->>>   
->>>> On Tue, 28 Mar 2023, Herve Codina wrote:
->>>>  
->>>>> The Lantiq PEF2256 is a framer and line interface component designed to
->>>>> fulfill all required interfacing between an analog E1/T1/J1 line and the
->>>>> digital PCM system highway/H.100 bus.    
->>>>
->>>> My goodness!
->>>>
->>>> It's been a long time since I've seen anything quite like this.  
->>>
->>> Yes, old things but working on recent kernel.
->>>   
->>>>
->>>> My suggestion to you:
->>>>
->>>> * Split this up into components that fit functional subsystems  
->>>
->>> It is done. The audio part is present in ASoC subsystem (path 5 in this
->>> series). pinctrl function is implemented in this driver and, as I don't
->>> want to share registers, I would prefer to keep this function inside this
->>> driver.  
->>
->> The amount of defines and huge functions like pef2256_setup_e1()
->> contradict it.
->>
->> Even the pef2256_setup_e1() really does not follow Linux coding style -
->> you know the size requirement, right?
-> 
-> I know that pef2256_setup_e1() is quite big and I will look at a way
-> to split it in a consistent way.
-> 
->>
->> pef2256_get_groups_count, struct pinmux_ops and others - this is
->> pinctrl, not MFD! They cannot be in MFD driver.
-> 
-> Maybe the issue is that MFD was not a good choice.
-> The "function" provided are not independent of each other.
-> The "main" driver (pef2256.c) needs to do the setup and handle the interrupt.
+On Thu, Mar 30, 2023 at 11:52=E2=80=AFAM James Morse <james.morse@arm.com> =
+wrote:
+>
+> The Errata Management SMCCC interface allows firmware to advertise whethe=
+r
+> the OS is affected by an erratum, or if a higher exception level has
+> mitigated the issue. This allows properties of the device that are not
+> discoverable by the OS to be described. e.g. some errata depend on the
+> behaviour of the interconnect, which is not visible to the OS.
+>
+> Deployed devices may find it significantly harder to update EL3
+> firmware than the device tree. Erratum workarounds typically have to
+> fail safe, and assume the platform is affected putting correctness
+> above performance.
 
-Just like all PMICs...
+Updating the DT is still harder than updating the kernel. A well
+designed binding allows for errata fixes without DT changes. That
+generally means specific compatibles up front rather than adding
+properties to turn things on/off.
 
-> The "function" provided are some glues in order to be used in some sub-systems
-> such as audio. Indeed, ASoC needs a codec DAI to be connected to a CPU DAI.
+Do we really want to encourage/endorse/support non-updatable firmware?
+We've rejected plenty of things with 'fix your firmware'.
 
-Just like in all other cases...
+> Instead of adding a device-tree entry for any CPU errata that is
+> relevant (or not) to the platform, allow the device-tree to describe
+> firmware's responses for the SMCCC interface. This could be used as
+> the data source for the firmware interface, or be parsed by the OS if
+> the firmware interface is missing.
 
-> These "functions" need to be started (ie probe()) after the pef2256 setup was
-> done. So a start (probe()) order relationship is needed.
+What's to prevent vendors from only using the DT mechanism and never
+supporting the SMCCC interface? I'm sure some will love to not have to
+make a firmware update when they can just fix it in DT.
 
-Just like in all other cases, so I really do not see here anything special.
+The downside to this extendable binding compared to simple properties
+is parsing a flat tree is slow and more complicated. So it may be
+difficult to support if you need this early in boot.
 
-> 
-> If a MFD driver needs independent children to handle independent functions,
-> the pef2256 does not fit well as a MFD driver.
+> Most errata can be detected from CPU id registers. These mechanisms
+> are only needed for the rare cases that external knowledge is needed.
 
-Why? So far everything is exactly the same.
+And also have significant performance impact. In the end, how many
+platforms are there that can't fix these in firmware and need a
+mainline/distro kernel optimized to avoid the work-around. I suspect
+the number is small enough it could be a list in the kernel.
 
-> 
-> I switched from misc to MFD just to handle child DT nodes instead of having
-> phandles. Using child DT nodes instead of phandles is really a good thing and
-> need to be kept.
-
-Your DT bindings and nodes are not related to driver design. It does not
-matter for Devicetree if you put it to misc or MFD.
-
-It does not matter for driver whether you call it in Devicetree foo or bar.
-
-> The switch to MFD was probably not the best thing to do.
-
-Maybe, but your existing arguments are not really related...
-
-> 
-> What do you think if I switched back the pef2256 "main" driver (pef2256.c) to
-> misc ?
-
-Why? What would it solve? You want to stuff pinctrl driver to misc, to
-avoid Lee's review? No. Pinctrl goes to pinctrl. Not to misc. Not to MFD.
-
-> 
-> 
->>
->>>
->>> Also, I sent a RFC related to HDLC and PHY. In this RFC, the pef2256 is
->>> considered as a PHY and handled in the PHY subsystem.
->>>   https://lore.kernel.org/linux-kernel/20230323103154.264546-1-herve.codina@bootlin.com/
->>>   
->>>> * Run checkpatch.pl  
->>>
->>> I did.  
->>
->> There are tons of weird indentation,e.g.:
->> +#define     PEF2256_2X_PC_XPC_XLT	(0x8 << 0)
->>         ^^^^ there is only one space after #define
-> 
-> I ran checkpatch.pl, not checkpatch.pl --strict.
-> 
-> The spaces related the #define can be seen on many other drivers.
-> 
-> #define FOO_REG_BAR	0x10
-> #define   FOO_REG_BAR_BIT0	BIT(0)
-> #define   FOO_REG_BAR_BIT4	BIT(4)
-> 
-> The first line is the register offset and the other lines (indented) are
-> the bits description related to this register.
-
-I don't think we have such convention in general and argument that some
-drivers do it in some subsystems is never a good argument. If they also
-misspell things or use Hungarian notation, shall we do the same?
-
-Although maybe it is fine for Lee. I find it unreadable.
-
-git grep '#define  \+[A-Z]' | wc -l
-73889
-git grep '#define [A-Z]' | wc -l
-3996054
-
-In MFD there is only one driver doing this.
-
-Most of other cases are net and gpu.
-
-
-Best regards,
-Krzysztof
-
+Rob
