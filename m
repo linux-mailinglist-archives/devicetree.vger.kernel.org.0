@@ -2,88 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A03786D1CE4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11CAF6D1CEC
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbjCaJsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40700 "EHLO
+        id S232018AbjCaJtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:49:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbjCaJru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:47:50 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D3DF1EA01;
-        Fri, 31 Mar 2023 02:46:39 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E1FC26603130;
-        Fri, 31 Mar 2023 10:46:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680255981;
-        bh=P67dJp8jlhGIoFrtYFrtXg/5E26fTlL2SNAKeKDupvU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=WOPz8ggTHTlcizmA4vPA6aNGDVNqrdxZxS+U9Sv12ItQKcuKtmEP62ZDuDDAojp5q
-         Am6LYmO4ZBS5YXO9JW4xEXZH3Axoup1DMleqG+jM4YNDwVmPsvL4QDTnoew98aR66d
-         S//ebMyCRdXWt48U49XgqmRL9DuoCNnkPrH5Y/W4R1YK3g4OP/60IalNxQ5Z2K+eI6
-         EoCMLnNweohHB+in5mvjAVaMqQBNyciyhe+AcsMZfGgxkCCFwf53PC/d6q5e+P4dMl
-         JG74KjlnAFVrliJzVi85iz6+NYrYpsWUW+D5YCyGCy2dBLlcmLTOJ3tbDZmouxcWGD
-         AT2GoIqE1Wwug==
-Date:   Fri, 31 Mar 2023 11:46:17 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
-        steven.price@arm.com, alyssa.rosenzweig@collabora.com,
-        robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v1 RESEND 2/2] drm/panfrost: Add basic support for speed
- binning
-Message-ID: <20230331114617.6932e609@collabora.com>
-In-Reply-To: <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
-References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
-        <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
-        <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S231209AbjCaJs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:48:27 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D6420C38
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:47:22 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id y15so28128285lfa.7
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680256040;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hnzWIFD7E+b4S3TZGTfN6jfs1uPbhSQEaRByhI1df+M=;
+        b=HB+TVMnkqvB7O0R3MzfOeH12788Pp02xIqytld9w5q6ehalIpUQ4NIGCs4FoPNwGtw
+         KjINmDIkY//lZWKGXkAW/6HxoxXWdC32DM4f1uzIesFTa8YPI+RAC1d3WOQUbqGx7nDV
+         lTespHeb2N2brtIIpdtHFxWZN2OOzGN+9/NRxQ+6sQoqnIOdTwI1GHdLu/mnJvAKyz/E
+         RohbWhLih537gFmaFLGYdHiPsS3Jb5lI2sbUbhvksGpoVbf/QRJvjloZzTcOf2OT99fP
+         OS0ixUMKhOi6tHVFED7+FBbzZG3nbCGdfiqHc8K+fc+DtV1WkjcoGRqILKWRvhz9pV62
+         ZRtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680256040;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hnzWIFD7E+b4S3TZGTfN6jfs1uPbhSQEaRByhI1df+M=;
+        b=c25hXywE3fQh487gtH1MndkfU6WpP8K/C9Ulrwqi5XXxeXGQnmRoddGLFNiXTMQvAu
+         qSMUxcCtZsd0WARq4oyrLkaG1AAMGegrry1Vhggk8VCEvXikPVU/0T3FYWQcQow3MXUE
+         oFW4OnFdI3w61yZVlfD4YCIvkzUMB4XJVCA1hbl7+K6tOhuNDqLrCiPy9U2bfilM4LPO
+         0Egs13m0//MrZstaRFdLvczqmVhUNJWa7bSzFNKVeEiZBG0SUKYMdSqF4BWzh9yid59+
+         AauWh7hKoqtPKrt+zdKMliEsx/6/zVC78r6tlB3bvztj/uV7ydl2k8dFzxBsmmZHZVcn
+         qSTw==
+X-Gm-Message-State: AAQBX9fFO7t8N5N/zv6Pjr1je47hmC6RoYx0Jrzr5BVEUd5SVqcoinlm
+        qEkt1k3aIN1raCndBUjbkZaxMw==
+X-Google-Smtp-Source: AKy350axKhA1sEScCS2IqTPlAy7H3rF+ckndonIj5tM6RWPZCy4EAumflMTPJ5hdVeFx1W2N/KcT/A==
+X-Received: by 2002:ac2:46e4:0:b0:4dd:995b:feaa with SMTP id q4-20020ac246e4000000b004dd995bfeaamr7880350lfo.24.1680256040470;
+        Fri, 31 Mar 2023 02:47:20 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c25-20020ac244b9000000b004e9c983a007sm309559lfm.289.2023.03.31.02.47.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 02:47:20 -0700 (PDT)
+Message-ID: <304ce3f0-81df-327c-8b42-2471a3a51e43@linaro.org>
+Date:   Fri, 31 Mar 2023 11:47:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH] dt-bindings: maxim,max98371: Convert to DT schema
+Content-Language: en-US
+To:     =?UTF-8?Q?Andr=c3=a9_Morishita?= <andremorishita@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        anish kumar <yesanishhere@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     mairacanal@riseup.net, dri-devel@lists.freedesktop.org,
+        daniel.baluta@nxp.com
+References: <20230331020527.482991-1-andremorishita@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230331020527.482991-1-andremorishita@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 Mar 2023 10:11:07 +0200
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-wrote:
-
-> Il 23/03/23 10:08, AngeloGioacchino Del Regno ha scritto:
-> > Some SoCs implementing ARM Mali GPUs are subject to speed binning:
-> > this means that some versions of the same SoC model may need to be
-> > limited to a slower frequency compared to the other:
-> > this is being addressed by reading nvmem (usually, an eFuse array)
-> > containing a number that identifies the speed binning of the chip,
-> > which is usually related to silicon quality.
-> > 
-> > To address such situation, add basic support for reading the
-> > speed-bin through nvmem, as to make it possible to specify the
-> > supported hardware in the OPP table for GPUs.
-> > This commit also keeps compatibility with any platform that does
-> > not specify (and does not even support) speed-binning.
-> > 
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
+On 31/03/2023 04:05, André Morishita wrote:
+> Convert the Maxim Integrated MAX98371 audio codec bindings to DT schema.
 > 
-> Hello maintainers,
-> I've seen that this got archived in the dri-devel patchwork; because of that and
-> only that, I'm sending this ping to get this patch reviewed.
+> Signed-off-by: André Morishita <andremorishita@gmail.com>
+> ---
 
-Series queued to drm-misc-next.
+Thank you for your patch. There is something to discuss/improve.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        max98371: max98371@31 {
+
+Generic node names, so: codec
+
+And drop label (max98371:)
+
+> +            compatible = "maxim,max98371";
+> +            reg = <0x31>;
+
+#sound-dai-cells = <0>;
+
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
+
