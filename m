@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D06CD6D1E7D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 12:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2B66D1E9F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 13:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231928AbjCaK5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 06:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58780 "EHLO
+        id S232108AbjCaLAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 07:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231811AbjCaK4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 06:56:53 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17DF1DFA1;
-        Fri, 31 Mar 2023 03:56:36 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id v6-20020a05600c470600b003f034269c96so3343617wmo.4;
-        Fri, 31 Mar 2023 03:56:36 -0700 (PDT)
+        with ESMTP id S231886AbjCaLAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 07:00:02 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992E71EA2F;
+        Fri, 31 Mar 2023 03:58:01 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id n19so12650587wms.0;
+        Fri, 31 Mar 2023 03:58:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680260195;
+        d=gmail.com; s=20210112; t=1680260275;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vZU9pqSmJFWScbRHErpBRLTTVYGZxJgYc6ooM9EOJFo=;
-        b=a5YYtQaitITpatbAMwu7SUclPfEBUIKxeJhiA0fQkPl/XebHkXu+q2il+sMxop645y
-         kmaXkz15ka80OmpIypiZDmZaRhmt6QgYfRwiSkMjegbxDEjVU9VTl4BUbXtPT4i2CeUb
-         PM1BVBi1vjuWl4QezZ+0e6aUa9klF9U2MVlwgIfiqSbXPm7bwCd+7zcsBkkoyxEVkny/
-         ocY6y5CLUOq/fK1Jl0b/3bVAJB23LnobybPaEQBgRilZFyd2XqaKpRGFhY76y0Vi7llm
-         pqVD5DuWTSsLfPT9tIsCZMkkWelCDqlOy/nSJMAUv6o4l3Hp4g9L97BYFbN36ae+4YfY
-         Q5lQ==
+        bh=ruVZ+nqpPxejELcPa+QVovP9EcRxs5XzTtjPXBzPybw=;
+        b=STGlQbl5pdqAFFPeA9oH+J5ICEFK3qkxQEvxknmC4v2OlpiSrx877BUe9QlCmArIRa
+         PoVbu3en0sjd/b4Iokb1AiZ2ClE2HLGtYEN2xQ0DkUxDUj7G71wCC5b4zg2OJHG5ka4i
+         qAeJszAOv1lbO7hwrOLAZvzj/KJOb0f9AOJO2Wmieh5Yh9VEZGAUJKlRs3fqIN+KVEgf
+         UaZFhEvHrXoZ8dbanR0Z2ODNhcRELXvdARzimA772eEt75Se2cZ4F8/2NTKqzMuwj7Gk
+         MU9RrX0CCqcV4b9bcBrDbxMjljcjBRfZHcNuSWbI+UQCmeOUO70voDs6hLJCgUM/SV62
+         6HzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680260195;
+        d=1e100.net; s=20210112; t=1680260275;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vZU9pqSmJFWScbRHErpBRLTTVYGZxJgYc6ooM9EOJFo=;
-        b=2Fls+FTZq4lb7rqizNuUwOP7p+Fx7NcpqqIiWnkxL7ICHe0SxdOQ18Eh7rVeOy4xQq
-         tyw4anDM5BNg85Jk6DVI5s+suw2OCIrmOwoK1MRfKHGKABY3bJbiZNjK4mlqPuN9+Cyq
-         DLXKpB6LWaFSl05MGU2AS9CglUp1v9Ikn7QFYqXsoY2flGItjtZ2XOnFqVSJZWN+1Pmw
-         T5P2lX26st2TK3FPbQiGQiBFcUrUXM3H7hR7Rc9kEz5yPlwCEUyiVJiKCof19vDsEXZw
-         5WBUQvLdm97CSR4egpbV7/9nJvlP5XXH0gAOxANrlsr0h8mCsIskkDf2oiD2P7C4dYOA
-         WxVQ==
-X-Gm-Message-State: AO0yUKVsZjzyyAIVZoDn5yEWER49ZIi+ZG1dIWnRmDMLLErFWymQnD/T
-        noHClhsZYspvtaCJbSkNv8k=
-X-Google-Smtp-Source: AK7set8h2IuPF/9IdjhnSRSd7WIlTiiKTDb6jgTDgpp76wEIcv6kA5w6f0BVtbmp63oifX4/aE3nCw==
-X-Received: by 2002:a7b:c853:0:b0:3ed:ca62:418e with SMTP id c19-20020a7bc853000000b003edca62418emr19677202wml.9.1680260194637;
-        Fri, 31 Mar 2023 03:56:34 -0700 (PDT)
+        bh=ruVZ+nqpPxejELcPa+QVovP9EcRxs5XzTtjPXBzPybw=;
+        b=W9gZ2tlpWrwozkmFmq/uPYoSRCH44GadX/g0DKs5GEfaiMFES8VBSVizABaGQ3aVtP
+         6ao0JJnip4VBJvuJGG4W6go0diF+guT5QOhPLaIaY+iR/U9HOCeJTOxLYRs9YVWCIY+f
+         PIUDS96H7PBgOn65+HE+hX8/iLWGt9nxxW5YTWdd7AkKJBuG6wOZdzas5IcuPAeaawW2
+         v8PwX+n76P6m9kxQTg3k+a91UhgTsOEr+3gSYvMFMZqQPnWXTDjEmduXdV8oxFuiHbGG
+         g8Yh6SAdLwrn197UFOgfhtsnHHxsWxVt4nHOrMhfdkgRj2Kmm4G9OZl6kHsLOZY8tGFz
+         A6zw==
+X-Gm-Message-State: AO0yUKXFf8b6JVBDpBKxRwGxVQOWbQkekPL5PzE6fKV3wb9FX6QCCV4I
+        96v0Wr7nXPJlmWyx2zl8ASI=
+X-Google-Smtp-Source: AK7set/NThtTJbIt9LOK6pAdTg6KLO5h2EdvVtCl5moj2821TwWnFFcOLxxqECrDAvoDTccyuFfKOw==
+X-Received: by 2002:a05:600c:22d5:b0:3ee:3d2d:841a with SMTP id 21-20020a05600c22d500b003ee3d2d841amr21155578wmg.24.1680260275314;
+        Fri, 31 Mar 2023 03:57:55 -0700 (PDT)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id q3-20020a05600c46c300b003ebf73acf9asm16683148wmo.3.2023.03.31.03.56.32
+        by smtp.gmail.com with ESMTPSA id y22-20020a7bcd96000000b003ee42696acesm2300375wmj.16.2023.03.31.03.57.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 03:56:33 -0700 (PDT)
-Message-ID: <68a51c57-ba63-94c3-3ca3-f7d4ab4984ae@gmail.com>
-Date:   Fri, 31 Mar 2023 12:56:32 +0200
+        Fri, 31 Mar 2023 03:57:54 -0700 (PDT)
+Message-ID: <b90a3440-53f8-9384-155a-f7ac2b7f2e9c@gmail.com>
+Date:   Fri, 31 Mar 2023 12:57:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH net-next 10/10] arm64: dts: mt7986: move dlm in a
- dedicated node
+Subject: Re: [PATCH v9 02/11] arm64: dts: mediatek: Update the node name of
+ SCP rpmsg subnode
 Content-Language: en-US
-To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, linux-mediatek@lists.infradead.org,
-        nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, lorenzo.bianconi@redhat.com,
-        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <cover.1679330630.git.lorenzo@kernel.org>
- <d74e38de00ad1b858b59a7ef6cb02321b0faf750.1679330630.git.lorenzo@kernel.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230328022733.29910-1-tinghan.shen@mediatek.com>
+ <20230328022733.29910-3-tinghan.shen@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <d74e38de00ad1b858b59a7ef6cb02321b0faf750.1679330630.git.lorenzo@kernel.org>
+In-Reply-To: <20230328022733.29910-3-tinghan.shen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -82,84 +86,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 20/03/2023 17:58, Lorenzo Bianconi wrote:
-> Since the dlm memory region is not part of the RAM SoC, move dlm in a
-> deidicated syscon node.
-> This patch helps to keep backward-compatibility with older version of
-> uboot codebase where we have a limit of 8 reserved-memory dts child
-> nodes.
+On 28/03/2023 04:27, Tinghan Shen wrote:
+> Align the node name with the definition in SCP bindings.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 30 ++++++++++++-----------
->   1 file changed, 16 insertions(+), 14 deletions(-)
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi   | 2 +-
+>   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index a0d96d232ee5..0ae6aa59d3c6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -93,16 +93,6 @@ wo_data: wo-data@4fd80000 {
->   			reg = <0 0x4fd80000 0 0x240000>;
->   			no-map;
->   		};
-> -
-> -		wo_dlm0: wo-dlm@151e8000 {
-> -			reg = <0 0x151e8000 0 0x2000>;
-> -			no-map;
-> -		};
-> -
-> -		wo_dlm1: wo-dlm@151f8000 {
-> -			reg = <0 0x151f8000 0 0x2000>;
-> -			no-map;
-> -		};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index fbe14b13051a..a259eb043de5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -810,7 +810,7 @@
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&scp_pins>;
+>   
+> -	cros_ec {
+> +	cros-ec-rpmsg {
+>   		compatible = "google,cros-ec-rpmsg";
+>   		mediatek,rpmsg-name = "cros-ec-rpmsg";
 >   	};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> index 9f12257ab4e7..8f14b633c1e1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> @@ -1260,7 +1260,7 @@
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&scp_pins>;
 >   
->   	timer {
-> @@ -444,10 +434,11 @@ wed0: wed@15010000 {
->   			reg = <0 0x15010000 0 0x1000>;
->   			interrupt-parent = <&gic>;
->   			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
-> -			memory-region = <&wo_emi0>, <&wo_dlm0>, <&wo_data>;
-> -			memory-region-names = "wo-emi", "wo-dlm", "wo-data";
-> +			memory-region = <&wo_emi0>, <&wo_data>;
-> +			memory-region-names = "wo-emi", "wo-data";
->   			mediatek,wo-ccif = <&wo_ccif0>;
->   			mediatek,wo-ilm = <&wo_ilm0>;
-> +			mediatek,wo-dlm = <&wo_dlm0>;
->   			mediatek,wo-cpuboot = <&wo_cpuboot>;
->   		};
->   
-> @@ -457,10 +448,11 @@ wed1: wed@15011000 {
->   			reg = <0 0x15011000 0 0x1000>;
->   			interrupt-parent = <&gic>;
->   			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
-> -			memory-region = <&wo_emi1>, <&wo_dlm1>, <&wo_data>;
-> -			memory-region-names = "wo-emi", "wo-dlm", "wo-data";
-> +			memory-region = <&wo_emi1>, <&wo_data>;
-> +			memory-region-names = "wo-emi", "wo-data";
->   			mediatek,wo-ccif = <&wo_ccif1>;
->   			mediatek,wo-ilm = <&wo_ilm1>;
-> +			mediatek,wo-dlm = <&wo_dlm1>;
->   			mediatek,wo-cpuboot = <&wo_cpuboot>;
->   		};
->   
-> @@ -488,6 +480,16 @@ wo_ilm1: syscon@151f0000 {
->   			reg = <0 0x151f0000 0 0x8000>;
->   		};
->   
-> +		wo_dlm0: syscon@151e8000 {
-> +			compatible = "mediatek,mt7986-wo-dlm", "syscon";
-> +			reg = <0 0x151e8000 0 0x2000>;
-> +		};
-> +
-> +		wo_dlm1: syscon@151f8000 {
-> +			compatible = "mediatek,mt7986-wo-dlm", "syscon";
-> +			reg = <0 0x151f8000 0 0x2000>;
-> +		};
-> +
->   		wo_cpuboot: syscon@15194000 {
->   			compatible = "mediatek,mt7986-wo-cpuboot", "syscon";
->   			reg = <0 0x15194000 0 0x1000>;
+> -	cros-ec {
+> +	cros-ec-rpmsg {
+>   		compatible = "google,cros-ec-rpmsg";
+>   		mediatek,rpmsg-name = "cros-ec-rpmsg";
+>   	};
