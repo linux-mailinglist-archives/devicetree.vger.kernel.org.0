@@ -2,82 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C626D2678
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB88C6D26CC
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:39:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231730AbjCaRLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 13:11:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44248 "EHLO
+        id S232134AbjCaRjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 13:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbjCaRLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:11:49 -0400
-Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B80E18831;
-        Fri, 31 Mar 2023 10:11:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=BewKgH0lhl5ITDFQCz5IQ2OB5+ZlHOMt8jydO+KrdZI=; b=amhJfElQ1lROVDhTrG12MMXKX2
-        PNq9+LeJuh4cDPbmTIZ5tEDQ9fEy38GczjGFkIcXTrsSwDR1HA3Jk/pbCx/+gmhWxg/AbpJPytHNF
-        0t05dACFVlZxRq9vsVn1CS84gb8mQeN6JPt2HkwAJD869fwkVnw/vfPtztNuau85f6pykdpEOLzUj
-        dlvRqhBDia6VCe05hQySe0r1AgDgmeYtUMTdzXcdDQOhKNKtXEJo1GVXUPx+pjY9vsZBSUDFm8S9i
-        9cxvlewsDTXBFfTHUnmLJmeTde/SfYRO5dSDE1KWJ7SVdh5IpfTClhVFIFAdZfaV2cC74OH6L7gkp
-        mOKlbuiA==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <lars@metafoo.de>)
-        id 1piIHy-000KFW-HF; Fri, 31 Mar 2023 19:11:46 +0200
-Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
-        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1piIHy-00049F-5J; Fri, 31 Mar 2023 19:11:46 +0200
-Message-ID: <292e5efd-1a10-d1e6-0185-1ce113eee233@metafoo.de>
-Date:   Fri, 31 Mar 2023 10:11:43 -0700
+        with ESMTP id S232034AbjCaRjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:39:18 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F2126A1
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:39:16 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id l27so23227112wrb.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:39:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680284354;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9gku3WqCXL8jtCOkhxTxIv+f+mV0YZMt8NBkxJPbbls=;
+        b=3QTbfLbY/h37CSPq/kZacyHAAHcHzWjomoaAGiBSO9/7zmmsp9uzEnhWuVLynxSCzo
+         FrXzSxKXtVbic3O4gIbtKLzhBINFPJwDKqzQ6MrgwwTkaNvmk8Xf6zqcHm6nuwKs3Ctu
+         N6+s4QNCR/G2REsINFejqtnwxLbvvPo6xm4C9K3a03UIOtPzNa1Roj9YN8rJmatVyrpo
+         CpWs7OQhS9oQHzugb4Q9yi2PX5T+WYxFtMWzjVAUNmX/JPOSiG+gVorPjcj7bN9uD6HY
+         5W7J7Kqtamyq16vuPh5xBGbEDlenlLt4+aDzMx0adrpRweOSPU7DnDKC+3HgNQxvEsP1
+         oV8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680284354;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9gku3WqCXL8jtCOkhxTxIv+f+mV0YZMt8NBkxJPbbls=;
+        b=EzVE4FA1XB3QoXgImjScUQ5EEdP0sI4zVwuTfng7H1isacArsIAgsLitjLC4Kvfh62
+         EvLyhGdodvgYldzcjVDix8F1GeFYreKnubt9jYELahoCGBJN+VyTNyLndfAHSAeVGQJN
+         fMtqUKa4CMWy1aEUjd1bzxzgGaRUnND6XJjKr8OfLeD/tWq8LY+0py6DECQJ9HEJRFeS
+         /5zxpYcG1brf6HG48g4hPivxQoeFn2CpF8Dive3w06NERxuq3N65RjBiqwoeukBR7jWm
+         1i4XYrAnUEJYmh0FKCSk+4Rrs2kXsfU7h9Z5sXYh/kjW3BDvUu6wvTyNbwqtxOy4C17j
+         NBzA==
+X-Gm-Message-State: AAQBX9f/WJcfJm44Tyt2fRBuROcqn7mdazu9az/ak+wQolLawbiWip2k
+        kTgM4EHVnhgzv3xBJ6fOZnUhbw==
+X-Google-Smtp-Source: AKy350Yew0GXPvS8KCRlzsw4CGrZLmLXYTX50Vz2INKAr0R16PRplJOTqMjtA/u6fHFCax0UfX2dZg==
+X-Received: by 2002:a5d:6b4b:0:b0:2dc:2431:67d0 with SMTP id x11-20020a5d6b4b000000b002dc243167d0mr21570490wrw.19.1680284354663;
+        Fri, 31 Mar 2023 10:39:14 -0700 (PDT)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id o5-20020adfcf05000000b002c592535839sm2733550wrj.17.2023.03.31.10.39.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 10:39:14 -0700 (PDT)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v2 0/2] Cleanup Mediatek pinctrl device tree binding
+Date:   Fri, 31 Mar 2023 19:38:58 +0200
+Message-Id: <20230327-cleanup-pinctrl-binding-v2-0-f21fbcc3016e@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: cadence: Document reset property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>
-Cc:     Michal Simek <michal.simek@amd.com>,
-        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALIaJ2QC/4WOwQ7CIBAFf8Vwdm0LiujJ/zAegC7tJhUI1Mam6
+ b9LvRuP85I3mYVlTISZXXcLSzhRpuAL8P2O2V77DoHawozXXNSCn8EOqP0rQiRvxzSAId+S70D
+ V8qiVU8ZJxcrb6Ixgkva23/6vWE3yICDZphpDJFs9RyXkqfrh2xQxoaP3N+7+KNxTHkOav61Ts
+ 63/s6YGajDyckLB8eg43oyeBzIJDzY82WNd1w8eBA+SBAEAAA==
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230330180448.269635-1-lars@metafoo.de>
- <6b997dfa-1377-8d2e-ce4f-3f8f7407e6b4@linaro.org>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-In-Reply-To: <6b997dfa-1377-8d2e-ce4f-3f8f7407e6b4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26861/Fri Mar 31 09:24:12 2023)
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1437; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=abFoXlAdYBElssUUK3ytRFD/kuTvFa6mt+xUmikwoXo=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkJxrBrmACDFTBwfeXO4FOXsae1zXEjlbNcQk2W1Ul
+ J+/qpRGJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZCcawQAKCRArRkmdfjHURReKD/
+ 4tIbrADlmxKAJLhNOlh2lQjWW410UBYdho2DqDP3rdpmw4dfli5sqfB2EQqt7dKtfxga1OL/wVdiIm
+ a5DO1mJ8KPJcM14YKwFB5A1mfLppUjAlgXtl74KYZr//6wuQb+QxUrm01hNEu3EKof5lCEJIGJmeKy
+ YF6dkoCZM9hViBilRM1S9hvocXb8Azw5hbbgwqebPmwxvVAo3G6hlFBbWyTFvnjA9wtVTDm9oliIQV
+ K0futyUqZDzefYlrgGEfyrZaPYhUhEGTA0cprOeBlwkTXaXLNOxyzOePuMCzhMTfbkgIElwaQolgYl
+ P6Vo3e5seGqkUG31TpEL93jA9zgS85CEgevEXLJrLFcpnVOWjrCYS+KukzmWYrv9uQbU2RZznMHCCz
+ CWHBSzj2MjLZNom6WSwzV3nxOmQf+gKzDz2PECGIuGCUnrRbK7bl/Cy5m9SWGF7oyJwYKJdoDUUcJV
+ OY+hFVX2LSWc7ebPHJBRsxb6nzUKbx7sNf/9n6UQRteX4bdhE4WCgw0WgPYMC0a0DgAYGD+JR35nhF
+ /tR/W7LxS+42RejEwb6rfxo2WUHAD/QFENRt10g9oVnpVH4oZzTY1aM1AQGlxxVAtN+One6Uj3XNMj
+ +bME9jPllXttQp/Gdd+EIp5QMFORiHaz7ktomF8vcClqJD/Xho2+LRYjQ6rg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/31/23 02:42, Krzysztof Kozlowski wrote:
-> On 30/03/2023 20:04, Lars-Peter Clausen wrote:
->> The Cadence I2C controller has an external reset that needs to be
->> de-asserted before the I2C controller can be accessed.
->>
->> Document the `resets` devicetree property that can be used to describe how
->> the reset signal is connected.
-> You could add it also to the example to have complete picture (and
-> validate your change).
->
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-When I resend with it added to the example, do you want me to keep or 
-drop the acked-by?
+Deprecate properties which shall not exist, leaked upstream from downstream
+kernels, there's no reason to use them. Here the deprecated properties and
+the generic properties which will replace them:
+
+- mediatek,drive-strength-adv => drive-strength-microamp
+- mediatek,pull-up-adv        => bias-pull-up
+- mediatek,pull-down-adv      => bias-pull-down
+
+Thanks AngeloGioacchino Del Regno to reported it. [1]
+
+[1]: https://lore.kernel.org/all/6e08d78f-ef4c-b228-f7d2-d63767ea87b8@collabora.com/
+
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Changes in v2:
+- Change the bias-pull enum values to match with other Mediatek SoC.
+  That allows to use MTK generic define and be compliant with the MTK
+  common pinctrl driver.
+- Link to v1: https://lore.kernel.org/r/20230327-cleanup-pinctrl-binding-v1-0-b695e32e4f2e@baylibre.com
+
+---
+Alexandre Mergnat (2):
+      dt-bindings: pinctrl: mediatek: deprecate custom drive strength property
+      dt-bindings: pinctrl: mediatek: deprecate custom bias pull properties for mt8365
+
+ .../bindings/pinctrl/mediatek,mt8183-pinctrl.yaml  |  8 +++--
+ .../bindings/pinctrl/mediatek,mt8365-pinctrl.yaml  | 38 +++++++++++++++++++---
+ 2 files changed, 39 insertions(+), 7 deletions(-)
+---
+base-commit: fe15c26ee26efa11741a7b632e9f23b01aca4cc6
+change-id: 20230327-cleanup-pinctrl-binding-8064a8f8bf68
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
+
