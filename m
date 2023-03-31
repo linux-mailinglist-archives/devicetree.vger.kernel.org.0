@@ -2,91 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B20F56D1B8B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:12:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 657186D1BC7
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbjCaJMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35550 "EHLO
+        id S230448AbjCaJQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:16:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232014AbjCaJMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:12:16 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20651E711
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:12:11 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id p34so12471528wms.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:12:11 -0700 (PDT)
+        with ESMTP id S231922AbjCaJOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:14:37 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D162033E
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:13:34 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id bx10so4009683ljb.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:13:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680253930;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=i4thSwDiXLA3gkDJnYvjvujNMO/o2OKEhGcuq2D7Pfg=;
-        b=VMr5dvyNW9RJTXlRTRQD+t+qBWvvOx8N43jhhw/m+GZ7M800L+4y2JTClbCQlZHu6g
-         eAbAJmAbJDJMYqD2iHOCGoxncIpDIuEezgsfHbIzJXczP35KPR/Q5+ewjH4yNt2iAe/W
-         XLWadnQUfhIg24Hr7vhMUdXknyj8kakRquJTKxVte7LSVqfaZ7qD2svT10jaBMeYPR7z
-         RLRlYlcCS0XMOvYzRuPFNqqqci/OTNCN5r+9GaMWKHQSoU5S80wpid5zanBgt3as+8io
-         q3guKA+Gaw4rBZ/mbCNWfJqU/S/zD5+0zGT9bQD091DMTtWc7hQw03BSfks6UrPcCkMo
-         G4hA==
+        d=linaro.org; s=google; t=1680254012;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z3/dMT5UuvB37dzopTiUDnIZpm0CxSZnHqspthqK8JA=;
+        b=WC+wOwWsj7fRR25XoXXAcsaXtlPkMrYEP9HQrUhPItIXCsAKujQ+jhC85kkmJIwDj4
+         YuwlzhEuZhRYxemC60ky7ScWF4O/0qJmdVjzbfN+zR/Tj+uVK4dK/p5StJKLwz6NUgOC
+         rktLz37FXgVzoYaYnahi7FBL3lwIX6IvHYuX2E33MpJOPCAKZBdiUpLu29nH/0V9nq4y
+         gJZr3UqhKk7ysi4Obz7k3FRlv9oevLU2nWqRM1k1azIm/mDbsec+FSqwTmhmlLE72fwh
+         6xmHBUJ7YA3whLJQkeyj/4ta6daNjC9oWqLJ32gY6Z7FM4o3WL1J3cmQKnl3p8ocnOpf
+         18AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680253930;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i4thSwDiXLA3gkDJnYvjvujNMO/o2OKEhGcuq2D7Pfg=;
-        b=hJfkIc8etXwN2SNO1qZyqxJd3VJTdhs2WSXT0JlQEjWBYAU/G1xxuFK/pvU0E59wf0
-         0CorzYKktX61kyKH1pp4o5K4XbMP81xs53JkPU/6Mcy6Ex8QU8cleJ3dL90y1VlqvKLv
-         3gaIPGX5Eq33HE7EWE+uFFx1T/VSDsItrMXmHmhEx4jjVEwxqsmTdE4JHJMNKBZSsJ8G
-         RbQAoNOWMkkR41xa5ngjlP/RSnCvkEyuGNtLsDp5cvW5QXehnNgeZx9uTxITXM//66+L
-         TM1iSv4oPJpJEzkmfRTcX/7t+BAt9PD8UkCF0BVIXuhAuVD0Ye8IZCc9glwl4vhkh79d
-         HT5g==
-X-Gm-Message-State: AO0yUKVwMmPRUoXvWkEOQGH8mxRsOnypMYnYJhITGRRgWYeyE92BHggH
-        4/T43icYIIzDvWo0d15f+YOinw==
-X-Google-Smtp-Source: AK7set89SbsMZBaWTSeTQsZzf6AN0otVzApRZKiZpDJhgHdd/+5eZull8XGw1I0Q7dbrbrhLprOKqg==
-X-Received: by 2002:a05:600c:2312:b0:3ee:b3bf:5f7c with SMTP id 18-20020a05600c231200b003eeb3bf5f7cmr20162839wmo.23.1680253929961;
-        Fri, 31 Mar 2023 02:12:09 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0? ([2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c4f8200b003ef5e5f93f5sm9141705wmq.19.2023.03.31.02.12.08
+        d=1e100.net; s=20210112; t=1680254012;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z3/dMT5UuvB37dzopTiUDnIZpm0CxSZnHqspthqK8JA=;
+        b=NSgOAopU20FJ336DIQkXXU0sYNyF9ojXqH+5DWYWWcw7AS/eXRVGTuqlSuAjTEsG+a
+         ZR/V29dLgT7eZRdpwiI8U0uyFx9VSdKf8tuymWNm6UYRoH8hiynaLkyzkmw4cgizlz0J
+         xx7cIAy86ADd/qYrJIFt6pGRS+XGUCj6HWNurJvJzXOWVQVLkkYuJct7t2D+rQP/Vz1k
+         aFg3aoNnZVDMmTZjGAuhDD+XCBX/dUuXpQV6NSWTePANgEBqtoXTejuslZpbeKS+X2HI
+         3CW33yWnQ4EJpP5SK1ER1UawY05bDPApUhnNFjzfJHOvBDk91coDHClstdN+irRUYqi2
+         TpBQ==
+X-Gm-Message-State: AAQBX9c2AhrNXPJCnLlGLu6+6EFihkfqKRA24PvoTq5s7vt0QRXBBDEL
+        y8z5MJPUsyvsMn0iLzFXdLQqKg==
+X-Google-Smtp-Source: AKy350aHqb4lGEq9xuL+CqwXWf+p1B4k/YE/fjbuw1FXgrTSK9GNORIG36d7rS2+r93bTRU954vAmA==
+X-Received: by 2002:a2e:9e98:0:b0:29c:d0ef:481c with SMTP id f24-20020a2e9e98000000b0029cd0ef481cmr7710603ljk.28.1680254012225;
+        Fri, 31 Mar 2023 02:13:32 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id j18-20020a2e8512000000b00297dad1a2b0sm267241lji.103.2023.03.31.02.13.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 02:12:09 -0700 (PDT)
-Message-ID: <fc931920-67cd-e776-8f4d-444ade4afcef@linaro.org>
-Date:   Fri, 31 Mar 2023 11:12:08 +0200
+        Fri, 31 Mar 2023 02:13:31 -0700 (PDT)
+Message-ID: <6d39e9c3-fb6a-4b2a-9889-8fe8d86716d5@linaro.org>
+Date:   Fri, 31 Mar 2023 11:13:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v7 10/12] drm/bridge: Implement enable_next_first to alter
- bridge init order
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v5 2/5] mfd: Add support for the Lantiq PEF2256 framer
 Content-Language: en-US
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Herve Codina <herve.codina@bootlin.com>, Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Marek Vasut <marex@denx.de>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-References: <20230329131929.1328612-1-jagan@amarulasolutions.com>
- <CAPY8ntCJP53uiGNQHUZqma08Vsxfwm7KvAkgMzK=hn4AxJLS3A@mail.gmail.com>
- <20230329164638.v43la4l7rxut6hk6@penduick>
- <CAMty3ZCsn6OR1-TvqFXP48iamG-k5sPU1_CH2fNLBQP3Ofb0QA@mail.gmail.com>
- <CAPY8ntCpmKPzPVjRWS7Pf1Fat9V_JqGD4BaMo8P8_o+74DeDiQ@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CAPY8ntCpmKPzPVjRWS7Pf1Fat9V_JqGD4BaMo8P8_o+74DeDiQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20230328092645.634375-1-herve.codina@bootlin.com>
+ <20230328092645.634375-3-herve.codina@bootlin.com>
+ <20230330160510.GB489249@google.com> <20230331094208.41ab4420@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230331094208.41ab4420@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -97,104 +83,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 12:01, Dave Stevenson wrote:
-> Hi Jagan
+On 31/03/2023 09:42, Herve Codina wrote:
+> Hi Lee,
 > 
-> On Thu, 30 Mar 2023 at 07:56, Jagan Teki <jagan@amarulasolutions.com> wrote:
->>
->> On Wed, Mar 29, 2023 at 10:16 PM Maxime Ripard <maxime@cerno.tech> wrote:
->>>
->>> On Wed, Mar 29, 2023 at 05:28:28PM +0100, Dave Stevenson wrote:
->>>> On Wed, 29 Mar 2023 at 14:19, Jagan Teki <jagan@amarulasolutions.com> wrote:
->>>>>
->>>>> DSI sink devices typically send the MIPI-DCS commands to the DSI host
->>>>> via general MIPI_DSI_DCS read and write API.
->>>>>
->>>>> The classical DSI sequence mentioned that the DSI host receives MIPI-DCS
->>>>> commands from the DSI sink first in order to switch HS mode properly.
->>>>> Once the DSI host switches to HS mode any MIPI-DCS commands from the
->>>>> DSI sink are unfunctional.
->>>>
->>>> That statement contradicts the spec.
->>>> The DSI spec section 8.11.1 Transmission Packet Sequences says that
->>>> during any BLLP (Blanking or Low Power) period the host can do any of:
->>>> - remain in LP-11
->>>> - transmit one or more non-video packets from host to peripheral in escape mode
->>>> - transmit one or more non-video packets from host to peripheral in
->>>> using HS mode
->>>> - receive one or more packets from peripheral to host using escape mode
->>>> - transmit data on a different virtual channel.
->>>>
->>>> Indeed if the sink doesn't set MIPI_DSI_MODE_LPM /
->>>> MIPI_DSI_MSG_USE_LPM, then the expectation is that any data transfer
->>>> will be in HS mode.
->>>>
->>>> That makes me confused as to the need for this patch.
->>>
->>> Yeah, and it looks like that would break the expectation that, in
->>> enable, a bridge can expect its controller to be in HS mode.
->>>
->>> I think that was Jagan is trying to do is to work around an issue with
->>> the Allwinner DSI driver:
->>> https://elixir.bootlin.com/linux/v6.3-rc4/source/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c#L775
->>
->> Correct and I can see it seems to be a classic DSI sequence observed
->> in dw-mipi-dsi as well - based on Neil's comments.
->> https://lore.kernel.org/all/9aa3d19d-4378-aaf3-6857-c40be5d252c7@baylibre.com/
+> On Thu, 30 Mar 2023 17:05:10 +0100
+> Lee Jones <lee@kernel.org> wrote:
 > 
-> Neil's comments are from 2021, and his response would appear to be
-> with regard the PHY power up sequence issues that
-> pre_enable_prev_first should solve. The DSI host pre_enable can now be
-> called before the sink's pre_enable, therefore allowing the PHY to be
-> configured in pre_enable. Hacking the PHY init into mode_set is
-> therefore not required.
+>> On Tue, 28 Mar 2023, Herve Codina wrote:
+>>
+>>> The Lantiq PEF2256 is a framer and line interface component designed to
+>>> fulfill all required interfacing between an analog E1/T1/J1 line and the
+>>> digital PCM system highway/H.100 bus.  
+>>
+>> My goodness!
+>>
+>> It's been a long time since I've seen anything quite like this.
+> 
+> Yes, old things but working on recent kernel.
+> 
+>>
+>> My suggestion to you:
+>>
+>> * Split this up into components that fit functional subsystems
+> 
+> It is done. The audio part is present in ASoC subsystem (path 5 in this
+> series). pinctrl function is implemented in this driver and, as I don't
+> want to share registers, I would prefer to keep this function inside this
+> driver.
 
-Yes this part is not solved, but is seems the assumption the DSI controller
-can switch to HS to LS & then to HS back after a command while in video mode
-isn't true in the Allwinner's case. As I understood it's one of the problems.
+The amount of defines and huge functions like pef2256_setup_e1()
+contradict it.
 
-We're hitting a limit of the DSI controller model in Linux where we cannot
-express all the DSI capabilities (Video mode, Command mode, dynamic framerate
-switching, DSC, ...) since from the Panel or Bridge PoV we're blind and
-we do not know what are the features supported by the DSI controller and
-we lack knowledge of any operation mode we must try to achieve.
+Even the pef2256_setup_e1() really does not follow Linux coding style -
+you know the size requirement, right?
+
+pef2256_get_groups_count, struct pinmux_ops and others - this is
+pinctrl, not MFD! They cannot be in MFD driver.
 
 > 
-> I don't see any restriction in dw-mipi-dsi over when transfer can be
-> called (as long as it is between pre_enable and post_disable), and it
-> supports MIPI_DSI_MSG_USE_LPM for requesting the command be sent in
-> either LP or HS mode.
+> Also, I sent a RFC related to HDLC and PHY. In this RFC, the pef2256 is
+> considered as a PHY and handled in the PHY subsystem.
+>   https://lore.kernel.org/linux-kernel/20230323103154.264546-1-herve.codina@bootlin.com/
 > 
->> In fact, I did follow and initialize the command-mode mode_set which
->> set low-speed DCS and switch back to video-mode @enable and switch to
->> HS but could see the same issue as the host cannot accept DCS as
->> before (I might implement improper sequence, but not sure due to lack
->> of documentation). But this sequence has issues with calling
->> post_disable twice even on dw-mipi-dsi.
+>> * Run checkpatch.pl
 > 
-> Calling up/down the bridge chain from within other bridge elements is
-> going to have issues and shouldn't be necessary.
+> I did.
+
+There are tons of weird indentation,e.g.:
++#define     PEF2256_2X_PC_XPC_XLT	(0x8 << 0)
+        ^^^^ there is only one space after #define
+
+... and other style issues:
+
+CHECK: Please don't use multiple blank lines
+CHECK: spaces preferred around that '+' (ctx:VxV)
+CHECK: Alignment should match open parenthesis
+CHECK: Macro argument reuse '_groups' - possible side-effects?
+CHECK: usleep_range is preferred over udelay; see
+Documentation/timers/timers-howto.rst
+CHECK: spaces preferred around that '/' (ctx:VxV)
+
+
 > 
-> The comment in dw-mipi-dsi post_disable[1]
-> * TODO Only way found to call panel-bridge post_disable &
-> * panel unprepare before the dsi "final" disable...
-> * This needs to be fixed in the drm_bridge framework and the API
-> * needs to be updated to manage our own call chains...
+>> * Remove all of the debug prints
 > 
-> It has now been fixed up with pre_enable_prev_first.
+> I can do that in the next iteration if really needed.
 > 
-> I seem to recall seeing a patchset for one of the DSI hosts (other
-> than vc4) that was moving the init from mode_set to pre_enable - I
-> think it is probably [2] for msm.
+>> * Move all of the defines out to a header file
 > 
-> Cheers
->    Dave
+> These defines are related to registers. As I don't want to share these
+> registers, is it really necessary to use a header file for them ?
 > 
-> [1] https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c#L862-L867
-> [2] https://github.com/torvalds/linux/commit/ec7981e6c614254937b37ce0af9eac09901c05c5
+>> * Be more verbose in your documentation / comments
 > 
->> May be Neill, can comment here?
->>
->> Thanks,
->> Jagan.
+> I can improve the API documentation present in include/mfd/pef2256.h.
+> Do you thing that is necessary ? Only a few devices will use this API.
+> 
+Krzysztof
 
