@@ -2,92 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 501876D2098
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F03E36D209C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:42:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232427AbjCaMlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 08:41:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59996 "EHLO
+        id S230329AbjCaMmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 08:42:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232446AbjCaMlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:41:25 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958962033A
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:41:01 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-53d277c1834so412206527b3.10
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:41:01 -0700 (PDT)
+        with ESMTP id S232516AbjCaMmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:42:07 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A801B1D2E7;
+        Fri, 31 Mar 2023 05:41:39 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y15so28685035lfa.7;
+        Fri, 31 Mar 2023 05:41:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680266461;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MRZsZGRSBUttBDdfhkXu+iVZ6M0OXbmk7WZu3FuQ8Jg=;
-        b=bHKkubKvpHVbMRxx1j06pm8nus5PdJq7l9RkcGq5ExEKZR2/osMq1YWgwQkIL7fmLJ
-         kW26fA9F5tE+XNhM+3jMnlOpQ6srJDId+r356SPXqg8V/i/VdF0o1U1BtiJIqyt1nHYM
-         yOqUFFIl3GrWuDrpMHpLAtnTl1AYwkFAd1roVvIiTVzsbcrj6TDqpvmmeT19fCx4BxSG
-         iXbP5u5VVhqd6lajF32hLW6wgK832F0brgd+B0fgfM5k7Vu2O5DTAJx7QcQ2vS6FeSB2
-         MlJcD2OcrhueOEOgRzI+GbeQmlZ1zMCGdB2SiLD3/9u0iHFfvh/JNniF89XFiqsW8Llz
-         5c3g==
+        d=gmail.com; s=20210112; t=1680266498;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5RXfhDfFvjtPIk75+oZKo+T1KCJFl4bnE8j/avAuUpQ=;
+        b=Xbo6jv7LvpFVqc34eeViCWn/o2fTX/pXlB7+jEZepdeVHQV+g3VEhU+Y5Vg9C/EUen
+         03MG9TqWi+Axb+9PXQwTOuBS15dWefhs9viJtVE2Q+rc4n3YxoDHQ1+Z/AL1RFj/NB+m
+         QPeG+9QMSEdI1mgbo4sEJf8nRGAFhkbphWkBPAPgJfVmxKndGmTZL8GJR48aNXL2NTTY
+         CweZpGl6rji3SLHnMtiJHKC0wTv/yghJbY0hbwOiqidTqFvw3whKKrZ0tKRxLIjAp3AA
+         rcKi4Xw+WFMZoyRLOHWO/4e3miq337qtGZCBdZa5vAQWxqC4uSHexw0dSaeUEIGXSS04
+         uTwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680266461;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MRZsZGRSBUttBDdfhkXu+iVZ6M0OXbmk7WZu3FuQ8Jg=;
-        b=mxmQZvk6aFtdcifpGnw6AheqFiCY8broVeNTa5rnc5T02eOtC/L0SKfSB4w98YIAR4
-         jOIvwITFSHjWtLPsdAv0dOusxmd4I5t7Ai9PVh2/QRs44Q2y7c+P63Gg2YPw3yCxbOCF
-         mHMrWTUktNHobr9KRGnrjcV475T7G6u1RuYI/NeU0BOTgCm6E/dsVJSAL6KXQ4sNTtlo
-         9KNEE7fGNEK2eXCjHHc0TwPRnky8+hk36XvsG+YjZS/L5rM65lsWgqnm3hRcqPddqwmm
-         TI66N7hdi/usZWjlUljV15AqLCwK3HkJjcOr4CCFPwRyOpvZ753HlipUbl/PAWenR/8x
-         cMsw==
-X-Gm-Message-State: AAQBX9cVA9H82d192aROv5By8YCzZlazdOv7C8zi4RDNve2/rypWfAYa
-        1h5VD3uarZLxW4rgpwH+igooyLzpmiEg+gQvJM+lGQ==
-X-Google-Smtp-Source: AKy350YEjxPDjbwYwsSFrCU0uQJYztKPQjzwuEM1U/PujPKxlNAw3tq/F6qGz4Sr87IntJwwOldydyNsV49f1QjtAPQ=
-X-Received: by 2002:a81:d007:0:b0:546:81f:a89e with SMTP id
- v7-20020a81d007000000b00546081fa89emr7575796ywi.9.1680266460814; Fri, 31 Mar
- 2023 05:41:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230330212225.10214-1-olek2@wp.pl>
-In-Reply-To: <20230330212225.10214-1-olek2@wp.pl>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 31 Mar 2023 14:40:49 +0200
-Message-ID: <CACRpkdZo4VKixBM9XLsiUVp+wcqQ-irY9DjNCSNeh4CfUYVWwg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pinctrl: xway: drop the deprecated compatible strings
-To:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        d=1e100.net; s=20210112; t=1680266498;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5RXfhDfFvjtPIk75+oZKo+T1KCJFl4bnE8j/avAuUpQ=;
+        b=wHXSCa9s9pBwa1QGlkApnXFt4eDD+2NqPvmtx6KPbcQG9CiLqFj0JSVNNrnODWM5gt
+         7gYa0dC/9RNrbe92NMfdYXfhG+D6mpIQ1KS8pcfm/4CS4y7bXILF4akHPvteld4dXtDC
+         ntENkB4U0gBXbGzLIj0CuLmrmZCH3TGVtlY/AMbQSv8JR33A0RR4qIsCu5oTXacatlXw
+         QtVL2RWjvu4p5SI9DVCxf0SL03wuidnA9vY37HkFQhUAfVK1VQLV3cXB8uU04EbrKFS3
+         2d2XlbmHb1A+qi98hXDIMqaa0WkFiDLBPntiOuPwbs3ZBOR/1Q7AyUJx+s3SAXjmd9ta
+         chKA==
+X-Gm-Message-State: AAQBX9fJ+1ApXoY5lKwoKSzaq0crO/pQav9QKb+YIKni03A3W726QuFw
+        fm94FwK+aWFP/e5S/9N9oPY=
+X-Google-Smtp-Source: AKy350bys6f1/SG8QhrZ0G1WPPhf6AYJ/xGvdKMyaPKGQPWtOh2vvdN8qoVHZ0W2v8y/0XlIpKZXBA==
+X-Received: by 2002:ac2:5239:0:b0:4dd:afad:8afe with SMTP id i25-20020ac25239000000b004ddafad8afemr7289258lfl.27.1680266497898;
+        Fri, 31 Mar 2023 05:41:37 -0700 (PDT)
+Received: from dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id q14-20020ac24a6e000000b004e92c0ed7a0sm365340lfp.100.2023.03.31.05.41.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 05:41:37 -0700 (PDT)
+Date:   Fri, 31 Mar 2023 15:41:33 +0300
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: [PATCH v7 3/5] dt-bindings: iio: light: Support ROHM BU27034
+Message-ID: <66a222574176ee2adbfccf6d9a591c04571a18d9.1680263956.git.mazziesaccount@gmail.com>
+References: <cover.1680263956.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9UB77LsSsgO7nXYn"
+Content-Disposition: inline
+In-Reply-To: <cover.1680263956.git.mazziesaccount@gmail.com>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 11:22=E2=80=AFPM Aleksander Jan Bajkowski <olek2@wp=
-.pl> wrote:
 
-> This code are marked as deprecated since kernel 4.5[1]. Downstream OpenWR=
-T
-> and upstream switched to the new string compatible 7 years ago. The old
-> compatible strings can safely be dropped.
->
-> [1] commit be14811c03cf ("pinctrl/lantiq: introduce new dedicated devicet=
-ree bindings")
->
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+--9UB77LsSsgO7nXYn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks! Patches applied.
+ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
+capable of detecting a very wide range of illuminance. Typical application
+is adjusting LCD and backlight power of TVs and mobile phones.
 
-Would you be interested in listing yourself as maintainer for the XWAY
-driver in the MAINTAINERS file?
+Add dt-bindings.
 
-If you (or someone else) has spare cycles I would be delighted if you could
-look into converting the bindings into YAML.
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Yours,
-Linus Walleij
+---
+v2 =3D>
+- No changes
+
+Changes since RFCv1 =3D> v2
+- Fix binding file name and id by using comma instead of a hyphen to
+  separate the vendor and part names.
+---
+ .../bindings/iio/light/rohm,bu27034.yaml      | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2703=
+4.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml =
+b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+new file mode 100644
+index 000000000000..30a109a1bf3b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ROHM BU27034 ambient light sensor
++
++maintainers:
++  - Matti Vaittinen <mazziesaccount@gmail.com>
++
++description: |
++  ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diod=
+es
++  capable of detecting a very wide range of illuminance. Typical applicati=
+on
++  is adjusting LCD and backlight power of TVs and mobile phones.
++  https://fscdn.rohm.com/en/products/databook/datasheet/ic/sensor/light/bu=
+27034nuc-e.pdf
++
++properties:
++  compatible:
++    const: rohm,bu27034
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++
++      light-sensor@38 {
++        compatible =3D "rohm,bu27034";
++        reg =3D <0x38>;
++        vdd-supply =3D <&vdd>;
++      };
++    };
++
++...
+--=20
+2.39.2
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--9UB77LsSsgO7nXYn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmQm1P0ACgkQeFA3/03a
+ocU0PQgAppKU2NC+nRczBknSeeziuoXajOe7+oA4vHPZO20MGc9MZ7+DQ6FXY/fa
+1vxDfbMl3hUj6SjLQn3CT92TpbLtWKHaNaQREFnLmT0MXoFZZhjt6zEK1JFCy+3l
+RfcrNsUu4E6NmI83cDCZ30zMRmeb511vxyQoyYca3jixBmAOgqyBwCb2/mcItM51
+GFPTGtjMhcWVGnRhF0SHcOTrmk891QgN4wK/Es9wmvVjk+OsUW3MxdpK1qYdDJor
+jzGKFhEzRv8ELl4Gw5Tw27hK/8r2sDnKpWOKxjNYEl2cskgbNT7inF69GzIWA2p8
+u5vuXN/mHBbVhYoSDUGcyHkK+9OfZw==
+=9QDI
+-----END PGP SIGNATURE-----
+
+--9UB77LsSsgO7nXYn--
