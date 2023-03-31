@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7382E6D1C5C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:30:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33DFC6D1C6C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbjCaJa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
+        id S232068AbjCaJcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:32:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231698AbjCaJam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:30:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 465AF1B7F4;
-        Fri, 31 Mar 2023 02:30:19 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 50BE66603130;
-        Fri, 31 Mar 2023 10:29:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680254975;
-        bh=lMAebDq17jh7DdNz0cBlqr1fwRmhsP03/MJGfkU1R+8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=EPBOOuTWx/PQ4Jo1UY5Tr8aSNr+DKcHxRpQT9tov4AyHcg8SvcD7zt/LzzgIoDRtB
-         w51cc+rm15Z4WQmg1oZ5iDhLV6/JQf7Um3d7mAmyVkIakqT4ucQLvxqHjnqLIE3h2d
-         XFJJA6hV5ldZ4z2dnTzMcsEglkbGJQGnAX4SO/dSguxe6zagccaIPi6AQl0VQGCnPu
-         3Io9CUJdL140asZCXYIW1mT8jWKx0wxWMO9bRTtHN4qNomLqqcEBHHfHx4KiQuXJiC
-         NC3GzF1JzNdu9/J+B/fbWsgpSad5gfrdDFxvyl1fzvpC1wyWs0OpxEDIui4H87FOKZ
-         be8yyv1mbztbQ==
-Date:   Fri, 31 Mar 2023 11:29:32 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, steven.price@arm.com,
-        robh+dt@kernel.org, alyssa.rosenzweig@collabora.com,
-        wenst@chromium.org, kernel@collabora.com
-Subject: Re: [PATCH v1 RESEND 2/2] drm/panfrost: Add basic support for speed
- binning
-Message-ID: <20230331112932.73b39d5a@collabora.com>
-In-Reply-To: <fb19c82b-f2bf-7f22-ba5c-e1a1c98f987f@collabora.com>
-References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
-        <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
-        <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
-        <20230331104914.708b194e@collabora.com>
-        <fb19c82b-f2bf-7f22-ba5c-e1a1c98f987f@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+        with ESMTP id S232131AbjCaJc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:32:26 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09621A457;
+        Fri, 31 Mar 2023 02:32:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680255126; x=1711791126;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ldv0PlEDUj+2ShgJopWl7OSEHST+AWdP/3Hb4eiTCEo=;
+  b=D8RI23fo+QQNdNXI07gzqqevkau/zSNGyIxBCftPkRNCH2ya8haHv4jW
+   QqCdCkE2P8C0iyBUmYhoBTekdeSLioWMLAu4OD9N524t76ZnrViJQStQU
+   KKOznVvFIdlKFLyUyHpDAvsSez0wp8Q/feMvQ9zFoFa2+lStuprqtcq4D
+   0K3afx2hMzC/8anKeBKD02a4rVYLXkbzohxs0hEbgzKABADOmkSCO4UXn
+   ceUTt5YUUorXt3ZjE6HvkkjPYb9DLu88q9PWIPLGgKIrOCzRNV+jvjAtR
+   cgWIYX7AlySgjRqBQEqjt3Qn3E2aJrQOXZRxuQr5dprKXgzK2PHcyoc7w
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="340132660"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; 
+   d="scan'208";a="340132660"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 02:31:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="635228629"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; 
+   d="scan'208";a="635228629"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2023 02:31:23 -0700
+Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
+        by kekkonen.fi.intel.com (Postfix) with ESMTP id B0D6F1218A2;
+        Fri, 31 Mar 2023 12:31:20 +0300 (EEST)
+Received: from sailus by punajuuri.localdomain with local (Exim 4.94.2)
+        (envelope-from <sakari.ailus@linux.intel.com>)
+        id 1piB5D-00DjN2-Er; Fri, 31 Mar 2023 12:30:07 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Take maintainership of ov8856
+Date:   Fri, 31 Mar 2023 12:29:55 +0300
+Message-Id: <20230331092957.3272621-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,41 +62,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 Mar 2023 10:57:46 +0200
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-wrote:
+Hi folks,
 
-> Il 31/03/23 10:49, Boris Brezillon ha scritto:
-> > On Fri, 31 Mar 2023 10:11:07 +0200
-> > AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > wrote:
-> >   
-> >> Il 23/03/23 10:08, AngeloGioacchino Del Regno ha scritto:  
-> >>> Some SoCs implementing ARM Mali GPUs are subject to speed binning:
-> >>> this means that some versions of the same SoC model may need to be
-> >>> limited to a slower frequency compared to the other:
-> >>> this is being addressed by reading nvmem (usually, an eFuse array)
-> >>> containing a number that identifies the speed binning of the chip,
-> >>> which is usually related to silicon quality.
-> >>>
-> >>> To address such situation, add basic support for reading the
-> >>> speed-bin through nvmem, as to make it possible to specify the
-> >>> supported hardware in the OPP table for GPUs.
-> >>> This commit also keeps compatibility with any platform that does
-> >>> not specify (and does not even support) speed-binning.
-> >>>
-> >>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
-> >>
-> >> Hello maintainers,
-> >> I've seen that this got archived in the dri-devel patchwork; because of that and
-> >> only that, I'm sending this ping to get this patch reviewed.  
-> > 
-> > Looks good to me. If you can get a DT maintainer to review the binding
-> > (Rob?), I'd be happy to queue the series to drm-misc-next.
-> >   
-> 
-> The binding was acked by Krzysztof already... so, just to be sure:
-> 
-> Krzysztof, can the binding [1] get picked?
+Dongchun's e-mail address no long responds:
 
-Oops, sorry, I didn't realize Krzysztof is a DT maintainer.
+The following message to <dongchun.zhu@mediatek.com> was undeliverable.         
+The reason for the problem:                                                     
+5.1.0 - Unknown address error 550-'Relaying mail to dongchun.zhu@mediatek.com is not allowed'                                                                    
+
+The driver was originally written by an Intel developer(s) (who later
+disappeared), in the meantime DT bindings and DT support for the driver
+were added by Dongchun.
+
+Sakari Ailus (2):
+  MAINTAINERS: Assume ov8856 driver maintainership
+  media: dt-bindings: ov8856: Assign maintainership to myself
+
+ Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 2 +-
+ MAINTAINERS                                             | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.30.2
+
