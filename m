@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35BA66D202F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ECCE6D2038
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232319AbjCaMZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 08:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
+        id S232395AbjCaM0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 08:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232367AbjCaMZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:25:49 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20EE51F7A9
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:25:27 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id s13so12763261wmr.4
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:25:26 -0700 (PDT)
+        with ESMTP id S232381AbjCaM0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:26:37 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA1B1A474
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:26:36 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id i6so27189858ybu.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 05:26:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680265525;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8HYghAo66yMblfTK3o0c5DfZlVRc0aKeUwrWVglJyP4=;
-        b=aN/oqCFS/Lo6aMBW9sPPiJCV3+qFR/v3dGBRHEgZhgpqNgzgR9BRznyalMEBolRcz6
-         s7KC/bs57w64iLqaEv1iwT5QtVIbyyDol3EdbJS5qZW5ckbETu5SDT9oJdon9loXlTsP
-         Yvyz+Vs+BD2G23MxER6an0MLDH9PkRjaPlsjawF48xEHx46BKuULWhdzqVlS6eLERNO+
-         iDQ/pnX46OUmx26b5SDMt660BXDMU1x7z/350kU1bavIxS1NYohAORW1ob6N9OfhnUfm
-         emDpO6OoGW3isNxDe2s8NTv9hjnGzXWDJkssgBtvv99Yq9Phlzm/9t7XOeSmSXIGMhqr
-         P0sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680265525;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1680265595;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8HYghAo66yMblfTK3o0c5DfZlVRc0aKeUwrWVglJyP4=;
-        b=d+446IAdHwka2Gwas6hO1JwpkOD5EdhVArfZiUKi5IWq24LSc30/cGE4dOTA/lyxEx
-         vCZZ8rbDiXN4d4Mk+AuZ9PjPfD9kczLIFjezqGsTbuEEJDQwEZM/4tr7QkYZQbKJS93K
-         5SXtLv9bm6roXV2N9+8CO7/yxEq/1QisC5IQRBu1+nRbreKyV21DpUw/uXwnBLHQ/8U0
-         ZfnhYMOpRzHEUOqqX8O3Nkt5gDps1q8a09EuOB/YhouX3LoQwR+IaSfpIBsJBOEJUElO
-         yUzmNrprHBavbm9aQF+o73i4pBh3JW8ROUFtpxMIIfnPD9ZPyDXLP7bnS25XVWpp4nyx
-         IM4Q==
-X-Gm-Message-State: AO0yUKX/2eQ88oSz3AAwmKKCNe2Htilms6whK+bt7l1TAmD741sViV+y
-        kgYOhyXQIWXyTNHfDgsylNQD9w==
-X-Google-Smtp-Source: AK7set95AU6PXV/8AzOCjcliGQVfX4hlG+ooUZAbxjznOxWDJQvQIAVmvxrZbwoLr30NuEbkDSgSQA==
-X-Received: by 2002:a7b:c409:0:b0:3ed:2a91:3bc9 with SMTP id k9-20020a7bc409000000b003ed2a913bc9mr21152686wmi.15.1680265525488;
-        Fri, 31 Mar 2023 05:25:25 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id n13-20020a7bc5cd000000b003ede3e54ed7sm2563895wmk.6.2023.03.31.05.25.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 05:25:25 -0700 (PDT)
-Date:   Fri, 31 Mar 2023 15:25:23 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 1/5] clk: Introduce
- devm_clk_hw_register_gate_parent_data()
-Message-ID: <ZCbRM3uRQUSQitRG@linaro.org>
-References: <20230301163257.49005-1-marex@denx.de>
+        bh=7t9CjXOgWpSz/pLs1pfLzGpzRhlP/Dqfbs5hEbKF6gY=;
+        b=R9pkgLb7mWPyOZ4L56pd/LRhL33whlm4RfOyb6AVCPZWkOdCtX5pB/dGciOyJdNo1F
+         UJ9pcp0won9n97KOfPlybTH/LHSNxMAYInpfBMlZIBO8nqSXv9jmCpJEKUD8FAH0SwBX
+         Ix9VoBozTAXhOjygTOgTTC4TgIvzfv5kJc2ksMQBXrABeeSLHUe4eF7NNJX7kgWLcJVF
+         NzPih5ISz8IsiDdp50m5JLj2HT3Gc/4FCE+UWkniarbN0EHy2Mbspjmh4FVULaEpzEQC
+         WCrA/gP1+1rtJxgSTfjseWFYOLhirRHlUHSmttcSGDveDkeapU1hCtvwWzVs4L4B+SY5
+         X8IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680265595;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7t9CjXOgWpSz/pLs1pfLzGpzRhlP/Dqfbs5hEbKF6gY=;
+        b=WglAYLgWwtr+3SudiBD9PkPVpDU0MJHnlXVUP0cEwf0iZaMm8uUPW2lh4zNOII1DlL
+         YKPNydyBQne40CAtNOqKy3qJKvsxfS6KF0IcVqcNhsHNlEkjKIrhvO8gB0k7ywf3Aky3
+         eW4+D5rToOCnMJ7WQwVic/J8+e/PkafHwNpLwpmYt3uAMExG56ED0u0vOuhvSz3/lATP
+         x4bDLyXSPcbGaTpYmjjLiOxwM26QdQATAYgwjNSBxR6nrvJvySTdd1mqwxdh3bfrC2I7
+         4wx2rmfGXOmz5AqLdzc+VrJBkccOKGZMcA4AEE4v0WCP/jyq+aCmH4jO9kuCBgNeqggK
+         bCrw==
+X-Gm-Message-State: AAQBX9eGYqkQUc7/u7YUFaW8nh0SJCmjaXnQCmzyinqND7use6JFmS1a
+        ZeTYWUPVxRf9AuatTpCe9SpuuPDnXwrkDVLwCCvDFA==
+X-Google-Smtp-Source: AKy350aGmjtep9hI2AVm2TnZACla550tfInyXNn4xaLkBqIuJrOGxBjqFPRSg9J8V84Q1tehJLEqGdguSBByYK2io84=
+X-Received: by 2002:a25:8712:0:b0:b74:3236:2fac with SMTP id
+ a18-20020a258712000000b00b7432362facmr17176959ybl.4.1680265595278; Fri, 31
+ Mar 2023 05:26:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230301163257.49005-1-marex@denx.de>
+References: <20230330100550.2049687-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230330100550.2049687-1-peng.fan@oss.nxp.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 31 Mar 2023 14:26:24 +0200
+Message-ID: <CACRpkdYb6PhGdeUuZvmiUDieZr+tAqO-Ls7+hJiaTgeoPCaAKg@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: gpio: fsl-imx-gpio: update gpio-ranges
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, stefan@agner.ch, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
@@ -87,92 +72,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-03-01 17:32:53, Marek Vasut wrote:
-> Add an API for clock gate that uses parent_data for the parent instead of
-> a string parent_name.
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Thu, Mar 30, 2023 at 12:00=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.c=
+om> wrote:
+
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> And bounds for gpio-ranges to address dtbs_error.
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
+> V2:
+>  Enlarge bounds to 32, since it max supports 32 pins
 
-Applied, thanks!
+Saw this after already ACKing v1...
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-[1/5] clk: Introduce devm_clk_hw_register_gate_parent_data()
-      commit: 27fc5ec673b527dbc2f44787246a39c5ecc01de5
-[2/5] clk: imx: imx8mp: Add audiomix block control
-      commit: 6cd95f7b151cdd7852ed9f212faeea8f98ecba10
-[3/5] dt-bindings: clock: imx8mp: Add audiomix block control
-      commit: 95a0aa7bb10e79cfbe8a1dc4b993d21dd58c253f
-
-
-Best regards,
---
-Abel Vesa <abel.vesa@linaro.org>
-
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V3: New patch
-> V4: - Rebase on next 20230223
-> V5: Add TB from Adam and Alexander
-> V6: Add RB from Fabio
-> V7: Add RB from Peng
-> ---
->  include/linux/clk-provider.h | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-> index 842e72a5348fa..92b7c794c6272 100644
-> --- a/include/linux/clk-provider.h
-> +++ b/include/linux/clk-provider.h
-> @@ -608,6 +608,25 @@ struct clk *clk_register_gate(struct device *dev, const char *name,
->  	__devm_clk_hw_register_gate((dev), NULL, (name), (parent_name), NULL, \
->  			       NULL, (flags), (reg), (bit_idx),		      \
->  			       (clk_gate_flags), (lock))
-> +
-> +/**
-> + * devm_clk_hw_register_gate - register a gate clock with the clock framework
-> + * @dev: device that is registering this clock
-> + * @name: name of this clock
-> + * @parent_data: parent clk data
-> + * @flags: framework-specific flags for this clock
-> + * @reg: register address to control gating of this clock
-> + * @bit_idx: which bit in the register controls gating of this clock
-> + * @clk_gate_flags: gate-specific flags for this clock
-> + * @lock: shared register lock for this clock
-> + */
-> +#define devm_clk_hw_register_gate_parent_data(dev, name, parent_data, flags,  \
-> +					      reg, bit_idx, clk_gate_flags,   \
-> +					      lock)			      \
-> +	__devm_clk_hw_register_gate((dev), NULL, (name), NULL, NULL,	      \
-> +				    (parent_data), (flags), (reg), (bit_idx), \
-> +				    (clk_gate_flags), (lock))
-> +
->  void clk_unregister_gate(struct clk *clk);
->  void clk_hw_unregister_gate(struct clk_hw *hw);
->  int clk_gate_is_enabled(struct clk_hw *hw);
-> -- 
-> 2.39.2
-> 
+Yours,
+Linus Walleij
