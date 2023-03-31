@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 897126D190C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F13706D190A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231391AbjCaHxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 03:53:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57868 "EHLO
+        id S231319AbjCaHxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 03:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbjCaHxM (ORCPT
+        with ESMTP id S231199AbjCaHxM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:53:12 -0400
 Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432211A97C
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 437511B371
         for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 00:52:38 -0700 (PDT)
 Received: from ramsan.of.borg ([84.195.187.55])
         by albert.telenet-ops.be with bizsmtp
-        id evsc290071C8whw06vsc8b; Fri, 31 Mar 2023 09:52:36 +0200
+        id evsc290061C8whw06vsc8a; Fri, 31 Mar 2023 09:52:36 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtp (Exim 4.95)
         (envelope-from <geert@linux-m68k.org>)
-        id 1pi9Y6-00FTC0-I1;
+        id 1pi9Y6-00FTC1-I1;
         Fri, 31 Mar 2023 09:52:36 +0200
 Received: from geert by rox.of.borg with local (Exim 4.95)
         (envelope-from <geert@linux-m68k.org>)
-        id 1pi9Yp-008Ra0-Qw;
+        id 1pi9Yp-008Ra3-Sh;
         Fri, 31 Mar 2023 09:52:35 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 1/3] of: address: Document return value of of_address_to_resource()
-Date:   Fri, 31 Mar 2023 09:52:28 +0200
-Message-Id: <61ffcb5e87511dfa21af169efd04806101c48b8a.1680248888.git.geert+renesas@glider.be>
+Subject: [PATCH 2/3] of: address: Fix documented return value of of_pci_range_to_resource()
+Date:   Fri, 31 Mar 2023 09:52:29 +0200
+Message-Id: <bcdaa9332e9c6dfa27af68d79fda121eac2975dc.1680248888.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1680248888.git.geert+renesas@glider.be>
 References: <cover.1680248888.git.geert+renesas@glider.be>
@@ -48,27 +48,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing return value documentation to the linuxdoc comment block
-for the of_address_to_resource() function.
+of_pci_range_to_resource() returns a negative instead of a positive
+error code.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/of/address.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/of/address.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 4c5c3b7ab99449f2..6312b10885e85864 100644
+index 6312b10885e85864..bd965d104c83a1ac 100644
 --- a/drivers/of/address.c
 +++ b/drivers/of/address.c
-@@ -882,6 +882,8 @@ static int __of_address_to_resource(struct device_node *dev, int index, int bar_
-  * @index:	Index into the array
-  * @r:		Pointer to resource array
+@@ -216,7 +216,7 @@ EXPORT_SYMBOL_GPL(of_pci_address_to_resource);
+  * @res:	pointer to a valid resource that will be updated to
+  *              reflect the values contained in the range.
   *
+- * Returns EINVAL if the range cannot be converted to resource.
 + * Returns -EINVAL if the range cannot be converted to resource.
-+ *
-  * Note that if your address is a PIO address, the conversion will fail if
-  * the physical address can't be internally converted to an IO token with
-  * pci_address_to_pio(), that is because it's either called too early or it
+  *
+  * Note that if the range is an IO range, the resource will be converted
+  * using pci_address_to_pio() which can fail if it is called too early or
 -- 
 2.34.1
 
