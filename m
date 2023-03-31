@@ -2,187 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 129FD6D19E0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B96696D19F2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjCaIaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:30:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52732 "EHLO
+        id S230475AbjCaIeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbjCaIau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:30:50 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BF34201
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:30:47 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id h11so20948268lfu.8
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:30:47 -0700 (PDT)
+        with ESMTP id S231151AbjCaIer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:34:47 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF16B2129
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:34:45 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id r29so21551972wra.13
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:34:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680251446;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IHrQkYwU28+YD0YgjEi8GJzUf2Kpg4wy4ZfXmfoC9os=;
-        b=qQEa6Arqk2jHRxOPJwePLJZ0lVdGe1lzg6LAd4bLAmraUorwhqpU8J9TDdiaWsQIQy
-         9ohcLaLbBecWH7LEUxZu2Z+aCgKgbyDlEWT87A52MBRV8Zalwj+0ShPvs904im8FpAhw
-         RHXlw2MZut2MXwEQMWGWYrXo8QXxk3AbHT5lMBq+27IZEphLPdFPNRMxYr20xkAwlgGR
-         L+Ea0ylBXOS1+HUyp40AHILesmnvUUyI8HUm201ZaEhb9YVC+OBShr/cAAKtbSVt+c5w
-         WMDsX3czzZuPH411QFRS8LJJHksDXgp3sO9KfFV08AYYJ066qQQk3FgShmlYRyFOu55T
-         I5sA==
+        d=linaro.org; s=google; t=1680251684;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wKmFDwBzmqKaD1W7wuLHbQZgTpJgWQagzC13l4DdTqw=;
+        b=ez7Y8DKhU9m8mENWYc8eLh3UjQj04JKUYpk8LZc0Cgj82lGXgAqKThXbmY29WwZFpa
+         8iJCKddXPmrHzPzXLQ682kWfEp0XTxPc6/GH5fWihQi5njtBGVCzQSKchgik6ZjPxGVs
+         LJ6kI8ENaL4ylviyHLejBooWU1vyhc5pUBM2V6BzXIypiwp1tF0C80ee0BcHRFohBjvs
+         PS3KjixZZ5L0SEv7mF4LYg/aatUGXQwxrjYjN3GBCSHubljOca4C/g7Smtoai9yEYKM2
+         MPuBgGNvstDtP1p1JijRIUW+SkbLI/c5/0B4ugSh+dx2vHET0l1a/8etg25rGkrvIHls
+         EkFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680251446;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IHrQkYwU28+YD0YgjEi8GJzUf2Kpg4wy4ZfXmfoC9os=;
-        b=m+1G4CGbCaZBtKgHK8U+xrIYdZp75g32yiqABIl3zZHHeCevg5Tt0uj04RYQtLA/PN
-         gRs2Q85QVIoeUCA7MylyGxmVqgto63dmnwUHFJ5g5umyhMjovPZqecpxQBQseGXQHaV4
-         SC1kWEGTIaOMACWVBwuzxq3hSCv0HUq1l+ihGMZW8o7pnhAqKIEQ9hepuOjUVsQ5lWFS
-         4WfyG3q2XE8Mzk7T1vsZ3dWY8A4sbyqLLEw823dpOpIXbODwM5dKBpjU/0OGlvVEki8w
-         SQW4u37j7JvBchhwZEm7G/DIaXT0YltAJ3iCiyO8Hn3pykdgDu7VrP5kGBbYdUGD/n3d
-         X68A==
-X-Gm-Message-State: AAQBX9fs5ZEfNt6cQt08Hgf2NN8X/wNwmtpeTniuTj8Nx8IO1h11kp6k
-        TcapDOnFiaLrTNRfnvTDL6CSsg==
-X-Google-Smtp-Source: AKy350ZGTisHUdzdU2gV2A1Zc7DwpzW8O/gAkiAXLJ6ry1oPid6IBkMp3vxlSNHWH7lps6pU2KUhFA==
-X-Received: by 2002:ac2:5a4e:0:b0:4a4:68b9:19f9 with SMTP id r14-20020ac25a4e000000b004a468b919f9mr7614294lfn.33.1680251445961;
-        Fri, 31 Mar 2023 01:30:45 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id l9-20020ac25549000000b004d5a4f63402sm281893lfk.213.2023.03.31.01.30.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:30:45 -0700 (PDT)
-Message-ID: <471dfaaa-8ca5-c4a0-471d-8e4b12ed355b@linaro.org>
-Date:   Fri, 31 Mar 2023 10:30:44 +0200
+        d=1e100.net; s=20210112; t=1680251684;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wKmFDwBzmqKaD1W7wuLHbQZgTpJgWQagzC13l4DdTqw=;
+        b=Zh/W3lJWywuMqdGwHSAiD9QMz4q7aGYsN4wB18GCrfsLulbIyEqfnjZuF6FIguqBHO
+         5RkHz939c6mqFDN7s8s5opuFZsWHEe91Vt+fCrX2TlmoWkTt7ocEFiv0CSo4d25FK3X1
+         XTUKDNNdvYhIvNrhExXujgRxhBLow3FVy3t+4kLZo4DUqGUZf7iOd1svywFideGlORzx
+         0qfqzwpKSeTCOpSQg1gFuW+WKrvc9Qi7ZIqR0b/DRtUC4oVIrWsneirfcXuxaFNGddnM
+         wAJmi5xwEVPsZ6Jr4jYGD0Wsb+ezysVeNywY4hVQaOeA5ewMgg6lvToDNa8lALL/3pUW
+         JJAA==
+X-Gm-Message-State: AAQBX9fldIwGdO2zd+UiwaKA1niCoJlP2wSdwE4a68Fsgxfj/dDxkeJW
+        +HPSu+k9eYB+Yzk62e+ZpOpgCw==
+X-Google-Smtp-Source: AKy350ZffcjiZSGBVm/JblhOGFpZodzn92ieAjz2v27srUZ+zaxOkeHyJPQUex2yEMscYYMGa2NW2w==
+X-Received: by 2002:a5d:58c9:0:b0:2cf:e34c:a229 with SMTP id o9-20020a5d58c9000000b002cfe34ca229mr22477632wrf.8.1680251684116;
+        Fri, 31 Mar 2023 01:34:44 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id e11-20020a5d4e8b000000b002cde626cd96sm1563153wru.65.2023.03.31.01.34.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 01:34:43 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH RFC 00/20] ARM: oxnas support removal
+Date:   Fri, 31 Mar 2023 10:34:38 +0200
+Message-Id: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH] Convert brcm,kona-wdt.txt to brcm,kona-wdt.yaml
-Content-Language: en-US
-To:     Nikita Bondarenko <n2h9z4@gmail.com>, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
-        rjui@broadcom.com, sbranden@broadcom.com
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230330182447.51674-1-n2h9z4@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230330182447.51674-1-n2h9z4@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB6bJmQC/x2NwQqDMBAFf0X23AVNQLDXQj+g19JDjM+6oEnIq
+ gjivzf0OHOYOUmRBUr36qSMXVRiKNDcKvKTC1+wDIXJ1MbW1ja8xiSe4xGc8pZ0zXALZyxxB7v
+ WoBu6dgRApdA7BffZBT+VRtjmuciUMcrxX77p9XzQ57p+JL2B/4cAAAA=
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.1
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 20:24, Nikita Bondarenko wrote:
-> Signed-off-by: Nikita Bondarenko <n2h9z4@gmail.com>
+With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+associated with a clear lack of maintainance, development and migration to
+dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+In addition, the OX810 hasn't been booted for years and isn't even present
+in an ARM config file.
 
-Missing commit msg.
+For the OX820, lack of USB and SATA support makes the platform not usable
+in the current Linux support and relies on off-tree drivers hacked from the
+vendor (defunct for years) sources.
 
-> ---
->  .../bindings/watchdog/brcm,kona-wdt.txt       | 15 -------
->  .../bindings/watchdog/brcm,kona-wdt.yaml      | 45 +++++++++++++++++++
->  2 files changed, 45 insertions(+), 15 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> deleted file mode 100644
-> index 2b86a00e351d..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -Broadcom Kona Family Watchdog Timer
-> ------------------------------------
-> -
-> -This watchdog timer is used in the following Broadcom SoCs:
-> -  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
-> -
-> -Required properties:
-> -  - compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> -  - reg: memory address & range
-> -
-> -Example:
-> -	watchdog@35002f40 {
-> -		compatible = "brcm,bcm11351-wdt", "brcm,kona-wdt";
-> -		reg = <0x35002f40 0x6c>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> new file mode 100644
-> index 000000000000..ffc4870bdb57
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/brcm,kona-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom Kona Family Watchdog Timer
-> +
-> +description: |
-> +  This watchdog timer is used in the following Broadcom SoCs:
-> +  BCM11130, BCM11140, BCM11351, BCM28145, BCM28155
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
+The last users are in the OpenWRT distribution, and today's removal means
+support will still be in stable 6.1 LTS kernel until end of 2026.
 
-No, it should be device maintainer.
+If someone wants to take over the development even with lack of SMP, I'll
+be happy to hand off maintainance.
 
-> +
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
+The plan is to apply the first 4 patches first, then the drivers
+followed by bindings. Finally the MAINTAINANCE entry can be removed.
 
-Drop quotes.
+I'm not sure about the process of bindings removal, but perhaps the bindings
+should be marked as deprecated first then removed later on ?
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - brcm,bcm11351-wdt
-> +      - brcm,kona-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: memory address & range
+It has been a fun time adding support for this architecture, but it's time
+to get over!
 
-Drop description.
+Patch 2 obviously depends on [1].
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    watchdog@35002f40 {
-> +      compatible = "brcm,bcm11351-wdt";
-> +      reg = <0x35002f40 0x6c>;
-> +    };
-> +  - |
-> +    watchdog@35002f40 {
+[1] https://lore.kernel.org/all/20230327121317.4081816-1-arnd@kernel.org/
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (20):
+      ARM: dts: oxnas: remove obsolete device tree files
+      ARM: oxnas: remove OXNAS support
+      ARM: configs: remove oxnas_v6_defconfig
+      dt-bindings: arm: oxnas: remove obsolete bindings
+      clk: oxnas: remove obsolete clock driver
+      dt-bindings: clk: oxnas: remove obsolete bindings
+      clksource: timer-oxnas-rps: remove obsolete timer driver
+      dt-bindings: timer: oxsemi,rps-timer: remove obsolete bindings
+      nand: oxnas_nand: remove obsolete raw nand driver
+      dt-bindings: mtd: oxnas-nand: remove obsolete bindings
+      net: stmmac: dwmac-oxnas: remove obsolete dwmac glue driver
+      dt-bindings: net: oxnas-dwmac: remove obsolete bindings
+      pinctrl: pinctrl-oxnas: remove obsolete pinctrl driver
+      dt-bindings: pinctrl: oxnas,pinctrl: remove obsolete bindings
+      dt-bindings: gpio: gpio_oxnas: remove obsolete bindings
+      power: reset: oxnas-restart: remove obsolete restart driver
+      reset: oxnas: remove obsolete reset driver
+      irqchip: irq-versatile-fpga: remove obsolete oxnas compatible
+      dt-bindings: interrupt-controller: arm,versatile-fpga-irq: mark oxnas compatible as deprecated
+      MAINTAINERS: remove OXNAS entry
 
-> +      compatible = "brcm,kona-wdt";
-> +      reg = <0x35002f40 0x6c>;
-> +    };
-
-Keep only one example.
-
+ Documentation/devicetree/bindings/arm/oxnas.txt    |   14 -
+ .../devicetree/bindings/clock/oxnas,stdclk.txt     |   28 -
+ .../devicetree/bindings/gpio/gpio_oxnas.txt        |   47 -
+ .../arm,versatile-fpga-irq.txt                     |    4 +-
+ .../devicetree/bindings/mtd/oxnas-nand.txt         |   41 -
+ .../devicetree/bindings/net/oxnas-dwmac.txt        |   41 -
+ .../devicetree/bindings/pinctrl/oxnas,pinctrl.txt  |   56 -
+ .../devicetree/bindings/reset/oxnas,reset.txt      |   32 -
+ .../devicetree/bindings/timer/oxsemi,rps-timer.txt |   17 -
+ MAINTAINERS                                        |   10 -
+ arch/arm/Makefile                                  |    1 -
+ arch/arm/boot/dts/Makefile                         |    3 -
+ arch/arm/boot/dts/ox810se-wd-mbwe.dts              |  115 --
+ arch/arm/boot/dts/ox810se.dtsi                     |  357 ------
+ .../dts/ox820-cloudengines-pogoplug-series-3.dts   |   93 --
+ arch/arm/boot/dts/ox820.dtsi                       |  299 -----
+ arch/arm/configs/oxnas_v6_defconfig                |   92 --
+ arch/arm/mach-oxnas/Kconfig                        |   34 -
+ arch/arm/mach-oxnas/Makefile                       |    1 -
+ drivers/clk/Kconfig                                |    7 -
+ drivers/clk/Makefile                               |    1 -
+ drivers/clk/clk-oxnas.c                            |  251 ----
+ drivers/clocksource/Kconfig                        |    7 -
+ drivers/clocksource/Makefile                       |    1 -
+ drivers/clocksource/timer-oxnas-rps.c              |  288 -----
+ drivers/irqchip/irq-versatile-fpga.c               |    1 -
+ drivers/mtd/nand/raw/Kconfig                       |    7 -
+ drivers/mtd/nand/raw/Makefile                      |    1 -
+ drivers/mtd/nand/raw/oxnas_nand.c                  |  211 ----
+ drivers/net/ethernet/stmicro/stmmac/Kconfig        |   11 -
+ drivers/net/ethernet/stmicro/stmmac/Makefile       |    1 -
+ drivers/net/ethernet/stmicro/stmmac/dwmac-oxnas.c  |  245 ----
+ drivers/pinctrl/Kconfig                            |   11 -
+ drivers/pinctrl/Makefile                           |    1 -
+ drivers/pinctrl/pinctrl-oxnas.c                    | 1292 --------------------
+ drivers/power/reset/Kconfig                        |    7 -
+ drivers/power/reset/Makefile                       |    1 -
+ drivers/power/reset/oxnas-restart.c                |  233 ----
+ drivers/reset/Kconfig                              |    3 -
+ drivers/reset/Makefile                             |    1 -
+ drivers/reset/reset-oxnas.c                        |  114 --
+ 41 files changed, 3 insertions(+), 3977 deletions(-)
+---
+base-commit: df45499b419b31c4d44ef9f1d1656d1fc0897014
+change-id: 20230331-topic-oxnas-upstream-remove-a62e9d96feee
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
