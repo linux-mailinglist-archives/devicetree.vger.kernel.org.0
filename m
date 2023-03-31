@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C31686D28D6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 21:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B076D28DB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 21:55:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231331AbjCaTzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 15:55:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39206 "EHLO
+        id S232600AbjCaTzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 15:55:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbjCaTzB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 15:55:01 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF0D1D2FA
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:54:58 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id x20so24242541ljq.9
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:54:58 -0700 (PDT)
+        with ESMTP id S232444AbjCaTzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 15:55:10 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EBC2031A
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:55:04 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id a44so5618314ljr.10
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:55:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680292497;
+        d=linaro.org; s=google; t=1680292503;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R6Wa2EnpF34LgvveW3IVoHFJpoC0G9OylXTyrH0K+dM=;
-        b=dNV6n8RFal1AEz1MeUBkwtxsIzr5W9eg4J6TTJXuk9W4/xeIWcBVnecPdUZqVLOLf1
-         h4EfpqmxV4mfcDFYS0avSFBSTAjo9QqnqSBwqxaX7JNggqoEVrFizWMjYKIuuK/4jut/
-         C7T9VEOfn3Sj/ZuignsPWWWIqDszjEvlX8pL9pgNak2Ydha8KI9J+ZIkx4pmQl2ddR8C
-         IryhxZzUWU0DHMxxv4WsuunkTPN1Mse3qpEow4J36KZKuHZw8xTxwniizYXVX/NkGIAO
-         pzFJxM0oILHtK1DBDbDPE0gSpLJK9x88sQX7FRaCgVKdkOgQ5X19uC2fmaKV9GHd1hgo
-         M+iQ==
+        bh=aOMcoQFSkWIySigpw65oRdlyB2wMDMaHYKBxC1qWQqM=;
+        b=VkNSZr2mOAHKOcAG9VE6tMt63eVoLh8ecw1/u1gxD6IDCpGY8GZdhXsI0hg0hGC+O3
+         jczJ/PeqiYaLlVwlcvYYWgH2wLtCvCjhX5R2W9k1rvmcWSwDK75nb656N6S/ZM18hHoe
+         rriOfXV2bY4n0wlgEgscjYUYvz51CG8C5MaaOHz533EDG5eYAZ8469mJbRQlXFMqOIC9
+         yVL74+I8kfmoImdm/1WfXxdk0YxRCtlQzQ+BjpyQ+47vUyvGJnnY67w/8QPnQnKt1fI+
+         uInCdSnHvDGXmH7jNyGsdVvAjVDkOQBMhBnUq/9Dc/jZZ0k4APBNS/UCPALn/sR0ldaC
+         wzLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680292497;
+        d=1e100.net; s=20210112; t=1680292503;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R6Wa2EnpF34LgvveW3IVoHFJpoC0G9OylXTyrH0K+dM=;
-        b=f5A3LYln/VTPbEcVrg6UOuyMkbudSl18bThqu9xPqpEHhfbTCJg66UTQEdc3fxiLIk
-         S1slfmUegQeUU7PL8tJmOEoPRljcMyt69tvBs65gfTLRC6Mi/+QwQZevh+pl2SHKUauT
-         p0myWc2FOBQeHRRHWCkiRK67q3QV6TnYivN9WK+NvrkIZVgIJ3idywKDN/1hIGZ7wS1l
-         QKwTZbeBGTJG64kMNaBeIEU+j1VhP5DMKAX2EO6zR1+pCJYxJRncm++UKqUefygWth3x
-         BoRkgQ6K7smexo7lsh0x4x4VLfyPdPKUKvvhRAB2KcFgIlMMFALgqQ/MMZkIKRK+jH4R
-         kfzQ==
-X-Gm-Message-State: AAQBX9cFXkxngCRU/VCoXoIiL0qEsAn5t1hYmyDCgroppbvZdJ7grTcS
-        FGgvSmQrgNQHQapd0hyn+Ks0UQ==
-X-Google-Smtp-Source: AKy350aWTea+C6DsL0gAE79uwlsUkI2jyhCUtMUNJYht0xgcWLWAX/iBAEdjVwdVHesotkac92rsdA==
-X-Received: by 2002:a2e:9d18:0:b0:29a:fbca:e8a8 with SMTP id t24-20020a2e9d18000000b0029afbcae8a8mr7862371lji.19.1680292496974;
-        Fri, 31 Mar 2023 12:54:56 -0700 (PDT)
+        bh=aOMcoQFSkWIySigpw65oRdlyB2wMDMaHYKBxC1qWQqM=;
+        b=Id12l7DDyZKFvU587mO/ppI4ZzkWZ1yfhsZDEQ+IDaSzs4mwwq63jI/bJ7elBCRo1K
+         NCuobLIRNGvcNFlMGeJgbwpuSpqJD8kxHRDc/Ze3iLSKXm96KA0VPCxXwAZfPyKbaon/
+         88WIWehsls73nENEU5IN/IvYEbxgo0unzGc/X2zE6UuHU9kMh58aBpjZBsGaPwgQxe3H
+         NrbE+MVe/qLrpRyhVlGcbsGkb7dQdDT7V6VniIPCAaVHuE9kzZYl4lrJwbG6JQQZly36
+         JZGyLiak/FjGIsmK1LejrywFHRrpJjEGP0COCo4Q3sJ5Y2nbs6RIxxSP1CVQr6BgmS2z
+         EL7Q==
+X-Gm-Message-State: AAQBX9c+oqCsfDBAGIP8xqdKHZYUX/hu0PquZOmFsAge2Vig8FbgXIgu
+        mFBPzSp7ELMWkHESQja0zsactQ==
+X-Google-Smtp-Source: AKy350YAPaRJRZBDs1Lve1FOBrg2hkyAPTUJF+YIBzinY99phCuglBf/iMrWhggu02oH8g3z/DxolQ==
+X-Received: by 2002:a2e:930c:0:b0:29f:3e2e:fbd0 with SMTP id e12-20020a2e930c000000b0029f3e2efbd0mr2913518ljh.15.1680292502952;
+        Fri, 31 Mar 2023 12:55:02 -0700 (PDT)
 Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
-        by smtp.gmail.com with ESMTPSA id u7-20020a2e8547000000b00295a8d1ecc7sm494987ljj.18.2023.03.31.12.54.55
+        by smtp.gmail.com with ESMTPSA id y18-20020a2e95d2000000b002986d9bdecesm494911ljh.129.2023.03.31.12.55.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 12:54:56 -0700 (PDT)
-Message-ID: <414b659a-888f-b31e-de90-79f81491580a@linaro.org>
-Date:   Fri, 31 Mar 2023 21:54:54 +0200
+        Fri, 31 Mar 2023 12:55:02 -0700 (PDT)
+Message-ID: <be20c226-317f-9c4b-858b-8d551eb7acaf@linaro.org>
+Date:   Fri, 31 Mar 2023 21:55:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v4 03/11] arm64: dts: qcom: sdm8550: Fix the BAM DMA
+Subject: Re: [PATCH v4 04/11] arm64: dts: qcom: sdm845: Fix the slimbam DMA
  engine compatible string
 Content-Language: en-US
 To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
@@ -63,12 +63,11 @@ Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
         linux-crypto@vger.kernel.org, andersson@kernel.org,
         bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
         robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org,
-        Bhupesh Sharma <bhupesh.sharma@qcom-hackbox.linaro.org>
+        rfoss@kernel.org, neil.armstrong@linaro.org
 References: <20230331164323.729093-1-bhupesh.sharma@linaro.org>
- <20230331164323.729093-4-bhupesh.sharma@linaro.org>
+ <20230331164323.729093-5-bhupesh.sharma@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230331164323.729093-4-bhupesh.sharma@linaro.org>
+In-Reply-To: <20230331164323.729093-5-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -84,9 +83,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 31.03.2023 18:43, Bhupesh Sharma wrote:
-> From: Bhupesh Sharma <bhupesh.sharma@qcom-hackbox.linaro.org>
-> 
-> As per documentation, Qualcomm SM8550 SoC supports BAM DMA
+> As per documentation, Qualcomm SDM845 SoC supports SLIMBAM DMA
 > engine v1.7.4, so use the correct compatible strings.
 > 
 > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
@@ -94,19 +91,19 @@ On 31.03.2023 18:43, Bhupesh Sharma wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 9c24af40ee61..774e3295081c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1841,7 +1841,7 @@ pcie1_phy: phy@1c0e000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 2f32179c7d1b..17a29184884c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -5152,7 +5152,7 @@ msi-controller@17a40000 {
 >  		};
 >  
->  		cryptobam: dma-controller@1dc4000 {
+>  		slimbam: dma-controller@17184000 {
 > -			compatible = "qcom,bam-v1.7.0";
 > +			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
->  			reg = <0x0 0x01dc4000 0x0 0x28000>;
->  			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
->  			#dma-cells = <1>;
+>  			qcom,controlled-remotely;
+>  			reg = <0 0x17184000 0 0x2a000>;
+>  			num-channels = <31>;
