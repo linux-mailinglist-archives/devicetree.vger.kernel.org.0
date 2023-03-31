@@ -2,54 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF896D1EB4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 13:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 986116D1EC0
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 13:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231925AbjCaLIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 07:08:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50054 "EHLO
+        id S230526AbjCaLJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 07:09:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231915AbjCaLIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 07:08:04 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BF2FA21A95;
-        Fri, 31 Mar 2023 04:06:44 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C886C2F4;
-        Fri, 31 Mar 2023 04:07:17 -0700 (PDT)
-Received: from [10.57.54.53] (unknown [10.57.54.53])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A9D423F6C4;
-        Fri, 31 Mar 2023 04:06:30 -0700 (PDT)
-Message-ID: <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
-Date:   Fri, 31 Mar 2023 12:06:28 +0100
+        with ESMTP id S232111AbjCaLJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 07:09:16 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A973C1C1C4
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 04:08:55 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id i6so26955929ybu.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 04:08:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680260935;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DrZ4nuKFRbdrvkseheS7XRYqEh2EC/QvjKLix2jXZFM=;
+        b=p8HE8uYDQXIMNWouHzNhuIPq4ZYpcpiB2tjtZuopwJd/AlYTllfvkZumoyD3e/aM7a
+         Rsituuiso2kH/VdZb40vv8jtPdJNbYku8HkT1NxamcWm15rgUETuxgZWfce3K4OlsyJT
+         8EYq24i6h1AxbQKxcbsErcKtHV0SISL4sLOHWGtxxHXScAUsEopBmv6kXPUb2UP3kamx
+         7ejJ4g3jcDtINsK2lt0tIFmNU5xb6+K0y6cGos/6qAj9HGe3eQ9yrRkXgJxG1CWCQDv4
+         U50TBQ8X7/8T8XMPSnMernOOPbz8JoPb/BIhGLvpV6JYEt/IuIVi75EXyJsAZUXykI0w
+         2u1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680260935;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DrZ4nuKFRbdrvkseheS7XRYqEh2EC/QvjKLix2jXZFM=;
+        b=iB+VI8Yp2DPDO7gn/he87r9/iudgl5/oatKuoIGuigO0dHMubZIwLAcb9eZD/zArUC
+         qbR/vplc61NstPHf6v+4SSZHwr3ZUc5GU29umm1GL3xSotCqE2MsAVQ+AjQcNIZT8wZN
+         /tGVUbK5dB7YCuU7WNrhZ7qT1ppNhq+0xqXjNlR2CYK7495Tb2BKB5XVXCvOw0CLRfAj
+         lgfMWH2c8NoP3lk3t5EfTLaQ9Q8zVYgcNCtG+JWjFFlrPkOaVhuQObKGADkCvItGNm7v
+         26MGlZfxBN7ZVNT8uA6mkWiHnL6cTpS/Q1M0plmnemSJxJI89glOWQg3W48E0kTltHB+
+         vSyA==
+X-Gm-Message-State: AAQBX9cMi27b8nkLB+PMzZqMnYklStxBGG9rHylJAVscDEtuXUlIRcgo
+        W953SVhOVNBGbE/wQdP5p7w0JJhDvQfDl2PAodBXHA==
+X-Google-Smtp-Source: AKy350bS9SyNRus3dGUyYtiJgys+HJA9rC8VrYDEuvi3iswc8ROzk0fLQpNKXYrIlL5r6jnukfZX+uNeYtTgRvFeeN4=
+X-Received: by 2002:a05:6902:18d5:b0:b75:3fd4:1b31 with SMTP id
+ ck21-20020a05690218d500b00b753fd41b31mr18131967ybb.1.1680260934863; Fri, 31
+ Mar 2023 04:08:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.9.0
-Subject: Re: [PATCH V2 3/5] coresight: etm4x: Drop pid argument from
- etm4_probe()
-To:     Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
-Cc:     scclevenger@os.amperecomputing.com,
+References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com>
+ <20230203-evk-board-support-v3-10-0003e80e0095@baylibre.com> <7b6be990-9e90-8e44-7c5e-f8b7a2701ce7@collabora.com>
+In-Reply-To: <7b6be990-9e90-8e44-7c5e-f8b7a2701ce7@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Fri, 31 Mar 2023 13:08:43 +0200
+Message-ID: <CAFGrd9qMEtHVT+P-mBNxh6g1jOm5ifArSxi1bbGnrKgxCf7zSQ@mail.gmail.com>
+Subject: Re: [PATCH v3 10/17] arm64: dts: mediatek: set vmc regulator as
+ always on
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230327050537.30861-1-anshuman.khandual@arm.com>
- <20230327050537.30861-4-anshuman.khandual@arm.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20230327050537.30861-4-anshuman.khandual@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,147 +86,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/03/2023 06:05, Anshuman Khandual wrote:
-> Coresight device pid can be retrieved from its iomem base address, which is
-> stored in 'struct etm4x_drvdata'. This drops pid argument from etm4_probe()
-> and 'struct etm4_init_arg'. Instead etm4_check_arch_features() derives the
-> coresight device pid with a new helper coresight_get_pid(), right before it
-> is consumed in etm4_hisi_match_pid().
-> 
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Cc: Mike Leach <mike.leach@linaro.org>
-> Cc: Leo Yan <leo.yan@linaro.org>
-> Cc: coresight@lists.linaro.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> ---
->   .../coresight/coresight-etm4x-core.c          | 21 +++++++------------
->   include/linux/coresight.h                     | 12 +++++++++++
->   2 files changed, 20 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> index 5d77571a8df9..3521838ab4fb 100644
-> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> @@ -66,7 +66,6 @@ static u64 etm4_get_access_type(struct etmv4_config *config);
->   static enum cpuhp_state hp_online;
->   
->   struct etm4_init_arg {
-> -	unsigned int		pid;
->   	struct device		*dev;
->   	struct csdev_access	*csa;
->   };
-> @@ -370,8 +369,10 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
->   }
->   
->   static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
-> -				      unsigned int id)
-> +				     struct csdev_access *csa)
->   {
-> +	unsigned int id = coresight_get_pid(csa);
-> +
+Le mer. 29 mars 2023 =C3=A0 15:25, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
+>
+> Il 29/03/23 10:54, amergnat@baylibre.com ha scritto:
+> > From: Fabien Parent <fparent@baylibre.com>
+> >
+> > MSDC1 IP block is powered by VMC. Make sure it is always on.
+>
+> Why always on?
+> Can't you just set mt6357_vmc_reg as VIN of mt6357_vmch_reg? :-)
 
-This throws up the following error on an ETE.
+I'm not sure to get it. mt6357_vmc_reg & mt6357_vmch_reg come from
+PMIC and are supposed to be independent.
+You suggest to link them in the mt8365-evk dts file using something like:
+&mt6357_vmch_reg {
+    vin-supply =3D <&mt6357_vmc_reg>;
+};
 
-ete: trying to read unsupported register @fe0
+Also, regulator binding probably needs change to support that.
 
-So, I guess this must be performed only for iomem based
-devices. System instruction based device must be identified
-by MIDR_EL1/REVIDR_EL1 if needed for specific erratum.
-This is not required now. So, we could bail out early
-if we are system instruction based device.
-
-
->   	if (etm4_hisi_match_pid(id))
->   		set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
->   }
-> @@ -385,7 +386,7 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
->   }
->   
->   static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
-> -				     unsigned int id)
-> +				     struct csdev_access *csa)
->   {
->   }
->   #endif /* CONFIG_ETM4X_IMPDEF_FEATURE */
-> @@ -1165,7 +1166,7 @@ static void etm4_init_arch_data(void *info)
->   	etm4_os_unlock_csa(drvdata, csa);
->   	etm4_cs_unlock(drvdata, csa);
->   
-> -	etm4_check_arch_features(drvdata, init_arg->pid);
-> +	etm4_check_arch_features(drvdata, csa);
->   
->   	/* find all capabilities of the tracing unit */
->   	etmidr0 = etm4x_relaxed_read32(csa, TRCIDR0);
-> @@ -2048,7 +2049,7 @@ static int etm4_add_coresight_dev(struct etm4_init_arg *init_arg)
->   	return 0;
->   }
->   
-> -static int etm4_probe(struct device *dev, u32 etm_pid)
-> +static int etm4_probe(struct device *dev)
->   {
->   	struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->   	struct csdev_access access = { 0 };
-> @@ -2077,7 +2078,6 @@ static int etm4_probe(struct device *dev, u32 etm_pid)
->   
->   	init_arg.dev = dev;
->   	init_arg.csa = &access;
-> -	init_arg.pid = etm_pid;
->   
->   	/*
->   	 * Serialize against CPUHP callbacks to avoid race condition
-> @@ -2124,7 +2124,7 @@ static int etm4_probe_amba(struct amba_device *adev, const struct amba_id *id)
->   
->   	drvdata->base = base;
->   	dev_set_drvdata(dev, drvdata);
-> -	ret = etm4_probe(dev, id->id);
-> +	ret = etm4_probe(dev);
->   	if (!ret)
->   		pm_runtime_put(&adev->dev);
->   
-> @@ -2146,12 +2146,7 @@ static int etm4_probe_platform_dev(struct platform_device *pdev)
->   	pm_runtime_set_active(&pdev->dev);
->   	pm_runtime_enable(&pdev->dev);
->   
-> -	/*
-> -	 * System register based devices could match the
-> -	 * HW by reading appropriate registers on the HW
-> -	 * and thus we could skip the PID.
-> -	 */
-> -	ret = etm4_probe(&pdev->dev, 0);
-> +	ret = etm4_probe(&pdev->dev);
->   
->   	pm_runtime_put(&pdev->dev);
->   	return ret;
-> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
-> index f19a47b9bb5a..f85b041ea475 100644
-> --- a/include/linux/coresight.h
-> +++ b/include/linux/coresight.h
-> @@ -370,6 +370,18 @@ static inline u32 csdev_access_relaxed_read32(struct csdev_access *csa,
->   	return csa->read(offset, true, false);
->   }
->   
-> +#define CORESIGHT_PIDRn(i)	(0xFE0 + ((i) * 4))
-> +
-> +static inline u32 coresight_get_pid(struct csdev_access *csa)
-> +{
-> +	u32 i, pid = 0;
-> +
-> +	for (i = 0; i < 4; i++)
-> +		pid |= csdev_access_relaxed_read32(csa, CORESIGHT_PIDRn(i)) << (i * 8);
-
-Given the above, we could make this iomem specific.
-
-Suzuki
-
-
-> +
-> +	return pid;
-> +}
-> +
->   static inline u64 csdev_access_relaxed_read_pair(struct csdev_access *csa,
->   						 u32 lo_offset, u32 hi_offset)
->   {
-
+Regards,
+Alex
