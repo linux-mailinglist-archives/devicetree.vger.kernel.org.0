@@ -2,85 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95EE76D1CDA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F04B6D1CDC
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:45:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231563AbjCaJpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40584 "EHLO
+        id S232299AbjCaJpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:45:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232299AbjCaJpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:45:18 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD571DF8A
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:44:59 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id r187so26727905ybr.6
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:44:59 -0700 (PDT)
+        with ESMTP id S230334AbjCaJpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:45:20 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FCA1EA12
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:45:00 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id h25so28132321lfv.6
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:45:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680255897;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IFoBmfNqHjVUcBGo6LT4gCtlcOPW6X249sn66zd7REI=;
-        b=D+oxq2KU1R74cGVr861BWJ4QrYAsrmLr+vmkeT1ql1/boMG+f6uoZEDawa/VKwCjYz
-         HvwZzsRFmuXcOQ7OC8ZkrQ4qk4hgX7XjTdMSMKhxLQP5dhkUSv0+BjA4azIUsD7DVVnJ
-         +HjeE+U3DHlQ02wAVZ79Ncd9t+P0nwhV+zny21ktOo831mW8ue4iiDtUzYI79Y63zDt/
-         NTCjCCoL6PPJYNpPYtiQyVmdbYqluh/TmbLGyu/+wjPt7v08hlqS97NNhA1txC7+/AfT
-         X5XrVT7y55yqv3h/IFHvR096JbrsKLSUZzEuyTsYs2TB/ye5AhbxSKHhKnMYLgW8oBBu
-         7UGg==
+        d=linaro.org; s=google; t=1680255898;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y7J3SpzN/MQEAAcFx2JUXnlqdObi7qFjYYyIS8qQbak=;
+        b=R9miRmCTRELVUJ07u3L7Ss4UPhjVEfY7zWJGUsyzAM7ilpTZP6hegnJPir7qb0KIWD
+         nhlNsbBaeyouRkQ/l3KvPvFPkEv0yDWTZ+zSST1Dx/Y8H90Pg7Ituz32yz1GNILjGVQw
+         NhnbFQf//QjAP2r66ORmL7l7LtkEHx1Wutn1+42UNwUazNvP7exGSjU+nFiH/J4RDuk+
+         RnNDNNJoxO7ufndlirLzxPATaXaSLaf9XNcQoSutVv9hO0unlWtxysEyxc+9OP/w2qk3
+         3CDVOY00/Y5GoytlOTggwOAIwbHDacwxwUqLS6cpYXzDw/E9zKrShzAz7RnIHg/r08Gl
+         uaCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680255897;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IFoBmfNqHjVUcBGo6LT4gCtlcOPW6X249sn66zd7REI=;
-        b=HzTxWBmnAPWSQewZ8jZERyQATQGG3M5QFUSD51TrORl89YohyVIwLbPbHu+r/QVXR3
-         VVdU4qAkSZqGd1Ww8184nlp2Ag5nmntTyKT1EV6vPlueFLdK/95/w1DEmgUa3oUYQfnH
-         ibfyFyoeNkSjXEEq3EwJ8YcZqD+sVzTOnpJAO37iVHsqeSFK0sez+7xNJQIRAAYwjoN8
-         aX6DWexzuJp+Q7ycpTOaUU1bb/EsjQAziJ234Ky+uRhUr3amtSkU7LUWNXIHbGchECLC
-         KYdOIE/IAADft6zip9tINY+YbbGKIO0ovAaByFuEro8nV6qBqWX+i/54xGqhP529erAM
-         FEkg==
-X-Gm-Message-State: AAQBX9cQM/ofg/oltZH2kftZFgMpaz3LmL7XroE4bj6u9LrFik1E+ChU
-        N515TzCre/xGio1kS9b54BmMxMpKH3gJKRx3OUunAA==
-X-Google-Smtp-Source: AKy350aHm6mLdtXGnTgyPrVMJQyQC3lO6u+Ulkrj5iYb8yUd6TNae9hB7514yNzZeA9xapKc5n1SnbXnGp1OcanVf4c=
-X-Received: by 2002:a05:6902:70f:b0:b75:8ac3:d5d2 with SMTP id
- k15-20020a056902070f00b00b758ac3d5d2mr17975062ybt.4.1680255897160; Fri, 31
- Mar 2023 02:44:57 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680255898;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y7J3SpzN/MQEAAcFx2JUXnlqdObi7qFjYYyIS8qQbak=;
+        b=ia1JOt9I8IucZrarilErfLy9Q/uQCxVQhzXyNSxKgQC3bE6jSeSfsb4z0FifY16kU3
+         xY3gKixVdv7bSpDA4YrP24mI0SAfbvX9UrneLfKdsMgpIG71A4niGMpFBw5KQom/a7Fu
+         xxH71eJ/s/ZHRH3x2+N5Gdgzwi7Z+oKlWnfRbGYXxMde543qSB1ZYwV8x8/IbIYLe7mM
+         uOGsWFQpLyNy0ElUK0RDJD04qmQrPRv8jRyQIPV1J++MOsoPKWQEy4Z7zfYS8wu06EqP
+         SpfdzXwtp0gGgyr5YyoROEZb5LSKWHuow48FLBDPe8lY13NiI1Gq24xTt2bcCbKfx/bB
+         ILZw==
+X-Gm-Message-State: AAQBX9evry6zH7tc8EVX46KPde3U4L+Yn0sB+5z/z0//osYlYOLohKC5
+        WZtJp+UopicJXu4qbu9HNt6xcA==
+X-Google-Smtp-Source: AKy350ZtYm1U31pvzT1yDnz262K83bU8KgyY1ClWvAm3fGsf1tZXMgIkNsOt4V97cqaQxb//TZ1RAg==
+X-Received: by 2002:ac2:4859:0:b0:4e8:487a:7c34 with SMTP id 25-20020ac24859000000b004e8487a7c34mr7984826lfy.12.1680255897838;
+        Fri, 31 Mar 2023 02:44:57 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id m30-20020a056512015e00b004d023090504sm313085lfo.84.2023.03.31.02.44.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 02:44:57 -0700 (PDT)
+Message-ID: <7d9e1d19-10e0-a627-bf1f-a42e7d936dcf@linaro.org>
+Date:   Fri, 31 Mar 2023 11:44:56 +0200
 MIME-Version: 1.0
-References: <20230328061257.1984972-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20230328061257.1984972-1-peng.fan@oss.nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 31 Mar 2023 11:44:46 +0200
-Message-ID: <CACRpkdaM6U9T=mnuPO6MufGDRiBGzCAe8YkF2LrY_YXhfwxTLg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: fsl-imx-gpio: add i.MX8QM compatible
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, stefan@agner.ch, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v5 1/2] dt-bindings: spi: add loongson spi
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+References: <20230331032909.7720-1-zhuyinbo@loongson.cn>
+ <20230331032909.7720-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230331032909.7720-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 8:07=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.co=
-m> wrote:
+On 31/03/2023 05:29, Yinbo Zhu wrote:
+> Add the Loongson platform spi binding with DT schema format using
+> json-schema.
 
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Add i.MX8QM compatible, same as i.MX8QXP.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - loongson,ls2k-spi
+> +      - loongson,ls7a-spi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
 
-Yours,
-Linus Walleij
+Why do you need the header? Wasn't the entire point to remove it?
+
+> +    spi0: spi@1fff0220{
+> +        compatible = "loongson,ls2k-spi";
+> +        reg = <0x1fff0220 0x10>;
+> +        clocks = <&clk 17>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
+
+
+Best regards,
+Krzysztof
+
