@@ -2,300 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 919396D29EE
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 23:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F186D2A29
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 23:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbjCaVYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 17:24:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47790 "EHLO
+        id S233096AbjCaVqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 17:46:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjCaVYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 17:24:23 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D997690;
-        Fri, 31 Mar 2023 14:24:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JTQjrBkAbcU0ZflNqWqPiMw1Eq3V64hVkFyzm6dp156CjCFav1W6wI1s/MbZs35jbwCTbfHSsMC3FEzwxn4CNBkOHVSwCbIhjSVZVYkLSQJnOenQHlCG6LhO21TkVXYcycd0+e5GGhnfBXoF6nvnSW3jqNk40JEesK9uygXyqV2+R8ATNcBBjKGYPy2U4sKQOVB9diRBMHje7bAa4eqpxFxrbp3f57RulszGFI1c3HTr/9Y1Rw7YIBXncYEoCTT4cmfILTbM+S6knwhT3wxo/7UQRWyseXJGZTWDamBBapmN6mX5nZHe5Uhfs1v9nqWhod/JnJjkdixJzeMFSJGPwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yy53z8ZAUvxHNUTCID2hvKCNEIDcmqcSNbvTzl5DJ3E=;
- b=Pf9vs/TsXbcj2ZJT3ZOwih02tmAubG/CL6pmaGVzK/qZZDKQEQhJCAmsKIHkN3SbzqONtAmi1C5wxoCcvyHFf5dKhDjgbMleAdftk5lvZde9sV3+Gm6syOGlRKb9CV+fwZbVBGqLmtOxEVjAckQ6oSxvuqtzeA3fT8l02EhDmBn0ZX9GayL4/U447Ziksy4kTlyIzj9gTXALb672LBYWDgeJaif1WO04JKFc1WiaPrbYgnPfigqLf39kgeL2HBt83zHwssMvpioRffs0C0Vo9nXjqV45QWFLXeyzTN0LsoK//ipuxplY8lmom6L52KuJS7Q0IaqZvKn8FpU8unctjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yy53z8ZAUvxHNUTCID2hvKCNEIDcmqcSNbvTzl5DJ3E=;
- b=bhxLemsj6qV+ZUSnco/Wx9Uwo4zWIyQSxiUClhAL3UIMZ2V/Qp55uhdgOzhaOSqVN3N8ud9SSwol3k2ruAl3o8SVm0YdqZ4XvYYRnqpk50g+lkH5L+b/fDGF/Kk7VGDmIgSpggzS/mSf8YdQkOr45lS75LMsLMqRJcu3zH5cCU8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SA1PR01MB8062.prod.exchangelabs.com (2603:10b6:806:335::13) by
- SA1PR01MB8250.prod.exchangelabs.com (2603:10b6:806:38b::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6277.12; Fri, 31 Mar 2023 21:24:18 +0000
-Received: from SA1PR01MB8062.prod.exchangelabs.com
- ([fe80::4146:8d44:30cf:a3fc]) by SA1PR01MB8062.prod.exchangelabs.com
- ([fe80::4146:8d44:30cf:a3fc%7]) with mapi id 15.20.6254.020; Fri, 31 Mar 2023
- 21:24:18 +0000
-Message-ID: <a69dfdc6-31da-f813-858a-fdf246dea4fe@os.amperecomputing.com>
-Date:   Fri, 31 Mar 2023 14:24:12 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Reply-To: scclevenger@os.amperecomputing.com
-Subject: Re: [PATCH V2 3/5] coresight: etm4x: Drop pid argument from
- etm4_probe()
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230327050537.30861-1-anshuman.khandual@arm.com>
- <20230327050537.30861-4-anshuman.khandual@arm.com>
- <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
-From:   Steve Clevenger <scclevenger@os.amperecomputing.com>
-Organization: Ampere Computing
-In-Reply-To: <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: CH2PR12CA0006.namprd12.prod.outlook.com
- (2603:10b6:610:57::16) To SA1PR01MB8062.prod.exchangelabs.com
- (2603:10b6:806:335::13)
+        with ESMTP id S232671AbjCaVqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 17:46:54 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9E7D20DB5
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 14:46:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1680299171;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=qRXp4dQiGms/64nGsSVBVjLN6Pe4B52p8MOn8ojXq0c=;
+        b=SCgdhLkq81Vl2bH6YKcNoP2DgwX2hYLl37ljqp8bBGdVFyD47aqPfY5ZbeoWSw9LdOm+/e
+        frOGVt7XSx0xslKKuNkVVzvFzTXm6PQjhozRBdmcM757bDDwjjGr0zKmidiupRoqX2t62u
+        KKRqW7Wud6R6Paf5A20i0FriCxIUNJU=
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
+ [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-335-ZP5C8tmWNmqxkiYUp6etfQ-1; Fri, 31 Mar 2023 17:46:09 -0400
+X-MC-Unique: ZP5C8tmWNmqxkiYUp6etfQ-1
+Received: by mail-ot1-f69.google.com with SMTP id w10-20020a9d674a000000b006a249fdc3bfso1580255otm.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 14:46:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680299169;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qRXp4dQiGms/64nGsSVBVjLN6Pe4B52p8MOn8ojXq0c=;
+        b=IrNM9htBnPFxVXaluhap8sAt+7tkVNfNeUDAj/HbXregRk0SkG8Hf1oa35TEZ8u99Y
+         vjJ1Atr8xAEzDWs0mJWhGoMupyRTwgougCecPZzLrm4UGKuaXoHQygOvSFJrzCyH5oUm
+         cl+OeJoEjs9ZjYaeuQ/qQHz8cGYAsaLynazuRKBaPHSnS+OPbqwrlkXjoeBgVXBlV67b
+         oa6js3HvyWlzzlU1rjVIrCANaQaIoXFZ9zRHtwk3K1mdHMbdnwCu9IGBkf0VBorDJdBO
+         +zfJ7eHxu2DVirvpovL5nXQqWV+xSDUaUVB6CUIQ+oarn5QXgcmWchbREysS7N8fuZAY
+         xW/A==
+X-Gm-Message-State: AAQBX9cLlZkTpJbjj/RF1obG2/7XfF7VWdDAP6bMXqxX9cbmyPCipzhN
+        j3vx5S8eOHm2uYS0N93UZOCogjXsxTYFM41+JpCo1qFdlnCodgK2TVFiZescUItInTzR6JPz3+9
+        P6TgoSsqt1DoJoIA/GOmzhQ==
+X-Received: by 2002:a9d:7310:0:b0:698:d198:fe9b with SMTP id e16-20020a9d7310000000b00698d198fe9bmr13806477otk.10.1680299169051;
+        Fri, 31 Mar 2023 14:46:09 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bgDIpshy7eRbTWkRwLsC3s4240Hq2Oc16KqDrLzmDT3k9i5ye972UijmCNDTVHDvOHjC4iow==
+X-Received: by 2002:a9d:7310:0:b0:698:d198:fe9b with SMTP id e16-20020a9d7310000000b00698d198fe9bmr13806471otk.10.1680299168800;
+        Fri, 31 Mar 2023 14:46:08 -0700 (PDT)
+Received: from halaney-x13s.attlocal.net (104-53-165-62.lightspeed.stlsmo.sbcglobal.net. [104.53.165.62])
+        by smtp.gmail.com with ESMTPSA id x80-20020a4a4153000000b0053d9be4be68sm1328531ooa.19.2023.03.31.14.46.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 14:46:08 -0700 (PDT)
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        bhupesh.sharma@linaro.org, wens@csie.org, jernej.skrabec@gmail.com,
+        samuel@sholland.org, mturquette@baylibre.com,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        richardcochran@gmail.com, linux@armlinux.org.uk, veekhee@apple.com,
+        tee.min.tan@linux.intel.com, mohammad.athari.ismail@intel.com,
+        jonathanh@nvidia.com, ruppala@nvidia.com, bmasney@redhat.com,
+        andrey.konovalov@linaro.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, ncai@quicinc.com,
+        jsuraj@qti.qualcomm.com, hisunil@quicinc.com, echanude@redhat.com,
+        Andrew Halaney <ahalaney@redhat.com>
+Subject: [PATCH net-next v3 00/12] Add EMAC3 support for sa8540p-ride
+Date:   Fri, 31 Mar 2023 16:45:37 -0500
+Message-Id: <20230331214549.756660-1-ahalaney@redhat.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR01MB8062:EE_|SA1PR01MB8250:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3e5f3df-68bb-4209-83d9-08db322e496f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zVRlDEehiLgr0ekT4wuMq+fdfvHHUAK2vIChAGvHCmfMBU0SuYb6njRmOczlJGmyVL9uabgc8HqsJCJkhYXm1YPp4jOfob8oBi5ym1+dhJrJMbxZ/mrWnbjsS0n32gMWVcalM1/+EZh4TYrdEhnjf45HX8Sq9S2odaAq+DUWSnK7pcW4qwPVDNhJj5QWNqJ7DQtu99nH+pXJShRLTAfdSAjUF5sU/wsDbmmNmc0shuP8wmu4D2BXaxaezJwrIaeWjdkjkA3/x7hWO5rGqA6Az9ZdkAfiZ3IiUC0silATFWyqpAr9G8KjbP2xBuo4VNq883cywPaGUjvqF5FkoDYWPV8q7mdHd6elm/ahprPSb0xJNfDBufsjcNL5EEtuJvt3Rvb3dWEJheqBBm6NmliQXNjjap6wGK6bkcfAFKqmXybsmB7Y3KPuQrtTx8p94V/YdbUllYlm4hCNDPRS8zziQf9coURS4rzpRAp8UVKDWslmwAMHbX3mLBVp00x9kgFluw7CnSf9sO6QxZ/iH8KTpxX7Y8ZaQOFGDBm7qhLDgSE/6Dlqu/kyEh9loy5R+0Pw2E7ukaH1yECk11smUTrFYSQ8TeLO9+ROyDk+uKLigh+6MwnvWmyrILc3L4P5pLEjjfbRf1V4yWAn/8fUZrL4SA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR01MB8062.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(39850400004)(376002)(396003)(136003)(451199021)(31696002)(86362001)(31686004)(6512007)(6506007)(26005)(53546011)(6486002)(36916002)(6666004)(66476007)(2906002)(66556008)(66946007)(4326008)(186003)(3450700001)(110136005)(7416002)(41300700001)(8936002)(8676002)(316002)(478600001)(5660300002)(54906003)(66899021)(38100700002)(83380400001)(2616005)(32563001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RGVRTmVyTGlFNVZkb3RvRFVMMnN1SzVXZ3hFMFN4a1dQS1lVSEJjRy9LaVNP?=
- =?utf-8?B?cUpneGxGOHVzaDBuSndIRWNRdU5zUTliVG13bXRlM0RBWGRjczZXL04rZWxk?=
- =?utf-8?B?dHEraFBZWi85TW02VTJINzQ5OXAwNUtidkxRZzdWdjBLUVdpSjNHTFkwRW8r?=
- =?utf-8?B?eXQ1eU1LWWV6TGp1UFRyb3FsbUVmUkMreEkwNlI1N2dxOWZlbllhcndhN1VV?=
- =?utf-8?B?Y2ppb0hsallCSGlOemN2bmZ2cThMbGlKRVRVWmE2c2hEVXBSL1dOUjhpUmZo?=
- =?utf-8?B?bFM0amhhTVlJVkN1aWk5bTZJU1pQSGIzMndNelpYZGNlZWFYZnRIOWFSR1ZV?=
- =?utf-8?B?bzg3T1BTU0k1VExoSGk4clVsRVhYV2JOL3Ria1F5VHJNbENXcUhvVVJqN2I1?=
- =?utf-8?B?bk5YN2l2cUxaK2pVTm9CSW01SHduZnJ0UVU5TGpCazhEd24xRVhHaGpVQ2g3?=
- =?utf-8?B?RzQ5NHd1QU5mYUZtL2JjT1NYSkN0OGdxSW5jdVFTUTBVdFBHdzR5dngvYXJj?=
- =?utf-8?B?NjZydlNqT3FCeVd0VW81eEhaQW9XMit1WVpaTWIrQ2VhMWJRQ0VtRmdKdlpU?=
- =?utf-8?B?ZlVTbW5VL0JIdXRYRmx3a2JsSFRvdFcwcmlCYlh0WWsxVGhVVXlWUnRJaFhn?=
- =?utf-8?B?ZHREcDRMeVR2ZU9xczdsVE5aNHUvMVVMMnAybzNYRG5vMFptZnZtbERBb1F4?=
- =?utf-8?B?dGtkVWVMdHNPYzdNUEh1N1lkNzVVOFFycmhoUkxIa0JUdTVsV2pBYmlxYnlQ?=
- =?utf-8?B?V3ZUVXh4cWtOZ0ZTS2dzQnh5Q3krcU94SEd6aU1iSU4zSWE0dThnQm9rOU12?=
- =?utf-8?B?QU5Zd3F1c1YxZ1p2VlBsUk9qTzhOUDkySFNBZmV0Y3dGVkwzOWxLOEk1dmI4?=
- =?utf-8?B?R2FJSVY2aHpvamZEVEFnd2pEY2lPYkJxbkZ1dnU4NDR4dk1KSG9HR2gvbXNH?=
- =?utf-8?B?cHRsREFoYUZYKzl4QStFaGw2RFRSVjFSclo0cGdkWGhYYXRSeDRQL2JnNkdM?=
- =?utf-8?B?RmJ6dUdYTG1KSHFlcVo3blF2enpiZFg5dkFFaUFRN09jRHhRVnN6UTVTUzhY?=
- =?utf-8?B?REFzRmpGV1M0OE8rQzgrZGZOTDF2M2YrV2FVQmdualg4VDdrL2ltOCtieS9G?=
- =?utf-8?B?d3JvZG5PNE5NVXd0L0ZDeVlWcTliS2NxNi9oMFkyM0d2UHJwWGE3OTlKNUl1?=
- =?utf-8?B?a3ZMUkZQMm9WNURGQXNtZzl2Z09VUnQrMVRsU1JPQ3E0MXVDb0VabjdIVTNv?=
- =?utf-8?B?c2hlLy9pU0JNZzBXc1FmVkllcUlKQWd0R3M3TlZSaURxcFpRbEkvUFZwOWpn?=
- =?utf-8?B?VmZEQThwSExWeGV1eXJDbXZ0TlBMWkUzSHRSZ3I0YjdXYUtTUWtWWmNJbmwz?=
- =?utf-8?B?WHdIeTdHbFFYSjVhdms0VFhNWmFiRDFSNUZ0VE0zQjA0YUtIMzI1YlFEUlg4?=
- =?utf-8?B?YWNLTG5IWXZXdTI1YXZxeW5VMjRwMkdVNG1CYzhyT0dGL1lRK1kwVzdhRGg0?=
- =?utf-8?B?QWNiRkJUOUhtTjZSK1hkUnZuSUdkb3dvamkyclJMNG5TV2FOTmlGQzhJTHhm?=
- =?utf-8?B?amhyekJ1S1cxWmZuOWRBcGN1WVp1UUVrcForditnOS93RFZuSnZ3Wi90Q3pp?=
- =?utf-8?B?eWt6QkRJR29hREIwNURUV0k4NFVKNFl1YjNTWUY3bXV2MzI5dnN3YXJPMEtv?=
- =?utf-8?B?dDhaMDVFWjgwb2FMUFN4SXdTMlJ6QXRSV0pudFZWR2JtYnlmL3VHbW9VUlJs?=
- =?utf-8?B?YTFsTjkvOW5Yb2JKTUxncE0wWjJQanp5T2JyZm5EUWhRNXJna2VNVHp6MXZI?=
- =?utf-8?B?bFd6WXJnSWw4NEQ5TTZvai9OUVIxNmNHVmhnS1p5bWlOVTdhTTlUSktQT1g3?=
- =?utf-8?B?YXgvWjZYaVJwUXRKRmk5elZHU0o1Rm1ESC9zb3k5VE5mUWxvdU5GMXMwTmtv?=
- =?utf-8?B?RDErb1M0azR5a2RZSS9hK2RndDVyQXhBZUpwUGlrYVYvSzRKSXdLSXEvUEhO?=
- =?utf-8?B?NURLY3h5SEp0ZnZQYjNWTFpnNHQxWEZLYjRQcEVtV1FvRFYxMml0NXBBZ3ZJ?=
- =?utf-8?B?WG1laVkzTHNRQVZrbU94clFueE5YaUZ4YjlaSXZqQnZiaFp3TU5GaVZUWjBM?=
- =?utf-8?B?OFZ2WlNDSXp6amZHSFgyaGM0VVkyaFNRcWpySE5QamRrWk82YWNEbmY0RFlr?=
- =?utf-8?Q?/RzwzTMtjqlbDlG5lyWIVpA=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3e5f3df-68bb-4209-83d9-08db322e496f
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR01MB8062.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 21:24:18.6667
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XShx+qmFYbEyJpZLDOMIgTCqQT9N+gZOnneYcvREE1JwIci35Yw9IdpWcAbVIbuoLh6x3lsCBAoj6+3bdD8thIVLqHKYAcZEfEYfzLUzvWh850JYBtAQjhC8cphJmBIp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR01MB8250
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a forward port / upstream refactor of code delivered
+downstream by Qualcomm over at [0] to enable the DWMAC5 based
+implementation called EMAC3 on the sa8540p-ride dev board.
 
+From what I can tell with the board schematic in hand,
+as well as the code delivered, the main changes needed are:
 
-On 3/31/2023 4:06 AM, Suzuki K Poulose wrote:
-> On 27/03/2023 06:05, Anshuman Khandual wrote:
->> Coresight device pid can be retrieved from its iomem base address,
->> which is
->> stored in 'struct etm4x_drvdata'. This drops pid argument from
->> etm4_probe()
->> and 'struct etm4_init_arg'. Instead etm4_check_arch_features() derives
->> the
->> coresight device pid with a new helper coresight_get_pid(), right
->> before it
->> is consumed in etm4_hisi_match_pid().
->>
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Leo Yan <leo.yan@linaro.org>
->> Cc: coresight@lists.linaro.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-kernel@vger.kernel.org
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   .../coresight/coresight-etm4x-core.c          | 21 +++++++------------
->>   include/linux/coresight.h                     | 12 +++++++++++
->>   2 files changed, 20 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index 5d77571a8df9..3521838ab4fb 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -66,7 +66,6 @@ static u64 etm4_get_access_type(struct etmv4_config
->> *config);
->>   static enum cpuhp_state hp_online;
->>     struct etm4_init_arg {
->> -    unsigned int        pid;
->>       struct device        *dev;
->>       struct csdev_access    *csa;
->>   };
->> @@ -370,8 +369,10 @@ static void etm4_disable_arch_specific(struct
->> etmv4_drvdata *drvdata)
->>   }
->>     static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
->> -                      unsigned int id)
->> +                     struct csdev_access *csa)
->>   {
->> +    unsigned int id = coresight_get_pid(csa);
->> +
-> 
-> This throws up the following error on an ETE.
-> 
-> ete: trying to read unsupported register @fe0
-> 
-> So, I guess this must be performed only for iomem based
-> devices. System instruction based device must be identified
-> by MIDR_EL1/REVIDR_EL1 if needed for specific erratum.
-> This is not required now. So, we could bail out early
-> if we are system instruction based device.
+    1. A new address space layout for /dwmac5/EMAC3 MTL/DMA regs
+    2. A new programming sequence required for the EMAC3 base platforms
 
-Besides this, the PID is limited to (I think) 4 bits of ID. TRCIDRs
-offer revision information, but nothing manufacturer specific save for
-the designer. Register fields like MIDR_EL1 Variant + PartNum + Revision
-and TRCPIDR3 REVAND offer help. It may be a combination of registers are
-needed for a manufacturer to adequately ID a part to apply an erratum.
-Perhaps you could at least cache MIDR_EL1 for possible future use?
+This series makes the change for 1 above as well as other housekeeping items
+such as converting dt-bindings to yaml, etc.
 
-> 
-> 
->>       if (etm4_hisi_match_pid(id))
->>           set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
->>   }
->> @@ -385,7 +386,7 @@ static void etm4_disable_arch_specific(struct
->> etmv4_drvdata *drvdata)
->>   }
->>     static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
->> -                     unsigned int id)
->> +                     struct csdev_access *csa)
->>   {
->>   }
->>   #endif /* CONFIG_ETM4X_IMPDEF_FEATURE */
->> @@ -1165,7 +1166,7 @@ static void etm4_init_arch_data(void *info)
->>       etm4_os_unlock_csa(drvdata, csa);
->>       etm4_cs_unlock(drvdata, csa);
->>   -    etm4_check_arch_features(drvdata, init_arg->pid);
->> +    etm4_check_arch_features(drvdata, csa);
->>         /* find all capabilities of the tracing unit */
->>       etmidr0 = etm4x_relaxed_read32(csa, TRCIDR0);
->> @@ -2048,7 +2049,7 @@ static int etm4_add_coresight_dev(struct
->> etm4_init_arg *init_arg)
->>       return 0;
->>   }
->>   -static int etm4_probe(struct device *dev, u32 etm_pid)
->> +static int etm4_probe(struct device *dev)
->>   {
->>       struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->>       struct csdev_access access = { 0 };
->> @@ -2077,7 +2078,6 @@ static int etm4_probe(struct device *dev, u32
->> etm_pid)
->>         init_arg.dev = dev;
->>       init_arg.csa = &access;
->> -    init_arg.pid = etm_pid;
->>         /*
->>        * Serialize against CPUHP callbacks to avoid race condition
->> @@ -2124,7 +2124,7 @@ static int etm4_probe_amba(struct amba_device
->> *adev, const struct amba_id *id)
->>         drvdata->base = base;
->>       dev_set_drvdata(dev, drvdata);
->> -    ret = etm4_probe(dev, id->id);
->> +    ret = etm4_probe(dev);
->>       if (!ret)
->>           pm_runtime_put(&adev->dev);
->>   @@ -2146,12 +2146,7 @@ static int etm4_probe_platform_dev(struct
->> platform_device *pdev)
->>       pm_runtime_set_active(&pdev->dev);
->>       pm_runtime_enable(&pdev->dev);
->>   -    /*
->> -     * System register based devices could match the
->> -     * HW by reading appropriate registers on the HW
->> -     * and thus we could skip the PID.
->> -     */
->> -    ret = etm4_probe(&pdev->dev, 0);
->> +    ret = etm4_probe(&pdev->dev);
->>         pm_runtime_put(&pdev->dev);
->>       return ret;
->> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
->> index f19a47b9bb5a..f85b041ea475 100644
->> --- a/include/linux/coresight.h
->> +++ b/include/linux/coresight.h
->> @@ -370,6 +370,18 @@ static inline u32
->> csdev_access_relaxed_read32(struct csdev_access *csa,
->>       return csa->read(offset, true, false);
->>   }
->>   +#define CORESIGHT_PIDRn(i)    (0xFE0 + ((i) * 4))
->> +
->> +static inline u32 coresight_get_pid(struct csdev_access *csa)
->> +{
->> +    u32 i, pid = 0;
->> +
->> +    for (i = 0; i < 4; i++)
->> +        pid |= csdev_access_relaxed_read32(csa, CORESIGHT_PIDRn(i))
->> << (i * 8);
-> 
-> Given the above, we could make this iomem specific.
-> 
-> Suzuki
-> 
-> 
->> +
->> +    return pid;
->> +}
->> +
->>   static inline u64 csdev_access_relaxed_read_pair(struct csdev_access
->> *csa,
->>                            u32 lo_offset, u32 hi_offset)
->>   {
-> 
+As requested[1], it has been split up by compile time / maintainer tree.
+I will post a link to the associated devicetree changes that together
+with this series get the hardware functioning.
+
+[0] https://git.codelinaro.org/clo/la/kernel/ark-5.14/-/commit/510235ad02d7f0df478146fb00d7a4ba74821b17
+[1] https://lore.kernel.org/netdev/20230320202802.4e7dc54c@kernel.org/
+
+v2: https://lore.kernel.org/netdev/20230320221617.236323-1-ahalaney@redhat.com/
+v1: https://lore.kernel.org/netdev/20230313165620.128463-1-ahalaney@redhat.com/
+
+Thanks,
+Andrew
+
+Andrew Halaney (9):
+  dt-bindings: net: qcom,ethqos: Add Qualcomm sc8280xp compatibles
+  net: stmmac: Remove unnecessary if statement brackets
+  net: stmmac: Fix DMA typo
+  net: stmmac: Remove some unnecessary void pointers
+  net: stmmac: Pass stmmac_priv in some callbacks
+  net: stmmac: dwmac4: Allow platforms to specify some DMA/MTL offsets
+  net: stmmac: dwmac-qcom-ethqos: Respect phy-mode and TX delay
+  net: stmmac: dwmac-qcom-ethqos: Use loopback_en for all speeds
+  net: stmmac: dwmac-qcom-ethqos: Add EMAC3 support
+
+Bhupesh Sharma (3):
+  dt-bindings: net: snps,dwmac: Update interrupt-names
+  dt-bindings: net: snps,dwmac: Add Qualcomm Ethernet ETHQOS compatibles
+  dt-bindings: net: qcom,ethqos: Convert bindings to yaml
+
+ .../devicetree/bindings/net/qcom,ethqos.txt   |  66 ------
+ .../devicetree/bindings/net/qcom,ethqos.yaml  | 111 ++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   9 +-
+ MAINTAINERS                                   |   2 +-
+ .../net/ethernet/stmicro/stmmac/chain_mode.c  |  10 +-
+ drivers/net/ethernet/stmicro/stmmac/common.h  |   2 +-
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 177 +++++++++++----
+ .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c |  36 ++--
+ .../ethernet/stmicro/stmmac/dwmac1000_core.c  |   3 +-
+ .../ethernet/stmicro/stmmac/dwmac1000_dma.c   |  19 +-
+ .../ethernet/stmicro/stmmac/dwmac100_dma.c    |  14 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac4.h  |  91 ++++++--
+ .../net/ethernet/stmicro/stmmac/dwmac4_core.c |  50 +++--
+ .../ethernet/stmicro/stmmac/dwmac4_descs.c    |   8 +-
+ .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  | 201 +++++++++++-------
+ .../net/ethernet/stmicro/stmmac/dwmac4_dma.h  |  89 +++++---
+ .../net/ethernet/stmicro/stmmac/dwmac4_lib.c  | 105 +++++----
+ .../net/ethernet/stmicro/stmmac/dwmac_dma.h   |  22 +-
+ .../net/ethernet/stmicro/stmmac/dwmac_lib.c   |  18 +-
+ .../ethernet/stmicro/stmmac/dwxgmac2_core.c   |   9 +-
+ .../ethernet/stmicro/stmmac/dwxgmac2_descs.c  |   6 +-
+ .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    |  71 ++++---
+ .../net/ethernet/stmicro/stmmac/enh_desc.c    |  11 +-
+ drivers/net/ethernet/stmicro/stmmac/hwif.h    | 176 ++++++++-------
+ .../net/ethernet/stmicro/stmmac/norm_desc.c   |   8 +-
+ .../net/ethernet/stmicro/stmmac/ring_mode.c   |  10 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_mdio.c |   3 +-
+ include/linux/stmmac.h                        |  19 ++
+ 28 files changed, 871 insertions(+), 475 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.txt
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+
+-- 
+2.39.2
+
