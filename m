@@ -2,196 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D9246D17C5
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 08:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A27026D185D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229805AbjCaGt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 02:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38808 "EHLO
+        id S230008AbjCaHSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 03:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjCaGtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 02:49:25 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2053.outbound.protection.outlook.com [40.107.101.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91626171E;
-        Thu, 30 Mar 2023 23:49:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HemTx4LTys6pfzLJDKLHUZ8vb69TO54jU7sRM5aidA3oNpGSeog6JOvTkOFg98r2DI8oZZYp4fErkQotDlM1NBTHUqj0L6Iq47gviJYE5aY9A/Yzb7pauOcRxdNgJ5ls3U0wgNt0drqfyiGoYG1sjtvMRYuoH4MeSEJ7bxjVyc2ouRSaMyZU/HIiL2BDXy1sB8cJZwLTKvPvjDY3YYVMhSrciDnPD1kLepNJ1KEoPP6bp4XKls7eYJtv8zOex0SELPLkYzeXsBU3L9WflqU3xYvW7DF2YaJJ+dsBlmGIHn9tx8nMxsUzS5d/8CVwZFkYpzgvU9nPuMUrEtFuW4QgNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xa5wgIMFtc9nWz/dMH3AIA7iAkCLOi9dzyl2/VV91Xc=;
- b=Za00mXcy4GfbXShFZoB69RAS2M6qCxW2ETW2m6DakqZycXMtKnQiD/WJkX3KbSb+H9j36d5UEUBZb0aIoVM/ZJ6dUGyAbowpVhHvWOjrheYQ2keXT31s4wWBq0aJkri4FjaHIcQ6F4aH1Psh8rp4Ue7qSbw9gZdaycX6e1W1zJ7lV1qT31Gr2kTvY8mBu7Iw7fG4CUBDhVcpx80wIn4Q6RF8ZBWr0jaa+7N0TvQ9WiUjfJz7LnnsPYKhBndLYO6FJYdfxqId91OXz9fLab5oMXVwTCY1NpuPVUjJ/mR+Rs4if9ql3b+Ibx3c47lvBmS5w33fDVMb7GLiTsWAnVNuFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xa5wgIMFtc9nWz/dMH3AIA7iAkCLOi9dzyl2/VV91Xc=;
- b=noKwKKjpCY6Ymy95tW1fcvQZxcxEu6glXFQLMysl3gZBydqh8uiuaIA95k427LwizQ4GY63iYxBfIsKpsK2rjIfamFk9gmJwBx46vV/7jswuJEYUV7srzGdGhWGY1JZHUjT3lhTVLc8A100Hrxd5hhE3TaPwbvpyxgeP2iPMYHs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by IA1PR12MB6532.namprd12.prod.outlook.com (2603:10b6:208:3a3::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Fri, 31 Mar
- 2023 06:49:21 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::4d07:7f52:c833:9603]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::4d07:7f52:c833:9603%6]) with mapi id 15.20.6222.035; Fri, 31 Mar 2023
- 06:49:21 +0000
-Message-ID: <1e929c0d-9a3c-1adb-b5de-e953f2cf3795@amd.com>
-Date:   Fri, 31 Mar 2023 08:49:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 2/2] i2c: cadence: Add reset controller support
-Content-Language: en-US
-To:     Lars-Peter Clausen <lars@metafoo.de>, Wolfram Sang <wsa@kernel.org>
-Cc:     Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
+        with ESMTP id S230282AbjCaHSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:18:53 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615EAAF08;
+        Fri, 31 Mar 2023 00:18:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680247126; x=1711783126;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=admgRHBqiFlgszn7eKUdyOKDiJrJarBBjh/92wZzpo8=;
+  b=WQyCHxjkrkP+h9DtaocHVu5vPDQN6eTK8ECqqWSKnHkq6EAKp+TYE8jU
+   uvrhoTKWWNNlx9MTxMUtshRdVstJaahAJtbe3uhSveULb0V5mC6DgflL8
+   BP1x4Vp1SfBzl9a2EtWTOdnIJqjSBbfrIg6UMWr9NVXlU29agj5pD1+Pb
+   3WjZ0kadkOfm6NvwW7PMX12rdT9n6PAVgtwAYnPbMM+WuuwZQsEgJaa1S
+   hD6BtHj7M9ekXktPIYFo9XcgbHKxyglOM79aI7pHue0f9uKfGEA0409ws
+   2NzKPcaLx16Xcfi9BHI6tcJcbR86OseYKPTry+lJvdvQhGOwxCP5IquoC
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,307,1673938800"; 
+   d="scan'208";a="218823289"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Mar 2023 00:18:44 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 31 Mar 2023 00:18:43 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Fri, 31 Mar 2023 00:18:41 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <linux-fpga@vger.kernel.org>
+CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230330180448.269635-1-lars@metafoo.de>
- <20230330180448.269635-2-lars@metafoo.de>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20230330180448.269635-2-lars@metafoo.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR0P281CA0173.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b4::20) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/7] PolarFire SoC Auto Update Support
+Date:   Fri, 31 Mar 2023 08:18:16 +0100
+Message-ID: <20230331071823.956087-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|IA1PR12MB6532:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd8ddda2-356a-40fa-2f7b-08db31b40ebc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2UVal4E7rirLg0wXTJXHTwXK4LErdFhPpiYVr0UFTHJ0BDQdOdh5t7dwj9UUAmc7MEATea923W8lt6QlNFQC4koAz5Ra9D7kNeE8mRSZ3g8jZdlVG+QmHpdcIdMv0+TzjdCVmRvMr+AfjGCOxxNI9NtqwPV8FE/tcQ2pqfO4aRQk1rQJ0YrLAjSFAYic9/r3d/qFm8hbJA19blpj4J+hpAG6pGPTNR/p4A8pZXVZwEKjJcyUdNIcSkIKiD3zmp/Dzu7WJTIgP9NZod60J5qwLZsZl5KEIZeG53dYXJ9sP7rbIYr3JRgtRc6QKu81wYUQj/jC1Ez/nDajOTY0R1JPsTJp4+gNWLKkbYfwB3C9Y3skYCKQ7ezrMjAYsqViegjLJGvR2m6VPKRMFHUHmHUOaU+EOX/0pITvjqcVIV0ALmR1ZhSZInv8D8KBuAX1y5pz06xnuRCbSay59yiyTjSJzLHqra45jgZ5aLfW6L/pqv8UFlPs7PgLIACp/dw9/BT+AOahNR/mUW3irR1RY6J7oyQR0UOTFf3Wz3PS7fv4efZ6DjvLZl8nvp7eYfEuFgMm/LBPysKx+di/VVwlPe6MC/y1I2q05QwkDREisvIieiMiGDZVRMtRY3TbMESK7b5PmLnCZNj+sQ+krdM6uPtRTg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(346002)(396003)(136003)(366004)(451199021)(66946007)(478600001)(6666004)(6486002)(53546011)(6506007)(26005)(31686004)(6512007)(316002)(110136005)(54906003)(186003)(66556008)(66476007)(83380400001)(2616005)(8676002)(4326008)(2906002)(41300700001)(5660300002)(38100700002)(44832011)(8936002)(31696002)(36756003)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cWdYeEJZZS81M2hSQXJlZVNleGUyU1VtdmdnYTRDKzZiMnllTlVwQklhK2lZ?=
- =?utf-8?B?N2Jmb0xVL1V5QXpYZjZubWptY28rN1V5cTRhVnRpbnlwUUIyS1A3M3dUU1U4?=
- =?utf-8?B?VTRLU1lCWDdIRFR2UmpDRzd4aFY0cHBOTjNqSlIwZE5HQytQWit5QWtKSC93?=
- =?utf-8?B?WVpWWEIwR3ZGdjlnRVJ5bmpKQ0hlenNWWVBYT0pJQllvT0lqbFdoKzdLSThF?=
- =?utf-8?B?QktjTTdWeEV2SWxvZmUydXI2Sm03Yzk5K3lydTllMERLM2dJRTFPUS9HQysw?=
- =?utf-8?B?SUFqSHhBazZkeHdUR1dvMTNPaFA4RWx6QW55ZFVOd1VETjZYSjJYSkFKR3Ez?=
- =?utf-8?B?VmZZMGRTUVl6azFJVFU1blNFRTliNjVIQ1ZTRmFJVkpLRG9XVkFHWUllM3VH?=
- =?utf-8?B?ellNWkVYZFdkM1pKSWUybHVzVjRubXoxQ0pyckQ1Vm4yUWJpNXRPMW1XVE9h?=
- =?utf-8?B?ZGx6azlRalRwL3JaUUo1VkEwZEg3cFR0M2tUb2pLQ2lIcWRWRnJIM1RPUkFp?=
- =?utf-8?B?eW9iZnhFek9IZE41WnZVVFMxbEFGMTJwaEFJYVFvcytUNDB4Sk5jREJRUkFl?=
- =?utf-8?B?RW9TckdVVDkweVVZR3RxdnF6MzVjcVBnaUJWSHloMDNVU1huQUZkUzY4eXFk?=
- =?utf-8?B?d21OcldqQkZTeWFiOXkrNHhpY1dzdVJkOEJkMUdqYzJlcVRPaHE4b29oVjFq?=
- =?utf-8?B?L1VLMVRFU3dVUkR2QkJJSDg5L2czTGFscmZnemxvNWwyUE9pNVNwQWhXemlZ?=
- =?utf-8?B?TTJYeFRhdUMxTit5TEhOR0hYNHNvYzN5OVFHU0hJMS9jUncwaTk2N0dYL1dI?=
- =?utf-8?B?TTBoZ3doa2RwRTAwT2FsU3hLNmFHSWZadklIVlFMM3hlRnpWSU9TWWN3cDFt?=
- =?utf-8?B?aXB0K3l4RUFoVGxyQURSaHd4QmlnaWc1cVZLNjJSSTBGcnI5dTlEbEhlN1VJ?=
- =?utf-8?B?S1VOdDhab1U0UEJLa0RPVFRGbG9zZFROaUw4Zk9jcWQ4cUU2QVgyMU40cmM1?=
- =?utf-8?B?MjhNNHltTGM1aTc4MTJLVEhzZHdpSDYxcUFYSFBiTS9WMFVNeDk5YjkyTzVy?=
- =?utf-8?B?WXBuUTdNaHYybXdLQ1pzbDQ2SUw3VU0vNDQ3a3gzTklhK25KMzN0ZkhiWklI?=
- =?utf-8?B?WGlSUnhjakY0Vml6cTZnc1kzaEZDVTcyc3A0N01mb2k3RzR5MzYxYlJuSDFt?=
- =?utf-8?B?Y3JGSDhPcjNBc0VwaW5QWjJtcVlOQittMy8zSHljMnJLMVFPOTh4WUxWbmZq?=
- =?utf-8?B?STcvNDIzNXB3cGhjM0pCYi9tcGs0bEVCNFNjdi9mOFlvanBzcGF2NnVZdkhw?=
- =?utf-8?B?c2NDaFZtU3h1ek0vQlNIK3paL29BTUV2dUR0dG1HeThCV2NQU21BL1pDWG5a?=
- =?utf-8?B?Q2pHTUJqM0IvbFVRWGFUdk4zWnU1WGJnUHZpZ1k3QW9Jc3NLalR1bGpOM09h?=
- =?utf-8?B?eFFZNDZ0L0NmYUpDbGFDaTY3a0wyREhhWEtpbXN4d1BKdXJ2S3dicTgzcmlP?=
- =?utf-8?B?WGtOUk00Ly9ZdTh0UjdwWWtJSFcxeHErcWllaUZ3c0R6dGp3OEFVQjQ5S3ZU?=
- =?utf-8?B?RGUxc256TEJRKzJzTDllZHhDRXgxSlNZYkdXeGJKVFFlUVYzOEZxajRwSDY3?=
- =?utf-8?B?ODNSQThxelBkWWZFbC9sMDNNdVNWSUhCQU9JcVZCcjBFN0FreVdXYkZ2TUF3?=
- =?utf-8?B?UGVncEtGUWtWN0ZWTHczamlpSTZtTnJuaENET1Ftb3cwRUUxWldjeFhmVjFl?=
- =?utf-8?B?LzR4UWFCaXJYY3dlcTUwbXo3dXJrYXFWaDU1WWlBL1Q3YkVnVzArbitQNnlW?=
- =?utf-8?B?NHZUMFlwRlloTkpvUmJrY3l1alIvQWJ2RGJuQ2Y5SHVnY25jdG9pM2FTeDR6?=
- =?utf-8?B?bjFMWUpGZXh3NkFoNlZkYUI2bU12S0dvZzgvS0NkcG9RWHRjTEViWVpYRXVy?=
- =?utf-8?B?WGhmZnkvcDIxNVM2ZDd1S29JcTloRnFNeDNEcEpnYjMxWGxwcFVoU1lJdi9P?=
- =?utf-8?B?aytYdC9YVDJUSWh4N2NrM0hGcEZIZCsveDRHWHdZN1FVdllKblNveFpCVmNt?=
- =?utf-8?B?T2hGTUNPYTV1ZHVMMEw2WFlDNFV2YStUbWVTenkrYTlDSXdjRGlCSEFMdEU4?=
- =?utf-8?Q?gPq6XBYYzyet6RttkqsuBDyO6?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd8ddda2-356a-40fa-2f7b-08db31b40ebc
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 06:49:21.6620
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: abCkpghWavN3EAikrui4ybVGI7AliBCfKmtNQYUYFNnH9eXpBKRM/+CPobR8O628
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6532
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3495; i=conor.dooley@microchip.com; h=from:subject; bh=admgRHBqiFlgszn7eKUdyOKDiJrJarBBjh/92wZzpo8=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDClqnZYe/vKO79U8tFX0/79wTjwUZ/yYac9WjcvSdTOU9MJi Tut0lLIwiHEwyIopsiTe7muRWv/HZYdzz1uYOaxMIEMYuDgFYCIvnRkZdtwQ/D43rPTb81dP3qfL+2 8t2fLweeW0h6qzRCSVtu6LkmD4HxcklPTpHs/SG+fntUe46vg9/Ftrc6zHZ9orJx77lWcLuQA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hey all,
 
+This patchset adds support for the "Auto Update" feature on PolarFire
+SoC that allows for writing an FPGA bistream to the SPI flash connected
+to the system controller.
+On powercycle (or reboot depending on how the firmware implements the
+openSBI SRST extension) "Auto Update" will take place, and program the
+FPGA with the contents of the SPI flash - provided that that image is
+valid and an actual upgrade from that already programmed!
 
-On 3/30/23 20:04, Lars-Peter Clausen wrote:
-> The Cadence I2C controller has an external reset signal that needs to be
-> de-asserted before the I2C controller can be used.
-> 
-> Add support to the driver to be able to take the peripheral out of reset
-> using the reset controller API. The reset is optional in the driver for
-> compatibility to systems where the reset managed by the bootloader.
-> 
-> Signed-off-by: Lars-Peter Clausen <lars@metafoo.de>
-> ---
->   drivers/i2c/busses/i2c-cadence.c | 26 ++++++++++++++++++++++----
->   1 file changed, 22 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-cadence.c b/drivers/i2c/busses/i2c-cadence.c
-> index 8f61a633c42c..102774ab2497 100644
-> --- a/drivers/i2c/busses/i2c-cadence.c
-> +++ b/drivers/i2c/busses/i2c-cadence.c
-> @@ -16,6 +16,7 @@
->   #include <linux/of.h>
->   #include <linux/pm_runtime.h>
->   #include <linux/pinctrl/consumer.h>
-> +#include <linux/reset.h>
->   
->   /* Register offsets for the I2C device. */
->   #define CDNS_I2C_CR_OFFSET		0x00 /* Control Register, RW */
-> @@ -178,6 +179,7 @@ enum cdns_i2c_slave_state {
->    * @bus_hold_flag:	Flag used in repeated start for clearing HOLD bit
->    * @clk:		Pointer to struct clk
->    * @clk_rate_change_nb:	Notifier block for clock rate changes
-> + * @reset:		Reset control for the device
->    * @quirks:		flag for broken hold bit usage in r1p10
->    * @ctrl_reg:		Cached value of the control register.
->    * @ctrl_reg_diva_divb: value of fields DIV_A and DIV_B from CR register
-> @@ -204,6 +206,7 @@ struct cdns_i2c {
->   	unsigned int bus_hold_flag;
->   	struct clk *clk;
->   	struct notifier_block clk_rate_change_nb;
-> +	struct reset_control *reset;
->   	u32 quirks;
->   	u32 ctrl_reg;
->   	struct i2c_bus_recovery_info rinfo;
-> @@ -1325,10 +1328,22 @@ static int cdns_i2c_probe(struct platform_device *pdev)
->   		return dev_err_probe(&pdev->dev, PTR_ERR(id->clk),
->   				     "input clock not found.\n");
->   
-> +	id->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-> +	if (IS_ERR(id->reset))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(id->reset),
-> +							 "Failed to request reset.\n");
+Unfortunately, this series is not really testable yet - the Engineering
+Sample silicon on most dev boards has a bug in the QSPI controller
+connected to the system controller's flash and cannot access it.
+Pre-production and later silicon has this bug fixed.
 
-incorrect alignment.
+I previously posted an RFC about my approach in this driver, since as a
+flash-based FPGA we are somewhat different to the existing
+self-reprogramming drivers here. That RFC is here:
+https://lore.kernel.org/linux-fpga/20221121225748.124900-1-conor@kernel.org/
 
-> +
->   	ret = clk_prepare_enable(id->clk);
->   	if (ret)
->   		dev_err(&pdev->dev, "Unable to enable clock.\n");
->   
-> +	ret = reset_control_deassert(id->reset);
-> +	if (ret) {
-> +		dev_err_probe(&pdev->dev, ret,
-> +					  "Failed to de-assert reset.\n");
+This series depends on the following fixes:
+https://lore.kernel.org/all/d7c3ec51-8493-444a-bdec-2a30b0a15bdc@spud/
 
-incorrect alignment
+The patch adding the driver depends on the soc patches earlier in the
+series, so taking both through the same tree makes sense. Depending on
+sequencing with the dependencies, me taking it through the soc tree
+(with Acks etc of course) may make the most sense.
 
-The rest looks good to me.
+Cheers,
+Conor.
 
-M
+Changes in v2:
+- per Russ' suggestion, the driver has been switched to using the
+  firmware-upload API rather than the fpga one
+- as a result of that change, the structure of the driver has changed
+  significantly, although most of that is reshuffling existing code
+  around
+- check if the upgrade is possible in probe and fail if it isn't
+- only write the image index if it is not already set
+- delete the now unneeded debugfs bits
+
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Moritz Fischer <mdf@kernel.org>
+CC: Wu Hao <hao.wu@intel.com>
+CC: Xu Yilun <yilun.xu@intel.com>
+CC: Tom Rix <trix@redhat.com>
+CC; Russ Weight <russell.h.weight@intel.com>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-fpga@vger.kernel.org
+
+Conor Dooley (7):
+  soc: microchip: mpfs: add a prefix to rx_callback()
+  dt-bindings: soc: microchip: add a property for system controller
+    flash
+  soc: microchip: mpfs: enable access to the system controller's flash
+  soc: microchip: mpfs: print service status in warning message
+  soc: microchip: mpfs: add auto-update subdev to system controller
+  fpga: add PolarFire SoC Auto Update support
+  riscv: dts: microchip: add the mpfs' system controller qspi &
+    associated flash
+
+ .../microchip,mpfs-sys-controller.yaml        |  10 +
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    |  21 +
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  24 +-
+ drivers/fpga/Kconfig                          |  11 +
+ drivers/fpga/Makefile                         |   3 +-
+ drivers/fpga/microchip-auto-update.c          | 494 ++++++++++++++++++
+ drivers/soc/microchip/Kconfig                 |   1 +
+ drivers/soc/microchip/mpfs-sys-controller.c   |  37 +-
+ include/soc/microchip/mpfs.h                  |   2 +
+ 9 files changed, 591 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/fpga/microchip-auto-update.c
+
+-- 
+2.39.2
+
