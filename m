@@ -2,88 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6156E6D22E0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D5806D2338
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:56:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232892AbjCaOqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 10:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50192 "EHLO
+        id S233060AbjCaO4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 10:56:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232556AbjCaOqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:46:16 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65BC320610
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:46:13 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id p15so27631570ybl.9
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:46:12 -0700 (PDT)
+        with ESMTP id S233048AbjCaOzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:55:49 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A05B20D84;
+        Fri, 31 Mar 2023 07:55:33 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id h17so22695995wrt.8;
+        Fri, 31 Mar 2023 07:55:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680273972;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZrHq3nvdZgYqWKc7TXYHf/S8IML0/6fKVdabRYk6kRs=;
-        b=FSshoQjBEuyysNCAr4gfKkkGjn4WnfdI+qOqlOkmRGkMNcnt/lTDYQWC74sG1SCNSr
-         yA//YZ5ueiDN+mks0OSAOUFD/ujtg6ET1DLreUtSgU2q+etoIHNRF5G933Ped6CgeRI0
-         QL92NvVIMFSNYUE9bbc+c64MKwS4aI45gJ4usYlHz/B9dxSZDWGpJNnepadvvprJ3kWU
-         SKpZLhDKTfmBr40947S5E077bALebDfpjQNAUSNpdXB1O3cKgF35WnBhuNFcnqVd7wUt
-         A6CjUPwCzxd3uRMQakcZWQUV83AYiGZuKUHKAi4faRjl4QKYjuM1EDYKaRJyy4uYt+ir
-         Oukw==
+        d=gmail.com; s=20210112; t=1680274530;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1v1oqbGwtutANfbZAgt8lNsLuoBjX9Am//6Vl/oFEfA=;
+        b=K46Ne0U68WOC0jQyu1f6ef7pr7GDPh7f4Pjgd6JONmZ5vhy5RMvhlW4VUj7raalPXN
+         aEAk419VYn+zMv1le8W80jEHTMAuP6mrf+zTSZazTT2K9obzDGaxQ54JqA4M3jRsWzm/
+         dzQYQmw7NFmeKkZcjrgHRL1q1/DLzK2Ia3Iiay9q3+FhUszWuTwM65xERLQfBXgCe/Ot
+         5yHZkVsNtjhU+MYbUZNaBz9IKuQO6lM1tlRrF7954KM39osWlOJHgnX0fDRKaOPXByTn
+         BlYJiRupf+OVpQDWadhViNPq7nGEQqunlLJhVmTKX4eUDkUnW3y6BS7FTCh9aneafmAG
+         g6gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680273972;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZrHq3nvdZgYqWKc7TXYHf/S8IML0/6fKVdabRYk6kRs=;
-        b=VO5BvNgLEl3K+emOxNpeXLZ1wM4Hcavf1CXqQIwlCGGS0Ha6KI/y9WFjrvu+3XILrs
-         CrinoOwQ/JrPL6Uods3yoe3uaXm6RtwzFZ+Wz2bEFon7rsdaWBAhtjdfMMFyOz02/p6i
-         0EaT/Nba29TiqGtnt4SRIlw76o5vot+tpl9fPFsboPHibNoLLPCyFhVKasvU7+HW5f77
-         XwOqGvzNK8iuUpGRW8mTWdAC3tz/S4hRBTz/H6RXWT7Qa6d+0xtcLzvTeIpV6otNzRKV
-         0AC+TKmP2hGzaej4qNyfacqDmpkrJpm2GXwGekEqfLHTmfan/zksjz2WZkfBAQLB8BG6
-         zDxg==
-X-Gm-Message-State: AAQBX9eksgvzy6BPar2LykQh1TKLYp6CW5SQENqhGQfZz1PC9LGPbl9M
-        9EMXBu2w2W9hU7FGIFNY1uF9ARe9JmmrrZSI2EH5ow==
-X-Google-Smtp-Source: AKy350bPOqn4cx7f84281++qJEmUbQ+CCAD8rP4eVc4hTLCXDTlkGh1wbgDJB5qJk6X6yqA4dryEiDQ+tlglpoAIfVU=
-X-Received: by 2002:a05:6902:1501:b0:b4c:9333:2a2 with SMTP id
- q1-20020a056902150100b00b4c933302a2mr14740974ybu.9.1680273972110; Fri, 31 Mar
- 2023 07:46:12 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680274530;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1v1oqbGwtutANfbZAgt8lNsLuoBjX9Am//6Vl/oFEfA=;
+        b=M588g1kmwVMQvhavaqehClCcjm+JzRRZTm7EFutPkOvclu23ckt95wMWCCeoWvzc1x
+         C6BrPjPML8J3a5sG2I4Qq5boxhMXz/1wxS+wAWd/py8dyaNTS27GatOjwwSiBVE5p2B0
+         XGyIc0B4dccmvNtpOpXMVtib77s76HQG+z/Q5m3sIh3wsQ0nognZJiag/odXUH7JcV1N
+         BXhRQvIs2oEtod3Xk1D9zGirAPkdhZ3p07o6egeWeLtXquDVkYzV0qEGp6GdoU0Ci6HS
+         xqYLZgM72kK5VcIQLPvNLTphxleAhg4u0teucJNrue6XZWn0wfrOio+rBnWBOR0b0Mme
+         mnOw==
+X-Gm-Message-State: AAQBX9fBMEvCExCrU4jfnwPINE1u1ejDEUGMjHW4gEsiPD3iLv+Huv/w
+        qML41gnihadMXYS3i8fJmPqIeAXa54NghQXi
+X-Google-Smtp-Source: AKy350YSKtIqzT8X8vCZa/0jBsvl+GqGNYLY0iKeyTokK7bymrPZFg5K6qU89SULQhw0gw/NXjZGpw==
+X-Received: by 2002:a5d:4dcb:0:b0:2ca:8da1:db96 with SMTP id f11-20020a5d4dcb000000b002ca8da1db96mr19386253wru.50.1680274530116;
+        Fri, 31 Mar 2023 07:55:30 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id g6-20020adfe406000000b002d743eeab39sm2398567wrm.58.2023.03.31.07.55.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 07:55:29 -0700 (PDT)
+Message-ID: <c8861fda-63c6-7951-29a7-9d29a73e8f3e@gmail.com>
+Date:   Fri, 31 Mar 2023 16:55:27 +0200
 MIME-Version: 1.0
-References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com> <1680271114-1534-3-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1680271114-1534-3-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 31 Mar 2023 17:46:01 +0300
-Message-ID: <CAA8EJprG5g2jzfkez1V0HHO0X_8WDfA9cVfaY3K3cUByW58A1g@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] msm/disp/dpu: allow atomic_check in PSR usecase
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
-        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Content-Language: en-US
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Xinlei Lee <xinlei.lee@mediatek.com>,
+        Guillaume La Roque <glaroque@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230220-display-v1-0-45cbc68e188b@baylibre.com>
+ <20230220-display-v1-1-45cbc68e188b@baylibre.com>
+ <CAAOTY_8G03TpY88hMmUgbq5E6P2Y8h5a4DB5T72qfNG6CA+NQA@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 01/21] dt-bindings: display: mediatek: aal: add binding
+ for MT8365 SoC
+In-Reply-To: <CAAOTY_8G03TpY88hMmUgbq5E6P2Y8h5a4DB5T72qfNG6CA+NQA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 Mar 2023 at 16:59, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
->
-> Certain flags like dirty_fb will be updated into the plane state
-> during crtc atomic_check. Allow those updates during PSR commit.
->
-> Reported-by: Bjorn Andersson <andersson@kernel.org>
-> Link: https://lore.kernel.org/all/20230326162723.3lo6pnsfdwzsvbhj@ripper/
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Chun-Kuang Hu,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 13/03/2023 16:02, Chun-Kuang Hu wrote:
+> Hi, Alexandre:
+> 
+> Alexandre Mergnat <amergnat@baylibre.com> 於 2023年3月9日 週四 下午10:23寫道：
+>>
+>> Display Adaptive Ambient Light for MT8365 is compatible with another SoC.
+>> Then, add MT8365 binding along with MT8183 SoC.
+> 
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> 
 
--- 
-With best wishes
-Dmitry
+I'm a bit puzzled that you give your reviewed by while I would have expected 
+that you will take the display binding patches. Will you take these or do you 
+want someone else to take them?
+
+Regards,
+Matthias
+
+>>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> ---
+>>   Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+>> index d4d585485e7b..d47bc72f09c0 100644
+>> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+>> @@ -33,6 +33,7 @@ properties:
+>>                 - mediatek,mt8186-disp-aal
+>>                 - mediatek,mt8192-disp-aal
+>>                 - mediatek,mt8195-disp-aal
+>> +              - mediatek,mt8365-disp-aal
+>>             - const: mediatek,mt8183-disp-aal
+>>
+>>     reg:
+>>
+>> --
+>> b4 0.10.1
