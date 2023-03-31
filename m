@@ -2,82 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 942196D1FCB
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 938DC6D1FE7
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232069AbjCaMMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 08:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52702 "EHLO
+        id S232181AbjCaMSk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 31 Mar 2023 08:18:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbjCaMMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:12:17 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E1161C1E7;
-        Fri, 31 Mar 2023 05:12:17 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id r19so148473ilj.6;
-        Fri, 31 Mar 2023 05:12:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680264735; x=1682856735;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TOa0WDEClE+kNIsNikxxp7PL+bWJ4DGdBDO+mmYy+aM=;
-        b=F1QoNAEfg2cAj7U4wmA8PsIz83ZH1hMOPIj90UszYnqjjAXygAdESm02pWCWaLiN03
-         +N26IGPZ6VAcXGOGtkaT3lmgpEPrZ7XYH1kH+HUdZG0zONOdhYJd40NsnSiaRvY+wCwQ
-         SF2oSruQD3hw3pY5L2mFY94IuVdZmjRwXqF0fxVoGsTCIA+udLKqJlEuhhVxI/C+CS6j
-         bKjm1Os3GsIJuKn+jlib5867fTgj3pMjjPFuCeDpy8SqeuSSgXCX6Kx1gInm/A6cxy2h
-         MUkql7GaUJltCFPrGYzIY5a7/kVOl9NmjiG8G8UKkEt1BOS/RSl+EdUjg8kewmnrJPA6
-         cLIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680264735; x=1682856735;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TOa0WDEClE+kNIsNikxxp7PL+bWJ4DGdBDO+mmYy+aM=;
-        b=NBffPp24eivuD3StwkkIyB1d0MnER3G8zyg41nLHc+2tzg9L/QAxo7GlAIiAWarpmp
-         qrRFn+qilANE3HtniZvRf9F7TqeTkLrySWhXjQJiUXJTrnj1lcKEy0bNV4bR5RTz7EP2
-         FGWHFq+Cvu1IRZF4i5wq0YKOOWuMYq2hgJvwtiRJNxVSjTxoCZzxwmZPMtdeVEVbADjm
-         /dwgw5iMbNc+gXzOeyZqnAaOK25rvi+ZVyGMTkBHqZOw2ZjSX3JYknwswQjLeORcP9K+
-         cznB4BYozXFq8ysHyKsCXR8eg0GP7BOhNaNPAs8EDtt0itqYnxwAfiCVJSipEn2DVxXS
-         OsWA==
-X-Gm-Message-State: AAQBX9ejT+jB867CU+eOlPwgFbuoW42Ymf5vOGpOI6RsLRua3aY5iFqZ
-        c5uaP5WKod3+rI/oAMc6wrA64XBThMBWtpehpF4=
-X-Google-Smtp-Source: AKy350a6CpiHAw/8PBeQohWWJaeNroiWBab+H6eZzow8rf2zzcfKecGDt6RIbJ/ASWV/e1FauShuiLz6VaQ/PBseZ88=
-X-Received: by 2002:a05:6e02:1047:b0:325:dd36:7451 with SMTP id
- p7-20020a056e02104700b00325dd367451mr12904804ilj.1.1680264735446; Fri, 31 Mar
- 2023 05:12:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <6ca5941a-8803-477d-8b40-17292decc5af@app.fastmail.com> <CA+V-a8tkiDXG37YjFKPxrGoXVQMVBemMdBcfb+uUDzBofOWH_A@mail.gmail.com>
- <1c441d20-951d-407b-90ba-4cda3b0505b2@app.fastmail.com>
-In-Reply-To: <1c441d20-951d-407b-90ba-4cda3b0505b2@app.fastmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 31 Mar 2023 13:11:49 +0100
-Message-ID: <CA+V-a8t_kozAobT028-RN39uoXcd7-0oJAhAR24MEzmoLVKX8Q@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
- pointers for cache management
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     "Conor.Dooley" <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        guoren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232133AbjCaMSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:18:35 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40DE1EFEC;
+        Fri, 31 Mar 2023 05:18:33 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 410DF24DC31;
+        Fri, 31 Mar 2023 20:18:27 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 31 Mar
+ 2023 20:18:27 +0800
+Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 31 Mar
+ 2023 20:18:26 +0800
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Robert Foss <rfoss@kernel.org>,
+        "Todor Tomov" <todor.too@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <jack.zhu@starfivetech.com>,
+        <changhuang.liang@starfivetech.com>
+Subject: [PATCH v3 0/9] Add Starfive Camera Subsystem driver
+Date:   Fri, 31 Mar 2023 20:18:17 +0800
+Message-ID: <20230331121826.96973-1-jack.zhu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,54 +60,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 11:45=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrot=
-e:
->
-> On Fri, Mar 31, 2023, at 12:37, Lad, Prabhakar wrote:
-> > On Thu, Mar 30, 2023 at 10:34=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> =
-wrote:
-> >
-> >> It also seems wrong to have the fallback be to do nothing
-> >> when the pointer is NULL, since that cannot actually work
-> >> when a device is not cache coherent.
-> >>
-> > If the device is non cache coherent and if it doesn't support ZICBOM
-> > ISA extension the device won't work anyway. So non-cache coherent
-> > devices until they have their CMO config enabled won't work anyway. So
-> > I didn't see any benefit in enabling ZICBOM by default. Please let me
-> > know if I am misunderstanding.
->
-> Two things:
->
-> - Having a broken machine crash with in invalid instruction
->   exception is better than having it run into silent data
->   corruption.
->
-> - a correctly predicted branch is typically faster than an
->   indirect function call, so the fallback to zicbom makes the
->   expected (at least in the future) case the fast one.
->
-Ok, thank you for the clarification. I'll default to zicbom.
+Hi,
 
-> > @@ -465,7 +466,6 @@ config RISCV_ISA_ZICBOM
-> >         depends on MMU
-> >         depends on RISCV_ALTERNATIVE
-> >         default y
-> > -       select RISCV_DMA_NONCOHERENT
-> >         help
-> >            Adds support to dynamically detect the presence of the ZICBO=
-M
-> >            extension (Cache Block Management Operations) and enable its
-> >
-> > But what if the platform doesn't have the ZICBOM ISA extension?
->
-> Then it needs to register its cache operations before the first
-> DMA, which is something that it should do anyway. With your
-> current code, it may work by accident depending on the state of
-> the cache, but with the version I suggested, it will either work
-> correctly all the time or crash in an obvious way when misconfigured.
->
-Okay, agreed.
+This patch series adds support for the Starfive Camera Subsystem
+found on Starfive JH7110 SoC.
 
-Cheers,
-Prabhakar
+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+Camera sensor using V4L2 subdev interface in the kernel is supported.
+
+The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+GStreamer 1.18.5 with v4l2src plugin is supported.
+
+Changes since v2:
+- Rebased on v6.3-rc1.
+Patch 1:
+- Modified spelling errors.
+- Added port@0.
+- Modified '$ref' of port.
+- Added 'ports' to 'required'.
+- Dropped 'stfcamss' label in example.
+- Added port@0 in example.
+- Added MAINTAINERS file.
+Patch 2:
+- Split this patch into three new patches.
+- Modified compatible property.
+- Replaced clock names with the existing names.
+- Modified 'bus-type' and 'clock-lanes'
+- Added port@2 - port@4
+- Dropped 'csi2rx' label in example.
+Patch 3:
+- Updated rst and dot file as three pipelines were deleted.
+Patch 4:
+- Split this patch into three new patches.
+- Dropped .s_power() and .get_fmt().
+- Dropped CSI-2 DT support.
+- Dropped v4l2_device_register_subdev_nodes().
+- Used assigned-clock-rates in DT to set clk value.
+- Modified 'compatible' field.
+Patch 5:
+- Deleted three pipelines. 
+- Modified 'stfcamss_clocks'/'stfcamss_resets' struct.
+- Dropped stfcamss_find_sensor() function.
+- Removed redundant code from stfcamss_of_parse_endpoint_node().
+- Modified spelling errors.
+- Rewrote stfcamss_reg_media_subdev_node() function.
+- Modified stfcamss_subdev_notifier_bound().
+- Modified stfcamss_probe() function.
+- Dropped stfcamss_suspend() and stfcamss_resume().
+- Dropped dev_info() in stfcamss_remove() function.
+- Added 'stf_' prefix for enum subdev_type.
+- Moved all includes to the top in stf_camss.h file.
+- Dropped unused fields in stfcamss struct.
+- Replaced Custom logging macros with regular macros.
+- Rewrote register read and write functions.
+- Used lowercase for all hex constants.
+- Used macro to name registers.
+- Dropped unused ioctl and stf_isp_ioctl.h file.
+
+  v2: https://lore.kernel.org/all/20230310120553.60586-1-jack.zhu@starfivetech.com/
+
+Changes since v1:
+- Deleted starfive,jh7110-mipi-csi2.yaml.
+- Converted cdns,csi2rx.txt to cdns,csi2rx.yaml and added ‘resets’
+  properties.
+- Added ‘cdns,csi2rx.yaml’ in ‘CADENCE MIPI-CSI2 BRIDGES’ entry.
+- The following contents were modified in starfive,jh7110-camss.yaml:
+  dropped quotes from ’id’ and ‘schema’; dropped ‘|’ for ‘description’;
+  corrected the wrong or redundant words: ‘a ISP’, ‘PD ISP’;
+  dropped ‘minItems’ for ‘reg’, ‘clocks’, ‘resets’ and ‘interrupts’;
+  dropped the '_clk' and 'rst_' prefix about the 'clock-names' and
+  'reset-names';
+  changed ‘endpoint@1’ to ‘endpoint’; updated examples;
+- Updated Subject for some patches.
+- Merged patch 6, 7, 8, 9, 10, 11 into one patch.
+
+Jack Zhu (9):
+  media: dt-bindings: Add bindings for JH7110 Camera Subsystem
+  media: admin-guide: Add starfive_camss.rst for Starfive Camera
+    Subsystem
+  media: dt-bindings: cadence-csi2rx: Convert to DT schema
+  media: dt-bindings: cadence-csi2rx: Add resets property
+  media: dt-bindings: cadence-csi2rx: Add starfive compatible
+  media: cadence: Add operation on reset
+  media: cadence: Add support for external dphy
+  media: cadence: Add support for JH7110 SoC
+  media: starfive: Add Starfive Camera Subsystem driver
+
+ .../admin-guide/media/starfive_camss.rst      |   57 +
+ .../media/starfive_camss_graph.dot            |   16 +
+ .../admin-guide/media/v4l-drivers.rst         |    1 +
+ .../devicetree/bindings/media/cdns,csi2rx.txt |  100 --
+ .../bindings/media/cdns,csi2rx.yaml           |  201 +++
+ .../bindings/media/starfive,jh7110-camss.yaml |  159 +++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/cadence/cdns-csi2rx.c  |   97 +-
+ drivers/media/platform/starfive/Kconfig       |   18 +
+ drivers/media/platform/starfive/Makefile      |   14 +
+ drivers/media/platform/starfive/stf_camss.c   |  477 +++++++
+ drivers/media/platform/starfive/stf_camss.h   |  150 +++
+ drivers/media/platform/starfive/stf_common.h  |   18 +
+ drivers/media/platform/starfive/stf_isp.c     |  737 +++++++++++
+ drivers/media/platform/starfive/stf_isp.h     |  999 ++++++++++++++
+ .../media/platform/starfive/stf_isp_hw_ops.c  |  715 ++++++++++
+ drivers/media/platform/starfive/stf_video.c   |  989 ++++++++++++++
+ drivers/media/platform/starfive/stf_video.h   |   89 ++
+ drivers/media/platform/starfive/stf_vin.c     | 1151 +++++++++++++++++
+ drivers/media/platform/starfive/stf_vin.h     |  174 +++
+ .../media/platform/starfive/stf_vin_hw_ops.c  |  211 +++
+ 23 files changed, 6275 insertions(+), 110 deletions(-)
+ create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+ create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
+ delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+ create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+ create mode 100644 drivers/media/platform/starfive/Kconfig
+ create mode 100644 drivers/media/platform/starfive/Makefile
+ create mode 100644 drivers/media/platform/starfive/stf_camss.c
+ create mode 100644 drivers/media/platform/starfive/stf_camss.h
+ create mode 100644 drivers/media/platform/starfive/stf_common.h
+ create mode 100644 drivers/media/platform/starfive/stf_isp.c
+ create mode 100644 drivers/media/platform/starfive/stf_isp.h
+ create mode 100644 drivers/media/platform/starfive/stf_isp_hw_ops.c
+ create mode 100644 drivers/media/platform/starfive/stf_video.c
+ create mode 100644 drivers/media/platform/starfive/stf_video.h
+ create mode 100644 drivers/media/platform/starfive/stf_vin.c
+ create mode 100644 drivers/media/platform/starfive/stf_vin.h
+ create mode 100644 drivers/media/platform/starfive/stf_vin_hw_ops.c
+
+-- 
+2.34.1
+
