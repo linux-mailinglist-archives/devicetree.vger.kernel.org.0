@@ -2,130 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB716D23C7
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10ABB6D2403
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233160AbjCaPPF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 31 Mar 2023 11:15:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41034 "EHLO
+        id S231713AbjCaPav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 11:30:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233156AbjCaPPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:15:04 -0400
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87DAC1CBA9;
-        Fri, 31 Mar 2023 08:14:55 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-54601d90118so265040327b3.12;
-        Fri, 31 Mar 2023 08:14:55 -0700 (PDT)
+        with ESMTP id S232439AbjCaPau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:30:50 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33661BF54
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 08:30:47 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id h25so29417790lfv.6
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 08:30:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112; t=1680276646;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6A0iWjO3lEyBsPaMGHtQd+BJD8tKNmM9E/ONQ1qr1SM=;
+        b=LkFgRfPeFp/22S5euUb4OH6Lb5B6FGAqmU6JcIMbkQMDclMy9HM2TsKtQGzptucalQ
+         GRsYBVyRN51WNzia2nlyopOLglIN2uRM3O45Mv6b1phweAjPhXsiLG3riIDe7qkyPCws
+         30F1DGBkW9tZrcKptQYOYgdDaeOepY5D3uf6gTfgs5nahxwLhTYbgbtpkezNoF6RQzoX
+         Jo+CtOtcvYsJBMXbnAkc6NbePi9qp20UxIl8WpiieJ/EwpnUzyk6lqT5xrKvbs+6BN4f
+         ZckBg0zrEIJgm4/nZbbwM1bZ4EOoUQtTbi6xLWHRaE6yjpKE2E8+pXPx4TTgJunzYqge
+         1wcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680275694;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RWgHRMVasG7nDW/oXg1Gn0gxLEITRLu6jYb9r+As/UQ=;
-        b=M8kG/2ViLAhn9U0zvuCVf74FdL8tRHbVN5lQR1a0PlnaKIP0pdA3m5VJbDRNhpcwMA
-         4kBRr+zvl51VXiSFZPd966cTaetZe89nI2PTCA+rSikCcnGDXLBAGSWyjXwylX10B7mW
-         JHuUGulaC9wy2DUmduLP7olOdci20V5iK6New6yQYy8sOVK+i5hm3iDiNXdvMzHTDp51
-         LI4PxwznyTVBhd/9XbL+9+pqHJyfq1un+KjWfhaWju54RvwFXF62xJ/oXjvD8ZNlQF6f
-         RayTo8CsPGeENunyvpUVyjrXW2ExAxX/eiAEBXRLJGjtrxiAmif1+vIScabF7ZIUhlf+
-         rLkg==
-X-Gm-Message-State: AAQBX9eoVa1ft6fKFO7mHyVz/G/rBbwtU+r33lwLrRU3U4zMN8u7GURl
-        pqnrSeClHeTDdXikPP9KG85FFjh3iCaqMw==
-X-Google-Smtp-Source: AKy350b+7EJaz9B3Zg9GG2rbkRWaXUjuix3rX5/EWcWFl2Yc69EPzqCAKFr968Rd0g4ucwtVLFAuJw==
-X-Received: by 2002:a81:92c8:0:b0:543:dca5:8407 with SMTP id j191-20020a8192c8000000b00543dca58407mr24902591ywg.28.1680275694490;
-        Fri, 31 Mar 2023 08:14:54 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id i11-20020a81f20b000000b00545a08184cbsm574389ywm.91.2023.03.31.08.14.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 08:14:54 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5456249756bso420475047b3.5;
-        Fri, 31 Mar 2023 08:14:54 -0700 (PDT)
-X-Received: by 2002:a81:ac19:0:b0:545:5e70:323f with SMTP id
- k25-20020a81ac19000000b005455e70323fmr2450399ywh.4.1680275694152; Fri, 31 Mar
- 2023 08:14:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230331141032.3817866-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20230331141032.3817866-1-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 31 Mar 2023 17:14:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXANL4RwjqcqGsjJa8_R2ExefnWbsOfayHLegzHsjpP8Q@mail.gmail.com>
-Message-ID: <CAMuHMdXANL4RwjqcqGsjJa8_R2ExefnWbsOfayHLegzHsjpP8Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: maxim,max96712: Require setting
- bus-type property
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        d=1e100.net; s=20210112; t=1680276646;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6A0iWjO3lEyBsPaMGHtQd+BJD8tKNmM9E/ONQ1qr1SM=;
+        b=SCsBUNyzZBjun44P85yh1J1zGqbeXtzvNNMC+F+17snUijG/iQOr86VfA0/XEG7U3G
+         cKBx90DgRN4H5vD2H5MyNQH41zr2glY4kExb2nsaa02+k0MJMuTYLyKXkJxt64P5NO3w
+         q+kkqSKctHZ+vUqHP9L5TNTeu9xwKitqf22fyfyfnsN/mYnHRSwknmjBSfT/aDewaHVG
+         Pab5hmlS6wKKzY5UuOd8KFxjDuUssE6KTcVJFVY00NyZj1xXjybslM5zkos3tUQCj06n
+         NsQmDyDHR6FEL470aFO7pOLLsvOaQ64KG/rJUmnZy3mhHW04ExViQ+pQGbvMiBoX7L7W
+         Virg==
+X-Gm-Message-State: AAQBX9eGuwa+6qEz8sn5Wn1Y3iOGjT4DtenLu4oZYHGlhRHUiu+OGBUV
+        zF+9NyDILd+D3MZaoqRQZzvuGQ==
+X-Google-Smtp-Source: AKy350YepSvuw2t6ZjhbyE64IUjssjT5anPkoiKQnBEdq9dZJrA10z16qjpoc2CUOMaPBfuz3d57Zw==
+X-Received: by 2002:a05:6512:38a9:b0:4eb:10b:a8ed with SMTP id o9-20020a05651238a900b004eb010ba8edmr7665971lft.64.1680276646126;
+        Fri, 31 Mar 2023 08:30:46 -0700 (PDT)
+Received: from localhost (h-46-59-89-207.A463.priv.bahnhof.se. [46.59.89.207])
+        by smtp.gmail.com with ESMTPSA id l13-20020ac24a8d000000b004b550c26949sm411994lfp.290.2023.03.31.08.30.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 08:30:45 -0700 (PDT)
+Date:   Fri, 31 Mar 2023 17:30:45 +0200
+From:   Niklas =?utf-8?Q?S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
         linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
-        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Subject: Re: [PATCH] arm64: dts: renesas: falcon-csi-dsi: Set bus-type for
+ MAX96712
+Message-ID: <ZCb8pZic2NILOER/@oden.dyn.berto.se>
+References: <20230331141431.3820311-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdWXxUy67noYCq3d2HOKD0rvzmoL=xPGHZ=0GjToJosNNA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdWXxUy67noYCq3d2HOKD0rvzmoL=xPGHZ=0GjToJosNNA@mail.gmail.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+Hi Geert,
 
-On Fri, Mar 31, 2023 at 4:15 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> The MAX96712 can support both CSI-2 C-PHY and D-PHY bus. Document the
-> supported bus-types and make the property mandatory.
->
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Thanks for your comments.
 
-Thanks for your patch!
+On 2023-03-31 17:08:50 +0200, Geert Uytterhoeven wrote:
+> Hi Niklas,
+> 
+> Thanks for your patch!
+> 
+> On Fri, Mar 31, 2023 at 4:15 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > Specify the bus-type property for all three connected MAX96712.
+> 
+> Probably this can use a little bit more explanation?
+> E.g. what does not work?
 
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> @@ -65,9 +65,14 @@ properties:
->
->              properties:
->                data-lanes: true
-> +              bus-type:
-> +                enum:
-> +                  - 1 # CSI-2 C-PHY
-> +                  - 4 # CSI-2 D-PHY
+Everything works both with and without this patch. This is done in 
+preparation to making the property mandatory. The default behavior when 
+parsing a node without this property is to default to D-PHY. So this is 
+just playing it safe and future prof tings as the default parsing comes 
+from the V4L2 core and not the driver itself.
 
-Perhaps use/refer to the symbolic names, too?
+> 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> 
+> LGTM, so
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> Does this need a Fixes: tag?
+> Fixes: 283252132cb578cf ("arm64: dts: renesas: falcon-csi-dsi: Add and
+> connect MAX96712")
+> 
+> Note that a backport to v6.1 and earlier will depend on a backport of
+> commit f7eeb00845934851 ("media: dt-bindings: media: Add macros for
+> video interface bus types") in v6.2, too.
 
-Sounds like an opportunity for improvement for
-Documentation/devicetree/bindings/media/video-interfaces.yaml, too.
+In a perfect word it would. But since the change is backward compatible 
+I'm not sure it's worth the effort given the dependency on the macro 
+definitions? If you think this is a good idea maybe a separate patch 
+posted for stable that uses the numerical values directly?
 
->
->              required:
->                - data-lanes
-> +              - bus-type
->
->      required:
->        - port@4
-> @@ -82,6 +87,7 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
->
->      i2c@e6508000 {
->              #address-cells = <1>;
-> @@ -101,6 +107,7 @@ examples:
->                              port@4 {
->                                      reg = <4>;
->                                      max96712_out0: endpoint {
-> +                                            bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
->                                              clock-lanes = <0>;
->                                              data-lanes = <1 2 3 4>;
->                                              remote-endpoint = <&csi40_in>;
-
-Gr{oetje,eeting}s,
-
-                        Geert
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Kind Regards,
+Niklas Söderlund
