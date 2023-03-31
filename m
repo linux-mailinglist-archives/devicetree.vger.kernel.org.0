@@ -2,77 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ACFB6D1AB8
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1CE6D1ABE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231258AbjCaIsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:48:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53536 "EHLO
+        id S231324AbjCaIta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:49:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbjCaIsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:48:53 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABD61A478
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:48:48 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id cn12so86841936edb.4
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:48:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1680252527; x=1682844527;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YKQ8vPs0Dih0iynj4Cmp9T+ba+hL2fXnZWwHnBAcuhg=;
-        b=2mnu4yNGGAjxV0UGAgbgJ1AICl1gU3kPVXV/uIz/kc90gY9iQa3ujFi6sTAAZ8ClwO
-         mjKn0bPO0uNXpYuQCsDw/XzSTAylNw3KK7AK7CLSRMGSRxAl6qcL/qf9rosRDDyLqCkZ
-         HpnLqgf5TgRMf4rXUio9eniDoO7+anKXKnL2Dq2LEUjFgWpKeCB6sUkUNmG73UuZbBXJ
-         w/YAdZfEjBd9KjP3fPbtSJ/W432hn77/B31cQVC+vQolyY78Jx2fN1EXoBdLw6rYk9QY
-         DbkjVrTStYIS7gDPEpPGq+s1v8EhU+sJIHeaZbiavRhqhav8IdKt3A/sGvEoG5TCBHFa
-         04SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680252527; x=1682844527;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YKQ8vPs0Dih0iynj4Cmp9T+ba+hL2fXnZWwHnBAcuhg=;
-        b=5Ta4sEoXm88XV6kjN6OoFaPI0JpI5QrWPXB6oldu6+zrJp4Gi22DwO7Tku52K5/wWR
-         YjEKR3lUo68SWgbhn+JBR4knt6qzx6doDMfzai4fiTFYZHEZHvG1RywEMIc/X1kptHAi
-         g0NjZycI85uHRxZREqX3cXzZAGkA9WqzNjDrSatC/oLTUWnR+hB7O92BbyGdfHNWlJff
-         4yLzFbJjtihs7B8aMLk+twf39PKAtgfb76m3D0+CZxLthyxypOWFwx1HtC43Sp5lwQWA
-         x6p7N8ik5bH1JpcyjE7y9MsHrEDE8WyFv+wZ4j3Y/mPL0DVKqJC1C0U2qJ62rwvrEpHa
-         reWQ==
-X-Gm-Message-State: AAQBX9enpEXcV5WAYlDAnPe9ht8qS4161jzUZuadLU2/xAQBmkU/6vzl
-        azlG3yVJxnaxx/7o7xKwRVJofYvRoiNNO/ivE9BWXQ==
-X-Google-Smtp-Source: AKy350bnnqqF6nxkO/W28cnGFgJLDt6X6dbSMYLaOR1vQblDBZbqXKF6iRXEJ687TERcv3Ehu+EydA==
-X-Received: by 2002:a17:906:4ed8:b0:933:4d37:82b2 with SMTP id i24-20020a1709064ed800b009334d3782b2mr24879381ejv.57.1680252526964;
-        Fri, 31 Mar 2023 01:48:46 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id tg4-20020a1709078dc400b00947a97a42f2sm509942ejc.103.2023.03.31.01.48.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:48:46 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 31 Mar 2023 10:48:46 +0200
-Message-Id: <CRKFT6BE3AW9.3OH8GRUPW2TLN@otso>
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
-        <gregkh@linuxfoundation.org>, <andersson@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     <wcheng@codeaurora.org>, <caleb.connolly@linaro.org>,
-        <konrad.dybcio@linaro.org>, <subbaram@quicinc.com>,
-        <jackp@quicinc.com>, <robertom@qti.qualcomm.com>,
-        <lujianhua000@gmail.com>
-Subject: Re: [PATCH v4 00/18] Add Qualcomm PMIC TPCM support
-X-Mailer: aerc 0.14.0
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <CREPJP5KTX2D.VCM8IIZIP1ZT@otso>
- <9c541f81-8501-a142-1df8-6e71509c0d88@linaro.org>
-In-Reply-To: <9c541f81-8501-a142-1df8-6e71509c0d88@linaro.org>
+        with ESMTP id S231134AbjCaIt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:49:28 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6615C1B7EE;
+        Fri, 31 Mar 2023 01:49:19 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6E1DA6603180;
+        Fri, 31 Mar 2023 09:49:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680252557;
+        bh=EIlHy/fOQ4nvThPIDq8IH7bbZG6jRaS0NwuvOWeucNU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HT7tilTwUS2yXnomFHF6Tjq9o6/wAyNNsybgq7DxBT8JuPLcJLov7IcJ091S5eWGu
+         gNyn5DLK/b0uXCPWVBx22d71xpNzg1txgABQW16i8Kd0Ozk0rOGej4Pw15btAUBBoR
+         3JHh7hmTNafjLVoIMs6ozO/MN6NKq5XufWN5m51wy1nWBFLxWxUEfyTll32QTfpAD1
+         m/5oVpAVPpKwfb+DaNJGiHt46yzabfn8GxuObatGQg3z8qdr5vU2PhFHblkgZxPBmZ
+         rPdul/Ib1m24iXdOGSI+1AB2eAmBBbAdjNssJi15zat9kX2K0tjcX77aquPArG35m1
+         6tBKQC+ui0htw==
+Date:   Fri, 31 Mar 2023 10:49:14 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     airlied@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        steven.price@arm.com, robh+dt@kernel.org,
+        alyssa.rosenzweig@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        wenst@chromium.org, kernel@collabora.com
+Subject: Re: [PATCH v1 RESEND 2/2] drm/panfrost: Add basic support for speed
+ binning
+Message-ID: <20230331104914.708b194e@collabora.com>
+In-Reply-To: <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
+References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
+        <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
+        <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,500 +61,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
+On Fri, 31 Mar 2023 10:11:07 +0200
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+wrote:
 
-On Fri Mar 24, 2023 at 4:28 PM CET, Bryan O'Donoghue wrote:
-> On 24/03/2023 15:10, Luca Weiss wrote:
-> > When plugging in the device with TCPM on into my PC (peripheral mode)
-> > then the USB device registers and unregisters every couple of seconds,
-> > never stays stable on. No messages in dmesg when this happens. This onl=
-y
-> > happens with the USB-C plug in one direction, in the other it
-> > works reliable.
->
-> Sounds like we need to do some SoC specific debug on orientation=20
-> switching in the PHY.
+> Il 23/03/23 10:08, AngeloGioacchino Del Regno ha scritto:
+> > Some SoCs implementing ARM Mali GPUs are subject to speed binning:
+> > this means that some versions of the same SoC model may need to be
+> > limited to a slower frequency compared to the other:
+> > this is being addressed by reading nvmem (usually, an eFuse array)
+> > containing a number that identifies the speed binning of the chip,
+> > which is usually related to silicon quality.
+> > 
+> > To address such situation, add basic support for reading the
+> > speed-bin through nvmem, as to make it possible to specify the
+> > supported hardware in the OPP table for GPUs.
+> > This commit also keeps compatibility with any platform that does
+> > not specify (and does not even support) speed-binning.
+> > 
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
+> 
+> Hello maintainers,
+> I've seen that this got archived in the dri-devel patchwork; because of that and
+> only that, I'm sending this ping to get this patch reviewed.
 
-I also know that the phone has a AW35743 chip in the USB path,
-controlled by DP_AUX_EN and DP_AUX_SEL gpios but I think this is only
-for displayport, right?
+Looks good to me. If you can get a DT maintainer to review the binding
+(Rob?), I'd be happy to queue the series to drm-misc-next.
 
->
-> I wonder how many lanes dp_opts->lanes says for your part ?
+> 
+> (perhaps we can even get it picked for v6.4?)
+> 
+> Regards,
+> Angelo
+> 
+> > ---
+> >   drivers/gpu/drm/panfrost/panfrost_devfreq.c | 30 +++++++++++++++++++++
+> >   1 file changed, 30 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/panfrost/panfrost_devfreq.c b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > index fe5f12f16a63..58dfb15a8757 100644
+> > --- a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > +++ b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > @@ -4,6 +4,7 @@
+> >   #include <linux/clk.h>
+> >   #include <linux/devfreq.h>
+> >   #include <linux/devfreq_cooling.h>
+> > +#include <linux/nvmem-consumer.h>
+> >   #include <linux/platform_device.h>
+> >   #include <linux/pm_opp.h>
+> >   
+> > @@ -82,6 +83,31 @@ static struct devfreq_dev_profile panfrost_devfreq_profile = {
+> >   	.get_dev_status = panfrost_devfreq_get_dev_status,
+> >   };
+> >   
+> > +static int panfrost_read_speedbin(struct device *dev)
+> > +{
+> > +	u32 val;
+> > +	int ret;
+> > +
+> > +	ret = nvmem_cell_read_variable_le_u32(dev, "speed-bin", &val);
+> > +	if (ret) {
+> > +		/*
+> > +		 * -ENOENT means that this platform doesn't support speedbins
+> > +		 * as it didn't declare any speed-bin nvmem: in this case, we
+> > +		 * keep going without it; any other error means that we are
+> > +		 * supposed to read the bin value, but we failed doing so.
+> > +		 */
+> > +		if (ret != -ENOENT) {
+> > +			DRM_DEV_ERROR(dev, "Cannot read speed-bin (%d).", ret);
+> > +			return ret;
+> > +		}
+> > +
+> > +		return 0;
+> > +	}
+> > +	DRM_DEV_DEBUG(dev, "Using speed-bin = 0x%x\n", val);
+> > +
+> > +	return devm_pm_opp_set_supported_hw(dev, &val, 1);
+> > +}
+> > +
+> >   int panfrost_devfreq_init(struct panfrost_device *pfdev)
+> >   {
+> >   	int ret;
+> > @@ -101,6 +127,10 @@ int panfrost_devfreq_init(struct panfrost_device *pfdev)
+> >   		return 0;
+> >   	}
+> >   
+> > +	ret = panfrost_read_speedbin(dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> >   	ret = devm_pm_opp_set_regulators(dev, pfdev->comp->supply_names);
+> >   	if (ret) {
+> >   		/* Continue if the optional regulator is missing */  
+> 
+> 
 
-Not sure.. Where is this configured?
-But I also don't have DisplayPort over USB-C (video out) configured yet.
-Related question: does video out work on sm8250+pm8150b for you?
-
->
-> Also potentially not having "orientation-switch" in &usb_1_qmpphy{} but,=
-=20
-> I think we discussed that before.
-
-Definitely have that in my device dts in that node.
-
-When unplugged from my PC (USB-C->USB-A cable) I get
-
-  [ 1236.114620] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_vbus: =
-0x00000042 detect 0
-
-When plugging in just
-
-  [ 1261.890238] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_vbus: =
-0x00000062 detect 1
-
-The same exact message also when plugging the USB-C plug the other way
-on the phone.
-
-When testing with a USB-C->USB-C cable the behavior is similar. Only one
-orientation on the phone is stable, the other one has the same unstable
-behavior. The direction on the laptop doesn't matter, both directions
-(when not changing the phone direction) is stable. Not sure if this
-indicates where something is wrong, I don't know enough USB-C for this
-;)=20
-
->
-> So either
->
-> - PHY orientation turn-around isn't working or
-
-Since plugging in a USB stick works both ways, I assume at least some
-part of it is working?
-
-> - DTS orientation-switch isn't happening for you
-
-Not sure what this means / how to check.
-
-I'm attaching the USB-C->USB-C logs both ways, maybe they also show
-something interesting?
-
-Regards
-Luca
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-USB stable (device plug orientation 1):
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-
-[ 1722.130836] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=3Dcc1
-[ 1722.331025] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 0 requested 2
-[ 1722.331152] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D1 power_role_src=3D1
-[ 1722.331182] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: on
-[ 1722.331224] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 0 control 0x00000003 state on cc cc2 vconn cc1
-[ 1722.333742] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 1 result 0
-[ 1722.333824] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1722.340158] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1722.373839] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000042 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc1
-[ 1722.373880] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000042 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc1
-[ 1722.373905] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: off
-[ 1722.379037] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 0 result 0
-[ 1722.379080] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 0 control 0x00000000 state off cc cc2 vconn cc1
-[ 1722.379098] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 2 requested 0
-[ 1722.379171] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D1 power_role_src=3D1
-[ 1722.379193] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: start_toggli=
-ng: misc 0x00000042 attached 0 port_type 0 current cc 4 new 4
-[ 1722.379234] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_vbus: 0x=
-00000042 detect 0
-[ 1722.383528] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1722.448649] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1722.448717] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 1
-[ 1722.449835] xhci-hcd xhci-hcd.1.auto: hcc params 0x0230fe65 hci version =
-0x110 quirks 0x0000000000010010
-[ 1722.449871] xhci-hcd xhci-hcd.1.auto: irq 188, io mem 0x0a600000
-[ 1722.449972] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1722.449982] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 2
-[ 1722.449992] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[ 1722.450112] usb usb1: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0002, bcdDevice=3D 6.02
-[ 1722.450121] usb usb1: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1722.450127] usb usb1: Product: xHCI Host Controller
-[ 1722.450132] usb usb1: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1722.450138] usb usb1: SerialNumber: xhci-hcd.1.auto
-[ 1722.450468] hub 1-0:1.0: USB hub found
-[ 1722.450494] hub 1-0:1.0: 1 port detected
-[ 1722.451703] usb usb2: We don't know the algorithms for LPM for this host=
-, disabling LPM.
-[ 1722.451810] usb usb2: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0003, bcdDevice=3D 6.02
-[ 1722.451822] usb usb2: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1722.451831] usb usb2: Product: xHCI Host Controller
-[ 1722.451839] usb usb2: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1722.451846] usb usb2: SerialNumber: xhci-hcd.1.auto
-[ 1722.452491] hub 2-0:1.0: USB hub found
-[ 1722.452524] hub 2-0:1.0: 1 port detected
-[ 1722.453143] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1722.453153] usb usb2: USB disconnect, device number 1
-[ 1722.454619] xhci-hcd xhci-hcd.1.auto: USB bus 2 deregistered
-[ 1722.454640] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1722.454653] usb usb1: USB disconnect, device number 1
-[ 1722.457569] xhci-hcd xhci-hcd.1.auto: USB bus 1 deregistered
-[ 1723.255900] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=3Dcc1
-[ 1723.255956] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=3Dcc1
-[ 1723.456104] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 0 requested 2
-[ 1723.456214] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D1 power_role_src=3D1
-[ 1723.456238] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: on
-[ 1723.456283] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 0 control 0x00000003 state on cc cc2 vconn cc1
-[ 1723.458727] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 1 result 0
-[ 1723.458784] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.466539] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.503200] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.503241] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.507535] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.523733] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.523808] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.535554] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.543851] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.543892] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.551553] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.565097] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.571515] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.575554] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.576416] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1723.576482] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 1
-[ 1723.577757] xhci-hcd xhci-hcd.1.auto: hcc params 0x0230fe65 hci version =
-0x110 quirks 0x0000000000010010
-[ 1723.577850] xhci-hcd xhci-hcd.1.auto: irq 188, io mem 0x0a600000
-[ 1723.578172] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1723.578216] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 2
-[ 1723.578258] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[ 1723.578680] usb usb1: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0002, bcdDevice=3D 6.02
-[ 1723.578723] usb usb1: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1723.578747] usb usb1: Product: xHCI Host Controller
-[ 1723.578755] usb usb1: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1723.578760] usb usb1: SerialNumber: xhci-hcd.1.auto
-[ 1723.579187] hub 1-0:1.0: USB hub found
-[ 1723.579211] hub 1-0:1.0: 1 port detected
-[ 1723.579480] usb usb2: We don't know the algorithms for LPM for this host=
-, disabling LPM.
-[ 1723.579548] usb usb2: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0003, bcdDevice=3D 6.02
-[ 1723.579555] usb usb2: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1723.579560] usb usb2: Product: xHCI Host Controller
-[ 1723.579564] usb usb2: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1723.579569] usb usb2: SerialNumber: xhci-hcd.1.auto
-[ 1723.581083] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 2 requested 2
-[ 1723.581144] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D0 power_role_src=3D1
-[ 1723.581192] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.581234] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.581661] hub 2-0:1.0: USB hub found
-[ 1723.581690] hub 2-0:1.0: 1 port detected
-[ 1723.582636] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1723.582659] usb usb2: USB disconnect, device number 1
-[ 1723.586362] xhci-hcd xhci-hcd.1.auto: USB bus 2 deregistered
-[ 1723.586421] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1723.586456] usb usb1: USB disconnect, device number 1
-[ 1723.591097] xhci-hcd xhci-hcd.1.auto: USB bus 1 deregistered
-[ 1723.591580] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.602619] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.602793] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.611512] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.623020] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.623062] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.631625] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.644262] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.650769] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc1
-[ 1723.651546] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1723.662850] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 0 control 0x00000000 state off cc cc2 vconn cc1
-
-- unplug -
-
-[ 1867.223052] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000042 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc1
-[ 1867.223277] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: off
-[ 1867.226027] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 0 result 0
-[ 1867.226064] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 0 control 0x00000000 state off cc cc2 vconn cc1
-[ 1867.226084] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 2 requested 0
-[ 1867.226145] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D0 power_role_src=3D1
-[ 1867.226167] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: start_toggli=
-ng: misc 0x00000042 attached 0 port_type 0 current cc 5 new 4
-[ 1867.226212] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_vbus: 0x=
-00000042 detect 0
-[ 1867.236933] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-USB unstable (device plug orientation 2):
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-
-[ 1894.263324] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x000000c9 cc1 0x00000002 Rd cc2 0x00000001 Ra attached 1 cc=3Dcc2
-[ 1894.463482] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 0 requested 1
-[ 1894.463616] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D1 power_role_src=3D1
-[ 1894.463646] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: on
-[ 1894.463690] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 4 control 0x00000007 state on cc cc1 vconn cc2
-[ 1894.466173] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 1 result 0
-[ 1894.466257] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1894.474797] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1894.505894] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000040 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc2
-[ 1894.505935] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000040 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc2
-[ 1894.505963] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: off
-[ 1894.510880] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 0 result 0
-[ 1894.510920] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 4 control 0x00000000 state off cc cc1 vconn cc2
-[ 1894.510940] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 1 requested 0
-[ 1894.511021] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D1 power_role_src=3D1
-[ 1894.511043] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: start_toggli=
-ng: misc 0x00000040 attached 0 port_type 0 current cc 4 new 4
-[ 1894.511084] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_vbus: 0x=
-00000000 detect 0
-[ 1894.516552] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1894.581138] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1894.581171] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 1
-[ 1894.582287] xhci-hcd xhci-hcd.1.auto: hcc params 0x0230fe65 hci version =
-0x110 quirks 0x0000000000010010
-[ 1894.582330] xhci-hcd xhci-hcd.1.auto: irq 188, io mem 0x0a600000
-[ 1894.582464] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1894.582479] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 2
-[ 1894.582493] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[ 1894.582649] usb usb1: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0002, bcdDevice=3D 6.02
-[ 1894.582661] usb usb1: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1894.582670] usb usb1: Product: xHCI Host Controller
-[ 1894.582677] usb usb1: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1894.582685] usb usb1: SerialNumber: xhci-hcd.1.auto
-[ 1894.583211] hub 1-0:1.0: USB hub found
-[ 1894.583255] hub 1-0:1.0: 1 port detected
-[ 1894.583830] usb usb2: We don't know the algorithms for LPM for this host=
-, disabling LPM.
-[ 1894.583960] usb usb2: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0003, bcdDevice=3D 6.02
-[ 1894.583975] usb usb2: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1894.583987] usb usb2: Product: xHCI Host Controller
-[ 1894.583996] usb usb2: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1894.584006] usb usb2: SerialNumber: xhci-hcd.1.auto
-[ 1894.584742] hub 2-0:1.0: USB hub found
-[ 1894.584782] hub 2-0:1.0: 1 port detected
-[ 1894.585437] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1894.585452] usb usb2: USB disconnect, device number 1
-[ 1894.588024] xhci-hcd xhci-hcd.1.auto: USB bus 2 deregistered
-[ 1894.588046] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1894.588060] usb usb1: USB disconnect, device number 1
-[ 1894.591836] xhci-hcd xhci-hcd.1.auto: USB bus 1 deregistered
-[ 1895.388351] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x000000c9 cc1 0x00000002 Rd cc2 0x00000001 Ra attached 1 cc=3Dcc2
-[ 1895.388407] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x000000c9 cc1 0x00000002 Rd cc2 0x00000001 Ra attached 1 cc=3Dcc2
-[ 1895.588568] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 0 requested 1
-[ 1895.588643] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D1 power_role_src=3D1
-[ 1895.588664] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: on
-[ 1895.588705] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 4 control 0x00000007 state on cc cc1 vconn cc2
-[ 1895.591193] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 1 result 0
-[ 1895.591250] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.598187] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.635829] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.635940] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.640601] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.657692] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.657766] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.664570] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.677799] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.677836] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.684618] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.698467] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.704570] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.705452] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1895.705514] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 1
-[ 1895.706625] xhci-hcd xhci-hcd.1.auto: hcc params 0x0230fe65 hci version =
-0x110 quirks 0x0000000000010010
-[ 1895.706658] xhci-hcd xhci-hcd.1.auto: irq 188, io mem 0x0a600000
-[ 1895.706747] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[ 1895.706755] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 2
-[ 1895.706764] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[ 1895.706824] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.707209] usb usb1: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0002, bcdDevice=3D 6.02
-[ 1895.707250] usb usb1: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1895.707280] usb usb1: Product: xHCI Host Controller
-[ 1895.707305] usb usb1: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1895.707331] usb usb1: SerialNumber: xhci-hcd.1.auto
-[ 1895.708504] hub 1-0:1.0: USB hub found
-[ 1895.708635] hub 1-0:1.0: 1 port detected
-[ 1895.709607] usb usb2: We don't know the algorithms for LPM for this host=
-, disabling LPM.
-[ 1895.709928] usb usb2: New USB device found, idVendor=3D1d6b, idProduct=
-=3D0003, bcdDevice=3D 6.02
-[ 1895.709970] usb usb2: New USB device strings: Mfr=3D3, Product=3D2, Seri=
-alNumber=3D1
-[ 1895.709999] usb usb2: Product: xHCI Host Controller
-[ 1895.710023] usb usb2: Manufacturer: Linux 6.2.1-00102-gc2551b66fbe7-dirt=
-y xhci-hcd
-[ 1895.710049] usb usb2: SerialNumber: xhci-hcd.1.auto
-[ 1895.711360] hub 2-0:1.0: USB hub found
-[ 1895.711392] hub 2-0:1.0: 1 port detected
-[ 1895.712739] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.714685] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 1 requested 1
-[ 1895.714749] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D0 power_role_src=3D1
-[ 1895.714795] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.714837] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.715104] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1895.715114] usb usb2: USB disconnect, device number 1
-[ 1895.718866] xhci-hcd xhci-hcd.1.auto: USB bus 2 deregistered
-[ 1895.718889] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[ 1895.718901] usb usb1: USB disconnect, device number 1
-[ 1895.725858] xhci-hcd xhci-hcd.1.auto: USB bus 1 deregistered
-[ 1895.726158] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.735069] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.735135] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.744571] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.756079] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.756119] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D1 Rp-1.5-180uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.764615] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.776343] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.782944] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc: curr=
-src=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
-[ 1895.784556] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
-[ 1895.795184] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 4 control 0x00000000 state off cc cc1 vconn cc2
-
-- unplug -
-
-[ 1907.264840] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000040 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc2
-[ 1907.264888] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: misc=
- 0x00000040 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc2
-[ 1907.265075] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: set_pd_r=
-x: off
-[ 1907.267897] qcom,pmic-tcpm pm7250b-tcpm: set_vbus set: 0 result 0
-[ 1907.267932] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_vconn: o=
-rientation 4 control 0x00000000 state off cc cc1 vconn cc2
-[ 1907.267951] qcom-qmp-combo-phy 88e8000.phy: Toggling orientation current=
- 1 requested 0
-[ 1907.268011] qcom,pmic-usb-pdphy c440000.spmi:pmic@2:pdphy@1700: pdphy_se=
-t_roles: data_role_host=3D0 power_role_src=3D1
-[ 1907.268034] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: start_toggli=
-ng: misc 0x00000040 attached 0 port_type 0 current cc 5 new 4
-[ 1907.268081] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_vbus: 0x=
-00000040 detect 0
-[ 1907.272422] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: Debounce cc =
-complete
