@@ -2,244 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2536D1410
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 02:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E32436D1421
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 02:35:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbjCaAag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 20:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48064 "EHLO
+        id S229655AbjCaAfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 20:35:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjCaAaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 20:30:35 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25ECAF75C;
-        Thu, 30 Mar 2023 17:30:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1680222628; x=1711758628;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=291iR8fs89AY3P1z/Ojn7EHb26WDXguxsSvangQrPS4=;
-  b=ZrWcomVeImflRNd7wbezdICfLICWxVjDmc9LItUAoOaLkRlOYeJBYQO4
-   JIZvGjWXjty+5HWKcV2hwDKSXadEWYt4bacTotDS/ivTYEnov+/VJJZMi
-   JUqvmBz0Ftt7jti7amwBLf+d1PtcltxiArdRna3Rsft7CNEdxwCTbSrRY
-   ZPNV8pb4CjAY1+rqd2pHlf4zdRH/X3NKmM70zs5P2KLSqTRnPUNxwJN9n
-   xErJ5HcYH1cxHliwLWXZ8O/wp8Z+7BuFa/TNMPkSPsbLMofd1NpUH28EB
-   3QbDCWRLrzhi85KmIu5Ymycz/b+56qb/QBTM4zrCH2lmiIXXD7iUezjjB
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329844024"
-X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; 
-   d="scan'208";a="329844024"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2023 17:30:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="715219715"
-X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; 
-   d="scan'208";a="715219715"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 30 Mar 2023 17:30:22 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1pi2em-000LLc-2j;
-        Fri, 31 Mar 2023 00:30:16 +0000
-Date:   Fri, 31 Mar 2023 08:29:21 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-Subject: Re: [PATCH v6 11/12] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-Message-ID: <202303310829.6uVozWbB-lkp@intel.com>
-References: <20230328021912.177301-12-ychuang570808@gmail.com>
+        with ESMTP id S229617AbjCaAfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 20:35:03 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06AC2F75C
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 17:35:02 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id cv11so1024286pfb.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 17:35:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112; t=1680222901;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MH3dmPhc4+moh1k942OUVlyMUe+0ay7bXGCHlOkXk5M=;
+        b=mcRHDdbzbUBalM4xQm/dV4O4CAnvmP60HNvjCNMdG0V0+RzDyWZ0twOaW7gPPckYmh
+         l6ySSh+J6l2SUwYdNua4gOFnU3dU90B7eresyjvGu1Qr4U+Pj8rikdAKAjnIu+opqWv5
+         kF8AfcEWyaQh/MZC+lFbK1FD6OKf0kXA4qCNugDXVGm6Li5IDFcUxzJYSiqmEFri/Wq9
+         t8nQvJtUyXtfhLC44XDz0jH5RX8uokYwNCWedoV/wim5XdiwnilST7RPGaceM+Y7QDnQ
+         zkdOcCS/92CcMiU3awafEkmrvo3Te/s2SVlcm5b8vtLZ7p1qPLy6FW0w6x3rV75P7/v+
+         G+gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680222901;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MH3dmPhc4+moh1k942OUVlyMUe+0ay7bXGCHlOkXk5M=;
+        b=X2LUktPSVszBnLJtG73PFotUshSu4/x6uT9EPHGcrydrO7LkDbqN6uoVtqeHpBK9h1
+         s4XcjIdgZpsoBZJtMxXPr1ugBcoPn6AzTvwBTDatxFZMBWQs8QO5mYqgkvBaTs5V87r2
+         gqv3iD+Vtn8Go8cKgSDs1cqxOqs2iKmNLHIDXcU6X89/XYJDeFyNBsiTHkjLpCnttkz5
+         FATQp9kB12OJbSaGnvcZuXkJpSVqHE5+LBC9dZFZm94ZES/scjGo1ktdu+RlhXFKo2ue
+         bLdVOteQEA031I6SFg7r3dXwYdaD4imqhgmfbiUXMmHFdA5EUDvWeND/WtNuQ1O9YoIr
+         LPFg==
+X-Gm-Message-State: AAQBX9f5t5eB1KWT+9ELU3Toi8dxrKvLAGNbbg73c9af3SFBOi9QalcJ
+        NvVGF+WEtCGozVFYl5F831eS22IUVAQ3HnoPvZtNDg==
+X-Google-Smtp-Source: AKy350a4DeFNtiT0puMpHPQRz//ZqQ7b+CicsE7u8pb1b0QPYo1NzBe7x2L2DYaneQRuVTtUr1bNCZzzLBDtrXjhewY=
+X-Received: by 2002:a05:6a00:2da5:b0:624:c7cc:3d0e with SMTP id
+ fb37-20020a056a002da500b00624c7cc3d0emr12953815pfb.6.1680222901270; Thu, 30
+ Mar 2023 17:35:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328021912.177301-12-ychuang570808@gmail.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230330224348.1006691-1-davidai@google.com> <ZCYZRIbPh+f3v26v@linux.dev>
+ <CAGETcx_P27-=wkAkCETTR2Q0edA01M5jArS_t-zZFn61YM9Muw@mail.gmail.com> <ZCYd7kH2f/Ku8b0D@linux.dev>
+In-Reply-To: <ZCYd7kH2f/Ku8b0D@linux.dev>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 30 Mar 2023 17:34:24 -0700
+Message-ID: <CAGETcx9CHZCpUsAaEdJGmBFuwJzdp+Mr81=4JQdG0zVy42AZDw@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/6] Improve VM DVFS and task placement behavior
+To:     Oliver Upton <oliver.upton@linux.dev>
+Cc:     David Dai <davidai@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Juri Lelli <juri.lelli@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+        Daniel Bristot de Oliveira <bristot@redhat.com>,
+        Valentin Schneider <vschneid@redhat.com>,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-15.7 required=5.0 tests=DKIMWL_WL_MED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,ENV_AND_HDR_SPF_MATCH,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
+On Thu, Mar 30, 2023 at 4:40=E2=80=AFPM Oliver Upton <oliver.upton@linux.de=
+v> wrote:
+>
+> On Thu, Mar 30, 2023 at 04:36:52PM -0700, Saravana Kannan wrote:
+> > On Thu, Mar 30, 2023 at 4:20=E2=80=AFPM Oliver Upton <oliver.upton@linu=
+x.dev> wrote:
+> > >
+> > > On Thu, Mar 30, 2023 at 03:43:35PM -0700, David Dai wrote:
+> > >
+> > > [...]
+> > >
+> > > > David Dai (6):
+> > > >   sched/fair: Add util_guest for tasks
+> > > >   kvm: arm64: Add support for get_cur_cpufreq service
+> > > >   kvm: arm64: Add support for util_hint service
+> > > >   kvm: arm64: Add support for get_freqtbl service
+> > > >   dt-bindings: cpufreq: add bindings for virtual kvm cpufreq
+> > > >   cpufreq: add kvm-cpufreq driver
+> > >
+> > > I only received patches 2-4 in my inbox (same goes for the mailing li=
+sts
+> > > AFAICT). Mind sending the rest? :)
+> >
+> > Oliver,
+> >
+> > Sorry about that. Actually even I'm not cc'ed in the cover letter :)
+> >
+> > Is it okay if we fix this when we send the next version? Mainly to
+> > avoid some people responding to this vs other responding to a new
+> > series (where the patches are the same).
+>
+> Fine by me, as long as the full series arrived somewhere.
+>
+> > We used a script for --to-cmd and --cc-cmd but looks like it needs
+> > some more fixes.
+> >
+> > Here is the full series to anyone who's wondering where the rest of
+> > the patches are:
+> > https://lore.kernel.org/lkml/20230330224348.1006691-1-davidai@google.co=
+m/T/#t
+>
+> Gah, a bit of noodling would've dug up the full series. Thanks for the
+> link.
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on clk/clk-next linus/master]
-[cannot apply to pza/reset/next pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230328021912.177301-12-ychuang570808%40gmail.com
-patch subject: [PATCH v6 11/12] tty: serial: Add Nuvoton ma35d1 serial driver support
-config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20230331/202303310829.6uVozWbB-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install powerpc cross compiling tool for clang build
-        # apt-get install binutils-powerpc-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/380d83a62e873855024ca4c660865c654a62748a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
-        git checkout 380d83a62e873855024ca4c660865c654a62748a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/tty/serial/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303310829.6uVozWbB-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/tty/serial/ma35d1_serial.c:672:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           if (pdev->dev.of_node) {
-               ^~~~~~~~~~~~~~~~~
-   drivers/tty/serial/ma35d1_serial.c:679:27: note: uninitialized use occurs here
-           up = &ma35d1serial_ports[ret];
-                                    ^~~
-   drivers/tty/serial/ma35d1_serial.c:672:2: note: remove the 'if' if its condition is always true
-           if (pdev->dev.of_node) {
-           ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/tty/serial/ma35d1_serial.c:668:9: note: initialize the variable 'ret' to silence this warning
-           int ret;
-                  ^
-                   = 0
->> drivers/tty/serial/ma35d1_serial.c:730:6: warning: variable 'i' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           if (dev->dev.of_node)
-               ^~~~~~~~~~~~~~~~
-   drivers/tty/serial/ma35d1_serial.c:732:6: note: uninitialized use occurs here
-           if (i < 0) {
-               ^
-   drivers/tty/serial/ma35d1_serial.c:730:2: note: remove the 'if' if its condition is always true
-           if (dev->dev.of_node)
-           ^~~~~~~~~~~~~~~~~~~~~
-   drivers/tty/serial/ma35d1_serial.c:727:7: note: initialize the variable 'i' to silence this warning
-           int i;
-                ^
-                 = 0
-   drivers/tty/serial/ma35d1_serial.c:750:6: warning: variable 'i' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           if (dev->dev.of_node)
-               ^~~~~~~~~~~~~~~~
-   drivers/tty/serial/ma35d1_serial.c:752:6: note: uninitialized use occurs here
-           if (i < 0) {
-               ^
-   drivers/tty/serial/ma35d1_serial.c:750:2: note: remove the 'if' if its condition is always true
-           if (dev->dev.of_node)
-           ^~~~~~~~~~~~~~~~~~~~~
-   drivers/tty/serial/ma35d1_serial.c:747:7: note: initialize the variable 'i' to silence this warning
-           int i;
-                ^
-                 = 0
-   3 warnings generated.
+Actually, we'll send out a new RFC v2 series with the To's and Cc's
+fixed with some minor cover letter fixes. So everyone can ignore this
+series and just wait for the RFC v2 series later today.
 
 
-vim +672 drivers/tty/serial/ma35d1_serial.c
-
-   658	
-   659	/*
-   660	 * Register a set of serial devices attached to a platform device.
-   661	 * The list is terminated with a zero flags entry, which means we expect
-   662	 * all entries to have at least UPF_BOOT_AUTOCONF set.
-   663	 */
-   664	static int ma35d1serial_probe(struct platform_device *pdev)
-   665	{
-   666		struct resource *res_mem;
-   667		struct uart_ma35d1_port *up;
-   668		int ret;
-   669		struct clk *clk;
-   670		int err;
-   671	
- > 672		if (pdev->dev.of_node) {
-   673			ret = of_alias_get_id(pdev->dev.of_node, "serial");
-   674			if (ret < 0) {
-   675				dev_err(&pdev->dev, "failed to get alias/pdev id, errno %d\n", ret);
-   676				return ret;
-   677			}
-   678		}
-   679		up = &ma35d1serial_ports[ret];
-   680		up->port.line = ret;
-   681		res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-   682		if (!res_mem)
-   683			return -ENODEV;
-   684	
-   685		up->port.iobase = res_mem->start;
-   686		up->port.membase = ioremap(up->port.iobase, UART_REG_SIZE);
-   687		up->port.ops = &ma35d1serial_ops;
-   688	
-   689		spin_lock_init(&up->port.lock);
-   690	
-   691		clk = of_clk_get(pdev->dev.of_node, 0);
-   692		if (IS_ERR(clk)) {
-   693			err = PTR_ERR(clk);
-   694			dev_err(&pdev->dev, "failed to get core clk: %d\n", err);
-   695			return -ENOENT;
-   696		}
-   697		err = clk_prepare_enable(clk);
-   698		if (err)
-   699			return -ENOENT;
-   700	
-   701		if (up->port.line != 0)
-   702			up->port.uartclk = clk_get_rate(clk);
-   703		up->port.irq = platform_get_irq(pdev, 0);
-   704		up->port.dev = &pdev->dev;
-   705		up->port.flags = UPF_BOOT_AUTOCONF;
-   706		ret = uart_add_one_port(&ma35d1serial_reg, &up->port);
-   707		platform_set_drvdata(pdev, up);
-   708		return 0;
-   709	}
-   710	
-   711	/*
-   712	 * Remove serial ports registered against a platform device.
-   713	 */
-   714	static int ma35d1serial_remove(struct platform_device *dev)
-   715	{
-   716		struct uart_port *port = platform_get_drvdata(dev);
-   717	
-   718		if (port) {
-   719			uart_remove_one_port(&ma35d1serial_reg, port);
-   720			free_irq(port->irq, port);
-   721		}
-   722		return 0;
-   723	}
-   724	
-   725	static int ma35d1serial_suspend(struct platform_device *dev, pm_message_t state)
-   726	{
-   727		int i;
-   728		struct uart_ma35d1_port *up;
-   729	
- > 730		if (dev->dev.of_node)
-   731			i = of_alias_get_id(dev->dev.of_node, "serial");
-   732		if (i < 0) {
-   733			dev_err(&dev->dev, "failed to get alias/pdev id, errno %d\n", i);
-   734			return i;
-   735		}
-   736		up = &ma35d1serial_ports[i];
-   737		if (i == 0) {
-   738			up->console_baud_rate = serial_in(up, UART_REG_BAUD);
-   739			up->console_line = serial_in(up, UART_REG_LCR);
-   740			up->console_int = serial_in(up, UART_REG_IER);
-   741		}
-   742		return 0;
-   743	}
-   744	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+-Saravana
