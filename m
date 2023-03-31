@@ -2,65 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 898836D28A5
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 21:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90D1D6D28BF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 21:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbjCaT1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 15:27:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53798 "EHLO
+        id S232303AbjCaTlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 15:41:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjCaT1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 15:27:08 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C552031B;
-        Fri, 31 Mar 2023 12:27:07 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-17997ccf711so24304727fac.0;
-        Fri, 31 Mar 2023 12:27:07 -0700 (PDT)
+        with ESMTP id S231775AbjCaTlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 15:41:36 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C752221C
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:41:34 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id br6so30268752lfb.11
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 12:41:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1680291693;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=scBFpVwiNMj82Kh9aWY3X6HN71X0eIH0NEFfWKOZT6g=;
+        b=WImlkUQg8K3Z4S0mIe1cAQxKOXWTNwOXDn5v5wh7R8ptN483Z8w61IvDmKRUjdtD/+
+         jzr8o5TdDeHBzDvjbPgsls+YaDqzM31fSlIvZTGtqz3SgCvx3ARzsy6CJwy/pF9TMzdz
+         e/6B1WpV3MXYiGyurjYRlf62QDWu7cyKpQpLHkjBSizxZhwjE8sBQeifr0O3O+8LUe/u
+         zWagHr2pUfr9033GnPPCtHjS+D/ABFnW/Z2RjWhtkvNLi0j5q0+yhci4upDXViLitunP
+         Jq5R9kLXoHMZB0Hb8/dvS5Hh14ezoYdM2HNq62AoYJzxYMoKffW2BKyETI4j3WZj667Z
+         3CVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680290827;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=buu8WqVMzAcMHXXEn9C7CMlfiJnivaRXjI1lCWs4gWU=;
-        b=CH/O3fn0J431BMMx+pjQUp+kbjyn3EcGbc/Lz5kky1nCX1W2LlF2iblOzva/FeqTBR
-         zG9GhE6f+TnQQKe1+soqqmQfETGvZGjcD3Vf8DvNCMHFXI77ineqnMU5pdUzL+DmUJTQ
-         EBcMWi335gHqbv+S/Bfbdec7T5kBN/opfr7omco8ijl5LNcjgNfFBGIBYc4C/GpgG/ty
-         e115HTCEVzonoCmLG6j6duXGpXkWImX0GHpAyaJ1yFjC4E4Ch3VWINCRNsqac6iqIezn
-         eHGWI/Phg1JA5dObse4NVhAhnmWCv5RAs2rXoCqjEFuzf0r0zYM165bkOBbi5WiYrCiI
-         wXtQ==
-X-Gm-Message-State: AAQBX9ch8UoO2o+W6F294KyfkjqSrU80UP00LiYdVJ5TN4V2+8A6j4iC
-        GNbKMTPYUR6r8QwD2ahXOr9Lat/HJw==
-X-Google-Smtp-Source: AKy350aaVHPapcCWgvkHXPT8cKxlw9Sl3X/+842+zkcyrUdJIsrfD1NB+jBgRlMHjhuketVAO601aA==
-X-Received: by 2002:a05:6870:b48f:b0:177:c0e4:1bd2 with SMTP id y15-20020a056870b48f00b00177c0e41bd2mr17442367oap.52.1680290827144;
-        Fri, 31 Mar 2023 12:27:07 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id xf19-20020a056870cf1300b001724742cfcesm1230021oab.38.2023.03.31.12.27.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 12:27:06 -0700 (PDT)
-Received: (nullmailer pid 2086972 invoked by uid 1000);
-        Fri, 31 Mar 2023 19:27:05 -0000
-Date:   Fri, 31 Mar 2023 14:27:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     David Airlie <airlied@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: sitronix,st7789v: document dc-gpios
-Message-ID: <168029082400.2086887.14988355567564977926.robh@kernel.org>
-References: <20230326164700.104570-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20210112; t=1680291693;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=scBFpVwiNMj82Kh9aWY3X6HN71X0eIH0NEFfWKOZT6g=;
+        b=dL55AD7A+Q8Mfjbldgu1c9nMuNWYHJD1gd8VNFkr8pmabNXvoUQjDbMdyB4Mj/RW/N
+         xjjUmgxT44Lkl0KAqANVGnvynZ49s16+VurLoJFuel1hN7bsyERBMHQ2nI7fjnJt8CjA
+         tapdjpYWBkHGXwsUKRj9DHQGlTJJ6UvNmXfBXtp5kTRpB1bXqrdOzqY9TTEybD4//i4B
+         JsdFjSs2p2wHEsgq2LCy2I5imQwUIAxvhgsPcMDcMqmqbGkoHqNhw8b1Xc7V/7z5G5Zj
+         /r6MCKp7TOHZrgq6mpsBqWN188asGURB2Nl6tB4yLeiDw9uMnGA8rSN+NM5k0izKuWc3
+         l4qA==
+X-Gm-Message-State: AAQBX9dTMnldMm0Ii1p+wQLCol/gGtgQ6FaJO00J1ooLEVLURW/pJ2mQ
+        mkbD4onqMyrjhCuXeshqvNRaZQ==
+X-Google-Smtp-Source: AKy350ZtYfeUAWsd4lZIvNrKok3SHyAKoHvh6+qh1TP6EJBCktSBwJywHDMz+soSXbOZpOs4cR0lMg==
+X-Received: by 2002:a05:6512:3c2:b0:4dc:84dd:eb91 with SMTP id w2-20020a05651203c200b004dc84ddeb91mr8135948lfp.22.1680291692904;
+        Fri, 31 Mar 2023 12:41:32 -0700 (PDT)
+Received: from [192.168.1.101] (abxj225.neoplus.adsl.tpnet.pl. [83.9.3.225])
+        by smtp.gmail.com with ESMTPSA id d7-20020ac24c87000000b004eae8c74fffsm495372lfl.66.2023.03.31.12.41.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 12:41:32 -0700 (PDT)
+Message-ID: <dba1db45-20b4-aad2-54f2-bb9f4342861d@linaro.org>
+Date:   Fri, 31 Mar 2023 21:41:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230326164700.104570-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx55: Move reset and wake gpios to
+ board dts
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230331145915.11653-1-manivannan.sadhasivam@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230331145915.11653-1-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,15 +78,47 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 26 Mar 2023 18:47:00 +0200, Krzysztof Kozlowski wrote:
-> The device comes with DCX pin which is already used in
-> canaan/sipeed_maixduino.dts (although not in Linux driver).
+
+On 31.03.2023 16:59, Manivannan Sadhasivam wrote:
+> The reset and wake properties in the PCIe EP node belong to the board dts
+> as they can be customized per board design. So let's move them from SoC
+> dtsi.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../devicetree/bindings/display/panel/sitronix,st7789v.yaml   | 4 ++++
->  1 file changed, 4 insertions(+)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+On a note, is PCIe not connected to anything on the SDX55 MTP?
+
+Konrad
+>  arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts | 3 +++
+>  arch/arm/boot/dts/qcom-sdx55.dtsi                | 2 --
+>  2 files changed, 3 insertions(+), 2 deletions(-)
 > 
-
-Applied, thanks!
-
+> diff --git a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
+> index 81f33eba39e5..b73b707342af 100644
+> --- a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
+> +++ b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
+> @@ -255,6 +255,9 @@ &pcie_ep {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pcie_ep_clkreq_default &pcie_ep_perst_default
+>  		     &pcie_ep_wake_default>;
+> +
+> +	reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+>  };
+>  
+>  &qpic_bam {
+> diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
+> index 286fa92da428..bc310ed01b40 100644
+> --- a/arch/arm/boot/dts/qcom-sdx55.dtsi
+> +++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
+> @@ -421,8 +421,6 @@ pcie_ep: pcie-ep@1c00000 {
+>  				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+>  			interrupt-names = "global",
+>  					  "doorbell";
+> -			reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
+> -			wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+>  			resets = <&gcc GCC_PCIE_BCR>;
+>  			reset-names = "core";
+>  			power-domains = <&gcc PCIE_GDSC>;
