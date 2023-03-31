@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7F86D1E5C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 12:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D7AA6D1E61
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 12:55:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbjCaKyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 06:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56426 "EHLO
+        id S229584AbjCaKzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 06:55:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231751AbjCaKyD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 06:54:03 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F731D84D;
-        Fri, 31 Mar 2023 03:54:01 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id n19so12645169wms.0;
-        Fri, 31 Mar 2023 03:54:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680260040;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3J+3+QpiG0rZpOXhX+ZLI6+BIv55R5IPb8nvts5K8P4=;
-        b=DIb00x/wP2+VNwtse4AjeksMmJYcP/m3kkgofcXigSzJbtsa8dp4dAO21pZFD7qQUU
-         15qFAwsU+bZkjUqKIh4QmamsHAqhlpNn8EnTq0aOcnxQO1dC3p5x2P5dIJFuEDxirDrj
-         nMVEnclZDcNibiIh1V24XwNVjSIzq6Yifjq2o6lVNaJe4i+UADRgncqdhM2i9ivNJ+/I
-         FjujLjbEGo8OMQSOQJBKWbQBTvzLG7tMkh5PsvQFvauSGA4Q3eMQSqDweHbsVM9M6cCW
-         93vkolzYF1L0Tdxate2IKdw+vcQiHtO4wQvD85QFVhLTBSwP4OtIs/WJpny77DbsfMFU
-         xHzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680260040;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3J+3+QpiG0rZpOXhX+ZLI6+BIv55R5IPb8nvts5K8P4=;
-        b=jKP5eAlmLzof6QcLKCTbc1gKusliTqcnS+QnPwmIiCzGORMkqGBkFMuFvL9pHs1iJJ
-         ynawUDqvDWlJiNAUYMSrmnLEFM6xBt4Vwavp2+0m1O7YTkyIOLCzZGlu8QSeD8E/UWhO
-         ebu65AyVKhtoIy4Y7d0BFH+uv4JQqAKfMX7g3hbfptnkzdXTZq0+3JkfmgLQleoGLEg+
-         8axmQ8MIOwHvd3LjFXB5YchK4leXTLDjOHyhX+/5Ogs7zskGj3A12IbrF/Lq1I+89TI2
-         XousNlJPWz5ustFEbddqKSXrxMGUhJAVPo97ZaeWwE2S+Aad1hhJ0evz21/fiPVbjWFO
-         Y1PA==
-X-Gm-Message-State: AO0yUKWNKaqFMP/cqtodD1q7rxcDs4ts0iZMfQ0T7b7Bpwj0U8Mv8O9S
-        U0J7gyGu25VzDwazw1iVcTMVIO1K8CgTWQ==
-X-Google-Smtp-Source: AK7set/6UKDxNUN/UAOYCRqLFd1+/gfqy+fFYklR/RihAmzcjc7b7iRIySxIy8jSOxMBFSTH9pG8Eg==
-X-Received: by 2002:a1c:7911:0:b0:3ee:5754:f14b with SMTP id l17-20020a1c7911000000b003ee5754f14bmr20711685wme.3.1680260040071;
-        Fri, 31 Mar 2023 03:54:00 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id l24-20020a1c7918000000b003e203681b26sm2273068wme.29.2023.03.31.03.53.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 03:53:59 -0700 (PDT)
-Message-ID: <5defb636-1f0f-6a6c-3c10-e8960b7d4399@gmail.com>
-Date:   Fri, 31 Mar 2023 12:53:57 +0200
+        with ESMTP id S229853AbjCaKzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 06:55:36 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410171D2EB;
+        Fri, 31 Mar 2023 03:55:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680260133; x=1711796133;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fmFXNjlDNk/NwlvKemf9I4yf1T0EbLEfb7ypDG0gvOg=;
+  b=uQKKseIUQkDZ04FpXyOA/S3+SFUvc0Rlayxz61CACuNAtH3wWWyT5cEN
+   Fvlkw7Kol6kWxXPxKSbT/h7hllwyohcAyczjAVJbgSHxgXoIhPsngLrYz
+   7U1ps+ve7w0IJGpsL945k3TsvzGIcUcd7D4PEA9Op3x93yUE7sQquz3T6
+   UsT6d6a1o/YDYbIrmHJu1CfRs+Na7Yft8wtB4o5T5Xh7BaqSpeQ4ZY7+u
+   GPn/hhqh7Espa/scTduds12+iZONMU7CH+dY4LC0tNR1bNx37UOihUHBK
+   7ggDLZJ4bI4JQRnlC99fO5pFQf6dpbf78dKmA5lutm0+6M79/EA3uJUgo
+   A==;
+X-IronPort-AV: E=Sophos;i="5.98,307,1673938800"; 
+   d="asc'?scan'208";a="207170249"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Mar 2023 03:55:32 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 31 Mar 2023 03:55:31 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 31 Mar 2023 03:55:29 -0700
+Date:   Fri, 31 Mar 2023 11:55:15 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v7 1/6] riscv: mm: dma-noncoherent: Switch using function
+ pointers for cache management
+Message-ID: <50e932df-cb20-4679-b911-fd9d7f0f2c1d@spud>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230330204217.47666-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <6ca5941a-8803-477d-8b40-17292decc5af@app.fastmail.com>
+ <CA+V-a8tkiDXG37YjFKPxrGoXVQMVBemMdBcfb+uUDzBofOWH_A@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH net-next 04/10] arm64: dts: mt7986: move cpuboot in a
- dedicated node
-Content-Language: en-US
-To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, linux-mediatek@lists.infradead.org,
-        nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, lorenzo.bianconi@redhat.com,
-        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <cover.1679330630.git.lorenzo@kernel.org>
- <61e2445f79d8642e7749dac409e2b93b96667610.1679330630.git.lorenzo@kernel.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <61e2445f79d8642e7749dac409e2b93b96667610.1679330630.git.lorenzo@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CSbvtOdTMuQLjL4r"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8tkiDXG37YjFKPxrGoXVQMVBemMdBcfb+uUDzBofOWH_A@mail.gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,77 +80,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--CSbvtOdTMuQLjL4r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Mar 31, 2023 at 11:37:30AM +0100, Lad, Prabhakar wrote:
+
+> > As far as I recall, the #else path here was needed previously
+> > to work around a binutils dependency, but with the current
+> > code, it should be possible to just always enable
+> > CONFIG_RISCV_ISA_ZICBOM when RISCV_DMA_NONCOHERENT is used.
+> >
+> Are you suggesting something like below?
+>=20
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 4dadf35ac721..a55dee98ccf8 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -242,6 +242,7 @@ config RISCV_DMA_NONCOHERENT
+>         select ARCH_HAS_SYNC_DMA_FOR_CPU
+>         select ARCH_HAS_SYNC_DMA_FOR_DEVICE
+>         select DMA_DIRECT_REMAP
+> +       select RISCV_ISA_ZICBOM
+>=20
+>  config AS_HAS_INSN
+>         def_bool $(as-instr,.insn r 51$(comma) 0$(comma) 0$(comma)
+> t0$(comma) t0$(comma) zero)
+> @@ -465,7 +466,6 @@ config RISCV_ISA_ZICBOM
+>         depends on MMU
+>         depends on RISCV_ALTERNATIVE
+>         default y
+> -       select RISCV_DMA_NONCOHERENT
+>         help
+>            Adds support to dynamically detect the presence of the ZICBOM
+>            extension (Cache Block Management Operations) and enable its
+>
+
+Does that actually work? I don't think it does.
+If you try to enable RISCV_ISA_ZICBOM then you won't get
+RISC_DMA_NONCOHERENT turned on. Run menuconfig and disable support for
+Renesas, SiFive and T-Head SoCs & you can replicate.
+
+I think one of RISCV_ISA_ZICBOM and RISCV_DMA_NONCOHERENT should just be
+dropped, although I don't know which one to pick!
+Making RISCV_DMA_NONCOHERENT user selectable probably makes the most
+sense.
 
 
-On 20/03/2023 17:57, Lorenzo Bianconi wrote:
-> Since the cpuboot memory region is not part of the RAM SoC, move cpuboot
-> in a deidicated syscon node.
-> This patch helps to keep backward-compatibility with older version of
-> uboot codebase where we have a limit of 8 reserved-memory dts child
-> nodes.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+--CSbvtOdTMuQLjL4r
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+-----BEGIN PGP SIGNATURE-----
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 21 +++++++++++----------
->   1 file changed, 11 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 51944690e790..668b6cfa6a3d 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -113,12 +113,6 @@ wo_dlm1: wo-dlm@151f8000 {
->   			reg = <0 0x151f8000 0 0x2000>;
->   			no-map;
->   		};
-> -
-> -		wo_boot: wo-boot@15194000 {
-> -			reg = <0 0x15194000 0 0x1000>;
-> -			no-map;
-> -		};
-> -
->   	};
->   
->   	timer {
-> @@ -461,10 +455,11 @@ wed0: wed@15010000 {
->   			interrupt-parent = <&gic>;
->   			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
->   			memory-region = <&wo_emi0>, <&wo_ilm0>, <&wo_dlm0>,
-> -					<&wo_data>, <&wo_boot>;
-> +					<&wo_data>;
->   			memory-region-names = "wo-emi", "wo-ilm", "wo-dlm",
-> -					      "wo-data", "wo-boot";
-> +					      "wo-data";
->   			mediatek,wo-ccif = <&wo_ccif0>;
-> +			mediatek,wo-cpuboot = <&wo_cpuboot>;
->   		};
->   
->   		wed1: wed@15011000 {
-> @@ -474,10 +469,11 @@ wed1: wed@15011000 {
->   			interrupt-parent = <&gic>;
->   			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
->   			memory-region = <&wo_emi1>, <&wo_ilm1>, <&wo_dlm1>,
-> -					<&wo_data>, <&wo_boot>;
-> +					<&wo_data>;
->   			memory-region-names = "wo-emi", "wo-ilm", "wo-dlm",
-> -					      "wo-data", "wo-boot";
-> +					      "wo-data";
->   			mediatek,wo-ccif = <&wo_ccif1>;
-> +			mediatek,wo-cpuboot = <&wo_cpuboot>;
->   		};
->   
->   		wo_ccif0: syscon@151a5000 {
-> @@ -494,6 +490,11 @@ wo_ccif1: syscon@151ad000 {
->   			interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
-> +		wo_cpuboot: syscon@15194000 {
-> +			compatible = "mediatek,mt7986-wo-cpuboot", "syscon";
-> +			reg = <0 0x15194000 0 0x1000>;
-> +		};
-> +
->   		eth: ethernet@15100000 {
->   			compatible = "mediatek,mt7986-eth";
->   			reg = <0 0x15100000 0 0x80000>;
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCa8EwAKCRB4tDGHoIJi
+0gv8AQDmXopbmBtrwgpdT70H1KpMBgB8DRztldVostbpyT7KpAEA2JJggZT9ayUa
+tSrS0FeAl7Q+HC4ExyMuP+/iqLDQLAQ=
+=rDeY
+-----END PGP SIGNATURE-----
+
+--CSbvtOdTMuQLjL4r--
