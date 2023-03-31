@@ -2,100 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D324B6D236A
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB316D23A4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230341AbjCaPCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 11:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
+        id S232895AbjCaPJU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 31 Mar 2023 11:09:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231566AbjCaPCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:02:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23690AF3A;
-        Fri, 31 Mar 2023 08:02:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCC25629E9;
-        Fri, 31 Mar 2023 15:02:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E50CC433D2;
-        Fri, 31 Mar 2023 15:02:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680274966;
-        bh=K+HZuqgB9rt/QMhwBweIcNwWvClGQr42KVcvQKa67U4=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=C6swUh79DRO5QZSPpqIlQyIThpRfWCLZJqd6GgZq9zRIzg3OMSBxBlp2AKr3MLBHK
-         Ihpdq3hbeknoGuZwyDbcI7zBmla6N9FVUnfQl3PH2cNCo2z0XCNbwCm/qIS00Nebu2
-         RubHziuxniLGWPQ6hNVCBScMDVVFiajmCQrugBtb8ojyqbWmZi9VU/o/wcw0yfHDtN
-         hUUEsK54w9S6cCr4iCqAUD786C96DoYcmkGjmRtjYN5Oji+wDuyB8hO0Mfdou9rcU+
-         WaRAkhM4kpoTy5PSpK6DgKQAPMy4o5QoaJTNJ/T15c3Q5p4YSHO61+7vkb3WGvmsqO
-         pEDPycD6GW9SQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        krzysztof.kozlowski@linaro.org, rf@opensource.cirrus.com,
-        ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com,
-        =?utf-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
-In-Reply-To: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
-References: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
-Subject: Re: [PATCH V4 1/2] ASoC: max98363: add soundwire amplifier driver
-Message-Id: <168027496197.3365708.8821025322937971454.b4-ty@kernel.org>
-Date:   Fri, 31 Mar 2023 16:02:41 +0100
+        with ESMTP id S232358AbjCaPJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:09:14 -0400
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF2A4209;
+        Fri, 31 Mar 2023 08:09:04 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-544f7c176easo420089977b3.9;
+        Fri, 31 Mar 2023 08:09:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680275343;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WMxAUybU8NHLeEsxZ/TrAWgALQQNzyIHivQ9AaJJubk=;
+        b=fAp34U6/XPnnAXuKNIQyIITz55mEKQq7P3/I8F1brCUiFjiShQwTKRlPuH96PiCdjh
+         FfEWnnxMTd5dDZyr+mziWcY8icth+6QjVGaJye0Bju4F4wnB1D2OAvB+ax3xmEXMITGr
+         pfjszsEQaOUKd6qN0FwviERR8hI681VWwYlC0ZGZvpmpWWjVTAwhOxwC9EvuZCyQ7zFH
+         AEMyX9cGyIwezF1A3vDxfrhY0bNdDo55gorWbXJi44k3Kb7t33O1zEjO2Unwt8rZGV92
+         yw6s0vQGWWzvBY9cP0TtvC2sFaCMuqvKKYWyjF3bzW/QaqYsQMPwPm86jhZQDhzAbJvi
+         dBFQ==
+X-Gm-Message-State: AAQBX9c/7ua6lhj92/eMED5NP9DB3WGXFABEGRFGXITPrdT87af6b1wD
+        zSr6taXcURP3FNUZVuTxmn3jGLEDNab6rA==
+X-Google-Smtp-Source: AKy350YYVhhnvTqMOGVd7utlC8CemwYFHNUdDhkcRLED6fo1CE63GIkeLUtyhj3A1ZhzstU/TPuGMg==
+X-Received: by 2002:a81:1954:0:b0:546:2a87:ce9c with SMTP id 81-20020a811954000000b005462a87ce9cmr7441399ywz.12.1680275342986;
+        Fri, 31 Mar 2023 08:09:02 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id l14-20020a81250e000000b00545f7c7cc8csm565332ywl.93.2023.03.31.08.09.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 08:09:02 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5456249756bso420135767b3.5;
+        Fri, 31 Mar 2023 08:09:02 -0700 (PDT)
+X-Received: by 2002:a81:b28a:0:b0:544:5fc7:f01f with SMTP id
+ q132-20020a81b28a000000b005445fc7f01fmr13224551ywh.4.1680275342387; Fri, 31
+ Mar 2023 08:09:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13-dev-2eb1a
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230331141431.3820311-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20230331141431.3820311-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 31 Mar 2023 17:08:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWXxUy67noYCq3d2HOKD0rvzmoL=xPGHZ=0GjToJosNNA@mail.gmail.com>
+Message-ID: <CAMuHMdWXxUy67noYCq3d2HOKD0rvzmoL=xPGHZ=0GjToJosNNA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: falcon-csi-dsi: Set bus-type for MAX96712
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=0.5 required=5.0 tests=FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Mar 2023 16:43:18 -0700, “Ryan wrote:
-> Added Analog Devices MAX98363 SoundWire Amplifier Driver.
-> The MAX98363 is a SoundWire peripheral device that supports
-> MIPI SoundWire v1.2-compatible digital interface for audio and
-> control data.
-> 
-> 
+Hi Niklas,
 
-Applied to
+Thanks for your patch!
 
-   broonie/sound.git for-next
+On Fri, Mar 31, 2023 at 4:15 PM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Specify the bus-type property for all three connected MAX96712.
 
-Thanks!
+Probably this can use a little bit more explanation?
+E.g. what does not work?
 
-[1/2] ASoC: max98363: add soundwire amplifier driver
-      commit: 18c0af945fa35766730d3f729adcf417a3d1ad5d
-[2/2] ASoC: dt-bindings: max98363: add soundwire amplifier
-      commit: 276d8c08e82b9f6062f6febc7bc63913829bde27
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Does this need a Fixes: tag?
+Fixes: 283252132cb578cf ("arm64: dts: renesas: falcon-csi-dsi: Add and
+connect MAX96712")
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Note that a backport to v6.1 and earlier will depend on a backport of
+commit f7eeb00845934851 ("media: dt-bindings: media: Add macros for
+video interface bus types") in v6.2, too.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Gr{oetje,eeting}s,
 
-Thanks,
-Mark
+                        Geert
 
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
