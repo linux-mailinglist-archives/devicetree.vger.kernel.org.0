@@ -2,84 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E2726D246A
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BA3D6D247A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbjCaPvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 11:51:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
+        id S232747AbjCaPzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 11:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231766AbjCaPvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:51:22 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C02D10D7;
-        Fri, 31 Mar 2023 08:51:20 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32VFp7Fx012260;
-        Fri, 31 Mar 2023 10:51:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1680277867;
-        bh=KzNPFDwn0T4o8QT/2LSy+LHjEGMgXMG4CGFKSBrVnNM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=W5bOFiRdkhRPIF5bO4KhG1DQl6G0hulg7kRxvGp4j/AtZqs5vrLmErV6xNuAYiGJJ
-         D6yod955YD+CtmkmCJWEAQI+eAqsUV700cNU6NGfUmocJZ+n6Gj9zuk1A2qFnK+PEI
-         GG9lsnX9XPHNc+Y8rbW30hZuFGSZXNKG4MED3aOc=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32VFp7rh107299
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 31 Mar 2023 10:51:07 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 31
- Mar 2023 10:51:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 31 Mar 2023 10:51:07 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32VFp6jB093159;
-        Fri, 31 Mar 2023 10:51:06 -0500
-Date:   Fri, 31 Mar 2023 10:51:06 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Hari Nagalla <hnagalla@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] Add R5F and C71 DSP nodes for J784S4 SoC
-Message-ID: <20230331155106.fqz34ocerrgd6vnw@facility>
-References: <20230330141536.22480-1-hnagalla@ti.com>
- <20230330145518.icy53f4jdmqqonzt@shrink>
- <28d0ce4d-afca-55ee-b471-fe02e71ab262@ti.com>
+        with ESMTP id S232430AbjCaPzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:55:46 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0520A6E86;
+        Fri, 31 Mar 2023 08:55:45 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32VDb6fB013251;
+        Fri, 31 Mar 2023 17:55:40 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=DQiRL/Gjb9dXGrMIuaI/wmlc0CfSHney35atkcqIpGw=;
+ b=Nj57gLelaFm8Bsn/woI0tC8MIJ7/aQSjjKU1LhNaFDnnsfljAUIuCLvIWdK5IGNguYFm
+ 9qFCspLbbNgkAsviAqAj+phTPsOfJnos1PY60zCSeSO1lrx6gDCusU8rV1bbTaTRatlI
+ 5SNkv+Y4fLrffrQSAr+oVNXXQSTotJQ4yHnS5SksuRGS949BL60LyLmQO3XZiLL/OT0j
+ a7FXPmy969b7rSOiuBukQR4gyrZikiplGyFfr+bF1QpQFb9BxA1FS/nu6fkF38MhZ2qe
+ ToE5CK+Ta834UNNnXaz1sQqS+3pOBI+FK8rwtQSe2yeFcf2MN0f5p4Ud1FyF0+0X9CH/ qQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3pnvth2aem-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 31 Mar 2023 17:55:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7F7AD10002A;
+        Fri, 31 Mar 2023 17:55:39 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 74B72222CB0;
+        Fri, 31 Mar 2023 17:55:39 +0200 (CEST)
+Received: from localhost (10.201.21.178) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.17; Fri, 31 Mar
+ 2023 17:55:38 +0200
+From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH] dt-bindings: remoteproc: typo fix
+Date:   Fri, 31 Mar 2023 17:55:27 +0200
+Message-ID: <20230331155527.3111125-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <28d0ce4d-afca-55ee-b471-fe02e71ab262@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.178]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-31_07,2023-03-31_01,2023-02-09_01
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04:31-20230331, Hari Nagalla wrote:
-> On 3/30/23 09:55, Nishanth Menon wrote:
-> > >   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 168 ++++++++++++++++++
-> > >   .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  40 +++++
-> > >   2 files changed, 208 insertions(+)
-> > > 
-> > > -- 
-> > > 2.17.1
-> > > 
-> > No specific need for board file memory reservations for DDR?
-> They are needed in board file, but to be submitted in separate patch set.
+Fix "communnication" typo error.
 
-Sorry, NAK, please submit as a single series.
+Fixes: aca8f94e5b69 ("dt-bindings: remoteproc: stm32-rproc: add new mailbox channel for detach")
 
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+---
+ .../devicetree/bindings/remoteproc/st,stm32-rproc.yaml        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+index 66b1e3efdaa3..ff95648f4967 100644
+--- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+@@ -72,9 +72,9 @@ properties:
+               ready for shutdown
+       - description: |
+           A channel (d) used by the local proc to notify the remote proc that it
+-          has to stop interprocessor communnication.
++          has to stop interprocessor communication.
+           Unidirectional channel:
+-            - from local to remote, where ACK from the remote means that communnication
++            - from local to remote, where ACK from the remote means that communication
+               as been stopped on the remote side.
+     minItems: 1
+ 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.25.1
+
