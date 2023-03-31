@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12FDF6D1B0A
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B28076D1B0C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbjCaJAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42308 "EHLO
+        id S230420AbjCaJAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:00:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231159AbjCaJAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:00:02 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B93DFD50E
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:59:58 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id i9so21663813wrp.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:59:58 -0700 (PDT)
+        with ESMTP id S231600AbjCaJAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:00:31 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D477A1C1C0
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:00:18 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id bx10so3976952ljb.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680253197;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ye0o0DOlmwExDTDHeZjZe7L/whuEGmKI0wj5yw1wRxo=;
-        b=PFc7jF3ItJ+FZRQN3LHZe0MawGiBP/Lg8vX5Ch4HlshzvoOfePQ6XRZ3aBsuxAn28m
-         SRSgJM3MFuaMO89mmA6ZOeXGHZT0DoHu+qktfaA7Pq+TGdqjOFVM5GbVncoKkmNjcLN9
-         jmfvQZHE/teBTICIU+/A9A2hYqq31M5r7V9Cw2z9LzuKIg6eAdrodZ0KvP5eJs6Sct89
-         iZwO204UO2yhEgP2cNtNXDfmyzVGpHQKamm9qwxnqpgkWlMllLhSpvS/DtKFtdEoG4n6
-         jHa/N9ltuhEC0nj+IwyYCZctjLN4VB7XbJEk8qo8IWY0j/cq8CWtnI3mFQ09dqPiMWOn
-         gk4A==
+        d=linaro.org; s=google; t=1680253217;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eM6csNn+4JOHsP4YYv2qF+dsETNKVFGCmM2q/ZRmyE8=;
+        b=C3nK8UHipkgFd6cN4iw3Adr6+in4OJyWiwVYcM5OmHoy35FX0c+yjyLwFROZ4LJLqK
+         PsAlyyeq+21X7kbs9BKCaAC8/5aZ3Zzuikot12eiS5BZssRZtJHSQW9KrLfpOtSRiH4r
+         fdqzJanXNUG11BM76eWlxmptG8iT+JGnfT/SjyDgSVNDh4nrvZbilHS0ZFA3P5ECoeVx
+         eJM2ZpLXRBWpaLm/fzI/5VrkcvS+eKDIZ/hga6VJzz0HmF8Ax+J8XyaWeUQLYeO0eJ2L
+         8wKYHJGHsYdO0A8Y9xexjgFA/3VPxSDV7mwireKhDQk7obLLT1QoOGO086eNJaKQ+ETN
+         t9gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680253197;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ye0o0DOlmwExDTDHeZjZe7L/whuEGmKI0wj5yw1wRxo=;
-        b=zVhcqYDMk0m4supWbfaK6hV/kA4XpWV6OHMyu1wwd/Jj9wFQskmAhbUJTTpuHzEJoJ
-         7ZQuyf30fP+A4lB3Vojifd/SSMTuEkw5gpt9ud1qNwfbrzzwiCu57tBXpFeqQAX+7Og4
-         MeC5VyuJckBu7TmFGQXmtVMz/nu5x2hUETvolun6wQxQffrr/zDfRO7y0D3QYC93JgV4
-         +XNBxAFf8sn8eY7wITSByVomnE3prmmiR94i6bpBnddqR2ecEpSisTlwO4DZc5q8I6lQ
-         WXhDp2kZRWEYMDHYerc4Rt1pU7+8F67z2eoCtFcOSaV7vXMouldHLHBhmlCEz7UNhiVI
-         keSw==
-X-Gm-Message-State: AAQBX9fC7f4pAp3BT/62yssIbd7Hk+y0VBm3gQOCaS2Gn0UdJIrrKCqu
-        11inyxl42Aegia3RIHptdGmK8w==
-X-Google-Smtp-Source: AKy350Z960b4qXOgbVvrPqkVXpCMt/BnSrX218lANtVkhq6VgQsYYNjC1q+R5ya41an7VAvI3rh0ZQ==
-X-Received: by 2002:adf:ed0e:0:b0:2d1:86e6:bd6 with SMTP id a14-20020adfed0e000000b002d186e60bd6mr19853304wro.22.1680253197081;
-        Fri, 31 Mar 2023 01:59:57 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0? ([2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0])
-        by smtp.gmail.com with ESMTPSA id a15-20020a5d508f000000b002c707785da4sm1587034wrt.107.2023.03.31.01.59.56
+        d=1e100.net; s=20210112; t=1680253217;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eM6csNn+4JOHsP4YYv2qF+dsETNKVFGCmM2q/ZRmyE8=;
+        b=zK//6MCiOjmTW+OzOumuMOULgtYKP3v+FjIZRcghfpcHGRRzutExUAmri9LNjNutdI
+         IWeZWLivXPEYvDrM59XnDZdP0N8XHpknaEd//tI/97Sdj8E3OOyFxRg5fNXN2hn4iGbB
+         ML8hig61iss935vwlWB39wtOp7dadEhWCXD41hnaOU5qPV2bwrTdxU+wZub+A6pyGni8
+         XHyn0wl9mkNSLZVzMjbI7V2BnlrXSsvt9TXrTEsk3nBXL2XCutz3rQD2yz9KVO5czXsM
+         Dy22EwDcsljdaZZF6vEKTk70rsMmBpTWRXY14cM1uXThwx/QybRzVZjZTAPjI7wwUzzm
+         6CvA==
+X-Gm-Message-State: AAQBX9eB4Cg1AawpXsM33vFKlqwk17w1GSXK1Jnb7evr6EKcyBF6L+S+
+        UYN6k30lK4Xabt+8cbZu+Kh4DA==
+X-Google-Smtp-Source: AKy350aE3G12yhJEpeKJTizurZwrwvApD6Ps5meqk91wErA1CUnL129bfxUReiy4J4F/PrI84LhtUg==
+X-Received: by 2002:a2e:a3d0:0:b0:2a0:7a74:b0d3 with SMTP id w16-20020a2ea3d0000000b002a07a74b0d3mr7715914lje.19.1680253217125;
+        Fri, 31 Mar 2023 02:00:17 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x10-20020a2e7c0a000000b0029ee7bc0114sm264500ljc.64.2023.03.31.02.00.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:59:56 -0700 (PDT)
-Message-ID: <bcc65251-8bd1-04a6-ace4-8a5f095f9764@linaro.org>
-Date:   Fri, 31 Mar 2023 10:59:55 +0200
+        Fri, 31 Mar 2023 02:00:16 -0700 (PDT)
+Message-ID: <5fa6d988-b51a-7c18-b605-ab99ecec8bea@linaro.org>
+Date:   Fri, 31 Mar 2023 11:00:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/3] drm/bridge: tfp410: Support basic I2C interface
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2] dt-bindings: remoteproc: qcom,adsp: bring back
+ firmware-name
 Content-Language: en-US
-To:     Jonathan Cormier <jcormier@criticallink.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Williamson <michael.williamson@criticallink.com>,
-        Bob Duke <bduke@criticallink.com>
-References: <20230125-tfp410_i2c-v3-0-a85d5f0f50f1@criticallink.com>
- <20230125-tfp410_i2c-v3-1-a85d5f0f50f1@criticallink.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230125-tfp410_i2c-v3-1-a85d5f0f50f1@criticallink.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230309083548.47205-1-krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230309083548.47205-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -88,215 +81,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 23:10, Jonathan Cormier wrote:
-> From: Michael Williamson <michael.williamson@criticallink.com>
+On 09/03/2023 09:35, Krzysztof Kozlowski wrote:
+> The firmware-name property was moved from common qcom,pas-common.yaml
+> binding to each device-specific schema, but the qcom,adsp.yaml was not
+> updated.
 > 
-> The TFP410 driver does not support I2C.  As such, the device remains in
-> Power Down if the I2C is enabled by the bootstrap pins.
+> Fixes: cee616c68846 ("dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Add basic support for the I2C interface, and provide support to take
-> the device out of power down when enabled.  Also read the bootstrap mode
-> pins via the CTL_1_MODE register when using the I2C bus.
-> 
-> Signed-off-by: Michael Williamson <michael.williamson@criticallink.com>
-> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
 > ---
->   drivers/gpu/drm/bridge/ti-tfp410.c | 93 +++++++++++++++++++++++++++-----------
->   1 file changed, 67 insertions(+), 26 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
-> index b9635abbad16..bb3f8d0ff207 100644
-> --- a/drivers/gpu/drm/bridge/ti-tfp410.c
-> +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
-> @@ -6,6 +6,7 @@
->   
->   #include <linux/gpio/consumer.h>
->   #include <linux/i2c.h>
-> +#include <linux/regmap.h>
->   #include <linux/media-bus-format.h>
->   #include <linux/module.h>
->   #include <linux/of_graph.h>
-> @@ -21,6 +22,20 @@
->   
->   #define HOTPLUG_DEBOUNCE_MS		1100
->   
-> +#define TFP410_REG_CTL_1_MODE	0x08
-> +#define TFP410_BIT_PD   BIT(0)
-> +#define TFP410_BIT_EDGE BIT(1)
-> +#define TFP410_BIT_BSEL BIT(2)
-> +#define TFP410_BIT_DSEL BIT(3)
-> +
-> +static const struct regmap_config tfp410_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +
-> +	.max_register = 0xff,
-> +	.cache_type = REGCACHE_NONE,
-> +};
-> +
->   struct tfp410 {
->   	struct drm_bridge	bridge;
->   	struct drm_connector	connector;
-> @@ -33,6 +48,8 @@ struct tfp410 {
->   	struct drm_bridge	*next_bridge;
->   
->   	struct device *dev;
-> +	struct i2c_client *i2c;
-> +	struct regmap *regmap;
->   };
->   
->   static inline struct tfp410 *
-> @@ -183,6 +200,9 @@ static void tfp410_enable(struct drm_bridge *bridge)
->   {
->   	struct tfp410 *dvi = drm_bridge_to_tfp410(bridge);
->   
-> +	if (dvi->i2c)
-> +		regmap_set_bits(dvi->regmap, TFP410_REG_CTL_1_MODE, TFP410_BIT_PD);
-> +
->   	gpiod_set_value_cansleep(dvi->powerdown, 0);
->   }
->   
-> @@ -190,6 +210,9 @@ static void tfp410_disable(struct drm_bridge *bridge)
->   {
->   	struct tfp410 *dvi = drm_bridge_to_tfp410(bridge);
->   
-> +	if (dvi->i2c)
-> +		regmap_clear_bits(dvi->regmap, TFP410_REG_CTL_1_MODE, TFP410_BIT_PD);
-> +
->   	gpiod_set_value_cansleep(dvi->powerdown, 1);
->   }
->   
-> @@ -221,38 +244,48 @@ static const struct drm_bridge_timings tfp410_default_timings = {
->   	.hold_time_ps = 1300,
->   };
->   
-> -static int tfp410_parse_timings(struct tfp410 *dvi, bool i2c)
-> +static int tfp410_parse_timings(struct tfp410 *dvi)
->   {
->   	struct drm_bridge_timings *timings = &dvi->timings;
->   	struct device_node *ep;
->   	u32 pclk_sample = 0;
->   	u32 bus_width = 24;
->   	u32 deskew = 0;
-> +	unsigned int val = 0;
-> +	int ret = 0;
->   
->   	/* Start with defaults. */
->   	*timings = tfp410_default_timings;
->   
-> -	if (i2c)
-> +	if (dvi->i2c) {
->   		/*
-> -		 * In I2C mode timings are configured through the I2C interface.
-> -		 * As the driver doesn't support I2C configuration yet, we just
-> -		 * go with the defaults (BSEL=1, DSEL=1, DKEN=0, EDGE=1).
-> +		 * For now, assume settings are latched from pins on reset / power up.
-> +		 * Should add options to optionally set them out of DT properties.
->   		 */
-> -		return 0;
-> -
-> -	/*
-> -	 * In non-I2C mode, timings are configured through the BSEL, DSEL, DKEN
-> -	 * and EDGE pins. They are specified in DT through endpoint properties
-> -	 * and vendor-specific properties.
-> -	 */
-> -	ep = of_graph_get_endpoint_by_regs(dvi->dev->of_node, 0, 0);
-> -	if (!ep)
-> -		return -EINVAL;
-> -
-> -	/* Get the sampling edge from the endpoint. */
-> -	of_property_read_u32(ep, "pclk-sample", &pclk_sample);
-> -	of_property_read_u32(ep, "bus-width", &bus_width);
-> -	of_node_put(ep);
-> +		ret = regmap_read(dvi->regmap, TFP410_REG_CTL_1_MODE, &val);
-> +		if (ret) {
-> +			dev_err(dvi->dev, "Read failed on CTL_1_MODE\n");
-> +			return ret;
-> +		}
-> +		pclk_sample = (val & TFP410_BIT_EDGE) ? 1 : 0;
-> +		bus_width = (val & TFP410_BIT_BSEL) ? 24 : 12;
-> +		dev_dbg(dvi->dev, "(0x%02X) : detected %d bus width, %s edge sampling\n",
-> +			val, bus_width, pclk_sample ? "positive" : "negative");
-> +	} else {
-> +		/*
-> +		 * In non-I2C mode, timings are configured through the BSEL, DSEL, DKEN
-> +		 * and EDGE pins. They are specified in DT through endpoint properties
-> +		 * and vendor-specific properties.
-> +		 */
-> +		ep = of_graph_get_endpoint_by_regs(dvi->dev->of_node, 0, 0);
-> +		if (!ep)
-> +			return -EINVAL;
-> +
-> +		/* Get the sampling edge from the endpoint. */
-> +		of_property_read_u32(ep, "pclk-sample", &pclk_sample);
-> +		of_property_read_u32(ep, "bus-width", &bus_width);
-> +		of_node_put(ep);
-> +	}
->   
->   	timings->input_bus_flags = DRM_BUS_FLAG_DE_HIGH;
->   
-> @@ -291,7 +324,7 @@ static int tfp410_parse_timings(struct tfp410 *dvi, bool i2c)
->   	return 0;
->   }
->   
-> -static int tfp410_init(struct device *dev, bool i2c)
-> +static int tfp410_init(struct device *dev, struct i2c_client *i2c)
->   {
->   	struct device_node *node;
->   	struct tfp410 *dvi;
-> @@ -313,15 +346,24 @@ static int tfp410_init(struct device *dev, bool i2c)
->   	dvi->bridge.of_node = dev->of_node;
->   	dvi->bridge.timings = &dvi->timings;
->   	dvi->bridge.type = DRM_MODE_CONNECTOR_DVID;
-> +	dvi->i2c = i2c;
-> +
-> +	if (i2c) {
-> +		dvi->regmap = devm_regmap_init_i2c(i2c, &tfp410_regmap_config);
-> +		if (IS_ERR(dvi->regmap))
-> +			return PTR_ERR(dvi->regmap);
-> +	}
->   
-> -	ret = tfp410_parse_timings(dvi, i2c);
-> +	ret = tfp410_parse_timings(dvi);
->   	if (ret)
->   		return ret;
->   
->   	/* Get the next bridge, connected to port@1. */
->   	node = of_graph_get_remote_node(dev->of_node, 1, -1);
-> -	if (!node)
-> +	if (!node) {
-> +		dev_err(dev, "Could not find remote node\n");
->   		return -ENODEV;
-> +	}
->   
->   	dvi->next_bridge = of_drm_find_bridge(node);
->   	of_node_put(node);
-> @@ -352,7 +394,7 @@ static void tfp410_fini(struct device *dev)
->   
->   static int tfp410_probe(struct platform_device *pdev)
->   {
-> -	return tfp410_init(&pdev->dev, false);
-> +	return tfp410_init(&pdev->dev, NULL);
->   }
->   
->   static int tfp410_remove(struct platform_device *pdev)
-> @@ -378,7 +420,6 @@ static struct platform_driver tfp410_platform_driver = {
->   };
->   
->   #if IS_ENABLED(CONFIG_I2C)
-> -/* There is currently no i2c functionality. */
->   static int tfp410_i2c_probe(struct i2c_client *client,
->   			    const struct i2c_device_id *id)
->   {
-> @@ -391,7 +432,7 @@ static int tfp410_i2c_probe(struct i2c_client *client,
->   		return -ENXIO;
->   	}
->   
-> -	return tfp410_init(&client->dev, true);
-> +	return tfp410_init(&client->dev, client);
->   }
->   
->   static void tfp410_i2c_remove(struct i2c_client *client)
-> 
+> Changes since v1:
+> 1. Use maxItems:1 (Rob)
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Bjorn,
+
+Can you pick it up?
+
+Best regards,
+Krzysztof
+
