@@ -2,63 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E506D210D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C80C6D2136
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232651AbjCaNDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 09:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38996 "EHLO
+        id S232734AbjCaNNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 09:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232376AbjCaNDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:03:18 -0400
+        with ESMTP id S232752AbjCaNNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:13:30 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE95AA27B
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:03:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3621B1A47B;
+        Fri, 31 Mar 2023 06:13:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C9CA62831
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:03:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAFF6C4339B
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:03:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C2B0862906;
+        Fri, 31 Mar 2023 13:13:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E90FC433D2;
+        Fri, 31 Mar 2023 13:13:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680267795;
-        bh=+z7xJ6lqsdzeQz7cVN7i76n16tKg8olubmFTy0lZ21Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bjVEi6BybGxxuKXVuJ3WGcJ86CcR4VZ0y1BGMBAUvWwEofeVi2znPyN60M3WAlO5H
-         4h3lsVI4yh6FlwSul0pE0RgwiUHThQ0vkReTJ6gDt2ZKPGnYY3h39VMQybH+q/zZA5
-         8sJV1ZlAWXHzxIhr4LYTWISdO1rpnFbt1tKaZgjgRya0mk4ivcgX5x4RCPaS4Wt4IF
-         dNt3lgE0NEsCf5jkiaSjQHdVZrwbfQkMtsPnt+k1J6DLIivNlOQQ8vFdmTts+Hlhtt
-         K5gAVYj3wZeCItV8hyTjZMCMXtiwUKFgUuYTXModL/BSBSKt5McpD1lnukFwdhp5no
-         irF9Oo+a1/TQA==
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5463fa0c2bfso82932497b3.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 06:03:14 -0700 (PDT)
-X-Gm-Message-State: AAQBX9e/AsrRs+vl8EczDF5Xluqu9v4tDOCwtq3p1VTvms261vX+P2pN
-        6nnbBk9n7vod0TD7izXtQt11At99cTskCzZHEw==
-X-Google-Smtp-Source: AKy350YhD2R1ryy6ss7G7TUXbaHBCVlfMFLewTTTNfFDtpUNQGYKxNXImGVqcXjp9ArlF4ds8yh13MCjOGl+9fjHlaI=
-X-Received: by 2002:a81:ae4f:0:b0:545:ed8e:f4f6 with SMTP id
- g15-20020a81ae4f000000b00545ed8ef4f6mr9283492ywk.5.1680267793963; Fri, 31 Mar
- 2023 06:03:13 -0700 (PDT)
+        s=k20201202; t=1680268408;
+        bh=J0jYdD4GFbRNZgMq6swXWLS5Vv9lQ1S0Ja+zV3iG0pk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=UYmcVABExLetFpnwTrefBjodSMN54HPtHQto4VdrAb1+3ykXSCDg9XYjwkFA2NUGH
+         1xiMdkY5q0lt3NP3MaUk9WET8c1LJb3RkrAbaAKrzRucCzxUKG+PIRF+GM03lvJf7N
+         FN2S2nM1kgKL2ApO0z2bkjvpGLTRjdU3MdYFV1ZtcM7HaZ0Tfiqgwgb9hZvWGQDmEc
+         8H/wrHW1nJZzvH5pSqDX5V4ZnXmt92K4FxpmXMkQdG9Re6rmcLb6dKc6T6/QNpvpce
+         4I71mzdjvuC38rcVV47G4PZXEuXaW7ZJJh0nLXV+MfAuKdKeKSDgIXzI0AZyO9c91k
+         reMa0OKh6ITzw==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     netdev@vger.kernel.org
+Cc:     davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        kuba@kernel.org, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        lorenzo.bianconi@redhat.com, daniel@makrotopia.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 net-next 00/10] mtk: wed: move cpuboot, ilm and dlm in dedicated dts nodes
+Date:   Fri, 31 Mar 2023 15:12:36 +0200
+Message-Id: <cover.1680268101.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230330165128.3237939-1-james.morse@arm.com> <CAL_Jsq+_1xJsWwvCCsjB74nUyO8y1N_yc1LOF5egpuwWs1dZzg@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+_1xJsWwvCCsjB74nUyO8y1N_yc1LOF5egpuwWs1dZzg@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 31 Mar 2023 08:03:02 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+mO0VE88Vmbd+YdpOLez5ee4Ef1he40R7=zAZ0wVj4gg@mail.gmail.com>
-Message-ID: <CAL_Jsq+mO0VE88Vmbd+YdpOLez5ee4Ef1he40R7=zAZ0wVj4gg@mail.gmail.com>
-Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM interconnects
-To:     James Morse <james.morse@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
@@ -68,37 +55,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 7:57=E2=80=AFAM Rob Herring <robh+dt@kernel.org> wr=
-ote:
->
-> On Thu, Mar 30, 2023 at 11:51=E2=80=AFAM James Morse <james.morse@arm.com=
-> wrote:
-> >
-> > Hello!
-> >
-> > Changes since the RFC?:
-> >  * Added DT support, in a way that means we don't end up with per-errat=
-um
-> >    strings, or bloat in the calling code to check for those strings.
-> >  * Added a commandline argument. (boo)
-> >  * Changes to support errata affecting features on big-little systems p=
-roperly.
-> >
-> > ~
-> >
-> > When stage1 translation is disabled, the SCTRL_E1.I bit controls the
-> > attributes used for instruction fetch, one of the options results in a
-> > non-cacheable access. A whole host of CPUs missed the FWB override
-> > in this case, meaning a KVM guest could fetch stale/junk data instead o=
-f
-> > instructions.
-> >
-> > The workaround is to disable FWB, and do the required cache maintenance
-> > instead.
->
-> What's FWB? I don't see it defined anywhere in the series.
+Since cpuboot, ilm and dlm memory region are not part of MT7986 SoC RAM,
+move them in dedicated mt7986a syscon dts nodes.
+At the same time we keep backward-compatibility with older dts version where
+cpuboot, ilm and dlm were defined as reserved-memory child nodes.
 
-Ah, there it is in patch 1. It wasn't in patch 6, so naturally I went
-searching in the cover letter.
+Changes since v1:
+- fix dts schema compilation error
+- rebase on top of net-next
 
-Rob
+Lorenzo Bianconi (10):
+  net: ethernet: mtk_wed: rename mtk_wed_get_memory_region in
+    mtk_wed_get_reserved_memory_region
+  net: ethernet: mtk_wed: move cpuboot in a dedicated dts node
+  dt-bindings: soc: mediatek: move cpuboot in a dedicated dts node
+  arm64: dts: mt7986: move cpuboot in a dedicated node
+  net: ethernet: mtk_wed: move ilm a dedicated dts node
+  dt-bindings: soc: mediatek: move ilm in a dedicated dts node
+  arm64: dts: mt7986: move ilm in a dedicated node
+  net: ethernet: mtk_wed: move dlm a dedicated dts node
+  dt-bindings: soc: mediatek: move dlm in a dedicated dts node
+  arm64: dts: mt7986: move dlm in a dedicated node
+
+ .../arm/mediatek/mediatek,mt7622-wed.yaml     | 30 ++++---
+ .../mediatek/mediatek,mt7986-wo-cpuboot.yaml  | 45 ++++++++++
+ .../soc/mediatek/mediatek,mt7986-wo-dlm.yaml  | 46 ++++++++++
+ .../soc/mediatek/mediatek,mt7986-wo-ilm.yaml  | 45 ++++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 69 +++++++-------
+ drivers/net/ethernet/mediatek/mtk_wed.c       | 19 ++++
+ drivers/net/ethernet/mediatek/mtk_wed_mcu.c   | 89 ++++++++++++++++---
+ drivers/net/ethernet/mediatek/mtk_wed_wo.h    |  3 +-
+ 8 files changed, 289 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-cpuboot.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-dlm.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt7986-wo-ilm.yaml
+
+-- 
+2.39.2
+
