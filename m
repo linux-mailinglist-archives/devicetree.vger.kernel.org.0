@@ -2,108 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A463B6D21F4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 15:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 813106D2220
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232635AbjCaN7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 09:59:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59168 "EHLO
+        id S231771AbjCaOMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 10:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232663AbjCaN7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 09:59:19 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F26E11665;
-        Fri, 31 Mar 2023 06:59:11 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32VCDXaD013987;
-        Fri, 31 Mar 2023 13:59:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=0efs2B7GiN50fVn2SDR3wcVCxcPBG0kv0j0bjRmvWxo=;
- b=An02CWyn5G2smGq6sQ6adFPRE1QIg9FSWtTdphgkYXMobHsa+WXMKWnVr0JklDXyFfe4
- cl0NLu//RzhgeX7wScjXG7JHxanO2NJg1PpaeufsTBOI3mhw4h1p2nlVtcDr9KrPuA+C
- LWthh4g0CM4WOkqYQKS3gxs71S0I3ZZNznyV4E1X/+u6auNyh7fw5jKVh8joSIAaRdyx
- FVwx+7uhGRq+uxaEwXGf4Mh+9kceu7za84Yf7+KdWEJeS/2NH4ViErmzzwyTu4M3hGpF
- 8lTnYWlVwgHe3IqEpHhO92BKt6IJbmGKrzidVvFVR0ISREVFSdlsWfuLFb63SvaqEG80 7A== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pnvyuguss-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 31 Mar 2023 13:59:08 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32VDx7Oa020018
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 31 Mar 2023 13:59:07 GMT
-Received: from vpolimer-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 31 Mar 2023 06:59:02 -0700
-From:   Vinod Polimera <quic_vpolimer@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-CC:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <quic_kalyant@quicinc.com>, <dmitry.baryshkov@linaro.org>,
-        <quic_khsieh@quicinc.com>, <quic_vproddut@quicinc.com>,
-        <quic_bjorande@quicinc.com>, <quic_abhinavk@quicinc.com>,
-        <quic_sbillaka@quicinc.com>
-Subject: [PATCH v1 3/3] msm: skip the atomic commit of self refresh while PSR running
-Date:   Fri, 31 Mar 2023 19:28:34 +0530
-Message-ID: <1680271114-1534-4-git-send-email-quic_vpolimer@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com>
-References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com>
+        with ESMTP id S229850AbjCaOMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:12:41 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBEE1D847
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:12:39 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id eh3so90052333edb.11
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:12:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112; t=1680271958;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QWblS21f7MwbeFDcHXvf6ZN7vsvR3dKGxsNxsmvhTTE=;
+        b=4e1Tz8QxaCs0PDKXbLxXj0VBT8Oz6YSmzrxYTzW5CkEYI/EiRP5Sqa0o87ItGvFxFF
+         tldh+MVUg33kKa8INHXnjHKJxup8r6ETNoQ7/Rf5lDjzuLq1jNiXAify7MZUsx5J9GrE
+         8Cv78Me7YDssFtng3bIlGYuHTkynucrUn39QaJmcp0mUCCnCZNpmE2lunOFaFOYwxE5J
+         +toiXubxfuCIrBAB+rfXP4OmufmvMouu6+YtJexc5TRSyQ9k/O+141W2+IU4tYCUb5kn
+         94QgtGy8hc/yluw9MtUv4R3kQWqAyBROB+h1Q7b1eAB9oL2UNC01M5S67lhb0hBoR6hw
+         cJFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680271958;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QWblS21f7MwbeFDcHXvf6ZN7vsvR3dKGxsNxsmvhTTE=;
+        b=0nFcsJrQsoYmjFHtYMJcDBAYBjdo+kb0fXataGhQ2TLkcaYQqJ141HUxjmT5kqSNzC
+         pc47eKoj1QVMGbMrDEhJUq2kn3KKcebGTH8YTLvl5PoJSCJIqopzMrz3rvQq96ZArC06
+         eROHp2r+p5JxSMxhS5sZu6Mm49kLa4zM+8yxWWQQ3ajk9SY0khbR6bnhlL+VmfzTQgJa
+         L34or0o3nlK3sWJUCHeFMB7yfp5aZBxAjnN1Vnx5vyfHz9FrasOGGOFbk4ThNkEOdqSM
+         SkySqrVYQHKL3scFVBN2pIhf76lFJ9kv809a7yfSSBomQ0W2TuRaxF2FN+mWBnVI01oG
+         SIcA==
+X-Gm-Message-State: AAQBX9eotI9ov+Td0gLZFPYeuL6hq3hOqfS8WyXaS3JRwcrfI+wlZ0nc
+        nOXRjEtgxDmdRuV3mt9ekPbklw==
+X-Google-Smtp-Source: AKy350ZFp71i8e1Ppu4KWJhAnOa9mr+2nxnr3Rey851kGN7Ef4Q+VHxPP0z4zAh2jUzJA4CdtzdDow==
+X-Received: by 2002:a17:906:9485:b0:933:c052:a277 with SMTP id t5-20020a170906948500b00933c052a277mr27731867ejx.12.1680271957867;
+        Fri, 31 Mar 2023 07:12:37 -0700 (PDT)
+Received: from sleipner.berto.se (p54ac5f91.dip0.t-ipconnect.de. [84.172.95.145])
+        by smtp.googlemail.com with ESMTPSA id gw6-20020a170906f14600b009334edaed98sm1016557ejb.50.2023.03.31.07.12.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 07:12:37 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] dt-bindings: i2c: maxim,max96712: Require setting bus-type property
+Date:   Fri, 31 Mar 2023 16:10:32 +0200
+Message-Id: <20230331141032.3817866-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: MnHT4qZKxPdFf57uPNUz_MJJg1rLBTqq
-X-Proofpoint-ORIG-GUID: MnHT4qZKxPdFf57uPNUz_MJJg1rLBTqq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-31_07,2023-03-31_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- spamscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 malwarescore=0 mlxlogscore=873 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2303310109
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In certain CPU stress conditions, there can be a delay in scheduling commit
-work and it was observed that PSR commit from a different work queue was 
-scheduled. Avoid these commits as display is already in PSR mode.
+The MAX96712 can support both CSI-2 C-PHY and D-PHY bus. Document the
+supported bus-types and make the property mandatory.
 
-Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 ---
- drivers/gpu/drm/msm/msm_atomic.c | 3 +++
- 1 file changed, 3 insertions(+)
+Hi,
 
-diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
-index 645fe53..f8141bb 100644
---- a/drivers/gpu/drm/msm/msm_atomic.c
-+++ b/drivers/gpu/drm/msm/msm_atomic.c
-@@ -192,6 +192,9 @@ int msm_atomic_check(struct drm_device *dev, struct drm_atomic_state *state)
- 			new_crtc_state->mode_changed = true;
- 			state->allow_modeset = true;
- 		}
-+
-+		if (old_crtc_state->self_refresh_active && new_crtc_state->self_refresh_active)
-+			return -EINVAL;
- 	}
+This is done in conjunction with adding C-PHY support to the driver,
+patches on list. The current driver only supports D-PHY so this was
+assumed in the driver.
+
+There is a single user of this binding, r8a779a0-falcon-csi-dsi.dtsi. A
+separate patch to update that binding with a bus-type property is be
+submitted.
+
+Without the property present the driver fall-back to D-PHY (even with
+the C-PHY work applied). So this change is backward compatible with old
+versions of the only effected DTS file.
+---
+ .../devicetree/bindings/media/i2c/maxim,max96712.yaml      | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+index 444f24838d3d..fccbf287ff79 100644
+--- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+@@ -65,9 +65,14 @@ properties:
  
- 	return drm_atomic_helper_check(dev, state);
+             properties:
+               data-lanes: true
++              bus-type:
++                enum:
++                  - 1 # CSI-2 C-PHY
++                  - 4 # CSI-2 D-PHY
+ 
+             required:
+               - data-lanes
++              - bus-type
+ 
+     required:
+       - port@4
+@@ -82,6 +87,7 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/media/video-interfaces.h>
+ 
+     i2c@e6508000 {
+             #address-cells = <1>;
+@@ -101,6 +107,7 @@ examples:
+                             port@4 {
+                                     reg = <4>;
+                                     max96712_out0: endpoint {
++                                            bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+                                             clock-lanes = <0>;
+                                             data-lanes = <1 2 3 4>;
+                                             remote-endpoint = <&csi40_in>;
 -- 
-2.7.4
+2.40.0
 
