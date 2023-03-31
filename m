@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6555B6D2946
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 22:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DEF6D294B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 22:19:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232946AbjCaUSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 16:18:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
+        id S233037AbjCaUTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 16:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbjCaUSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 16:18:07 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D48B2220C;
-        Fri, 31 Mar 2023 13:18:06 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id j2so5092533ila.8;
-        Fri, 31 Mar 2023 13:18:06 -0700 (PDT)
+        with ESMTP id S233025AbjCaUTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 16:19:04 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F8620D9E
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:19:03 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id g17so30425615lfv.4
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 13:19:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680293885; x=1682885885;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sPBrvhS4C9fH8+UVEU/PMvBSYFvObmXLuJFfdX5dcJg=;
-        b=fa4BxSIgi57AMyUtvtR9HC3rjFIwqjjdJBx5G7TB5hltEcKzhqL0+Of2hzGU+B4qa1
-         WjuKLQY23FBHO0RbFKvigpoXI4CmTlJEYB75WKOyWsFiCSORU37zyymm6SJpfzVEKFU+
-         aNtuQXio1QuheM23jHTqY+czwzrzHDEiCtV8Ug7j/xUfTILz7oQRTZn8Bzur3xDzZaPs
-         25bXr7emhd6mLVcMV4fK9rigr3mFPD9JgzpkP6tcex3TAW1prjdNg0ZHXtb1C5MPicx0
-         RcqXnyrQSv4lD/wDV/UdAK/B4WBqJ5tXk3IXAPfXEEVKiMibr6D2neFqi3y3cr+2LThu
-         Eslw==
+        d=linaro.org; s=google; t=1680293942;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Su+pv3KEV4L0sJclS8z/r/J7Y+uJUyzUN30/RZNfR14=;
+        b=pYIWEbb/vzs3e5nsQX1DZsF6A5I2frJWr6fHCR22BtTKRdtbkHm2xCbajn4HuNELq+
+         wakAJuy3XOIpx4PtsjUsR/izym02e/PTn4dzrNKIFbzfsyjDy6GhSISZ5O02aD90wugo
+         KlKmyHJmd/UZc0LqLtGLn1YWYT3vRNeGLDhpwGegCm1/zVhoOlYRjaJ4ETaeIVMh5STy
+         OLjSDpDfTeSoIdUrQnuWA2Gf68va6Emh5VgQAMx3FU+U7+3mpMpSid4FSUgtAsPS5ZQ9
+         4uSD0iCzSUfF6Knw2UWv67bf134UPxSF//Ttix+XC+TsqEzEbOzJ40iwnVrRMXdAQVpo
+         /0gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680293885; x=1682885885;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sPBrvhS4C9fH8+UVEU/PMvBSYFvObmXLuJFfdX5dcJg=;
-        b=5gEtKDxDZAbq7pclujIxMkNGny7WbwOqwGN2sOk15CNecJ8l1Cu+2EEobpkb07bTI/
-         S5fioMtFDtepYqsAg0Qtlg7UnEF9f1zwPRB5CXaDcOe0rM8IgZtmhp5d6pUN1kHA9s3V
-         7YNbTVioeWv9LC+eXBm1sK7HNtD9ckf8Zmyo0W+/AUj2MbKi+fCGKcohe7t76UZGx2dq
-         dqtoSawWqIOSzrSlsW9HtNfoTvhHbjKIrEQJdyRoF7f38GNwcjq9tM5Pn8LmCmTJdnsg
-         u0U77Ks6LpvJFemDGJlAzZNP1UwTpQPdb4fw2jJY/Bqi9qB6ohN4yvQoiFGueLmFC+X+
-         kLLg==
-X-Gm-Message-State: AAQBX9eB7OgfJbRi4I6mlmtfoHdjdRjDyNVnJqFq2mx95m5CZB7LwJ36
-        ItZ6+ztiW32e6SDfc8NhoYJ4jZYUcpG1PpoTz/c=
-X-Google-Smtp-Source: AKy350Y54OJxf8iUlKpXbAgqSiyCtgyMjlHCU15pwG/udlx4BQ0qKWVSD06JZkpsfbCXKsybTvlOQgTz5Kcxc8QZ5iQ=
-X-Received: by 2002:a05:6e02:1528:b0:326:3b43:4c2a with SMTP id
- i8-20020a056e02152800b003263b434c2amr3463407ilu.1.1680293885621; Fri, 31 Mar
- 2023 13:18:05 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680293942;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Su+pv3KEV4L0sJclS8z/r/J7Y+uJUyzUN30/RZNfR14=;
+        b=qap6Q6vIAghYugW8HsznYoyJHL5pdrj6tGsrPt3RjiRrh4bc+jsc0B2D8todoA7KNK
+         /DsJxwnMfuMbTC42G4xprUkA6aV02O20QnTCJYPrXrsM16qwcJPx6UHMeMTUDEcq4vm9
+         SlUXSsZUxodjBm3DRMlBjwruu77GTEndjiMrFxJGAsDvY9h2QMIrKC0G5AeniYHHcJW9
+         olMg6nMXKE8ieT6gI8yTGZsZXKy8XMQnHp4R91Yhv76RE2hzT32h03H+uEZgsB9SvU2O
+         413i7woksCUdJg/Ux5mfx1pwRw2EwRzJhpEc2PyYTUW/5bzHMlQVD710PTbHqcyWHCDx
+         RlgA==
+X-Gm-Message-State: AAQBX9cE1Etr47u1JmARzhB1Xrnbis9ycf1bv3U5o2SJH0JmIZobEsLc
+        OO6FsAbuJ8Y1dByCJH6mqj+ktQ==
+X-Google-Smtp-Source: AKy350YRb3y+o0hAghs5VC2YehBi+0YhlqLlfIJ0J3C0PuJCcqA75EYoBhvdJbgltsnsQOL7lCmm4Q==
+X-Received: by 2002:ac2:52bb:0:b0:4b5:9b8f:cc82 with SMTP id r27-20020ac252bb000000b004b59b8fcc82mr7894997lfm.0.1680293942024;
+        Fri, 31 Mar 2023 13:19:02 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c8-20020a05651221a800b004e80b23565bsm505250lft.198.2023.03.31.13.19.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 13:19:01 -0700 (PDT)
+Message-ID: <3a8724bc-fb44-0080-fd24-c04e3841385e@linaro.org>
+Date:   Fri, 31 Mar 2023 22:19:00 +0200
 MIME-Version: 1.0
-References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230330204217.47666-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <5468019d-e688-4019-882f-6f9611443408@spud>
-In-Reply-To: <5468019d-e688-4019-882f-6f9611443408@spud>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 31 Mar 2023 20:17:39 +0000
-Message-ID: <CA+V-a8uzk7VmYRgHgXpN9Hz3VUoHU5hN7OUaLzB1KX6m=nkBzQ@mail.gmail.com>
-Subject: Re: [PATCH v7 5/6] cache: Add L2 cache management for Andes AX45MP
- RISC-V core
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/4] dt-bindings: Document additional Jetson Orin NX SKUs
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230331163159.17145-1-thierry.reding@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230331163159.17145-1-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,80 +76,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On 31/03/2023 18:31, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Beyond the original 16 GiB SKU (0), additional SKUs exist, such as the 8
+> GiB SKU (1) and an internal-only SKU (2) that comes with an equipeed SD
 
-Thank you for the review.
+typo: equipped
 
-On Fri, Mar 31, 2023 at 1:45=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Thu, Mar 30, 2023 at 09:42:16PM +0100, Prabhakar wrote:
->
-> > +STANDALONE CACHE CONTROLLER DRIVERS
->
-> > +F:   include/cache
->
-> This can go since the file no longer exists.
->
-Agreed I will drop this.
+> card slot.
 
-> > +config AX45MP_L2_CACHE
-> > +     bool "Andes Technology AX45MP L2 Cache controller"
-> > +     depends on RISCV && RISCV_DMA_NONCOHERENT
->
-> This can just be depends on RISCV_DMA_NONCOHERENT, since that's only
-> defined on RISC-V.
->
-Agreed.
+Is there a point in documenting all of them if there is no DTS? Also,
+size of storage (eMMC?) pretty often is runtime-detectable, so you do no
+need a new DTS and new compatible.
 
-> > +static void ax45mp_get_l2_line_size(struct platform_device *pdev)
-> > +{
-> > +     struct device_node *np =3D pdev->dev.of_node;
-> > +     struct device *dev =3D &pdev->dev;
-> > +     int ret;
-> > +
-> > +     ret =3D of_property_read_u32(np, "cache-line-size", &ax45mp_priv-=
->ax45mp_cache_line_size);
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to get cache-line-size, defaulting t=
-o 64 bytes\n");
-> > +             ax45mp_priv->ax45mp_cache_line_size =3D AX45MP_CACHE_LINE=
-_SIZE;
-> > +     }
-> > +
-> > +     if (ax45mp_priv->ax45mp_cache_line_size !=3D AX45MP_CACHE_LINE_SI=
-ZE) {
-> > +             dev_err(dev, "Expected cache-line-size to be 64 bytes (fo=
-und:%u). Defaulting to 64 bytes\n",
-> > +                     ax45mp_priv->ax45mp_cache_line_size);
-> > +             ax45mp_priv->ax45mp_cache_line_size =3D AX45MP_CACHE_LINE=
-_SIZE;
-> > +     }
->
-> I forget, why are we doing this defaulting rather than falling over
-> immediately if we detect the property is missing or wrong?
->
-No reason as such on not failing on property not existing/Invalid. I
-will bail out in an error case now.
+Best regards,
+Krzysztof
 
-> > +}
->
-> > +static const struct riscv_cache_ops ax45mp_cmo_ops =3D {
-> > +     .clean_range =3D &ax45mp_cpu_dma_wb_range,
-> > +     .inv_range =3D &ax45mp_cpu_dma_inval_range,
-> > +     .flush_range =3D &ax45mp_cpu_dma_flush_range,
-> > +};
->
-> I think it would be nice if your driver functions matched the names used
-> by the ops. (and as I said on the other patch, I think the ops should
-> match the cross-arch naming.
->
-Agreed, will do.
-
-> Otherwise, looks grand - although I think I was mostly happy with the
-> last revision too.a
->
-I know you had provided the RB for the last version ;)
-
-Cheers,
-Prabhakar
