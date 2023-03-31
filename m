@@ -2,71 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C236D2665
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2C626D2678
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbjCaRFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 13:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39828 "EHLO
+        id S231730AbjCaRLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 13:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbjCaRFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:05:18 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9E0BCEB54
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:05:17 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B9F47106F;
-        Fri, 31 Mar 2023 10:06:01 -0700 (PDT)
-Received: from [10.1.196.177] (eglon.cambridge.arm.com [10.1.196.177])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D78403F6C4;
-        Fri, 31 Mar 2023 10:05:14 -0700 (PDT)
-Message-ID: <0b3722b1-0a0c-c934-dd25-e940386dc8d9@arm.com>
-Date:   Fri, 31 Mar 2023 18:05:13 +0100
+        with ESMTP id S229758AbjCaRLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:11:49 -0400
+Received: from www381.your-server.de (www381.your-server.de [78.46.137.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B80E18831;
+        Fri, 31 Mar 2023 10:11:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+        s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=BewKgH0lhl5ITDFQCz5IQ2OB5+ZlHOMt8jydO+KrdZI=; b=amhJfElQ1lROVDhTrG12MMXKX2
+        PNq9+LeJuh4cDPbmTIZ5tEDQ9fEy38GczjGFkIcXTrsSwDR1HA3Jk/pbCx/+gmhWxg/AbpJPytHNF
+        0t05dACFVlZxRq9vsVn1CS84gb8mQeN6JPt2HkwAJD869fwkVnw/vfPtztNuau85f6pykdpEOLzUj
+        dlvRqhBDia6VCe05hQySe0r1AgDgmeYtUMTdzXcdDQOhKNKtXEJo1GVXUPx+pjY9vsZBSUDFm8S9i
+        9cxvlewsDTXBFfTHUnmLJmeTde/SfYRO5dSDE1KWJ7SVdh5IpfTClhVFIFAdZfaV2cC74OH6L7gkp
+        mOKlbuiA==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+        by www381.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <lars@metafoo.de>)
+        id 1piIHy-000KFW-HF; Fri, 31 Mar 2023 19:11:46 +0200
+Received: from [2604:5500:c0e5:eb00:da5e:d3ff:feff:933b]
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1piIHy-00049F-5J; Fri, 31 Mar 2023 19:11:46 +0200
+Message-ID: <292e5efd-1a10-d1e6-0185-1ce113eee233@metafoo.de>
+Date:   Fri, 31 Mar 2023 10:11:43 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 5/6] firmware: smccc: Allow errata management to be
- overridden by device tree
-Content-Language: en-GB
-To:     kernel test robot <lkp@intel.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: cadence: Document reset property
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>
+Cc:     Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20230330165128.3237939-6-james.morse@arm.com>
- <202303310444.3JHIsByA-lkp@intel.com>
-From:   James Morse <james.morse@arm.com>
-In-Reply-To: <202303310444.3JHIsByA-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230330180448.269635-1-lars@metafoo.de>
+ <6b997dfa-1377-8d2e-ce4f-3f8f7407e6b4@linaro.org>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+In-Reply-To: <6b997dfa-1377-8d2e-ce4f-3f8f7407e6b4@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26861/Fri Mar 31 09:24:12 2023)
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 21:44, kernel test robot wrote:
-> I love your patch! Perhaps something to improve:
-
-> All warnings (new ones prefixed by >>):
-> 
->>> drivers/firmware/smccc/em.c:142:5: warning: no previous prototype for 'arm_smccc_em_dt_alloc_tbl_entry' [-Wmissing-prototypes]
->      142 | int arm_smccc_em_dt_alloc_tbl_entry(struct device_node *np, const char *name,
->          |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-It's just missing a static. Fixed locally.
-
-
-Thanks,
-
-James
+On 3/31/23 02:42, Krzysztof Kozlowski wrote:
+> On 30/03/2023 20:04, Lars-Peter Clausen wrote:
+>> The Cadence I2C controller has an external reset that needs to be
+>> de-asserted before the I2C controller can be accessed.
+>>
+>> Document the `resets` devicetree property that can be used to describe how
+>> the reset signal is connected.
+> You could add it also to the example to have complete picture (and
+> validate your change).
+>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+When I resend with it added to the example, do you want me to keep or 
+drop the acked-by?
