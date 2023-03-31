@@ -2,159 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FFD16D235B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D324B6D236A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 17:02:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232859AbjCaPAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 11:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48376 "EHLO
+        id S230341AbjCaPCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 11:02:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbjCaPAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:00:06 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5BED527
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:59:47 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id x15so20676650pjk.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680274787;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3cLECZLQ8q3bDfrArD9DeZIfU0o0VB/2VF4oNp5hSRs=;
-        b=ACKRxH2iGlrD0d8f8RUQAX9ZMlpjS1hMZ88LqXbUCetZFPZE2zDG9MSZWpNdu9ttzu
-         kWROm4rzvz5kXG9RZeRptogLcHcRxt2fBYHMPC607RDd8IZoF18D7rkUJ5ylnkkITPtY
-         VSy/CHE7f8YWG0UBX/tUx/6JhN6/KDEl8uYxWFyrJ8oRKKWgQ8bSMAXh9FANXmddQozt
-         oQ7ebISyf+8RJZn2056bCMvCYADVKrJiXvK6pGCc7LekD8uOMjShcdgdSM5rk38kDeVG
-         c7YbwCjQSssHq/ih6d58jfy6QNQWZRnqBvq9drkfEBdkYOZwBwY8AIF4KZmFxl+ow2Lt
-         PjIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680274787;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3cLECZLQ8q3bDfrArD9DeZIfU0o0VB/2VF4oNp5hSRs=;
-        b=SJz1k5zDM+zxsjEiZFmjNv4Mx9lY4y6p8u4AuNrs6o3a8m6iEu1Al9vjaxdIaHZq+0
-         RwKgW5oYzfLKx9NM30uFFmY27ltym6f7PsxGwXV50e4RSy23Z7fxdI2tvCU/93pkMzS4
-         Y7fN86rX/WDhoDu37OTmq5vbEjqYVZGW5ZAvpJo8FqocFPnuX1zrZzDXhE6a41t7ExlS
-         xJF4wFEbg0BoYeePONMs7FteRkwDOgsJtLElK6W6o4wMxNh6FPROhYxidU2C5a10s+fy
-         XbNqE+9OFPuzew/E3hgK+Q6V3g84gJlpvStI7CBXhjpiJy3p4TH0mAGuz9Ev30kFBv6O
-         tLYg==
-X-Gm-Message-State: AAQBX9enWjZv1d9C2ji5aHzuLOW3B4tb1QljAM3uIRkbxstYO7Y0korJ
-        fNL0jY+f05rPC+IlusLFwyDi
-X-Google-Smtp-Source: AKy350b1EvPF6PwvNUEXvOyhaTG+WR0+fLaNdP0niJ0+o6PFHNHbHNqt82Zp7IK9OuyMMa9b8ECdDg==
-X-Received: by 2002:a17:90b:4a51:b0:23b:3939:9c50 with SMTP id lb17-20020a17090b4a5100b0023b39399c50mr29050021pjb.8.1680274786797;
-        Fri, 31 Mar 2023 07:59:46 -0700 (PDT)
-Received: from localhost.localdomain ([59.92.101.186])
-        by smtp.gmail.com with ESMTPSA id q3-20020a17090a938300b0023b15e61f07sm1617194pjo.12.2023.03.31.07.59.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 07:59:46 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org
-Cc:     konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: qcom: sdx55-fn980: Move "status" property to the end of node
-Date:   Fri, 31 Mar 2023 20:29:15 +0530
-Message-Id: <20230331145915.11653-2-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230331145915.11653-1-manivannan.sadhasivam@linaro.org>
-References: <20230331145915.11653-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S231566AbjCaPCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 11:02:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23690AF3A;
+        Fri, 31 Mar 2023 08:02:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCC25629E9;
+        Fri, 31 Mar 2023 15:02:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E50CC433D2;
+        Fri, 31 Mar 2023 15:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680274966;
+        bh=K+HZuqgB9rt/QMhwBweIcNwWvClGQr42KVcvQKa67U4=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=C6swUh79DRO5QZSPpqIlQyIThpRfWCLZJqd6GgZq9zRIzg3OMSBxBlp2AKr3MLBHK
+         Ihpdq3hbeknoGuZwyDbcI7zBmla6N9FVUnfQl3PH2cNCo2z0XCNbwCm/qIS00Nebu2
+         RubHziuxniLGWPQ6hNVCBScMDVVFiajmCQrugBtb8ojyqbWmZi9VU/o/wcw0yfHDtN
+         hUUEsK54w9S6cCr4iCqAUD786C96DoYcmkGjmRtjYN5Oji+wDuyB8hO0Mfdou9rcU+
+         WaRAkhM4kpoTy5PSpK6DgKQAPMy4o5QoaJTNJ/T15c3Q5p4YSHO61+7vkb3WGvmsqO
+         pEDPycD6GW9SQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        krzysztof.kozlowski@linaro.org, rf@opensource.cirrus.com,
+        ckeepax@opensource.cirrus.com,
+        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
+        wangweidong.a@awinic.com, james.schulman@cirrus.com,
+        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
+        povik+lin@cutebit.org, flatmax@flatmax.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ryans.lee@analog.com,
+        =?utf-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
+In-Reply-To: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
+References: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
+Subject: Re: [PATCH V4 1/2] ASoC: max98363: add soundwire amplifier driver
+Message-Id: <168027496197.3365708.8821025322937971454.b4-ty@kernel.org>
+Date:   Fri, 31 Mar 2023 16:02:41 +0100
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Mailer: b4 0.13-dev-2eb1a
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To align with rest of the devicetree files, let's move the "status"
-property to the end of the nodes.
+On Thu, 30 Mar 2023 16:43:18 -0700, “Ryan wrote:
+> Added Analog Devices MAX98363 SoundWire Amplifier Driver.
+> The MAX98363 is a SoundWire peripheral device that supports
+> MIPI SoundWire v1.2-compatible digital interface for audio and
+> control data.
+> 
+> 
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- .../boot/dts/qcom-sdx55-telit-fn980-tlb.dts   | 20 ++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
+Applied to
 
-diff --git a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-index b73b707342af..91d13c40496c 100644
---- a/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-+++ b/arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dts
-@@ -243,21 +243,21 @@ &ipa {
- };
- 
- &pcie_phy {
--	status = "okay";
--
- 	vdda-phy-supply = <&vreg_l1e_bb_1p2>;
- 	vdda-pll-supply = <&vreg_l4e_bb_0p875>;
--};
- 
--&pcie_ep {
- 	status = "okay";
-+};
- 
-+&pcie_ep {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_ep_clkreq_default &pcie_ep_perst_default
- 		     &pcie_ep_wake_default>;
- 
- 	reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
- };
- 
- &qpic_bam {
-@@ -265,8 +265,6 @@ &qpic_bam {
- };
- 
- &qpic_nand {
--	status = "okay";
--
- 	nand@0 {
- 		reg = <0>;
- 
-@@ -277,11 +275,13 @@ nand@0 {
- 		secure-regions = /bits/ 64 <0x500000 0x500000
- 					    0xa00000 0xb00000>;
- 	};
-+
-+	status = "okay";
- };
- 
- &remoteproc_mpss {
--	status = "okay";
- 	memory-region = <&mpss_adsp_mem>;
-+	status = "okay";
- };
- 
- &tlmm {
-@@ -308,16 +308,18 @@ pcie_ep_wake_default: pcie-ep-wake-default-state {
- };
- 
- &usb_hsphy {
--	status = "okay";
- 	vdda-pll-supply = <&vreg_l4e_bb_0p875>;
- 	vdda33-supply = <&vreg_l10e_3p1>;
- 	vdda18-supply = <&vreg_l5e_bb_1p7>;
-+
-+	status = "okay";
- };
- 
- &usb_qmpphy {
--	status = "okay";
- 	vdda-phy-supply = <&vreg_l4e_bb_0p875>;
- 	vdda-pll-supply = <&vreg_l1e_bb_1p2>;
-+
-+	status = "okay";
- };
- 
- &usb {
--- 
-2.25.1
+   broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: max98363: add soundwire amplifier driver
+      commit: 18c0af945fa35766730d3f729adcf417a3d1ad5d
+[2/2] ASoC: dt-bindings: max98363: add soundwire amplifier
+      commit: 276d8c08e82b9f6062f6febc7bc63913829bde27
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
