@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFDCB6D1A09
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DC196D1A10
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:35:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231573AbjCaIe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56240 "EHLO
+        id S231560AbjCaIe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231289AbjCaIex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:34:53 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EEB213C
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:34:48 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id r29so21552139wra.13
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:34:48 -0700 (PDT)
+        with ESMTP id S230194AbjCaIez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:34:55 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3738A1A97E
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:34:51 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id j24so21631048wrd.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:34:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680251688;
+        d=linaro.org; s=google; t=1680251689;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pBKae7BMPgaOyblPkQRvXj+9HjHU1CqOuh/rr5LEg2Q=;
-        b=AquKoo9qW/lfM7z5iGn0k1Tc7+InMtW/5I6poWfwMsS88rqwzcB/MQ5kQQkBmo0c+b
-         wkPla8Y4iET1Fj1kYLGVvqL3TbQE5Apoq4NMq78ewldGH0tjQxzMsVvH0CaCS4Y6uqnv
-         pY+ExvjAhRa2o6Pkj49iMnNTlwh7XB3eJBYOQxW0b+8uYOvQR07pIP8luJahBAMFvTsF
-         MUHny+htmLQwlY75XWau9Nl26sOWJCwBOgey3Je21g/ZuzVtSxxf4tyZwaiCFE8HSXjv
-         L0+H3MXP452/QuAU/yPxyU7guxH/89cFsr+rWPf2/IbC+Os88HkTCg6GaHsRIXEbuXRJ
-         LEzQ==
+        bh=vqQMlPFjpwyJDFMp/Q+5qT+SRMNMN9WWVCzGVB/CCjE=;
+        b=Z8O/YlVKluZ3frIjBWHinHyf35Hl9tXFgyrb2DvpZeBIUlCdj7trg1eKmtw4ORy470
+         mjOyF9tBJQi2Ey8HheeRE65rpBTqzTq9i3mTVsYp3fwCYypvkM8U5gPx6qo1NyW4w1AT
+         RfYhDtpld7nV252R85LScU8iMrj1F28/lGNNhzXDXFzbXr5XuNt/qTx3rFv33Dysc9qj
+         ng2S0S7/e4gg8Qc0+fK2hotP9nkIwGeMnI0zHMmxfcMcDiw6soURCd1MEiMLog9EoaiT
+         Chmx1245yKaUYuvICD7WIsPKuFiAmHnlmK5dBY5gRvaOBgG75ZXytjZ5wMeIuLRKYD2k
+         uZ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680251688;
+        d=1e100.net; s=20210112; t=1680251689;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pBKae7BMPgaOyblPkQRvXj+9HjHU1CqOuh/rr5LEg2Q=;
-        b=7LrGX6p4XSNvDUUoOl4e5LZQPNHSuR09o0ry+mWdA/j2Wj50WSvxO//Jqx6Q8+Kxfs
-         jGNIj0j+342MwEhK9qmZOxwX4gIKBDYuU5Qa/lwXIYyWULq+LCtKNouops8dtOo+8KF2
-         lKjQh4fK1aaRyZfNb1FLWE7agT93c3ipZ9XtD/gMLU+FV7JeDnw+DI0soGOiofwQJWmk
-         0kMsXjM/mvPSx4dNl+PXWVdanPyYBRnljvIRfTh1QLF54OSGOXz5fnLTCl4Jbxz/jGi3
-         cJiKgM8XJ175cbmwQXVl1K4EBVORZlGElcYG0qbLPgTyB66Re2+njzfByYVS+sZypdEK
-         yftw==
-X-Gm-Message-State: AAQBX9cxg5uXf9vDgXJ2INenKayvQ/nT2QPHHZh+MJS75uK8sB3l69Hk
-        HK5StSkHsOzcdIMGlIw83JTGhA==
-X-Google-Smtp-Source: AKy350aDqfbCwPtTrIaC1JmenS2NwBF1wy4mk9PU9AEFWXM6fMqoAjRCp4Qk1EV//Q894bPDiUkCGg==
-X-Received: by 2002:adf:f089:0:b0:2cf:e849:e13c with SMTP id n9-20020adff089000000b002cfe849e13cmr20185096wro.61.1680251688308;
-        Fri, 31 Mar 2023 01:34:48 -0700 (PDT)
+        bh=vqQMlPFjpwyJDFMp/Q+5qT+SRMNMN9WWVCzGVB/CCjE=;
+        b=mZg0dti8uXL3ZNAGRhNtPvhnYCcX7jdj4yJxm2yWv145t6WWpkfdjJWhqZHtcNyNWR
+         XBOJsJ6luEv14MxYguZTKqjlyzvF0EE+41WgPBr7a+2kdH8psvw6v7t2gCqI1iFFUGwa
+         34LGZUnmlvM/0T108W2+tFPEbD1h2X6Yin0h8RDSKBS17HX/FF7QfyDHpUqLjckDQ2kM
+         o3tsEtEU5Zm/2Q/EEm2+14xrR8kZ8qqSP3b6MQS3rg6wqo9JulWMjodeRXniLFZOTlYQ
+         kaSLbzds1LqlkQd0drrPorIkziTL8E4t9xjsA3nwjMtZSHGG6gTx0ksN3qY26pkOxryr
+         1vaQ==
+X-Gm-Message-State: AAQBX9dOnw8WafiE+RdTX2f5KO8zL+uXBXd8sCa7QPEFtQIyZOoCt48Q
+        skB6KvGvbZPS/voqf8fho8c8hU9hqm3SKjNvgLD4VQ==
+X-Google-Smtp-Source: AKy350aYMRhuGCU7lgJkqotrX72DL9blN95WJq8/pg0rFFj2/jBzU25Plf3PTEmdwgAKOY8ASbmEgw==
+X-Received: by 2002:a5d:5742:0:b0:2d0:c37a:5ebd with SMTP id q2-20020a5d5742000000b002d0c37a5ebdmr19721443wrw.64.1680251689686;
+        Fri, 31 Mar 2023 01:34:49 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id e11-20020a5d4e8b000000b002cde626cd96sm1563153wru.65.2023.03.31.01.34.47
+        by smtp.gmail.com with ESMTPSA id e11-20020a5d4e8b000000b002cde626cd96sm1563153wru.65.2023.03.31.01.34.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 01:34:48 -0700 (PDT)
+        Fri, 31 Mar 2023 01:34:49 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 31 Mar 2023 10:34:41 +0200
-Subject: [PATCH RFC 03/20] ARM: configs: remove oxnas_v6_defconfig
+Date:   Fri, 31 Mar 2023 10:34:42 +0200
+Subject: [PATCH RFC 04/20] dt-bindings: arm: oxnas: remove obsolete
+ bindings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230331-topic-oxnas-upstream-remove-v1-3-5bd58fd1dd1f@linaro.org>
+Message-Id: <20230331-topic-oxnas-upstream-remove-v1-4-5bd58fd1dd1f@linaro.org>
 References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
 In-Reply-To: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
@@ -89,9 +90,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.1
-X-Spam-Status: No, score=0.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        UPPERCASE_50_75 autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -99,112 +100,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Due to lack of maintainance and stall of development for a few years now,
-and since no new features will ever be added upstream, remove support
-for OX820 specific defconfig.
+and since no new features will ever be added upstream, remove the
+OX810 and OX820 SoC and boards bindings.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm/configs/oxnas_v6_defconfig | 92 -------------------------------------
- 1 file changed, 92 deletions(-)
+ Documentation/devicetree/bindings/arm/oxnas.txt | 14 --------------
+ 1 file changed, 14 deletions(-)
 
-diff --git a/arch/arm/configs/oxnas_v6_defconfig b/arch/arm/configs/oxnas_v6_defconfig
+diff --git a/Documentation/devicetree/bindings/arm/oxnas.txt b/Documentation/devicetree/bindings/arm/oxnas.txt
 deleted file mode 100644
-index 70a67b3fc91b..000000000000
---- a/arch/arm/configs/oxnas_v6_defconfig
+index ac64e60f99f1..000000000000
+--- a/Documentation/devicetree/bindings/arm/oxnas.txt
 +++ /dev/null
-@@ -1,92 +0,0 @@
--CONFIG_SYSVIPC=y
--CONFIG_NO_HZ_IDLE=y
--CONFIG_HIGH_RES_TIMERS=y
--CONFIG_CGROUPS=y
--CONFIG_BLK_DEV_INITRD=y
--CONFIG_EMBEDDED=y
--CONFIG_PERF_EVENTS=y
--CONFIG_STRICT_KERNEL_RWX=y
--CONFIG_STRICT_MODULE_RWX=y
--CONFIG_ARCH_MULTI_V6=y
--CONFIG_ARCH_OXNAS=y
--CONFIG_MACH_OX820=y
--CONFIG_SMP=y
--CONFIG_NR_CPUS=16
--CONFIG_ARCH_FORCE_MAX_ORDER=12
--CONFIG_SECCOMP=y
--CONFIG_ARM_APPENDED_DTB=y
--CONFIG_ARM_ATAG_DTB_COMPAT=y
--CONFIG_KEXEC=y
--CONFIG_EFI=y
--CONFIG_CPU_IDLE=y
--CONFIG_ARM_CPUIDLE=y
--CONFIG_VFP=y
--CONFIG_MODULES=y
--CONFIG_MODULE_UNLOAD=y
--CONFIG_PARTITION_ADVANCED=y
--CONFIG_CMDLINE_PARTITION=y
--CONFIG_CMA=y
--CONFIG_NET=y
--CONFIG_PACKET=y
--CONFIG_UNIX=y
--CONFIG_INET=y
--CONFIG_IP_PNP=y
--CONFIG_IP_PNP_DHCP=y
--CONFIG_IP_PNP_BOOTP=y
--CONFIG_IP_PNP_RARP=y
--CONFIG_IPV6_ROUTER_PREF=y
--CONFIG_IPV6_OPTIMISTIC_DAD=y
--CONFIG_INET6_AH=m
--CONFIG_INET6_ESP=m
--CONFIG_INET6_IPCOMP=m
--CONFIG_IPV6_MIP6=m
--CONFIG_IPV6_TUNNEL=m
--CONFIG_IPV6_MULTIPLE_TABLES=y
--CONFIG_DEVTMPFS=y
--CONFIG_DEVTMPFS_MOUNT=y
--CONFIG_MTD=y
--CONFIG_MTD_CMDLINE_PARTS=y
--CONFIG_MTD_BLOCK=y
--CONFIG_MTD_RAW_NAND=y
--CONFIG_MTD_NAND_OXNAS=y
--CONFIG_MTD_UBI=y
--CONFIG_BLK_DEV_LOOP=y
--CONFIG_BLK_DEV_RAM=y
--CONFIG_BLK_DEV_RAM_SIZE=65536
--CONFIG_NETDEVICES=y
--CONFIG_STMMAC_ETH=y
--CONFIG_REALTEK_PHY=y
--CONFIG_INPUT_EVDEV=y
--CONFIG_SERIAL_8250=y
--CONFIG_SERIAL_8250_CONSOLE=y
--CONFIG_SERIAL_OF_PLATFORM=y
--CONFIG_GPIO_GENERIC_PLATFORM=y
--CONFIG_NEW_LEDS=y
--CONFIG_LEDS_CLASS=y
--CONFIG_LEDS_CLASS_FLASH=m
--CONFIG_LEDS_GPIO=y
--CONFIG_LEDS_TRIGGERS=y
--CONFIG_LEDS_TRIGGER_TIMER=y
--CONFIG_LEDS_TRIGGER_ONESHOT=y
--CONFIG_LEDS_TRIGGER_HEARTBEAT=y
--CONFIG_LEDS_TRIGGER_CPU=y
--CONFIG_LEDS_TRIGGER_GPIO=y
--CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
--CONFIG_ARM_TIMER_SP804=y
--CONFIG_EXT4_FS=y
--CONFIG_MSDOS_FS=y
--CONFIG_VFAT_FS=y
--CONFIG_TMPFS=y
--CONFIG_TMPFS_POSIX_ACL=y
--CONFIG_UBIFS_FS=y
--CONFIG_PSTORE=y
--CONFIG_PSTORE_CONSOLE=y
--CONFIG_PSTORE_PMSG=y
--CONFIG_PSTORE_RAM=y
--CONFIG_NLS_CODEPAGE_437=y
--CONFIG_NLS_ISO8859_1=y
--CONFIG_NLS_UTF8=y
--CONFIG_DMA_CMA=y
--CONFIG_CMA_SIZE_MBYTES=64
--CONFIG_PRINTK_TIME=y
--CONFIG_MAGIC_SYSRQ=y
+@@ -1,14 +0,0 @@
+-Oxford Semiconductor OXNAS SoCs Family device tree bindings
+--------------------------------------------
+-
+-Boards with the OX810SE SoC shall have the following properties:
+-  Required root node property:
+-    compatible: "oxsemi,ox810se"
+-
+-Boards with the OX820 SoC shall have the following properties:
+-  Required root node property:
+-    compatible: "oxsemi,ox820"
+-
+-Board compatible values:
+-  - "wd,mbwe" (OX810SE)
+-  - "cloudengines,pogoplugv3" (OX820)
 
 -- 
 2.34.1
