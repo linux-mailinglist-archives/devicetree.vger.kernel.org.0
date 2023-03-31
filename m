@@ -2,207 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58A6B6D26DB
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 330356D2701
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232254AbjCaRoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 13:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39242 "EHLO
+        id S232501AbjCaRuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 13:50:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230336AbjCaRog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:44:36 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DB122212
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:44:35 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id ix20so21964807plb.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680284675;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VXNcjohZysdJFTpfz0Tp4bdKAzd73WpdyuV554RNSZw=;
-        b=ExGm85KLhOefR0naD5/e5ZoclYAwGcnNGljHYGEIIm7cw6Blt50uY529QZCw5rjKSK
-         tz+kzOKriH34/bYLdt7XVzHdiygYMt8NsKcP8cBW6F465c7HwXEAbIIoufu1l5RHyIYP
-         hsdga9hL/Cz5emQyXePhwVEMuMUHXOjvvK1nhTnYozQhhCkz8qBOeHAdV7GLE9AZ3mVs
-         S+jdkpW16u0TaneLV1wvF2y+XGLEDOblMiABLFO+6J54bpXjx4/x6v1dIjlfzBGsBV8Y
-         wm/khn4tH7j8HStsKWEGQR6MVS4sdMyNmNq3/gYCQiYau7MMlmvAxw5BsK/S9kxthX8x
-         4qew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680284675;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VXNcjohZysdJFTpfz0Tp4bdKAzd73WpdyuV554RNSZw=;
-        b=l7MUooyaVxEEfQXpovICq9XamYkiDuQ38By4JKXvpGtTd0E5gqqF25RRr2Sqi7QLGN
-         Je5JLzvIHuUVtlIykbfkjqTNAqEzs3CJyCl7IqmCoh3p3tfVcBoO2YJnVW7Vjnicgb42
-         qA6JcUs/vlgKp5SAvZJM+2NRjVJh9A49taTA6AuH2Hxylp+ghzLmQdu4/867wztkT1nH
-         4ydLWmZ98edwFkNY5VJP6YxAlyExXSQ5SMhBxduuHPHwDC+fcJiSCLk3lZ4qK+dsSUZy
-         byYNlyeaSajezXT2NNE2nfh3TFmXBMYayD20FblRTLdUReFaRkl7i9c+ujMOwy70LCu+
-         yxNQ==
-X-Gm-Message-State: AAQBX9dhNympjszRHdkZWOqadxjpNHyKsrBbRv6KtDz/BFYCi+8puqu6
-        TXFAoXo9xhNQRauDRxOMuUbW7g==
-X-Google-Smtp-Source: AKy350a04fGm/Zt+9yziHzr+NnMQiLRNR11nrRqTIIbvqLXNxUwZ0/vkFHf67U5CbG9I5CLxWvU4VQ==
-X-Received: by 2002:a17:903:2441:b0:1a2:7462:d674 with SMTP id l1-20020a170903244100b001a27462d674mr9996089pls.24.1680284674722;
-        Fri, 31 Mar 2023 10:44:34 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:f19d:e1b1:6a5d:8ade])
-        by smtp.gmail.com with ESMTPSA id q9-20020a170902788900b001a20b31a23fsm1816496pll.293.2023.03.31.10.44.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 10:44:34 -0700 (PDT)
-Date:   Fri, 31 Mar 2023 11:44:31 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v9 05/11] remoteproc: mediatek: Extract remoteproc
- initialization flow
-Message-ID: <20230331174431.GA3504605@p14s>
-References: <20230328022733.29910-1-tinghan.shen@mediatek.com>
- <20230328022733.29910-6-tinghan.shen@mediatek.com>
+        with ESMTP id S231383AbjCaRuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:50:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7048022223;
+        Fri, 31 Mar 2023 10:50:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0888062AC0;
+        Fri, 31 Mar 2023 17:50:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 51ED3C433D2;
+        Fri, 31 Mar 2023 17:50:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1680285019;
+        bh=Dq+I0U2IazMebXMJy7F8LvzB3HXfZHR01bLczpoHXrA=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=six9OycepFHBvUhgBdHhYhxtTHi5Qc/KDSG4PkKZw9EqopJYlv3JWFtHrAmelVssw
+         g+d2kCj82Gg1pd4llWnGs0yG5IL1AKBzYzze+RiycbiAd9zWJwug9ncdvfvh+0CIv5
+         7l/qaiUw/sdrpzMkrQ2/fCiwqSD3zZRec4LoYk2sYZjC8MdJijZIfdocVMG4HJ2o5q
+         nNyIm9DXNkGmOXTxLxiJy3mvSF+x3zUVVLxjxm5TDHCoiunkKnkq/huh4/UXKaPT86
+         um6KrB8SGJl49ddQL3ym8rnn2XTXn4xnDP+1EYrlReVj1wYuYYj3b5u3VqWnvKC9yJ
+         HV11sEnzI4yLw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 261A2C43157;
+        Fri, 31 Mar 2023 17:50:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230328022733.29910-6-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: fec: add power-domains property
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168028501915.16821.10174110791743243356.git-patchwork-notify@kernel.org>
+Date:   Fri, 31 Mar 2023 17:50:19 +0000
+References: <20230328061518.1985981-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230328061518.1985981-1-peng.fan@oss.nxp.com>
+To:     Peng Fan (OSS) <peng.fan@oss.nxp.com>
+Cc:     wei.fang@nxp.com, shenwei.wang@nxp.com, xiaoning.wang@nxp.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        linux-imx@nxp.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peng.fan@nxp.com
+X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 10:27:27AM +0800, Tinghan Shen wrote:
-> This is the preparation for probing multi-core SCP. The remoteproc
-> initialization flow is similar on cores and is reused to avoid
-> redundant code.
+Hello:
+
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Tue, 28 Mar 2023 14:15:18 +0800 you wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> The registers of config and l1tcm are shared for multi-core
-> SCP. Reuse the mapped addresses for all cores.
+> Add optional power domains property
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/remoteproc/mtk_scp.c | 64 +++++++++++++++++++++++++-----------
->  1 file changed, 45 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index a3b9bc158cd9..32ecd1450c6f 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -23,6 +23,13 @@
->  #define MAX_CODE_SIZE 0x500000
->  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
->  
-> +struct mtk_scp_of_regs {
-> +	void __iomem *reg_base;
-> +	void __iomem *l1tcm_base;
-> +	size_t l1tcm_size;
-> +	phys_addr_t l1tcm_phys;
-> +};
-> +
+>  Documentation/devicetree/bindings/net/fsl,fec.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-This should represent the cluster with a list of mtk_scp instead of @cluster_cores as
-introduced in the next patch.
+Here is the summary with links:
+  - dt-bindings: net: fec: add power-domains property
+    https://git.kernel.org/netdev/net-next/c/99b3a769cd8a
 
->  /**
->   * scp_get() - get a reference to SCP.
->   *
-> @@ -855,7 +862,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
->  	}
->  }
->  
-> -static int scp_probe(struct platform_device *pdev)
-> +static int scp_rproc_init(struct platform_device *pdev,
-> +			  struct mtk_scp_of_regs *of_regs)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
-> @@ -879,6 +887,11 @@ static int scp_probe(struct platform_device *pdev)
->  	scp->data = of_device_get_match_data(dev);
->  	platform_set_drvdata(pdev, scp);
->  
-> +	scp->reg_base = of_regs->reg_base;
-> +	scp->l1tcm_base = of_regs->l1tcm_base;
-> +	scp->l1tcm_size = of_regs->l1tcm_size;
-> +	scp->l1tcm_phys = of_regs->l1tcm_phys;
-> +
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
->  	scp->sram_base = devm_ioremap_resource(dev, res);
->  	if (IS_ERR(scp->sram_base))
-> @@ -888,24 +901,6 @@ static int scp_probe(struct platform_device *pdev)
->  	scp->sram_size = resource_size(res);
->  	scp->sram_phys = res->start;
->  
-> -	/* l1tcm is an optional memory region */
-> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> -	scp->l1tcm_base = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(scp->l1tcm_base)) {
-> -		ret = PTR_ERR(scp->l1tcm_base);
-> -		if (ret != -EINVAL) {
-> -			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
-> -		}
-> -	} else {
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-                scp->l1tcm_base = NULL;
 
-> -		scp->l1tcm_size = resource_size(res);
-> -		scp->l1tcm_phys = res->start;
-> -	}
-> -
-> -	scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
-> -	if (IS_ERR(scp->reg_base))
-> -		return dev_err_probe(dev, PTR_ERR(scp->reg_base),
-> -				     "Failed to parse and map cfg memory\n");
-> -
->  	ret = scp->data->scp_clk_get(scp);
->  	if (ret)
->  		return ret;
-> @@ -957,6 +952,37 @@ static int scp_probe(struct platform_device *pdev)
->  	return ret;
->  }
->  
-> +static int scp_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mtk_scp_of_regs scp_regs;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
-> +	scp_regs.reg_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(scp_regs.reg_base))
-> +		return dev_err_probe(dev, PTR_ERR(scp_regs.reg_base),
-> +				     "Failed to parse and map cfg memory\n");
-> +
-> +	/* l1tcm is an optional memory region */
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> +	scp_regs.l1tcm_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(scp_regs.l1tcm_base)) {
-> +		ret = PTR_ERR(scp_regs.l1tcm_base);
-> +		if (ret != -EINVAL)
-> +			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
-> +
-> +		scp_regs.l1tcm_size = 0;
-> +		scp_regs.l1tcm_phys = 0;
-> +	} else {
-> +		scp_regs.l1tcm_size = resource_size(res);
-> +		scp_regs.l1tcm_phys = res->start;
-> +	}
-> +
-> +	return scp_rproc_init(pdev, &scp_regs);
-> +}
-> +
->  static int scp_remove(struct platform_device *pdev)
->  {
->  	struct mtk_scp *scp = platform_get_drvdata(pdev);
-> -- 
-> 2.18.0
-> 
