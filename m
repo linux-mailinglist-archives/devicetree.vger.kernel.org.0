@@ -2,212 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9C36D2348
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A70BB6D234E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232815AbjCaO6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 10:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46190 "EHLO
+        id S232452AbjCaO7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 10:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231775AbjCaO6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:58:53 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA6DC641
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:58:51 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id h8so90736407ede.8
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:58:51 -0700 (PDT)
+        with ESMTP id S232712AbjCaO7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:59:05 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0276AD502
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:59:03 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id n19so13070151wms.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:59:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1680274730; x=1682866730;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=538xuMSTOYlR94sLXq+YdUeK7qKmrwEQChDpknTA4pI=;
-        b=zc0VHKv4XuWqifVy+y0iAXE+wYKrR2yZ/ovW1ZRmEXk9p6WZ7m6gXuUY9f1ECZg2ZP
-         yCWrUa3InDd+SXh2nOYo7vygm3UZhj9KYjoEYsqwBqiD+Xzt//zP8eBHNqX9/Vdeuwwe
-         5divth+FVaJ4EaIXs2x3OyIBCexz+uCHgC/+uylL+6azuUZJx7HJKnk7y9MGC32n2aJk
-         4ZQMIApGF0/eiuLQhnuUvxIWfFchJ76Aw8wSg6cDDcvEYRC7wDRK1lGXz66n1KRa7Fvg
-         6bMXZKTwU1JhK0W9yiLwtQhhIgDdPheVRtGVBIac6dQNxj4gjGBkYaxy2QUW9rlo0qe7
-         yaTQ==
+        d=linaro.org; s=google; t=1680274741;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=vnlFqaagyiGC/yxykb+LPtjAztaRZkdyq0QplfwjoFU=;
+        b=nF3sjGDQMAa+9jHsKfcp2XyDYlHpo2KuexE8K8B4AEt9/p0IObEDWv2CgD5R/nHOZs
+         LKrnCyin/QS2zaGGOJyMPMc9pDYbfs+wygN0GlXYN79Pk627UpehAwFW+43cDdVYZ3h5
+         EKqyUv3wk56Nyvg2r5e0GliVdi+B8N8eRMEu7xCrjLBQFnSstXL2oVvoMkrtv/dveeiO
+         F37ewmOOr6JQO4KPhRRQmgyaI7I1mqSfqTqfRB3WByalYZ5HZ8FovnO1iw6OQz1VY4oN
+         KGrF+QS+fO8qgq6jFJlJv0L9G9eYlEl0jj7QZM7zsAaCtqPH4+v4I5ncnoa+EWF86CHG
+         DKmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680274730; x=1682866730;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=538xuMSTOYlR94sLXq+YdUeK7qKmrwEQChDpknTA4pI=;
-        b=4utnXUFg6tvC1og7gfkhokb607mOtNuNc5ESyTBLH28l72z5/p5/3+QtiL1P95DGPY
-         g22yzc7fAI2XAqBvnlqoZZrM0RSSdnSt+2Z84GmSU0EM7fIlCxYbOI3HgDcnoFfyOc7b
-         r8gk8TjANaZ5+b1Vzp65Nuj3yh+2RLvHGaCVoihJYIibJ6dhJAaVdjatOMtFPjXWMuNe
-         Q/SIbSJZoukYWzhQXput9wM69Srs9qkSO1S1sgNhbNqQuVkuYLD7XpN5t+CIfvlgzWJP
-         ujKz2KBMfykyyWJwlT1PMS66i1LEygpuXtU/vkwHREam2NRlEjpi0j23oKVsPMsnW2U+
-         eGpg==
-X-Gm-Message-State: AAQBX9fcA1vJFKwUpB+zHpQUXs2U6cbf8KgemYzeEfnsUz+FA0A39w6W
-        JpF7IMlPt1NHn+ghzDC4oKCNFQ==
-X-Google-Smtp-Source: AKy350YgDH+b8wsSokfM5mL8lfZ7MC5xS4LMIEZCZtKlP3UNuKBYECFd3V6pJ4f8i4WZCVjAHV7jDA==
-X-Received: by 2002:a05:6402:3514:b0:4fc:97d9:18ec with SMTP id b20-20020a056402351400b004fc97d918ecmr8616566edd.21.1680274730271;
-        Fri, 31 Mar 2023 07:58:50 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id v7-20020a170906564700b009447277c26fsm1063251ejr.72.2023.03.31.07.58.49
+        d=1e100.net; s=20210112; t=1680274741;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vnlFqaagyiGC/yxykb+LPtjAztaRZkdyq0QplfwjoFU=;
+        b=679Kfrruo/0fzu/wy7wPn7SD3e0b2Yu1KQ6nU0VOHPb0+wFwGSBQysGSPsyqxieXLx
+         IsWQpcV5DxuYx2XGDmvMlW6LhftYbwo8tTsWV51NS+G8WH/qsnDet2lR3PkPIgUDh7K/
+         ahoktStu0SUiRF46aIb1hphVfDkqr3+jXaDOJMUx6Q5bLkAkHxR5V6R2ri1XE6yNc0uy
+         q1skyaQtzKdvLqyeE5lZS7DCE4vEjkbqPeEhir7761m2v1FYcugYshiF95c+OHNeBH8n
+         Dp80X1PL4kuJ7QJMjAiMazY3EZmSfLD1i9xQcGPM/FUIhlwluO9FKQoc43b49KYGUqr+
+         bYrw==
+X-Gm-Message-State: AO0yUKVFIq+nDeKIg74qYqrQ94l9LKdXaSBeGTJqC6IAR3ZcKfZZT1rE
+        NtR5DBiwD/da9bnITq8fTO9seA==
+X-Google-Smtp-Source: AK7set/StNy++vH3rTk//CEKOWCplvO4ynmJaY373xQJNztEOfuyKCvvX4OAZ8I7XwRimDvrMK7WOA==
+X-Received: by 2002:a7b:c8c3:0:b0:3ed:711c:e8fe with SMTP id f3-20020a7bc8c3000000b003ed711ce8femr23315255wml.2.1680274741435;
+        Fri, 31 Mar 2023 07:59:01 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0? ([2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0])
+        by smtp.gmail.com with ESMTPSA id iv19-20020a05600c549300b003ef69873cf1sm10363016wmb.40.2023.03.31.07.58.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 07:58:50 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 31 Mar 2023 16:58:49 +0200
-Message-Id: <CRKNOI8764EP.1IEYF5GFODE7G@otso>
-Cc:     <wcheng@codeaurora.org>, <caleb.connolly@linaro.org>,
-        <konrad.dybcio@linaro.org>, <subbaram@quicinc.com>,
-        <jackp@quicinc.com>, <robertom@qti.qualcomm.com>,
-        <lujianhua000@gmail.com>
-Subject: Re: [PATCH v4 00/18] Add Qualcomm PMIC TPCM support
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
-        <gregkh@linuxfoundation.org>, <andersson@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-X-Mailer: aerc 0.14.0
-References: <20230318121828.739424-1-bryan.odonoghue@linaro.org>
- <CREPJP5KTX2D.VCM8IIZIP1ZT@otso>
- <9c541f81-8501-a142-1df8-6e71509c0d88@linaro.org>
- <CRKFT6BE3AW9.3OH8GRUPW2TLN@otso>
- <233c8e94-d926-c5b2-a0b7-87333d5cdc2a@linaro.org>
-In-Reply-To: <233c8e94-d926-c5b2-a0b7-87333d5cdc2a@linaro.org>
+        Fri, 31 Mar 2023 07:59:01 -0700 (PDT)
+Message-ID: <22bac350-0a2f-48df-c8b3-6d915a830caa@linaro.org>
+Date:   Fri, 31 Mar 2023 16:58:59 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFC 00/20] ARM: oxnas support removal
+Content-Language: en-US
+To:     Daniel Golle <daniel@makrotopia.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-mtd@lists.infradead.org, Netdev <netdev@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-pm@vger.kernel.org
+References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
+ <df218abb-fa83-49d2-baf5-557b83b33670@app.fastmail.com>
+ <ZCblCsKMHYDZI-H9@makrotopia.org>
+Organization: Linaro Developer Services
+In-Reply-To: <ZCblCsKMHYDZI-H9@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri Mar 31, 2023 at 3:52 PM CEST, Bryan O'Donoghue wrote:
-> On 31/03/2023 09:48, Luca Weiss wrote:
-> > Hi Bryan,
-> >=20
-> > On Fri Mar 24, 2023 at 4:28 PM CET, Bryan O'Donoghue wrote:
-> >> On 24/03/2023 15:10, Luca Weiss wrote:
-> >>> When plugging in the device with TCPM on into my PC (peripheral mode)
-> >>> then the USB device registers and unregisters every couple of seconds=
-,
-> >>> never stays stable on. No messages in dmesg when this happens. This o=
-nly
-> >>> happens with the USB-C plug in one direction, in the other it
-> >>> works reliable.
-> >>
-> >> Sounds like we need to do some SoC specific debug on orientation
-> >> switching in the PHY.
-> >=20
-> > I also know that the phone has a AW35743 chip in the USB path,
-> > controlled by DP_AUX_EN and DP_AUX_SEL gpios but I think this is only
-> > for displayport, right?
-> >=20
->
-> https://www.awinic.com/en/productDetail/AW35743CSR#product-details D+/D-=
-=20
-> looks like USB 2.x ..
->
-> Your DP should go over TX1+/1 TX2+/- depending on orientation and # of=20
-> lanes in use.
+Hi Daniel,
 
-There's USB0_DP_AUX_P & USB0_DP_AUX_M from the SoC connected on the
-D1+/- & D2+/- pins of this awinic chip, and out comes USB_SBU1 and
-USB_SBU2 which goes to the USB connector. So just switching polarity of
-those pins.
-But let's say whatever it does, it's not relevant to this use case now
-without DP?
+On 31/03/2023 15:50, Daniel Golle wrote:
+> On Fri, Mar 31, 2023 at 03:42:15PM +0200, Arnd Bergmann wrote:
+>> On Fri, Mar 31, 2023, at 10:34, Neil Armstrong wrote:
+>>> With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+>>> associated with a clear lack of maintainance, development and migration to
+>>> dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
+>>>
+>>> In addition, the OX810 hasn't been booted for years and isn't even present
+>>> in an ARM config file.
+>>>
+>>> For the OX820, lack of USB and SATA support makes the platform not usable
+>>> in the current Linux support and relies on off-tree drivers hacked from the
+>>> vendor (defunct for years) sources.
+>>>
+>>> The last users are in the OpenWRT distribution, and today's removal means
+>>> support will still be in stable 6.1 LTS kernel until end of 2026.
+>>>
+>>> If someone wants to take over the development even with lack of SMP, I'll
+>>> be happy to hand off maintainance.
+>>>
+>>> The plan is to apply the first 4 patches first, then the drivers
+>>> followed by bindings. Finally the MAINTAINANCE entry can be removed.
+>>>
+>>> I'm not sure about the process of bindings removal, but perhaps the bindings
+>>> should be marked as deprecated first then removed later on ?
+>>>
+>>> It has been a fun time adding support for this architecture, but it's time
+>>> to get over!
+>>>
+>>> Patch 2 obviously depends on [1].
+>>>
+>>> [1] https://lore.kernel.org/all/20230327121317.4081816-1-arnd@kernel.org/
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>
+>> Thanks a lot for going through this and preparing the patches!
+>>
+>> I've discussed this with Daniel Golle on the OpenWRT channel as well,
+>> and he indicated that the timing is probably fine here, as there are
+>> already close to zero downloads for oxnas builds, and the 6.1 kernel
+>> will only be part of a release in 2024.
+>>
+>> For the dependency on my other patch, I'd suggest you instead
+>> remove the SMP files here as well, which means we can merge either
+>> part independently based on just 6.3-rc. I can do that change
+>> myself by picking up patches 1-4 of your RFC series, or maybe you
+>> can send resend them after rebase to 6.3-rc1.
+>>
+>> For the driver removals, I think we can merge those at the same
+>> time as the platform removal since there are no shared header files
+>> that would cause build time regressions and there are no runtime
+>> regressions other than breaking the platform itself. Maybe
+>> just send the driver removal separately to the subsystem
+>> maintainers with my
+>>
+>> Acked-by: Arnd Bergmann <arnd@arndb.de>
+> 
+> Sounds reasonable, so also
+> 
+> Acked-by: Daniel Golle <daniel@makrotopia.org>
+> 
+> (but I am a bit sad about it anyway. without SMP it doesn't make sense
+> to keep ox820 though)
 
->
-> https://www.allaboutcircuits.com/uploads/articles/Fig1m11292018.png
->
-> >>
-> >> I wonder how many lanes dp_opts->lanes says for your part ?
-> >=20
-> > Not sure.. Where is this configured?
->
-> Heh - now that I look my lane count =3D=3D 0, a bug to be fixed..
->
-> Hmm, Luca can you test this change
->
-> -       if (orientation =3D=3D TYPEC_ORIENTATION_NONE) {
-> -               if (qmp->init_count)
-> -                       ret =3D qmp_combo_dp_power_off(dp_phy);
-> -       } else {
-> -               if (!qmp->init_count)
-> -                       ret =3D qmp_combo_dp_power_on(dp_phy);
-> -       }
-> +       if (orientation =3D=3D TYPEC_ORIENTATION_NONE)
-> +               ret =3D qmp_combo_dp_power_off(dp_phy);
-> +       else
-> +               ret =3D qmp_combo_dp_power_on(dp_phy);
+Same !
 
-I unfortunately don't really see any change in behavior with this..
+I would have loved to see the full support mainline, but the platform is
+old and apart you nobody were interested in working on this.
 
->
->
-> > But I also don't have DisplayPort over USB-C (video out) configured yet=
-.
-> > Related question: does video out work on sm8250+pm8150b for you?
->
-> Nope - WIP. I see getting TCPM upstream and working as a first step,=20
-> then we look at introduction of the redriver, DP work, dt etc.
+Thanks a lot for you work keeping Oxnas support alive!
+Neil
 
-Clear, I look forward to that landing ;) But also already what the
-driver does now is really useful!
-
-Regards
-Luca
-
->
->
-> > [ 1722.130836] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: =
-misc 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=3Dcc1
-> >=20
-> > - unplug -
-> >=20
-> > [ 1867.223052] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: =
-misc 0x00000042 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc1
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > USB unstable (device plug orientation 2):
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >=20
-> > [ 1894.263324] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: =
-misc 0x000000c9 cc1 0x00000002 Rd cc2 0x00000001 Ra attached 1 cc=3Dcc2
-> > - unplug -
-> >=20
-> > [ 1907.264840] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc: =
-misc 0x00000040 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dcc2
->
-> Normal, correct.
->
-> For reference on 8250
->
-> Attached orientation reverse / cc2
->
-> [   77.719278] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: set_cc:=20
-> currsrc=3D2 Rp-3.0-330uA mode EN_SRC_ONLY debounce 1 attached 1 cc=3Dcc2
->
-> Detached orientation (none)
-> [   82.475667] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc:=20
-> misc 0x000000c0 cc1 0x00000000 Open cc2 0x00000000 Open attached 0 cc=3Dc=
-c2
->
-> Attached orientation normal / cc1
-> [   82.485375] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500:=20
-> start_toggling: misc 0x00000040 attached 0 port_type 0 current cc 5 new 5
-> [   85.247368] qcom,pmic-typec c440000.spmi:pmic@2:typec@1500: get_cc:=20
-> misc 0x000000cb cc1 0x00000001 Ra cc2 0x00000002 Rd attached 1 cc=3Dcc1
->
-> Anyway I reckon that guard I have in the PHY code is wrong, would=20
-> appreciate a test.
->
-> ---
-> bod
 
