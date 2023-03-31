@@ -2,78 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A3B6D1A99
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6775C6D1AA0
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:43:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbjCaImh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
+        id S231901AbjCaInW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231725AbjCaImG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:42:06 -0400
+        with ESMTP id S231928AbjCaImz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:42:55 -0400
 Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91DD1D934
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:41:31 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id c29so27965071lfv.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:41:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60C31BF41
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:42:26 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id g17so27960632lfv.4
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:42:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680252043;
+        d=linaro.org; s=google; t=1680252112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gjXQ5aQpqa9dtTjZKu9qBegMD76XnvSRVVOgnd82YkA=;
-        b=vltQKUL3hd9OWaeRLdVX83lC9n5JnQDc4llvdPRGU22FvnP96K9I88V0ANxqtlRKXP
-         t2DmmsASCcz5z3tr/h3gtvUX7GSjKy6VuQqYaooHwqPN/PlkdqzDVjHfr9QllImsWqG5
-         aW01Olub4vZc6jwBtji2t4P4F2tCSgGweFusFG7gLbcqvrtfsyzpJZUW2t1w4itI7lYY
-         47P7raJ7QtH3W7Zpoju4a2yE1Q18SO4+D3PXoYZLYj4tWCoN0yk6BKQMn0plL07ByDl7
-         wgkjePVTUHMk4BpyMvopnikvt1g6Q11/AEd/quexyX20zkVSNJEkABjPOrXEs/zutbMX
-         9NSg==
+        bh=09swxF+Nj+Xdb2rdxxkyYt+YX5gFiLq7X+YfiiWATXU=;
+        b=QqMdhWIYeCm7i8YTYpM6RTk4uC3USAlhTr1cbH11KJzV70SFd4sr2hgHWMw2UjUj/U
+         z9fnbpijZSSSITJsrKuqjMYuvd+ru/dyQTxa9YMHLNEdILQnpyPXtXlO6iGnl2QY329h
+         W5qR4DcjiGRpZmHCwQg0gyllLQivP7vSYPu2Ai9hLrfj2Su8eCmUv0j5ZAviYJ2sryxN
+         kizDPi1nH8rNUNBNnoZfKQT7Qr1BBuRF5/NXd4l0RJAHrZAj/SZ3DJiIMMBRIMI5zr7u
+         tjZIxMfkczi6OIUJO0GPfbXsSXtnDgwwhToBLl5sigKMFUejTJp5IuTaqgUGa+f7T4So
+         QZQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680252043;
+        d=1e100.net; s=20210112; t=1680252112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gjXQ5aQpqa9dtTjZKu9qBegMD76XnvSRVVOgnd82YkA=;
-        b=QsnWwbxiS+74kidF5D2b22YqDDRsvXPDcpk1zZ4NmLANmBcWNI4fqn2644mg2vMV8S
-         z19MFP+uEB+uEOu8QSviq4tSH/+lQxIpDApijKAUsPw0seNsUBbD3doTJxSBDnu6cjQJ
-         XsMgamfVWLY6pZQdgdDZww9ZanCJ2SZliK6vU8Plo9p93aFayk0vzAprCOuPs5i9ppCu
-         wnx3ZoSWy5tLtD6eeR2tT0dFRmvpk1Jpb4MyS4Yryn5Zww1JwExjJ2GVy6vPgo0QDIm3
-         NQwsF+GBvD3uoRbIcb3q+yKeqiqSvkruB24ewC4IA8g5E8tXipAg8ohgmaujtOT0xuDo
-         BpVA==
-X-Gm-Message-State: AAQBX9eK2hiXZ4raeAoWBEnBTR3HT81znent3zebDv+P9OtrXVWn/SHz
-        Romczsi/YQNYICtVI7eqNukbGw==
-X-Google-Smtp-Source: AKy350ZF4EPLm2KOd54BriJCTJPExfvm5KVPdSmGedrby3dOniEiFQ93phf7NAJWdI34ReDhM3A7ZA==
-X-Received: by 2002:ac2:5482:0:b0:4b5:8f03:a2bc with SMTP id t2-20020ac25482000000b004b58f03a2bcmr7517722lfk.9.1680252043253;
-        Fri, 31 Mar 2023 01:40:43 -0700 (PDT)
+        bh=09swxF+Nj+Xdb2rdxxkyYt+YX5gFiLq7X+YfiiWATXU=;
+        b=bm9pwL27ySfQFAAiWKq7gD0GcgqLnkMC4sBw7xz+kkApH13Qwwv1Z3Tt5pz1rwplm9
+         fK6ROIQ6RhMSCe41pBuWad3unVH8B/n184l9/V/Xcc3flGKPCbOXRdVN8Rjl4Isoa7Wk
+         mOz5oVXcOBeSGwRU6QDJk0zuSxTzDNOvXpbGiS9p5I7NyVzGs5O0pktc5rGnJh86Ls9r
+         lFE2GfMY3odLeSF18x/PXXYnp+3wkbMAyXwuf2xLRcXRphSx6VZlA3oammRPrlmuepEE
+         zlgDxPAtSqNX+UWlWkgb9PAMoiOtAJUdvSDc7Rp1kUJdqscwGLgaYtaXAdp9HMELa0hZ
+         gnlQ==
+X-Gm-Message-State: AAQBX9fdwYjZG5K9+cvkRGJqXItmLLCk3en4myciOcs8/8uBL++Byk3d
+        cJQlGTd9Xh2XKP4ZkZKwHMJhFA==
+X-Google-Smtp-Source: AKy350ZEcpE2BiiN8ZXisNpNjVKAac7e7IUuT1hTuHLZ5NdGEbP+EmXcWQS8P1hRsVOlFWGNCkkPSQ==
+X-Received: by 2002:a05:6512:513:b0:4dc:790c:910b with SMTP id o19-20020a056512051300b004dc790c910bmr2583994lfb.20.1680252112037;
+        Fri, 31 Mar 2023 01:41:52 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s5-20020a19ad45000000b004e845b49d81sm289545lfd.140.2023.03.31.01.40.42
+        by smtp.gmail.com with ESMTPSA id u12-20020ac2518c000000b004cb43eb09dfsm288838lfi.123.2023.03.31.01.41.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 01:40:42 -0700 (PDT)
-Message-ID: <bdb9c715-3cc9-73b8-e500-d2e34075b53e@linaro.org>
-Date:   Fri, 31 Mar 2023 10:40:41 +0200
+        Fri, 31 Mar 2023 01:41:51 -0700 (PDT)
+Message-ID: <e775c230-7092-df3d-35bd-77fd83a41529@linaro.org>
+Date:   Fri, 31 Mar 2023 10:41:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display/msm/gpu: allow specifying MX
- domain A5xx
+Subject: Re: [PATCH v1 1/6] dt-bindings: display: bridge: toshiba,tc358768:
+ Fix typo
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        devicetree@vger.kernel.org
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
         David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230329222500.1131836-1-dmitry.baryshkov@linaro.org>
- <20230329222500.1131836-2-dmitry.baryshkov@linaro.org>
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
+References: <20230330095941.428122-1-francesco@dolcini.it>
+ <20230330095941.428122-2-francesco@dolcini.it>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230329222500.1131836-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230330095941.428122-2-francesco@dolcini.it>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -86,13 +87,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2023 00:24, Dmitry Baryshkov wrote:
-> Some a5xx Adreno devices might need additional power domains to handle
-> voltage scaling. While we do not (yet) have support for CPR3 providing
-> voltage scaling, allow specifying MX domain to scale the memory cell
-> voltage.
+On 30/03/2023 11:59, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Correct Toshiba spelling.
+> 
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
