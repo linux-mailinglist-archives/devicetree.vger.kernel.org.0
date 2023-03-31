@@ -2,173 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3497D6D29D1
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 23:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919396D29EE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 23:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233055AbjCaVJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 17:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42570 "EHLO
+        id S230512AbjCaVYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 17:24:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232973AbjCaVJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 17:09:11 -0400
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2050.outbound.protection.outlook.com [40.107.14.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0225A20620
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 14:09:10 -0700 (PDT)
+        with ESMTP id S229523AbjCaVYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 17:24:23 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D997690;
+        Fri, 31 Mar 2023 14:24:22 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GHkZIS5qI5bwtPB0fBNyQRMeHth4S6Q/nOxXYyCmgnl3Pk86QQzjDPgMr12tlCuBTJ923ErrM3hc/hKtX+B0PRdgkDZclmc5r52/GaQRUgH0rK6ucD79DOrrPhlqCp9wt/INlVc7cyas8n1ZUC+4On6qEY/JWgWrGkTEvdmQcRjSFhrdz+mulMf1MFL2SNF40uqjD4+c03CKKgA8B0rLGAXccxgTO7uXpVKPS46G3SqItX4KiBOp7uS7FGBKYpFFcFhDwIyCNNJYqlbTh2stIZJ0xnT3b/Pz2XZSAT6txMT9vmzs08IVWD7xrvnRuOYxWzK1UuubdccFskzeKskxFw==
+ b=JTQjrBkAbcU0ZflNqWqPiMw1Eq3V64hVkFyzm6dp156CjCFav1W6wI1s/MbZs35jbwCTbfHSsMC3FEzwxn4CNBkOHVSwCbIhjSVZVYkLSQJnOenQHlCG6LhO21TkVXYcycd0+e5GGhnfBXoF6nvnSW3jqNk40JEesK9uygXyqV2+R8ATNcBBjKGYPy2U4sKQOVB9diRBMHje7bAa4eqpxFxrbp3f57RulszGFI1c3HTr/9Y1Rw7YIBXncYEoCTT4cmfILTbM+S6knwhT3wxo/7UQRWyseXJGZTWDamBBapmN6mX5nZHe5Uhfs1v9nqWhod/JnJjkdixJzeMFSJGPwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D1JItkrS9l6FbA9WW2YRI/dVqVSuBuUffpJHgHgJDr8=;
- b=OVwYL+BKR6GXfEenwm7HI3Dt4j+A2PbHn8lihvvsqos5SIquAl5iuxJ3VMx2ApD3vMxBfuJKF0xvGdnYKMNuoe1PuyRj/H/Ons0KP3CWl+pqPyh9K9/MFu544W9ShWq75Ety1gtavaddcME6QQjEGogr4vPE22158v8dRNsTvOE6s1Uo22p57b5SXBqymLIae7nY0fneWGBqTXbcUFKaxZa+Nt9246pKs6D4aJlXV9WltW1vaNwlwISaDDQkefj15bxBkuRh+lCCKI2U/6tEjQKNGc/5NJOQl8PduhjXK5TT2i/SmYrSmQ/R0diXwFmHsTmJ6qxiqh9A4GbgVwTuNw==
+ bh=yy53z8ZAUvxHNUTCID2hvKCNEIDcmqcSNbvTzl5DJ3E=;
+ b=Pf9vs/TsXbcj2ZJT3ZOwih02tmAubG/CL6pmaGVzK/qZZDKQEQhJCAmsKIHkN3SbzqONtAmi1C5wxoCcvyHFf5dKhDjgbMleAdftk5lvZde9sV3+Gm6syOGlRKb9CV+fwZbVBGqLmtOxEVjAckQ6oSxvuqtzeA3fT8l02EhDmBn0ZX9GayL4/U447Ziksy4kTlyIzj9gTXALb672LBYWDgeJaif1WO04JKFc1WiaPrbYgnPfigqLf39kgeL2HBt83zHwssMvpioRffs0C0Vo9nXjqV45QWFLXeyzTN0LsoK//ipuxplY8lmom6L52KuJS7Q0IaqZvKn8FpU8unctjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=chargebyte.com; dmarc=pass action=none
- header.from=chargebyte.com; dkim=pass header.d=chargebyte.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c4c.onmicrosoft.com;
- s=selector2-c4c-onmicrosoft-com;
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D1JItkrS9l6FbA9WW2YRI/dVqVSuBuUffpJHgHgJDr8=;
- b=LKszSTyad+4mJMeZBQngRi/eTDy6ubcT1OoopD0Dez9WOjlnwmMyaw5JvUZiMWy0V5lJh4VBxnlqBII9gGKv2IWWbWV8O0CgZvtXvb5D1YABJuXCV0xC8TrANg6dJd8FmhmWSvbA66UvCcWJ4/o4Ns+bSW7TZhx/CkVC6TXkq7A=
+ bh=yy53z8ZAUvxHNUTCID2hvKCNEIDcmqcSNbvTzl5DJ3E=;
+ b=bhxLemsj6qV+ZUSnco/Wx9Uwo4zWIyQSxiUClhAL3UIMZ2V/Qp55uhdgOzhaOSqVN3N8ud9SSwol3k2ruAl3o8SVm0YdqZ4XvYYRnqpk50g+lkH5L+b/fDGF/Kk7VGDmIgSpggzS/mSf8YdQkOr45lS75LMsLMqRJcu3zH5cCU8=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=chargebyte.com;
-Received: from DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:33f::5)
- by DU0PR10MB6036.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3cb::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.13; Fri, 31 Mar
- 2023 21:09:02 +0000
-Received: from DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::bb8d:725e:2ad6:ade7]) by DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::bb8d:725e:2ad6:ade7%9]) with mapi id 15.20.6277.014; Fri, 31 Mar 2023
- 21:09:02 +0000
-From:   Stefan Wahren <stefan.wahren@chargebyte.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-imx@nxp.com, soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stefan.wahren@i2se.com,
-        Stefan Wahren <stefan.wahren@chargebyte.com>
-Subject: [PATCH V4 6/6] ARM: imx_v6_v7_defconfig: Enable Tarragon peripheral drivers
-Date:   Fri, 31 Mar 2023 23:08:40 +0200
-Message-Id: <20230331210840.4061-7-stefan.wahren@chargebyte.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230331210840.4061-1-stefan.wahren@chargebyte.com>
-References: <20230331210840.4061-1-stefan.wahren@chargebyte.com>
-Content-Type: text/plain
-X-ClientProxiedBy: FR2P281CA0031.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::18) To DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:33f::5)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SA1PR01MB8062.prod.exchangelabs.com (2603:10b6:806:335::13) by
+ SA1PR01MB8250.prod.exchangelabs.com (2603:10b6:806:38b::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6277.12; Fri, 31 Mar 2023 21:24:18 +0000
+Received: from SA1PR01MB8062.prod.exchangelabs.com
+ ([fe80::4146:8d44:30cf:a3fc]) by SA1PR01MB8062.prod.exchangelabs.com
+ ([fe80::4146:8d44:30cf:a3fc%7]) with mapi id 15.20.6254.020; Fri, 31 Mar 2023
+ 21:24:18 +0000
+Message-ID: <a69dfdc6-31da-f813-858a-fdf246dea4fe@os.amperecomputing.com>
+Date:   Fri, 31 Mar 2023 14:24:12 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Reply-To: scclevenger@os.amperecomputing.com
+Subject: Re: [PATCH V2 3/5] coresight: etm4x: Drop pid argument from
+ etm4_probe()
+Content-Language: en-US
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230327050537.30861-1-anshuman.khandual@arm.com>
+ <20230327050537.30861-4-anshuman.khandual@arm.com>
+ <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
+From:   Steve Clevenger <scclevenger@os.amperecomputing.com>
+Organization: Ampere Computing
+In-Reply-To: <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CH2PR12CA0006.namprd12.prod.outlook.com
+ (2603:10b6:610:57::16) To SA1PR01MB8062.prod.exchangelabs.com
+ (2603:10b6:806:335::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR10MB5211:EE_|DU0PR10MB6036:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ed2949f-9e8b-4133-8df7-08db322c271d
+X-MS-TrafficTypeDiagnostic: SA1PR01MB8062:EE_|SA1PR01MB8250:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3e5f3df-68bb-4209-83d9-08db322e496f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9AHboRHseoMh7G80m0rUlj60UfQCsNMSfERXvwVdinaw3gJ8R2tcUXERHilKXLdwPLghnogVzlFGVvPpZllUWPjyd3A44fjsBf53NZXChQo+0aR16pJVZUW3bN/jZt2R3e/BorNBUMHBVzfAVImM4IbVZ8EGowyb6lIpZ+k8xNmLrUx4FQrkkd1FEtVvP5jc6RpjgD2lYZMucLsXO9fDvJd8HhPLpsa5EqLKeK9nWT3YegA+Z8/O9u+SNcInLiO3+RcWXbTRMYM2QPZYDcH1W5R2aQ7qPqsEBNgvpZ3nE2p2jZudT6idnHVJQwcN4do6M+FS3GHJ+VZPI4WDL/tcwhXIpJ4uNB+2JIj4AhBS0ZPzGYb6dCDVZOOQ/k3n0dG1uLEFOwxLZEjE/hCONscQl6uw14UZAsi06EL1ru2vOCLBzZADsLCK4ZCDkPPTySXZ7VWFJBgbHGnQehd4TlFUuQr0mcVmM+5k6MLMA9OwWoOw3cXlFvaspXz/Wit7ejte3Yndhk03PIFv+ANe6fjB9I9viQorHXxGb+MyJjbL2hFkfPGLP7/H6GN/TEb7UfrLr/qz30hNIw/VIDEKiIclcuJgW66Lk3ZjPW+kBkD+zp/pGAUTc5+joiaW/yO/oNo2
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(376002)(366004)(39850400004)(136003)(451199021)(38100700002)(6666004)(86362001)(2616005)(6486002)(83380400001)(110136005)(316002)(186003)(52116002)(2906002)(478600001)(6512007)(107886003)(26005)(6506007)(1076003)(44832011)(5660300002)(36756003)(7416002)(8936002)(4326008)(8676002)(66556008)(66476007)(41300700001)(66946007)(38350700002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: zVRlDEehiLgr0ekT4wuMq+fdfvHHUAK2vIChAGvHCmfMBU0SuYb6njRmOczlJGmyVL9uabgc8HqsJCJkhYXm1YPp4jOfob8oBi5ym1+dhJrJMbxZ/mrWnbjsS0n32gMWVcalM1/+EZh4TYrdEhnjf45HX8Sq9S2odaAq+DUWSnK7pcW4qwPVDNhJj5QWNqJ7DQtu99nH+pXJShRLTAfdSAjUF5sU/wsDbmmNmc0shuP8wmu4D2BXaxaezJwrIaeWjdkjkA3/x7hWO5rGqA6Az9ZdkAfiZ3IiUC0silATFWyqpAr9G8KjbP2xBuo4VNq883cywPaGUjvqF5FkoDYWPV8q7mdHd6elm/ahprPSb0xJNfDBufsjcNL5EEtuJvt3Rvb3dWEJheqBBm6NmliQXNjjap6wGK6bkcfAFKqmXybsmB7Y3KPuQrtTx8p94V/YdbUllYlm4hCNDPRS8zziQf9coURS4rzpRAp8UVKDWslmwAMHbX3mLBVp00x9kgFluw7CnSf9sO6QxZ/iH8KTpxX7Y8ZaQOFGDBm7qhLDgSE/6Dlqu/kyEh9loy5R+0Pw2E7ukaH1yECk11smUTrFYSQ8TeLO9+ROyDk+uKLigh+6MwnvWmyrILc3L4P5pLEjjfbRf1V4yWAn/8fUZrL4SA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR01MB8062.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(39850400004)(376002)(396003)(136003)(451199021)(31696002)(86362001)(31686004)(6512007)(6506007)(26005)(53546011)(6486002)(36916002)(6666004)(66476007)(2906002)(66556008)(66946007)(4326008)(186003)(3450700001)(110136005)(7416002)(41300700001)(8936002)(8676002)(316002)(478600001)(5660300002)(54906003)(66899021)(38100700002)(83380400001)(2616005)(32563001)(43740500002);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ae1p7arD3Tm3H5ixzvdtU/ghtsIS5LGZvgkavu4eup9e9rkAMr3yTteJCZ7q?=
- =?us-ascii?Q?Codimg5CvCCtNBkN+bshl3RFTqFIZkcM+Uln59/f0r06gRK0+96F86dkKkyj?=
- =?us-ascii?Q?kpoZN6caidb5Q05mY2/XdOpM0ZjwFVUmuJ00rfoMkhfiB0k74Iy8nIA3BxuM?=
- =?us-ascii?Q?O2n+rhnmwIu/ARpO/dhGxQcVyCvlYP1MGY9/MfO+ZalzthDbSrsJtNbinvn6?=
- =?us-ascii?Q?lnrD15KcBfNWwAg/MhX1PuoIOe9Xv5F63LpcpQD3UZpG391BN//TVfTnTGGt?=
- =?us-ascii?Q?ZZe8BgZahTbbJxRP5e3DxegaOQBKTteUtEK8msyXhyvAN6ycGfTkoieEwReQ?=
- =?us-ascii?Q?q2HTb4r1uRHZlmSSFwX1qXSvZ0J4CP4MYl1ES2SW4B4hCLykiMSXF/1KnLRk?=
- =?us-ascii?Q?MOvs2JEZhw0U3+ssxZi+BwweK3rWiS7a2QPKNrRpGWHibbkGrtVYU2oyNJgZ?=
- =?us-ascii?Q?sA0063hI9TC7uNGfgcPY5l4yeayFGMRdI3aqRRG4LcyH8RpK6Q3DNGh8UeJ1?=
- =?us-ascii?Q?Y7wDV0GMWKEhpNE/mymbtbxNstU4OwouZdh7h/v4IDdyeL8CEkS1YPWEFoAM?=
- =?us-ascii?Q?n9/JcbJxk6JfzsjmWSiD54C+Gsn/QyAroOwHOwUvGjFrXH0MRYmhVikIIRj0?=
- =?us-ascii?Q?0C/zgbUzY0I98a7m5znx/xcBkZTCvFJ6U90ZYmTwp8IAU+q29DnoDOqsAnrW?=
- =?us-ascii?Q?gefbRDfj9LXyapWnOclXfF8VgraoKjQpN6oUq+7kjNh5I9XwJ/bYeWhp1ntp?=
- =?us-ascii?Q?jry4btFU6T9I1sjHbMjafwEzubdJSCTO5CmLa+qAJjANBDtird0s1HcsvwCr?=
- =?us-ascii?Q?5nM8wjVVhrqg9d3bBB4Qiq8gHjJ5PPMWjHlmEArR4jKCj64j/IGRPgMMsBo4?=
- =?us-ascii?Q?D/f3x2XX56QmmqY375/yqFcXZXkAbcv2pRYRLetiyJT6M4RoXiRRiAZ9omtJ?=
- =?us-ascii?Q?9gkgr6h/+vVGIdemv3ViJrtHpwIyMXU5YlG06PC8YTWsDIQ2Y2ZBe0T27Kxd?=
- =?us-ascii?Q?eKvlDnYc2ikfa1budHU5N9YK1hzuslZmSTclkNuS6YLKWWr4MP04phNkTL7q?=
- =?us-ascii?Q?56hsA0zhpgmeVfFPAWHoBqMSIs1qG8jF6dr9ApTM5SOXPDpUEwEOcO0S4I5h?=
- =?us-ascii?Q?bDWr1WC32So3dQu4foI/k3n6yLklTLDNWHiNySQJ+MzmXNp0lEuJB7zAB0pg?=
- =?us-ascii?Q?yKWgZe8tEoSsq2czR3la85dYs5Lxee9t0+Kvbdn5H31cj9ys8K3/n+jXIdWs?=
- =?us-ascii?Q?cN1WduTF4W4h3+2tuuzOj/veEiii14t5lu3KEYnKZBoXGmVQqEGKNXtVcF4Y?=
- =?us-ascii?Q?F4pbTjQadaubhfnu6vvfWE3wUIZOQluDtjxLC3mEg9CobrU1zY8DA9xKyyYh?=
- =?us-ascii?Q?XVluAtI1k9kCIOkpHJ2poLMU+9/JWGR8eqWQXjQDyDlGkVoU40pqjFwlpG5B?=
- =?us-ascii?Q?xTslm4oPbfUgW78Wq5QR/RdEK9W7qFBHuqvE7834V88lMq8TdAGSlE/zsYpO?=
- =?us-ascii?Q?aeOCrWKRqtQ9B55OFS3k2mQjzvngj4iRhjMDlfu2qo3ofe9yZZR/lrYOmND4?=
- =?us-ascii?Q?7sxO01siyhDNZM8lnTU4bBSFXL/HTkC4EvPDNs/tNKnQp2NJxQc+tTxX6DpW?=
- =?us-ascii?Q?Cw=3D=3D?=
-X-OriginatorOrg: chargebyte.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ed2949f-9e8b-4133-8df7-08db322c271d
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR10MB5211.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RGVRTmVyTGlFNVZkb3RvRFVMMnN1SzVXZ3hFMFN4a1dQS1lVSEJjRy9LaVNP?=
+ =?utf-8?B?cUpneGxGOHVzaDBuSndIRWNRdU5zUTliVG13bXRlM0RBWGRjczZXL04rZWxk?=
+ =?utf-8?B?dHEraFBZWi85TW02VTJINzQ5OXAwNUtidkxRZzdWdjBLUVdpSjNHTFkwRW8r?=
+ =?utf-8?B?eXQ1eU1LWWV6TGp1UFRyb3FsbUVmUkMreEkwNlI1N2dxOWZlbllhcndhN1VV?=
+ =?utf-8?B?Y2ppb0hsallCSGlOemN2bmZ2cThMbGlKRVRVWmE2c2hEVXBSL1dOUjhpUmZo?=
+ =?utf-8?B?bFM0amhhTVlJVkN1aWk5bTZJU1pQSGIzMndNelpYZGNlZWFYZnRIOWFSR1ZV?=
+ =?utf-8?B?bzg3T1BTU0k1VExoSGk4clVsRVhYV2JOL3Ria1F5VHJNbENXcUhvVVJqN2I1?=
+ =?utf-8?B?bk5YN2l2cUxaK2pVTm9CSW01SHduZnJ0UVU5TGpCazhEd24xRVhHaGpVQ2g3?=
+ =?utf-8?B?RzQ5NHd1QU5mYUZtL2JjT1NYSkN0OGdxSW5jdVFTUTBVdFBHdzR5dngvYXJj?=
+ =?utf-8?B?NjZydlNqT3FCeVd0VW81eEhaQW9XMit1WVpaTWIrQ2VhMWJRQ0VtRmdKdlpU?=
+ =?utf-8?B?ZlVTbW5VL0JIdXRYRmx3a2JsSFRvdFcwcmlCYlh0WWsxVGhVVXlWUnRJaFhn?=
+ =?utf-8?B?ZHREcDRMeVR2ZU9xczdsVE5aNHUvMVVMMnAybzNYRG5vMFptZnZtbERBb1F4?=
+ =?utf-8?B?dGtkVWVMdHNPYzdNUEh1N1lkNzVVOFFycmhoUkxIa0JUdTVsV2pBYmlxYnlQ?=
+ =?utf-8?B?V3ZUVXh4cWtOZ0ZTS2dzQnh5Q3krcU94SEd6aU1iSU4zSWE0dThnQm9rOU12?=
+ =?utf-8?B?QU5Zd3F1c1YxZ1p2VlBsUk9qTzhOUDkySFNBZmV0Y3dGVkwzOWxLOEk1dmI4?=
+ =?utf-8?B?R2FJSVY2aHpvamZEVEFnd2pEY2lPYkJxbkZ1dnU4NDR4dk1KSG9HR2gvbXNH?=
+ =?utf-8?B?cHRsREFoYUZYKzl4QStFaGw2RFRSVjFSclo0cGdkWGhYYXRSeDRQL2JnNkdM?=
+ =?utf-8?B?RmJ6dUdYTG1KSHFlcVo3blF2enpiZFg5dkFFaUFRN09jRHhRVnN6UTVTUzhY?=
+ =?utf-8?B?REFzRmpGV1M0OE8rQzgrZGZOTDF2M2YrV2FVQmdualg4VDdrL2ltOCtieS9G?=
+ =?utf-8?B?d3JvZG5PNE5NVXd0L0ZDeVlWcTliS2NxNi9oMFkyM0d2UHJwWGE3OTlKNUl1?=
+ =?utf-8?B?a3ZMUkZQMm9WNURGQXNtZzl2Z09VUnQrMVRsU1JPQ3E0MXVDb0VabjdIVTNv?=
+ =?utf-8?B?c2hlLy9pU0JNZzBXc1FmVkllcUlKQWd0R3M3TlZSaURxcFpRbEkvUFZwOWpn?=
+ =?utf-8?B?VmZEQThwSExWeGV1eXJDbXZ0TlBMWkUzSHRSZ3I0YjdXYUtTUWtWWmNJbmwz?=
+ =?utf-8?B?WHdIeTdHbFFYSjVhdms0VFhNWmFiRDFSNUZ0VE0zQjA0YUtIMzI1YlFEUlg4?=
+ =?utf-8?B?YWNLTG5IWXZXdTI1YXZxeW5VMjRwMkdVNG1CYzhyT0dGL1lRK1kwVzdhRGg0?=
+ =?utf-8?B?QWNiRkJUOUhtTjZSK1hkUnZuSUdkb3dvamkyclJMNG5TV2FOTmlGQzhJTHhm?=
+ =?utf-8?B?amhyekJ1S1cxWmZuOWRBcGN1WVp1UUVrcForditnOS93RFZuSnZ3Wi90Q3pp?=
+ =?utf-8?B?eWt6QkRJR29hREIwNURUV0k4NFVKNFl1YjNTWUY3bXV2MzI5dnN3YXJPMEtv?=
+ =?utf-8?B?dDhaMDVFWjgwb2FMUFN4SXdTMlJ6QXRSV0pudFZWR2JtYnlmL3VHbW9VUlJs?=
+ =?utf-8?B?YTFsTjkvOW5Yb2JKTUxncE0wWjJQanp5T2JyZm5EUWhRNXJna2VNVHp6MXZI?=
+ =?utf-8?B?bFd6WXJnSWw4NEQ5TTZvai9OUVIxNmNHVmhnS1p5bWlOVTdhTTlUSktQT1g3?=
+ =?utf-8?B?YXgvWjZYaVJwUXRKRmk5elZHU0o1Rm1ESC9zb3k5VE5mUWxvdU5GMXMwTmtv?=
+ =?utf-8?B?RDErb1M0azR5a2RZSS9hK2RndDVyQXhBZUpwUGlrYVYvSzRKSXdLSXEvUEhO?=
+ =?utf-8?B?NURLY3h5SEp0ZnZQYjNWTFpnNHQxWEZLYjRQcEVtV1FvRFYxMml0NXBBZ3ZJ?=
+ =?utf-8?B?WG1laVkzTHNRQVZrbU94clFueE5YaUZ4YjlaSXZqQnZiaFp3TU5GaVZUWjBM?=
+ =?utf-8?B?OFZ2WlNDSXp6amZHSFgyaGM0VVkyaFNRcWpySE5QamRrWk82YWNEbmY0RFlr?=
+ =?utf-8?Q?/RzwzTMtjqlbDlG5lyWIVpA=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3e5f3df-68bb-4209-83d9-08db322e496f
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR01MB8062.prod.exchangelabs.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 21:09:02.0260
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 21:24:18.6667
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30547194-0d55-4a2f-900d-687893d3bdc0
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aEbiMeXFN+F1RbNvqOXt7pNyVO1HdhF++YIDIlGwd8qs+XOeA7rGwoQGdA/eGrlL7Y81XlrBq9XUOf6PRAXOOgmqYePl/0y96IhHNu6LWWY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB6036
-X-Spam-Status: No, score=-0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: XShx+qmFYbEyJpZLDOMIgTCqQT9N+gZOnneYcvREE1JwIci35Yw9IdpWcAbVIbuoLh6x3lsCBAoj6+3bdD8thIVLqHKYAcZEfEYfzLUzvWh850JYBtAQjhC8cphJmBIp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR01MB8250
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to enable some drivers in order to use the following peripherals
-of Tarragon:
-  * QCA7000/7005 Powerline chip
-  * One-Wire Master DS2484 with external thermal sensors
-  * external 4 pin PWM fan
-  * ST IIS328DQ I2C accelerometer
 
-Signed-off-by: Stefan Wahren <stefan.wahren@chargebyte.com>
----
- arch/arm/configs/imx_v6_v7_defconfig | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-index 9475839e7fe1..2e2af31eeb4c 100644
---- a/arch/arm/configs/imx_v6_v7_defconfig
-+++ b/arch/arm/configs/imx_v6_v7_defconfig
-@@ -128,6 +128,7 @@ CONFIG_CS89x0_PLATFORM=y
- # CONFIG_NET_VENDOR_MICREL is not set
- # CONFIG_NET_VENDOR_MICROCHIP is not set
- # CONFIG_NET_VENDOR_NATSEMI is not set
-+CONFIG_QCA7000_SPI=m
- # CONFIG_NET_VENDOR_SEEQ is not set
- CONFIG_SMC91X=y
- CONFIG_SMC911X=y
-@@ -216,6 +217,9 @@ CONFIG_GPIO_PCF857X=y
- CONFIG_GPIO_BD71815=y
- CONFIG_GPIO_STMPE=y
- CONFIG_GPIO_74X164=y
-+CONFIG_W1=m
-+CONFIG_W1_MASTER_DS2482=m
-+CONFIG_W1_SLAVE_THERM=m
- CONFIG_POWER_RESET=y
- CONFIG_POWER_RESET_SYSCON=y
- CONFIG_POWER_RESET_SYSCON_POWEROFF=y
-@@ -224,6 +228,7 @@ CONFIG_RN5T618_POWER=m
- CONFIG_SENSORS_MC13783_ADC=y
- CONFIG_SENSORS_GPIO_FAN=y
- CONFIG_SENSORS_IIO_HWMON=y
-+CONFIG_SENSORS_PWM_FAN=y
- CONFIG_SENSORS_SY7636A=y
- CONFIG_THERMAL_STATISTICS=y
- CONFIG_THERMAL_WRITABLE_TRIPS=y
-@@ -409,6 +414,7 @@ CONFIG_CLK_IMX8MQ=y
- CONFIG_SOC_IMX8M=y
- CONFIG_EXTCON_USB_GPIO=y
- CONFIG_IIO=y
-+CONFIG_IIO_ST_ACCEL_3AXIS=m
- CONFIG_MMA8452=y
- CONFIG_IMX7D_ADC=y
- CONFIG_RN5T618_ADC=y
--- 
-2.17.1
+On 3/31/2023 4:06 AM, Suzuki K Poulose wrote:
+> On 27/03/2023 06:05, Anshuman Khandual wrote:
+>> Coresight device pid can be retrieved from its iomem base address,
+>> which is
+>> stored in 'struct etm4x_drvdata'. This drops pid argument from
+>> etm4_probe()
+>> and 'struct etm4_init_arg'. Instead etm4_check_arch_features() derives
+>> the
+>> coresight device pid with a new helper coresight_get_pid(), right
+>> before it
+>> is consumed in etm4_hisi_match_pid().
+>>
+>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Cc: Mike Leach <mike.leach@linaro.org>
+>> Cc: Leo Yan <leo.yan@linaro.org>
+>> Cc: coresight@lists.linaro.org
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>> ---
+>>   .../coresight/coresight-etm4x-core.c          | 21 +++++++------------
+>>   include/linux/coresight.h                     | 12 +++++++++++
+>>   2 files changed, 20 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> index 5d77571a8df9..3521838ab4fb 100644
+>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> @@ -66,7 +66,6 @@ static u64 etm4_get_access_type(struct etmv4_config
+>> *config);
+>>   static enum cpuhp_state hp_online;
+>>     struct etm4_init_arg {
+>> -    unsigned int        pid;
+>>       struct device        *dev;
+>>       struct csdev_access    *csa;
+>>   };
+>> @@ -370,8 +369,10 @@ static void etm4_disable_arch_specific(struct
+>> etmv4_drvdata *drvdata)
+>>   }
+>>     static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
+>> -                      unsigned int id)
+>> +                     struct csdev_access *csa)
+>>   {
+>> +    unsigned int id = coresight_get_pid(csa);
+>> +
+> 
+> This throws up the following error on an ETE.
+> 
+> ete: trying to read unsupported register @fe0
+> 
+> So, I guess this must be performed only for iomem based
+> devices. System instruction based device must be identified
+> by MIDR_EL1/REVIDR_EL1 if needed for specific erratum.
+> This is not required now. So, we could bail out early
+> if we are system instruction based device.
 
+Besides this, the PID is limited to (I think) 4 bits of ID. TRCIDRs
+offer revision information, but nothing manufacturer specific save for
+the designer. Register fields like MIDR_EL1 Variant + PartNum + Revision
+and TRCPIDR3 REVAND offer help. It may be a combination of registers are
+needed for a manufacturer to adequately ID a part to apply an erratum.
+Perhaps you could at least cache MIDR_EL1 for possible future use?
+
+> 
+> 
+>>       if (etm4_hisi_match_pid(id))
+>>           set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
+>>   }
+>> @@ -385,7 +386,7 @@ static void etm4_disable_arch_specific(struct
+>> etmv4_drvdata *drvdata)
+>>   }
+>>     static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
+>> -                     unsigned int id)
+>> +                     struct csdev_access *csa)
+>>   {
+>>   }
+>>   #endif /* CONFIG_ETM4X_IMPDEF_FEATURE */
+>> @@ -1165,7 +1166,7 @@ static void etm4_init_arch_data(void *info)
+>>       etm4_os_unlock_csa(drvdata, csa);
+>>       etm4_cs_unlock(drvdata, csa);
+>>   -    etm4_check_arch_features(drvdata, init_arg->pid);
+>> +    etm4_check_arch_features(drvdata, csa);
+>>         /* find all capabilities of the tracing unit */
+>>       etmidr0 = etm4x_relaxed_read32(csa, TRCIDR0);
+>> @@ -2048,7 +2049,7 @@ static int etm4_add_coresight_dev(struct
+>> etm4_init_arg *init_arg)
+>>       return 0;
+>>   }
+>>   -static int etm4_probe(struct device *dev, u32 etm_pid)
+>> +static int etm4_probe(struct device *dev)
+>>   {
+>>       struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
+>>       struct csdev_access access = { 0 };
+>> @@ -2077,7 +2078,6 @@ static int etm4_probe(struct device *dev, u32
+>> etm_pid)
+>>         init_arg.dev = dev;
+>>       init_arg.csa = &access;
+>> -    init_arg.pid = etm_pid;
+>>         /*
+>>        * Serialize against CPUHP callbacks to avoid race condition
+>> @@ -2124,7 +2124,7 @@ static int etm4_probe_amba(struct amba_device
+>> *adev, const struct amba_id *id)
+>>         drvdata->base = base;
+>>       dev_set_drvdata(dev, drvdata);
+>> -    ret = etm4_probe(dev, id->id);
+>> +    ret = etm4_probe(dev);
+>>       if (!ret)
+>>           pm_runtime_put(&adev->dev);
+>>   @@ -2146,12 +2146,7 @@ static int etm4_probe_platform_dev(struct
+>> platform_device *pdev)
+>>       pm_runtime_set_active(&pdev->dev);
+>>       pm_runtime_enable(&pdev->dev);
+>>   -    /*
+>> -     * System register based devices could match the
+>> -     * HW by reading appropriate registers on the HW
+>> -     * and thus we could skip the PID.
+>> -     */
+>> -    ret = etm4_probe(&pdev->dev, 0);
+>> +    ret = etm4_probe(&pdev->dev);
+>>         pm_runtime_put(&pdev->dev);
+>>       return ret;
+>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>> index f19a47b9bb5a..f85b041ea475 100644
+>> --- a/include/linux/coresight.h
+>> +++ b/include/linux/coresight.h
+>> @@ -370,6 +370,18 @@ static inline u32
+>> csdev_access_relaxed_read32(struct csdev_access *csa,
+>>       return csa->read(offset, true, false);
+>>   }
+>>   +#define CORESIGHT_PIDRn(i)    (0xFE0 + ((i) * 4))
+>> +
+>> +static inline u32 coresight_get_pid(struct csdev_access *csa)
+>> +{
+>> +    u32 i, pid = 0;
+>> +
+>> +    for (i = 0; i < 4; i++)
+>> +        pid |= csdev_access_relaxed_read32(csa, CORESIGHT_PIDRn(i))
+>> << (i * 8);
+> 
+> Given the above, we could make this iomem specific.
+> 
+> Suzuki
+> 
+> 
+>> +
+>> +    return pid;
+>> +}
+>> +
+>>   static inline u64 csdev_access_relaxed_read_pair(struct csdev_access
+>> *csa,
+>>                            u32 lo_offset, u32 hi_offset)
+>>   {
+> 
