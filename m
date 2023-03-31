@@ -2,59 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 022856D283C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEA4C6D2855
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 20:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233182AbjCaSzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 14:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S232203AbjCaS4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 14:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232933AbjCaSzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:55:15 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC2A23B50;
-        Fri, 31 Mar 2023 11:55:09 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id bi31so17389015oib.9;
-        Fri, 31 Mar 2023 11:55:09 -0700 (PDT)
+        with ESMTP id S233228AbjCaS4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 14:56:25 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDA523FDF;
+        Fri, 31 Mar 2023 11:56:14 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id bi31so17391330oib.9;
+        Fri, 31 Mar 2023 11:56:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680288909;
+        d=1e100.net; s=20210112; t=1680288973;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mtr7oYDgi8JGwna/I5scrpSAxJ3BYloEo7NMWeb8wuw=;
-        b=539pousP+kUJ/t9FmE5XV/aZZx6DhSKbM1+XXd49WKco3ML0RHexZvsDFAbfH4QKTp
-         2UnDwJIXvgH9m6gL7vUHL0EKl1aCw2ChrbhrAmQwTB2qJVjhviyDjuOa8HhdPlRZNvAX
-         cdhdfSAVA/syZMsNYP+h5hppGMRRkVoVhqYTvRI+nEfi7Dt77jw/18L3xG8ClwIvA0Uh
-         JLJ/tzLiK5wMJXEaSJcjlH2P46BoEqnuR35VwBfTinGWvVs3Cxux3hpfETT7wH/VYlcC
-         WPl7Kxrs081AjNgd/wENqnRh4oD5sJwPuT7wvxcSTULheSj6AMvXR1IzFwpNAGxLhvX2
-         GTag==
-X-Gm-Message-State: AO0yUKWopiDs+3l0FpQ1QcRF8wrheA7Jd2lojpNF8As0Gi//Tz0O7qpc
-        JB8ZMjMHPAIGB4OiRGaJSg==
-X-Google-Smtp-Source: AK7set9rE8V0D7Mkm6u6BKy31Gro0pBbciJN0nkEe9makaNh0+jQ3N9T+R7xR8W0v+XzPgjwslSw7g==
-X-Received: by 2002:aca:d10:0:b0:383:f4fb:be63 with SMTP id 16-20020aca0d10000000b00383f4fbbe63mr11902671oin.37.1680288908719;
-        Fri, 31 Mar 2023 11:55:08 -0700 (PDT)
+        bh=SRYjfKN3eK3vnBIG5oj6mxdR/iFPW7kkC2GPzDxU+F0=;
+        b=A8WlG5No6f5Frze7s5F2DMIxoVpK73x4ZzadCTmiFJwDsYBduHyGNL5lYcueK9bc72
+         mgk5ajNxtd9EUT45+1DSphP4PE1LdxIxhCpilVFttJIzOf7YWiOmCbB8F5j4OYUKb7Ls
+         ID33zWsUFPvtLpUb2a1Gaq/cyg/r7/zk8bTzX7sqm+Xswp0fYj3+/81UlgjheOl3Nbli
+         Lp8rYMw0BLryhfLSbG8GxHHz9LeVtE48UeBzC4J0L9Bp55qH1Vy2xwZJ/3ux9/vwZ3Cl
+         yYwyASdyN4gkXD5nrz2ktRpVTBQJGhn9dxd/prGGUcTGTQljfRZnGPWoaCT+6v1ZNhlH
+         suDw==
+X-Gm-Message-State: AAQBX9cbinOLBgmYfbd5cofKy+JLQz+Ag0vMPkgFt6YIVnq8z5b1xhiS
+        5PJ3kVIon4jfX+xSGExLIQ==
+X-Google-Smtp-Source: AKy350bIDeTcfXjKXMCdouCUmqZoQzF2jlr3OoSKVKdzBeGpGQzJ5XI0jorXx7xo1T9jDrsYb0ibDg==
+X-Received: by 2002:a05:6808:13cb:b0:389:7d24:def5 with SMTP id d11-20020a05680813cb00b003897d24def5mr3621775oiw.10.1680288972707;
+        Fri, 31 Mar 2023 11:56:12 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s3-20020acac203000000b0038694b7dc09sm1253716oif.55.2023.03.31.11.55.07
+        by smtp.gmail.com with ESMTPSA id w8-20020a056808018800b003896b3269d3sm1263329oic.20.2023.03.31.11.56.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 11:55:07 -0700 (PDT)
-Received: (nullmailer pid 1945063 invoked by uid 1000);
-        Fri, 31 Mar 2023 18:55:07 -0000
-Date:   Fri, 31 Mar 2023 13:55:07 -0500
+        Fri, 31 Mar 2023 11:56:12 -0700 (PDT)
+Received: (nullmailer pid 1946699 invoked by uid 1000);
+        Fri, 31 Mar 2023 18:56:11 -0000
+Date:   Fri, 31 Mar 2023 13:56:11 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        vigneshr@ti.com, srk@ti.com, r-gunasekaran@ti.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: tps6598x: make interrupts optional
-Message-ID: <20230331185507.GA1938596-robh@kernel.org>
-References: <20230324131853.41102-1-rogerq@kernel.org>
- <20230324133741.43408-1-rogerq@kernel.org>
- <271f0be0-9cb2-0c74-c112-33020e9a7342@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH 1/5] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: add
+ sm8150 USB+DP PHY
+Message-ID: <168028897102.1946640.12125439806794137069.robh@kernel.org>
+References: <20230324215550.1966809-1-dmitry.baryshkov@linaro.org>
+ <20230324215550.1966809-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <271f0be0-9cb2-0c74-c112-33020e9a7342@kernel.org>
+In-Reply-To: <20230324215550.1966809-2-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=0.8 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
         RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
@@ -65,41 +71,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 29, 2023 at 10:05:33AM +0300, Roger Quadros wrote:
-> Hi Heikki & Rob,
-> 
-> On 24/03/2023 15:37, Roger Quadros wrote:
-> > The driver can poll for interrupt status so interrupts
-> > can be optional. It is still recommended to use the
-> > interrupt line. Polling should only be used for debug
-> > and prototyping.
-> > 
-> > Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 2 --
-> >  1 file changed, 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > index 348a715d61f4..8c2db282735a 100644
-> > --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> > @@ -35,8 +35,6 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - interrupts
-> > -  - interrupt-names
-> >  
-> >  additionalProperties: true
-> >  
-> 
-> We need this patch as well along with the driver changes [1]
-> Could you please Ack. Thanks!
 
-If get_maintainers.pl had been properly used, then it probably would 
-have been acked by Krzysztof already. Otherwise, it's in my queue if the 
-DT list is copied.
+On Sat, 25 Mar 2023 00:55:46 +0300, Dmitry Baryshkov wrote:
+> Add bindings for sm8150 USB+DP PHY. These bindings follow the older
+> style as this is a quick conversion to simplify further driver cleanup.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml    | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
 Acked-by: Rob Herring <robh@kernel.org>
 
-Rob
