@@ -2,166 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E97616D18D9
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1147B6D1905
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 09:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230221AbjCaHpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 03:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45082 "EHLO
+        id S230478AbjCaHvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 03:51:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjCaHpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:45:32 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D4C12D;
-        Fri, 31 Mar 2023 00:45:29 -0700 (PDT)
+        with ESMTP id S229722AbjCaHvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 03:51:14 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80E681A971
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 00:50:11 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id h9so22159558ljq.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 00:50:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1680248730; x=1711784730;
-  h=subject:message-id:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nPnOXf+mYp3iMUEf2q4+nsf6byWz7qdqnBUi6q4GngI=;
-  b=cuzIaO1Ib/2eReMwBkPWgjvl6YBp2KcMQyfK2TY2J0U/2agn730VIuno
-   NLsEVJEWNfXIYdsLjUBXTFJbqJsYvGEsaHFDfSc4Q5l8yuc8MPPbCJNEL
-   pFz/wMxLafWb1lhQwt7DxPIHQLJprA1IP9wWpZESZmoR7MWYDZOIB/oMw
-   LpZc80bzvT1VLYUbQj062jl9tKxW0KKG9OTAsknx/9ceUu2AZbesJsbGK
-   swlutqr4FpJVinWiJXgrdNsOq1uQ1YQyoS94LpjedM4zHmWZFdB1IohCJ
-   XkA4NCKPnabrGqrAgWmp95k+zoDbOIrrEBQiA/HX/WgIziXjoLXEqgWHs
-   A==;
-X-IronPort-AV: E=Sophos;i="5.98,307,1673910000"; 
-   d="scan'208";a="30062118"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 31 Mar 2023 09:45:27 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 31 Mar 2023 09:45:27 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 31 Mar 2023 09:45:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1680248727; x=1711784727;
-  h=message-id:from:to:cc:date:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=nPnOXf+mYp3iMUEf2q4+nsf6byWz7qdqnBUi6q4GngI=;
-  b=lyYSi0hns03j9/V8uqAb8Yaa/zMTOyQyKWIP3ae2tuqEmdZfh97xQkNE
-   jcN6pznehtV/8DnttJF9MkgVrU8/E0wLBTBYi2ykP3GQNXpKR6S5HcTN9
-   sPkllKDaSdedwTJ0BDp47YMrYvPF6SjM0AR5L78ucr+LMN/epI/mlQMZq
-   qkZSVnNshjLgnfypQD9MU8+Pcbk+cMl+Sc4wEoQxY6PKDoP9JTZU3YHDd
-   NnSU8OEwQWLIY5CiS8g25nNxF3ycwdtRujR07Xb9Fq3RZs8qKzA0eZ73f
-   acx73oFoGApLNP070d/gNWHACEesQcVzSehHKCgzB7jdjq4smsbgvlgvQ
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.98,307,1673910000"; 
-   d="scan'208";a="30062117"
-Subject: Re: Re: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk ctrl
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 31 Mar 2023 09:45:27 +0200
-Received: from NIEBEL-W3 (unknown [10.123.53.155])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D8A6A280056;
-        Fri, 31 Mar 2023 09:45:26 +0200 (CEST)
-Message-ID: <2924b1a62f126678870160bdbbf4e5d51aceb8d4.camel@ew.tq-group.com>
-From:   Markus Niebel <Markus.Niebel@ew.tq-group.com>
-To:     Greg Ungerer <gerg@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Cc:     peng.fan@nxp.com,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        abailon@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
-        festevam@gmail.com, abelvesa@kernel.org, marex@denx.de,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        paul.elder@ideasonboard.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, linux-pm@vger.kernel.org,
-        s.hauer@pengutronix.de, robh+dt@kernel.org, aford173@gmail.com,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, djakov@kernel.org, shawnguo@kernel.org,
-        l.stach@pengutronix.de
-Date:   Fri, 31 Mar 2023 09:45:24 +0200
-In-Reply-To: <792028b9-cd4c-4ff4-a7cb-e60c518aa573@kernel.org>
-References: <20220703091451.1416264-8-peng.fan@oss.nxp.com>
-         <20230327045037.593326-1-gerg@linux-m68k.org> <2678294.mvXUDI8C0e@steina-w>
-         <b23a44ab-3666-8a41-d2a0-0d2fbdbd9f00@pengutronix.de>
-         <ecd3a92b-ba1e-e7c1-088a-371bd1a2c100@linux-m68k.org>
-         <20230328073302.jj64u5hvdpc6axa5@pengutronix.de>
-         <426b4776-104c-cb47-c8cc-c26515fcb6e3@linux-m68k.org>
-         <20230328134201.yaxrdtetjygkgkmz@pengutronix.de>
-         <20230328135100.rbmnfelphe7juhxo@pengutronix.de>
-         <c368a0f8-41f0-69ac-04f4-459e5fc8b9d6@linux-m68k.org>
-         <20230328151100.msl46qupstwplkgw@pengutronix.de>
-         <792028b9-cd4c-4ff4-a7cb-e60c518aa573@kernel.org>
-Organization: TQ Systems GmbH
-User-Agent: Evolution 3.36.5-0ubuntu1 
+        d=linaro.org; s=google; t=1680249010;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=rp61AZrrrJ7L6Ea4XSRLHJ/Ln9sIYk2x6qqY8rh7zM4=;
+        b=qM+oBIBD6/4I26sY9lrDp/o6uOQD+VJqjveehx5YKQ5U4XVIIJdQyWfIqLGrjSRFGM
+         OVSGuWvmjg4bHjNyx4hooahb8ZMXIF/FKcH4A5/DTX/UO0KoQpdLzBt1duQeuwiyQlIr
+         NegaXc/uhq0C1G8dE3Fpmy8fAcmOIGLaYTrPkO3pkKx0T4Hi4XcEedrpVbXhpqhG7rQ3
+         S0+dsfpQTRhlfRl1DUePVmMgOpbBV8Ti9hlTG8cxeRVgJUvjsTDqVIWBJDPXYasUVgeO
+         4y13tVzzYjdCDj469LKssnOgESUixPCxtuHXtIPKnoFh1PDNs+6opz42G4RdfEUCKu+V
+         f2vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680249010;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rp61AZrrrJ7L6Ea4XSRLHJ/Ln9sIYk2x6qqY8rh7zM4=;
+        b=I7avwFGkmEj7aTCrXLyK8iuHRztBHXhJ9XHur9fsoup4gtPAlA3okCggKkNalvcXrA
+         IvFbnLKfVWqxCVpbIWP4e0SjUBOqOprfH12MLiKIhlgBh6WsNFe5ZJfvroVHs2Eh4hqV
+         ykIkW6cpQr86SLnCIEfKvn5bG0nsbj8Pkemls5AteupnY80nvmYwmonCdA44OUXdgIxj
+         WbceLoZlLMl2cM8BOmVDW/veP+mfMvoiTm3O4zdiEsUWdUBxVGe6Wj4s+v0ZxZHW2WFL
+         sH8RwcJapNPHSf2OfaMEc0llaoPx1b/Pf9Yr8EM/GazmctwfzyipTfiH9dk0sdnP88hj
+         NWJA==
+X-Gm-Message-State: AAQBX9e6iqHygGoZVqRwvD7ljcush2yqQn8sFtDh6aYcvJxJSFvmeZkj
+        7Dlj/2RIvl6k4r/R7JHMJN/S2g==
+X-Google-Smtp-Source: AKy350aP0sVxOVbRdfaxygjd9Zkval2nVvpFquxKpaz0Y8pPfwIPacIOwyKNqxo+YZny2UHLm+5AUQ==
+X-Received: by 2002:a2e:9ccc:0:b0:2a6:183a:9a13 with SMTP id g12-20020a2e9ccc000000b002a6183a9a13mr1625313ljj.46.1680249009752;
+        Fri, 31 Mar 2023 00:50:09 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p23-20020a2ea417000000b002934abfb109sm249539ljn.45.2023.03.31.00.50.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 00:50:09 -0700 (PDT)
+Message-ID: <2872b939-a617-90ee-2249-9eb535559f07@linaro.org>
+Date:   Fri, 31 Mar 2023 09:50:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH V4 2/2] ASoC: dt-bindings: max98363: add soundwire
+ amplifier
+To:     =?UTF-8?B?4oCcUnlhbg==?= <ryan.lee.analog@gmail.com>,
+        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, rf@opensource.cirrus.com,
+        ckeepax@opensource.cirrus.com,
+        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
+        wangweidong.a@awinic.com, james.schulman@cirrus.com,
+        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
+        povik+lin@cutebit.org, flatmax@flatmax.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ryans.lee@analog.com
+References: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
+ <20230330234319.6841-2-ryan.lee.analog@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330234319.6841-2-ryan.lee.analog@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
-
-Am Freitag, dem 31.03.2023 um 15:55 +1000 schrieb Greg Ungerer:
-> Hi Marco,
+On 31/03/2023 01:43, “Ryan wrote:
+> From: Ryan Lee <ryans.lee@analog.com>
 > 
-> On 29/3/23 01:11, Marco Felsch wrote:
-> > Hi Greg,
-> > 
-> > On 23-03-29, Greg Ungerer wrote:
-> > > Hi Marco,
-> > 
-> > ...
-> > 
-> > > > I forgot to ask: Does your i.MX8MP have a VPU? There are
-> > > > i.MX8MP devices
-> > > > (don't know the name) which don't have support for certain IPs.
-> > > > If this
-> > > 
-> > > The hardware platform I have is using the MIMX8ML4CVNKZAB "i.MX
-> > > 8M Plus QuadLite"
-> > > (https://www.nxp.com/part/MIMX8ML4CVNKZAB#/) which does not have
-> > > the hardware
-> > > video encode/decoder module (like the "i.MX 8M Plus Quad" parts).
-> > 
-> > and that's the problem :) You need to update your bootloader to a
-> > version which support disabling the VPU nodes else you will always
-> > see
-> > the errors.
+> Add dt-bindings information for Analog Devices MAX98363 SoundWire Amplifier
 > 
-> I agree this is the problem, I don't agree that the boot loader is
-> the
-> only place to fix this :-)  I should be able to generate a working
-> devicetree
-> blob from the kernel that is good, and ready to use no runtime
-> changes
-> required I figure.
-> 
+> Signed-off-by: Ryan Lee <ryans.lee@analog.com>
+> ---
 
-Just to point out: the approach of run time fixing in boot loader is
-used for the other i.MX8M SOC, too. If you know exactly what SOC type
-is assembled, you could disable non available IP in the board part of
-your tree.
 
-> It is not overly difficult to break out the vpu nodes and have them
-> only included when you have a board that has the iMX8MP-quad with the
-> VPU hardware blocks.
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Depending on the SOC type there is more to look for than the VPU: core
-count, ISP, NPU - just to mention a few. Current approach allows to
-keep a single tree for all types.
-
-Regards, Markus
-
--- 
--- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Best regards,
+Krzysztof
 
