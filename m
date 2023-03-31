@@ -2,52 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C24D6D1BBC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2A86D1BD3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjCaJQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:16:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
+        id S229875AbjCaJSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:18:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231349AbjCaJQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:16:02 -0400
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AF51BD6
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:15:38 -0700 (PDT)
-Received: by codeconstruct.com.au (Postfix, from userid 10000)
-        id 0A50B20411; Fri, 31 Mar 2023 17:15:15 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1680254115;
-        bh=Isit+42hJAL9l6M+xBH0lc98NTVjBMcOTLmr8l/AXNs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=M29Uvf7Fm0GACasovv4IFVNJvqyyqVwjE5iiwczLMWWR5h6eO4pGg1joMSZ1O0n3K
-         lTT1MUTs7/QerdhIL1/Lqo8eER+P51W3PrC4xHoamvQfMgK9S1GQBNFvUxpQT2mbqm
-         H8BtPnbehsi+7qLXPSTLsx+EPrVFSX8oDeGkFUnoVeiF4nIdoB4uqQ8u0Njx32tSYI
-         tEUx1KtZnBdx6e9vn5Pb9MZocbNautj36W7ZqYkOsfPyDVK7CA8fe00C+5zxTF3Uzs
-         qlG9kWKYfDVOi1CVcMbthTDh+3DxAARdUXbo85qeK17HA+28WU9adPK4tIDphGW5mA
-         bpX+4WZ1hGm1A==
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     linux-i3c@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        Matt Johnston <matt@codeconstruct.com.au>,
-        Vitor Soares <ivitro@gmail.com>,
+        with ESMTP id S231284AbjCaJSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:18:37 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C709C19BA;
+        Fri, 31 Mar 2023 02:18:34 -0700 (PDT)
+Received: from [127.0.0.1] (144-178-202-138.static.ef-service.nl [144.178.202.138])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 803F5CC392;
+        Fri, 31 Mar 2023 09:18:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1680254310; bh=NNum4T/G6VJ9cgvUWJ3xhPYUW9hku5cPIzHSMA/iY4Q=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References;
+        b=a3c2aCQkcSm3Xg+pI3kfTnoO+47F52Yu/ldPqA7cb2JkstP99JC1nPYN8AkYdOauN
+         KywT+DULi3dnIiboZ2YEld6kdWoOFlud8v85Z5GhBsTC2F1LX4ePD4RM1Lzcm4hL/Q
+         DH8BmQoprwUyYwXIuKrZOfoech1cJmk15kTpl6b4=
+Date:   Fri, 31 Mar 2023 11:18:29 +0200
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+CC:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jack Chen <zenghuchen@google.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Subject: [PATCH v3 3/3] i3c: ast2600: Add AST2600 platform-specific driver
-Date:   Fri, 31 Mar 2023 17:15:01 +0800
-Message-Id: <20230331091501.3800299-4-jk@codeconstruct.com.au>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230331091501.3800299-1-jk@codeconstruct.com.au>
-References: <20230331091501.3800299-1-jk@codeconstruct.com.au>
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 2/3] media: dt-bindings: ov2685: convert to dtschema
+User-Agent: K-9 Mail for Android
+In-Reply-To: <ZCacNEbg8cJo0VAm@valkosipuli.retiisi.eu>
+References: <20230129-ov2685-improvements-v4-0-e71985c5c848@z3ntu.xyz> <20230129-ov2685-improvements-v4-2-e71985c5c848@z3ntu.xyz> <ZCacNEbg8cJo0VAm@valkosipuli.retiisi.eu>
+Message-ID: <9AF47749-12CB-40D5-A300-170A35390CFD@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,262 +53,221 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have platform-specific infrastructure for the dw i3c driver,
-add platform support for the ASPEED AST2600 SoC.
 
-The AST2600 has a small set of "i3c global" registers, providing
-platform-level i3c configuration outside of the i3c core.
 
-For the ast2600, we need a couple of extra setup operations:
+Hi Sakari,
 
- - on probe: find the i3c global register set and parse the SDA pullup
-   resistor values
+Sakari Ailus <sakari=2Eailus@iki=2Efi> schreef op 31 maart 2023 10:39:16 C=
+EST:
+>Hi Luca,
+>
+>Thanks for the patch=2E
+>
+>On Thu, Mar 23, 2023 at 06:57:50PM +0100, Luca Weiss wrote:
+>> Convert the text-based dt-bindings to yaml=2E
+>>=20
+>> Changes from original txt:
+>> * Take wording for various properties from other yaml bindings, this
+>>   removes e=2Eg=2E volt amount from schema since it isn't really releva=
+nt
+>>   and the datasheet is a better source=2E
+>> * Don't make reset-gpios a required property since it can be tied to
+>>   DOVDD instead=2E
+>>=20
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof=2Ekozlowski@linaro=2Eorg>
+>> Signed-off-by: Luca Weiss <luca@z3ntu=2Exyz>
+>> ---
+>>  =2E=2E=2E/devicetree/bindings/media/i2c/ov2685=2Etxt       |  41 -----=
+----
+>>  =2E=2E=2E/devicetree/bindings/media/i2c/ovti,ov2685=2Eyaml | 101 +++++=
+++++++++++++++++
+>>  MAINTAINERS                                        |   1 +
+>>  3 files changed, 102 insertions(+), 41 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2685=2Etxt b=
+/Documentation/devicetree/bindings/media/i2c/ov2685=2Etxt
+>> deleted file mode 100644
+>> index 625c4a8c0d53d=2E=2E0000000000000
+>> --- a/Documentation/devicetree/bindings/media/i2c/ov2685=2Etxt
+>> +++ /dev/null
+>> @@ -1,41 +0,0 @@
+>> -* Omnivision OV2685 MIPI CSI-2 sensor
+>> -
+>> -Required Properties:
+>> -- compatible: shall be "ovti,ov2685"
+>> -- clocks: reference to the xvclk input clock
+>> -- clock-names: shall be "xvclk"
+>> -- avdd-supply: Analog voltage supply, 2=2E8 volts
+>> -- dovdd-supply: Digital I/O voltage supply, 1=2E8 volts
+>> -- dvdd-supply: Digital core voltage supply, 1=2E8 volts
+>> -- reset-gpios: Low active reset gpio
+>> -
+>> -The device node shall contain one 'port' child node with an
+>> -'endpoint' subnode for its digital output video port,
+>> -in accordance with the video interface bindings defined in
+>> -Documentation/devicetree/bindings/media/video-interfaces=2Etxt=2E
+>> -The endpoint optional property 'data-lanes' shall be "<1>"=2E
+>> -
+>> -Example:
+>> -&i2c7 {
+>> -	ov2685: camera-sensor@3c {
+>> -		compatible =3D "ovti,ov2685";
+>> -		reg =3D <0x3c>;
+>> -		pinctrl-names =3D "default";
+>> -		pinctrl-0 =3D <&clk_24m_cam>;
+>> -
+>> -		clocks =3D <&cru SCLK_TESTCLKOUT1>;
+>> -		clock-names =3D "xvclk";
+>> -
+>> -		avdd-supply =3D <&pp2800_cam>;
+>> -		dovdd-supply =3D <&pp1800>;
+>> -		dvdd-supply =3D <&pp1800>;
+>> -		reset-gpios =3D <&gpio2 3 GPIO_ACTIVE_LOW>;
+>> -
+>> -		port {
+>> -			ucam_out: endpoint {
+>> -				remote-endpoint =3D <&mipi_in_ucam>;
+>> -				data-lanes =3D <1>;
+>> -			};
+>> -		};
+>> -	};
+>> -};
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2685=2E=
+yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2685=2Eyaml
+>> new file mode 100644
+>> index 0000000000000=2E=2E2ac0ca8a0413b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2685=2Eyaml
+>> @@ -0,0 +1,101 @@
+>> +# SPDX-License-Identifier: (GPL-2=2E0 OR BSD-2-Clause)
+>> +%YAML 1=2E2
+>> +---
+>> +$id: http://devicetree=2Eorg/schemas/media/i2c/ovti,ov2685=2Eyaml#
+>> +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
+>> +
+>> +title: OmniVision OV2685 Image Sensor
+>> +
+>> +maintainers:
+>> +  - Shunqian Zheng <zhengsq@rock-chips=2Ecom>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ovti,ov2685
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: XVCLK clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xvclk
+>> +
+>> +  dvdd-supply:
+>> +    description: Digital Domain Power Supply
+>> +
+>> +  avdd-supply:
+>> +    description: Analog Domain Power Supply
+>> +
+>> +  dovdd-supply:
+>> +    description: I/O Domain Power Supply
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +    description: Reset Pin GPIO Control (active low)
+>> +
+>> +  port:
+>> +    description: MIPI CSI-2 transmitter port
+>> +    $ref: /schemas/graph=2Eyaml#/$defs/port-base
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      endpoint:
+>> +        $ref: /schemas/media/video-interfaces=2Eyaml#
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          data-lanes:
+>> +            maxItems: 1
+>
+>This should be 2 --- the sensor supports two lanes (even if the driver
+>doesn't)=2E
 
- - on init: set the pullups accordingly, and set the i3c instance IDs
+Right, for some reason the product brief mentions that it features "a sing=
+le-lane MIPI interface" but the datasheet I have writes that it has a 2-lan=
+e MIPI serial output, so I guess it does support two lanes?
 
-Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+>
+>I can address this when applying if that's ok=2E
 
----
-v2:
- - use new dw platform infrastructure
-v3:
- - switch to embedded struct for platform data
- - drop of_match_ptr()
----
- MAINTAINERS                             |   6 +
- drivers/i3c/master/Kconfig              |  14 ++
- drivers/i3c/master/Makefile             |   1 +
- drivers/i3c/master/ast2600-i3c-master.c | 168 ++++++++++++++++++++++++
- 4 files changed, 189 insertions(+)
- create mode 100644 drivers/i3c/master/ast2600-i3c-master.c
+That would be nice, thanks!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd8ebc25afcf..ecadd5ccf771 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9714,6 +9714,12 @@ S:	Orphan
- F:	Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
- F:	drivers/i3c/master/dw*
- 
-+I3C DRIVER FOR ASPEED AST2600
-+M:	Jeremy Kerr <jk@codeconstruct.com.au>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/i3c/aspeed,ast2600-i3c.yaml
-+F:	drivers/i3c/master/ast2600-i3c-master.c
-+
- I3C SUBSYSTEM
- M:	Alexandre Belloni <alexandre.belloni@bootlin.com>
- L:	linux-i3c@lists.infradead.org (moderated for non-subscribers)
-diff --git a/drivers/i3c/master/Kconfig b/drivers/i3c/master/Kconfig
-index 3b8f95916f46..90dee3ec5520 100644
---- a/drivers/i3c/master/Kconfig
-+++ b/drivers/i3c/master/Kconfig
-@@ -22,6 +22,20 @@ config DW_I3C_MASTER
- 	  This driver can also be built as a module.  If so, the module
- 	  will be called dw-i3c-master.
- 
-+config AST2600_I3C_MASTER
-+	tristate "ASPEED AST2600 I3C master driver"
-+	depends on DW_I3C_MASTER
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	select MFD_SYSCON
-+	help
-+	  Support for ASPEED AST2600 I3C Controller.
-+
-+	  This hardware is an instance of the DW I3C controller; this
-+	  driver adds platform- specific support for AST2600 hardware.
-+
-+	  This driver can also be built as a module.  If so, the module
-+	  will be called ast2600-i3c-master.
-+
- config SVC_I3C_MASTER
- 	tristate "Silvaco I3C Dual-Role Master driver"
- 	depends on I3C
-diff --git a/drivers/i3c/master/Makefile b/drivers/i3c/master/Makefile
-index b3fee0f690b2..3e97960160bc 100644
---- a/drivers/i3c/master/Makefile
-+++ b/drivers/i3c/master/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_CDNS_I3C_MASTER)		+= i3c-master-cdns.o
- obj-$(CONFIG_DW_I3C_MASTER)		+= dw-i3c-master.o
-+obj-$(CONFIG_AST2600_I3C_MASTER)	+= ast2600-i3c-master.o
- obj-$(CONFIG_SVC_I3C_MASTER)		+= svc-i3c-master.o
- obj-$(CONFIG_MIPI_I3C_HCI)		+= mipi-i3c-hci/
-diff --git a/drivers/i3c/master/ast2600-i3c-master.c b/drivers/i3c/master/ast2600-i3c-master.c
-new file mode 100644
-index 000000000000..d265669c04f1
---- /dev/null
-+++ b/drivers/i3c/master/ast2600-i3c-master.c
-@@ -0,0 +1,168 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 Code Construct
-+ *
-+ * Author: Jeremy Kerr <jk@codeconstruct.com.au>
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include "dw-i3c-master.h"
-+
-+/* AST2600-specific global register set */
-+#define AST2600_I3CG_REG0(idx)	(((idx) * 4 * 4) + 0x10)
-+#define AST2600_I3CG_REG1(idx)	(((idx) * 4 * 4) + 0x14)
-+
-+#define AST2600_I3CG_REG0_SDA_PULLUP_EN_MASK	GENMASK(29, 28)
-+#define AST2600_I3CG_REG0_SDA_PULLUP_EN_2K	(0x0 << 28)
-+#define AST2600_I3CG_REG0_SDA_PULLUP_EN_750	(0x2 << 28)
-+
-+#define AST2600_I3CG_REG1_I2C_MODE		BIT(0)
-+#define AST2600_I3CG_REG1_TEST_MODE		BIT(1)
-+#define AST2600_I3CG_REG1_ACT_MODE_MASK		GENMASK(3, 2)
-+#define AST2600_I3CG_REG1_ACT_MODE(x)		(((x) << 2) & AST2600_I3CG_REG1_ACT_MODE_MASK)
-+#define AST2600_I3CG_REG1_PENDING_INT_MASK	GENMASK(7, 4)
-+#define AST2600_I3CG_REG1_PENDING_INT(x)	(((x) << 4) & AST2600_I3CG_REG1_PENDING_INT_MASK)
-+#define AST2600_I3CG_REG1_SA_MASK		GENMASK(14, 8)
-+#define AST2600_I3CG_REG1_SA(x)			(((x) << 8) & AST2600_I3CG_REG1_SA_MASK)
-+#define AST2600_I3CG_REG1_SA_EN			BIT(15)
-+#define AST2600_I3CG_REG1_INST_ID_MASK		GENMASK(19, 16)
-+#define AST2600_I3CG_REG1_INST_ID(x)		(((x) << 16) & AST2600_I3CG_REG1_INST_ID_MASK)
-+
-+#define AST2600_DEFAULT_SDA_PULLUP_OHMS		2000
-+
-+struct ast2600_i3c {
-+	struct dw_i3c_master dw;
-+	struct regmap *global_regs;
-+	unsigned int global_idx;
-+	unsigned int sda_pullup;
-+};
-+
-+static struct ast2600_i3c *to_ast2600_i3c(struct dw_i3c_master *dw)
-+{
-+	return container_of(dw, struct ast2600_i3c, dw);
-+}
-+
-+static int ast2600_i3c_pullup_to_reg(unsigned int ohms, u32 *regp)
-+{
-+	u32 reg;
-+
-+	switch (ohms) {
-+	case 2000:
-+		reg = AST2600_I3CG_REG0_SDA_PULLUP_EN_2K;
-+		break;
-+	case 750:
-+		reg = AST2600_I3CG_REG0_SDA_PULLUP_EN_750;
-+		break;
-+	case 545:
-+		reg = AST2600_I3CG_REG0_SDA_PULLUP_EN_2K |
-+			AST2600_I3CG_REG0_SDA_PULLUP_EN_750;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	if (regp)
-+		*regp = reg;
-+
-+	return 0;
-+}
-+
-+static int ast2600_i3c_init(struct dw_i3c_master *dw)
-+{
-+	struct ast2600_i3c *i3c = to_ast2600_i3c(dw);
-+	u32 reg = 0;
-+	int rc;
-+
-+	/* reg0: set SDA pullup values */
-+	rc = ast2600_i3c_pullup_to_reg(i3c->sda_pullup, &reg);
-+	if (rc)
-+		return rc;
-+
-+	rc = regmap_write(i3c->global_regs,
-+			  AST2600_I3CG_REG0(i3c->global_idx), reg);
-+	if (rc)
-+		return rc;
-+
-+	/* reg1: set up the instance id, but leave everything else disabled,
-+	 * as it's all for client mode
-+	 */
-+	reg = AST2600_I3CG_REG1_INST_ID(i3c->global_idx);
-+	rc = regmap_write(i3c->global_regs,
-+			  AST2600_I3CG_REG1(i3c->global_idx), reg);
-+
-+	return rc;
-+}
-+
-+const struct dw_i3c_platform_ops ast2600_i3c_ops = {
-+	.init = ast2600_i3c_init,
-+};
-+
-+static int ast2600_i3c_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct of_phandle_args gspec;
-+	struct ast2600_i3c *i3c;
-+	int rc;
-+
-+	i3c = devm_kzalloc(&pdev->dev, sizeof(*i3c), GFP_KERNEL);
-+	if (!i3c)
-+		return -ENOMEM;
-+
-+	rc = of_parse_phandle_with_fixed_args(np, "aspeed,global-regs", 1, 0,
-+					      &gspec);
-+	if (rc)
-+		return -ENODEV;
-+
-+	i3c->global_regs = syscon_node_to_regmap(gspec.np);
-+	of_node_put(gspec.np);
-+
-+	if (IS_ERR(i3c->global_regs))
-+		return PTR_ERR(i3c->global_regs);
-+
-+	i3c->global_idx = gspec.args[0];
-+
-+	rc = of_property_read_u32(np, "sda-pullup-ohms", &i3c->sda_pullup);
-+	if (rc)
-+		i3c->sda_pullup = AST2600_DEFAULT_SDA_PULLUP_OHMS;
-+
-+	rc = ast2600_i3c_pullup_to_reg(i3c->sda_pullup, NULL);
-+	if (rc)
-+		dev_err(&pdev->dev, "invalid sda-pullup value %d\n",
-+			i3c->sda_pullup);
-+
-+	i3c->dw.platform_ops = &ast2600_i3c_ops;
-+	return dw_i3c_common_probe(&i3c->dw, pdev);
-+}
-+
-+static int ast2600_i3c_remove(struct platform_device *pdev)
-+{
-+	struct dw_i3c_master *dw_i3c = platform_get_drvdata(pdev);
-+
-+	return dw_i3c_common_remove(dw_i3c);
-+}
-+
-+static const struct of_device_id ast2600_i3c_master_of_match[] = {
-+	{ .compatible = "aspeed,ast2600-i3c", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, ast2600_i3c_master_of_match);
-+
-+static struct platform_driver ast2600_i3c_driver = {
-+	.probe = ast2600_i3c_probe,
-+	.remove = ast2600_i3c_remove,
-+	.driver = {
-+		.name = "ast2600-i3c-master",
-+		.of_match_table = ast2600_i3c_master_of_match,
-+	},
-+};
-+module_platform_driver(ast2600_i3c_driver);
-+
-+MODULE_AUTHOR("Jeremy Kerr <jk@codeconstruct.com.au>");
-+MODULE_DESCRIPTION("ASPEED AST2600 I3C driver");
-+MODULE_LICENSE("GPL");
--- 
-2.39.1
+Regards
+Luca
 
+>
+>> +
+>> +        required:
+>> +          - data-lanes
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - dvdd-supply
+>> +  - avdd-supply
+>> +  - dovdd-supply
+>> +  - port
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/rk3399-cru=2Eh>
+>> +    #include <dt-bindings/gpio/gpio=2Eh>
+>> +
+>> +    i2c {
+>> +        #address-cells =3D <1>;
+>> +        #size-cells =3D <0>;
+>> +
+>> +        ov2685: camera-sensor@3c {
+>> +            compatible =3D "ovti,ov2685";
+>> +            reg =3D <0x3c>;
+>> +            pinctrl-names =3D "default";
+>> +            pinctrl-0 =3D <&clk_24m_cam>;
+>> +
+>> +            clocks =3D <&cru SCLK_TESTCLKOUT1>;
+>> +            clock-names =3D "xvclk";
+>> +
+>> +            avdd-supply =3D <&pp2800_cam>;
+>> +            dovdd-supply =3D <&pp1800>;
+>> +            dvdd-supply =3D <&pp1800>;
+>> +            reset-gpios =3D <&gpio2 3 GPIO_ACTIVE_LOW>;
+>> +
+>> +            port {
+>> +                ucam_out: endpoint {
+>> +                    remote-endpoint =3D <&mipi_in_ucam>;
+>> +                    data-lanes =3D <1>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +=2E=2E=2E
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 8ea325040f355=2E=2E5904f47756fe1 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15410,6 +15410,7 @@ M:	Shunqian Zheng <zhengsq@rock-chips=2Ecom>
+>>  L:	linux-media@vger=2Ekernel=2Eorg
+>>  S:	Maintained
+>>  T:	git git://linuxtv=2Eorg/media_tree=2Egit
+>> +F:	Documentation/devicetree/bindings/media/i2c/ovti,ov2685=2Eyaml
+>>  F:	drivers/media/i2c/ov2685=2Ec
+>> =20
+>>  OMNIVISION OV2740 SENSOR DRIVER
+>>=20
+>
