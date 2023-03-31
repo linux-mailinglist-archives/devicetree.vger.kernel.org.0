@@ -2,133 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAD2E6D1CBA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAF4A6D1CC6
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:43:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231655AbjCaJly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:41:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60900 "EHLO
+        id S231373AbjCaJnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:43:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232113AbjCaJlw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:41:52 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBF98A52
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:41:49 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-53d277c1834so404629187b3.10
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:41:49 -0700 (PDT)
+        with ESMTP id S232415AbjCaJnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:43:05 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6983E4C10
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:42:42 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bi9so28094940lfb.12
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:42:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680255709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xo2e908Td2gve6mc5SW+VA1nrFzqtdIPvQwGYibnpiE=;
-        b=uBMQIM9oghtu65OYry7lh4Mg9Ey6cTyShHDuQhNvkKE7cvwdYHy8HnejROCk4ISgBp
-         n4e9O+dpRLoxInIr0AZo6wccf2QiNwAmGY6ht9Plojz33GD3k3FLmtt9lRBB2OoL5AhL
-         q2tQFIWfJ/sC6d85vYFLRhLcrxJBPlr1eaExYaWQbIa5/50Jh2eHlnucVQQ3EXIqsMhF
-         Xn7baerAqsPtuvTx5Dhgm9XDMjpTYzSMOsnAxiuciECoi/2dtVis3DjNLK35S0dVG0KG
-         wAvNRlq2DbLnfG9+b2gm/R5ppzBZy9uGHsRoJDKHucpOb8KGlIogRpALWSfLixgMC6r8
-         opMw==
+        d=linaro.org; s=google; t=1680255754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yBTbhwphhMC02OilZnY4C/PgpQhvHUGGOYxnm7T5djU=;
+        b=GWuu+iaFdWWvtdQuvgFT6bO4MlDsJQq63V2NN3ytPGsC6ywqC9Od91QwF4xeKWxsiL
+         Lt9K1+3Llw/24ECL28yOSqZagkKlRgOBmYDFSuVpaFjySyFDwNpbhhVvF1NooME7ZNSP
+         VZ8OOWhrJsyhB89yT58YWBdsXp+PFdO8TEDySz15yC+WUA9+kdKZcETl+rPNuoFVlz0l
+         n5k+4fML4f+Fku7K7nMeitlBnoYCQHXe0pj9XexZRk0su0EpkpVEHqGlA2mvRkpRvEfZ
+         R15xxzO4RNHL7WJSkZ/wIDbWJl+84Hy5y6aYcbuUMZpdyzgBNh1KFbPAwWyzJdXozT61
+         mosQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680255709;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xo2e908Td2gve6mc5SW+VA1nrFzqtdIPvQwGYibnpiE=;
-        b=jwvfvPOO3L6qnBFoXRh5wL7FfMhUgKitZ0ruCo0Lvxmg2s77iQIfnosiq1hDDbtTno
-         0tsarU3NTvJlnsrvnNXTaujHIPnCyslXCFwT7XyEancKuLvDeqDvJmCk5G/HIh7mWYV3
-         PGGJkSYzpnVeaUDSyK7c05qhleVlZhpvHI8v63+UtHQ4bu4/VhQJOdZVc/3Eo3XzfGT9
-         AoXufbkINOiELA44O1lg3ce9Ti94t7bbS0ss0mIDb6leHwbgMaZyOawA8xVsMgzhE/Ts
-         6p0clpSwqv2EQYo/PbBGS634gyN3ACtkVURaFjoQ+4tppyZGvmfO8UwZeRRdkRTLOqlc
-         3IUA==
-X-Gm-Message-State: AAQBX9dy9C9gyujQ8cSwdMpb7yiMFCfbEEgGoT0ma2Cc8bEiVD+NpXCN
-        VExtRo+j/6kq6rr3pcA3LDj2Vx5QSkQM3R2qMxiDcw==
-X-Google-Smtp-Source: AKy350Zp7b7rjPNqqt62mXM2VNu7M6RMNX9eWwNzvLF+Jhy96wQfhw+jaU3Fvyd5viiVC5EgACPo2KWYnzUvEMriI7w=
-X-Received: by 2002:a81:b620:0:b0:541:8995:5334 with SMTP id
- u32-20020a81b620000000b0054189955334mr13089289ywh.3.1680255709091; Fri, 31
- Mar 2023 02:41:49 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680255754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yBTbhwphhMC02OilZnY4C/PgpQhvHUGGOYxnm7T5djU=;
+        b=iDNXPyao7SG97iotzT0TpCpvGUp+rb8N6YZkVi/pEkrT3AwUuX00EsIXFS/OMOiSAD
+         9oFpoXPfxta87JzCcj5dJ+W7EzbRRljVnVUtg7su3yL3oFIzOCyK3EFR3o1owvCtTNsV
+         2uNcFlUKJd4K9HvrVQqclUB0Z2sXfBCs5Nv+z9DUCd3BzGHOcQc2dnQUlKosRtdJPDPe
+         O6VGJwn1BhzsQwWWVSEbJYk3uvpdfSwWKdh/Q9LDBycCWp3W5z7p9jpv9AKCLIZIC2I4
+         e6Vc7M7g5OOUpYtPjwGk/CJKavpXP+Ak6DQAzNU0mnl6EKIFERRpcm6ewMZEIIBTLW5e
+         +BQw==
+X-Gm-Message-State: AAQBX9fyeM+px0R3z+LjbtjMFg2a0HtI0IAq2rwsEqImA5sowe21/dKl
+        jwJ7wB6KaTJBo2FF9i4Ia0defA==
+X-Google-Smtp-Source: AKy350aTu6Xih25erOjmqFeU5rATfu36S7cFx720oV8vNte5e/KOzNu3mx4mrsOc0OlfmOc4hXBM5A==
+X-Received: by 2002:ac2:418a:0:b0:4e8:5cb9:3728 with SMTP id z10-20020ac2418a000000b004e85cb93728mr7202380lfh.45.1680255754562;
+        Fri, 31 Mar 2023 02:42:34 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id q1-20020ac246e1000000b004cafa01ebbfsm312599lfo.101.2023.03.31.02.42.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 02:42:34 -0700 (PDT)
+Message-ID: <6b997dfa-1377-8d2e-ce4f-3f8f7407e6b4@linaro.org>
+Date:   Fri, 31 Mar 2023 11:42:33 +0200
 MIME-Version: 1.0
-References: <20230203-evk-board-support-v3-0-0003e80e0095@baylibre.com>
- <20230203-evk-board-support-v3-5-0003e80e0095@baylibre.com> <889be563-78d6-7148-f7d2-09ae21383ee4@collabora.com>
-In-Reply-To: <889be563-78d6-7148-f7d2-09ae21383ee4@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 31 Mar 2023 11:41:38 +0200
-Message-ID: <CAFGrd9rGoAN=B6O=X7peOtyYuWpWkMBFakrkLp2fcD-D2uajqw@mail.gmail.com>
-Subject: Re: [PATCH v3 05/17] arm64: dts: mediatek: add mt6357 device-tree
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: cadence: Document reset property
+Content-Language: en-US
+To:     Lars-Peter Clausen <lars@metafoo.de>, Wolfram Sang <wsa@kernel.org>
+Cc:     Michal Simek <michal.simek@amd.com>,
+        Shubhrajyoti Datta <Shubhrajyoti.datta@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230330180448.269635-1-lars@metafoo.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330180448.269635-1-lars@metafoo.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mer. 29 mars 2023 =C3=A0 15:17, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
->
-> Il 29/03/23 10:54, amergnat@baylibre.com ha scritto:
-> > From: Fabien Parent <fparent@baylibre.com>
-> >
-> > This new device-tree add the regulators, rtc and keys support
-> > for the MT6357 PMIC.
-> >
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt6357.dtsi | 282 ++++++++++++++++++++++=
-+++++++++
-> >   1 file changed, 282 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt6357.dtsi b/arch/arm64/boot=
-/dts/mediatek/mt6357.dtsi
-> > new file mode 100644
-> > index 000000000000..3330a03c2f74
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-> > @@ -0,0 +1,282 @@
->
-> ..snip..
->
-> > +
-> > +             keys {
-> > +                     compatible =3D "mediatek,mt6357-keys";
-> > +
-> > +                     key-power {
-> > +                             linux,keycodes =3D <KEY_POWER>;
-> > +                             wakeup-source;
-> > +                     };
-> > +
-> > +                     key-home {
-> > +                             linux,keycodes =3D <KEY_HOME>;
-> > +                             wakeup-source;
->
-> KEY_HOME is a wakeup-source?! are you sure?!
->
-> (P.S.: I'm just checking if that was intended)
+On 30/03/2023 20:04, Lars-Peter Clausen wrote:
+> The Cadence I2C controller has an external reset that needs to be
+> de-asserted before the I2C controller can be accessed.
+> 
+> Document the `resets` devicetree property that can be used to describe how
+> the reset signal is connected.
 
-Yes it's the setup used in the official Mediatek Rity project.
+You could add it also to the example to have complete picture (and
+validate your change).
 
-Regards,
-Alex
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
