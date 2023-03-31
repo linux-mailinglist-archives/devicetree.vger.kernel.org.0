@@ -2,160 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9F1A6D1578
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 04:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D76146D1582
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 04:15:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbjCaCKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 22:10:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38358 "EHLO
+        id S229552AbjCaCPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 22:15:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbjCaCI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 22:08:28 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4A0191FC;
-        Thu, 30 Mar 2023 19:06:50 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-17786581fe1so21771975fac.10;
-        Thu, 30 Mar 2023 19:06:50 -0700 (PDT)
+        with ESMTP id S229475AbjCaCPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 22:15:22 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9963E18B;
+        Thu, 30 Mar 2023 19:15:21 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id j13so19059810pjd.1;
+        Thu, 30 Mar 2023 19:15:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680228410;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pvM334uaDN62u5CXBwDPRhi1Ml5Rc/k9LOkZNPsfO9U=;
-        b=OUha1buX9Iya3CjbsVobPGHSOMWmpDrZzKS4TD3RmS+O87YOx/sthAzdlI6Mpq6c2x
-         uSD9IFLRH4VFtCWCAxURoqL0IG4NSpM4EueoLgGiZTipQjByWnk4Qo/h02rFOlYOzGsM
-         HSviKdKTOdMu8KOcJV4AD4hZJS4OPmpsBKvppGrEIYPVUu0b3QX5IoLc4OzGLkHSwBx5
-         rT2xr3XB3hifVhNdNG0LwszasFVR9vR7eO/1p+cHFUJwYkK7XNnRsDcsn/WFhbO959yU
-         O5C8Uf+LWjM4gkF1CM4NBLcbFgJPAWMudClmTTablSrajbt1Bc3O7TLUL7Z9qyEmrDTy
-         fyJA==
+        d=gmail.com; s=20210112; t=1680228921;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zFs1M4FHeogHRWVUs63pLt774ztEF1h66obdsW+D9oo=;
+        b=hoNgpgf4aLzwSLP/BeB7GheyN/ekC/VIniLYkDG8Bzjw8dAusZoKtuLdkWW/RIlJ/F
+         rrwcBwWq2TZm9mpbTDoY90Q/sj13Chrmy1Rl3JBS/XOsLcB3AGbltI8IQnF1KxxzqB+6
+         BIVxyZ7hwg4b1fLb4t2Vj2E9paTpeUB9jnXORN3+MvGoQ9+7NFO9e+dUDXoSQLiPIOk8
+         qIFcKSlH7OGb1QrmRRdrzaSOAOp1Gkmq0+8vyKaoWStp4YlfH6s5K4/OClHx3lNshl40
+         RWvrkpEQTDdPgVj2EQblhYQ1pVj17kvgFDgQqKbzt1WsVMQEAA7Ms7EXLV/ug4XfMXOS
+         In/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680228410;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pvM334uaDN62u5CXBwDPRhi1Ml5Rc/k9LOkZNPsfO9U=;
-        b=ePyoJ+/rt0DdLust3fJWH77JtSzlyrxWCZekCtxBReL7hVv3NQLqMNKESc7m8laNIS
-         RQhVHZ9i2t2jegzkAqZV/RDV4uXFG8igWoWUlMmm3E2klFPzl5H2kVSyKSZK9i9irLCU
-         wW0B28hvR7WhBROiyJnYuW7JPv6hFrDF6IO8Vpbur06bo2jLv4ZokqUomhb4q3276am4
-         fdOv+TgRGkqvAUyuQqL0rRnkMs4SfO45447MA5VELOvZeZaWFCws4z5c8OlCom4Gb/2K
-         qR/ySoVpLb3xCa5A05zlp9smXIAnHkHfuP072eL30iPkxU7ORaqHzn7RRXwUX+ZWNO0h
-         2plg==
-X-Gm-Message-State: AO0yUKWL65QAfPmSuCLEdTp08rA5y5/1MOumC3qWIVh3gaynWItQBh07
-        fR775FKbMO6KLZ4otXLtSjY=
-X-Google-Smtp-Source: AK7set9SVdoBv4Z6z/5U2LbxssB3wFAqZk8t0GCibw/+1rXEmQsRBHijgZAq1yj9AKxTzVChxWYNVA==
-X-Received: by 2002:a05:6870:3396:b0:177:c4c1:db8a with SMTP id w22-20020a056870339600b00177c4c1db8amr15470422oae.0.1680228409807;
-        Thu, 30 Mar 2023 19:06:49 -0700 (PDT)
-Received: from heimdal.localdomain ([2804:431:cfec:20b3:d050:3c82:2c34:f704])
-        by smtp.gmail.com with ESMTPSA id yv2-20020a05687c228200b0016e8726f0d4sm548177oab.3.2023.03.30.19.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 19:06:49 -0700 (PDT)
-From:   =?UTF-8?q?Andr=C3=A9=20Morishita?= <andremorishita@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        anish kumar <yesanishhere@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mairacanal@riseup.net, dri-devel@lists.freedesktop.org,
-        daniel.baluta@nxp.com,
-        =?UTF-8?q?Andr=C3=A9=20Morishita?= <andremorishita@gmail.com>
-Subject: [PATCH] dt-bindings: maxim,max98371: Convert to DT schema
-Date:   Thu, 30 Mar 2023 23:05:25 -0300
-Message-Id: <20230331020527.482991-1-andremorishita@gmail.com>
-X-Mailer: git-send-email 2.40.0
+        d=1e100.net; s=20210112; t=1680228921;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zFs1M4FHeogHRWVUs63pLt774ztEF1h66obdsW+D9oo=;
+        b=UVIvn3+uNPUnKcmaOGO0Hkh++BSen9w5EGZY2F1rrnclVcFcH+pTmiLDwQ80YItruR
+         w6v3s81qe49FYZhuGpSITFk8PBBvqa+g8X0aa8yqYJmJ1KktKI/GizOU9wjemP/e1E/K
+         GJXXGlEW7vmaCThLgccasb+vPFM9DBzLml2EK/brPAAUylo/srT1/ExtFReOmLIGaCcj
+         onM28Va0Srl0LU+pc7C4qhswd+3DH2380kYK26WEYtAx+H2GcWkcMT4SKn44+1rotSrT
+         qI6rE3/5TntwHzoLPjTJhNzFpld8e1AQo0v8Xqlxi/9++pZJg+xbYt+CUleCMlQPb7XN
+         BOZA==
+X-Gm-Message-State: AAQBX9dCRxbGViB7YXXjjz53Onc92EGvPyNLJhXMiqERFJRt+/fvIjlT
+        mbuHCwWlfww1XK8Bx9YE6wcqR5/yA8npmg==
+X-Google-Smtp-Source: AKy350Z25zRGMGsijn+lkfwgpeoLaG0vQTga3fyakeBYu0nJOmIM+xWkUKhvVhuhSHcb82X4GMUJoQ==
+X-Received: by 2002:a17:90b:4094:b0:23f:d487:1bc8 with SMTP id jb20-20020a17090b409400b0023fd4871bc8mr8650609pjb.13.1680228921239;
+        Thu, 30 Mar 2023 19:15:21 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id gq16-20020a17090b105000b002309279baf8sm3866155pjb.43.2023.03.30.19.15.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 19:15:20 -0700 (PDT)
+Message-ID: <f39edbfe-75bd-3b39-e325-8d24673a4501@gmail.com>
+Date:   Fri, 31 Mar 2023 10:15:16 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v6 06/12] dt-bindings: arm: Add initial bindings for
+ Nuvoton platform
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230328021912.177301-1-ychuang570808@gmail.com>
+ <20230328021912.177301-7-ychuang570808@gmail.com>
+ <CAL_JsqKrrWyOKGUAaT-8r-nKvtS5f_gHAhE5=XaXuGtuYC2gCw@mail.gmail.com>
+ <a497eb9c-8279-d4e9-3b8d-537ffa1f7522@gmail.com>
+ <cfa5904e-8ae4-6d39-ed4e-35d1b55e2b04@linaro.org>
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <cfa5904e-8ae4-6d39-ed4e-35d1b55e2b04@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Maxim Integrated MAX98371 audio codec bindings to DT schema.
 
-Signed-off-by: André Morishita <andremorishita@gmail.com>
----
- .../devicetree/bindings/sound/max98371.txt    | 17 --------
- .../bindings/sound/maxim,max98371.yaml        | 41 +++++++++++++++++++
- 2 files changed, 41 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/max98371.txt
- create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98371.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/max98371.txt b/Documentation/devicetree/bindings/sound/max98371.txt
-deleted file mode 100644
-index 8b2b2704b574..000000000000
---- a/Documentation/devicetree/bindings/sound/max98371.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--max98371 codec
--
--This device supports I2C mode only.
--
--Required properties:
--
--- compatible : "maxim,max98371"
--- reg : The chip select number on the I2C bus
--
--Example:
--
--&i2c {
--	max98371: max98371@31 {
--		compatible = "maxim,max98371";
--		reg = <0x31>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/sound/maxim,max98371.yaml b/Documentation/devicetree/bindings/sound/maxim,max98371.yaml
-new file mode 100644
-index 000000000000..df0262473399
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/maxim,max98371.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/maxim,max98371.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX98371 audio codec
-+
-+maintainers:
-+  - anish kumar <yesanishhere@gmail.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: maxim,max98371
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        max98371: max98371@31 {
-+            compatible = "maxim,max98371";
-+            reg = <0x31>;
-+        };
-+    };
--- 
-2.40.0
+On 2023/3/30 下午 09:25, Krzysztof Kozlowski wrote:
+> On 30/03/2023 12:41, Jacky Huang wrote:
+>> Dear Rob,
+>>
+>>
+>> On 2023/3/29 下午 09:07, Rob Herring wrote:
+>>> On Mon, Mar 27, 2023 at 9:19 PM Jacky Huang <ychuang570808@gmail.com> wrote:
+>>>> From: Jacky Huang <ychuang3@nuvoton.com>
+>>>>
+>>>> Rename the bindings/arm/npcm directory as nuvoton.
+>>>> Add binding for ARMv8 based Nuvotn SoCs and platform boards.
+>>>> Add initial bindings for ma35d1 series development boards.
+>>>>
+>>>> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+>>>> ---
+>>>>    .../bindings/arm/nuvoton/nuvoton,ma35d1.yaml  | 30 +++++++++++++++++++
+>>>>    .../nuvoton,npcm-gcr.yaml}                    |  2 +-
+>>>>    .../npcm.yaml => nuvoton/nuvoton,npcm.yaml}   |  2 +-
+>>>>    3 files changed, 32 insertions(+), 2 deletions(-)
+>>>>    create mode 100644 Documentation/devicetree/bindings/arm/nuvoton/nuvoton,ma35d1.yaml
+>>>>    rename Documentation/devicetree/bindings/arm/{npcm/nuvoton,gcr.yaml => nuvoton/nuvoton,npcm-gcr.yaml} (93%)
+>>> Since you are moving it, this one should be moved to bindings/soc/nuvoton/
+>>>
+>>>>    rename Documentation/devicetree/bindings/arm/{npcm/npcm.yaml => nuvoton/nuvoton,npcm.yaml} (93%)
+>> OK, I will move "Documentation/devicetree/bindings/arm/npcm" to
+>> "Documentation/devicetree/bindings/soc/nuvoton".
+> To clarify - Rob asked *this one*. Not all.
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
+
+Dear Krzysztof,
+
+I am sorry that still cannot get it exactly.
+
+1. Just only submit  the nuvoton,ma35d1.yaml to
+Documentation/devicetree/bindings/soc/nuvoton/nuvoton,ma35d1.yaml
+     and keep Documentation/devicetree/bindings/arm/npcm unchanged
+
+2. Move the directory "Documentation/devicetree/bindings/arm/npcm" to 
+"Documentation/devicetree/bindings/soc/nuvoton"
+    and submit  the nuvoton,ma35d1.yaml to 
+"Documentation/devicetree/bindings/soc/nuvoton"
+
+I should do 1 or 2?  Thank you very much.
+
+
+Best regards,
+Jacky Huang
+
 
