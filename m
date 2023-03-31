@@ -2,130 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D92FC6D1DE7
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 12:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD4D66D1DFB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 12:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbjCaKWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 06:22:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
+        id S231177AbjCaKY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 06:24:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230151AbjCaKVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 06:21:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A6A40C6;
-        Fri, 31 Mar 2023 03:18:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CE0A3B82E29;
-        Fri, 31 Mar 2023 10:18:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E4F0C433D2;
-        Fri, 31 Mar 2023 10:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680257929;
-        bh=5A3MI1NM5Uq/2OVg1nMJ+OOp//buqxGmoqLAWsIGndg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nFu8EEpL/yc6LfoS3gnG3bmm4mj3ewDjHxPWj9mvPwAM+ZuAZVRh6EhG7X6qmZ5HD
-         l5cAYUlVPq/z4q9mER2jXuIvzGQonzJ8ULQPpBwjMYoZRY5GePZG+o+irlHXOp8vTD
-         DybiTBkdYhiEMqL9fU4xX/j554JNFo3ZxyKdiU+b+4eR37mWDdX3AyotYNrWZGyExY
-         Hpz6gF2ZhRcUsXKXT+FAJrZEbbdG5zOJlZ0SqmF21V+7YsHXJmMEGXHOZYsx2bPivZ
-         heJvpIwi0b11XfAq9jWZbLUsCJrHq1WtlkBHa3Ola2amMkXG/fIyuYP/XTh0FiUG4r
-         /PAYny8iqIpvA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1piBqg-0004es-QE; Fri, 31 Mar 2023 12:19:10 +0200
-Date:   Fri, 31 Mar 2023 12:19:10 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, sboyd@kernel.org, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
-Message-ID: <ZCaznloORtzgioOP@hovoldconsulting.com>
-References: <cover.1680162377.git.quic_varada@quicinc.com>
- <c46b542b112b59002ab965be1d3fcae8c372d545.1680162377.git.quic_varada@quicinc.com>
- <CAA8EJpo_ckJtYV4aU613X5L6+wj-1i9vZkud5p72PLdCSnj5ng@mail.gmail.com>
- <20230331092710.GB19162@varda-linux.qualcomm.com>
+        with ESMTP id S230389AbjCaKYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 06:24:34 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79B621A85;
+        Fri, 31 Mar 2023 03:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1680258126; x=1711794126;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=O97ADEtm/OjO7nPRNILELGyEc11czzC4AfiYhLq7BVU=;
+  b=HmgZ2yvpCgu50LcQ0XZdjkdbu8zEj0yTXiq1sYpUSN3f4wrFbmtQ0XDG
+   YIDq4+uHX/6nbnH1hkO/rgDCcCR60riM5mOkesZFqyiLW0SiD+9WFsgXE
+   SS0NXziZJSAy5hT5dPIs5r4yUB/Ap1Vs0JYGPq/zVp/StDNf/M2tb6Z9n
+   HgOB44RS2JS5WH2PI3Oy5aPIIMJ8g+ghSGRdywYoHCoQR4q7T4m5hnlXc
+   KPmh9hnbbp3grfaG3Plg2R0optrAkrYCQDTpeNQIVbaMLXT/MnJiVv7eT
+   1DMSgRP0YxBAMNVvcJymWfZ5JkXR8Jh0c7tErM2KvKB064ScKoJ49iQZw
+   w==;
+X-IronPort-AV: E=Sophos;i="5.98,307,1673938800"; 
+   d="asc'?scan'208";a="207167804"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Mar 2023 03:22:05 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 31 Mar 2023 03:22:05 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 31 Mar 2023 03:22:02 -0700
+Date:   Fri, 31 Mar 2023 11:21:48 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v7 4/6] dt-bindings: cache: r9a07g043f-l2-cache: Add DT
+ binding documentation for L2 cache controller
+Message-ID: <65394572-33ae-4241-8936-0ccc8353d1a2@spud>
+References: <20230330204217.47666-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230330204217.47666-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ZaakkSvjL3VDjlgv"
 Content-Disposition: inline
-In-Reply-To: <20230331092710.GB19162@varda-linux.qualcomm.com>
+In-Reply-To: <20230330204217.47666-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 02:57:11PM +0530, Varadarajan Narayanan wrote:
-> On Thu, Mar 30, 2023 at 12:44:40PM +0300, Dmitry Baryshkov wrote:
-> > On Thu, 30 Mar 2023 at 11:42, Varadarajan Narayanan
-> > <quic_varada@quicinc.com> wrote:
-> > >
-> > > Add USB phy and controller related nodes
-> > >
-> > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > ---
-> > >  Changes in v5:
-> > >         - Fix additional comments
-> > >         - Edit nodes to match with qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> > >         - 'make dtbs_check' giving the following messages since
-> > >           ipq9574 doesn't have power domains. Hope this is ok
-> > >
-> > >                 /local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
-> > >                 From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> > >                 /local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
-> > >                 From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> >
-> > No, I think it is not.
-> 
-> There are no GDSCs in IPQ9574. Can you suggest how to proceed.
+--ZaakkSvjL3VDjlgv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-You need to update the binding and either make the power domains
-property optional in the binding or dependent on the SoC.
+$subject: t-bindings: cache: r9a07g043f-l2-cache: Add DT binding documentation for L2 cache controller
+                             ^^^^^^^^^^^^^^^^^^^
+I assume this should be updated to be ax45mp-foo instead?
 
-> > > +               ssphy_0: phy@7d000 {
-> >
-> > Nit: usually the label usb_0_qmpphy
-> >
-> > > +                       compatible = "qcom,ipq9574-qmp-usb3-phy";
-> > > +                       reg = <0x0007d000 0xa00>;
-> > > +                       #phy-cells = <0>;
-> > > +
-> > > +                       clocks = <&gcc GCC_USB0_AUX_CLK>,
-> > > +                                <&xo_board_clk>,
-> > > +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> > > +                                <&gcc GCC_USB0_PIPE_CLK>;
-> > > +                       clock-names = "aux",
-> > > +                                     "ref",
-> > > +                                     "com_aux",
+Cheers,
+Conor.
 
-This is not the right name for this clock so you need to update the
-binding first.
+--ZaakkSvjL3VDjlgv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please be more careful.
+-----BEGIN PGP SIGNATURE-----
 
-> > > +                                     "pipe";
-> > > +
-> > > +                       resets = <&gcc GCC_USB0_PHY_BCR>,
-> > > +                                <&gcc GCC_USB3PHY_0_PHY_BCR>;
-> > > +                       reset-names = "phy",
-> > > +                                     "phy_phy";
-> > > +
-> > > +                       vdda-pll-supply = <&reg_usb_1p8>;
-> > > +                       vdda-phy-supply = <&reg_usb_0p925>;
-> > > +
-> > > +                       status = "disabled";
-> > > +
-> > > +                       #clock-cells = <0>;
-> > > +                       clock-output-names = "usb0_pipe_clk";
-> > > +               };
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCa0PAAKCRB4tDGHoIJi
+0p5iAP9SWWenRmTwVMmV5yA0RKo8s1JsMjzzWaOTHtxbXLVfuAEArMTwVtQ8gzTS
+RxcRbytq2gWtJbpyS6svV1wo0kiDews=
+=ilmE
+-----END PGP SIGNATURE-----
 
-Johan
+--ZaakkSvjL3VDjlgv--
