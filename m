@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A876C6D1B35
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 197856D1B3D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbjCaJEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44386 "EHLO
+        id S232024AbjCaJFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231962AbjCaJDl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:03:41 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1211D902
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:03:21 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id m8so1554187wmq.5
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:03:21 -0700 (PDT)
+        with ESMTP id S229529AbjCaJEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:04:52 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C039DBEE
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:04:48 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id t14so22326889ljd.5
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680253398;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6NgF2y2gqeSjwWNBU3Vh//FDhE6SAE4mrieUrogeNQY=;
-        b=BC68iOemDu1I3MASG2eRLx7neRQE3Uq3Gx7FJdgGqRfKjtKf0LKGtrggjLS2JKIS1d
-         htzhH8QF/pvd950MshqrSNPczT82tVOVGdwhs1NKAt5CGw3S/nqHVsHml+dAGbTYVoB3
-         ZjhgYPYirKxNoYtdCOpReZGTyrKPW5PE+durNsFSWOI3Y4JhR7sjz9XV7dV9CGSdI81r
-         CNxEk9q+9HkPQ61fEKlm0QXEodkpIfWZTkLBiyxssH0J6pwva6dYl2NsiXYFusMd6J/3
-         R5fUlesFIbx33+LyIDyLXRwawXySh/qZgLbWtEcD8dISOQ5jIiBpDIYGXO69/WWG6oOj
-         5dag==
+        d=linaro.org; s=google; t=1680253486;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xQhDEd07VyHSzl19bZH9QcfJtJJihI3OzZM5CRpJxGE=;
+        b=W3cCu/uvty579Wn1PqSgOHwkvhg2UOoubwiwEbu9KVTF0A8L2mCNLJw2x67vIW2h8w
+         vtUZuJg8334jrUSSko0UKVSwsELwRCrP6QadxlW1oZ47y5NbTEJOM4w0HJS4zvcLDuJQ
+         lKbn5Y/k4/2RmVo6P+t5AC63ncNRhJTEe4jKDNW8gEqhd4k2XRjdzpWhXW/jqWp38HVp
+         H/qkkFDw/Meb4kOhqwHg3ZfoUCvt2rPhWP+CoeDgxSQgNt7WBXfa72U4KpG3ckbMwdO2
+         2l/evIYJ1ZRSrsjVgvoQVDbIhrKUgELrhCmMsYnEza67aBZ6ZTiPuDT/WEZsEsMtbqv4
+         l52w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680253398;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6NgF2y2gqeSjwWNBU3Vh//FDhE6SAE4mrieUrogeNQY=;
-        b=1KGJM5NZA19eEryTH9MuGDpBqM+Ujxi7EZ6cTLgIGLf8nFPdFnPPZdHtQ+XzPWmQoP
-         JwgeIkFY10dzlRhGW6HQlEO2J+c54qoPYt+lNXIpA86sa7whUwlvv/fSzONVmUkqN+X6
-         OkVrYrX8Egb7aGmwsmTZiUWQRt/HhnQXLhqZMGEfgviQjBRLqyuHwF2qfxRMy/Q2AZT3
-         444VxyZFo1GezfbwwhISV1f9kz6QrWZvR63xJfjEmyRjEXGCfiGNyuw1itUSXFOrmrHa
-         SppM7iVsnX3EX+dKD+7mW4RciiwHYY4cifae0t8ra7CLW3NXg+3C3vOz7v1k4yHFMoKg
-         6cLg==
-X-Gm-Message-State: AO0yUKV5JoeU9vK+9eLUJs+iBZcMr5cKt/9olYREg0zCPM9y9cL5Lki/
-        nooNXnqyFmtqujB7RcI6XW0Mkw==
-X-Google-Smtp-Source: AK7set8/X6Cq24SZ595QaP8eLxh41ZoTV/2LWoVwSD3DOKM/3TjaiNXH1tTwPsTR2k8TfARyyFT6qA==
-X-Received: by 2002:a05:600c:c6:b0:3ef:df3:1693 with SMTP id u6-20020a05600c00c600b003ef0df31693mr20043731wmm.32.1680253398305;
-        Fri, 31 Mar 2023 02:03:18 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0? ([2a01:e0a:982:cbb0:74cb:1a96:c994:e7e0])
-        by smtp.gmail.com with ESMTPSA id iz5-20020a05600c554500b003ef67ac3846sm9017600wmb.24.2023.03.31.02.03.17
+        d=1e100.net; s=20210112; t=1680253486;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xQhDEd07VyHSzl19bZH9QcfJtJJihI3OzZM5CRpJxGE=;
+        b=BNTPjNNc0mSIhyoSuRbMgsS3HwXjH7l1ejS2gpK1LhkgS9a7pKHSx1+ytQzchMZvGM
+         nR9fWArhw+RZjHq0Ays0sA+JzeMHK4YR3hDqZ5NFjb239dg6RBZKnsPqMSmKMve9i1cH
+         cqI1xTvi1A2l6zO1cMgT0jIE6ZvQ163Z9M0rHAvvIDAX+23N0DSDr5r5TcRFGVfkkDBn
+         npOt+b+p67p/OFp5VAR3TspKa0qD9XGU95NysxQAulx/JE497OUByg09sPcDyMuhLD0d
+         lLfbF+hvnIAWRh6/YsUuxfV1GqalkKxPB0H3NWgTDa5wwT+3y/7PHz0Ntws3ghUHXgSS
+         4ofA==
+X-Gm-Message-State: AAQBX9eQPWK5A5GEyzsx9gUA2zhKcowehy/T/XYya6EdBKNXb7VKyIv2
+        FeMsI9+CruXNs5WKM034zNRDRg==
+X-Google-Smtp-Source: AKy350YHCWagYx9SzYMk3qxiWv08aaIBLTiS3ytiW2dINux7zaRC6mONVhhI8ICibBKTrCLtKzkxCA==
+X-Received: by 2002:a2e:83d5:0:b0:299:6e0e:3a2a with SMTP id s21-20020a2e83d5000000b002996e0e3a2amr8357651ljh.49.1680253486330;
+        Fri, 31 Mar 2023 02:04:46 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b1-20020a2e9881000000b002a5ffe1ed37sm275991ljj.48.2023.03.31.02.04.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 02:03:17 -0700 (PDT)
-Message-ID: <15047d72-1cc1-5afe-0003-c67d093dc297@linaro.org>
-Date:   Fri, 31 Mar 2023 11:03:17 +0200
+        Fri, 31 Mar 2023 02:04:45 -0700 (PDT)
+Message-ID: <0c40e240-2d5f-a2a8-cf32-0a15f05df0fc@linaro.org>
+Date:   Fri, 31 Mar 2023 11:04:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 3/3] drm/bridge: tfp410: If connected, use I2C for
- polled HPD status.
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 3/4] dts: arm64: qcom: sdm845-oneplus: enable SLPI
 Content-Language: en-US
-To:     Jonathan Cormier <jcormier@criticallink.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Dylan Van Assche <me@dylanvanassche.be>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Michael Williamson <michael.williamson@criticallink.com>,
-        Bob Duke <bduke@criticallink.com>
-References: <20230125-tfp410_i2c-v3-0-a85d5f0f50f1@criticallink.com>
- <20230125-tfp410_i2c-v3-3-a85d5f0f50f1@criticallink.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230125-tfp410_i2c-v3-3-a85d5f0f50f1@criticallink.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230330165322.118279-1-me@dylanvanassche.be>
+ <20230330165322.118279-4-me@dylanvanassche.be>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330165322.118279-4-me@dylanvanassche.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
         DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -89,50 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/02/2023 23:10, Jonathan Cormier wrote:
-> From: Michael Williamson <michael.williamson@criticallink.com>
+On 30/03/2023 18:53, Dylan Van Assche wrote:
+> Enable the SLPI DSP on the Oneplus 6 phone with a Qualcomm SDM845 SoC.
 > 
-> If the I2C bus is connected on the TFP410, then use the register
-> status bit to determine connection state.  This is needed, in particular,
-> for polling the state when the Hot Plug detect is not connected to
-> a controlling CPU via GPIO/IRQ lane.
-> 
-> Signed-off-by: Michael Williamson <michael.williamson@criticallink.com>
-> Signed-off-by: Jonathan Cormier <jcormier@criticallink.com>
+> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
 > ---
->   drivers/gpu/drm/bridge/ti-tfp410.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
-> index 41007d05d584..eeb7202452aa 100644
-> --- a/drivers/gpu/drm/bridge/ti-tfp410.c
-> +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
-> @@ -28,6 +28,9 @@
->   #define TFP410_BIT_BSEL BIT(2)
->   #define TFP410_BIT_DSEL BIT(3)
->   
-> +#define TFP410_REG_CTL_2_MODE	0x09
-> +#define TFP410_BIT_HTPLG BIT(1)
-> +
->   static const struct regmap_config tfp410_regmap_config = {
->   	.reg_bits = 8,
->   	.val_bits = 8,
-> @@ -105,6 +108,15 @@ static enum drm_connector_status
->   tfp410_connector_detect(struct drm_connector *connector, bool force)
->   {
->   	struct tfp410 *dvi = drm_connector_to_tfp410(connector);
-> +	int ret;
-> +
-> +	if (dvi->i2c) {
-> +		ret = regmap_test_bits(dvi->regmap, TFP410_REG_CTL_2_MODE, TFP410_BIT_HTPLG);
-> +		if (ret < 0)
-> +			dev_err(dvi->dev, "%s failed to read HTPLG bit : %d\n", __func__, ret);
-> +		else
-> +			return ret ? connector_status_connected : connector_status_disconnected;
-> +	}
->   
->   	return drm_bridge_detect(dvi->next_bridge);
->   }
-> 
+>  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 5 ++++
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
