@@ -2,76 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CABF6D2590
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:32:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F404E6D2595
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232559AbjCaQcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 12:32:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46956 "EHLO
+        id S232176AbjCaQdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 12:33:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232273AbjCaQce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:32:34 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B3522233;
-        Fri, 31 Mar 2023 09:28:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 8989BCE303D;
-        Fri, 31 Mar 2023 16:28:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5BD8C433D2;
-        Fri, 31 Mar 2023 16:28:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1680280120;
-        bh=73IgJtnFs2TGSAjju6TrDNqdmySf1qlRHQ3Dsp/nG/0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sVqKIsAAgSmsFGZ07bdHiEQctl6mIt2BmwFbxffGTlp1gfp/4owkzIEgCwUOxeiSs
-         oJyjQIlfIRiUg9ZDwJhhMVYdWuIYzy8tzM0V/4zgo099W2vOnYGSikMWU9r2XMFWxU
-         251Rr5VIpMk9BQiTavizQ4NpzwyPkD3CXLnmkMLEaFkuiwcmHHNC+pxxiOUSI4N76u
-         5R+O0OtEC0xflg3/rcfq+w3fnCbNkpPzMOHpEAu2/T/1s0ifHHQkozWV2DvRvkVr0m
-         RNub9dq8rI5HAvmlGINbb5cEmX6yFN2h4x0xrxV77NbzteAIMpCIq7VUVc4XpOT+Kd
-         4NmwQR3SWhmGQ==
-Received: by mail-yb1-f182.google.com with SMTP id r187so28051248ybr.6;
-        Fri, 31 Mar 2023 09:28:40 -0700 (PDT)
-X-Gm-Message-State: AAQBX9e0rBDwESX1G/VqeDeuJs/ir6x0hLDLlBzWM9i2ITGkJbXXd8hc
-        pjrNy/+zqu2vMybj30FKVODFZelzRYYxPRDaKA==
-X-Google-Smtp-Source: AKy350YYHHZOKkd+6rbSZojhyMrcgt5V7WRPtHLi1eZqzNDmhN2F/7X0OcFlMu4lT31y3sbpuZVSo26tzqvlloI5gWo=
-X-Received: by 2002:a05:6902:10c3:b0:b79:4826:e8e3 with SMTP id
- w3-20020a05690210c300b00b794826e8e3mr12562188ybu.1.1680280120025; Fri, 31 Mar
- 2023 09:28:40 -0700 (PDT)
+        with ESMTP id S232207AbjCaQdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:33:06 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2426022E88;
+        Fri, 31 Mar 2023 09:29:23 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id y4so91898884edo.2;
+        Fri, 31 Mar 2023 09:29:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680280160;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G3EnkvQBvvzze5Eu61l7gVjFY+rjVaPV8wxN9ORbWm8=;
+        b=IFSDs06gzi3yqI6LLwUobzcxoUpZTZWK3mpEOvRMZy7vr9TAwadK3qlef/yFWak7GI
+         +qcbzDxi9cxuw8rx1ZyqRaZGGs+FetGZBl76c8vrGr4rFxCSwrnanOqqKHTxQiOKzfLB
+         wqvzKsmacmK29KsYaHH82u2QzDaFiJuFDiA/HBMcxGKa6c6Fp5ArBsb4ps26+yk09zdV
+         gejq/nyvF6ac2jK9kc5jLKKe6RAxCWttqxjR+v1436osx03yIVUi8ZF9brR366r3z3u4
+         ZP6blTS2Z7hB4WeKL5yu3uf/qbAcEQc/Uqe2HkFTvdqe+xRbWKTkjshOaQF/ANKRQkbY
+         BKEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680280160;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G3EnkvQBvvzze5Eu61l7gVjFY+rjVaPV8wxN9ORbWm8=;
+        b=Z503Ipfi3X2wFh+p373afkfcUA5ApRpVxHnA/VYR+Ebq6lX9rStPGOd/lmoa73oiNV
+         OrnlCABW/aIuLdzY3l++XP/vLlpyugh74Jr7G2wEq+gxGyjBELCcM1VQy11hLhdfuIOm
+         7/xobe0P7lV2bkPyHpsnDiiTdT2WSMGk3Xkic9H9GVexuybLfSdd+frutfQ35bdD6H/C
+         m+opy4do2D6Yo5IV38emMNRCoaCPDIL3RCBZOt7P2V09hfpRtvroDtqly6PfnXAqh+EK
+         AvD5TUGYoCzOWrL9JaKxbxTJ11s4pP38tNaQslzJ1LocC2hvp8Bh4izWo52JXeo1QImi
+         osVg==
+X-Gm-Message-State: AAQBX9dU2y+IoIjWUA6yL/itjumXdqST0HUGh1XTmzolrK6JsWfqAaPk
+        3XxHPsQ8Vr0bJXjDObKlLSk=
+X-Google-Smtp-Source: AKy350Yfb03jO7la9tbyytLQre49eAz/3UWInRpcaZJFjf1YZWpbKu5KpiSnAR/MnNVfiH5TmnT4bg==
+X-Received: by 2002:a17:907:7784:b0:930:e2c:ddc3 with SMTP id ky4-20020a170907778400b009300e2cddc3mr26995433ejc.72.1680280160150;
+        Fri, 31 Mar 2023 09:29:20 -0700 (PDT)
+Received: from localhost (p200300e41f1c0800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id hp17-20020a1709073e1100b008cecb8f374asm1135766ejc.0.2023.03.31.09.29.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 09:29:19 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/4] dt-bindings: tegra: Document Jetson Orin NX
+Date:   Fri, 31 Mar 2023 18:29:11 +0200
+Message-Id: <20230331162914.16922-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <cover.1680248888.git.geert+renesas@glider.be> <b8701c04d27e51618444a747c4f4be5cc889ce28.1680248888.git.geert+renesas@glider.be>
-In-Reply-To: <b8701c04d27e51618444a747c4f4be5cc889ce28.1680248888.git.geert+renesas@glider.be>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 31 Mar 2023 11:28:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJJoTGjTihcCiX8qOowb7tSjxg-rjLVskVPuWvSn=0ikA@mail.gmail.com>
-Message-ID: <CAL_JsqJJoTGjTihcCiX8qOowb7tSjxg-rjLVskVPuWvSn=0ikA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] of: address: Reshuffle to remove forward declarations
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-5.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 2:52=E2=80=AFAM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Reshuffle the code to get rid of the forward declarations, which
-> improves readability.
+From: Thierry Reding <treding@nvidia.com>
 
-Is git blame smart enough to ignore this move? If not, I'd rather keep
-the blame than save 3 lines.
+The Jetson Orin NX is the latest iteration in the NX family of Jetson
+products. Document the compatible strings used for these devices.
 
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/of/address.c | 271 +++++++++++++++++++++----------------------
->  1 file changed, 133 insertions(+), 138 deletions(-)
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index 939a77c767bb..6c13d5e5719a 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -213,5 +213,9 @@ properties:
+           - const: nvidia,p3737-0000+p3701-0000
+           - const: nvidia,p3701-0000
+           - const: nvidia,tegra234
++      - description: Jetson Orin NX
++        items:
++          - const: nvidia,p3767-0000
++          - const: nvidia,tegra234
+ 
+ additionalProperties: true
+-- 
+2.40.0
+
