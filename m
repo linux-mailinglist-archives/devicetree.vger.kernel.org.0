@@ -2,91 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 417D76D221C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23A3A6D2229
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 16:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232200AbjCaOLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 10:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38374 "EHLO
+        id S229792AbjCaOPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 10:15:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232429AbjCaOLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:11:33 -0400
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E1D1D2E9
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:11:30 -0700 (PDT)
-Received: by mail-vs1-xe33.google.com with SMTP id g17so19212623vst.10
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:11:30 -0700 (PDT)
+        with ESMTP id S232179AbjCaOPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 10:15:08 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B349E5FC3
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:15:06 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id t10so90006934edd.12
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 07:15:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112; t=1680271889;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lG/WYsq29l19IPVJ1k1HveeXpXEw8n6whXP0RBXQsVE=;
-        b=EvtZrKsNbHzwyuTtRqHQROrrofpQ/sG01uOiuhmiI8aPts7n7Ee5Ir4NvfrBMC9uI+
-         rP59rZDcNbSrbcJgAHZuzWOVqM440qSkPSsXQam8gLhm6JrqARMEWp7hP37azlVW4org
-         fBACV9jHeMc/fcIgXarc7w17iylr7tNHGmieksiQNlIzpXJ80+yWU+CJGHU8lpI3k2C8
-         ICYW0V27W/2DBLWul+Ja7q7aEtfylH/JCpUFcy+E+zrhYwff5tk/+w+43pgclTvoUdaY
-         JKB3eTBzT085pwnm7cEdG1xRDF3HVWkUIWkzjjSc40AzCnbk/tZvpSB9Tq3T3RIS9CKy
-         06FA==
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112; t=1680272105;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BrDsTrd9KLSKSQ6OxEMuUpt1ePO+mhfnRW2i0VPJRgc=;
+        b=ZuQT6y3yFUt85bdxbIWWROiKnCvK3VV/RjDdbfxwqJIt7uH97Mq2bmWl3zLS9DnOT/
+         IwmoMdIayeo9WHaOuOaSEYI3rDzVrHYDQ17qCt/h26UToeu/R0ELvKI5ozPEVZ9fOTj7
+         sNOXlVW1ERUCYijleEFU6X7QPLMshZKDAw0KmvgYINn0yqtJqqI78L5bIJdS2RCzlIdT
+         XFe0liwhLC6w8YvVrteoyaLNdMYRx4p6vAlbVTji+Bm1yvwgzgpNr3zwegYrW1TsKFop
+         DZkVyzFqM3lmxcp0xgm4hA/mBE7fPhmYiwdTLeTNltxvbWzuMS/Y3mgnOtVe/yAK6Vmf
+         vPgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680271889;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lG/WYsq29l19IPVJ1k1HveeXpXEw8n6whXP0RBXQsVE=;
-        b=tA+Q5MrPDcKAx2ouUq1yewjn+i+B7wm9wPP9EsrBun+Dhb5eTPigiRknFpIDHJZcxl
-         daoejefoK3Uveq+eZu8pHWlBQr5BQ4ITTGFSotU/7i7sd61Quu3EE+nFx/RFPbi+HyUX
-         D0mL8XfMrCyrKx6Xvj7xev1JOnPxw/+jE5NybIovd9YZfxeE2gr9pqrP9hhhXpNnP3MP
-         omsmEuzBxLDfl0xDGw6leOMxxjGnEF0awCqAGPLaMGHR7RiojzFFfhuGt03EcA4rbFAu
-         Z9ejZkVyjaXrVfil3FKVGsaRz5KzTANh+86UDOG3yIgCMIb6BHeGRa5Qv9K5SW06wZpF
-         3ydw==
-X-Gm-Message-State: AAQBX9eq7ZknEgzobqVi2GM8OCeTr3tk2e0hP+Xqnb3WLfQ8P8uBjdaE
-        aH7JozXaVoTVssjgEv/uR/DavoV47T6yEdCeFe0d0A==
-X-Google-Smtp-Source: AKy350Ya9O0j2IJ/iXVAszn5aY9fHDH1jV5pYhAfg5ER4OEHtZmmlP21NIaPy6SQjGvX406cL1yK9LBdk5p7JcyHINc=
-X-Received: by 2002:a67:e095:0:b0:426:b051:1c4 with SMTP id
- f21-20020a67e095000000b00426b05101c4mr9141092vsl.0.1680271889495; Fri, 31 Mar
- 2023 07:11:29 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680272105;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BrDsTrd9KLSKSQ6OxEMuUpt1ePO+mhfnRW2i0VPJRgc=;
+        b=4KrZiPdaPfSLLp7ULYCMMFxDbGcYEl5OdGPQNxGiOCc4rT5UOEchf/Nj867mQxyoxF
+         ZnGDyoFPz1W3EY5aUR8H3CN3UBlB1vAIEFz5Q2Lgrd4apsOtiSuUKaQ1r4ImF3R989Xm
+         Uia5ZS4plWfnpOUTn5++JgJkEf0HH5QgP+BA50ykyyR7xESgrnjd06l/2fpGwZBhzQP2
+         UkgHHEosvNBqhT6RoVaArykG9he9UWUyT5gF+bENl98FFMIfa7E6xBgYAp1JyxiqYcdk
+         keFTNXD0eEiCuGEKOTkq623ft0lw7zCzC3kosqRuI76WAZ3u9XZDsf4O6KXsBxGKw5xa
+         pSRQ==
+X-Gm-Message-State: AAQBX9fDk+nDWGMVoR3ymeYjUSuh/5pJCc7t6OA/zF5wmz5l3bUuKvjh
+        zcJKUOQlOnjSlTltnl1bHwf0bw==
+X-Google-Smtp-Source: AKy350Z+gXpGii5gahXuX3oDqtk0AjVPREHuyk10DGZ+AflGwfFulzo1cA5bctLqtSKMgT6IrjPhIg==
+X-Received: by 2002:a17:906:f754:b0:92e:fcc9:aa22 with SMTP id jp20-20020a170906f75400b0092efcc9aa22mr9794906ejb.37.1680272105262;
+        Fri, 31 Mar 2023 07:15:05 -0700 (PDT)
+Received: from sleipner.berto.se (p54ac5f91.dip0.t-ipconnect.de. [84.172.95.145])
+        by smtp.googlemail.com with ESMTPSA id kx6-20020a170907774600b009310d4dece9sm1012276ejc.62.2023.03.31.07.15.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Mar 2023 07:15:04 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] arm64: dts: renesas: falcon-csi-dsi: Set bus-type for MAX96712
+Date:   Fri, 31 Mar 2023 16:14:31 +0200
+Message-Id: <20230331141431.3820311-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-References: <20230331-topic-oxnas-upstream-remove-v1-0-5bd58fd1dd1f@linaro.org>
- <20230331-topic-oxnas-upstream-remove-v1-15-5bd58fd1dd1f@linaro.org>
-In-Reply-To: <20230331-topic-oxnas-upstream-remove-v1-15-5bd58fd1dd1f@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 31 Mar 2023 16:11:18 +0200
-Message-ID: <CAMRc=Mdp48+DitzSV5gq3arPL75TJXQLoBxTujsWSH4UVpd2ww@mail.gmail.com>
-Subject: Re: [PATCH RFC 15/20] dt-bindings: gpio: gpio_oxnas: remove obsolete bindings
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,80 +73,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 31, 2023 at 10:35=E2=80=AFAM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> Due to lack of maintainance and stall of development for a few years now,
-> and since no new features will ever be added upstream, remove the
-> OX810 and OX820 gpio bindings.
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../devicetree/bindings/gpio/gpio_oxnas.txt        | 47 ----------------=
-------
->  1 file changed, 47 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio_oxnas.txt b/Docu=
-mentation/devicetree/bindings/gpio/gpio_oxnas.txt
-> deleted file mode 100644
-> index 966514744df4..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/gpio_oxnas.txt
-> +++ /dev/null
-> @@ -1,47 +0,0 @@
-> -* Oxford Semiconductor OXNAS SoC GPIO Controller
-> -
-> -Please refer to gpio.txt for generic information regarding GPIO bindings=
-.
-> -
-> -Required properties:
-> - - compatible: "oxsemi,ox810se-gpio" or "oxsemi,ox820-gpio"
-> - - reg: Base address and length for the device.
-> - - interrupts: The port interrupt shared by all pins.
-> - - gpio-controller: Marks the port as GPIO controller.
-> - - #gpio-cells: Two. The first cell is the pin number and
-> -   the second cell is used to specify the gpio polarity as defined in
-> -   defined in <dt-bindings/gpio/gpio.h>:
-> -      0 =3D GPIO_ACTIVE_HIGH
-> -      1 =3D GPIO_ACTIVE_LOW
-> - - interrupt-controller: Marks the device node as an interrupt controlle=
-r.
-> - - #interrupt-cells: Two. The first cell is the GPIO number and second c=
-ell
-> -   is used to specify the trigger type as defined in
-> -   <dt-bindings/interrupt-controller/irq.h>:
-> -      IRQ_TYPE_EDGE_RISING
-> -      IRQ_TYPE_EDGE_FALLING
-> -      IRQ_TYPE_EDGE_BOTH
-> - - gpio-ranges: Interaction with the PINCTRL subsystem, it also specifie=
-s the
-> -   gpio base and count, should be in the format of numeric-gpio-range as
-> -   specified in the gpio.txt file.
-> -
-> -Example:
-> -
-> -gpio0: gpio@0 {
-> -       compatible =3D "oxsemi,ox810se-gpio";
-> -       reg =3D <0x000000 0x100000>;
-> -       interrupts =3D <21>;
-> -       #gpio-cells =3D <2>;
-> -       gpio-controller;
-> -       interrupt-controller;
-> -       #interrupt-cells =3D <2>;
-> -       gpio-ranges =3D <&pinctrl 0 0 32>;
-> -};
-> -
-> -keys {
-> -       ...
-> -
-> -       button-esc {
-> -               label =3D "ESC";
-> -               linux,code =3D <1>;
-> -               gpios =3D <&gpio0 12 0>;
-> -       };
-> -};
->
-> --
-> 2.34.1
->
+Specify the bus-type property for all three connected MAX96712.
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+ arch/arm64/boot/dts/renesas/r8a779a0-falcon-csi-dsi.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-csi-dsi.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-csi-dsi.dtsi
+index e06b8eda85e1..dbc8dcab109d 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-csi-dsi.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-csi-dsi.dtsi
+@@ -5,6 +5,8 @@
+  * Copyright (C) 2021 Glider bv
+  */
+ 
++#include <dt-bindings/media/video-interfaces.h>
++
+ &csi40 {
+ 	status = "okay";
+ 
+@@ -105,6 +107,7 @@ ports {
+ 			port@4 {
+ 				reg = <4>;
+ 				max96712_out0: endpoint {
++					bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+ 					clock-lanes = <0>;
+ 					data-lanes = <1 2 3 4>;
+ 					remote-endpoint = <&csi40_in>;
+@@ -125,6 +128,7 @@ ports {
+ 			port@4 {
+ 				reg = <4>;
+ 				max96712_out1: endpoint {
++					bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+ 					clock-lanes = <0>;
+ 					data-lanes = <1 2 3 4>;
+ 					lane-polarities = <0 0 0 0 1>;
+@@ -146,6 +150,7 @@ ports {
+ 			port@4 {
+ 				reg = <4>;
+ 				max96712_out2: endpoint {
++					bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+ 					clock-lanes = <0>;
+ 					data-lanes = <1 2 3 4>;
+ 					lane-polarities = <0 0 0 0 1>;
+-- 
+2.40.0
+
