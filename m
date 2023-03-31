@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E397C6D2624
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1777F6D2629
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 18:48:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbjCaQsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 12:48:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46626 "EHLO
+        id S232439AbjCaQsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 12:48:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232647AbjCaQrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:47:53 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208BE24409
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:45:38 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id h11so22723738lfu.8
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:45:38 -0700 (PDT)
+        with ESMTP id S232995AbjCaQr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 12:47:56 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7865521AB6
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:45:40 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id c9so19274029lfb.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 09:45:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680281137;
+        d=linaro.org; s=google; t=1680281138;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6aC9vcgB4zQ+sZKRkrSflhEld19cf9czc3eWEZjB6u4=;
-        b=aJi3v7Lo50cPQ7a47bC9Gq33KWNWI3NSqnrEIyU6xyoYWhyOCWrW4XACQho4sPRu6a
-         uZgm/e2TEFsSM63xW1hjMsYo7BNgDEUdDUfoDJXJ9fpY7FLRQAo5bDFPDNxOXnYxDXP/
-         fRxk6vG6Ph92RVwYlcDPHoJjhZmGhDv77VmtccAKgo4JfvIgBFR0rjwofpCjZioqWbIA
-         PdCrW9r2dncb+7Bhx5StSWaitDHkPAll/uwgV/A7PvkLa2eoMNVx7i9Afm63zvC2XaOq
-         pNJApOC0TbLZKeReWL85OyzlQfEpVQrJZh56geWRB95P9dCgrRP/3La158CI8yr/LPpr
-         DS8A==
+        bh=NEC86w6mjGLupeK5H+hGWpVXZB98Fs+7rvadaDpP8J4=;
+        b=p85ERDf/jMV4ob2/oqgTlrWAK3V19HCBtPsq9MXOplwdSl0R3QzzDYLWADWpnnoYc/
+         wxfqzK1fzWD3Uj/hL23h2O3sgy1glBnuA+vPr3ih0/0TtL0ChflFe5EkkUXlg53gxR79
+         rsfkfyN9NBftT21Ui+t4HQZ7LiNtFErXpTEBGML1IdkPlw7QgGAsOj5SB5XqEqDM3wBk
+         GJgGzwZ/Z1ybCxXG1fa/5drXNQORJcSsmaph67/IGOa7pDpWwT8QMFhGpDg9JJlOCCFv
+         0zogtU9iIO/pct0dQtTK4TCToH5XC+to+gNRV8HbBQu6t7Exxi2vYl6LiGT13OqBC5Qn
+         qmkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680281137;
+        d=1e100.net; s=20210112; t=1680281138;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6aC9vcgB4zQ+sZKRkrSflhEld19cf9czc3eWEZjB6u4=;
-        b=HfX9eJ3nS9D6kmo93EBHvYBwFcILHWAooKqCFZpwkm7bxdeMnOfRofsg0yc9c6fdex
-         7n5Rfp6YRuvDeJu+8+3xccnFt9XLCUm9WgSNMi5BPbIieD04KO4OhTh3y0GeDci55I+C
-         MV6yzvqlz3mnY82yA1R7+EVQwK7VU0BgqMk7lWrqybS0j8aM4gy/5lRoO+VLWdMvaQ9H
-         YjQTWkK43Kzp/iZE5X3nZK6x4vOFtjoKRj9N4JLUl1d0Wf2GqHCopGqBpE7s94za9GbS
-         s4xO/su2lgJYmcJ8t35DD1Hw6ILDhfO3Y+cS6DStuiMsOdYPVIT/w3yO1iAjFmMMjcSW
-         INaw==
-X-Gm-Message-State: AAQBX9dZbw7VecKx38AMdXZzwh1c3DGZHgcoFsz3dHbOUcI3UE/m7uK2
-        9033f9j/0fzm8WyBkseaxvbIHg==
-X-Google-Smtp-Source: AKy350YA6FD7eDeRN/9/jo/VJ4UZULMRWphtY3gDX6/+wMnIIP6e19kwZCq8H+LNMAd05BlqDWZ2OA==
-X-Received: by 2002:ac2:446f:0:b0:4dd:a61c:8f74 with SMTP id y15-20020ac2446f000000b004dda61c8f74mr8958859lfl.51.1680281136994;
-        Fri, 31 Mar 2023 09:45:36 -0700 (PDT)
+        bh=NEC86w6mjGLupeK5H+hGWpVXZB98Fs+7rvadaDpP8J4=;
+        b=4ho7E67hjIAZ5hDUXPiOjnbfCGKa2hLwdz2sK1GLAqW1we7CdYXP1G/qdCd4/X5TMn
+         j1tr2ldv/1pGU+jEHuPuvhOpMdhFpE5dDt40WBh8LCeWoGr/lX/Mm0V98+ivAItaxNVw
+         CS20yCBu/LWb20g7wLBlkBbI5Fak9H4TlgIGvGxKSDExS9vcCWzEOX4nyU57FZq8rcs2
+         5vjTVyxw924wXd6ZL4UfsaS5RQWFwrVPGHs/RTURmkwXhaWx/pZ5nfyMaqUWnNcUgKXi
+         VM50OFtzZcKF4jwXOXe+M5cSE2l6YQfWtNsYmxvnB9h/N2D71pNQT/qQ3my7I2gJ1Z+s
+         pckw==
+X-Gm-Message-State: AAQBX9fEiaSu0C8rI9+wMYHB4JyVqcAzO4ca0U7QjFlOOH7PVqeU+tPd
+        aXqAXHTSpUTL7kzQ99KVMarPZQ==
+X-Google-Smtp-Source: AKy350aKcKEyQ3S6iCH2Xpl5FdJpp5gJCNqjLHpViOd03ipHhs/BsroiJf7eTbN5CTyAQYKhu4V+nw==
+X-Received: by 2002:a05:6512:204:b0:4b4:e14a:ec7d with SMTP id a4-20020a056512020400b004b4e14aec7dmr8057796lfo.17.1680281138238;
+        Fri, 31 Mar 2023 09:45:38 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u26-20020ac2519a000000b004e8483bff82sm439872lfi.271.2023.03.31.09.45.35
+        by smtp.gmail.com with ESMTPSA id u26-20020ac2519a000000b004e8483bff82sm439872lfi.271.2023.03.31.09.45.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 09:45:36 -0700 (PDT)
+        Fri, 31 Mar 2023 09:45:37 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,9 +65,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
 Cc:     Patrick Lai <quic_plai@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/7] dt-bindings: soundwire: qcom: add Qualcomm Soundwire v2.0.0
-Date:   Fri, 31 Mar 2023 18:45:25 +0200
-Message-Id: <20230331164530.227302-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/7] soundwire: qcom: allow 16-bit sample interval for ports
+Date:   Fri, 31 Mar 2023 18:45:26 +0200
+Message-Id: <20230331164530.227302-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230331164530.227302-1-krzysztof.kozlowski@linaro.org>
 References: <20230331164530.227302-1-krzysztof.kozlowski@linaro.org>
@@ -82,26 +82,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for Qualcomm Soundwire v2.0.0 controller, which comes
-with several differences against v1.7.0 in register layout.
+The port sample interval was always 16-bit, split into low and high
+bytes.  This split was unnecessary, although harmless for older devices
+because all of them used only lower byte (so values < 0xff).  With
+support for Soundwire controller on Qualcomm SM8550 and its devices,
+both bytes will be used, thus add a new 'qcom,ports-sinterval' property
+to allow 16-bit sample intervals.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soundwire/qcom.c | 32 +++++++++++++++++++++++++-------
+ 1 file changed, 25 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-index e2acfd09fb22..adf28fd6134a 100644
---- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-+++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-@@ -21,6 +21,7 @@ properties:
-       - qcom,soundwire-v1.5.1
-       - qcom,soundwire-v1.6.0
-       - qcom,soundwire-v1.7.0
-+      - qcom,soundwire-v2.0.0
+diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+index c296e0bf897b..80147fd0294b 100644
+--- a/drivers/soundwire/qcom.c
++++ b/drivers/soundwire/qcom.c
+@@ -95,6 +95,7 @@
+ #define SWRM_DP_BLOCK_CTRL2_BANK(n, m)	(0x1130 + 0x100 * (n - 1) + 0x40 * m)
+ #define SWRM_DP_PORT_HCTRL_BANK(n, m)	(0x1134 + 0x100 * (n - 1) + 0x40 * m)
+ #define SWRM_DP_BLOCK_CTRL3_BANK(n, m)	(0x1138 + 0x100 * (n - 1) + 0x40 * m)
++#define SWRM_DP_SAMPLECTRL2_BANK(n, m)	(0x113C + 0x100 * (n - 1) + 0x40 * m)
+ #define SWRM_DIN_DPn_PCM_PORT_CTRL(n)	(0x1054 + 0x100 * (n - 1))
+ #define SWR_MSTR_MAX_REG_ADDR		(0x1740)
  
-   reg:
-     maxItems: 1
+@@ -131,7 +132,7 @@ enum {
+ };
+ 
+ struct qcom_swrm_port_config {
+-	u8 si;
++	u32 si;
+ 	u8 off1;
+ 	u8 off2;
+ 	u8 bp_mode;
+@@ -806,12 +807,20 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
+ 
+ 	value = pcfg->off1 << SWRM_DP_PORT_CTRL_OFFSET1_SHFT;
+ 	value |= pcfg->off2 << SWRM_DP_PORT_CTRL_OFFSET2_SHFT;
+-	value |= pcfg->si;
++	value |= pcfg->si & 0xff;
+ 
+ 	ret = ctrl->reg_write(ctrl, reg, value);
+ 	if (ret)
+ 		goto err;
+ 
++	if (pcfg->si > 0xff) {
++		value = (pcfg->si >> 8) & 0xff;
++		reg = SWRM_DP_SAMPLECTRL2_BANK(params->port_num, bank);
++		ret = ctrl->reg_write(ctrl, reg, value);
++		if (ret)
++			goto err;
++	};
++
+ 	if (pcfg->lane_control != SWR_INVALID_PARAM) {
+ 		reg = SWRM_DP_PORT_CTRL_2_BANK(params->port_num, bank);
+ 		value = pcfg->lane_control;
+@@ -1185,7 +1194,7 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+ 	struct device_node *np = ctrl->dev->of_node;
+ 	u8 off1[QCOM_SDW_MAX_PORTS];
+ 	u8 off2[QCOM_SDW_MAX_PORTS];
+-	u8 si[QCOM_SDW_MAX_PORTS];
++	u32 si[QCOM_SDW_MAX_PORTS];
+ 	u8 bp_mode[QCOM_SDW_MAX_PORTS] = { 0, };
+ 	u8 hstart[QCOM_SDW_MAX_PORTS];
+ 	u8 hstop[QCOM_SDW_MAX_PORTS];
+@@ -1193,6 +1202,7 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+ 	u8 blk_group_count[QCOM_SDW_MAX_PORTS];
+ 	u8 lane_control[QCOM_SDW_MAX_PORTS];
+ 	int i, ret, nports, val;
++	bool si_32 = false;
+ 
+ 	ctrl->reg_read(ctrl, SWRM_COMP_PARAMS, &val);
+ 
+@@ -1236,9 +1246,14 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+ 		return ret;
+ 
+ 	ret = of_property_read_u8_array(np, "qcom,ports-sinterval-low",
+-					si, nports);
+-	if (ret)
+-		return ret;
++					(u8 *)si, nports);
++	if (ret) {
++		ret = of_property_read_u32_array(np, "qcom,ports-sinterval",
++						 si, nports);
++		if (ret)
++			return ret;
++		si_32 = true;
++	}
+ 
+ 	ret = of_property_read_u8_array(np, "qcom,ports-block-pack-mode",
+ 					bp_mode, nports);
+@@ -1266,7 +1281,10 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+ 
+ 	for (i = 0; i < nports; i++) {
+ 		/* Valid port number range is from 1-14 */
+-		ctrl->pconfig[i + 1].si = si[i];
++		if (si_32)
++			ctrl->pconfig[i + 1].si = si[i];
++		else
++			ctrl->pconfig[i + 1].si = ((u8 *)si)[i];
+ 		ctrl->pconfig[i + 1].off1 = off1[i];
+ 		ctrl->pconfig[i + 1].off2 = off2[i];
+ 		ctrl->pconfig[i + 1].bp_mode = bp_mode[i];
 -- 
 2.34.1
 
