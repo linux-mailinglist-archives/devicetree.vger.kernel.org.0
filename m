@@ -2,173 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7256D26D2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A6B6D26DB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 19:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232154AbjCaRjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 13:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35332 "EHLO
+        id S232254AbjCaRoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 13:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232204AbjCaRjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:39:21 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22880CA18
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:39:18 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id j24so23264572wrd.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:39:18 -0700 (PDT)
+        with ESMTP id S230336AbjCaRog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 13:44:36 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DB122212
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:44:35 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id ix20so21964807plb.3
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 10:44:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112; t=1680284356;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h/PKiRdK/AdCxhQPLVxp6qRTTYRDZGG0+AZ8Pt0BlOY=;
-        b=xb2DAmdVIUD0mU4ZM/DecBkaOGR5wsQ6d9c+8vO0ZCq9EzXbbrDYS2OikBJmEMDjs2
-         3dCeGNehnUlRSkQ0uuFsk99EuTCG6pU/RB42JLRqfZq+YwiiCEg3GkRCGtDrfp65MPvk
-         McAhpZ5R5z/KSekNsSBFlBAhnFaOJDb1pS5Lbk9sEfGD0scfLOR0YB2LKFz4WJ2S7qLt
-         5B7CxaayfziYW2P+NHWNaSTZnRQK/HEAoBRY0K9Nt3U2WUQkHT0Koy3gpxJCjN2B8yK7
-         xH5fU5UoS2UGd4E3Vsjom0Y1dEvrbPdAypLr7NSdLGwv9fZsWqf9jn0jutUntQHSkHEc
-         Bj2g==
+        d=linaro.org; s=google; t=1680284675;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VXNcjohZysdJFTpfz0Tp4bdKAzd73WpdyuV554RNSZw=;
+        b=ExGm85KLhOefR0naD5/e5ZoclYAwGcnNGljHYGEIIm7cw6Blt50uY529QZCw5rjKSK
+         tz+kzOKriH34/bYLdt7XVzHdiygYMt8NsKcP8cBW6F465c7HwXEAbIIoufu1l5RHyIYP
+         hsdga9hL/Cz5emQyXePhwVEMuMUHXOjvvK1nhTnYozQhhCkz8qBOeHAdV7GLE9AZ3mVs
+         S+jdkpW16u0TaneLV1wvF2y+XGLEDOblMiABLFO+6J54bpXjx4/x6v1dIjlfzBGsBV8Y
+         wm/khn4tH7j8HStsKWEGQR6MVS4sdMyNmNq3/gYCQiYau7MMlmvAxw5BsK/S9kxthX8x
+         4qew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680284356;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h/PKiRdK/AdCxhQPLVxp6qRTTYRDZGG0+AZ8Pt0BlOY=;
-        b=jKm3BvIP7ZmbeMx5VzZHTKSZ6tauowMhAmoOQItgOEjz052fDKXJqMnmlBEdgvrUa/
-         cU+KGlT43yZPN+da7osF5RCwqLocF5BYNEk01ZXjnr6oxJzLGbdpBDEJgWuXrSNGig+h
-         3tEUjys7D0ycwkjm7CuOmM9+Qjyzbv9K64HZhHUvmN62OpBPbt3bv1YlywPgbreWXDOf
-         xaNjDj/NLzu8n9cthlunq+bSndAwq03+Rj0Pvc2Vlb+6tcYe1+8+LANGehMv/og6chVT
-         uD4sYvUY7Wn/frCyk0uomhvdm1Crbz3ua3r4x6EW6H1X4weRkcgrmtDzmeh7a3lqnHt5
-         6MKA==
-X-Gm-Message-State: AAQBX9dcnmX3TxPCfnd5N2mEoTHp2BaeQ31F3AMVjQsVhYz+hUh8vead
-        eN64mYRZqnZeVTnR4dfBMnPBlw==
-X-Google-Smtp-Source: AKy350Z5qBmyx03YFMY4exnOGUjSMNVkNU5SbYP4fhFOR/ObMcOrfWTagg7GiOvZeoINCeNRFUsb/A==
-X-Received: by 2002:adf:df88:0:b0:2c7:604:52a1 with SMTP id z8-20020adfdf88000000b002c7060452a1mr19563658wrl.29.1680284356630;
-        Fri, 31 Mar 2023 10:39:16 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id o5-20020adfcf05000000b002c592535839sm2733550wrj.17.2023.03.31.10.39.15
+        d=1e100.net; s=20210112; t=1680284675;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VXNcjohZysdJFTpfz0Tp4bdKAzd73WpdyuV554RNSZw=;
+        b=l7MUooyaVxEEfQXpovICq9XamYkiDuQ38By4JKXvpGtTd0E5gqqF25RRr2Sqi7QLGN
+         Je5JLzvIHuUVtlIykbfkjqTNAqEzs3CJyCl7IqmCoh3p3tfVcBoO2YJnVW7Vjnicgb42
+         qA6JcUs/vlgKp5SAvZJM+2NRjVJh9A49taTA6AuH2Hxylp+ghzLmQdu4/867wztkT1nH
+         4ydLWmZ98edwFkNY5VJP6YxAlyExXSQ5SMhBxduuHPHwDC+fcJiSCLk3lZ4qK+dsSUZy
+         byYNlyeaSajezXT2NNE2nfh3TFmXBMYayD20FblRTLdUReFaRkl7i9c+ujMOwy70LCu+
+         yxNQ==
+X-Gm-Message-State: AAQBX9dhNympjszRHdkZWOqadxjpNHyKsrBbRv6KtDz/BFYCi+8puqu6
+        TXFAoXo9xhNQRauDRxOMuUbW7g==
+X-Google-Smtp-Source: AKy350a04fGm/Zt+9yziHzr+NnMQiLRNR11nrRqTIIbvqLXNxUwZ0/vkFHf67U5CbG9I5CLxWvU4VQ==
+X-Received: by 2002:a17:903:2441:b0:1a2:7462:d674 with SMTP id l1-20020a170903244100b001a27462d674mr9996089pls.24.1680284674722;
+        Fri, 31 Mar 2023 10:44:34 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:f19d:e1b1:6a5d:8ade])
+        by smtp.gmail.com with ESMTPSA id q9-20020a170902788900b001a20b31a23fsm1816496pll.293.2023.03.31.10.44.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 10:39:16 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Fri, 31 Mar 2023 19:39:00 +0200
-Subject: [PATCH v2 2/2] dt-bindings: pinctrl: mediatek: deprecate custom
- bias pull properties for mt8365
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230327-cleanup-pinctrl-binding-v2-2-f21fbcc3016e@baylibre.com>
-References: <20230327-cleanup-pinctrl-binding-v2-0-f21fbcc3016e@baylibre.com>
-In-Reply-To: <20230327-cleanup-pinctrl-binding-v2-0-f21fbcc3016e@baylibre.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        Fri, 31 Mar 2023 10:44:34 -0700 (PDT)
+Date:   Fri, 31 Mar 2023 11:44:31 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3599; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=99/zsAro4iog0C+4jUroqtzB5pHnwrzuYQWT6NZAlsM=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkJxrBc+oHkE+9tNrcKZp9r++zV1rP91TNBZwe1D7T
- WVhYllSJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZCcawQAKCRArRkmdfjHURX9rD/
- 4pfi2lithVMijjiYZPLKnaAHoQGss4png8T9snd06mrSkSOW/XHJ2DAT1vj2Z7F1du3OZJIIFBKusu
- Sd9Mqwb+IbwgfZI3arRrv1PpkSmUFh5SrT6bNkTr1ghyc4P7wm/mvz+jxgZawAbczk3AzHnntrAIEF
- cPm9MWc9KGbD9m+6/0mwxapjLBl82frEvCSxiLp+MQzcFjBtz/JOek6v5L7OIcZO/P94n/o3xrKmwz
- 8Rz01ll2XoQaL27tDO8YX/7KTZHOtHeCmrjh9EuozCidfCP8c2THTy0KTYQbzFA2mNjtr8QDMCjJeq
- /xDGnAyYZ5VMIUO6OC5dSnh5eWhQLQwYFOykT7ay67Ir9APCeh7Mube5RfnKowcy4qIAkW6r4iO4dz
- o+iinLYMwXIckKCvvraBH6yQQ8BA4SzcUHNrE4klJ2fKd5zEdOGw7Em2nwY2m86ytSXOOkr6wm9tel
- NVLSOQCeHGrdZJ+bHaJ3G01RAyJ0Exun25N4soIioWmNJyc4B2eK83S4jJZqeegWFFzg+HGhDffcGD
- kq9V1VNom+q+aPhy6w1owWIi2sY9DqsXZHQBeZ7SiorT/SGU3CEd4+ovuVkwJixAyYFsXxVpR2W/X5
- cd7P//yboXTqXP1AzX8+zN7MWeZCZvYNl1YjUL9N5kw6zBgtjFyfQJKuKRAA==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=0.0 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v9 05/11] remoteproc: mediatek: Extract remoteproc
+ initialization flow
+Message-ID: <20230331174431.GA3504605@p14s>
+References: <20230328022733.29910-1-tinghan.shen@mediatek.com>
+ <20230328022733.29910-6-tinghan.shen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328022733.29910-6-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to be more generic, "mediatek,pull-up-adv" and
-"mediatek,pull-down-adv" should be deprecated. Use "bias-pull-up" and
-"bias-pull-down" instead.
+On Tue, Mar 28, 2023 at 10:27:27AM +0800, Tinghan Shen wrote:
+> This is the preparation for probing multi-core SCP. The remoteproc
+> initialization flow is similar on cores and is reused to avoid
+> redundant code.
+> 
+> The registers of config and l1tcm are shared for multi-core
+> SCP. Reuse the mapped addresses for all cores.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/remoteproc/mtk_scp.c | 64 +++++++++++++++++++++++++-----------
+>  1 file changed, 45 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index a3b9bc158cd9..32ecd1450c6f 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -23,6 +23,13 @@
+>  #define MAX_CODE_SIZE 0x500000
+>  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
+>  
+> +struct mtk_scp_of_regs {
+> +	void __iomem *reg_base;
+> +	void __iomem *l1tcm_base;
+> +	size_t l1tcm_size;
+> +	phys_addr_t l1tcm_phys;
+> +};
+> +
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- .../bindings/pinctrl/mediatek,mt8365-pinctrl.yaml  | 32 +++++++++++++++++++---
- 1 file changed, 28 insertions(+), 4 deletions(-)
+This should represent the cluster with a list of mtk_scp instead of @cluster_cores as
+introduced in the next patch.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-index 347f533776ba..2ce6a69b0bf9 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
-@@ -72,12 +72,32 @@ patternProperties:
-           bias-disable: true
- 
-           bias-pull-up:
-+            oneOf:
-+              - type: boolean
-+              - enum: [100, 101, 102, 103]
-+                description: Pull up R1/R0 type define value.
-             description: |
--              Besides generic pinconfig options, it can be used as the pull up
--              settings for 2 pull resistors, R0 and R1. User can configure those
--              special pins.
-+              For pull up type is normal, it don't need add R1/R0 define.
-+              For pull up type is R1/R0 type, it can add value to set different
-+              resistance. Valid arguments are described as below:
-+              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-+              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-+              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-+              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
- 
--          bias-pull-down: true
-+          bias-pull-down:
-+            oneOf:
-+              - type: boolean
-+              - enum: [100, 101, 102, 103]
-+                description: Pull down R1/R0 type define value.
-+            description: |
-+              For pull down type is normal, it don't need add R1/R0 define.
-+              For pull down type is R1/R0 type, it can add value to set
-+              different resistance. Valid arguments are described as below:
-+              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-+              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-+              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-+              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
- 
-           input-enable: true
- 
-@@ -123,7 +143,9 @@ patternProperties:
-             enum: [0, 1, 2, 3, 4, 5, 6, 7]
- 
-           mediatek,pull-up-adv:
-+            deprecated: true
-             description: |
-+              DEPRECATED: Please use bias-pull-up instead.
-               Pull up setings for 2 pull resistors, R0 and R1. User can
-               configure those special pins. Valid arguments are described as below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-@@ -134,7 +156,9 @@ patternProperties:
-             enum: [0, 1, 2, 3]
- 
-           mediatek,pull-down-adv:
-+            deprecated: true
-             description: |
-+              DEPRECATED: Please use bias-pull-down instead.
-               Pull down settings for 2 pull resistors, R0 and R1. User can
-               configure those special pins. Valid arguments are described as below:
-               0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
+>  /**
+>   * scp_get() - get a reference to SCP.
+>   *
+> @@ -855,7 +862,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
+>  	}
+>  }
+>  
+> -static int scp_probe(struct platform_device *pdev)
+> +static int scp_rproc_init(struct platform_device *pdev,
+> +			  struct mtk_scp_of_regs *of_regs)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *np = dev->of_node;
+> @@ -879,6 +887,11 @@ static int scp_probe(struct platform_device *pdev)
+>  	scp->data = of_device_get_match_data(dev);
+>  	platform_set_drvdata(pdev, scp);
+>  
+> +	scp->reg_base = of_regs->reg_base;
+> +	scp->l1tcm_base = of_regs->l1tcm_base;
+> +	scp->l1tcm_size = of_regs->l1tcm_size;
+> +	scp->l1tcm_phys = of_regs->l1tcm_phys;
+> +
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
+>  	scp->sram_base = devm_ioremap_resource(dev, res);
+>  	if (IS_ERR(scp->sram_base))
+> @@ -888,24 +901,6 @@ static int scp_probe(struct platform_device *pdev)
+>  	scp->sram_size = resource_size(res);
+>  	scp->sram_phys = res->start;
+>  
+> -	/* l1tcm is an optional memory region */
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> -	scp->l1tcm_base = devm_ioremap_resource(dev, res);
+> -	if (IS_ERR(scp->l1tcm_base)) {
+> -		ret = PTR_ERR(scp->l1tcm_base);
+> -		if (ret != -EINVAL) {
+> -			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
+> -		}
+> -	} else {
 
--- 
-2.25.1
+                scp->l1tcm_base = NULL;
 
+> -		scp->l1tcm_size = resource_size(res);
+> -		scp->l1tcm_phys = res->start;
+> -	}
+> -
+> -	scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
+> -	if (IS_ERR(scp->reg_base))
+> -		return dev_err_probe(dev, PTR_ERR(scp->reg_base),
+> -				     "Failed to parse and map cfg memory\n");
+> -
+>  	ret = scp->data->scp_clk_get(scp);
+>  	if (ret)
+>  		return ret;
+> @@ -957,6 +952,37 @@ static int scp_probe(struct platform_device *pdev)
+>  	return ret;
+>  }
+>  
+> +static int scp_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mtk_scp_of_regs scp_regs;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+> +	scp_regs.reg_base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(scp_regs.reg_base))
+> +		return dev_err_probe(dev, PTR_ERR(scp_regs.reg_base),
+> +				     "Failed to parse and map cfg memory\n");
+> +
+> +	/* l1tcm is an optional memory region */
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> +	scp_regs.l1tcm_base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(scp_regs.l1tcm_base)) {
+> +		ret = PTR_ERR(scp_regs.l1tcm_base);
+> +		if (ret != -EINVAL)
+> +			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
+> +
+> +		scp_regs.l1tcm_size = 0;
+> +		scp_regs.l1tcm_phys = 0;
+> +	} else {
+> +		scp_regs.l1tcm_size = resource_size(res);
+> +		scp_regs.l1tcm_phys = res->start;
+> +	}
+> +
+> +	return scp_rproc_init(pdev, &scp_regs);
+> +}
+> +
+>  static int scp_remove(struct platform_device *pdev)
+>  {
+>  	struct mtk_scp *scp = platform_get_drvdata(pdev);
+> -- 
+> 2.18.0
+> 
