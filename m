@@ -2,155 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A28086D198B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 111776D19A2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:18:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbjCaINE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:13:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60440 "EHLO
+        id S231520AbjCaISa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:18:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbjCaIM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:12:56 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581551D846;
-        Fri, 31 Mar 2023 01:12:43 -0700 (PDT)
-Received: from localhost (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id EC8286603190;
-        Fri, 31 Mar 2023 09:12:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1680250362;
-        bh=kJdtSesynjBrpuEEDEDtpj5X9IcAxkUH0Y/1s8Txv6c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KRHNEPxXJgDW42ZL6xjOam7Ng8ZJw4lK/reZfB2L5MsVxAu9TC26eSxzVdWgU71K7
-         mwYRRanAjSsDcDNsPcmin6l5+Aix7vCZt36Kcui37k6UkgiOTbYE6o9GnyGsICcKjw
-         PQMHm1SJxANqY6vzt3Nuyd4r1j8ZvnSbI3DVzsQwSjz7BQ/R2BSdkGBhpCO8TJ1AmP
-         ZjufTnfLbT+Vyi4wxd0MfRdAqSo6SuyjsV5xc4bTiQVvU2FtzNYvr4SLxhGfjpJJf3
-         XWKbWkOYNmkfVKbGjqXIBthX2QuATSRrorSFBlbGDoGuSzdK6aDWr0ajYIabf9v+Av
-         O43jUxd+W/Y5w==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH v3 4/4] arm64: dts: rockchip: rk3588-rock-5b: Add analog audio
-Date:   Fri, 31 Mar 2023 11:12:26 +0300
-Message-Id: <20230331081226.245881-5-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230331081226.245881-1-cristian.ciocaltea@collabora.com>
-References: <20230331081226.245881-1-cristian.ciocaltea@collabora.com>
+        with ESMTP id S231248AbjCaIS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:18:29 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACAE7AF26
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:18:27 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id j2so4137513ila.8
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1680250707;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=15rDcrIff0PTvVCq0tQDwJDEOeJZgLwD9Ed2/S9KM9c=;
+        b=CsrdmNsZwi1KGRE7i+x82HeVKBUi7m/OpmIM3Th+keNveYpbwuAO0CD177mDO3OcgC
+         EnvFU72NaWpiWT94z3NnDqBNGQpW0p9cWPMIWbcZCHP7vD5/iSZEAjyI+3X4oo4zYzRU
+         GtHGkepUcXXaaYU0H2SO0r8Xou2lVWX0vr668=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680250707;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=15rDcrIff0PTvVCq0tQDwJDEOeJZgLwD9Ed2/S9KM9c=;
+        b=LLaZCU0Jy1gTqorQgGm66y2R0qkJ6l+yyF/AA9K9fIxygkXzg7ZJyxy5lb7vPszaQ9
+         AUgb38Y3w6hWIJ4P1DRGXR+ggq09Kot05egTmVWw1oookins8AzXfRfGyCbpowF6/HeG
+         H3VXm1PWcRD9n8VPdsDoyybwhuqxzKYkdrOe9mNfu56gDa86MMaGRN9oaxG1wYTwouwh
+         9k1GdzrSNVdrVG4vqZJudwuyVhyVm7nm1N9O3yk1H0dQY3E/s8tzp06m9IymLX7yUgZD
+         jLrEuznI4iKk/8PYfI3HiQBwfNIrq9SWCHWJMtBN1TfA88vrbUKQgoRVyCgY+/Vh4Dyx
+         FTJg==
+X-Gm-Message-State: AAQBX9c7vb1F12Xq1/pXEDLHtDYZGVW6lUAO784s9SuGKaQLNKgwkLW5
+        FLvwp5aEo87ERHWhJ/XX84cDssmFtMzvnX4NUcFh0g==
+X-Google-Smtp-Source: AKy350Z3p01NgJ4vdkP75NR5+P4+C3oTh8ECvyef/jQWRCRu0D9MDV65Ai5oehSlp4QQBqxR3znKFnqONmw9lPWNA8Y=
+X-Received: by 2002:a92:c54b:0:b0:316:f93f:6f83 with SMTP id
+ a11-20020a92c54b000000b00316f93f6f83mr13750083ilj.6.1680250707090; Fri, 31
+ Mar 2023 01:18:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230322104639.221402-1-treapking@chromium.org>
+ <20230322104639.221402-8-treapking@chromium.org> <ZBrjZj0VL20y1MUC@smile.fi.intel.com>
+In-Reply-To: <ZBrjZj0VL20y1MUC@smile.fi.intel.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Fri, 31 Mar 2023 17:18:16 +0900
+Message-ID: <CAEXTbpd1kQWbJazRSvLabH26teiWvo75+rKOTL0A9Jm3eXeACQ@mail.gmail.com>
+Subject: Re: [PATCH v14 07/10] drm/bridge: anx7625: Register Type C mode switches
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>, linux-kernel@vger.kernel.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-acpi@vger.kernel.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Lyude Paul <lyude@redhat.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>,
+        Stephen Boyd <swboyd@chromium.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary DT nodes for the Rock 5B board to enable the analog
-audio support provided by the Everest Semi ES8316 codec.
+Hi Andy,
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
+Thanks for the review.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 95805cb0adfa..a9e12e098d48 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -2,6 +2,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "rk3588.dtsi"
- 
- / {
-@@ -17,6 +18,23 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	sound {
-+		compatible = "audio-graph-card";
-+		label = "Analog";
-+
-+		widgets = "Microphone", "Mic Jack",
-+			  "Headphone", "Headphones";
-+
-+		routing = "MIC2", "Mic Jack",
-+			  "Headphones", "HPOL",
-+			  "Headphones", "HPOR";
-+
-+		dais = <&i2s0_8ch_p0>;
-+		hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+	};
-+
- 	vcc5v0_sys: vcc5v0-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
-@@ -27,6 +45,50 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 	};
- };
- 
-+&i2c7 {
-+	status = "okay";
-+
-+	es8316: es8316@11 {
-+		compatible = "everest,es8316";
-+		reg = <0x11>;
-+		clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			es8316_p0_0: endpoint {
-+				remote-endpoint = <&i2s0_8ch_p0_0>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2s0_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s0_lrck
-+		     &i2s0_mclk
-+		     &i2s0_sclk
-+		     &i2s0_sdi0
-+		     &i2s0_sdo0>;
-+	status = "okay";
-+
-+	i2s0_8ch_p0: port {
-+		i2s0_8ch_p0_0: endpoint {
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+			remote-endpoint = <&es8316_p0_0>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	sound {
-+		hp_detect: hp-detect {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
- &sdhci {
- 	bus-width = <8>;
- 	no-sdio;
--- 
-2.40.0
+On Wed, Mar 22, 2023 at 8:16=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Wed, Mar 22, 2023 at 06:46:36PM +0800, Pin-yen Lin wrote:
+> > Register USB Type-C mode switches when the "mode-switch" property and
+> > relevant ports are available in Device Tree. Configure the crosspoint
+> > switch based on the entered alternate mode for a specific Type-C
+> > connector.
+> >
+> > Crosspoint switch can also be used for switching the output signal for
+> > different orientations of a single USB Type-C connector, but the
+> > orientation switch is not implemented yet. A TODO is added for this.
+>
+> ...
+>
+> > +static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
+> > +                              struct typec_mux_state *state)
+> > +{
+> > +     struct drm_dp_typec_port_data *port =3D typec_mux_get_drvdata(mux=
+);
+> > +     struct anx7625_data *ctx =3D port->data;
+> > +     struct device *dev =3D ctx->dev;
+> > +     struct drm_dp_typec_switch_desc switch_desc =3D ctx->switch_desc;
+> > +     bool new_dp_connected, old_dp_connected;
+> > +
+> > +     if (switch_desc.num_typec_switches =3D=3D 1)
+> > +             return 0;
+>
+> > +     wait_for_completion(&ctx->mux_register);
+>
+> How do we guarantee this won't become an infinite waiting?
+> Perhaps a comment explaining that?
+>
+> > +     old_dp_connected =3D ctx->port_data[0].dp_connected ||
+> > +                        ctx->port_data[1].dp_connected;
+> > +
+> > +     ctx->port_data[port->port_num].dp_connected =3D
+> > +             state->alt &&
+> > +             state->alt->svid =3D=3D USB_TYPEC_DP_SID &&
+> > +             state->alt->mode =3D=3D USB_TYPEC_DP_MODE;
+> > +
+> > +     dev_dbg(dev, "mux_set dp_connected: c0=3D%d, c1=3D%d\n",
+> > +             ctx->port_data[0].dp_connected, ctx->port_data[1].dp_conn=
+ected);
+> > +
+> > +     new_dp_connected =3D ctx->port_data[0].dp_connected ||
+> > +                        ctx->port_data[1].dp_connected;
+> > +
+> > +     /* DP on, power on first */
+> > +     if (!old_dp_connected && new_dp_connected)
+> > +             pm_runtime_get_sync(dev);
+> > +
+> > +     anx7625_typec_two_ports_update(ctx);
+> > +
+> > +     /* DP off, power off last */
+> > +     if (old_dp_connected && !new_dp_connected)
+> > +             pm_runtime_put_sync(dev);
+> > +
+> > +     return 0;
+> > +}
+>
+> ...
+>
+> > +     struct device_node *port_node =3D of_graph_get_port_by_id(dev->of=
+_node, 1);
+>
+> You use fwnode below, so why not fwnode_graph_...(dev_fwnode(dev), ...) ?
 
+There is no existing helper like `fwnode_graph_get_port_by_id`, so
+using of_graph variant is easier here. Should I add a
+`fwnode_graph_get_port_by_id` helper for this?
+>
+> > +     struct drm_dp_typec_switch_desc *switch_desc =3D &ctx->switch_des=
+c;
+> > +     int ret;
+> > +     u32 dp_lanes[4];
+> > +     unsigned int i, num_lanes;
+> > +
+> > +     /*
+> > +      * Currently, only mode switch is implemented.
+> > +      * TODO: Implement Type-C orientation switch for anx7625.
+> > +      */
+> > +     ret =3D drm_dp_register_typec_switches(dev, &port_node->fwnode,
+> > +                                          &ctx->switch_desc, ctx,
+> > +                                          anx7625_typec_mux_set);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ctx->port_data =3D devm_kcalloc(dev, switch_desc->num_typec_switc=
+hes,
+> > +                                   sizeof(struct anx7625_typec_port_da=
+ta),
+>
+>                                       sizeof(*ctx->port_data),
+>
+> ?
+>
+> > +                                   GFP_KERNEL);
+> > +     if (!ctx->port_data) {
+> > +             ret =3D -ENOMEM;
+> > +             goto unregister_mux;
+> > +     }
+>
+> ...
+>
+> > +struct anx7625_typec_port_data {
+> > +     bool dp_connected;
+> > +     enum typec_orientation orientation;
+>
+> Most likely enum will be 32-bit and bool 8-bit. Which means that the data=
+ type
+> size become 8 bytes for no reason. Can you swap the lines and perhaps che=
+ck this
+> with `pahole` tool?
+>
+> > +};
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+
+Best regards,
+Pin-yen
