@@ -2,75 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F03E36D209C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B63ED6D20A5
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 14:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjCaMmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 08:42:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32976 "EHLO
+        id S232498AbjCaMnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 08:43:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232516AbjCaMmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:42:07 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A801B1D2E7;
-        Fri, 31 Mar 2023 05:41:39 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id y15so28685035lfa.7;
-        Fri, 31 Mar 2023 05:41:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680266498;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5RXfhDfFvjtPIk75+oZKo+T1KCJFl4bnE8j/avAuUpQ=;
-        b=Xbo6jv7LvpFVqc34eeViCWn/o2fTX/pXlB7+jEZepdeVHQV+g3VEhU+Y5Vg9C/EUen
-         03MG9TqWi+Axb+9PXQwTOuBS15dWefhs9viJtVE2Q+rc4n3YxoDHQ1+Z/AL1RFj/NB+m
-         QPeG+9QMSEdI1mgbo4sEJf8nRGAFhkbphWkBPAPgJfVmxKndGmTZL8GJR48aNXL2NTTY
-         CweZpGl6rji3SLHnMtiJHKC0wTv/yghJbY0hbwOiqidTqFvw3whKKrZ0tKRxLIjAp3AA
-         rcKi4Xw+WFMZoyRLOHWO/4e3miq337qtGZCBdZa5vAQWxqC4uSHexw0dSaeUEIGXSS04
-         uTwA==
+        with ESMTP id S232548AbjCaMm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 08:42:58 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5137A2061E;
+        Fri, 31 Mar 2023 05:42:30 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17786581fe1so22990281fac.10;
+        Fri, 31 Mar 2023 05:42:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680266498;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5RXfhDfFvjtPIk75+oZKo+T1KCJFl4bnE8j/avAuUpQ=;
-        b=wHXSCa9s9pBwa1QGlkApnXFt4eDD+2NqPvmtx6KPbcQG9CiLqFj0JSVNNrnODWM5gt
-         7gYa0dC/9RNrbe92NMfdYXfhG+D6mpIQ1KS8pcfm/4CS4y7bXILF4akHPvteld4dXtDC
-         ntENkB4U0gBXbGzLIj0CuLmrmZCH3TGVtlY/AMbQSv8JR33A0RR4qIsCu5oTXacatlXw
-         QtVL2RWjvu4p5SI9DVCxf0SL03wuidnA9vY37HkFQhUAfVK1VQLV3cXB8uU04EbrKFS3
-         2d2XlbmHb1A+qi98hXDIMqaa0WkFiDLBPntiOuPwbs3ZBOR/1Q7AyUJx+s3SAXjmd9ta
-         chKA==
-X-Gm-Message-State: AAQBX9fJ+1ApXoY5lKwoKSzaq0crO/pQav9QKb+YIKni03A3W726QuFw
-        fm94FwK+aWFP/e5S/9N9oPY=
-X-Google-Smtp-Source: AKy350bys6f1/SG8QhrZ0G1WPPhf6AYJ/xGvdKMyaPKGQPWtOh2vvdN8qoVHZ0W2v8y/0XlIpKZXBA==
-X-Received: by 2002:ac2:5239:0:b0:4dd:afad:8afe with SMTP id i25-20020ac25239000000b004ddafad8afemr7289258lfl.27.1680266497898;
-        Fri, 31 Mar 2023 05:41:37 -0700 (PDT)
-Received: from dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id q14-20020ac24a6e000000b004e92c0ed7a0sm365340lfp.100.2023.03.31.05.41.36
+        d=1e100.net; s=20210112; t=1680266536;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=beHNZoTWpfe1Iychh8E+2Pd1ABXoxogRlM+B8js6fxY=;
+        b=2Hog1KsjnveK0cub86R0g1RzCfUL7KrMdStzkO+WlQK3dFYImmAzLtXxb09m4NKEGm
+         2SZw9kCiVRtxGqn0bWqOC3JpotMTlBGo4Ne95wrCc4W6rai6J2+wRbLma5An7zRmUZM1
+         4YYUC47iWwUMJ3vSRzP8Zf3zhZjzN2tfepxzKVj8iTRicOn4HIu3wFXhYJj/rqUO0R13
+         Qdtip0XPslqjMr6H9e/17oKxYQI9QsNDq/WB6DYHtHl7Q34+MfUak/jxVjTWZ3MmnTIJ
+         BCVlyOQAehT1Y4IfI0Z0dFlzjqqr/Qub+bXhdKi56wuDwyNdAeLhi0jYPHX4ds0hDkeb
+         85cA==
+X-Gm-Message-State: AAQBX9erdpW1Q1ep6LHquv+dVazteZ/3wl6YnQPP8sgCFC2V7ExZB9Ac
+        f2YRq+R5u1I4n1qXWm1jqw==
+X-Google-Smtp-Source: AKy350aZVWt7V5ZjS97pTxzJSN9yyHjuZdEBpdJxg6kf08veWsSig9HeD3mfdM5vIOgkoKYCiH1xbw==
+X-Received: by 2002:a05:6870:8a0d:b0:17a:ce6b:72c with SMTP id p13-20020a0568708a0d00b0017ace6b072cmr15564322oaq.51.1680266535933;
+        Fri, 31 Mar 2023 05:42:15 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id kw17-20020a056870ac1100b001802d3e181fsm902270oab.14.2023.03.31.05.42.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Mar 2023 05:41:37 -0700 (PDT)
-Date:   Fri, 31 Mar 2023 15:41:33 +0300
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v7 3/5] dt-bindings: iio: light: Support ROHM BU27034
-Message-ID: <66a222574176ee2adbfccf6d9a591c04571a18d9.1680263956.git.mazziesaccount@gmail.com>
-References: <cover.1680263956.git.mazziesaccount@gmail.com>
+        Fri, 31 Mar 2023 05:42:15 -0700 (PDT)
+Received: (nullmailer pid 690279 invoked by uid 1000);
+        Fri, 31 Mar 2023 12:42:14 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9UB77LsSsgO7nXYn"
-Content-Disposition: inline
-In-Reply-To: <cover.1680263956.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     David Dai <davidai@google.com>
+Cc:     linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+        linux-pm@vger.kernel.org, Oliver Upton <oliver.upton@linux.dev>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Juri Lelli <juri.lelli@redhat.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        kernel-team@android.com, Ben Segall <bsegall@google.com>,
+        Mel Gorman <mgorman@suse.de>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        linux-kernel@vger.kernel.org,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Valentin Schneider <vschneid@redhat.com>,
+        James Morse <james.morse@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ingo Molnar <mingo@redhat.com>, kvm@vger.kernel.org,
+        devicetree@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
+        Daniel Bristot de Oliveira <bristot@redhat.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, kvmarm@lists.linux.dev
+In-Reply-To: <20230331014356.1033759-6-davidai@google.com>
+References: <20230331014356.1033759-1-davidai@google.com>
+ <20230331014356.1033759-6-davidai@google.com>
+Message-Id: <168026628573.685196.6713450502150551916.robh@kernel.org>
+Subject: Re: [RFC PATCH v2 5/6] dt-bindings: cpufreq: add bindings for
+ virtual kvm cpufreq
+Date:   Fri, 31 Mar 2023 07:42:14 -0500
+X-Spam-Status: No, score=0.7 required=5.0 tests=FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,118 +91,44 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---9UB77LsSsgO7nXYn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 30 Mar 2023 18:43:49 -0700, David Dai wrote:
+> Add devicetree bindings for a virtual kvm cpufreq driver.
+> 
+> Co-developed-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: David Dai <davidai@google.com>
+> ---
+>  .../bindings/cpufreq/cpufreq-virtual-kvm.yaml | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.yaml
+> 
 
-ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diodes
-capable of detecting a very wide range of illuminance. Typical application
-is adjusting LCD and backlight power of TVs and mobile phones.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Add dt-bindings.
+yamllint warnings/errors:
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.example.dts:18.9-10 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/cpufreq/cpufreq-virtual-kvm.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
 
----
-v2 =3D>
-- No changes
+doc reference errors (make refcheckdocs):
 
-Changes since RFCv1 =3D> v2
-- Fix binding file name and id by using comma instead of a hyphen to
-  separate the vendor and part names.
----
- .../bindings/iio/light/rohm,bu27034.yaml      | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/rohm,bu2703=
-4.yaml
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230331014356.1033759-6-davidai@google.com
 
-diff --git a/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml =
-b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-new file mode 100644
-index 000000000000..30a109a1bf3b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/rohm,bu27034.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/rohm,bu27034.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BU27034 ambient light sensor
-+
-+maintainers:
-+  - Matti Vaittinen <mazziesaccount@gmail.com>
-+
-+description: |
-+  ROHM BU27034 is an ambient light sesnor with 3 channels and 3 photo diod=
-es
-+  capable of detecting a very wide range of illuminance. Typical applicati=
-on
-+  is adjusting LCD and backlight power of TVs and mobile phones.
-+  https://fscdn.rohm.com/en/products/databook/datasheet/ic/sensor/light/bu=
-27034nuc-e.pdf
-+
-+properties:
-+  compatible:
-+    const: rohm,bu27034
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells =3D <1>;
-+      #size-cells =3D <0>;
-+
-+      light-sensor@38 {
-+        compatible =3D "rohm,bu27034";
-+        reg =3D <0x38>;
-+        vdd-supply =3D <&vdd>;
-+      };
-+    };
-+
-+...
---=20
-2.39.2
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+pip3 install dtschema --upgrade
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
---9UB77LsSsgO7nXYn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmQm1P0ACgkQeFA3/03a
-ocU0PQgAppKU2NC+nRczBknSeeziuoXajOe7+oA4vHPZO20MGc9MZ7+DQ6FXY/fa
-1vxDfbMl3hUj6SjLQn3CT92TpbLtWKHaNaQREFnLmT0MXoFZZhjt6zEK1JFCy+3l
-RfcrNsUu4E6NmI83cDCZ30zMRmeb511vxyQoyYca3jixBmAOgqyBwCb2/mcItM51
-GFPTGtjMhcWVGnRhF0SHcOTrmk891QgN4wK/Es9wmvVjk+OsUW3MxdpK1qYdDJor
-jzGKFhEzRv8ELl4Gw5Tw27hK/8r2sDnKpWOKxjNYEl2cskgbNT7inF69GzIWA2p8
-u5vuXN/mHBbVhYoSDUGcyHkK+9OfZw==
-=9QDI
------END PGP SIGNATURE-----
-
---9UB77LsSsgO7nXYn--
