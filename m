@@ -2,153 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 543CA6D1C86
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD0E6D1C96
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:37:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232020AbjCaJfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:35:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46320 "EHLO
+        id S232284AbjCaJhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:37:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232292AbjCaJeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:34:17 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5517296
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:34:02 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id k37so28154596lfv.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:34:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680255240;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ai/1YpnrQGMFVrnQJeZGVLCmWTY7Fz7OsSb9rllfA/A=;
-        b=bXr2Xm5tyW+sglpq+sV+BJ/VlJIXrkWrlavLQftfI12wsd+i87DDKbAWpw4fLK6JJu
-         TuQxBQoXbC1FkMaIY+osrvcF3Uo0DCrkn3YlroowTyOUQG/JSyf6j/Qz+I362/qyYvpb
-         vW6KmvooSBlZETfBQhFqLfrwMnKhsD6CKuXTJSHMyLqfhVSWqUkipTrRX4+H1aIBby9R
-         GQjkOO6fVn/Uj6ZYHIQ1W2VZ/5THM/Di45QsRBw5En6fFKaqB4iH78ULxJoSB9XUuBWD
-         ZoCGLcg00OVTS5tUOQj+fKV4Bn5a+6UTbGLmfWBY8vvvv/UVBZm72g6kMFqLpvHwPGXK
-         i2iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680255240;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ai/1YpnrQGMFVrnQJeZGVLCmWTY7Fz7OsSb9rllfA/A=;
-        b=WW27LFmB0FuwrrqaQuLTPU6dV8stbl22trNpCSrwxjei6FgeuELXacSWDkJ7R4foTB
-         QIi1atVsbweOVNBjyJTbmySbBH5yfUyKceGSYlquzmCxEGIEjOu5bsPniA8fKn1it5Rc
-         eUHEbkm/xBHnjI18nx/Z+3WZQvflHxLlG54oTQ285IRIeWK5bQo00XrigM+fxkOzsVGV
-         AgP3mBRF2GbvIKBFDvGbFxMFihrOx+cgajV4l/1MoR3jqcGoPbsO4b0NbeLPPqHVXu6e
-         k0nk4WRzMuVqZxWV0PRFzlpQQswBnwO48DFuB7PrvHAbIH99KkL9sYagnvt2JJrq1J1J
-         y99Q==
-X-Gm-Message-State: AAQBX9fsxOiTDIMjEiWnqDsG3QsNj9QWk6pMhL+pz/vvfThfEZvy+SJl
-        ja654w0HcTovwwjaSscfQ/F12w==
-X-Google-Smtp-Source: AKy350Zw3AEl/l1nQ2UFiIHwCfWmha0LEvbnsktucmxS1dk8XV4DbUPsuRtguW7IZ5SHImNMhoNXQw==
-X-Received: by 2002:ac2:5318:0:b0:4e9:b64a:b87d with SMTP id c24-20020ac25318000000b004e9b64ab87dmr8522538lfh.9.1680255240307;
-        Fri, 31 Mar 2023 02:34:00 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id l14-20020a2e99ce000000b0029f7d27b78bsm285041ljj.110.2023.03.31.02.33.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Mar 2023 02:33:59 -0700 (PDT)
-Message-ID: <f224159b-a5cd-e2f3-c34a-acc1de343cf8@linaro.org>
-Date:   Fri, 31 Mar 2023 11:33:58 +0200
+        with ESMTP id S232305AbjCaJhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:37:12 -0400
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C19C172C;
+        Fri, 31 Mar 2023 02:37:02 -0700 (PDT)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4PnwCq5qnZz9sSL;
+        Fri, 31 Mar 2023 11:36:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
+        s=MBO0001; t=1680255399;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bYLxII/AzHSuhLaXujV1FeTSBkeqV/qJ8zqJUY5DdQU=;
+        b=YkxkO5Wu4rQH7Jkf7KZTwSe2qEmE4rS/2rBdzEJzWwqVaBSEiHYuaOxgQ06UtiWhL+GJ1J
+        a5al0uAqOav2KTb9Bl2dGYprFLXDIC2HjjIHVdgnP9RqifKqu0Re1K8l4YncvrwaacXERc
+        KsKkqll9XxiKwzwYRrRGFcO4mC5KIkmkHVgSc2Y8+/DVaxHu0NkQjIWOC7eV5wyfek6aWj
+        mDLYu38RdvKaG4RJwWfSqU3uURfVBMaXSNZBYFZXaojGttw8YApvOqobvOyCQkFULbqjiv
+        HIUE2uBRluWF/WP+V1ZmZ8rBpFk0nvWRv8KPa638WADac/elPxNh1Tre49r13Q==
+Message-ID: <e7b73a24b8ba76cb6dc9921f73c47632a749b93f.camel@dylanvanassche.be>
+Subject: Re: [PATCH v3 2/4] dts: arm64: qcom: sdm845: add SLPI FastRPC
+ support
+From:   Dylan Van Assche <me@dylanvanassche.be>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Date:   Fri, 31 Mar 2023 11:36:37 +0200
+In-Reply-To: <f9a4a2de-42f8-676a-ae6d-d20391206f83@linaro.org>
+References: <20230330165322.118279-1-me@dylanvanassche.be>
+         <20230330165322.118279-3-me@dylanvanassche.be>
+         <f9a4a2de-42f8-676a-ae6d-d20391206f83@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v1 2/6] dt-bindings: display: bridge: toshiba,tc358768:
- Add TC9594
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        devicetree@vger.kernel.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
-References: <20230330095941.428122-1-francesco@dolcini.it>
- <20230330095941.428122-3-francesco@dolcini.it>
- <ff88e5d3-4c31-7698-b8d1-8a03b9fea643@linaro.org>
- <ZCaoTDjvAUZJYP3s@francesco-nb.int.toradex.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZCaoTDjvAUZJYP3s@francesco-nb.int.toradex.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2023 11:30, Francesco Dolcini wrote:
-> On Fri, Mar 31, 2023 at 10:42:40AM +0200, Krzysztof Kozlowski wrote:
->> On 30/03/2023 11:59, Francesco Dolcini wrote:
->>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>>
->>> Add TC9594, from the software point of view this is identical to
->>> TC358768 with the main difference being automotive qualified.
->>>
->>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->>> ---
->>>  .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml | 5 +++--
->>>  1 file changed, 3 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
->>> index d6dac186ac59..8f22093b61ae 100644
->>> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
->>> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
->>> @@ -4,19 +4,20 @@
->>>  $id: http://devicetree.org/schemas/display/bridge/toshiba,tc358768.yaml#
->>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>  
->>> -title: Toshiba TC358768/TC358778 Parallel RGB to MIPI DSI bridge
->>> +title: Toshiba TC358768/TC358778/TC9594 Parallel RGB to MIPI DSI bridge
->>>  
->>>  maintainers:
->>>    - Peter Ujfalusi <peter.ujfalusi@ti.com>
->>>  
->>>  description: |
->>> -  The TC358768/TC358778 is bridge device which converts RGB to DSI.
->>> +  The TC358768/TC358778/TC9594 is bridge device which converts RGB to DSI.
->>>  
->>>  properties:
->>>    compatible:
->>>      enum:
->>>        - toshiba,tc358768
->>>        - toshiba,tc358778
->>> +      - toshiba,tc9594
->>
->> If it is the same, why they are not compatible?
-> 
-> I assume I am not understanding something very basic ...
-> 
-> The register description and SW functionality of all these 3 parts is
-> identical.
-> 
-> How should be the compatible described in the DT schema in this case?
+SGkgS29ucmFkLAoKT24gRnJpLCAyMDIzLTAzLTMxIGF0IDA0OjAzICswMjAwLCBLb25yYWQgRHli
+Y2lvIHdyb3RlOgo+IAo+IAo+IE9uIDMwLjAzLjIwMjMgMTg6NTMsIER5bGFuIFZhbiBBc3NjaGUg
+d3JvdGU6Cj4gPiBRdWFsY29tbSBTRE04NDUgU29DIGZlYXR1cmVzIGEgU0xQSSBEU1Agd2hpY2gg
+dXNlcyBGYXN0UlBDIHRocm91Z2gKPiA+IGFuIGFsbG9jYXRlZCBtZW1vcnkgcmVnaW9uIHRvIGxv
+YWQgZmlsZXMgZnJvbSB0aGUgaG9zdCBmaWxlc3lzdGVtCj4gPiBzdWNoIGFzIHNlbnNvciBjb25m
+aWd1cmF0aW9uIGZpbGVzLgo+ID4gCj4gPiBBZGQgYSBGYXN0UlBDIG5vZGUgYXQgL2Rldi9mYXN0
+cnBjLXNkc3AgYW5kIGEgRE1BIHJlZ2lvbiwgc2ltaWxhcgo+ID4gdG8KPiA+IGRvd25zdHJlYW0s
+IHRvIGFsbG93IHVzZXJzcGFjZSB0byBjb21tdW5pY2F0ZSB3aXRoIHRoZSBTTFBJIHZpYSB0aGUK
+PiA+IEZhc3RSUEMgaW50ZXJmYWNlIGZvciBpbml0aWFsaXppbmcgdGhlIHNlbnNvcnMgb24gdGhl
+IFNMUEkuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IER5bGFuIFZhbiBBc3NjaGUgPG1lQGR5bGFu
+dmFuYXNzY2hlLmJlPgo+ID4gLS0tCj4gPiDCoGFyY2gvYXJtNjQvYm9vdC9kdHMvcWNvbS9zZG04
+NDUuZHRzaSB8IDI0ICsrKysrKysrKysrKysrKysrKysrKysrKwo+ID4gwqAxIGZpbGUgY2hhbmdl
+ZCwgMjQgaW5zZXJ0aW9ucygrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
+L2R0cy9xY29tL3NkbTg0NS5kdHNpCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcWNvbS9zZG04
+NDUuZHRzaQo+ID4gaW5kZXggM2I1NDdjYjdhZWI4Li44ZWE0OTQ0ZjNhZDYgMTAwNjQ0Cj4gPiAt
+LS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3Fjb20vc2RtODQ1LmR0c2kKPiA+ICsrKyBiL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvcWNvbS9zZG04NDUuZHRzaQo+ID4gQEAgLTg3OCw2ICs4NzgsMTQgQEAg
+bWRhdGFfbWVtOiBtcHNzLW1ldGFkYXRhIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNpemUgPSA8MCAweDQwMDA+Owo+ID4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbm8tbWFwOwo+ID4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoGZhc3RycGNfbWVtOiBmYXN0cnBjIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9ICJzaGFyZWQtZG1hLXBvb2wi
+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXVz
+YWJsZTsKPiBQbGVhc2UgbW92ZSBpdCBsYXN0IHRvIGdldCBhIG5pY2UgcmV2ZXJzZS1DaHJpc3Rt
+YXMtdHJlZSBsYXlvdXQuCj4gCgpXaWxsIGZpeCBpbiB2NC4KCj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGFsbG9jLXJhbmdlcyA9IDwwIDB4MDAwMDAw
+MDAgMCAweGZmZmZmZmZmPjsKPiBXb3VsZCB0aGVyZSBiZSBhbnkgaXNzdWVzIHdpdGggaXQgc3Rh
+cnRpbmcgb3ZlciAoMTw8MzEgLSAxKT8KPiAKCllvdSBtZWFuIGEgYmlnZ2VyIHJlZ2lvbiB0aGVu
+LCBsaWtlIHRoZSB3aG9sZSBDTUEgcmVnaW9uIHRoZW4/IEFGQUlLLAp0aGUgU0xQSSBhbHdheXMg
+dXNlIHRoZSBzYW1lIHJlZ2lvbiBleHBlY3RpbmcgaXQgdG8gYmUgaW4gdGhpcyByYW5nZS4KSG93
+ZXZlciwgSSBjYW5ub3QgY29uZmlybSBtb3JlLCBhcyBJIGhhdmUgbm8gaW5zaWdodHMgaW4gdGhl
+IGZpcm13YXJlCnJ1bm5pbmcgb24gdGhlcmUsIHRoaXMgYWxsIGNvbWVzIGZyb20gZmluZGluZyBv
+dXQgd2hhdCBpdCBleGFjdGx5IGRvZXMKb24gZG93bnN0cmVhbS4KCj4gPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGFsaWdubWVudCA9IDwwIDB4NDAwMDAw
+PjsKPiBQbGVhc2UgdXNlIDB4MCBmb3IgdGhlIDAgaGVyZSwgYXMgaXQncyBlc3NlbnRpYWxseSBy
+ZWcuc2l6ZSB3aXRoCj4gc2l6ZS1jZWxscyA9IDIKCldpbGwgZml4IGluIHY0LgoKPiAKPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc2l6ZSA9IDwwIDB4
+MTAwMDAwMD47Cj4gRGl0dG8KCldpbGwgZml4IGluIHY0LgoKPiAKPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiDCoAo+ID4gwqDC
+oMKgwqDCoMKgwqDCoGFkc3BfcGFzOiByZW1vdGVwcm9jLWFkc3Agewo+ID4gQEAgLTMzNDQsNiAr
+MzM1MiwyMiBAQCBnbGluay1lZGdlIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBsYWJlbCA9ICJkc3BzIjsKPiA+IMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBxY29tLHJlbW90ZS1waWQgPSA8Mz47Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbWJveGVzID0gPCZhcHNzX3No
+YXJlZCAyND47Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmYXN0cnBjIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBjb21wYXRpYmxlID0KPiA+ICJxY29tLGZhc3RycGMiOwo+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoHFjb20sZ2xpbmstY2hhbm5lbHMgPQo+ID4gImZhc3RycGNnbGluay1hcHBzLWRzcCI7
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbGFiZWwgPSAic2RzcCI7Cj4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgcWNvbSxub24tc2VjdXJlLWRvbWFpbjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBxY29tLHZtaWRzID0gPDB4MyAweEYgMHg1Cj4gPiAweDY+Owo+IFBsZWFzZSB1c2UgdGhl
+IHJlY2VudGx5LWludHJvZHVjZWQgaGVhZGVyIGFuZCBkZXBlbmQgb24gKGFuZAo+IG1ha2UgYSBw
+YXRjaCBhdG9wKQo+IAo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWFybS1tc20vODY4
+NWI3MTAtYjc0ZC01NTZhLTgxNWQtMGZmZWYyYjBlZWZmQGxpbmFyby5vcmcvVC8jdAo+IAo+IEtv
+bnJhZAo+IAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1lbW9yeS1yZWdpb24gPQo+ID4gPCZm
+YXN0cnBjX21lbT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3MtY2VsbHMgPSA8
+MT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI3NpemUtY2VsbHMgPSA8MD47Cj4gPiArCj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcHV0ZS1jYkAwIHsKPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29tcGF0aWJsZSA9Cj4gPiAicWNvbSxmYXN0cnBjLWNv
+bXB1dGUtY2IiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcg
+PSA8MD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gwqAKCktpbmQgcmVnYXJkcywKRHlsYW4K
 
-Look at any board compatibles for example.
-
-> 
-> 
->> I got only three patches out of six, thus I cannot check by myself.
-> 
-> Here the whole series: https://lore.kernel.org/all/20230330095941.428122-1-francesco@dolcini.it/
-> 
-> Do you want to me to send the whole series and not just the DT binding
-> next time? Happy to do it, if you prefer.
-
-So NAK on 4th patch. Don't grow device ID tables needlessly.
-
-Best regards,
-Krzysztof
 
