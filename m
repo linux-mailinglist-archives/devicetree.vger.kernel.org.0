@@ -2,171 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A98586D1375
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 01:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2536D1410
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 02:30:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbjC3Xnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 19:43:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38896 "EHLO
+        id S229610AbjCaAag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 20:30:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231642AbjC3Xnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 19:43:33 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A76ECA31;
-        Thu, 30 Mar 2023 16:43:32 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id c18so19641413ple.11;
-        Thu, 30 Mar 2023 16:43:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680219812;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8NTXaHHO//3z+k+mNK1rkd5Zzs1cpAqfGCFxh55cRSg=;
-        b=cp61TQFDfM8o339UtrnDmOFRlj1BU5ivIShulD1ygi1J5PnpYJXTAKVn8hN9LejGVW
-         Ng7kmSq/bYlQPWmI1QEdbxdC5EDWye0iplCY3O9vbBJsOQwZagdUuHlwjqnV/1VrZARx
-         T8O2yQKlWXJY/Kwocv2EqBMqzZr0DZZoGRgzEZKP+nksqXiVWfgal3cGfC7DoIikBxgR
-         RNwzcTe6vYmbYZne8oQqDhiorPu9///1JFlwxwLJ9WDs+nPDLlPtRf+tDbztY+STkrRZ
-         Cu3ncFqZlV6bigun6CI5/4+VP19ThctqU3wCM8ikjrXkP7cUgvfmIjbHfIBlZKkGzYM0
-         isqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680219812;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8NTXaHHO//3z+k+mNK1rkd5Zzs1cpAqfGCFxh55cRSg=;
-        b=T9dvkEDU4nPevbu+mDSj6LTtOtVpu05OvvgkofFp0G6bW7qQAaZo15OXyZ1xK8ZWKH
-         O7I3+BJs0q0abP7rGVKWWVVhdi8fEKKRc1cyKRLzLt/gA1yDzz4Go4OG2ydjAm8MNsMk
-         4MP2wgrHDGo0iBRviMLCtAzq5RxdhoEn1jjyOeSclQXLesXK+QwCdVu2OoZXdOeBQgvf
-         Hr4mxds5+Kma0cRnDEDcJClruf4jL9s5R9C+nf/k4Zak5y0U5x1GOyNyCruA/+JEMrYE
-         51HcxWz7YP8ulAj9BP+VrkeA2AQLMC1OPGkPHIEiOOP613FtpL8PYvVWxosIvA/MRKje
-         l6FQ==
-X-Gm-Message-State: AAQBX9cAfmFTtaBK1aZgLTumax4utIyiym2ajw9YVWmGv7Nuay3XJ8a9
-        aoMIJsIkYOd0f0Q9uIwDyp7x75ZSsZo=
-X-Google-Smtp-Source: AKy350bifEk1k722eISf1aA5Ur1irJAuMPL6ctlCNHdxG7TafXssIwk7Fqlxd3SbBqJzN+lYuoGzfg==
-X-Received: by 2002:a17:903:1d1:b0:1a1:ad5e:bdbb with SMTP id e17-20020a17090301d100b001a1ad5ebdbbmr32329670plh.36.1680219811790;
-        Thu, 30 Mar 2023 16:43:31 -0700 (PDT)
-Received: from ryan-ThinkPad-T470.. (c-24-6-63-212.hsd1.ca.comcast.net. [24.6.63.212])
-        by smtp.gmail.com with ESMTPSA id k2-20020a170902e90200b001a19cf1b37esm282733pld.40.2023.03.30.16.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Mar 2023 16:43:31 -0700 (PDT)
-From:   =?UTF-8?q?=E2=80=9CRyan?= <ryan.lee.analog@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, krzysztof.kozlowski@linaro.org,
-        rf@opensource.cirrus.com, ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, herve.codina@bootlin.com,
-        wangweidong.a@awinic.com, james.schulman@cirrus.com,
-        ajye_huang@compal.corp-partner.google.com, shumingf@realtek.com,
-        povik+lin@cutebit.org, flatmax@flatmax.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ryans.lee@analog.com
-Subject: [PATCH V4 2/2] ASoC: dt-bindings: max98363: add soundwire amplifier
-Date:   Thu, 30 Mar 2023 16:43:19 -0700
-Message-Id: <20230330234319.6841-2-ryan.lee.analog@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
-References: <20230330234319.6841-1-ryan.lee.analog@gmail.com>
+        with ESMTP id S229550AbjCaAaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 20:30:35 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25ECAF75C;
+        Thu, 30 Mar 2023 17:30:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1680222628; x=1711758628;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=291iR8fs89AY3P1z/Ojn7EHb26WDXguxsSvangQrPS4=;
+  b=ZrWcomVeImflRNd7wbezdICfLICWxVjDmc9LItUAoOaLkRlOYeJBYQO4
+   JIZvGjWXjty+5HWKcV2hwDKSXadEWYt4bacTotDS/ivTYEnov+/VJJZMi
+   JUqvmBz0Ftt7jti7amwBLf+d1PtcltxiArdRna3Rsft7CNEdxwCTbSrRY
+   ZPNV8pb4CjAY1+rqd2pHlf4zdRH/X3NKmM70zs5P2KLSqTRnPUNxwJN9n
+   xErJ5HcYH1cxHliwLWXZ8O/wp8Z+7BuFa/TNMPkSPsbLMofd1NpUH28EB
+   3QbDCWRLrzhi85KmIu5Ymycz/b+56qb/QBTM4zrCH2lmiIXXD7iUezjjB
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="329844024"
+X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; 
+   d="scan'208";a="329844024"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2023 17:30:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="715219715"
+X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; 
+   d="scan'208";a="715219715"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 30 Mar 2023 17:30:22 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1pi2em-000LLc-2j;
+        Fri, 31 Mar 2023 00:30:16 +0000
+Date:   Fri, 31 Mar 2023 08:29:21 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jacky Huang <ychuang570808@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        arnd@arndb.de, schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: Re: [PATCH v6 11/12] tty: serial: Add Nuvoton ma35d1 serial driver
+ support
+Message-ID: <202303310829.6uVozWbB-lkp@intel.com>
+References: <20230328021912.177301-12-ychuang570808@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230328021912.177301-12-ychuang570808@gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Lee <ryans.lee@analog.com>
+Hi Jacky,
 
-Add dt-bindings information for Analog Devices MAX98363 SoundWire Amplifier
+Thank you for the patch! Perhaps something to improve:
 
-Signed-off-by: Ryan Lee <ryans.lee@analog.com>
----
-Changes from v1:
-  Fixed a syntax error for the 'dt_binding_check' build.
-  Removed unnecessary properties.
-  Added description about SoundWire device ID of MAX98363
-Changes from v2:
-  Removed the legacy from i2c/i2s driver and added SoundWire device ID info.
-  Added missing information about DAI.
-Changes from v3:
-  Modified the commit message. Removed "This patch"
-  Converted uppercase hex to lowercase hex
-  Dropped 'sound-name-prefix'.
-  Added unevaluatedProperties instead of additionalProperties
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on clk/clk-next linus/master]
+[cannot apply to pza/reset/next pza/imx-drm/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
- .../bindings/sound/adi,max98363.yaml          | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230328021912.177301-12-ychuang570808%40gmail.com
+patch subject: [PATCH v6 11/12] tty: serial: Add Nuvoton ma35d1 serial driver support
+config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20230331/202303310829.6uVozWbB-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install powerpc cross compiling tool for clang build
+        # apt-get install binutils-powerpc-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/380d83a62e873855024ca4c660865c654a62748a
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jacky-Huang/arm64-Kconfig-platforms-Add-config-for-Nuvoton-MA35-platform/20230328-102245
+        git checkout 380d83a62e873855024ca4c660865c654a62748a
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/tty/serial/
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-new file mode 100644
-index 000000000000..a844b63f3930
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,max98363.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX98363 SoundWire Amplifier
-+
-+maintainers:
-+  - Ryan Lee <ryans.lee@analog.com>
-+
-+description:
-+  The MAX98363 is a SoundWire input Class D mono amplifier that
-+  supports MIPI SoundWire v1.2-compatible digital interface for
-+  audio and control data.
-+  SoundWire peripheral device ID of MAX98363 is 0x3*019f836300
-+  where * is the peripheral device unique ID decoded from pin.
-+  It supports up to 10 peripheral devices(0x0 to 0x9).
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: sdw3019f836300
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    soundwire-controller@3250000 {
-+        #address-cells = <2>;
-+        #size-cells = <0>;
-+        reg = <0x3250000 0x2000>;
-+
-+        speaker@0,0 {
-+            compatible = "sdw3019f836300";
-+            reg = <0 0>;
-+            #sound-dai-cells = <0>;
-+            sound-name-prefix = "Speaker Left";
-+        };
-+
-+        speaker@0,1 {
-+            compatible = "sdw3019f836300";
-+            reg = <0 1>;
-+            #sound-dai-cells = <0>;
-+            sound-name-prefix = "Speaker Right";
-+        };
-+    };
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303310829.6uVozWbB-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/tty/serial/ma35d1_serial.c:672:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (pdev->dev.of_node) {
+               ^~~~~~~~~~~~~~~~~
+   drivers/tty/serial/ma35d1_serial.c:679:27: note: uninitialized use occurs here
+           up = &ma35d1serial_ports[ret];
+                                    ^~~
+   drivers/tty/serial/ma35d1_serial.c:672:2: note: remove the 'if' if its condition is always true
+           if (pdev->dev.of_node) {
+           ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/tty/serial/ma35d1_serial.c:668:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+>> drivers/tty/serial/ma35d1_serial.c:730:6: warning: variable 'i' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (dev->dev.of_node)
+               ^~~~~~~~~~~~~~~~
+   drivers/tty/serial/ma35d1_serial.c:732:6: note: uninitialized use occurs here
+           if (i < 0) {
+               ^
+   drivers/tty/serial/ma35d1_serial.c:730:2: note: remove the 'if' if its condition is always true
+           if (dev->dev.of_node)
+           ^~~~~~~~~~~~~~~~~~~~~
+   drivers/tty/serial/ma35d1_serial.c:727:7: note: initialize the variable 'i' to silence this warning
+           int i;
+                ^
+                 = 0
+   drivers/tty/serial/ma35d1_serial.c:750:6: warning: variable 'i' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (dev->dev.of_node)
+               ^~~~~~~~~~~~~~~~
+   drivers/tty/serial/ma35d1_serial.c:752:6: note: uninitialized use occurs here
+           if (i < 0) {
+               ^
+   drivers/tty/serial/ma35d1_serial.c:750:2: note: remove the 'if' if its condition is always true
+           if (dev->dev.of_node)
+           ^~~~~~~~~~~~~~~~~~~~~
+   drivers/tty/serial/ma35d1_serial.c:747:7: note: initialize the variable 'i' to silence this warning
+           int i;
+                ^
+                 = 0
+   3 warnings generated.
+
+
+vim +672 drivers/tty/serial/ma35d1_serial.c
+
+   658	
+   659	/*
+   660	 * Register a set of serial devices attached to a platform device.
+   661	 * The list is terminated with a zero flags entry, which means we expect
+   662	 * all entries to have at least UPF_BOOT_AUTOCONF set.
+   663	 */
+   664	static int ma35d1serial_probe(struct platform_device *pdev)
+   665	{
+   666		struct resource *res_mem;
+   667		struct uart_ma35d1_port *up;
+   668		int ret;
+   669		struct clk *clk;
+   670		int err;
+   671	
+ > 672		if (pdev->dev.of_node) {
+   673			ret = of_alias_get_id(pdev->dev.of_node, "serial");
+   674			if (ret < 0) {
+   675				dev_err(&pdev->dev, "failed to get alias/pdev id, errno %d\n", ret);
+   676				return ret;
+   677			}
+   678		}
+   679		up = &ma35d1serial_ports[ret];
+   680		up->port.line = ret;
+   681		res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+   682		if (!res_mem)
+   683			return -ENODEV;
+   684	
+   685		up->port.iobase = res_mem->start;
+   686		up->port.membase = ioremap(up->port.iobase, UART_REG_SIZE);
+   687		up->port.ops = &ma35d1serial_ops;
+   688	
+   689		spin_lock_init(&up->port.lock);
+   690	
+   691		clk = of_clk_get(pdev->dev.of_node, 0);
+   692		if (IS_ERR(clk)) {
+   693			err = PTR_ERR(clk);
+   694			dev_err(&pdev->dev, "failed to get core clk: %d\n", err);
+   695			return -ENOENT;
+   696		}
+   697		err = clk_prepare_enable(clk);
+   698		if (err)
+   699			return -ENOENT;
+   700	
+   701		if (up->port.line != 0)
+   702			up->port.uartclk = clk_get_rate(clk);
+   703		up->port.irq = platform_get_irq(pdev, 0);
+   704		up->port.dev = &pdev->dev;
+   705		up->port.flags = UPF_BOOT_AUTOCONF;
+   706		ret = uart_add_one_port(&ma35d1serial_reg, &up->port);
+   707		platform_set_drvdata(pdev, up);
+   708		return 0;
+   709	}
+   710	
+   711	/*
+   712	 * Remove serial ports registered against a platform device.
+   713	 */
+   714	static int ma35d1serial_remove(struct platform_device *dev)
+   715	{
+   716		struct uart_port *port = platform_get_drvdata(dev);
+   717	
+   718		if (port) {
+   719			uart_remove_one_port(&ma35d1serial_reg, port);
+   720			free_irq(port->irq, port);
+   721		}
+   722		return 0;
+   723	}
+   724	
+   725	static int ma35d1serial_suspend(struct platform_device *dev, pm_message_t state)
+   726	{
+   727		int i;
+   728		struct uart_ma35d1_port *up;
+   729	
+ > 730		if (dev->dev.of_node)
+   731			i = of_alias_get_id(dev->dev.of_node, "serial");
+   732		if (i < 0) {
+   733			dev_err(&dev->dev, "failed to get alias/pdev id, errno %d\n", i);
+   734			return i;
+   735		}
+   736		up = &ma35d1serial_ports[i];
+   737		if (i == 0) {
+   738			up->console_baud_rate = serial_in(up, UART_REG_BAUD);
+   739			up->console_line = serial_in(up, UART_REG_LCR);
+   740			up->console_int = serial_in(up, UART_REG_IER);
+   741		}
+   742		return 0;
+   743	}
+   744	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
