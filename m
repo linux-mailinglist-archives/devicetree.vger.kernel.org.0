@@ -2,134 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 898656D169F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 07:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 730716D16A8
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 07:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbjCaFHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 01:07:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48954 "EHLO
+        id S229508AbjCaFOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 01:14:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjCaFHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 01:07:37 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2FB4CA36;
-        Thu, 30 Mar 2023 22:07:35 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id x37so12729383pga.1;
-        Thu, 30 Mar 2023 22:07:35 -0700 (PDT)
+        with ESMTP id S229665AbjCaFOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 01:14:05 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE48EB5E
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 22:14:02 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id u11-20020a05600c19cb00b003edcc414997so13101272wmq.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 22:14:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1680239255;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=88Z57OGg3cwPCqThSTGlVSFUSYsA9hWzAPsi7A60mvs=;
-        b=iXnX0cLfuO/Up0wGmvlhCNoeIONpD3jgq3i3WpRqqAo8TK9GgWSkS5A99zEyTSf5XI
-         KfmlmgFNBSlLbMtu+TP12vc1sxbylWLNR3MsRifTKRr67KY6S2y2jFKWG7k4Ghqz2COR
-         5HINeLPUjZDhKRBK2sJ+L9HBSBRkygOV3iQtQQo2XjiZYpL1JQTY62H0PJrZzLIzdF5G
-         wlx7TRfF//yOcIXTqK9ONy6QdQHddHmMg+cHDPGRHSLOC8QUjvSaux7sKK46IpjplVuO
-         wEWFYLYwzCJNKZMuBzpmJuTmj+AwCKfs9NdQn4Hlu83rOql7ARbVO6aSqAY7HGay4Hx9
-         dXFg==
+        d=linaro.org; s=google; t=1680239641;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pULYDGzh4E8UCXDt/pmSRIwAO6ObDjtZf1sR4LLd8yA=;
+        b=kQkec1O6Ot/vcD84SVGs08IGHNMfIgt8VNpntgMvo9olmArl578NgRYSGwest+DLfL
+         ikqw1LsfzghXhMbJPu2RKiA0keZsUJYqAILUx84/3pc8eRM6pVuD+RVxUWyLce0LlNoC
+         zzKZ0ri2OG8wSFxFW8/vwxuEiE7KtTaXLWQP2DymFV2yvKqYlw6JaTk9XalpcnrzzXVw
+         vpYXKs80XH5PnY9VI79q849BmFoY20Aemh/dKcy9q+uHCeWZrSk9+e3I8VA2SW+Lm4sY
+         6Kz0JK+MfYeNy51EO3nUzHkIaR6GK8tFEHaX5OsXw9m094E5SBTHZBabVmd4Q0ewSnc5
+         9qIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680239255;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=88Z57OGg3cwPCqThSTGlVSFUSYsA9hWzAPsi7A60mvs=;
-        b=66C8CluhriLjGhHEFy0br4b/DjwLRqamG8ImoSGH14a2uXvINaLBe1ZNrAcJWRwBTp
-         db9m+jshNf4z2obpcCNyEr9DdVvtsk42QpS4OCooXHy69C20U0A9lNEXqMYJpLo4hQGT
-         oQfzESW7Z4g9m70zXZwuvBhAD7aI0jDuCmsgPgv9RE2dwGzW47oPKBA9GUQH0WXkzFLF
-         6HgxW74DRqfQy3bYwKBgKE24/4IGspoWSuCFyXZAmOyAzZTYjBWaUfFjYanIYGllCQGj
-         UOpPs5xLss4FaoGg4eXX6DdvX6or07yliui7ClusjpYac1XIvonrF+NF9kj85WeVnNxA
-         vTIw==
-X-Gm-Message-State: AAQBX9fp1Dk1mfP0R0XHzoOaM6BjfewkLiJFyZU2t48+0rt4ZnM+L/ii
-        LNA2FVLDHg1a6Uu0MOjYC7eBbATr/kRLuZu/7yI=
-X-Google-Smtp-Source: AKy350ZE4EOZdEvUc8MwsERuvROFpRDrZf/cfe+Uuc59b3+h1td1Lxl8ogsioDu6BwwI5K92eFeZPY4ncAqFJGTK87c=
-X-Received: by 2002:a63:5f02:0:b0:507:3e33:43e3 with SMTP id
- t2-20020a635f02000000b005073e3343e3mr7137369pgb.7.1680239254940; Thu, 30 Mar
- 2023 22:07:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230308135936.761794-4-kory.maincent@bootlin.com>
- <20230308230321.liw3v255okrhxg6s@skbuf> <20230310114852.3cef643d@kmaincent-XPS-13-7390>
- <20230310113533.l7flaoli7y3bmlnr@skbuf> <b4ebfd3770ffa5ad1233d2b5e79499ee@walle.cc>
- <20230310131529.6bahmi4obryy5dsx@soft-dev3-1> <20230310164451.ls7bbs6pdzs4m6pw@skbuf>
- <20230313084059.GA11063@pengutronix.de> <20230316160920.53737d1c@kmaincent-XPS-13-7390>
- <20230317152150.qahrr6w5x4o3eysz@skbuf> <20230317120744.5b7f1666@kernel.org>
- <CAP5jrPHep12hRbbcb5gXrZB5w_uzmVpEp4EhpfqW=9zC+zcu9A@mail.gmail.com>
- <20230330143824.43eb0c56@kmaincent-XPS-13-7390> <20230330092651.4acb7b64@kernel.org>
- <CAP5jrPE-hWvnumjhJ71feETvXF9y33eArKV3iKyf+37Y2qt9Cw@mail.gmail.com>
-In-Reply-To: <CAP5jrPE-hWvnumjhJ71feETvXF9y33eArKV3iKyf+37Y2qt9Cw@mail.gmail.com>
-From:   Max Georgiev <glipus@gmail.com>
-Date:   Thu, 30 Mar 2023 23:07:23 -0600
-Message-ID: <CAP5jrPEViyQzKvTE3Q+cKWXUnqA8u_L4XcwYq8UxgYkenfWVkA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] net: Let the active time stamping layer be selectable.
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-omap@vger.kernel.org,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=1e100.net; s=20210112; t=1680239641;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pULYDGzh4E8UCXDt/pmSRIwAO6ObDjtZf1sR4LLd8yA=;
+        b=S0R3G1ymlZrAtWy0BZ5e6J3Tv3J5PNHYwzEq8gffV0foIUwNoKnryJyuJT6MfI4lL7
+         k7QGhd1UDiCvLXkoSJl6lk2q+SFoGv4KnvxFUg8gdcrVjAFoZ9uzwU2TSGx8xvd647Bt
+         5trkFlqqAQDSue2kv1HKnbt6gRJmmsfZFCAUepDVPCiQ8qXJ3kcYv03Nh6bTB0ViiGCO
+         FKQYwMot4q0yQ2+RuJxeSXXDMX6t6Zmf3T8gPaPZEuiLfdIt2fRsM9+qaZF3EfX1e8kp
+         Tk8Nm3/xJPn74SgFdT8kIfF+hJ3GyhPot4/9ifUGP8jX6h4tg6tbWYDGlsIA2J5HTyjj
+         JcPQ==
+X-Gm-Message-State: AO0yUKVxG1+2UYwo+h8iDbNhfWjRHrSeTzj3b5cbxhBDxrWV0d1stHpl
+        ++x3krrnZFY0QyoJIO1bbt73GA==
+X-Google-Smtp-Source: AK7set8+GpaUDXRWjB5QY6Zo9WS9R7HYI+Pvg65VlG7RDva4bJ4tmC4UyBNwr+8bDuf+0i2hFKbHjw==
+X-Received: by 2002:a7b:c44f:0:b0:3ed:d3a7:7077 with SMTP id l15-20020a7bc44f000000b003edd3a77077mr18364656wmi.40.1680239640856;
+        Thu, 30 Mar 2023 22:14:00 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id x21-20020a05600c21d500b003ef64affec7sm1349808wmj.22.2023.03.30.22.13.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Mar 2023 22:14:00 -0700 (PDT)
+Date:   Fri, 31 Mar 2023 08:13:58 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Jay Vosburgh <j.vosburgh@gmail.com>,
-        Veaceslav Falico <vfalico@gmail.com>,
-        Andy Gospodarek <andy@greyhouse.net>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com, Minghao Chi <chi.minghao@zte.com.cn>,
-        Jie Wang <wangjie125@huawei.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Sean Anderson <sean.anderson@seco.com>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Alexander Lobakin <alexandr.lobakin@intel.com>,
-        Marco Bonelli <marco@mebeim.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH v4 5/7] scsi: ufs: ufs-qcom: Switch to the new ICE API
+Message-ID: <ZCZsFjKItcIS+U/b@linaro.org>
+References: <20230327134734.3256974-1-abel.vesa@linaro.org>
+ <20230327134734.3256974-6-abel.vesa@linaro.org>
+ <20230327181934.GD1882@sol.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327181934.GD1882@sol.localdomain>
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 11:05=E2=80=AFPM Max Georgiev <glipus@gmail.com> wr=
-ote:
->
-> On Thu, Mar 30, 2023 at 10:26=E2=80=AFAM Jakub Kicinski <kuba@kernel.org>=
- wrote:
-> >
-> > On Thu, 30 Mar 2023 14:38:24 +0200 K=C3=B6ry Maincent wrote:
-> > > > I started working on a patch introducing NDO functions for hw
-> > > > timestamping, but unfortunately put it on hold.
-> > > > Let me finish it and send it out for review.
-> > >
-> > > What is your timeline for it? Do you think of sending it in the follo=
-wings
-> > > weeks, months, years? If you don't have much time ask for help, I am =
-not really
-> > > a PTP core expert but I would gladly work with you on this.
-> >
-> > +1 Max, could you push what you have to GitHub or post as an RFC?
->
-> I'm awfully sorry for the delay.
->
-> I've sent out what I had as an RFC to netdev list, the subject is
-> "[PATCH net-next RFC] Add NDOs for hardware timestamp get/set".
-> I'll continue working on testing the patch. Looking forward to
-> comments and suggestions.
+On 23-03-27 11:19:34, Eric Biggers wrote:
+> Hi Abel,
+> 
+> On Mon, Mar 27, 2023 at 04:47:32PM +0300, Abel Vesa wrote:
+> > Now that there is a new dedicated ICE driver, drop the ufs-qcom-ice and
+> > use the new ICE api provided by the Qualcomm soc driver ice. The platforms
+> > that already have ICE support will use the API as library since there will
+> > not be a devicetree node, but instead they have reg range. In this case,
+> > the of_qcom_ice_get will return an ICE instance created for the consumer's
+> > device. But if there are platforms that do not have ice reg in the
+> > consumer devicetree node and instead provide a dedicated ICE devicetree
+> > node, the of_qcom_ice_get will look up the device based on qcom,ice
+> > property and will get the ICE instance registered by the probe function
+> > of the ice driver.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> 
+> I am still worried about the ICE clock.  Are you sure it is being managed
+> correctly?  With your patch, the ICE clock gets enabled in ufs_qcom_ice_resume
+> and disabled in ufs_qcom_ice_suspend, which hopefully pair up.  But it also gets
+> enabled in ufs_qcom_ice_enable which isn't paired with anything.  Also, this all
+> happens at a different time from the existing UFS clocks being enabled/disabled.
 
-Here is a link to the RFC patch:
-https://lore.kernel.org/netdev/20230331045619.40256-1-glipus@gmail.com/
+Right, I messed this up since the last version. Sorry about that.
+
+What I need to do is to drop the enabling of the clock from
+qcom_ice_enable and only do it from qcom_ice_resume. As for disabling
+it, it remains as is, that is, in qcom_ice_disable.
+
+Then, I need to enable the clock right before checking the supported
+version. I'll do that with devm_clk_get_enabled (also optional for the
+legacy once as I explained in the reply to the 6th patch).
+
+> 
+> I wonder if the ICE clock should be enabled/disabled in ufs_qcom_setup_clocks()
+> instead of what you are doing currently?
+> 
+> > +static int ufs_qcom_ice_init(struct ufs_qcom_host *host)
+> > +{
+> > +	struct ufs_hba *hba = host->hba;
+> > +	struct device *dev = hba->dev;
+> > +
+> > +	host->ice = of_qcom_ice_get(dev);
+> > +	if (host->ice == ERR_PTR(-EOPNOTSUPP)) {
+> > +		dev_warn(dev, "Disabling inline encryption support\n");
+> > +		hba->caps &= ~UFSHCD_CAP_CRYPTO;
+> > +		host->ice = NULL;
+> > +	}
+> > +
+> > +	if (IS_ERR(host->ice))
+> > +		return PTR_ERR(host->ice);
+> > +
+> > +	return 0;
+> > +}
+> 
+> This is still sometimes leaving UFSHCD_CAP_CRYPTO set in cases where ICE is
+> unsupported.
+> 
+> Moving the *setting* of UFSHCD_CAP_CRYPTO into here would fix that.
+> 
+
+I'll do exactly that. Thanks.
+
+> It is also hard to understand how the -EOPNOTSUPP case differs from the NULL
+> case.  Can you add a comment?  Or just consider keeping the original behavior,
+> which did not distinguish between these cases (as long as MASK_CRYPTO_SUPPORT
+> was set in REG_CONTROLLER_CAPABILITIES, which was checked first).
+
+I believe it makes more sense to return -EOPNOTSUPP when the driver
+doesn't support a specific version of the HW. If you do not agree, I'll
+make it return NULL then.
+
+> 
+> - Eric
