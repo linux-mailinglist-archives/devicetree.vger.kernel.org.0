@@ -2,93 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34336D1CF6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E11A6D1CFB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:51:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231523AbjCaJuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:50:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
+        id S231485AbjCaJvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:51:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231695AbjCaJuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:50:09 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3B31EA34
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:49:00 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5463fa0c2bfso74577747b3.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:49:00 -0700 (PDT)
+        with ESMTP id S231472AbjCaJvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:51:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F22420C33
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:49:42 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id br6so28108157lfb.11
+        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 02:49:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680256139;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w5pGMLww73dCFKjtdNGb3p3AEaqgdkuu0OlTQgtfasE=;
-        b=wLEOdTZUxmwZSKw4DvZUMXcR8N9bTJFDhIHjFe8qvF2uIXigEoR70OTkV+40+oINWX
-         ptUio2vPOJbJc2ytVw8zH83vpnHjhFhXaX8uIILXJ11cXbl2qZwi5whEP2f2u7Yrwg8K
-         y/Vhxoq48aBPQFxXJAN/lXN1QtXDvCbCza0/icYKdYeL5r4ZaQn4fXnlZ2vfMdtLmTNN
-         GEKa7GdHdzNjIwgVqpsD4a4qPVcWD4mwYMEt6Azsul5Hqr3Qb8qZzwhcIooiw+uRWJR5
-         IJcSVRG0l0rM0x4Vb/GUHHcI4Ejy3OtHcfpHPpdJSgJ/CHWGkDEh5Yil7p4gfa+FmvOK
-         8ozw==
+        d=linaro.org; s=google; t=1680256181;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZnWBUW3nUtZAoa8t2Uk9JsdIPMN187oJzfJjlXLN/3k=;
+        b=SO47t4BrSz+0Ya2L17CY5aaGJmyu12XYH/60nMWB4NqBn/p8/0zEv2hk8YZTzilXHk
+         K2leQyVkG4hZtep7CXRjOzCrcG0TVMTBy43uXEl2OyECJLd/oDYGMj6pdVf01oCBVVhM
+         7k56sT52l9DEqL/iALbWu/GA2aCPZIj7dXv5qP5jV/UIBG2pdSphgv5t3Q8n2gXtJRpT
+         3J4XmTcKq/flTsNoqwZHRLqMqXuRa+FLBI/ww3y7vhim775/t3V55vuY5AQS3vmGsct7
+         pwqlA4dbd6ly7aLwYPlNpr2fY3kwTj3aY8REs3sY4aR4A3zgCbC5dUW8NeA8jpMt16yM
+         tY/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680256139;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w5pGMLww73dCFKjtdNGb3p3AEaqgdkuu0OlTQgtfasE=;
-        b=pjEyPumlkDmLQAAVXic7xgsnJviW0EXkSb0dB5tqZpephHhfEXE1bmLL4MGrLKxpuG
-         +diIzfPg5itgvRYhF8O/WJlXFWfd0ORPdBbVmhJ7TF4qCXmh2Uw7l+2L4bqzRVoaLRjH
-         rB6b5+lCNtXniyzLnqKenlN4lte/x+eckoBckPiKx6zWHoWq0G2hYyyqk+hCq7Syusxs
-         SmnEFSk/4g6tCGI+Z6BzSLahnv9inZ7wlRq/sVSH4tqif1d7k++2zXK6f6YYodxyne1r
-         Qb/CHYWkzQhCyYrdyouUqr6OLVGK9vcKq/d54IJ1tIb4CGVSJtmGfBmuaUCmXenj0iMe
-         wT0Q==
-X-Gm-Message-State: AAQBX9fe27+HVN2FFwI7n4F6MZtAILjHeP8TXVJKHStyQsSZ4f1QXDCA
-        yUIqDvge2F0Gy/KyWmy9zlfBO16PZlA6NmLO4D/0Yw==
-X-Google-Smtp-Source: AKy350Z6UNMB6ZYBlO+LKWDPc3sFmI+LFVx1ogh8nZSx1YB6Toptx37QIYHp4BzP84FVtQN1kruXyRVFltAXXiuKNDk=
-X-Received: by 2002:a81:c84a:0:b0:541:753d:32f9 with SMTP id
- k10-20020a81c84a000000b00541753d32f9mr13162630ywl.9.1680256139737; Fri, 31
- Mar 2023 02:48:59 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680256181;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZnWBUW3nUtZAoa8t2Uk9JsdIPMN187oJzfJjlXLN/3k=;
+        b=omRzzbgJJlaU9mzLMZ6UvDfOTzaqUC3F2uoLbwYpAFkAbRchZmv7j+NRdBJkiaoRFG
+         yEB7FUevaceorwNIISoZNwbDehIvdkE+Nt2x1XMkI4rcZ6/r6G4tzPH8hUappZScqIdc
+         fKDkaZUorSmWFhN13/spBdbYi4TrYP7Ne5RId3WbU3MyshpaCib+zY5u8Sfgp2yenuLy
+         863cQR2HsAQTAgpqMCsyksitx6g4mSGumNE8NoiReZcJ4o3+mKVzemvM8mrxIxLZl8R7
+         tH/yjRRwwRuOo8kYiprc4Vkypb7nIPbQjs9ZKdZ8qWkn2fX8/Doq+xE0yq183ngAzDug
+         5k6Q==
+X-Gm-Message-State: AAQBX9e/RP7yhyU5Zcw1EuRNJYQzyHtuQbVMSqqEsF4AQjuFVL1H16Nw
+        +NDH0tdlI4ZCgkj2qD1qVsU8lQ==
+X-Google-Smtp-Source: AKy350bRaWmaWYv9VciLbpP08Z1N4J3jY/hl0ylFbIG8kB+HmxvcndpVh+yrb2bBTuHo0y3AhQEBVg==
+X-Received: by 2002:ac2:4c95:0:b0:4d7:58c8:5f44 with SMTP id d21-20020ac24c95000000b004d758c85f44mr8869699lfl.12.1680256181030;
+        Fri, 31 Mar 2023 02:49:41 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id g12-20020ac2538c000000b004d85895d7e0sm313021lfh.147.2023.03.31.02.49.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Mar 2023 02:49:40 -0700 (PDT)
+Message-ID: <d9043fa1-dff0-cb9a-afb8-8db9c3eeea2c@linaro.org>
+Date:   Fri, 31 Mar 2023 11:49:39 +0200
 MIME-Version: 1.0
-References: <20230328101011.185594-1-biju.das.jz@bp.renesas.com> <20230328101011.185594-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230328101011.185594-2-biju.das.jz@bp.renesas.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 31 Mar 2023 11:48:48 +0200
-Message-ID: <CACRpkdYDR8Vuvag6nyOy0BWQ_qEmbz43ro4B_xjf9vUXckeL8w@mail.gmail.com>
-Subject: Re: [PATCH v7 01/10] dt-bindings: pinctrl: rzg2l-poeg: Document
- renesas,poeg-config property
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: power: supply: bq256xx: Add
+ ti,no-thermistor property
+Content-Language: en-US
+To:     Hermes Zhang <chenhuiz@axis.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Andrew Davis <afd@ti.com>
+Cc:     linux-kernel@vger.kernel.org, kernel@axis.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230330065202.1349948-1-chenhuiz@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230330065202.1349948-1-chenhuiz@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 28, 2023 at 12:10=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
+On 30/03/2023 08:52, Hermes Zhang wrote:
+> Add a new property ti,no-thermistor to indicate that no thermistor is
+> connected to the TS pin of the chip.
+> 
+> Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
+> ---
 
-> Document renesas,poeg-config optional property.
->
-> The output pins of the general PWM timer (GPT) can be disabled by using
-> the port output enabling function for the GPT (POEG). The HW supports
-> following ways to disable the output pins.
->
-> 1) Pin output disable by input level detection of the GTETRG{A..D} pins
-> 2) Output disable request from the GPT
-> 3) Pin output disable by user control
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+So you keep ignoring my comments? I wrote extensive comment at v3. You
+did not respond that anything is not clear about my request.
 
-This looks good to me, Geert will know the details.
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+If you keep ignoring it then it's a NAK from me.
 
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
+
