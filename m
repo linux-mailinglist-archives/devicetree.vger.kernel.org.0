@@ -2,126 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 081576D197D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 070346D1982
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 10:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbjCaIMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 04:12:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58782 "EHLO
+        id S231465AbjCaIMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 04:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229877AbjCaIMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:12:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851A6211D
-        for <devicetree@vger.kernel.org>; Fri, 31 Mar 2023 01:12:11 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1pi9rc-00078K-Vo; Fri, 31 Mar 2023 10:12:01 +0200
-Message-ID: <809d5523-e0b4-cad4-f6ab-ddc0e4fe482d@pengutronix.de>
-Date:   Fri, 31 Mar 2023 10:11:58 +0200
+        with ESMTP id S231473AbjCaIMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 04:12:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E469E211D;
+        Fri, 31 Mar 2023 01:12:32 -0700 (PDT)
+Received: from localhost (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 728D66603130;
+        Fri, 31 Mar 2023 09:12:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680250351;
+        bh=cxm+qr2mYnHLE7Z3z7StpylRHZPB7Js49GZnkR3q4CU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=THomfaYyiZ0IY81u5EgpAo692E3PgYJ0pweR5hLxSoNFZDX9bFQfRasDDxa4wxXMA
+         Z7hDKBJjKvg2KVWJRRoryL6zYEP1KjL8pk9LUpDh0tYaco1OGjuL65NKgNC9V3xNWN
+         Nfia0pKiECbyTevnWprO+1TokHCytrgkWC4NyIZsByqzu+HQ7nrOCBZtE3o0pYoCxE
+         Jtcr8IzGyDLjT4s2wcAwagpHPgT34QjBKvDO55htbfi79k1IwLP++eZk8B741bPlgu
+         tHwhG83lkWtH1QvTyEkUzGkJSsK1XZV+4pXIXAmeU0lZ3mqFUZ1N3LX9oC1ZiHguUF
+         Xa2T7p4K/D54Q==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: [PATCH v3 0/4] Enable I2S support for RK3588/RK3588S SoCs
+Date:   Fri, 31 Mar 2023 11:12:22 +0300
+Message-Id: <20230331081226.245881-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.2
-Subject: Re: [PATCH V3 7/7] arm64: dts: imx8mp: add interconnect for hsio blk
- ctrl
-Content-Language: en-US
-To:     Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Greg Ungerer <gerg@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Cc:     peng.fan@nxp.com,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        abailon@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
-        festevam@gmail.com, abelvesa@kernel.org, marex@denx.de,
-        paul.elder@ideasonboard.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, linux-pm@vger.kernel.org,
-        s.hauer@pengutronix.de, robh+dt@kernel.org, aford173@gmail.com,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, djakov@kernel.org, shawnguo@kernel.org,
-        l.stach@pengutronix.de
-References: <20220703091451.1416264-8-peng.fan@oss.nxp.com>
- <20230327045037.593326-1-gerg@linux-m68k.org> <2678294.mvXUDI8C0e@steina-w>
- <b23a44ab-3666-8a41-d2a0-0d2fbdbd9f00@pengutronix.de>
- <ecd3a92b-ba1e-e7c1-088a-371bd1a2c100@linux-m68k.org>
- <20230328073302.jj64u5hvdpc6axa5@pengutronix.de>
- <426b4776-104c-cb47-c8cc-c26515fcb6e3@linux-m68k.org>
- <20230328134201.yaxrdtetjygkgkmz@pengutronix.de>
- <20230328135100.rbmnfelphe7juhxo@pengutronix.de>
- <c368a0f8-41f0-69ac-04f4-459e5fc8b9d6@linux-m68k.org>
- <20230328151100.msl46qupstwplkgw@pengutronix.de>
- <792028b9-cd4c-4ff4-a7cb-e60c518aa573@kernel.org>
- <2924b1a62f126678870160bdbbf4e5d51aceb8d4.camel@ew.tq-group.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <2924b1a62f126678870160bdbbf4e5d51aceb8d4.camel@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.3 required=5.0 tests=NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31.03.23 09:45, Markus Niebel wrote:
-> Am Freitag, dem 31.03.2023 um 15:55 +1000 schrieb Greg Ungerer:
->> On 29/3/23 01:11, Marco Felsch wrote:
->>> On 23-03-29, Greg Ungerer wrote:
->> I agree this is the problem, I don't agree that the boot loader is
->> the
->> only place to fix this :-)  I should be able to generate a working
->> devicetree
->> blob from the kernel that is good, and ready to use no runtime
->> changes
->> required I figure.
->>
-> 
-> Just to point out: the approach of run time fixing in boot loader is
-> used for the other i.MX8M SOC, too. If you know exactly what SOC type
-> is assembled, you could disable non available IP in the board part of
-> your tree.
-> 
->> It is not overly difficult to break out the vpu nodes and have them
->> only included when you have a board that has the iMX8MP-quad with the
->> VPU hardware blocks.
+There are five I2S/PCM/TDM controllers and two I2S/PCM controllers embedded in
+the RK3588 and RK3588S SoCs. Furthermore, RK3588 provides four additional
+I2S/PCM/TDM controllers.
 
-This breaks out-of-tree DTs that include imx8mp.dtsi. Logic should be the
-other way round: imx8mp.dtsi is full-featured SoC and any new includes
-strip away, not add nodes.
+This patch series adds the required device tree nodes to support all the above.
 
-> Depending on the SOC type there is more to look for than the VPU: core
-> count, ISP, NPU - just to mention a few. Current approach allows to
-> keep a single tree for all types.
+Additionally, it enables analog audio support for the Rock 5B SBC, which has
+been used to test both audio playback and recording.
 
-+1.
+Changes in v3:
+ - Rebased onto next-20230331 and dropped patches v2 01-06/10 already applied by Rob
+ - Ensured DT nodes are in alphabetical order in patch v3 4/4
+ - v2: https://lore.kernel.org/lkml/20230321215624.78383-1-cristian.ciocaltea@collabora.com/
 
-@Greg, does your board always ship with an i.MX8MPLite? If so, just
-disable VPUs in your board DT.
+Changes in v2:
+ - Rebased onto next-20230321 and drop patches 03-08/11 already applied by Mark
+ - Replaced patch 01/11 with v2 07/10
+ - Reworked patch 02/11 to v2 01-06/10
+ - v1: https://lore.kernel.org/lkml/20230315114806.3819515-1-cristian.ciocaltea@collabora.com/
 
-If it ships with either VPUs available or not and you don't want to do
-bootloader fixups, you may want to check out Kbuild's ability to apply
-DT overlays at build time. This would give you separate DTs for each
-variant while not having an extra file for every combination.
+Cristian Ciocaltea (4):
+  arm64: dts: rockchip: rk3588s: Move
+    assigned-clocks/assigned-clock-rates out of scmi
+  arm64: dts: rockchip: rk3588s: Add I2S nodes
+  arm64: dts: rockchip: rk3588: Add I2S nodes
+  arm64: dts: rockchip: rk3588-rock-5b: Add analog audio
 
-Cheers,
-Ahmad
-
-
-> 
-> Regards, Markus
-> 
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |  62 +++++++
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  68 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 156 +++++++++++++++++-
+ 3 files changed, 282 insertions(+), 4 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.40.0
 
