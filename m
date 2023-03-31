@@ -2,80 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41E676D1C53
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7382E6D1C5C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 11:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232242AbjCaJ3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Mar 2023 05:29:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57386 "EHLO
+        id S230413AbjCaJa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Mar 2023 05:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232131AbjCaJ3R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:29:17 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D2320329;
-        Fri, 31 Mar 2023 02:28:43 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32V71VCR028951;
-        Fri, 31 Mar 2023 09:27:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=wADGV9ohsLxooovRp55AnlQ0R+8//pVBhx4ZNqV6Sxw=;
- b=WtMU2VU708ob4UmXcQsgJmPRL9Ql7Up19UClcN6kPqvPI6AL//H7hoOUJoP5ZayMqXVJ
- pOicoa6L8aa2w1Rk6w2jy8dquYE3tYKQjc2UZyf0SrCg7d3tMmNSbMQ6RoLghQ6NQmq6
- v+dOA7Eq5IsClaQ5JOlUyrwTJaOIzSfJ9m3zht67CWCNhIDaNzm+tACbq9ijuuVrqOfg
- 3lRkH/SmySEOkSGoJ1Exx7EU1tjo76ICMowEAPieTdApqaMVV2D9B/EpxTyLaak67YJj
- UwVSJdRF4hZGROs5qZ1cqxk1rHKvl58YAyEIuXJGLcJmNkqbWUH+57bHoifTAS3hPKzN cw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pn8wnk8w5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 31 Mar 2023 09:27:22 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32V9RLr8030853
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 31 Mar 2023 09:27:21 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 31 Mar 2023 02:27:15 -0700
-Date:   Fri, 31 Mar 2023 14:57:11 +0530
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_wcheng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v5 7/8] arm64: dts: qcom: ipq9574: Add USB related nodes
-Message-ID: <20230331092710.GB19162@varda-linux.qualcomm.com>
-References: <cover.1680162377.git.quic_varada@quicinc.com>
- <c46b542b112b59002ab965be1d3fcae8c372d545.1680162377.git.quic_varada@quicinc.com>
- <CAA8EJpo_ckJtYV4aU613X5L6+wj-1i9vZkud5p72PLdCSnj5ng@mail.gmail.com>
+        with ESMTP id S231698AbjCaJam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Mar 2023 05:30:42 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 465AF1B7F4;
+        Fri, 31 Mar 2023 02:30:19 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 50BE66603130;
+        Fri, 31 Mar 2023 10:29:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1680254975;
+        bh=lMAebDq17jh7DdNz0cBlqr1fwRmhsP03/MJGfkU1R+8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=EPBOOuTWx/PQ4Jo1UY5Tr8aSNr+DKcHxRpQT9tov4AyHcg8SvcD7zt/LzzgIoDRtB
+         w51cc+rm15Z4WQmg1oZ5iDhLV6/JQf7Um3d7mAmyVkIakqT4ucQLvxqHjnqLIE3h2d
+         XFJJA6hV5ldZ4z2dnTzMcsEglkbGJQGnAX4SO/dSguxe6zagccaIPi6AQl0VQGCnPu
+         3Io9CUJdL140asZCXYIW1mT8jWKx0wxWMO9bRTtHN4qNomLqqcEBHHfHx4KiQuXJiC
+         NC3GzF1JzNdu9/J+B/fbWsgpSad5gfrdDFxvyl1fzvpC1wyWs0OpxEDIui4H87FOKZ
+         be8yyv1mbztbQ==
+Date:   Fri, 31 Mar 2023 11:29:32 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, steven.price@arm.com,
+        robh+dt@kernel.org, alyssa.rosenzweig@collabora.com,
+        wenst@chromium.org, kernel@collabora.com
+Subject: Re: [PATCH v1 RESEND 2/2] drm/panfrost: Add basic support for speed
+ binning
+Message-ID: <20230331112932.73b39d5a@collabora.com>
+In-Reply-To: <fb19c82b-f2bf-7f22-ba5c-e1a1c98f987f@collabora.com>
+References: <20230323090822.61766-1-angelogioacchino.delregno@collabora.com>
+        <20230323090822.61766-3-angelogioacchino.delregno@collabora.com>
+        <5814d779-0635-43fe-3fe8-31c130f05b3a@collabora.com>
+        <20230331104914.708b194e@collabora.com>
+        <fb19c82b-f2bf-7f22-ba5c-e1a1c98f987f@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpo_ckJtYV4aU613X5L6+wj-1i9vZkud5p72PLdCSnj5ng@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: SOXOlmDUi2gqVqtZVG6RxCC6qzePn-wd
-X-Proofpoint-GUID: SOXOlmDUi2gqVqtZVG6RxCC6qzePn-wd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-31_04,2023-03-30_04,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- mlxlogscore=999 phishscore=0 spamscore=0 impostorscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2303310078
-X-Spam-Status: No, score=-0.9 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,203 +63,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 30, 2023 at 12:44:40PM +0300, Dmitry Baryshkov wrote:
-> On Thu, 30 Mar 2023 at 11:42, Varadarajan Narayanan
-> <quic_varada@quicinc.com> wrote:
-> >
-> > Add USB phy and controller related nodes
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  Changes in v5:
-> >         - Fix additional comments
-> >         - Edit nodes to match with qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> >         - 'make dtbs_check' giving the following messages since
-> >           ipq9574 doesn't have power domains. Hope this is ok
-> >
-> >                 /local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: phy@7d000: 'power-domains' is a required property
-> >                 From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> >                 /local/mnt/workspace/varada/varda-linux/arch/arm64/boot/dts/qcom/ipq9574-al02-c7.dtb: usb@8a00000: 'power-domains' is a required property
-> >                 From schema: /local/mnt/workspace/varada/varda-linux/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
->
-> No, I think it is not.
+On Fri, 31 Mar 2023 10:57:46 +0200
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+wrote:
 
-There are no GDSCs in IPQ9574. Can you suggest how to proceed.
+> Il 31/03/23 10:49, Boris Brezillon ha scritto:
+> > On Fri, 31 Mar 2023 10:11:07 +0200
+> > AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > wrote:
+> >   
+> >> Il 23/03/23 10:08, AngeloGioacchino Del Regno ha scritto:  
+> >>> Some SoCs implementing ARM Mali GPUs are subject to speed binning:
+> >>> this means that some versions of the same SoC model may need to be
+> >>> limited to a slower frequency compared to the other:
+> >>> this is being addressed by reading nvmem (usually, an eFuse array)
+> >>> containing a number that identifies the speed binning of the chip,
+> >>> which is usually related to silicon quality.
+> >>>
+> >>> To address such situation, add basic support for reading the
+> >>> speed-bin through nvmem, as to make it possible to specify the
+> >>> supported hardware in the OPP table for GPUs.
+> >>> This commit also keeps compatibility with any platform that does
+> >>> not specify (and does not even support) speed-binning.
+> >>>
+> >>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
+> >>
+> >> Hello maintainers,
+> >> I've seen that this got archived in the dri-devel patchwork; because of that and
+> >> only that, I'm sending this ping to get this patch reviewed.  
+> > 
+> > Looks good to me. If you can get a DT maintainer to review the binding
+> > (Rob?), I'd be happy to queue the series to drm-misc-next.
+> >   
+> 
+> The binding was acked by Krzysztof already... so, just to be sure:
+> 
+> Krzysztof, can the binding [1] get picked?
 
-Thanks
-Varada
-
-> >  Changes in v4:
-> >         - Use newer bindings without subnodes
-> >         - Fix coding style issues
-> >
-> >  Changes in v3:
-> >         - Insert the nodes at proper location
-> >
-> >  Changes in v2:
-> >         - Fixed issues flagged by Krzysztof
-> >         - Fix issues reported by make dtbs_check
-> >         - Remove NOC related clocks (to be added with proper
-> >           interconnect support)
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 120 ++++++++++++++++++++++++++++++++++
-> >  1 file changed, 120 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > index 2bb4053..8fa9e1a 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> > @@ -186,6 +186,33 @@
-> >                 method = "smc";
-> >         };
-> >
-> > +       reg_usb_3p3: s3300 {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-min-microvolt = <3300000>;
-> > +               regulator-max-microvolt = <3300000>;
-> > +               regulator-boot-on;
-> > +               regulator-always-on;
-> > +               regulator-name = "usb-phy-vdd-dummy";
-> > +       };
-> > +
-> > +       reg_usb_1p8: s1800 {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-min-microvolt = <1800000>;
-> > +               regulator-max-microvolt = <1800000>;
-> > +               regulator-boot-on;
-> > +               regulator-always-on;
-> > +               regulator-name = "usb-phy-pll-dummy";
-> > +       };
-> > +
-> > +       reg_usb_0p925: s0925 {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-min-microvolt = <925000>;
-> > +               regulator-max-microvolt = <925000>;
-> > +               regulator-boot-on;
-> > +               regulator-always-on;
-> > +               regulator-name = "usb-phy-dummy";
-> > +       };
-> > +
-> >         reserved-memory {
-> >                 #address-cells = <2>;
-> >                 #size-cells = <2>;
-> > @@ -215,6 +242,52 @@
-> >                 #size-cells = <1>;
-> >                 ranges = <0 0 0 0xffffffff>;
-> >
-> > +               qusb_phy_0: phy@7b000 {
-> > +                       compatible = "qcom,ipq9574-qusb2-phy";
-> > +                       reg = <0x0007b000 0x180>;
-> > +                       #phy-cells = <0>;
-> > +
-> > +                       clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> > +                                <&xo_board_clk>;
-> > +                       clock-names = "cfg_ahb",
-> > +                                     "ref";
-> > +
-> > +                       vdd-supply = <&reg_usb_0p925>;
-> > +                       vdda-pll-supply = <&reg_usb_1p8>;
-> > +                       vdda-phy-dpdm-supply = <&reg_usb_3p3>;
-> > +
-> > +                       resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               ssphy_0: phy@7d000 {
->
-> Nit: usually the label usb_0_qmpphy
->
-> > +                       compatible = "qcom,ipq9574-qmp-usb3-phy";
-> > +                       reg = <0x0007d000 0xa00>;
-> > +                       #phy-cells = <0>;
-> > +
-> > +                       clocks = <&gcc GCC_USB0_AUX_CLK>,
-> > +                                <&xo_board_clk>,
-> > +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
-> > +                                <&gcc GCC_USB0_PIPE_CLK>;
-> > +                       clock-names = "aux",
-> > +                                     "ref",
-> > +                                     "com_aux",
-> > +                                     "pipe";
-> > +
-> > +                       resets = <&gcc GCC_USB0_PHY_BCR>,
-> > +                                <&gcc GCC_USB3PHY_0_PHY_BCR>;
-> > +                       reset-names = "phy",
-> > +                                     "phy_phy";
-> > +
-> > +                       vdda-pll-supply = <&reg_usb_1p8>;
-> > +                       vdda-phy-supply = <&reg_usb_0p925>;
-> > +
-> > +                       status = "disabled";
-> > +
-> > +                       #clock-cells = <0>;
-> > +                       clock-output-names = "usb0_pipe_clk";
-> > +               };
-> > +
-> >                 pcie0_phy: phy@84000 {
-> >                         compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
-> >                         reg = <0x00084000 0x1bc>; /* Serdes PLL */
-> > @@ -436,6 +509,53 @@
-> >                         status = "disabled";
-> >                 };
-> >
-> > +               usb3: usb@8a00000 {
-> > +                       compatible = "qcom,ipq9574-dwc3", "qcom,dwc3";
-> > +                       reg = <0x08af8800 0x400>;
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <1>;
-> > +                       ranges;
-> > +
-> > +                       clocks = <&gcc GCC_SNOC_USB_CLK>,
-> > +                                <&gcc GCC_ANOC_USB_AXI_CLK>,
-> > +                                <&gcc GCC_USB0_MASTER_CLK>,
-> > +                                <&gcc GCC_USB0_SLEEP_CLK>,
-> > +                                <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> > +
-> > +                       clock-names = "sys_noc_axi",
-> > +                                     "anoc_axi",
-> > +                                     "master",
-> > +                                     "sleep",
-> > +                                     "mock_utmi";
-> > +
-> > +                       assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
-> > +                                         <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> > +                       assigned-clock-rates = <200000000>,
-> > +                                              <24000000>;
-> > +
-> > +                       interrupts-extended = <&intc GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-> > +                       interrupt-names = "pwr_event";
-> > +
-> > +                       resets = <&gcc GCC_USB_BCR>;
-> > +                       status = "disabled";
-> > +
-> > +                       dwc_0: usb@8a00000 {
-> > +                               compatible = "snps,dwc3";
-> > +                               reg = <0x8a00000 0xcd00>;
-> > +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> > +                               clock-names = "ref";
-> > +                               interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> > +                               phys = <&qusb_phy_0>, <&ssphy_0>;
-> > +                               phy-names = "usb2-phy", "usb3-phy";
-> > +                               tx-fifo-resize;
-> > +                               snps,is-utmi-l1-suspend;
-> > +                               snps,hird-threshold = /bits/ 8 <0x0>;
-> > +                               snps,dis_u2_susphy_quirk;
-> > +                               snps,dis_u3_susphy_quirk;
-> > +                               dr_mode = "host";
-> > +                       };
-> > +               };
-> > +
-> >                 intc: interrupt-controller@b000000 {
-> >                         compatible = "qcom,msm-qgic2";
-> >                         reg = <0x0b000000 0x1000>,  /* GICD */
-> > --
-> > 2.7.4
-> >
->
->
-> --
-> With best wishes
-> Dmitry
+Oops, sorry, I didn't realize Krzysztof is a DT maintainer.
