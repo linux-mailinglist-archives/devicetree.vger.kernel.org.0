@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3DD6D143E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 02:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77EAB6D1448
+	for <lists+devicetree@lfdr.de>; Fri, 31 Mar 2023 02:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjCaAnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Mar 2023 20:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59446 "EHLO
+        id S229379AbjCaApO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Mar 2023 20:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbjCaAnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 20:43:21 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620E583FA
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 17:43:19 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id g19so13756813lfr.9
-        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 17:43:19 -0700 (PDT)
+        with ESMTP id S229538AbjCaApN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Mar 2023 20:45:13 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF7CEF89
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 17:45:12 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id g17so26888010lfv.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Mar 2023 17:45:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680223397;
+        d=linaro.org; s=google; t=1680223511;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EdNKd/5MilWhcWrQcl7LfVYBRkltR5mgQKsK73gCn9w=;
-        b=f7IhSXzG2la4GnyESSieHCAL6H5xzP8OBgrxswjRgKsSytJUo56gSw7dQQix1NanC+
-         vwXeSdpzOn9QA1uVGhONEYPGVpfDi4IVfPCo33OHQ1BvvemmO6NYp0oIzq0hXP5S4hnJ
-         +o29cmpupI8JLFaISchPcolciyLTORNsq+hBfOr9f85KMyDhp/Jr3UjnFJuF1WX8vakK
-         rUhXi8k2ZaJTvzN6pfCwO0WXBAaSld0Md58I+YBRnSfDYCbf1meX7ksxz6MpeR1Iu6/9
-         T45LC/UWxKoAd3mQBSbE8O1kys43ijmtDcjwVpoU7guIdO695xo8GTKSg6CZHvQQ83y2
-         E7Pw==
+        bh=YQN05jrEVGv/j8FBoYsJo/sMOQRm3hC/TiIil0FkSPY=;
+        b=p+U9foyRKNjz8v3ZYpA5h45OiCM29i0K3hLQe5vPDrnIFyBg+TxenLQG+io4GeM5O2
+         zEnxWx1ke6LcDhnwhflRoiF24I8f3DDY5BKL1p9r/6XySmvNCUY48rmsgu5my61uCq0e
+         AGQDchPAXk9DrjEKB6Sbm4EM4Bzi3nax8QD4iRh2wEx5IdPCu9Ok4BkExACUC50EWFNf
+         L46b+foIP/1oJmaAdhHPL3oTHULxzVJ1HhcAtPW2Ttxyra8glmpIZX75nECAAmaAajwW
+         jcB2NIdEoapFo1n90wcP+JMAM0CrGt4CLht+71ZWsu++/1FkfMIwXckbrqiTcAosCYGq
+         FR/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680223397;
+        d=1e100.net; s=20210112; t=1680223511;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EdNKd/5MilWhcWrQcl7LfVYBRkltR5mgQKsK73gCn9w=;
-        b=0luJ9BA5+4OSKhXAo39+TvPbSxeOp9yWb7b5mcrywsLMyJbok+7s/AQ+FX3zW21VFe
-         Yii3slaLQQ90ljuj8lwn0bOQXgr0E54EfYJ9fGDD7ctXHrc7HPLXv1udmY43hQPDXk8W
-         2DU5VO87d3vw3rG+jBL291u7jZ2m2wh5vjea5Y3t/DOi8lRt4UnoO8taCTLtCbpkiP1D
-         tJWKK//rhn/pOWap784CKoNDR34t+yV/f6ld9oU4wPH4Zi4eUs9BjbLOmWWYjRp14P7A
-         UQ8oQq4X4UJAa3OrJNvG3YAFK62BDM3zSo+U+kDeir8jJqh/Mx5BneJzkt8wcMLxsAPw
-         aErw==
-X-Gm-Message-State: AAQBX9c6Mdf/TJC9+Cj4IP0pCvOC4HGo3lUGSuZlA52IaUVflKHOUC0W
-        DIHyc+Y5AG4DrJN29h6gkq3dFFn1A/NTvuYkLBQ=
-X-Google-Smtp-Source: AKy350YRAZHIs02zJdJuKyBOpAU4E+YEssGtc50ExOFKIzcnRzazeSFbeqTrPGCAxT7laAEv1fmpdA==
-X-Received: by 2002:a19:ca4a:0:b0:4d8:86c1:4771 with SMTP id h10-20020a19ca4a000000b004d886c14771mr2062855lfj.6.1680223397584;
-        Thu, 30 Mar 2023 17:43:17 -0700 (PDT)
+        bh=YQN05jrEVGv/j8FBoYsJo/sMOQRm3hC/TiIil0FkSPY=;
+        b=77RNXPJmY8Awe5MRO90NR+1e5gxfpqcYwI8ofF3YSD8AG4oDgEPgkX9xECq8vQzHpl
+         bmA35eorY6IFTqhxHeGmhrDKAwq4sV1qOTF8ds9GZLCShiiFabpSskm3RnFJ3aoYplvV
+         9d4cExd5caSdtCc+dhSZXZVlMg9kznoen8x3qsIZVoVXD8vnHcKBzmGC24ZBJbk+hXH5
+         b9IUP4wFnf3OpRqB9g6B7oQqnyfN3vKDlQ6Ik8JKVW0zUp2To3r4ajZG99gZkrtlcYvE
+         LARZNSm5pBNRWLSETMIJIhiDSQ7wbRHOddX2PNVUrk3SnblIFOj/MVvEH19u109LG7s8
+         4bZw==
+X-Gm-Message-State: AAQBX9czNbNbXSV7Vd+c/O1ThUmCb4NhpDfQ+76/vjzex9QecV0gotM0
+        VTIISRD0VR/NAzxET+agxhrRgg==
+X-Google-Smtp-Source: AKy350acBLGbZSIry0XSZpEV2vCkgyurthY7kpkA7LVsLiCkoePFW24xiBBht0ImUuQgt8Dvk+JPwQ==
+X-Received: by 2002:a19:7419:0:b0:4cb:280b:33c9 with SMTP id v25-20020a197419000000b004cb280b33c9mr7507157lfe.24.1680223510824;
+        Thu, 30 Mar 2023 17:45:10 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id i27-20020ac2523b000000b004e9b4a8f738sm147274lfl.152.2023.03.30.17.43.16
+        by smtp.gmail.com with ESMTPSA id z9-20020ac25de9000000b004eb2dab8a61sm149678lfq.44.2023.03.30.17.45.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Mar 2023 17:43:17 -0700 (PDT)
-Message-ID: <df57f5c1-13aa-c328-57ac-de486d29e549@linaro.org>
-Date:   Fri, 31 Mar 2023 03:43:16 +0300
+        Thu, 30 Mar 2023 17:45:10 -0700 (PDT)
+Message-ID: <87263b92-0bb5-a12e-c94b-58eb91672dc3@linaro.org>
+Date:   Fri, 31 Mar 2023 03:45:09 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sm8250: Add GPU speedbin support
+Subject: Re: [PATCH v2 4/5] arm64: dts: qcom: sm8150: Add GPU speedbin support
 Content-Language: en-GB
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-arm-msm@vger.kernel.org, andersson@kernel.org,
@@ -63,9 +63,9 @@ Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230120172233.1905761-1-konrad.dybcio@linaro.org>
- <20230120172233.1905761-6-konrad.dybcio@linaro.org>
+ <20230120172233.1905761-5-konrad.dybcio@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230120172233.1905761-6-konrad.dybcio@linaro.org>
+In-Reply-To: <20230120172233.1905761-5-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
@@ -79,107 +79,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/01/2023 19:22, Konrad Dybcio wrote:
-> SM8250 has (at least) four GPU speed bins. With the support added on the
+> SM8150 has (at least) two GPU speed bins. With the support added on the
 > driver side, wire up bin detection in the DTS to restrict lower-quality
 > SKUs from running at frequencies they were not validated at.
 > 
-> Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # On Sony Xperia 5 II (speed bin 0x7)
+> Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # On Sony Xperia 5 (speed bin 0x3)
 > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 23 ++++++++++++++++++++++-
->   1 file changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 059c83003fb6..95f1a6afcd43 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -981,6 +981,18 @@ ipcc: mailbox@408000 {
->   			#mbox-cells = <2>;
->   		};
->   
-> +		qfprom: efuse@784000 {
-> +			compatible = "qcom,sm8250-qfprom", "qcom,qfprom";
-> +			reg = <0 0x00784000 0 0x8ff>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			gpu_speed_bin: gpu_speed_bin@19b {
-> +				reg = <0x19b 0x1>;
-> +				bits = <5 3>;
-> +			};
-> +		};
-> +
->   		rng: rng@793000 {
->   			compatible = "qcom,prng-ee";
->   			reg = <0 0x00793000 0 0x1000>;
-> @@ -2576,49 +2588,58 @@ gpu: gpu@3d00000 {
->   
->   			qcom,gmu = <&gmu>;
->   
-> +			nvmem-cells = <&gpu_speed_bin>;
-> +			nvmem-cell-names = "speed_bin";
-> +
->   			status = "disabled";
->   
->   			zap-shader {
->   				memory-region = <&gpu_mem>;
->   			};
->   
-> -			/* note: downstream checks gpu binning for 670 Mhz */
->   			gpu_opp_table: opp-table {
->   				compatible = "operating-points-v2";
->   
->   				opp-670000000 {
->   					opp-hz = /bits/ 64 <670000000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-> +					opp-supported-hw = <0x6>;
+>   arch/arm64/boot/dts/qcom/sm8150.dtsi | 21 ++++++++++++++++++++-
+>   1 file changed, 20 insertions(+), 1 deletion(-)
 
-opp-supported-hw = <0xa>; /* 3 & 1 */
-
->   				};
->   
->   				opp-587000000 {
->   					opp-hz = /bits/ 64 <587000000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-> +					opp-supported-hw = <0x7>;
-
-opp-supported-hw = <0xb>; /* 3, 1, 0 */
-
-
->   				};
->   
->   				opp-525000000 {
->   					opp-hz = /bits/ 64 <525000000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-> +					opp-supported-hw = <0xf>;
->   				};
->   
->   				opp-490000000 {
->   					opp-hz = /bits/ 64 <490000000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> +					opp-supported-hw = <0xf>;
->   				};
->   
->   				opp-441600000 {
->   					opp-hz = /bits/ 64 <441600000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-> +					opp-supported-hw = <0xf>;
->   				};
->   
->   				opp-400000000 {
->   					opp-hz = /bits/ 64 <400000000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-> +					opp-supported-hw = <0xf>;
->   				};
->   
->   				opp-305000000 {
->   					opp-hz = /bits/ 64 <305000000>;
->   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +					opp-supported-hw = <0xf>;
->   				};
->   			};
->   		};
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
